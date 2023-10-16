@@ -17,7 +17,7 @@
     "storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build",
     "check-types": "tsc --noEmit",
-    "generate-icons": "node ./scripts/generate-icon-components.js"
+    "generate-icons": "node ./scripts/generate-icon-components.js && eslint --fix src/icons/components/"
   },
   "peerDependencies": {
     "react": "^18.2.0"
@@ -30,6 +30,9 @@
     "@storybook/addon-styling-webpack": "^0.0.5",
     "@storybook/nextjs": "^7.4.6",
     "@storybook/react": "^7.4.6",
+    "@svgr/core": "^8.1.0",
+    "@svgr/plugin-jsx": "^8.1.0",
+    "@svgr/plugin-svgo": "^8.1.0",
     "@types/node": "^18.11.17",
     "@types/react": "^18.2.28",
     "autoprefixer": "^10.4.16",

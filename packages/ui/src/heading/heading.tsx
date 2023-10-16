@@ -6,12 +6,10 @@ interface HeadingProps extends HTMLAttributes<HTMLHeadingElement> {
   noSize?: boolean
 }
 
-export const Heading: React.FC<HeadingProps> = (props) => {
+export default function Heading(props: HeadingProps) {
   const { as = 'h2', ...rest } = props
 
   return createElement(as, {
     ...rest,
   })
 }
-
-export default Heading

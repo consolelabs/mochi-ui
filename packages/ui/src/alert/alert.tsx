@@ -1,5 +1,10 @@
+import type { SVGProps } from 'react'
 import type { VariantProps } from 'class-variance-authority'
 import { cva } from 'class-variance-authority'
+import IconCheckCircled from '../icons/components/icon-check-circled'
+import IconInfoCircled from '../icons/components/icon-info-circled'
+import IconCrossCircled from '../icons/components/icon-cross-circled'
+import IconExclamationTriangle from '../icons/components/icon-exclamation-triangle'
 
 const alert = cva(['flex gap-x-2 rounded-lg p-3 border'], {
   variants: {
@@ -21,15 +26,27 @@ type Props = VariantProps<typeof alert> & {
   title: string
 }
 
+type Appearance = Exclude<Props['appearance'], null | undefined>
+
+const icons = {
+  info: IconInfoCircled,
+  success: IconCheckCircled,
+  warn: IconExclamationTriangle,
+  error: IconCrossCircled,
+} satisfies Record<Appearance, (p: SVGProps<SVGSVGElement>) => JSX.Element>
+
 export default function Alert({
   title,
   children,
   className,
-  appearance = 'info',
+  appearance: _appearance,
 }: Props) {
+  const appearance = _appearance ?? 'info'
+  const Icon = icons[appearance]
+
   return (
     <div className={alert({ className, appearance })}>
-      <div />
+      <Icon className="flex-shrink-0 w-5 h-5 text-current" />
       <div className="flex flex-col flex-1 text-current">
         <span className="text-sm font-medium text-current">{title}</span>
         {children}
