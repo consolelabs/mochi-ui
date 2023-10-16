@@ -1,0 +1,14 @@
+build/
+coverage/
+__snapshots__/
+node_modules/
+storybook-static/
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+package.json
+# next.js
+/.next/
+/out/
+# turborepo
+/.turbo/
