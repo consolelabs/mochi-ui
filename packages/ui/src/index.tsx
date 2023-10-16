@@ -2,4 +2,5 @@
 import './styles.css'
 
 // components
-export * from './Heading'
+export * from './heading'
+export * from './alert'

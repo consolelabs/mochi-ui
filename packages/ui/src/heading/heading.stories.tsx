@@ -1,10 +1,10 @@
-import Heading from './Heading'
+import Heading from './heading'
 
 export default {
-  title: 'ui/Heading',
+  title: 'ui/heading',
 }
 
-export const Default = () => {
+export function Default() {
   return (
     <div className="space-y-4">
       <Heading as="h1">(h1) In love with React & Next</Heading>

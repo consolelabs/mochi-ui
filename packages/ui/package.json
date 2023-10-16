@@ -12,11 +12,12 @@
   "license": "MIT",
   "scripts": {
     "build": "tsup",
-    "lint": "eslint src/",
+    "lint": "eslint --fix src/",
     "dev": "tsup --watch",
     "storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "generate-icons": "node ./scripts/generate-icon-components.js"
   },
   "peerDependencies": {
     "react": "^18.2.0"
@@ -29,11 +30,15 @@
     "@storybook/addon-styling-webpack": "^0.0.5",
     "@storybook/nextjs": "^7.4.6",
     "@storybook/react": "^7.4.6",
+    "@types/node": "^18.11.17",
     "@types/react": "^18.2.28",
     "autoprefixer": "^10.4.16",
     "eslint-config-custom": "workspace:*",
+    "glob": "^10.3.10",
     "postcss": "^8.4.31",
+    "prettier": "^3.0.3",
     "react": "^18.2.0",
+    "rimraf": "^5.0.5",
     "storybook": "^7.4.6",
     "tailwind-config": "workspace:*",
     "tailwindcss": "^3.3.3",
@@ -42,6 +47,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@radix-ui/react-switch": "^1.0.3"
+    "@radix-ui/react-switch": "^1.0.3",
+    "class-variance-authority": "^0.7.0"
   }
 }
