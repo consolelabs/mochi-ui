@@ -9,10 +9,15 @@ import IconExclamationTriangle from '../icons/components/icon-exclamation-triang
 const alert = cva(['flex gap-x-2 rounded-lg p-3 border'], {
   variants: {
     appearance: {
-      info: ['bg-gray-100', 'text-gray-600', 'border', 'border-gray-300/70'],
-      success: ['bg-green-50', 'text-green-700', 'border-green-200'],
-      warn: ['bg-yellow-50', 'text-yellow-700', 'border-yellow-300/70'],
-      error: ['bg-red-50', 'text-red-700', 'border-red-200'],
+      info: [
+        'bg-neutral-100',
+        'text-neutral-600',
+        'border',
+        'border-neutral-300',
+      ],
+      success: ['bg-green-100', 'text-green-600', 'border-green-300'],
+      warn: ['bg-yellow-100', 'text-yellow-600', 'border-yellow-300'],
+      error: ['bg-red-100', 'text-red-600', 'border-red-300'],
     },
   },
   defaultVariants: {
