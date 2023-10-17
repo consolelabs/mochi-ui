@@ -9,10 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "eip1193-types": "^0.2.1",
     "next": "^13.4.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "ui": "workspace:*"
+    "ui": "workspace:*",
+    "viem": "^1.16.6",
+    "wagmi": "^1.4.3"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^13.4.19",

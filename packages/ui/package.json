@@ -60,8 +60,13 @@
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.0.4",
+    "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-switch": "^1.0.3",
+    "@uidotdev/usehooks": "^2.4.0",
+    "browser-string-hexer": "^1.0.0",
+    "bs58": "^5.0.0",
     "class-variance-authority": "^0.7.0",
-    "clsx": "^2.0.0"
+    "clsx": "^2.0.0",
+    "vaul": "^0.7.2"
   }
 }

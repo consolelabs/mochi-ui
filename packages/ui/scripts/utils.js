@@ -37,7 +37,7 @@ const generateSvgs = () => {
         {
           typescript: true,
           icon: true,
-          plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
+          plugins: ['@svgr/plugin-jsx'],
         },
         { componentName },
       )
