@@ -5,10 +5,19 @@
     "**/*.css"
   ],
   "types": "./dist/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "exports": {
-    ".": "./dist",
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
     "./styles.css": "./dist/index.css"
   },
+  "files": [
+    "dist",
+    "src"
+  ],
   "license": "MIT",
   "scripts": {
     "build": "tsup",
