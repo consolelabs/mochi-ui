@@ -10,12 +10,8 @@ const Accordion = AccordionPrimitive.Root
 const AccordionItem = forwardRef<
     ElementRef<typeof AccordionPrimitive.Item>,
     ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
->(({className, ...props}, ref) => (
+>((props, ref) => (
     <AccordionPrimitive.Item
-        className={clsx(
-          // "p-2",
-          className
-        )}
         ref={ref}
         {...props}
     />
