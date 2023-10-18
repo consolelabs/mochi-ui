@@ -27,6 +27,7 @@ const arrowCva = cva([], {
 })
 
 export const ARROW_OPTIONS = [
+  'none',
   'top-start',
   'top-center',
   'top-end',
