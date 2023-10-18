@@ -16,7 +16,12 @@ interface WidgetProps {
   open: boolean
   onOpenChange: (o: boolean) => void
   trigger?: React.ReactNode
-  onSuccess: (data: { signature: string; msg: string; address: string }) => void
+  onSuccess: (data: {
+    signature: string
+    msg: string
+    address: string
+    platform: 'evm' | 'solana' | 'ronin' | 'sui'
+  }) => void
 }
 
 function Group(props: {
@@ -154,10 +159,14 @@ export default function LoginWidget({
   if ((size.width ?? 0) <= 768) {
     return (
       <Drawer.Root>
+        {/* @ts-ignore */}
         <Drawer.Trigger asChild>{trigger}</Drawer.Trigger>
+        {/* @ts-ignore */}
         <Drawer.Portal>
-          <Drawer.Overlay className="fixed inset-0 bg-black/40" />
-          <Drawer.Content className="flex fixed right-0 bottom-0 left-0 flex-col bg-white rounded-t-2xl">
+          {/* @ts-ignore */}
+          <Drawer.Overlay className="fixed inset-0 z-40 bg-black/30" />
+          {/* @ts-ignore */}
+          <Drawer.Content className="flex fixed right-0 bottom-0 left-0 z-50 flex-col bg-white rounded-t-2xl">
             <div className="flex flex-col w-full">
               <div className="sticky top-2 z-10 flex-shrink-0 mx-auto mt-2 w-20 h-1.5 rounded-full bg-neutral-400" />
               <div className="flex flex-col-reverse w-full">
@@ -174,10 +183,10 @@ export default function LoginWidget({
     <Dialog.Root onOpenChange={onOpenChange} open={open}>
       <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed w-screen h-screen bg-black/30" />
+        <Dialog.Overlay className="fixed z-40 w-screen h-screen bg-black/30" />
         <Dialog.Content asChild>
           <div
-            className="flex fixed top-1/2 left-1/2 z-10 bg-white rounded-2xl -translate-x-1/2 -translate-y-1/2 max-h-[450px]"
+            className="flex fixed top-1/2 left-1/2 z-50 bg-white rounded-2xl -translate-x-1/2 -translate-y-1/2 max-h-[450px]"
             style={{ boxShadow: '0px 0px 20px 0px rgba(0, 0, 0, 0.18)' }}
           >
             <Inner onSuccess={onSuccess} />

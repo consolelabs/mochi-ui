@@ -21,7 +21,7 @@ function Widget() {
   const [open, setOpen] = useState(false)
 
   return (
-    <LoginWidget onOpenChange={setOpen} open={open} onSuccess={console.log} />
+    <LoginWidget onOpenChange={setOpen} onSuccess={console.log} open={open} />
   )
 }
 

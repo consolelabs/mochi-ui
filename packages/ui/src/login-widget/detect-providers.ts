@@ -11,18 +11,21 @@ import IconMartianWallet from '../icons/components/icon-martian-wallet'
 import type { WalletProps } from './wallet'
 
 const msg = 'Please sign this message to prove that you own this wallet'
-const signEVM = (p: any) => (accounts: string[]) =>
-  Promise.resolve(hexer(msg))
-    .then((c) =>
-      p.request({ method: 'personal_sign', params: [c, accounts.at(0)] }),
-    )
-    .then((signature: string) => {
-      return {
-        address: accounts.at(0),
-        signature,
-        msg,
-      }
-    })
+const signEVM =
+  (p: any, platform = 'evm') =>
+  (accounts: string[]) =>
+    Promise.resolve(hexer(msg))
+      .then((c) =>
+        p.request({ method: 'personal_sign', params: [c, accounts.at(0)] }),
+      )
+      .then((signature: string) => {
+        return {
+          address: accounts.at(0),
+          signature,
+          msg,
+          platform,
+        }
+      })
 const signSol = (p: any) => () =>
   Promise.resolve(new TextEncoder().encode(msg))
     .then((m) => p.signMessage(m))
@@ -31,10 +34,13 @@ const signSol = (p: any) => () =>
         address: pb.toString(),
         signature: bs58.encode(signature as Uint8Array),
         msg,
+        platform: 'solana',
       }
     })
 
 export default function getAvailableWallets() {
+  const isSSR = typeof window === 'undefined'
+
   const connectors: Record<'EVM' | 'Solana' | 'RONIN' | 'Sui', WalletProps[]> =
     {
       EVM: [],
@@ -43,51 +49,74 @@ export default function getAvailableWallets() {
       Sui: [],
     }
 
-  for (const p of window.ethereum?.providers ?? []) {
-    if (p.isRainbow) {
-      connectors.EVM.push({
-        icon: IconRainbowWallet,
-        name: 'Rainbow',
-        connect: () =>
-          p.request({ method: 'eth_requestAccounts' }).then(signEVM(p)),
-      })
-      continue
-    }
-    if (p.isCoinbaseWallet) {
-      connectors.EVM.push({
-        icon: IconCoinbaseWallet,
-        name: 'Coinbase',
-        connect: () =>
-          p.request({ method: 'eth_requestAccounts' }).then(signEVM(p)),
-      })
-      continue
-    } else if (p.providers?.length) {
-      const coinbase = window.ethereum?.providers
-        .find((provider: any) => provider.providerMap?.get('CoinbaseWallet'))
-        .providerMap?.get('CoinbaseWallet')
+  if (isSSR) return connectors
 
-      if (coinbase) {
+  if (window.ethereum.providers?.length) {
+    for (const p of window.ethereum?.providers ?? []) {
+      if (p.isRainbow) {
+        connectors.EVM.push({
+          icon: IconRainbowWallet,
+          name: 'Rainbow',
+          connect: () =>
+            p.request({ method: 'eth_requestAccounts' }).then(signEVM(p)),
+        })
+        continue
+      }
+      if (p.isCoinbaseWallet) {
         connectors.EVM.push({
           icon: IconCoinbaseWallet,
           name: 'Coinbase',
           connect: () =>
-            coinbase
-              .request({ method: 'eth_requestAccounts' })
-              .then(signEVM(p)),
+            p.request({ method: 'eth_requestAccounts' }).then(signEVM(p)),
+        })
+        continue
+      } else if (p.providers?.length) {
+        const coinbase = window.ethereum?.providers
+          .find((provider: any) => provider.providerMap?.get('CoinbaseWallet'))
+          .providerMap?.get('CoinbaseWallet')
+
+        if (coinbase) {
+          connectors.EVM.push({
+            icon: IconCoinbaseWallet,
+            name: 'Coinbase',
+            connect: () =>
+              coinbase
+                .request({ method: 'eth_requestAccounts' })
+                .then(signEVM(coinbase)),
+          })
+          continue
+        }
+      }
+
+      if (p.isMetaMask) {
+        connectors.EVM.push({
+          icon: IconMetamaskWallet,
+          name: 'MetaMask',
+          connect: () =>
+            p.request({ method: 'eth_requestAccounts' }).then(signEVM(p)),
         })
         continue
       }
     }
-
-    if (p.isMetaMask) {
-      connectors.EVM.push({
+  } else {
+    connectors.EVM.push(
+      {
         icon: IconMetamaskWallet,
         name: 'MetaMask',
         connect: () =>
-          p.request(p, { method: 'eth_requestAccounts' }).then(signEVM(p)),
-      })
-      continue
-    }
+          window.ethereum
+            .request({ method: 'eth_requestAccounts' })
+            .then(signEVM(window.ethereum)),
+      },
+      {
+        icon: IconRainbowWallet,
+        name: 'Rainbow',
+        connect: () =>
+          window.ethereum
+            .request({ method: 'eth_requestAccounts' })
+            .then(signEVM(window.ethereum)),
+      },
+    )
   }
 
   if (window.ronin) {
@@ -99,7 +128,7 @@ export default function getAvailableWallets() {
           .request({
             method: 'eth_requestAccounts',
           })
-          .then(signEVM(window.ronin.provider)),
+          .then(signEVM(window.ronin.provider, 'ronin')),
     })
   }
 
@@ -139,6 +168,7 @@ export default function getAvailableWallets() {
               address: data.address,
               msg,
               signature: data.signature,
+              platform: 'sui',
             }
           }),
     })
@@ -164,6 +194,7 @@ export default function getAvailableWallets() {
                   address: wallet.accounts.at(0).address,
                   msg,
                   signature: data.signature,
+                  platform: 'sui',
                 }
               }),
         })
