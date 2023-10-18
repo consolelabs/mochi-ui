@@ -14,5 +14,6 @@ module.exports = {
     '@typescript-eslint/no-unsafe-call': 'off',
     '@typescript-eslint/no-unsafe-return': 'off',
     '@typescript-eslint/no-confusing-void-expression': 'off',
+    'react/no-array-index-key': 'off',
   },
 }

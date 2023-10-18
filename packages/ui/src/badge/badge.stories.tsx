@@ -10,42 +10,45 @@ import type { BadgeProps } from './badge'
 
 const args: BadgeProps[] = [
   {
-    label: "Label",
+    label: 'Label',
   },
   {
-    label: "Label",
-    icon: <IconSolidDot/>,
+    label: 'Label',
+    icon: <IconSolidDot />,
   },
   {
-    label: "Label",
+    label: 'Label',
     icon: <Avatar src="https://mochi.gg/logo.png" />,
-    isAvatarIcon: true
+    isAvatarIcon: true,
   },
   {
-    label: "Label",
-    icon: <IconClose/>,
-    iconPosition: "right"
+    label: 'Label',
+    icon: <IconClose />,
+    iconPosition: 'right',
   },
   {
-    label: "Label",
-    icon: <IconArrow/>,
-    iconPosition: "right"
+    label: 'Label',
+    icon: <IconArrow />,
+    iconPosition: 'right',
   },
   {
-    label: "Label",
-    icon: <IconTwinkle/>,
+    label: 'Label',
+    icon: <IconTwinkle />,
   },
   {
-    icon: <IconPlus/>,
-  }
+    icon: <IconPlus />,
+  },
 ]
 
 const renderByAppearance = (appearance: BadgeProps['appearance']) => (
-  <div className='flex gap-3'>
-    {args.map((props) => 
-      // eslint-disable-next-line react/jsx-key -- No use
-        <Badge {...props} appearance={appearance} />
-    )}
+  <div className="flex gap-3">
+    {args.map((props, i) => (
+      <Badge
+        {...props}
+        appearance={appearance}
+        key={`badge-${appearance}-${i}`}
+      />
+    ))}
   </div>
 )
 
@@ -65,20 +68,24 @@ const meta: Meta<typeof Badge> = {
     },
     icon: {
       control: 'select',
-      options: [
-        'avatar',
-        'icon-arrow',
-        'icon-dot'
-      ],
+      options: ['avatar', 'icon-arrow', 'icon-dot'],
       mapping: {
-        'avatar': <Avatar src="https://mochi.gg/logo.png"/>,
-        'icon-dot': <IconSolidDot fontSize={8} />,
+        avatar: <Avatar src="https://mochi.gg/logo.png" />,
+        'icon-dot': <IconSolidDot />,
         'icon-arrow': <IconArrow />,
-      }
+      },
     },
     appearance: {
       control: 'select',
-      options: ['primary', 'secondary', 'success', 'danger', 'warning', 'black', 'white']
+      options: [
+        'primary',
+        'secondary',
+        'success',
+        'danger',
+        'warning',
+        'black',
+        'white',
+      ],
     },
     iconPosition: {
       control: 'select',
@@ -86,8 +93,8 @@ const meta: Meta<typeof Badge> = {
     },
     isAvatarIcon: {
       control: 'select',
-      options: [true, false]
-    }
+      options: [true, false],
+    },
   },
 }
 
@@ -96,35 +103,35 @@ type Story = StoryObj<typeof Badge>
 
 export const Default: Story = {
   args: {
-    label:'Label',
+    label: 'Label',
     icon: <IconPlus />,
-  }
+  },
 }
 
 export const Primary: Story = {
-  render: () => renderByAppearance('primary')
+  render: () => renderByAppearance('primary'),
 }
 
 export const Secondary: Story = {
-  render: () => renderByAppearance('secondary')
+  render: () => renderByAppearance('secondary'),
 }
 
 export const Success: Story = {
-  render: () => renderByAppearance('success')
+  render: () => renderByAppearance('success'),
 }
 
 export const Danger: Story = {
-  render: () => renderByAppearance('danger')
+  render: () => renderByAppearance('danger'),
 }
 
 export const Warning: Story = {
-  render: () => renderByAppearance('warning')
+  render: () => renderByAppearance('warning'),
 }
 
 export const Black: Story = {
-  render: () => renderByAppearance('black')
+  render: () => renderByAppearance('black'),
 }
 
 export const White: Story = {
-  render: () => renderByAppearance('white')
+  render: () => renderByAppearance('white'),
 }

@@ -10,7 +10,7 @@ function IconSolidDot(props: SVGProps<SVGSVGElement>) {
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
-    <circle cx={4} cy={4} fill="currentColor" r={3} />
+    <circle cx={4} cy={4} fill="currentColor" r={2} />
   </svg>
 }
 export default IconSolidDot
