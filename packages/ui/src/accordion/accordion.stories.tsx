@@ -10,7 +10,7 @@ const meta: Meta<typeof Accordion> = {
     args: {
       type: "single",
       collapsible: true,
-      className: "px-[18px] py-2 space-y-1 rounded-lg shadow-md divide-y max-w-md",
+      className: "px-3 rounded-lg shadow-md divide-y max-w-md",
     },
     argTypes: {
       type: {
@@ -29,7 +29,7 @@ export const Default: Story = {
         return (
             <Accordion {...props}>
                 <AccordionItem value="2">
-                    <AccordionTrigger className="gap-[14px]"> 
+                    <AccordionTrigger className="gap-3"> 
                         <IconQuests fontSize={20}/>
                         Server Management
                     </AccordionTrigger>
@@ -38,12 +38,12 @@ export const Default: Story = {
                     </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="3">
-                    <AccordionTrigger className="gap-[14px]">
+                    <AccordionTrigger className="gap-3">
                         <IconGame fontSize={20}/>
                         Game Store
                     </AccordionTrigger>
                     <AccordionContent>
-                        <ul className="space-y-[10px]">
+                        <ul className="space-y-3">
                             <li>Pod Town</li>
                             <li>Triple Pod</li>
                             <li>Lottery Tower</li>
@@ -55,7 +55,7 @@ export const Default: Story = {
                         Servers
                     </AccordionTrigger>
                     <AccordionContent>
-                        <ul className="space-y-[10px]">
+                        <ul className="space-y-3">
                             <li>Server 0</li>
                             <li>Server 1</li>
                             <li>Server 2</li>

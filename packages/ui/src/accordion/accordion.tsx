@@ -31,7 +31,7 @@ const AccordionTrigger = forwardRef<
   <AccordionPrimitive.Header className="flex">
     <AccordionPrimitive.Trigger
       className={clsx(
-        "flex-1 flex font-medium text-sm items-center justify-between [&[data-state=open]>#chevron]:rotate-180 gap-[14px] py-[10px]",
+        "flex-1 flex font-medium text-sm items-center justify-between [&[data-state=open]>#chevron]:rotate-180 gap-3 py-3",
         wrapperClassName
       )}
       ref={ref}
@@ -40,7 +40,7 @@ const AccordionTrigger = forwardRef<
       <span className={clsx("flex flex-1", className)}>
         {children}
       </span>
-      {showIcon ? <IconChevron className="text-neutral-500 shrink-0 transition-transform duration-200" fontSize="18" id="chevron"/> : null}
+      {showIcon ? <IconChevron className="text-neutral-500 shrink-0 transition-transform duration-200 text-base" id="chevron"/> : null}
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ))
@@ -66,7 +66,7 @@ const AccordionContent = forwardRef<
   >
     <div
       className={clsx(
-        "pb-[10px] pt-0",
+        "pb-3 pt-0",
         className
       )}
     >
