@@ -2,32 +2,53 @@ import React from 'react'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import clsx from 'clsx'
 
-export type ListRenderItem<Item> = (
+type DefaultSection = Record<string, any>
+
+interface SectionBase<Item> {
+  data: readonly Item[]
+  key?: string | undefined
+}
+
+export type SectionListData<
+  Item,
+  Section = DefaultSection,
+> = SectionBase<Item> & Section
+
+export type SectionListRenderItem<Item, Section = DefaultSection> = (
   item: Item,
+  section: SectionListData<Item, Section>,
   index?: number,
 ) => React.ReactNode
 
-interface ListProps<Item> {
+interface SectionListProps<Item, Section = DefaultSection> {
   rootClassName?: string
   rootStyle?: React.CSSProperties
   viewportClassName?: string
   viewportStyle?: React.CSSProperties
   listClassName?: string
   listStyle?: React.CSSProperties
-  data: readonly Item[]
-  renderItem: ListRenderItem<Item>
+  sections: readonly SectionListData<Item, Section>[]
+  renderItem?: SectionListRenderItem<Item, Section>
+  renderSectionHeader?: (
+    section: SectionListData<Item, Section>,
+    index?: number,
+  ) => React.ReactNode
 }
 
-export default function List<Item extends NonNullable<object> | string>({
+export default function SectionList<
+  Item = NonNullable<object> | string,
+  Section = DefaultSection,
+>({
   rootClassName,
   rootStyle,
   viewportClassName,
   viewportStyle,
   listClassName,
   listStyle,
-  data,
+  sections,
   renderItem,
-}: ListProps<Item>) {
+  renderSectionHeader,
+}: SectionListProps<Item, Section>) {
   return (
     <ScrollArea.Root
       className={clsx('overflow-hidden', rootClassName)}
@@ -38,7 +59,19 @@ export default function List<Item extends NonNullable<object> | string>({
         style={viewportStyle}
       >
         <div className={clsx('space-y-1', listClassName)} style={listStyle}>
-          {data.map(renderItem)}
+          {sections.map((section, sectionIndex) => {
+            return (
+              <div
+                className="space-y-1"
+                key={(section.key || '') + sectionIndex}
+              >
+                {renderSectionHeader?.(section, sectionIndex)}
+                {section.data.map(
+                  (item, itemIndex) => renderItem?.(item, section, itemIndex),
+                )}
+              </div>
+            )
+          })}
         </div>
       </ScrollArea.Viewport>
       <ScrollArea.Scrollbar
