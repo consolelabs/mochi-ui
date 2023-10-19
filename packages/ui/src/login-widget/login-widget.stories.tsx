@@ -43,12 +43,12 @@ function AssocWallet() {
   }, [user])
 
   return (
-    <div className="flex flex-col gap-y-5 items-center">
+    <div className="ui-flex ui-flex-col ui-gap-y-5 ui-items-center">
       {user ? (
-        <div className="flex flex-col gap-y-2">
+        <div className="ui-flex ui-flex-col ui-gap-y-2">
           <span>Your accounts</span>
           <div
-            className="grid auto-rows-auto gap-y-1 gap-x-3"
+            className="ui-grid ui-auto-rows-auto ui-gap-y-1 ui-gap-x-3"
             style={{
               gridTemplateColumns: '1fr max-content max-content max-content',
             }}
@@ -56,20 +56,22 @@ function AssocWallet() {
             {user.associatedAccounts.map((aa) => {
               return (
                 <Fragment key={aa.address}>
-                  <span className="text-sm">
+                  <span className="ui-text-sm">
                     {aa.address.slice(0, 10)}..{aa.address.slice(-5)}
                   </span>
-                  <span className="text-sm">{aa.platform}</span>
-                  <span className="text-sm">Chain id {aa.chainId}</span>
+                  <span className="ui-text-sm">{aa.platform}</span>
+                  <span className="ui-text-sm">Chain id {aa.chainId}</span>
                   {aa.isWalletNotInstalled ? (
-                    <span className="text-red-700">wallet not installed</span>
+                    <span className="ui-text-red-700">
+                      wallet not installed
+                    </span>
                   ) : (
                     <button
                       className={clsx(
-                        'px-1.5 text-sm rounded-md border shadow border-neutral-500',
+                        'ui-px-1.5 ui-text-sm ui-rounded-md ui-border ui-shadow ui-border-neutral-500',
                         {
-                          'bg-green-200': aa.isConnected,
-                          'bg-neural-200': !aa.isConnected,
+                          'ui-bg-green-200': aa.isConnected,
+                          'ui-bg-neural-200': !aa.isConnected,
                         },
                       )}
                       onClick={aa.isConnected ? undefined : aa.connect}

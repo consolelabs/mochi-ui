@@ -1,5 +1,5 @@
 import './globals.css'
-import 'ui/styles.css'
+import '@consolelabs/ui-components/styles.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 

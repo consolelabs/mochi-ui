@@ -6,11 +6,11 @@ import { useId } from 'react'
 const avatar = cva([''], {
   variants: {
     size: {
-      xs: 'w-4 h-4',
-      sm: 'w-7 h-7',
-      base: 'w-10 h-10',
-      lg: 'w-14 h-14',
-      xl: 'w-20 h-20',
+      xs: 'ui-w-4 ui-h-4',
+      sm: 'ui-w-7 ui-h-7',
+      base: 'ui-w-10 ui-h-10',
+      lg: 'ui-w-14 ui-h-14',
+      xl: 'ui-w-20 ui-h-20',
     },
   },
   defaultVariants: {

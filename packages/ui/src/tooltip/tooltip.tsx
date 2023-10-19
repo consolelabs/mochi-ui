@@ -2,23 +2,26 @@ import * as RadixTooltip from '@radix-ui/react-tooltip'
 import type { VariantProps } from 'class-variance-authority'
 import { cva } from 'class-variance-authority'
 
-const tooltip = cva(['rounded-lg px-3 py-2 text-xs font-semibold'], {
-  variants: {
-    theme: {
-      light: ['bg-white', 'text-neutral-800'],
-      dark: ['bg-neutral-800', 'text-white'],
+const tooltip = cva(
+  ['ui-rounded-lg ui-px-3 ui-py-2 ui-text-xs ui-font-semibold'],
+  {
+    variants: {
+      theme: {
+        light: ['ui-bg-white', 'ui-text-neutral-800'],
+        dark: ['ui-bg-neutral-800', 'ui-text-white'],
+      },
+    },
+    defaultVariants: {
+      theme: 'light',
     },
   },
-  defaultVariants: {
-    theme: 'light',
-  },
-})
+)
 
 const arrowCva = cva([], {
   variants: {
     theme: {
-      light: ['fill-white'],
-      dark: ['fill-neutral-800'],
+      light: ['ui-fill-white'],
+      dark: ['ui-fill-neutral-800'],
     },
   },
   defaultVariants: {
@@ -61,14 +64,14 @@ export default function Tooltip({
     arrow === 'none'
       ? []
       : (arrow.split('-') as [
-          RadixTooltip.PopperContentProps['side'],
-          RadixTooltip.PopperContentProps['align'],
-        ])
+        RadixTooltip.PopperContentProps['side'],
+        RadixTooltip.PopperContentProps['align'],
+      ])
 
   return (
     <RadixTooltip.Provider>
       <RadixTooltip.Root delayDuration={0}>
-        <RadixTooltip.Trigger className="w-fit">
+        <RadixTooltip.Trigger className="ui-w-fit">
           {children}
         </RadixTooltip.Trigger>
         <RadixTooltip.Portal>

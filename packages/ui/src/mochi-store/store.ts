@@ -71,27 +71,28 @@ export const useMochi = create<MochiState>((set, get) => ({
 
           switch (aa.platform) {
             case 'evm-chain': {
-              if (!window.ethereum) {
+              if (!window.web3) {
                 a.isWalletNotInstalled = true
                 break
               }
-              a.chainId = await window.ethereum.request({
+              a.chainId = await window.web3.currentProvider.request({
                 method: 'eth_chainId',
               })
               a.connect = () =>
-                window.ethereum
+                window.web3.currentProvider
                   .request({
                     method: 'wallet_requestPermissions',
                     params: [{ eth_accounts: {} }],
                   })
                   .then(() =>
-                    window.ethereum.request({
+                    window.web3.currentProvider.request({
                       method: 'eth_requestAccounts',
                     }),
                   )
                   .then((accounts: string[]) =>
                     get().connect(accounts, 'evm-chain'),
                   )
+                  .catch(() => { })
               break
             }
             case 'solana-chain': {
@@ -109,6 +110,7 @@ export const useMochi = create<MochiState>((set, get) => ({
                       'solana-chain',
                     ),
                   )
+                  .catch(() => { })
               break
             }
             case 'ronin-chain': {
@@ -135,9 +137,11 @@ export const useMochi = create<MochiState>((set, get) => ({
                       'ronin-chain',
                     ),
                   )
+                  .catch(() => { })
               break
             }
           }
+
           return a
         }),
     )

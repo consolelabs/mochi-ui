@@ -143,9 +143,6 @@ importers:
       clsx:
         specifier: ^2.0.0
         version: 2.0.0
-      use-reducer-async:
-        specifier: ^2.1.1
-        version: 2.1.1(react@18.2.0)
       vaul:
         specifier: ^0.7.2
         version: 0.7.2(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
@@ -14829,14 +14826,6 @@ packages:
       '@types/react': 18.2.28
       react: 18.2.0
       tslib: 2.6.2
-
-  /use-reducer-async@2.1.1(react@18.2.0):
-    resolution: {integrity: sha512-oPSFzOIEPgMenQkMHzqeRgsQLSpcyGkspAnyTWP4l1tKlt31wMVMz6wWj6g/jea/Ms7lRvBz4AL+Okt83Tntig==}
-    peerDependencies:
-      react: '>=16.8.0'
-    dependencies:
-      react: 18.2.0
-    dev: false
 
   /use-resize-observer@9.1.0(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-R25VqO9Wb3asSD4eqtcxk8sJalvIOYBqS8MNZlpDSQ4l4xMQxC/J7Id9HoTqPq8FwULIn0PVW+OAqF2dyYbjow==}

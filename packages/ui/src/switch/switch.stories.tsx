@@ -30,9 +30,9 @@ function Controlled() {
   const [checked, setChecked] = useState(false)
 
   return (
-    <div className="grid grid-cols-2 grid-rows-2 gap-2">
-      <span className="text-sm">Default</span>
-      <span className="text-sm">Disabled</span>
+    <div className="ui-grid ui-grid-cols-2 ui-grid-rows-2 ui-gap-2">
+      <span className="ui-text-sm">Default</span>
+      <span className="ui-text-sm">Disabled</span>
       <Switch checked={checked} onChange={setChecked} />
       <Switch checked disabled />
       <Switch checked={checked} onChange={setChecked} size="md" />
