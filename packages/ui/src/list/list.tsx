@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useRef } from 'react'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import clsx from 'clsx'
 
@@ -16,6 +16,8 @@ interface ListProps<Item> {
   listStyle?: React.CSSProperties
   data: readonly Item[]
   renderItem: ListRenderItem<Item>
+  onEndReached?: () => void
+  onEndReachedThreshold?: number
 }
 
 export default function List<Item extends NonNullable<object> | string>({
@@ -27,7 +29,30 @@ export default function List<Item extends NonNullable<object> | string>({
   listStyle,
   data,
   renderItem,
+  onEndReached,
+  onEndReachedThreshold,
 }: ListProps<Item>) {
+  const endReachedFired = useRef(false)
+
+  const handleScroll = useCallback<React.UIEventHandler<HTMLDivElement>>(
+    (event) => {
+      if (!onEndReached) return
+      const { scrollTop, scrollHeight, clientHeight } = event.currentTarget
+      const threshold = onEndReachedThreshold || 0
+      // If we reach the end of the list, fire the end reached event.
+      // The end reached event fires only once when scroll position is over the threshold
+      if (scrollTop + clientHeight + threshold >= scrollHeight) {
+        if (!endReachedFired.current) {
+          onEndReached()
+          endReachedFired.current = true
+        }
+      } else if (endReachedFired.current) {
+        endReachedFired.current = false
+      }
+    },
+    [onEndReached, onEndReachedThreshold],
+  )
+
   return (
     <ScrollArea.Root
       className={clsx('overflow-hidden', rootClassName)}
@@ -35,6 +60,7 @@ export default function List<Item extends NonNullable<object> | string>({
     >
       <ScrollArea.Viewport
         className={clsx('w-full h-full border-inherit', viewportClassName)}
+        onScroll={handleScroll}
         style={viewportStyle}
       >
         <div className={clsx('space-y-1', listClassName)} style={listStyle}>
