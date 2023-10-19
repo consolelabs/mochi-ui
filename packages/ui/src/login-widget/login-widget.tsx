@@ -1,27 +1,30 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { Drawer } from 'vaul'
 import { useWindowSize } from '@uidotdev/usehooks'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import IconConnectWallets from '../icons/components/icon-connect-wallets'
 import { Heading } from '../heading'
 import IconCrossCircled from '../icons/components/icon-cross-circled'
 import IconExclamationTriangle from '../icons/components/icon-exclamation-triangle'
+import { useMochi } from '../mochi-store'
 import getAvailableWallets from './detect-providers'
 import Wallet from './wallet'
 import type { WalletProps } from './wallet'
 
 const connectors = getAvailableWallets()
 
+type OnSuccess = (data: {
+  signature: string
+  msg: string
+  addresses: string[]
+  platform: 'evm' | 'solana' | 'ronin' | 'sui'
+}) => void
+
 interface WidgetProps {
   open: boolean
   onOpenChange: (o: boolean) => void
   trigger?: React.ReactNode
-  onSuccess: (data: {
-    signature: string
-    msg: string
-    address: string
-    platform: 'evm' | 'solana' | 'ronin' | 'sui'
-  }) => void
+  onSuccess?: OnSuccess
 }
 
 function Group(props: {
@@ -151,10 +154,68 @@ function Inner({ onSuccess }: { onSuccess: WidgetProps['onSuccess'] }) {
 export default function LoginWidget({
   open,
   onOpenChange,
-  trigger = <button type="button">Login</button>,
-  onSuccess,
+  trigger: _trigger,
+  onSuccess: _onSuccess,
 }: WidgetProps) {
+  const { user, login, logout } = useMochi()
   const size = useWindowSize()
+
+  const trigger = _trigger ?? (
+    <button
+      className="px-1.5 text-sm rounded-md border shadow bg-neutral-200 border-neutral-500"
+      onClick={user ? logout : undefined}
+      type="button"
+    >
+      {user ? 'Logout' : 'Login'}
+    </button>
+  )
+
+  const onSuccess = useCallback<OnSuccess>(
+    (data) => {
+      fetch(
+        `https://api-preview.mochi-profile.console.so/api/v1/profiles/auth/${data.platform}`,
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            wallet_address: data.addresses.at(0),
+            message: data.msg,
+            signature: data.signature,
+            platform: data.platform,
+          }),
+        },
+      )
+        .then((r) => r.json())
+        .then((r) => {
+          fetch(
+            'https://api-preview.mochi-profile.console.so/api/v1/profiles/me',
+            {
+              headers: {
+                Authorization: `Bearer ${r.data.access_token}`,
+              },
+            },
+          )
+            .then((r1) => r1.json())
+            .then((me) =>
+              login(
+                me,
+                r.data.access_token as string,
+                data.platform === 'ronin'
+                  ? data.addresses.map((a) => `ronin:${a.slice(2)}`)
+                  : data.addresses,
+              ),
+            )
+            .catch((e) => {
+              throw e
+            })
+        })
+        .catch((e) => {
+          throw e
+        })
+    },
+    [login],
+  )
+
+  if (user) return trigger
 
   if ((size.width ?? 0) <= 768) {
     return (

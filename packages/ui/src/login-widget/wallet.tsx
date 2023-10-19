@@ -6,6 +6,7 @@ export interface WalletProps {
   transparent?: boolean
   name: string
   active?: boolean
+  isInstalled: boolean
   connect: (...params: any) => Promise<any>
 }
 
@@ -15,10 +16,12 @@ export default function Wallet(props: WalletProps) {
       className={clsx(
         'flex gap-x-3 items-center py-3 px-6 rounded-xl transition hover:bg-neutral-100',
         {
+          'opacity-50': !props.isInstalled,
           'text-neutral-600': !props.active,
           'text-neutral-800': Boolean(props.active),
         },
       )}
+      disabled={!props.isInstalled}
       onClick={() => void props.connect()}
       type="button"
     >
