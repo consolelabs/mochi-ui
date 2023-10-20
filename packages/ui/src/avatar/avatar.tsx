@@ -4,7 +4,7 @@ import type { VariantProps } from 'class-variance-authority'
 import { useId } from 'react'
 import { boringAvatar } from '../util'
 
-const avatar = cva([''], {
+const avatar = cva(['ui-rounded-full'], {
   variants: {
     size: {
       xs: 'ui-w-4 ui-h-4',
