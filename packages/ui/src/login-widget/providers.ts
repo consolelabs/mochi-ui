@@ -1,6 +1,5 @@
 import hexer from 'browser-string-hexer'
 import bs58 from 'bs58'
-import { useMochi } from '../mochi-store'
 import IconMetamaskWallet from '../icons/components/icon-metamask-wallet'
 import IconPhantomWallet from '../icons/components/icon-phantom-wallet'
 import IconRoninWallet from '../icons/components/icon-ronin-wallet'
@@ -43,24 +42,24 @@ export default function getAvailableWallets() {
       {
         name: 'MetaMask',
         icon: IconMetamaskWallet,
-        isInstalled: Boolean(window.ethereum),
+        isInstalled: !isSSR && Boolean(window.web3),
         connect: () =>
-          window.ethereum
+          window.web3.currentProvider
             .request({
-              method: 'wallet_requestPermissions',
-              params: [{ eth_accounts: {} }],
+              method: 'eth_requestAccounts',
+              // params: [{ eth_accounts: {} }],
             })
-            .then(() =>
-              window.ethereum.request({ method: 'eth_requestAccounts' }),
-            )
-            .then(signEVM(window.ethereum)),
+            // .then(() =>
+            //   window.ethereum.request({ method: 'eth_requestAccounts' }),
+            // )
+            .then(signEVM(window.web3.currentProvider)),
       },
     ],
     Solana: [
       {
         name: 'Phantom',
         icon: IconPhantomWallet,
-        isInstalled: Boolean(window.phantom),
+        isInstalled: !isSSR && Boolean(window.phantom),
         connect: () =>
           window.phantom.solana
             .connect()
@@ -71,7 +70,7 @@ export default function getAvailableWallets() {
       {
         name: 'Ronin',
         icon: IconRoninWallet,
-        isInstalled: Boolean(window.ronin),
+        isInstalled: !isSSR && Boolean(window.ronin),
         connect: () =>
           window.ronin.provider
             .request({ method: 'eth_requestAccounts' })
@@ -79,21 +78,6 @@ export default function getAvailableWallets() {
       },
     ],
     Sui: [],
-  }
-
-  if (window.ethereum) {
-    window.ethereum.on('accountsChanged', function handle(accounts: string[]) {
-      useMochi.getState().connect(accounts, 'evm-chain')
-    })
-  }
-
-  if (window.ronin) {
-    window.ronin.provider.on(
-      'accountsChanged',
-      function handle(accounts: string[]) {
-        useMochi.getState().connect(accounts, 'ronin-chain')
-      },
-    )
   }
 
   if (isSSR) return connectors

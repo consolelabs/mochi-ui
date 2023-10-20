@@ -3,7 +3,7 @@ import type { Config } from 'tailwindcss'
 import sharedConfig from 'tailwind-config/tailwind.config'
 
 const config: Pick<Config, 'prefix' | 'presets' | 'theme'> = {
-  // prefix: 'ui-',
+  prefix: 'ui-',
   presets: [sharedConfig],
   theme: {
     extend: {

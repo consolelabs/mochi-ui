@@ -7,8 +7,8 @@ import type { VariantProps } from 'class-variance-authority'
 const switchContainer = cva([''], {
   variants: {
     size: {
-      sm: 'w-9 h-5 p-0.5',
-      md: 'w-11 h-6 p-0.5',
+      sm: 'ui-w-9 ui-h-5 ui-p-0.5',
+      md: 'ui-w-11 ui-h-6 ui-p-0.5',
     },
   },
   defaultVariants: {
@@ -19,8 +19,8 @@ const switchContainer = cva([''], {
 const switchThumb = cva([''], {
   variants: {
     size: {
-      sm: 'w-4 h-4',
-      md: 'w-5 h-5',
+      sm: 'ui-w-4 ui-h-4',
+      md: 'ui-w-5 ui-h-5',
     },
   },
   defaultVariants: {
@@ -40,18 +40,18 @@ export default function Switch(props: SwitchProps) {
   const id = useId()
 
   return (
-    <div className="flex gap-x-4">
+    <div className="ui-flex ui-gap-x-4">
       {label ? <label htmlFor={id}>{label}</label> : null}
       <RadixSwitch.Root
         checked={checked}
         className={clsx(
-          'focus-visible:outline-none w-9 h-5 p-0.5 rounded-full transition ring-0 ring-offset-0 ring-transparent focus:ring-4 focus:ring-primary-200',
+          'focus-visible:ui-outline-none ui-w-9 ui-h-5 ui-p-0.5 ui-rounded-full ui-transition ui-ring-0 ui-ring-offset-0 ui-ring-transparent focus:ui-ring-4 focus:ui-ring-primary-200',
           switchContainer({ size }),
           {
-            'hover:bg-neutral-400': !disabled,
-            'bg-neutral-200': disabled,
-            'bg-neutral-300': !checked && !disabled,
-            'bg-primary-700 hover:bg-primary-700': checked && !disabled,
+            'hover:ui-bg-neutral-400': !disabled,
+            'ui-bg-neutral-200': disabled,
+            'ui-bg-neutral-300': !checked && !disabled,
+            'ui-bg-primary-700 hover:ui-bg-primary-700': checked && !disabled,
           },
         )}
         disabled={disabled}
@@ -60,11 +60,11 @@ export default function Switch(props: SwitchProps) {
       >
         <RadixSwitch.Thumb
           className={clsx(
-            'transition origin-center block w-4 h-4 rounded-full bg-neutral-0',
+            'ui-transition ui-origin-center ui-block ui-w-4 ui-h-4 ui-rounded-full ui-bg-neutral-0',
             switchThumb({ size }),
             {
-              'translate-x-0': !checked,
-              'translate-x-full': checked,
+              'ui-translate-x-0': !checked,
+              'ui-translate-x-full': checked,
             },
           )}
           style={{

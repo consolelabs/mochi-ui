@@ -6,18 +6,18 @@ import IconInfoCircled from '../icons/components/icon-info-circled'
 import IconCrossCircled from '../icons/components/icon-cross-circled'
 import IconExclamationTriangle from '../icons/components/icon-exclamation-triangle'
 
-const alert = cva(['flex gap-x-2 rounded-lg p-3 border'], {
+const alert = cva(['ui-flex ui-gap-x-2 ui-rounded-lg ui-p-3 ui-border'], {
   variants: {
     appearance: {
       info: [
-        'bg-neutral-100',
-        'text-neutral-600',
-        'border',
-        'border-neutral-300',
+        'ui-bg-neutral-100',
+        'ui-text-neutral-600',
+        'ui-border',
+        'ui-border-neutral-300',
       ],
-      success: ['bg-green-100', 'text-green-600', 'border-green-300'],
-      warn: ['bg-yellow-100', 'text-yellow-600', 'border-yellow-300'],
-      error: ['bg-red-100', 'text-red-600', 'border-red-300'],
+      success: ['ui-bg-green-100', 'ui-text-green-600', 'ui-border-green-300'],
+      warn: ['ui-bg-yellow-100', 'ui-text-yellow-600', 'ui-border-yellow-300'],
+      error: ['ui-bg-red-100', 'ui-text-red-600', 'ui-border-red-300'],
     },
   },
   defaultVariants: {
@@ -51,9 +51,11 @@ export default function Alert({
 
   return (
     <div className={alert({ className, appearance })}>
-      <Icon className="flex-shrink-0 w-5 h-5 text-current" />
-      <div className="flex flex-col flex-1 text-current">
-        <span className="text-sm font-medium text-current">{title}</span>
+      <Icon className="ui-flex-shrink-0 ui-w-5 ui-h-5 ui-text-current" />
+      <div className="ui-flex ui-flex-col ui-flex-1 ui-text-current">
+        <span className="ui-text-sm ui-font-medium ui-text-current">
+          {title}
+        </span>
         {children}
       </div>
     </div>
