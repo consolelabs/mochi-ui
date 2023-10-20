@@ -68,9 +68,9 @@ export default function List<Item extends NonNullable<object> | string>({
         onScroll={handleScroll}
         style={viewportStyle}
       >
-        <div className={clsx('ui-space-y-1', listClassName)} style={listStyle}>
+        <ul className={clsx('ui-space-y-1', listClassName)} style={listStyle}>
           {data.length ? data.map(renderItem) : ListEmpty}
-        </div>
+        </ul>
       </ScrollArea.Viewport>
       <ScrollArea.Scrollbar
         className="ui-flex ui-select-none ui-touch-none ui-p-0.5 ui-bg-gray-200 ui-transition-colors ui-w-2 hover:ui-bg-gray-300"

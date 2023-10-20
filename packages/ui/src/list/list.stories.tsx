@@ -107,7 +107,7 @@ const defaultData: DataType[] = [
 
 function renderItem(item: DataType) {
   return (
-    <div
+    <li
       className="ui-flex ui-flex-row ui-items-center ui-w-full ui-p-2 hover:ui-bg-[#FAF9F7] ui-rounded-lg ui-space-x-2"
       key={item.id}
     >
@@ -125,7 +125,7 @@ function renderItem(item: DataType) {
         </span>
       </div>
       <span className="ui-text-sm">${item.price.toLocaleString('en-US')}</span>
-    </div>
+    </li>
   )
 }
 

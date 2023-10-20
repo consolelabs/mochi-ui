@@ -93,7 +93,7 @@ export default function SectionList<
           {sections.length
             ? sections.map((section, sectionIndex) => {
                 return (
-                  <div
+                  <ul
                     className="ui-space-y-1"
                     key={(section.key || '') + sectionIndex}
                   >
@@ -101,7 +101,7 @@ export default function SectionList<
                     {section.data.map((item, itemIndex) =>
                       renderItem(item, section, itemIndex),
                     )}
-                  </div>
+                  </ul>
                 )
               })
             : SectionEmpty}
