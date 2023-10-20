@@ -16,6 +16,7 @@ interface ListProps<Item> {
   listStyle?: React.CSSProperties
   data: readonly Item[]
   renderItem: ListRenderItem<Item>
+  ListEmpty?: React.ReactNode
   onEndReached?: () => void
   onEndReachedThreshold?: number
 }
@@ -29,6 +30,7 @@ export default function List<Item extends NonNullable<object> | string>({
   listStyle,
   data,
   renderItem,
+  ListEmpty,
   onEndReached,
   onEndReachedThreshold = 0,
 }: ListProps<Item>) {
@@ -59,12 +61,15 @@ export default function List<Item extends NonNullable<object> | string>({
       style={rootStyle}
     >
       <ScrollArea.Viewport
-        className={clsx('ui-w-full ui-h-full ui-border-inherit', viewportClassName)}
+        className={clsx(
+          'ui-w-full ui-h-full ui-border-inherit',
+          viewportClassName,
+        )}
         onScroll={handleScroll}
         style={viewportStyle}
       >
         <div className={clsx('ui-space-y-1', listClassName)} style={listStyle}>
-          {data.map(renderItem)}
+          {data.length ? data.map(renderItem) : ListEmpty}
         </div>
       </ScrollArea.Viewport>
       <ScrollArea.Scrollbar

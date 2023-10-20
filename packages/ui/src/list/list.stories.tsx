@@ -137,3 +137,17 @@ export const Default: Story = {
     renderItem,
   },
 }
+
+export const ListEmpty: Story = {
+  args: {
+    rootClassName:
+      'ui-h-[300px] ui-w-[412px] ui-shadow-sm ui-p-2 ui-rounded-lg',
+    data: [],
+    renderItem,
+    ListEmpty: (
+      <div className="ui-w-full ui-h-full ui-flex ui-items-center ui-justify-center">
+        No data
+      </div>
+    ),
+  },
+}

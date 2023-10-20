@@ -143,3 +143,17 @@ export const Default: Story = {
     renderSectionHeader,
   },
 }
+
+export const SectionEmpty: Story = {
+  args: {
+    rootClassName:
+      'ui-h-[300px] ui-w-[412px] ui-shadow-sm ui-p-2 ui-rounded-lg',
+    sections: [],
+    renderItem,
+    SectionEmpty: (
+      <div className="ui-w-full ui-h-full ui-flex ui-items-center ui-justify-center">
+        No data
+      </div>
+    ),
+  },
+}

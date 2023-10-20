@@ -28,11 +28,12 @@ interface SectionListProps<Item, Section = DefaultSection> {
   listClassName?: string
   listStyle?: React.CSSProperties
   sections: readonly SectionListData<Item, Section>[]
-  renderItem?: SectionListRenderItem<Item, Section>
-  renderSectionHeader?: (
+  renderItem: SectionListRenderItem<Item, Section>
+  renderSectionHeader: (
     section: SectionListData<Item, Section>,
     index?: number,
   ) => React.ReactNode
+  SectionEmpty?: React.ReactNode
   onEndReached?: () => void
   onEndReachedThreshold?: number
 }
@@ -50,6 +51,7 @@ export default function SectionList<
   sections,
   renderItem,
   renderSectionHeader,
+  SectionEmpty,
   onEndReached,
   onEndReachedThreshold = 0,
 }: SectionListProps<Item, Section>) {
@@ -88,19 +90,21 @@ export default function SectionList<
         style={viewportStyle}
       >
         <div className={clsx('ui-space-y-1', listClassName)} style={listStyle}>
-          {sections.map((section, sectionIndex) => {
-            return (
-              <div
-                className="ui-space-y-1"
-                key={(section.key || '') + sectionIndex}
-              >
-                {renderSectionHeader?.(section, sectionIndex)}
-                {section.data.map(
-                  (item, itemIndex) => renderItem?.(item, section, itemIndex),
-                )}
-              </div>
-            )
-          })}
+          {sections.length
+            ? sections.map((section, sectionIndex) => {
+                return (
+                  <div
+                    className="ui-space-y-1"
+                    key={(section.key || '') + sectionIndex}
+                  >
+                    {renderSectionHeader(section, sectionIndex)}
+                    {section.data.map((item, itemIndex) =>
+                      renderItem(item, section, itemIndex),
+                    )}
+                  </div>
+                )
+              })
+            : SectionEmpty}
         </div>
       </ScrollArea.Viewport>
       <ScrollArea.Scrollbar
