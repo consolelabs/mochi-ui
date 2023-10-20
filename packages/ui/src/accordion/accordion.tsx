@@ -107,8 +107,9 @@ const AccordionContent = forwardRef<
     >
       <div
         className={clsx(
-          "ui-px-2 ui-py-2", {
-            "ui-px-11": hasPadding
+          "ui-py-2", {
+            "ui-px-11": hasPadding,
+            "ui-px-2 ": !hasPadding
           },
           className
         )}

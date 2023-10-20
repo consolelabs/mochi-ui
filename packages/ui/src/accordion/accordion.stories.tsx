@@ -21,7 +21,7 @@ const meta: Meta<typeof Accordion> = {
     type: {
       control: 'select',
       options: ['single', 'multiple'],
-    },
+    }
   },
 }
 
@@ -59,12 +59,10 @@ export const Default: Story = {
                     <AccordionTrigger>
                         Servers
                     </AccordionTrigger>
-                    <AccordionContent>
-                        <ul className="ui-space-y-3">
-                            <li>Server 0</li>
-                            <li>Server 1</li>
-                            <li>Server 2</li>
-                        </ul>
+                    <AccordionContent className='!ui-py-0'>
+                        <div className='ui-py-2'>Server 0</div>
+                        <div className='ui-py-2'>Server 1</div>
+                        <div className='ui-py-2'>Server 2</div>
                     </AccordionContent>
                 </AccordionItem>
             </Accordion>
