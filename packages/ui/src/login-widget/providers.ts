@@ -42,9 +42,9 @@ export default function getAvailableWallets() {
       {
         name: 'MetaMask',
         icon: IconMetamaskWallet,
-        isInstalled: !isSSR && Boolean(window.web3),
+        isInstalled: !isSSR && Boolean(window.ethereum),
         connect: () =>
-          window.web3.currentProvider
+          window.ethereum
             .request({
               method: 'eth_requestAccounts',
               // params: [{ eth_accounts: {} }],
@@ -52,7 +52,7 @@ export default function getAvailableWallets() {
             // .then(() =>
             //   window.ethereum.request({ method: 'eth_requestAccounts' }),
             // )
-            .then(signEVM(window.web3.currentProvider)),
+            .then(signEVM(window.ethereum)),
       },
     ],
     Solana: [

@@ -26,7 +26,7 @@ export const useMochi = create<MochiState>((set, get) => ({
     set((state) => {
       if (!state.user) return state
 
-      return {
+      const newState = {
         ...state,
         user: {
           ...state.user,
@@ -45,6 +45,10 @@ export const useMochi = create<MochiState>((set, get) => ({
           }),
         },
       }
+
+      localStorage.setItem('login-state', JSON.stringify(newState))
+
+      return newState
     }),
   login: async (user, token, _addresses) => {
     const associatedAccounts = await Promise.all(
@@ -71,21 +75,21 @@ export const useMochi = create<MochiState>((set, get) => ({
 
           switch (aa.platform) {
             case 'evm-chain': {
-              if (!window.web3) {
+              if (!window.ethereum) {
                 a.isWalletNotInstalled = true
                 break
               }
-              a.chainId = await window.web3.currentProvider.request({
+              a.chainId = await window.ethereum.request({
                 method: 'eth_chainId',
               })
               a.connect = () =>
-                window.web3.currentProvider
+                window.ethereum
                   .request({
                     method: 'wallet_requestPermissions',
                     params: [{ eth_accounts: {} }],
                   })
                   .then(() =>
-                    window.web3.currentProvider.request({
+                    window.ethereum.request({
                       method: 'eth_requestAccounts',
                     }),
                   )
@@ -147,7 +151,7 @@ export const useMochi = create<MochiState>((set, get) => ({
     )
 
     set((state) => {
-      return {
+      const newState = {
         ...state,
         user: {
           name: user.profile_name,
@@ -155,13 +159,21 @@ export const useMochi = create<MochiState>((set, get) => ({
           associatedAccounts,
         },
       }
+
+      localStorage.setItem('login-state', JSON.stringify(newState))
+
+      return newState
     })
   },
   logout: () =>
     set((state) => {
-      return {
+      const newState = {
         ...state,
         user: null,
       }
+
+      localStorage.setItem('login-state', JSON.stringify(newState))
+
+      return newState
     }),
 }))
