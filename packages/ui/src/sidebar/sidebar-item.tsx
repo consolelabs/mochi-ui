@@ -12,7 +12,7 @@ export interface Item {
   Icon: (props: React.SVGProps<SVGSVGElement>) => JSX.Element
   selected?: boolean
   type?: 'list' | 'button' | 'link'
-  as?: React.ComponentType
+  as?: React.ComponentType<any>
   href?: string
   children?: Item[]
   onClick?: MouseEventHandler
@@ -79,13 +79,15 @@ export default function SidebarItem({
     className,
   )
 
-  if (type === 'link') {
+  if (type === 'link' && href) {
+    const isAbsolute = href.startsWith('http')
     if (as) {
       return createElement(
         as,
         {
           className: classNameProp,
           href,
+          ...(isAbsolute ? { target: '_blank', rel: 'noopener' } : {}),
           ...props,
         } as Attributes,
         [
