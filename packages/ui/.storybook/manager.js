@@ -1,6 +1,5 @@
 import { addons } from '@storybook/addons'
-import { create } from '@storybook/theming'
-
+import { create, themes } from '@storybook/theming'
 addons.setConfig({
   theme: create({
     colorPrimary: '#1B3FE4',
