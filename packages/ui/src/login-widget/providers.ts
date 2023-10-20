@@ -4,6 +4,7 @@ import IconMetamaskWallet from '../icons/components/icon-metamask-wallet'
 import IconPhantomWallet from '../icons/components/icon-phantom-wallet'
 import IconRoninWallet from '../icons/components/icon-ronin-wallet'
 import type { WalletProps } from './wallet'
+import { useMochi } from '../mochi-store'
 
 const msg = 'Please sign this message to prove that you own this wallet'
 const signEVM =
@@ -78,6 +79,21 @@ export default function getAvailableWallets() {
       },
     ],
     Sui: [],
+  }
+
+  if (window.ethereum) {
+    window.ethereum.on('accountsChanged', function handle(accounts: string[]) {
+      useMochi.getState().connect(accounts, 'evm-chain')
+    })
+  }
+
+  if (window.ronin) {
+    window.ronin.provider.on(
+      'accountsChanged',
+      function handle(accounts: string[]) {
+        useMochi.getState().connect(accounts, 'ronin-chain')
+      },
+    )
   }
 
   if (isSSR) return connectors
