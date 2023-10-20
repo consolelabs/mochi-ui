@@ -35,6 +35,16 @@ export const Default: Story = {
   },
 }
 
+export const Fallback: Story = {
+  render: () => {
+    return (
+      <div className="gap-3 ui-flex">
+        <Avatar size="lg" src="https://mochi.gg/notfound.png" />
+      </div>
+    )
+  },
+}
+
 export const Cutout: Story = {
   render: () => {
     return (

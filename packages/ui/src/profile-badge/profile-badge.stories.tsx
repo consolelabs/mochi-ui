@@ -24,3 +24,21 @@ export const Default: Story = {
     name: 'vincent.console',
   },
 }
+
+export const Fallback: Story = {
+  args: {
+    avatar: 'https://mochi.gg/notfound.png',
+    platform:
+      'https://static-00.iconduck.com/assets.00/google-icon-2048x2048-czn3g8x8.png',
+    name: 'vincent.console',
+  },
+}
+
+export const TooLong: Story = {
+  args: {
+    avatar: 'https://mochi.gg/logo.png',
+    platform:
+      'https://static-00.iconduck.com/assets.00/google-icon-2048x2048-czn3g8x8.png',
+    name: 'vincent.consolelabs.podtown.mochi',
+  },
+}

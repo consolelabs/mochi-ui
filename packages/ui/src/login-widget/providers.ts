@@ -81,6 +81,8 @@ export default function getAvailableWallets() {
     Sui: [],
   }
 
+  if (isSSR) return connectors
+
   if (window.ethereum) {
     window.ethereum.on('accountsChanged', function handle(accounts: string[]) {
       useMochi.getState().connect(accounts, 'evm-chain')
@@ -95,8 +97,6 @@ export default function getAvailableWallets() {
       },
     )
   }
-
-  if (isSSR) return connectors
 
   return connectors
 }

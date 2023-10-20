@@ -2,6 +2,7 @@ import * as RadixAvatar from '@radix-ui/react-avatar'
 import { cva } from 'class-variance-authority'
 import type { VariantProps } from 'class-variance-authority'
 import { useId } from 'react'
+import { boringAvatar } from '../util'
 
 const avatar = cva([''], {
   variants: {
@@ -24,8 +25,9 @@ type Props = VariantProps<typeof avatar> & {
   fallback?: string
 }
 
-export default function Avatar({ size, src, smallSrc, fallback }: Props) {
+export default function Avatar({ size, src, smallSrc, fallback = '' }: Props) {
   const id = useId()
+  const fallbackUrl = boringAvatar(fallback)
 
   if (smallSrc) {
     return (
@@ -38,6 +40,12 @@ export default function Avatar({ size, src, smallSrc, fallback }: Props) {
           <image
             height="100%"
             mask={`url(#circle-mask-${id})`}
+            onError={(e) => {
+              ; (e.target as SVGImageElement).setAttribute(
+                'xlink:href',
+                fallbackUrl,
+              )
+            }}
             width="100%"
             xlinkHref={src}
           />
@@ -56,8 +64,8 @@ export default function Avatar({ size, src, smallSrc, fallback }: Props) {
   return (
     <RadixAvatar.Root className={avatar({ size })}>
       <RadixAvatar.Image src={src} />
-      <RadixAvatar.Fallback delayMs={600}>
-        {fallback?.toUpperCase()}
+      <RadixAvatar.Fallback>
+        <img alt="fallback" src={fallbackUrl} />
       </RadixAvatar.Fallback>
     </RadixAvatar.Root>
   )
