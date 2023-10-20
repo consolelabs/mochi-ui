@@ -51,18 +51,21 @@ export default function SectionList<
 }: SectionListProps<Item, Section>) {
   return (
     <ScrollArea.Root
-      className={clsx('overflow-hidden', rootClassName)}
+      className={clsx('ui-overflow-hidden', rootClassName)}
       style={rootStyle}
     >
       <ScrollArea.Viewport
-        className={clsx('w-full h-full border-inherit', viewportClassName)}
+        className={clsx(
+          'ui-w-full ui-h-full ui-border-inherit',
+          viewportClassName,
+        )}
         style={viewportStyle}
       >
-        <div className={clsx('space-y-1', listClassName)} style={listStyle}>
+        <div className={clsx('ui-space-y-1', listClassName)} style={listStyle}>
           {sections.map((section, sectionIndex) => {
             return (
               <div
-                className="space-y-1"
+                className="ui-space-y-1"
                 key={(section.key || '') + sectionIndex}
               >
                 {renderSectionHeader?.(section, sectionIndex)}
@@ -75,12 +78,12 @@ export default function SectionList<
         </div>
       </ScrollArea.Viewport>
       <ScrollArea.Scrollbar
-        className="flex select-none touch-none p-0.5 bg-gray-200 transition-colors w-2 hover:bg-gray-300"
+        className="ui-flex ui-select-none ui-touch-none ui-p-0.5 ui-bg-gray-200 ui-transition-colors ui-w-2 hover:ui-bg-gray-300"
         orientation="vertical"
       >
-        <ScrollArea.Thumb className="flex-1 bg-gray-600 rounded-lg relative before:content-[''] before:absolute before:w-full before:h-full before:min-w-[44px] before:min-h-[44px] before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2" />
+        <ScrollArea.Thumb className="ui-flex-1 ui-bg-gray-600 ui-rounded-lg ui-relative before:ui-content-[''] before:ui-absolute before:ui-w-full before:ui-h-full before:ui-min-w-[44px] before:ui-min-h-[44px] before:ui-top-1/2 before:ui-left-1/2 before:ui--translate-x-1/2 before:ui--translate-y-1/2" />
       </ScrollArea.Scrollbar>
-      <ScrollArea.Corner className="bg-gray-300" />
+      <ScrollArea.Corner className="ui-bg-gray-300" />
     </ScrollArea.Root>
   )
 }

@@ -108,30 +108,31 @@ const defaultData: DataType[] = [
 function renderItem(item: DataType) {
   return (
     <div
-      className="flex flex-row items-center w-full p-2 hover:bg-[#FAF9F7] rounded-lg space-x-2"
+      className="ui-flex ui-flex-row ui-items-center ui-w-full ui-p-2 hover:ui-bg-[#FAF9F7] ui-rounded-lg ui-space-x-2"
       key={item.id}
     >
       <img
         alt={`${item.name} icon`}
-        className="w-6 h-6 rounded-full object-contain"
+        className="ui-w-6 ui-h-6 ui-rounded-full ui-object-contain"
         src={item.icon}
       />
-      <div className="flex flex-col flex-1">
-        <Heading as="h3" className="text-sm">
+      <div className="ui-flex ui-flex-col ui-flex-1">
+        <Heading as="h3" className="ui-text-sm">
           {item.name}
         </Heading>
-        <span className="text-xs text-[#848281]">
+        <span className="ui-text-xs ui-text-[#848281]">
           {item.balance.toLocaleString('en-US')}
         </span>
       </div>
-      <span className="text-sm">${item.price.toLocaleString('en-US')}</span>
+      <span className="ui-text-sm">${item.price.toLocaleString('en-US')}</span>
     </div>
   )
 }
 
 export const Default: Story = {
   args: {
-    rootClassName: 'h-[300px] w-[412px] shadow-sm p-2 rounded-lg',
+    rootClassName:
+      'ui-h-[300px] ui-w-[412px] ui-shadow-sm ui-p-2 ui-rounded-lg',
     data: defaultData,
     renderItem,
   },
