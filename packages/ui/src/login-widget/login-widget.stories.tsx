@@ -16,6 +16,10 @@ const meta: Meta<typeof LoginWidget> = {
   argTypes: {},
 }
 
+const authUrl =
+  'https://api.mochi-profile.console.so/api/v1/profiles/auth' as const
+const meUrl = 'https://api.mochi-profile.console.so/api/v1/profiles/me' as const
+
 export default meta
 type Story = StoryObj<typeof LoginWidget>
 
@@ -25,7 +29,13 @@ function Widget() {
 
   return (
     <>
-      <LoginWidget onOpenChange={setOpen} onSuccess={setData} open={open} />
+      <LoginWidget
+        authUrl={authUrl}
+        meUrl={meUrl}
+        onOpenChange={setOpen}
+        onSuccess={setData}
+        open={open}
+      />
       {data ? <code>{JSON.stringify(data)}</code> : null}
     </>
   )
@@ -86,7 +96,12 @@ function AssocWallet() {
           </div>
         </div>
       ) : null}
-      <LoginWidget onOpenChange={setOpen} open={open} />
+      <LoginWidget
+        authUrl={authUrl}
+        meUrl={meUrl}
+        onOpenChange={setOpen}
+        open={open}
+      />
     </div>
   )
 }

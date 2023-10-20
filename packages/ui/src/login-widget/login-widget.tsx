@@ -25,6 +25,8 @@ interface WidgetProps {
   onOpenChange: (o: boolean) => void
   trigger?: React.ReactNode
   onSuccess?: OnSuccess
+  authUrl: string
+  meUrl: string
 }
 
 function Group(props: {
@@ -156,6 +158,8 @@ export default function LoginWidget({
   onOpenChange,
   trigger: _trigger,
   onSuccess: _onSuccess,
+  authUrl,
+  meUrl,
 }: WidgetProps) {
   const { user, login, logout } = useMochi()
   const size = useWindowSize()
@@ -172,28 +176,22 @@ export default function LoginWidget({
 
   const onSuccess = useCallback<OnSuccess>(
     (data) => {
-      fetch(
-        `https://api-preview.mochi-profile.console.so/api/v1/profiles/auth/${data.platform}`,
-        {
-          method: 'POST',
-          body: JSON.stringify({
-            wallet_address: data.addresses.at(0),
-            message: data.msg,
-            signature: data.signature,
-            platform: data.platform,
-          }),
-        },
-      )
+      fetch(`${authUrl}/${data.platform}`, {
+        method: 'POST',
+        body: JSON.stringify({
+          wallet_address: data.addresses.at(0),
+          message: data.msg,
+          signature: data.signature,
+          platform: data.platform,
+        }),
+      })
         .then((r) => r.json())
         .then((r) => {
-          fetch(
-            'https://api-preview.mochi-profile.console.so/api/v1/profiles/me',
-            {
-              headers: {
-                Authorization: `Bearer ${r.data.access_token}`,
-              },
+          fetch(meUrl, {
+            headers: {
+              Authorization: `Bearer ${r.data.access_token}`,
             },
-          )
+          })
             .then((r1) => r1.json())
             .then((me) =>
               login(
@@ -212,7 +210,7 @@ export default function LoginWidget({
           throw e
         })
     },
-    [login],
+    [authUrl, login, meUrl],
   )
 
   if (user) return trigger
