@@ -35,7 +35,12 @@ export function Default() {
           { title: 'Join Community', Icon: IconDiscord },
         ]}
         headerItems={[
-          { title: 'Profile', Icon: IconUser },
+          {
+            title: 'Profile',
+            Icon: IconUser,
+            type: 'link',
+            href: 'https://mochi.gg',
+          },
           { title: 'Server', Icon: IconDiscord },
           { title: 'App Store', Icon: IconGame },
           { title: 'Settings', Icon: IconSetting },
