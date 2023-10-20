@@ -30,7 +30,7 @@ export default function List<Item extends NonNullable<object> | string>({
   data,
   renderItem,
   onEndReached,
-  onEndReachedThreshold,
+  onEndReachedThreshold = 0,
 }: ListProps<Item>) {
   const endReachedFired = useRef(false)
 
@@ -38,7 +38,7 @@ export default function List<Item extends NonNullable<object> | string>({
     (event) => {
       if (!onEndReached) return
       const { scrollTop, scrollHeight, clientHeight } = event.currentTarget
-      const threshold = onEndReachedThreshold || 0
+      const threshold = onEndReachedThreshold
       // If we reach the end of the list, fire the end reached event.
       // The end reached event fires only once when scroll position is over the threshold
       if (scrollTop + clientHeight + threshold >= scrollHeight) {

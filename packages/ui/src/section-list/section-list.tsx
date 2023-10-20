@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useRef } from 'react'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import clsx from 'clsx'
 
@@ -33,6 +33,8 @@ interface SectionListProps<Item, Section = DefaultSection> {
     section: SectionListData<Item, Section>,
     index?: number,
   ) => React.ReactNode
+  onEndReached?: () => void
+  onEndReachedThreshold?: number
 }
 
 export default function SectionList<
@@ -48,7 +50,30 @@ export default function SectionList<
   sections,
   renderItem,
   renderSectionHeader,
+  onEndReached,
+  onEndReachedThreshold = 0,
 }: SectionListProps<Item, Section>) {
+  const endReachedFired = useRef(false)
+
+  const handleScroll = useCallback<React.UIEventHandler<HTMLDivElement>>(
+    (event) => {
+      if (!onEndReached) return
+      const { scrollTop, scrollHeight, clientHeight } = event.currentTarget
+      const threshold = onEndReachedThreshold
+      // If we reach the end of the list, fire the end reached event.
+      // The end reached event fires only once when scroll position is over the threshold
+      if (scrollTop + clientHeight + threshold >= scrollHeight) {
+        if (!endReachedFired.current) {
+          onEndReached()
+          endReachedFired.current = true
+        }
+      } else if (endReachedFired.current) {
+        endReachedFired.current = false
+      }
+    },
+    [onEndReached, onEndReachedThreshold],
+  )
+
   return (
     <ScrollArea.Root
       className={clsx('ui-overflow-hidden', rootClassName)}
@@ -59,6 +84,7 @@ export default function SectionList<
           'ui-w-full ui-h-full ui-border-inherit',
           viewportClassName,
         )}
+        onScroll={handleScroll}
         style={viewportStyle}
       >
         <div className={clsx('ui-space-y-1', listClassName)} style={listStyle}>
