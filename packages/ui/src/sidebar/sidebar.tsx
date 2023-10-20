@@ -1,4 +1,3 @@
-import type { VariantProps } from 'class-variance-authority'
 import { cva } from 'class-variance-authority'
 import React, { useState } from 'react'
 import clsx from 'clsx'
@@ -23,7 +22,7 @@ interface HeaderProps {
   expanded?: boolean
 }
 
-type Props = VariantProps<typeof sidebar> & {
+interface SidebarProps {
   Header?: (props: HeaderProps) => React.ReactNode
   headerItems?: (Item | Break)[]
   footerItems?: (Item | Break)[]
@@ -35,7 +34,7 @@ export default function Sidebar({
   headerItems = [],
   footerItems = [],
   className,
-}: Props) {
+}: SidebarProps) {
   const [expanded, setExpanded] = useState(true)
 
   return (

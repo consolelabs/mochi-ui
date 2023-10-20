@@ -1,6 +1,6 @@
 {
   "name": "@consolelabs/ui-components",
-  "version": "0.0.1-rc3",
+  "version": "0.0.1-rc4",
   "sideEffects": [
     "**/*.css"
   ],
