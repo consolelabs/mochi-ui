@@ -3,10 +3,11 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
-    "dev:mochi": "turbo run dev --scope=mochi...",
-    "build:mochi": "turbo run build --scope=mochi...",
-    "storybook": "turbo run storybook --scope=ui...",
-    "storybook:build": "turbo run build:storybook --scope=ui...",
+    "dev:mochi": "turbo run dev --filter=mochi",
+    "build:mochi": "turbo run build --filter=mochi",
+    "build:ui": "turbo run build --filter=@consolelabs/ui-components",
+    "storybook": "turbo run storybook --filter=@consolelabs/ui-components",
+    "build:storybook": "turbo run build:storybook --filter=@consolelabs/ui-components",
     "lint": "turbo lint",
     "clean": "turbo clean",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""

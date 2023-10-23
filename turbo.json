@@ -10,6 +10,8 @@
       "dependsOn": ["^build"]
     },
     "check-types": {},
+    "storybook": {},
+    "build:storybook": {},
     "dev": {
       "cache": false,
       "persistent": true
