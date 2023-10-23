@@ -32,7 +32,11 @@ export default function SidebarItemList({
           key={itemGroup[0].title}
         >
           {itemGroup.map((item) => (
-            <SidebarItem key={item.title} {...{ item, expanded }} />
+            <SidebarItem
+              key={item.title}
+              {...{ item, expanded }}
+              className="ui-h-10"
+            />
           ))}
         </div>
       ) : null,

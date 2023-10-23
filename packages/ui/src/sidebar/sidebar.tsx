@@ -42,7 +42,9 @@ export default function Sidebar({
       <div className="ui-flex ui-flex-col ui-justify-between ui-h-full ui-overflow-x-hidden ui-overflow-y-auto">
         <div>
           <Header expanded={expanded} />
-          <SidebarItemList expanded={expanded} items={headerItems} />
+          <div className="ui-pt-2">
+            <SidebarItemList expanded={expanded} items={headerItems} />
+          </div>
         </div>
         <div className="ui-border-t ui-border-neutral-200">
           <SidebarItemList expanded={expanded} items={footerItems} />

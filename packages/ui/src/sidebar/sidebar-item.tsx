@@ -45,9 +45,13 @@ export default function SidebarItem({
       <Accordion type="multiple">
         <AccordionItem value={title}>
           <AccordionTrigger
-            wrapperClassName={clsx('ui-pt-0 ui-pb-0', {
-              'ui-rounded hover:ui-bg-neutral-150': Boolean(expanded),
-            })}
+            wrapperClassName={clsx(
+              'ui-pt-0 ui-pb-0',
+              {
+                'ui-rounded hover:ui-bg-neutral-150': Boolean(expanded),
+              },
+              className,
+            )}
           >
             <div className="ui-flex ui-gap-2 ui-items-center ui-p-2 ui-rounded hover:ui-bg-neutral-150">
               <Icon className="ui-text-neutral-800" height={22} width={22} />
@@ -58,10 +62,10 @@ export default function SidebarItem({
               )}
             </div>
           </AccordionTrigger>
-          <AccordionContent className="ui-pb-0">
+          <AccordionContent className="!ui-pb-0">
             {children.map((child) => (
               <SidebarItem
-                className="ui-pl-8"
+                className={clsx('ui-pl-8', className)}
                 expanded={expanded}
                 item={child}
                 key={child.title}
@@ -99,13 +103,13 @@ export default function SidebarItem({
           />,
           ...(expanded
             ? [
-              <span
-                className="ui-text-neutral-800 ui-text-sm ui-font-medium ui-tracking-tight"
-                key={`sidebar-item-children-2-${title}`}
-              >
-                {title}
-              </span>,
-            ]
+                <span
+                  className="ui-text-neutral-800 ui-text-sm ui-font-medium ui-tracking-tight"
+                  key={`sidebar-item-children-2-${title}`}
+                >
+                  {title}
+                </span>,
+              ]
             : []),
         ],
       )
