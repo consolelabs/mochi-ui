@@ -70,7 +70,7 @@ const AccordionTrigger = forwardRef<
     <AccordionPrimitive.Header className="ui-flex">
       <AccordionPrimitive.Trigger
         className={clsx(
-          "ui-flex-1 ui-flex ui-font-medium ui-text-sm ui-items-center ui-justify-between [&[data-state=open]>#ui-chevron]:ui-rotate-180 ui-gap-4 ui-p-2",
+          "ui-flex-1 ui-flex ui-font-medium ui-text-sm ui-items-center ui-justify-between [&[data-state=open]>#ui-chevron]:ui-rotate-180 ui-gap-3 ui-p-2",
           wrapperClassName
         )}
         ref={ref}
@@ -108,7 +108,7 @@ const AccordionContent = forwardRef<
       <div
         className={clsx(
           "ui-py-2", {
-            "ui-px-11": hasPadding,
+            "ui-px-10": hasPadding,
             "ui-px-2 ": !hasPadding
           },
           className
