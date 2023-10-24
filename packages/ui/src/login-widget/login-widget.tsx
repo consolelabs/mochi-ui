@@ -1,7 +1,7 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { Drawer } from 'vaul'
 import { useWindowSize } from '@uidotdev/usehooks'
-import { useCallback, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import IconConnectWallets from '../icons/components/icon-connect-wallets'
 import { Heading } from '../heading'
 import IconCrossCircled from '../icons/components/icon-cross-circled'
@@ -157,7 +157,7 @@ function Inner({ onSuccess }: { onSuccess: WidgetProps['onSuccess'] }) {
   )
 }
 
-export default function LoginWidget({
+const LoginWidget = ({
   open,
   onOpenChange,
   trigger: _trigger,
@@ -165,7 +165,7 @@ export default function LoginWidget({
   onError,
   authUrl,
   meUrl,
-}: WidgetProps) {
+}: WidgetProps) => {
   const { user, login, logout } = useMochi()
   const size = useWindowSize()
 
@@ -173,7 +173,7 @@ export default function LoginWidget({
   const [wallet, setWallet] = useState<WalletProps>()
   const [error, setError] = useState('')
 
-  const trigger = _trigger ? (
+  const trigger: React.ReactNode = _trigger ? (
     _trigger
   ) : (
     <button
@@ -230,9 +230,11 @@ export default function LoginWidget({
     [authUrl, login, meUrl, onSuccess, onError],
   )
 
-  if (user) return trigger
+  if (user) {
+    return trigger
+  }
 
-  let content = null
+  let content: React.ReactNode = null
 
   if ((size.width ?? 0) <= 768) {
     content = (
@@ -289,3 +291,5 @@ export default function LoginWidget({
     </LoginWidgetContext.Provider>
   )
 }
+
+export default LoginWidget
