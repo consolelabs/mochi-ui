@@ -3,9 +3,12 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
+    "dev:mochi-web": "turbo run dev --filter=mochi-web",
+    "build:mochi-web": "turbo run build --filter=mochi-web",
     "dev:mochi": "turbo run dev --filter=mochi",
     "build:mochi": "turbo run build --filter=mochi",
     "build:ui": "turbo run build --filter=@consolelabs/ui-components",
+    "dev:ui": "turbo run dev --filter=@consolelabs/ui-components",
     "storybook": "turbo run storybook --filter=@consolelabs/ui-components",
     "build:storybook": "turbo run build:storybook --filter=@consolelabs/ui-components",
     "lint": "turbo lint",

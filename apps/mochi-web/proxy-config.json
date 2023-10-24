@@ -1,0 +1,9 @@
+{
+  "Mochi Proxy": {
+    "hostname": "localhost",
+    "source": 3000,
+    "target": 3001,
+    "key": "localhost-key.pem",
+    "cert": "localhost.pem"
+  }
+}

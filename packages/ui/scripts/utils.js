@@ -18,6 +18,12 @@ const kebab2Pascal = (inputStr) =>
     .map((str) => str.slice(0, 1).toUpperCase() + str.slice(1, str.length))
     .join('')
 
+function deleteFirstLine(str) {
+  const lines = str.split('\n')
+  lines.shift() // Remove the first line
+  return lines.join('\n')
+}
+
 const generateSvgs = () => {
   const svgFilePaths = glob.sync('./src/icons/svg/*.svg')
 
@@ -32,7 +38,7 @@ const generateSvgs = () => {
       //IconSettingBar
       const componentName = `Icon${kebab2Pascal(baseNameWithoutExtension)}`
 
-      const code = await transform(
+      let code = await transform(
         content,
         {
           typescript: true,
@@ -48,7 +54,7 @@ const generateSvgs = () => {
           '../src/icons/components/',
           `icon-${baseNameWithoutExtension}.tsx`,
         ),
-        await formatCode(code),
+        await formatCode(deleteFirstLine(code)),
       )
     }),
   )

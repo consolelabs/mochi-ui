@@ -23,17 +23,17 @@ interface HeaderProps {
 }
 
 interface SidebarProps {
-  Header?: (props: HeaderProps) => React.ReactNode
+  Header?: (props?: HeaderProps) => JSX.Element
   headerItems?: (Item | Break)[]
   footerItems?: (Item | Break)[]
   className?: string
 }
 
 export default function Sidebar({
-  Header = () => null,
   headerItems = [],
   footerItems = [],
   className,
+  Header,
 }: SidebarProps) {
   const [expanded, setExpanded] = useState(true)
 
@@ -41,7 +41,7 @@ export default function Sidebar({
     <div className={sidebar({ className, expanded })}>
       <div className="ui-flex ui-flex-col ui-justify-between ui-h-full ui-overflow-x-hidden ui-overflow-y-auto">
         <div>
-          <Header expanded={expanded} />
+          {Header ? <Header expanded={expanded} /> : null}
           <SidebarItemList expanded={expanded} items={headerItems} />
         </div>
         <div className="ui-border-t ui-border-neutral-200">
