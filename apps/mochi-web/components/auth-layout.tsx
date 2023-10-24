@@ -25,14 +25,14 @@ import { DISCORD_LINK } from '~envs'
 
 const authenticatedRoute = ['/profile', '/app', '/server']
 
-const Header = () => {
-  return (
+const Header = ({ expanded }: { expanded?: boolean }) => {
+  return expanded ? (
     <img
       alt="header"
       className="object-cover w-full h-20"
       src="https://pbs.twimg.com/profile_banners/1168522102410010626/1684159976/300x100"
     />
-  )
+  ) : undefined
 }
 
 export default function AuthenticatedLayout({
@@ -57,7 +57,7 @@ export default function AuthenticatedLayout({
     <div className="flex flex-col w-screen min-h-screen bg-dashboard-gray-1">
       <div
         className={clsx(
-          'sticky top-0 flex px-3 py-5 md:px-7 flex-shrink-0 justify-between z-20',
+          'sticky top-0 flex px-3 py-5 md:px-7 flex-shrink-0 justify-between z-20 h-20',
           {
             'border-b border-b-dashboard-gray-6 bg-dashboard-gray-5':
               isLoggedIn || !authenticatedRoute.includes(pathname),
@@ -66,7 +66,7 @@ export default function AuthenticatedLayout({
           },
         )}
       >
-        <Link href="/" className="flex gap-x-2 items-center">
+        <Link href="/" className="flex items-center gap-x-2">
           <Image
             src={logo}
             alt="Logo"
@@ -80,7 +80,7 @@ export default function AuthenticatedLayout({
           <span className="text-base text-gray-500">Dashboard</span>
         </Link>
         {isLoggedIn && me ? (
-          <div className="flex gap-x-5 items-center">
+          <div className="flex items-center gap-x-5">
             <span className="text-sm font-medium">See Docs</span>
             <ProfileBadge
               avatar={me.avatar}
@@ -91,7 +91,7 @@ export default function AuthenticatedLayout({
           </div>
         ) : null}
       </div>
-      <div className="flex relative z-10 flex-1">
+      <div className="relative z-10 flex flex-1">
         {isLoadingSession ? null : isLoggedIn ? (
           <>
             <div
@@ -108,7 +108,7 @@ export default function AuthenticatedLayout({
                     as: Link,
                     href: '/profile',
                   },
-                  { title: 'Server', Icon: IconDiscord },
+                  { title: 'Servers', Icon: IconDiscord },
                   { title: 'App Store', Icon: IconGame },
                   { title: 'Settings', Icon: IconSetting },
                   { type: 'break' },
@@ -119,7 +119,10 @@ export default function AuthenticatedLayout({
                     as: Link,
                     href: '/app',
                   },
-                  { title: 'Gift your friend', Icon: IconSuperGroup },
+                  {
+                    title: 'Gift your friends',
+                    Icon: IconSuperGroup,
+                  },
                   { title: 'Invite Friends', Icon: IconAddUser },
                   { title: 'Feedback', Icon: IconStar },
                 ]}
