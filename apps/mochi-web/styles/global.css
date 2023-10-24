@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  @apply bg-white-pure;
+  font-family: 'Inter', sans-serif;
+  overflow: hidden;
+  position: relative;
+  height: 100vh;
+  letter-spacing: -0.2px;
+  color: #474645;
+}
+
+#__next {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: -17px;
+  overflow-y: scroll;
+}
+
+.twitter-tweet {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.body-block {
+  @apply max-w-7xl mx-auto relative z-10;
+}
+
+/* Gradient block */
+
+.text-mochi-gradient {
+  @apply text-transparent uppercase bg-clip-text bg-gradient-to-r from-mochi-300 via-mochi-600 to-mochi-300;
+}
+
+iframe[id^='telegram-login'] {
+  display: none;
+}
+
+.receipt {
+  --mask: conic-gradient(
+      from -45deg at bottom,
+      #0000,
+      #000 1deg 89deg,
+      #0000 90deg
+    )
+    50%/20px 100%;
+  -webkit-mask: var(--mask);
+  mask: var(--mask);
+}
+
+.receipt-dashed-box {
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23BEBEBEFF' stroke-width='3' stroke-dasharray='12%2c 12' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+}
+
+#profile-list-sidebar {
+  height: calc(100vh - 66px);
+}

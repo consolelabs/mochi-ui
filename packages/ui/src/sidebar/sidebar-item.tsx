@@ -9,7 +9,8 @@ import {
 
 export interface Item {
   title: string
-  Icon: (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  // FIXME: ignore typescript warning
+  Icon: (props: any) => JSX.Element
   selected?: boolean
   type?: 'list' | 'button' | 'link'
   as?: React.ComponentType<any>
@@ -99,13 +100,13 @@ export default function SidebarItem({
           />,
           ...(expanded
             ? [
-              <span
-                className="ui-text-neutral-800 ui-text-sm ui-font-medium ui-tracking-tight"
-                key={`sidebar-item-children-2-${title}`}
-              >
-                {title}
-              </span>,
-            ]
+                <span
+                  className="ui-text-neutral-800 ui-text-sm ui-font-medium ui-tracking-tight"
+                  key={`sidebar-item-children-2-${title}`}
+                >
+                  {title}
+                </span>,
+              ]
             : []),
         ],
       )

@@ -1,0 +1,12 @@
+#nprogress .bar {
+  @apply bg-gray-500;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px rgb(232 139 136), 0 0 5px rgb(232 139 136);
+}
+
+#nprogress .spinner-icon {
+  border-top-color: rgb(232 139 136);
+  border-left-color: rgb(232 139 136);
+}

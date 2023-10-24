@@ -1,4 +1,3 @@
-import * as React from 'react'
 import type { SVGProps } from 'react'
 
 function IconDiscord(props: SVGProps<SVGSVGElement>) {

@@ -164,7 +164,7 @@ export default function LoginWidget({
   const { user, login, logout } = useMochi()
   const size = useWindowSize()
 
-  const trigger = _trigger ?? (
+  const trigger = _trigger ? (
     <button
       className="ui-px-1.5 ui-text-sm ui-rounded-md ui-border ui-shadow ui-bg-neutral-200 ui-border-neutral-500"
       onClick={user ? logout : undefined}
@@ -172,7 +172,7 @@ export default function LoginWidget({
     >
       {user ? 'Logout' : 'Login'}
     </button>
-  )
+  ) : null
 
   const onSuccess = useCallback<OnSuccess>(
     (data) => {
