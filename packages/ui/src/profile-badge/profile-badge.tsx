@@ -20,7 +20,9 @@ export default function ProfileBadge({
       type="button"
       {...rest}
     >
-      <Avatar fallback={name} size="sm" smallSrc={platform} src={avatar} />
+      <div className="ui-shrink-0">
+        <Avatar fallback={name} size="sm" smallSrc={platform} src={avatar} />
+      </div>
       <span className="ui-whitespace-nowrap ui-truncate ui-text-sm ui-font-medium ui-text-neutral-800">
         {name}
       </span>
