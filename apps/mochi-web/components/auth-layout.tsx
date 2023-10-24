@@ -32,7 +32,9 @@ const Header = ({ expanded }: { expanded?: boolean }) => {
       className="object-cover w-full h-20"
       src="https://pbs.twimg.com/profile_banners/1168522102410010626/1684159976/300x100"
     />
-  ) : undefined
+  ) : (
+    <span />
+  )
 }
 
 export default function AuthenticatedLayout({

@@ -173,7 +173,7 @@ export default function LoginWidget({
   const [wallet, setWallet] = useState<WalletProps>()
   const [error, setError] = useState('')
 
-  const trigger = _trigger ?? (
+  const trigger = _trigger ? (
     <button
       className="ui-px-1.5 ui-text-sm ui-rounded-md ui-border ui-shadow ui-bg-neutral-200 ui-border-neutral-500"
       onClick={user ? logout : undefined}
@@ -181,7 +181,7 @@ export default function LoginWidget({
     >
       {user ? 'Logout' : 'Login'}
     </button>
-  )
+  ) : null
 
   const handleLogin = useCallback<OnSuccess>(
     async (data) => {
@@ -230,7 +230,7 @@ export default function LoginWidget({
 
   if (user) return trigger
 
-  let content: React.ReactNode | null = null
+  let content = null
 
   if ((size.width ?? 0) <= 768) {
     content = (
