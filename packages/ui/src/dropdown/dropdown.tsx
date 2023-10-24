@@ -1,9 +1,9 @@
-import * as React from "react"
-import * as DropdownMenuPrimitive  from "@radix-ui/react-dropdown-menu"
-import clsx from "clsx"
-import type { ReactNode } from "react";
-import IconChevron from "../icons/components/icon-chevron";
-import IconCheck from "../icons/components/icon-check";
+import * as React from 'react'
+import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
+import clsx from 'clsx'
+import type { ReactNode } from 'react'
+import IconChevron from '../icons/components/icon-chevron'
+import IconCheck from '../icons/components/icon-check'
 import type {
   DropdownContentRef,
   DropdownContentProps,
@@ -19,39 +19,67 @@ import type {
   DropdownRadioItemRef,
   DropdownRadioItemProps,
   DropdownRadioGroupRef,
-  DropdownRadioGroupProps
-} from "./type";
-import { getDropdownContentStyle, getDropdownItemStyle, getIconStyle } from "./utils"
+  DropdownRadioGroupProps,
+} from './type'
+import {
+  getDropdownContentStyle,
+  getDropdownItemStyle,
+  getIconStyle,
+} from './utils'
 
-function renderDropdownChildItem (props: BaseDropdownItemProps & { defaultRightIcon?: ReactNode, useIndicator?: boolean }) {
-    const { children, subTitle, leftIcon, isLeftIconAvatar, className, rightExtra, rightIcon, defaultRightIcon, useIndicator } = props
-    const RightIconWrapper = useIndicator ? DropdownMenuPrimitive.ItemIndicator: 'span'
+function renderDropdownChildItem(
+  props: BaseDropdownItemProps & {
+    defaultRightIcon?: ReactNode
+    useIndicator?: boolean
+  },
+) {
+  const {
+    children,
+    subtitle,
+    leftIcon,
+    isLeftIconAvatar,
+    className,
+    rightExtra,
+    rightIcon,
+    defaultRightIcon,
+    useIndicator,
+  } = props
+  const RightIconWrapper = useIndicator
+    ? DropdownMenuPrimitive.ItemIndicator
+    : 'span'
 
-    return (
-        <>
-        {Boolean(leftIcon) && (
-            <span className={getIconStyle({isLeftIconAvatar})}>
-              {leftIcon}
-            </span>
-          )}
-          <div className={clsx("ui-flex-1 ui-py-0.5 ui-flex ui-flex-col", className)}>
-            {children}
-            <span className={clsx("ui-text-neutral-600 ui-text-xs")}>
-              {subTitle}
-            </span>
-          </div>
-          {rightExtra}
-          {rightIcon ? (
-            <RightIconWrapper className={getIconStyle({isRightIcon: true})}>
-              {rightIcon}
-            </RightIconWrapper>
-          ): defaultRightIcon && (
-            <RightIconWrapper className={getIconStyle({isRightIcon: true})}>
-              {defaultRightIcon}
-            </RightIconWrapper>
-          )}
-        </>
-    )
+  return (
+    <>
+      {Boolean(leftIcon) && (
+        <span className={getIconStyle({ isLeftIconAvatar })}>{leftIcon}</span>
+      )}
+      <div
+        className={clsx(
+          'ui-flex-1 ui-py-0.5 ui-flex ui-flex-col ui-text-neutral-800',
+          className,
+        )}
+      >
+        {children}
+        {subtitle && (
+          <span className={clsx('ui-text-neutral-600 ui-text-xs')}>
+            {subtitle}
+          </span>
+        )}
+      </div>
+      {rightExtra}
+      {rightIcon ? (
+        <RightIconWrapper className={getIconStyle({ isRightIcon: true })}>
+          {rightIcon}
+        </RightIconWrapper>
+      ) : (
+        defaultRightIcon && (
+          <RightIconWrapper className={getIconStyle({ isRightIcon: true })}>
+            {defaultRightIcon}
+          </RightIconWrapper>
+        )
+      )}
+    </>
+  )
 }
 
 const DropdownMenu = DropdownMenuPrimitive.Root
@@ -67,14 +95,15 @@ const DropdownMenuSub = DropdownMenuPrimitive.Sub
 const DropdownMenuRadioGroup = React.forwardRef<
   DropdownRadioGroupRef,
   DropdownRadioGroupProps
->(({onChange, ...restProps}, ref) => (
-    <DropdownMenuPrimitive.RadioGroup
-      onValueChange={onChange}
-      ref={ref}
-      {...restProps}
-    />
+>(({ onChange, ...restProps }, ref) => (
+  <DropdownMenuPrimitive.RadioGroup
+    onValueChange={onChange}
+    ref={ref}
+    {...restProps}
+  />
 ))
-DropdownMenuRadioGroup.displayName = DropdownMenuPrimitive.RadioGroup.displayName
+DropdownMenuRadioGroup.displayName =
+  DropdownMenuPrimitive.RadioGroup.displayName
 
 const DropdownMenuSubTrigger = React.forwardRef<
   DropdownSubTriggerRef,
@@ -90,20 +119,31 @@ const DropdownMenuSubTrigger = React.forwardRef<
     hasPaddingLeft,
     disabled,
     asChild,
-    subTitle,
+    subtitle,
     ...resetProps
   } = props
   return (
     <DropdownMenuPrimitive.SubTrigger
       asChild={asChild}
-      className={getDropdownItemStyle({hasPaddingLeft, disabled, className})}
+      className={getDropdownItemStyle({ hasPaddingLeft, disabled, className })}
       disabled={disabled}
       ref={ref}
       {...resetProps}
     >
-      {asChild ? children : 
-      renderDropdownChildItem({children, subTitle, leftIcon, isLeftIconAvatar, rightExtra, rightIcon, className, defaultRightIcon: <IconChevron className="-ui-rotate-90 ui-text-neutral-500"/>})
-      }
+      {asChild
+        ? children
+        : renderDropdownChildItem({
+            children,
+            subtitle,
+            leftIcon,
+            isLeftIconAvatar,
+            rightExtra,
+            rightIcon,
+            className,
+            defaultRightIcon: (
+              <IconChevron className="-ui-rotate-90 ui-text-neutral-500" />
+            ),
+          })}
     </DropdownMenuPrimitive.SubTrigger>
   )
 })
@@ -118,7 +158,7 @@ const DropdownMenuSubContent = React.forwardRef<
 
   return (
     <DropdownMenuPrimitive.SubContent
-      className={getDropdownContentStyle({hasShadow, isRounded, className})}
+      className={getDropdownContentStyle({ hasShadow, isRounded, className })}
       ref={ref}
       {...props}
     />
@@ -130,10 +170,10 @@ DropdownMenuSubContent.displayName =
 const DropdownMenuContent = React.forwardRef<
   DropdownContentRef,
   DropdownContentProps
->(({ className, sideOffset = 4, hasShadow, isRounded , ...props }, ref) => (
+>(({ className, sideOffset = 4, hasShadow, isRounded, ...props }, ref) => (
   <DropdownMenuPrimitive.Portal>
     <DropdownMenuPrimitive.Content
-      className={getDropdownContentStyle({hasShadow, isRounded, className})}
+      className={getDropdownContentStyle({ hasShadow, isRounded, className })}
       ref={ref}
       sideOffset={sideOffset}
       {...props}
@@ -142,44 +182,52 @@ const DropdownMenuContent = React.forwardRef<
 ))
 DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName
 
-const DropdownMenuItem = React.forwardRef<
-  DropdownItemRef,
-  DropdownItemProps
->((props, ref) => {
-  const { 
-    children,
-    hasPaddingLeft,
-    className,
-    leftIcon,
-    isLeftIconAvatar = false,
-    rightExtra,
-    onClick,
-    disabled,
-    rightIcon,
-    asChild,
-    subTitle,
-    wrapperClassName,
-    ...restProps
-  } = props
+const DropdownMenuItem = React.forwardRef<DropdownItemRef, DropdownItemProps>(
+  (props, ref) => {
+    const {
+      children,
+      hasPaddingLeft,
+      className,
+      leftIcon,
+      isLeftIconAvatar = false,
+      rightExtra,
+      onClick,
+      disabled,
+      rightIcon,
+      asChild,
+      subtitle,
+      wrapperClassName,
+      ...restProps
+    } = props
 
-  return (
-    <DropdownMenuPrimitive.Item
-      asChild={asChild}
-      className={getDropdownItemStyle({hasPaddingLeft, disabled, className: wrapperClassName})}
-      disabled={disabled}
-      onClick={(e) => {
-        e.preventDefault()
-        onClick?.(e)
-      }}
-      ref={ref}
-      {...restProps}
-    >
-      {asChild ? children:
-        renderDropdownChildItem({children, leftIcon, isLeftIconAvatar, rightExtra, rightIcon, className, subTitle})
-      }
-    </DropdownMenuPrimitive.Item>
-  )
-})
+    return (
+      <DropdownMenuPrimitive.Item
+        asChild={asChild}
+        className={getDropdownItemStyle({
+          hasPaddingLeft,
+          disabled,
+          className: wrapperClassName,
+        })}
+        disabled={disabled}
+        onClick={onClick}
+        ref={ref}
+        {...restProps}
+      >
+        {asChild
+          ? children
+          : renderDropdownChildItem({
+              children,
+              leftIcon,
+              isLeftIconAvatar,
+              rightExtra,
+              rightIcon,
+              className,
+              subtitle,
+            })}
+      </DropdownMenuPrimitive.Item>
+    )
+  },
+)
 DropdownMenuItem.displayName = DropdownMenuPrimitive.Item.displayName
 
 const DropdownMenuRadioItem = React.forwardRef<
@@ -196,7 +244,7 @@ const DropdownMenuRadioItem = React.forwardRef<
     rightExtra,
     rightIcon,
     className,
-    subTitle,
+    subtitle,
     onChange,
     wrapperClassName,
     ...restProps
@@ -205,20 +253,31 @@ const DropdownMenuRadioItem = React.forwardRef<
     <DropdownMenuPrimitive.RadioItem
       asChild={asChild}
       className={clsx(
-        getDropdownItemStyle({hasPaddingLeft, disabled, className: wrapperClassName}),
+        getDropdownItemStyle({
+          hasPaddingLeft,
+          disabled,
+          className: wrapperClassName,
+        }),
       )}
       disabled={disabled}
       // Using onChange for integrate with Hook Form
-      onSelect={(e) => {
-        e.preventDefault()
-        onChange?.(e)
-      }}
+      onSelect={onChange}
       ref={ref}
       {...restProps}
     >
-      {asChild ? children:
-        renderDropdownChildItem({children, leftIcon, isLeftIconAvatar, rightExtra, rightIcon, defaultRightIcon: <IconCheck className="ui-text-primary-700"/>, className, subTitle, useIndicator: true})
-      }
+      {asChild
+        ? children
+        : renderDropdownChildItem({
+            children,
+            leftIcon,
+            isLeftIconAvatar,
+            rightExtra,
+            rightIcon,
+            defaultRightIcon: <IconCheck className="ui-text-primary-700" />,
+            className,
+            subtitle,
+            useIndicator: true,
+          })}
     </DropdownMenuPrimitive.RadioItem>
   )
 })
@@ -228,7 +287,6 @@ const DropdownMenuLabel = React.forwardRef<
   DropdownLabelRef,
   DropdownLabelProps
 >((props, ref) => {
-
   const {
     className,
     hasPaddingLeft,
@@ -239,7 +297,7 @@ const DropdownMenuLabel = React.forwardRef<
     rightExtra,
     asChild,
     children,
-    subTitle,
+    subtitle,
     wrapperClassName,
     ...restProps
   } = props
@@ -247,13 +305,25 @@ const DropdownMenuLabel = React.forwardRef<
   return (
     <DropdownMenuPrimitive.Label
       asChild={asChild}
-      className={getDropdownItemStyle({hasPaddingLeft, disabled, className: clsx(wrapperClassName, "ui-pointer-events-none")})}
+      className={getDropdownItemStyle({
+        hasPaddingLeft,
+        disabled,
+        className: clsx(wrapperClassName, 'ui-pointer-events-none'),
+      })}
       ref={ref}
       {...restProps}
     >
-    {asChild? children: 
-      renderDropdownChildItem({children, leftIcon, isLeftIconAvatar, rightExtra, rightIcon, className, subTitle})
-    }
+      {asChild
+        ? children
+        : renderDropdownChildItem({
+            children,
+            leftIcon,
+            isLeftIconAvatar,
+            rightExtra,
+            rightIcon,
+            className,
+            subtitle,
+          })}
     </DropdownMenuPrimitive.Label>
   )
 })
@@ -264,10 +334,7 @@ const DropdownMenuSeparator = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Separator>
 >(({ className, ...props }, ref) => (
   <DropdownMenuPrimitive.Separator
-    className={clsx(
-      "ui-h-px !ui-my-2 ui-bg-neutral-200 -ui-mx-2",
-      className
-    )}
+    className={clsx('ui-h-px !ui-my-2 ui-bg-neutral-200 -ui-mx-2', className)}
     ref={ref}
     {...props}
   />
@@ -275,17 +342,17 @@ const DropdownMenuSeparator = React.forwardRef<
 DropdownMenuSeparator.displayName = DropdownMenuPrimitive.Separator.displayName
 
 export {
-  DropdownMenu, // done
-  DropdownMenuTrigger, // done
-  DropdownMenuLabel, // done
-  DropdownMenuItem, // done
-  DropdownMenuContent, // done
-  DropdownMenuSeparator, // done
-  DropdownMenuGroup, // done
-  DropdownMenuPortal, // done
-  DropdownMenuSub, // done
-  DropdownMenuSubTrigger, //done
-  DropdownMenuSubContent, // done
-  DropdownMenuRadioItem, //
-  DropdownMenuRadioGroup, //
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuLabel,
+  DropdownMenuItem,
+  DropdownMenuContent,
+  DropdownMenuSeparator,
+  DropdownMenuGroup,
+  DropdownMenuPortal,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
+  DropdownMenuRadioItem,
+  DropdownMenuRadioGroup,
 }

@@ -13,7 +13,7 @@ export interface BaseDropdownItemProps extends BaseDropDownItemStyle {
     rightIcon?: ReactNode
     className?: string
     children: ReactNode
-    subTitle?: ReactNode
+    subtitle?: ReactNode
     isLeftIconAvatar?: boolean
     wrapperClassName?: string
 }
