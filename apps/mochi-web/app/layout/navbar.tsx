@@ -47,7 +47,7 @@ export const Navbar = () => {
           ) : (
             <Popover
               trigger={<span className="text-sm font-semibold">Login</span>}
-              panelClassname="px-6 py-4 bg-white-pure border border-gray-200 rounded-xl shadow-md"
+              panelClassname="-translate-x-[8%] sm:-translate-x-[94%]  px-6 py-4 bg-white-pure border border-gray-200 rounded-xl shadow-md"
             >
               <LoginPanel />
             </Popover>

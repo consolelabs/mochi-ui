@@ -9,6 +9,7 @@ import qs from 'query-string'
 import { useCallback, useEffect, useState } from 'react'
 import { LoginWidget, useMochi } from '@consolelabs/ui-components'
 import { useAuthStore } from '~store'
+import { useRouter } from 'next/router'
 
 const WalletAddIcon = (props: any) => (
   <svg
@@ -60,6 +61,7 @@ export function LoginPanel({ compact = false }: { compact?: boolean }) {
     })
     return data?.url
   })
+  const { push } = useRouter()
 
   const { data: twitterAuthUrl } = useSWR('login-twitter', async () => {
     const data = await API.MOCHI_PROFILE.get(
@@ -185,6 +187,7 @@ export function LoginPanel({ compact = false }: { compact?: boolean }) {
           onOpenChange={setOpen}
           authUrl="https://api-preview.mochi-profile.console.so/api/v1/profiles/auth"
           meUrl="https://api-preview.mochi-profile.console.so/api/v1/profiles/me"
+          onSuccess={() => push('/profile')}
           trigger={
             <button
               type="button"

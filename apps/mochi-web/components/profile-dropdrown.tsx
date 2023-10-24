@@ -25,6 +25,7 @@ export default function ProfileDropdown() {
           />
         </div>
       }
+      panelClassname="-translate-x-[60%]"
     >
       <div className="flex flex-col gap-y-1 py-2 px-2 rounded-xl border border-gray-200 w-[250px] bg-white-pure">
         <Link
@@ -32,7 +33,7 @@ export default function ProfileDropdown() {
           className="flex flex-col py-1 px-3 rounded-md transition hover:bg-gray-100"
         >
           <span className="text-sm text-gray-500">Logged in as</span>
-          <span>{name}</span>
+          <span className="ui-whitespace-nowrap ui-truncate">{name}</span>
         </Link>
         <hr className="my-1 w-full h-px bg-gray-200" />
         <a

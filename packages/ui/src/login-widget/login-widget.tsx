@@ -45,7 +45,7 @@ function Group(props: {
   if (!props.wallets.length) return null
   return (
     <div className="ui-flex ui-flex-col md:ui-gap-y-2">
-      <span className="ui-text-xs ui-font-semibold ui-text-neutral-500">
+      <span className="ui-text-xs ui-font-semibold ui-text-neutral-500 ui-uppercase">
         {props.name}
       </span>
       <div className="ui-flex ui-flex-row ui-gap-x-1 md:ui-flex-col md:ui-gap-x-0 md:ui-gap-y-1">
@@ -57,12 +57,12 @@ function Group(props: {
                 props.onSelectWallet(w)
                 return w
                   .connect()
+                  .then(props.onSuccess)
                   .catch((e: { message?: string; cause?: string }) => {
                     props.onError(
                       e.message ?? e.cause ?? 'Something went wrong',
                     )
                   })
-                  .then(props.onSuccess)
               }}
               key={w.name}
             />
@@ -89,14 +89,6 @@ function Inner({ onSuccess }: { onSuccess: WidgetProps['onSuccess'] }) {
                 name={e[0]}
                 onError={setError}
                 onSelectWallet={(w) => {
-                  if (
-                    state === LoginState.Connecting ||
-                    state === LoginState.Authenticating ||
-                    (state === LoginState.Authenticated &&
-                      w.name === wallet?.name)
-                  )
-                    return
-
                   setError('')
                   setState(LoginState.Connecting)
                   setWallet(w)
@@ -233,7 +225,7 @@ export default function LoginWidget({
           onError?.(e)
         })
     },
-    [authUrl, login, meUrl],
+    [authUrl, login, meUrl, onSuccess, onError],
   )
 
   if (user) return trigger
