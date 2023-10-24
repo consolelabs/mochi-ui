@@ -22,6 +22,7 @@ import {
   IconSuperGroup,
 } from '@consolelabs/ui-components'
 import { DISCORD_LINK } from '~envs'
+import { ROUTES } from '~constants/routes'
 
 const authenticatedRoute = ['/profile', '/app', '/server']
 
@@ -68,22 +69,26 @@ export default function AuthenticatedLayout({
           },
         )}
       >
-        <Link href="/" className="flex items-center gap-x-2">
-          <Image
-            src={logo}
-            alt="Logo"
-            width={32}
-            height={32}
-            className="block rounded-full"
-          />
-          <span className="text-xl font-black uppercase text-foreground">
-            Mochi<span className="text-mochi">.</span>
-          </span>
-          <span className="text-base text-gray-500">Dashboard</span>
-        </Link>
+        <div className="flex items-center gap-x-2">
+          <Link href={ROUTES.HOME} className="flex items-center gap-x-2">
+            <Image
+              src={logo}
+              alt="Logo"
+              width={32}
+              height={32}
+              className="block rounded-full"
+            />
+            <span className="text-xl font-black uppercase text-foreground">
+              Mochi<span className="text-mochi">.</span>
+            </span>
+          </Link>
+          <Link href={ROUTES.PROFILE} className="text-base text-gray-500">
+            Dashboard
+          </Link>
+        </div>
         {isLoggedIn && me ? (
           <div className="flex items-center gap-x-5">
-            <span className="text-sm font-medium">See Docs</span>
+            <span className="text-sm font-medium">Instruction</span>
             <ProfileBadge
               avatar={me.avatar}
               name={me.profile_name}
