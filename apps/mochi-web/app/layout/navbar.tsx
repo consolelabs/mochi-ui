@@ -21,8 +21,8 @@ export const Navbar = () => {
 
   return (
     <nav className="sticky top-0 z-20 w-screen bg-white shadow">
-      <div className="flex flex-col gap-y-4 justify-between py-5 px-3 mx-auto sm:flex-row md:px-7">
-        <Link className="flex gap-x-2 items-center self-start" href="/">
+      <div className="flex flex-col justify-between h-20 px-3 py-5 mx-auto gap-y-4 sm:flex-row md:px-7">
+        <Link className="flex items-center self-start gap-x-2" href="/">
           <Image
             src={logo}
             alt="Logo"
@@ -34,7 +34,7 @@ export const Navbar = () => {
             Mochi<span className="text-mochi">.</span>
           </span>
         </Link>
-        <div className="flex flex-col order-1 gap-y-2 gap-x-5 self-start sm:flex-row sm:self-center sm:ml-auto md:order-2">
+        <div className="flex flex-col self-start order-1 gap-y-2 gap-x-5 sm:flex-row sm:self-center sm:ml-auto md:order-2">
           <NavLinks />
           {isLoggedIn && me ? (
             <Link href="/profile">

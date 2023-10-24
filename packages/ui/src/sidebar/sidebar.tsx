@@ -7,7 +7,9 @@ import type { Break } from './sidebar-item-list'
 import SidebarItemList from './sidebar-item-list'
 
 const sidebar = cva(
-  ['ui-bg-white ui-relative ui-h-full ui-border-r ui-border-neutral-200'],
+  [
+    'ui-bg-white ui-relative ui-h-full ui-border-r ui-border-neutral-200 ui-transition-all',
+  ],
   {
     variants: {
       expanded: {
@@ -23,7 +25,7 @@ interface HeaderProps {
 }
 
 interface SidebarProps {
-  Header?: (props?: HeaderProps) => JSX.Element
+  Header?: (props: HeaderProps) => JSX.Element
   headerItems?: (Item | Break)[]
   footerItems?: (Item | Break)[]
   className?: string
@@ -42,7 +44,9 @@ export default function Sidebar({
       <div className="ui-flex ui-flex-col ui-justify-between ui-h-full ui-overflow-x-hidden ui-overflow-y-auto">
         <div>
           {Header ? <Header expanded={expanded} /> : null}
-          <SidebarItemList expanded={expanded} items={headerItems} />
+          <div className="ui-pt-2">
+            <SidebarItemList expanded={expanded} items={headerItems} />
+          </div>
         </div>
         <div className="ui-border-t ui-border-neutral-200">
           <SidebarItemList expanded={expanded} items={footerItems} />

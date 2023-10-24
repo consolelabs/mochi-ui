@@ -1,5 +1,4 @@
 import clsx from 'clsx'
-import { Fragment } from 'react'
 import type { Item } from './sidebar-item'
 import SidebarItem from './sidebar-item'
 
@@ -17,7 +16,7 @@ export default function SidebarItemList({
   expanded,
 }: SidebarItemListProps) {
   return (
-    <Fragment>
+    <>
       {items
         .reduce<Item[][]>(
           (prev, item) =>
@@ -35,11 +34,15 @@ export default function SidebarItemList({
               key={itemGroup[0].title}
             >
               {itemGroup.map((item) => (
-                <SidebarItem key={item.title} {...{ item, expanded }} />
+                <SidebarItem
+                  key={item.title}
+                  {...{ item, expanded }}
+                  className="ui-h-10"
+                />
               ))}
             </div>
           ) : null,
         )}
-    </Fragment>
+    </>
   )
 }

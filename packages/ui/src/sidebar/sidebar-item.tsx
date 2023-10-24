@@ -9,7 +9,6 @@ import {
 
 export interface Item {
   title: string
-  // FIXME: ignore typescript warning
   Icon: (props: any) => JSX.Element
   selected?: boolean
   type?: 'list' | 'button' | 'link'
@@ -46,14 +45,22 @@ export default function SidebarItem({
       <Accordion type="multiple">
         <AccordionItem value={title}>
           <AccordionTrigger
-            wrapperClassName={clsx('ui-pt-0 ui-pb-0', {
-              'ui-rounded hover:ui-bg-neutral-150': Boolean(expanded),
-            })}
+            wrapperClassName={clsx(
+              'ui-pt-0 ui-pb-0',
+              {
+                'ui-rounded hover:ui-bg-neutral-150': Boolean(expanded),
+              },
+              className,
+            )}
           >
             <div className="ui-flex ui-gap-2 ui-items-center ui-p-2 ui-rounded hover:ui-bg-neutral-150">
-              <Icon className="ui-text-neutral-800" height={22} width={22} />
+              <Icon
+                className="ui-text-neutral-800 ui-min-w-max"
+                height={22}
+                width={22}
+              />
               {Boolean(expanded) && (
-                <span className="ui-text-neutral-800 ui-text-sm ui-font-medium ui-tracking-tight">
+                <span className="ui-text-neutral-800 ui-text-sm ui-font-medium ui-tracking-tight ui-overflow-hidden ui-text-ellipsis ui-whitespace-nowrap">
                   {title}
                 </span>
               )}
@@ -62,7 +69,7 @@ export default function SidebarItem({
           <AccordionContent className="ui-pb-0">
             {children.map((child) => (
               <SidebarItem
-                className="ui-pl-8"
+                className={clsx('ui-pl-8', className)}
                 expanded={expanded}
                 item={child}
                 key={child.title}
@@ -93,7 +100,7 @@ export default function SidebarItem({
         } as Attributes,
         [
           <Icon
-            className="ui-text-neutral-800"
+            className="ui-text-neutral-800 ui-min-w-max"
             height={22}
             key={`sidebar-item-children-1-${title}`}
             width={22}
@@ -101,7 +108,7 @@ export default function SidebarItem({
           ...(expanded
             ? [
                 <span
-                  className="ui-text-neutral-800 ui-text-sm ui-font-medium ui-tracking-tight"
+                  className="ui-text-neutral-800 ui-text-sm ui-font-medium ui-tracking-tight ui-overflow-hidden ui-text-ellipsis ui-whitespace-nowrap"
                   key={`sidebar-item-children-2-${title}`}
                 >
                   {title}
@@ -114,9 +121,13 @@ export default function SidebarItem({
 
     return (
       <a className={classNameProp} {...props} href={href}>
-        <Icon className="ui-text-neutral-800" height={22} width={22} />
+        <Icon
+          className="ui-text-neutral-800 ui-min-w-max"
+          height={22}
+          width={22}
+        />
         {Boolean(expanded) && (
-          <span className="ui-text-neutral-800 ui-text-sm ui-font-medium ui-tracking-tight">
+          <span className="ui-text-neutral-800 ui-text-sm ui-font-medium ui-tracking-tight ui-overflow-hidden ui-text-ellipsis ui-whitespace-nowrap">
             {title}
           </span>
         )}
@@ -126,9 +137,13 @@ export default function SidebarItem({
 
   return (
     <button className={classNameProp} type="button" {...props}>
-      <Icon className="ui-text-neutral-800" height={22} width={22} />
+      <Icon
+        className="ui-text-neutral-800 ui-min-w-max"
+        height={22}
+        width={22}
+      />
       {Boolean(expanded) && (
-        <span className="ui-text-neutral-800 ui-text-sm ui-font-medium ui-tracking-tight">
+        <span className="ui-text-neutral-800 ui-text-sm ui-font-medium ui-tracking-tight ui-overflow-hidden ui-text-ellipsis ui-whitespace-nowrap">
           {title}
         </span>
       )}
