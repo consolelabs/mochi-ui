@@ -1,14 +1,9 @@
-import Image from 'next/image'
-import { logo } from '~utils/image'
 import clsx from 'clsx'
 import { useHasMounted } from '@dwarvesf/react-hooks'
-import { useAuthStore, useProfileStore } from '~store'
-import { useRouter } from 'next/router'
+import { useAuthStore } from '~store'
 import Link from 'next/link'
-import ProfileDropdown from './profile-dropdrown'
 import Login from './login'
 import {
-  ProfileBadge,
   Sidebar,
   IconLifeBuoy,
   IconX,
@@ -22,11 +17,8 @@ import {
   IconSuperGroup,
 } from '@consolelabs/ui-components'
 import { DISCORD_LINK } from '~envs'
-import { ROUTES } from '~constants/routes'
 
-const authenticatedRoute = ['/profile', '/app', '/server']
-
-const Header = ({ expanded }: { expanded?: boolean }) => {
+const SidebarHeader = ({ expanded }: { expanded?: boolean }) => {
   return expanded ? (
     <img
       alt="header"
@@ -49,55 +41,13 @@ export default function AuthenticatedLayout({
   fullWidth?: boolean
   footer?: React.ReactNode
 }) {
-  const { pathname } = useRouter()
   const mounted = useHasMounted()
-  const { me } = useProfileStore()
   const { isLoggedIn, isLoadingSession } = useAuthStore()
 
   if (!mounted) return <>{childSEO}</>
 
   return (
     <div className="flex flex-col w-screen min-h-screen bg-dashboard-gray-1">
-      <div
-        className={clsx(
-          'sticky top-0 flex px-3 py-5 md:px-7 flex-shrink-0 justify-between z-20 h-20',
-          {
-            'border-b border-b-dashboard-gray-6 bg-dashboard-gray-5':
-              isLoggedIn || !authenticatedRoute.includes(pathname),
-            'bg-dashboard-gray-1':
-              !isLoggedIn && authenticatedRoute.includes(pathname),
-          },
-        )}
-      >
-        <div className="flex items-center gap-x-2">
-          <Link href={ROUTES.HOME} className="flex items-center gap-x-2">
-            <Image
-              src={logo}
-              alt="Logo"
-              width={32}
-              height={32}
-              className="block rounded-full"
-            />
-            <span className="text-xl font-black uppercase text-foreground">
-              Mochi<span className="text-mochi">.</span>
-            </span>
-          </Link>
-          <Link href={ROUTES.PROFILE} className="text-base text-gray-500">
-            Dashboard
-          </Link>
-        </div>
-        {isLoggedIn && me ? (
-          <div className="flex items-center gap-x-5">
-            <span className="text-sm font-medium">Instruction</span>
-            <ProfileBadge
-              avatar={me.avatar}
-              name={me.profile_name}
-              platform={me.platformIcon}
-            />
-            <ProfileDropdown />
-          </div>
-        ) : null}
-      </div>
       <div className="relative z-10 flex flex-1">
         {isLoadingSession ? null : isLoggedIn ? (
           <>
@@ -106,7 +56,7 @@ export default function AuthenticatedLayout({
               className="sticky left-0 z-10"
             >
               <Sidebar
-                Header={Header}
+                Header={SidebarHeader}
                 headerItems={[
                   {
                     title: 'Profile',
