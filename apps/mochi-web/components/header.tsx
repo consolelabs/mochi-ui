@@ -15,7 +15,7 @@ const authenticatedRoute = ['/profile', '/app', '/server']
 export const Header = () => {
   const { pathname } = useRouter()
   const { me } = useProfileStore()
-  const { isLoggedIn } = useAuthStore()
+  const { isLoggedIn, isLogging } = useAuthStore()
 
   return (
     <nav
@@ -63,7 +63,11 @@ export const Header = () => {
         </div>
       ) : (
         <Popover
-          trigger={<span className="text-sm font-semibold">Login</span>}
+          trigger={
+            <span className="text-sm font-semibold">
+              {isLogging ? 'Logging into your account...' : 'Login'}
+            </span>
+          }
           panelClassname="-translate-x-[8%] sm:-translate-x-[94%]  px-6 py-4 bg-white-pure border border-gray-200 rounded-xl shadow-md"
         >
           <LoginPanel />
