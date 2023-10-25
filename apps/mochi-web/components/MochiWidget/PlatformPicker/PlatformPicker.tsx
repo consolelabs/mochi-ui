@@ -61,7 +61,9 @@ export const PlatformPicker = () => {
         <Icon icon="majesticons:chevron-down-line" className="w-4 h-4" />
       </button>
       <Modal isOpen={isOpenSelector} onClose={() => setIsOpenSelector(false)}>
-        <PlatformList data={Platforms} onSelect={handlePlatformSelect} />
+        <div className="flex gap-x-1 items-center py-3 px-3 bg-[#fff] rounded-lg shadow-md">
+          <PlatformList data={Platforms} onSelect={handlePlatformSelect} />
+        </div>
       </Modal>
     </>
   )

@@ -9,7 +9,7 @@ interface ItemProps {
 
 export const PlatformItem: React.FC<ItemProps> = ({ item, onSelect }) => (
   <li
-    className="flex flex-row items-center w-full min-w-[226px] p-2 hover:bg-[#FAF9F7] rounded-lg space-x-2 cursor-pointer"
+    className="flex flex-row items-center w-full min-w-[230px] p-2 hover:bg-[#FAF9F7] rounded-lg space-x-2 cursor-pointer"
     key={item.id}
     onClick={() => onSelect?.(item)}
   >
