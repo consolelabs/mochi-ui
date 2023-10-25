@@ -17,8 +17,6 @@ type Props = {
 }
 
 export const RadioGroup = forwardRef(
-  // FIXME: ignore typescript warning
-  // @ts-ignore
   (props: Props, ref: ForwardedRef<HTMLDivElement>) => {
     const {
       name,

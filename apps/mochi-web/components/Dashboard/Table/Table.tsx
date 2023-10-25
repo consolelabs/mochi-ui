@@ -1,6 +1,6 @@
 import { Icon } from '@iconify/react'
 import clsx from 'clsx'
-import { ReactNode, useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import {
   useTable,
   Column as RTColumn,
@@ -58,7 +58,7 @@ export const Table: <T extends object = {}>(props: Props<T>) => JSX.Element = (
       {
         columns,
         data,
-        // @ts-ignore -- to use with useSortBy hook
+        // @ts-ignore
         manualSortBy,
       },
       useSortBy,

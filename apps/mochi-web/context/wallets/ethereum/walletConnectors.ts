@@ -51,7 +51,6 @@ export const coinbase = ({ appName, chains }: CoinbaseOptions): Wallet => {
       ios: 'https://apps.apple.com/us/app/coinbase-wallet-store-crypto/id1278383455',
       qrCode: 'https://coinbase-wallet.onelink.me/q5Sx/fdb9b250',
     },
-    // @ts-ignore
     createConnector: () => {
       const ios = isIOS()
 
@@ -64,7 +63,7 @@ export const coinbase = ({ appName, chains }: CoinbaseOptions): Wallet => {
         },
       })
 
-      const getUri = async () => (await connector.getProvider()).qrUrl
+      const getUri = async () => (await connector.getProvider()).qrUrl as string
 
       return {
         connector,

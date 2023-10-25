@@ -53,7 +53,6 @@ type Props = VariantProps<typeof input> &
   }
 
 const Input = forwardRef(
-  // @ts-ignore
   (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
     const {
       value = '',

@@ -12,7 +12,6 @@ type Props = Omit<JSX.IntrinsicElements['input'], 'prefix' | 'suffix'> &
   }
 
 export const Input = forwardRef(
-  // @ts-ignore
   (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
     const {
       value = '',
