@@ -6,9 +6,6 @@ import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 const meta: Meta<typeof Popover> = {
     title: 'ui/Popover',
     component: Popover,
-    parameters: {
-        layout: 'right',
-    },
     tags: ['autodocs'],
     args: {
         modal: false,
