@@ -20,7 +20,7 @@ export const Header = () => {
   return (
     <nav
       className={clsx(
-        'sticky top-0 flex px-3 py-5 md:px-7 flex-shrink-0 justify-between z-20 h-20 w-screen shadow',
+        'sticky top-0 flex px-3 py-5 md:px-7 flex-shrink-0 justify-between z-20 h-fit sm:h-20 w-screen shadow flex-col sm:flex-row gap-y-4',
         {
           'border-b border-b-dashboard-gray-6 bg-dashboard-gray-5':
             isLoggedIn || !authenticatedRoute.includes(pathname),
@@ -48,31 +48,39 @@ export const Header = () => {
           </Link>
         )}
       </div>
-      {isLoggedIn && me ? (
-        <div className="flex items-center gap-x-5">
-          <span className="text-sm font-medium">Instruction</span>
-          <ProfileDropdown
-            trigger={
+      <div className="flex flex-col self-start order-1 gap-y-2 gap-x-5 sm:flex-row sm:self-center sm:ml-auto md:order-2">
+        <div className="flex flex-wrap items-stretch gap-5">
+          <Link
+            href="/features"
+            className="flex items-center text-sm font-semibold"
+          >
+            Features
+          </Link>
+        </div>
+        {isLoggedIn && me ? (
+          <div className="flex items-center gap-x-5">
+            <Link href={ROUTES.PROFILE}>
               <ProfileBadge
                 avatar={me.avatar}
                 name={me.profile_name}
                 platform={me.platformIcon}
               />
+            </Link>
+            <ProfileDropdown />
+          </div>
+        ) : (
+          <Popover
+            trigger={
+              <span className="text-sm font-semibold">
+                {isLogging ? 'Logging into your account...' : 'Login'}
+              </span>
             }
-          />
-        </div>
-      ) : (
-        <Popover
-          trigger={
-            <span className="text-sm font-semibold">
-              {isLogging ? 'Logging into your account...' : 'Login'}
-            </span>
-          }
-          panelClassname="-translate-x-[8%] sm:-translate-x-[94%]  px-6 py-4 bg-white-pure border border-gray-200 rounded-xl shadow-md"
-        >
-          <LoginPanel />
-        </Popover>
-      )}
+            panelClassname="-translate-x-[8%] sm:-translate-x-[94%]  px-6 py-4 bg-white-pure border border-gray-200 rounded-xl shadow-md"
+          >
+            <LoginPanel />
+          </Popover>
+        )}
+      </div>
     </nav>
   )
 }

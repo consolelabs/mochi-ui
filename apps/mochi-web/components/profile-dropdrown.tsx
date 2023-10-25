@@ -17,11 +17,7 @@ import { useAuthStore, useProfileStore } from '~store'
 import { shallow } from 'zustand/shallow'
 import Link from 'next/link'
 
-interface Props {
-  trigger: React.ReactNode
-}
-
-export default function ProfileDropdown({ trigger }: Props) {
+export default function ProfileDropdown() {
   const { logout } = useAuthStore()
   const { name } = useProfileStore(
     (s) => ({
@@ -35,7 +31,7 @@ export default function ProfileDropdown({ trigger }: Props) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="flex justify-center items-center w-8 h-8 rounded-full border border-gray-300">
+        <button className="flex items-center justify-center w-8 h-8 border border-gray-300 rounded-full">
           <Icon
             icon="heroicons-outline:user"
             className="w-5 h-5 text-gray-500"
