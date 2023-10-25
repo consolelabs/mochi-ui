@@ -4,7 +4,6 @@ import { LoginPanel } from '~components/login'
 import { Popover } from '~components/Popover'
 import { useAuthStore, useProfileStore } from '~store'
 import { logo } from '~utils/image'
-import { ProfileBadge } from '@consolelabs/ui-components'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { ROUTES } from '~constants/routes'
@@ -58,16 +57,7 @@ export const Header = () => {
           </Link>
         </div>
         {isLoggedIn && me ? (
-          <div className="flex items-center gap-x-5">
-            <Link href={ROUTES.PROFILE}>
-              <ProfileBadge
-                avatar={me.avatar}
-                name={me.profile_name}
-                platform={me.platformIcon}
-              />
-            </Link>
-            <ProfileDropdown />
-          </div>
+          <ProfileDropdown />
         ) : (
           <Popover
             trigger={

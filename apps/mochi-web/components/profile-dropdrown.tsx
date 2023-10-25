@@ -11,32 +11,27 @@ import {
   IconLogout,
   IconSuperGroup,
   IconCoding,
+  ProfileBadge,
 } from '@consolelabs/ui-components'
-import { Icon } from '@iconify/react'
 import { useAuthStore, useProfileStore } from '~store'
-import { shallow } from 'zustand/shallow'
 import Link from 'next/link'
+import { truncateWallet } from '~utils/string'
 
 export default function ProfileDropdown() {
   const { logout } = useAuthStore()
-  const { name } = useProfileStore(
-    (s) => ({
-      id: s.me?.id,
-      name: s.me?.profile_name,
-      avatar: s.me?.avatar,
-    }),
-    shallow,
-  )
+  const { me } = useProfileStore()
+  const { isLoggedIn } = useAuthStore()
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="flex items-center justify-center w-8 h-8 border border-gray-300 rounded-full">
-          <Icon
-            icon="heroicons-outline:user"
-            className="w-5 h-5 text-gray-500"
+        {isLoggedIn && me && (
+          <ProfileBadge
+            avatar={me?.avatar}
+            name={truncateWallet(me.profile_name)}
+            platform={me.platformIcon}
           />
-        </button>
+        )}
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <Link href="/profile">
