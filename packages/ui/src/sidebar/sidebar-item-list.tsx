@@ -28,9 +28,12 @@ export default function SidebarItemList({
         .map((itemGroup, index) =>
           itemGroup.length ? (
             <div
-              className={clsx('ui-px-4 ui-py-2 ui-border-neutral-200', {
-                'ui-border-t': index > 0,
-              })}
+              className={clsx(
+                'ui-px-4 ui-py-2 ui-border-neutral-200 ui-flex ui-flex-col ui-gap-y-0.5',
+                {
+                  'ui-border-t': index > 0,
+                },
+              )}
               key={itemGroup[0].title}
             >
               {itemGroup.map((item) => (

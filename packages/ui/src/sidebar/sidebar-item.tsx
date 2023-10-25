@@ -53,7 +53,7 @@ export default function SidebarItem({
               className,
             )}
           >
-            <div className="ui-flex ui-gap-2 ui-items-center ui-p-2 ui-rounded hover:ui-bg-neutral-150">
+            <div className="ui-flex ui-gap-2 ui-items-center ui-p-2.5 ui-rounded hover:ui-bg-neutral-150">
               <Icon
                 className="ui-text-neutral-800 ui-min-w-max"
                 height={22}
@@ -82,7 +82,7 @@ export default function SidebarItem({
   }
 
   const classNameProp = clsx(
-    'ui-flex ui-gap-2 ui-items-center ui-p-2 ui-rounded ui-w-full ui-cursor-pointer hover:ui-bg-neutral-150',
+    'ui-flex ui-gap-2 ui-items-center ui-p-2.5 ui-rounded ui-w-full ui-cursor-pointer hover:ui-bg-neutral-150',
     { 'ui-bg-neutral-150': selected },
     className,
   )
