@@ -14,9 +14,12 @@ type State = {
   token: string | null
   isLoggedIn: boolean
   isLoadingSession: boolean
+  // After login, it will take 1 or 2 seconds to redirect to /profile. Use this flag to display loading message.
+  isLogging: boolean
   login: (props: LoginProps) => Promise<void>
   logout: () => void
   removeToken: () => void
+  hideIsLogging: () => void
 }
 
 export const useAuthStore = create<State>((set, get) => ({
@@ -24,6 +27,7 @@ export const useAuthStore = create<State>((set, get) => ({
   token: null,
   isLoggedIn: false,
   isLoadingSession: true,
+  isLogging: false,
   removeToken: () => {
     set({ token: null, isLoggedIn: false })
   },
@@ -47,22 +51,26 @@ export const useAuthStore = create<State>((set, get) => ({
     } else {
       // if found, this token could still be outdated or malformed -> try to call the /me api with this token
 
-      set({ ...(showLoading ? { isLoadingSession: true } : {}) })
+      set({
+        ...(showLoading ? { isLoadingSession: true, isLogging: true } : {}),
+      })
       await API.MOCHI_PROFILE.auth(`Bearer ${token}`)
         .get('/profiles/me')
         .badRequest(logout)
         .unauthorized(logout)
         .internalError(logout)
         .res((res) => {
-          set({ isLoadingSession: false })
           // if the code makes it here means the token is valid
           localStorage.setItem(STORAGE_KEY, token)
           set({ token, isLoggedIn: true })
           apiLogin(token)
-
+          set({ isLoadingSession: false })
           return res.json()
         })
         .then((me) => useProfileStore.getState().setMe(me))
     }
+  },
+  hideIsLogging: () => {
+    set({ isLogging: false })
   },
 }))

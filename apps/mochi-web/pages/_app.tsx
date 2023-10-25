@@ -46,26 +46,25 @@ export function handleCancelRendering(e: any) {
 function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
   const { disconnect } = useAppWalletContext()
   const { query, asPath, replace, isReady } = useRouter()
-  const { isLoggedIn, login, removeToken } = useAuthStore(
+  const { isLoggedIn, login, removeToken, hideIsLogging } = useAuthStore(
     (s) => ({
       isLoggedIn: s.isLoggedIn,
       login: s.login,
       removeToken: s.removeToken,
+      hideIsLogging: s.hideIsLogging,
     }),
     shallow,
   )
   const getLayout = Component.getLayout ?? ((page) => page)
-  console.log({ getLayout })
 
   useEffect(() => {
     if (!isReady || isLoggedIn) return
-
     login({
       token: query.token as string,
       showLoading: true,
     }).then(() => {
       if (!query.token) return
-      replace({ pathname: asPath.split('?')[0] }, undefined, {
+      replace('/profile', undefined, {
         shallow: true,
       }).catch(handleCancelRendering)
     })
@@ -80,7 +79,9 @@ function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
       removeToken()
       replace({ pathname: path }, undefined, {
         shallow: true,
-      }).catch(handleCancelRendering)
+      })
+        .catch(handleCancelRendering)
+        .finally(hideIsLogging)
     }
   }, [asPath, disconnect, removeToken, replace])
 
