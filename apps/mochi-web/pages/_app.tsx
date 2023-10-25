@@ -25,6 +25,7 @@ import { useDisclosure } from '@dwarvesf/react-hooks'
 import { isBeta } from '~constants'
 import Button from '~cpn/base/button'
 import Script from 'next/script'
+import { Header } from '~cpn/header'
 
 const TopProgressBar = dynamic(() => import('~app/layout/nprogress'), {
   ssr: false,
@@ -54,6 +55,7 @@ function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
     shallow,
   )
   const getLayout = Component.getLayout ?? ((page) => page)
+  console.log({ getLayout })
 
   useEffect(() => {
     if (!isReady || isLoggedIn) return
@@ -82,9 +84,16 @@ function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
     }
   }, [asPath, disconnect, removeToken, replace])
 
-  // FIXME:
-  // @ts-ignore
-  return <>{getLayout(<Component {...pageProps} />)}</>
+  return (
+    <>
+      <Header />
+      {
+        // FIXME:
+        // @ts-ignore
+        getLayout(<Component {...pageProps} />)
+      }
+    </>
+  )
 }
 
 export default function App(props: AppPropsWithLayout) {
@@ -128,7 +137,7 @@ export default function App(props: AppPropsWithLayout) {
         <InnerApp {...props} />
       </WalletProvider>
       <Modal isOpen={isOpen} onClose={onClose}>
-        <div className="flex relative z-50 flex-col items-center py-4 px-5 max-w-sm bg-white rounded-xl">
+        <div className="relative z-50 flex flex-col items-center max-w-sm px-5 py-4 bg-white rounded-xl">
           <span className="text-lg font-semibold">Warning</span>
           <span className="mt-2 font-light text-center text-dashboard-gray-8">
             You&apos;re visiting the <span className="font-semibold">beta</span>{' '}
@@ -136,7 +145,7 @@ export default function App(props: AppPropsWithLayout) {
             Mochi team won&apos;t be responsible for any loss of your assets on
             beta site, proceed with caution.
           </span>
-          <div className="flex gap-x-2 self-stretch mt-5">
+          <div className="flex self-stretch mt-5 gap-x-2">
             <Button
               type="button"
               appearance="secondary"
