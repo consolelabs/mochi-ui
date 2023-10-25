@@ -3,8 +3,8 @@ import { ModelChain } from 'types/mochi-schema'
 
 export type SourceType = {
   id: string
-  platform: string
-  platform_icon: string
+  source: string
+  source_icon: string
   profile_id: string
   total_amount: string
   token_amount?: string

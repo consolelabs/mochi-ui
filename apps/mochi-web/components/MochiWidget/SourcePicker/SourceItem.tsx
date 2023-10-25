@@ -13,9 +13,9 @@ export const SourceItem: React.FC<ItemProps> = ({ item, onSelect }) => (
     onClick={() => onSelect?.(item)}
   >
     <img
-      alt={`${item.platform} icon`}
+      alt={`${item.source} icon`}
       className="w-6 h-6 rounded-full object-contain"
-      src={item.platform_icon}
+      src={item.source_icon}
     />
     <div className="flex flex-col flex-1">
       <Heading as="h3" className="text-sm">
