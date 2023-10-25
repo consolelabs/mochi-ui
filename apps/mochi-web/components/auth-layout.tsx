@@ -15,6 +15,8 @@ import {
   IconGame,
   IconUser,
   IconSuperGroup,
+  Badge,
+  IconTwinkle,
 } from '@consolelabs/ui-components'
 import { DISCORD_LINK } from '~envs'
 import { useRouter } from 'next/router'
@@ -30,6 +32,13 @@ const SidebarHeader = ({ expanded }: { expanded?: boolean }) => {
     <span />
   )
 }
+
+export const getSidebarBadge = {
+  'NEW': <Badge icon={<IconTwinkle/>} label='New' appearance="success" />,
+  'FEATURED': <Badge label='Featured'  appearance="primary" />,
+  'COMMING_SOON': <Badge label='Comming soon' appearance="secondary"/>,
+  'FREE_TRIAL': <Badge label='Free trial' appearance="warning" />,
+} as const
 
 export default function AuthenticatedLayout({
   children,
@@ -68,7 +77,7 @@ export default function AuthenticatedLayout({
                     href: '/profile',
                   },
                   { title: 'Servers', Icon: IconDiscord },
-                  { title: 'App Store', Icon: IconGame },
+                  { title: 'App Store', Icon: IconGame, badge: getSidebarBadge['COMMING_SOON']},
                   { title: 'Settings', Icon: IconSetting },
                   { type: 'break' },
                   {
@@ -77,13 +86,18 @@ export default function AuthenticatedLayout({
                     type: 'link',
                     as: Link,
                     href: '/app',
+                    badge: getSidebarBadge['NEW']
                   },
                   {
                     title: 'Gift your friends',
                     Icon: IconSuperGroup,
+                    badge: getSidebarBadge['COMMING_SOON']
                   },
                   { title: 'Invite Friends', Icon: IconAddUser },
-                  { title: 'Feedback', Icon: IconStar },
+                  {
+                    title: 'Feedback', Icon: IconStar,
+                    badge: getSidebarBadge['COMMING_SOON']
+                  },
                 ]}
                 footerItems={[
                   { title: 'Support', Icon: IconLifeBuoy },
