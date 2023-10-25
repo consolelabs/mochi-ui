@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import type { ReactNode } from 'react';
 import { type Attributes, createElement, type MouseEventHandler } from 'react'
 import {
   Accordion,
@@ -9,12 +10,14 @@ import {
 
 export interface Item {
   title: string
-  Icon: (props: any) => JSX.Element
+  Icon?: (props: any) => JSX.Element
+  selected?: boolean
   type?: 'list' | 'button' | 'link'
   as?: React.ComponentType<any>
   href?: string
   children?: Item[]
   onClick?: MouseEventHandler
+  badge?: ReactNode
 }
 
 interface SidebarItemProps {
@@ -30,38 +33,70 @@ export default function SidebarItem({
   className,
   selected,
 }: SidebarItemProps) {
-  const { title, Icon, href, as, type, children = [], ...props } = item
+  const {
+    badge,
+    title,
+    Icon,
+    href,
+    as,
+    type,
+    children = [],
+    ...props
+  } = item
+
+  const renderTitle = (
+    <>
+      {Icon !== undefined &&
+        <Icon
+          className={clsx(
+            'ui-min-w-max',{
+            'ui-text-blue-500' :selected,
+            'ui-text-neutral-800': !selected,
+          })}
+          height={22}
+          width={22}
+        />
+      }
+      {expanded ? <div className='ui-flex ui-gap-2 ui-items-center'>
+          <span className="ui-text-left ui-text-neutral-800 ui-text-sm ui-font-medium ui-tracking-tight ui-line-clamp-1">
+            {title}
+          </span>
+          {Boolean(badge) && (
+            <span className='ui-shrink-0'>
+              {badge}
+            </span>
+          )}
+        </div> : null}
+    </>
+  )
 
   if (type === 'list') {
     return (
-      <Accordion type="multiple">
+      <Accordion className='ui-shadow-none !ui-p-0' type="multiple">
         <AccordionItem value={title}>
           <AccordionTrigger
+            className='!hover:ui-bg-inherit'
+            rightIcon={expanded ? null: true}
             wrapperClassName={clsx(
-              'ui-pt-0 ui-pb-0',
               {
                 'ui-rounded hover:ui-bg-neutral-150': Boolean(expanded),
+                '!ui-p-0': !expanded,
+                'ui-p-2.5': expanded,
               },
               className,
             )}
           >
-            <div className="ui-flex ui-gap-2 ui-items-center ui-p-2.5 ui-rounded hover:ui-bg-neutral-150">
-              <Icon
-                className={clsx(
-                  'ui-min-w-max',
-                  selected ? 'ui-text-blue-500' : 'ui-text-neutral-800',
+            <div
+              className={clsx(
+                  "ui-flex-1 ui-flex ui-gap-2 ui-items-center ui-rounded",{
+                    "hover:ui-bg-neutral-150 ui-p-2.5": !expanded
+                  }
                 )}
-                height={22}
-                width={22}
-              />
-              {Boolean(expanded) && (
-                <span className="ui-text-neutral-800 ui-text-sm ui-font-medium ui-tracking-tight ui-overflow-hidden ui-text-ellipsis ui-whitespace-nowrap">
-                  {title}
-                </span>
-              )}
+            >
+              {renderTitle}
             </div>
           </AccordionTrigger>
-          <AccordionContent className="ui-pb-0">
+          <AccordionContent className="ui-pb-0" hasPadding={false}>
             {children.map((child) => (
               <SidebarItem
                 className={clsx('ui-pl-8', className)}
@@ -92,64 +127,20 @@ export default function SidebarItem({
           ...(isAbsolute ? { target: '_blank', rel: 'noopener' } : {}),
           ...props,
         } as Attributes,
-        [
-          <Icon
-            className={clsx(
-              'ui-min-w-max',
-              selected ? 'ui-text-blue-500' : 'ui-text-neutral-800',
-            )}
-            height={22}
-            key={`sidebar-item-children-1-${title}`}
-            width={22}
-          />,
-          ...(expanded
-            ? [
-                <span
-                  className="ui-text-neutral-800 ui-text-sm ui-font-medium ui-tracking-tight ui-overflow-hidden ui-text-ellipsis ui-whitespace-nowrap"
-                  key={`sidebar-item-children-2-${title}`}
-                >
-                  {title}
-                </span>,
-              ]
-            : []),
-        ],
+        [renderTitle],
       )
     }
 
     return (
       <a className={classNameProp} {...props} href={href}>
-        <Icon
-          className={clsx(
-            'ui-min-w-max',
-            selected ? 'ui-text-blue-500' : 'ui-text-neutral-800',
-          )}
-          height={22}
-          width={22}
-        />
-        {Boolean(expanded) && (
-          <span className="ui-text-neutral-800 ui-text-sm ui-font-medium ui-tracking-tight ui-overflow-hidden ui-text-ellipsis ui-whitespace-nowrap">
-            {title}
-          </span>
-        )}
+        {renderTitle}
       </a>
     )
   }
 
   return (
     <button className={classNameProp} type="button" {...props}>
-      <Icon
-        className={clsx(
-          'ui-min-w-max',
-          selected ? 'ui-text-blue-500' : 'ui-text-neutral-800',
-        )}
-        height={22}
-        width={22}
-      />
-      {Boolean(expanded) && (
-        <span className="ui-text-neutral-800 ui-text-sm ui-font-medium ui-tracking-tight ui-overflow-hidden ui-text-ellipsis ui-whitespace-nowrap">
-          {title}
-        </span>
-      )}
+      {renderTitle}
     </button>
   )
 }
