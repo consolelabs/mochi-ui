@@ -17,6 +17,7 @@ import {
   IconSuperGroup,
 } from '@consolelabs/ui-components'
 import { DISCORD_LINK } from '~envs'
+import { useRouter } from 'next/router'
 
 const SidebarHeader = ({ expanded }: { expanded?: boolean }) => {
   return expanded ? (
@@ -41,6 +42,7 @@ export default function AuthenticatedLayout({
   fullWidth?: boolean
   footer?: React.ReactNode
 }) {
+  const { pathname } = useRouter()
   const mounted = useHasMounted()
   const { isLoggedIn, isLoadingSession } = useAuthStore()
 
@@ -99,6 +101,9 @@ export default function AuthenticatedLayout({
                   },
                 ]}
                 className="absolute"
+                isSelected={(item) =>
+                  !!item.href && pathname.startsWith(item.href)
+                }
               />
             </div>
             <div

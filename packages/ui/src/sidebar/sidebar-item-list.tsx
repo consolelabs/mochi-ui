@@ -9,11 +9,13 @@ export interface Break {
 interface SidebarItemListProps {
   items: (Item | Break)[]
   expanded: boolean
+  isSelected?: (item: Item) => boolean | undefined
 }
 
 export default function SidebarItemList({
   items,
   expanded,
+  isSelected,
 }: SidebarItemListProps) {
   return (
     <>
@@ -41,6 +43,7 @@ export default function SidebarItemList({
                   key={item.title}
                   {...{ item, expanded }}
                   className="ui-h-10"
+                  selected={isSelected?.(item)}
                 />
               ))}
             </div>
