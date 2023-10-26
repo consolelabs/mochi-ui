@@ -55,7 +55,10 @@ export default function SidebarItem({
           >
             <div className="ui-flex ui-gap-2 ui-items-center ui-p-2.5 ui-rounded hover:ui-bg-neutral-150">
               <Icon
-                className="ui-text-neutral-800 ui-min-w-max"
+                className={clsx(
+                  'ui-min-w-max',
+                  selected ? 'ui-text-blue-500' : 'ui-text-neutral-800',
+                )}
                 height={22}
                 width={22}
               />
@@ -83,7 +86,6 @@ export default function SidebarItem({
 
   const classNameProp = clsx(
     'ui-flex ui-gap-2 ui-items-center ui-p-2.5 ui-rounded ui-w-full ui-cursor-pointer hover:ui-bg-neutral-150',
-    { 'ui-bg-neutral-150': selected },
     className,
   )
 
@@ -100,7 +102,10 @@ export default function SidebarItem({
         } as Attributes,
         [
           <Icon
-            className="ui-text-neutral-800 ui-min-w-max"
+            className={clsx(
+              'ui-min-w-max',
+              selected ? 'ui-text-blue-500' : 'ui-text-neutral-800',
+            )}
             height={22}
             key={`sidebar-item-children-1-${title}`}
             width={22}
@@ -122,7 +127,10 @@ export default function SidebarItem({
     return (
       <a className={classNameProp} {...props} href={href}>
         <Icon
-          className="ui-text-neutral-800 ui-min-w-max"
+          className={clsx(
+            'ui-min-w-max',
+            selected ? 'ui-text-blue-500' : 'ui-text-neutral-800',
+          )}
           height={22}
           width={22}
         />
@@ -138,7 +146,10 @@ export default function SidebarItem({
   return (
     <button className={classNameProp} type="button" {...props}>
       <Icon
-        className="ui-text-neutral-800 ui-min-w-max"
+        className={clsx(
+          'ui-min-w-max',
+          selected ? 'ui-text-blue-500' : 'ui-text-neutral-800',
+        )}
         height={22}
         width={22}
       />

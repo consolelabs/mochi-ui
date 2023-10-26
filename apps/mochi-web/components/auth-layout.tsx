@@ -17,6 +17,7 @@ import {
   IconSuperGroup,
 } from '@consolelabs/ui-components'
 import { DISCORD_LINK } from '~envs'
+import { useRouter } from 'next/router'
 
 const SidebarHeader = ({ expanded }: { expanded?: boolean }) => {
   return expanded ? (
@@ -41,6 +42,7 @@ export default function AuthenticatedLayout({
   fullWidth?: boolean
   footer?: React.ReactNode
 }) {
+  const { pathname } = useRouter()
   const mounted = useHasMounted()
   const { isLoggedIn, isLoadingSession } = useAuthStore()
 
@@ -82,7 +84,11 @@ export default function AuthenticatedLayout({
                   },
                   { title: 'Invite Friends', Icon: IconAddUser },
                   { title: 'Feedback', Icon: IconStar },
-                ]}
+                ].map((each) =>
+                  each.href && pathname.includes(each.href)
+                    ? { ...each, selected: true }
+                    : each,
+                )}
                 footerItems={[
                   { title: 'Support', Icon: IconLifeBuoy },
                   {
@@ -97,7 +103,11 @@ export default function AuthenticatedLayout({
                     type: 'link',
                     href: DISCORD_LINK,
                   },
-                ]}
+                ].map((each) =>
+                  each.href && pathname.includes(each.href)
+                    ? { ...each, selected: true }
+                    : each,
+                )}
                 className="absolute"
               />
             </div>

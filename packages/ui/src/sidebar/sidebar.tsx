@@ -1,5 +1,5 @@
 import { cva } from 'class-variance-authority'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import clsx from 'clsx'
 import IconSidebarArrow from '../icons/components/icon-sidebar-arrow'
 import type { Item } from './sidebar-item'
@@ -8,7 +8,7 @@ import SidebarItemList from './sidebar-item-list'
 
 const sidebar = cva(
   [
-    'ui-bg-white ui-relative ui-h-full ui-border-r ui-border-neutral-200 ui-transition-all',
+    'ui-group ui-bg-white ui-relative ui-h-full ui-border-r ui-border-neutral-200 ui-transition-all',
   ],
   {
     variants: {
@@ -60,7 +60,7 @@ export default function Sidebar({
         </div>
       </div>
       <button
-        className="ui-absolute ui-top-4 ui--right-5 ui-bg-white ui-border ui-border-neutral-200 ui-rounded-r-lg ui-w-5 ui-h-11 ui-flex ui-justify-center ui-items-center"
+        className="ui-absolute ui-top-4 ui--right-5 ui-bg-white ui-border ui-border-neutral-200 ui-rounded-r-lg ui-w-5 ui-h-11 ui-justify-center ui-items-center ui-hidden group-hover:ui-flex"
         onClick={() => setExpanded(!expanded)}
         type="button"
       >
