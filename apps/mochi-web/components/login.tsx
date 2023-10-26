@@ -51,8 +51,8 @@ const Divider = ({ children }: { children: React.ReactNode }) => {
 }
 
 interface LoginPanelProps {
-  onHideLoginPopover: (_: boolean) => void
-  onCloseLoginPopover: (_: boolean) => void
+  onHideLoginPopover?: (_: boolean) => void
+  onCloseLoginPopover?: (_: boolean) => void
   compact?: boolean
 }
 
@@ -110,8 +110,8 @@ export function LoginPanel(props: LoginPanelProps) {
 
   const onOpenChange = (open: boolean) => {
     setOpen(open)
-    onHideLoginPopover(open)
-    onCloseLoginPopover(open)
+    onHideLoginPopover?.(open)
+    onCloseLoginPopover?.(open)
   }
 
   useEffect(() => {
