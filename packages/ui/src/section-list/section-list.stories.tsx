@@ -108,12 +108,12 @@ const sectionData: SectionType[] = [
 function renderItem(item: DataType) {
   return (
     <li
-      className="ui-flex ui-flex-row ui-items-center ui-w-full ui-p-2 hover:ui-bg-[#FAF9F7] ui-rounded-lg ui-space-x-2"
+      className="flex flex-row items-center w-full p-2 hover:bg-[#FAF9F7] rounded-lg space-x-2"
       key={item.id}
     >
-      <span className="ui-text-sm ui-w-6 ui-h-6">{item.icon}</span>
-      <div className="ui-flex ui-flex-col ui-flex-1">
-        <Heading as="h3" className="ui-text-sm">
+      <span className="text-sm w-6 h-6">{item.icon}</span>
+      <div className="flex flex-col flex-1">
+        <Heading as="h3" className="text-sm">
           {item.message}
         </Heading>
       </div>
@@ -123,11 +123,8 @@ function renderItem(item: DataType) {
 
 function renderSectionHeader(section: SectionType, index?: number) {
   return (
-    <div className="ui-flex ui-flex-row ui-items-center ui-w-full" key={index}>
-      <Heading
-        as="h2"
-        className="ui-text-xs ui-font-bold ui-text-[#A19F9E] ui-uppercase"
-      >
+    <div className="flex flex-row items-center w-full" key={index}>
+      <Heading as="h2" className="text-xs font-bold text-[#A19F9E] uppercase">
         {section.title}
       </Heading>
     </div>
@@ -136,8 +133,7 @@ function renderSectionHeader(section: SectionType, index?: number) {
 
 export const Default: Story = {
   args: {
-    rootClassName:
-      'ui-h-[300px] ui-w-[412px] ui-shadow-sm ui-p-2 ui-rounded-lg',
+    rootClassName: 'h-[300px] w-[412px] shadow-sm p-2 rounded-lg',
     sections: sectionData,
     renderItem,
     renderSectionHeader,
@@ -146,12 +142,11 @@ export const Default: Story = {
 
 export const SectionEmpty: Story = {
   args: {
-    rootClassName:
-      'ui-h-[300px] ui-w-[412px] ui-shadow-sm ui-p-2 ui-rounded-lg',
+    rootClassName: 'h-[300px] w-[412px] shadow-sm p-2 rounded-lg',
     sections: [],
     renderItem,
     SectionEmpty: (
-      <div className="ui-w-full ui-h-full ui-flex ui-items-center ui-justify-center">
+      <div className="w-full h-full flex items-center justify-center">
         No data
       </div>
     ),

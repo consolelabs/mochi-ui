@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import type { ReactNode } from 'react';
+import type { ReactNode } from 'react'
 import { type Attributes, createElement, type MouseEventHandler } from 'react'
 import {
   Accordion,
@@ -33,73 +33,59 @@ export default function SidebarItem({
   className,
   selected,
 }: SidebarItemProps) {
-  const {
-    badge,
-    title,
-    Icon,
-    href,
-    as,
-    type,
-    children = [],
-    ...props
-  } = item
+  const { badge, title, Icon, href, as, type, children = [], ...props } = item
 
   const renderTitle = (
     <>
-      {Icon !== undefined &&
+      {Icon !== undefined && (
         <Icon
-          className={clsx(
-            'ui-min-w-max',{
-            'ui-text-blue-500' :selected,
-            'ui-text-neutral-800': !selected,
+          className={clsx('min-w-max', {
+            'text-blue-500': selected,
+            'text-neutral-800': !selected,
           })}
           height={22}
           width={22}
         />
-      }
-      {expanded ? <div className='ui-flex ui-gap-2 ui-items-center'>
-          <span className="ui-text-left ui-text-neutral-800 ui-text-sm ui-font-medium ui-tracking-tight ui-line-clamp-1">
+      )}
+      {expanded ? (
+        <div className="flex gap-2 items-center">
+          <span className="text-left text-neutral-800 text-sm font-medium tracking-tight line-clamp-1">
             {title}
           </span>
-          {Boolean(badge) && (
-            <span className='ui-shrink-0'>
-              {badge}
-            </span>
-          )}
-        </div> : null}
+          {Boolean(badge) && <span className="shrink-0">{badge}</span>}
+        </div>
+      ) : null}
     </>
   )
 
   if (type === 'list') {
     return (
-      <Accordion className='ui-shadow-none !ui-p-0' type="multiple">
+      <Accordion className="shadow-none !p-0" type="multiple">
         <AccordionItem value={title}>
           <AccordionTrigger
-            className='!hover:ui-bg-inherit'
-            rightIcon={expanded ? null: true}
+            className="!hover:bg-inherit"
+            rightIcon={expanded ? null : true}
             wrapperClassName={clsx(
               {
-                'ui-rounded hover:ui-bg-neutral-150': Boolean(expanded),
-                '!ui-p-0': !expanded,
-                'ui-p-2.5': expanded,
+                'rounded hover:bg-neutral-150': Boolean(expanded),
+                '!p-0': !expanded,
+                'p-2.5': expanded,
               },
               className,
             )}
           >
             <div
-              className={clsx(
-                  "ui-flex-1 ui-flex ui-gap-2 ui-items-center ui-rounded",{
-                    "hover:ui-bg-neutral-150 ui-p-2.5": !expanded
-                  }
-                )}
+              className={clsx('flex-1 flex gap-2 items-center rounded', {
+                'hover:bg-neutral-150 p-2.5': !expanded,
+              })}
             >
               {renderTitle}
             </div>
           </AccordionTrigger>
-          <AccordionContent className="ui-pb-0" hasPadding={false}>
+          <AccordionContent className="pb-0" hasPadding={false}>
             {children.map((child) => (
               <SidebarItem
-                className={clsx('ui-pl-8', className)}
+                className={clsx('pl-8', className)}
                 expanded={expanded}
                 item={child}
                 key={child.title}
@@ -112,7 +98,7 @@ export default function SidebarItem({
   }
 
   const classNameProp = clsx(
-    'ui-flex ui-gap-2 ui-items-center ui-p-2.5 ui-rounded ui-w-full ui-cursor-pointer hover:ui-bg-neutral-150',
+    'flex gap-2 items-center p-2.5 rounded w-full cursor-pointer hover:bg-neutral-150',
     className,
   )
 

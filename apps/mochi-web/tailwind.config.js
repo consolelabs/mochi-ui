@@ -1,5 +1,8 @@
 module.exports = {
-  content: ['./**/*.{html,ts,tsx}'],
+  content: [
+    './**/*.{html,ts,tsx}',
+    './node_modules/@consolelabs/ui-components/dist/**/*.{js,ts,jsx,tsx}',
+  ],
   mode: 'jit',
   theme: {
     extend: {

@@ -55,15 +55,13 @@ function renderDropdownChildItem(
       )}
       <div
         className={clsx(
-          'ui-flex-1 ui-py-0.5 ui-flex ui-flex-col ui-text-neutral-800',
+          'flex-1 py-0.5 flex flex-col text-neutral-800',
           className,
         )}
       >
         {children}
         {subtitle && (
-          <span className={clsx('ui-text-neutral-600 ui-text-xs')}>
-            {subtitle}
-          </span>
+          <span className={clsx('text-neutral-600 text-xs')}>{subtitle}</span>
         )}
       </div>
       {rightExtra}
@@ -141,7 +139,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
             rightIcon,
             className,
             defaultRightIcon: (
-              <IconChevron className="-ui-rotate-90 ui-text-neutral-500" />
+              <IconChevron className="-rotate-90 text-neutral-500" />
             ),
           })}
     </DropdownMenuPrimitive.SubTrigger>
@@ -273,7 +271,7 @@ const DropdownMenuRadioItem = React.forwardRef<
             isLeftIconAvatar,
             rightExtra,
             rightIcon,
-            defaultRightIcon: <IconCheck className="ui-text-primary-700" />,
+            defaultRightIcon: <IconCheck className="text-primary-700" />,
             className,
             subtitle,
             useIndicator: true,
@@ -308,7 +306,7 @@ const DropdownMenuLabel = React.forwardRef<
       className={getDropdownItemStyle({
         hasPaddingLeft,
         disabled,
-        className: clsx(wrapperClassName, 'ui-pointer-events-none'),
+        className: clsx(wrapperClassName, 'pointer-events-none'),
       })}
       ref={ref}
       {...restProps}
@@ -334,7 +332,7 @@ const DropdownMenuSeparator = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Separator>
 >(({ className, ...props }, ref) => (
   <DropdownMenuPrimitive.Separator
-    className={clsx('ui-h-px !ui-my-2 ui-bg-neutral-200 -ui-mx-2', className)}
+    className={clsx('h-px !my-2 bg-neutral-200 -mx-2', className)}
     ref={ref}
     {...props}
   />

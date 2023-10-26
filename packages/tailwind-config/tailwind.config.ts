@@ -80,6 +80,17 @@ const config: Config = {
           1000: '#86131d',
         },
       },
+      fontSize: {
+        xxs: '10px',
+      },
+      boxShadow: {
+        input: '0px 1px 2px 0px rgba(0, 0, 0, 0.05)',
+        'input-focused':
+          '0px 0px 0px 4px rgba(1, 122, 255, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.05)',
+      },
+      width: {
+        18: '4.5rem',
+      },
     },
   },
   plugins: [],
