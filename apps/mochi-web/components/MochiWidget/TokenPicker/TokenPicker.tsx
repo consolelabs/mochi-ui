@@ -36,7 +36,7 @@ export const TokenPicker = () => {
   return (
     <>
       <button
-        className="flex gap-x-2 items-center px-3 py-2 rounded-lg bg-white-pure"
+        className="flex gap-x-2 items-center px-2 py-1.5 rounded-lg bg-white-pure"
         onClick={() => setIsOpenSelector(true)}
       >
         <span className="text-base" role="img">
@@ -47,7 +47,7 @@ export const TokenPicker = () => {
           />
         </span>
         <span className="text-sm font-medium">{selectedAsset.token.name}</span>
-        <Icon icon="majesticons:chevron-down-line" className="w-4 h-4" />
+        <Icon icon="majesticons:chevron-down-line" className="w-4 h-4 text-[#ADACAA]" />
       </button>
       <Modal isOpen={isOpenSelector} onClose={() => setIsOpenSelector(false)}>
         <div className="flex flex-col gap-y-1 items-center w-[412px] h-fit py-3 px-3 bg-white-pure rounded-lg shadow-md">

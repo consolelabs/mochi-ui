@@ -29,7 +29,7 @@ export const ChainPicker = () => {
           />
         </span>
         <span className="text-sm font-medium">{selectedChain.name}</span>
-        <Icon icon="majesticons:chevron-down-line" className="w-4 h-4" />
+        <Icon icon="majesticons:chevron-down-line" className="w-4 h-4 text-[#ADACAA]" />
       </button>
       <Modal isOpen={isOpenSelector} onClose={() => setIsOpenSelector(false)}>
         <div className="flex flex-col gap-y-1 items-center w-[412px] h-fit py-3 px-3 bg-white-pure rounded-lg shadow-md">
