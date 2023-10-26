@@ -73,9 +73,7 @@ const LoginPopover = ({isLogging}: {isLogging: boolean}) => {
 
   return (
     <Popover
-      onOpenChange={(open: boolean) => {
-        setIsOpen(open)
-      }}
+      onOpenChange={setIsOpen}
       open={isOpen}
     >
       <PopoverTrigger className="text-left">
