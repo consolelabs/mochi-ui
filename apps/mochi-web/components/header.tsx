@@ -7,7 +7,7 @@ import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { ROUTES } from '~constants/routes'
 import ProfileDropdown from './profile-dropdrown'
-import { Popover, PopoverTrigger, PopoverContent, PopoverClose } from "@consolelabs/ui-components"
+import { Popover, PopoverTrigger, PopoverContent } from "@consolelabs/ui-components"
 import { useState } from 'react'
 
 const authenticatedRoute = ['/profile', '/app', '/server']
@@ -78,7 +78,7 @@ const LoginPopover = ({isLogging}: {isLogging: boolean}) => {
       }}
       open={isOpen}
     >
-      <PopoverTrigger>
+      <PopoverTrigger className="text-left">
         <span className="text-sm font-semibold">
           {isLogging ? 'Logging into your account...' : 'Login'}
         </span>
