@@ -50,7 +50,14 @@ const Divider = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-export function LoginPanel({ compact = false }: { compact?: boolean }) {
+interface LoginPanelProps {
+  onHideLoginPopover?: (_: boolean) => void
+  onCloseLoginPopover?: (_: boolean) => void
+  compact?: boolean
+}
+
+export function LoginPanel(props: LoginPanelProps) {
+  const { compact = false, onHideLoginPopover, onCloseLoginPopover } = props
   const [open, setOpen] = useState(false)
   const { user } = useMochi()
   const login = useAuthStore((s) => s.login)
@@ -101,6 +108,12 @@ export function LoginPanel({ compact = false }: { compact?: boolean }) {
     )
   }, [])
 
+  const onOpenChange = (open: boolean) => {
+    setOpen(open)
+    onHideLoginPopover?.(open)
+    onCloseLoginPopover?.(open)
+  }
+
   useEffect(() => {
     if (user?.token) {
       login({ token: user.token })
@@ -114,7 +127,7 @@ export function LoginPanel({ compact = false }: { compact?: boolean }) {
           // @ts-ignore
           <LoginWidget
             open={open}
-            onOpenChange={setOpen}
+            onOpenChange={onOpenChange}
             authUrl="https://api-preview.mochi-profile.console.so/api/v1/profiles/auth"
             meUrl="https://api-preview.mochi-profile.console.so/api/v1/profiles/me"
             trigger={
@@ -189,7 +202,7 @@ export function LoginPanel({ compact = false }: { compact?: boolean }) {
           // @ts-ignore
           <LoginWidget
             open={open}
-            onOpenChange={setOpen}
+            onOpenChange={onOpenChange}
             authUrl="https://api-preview.mochi-profile.console.so/api/v1/profiles/auth"
             meUrl="https://api-preview.mochi-profile.console.so/api/v1/profiles/me"
             onSuccess={() => push('/profile')}

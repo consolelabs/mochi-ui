@@ -1,13 +1,14 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { LoginPanel } from '~components/login'
-import { Popover } from '~components/Popover'
 import { useAuthStore, useProfileStore } from '~store'
 import { logo } from '~utils/image'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { ROUTES } from '~constants/routes'
 import ProfileDropdown from './profile-dropdrown'
+import { Popover, PopoverTrigger, PopoverContent } from "@consolelabs/ui-components"
+import { useState } from 'react'
 
 const authenticatedRoute = ['/profile', '/app', '/server']
 
@@ -59,18 +60,42 @@ export const Header = () => {
         {isLoggedIn && me ? (
           <ProfileDropdown />
         ) : (
-          <Popover
-            trigger={
-              <span className="text-sm font-semibold">
-                {isLogging ? 'Logging into your account...' : 'Login'}
-              </span>
-            }
-            panelClassname="-translate-x-[8%] sm:-translate-x-[94%]  px-6 py-4 bg-white-pure border border-gray-200 rounded-xl shadow-md"
-          >
-            <LoginPanel />
-          </Popover>
+          <LoginPopover isLogging={isLogging}/>
         )}
       </div>
     </nav>
+  )
+}
+
+const LoginPopover = ({isLogging}: {isLogging: boolean}) => {
+  const [ isOpen, setIsOpen ] = useState(false)
+  const [ forceHide, setForceHide ] = useState(false)
+
+  return (
+    <Popover
+      onOpenChange={setIsOpen}
+      open={isOpen}
+    >
+      <PopoverTrigger className="text-left">
+        <span className="text-sm font-semibold">
+          {isLogging ? 'Logging into your account...' : 'Login'}
+        </span>
+      </PopoverTrigger>
+      <PopoverContent
+        className={clsx(
+          "!p-4 !px-6",
+          {
+          "hidden": forceHide
+          })
+        }
+        sideOffset={10}
+        collisionPadding={20}
+      >
+          <LoginPanel
+            onHideLoginPopover={setForceHide}
+            onCloseLoginPopover={setIsOpen}
+          />
+      </PopoverContent>
+    </Popover>
   )
 }
