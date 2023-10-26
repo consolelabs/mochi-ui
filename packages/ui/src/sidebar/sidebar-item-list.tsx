@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import { Tooltip } from '../tooltip'
 import type { Item } from './sidebar-item'
 import SidebarItem from './sidebar-item'
 
@@ -38,14 +39,29 @@ export default function SidebarItemList({
               )}
               key={itemGroup[0].title}
             >
-              {itemGroup.map((item) => (
-                <SidebarItem
-                  key={item.title}
-                  {...{ item, expanded }}
-                  className="ui-h-10"
-                  selected={isSelected?.(item)}
-                />
-              ))}
+              {itemGroup.map((item) =>
+                expanded ? (
+                  <SidebarItem
+                    key={item.title}
+                    {...{ item, expanded }}
+                    className="ui-h-10"
+                    selected={isSelected?.(item)}
+                  />
+                ) : (
+                  <Tooltip
+                    arrow="right-center"
+                    className="ui-z-10"
+                    content={item.title}
+                    key={item.title}
+                  >
+                    <SidebarItem
+                      {...{ item, expanded }}
+                      className="ui-h-10"
+                      selected={isSelected?.(item)}
+                    />
+                  </Tooltip>
+                ),
+              )}
             </div>
           ) : null,
         )}

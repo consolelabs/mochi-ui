@@ -1,5 +1,5 @@
 import { cva } from 'class-variance-authority'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import clsx from 'clsx'
 import IconSidebarArrow from '../icons/components/icon-sidebar-arrow'
 import type { Item } from './sidebar-item'
@@ -39,7 +39,16 @@ export default function Sidebar({
   isSelected,
   Header,
 }: SidebarProps) {
-  const [expanded, setExpanded] = useState(true)
+  const [expanded, setExpanded] = useState(false)
+
+  useEffect(() => {
+    const onResize = () => {
+      setExpanded(window.innerWidth > 1000)
+    }
+    onResize()
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
 
   return (
     <div className={sidebar({ className, expanded })}>
