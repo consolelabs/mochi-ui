@@ -36,7 +36,7 @@ const SidebarHeader = ({ expanded }: { expanded?: boolean }) => {
 export const getSidebarBadge = {
   'NEW': <Badge icon={<IconTwinkle/>} label='New' appearance="success" />,
   'FEATURED': <Badge label='Featured'  appearance="primary" />,
-  'COMMING_SOON': <Badge label='Comming soon' appearance="secondary"/>,
+  'COMING_SOON': <Badge label='Comming soon' appearance="secondary"/>,
   'FREE_TRIAL': <Badge label='Free trial' appearance="warning" />,
 } as const
 
@@ -77,7 +77,7 @@ export default function AuthenticatedLayout({
                     href: '/profile',
                   },
                   { title: 'Servers', Icon: IconDiscord },
-                  { title: 'App Store', Icon: IconGame, badge: getSidebarBadge['COMMING_SOON']},
+                  { title: 'App Store', Icon: IconGame, badge: getSidebarBadge['COMING_SOON']},
                   { title: 'Settings', Icon: IconSetting },
                   { type: 'break' },
                   {
@@ -91,12 +91,12 @@ export default function AuthenticatedLayout({
                   {
                     title: 'Gift your friends',
                     Icon: IconSuperGroup,
-                    badge: getSidebarBadge['COMMING_SOON']
+                    badge: getSidebarBadge['COMING_SOON']
                   },
                   { title: 'Invite Friends', Icon: IconAddUser },
                   {
                     title: 'Feedback', Icon: IconStar,
-                    badge: getSidebarBadge['COMMING_SOON']
+                    badge: getSidebarBadge['COMING_SOON']
                   },
                 ]}
                 footerItems={[
