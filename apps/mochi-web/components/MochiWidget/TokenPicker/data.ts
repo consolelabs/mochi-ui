@@ -1,4 +1,4 @@
-import { TokenAsset } from "./type";
+import { MonikerAsset, TokenAsset } from "./type";
 
 export const TokenAssets: TokenAsset[] = [
   {
@@ -110,5 +110,62 @@ export const TokenAssets: TokenAsset[] = [
     token_amount: '0',
     total_amount: '0',
     icon: 'https://cryptologos.cc/logos/chainlink-link-logo.png',
+  }
+]
+
+export const MonikerAssets: MonikerAsset[] = [
+  {
+    id: 1,
+    moniker: 'coffee',
+    token_amount: '0.01',
+    token_unit: 'BNB',
+    total_amount: '2.08',
+    icon: '☕',
+    group: 'default'
+  },
+  {
+    id: 2,
+    moniker: 'cookie',
+    token_amount: '3',
+    token_unit: 'USDT',
+    total_amount: '3',
+    icon: '🍪',
+    group: 'default'
+  },
+  {
+    id: 3,
+    moniker: 'beer',
+    token_amount: '0.02',
+    token_unit: 'DOGE',
+    total_amount: '0.01',
+    icon: '🍺',
+    group: 'default'
+  },
+  {
+    id: 4,
+    moniker: 'pho',
+    token_amount: '2',
+    token_unit: 'USDT',
+    total_amount: '2',
+    icon: '🍜',
+    group: 'default'
+  },
+  {
+    id: 5,
+    moniker: 'mochi',
+    token_amount: '100',
+    token_unit: 'ICY',
+    total_amount: '150',
+    icon: '🍡',
+    group: 'Dwarves Network\'s Moniker'
+  },
+  {
+    id: 6,
+    moniker: 'diamon',
+    token_amount: '2',
+    token_unit: 'ETH',
+    total_amount: '4000',
+    icon: '💎',
+    group: 'Dwarves Network\'s Moniker'
   }
 ]

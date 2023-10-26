@@ -1,6 +1,8 @@
 // TODO: replace it with Mochi Types
 import { ModelToken } from 'types/mochi-schema'
 
+export const TokenTypes = ['Token', 'Moniker']
+
 export type TokenAsset = {
   id: number
   token: ModelToken
@@ -16,4 +18,10 @@ export type MonikerAsset = {
   token_unit: string
   total_amount: string // $ unit
   icon: string
+  group: string
+}
+
+export type SectionBase<Item> = {
+  title: string,
+  data: Item[]
 }

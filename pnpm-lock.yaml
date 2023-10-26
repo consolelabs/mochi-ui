@@ -168,6 +168,9 @@ importers:
       lodash.capitalize:
         specifier: ^4.2.1
         version: 4.2.1
+      lodash.groupby:
+        specifier: ^4.6.0
+        version: 4.6.0
       next:
         specifier: ^13.2.4
         version: 13.4.19(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)
@@ -292,6 +295,9 @@ importers:
       '@types/lodash.capitalize':
         specifier: ^4.2.7
         version: 4.2.7
+      '@types/lodash.groupby':
+        specifier: ^4.6.8
+        version: 4.6.8
       '@types/node':
         specifier: ^18.15.5
         version: 18.15.5
@@ -8531,6 +8537,12 @@ packages:
       '@types/lodash': 4.14.200
     dev: true
 
+  /@types/lodash.groupby@4.6.8:
+    resolution: {integrity: sha512-+VbBhRhzo6g6q5RdVQXlU1vwbYVodEkS9ZCVuqHtZvhlSu1muQLNYYR1yhyYwAcSz7gMDOHlWPnPvAoQqV4rlg==}
+    dependencies:
+      '@types/lodash': 4.14.200
+    dev: true
+
   /@types/lodash@4.14.200:
     resolution: {integrity: sha512-YI/M/4HRImtNf3pJgbF+W6FrXovqj+T+/HpENLTooK9PnkacBsDpeP3IpHab40CClUfhNmdM2WTNP2sa2dni5Q==}
     dev: true
@@ -15993,6 +16005,10 @@ packages:
 
   /lodash.defaults@4.2.0:
     resolution: {integrity: sha512-qjxPLHd3r5DnsdGacqOMU6pb/avJzdh9tFX2ymgoZE27BmjXrNy/y4LoaiTeAb+O3gL8AfpJGtqfX/ae2leYYQ==}
+    dev: false
+
+  /lodash.groupby@4.6.0:
+    resolution: {integrity: sha512-5dcWxm23+VAoz+awKmBaiBvzox8+RqMgFhi7UvX9DHZr2HdxHXM/Wrf8cfKpsW37RNrvtPn6hSwNqurSILbmJw==}
     dev: false
 
   /lodash.isarguments@3.1.0:
