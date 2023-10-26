@@ -36,7 +36,7 @@ const SidebarHeader = ({ expanded }: { expanded?: boolean }) => {
 export const getSidebarBadge = {
   'NEW': <Badge icon={<IconTwinkle/>} label='New' appearance="success" />,
   'FEATURED': <Badge label='Featured'  appearance="primary" />,
-  'COMING_SOON': <Badge label='Comming soon' appearance="secondary"/>,
+  'COMING_SOON': <Badge label='Coming soon' appearance="secondary"/>,
   'FREE_TRIAL': <Badge label='Free trial' appearance="warning" />,
 } as const
 
@@ -122,7 +122,7 @@ export default function AuthenticatedLayout({
             </div>
             <div
               className={clsx(
-                'flex items-start gap-x-24 mx-auto w-full max-w-full relative',
+                'flex items-start gap-x-24 mx-auto flex-1 relative',
                 {
                   'max-w-5xl my-10 px-4': !fullWidth,
                 },
