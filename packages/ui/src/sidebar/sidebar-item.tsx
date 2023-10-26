@@ -10,7 +10,6 @@ import {
 export interface Item {
   title: string
   Icon: (props: any) => JSX.Element
-  selected?: boolean
   type?: 'list' | 'button' | 'link'
   as?: React.ComponentType<any>
   href?: string
@@ -22,23 +21,16 @@ interface SidebarItemProps {
   item: Item
   expanded: boolean
   className?: string
+  selected?: boolean
 }
 
 export default function SidebarItem({
   item,
   expanded,
   className,
+  selected,
 }: SidebarItemProps) {
-  const {
-    title,
-    Icon,
-    selected,
-    href,
-    as,
-    type,
-    children = [],
-    ...props
-  } = item
+  const { title, Icon, href, as, type, children = [], ...props } = item
 
   if (type === 'list') {
     return (

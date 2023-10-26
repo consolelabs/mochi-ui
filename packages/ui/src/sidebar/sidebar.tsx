@@ -29,12 +29,14 @@ interface SidebarProps {
   headerItems?: (Item | Break)[]
   footerItems?: (Item | Break)[]
   className?: string
+  isSelected?: (item: Item) => boolean
 }
 
 export default function Sidebar({
   headerItems = [],
   footerItems = [],
   className,
+  isSelected,
   Header,
 }: SidebarProps) {
   const [expanded, setExpanded] = useState(true)
@@ -45,11 +47,14 @@ export default function Sidebar({
         <div>
           {Header ? <Header expanded={expanded} /> : null}
           <div className="ui-pt-2">
-            <SidebarItemList expanded={expanded} items={headerItems} />
+            <SidebarItemList
+              {...{ expanded, isSelected }}
+              items={headerItems}
+            />
           </div>
         </div>
         <div className="ui-border-t ui-border-neutral-200">
-          <SidebarItemList expanded={expanded} items={footerItems} />
+          <SidebarItemList {...{ expanded, isSelected }} items={footerItems} />
           {Boolean(expanded) && (
             <div className="ui-flex ui-px-4 ui-border-t ui-border-neutral-200">
               <div className="ui-text-xs ui-text-neutral-600 ui-tracking-tight ui-p-2">

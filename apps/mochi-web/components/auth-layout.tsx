@@ -84,11 +84,7 @@ export default function AuthenticatedLayout({
                   },
                   { title: 'Invite Friends', Icon: IconAddUser },
                   { title: 'Feedback', Icon: IconStar },
-                ].map((each) =>
-                  each.href && pathname.includes(each.href)
-                    ? { ...each, selected: true }
-                    : each,
-                )}
+                ]}
                 footerItems={[
                   { title: 'Support', Icon: IconLifeBuoy },
                   {
@@ -103,12 +99,11 @@ export default function AuthenticatedLayout({
                     type: 'link',
                     href: DISCORD_LINK,
                   },
-                ].map((each) =>
-                  each.href && pathname.includes(each.href)
-                    ? { ...each, selected: true }
-                    : each,
-                )}
+                ]}
                 className="absolute"
+                isSelected={(item) =>
+                  !!item.href && pathname.startsWith(item.href)
+                }
               />
             </div>
             <div
