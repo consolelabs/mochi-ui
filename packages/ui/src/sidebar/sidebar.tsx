@@ -13,7 +13,7 @@ const sidebar = cva(
   {
     variants: {
       expanded: {
-        true: 'ui-w-64',
+        true: 'ui-w-fit ui-min-w-64 ui-max-w-xs',
         false: 'ui-w-18',
       },
     },
