@@ -28,7 +28,7 @@ export const TokenPicker = () => {
     sectionFormatter(MonikerAssets, 'group'),
   )
 
-  function handleSourceSelect(asset: TokenAsset) {
+  function handleTokenSelect(asset: TokenAsset) {
     setSelectedAsset(asset)
     setIsOpenSelector(false)
   }
@@ -36,13 +36,13 @@ export const TokenPicker = () => {
   return (
     <>
       <button
-        className="flex gap-x-2 items-center py-1 px-3 rounded-lg bg-white-pure"
+        className="flex gap-x-2 items-center px-3 py-2 rounded-lg bg-white-pure"
         onClick={() => setIsOpenSelector(true)}
       >
         <span className="text-base" role="img">
           <img
             alt={`${selectedAsset.token.name} icon`}
-            className="w-5 h-5 rounded-full object-contain"
+            className="w-[22px] h-[22px] rounded-full object-contain"
             src={selectedAsset.icon}
           />
         </span>
@@ -50,7 +50,7 @@ export const TokenPicker = () => {
         <Icon icon="majesticons:chevron-down-line" className="w-4 h-4" />
       </button>
       <Modal isOpen={isOpenSelector} onClose={() => setIsOpenSelector(false)}>
-        <div className="flex flex-col gap-y-1 items-center w-[412px] h-fit py-3 px-3 bg-[#fff] rounded-lg shadow-md">
+        <div className="flex flex-col gap-y-1 items-center w-[412px] h-fit py-3 px-3 bg-white-pure rounded-lg shadow-md">
           <InputField
             className="w-full"
             placeholder="Search"
@@ -81,7 +81,7 @@ export const TokenPicker = () => {
             </Tab.List>
             <Tab.Panels className="w-full">
               <Tab.Panel className="flex flex-col gap-1 h-[400px]">
-                <TokenList data={tokenAssets} onSelect={handleSourceSelect} />
+                <TokenList data={tokenAssets} onSelect={handleTokenSelect} />
                 <span className="text-xs text-[#ADACAA]">
                   Only supported tokens are shown
                 </span>

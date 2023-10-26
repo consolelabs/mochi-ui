@@ -50,18 +50,18 @@ export const PlatformPicker = () => {
   return (
     <>
       <button
-        className="flex gap-x-2 items-center py-1 px-3 rounded-lg bg-white-pure"
+        className="flex gap-x-2 items-center px-3 py-2 rounded-lg bg-white-pure"
         onClick={() => setIsOpenSelector(true)}
       >
         <PlatformIcon
           platform={selectedPlatform.platform}
-          className="flex-shrink-0 w-4 h-4"
+          className="flex-shrink-0 w-[22px] h-[22px]"
         />
         <span className="text-sm font-medium">{selectedPlatform.platform}</span>
         <Icon icon="majesticons:chevron-down-line" className="w-4 h-4" />
       </button>
       <Modal isOpen={isOpenSelector} onClose={() => setIsOpenSelector(false)}>
-        <div className="flex gap-x-1 items-center py-3 px-3 bg-[#fff] rounded-lg shadow-md">
+        <div className="flex gap-x-1 items-center py-3 px-3 bg-white-pure rounded-lg shadow-md">
           <PlatformList data={Platforms} onSelect={handlePlatformSelect} />
         </div>
       </Modal>
