@@ -49,8 +49,8 @@ export default function SidebarItemList({
                   />
                 ) : (
                   <Tooltip
-                    arrow="right-center"
-                    className="z-10"
+                    arrow="top-start"
+                    className="z-30"
                     content={item.title}
                     key={item.title}
                   >
