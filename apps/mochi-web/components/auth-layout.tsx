@@ -89,7 +89,7 @@ export default function AuthenticatedLayout({
                     badge: getSidebarBadge['NEW']
                   },
                   {
-                    title: 'Gift your friends',
+                    title: 'Send gifts',
                     Icon: IconSuperGroup,
                     badge: getSidebarBadge['COMING_SOON']
                   },
