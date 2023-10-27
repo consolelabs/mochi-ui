@@ -1,3 +1,5 @@
+import { mochi } from 'tailwind-config/plugin'
+
 module.exports = {
   content: [
     './**/*.{html,ts,tsx}',
@@ -126,5 +128,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [mochi()],
 }
