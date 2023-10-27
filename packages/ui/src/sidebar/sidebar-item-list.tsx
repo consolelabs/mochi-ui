@@ -32,9 +32,9 @@ export default function SidebarItemList({
           itemGroup.length ? (
             <div
               className={clsx(
-                'ui-px-4 ui-py-2 ui-border-neutral-200 ui-flex ui-flex-col ui-gap-y-0.5',
+                'px-4 py-2 border-neutral-200 flex flex-col gap-y-0.5',
                 {
-                  'ui-border-t': index > 0,
+                  'border-t': index > 0,
                 },
               )}
               key={itemGroup[0].title}
@@ -44,19 +44,19 @@ export default function SidebarItemList({
                   <SidebarItem
                     key={item.title}
                     {...{ item, expanded }}
-                    className="ui-h-10"
+                    className="h-10"
                     selected={isSelected?.(item)}
                   />
                 ) : (
                   <Tooltip
                     arrow="right-center"
-                    className="ui-z-10"
+                    className="z-10"
                     content={item.title}
                     key={item.title}
                   >
                     <SidebarItem
                       {...{ item, expanded }}
-                      className="ui-h-10"
+                      className="h-10"
                       selected={isSelected?.(item)}
                     />
                   </Tooltip>

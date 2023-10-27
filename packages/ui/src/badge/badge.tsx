@@ -2,38 +2,33 @@ import { cva, type VariantProps } from 'class-variance-authority'
 
 const getBadgeStyle = cva(
   [
-    'ui-rounded-2xl ui-py-0.5 ui-text-xs ui-font-medium',
-    'ui-flex ui-items-center ui-justify-center ui-leading-[18px]',
-    'ui-px-2 ui-gap-1',
+    'rounded-2xl py-0.5 text-xs font-medium',
+    'flex items-center justify-center leading-[18px]',
+    'px-2 gap-1',
   ],
   {
     variants: {
       appearance: {
-        primary: ['ui-bg-primary-100', 'ui-text-primary-700'],
-        secondary: ['ui-bg-secondary-100', 'ui-text-secondary-700'],
-        success: ['ui-bg-green-100', 'ui-text-green-700'],
-        danger: ['ui-bg-red-100', 'ui-text-red-700'],
-        warning: ['ui-bg-yellow-100', 'ui-text-yellow-700'],
-        black: ['ui-bg-neutral-150', 'ui-text-neutral-800'],
-        white: [
-          'ui-bg-white',
-          'ui-border',
-          'ui-text-neutral-800',
-          'ui-border-neutral-200',
-        ],
+        primary: ['bg-primary-100', 'text-primary-700'],
+        secondary: ['bg-secondary-100', 'text-secondary-700'],
+        success: ['bg-green-100', 'text-green-700'],
+        danger: ['bg-red-100', 'text-red-700'],
+        warning: ['bg-yellow-100', 'text-yellow-700'],
+        black: ['bg-neutral-150', 'text-neutral-800'],
+        white: ['bg-white', 'border', 'text-neutral-800', 'border-neutral-200'],
       },
       iconPosition: {
-        left: 'ui-pl-[6px]',
-        right: 'ui-pr-[6px]',
+        left: 'pl-[6px]',
+        right: 'pr-[6px]',
       },
       isAvatarIcon: {
         true: '',
       },
       hasIcon: {
-        false: '!ui-px-2',
+        false: '!px-2',
       },
       hasLabel: {
-        false: '!ui-p-1',
+        false: '!p-1',
       },
     },
     compoundVariants: [
@@ -41,13 +36,13 @@ const getBadgeStyle = cva(
         iconPosition: 'left',
         isAvatarIcon: true,
         hasLabel: true,
-        className: '!ui-pl-[3px] ui-gap-[6px]',
+        className: '!pl-[3px] gap-[6px]',
       },
       {
         iconPosition: 'right',
         isAvatarIcon: true,
         hasLabel: true,
-        className: '!ui-pr-[3px] ui-gap-[6px]',
+        className: '!pr-[3px] gap-[6px]',
       },
     ],
     defaultVariants: {
@@ -60,30 +55,30 @@ const getBadgeStyle = cva(
   },
 )
 
-const getIconStyle = cva(['ui-flex'], {
+const getIconStyle = cva(['flex'], {
   variants: {
     appearance: {
-      primary: 'ui-text-primary-500',
-      secondary: 'ui-text-secondary-500',
-      success: 'ui-text-green-500',
-      danger: 'ui-text-red-500',
-      warning: 'ui-text-yellow-500',
-      black: 'ui-text-neutral-500',
-      white: 'ui-text-neutral-500',
+      primary: 'text-primary-500',
+      secondary: 'text-secondary-500',
+      success: 'text-green-500',
+      danger: 'text-red-500',
+      warning: 'text-yellow-500',
+      black: 'text-neutral-500',
+      white: 'text-neutral-500',
     },
     hasIconOnly: { true: '' },
-    isAvatarIcon: { true: 'ui-w-4 ui-h-4' },
+    isAvatarIcon: { true: 'w-4 h-4' },
   },
   compoundVariants: [
     {
       appearance: 'primary',
       hasIconOnly: true,
-      className: 'ui-text-primary-700',
+      className: 'text-primary-700',
     },
     {
       appearance: 'secondary',
       hasIconOnly: true,
-      className: 'ui-text-secondary-700',
+      className: 'text-secondary-700',
     },
   ],
   defaultVariants: {

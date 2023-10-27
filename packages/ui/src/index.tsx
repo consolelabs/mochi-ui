@@ -1,6 +1,3 @@
-// styles
-import './styles.css'
-
 // components
 export * from './alert'
 export * from './avatar'

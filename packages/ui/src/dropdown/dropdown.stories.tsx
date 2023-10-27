@@ -68,7 +68,7 @@ export const Default: Story = {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <button
-            className="ui-p-2 ui-bg-primary-500 ui-text-white ui-rounded-md"
+            className="p-2 bg-primary-500 text-white rounded-md"
             type="button"
           >
             Open Dropdown
@@ -101,7 +101,7 @@ export const Default: Story = {
                         {
                           children: 'Console Labs',
                           subtitle: (
-                            <span className="ui-flex ui-gap-1 ui-items-center">
+                            <span className="flex gap-1 items-center">
                               Lvl 450 <IconSolidDot /> 145 Boosts
                             </span>
                           ),
@@ -112,7 +112,7 @@ export const Default: Story = {
                         {
                           children: 'Techie Story',
                           subtitle: (
-                            <span className="ui-flex ui-gap-1 ui-items-center">
+                            <span className="flex gap-1 items-center">
                               Lvl 450 <IconSolidDot /> 145 Boosts
                             </span>
                           ),
@@ -123,7 +123,7 @@ export const Default: Story = {
                         {
                           children: 'Dwarves, LLC',
                           subtitle: (
-                            <span className="ui-flex ui-gap-1 ui-items-center">
+                            <span className="flex gap-1 items-center">
                               Lvl 450 <IconSolidDot /> 145 Boosts
                             </span>
                           ),
@@ -134,7 +134,7 @@ export const Default: Story = {
                         {
                           children: 'Superteam Vietnam',
                           subtitle: (
-                            <span className="ui-flex ui-gap-1 ui-items-center">
+                            <span className="flex gap-1 items-center">
                               Lvl 450 <IconSolidDot /> 145 Boosts
                             </span>
                           ),
@@ -158,12 +158,12 @@ export const Default: Story = {
           ))}
           <DropdownMenuSeparator />
           <DropdownMenuItem
-            className="ui-text-red-600"
-            leftIcon={<IconArrow className="ui-text-red-600" />}
+            className="text-red-600"
+            leftIcon={<IconArrow className="text-red-600" />}
           >
             Logout
           </DropdownMenuItem>
-          <DropdownMenuLabel className="ui-text-sm ui-font-normal ui-text-neutral-600">
+          <DropdownMenuLabel className="text-sm font-normal text-neutral-600">
             <p>Powered by Console Labs</p>
             <p>Version 1.0.0</p>
           </DropdownMenuLabel>

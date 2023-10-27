@@ -20,7 +20,7 @@ function Header() {
   return (
     <img
       alt="header"
-      className="ui-h-20 ui-w-full ui-object-cover"
+      className="h-20 w-full object-cover"
       src="https://pbs.twimg.com/profile_banners/1168522102410010626/1684159976/300x100"
     />
   )
@@ -28,7 +28,7 @@ function Header() {
 
 export function Default() {
   return (
-    <div className="ui-h-[700px] ui-border">
+    <div className="h-[700px] border">
       <Sidebar
         Header={Header}
         footerItems={[

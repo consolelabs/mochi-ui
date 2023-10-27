@@ -10,16 +10,16 @@ type Props = React.HTMLAttributes<HTMLButtonElement> & {
 export const ProfileBadge = forwardRef<HTMLButtonElement, Props>(
   ({ name, avatar, platform, ...rest }, ref) => (
     <button
-      className="ui-flex ui-gap-x-2 ui-items-center ui-p-1 ui-pr-2 ui-bg-white ui-rounded-lg ui-border ui-transition ui-border-neutral-300 hover:ui-bg-neutral-100"
+      className="flex gap-x-2 items-center p-1 pr-2 bg-white rounded-lg border transition border-neutral-300 hover:bg-neutral-100"
       style={{ minWidth: 150, maxWidth: 200 }}
       type="button"
       ref={ref}
       {...rest}
     >
-      <div className="ui-shrink-0">
+      <div className="shrink-0">
         <Avatar fallback={name} size="sm" smallSrc={platform} src={avatar} />
       </div>
-      <span className="ui-whitespace-nowrap ui-truncate ui-text-sm ui-font-medium ui-text-neutral-800">
+      <span className="whitespace-nowrap truncate text-sm font-medium text-neutral-800">
         {name}
       </span>
     </button>
