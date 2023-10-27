@@ -18,7 +18,7 @@ export default function Recipient() {
         {isOnChain ? (
           <ChainPicker />
         ) : (
-          <span className="text-lg text-[#848281]">@</span>
+          <span className="h-[34px] text-lg text-[#848281]">@</span>
         )}
         <input
           className="flex-1 h-full bg-transparent outline-none"
