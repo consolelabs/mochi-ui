@@ -1,3 +1,4 @@
+import { formatNumber } from '~utils/number'
 import { TokenAsset } from './type'
 import { Heading } from '@consolelabs/ui-components'
 
@@ -22,11 +23,9 @@ export const TokenItem: React.FC<ItemProps> = ({ item, onSelect }) => (
         {item.token.name}
       </Heading>
       <span className="text-xs text-[#848281]">
-        {parseFloat(item.token_amount).toLocaleString('en-US')}
+        {formatNumber(item.token_amount)}
       </span>
     </div>
-    <span className="text-sm">
-      ${parseFloat(item.total_amount).toLocaleString('en-US')}
-    </span>
+    <span className="text-sm">${formatNumber(item.total_amount)}</span>
   </li>
 )

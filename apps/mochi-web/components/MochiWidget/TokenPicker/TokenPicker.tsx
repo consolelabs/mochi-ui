@@ -1,4 +1,4 @@
-import { use, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Icon } from '@iconify/react'
 import Modal from '~components/Modal'
 import { TokenList } from './TokenList'
@@ -8,7 +8,6 @@ import { InputField, Heading } from '@consolelabs/ui-components'
 import { MonikerList } from './MonikerList'
 import { sectionFormatter } from './utils'
 import { Tab } from '@headlessui/react'
-import { type } from 'os'
 
 const TokenTabs = [
   {
@@ -20,6 +19,10 @@ const TokenTabs = [
     value: 'Moniker',
   },
 ]
+
+interface TokenPickerProps {
+  onSelect?: (item: TokenAsset | MonikerAsset) => void
+}
 
 interface TokenButtonProps {
   isToken?: boolean
@@ -54,7 +57,7 @@ const TokenButton = (props: TokenButtonProps) => (
   </button>
 )
 
-export const TokenPicker = () => {
+export const TokenPicker: React.FC<TokenPickerProps> = ({ onSelect }) => {
   const [isOpenSelector, setIsOpenSelector] = useState(false)
   const [selectedAsset, setSelectedAsset] = useState<TokenAsset | MonikerAsset>(
     TokenAssets[0],
@@ -75,14 +78,21 @@ export const TokenPicker = () => {
   }, [searchTerm])
   const isTokenSelected = 'token' in selectedAsset
 
+  // TODO: Init selected asset. Maybe remove after data binding
+  useEffect(() => {
+    onSelect?.(TokenAssets[0])
+  },[])
+
   function handleTokenSelect(asset: TokenAsset) {
     setSelectedAsset(asset)
     setIsOpenSelector(false)
+    onSelect?.(asset)
   }
 
   function handleMonikerSelect(asset: MonikerAsset) {
     setSelectedAsset(asset)
     setIsOpenSelector(false)
+    onSelect?.(asset)
   }
 
   function onModalClosed() {
@@ -94,10 +104,6 @@ export const TokenPicker = () => {
   function onSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     setSearchTerm(e.target.value)
   }
-
-  /* -------------------------------------------------------------------------- */
-  /*                               Render Methods                               */
-  /* -------------------------------------------------------------------------- */
 
   return (
     <>

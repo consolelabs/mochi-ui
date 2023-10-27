@@ -1,3 +1,4 @@
+import { formatNumber } from "~utils/number"
 import { SourceType } from "./type"
 import { Heading } from '@consolelabs/ui-components'
 
@@ -22,7 +23,7 @@ export const SourceItem: React.FC<ItemProps> = ({ item, onSelect }) => (
         {item.profile_id}
       </Heading>
       <span className="text-xs text-[#848281]">
-        ${parseFloat(item.total_amount).toLocaleString('en-US')}
+        ${formatNumber(item.total_amount)}
         {item.chain ? ` (${item.token_amount} ${item.chain.short_name})` : ''}
       </span>
     </div>

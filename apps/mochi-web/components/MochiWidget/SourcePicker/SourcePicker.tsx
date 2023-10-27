@@ -3,6 +3,7 @@ import { Icon } from '@iconify/react'
 import Modal from '~components/Modal'
 import { SourceList } from './SourceList'
 import { SourceType } from './type'
+import { formatNumber } from '~utils/number'
 
 const MockSources: SourceType[] = [
   {
@@ -56,7 +57,7 @@ export const SourcePicker = () => {
           </span>
         </div>
         <span className="flex-shrink-0 text-sm font-medium text-blue-700">
-          ${parseFloat(selectedSource.total_amount).toLocaleString('en-US')}
+          ${formatNumber(selectedSource.total_amount)}
         </span>
         <Icon icon="majesticons:chevron-down-line" className="w-4 h-4 text-[#ADACAA]" />
       </div>

@@ -1,3 +1,4 @@
+import { formatNumber } from '~utils/number'
 import { MonikerAsset } from './type'
 import { Heading } from '@consolelabs/ui-components'
 
@@ -20,13 +21,9 @@ export const MonikerItem: React.FC<ItemProps> = ({ item, onSelect }) => (
         {item.moniker.name}
       </Heading>
       <span className="text-xs text-[#848281]">
-        {`${parseFloat(item.token_amount).toLocaleString('en-US')} ${
-          item.token_unit
-        }`}
+        {`${formatNumber(item.token_amount)} ${item.token_unit}`}
       </span>
     </div>
-    <span className="text-sm">
-      ${parseFloat(item.total_amount).toLocaleString('en-US')}
-    </span>
+    <span className="text-sm">${formatNumber(item.total_amount)}</span>
   </li>
 )
