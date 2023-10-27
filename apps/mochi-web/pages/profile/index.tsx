@@ -5,7 +5,6 @@ import Home from './home'
 
 const Profile: NextPageWithLayout = () => {
   // FIXME:
-  // @ts-ignore
   return <Home />
 }
 

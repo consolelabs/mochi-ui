@@ -16,7 +16,6 @@ type Props = {
 }
 
 const RadioGroup = forwardRef(
-  // @ts-ignore
   (props: Props, ref: ForwardedRef<HTMLDivElement>) => {
     const { name, value = '', options, onChange, renderOption } = props
 

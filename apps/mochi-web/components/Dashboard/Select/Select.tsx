@@ -29,7 +29,6 @@ type Props = Parameters<typeof select>[0] & {
 }
 
 export const Select = forwardRef(
-  // @ts-ignore
   (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
     const {
       name,

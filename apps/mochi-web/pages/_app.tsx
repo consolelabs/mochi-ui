@@ -88,11 +88,7 @@ function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <>
       <Header />
-      {
-        // FIXME:
-        // @ts-ignore
-        getLayout(<Component {...pageProps} />)
-      }
+      {getLayout(<Component {...pageProps} />)}
     </>
   )
 }
@@ -125,11 +121,7 @@ export default function App(props: AppPropsWithLayout) {
           className: 'w-full',
         }}
       />
-      {
-        // FIXME:
-        // @ts-ignore
-        <TopProgressBar />
-      }
+      <TopProgressBar />
       <Script
         async
         src="https://telegram.org/js/telegram-widget.js?22"

@@ -20,7 +20,6 @@ import { useDisclosure } from '@dwarvesf/react-hooks'
 import { NodeObject } from 'react-force-graph-2d'
 
 const TipNetworkGraph = dynamic(
-  // @ts-ignore
   () =>
     import('~components/TipNetwork/Graph').then((mod) => mod.TipNetworkGraph),
   {
@@ -144,17 +143,13 @@ export default function TipNetwork({ data }: TipNetworkProps) {
         url={`${HOME_URL}/tip-network/`}
       />
       <div className="flex relative w-full h-full">
-        {
-          // @ts-ignore
-          <TipNetworkGraph
-            // @ts-ignore
-            graphData={graphData}
-            selectedNode={selectedNode}
-            onNodeClick={(node: NodeObject) => {
-              setSelectedNode(node as SelectedProfileNode)
-            }}
-          />
-        }
+        <TipNetworkGraph
+          graphData={graphData}
+          selectedNode={selectedNode}
+          onNodeClick={(node: NodeObject) => {
+            setSelectedNode(node as SelectedProfileNode)
+          }}
+        />
         {selectedNode && (
           <SelectedProfile
             selectedNode={selectedNode}
