@@ -116,56 +116,74 @@ export const TokenAssets: TokenAsset[] = [
 export const MonikerAssets: MonikerAsset[] = [
   {
     id: 1,
-    moniker: 'coffee',
+    moniker: {
+      id: 1,
+      name: 'coffee',
+      icon: '☕',
+      group: 'default'
+    },
     token_amount: '0.01',
     token_unit: 'BNB',
     total_amount: '2.08',
-    icon: '☕',
-    group: 'default'
   },
   {
     id: 2,
-    moniker: 'cookie',
+    moniker: {
+      id: 2,
+      name: 'cookie',
+      icon: '🍪',
+      group: 'default'
+    },
     token_amount: '3',
     token_unit: 'USDT',
     total_amount: '3',
-    icon: '🍪',
-    group: 'default'
   },
   {
     id: 3,
-    moniker: 'beer',
+    moniker: {
+      id: 3,
+      name: 'beer',
+      icon: '🍺',
+      group: 'default'
+    },
     token_amount: '0.02',
     token_unit: 'DOGE',
     total_amount: '0.01',
-    icon: '🍺',
-    group: 'default'
   },
   {
     id: 4,
-    moniker: 'pho',
+    moniker: {
+      id: 4,
+      name: 'pho',
+      icon: '🍜',
+      group: 'default'
+    },
     token_amount: '2',
     token_unit: 'USDT',
     total_amount: '2',
-    icon: '🍜',
-    group: 'default'
   },
   {
     id: 5,
-    moniker: 'mochi',
+    moniker: {
+      id: 5,
+      name: 'mochi',
+      icon: '🍡',
+      group: 'Dwarves Network\'s Moniker'
+    },
     token_amount: '100',
     token_unit: 'ICY',
     total_amount: '150',
-    icon: '🍡',
-    group: 'Dwarves Network\'s Moniker'
   },
   {
     id: 6,
-    moniker: 'diamon',
+    moniker: {
+      id: 6,
+      name: 'diamon',
+      icon: '💎',
+      group: 'Dwarves Network\'s Moniker'
+    },
     token_amount: '2',
     token_unit: 'ETH',
     total_amount: '4000',
-    icon: '💎',
-    group: 'Dwarves Network\'s Moniker'
   }
 ]

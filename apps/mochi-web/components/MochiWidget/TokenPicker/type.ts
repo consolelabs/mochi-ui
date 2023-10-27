@@ -11,14 +11,19 @@ export type TokenAsset = {
   icon: string
 }
 
+export interface ModelMoniker {
+  id: number
+  name: string
+  icon: string
+  group: string
+}
+
 export type MonikerAsset = {
   id: number
-  moniker: string
+  moniker: ModelMoniker
   token_amount: string // token unit
   token_unit: string
   total_amount: string // $ unit
-  icon: string
-  group: string
 }
 
 export type SectionBase<Item> = {

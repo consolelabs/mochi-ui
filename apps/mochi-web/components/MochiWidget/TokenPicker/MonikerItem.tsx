@@ -13,11 +13,11 @@ export const MonikerItem: React.FC<ItemProps> = ({ item, onSelect }) => (
     onClick={() => onSelect?.(item)}
   >
     <div className="flex justify-center items-center w-6 h-6 rounded-full border border-[#E5E4E3]">
-      <span className="text-sm">{item.icon}</span>
+      <span className="text-sm">{item.moniker.icon}</span>
     </div>
     <div className="flex flex-col flex-1">
       <Heading as="h3" className="text-sm">
-        {item.moniker}
+        {item.moniker.name}
       </Heading>
       <span className="text-xs text-[#848281]">
         {`${parseFloat(item.token_amount).toLocaleString('en-US')} ${

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Icon } from '@iconify/react'
 import Modal from '~components/Modal'
 import { ChainList } from './ChainList'
@@ -9,10 +9,20 @@ import { Chain } from './type'
 export const ChainPicker = () => {
   const [isOpenSelector, setIsOpenSelector] = useState(false)
   const [selectedChain, setSelectedChain] = useState<Chain>(Chains[0])
+  const [searchTerm, setSearchTerm] = useState('')
+  const filteredChains = useMemo(() => {
+    return Chains.filter((chain) =>
+      chain.name?.toLowerCase().includes(searchTerm.toLowerCase()),
+    )
+  }, [searchTerm])
 
   function handleChainSelect(chain: Chain) {
     setSelectedChain(chain)
     setIsOpenSelector(false)
+  }
+
+  function onSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setSearchTerm(e.target.value)
   }
 
   return (
@@ -29,10 +39,13 @@ export const ChainPicker = () => {
           />
         </span>
         <span className="text-sm font-medium">{selectedChain.name}</span>
-        <Icon icon="majesticons:chevron-down-line" className="w-4 h-4 text-[#ADACAA]" />
+        <Icon
+          icon="majesticons:chevron-down-line"
+          className="w-4 h-4 text-[#ADACAA]"
+        />
       </button>
       <Modal isOpen={isOpenSelector} onClose={() => setIsOpenSelector(false)}>
-        <div className="flex flex-col gap-y-1 items-center w-[412px] h-fit py-3 px-3 bg-white-pure rounded-lg shadow-md">
+        <div className="flex flex-col gap-y-1 items-center w-[412px] h-[477px] py-3 px-3 bg-white-pure rounded-lg shadow-md">
           <InputField
             className="w-full"
             placeholder="Search"
@@ -41,8 +54,9 @@ export const ChainPicker = () => {
                 <Icon icon="ion:search" className="w-5 h-5 text-gray-500" />
               </div>
             }
+            onChange={onSearchChange}
           />
-          <ChainList data={Chains} onSelect={handleChainSelect} />
+          <ChainList data={filteredChains} onSelect={handleChainSelect} />
           <span className="w-full text-xs text-[#ADACAA]">
             Only supported tokens are shown
           </span>

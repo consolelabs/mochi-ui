@@ -1,6 +1,7 @@
 import { MonikerAsset, SectionBase } from './type'
 import { SectionList } from '@consolelabs/ui-components'
 import { MonikerItem } from './MonikerItem'
+import { EmptyList } from './EmptyList'
 
 interface Props {
   data: SectionBase<MonikerAsset>[]
@@ -18,6 +19,7 @@ export const MonikerList = (props: Props) => {
           {section.title}
         </label>
       )}
+      SectionEmpty={<EmptyList />}
       rootClassName="w-full h-full"
     />
   )
