@@ -58,7 +58,7 @@ export const SourcePicker = () => {
         <span className="flex-shrink-0 text-sm font-medium text-blue-700">
           ${parseFloat(selectedSource.total_amount).toLocaleString('en-US')}
         </span>
-        <Icon icon="majesticons:chevron-down-line" className="w-4 h-4" />
+        <Icon icon="majesticons:chevron-down-line" className="w-4 h-4 text-[#ADACAA]" />
       </div>
       <Modal isOpen={isOpenSelector} onClose={() => setIsOpenSelector(false)}>
         <div className="flex gap-x-1 items-center py-3 px-3 bg-white-pure rounded-lg shadow-md">
