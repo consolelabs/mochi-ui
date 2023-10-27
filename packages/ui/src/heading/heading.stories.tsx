@@ -6,7 +6,7 @@ export default {
 
 export function Default() {
   return (
-    <div className="ui-space-y-4">
+    <div className="space-y-4">
       <Heading as="h1">(h1) In love with React & Next</Heading>
       <Heading as="h2">(h2) In love with React & Next</Heading>
       <Heading as="h3">(h3) In love with React & Next</Heading>

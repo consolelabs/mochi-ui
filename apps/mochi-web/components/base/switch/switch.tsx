@@ -9,7 +9,6 @@ type Props = {
 }
 
 const Switch = forwardRef(
-  // @ts-ignore
   (props: Props, ref: ForwardedRef<HTMLButtonElement>) => {
     const { label, checked = false, onChange } = props
 

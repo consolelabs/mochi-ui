@@ -9,6 +9,8 @@ import IconStar from '../icons/components/icon-star'
 import IconLifeBuoy from '../icons/components/icon-life-buoy'
 import IconX from '../icons/components/icon-x'
 import Sidebar from './sidebar'
+import { Badge } from '../badge'
+import { IconTwinkle } from '../icons'
 
 export default {
   title: 'ui/Sidebar',
@@ -18,7 +20,7 @@ function Header() {
   return (
     <img
       alt="header"
-      className="ui-h-20 ui-w-full ui-object-cover"
+      className="h-20 w-full object-cover"
       src="https://pbs.twimg.com/profile_banners/1168522102410010626/1684159976/300x100"
     />
   )
@@ -26,7 +28,7 @@ function Header() {
 
 export function Default() {
   return (
-    <div className="ui-h-[700px] ui-border">
+    <div className="h-[700px] border">
       <Sidebar
         Header={Header}
         footerItems={[
@@ -40,22 +42,24 @@ export function Default() {
             Icon: IconUser,
             type: 'link',
             href: 'https://mochi.gg',
+            badge: <Badge label='New' />
           },
-          { title: 'Server', Icon: IconDiscord },
+          { title: 'Server Management', Icon: IconDiscord, badge: <Badge appearance="secondary" icon={<IconTwinkle/>} label="Featured"/>},
           { title: 'App Store', Icon: IconGame },
           { title: 'Settings', Icon: IconSetting },
           { type: 'break' },
           { title: 'Developer', Icon: IconCoding },
-          { title: 'Gift your friend', Icon: IconSuperGroup },
+          { title: 'Gift your friend', Icon: IconSuperGroup, badge: <Badge appearance="secondary" icon={<IconTwinkle/>} label="Featured"/>},
           { title: 'Invite Friends', Icon: IconAddUser },
           { title: 'Feedback', Icon: IconStar },
           {
             title: 'List',
+            badge: <Badge appearance="secondary" icon={<IconTwinkle/>} label="Featured"/>,
             Icon: IconStar,
             type: 'list',
             children: [
-              { title: 'item 1', Icon: IconStar },
-              { title: 'item 2', Icon: IconStar },
+              { title: 'item 1' },
+              { title: 'item 2' },
             ],
           },
         ]}

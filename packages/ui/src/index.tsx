@@ -1,6 +1,3 @@
-// styles
-import './styles.css'
-
 // components
 export * from './alert'
 export * from './avatar'
@@ -13,6 +10,7 @@ export * from './input-field'
 export * from './profile-badge'
 export * from './sidebar'
 export * from './dropdown'
+export * from './popover'
 export * from './icons'
 export * from './util'
 export * from './list'

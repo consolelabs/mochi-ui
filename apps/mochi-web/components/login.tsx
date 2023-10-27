@@ -50,7 +50,14 @@ const Divider = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-export function LoginPanel({ compact = false }: { compact?: boolean }) {
+interface LoginPanelProps {
+  onHideLoginPopover?: (_: boolean) => void
+  onCloseLoginPopover?: (_: boolean) => void
+  compact?: boolean
+}
+
+export function LoginPanel(props: LoginPanelProps) {
+  const { compact = false, onHideLoginPopover, onCloseLoginPopover } = props
   const [open, setOpen] = useState(false)
   const { user } = useMochi()
   const login = useAuthStore((s) => s.login)
@@ -101,6 +108,12 @@ export function LoginPanel({ compact = false }: { compact?: boolean }) {
     )
   }, [])
 
+  const onOpenChange = (open: boolean) => {
+    setOpen(open)
+    onHideLoginPopover?.(open)
+    onCloseLoginPopover?.(open)
+  }
+
   useEffect(() => {
     if (user?.token) {
       login({ token: user.token })
@@ -110,26 +123,23 @@ export function LoginPanel({ compact = false }: { compact?: boolean }) {
   if (compact) {
     return (
       <div className="grid grid-cols-2 grid-rows-3 gap-3 p-3">
-        {
-          // @ts-ignore
-          <LoginWidget
-            open={open}
-            onOpenChange={setOpen}
-            authUrl="https://api-preview.mochi-profile.console.so/api/v1/profiles/auth"
-            meUrl="https://api-preview.mochi-profile.console.so/api/v1/profiles/me"
-            trigger={
-              <Button
-                type="button"
-                appearance="secondary"
-                size="sm"
-                className="col-span-2"
-              >
-                <WalletAddIcon className="mr-2 w-5 h-5" />
-                Connect Wallet
-              </Button>
-            }
-          />
-        }
+        <LoginWidget
+          open={open}
+          onOpenChange={onOpenChange}
+          authUrl="https://api-preview.mochi-profile.console.so/api/v1/profiles/auth"
+          meUrl="https://api-preview.mochi-profile.console.so/api/v1/profiles/me"
+          trigger={
+            <Button
+              type="button"
+              appearance="secondary"
+              size="sm"
+              className="col-span-2"
+            >
+              <WalletAddIcon className="mr-2 w-5 h-5" />
+              Connect Wallet
+            </Button>
+          }
+        />
         <a
           href={discordAuthUrl ?? ''}
           className={button({
@@ -185,25 +195,22 @@ export function LoginPanel({ compact = false }: { compact?: boolean }) {
       </Text>
       <div className="flex flex-col gap-y-5 bg-inherit">
         <Divider>Sign in with an extension wallet</Divider>
-        {
-          // @ts-ignore
-          <LoginWidget
-            open={open}
-            onOpenChange={setOpen}
-            authUrl="https://api-preview.mochi-profile.console.so/api/v1/profiles/auth"
-            meUrl="https://api-preview.mochi-profile.console.so/api/v1/profiles/me"
-            onSuccess={() => push('/profile')}
-            trigger={
-              <button
-                type="button"
-                className="flex items-center self-center py-3 px-7 my-3 font-medium text-white bg-black rounded-xl"
-              >
-                <WalletAddIcon className="mr-2 w-5 h-5" />
-                Connect Wallet
-              </button>
-            }
-          />
-        }
+        <LoginWidget
+          open={open}
+          onOpenChange={onOpenChange}
+          authUrl="https://api-preview.mochi-profile.console.so/api/v1/profiles/auth"
+          meUrl="https://api-preview.mochi-profile.console.so/api/v1/profiles/me"
+          onSuccess={() => push('/profile')}
+          trigger={
+            <button
+              type="button"
+              className="flex items-center self-center py-3 px-7 my-3 font-medium text-white bg-black rounded-xl"
+            >
+              <WalletAddIcon className="mr-2 w-5 h-5" />
+              Connect Wallet
+            </button>
+          }
+        />
         <Divider>Or connect with verified social links</Divider>
         <div className="grid grid-cols-2 grid-rows-2 gap-3 mt-3">
           <a

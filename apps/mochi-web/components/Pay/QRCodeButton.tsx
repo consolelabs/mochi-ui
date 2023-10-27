@@ -46,7 +46,6 @@ function Inner({ setIdx, links, refs, image, qrSize }: any) {
   }, [qrOuterSize, setIdx])
 
   return (
-    // @ts-ignore
     <VirtualList
       className="qr-code-scroll-container"
       height={qrOuterSize}

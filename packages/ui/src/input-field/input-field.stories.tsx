@@ -44,7 +44,7 @@ export const Default: Story = {
 
 export function Size() {
   return (
-    <div className="ui-space-y-4">
+    <div className="space-y-4">
       <InputField label="Email" />
       <InputField label="Email" size="large" />
     </div>
@@ -53,7 +53,7 @@ export function Size() {
 
 export function HelperText() {
   return (
-    <div className="ui-space-y-4">
+    <div className="space-y-4">
       <InputField
         helperText="This is helper text"
         label="Email"
@@ -77,24 +77,24 @@ export function HelperText() {
 
 export function Adornment() {
   return (
-    <div className="ui-space-y-4">
+    <div className="space-y-4">
       <InputField
         label="Amount"
         startAdornment={
-          <div className="ui-pl-2">
+          <div className="pl-2">
             <IconPhantomWallet height={20} width={20} />
           </div>
         }
       />
       <InputField
-        endAdornment={<div className="ui-pr-2">SOL</div>}
+        endAdornment={<div className="pr-2">SOL</div>}
         label="Amount"
       />
       <InputField
-        endAdornment={<div className="ui-pr-2">SOL</div>}
+        endAdornment={<div className="pr-2">SOL</div>}
         label="Amount"
         startAdornment={
-          <div className="ui-pl-2">
+          <div className="pl-2">
             <IconPhantomWallet height={20} width={20} />
           </div>
         }

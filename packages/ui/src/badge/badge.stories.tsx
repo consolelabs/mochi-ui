@@ -41,7 +41,7 @@ const args: BadgeProps[] = [
 ]
 
 const renderByAppearance = (appearance: BadgeProps['appearance']) => (
-  <div className="ui-flex ui-gap-3">
+  <div className="flex gap-3">
     {args.map((props, i) => (
       <Badge
         {...props}

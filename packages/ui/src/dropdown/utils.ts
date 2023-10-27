@@ -2,19 +2,19 @@ import { cva } from 'class-variance-authority'
 
 export const getDropdownContentStyle = cva(
   [
-    'ui-border ui-border-neutral-200 ui-z-50',
-    'ui-p-2',
-    'ui-bg-white',
-    'ui-space-y-1',
-    'ui-min-w-[240px]',
+    'border border-neutral-200 z-50',
+    'p-2',
+    'bg-white',
+    'space-y-1',
+    'min-w-[240px]',
   ],
   {
     variants: {
       isRounded: {
-        true: 'ui-rounded-lg',
+        true: 'rounded-lg',
       },
       hasShadow: {
-        true: 'ui-shadow-md',
+        true: 'shadow-md',
       },
     },
     defaultVariants: {
@@ -26,19 +26,19 @@ export const getDropdownContentStyle = cva(
 
 export const getDropdownItemStyle = cva(
   [
-    'ui-p-2 ui-text-sm ui-font-medium',
-    'ui-flex ui-items-center ui-justify-between ui-gap-3',
-    'ui-cursor-default',
-    'ui-rounded-md',
+    'p-2 text-sm font-medium',
+    'flex items-center justify-between gap-3',
+    'cursor-default',
+    'rounded-md',
   ],
   {
     variants: {
       hasPaddingLeft: {
-        true: 'ui-pl-11',
+        true: 'pl-11',
       },
       disabled: {
-        true: ['ui-text-neutral-600'],
-        false: ['hover:ui-bg-neutral-150 ui-transition ui-duration-100'],
+        true: ['text-neutral-600'],
+        false: ['hover:bg-neutral-150 transition duration-100'],
       },
     },
     defaultVariants: {
@@ -48,14 +48,14 @@ export const getDropdownItemStyle = cva(
   },
 )
 
-export const getIconStyle = cva(['ui-shrink-0 ui-flex ui-text-inherit'], {
+export const getIconStyle = cva(['shrink-0 flex text-inherit'], {
   variants: {
     isLeftIconAvatar: {
-      true: 'ui-w-9 ui-h-9',
+      true: 'w-9 h-9',
     },
     isRightIcon: {
-      true: 'ui-p-0 ui-text-lg',
-      false: 'ui-p-0.5 ui-text-xl',
+      true: 'p-0 text-lg',
+      false: 'p-0.5 text-xl',
     },
   },
   defaultVariants: {

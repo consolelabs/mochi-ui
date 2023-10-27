@@ -44,11 +44,11 @@ function Group(props: {
 }) {
   if (!props.wallets.length) return null
   return (
-    <div className="ui-flex ui-flex-col md:ui-gap-y-2">
-      <span className="ui-text-xs ui-font-semibold ui-text-neutral-500 ui-uppercase">
+    <div className="flex flex-col md:gap-y-2">
+      <span className="text-xs font-semibold text-neutral-500 uppercase">
         {props.name}
       </span>
-      <div className="ui-flex ui-flex-row ui-gap-x-1 md:ui-flex-col md:ui-gap-x-0 md:ui-gap-y-1">
+      <div className="flex flex-row gap-x-1 md:flex-col md:gap-x-0 md:gap-y-1">
         {props.wallets.map((w) => {
           return (
             <Wallet
@@ -79,9 +79,9 @@ function Inner({ onSuccess }: { onSuccess: WidgetProps['onSuccess'] }) {
 
   return (
     <>
-      <div className="ui-flex ui-flex-col ui-gap-y-2 ui-p-5 ui-w-full md:ui-overflow-auto md:ui-gap-y-5 md:ui-w-auto md:ui-border-r md:ui-border-neutral-400 md:ui-min-w-[287px]">
-        <Dialog.Title className="ui-text-base">Choose your wallet</Dialog.Title>
-        <div className="ui-flex ui-overflow-auto ui-flex-row ui-gap-x-5 md:ui-flex-col md:ui-gap-x-0 md:ui-gap-y-5">
+      <div className="flex flex-col gap-y-2 p-5 w-full md:overflow-auto md:gap-y-5 md:w-auto md:border-r md:border-neutral-400 md:min-w-[287px]">
+        <Dialog.Title className="text-base">Choose your wallet</Dialog.Title>
+        <div className="flex overflow-auto flex-row gap-x-5 md:flex-col md:gap-x-0 md:gap-y-5">
           {Object.entries(connectors).map((e) => {
             return (
               <Group
@@ -100,9 +100,9 @@ function Inner({ onSuccess }: { onSuccess: WidgetProps['onSuccess'] }) {
           })}
         </div>
       </div>
-      <div className="ui-flex ui-relative ui-justify-center ui-items-center ui-py-28 ui-px-16 md:ui-py-5 md:ui-px-10 md:ui-flex-1">
-        <Dialog.Close className="ui-hidden ui-absolute ui-top-5 ui-right-5 md:ui-block">
-          <IconCrossCircled className="ui-w-6 ui-h-6 ui-transition ui-text-neutral-600 hover:ui-text-neutral-700" />
+      <div className="flex relative justify-center items-center py-28 px-16 md:py-5 md:px-10 md:flex-1">
+        <Dialog.Close className="hidden absolute top-5 right-5 md:block">
+          <IconCrossCircled className="w-6 h-6 transition text-neutral-600 hover:text-neutral-700" />
         </Dialog.Close>
         {(() => {
           switch (true) {
@@ -112,23 +112,23 @@ function Inner({ onSuccess }: { onSuccess: WidgetProps['onSuccess'] }) {
               const Icon = wallet?.icon ?? IconExclamationTriangle
 
               return (
-                <div className="ui-flex ui-flex-col ui-items-center">
-                  <div className="ui-flex ui-items-center">
+                <div className="flex flex-col items-center">
+                  <div className="flex items-center">
                     <img
                       alt="mochi icon"
-                      className="ui-w-12 ui-h-12 ui-rounded-full"
+                      className="w-12 h-12 rounded-full"
                       src="https://mochi.gg/logo.png"
                     />
-                    <div className="ui-w-16 ui-border ui-border-dashed ui-border-primary-500" />
-                    <Icon className="ui-w-12 ui-h-12 ui-rounded" />
+                    <div className="w-16 border border-dashed border-primary-500" />
+                    <Icon className="w-12 h-12 rounded" />
                   </div>
-                  <span className="ui-mt-4 ui-text-sm">
+                  <span className="mt-4 text-sm">
                     {state === LoginState.Connecting
                       ? `Opening ${wallet?.name}...`
                       : 'Logging into your account...'}
                   </span>
                   {error ? (
-                    <span className="ui-text-sm ui-text-center ui-text-red-500">
+                    <span className="text-sm text-center text-red-500">
                       {error}
                     </span>
                   ) : null}
@@ -139,12 +139,12 @@ function Inner({ onSuccess }: { onSuccess: WidgetProps['onSuccess'] }) {
             case state === LoginState.Idle:
             default:
               return (
-                <div className="ui-flex ui-flex-col ui-items-center">
-                  <IconConnectWallets className="ui-mb-7 ui-w-20 ui-h-20" />
-                  <Heading as="h3" className="ui-text-base ui-text-neutral-800">
+                <div className="flex flex-col items-center">
+                  <IconConnectWallets className="mb-7 w-20 h-20" />
+                  <Heading as="h3" className="text-base text-neutral-800">
                     Connect your wallet
                   </Heading>
-                  <span className="ui-text-sm ui-font-light ui-text-center ui-text-neutral-600">
+                  <span className="text-sm font-light text-center text-neutral-600">
                     By connecting your wallet, you agree to your Term of Service
                     and our Privacy Policy
                   </span>
@@ -177,7 +177,7 @@ const LoginWidget = ({
     _trigger
   ) : (
     <button
-      className="ui-px-1.5 ui-text-sm ui-rounded-md ui-border ui-shadow ui-bg-neutral-200 ui-border-neutral-500"
+      className="px-1.5 text-sm rounded-md border shadow bg-neutral-200 border-neutral-500"
       onClick={user ? logout : undefined}
       type="button"
     >
@@ -244,12 +244,12 @@ const LoginWidget = ({
         {/* @ts-ignore */}
         <Drawer.Portal>
           {/* @ts-ignore */}
-          <Drawer.Overlay className="ui-fixed ui-inset-0 ui-z-40 ui-bg-black/30" />
+          <Drawer.Overlay className="fixed inset-0 z-40 bg-black/30" />
           {/* @ts-ignore */}
-          <Drawer.Content className="ui-flex ui-fixed ui-right-0 ui-bottom-0 ui-left-0 ui-z-50 ui-flex-col ui-bg-white ui-rounded-t-2xl">
-            <div className="ui-flex ui-flex-col ui-w-full">
-              <div className="ui-sticky ui-top-2 ui-z-10 ui-flex-shrink-0 ui-mx-auto ui-mt-2 ui-w-20 ui-h-1.5 ui-rounded-full ui-bg-neutral-400" />
-              <div className="ui-flex ui-flex-col-reverse ui-w-full">
+          <Drawer.Content className="flex fixed right-0 bottom-0 left-0 z-50 flex-col bg-white rounded-t-2xl">
+            <div className="flex flex-col w-full">
+              <div className="sticky top-2 z-10 flex-shrink-0 mx-auto mt-2 w-20 h-1.5 rounded-full bg-neutral-400" />
+              <div className="flex flex-col-reverse w-full">
                 <Inner onSuccess={handleLogin} />
               </div>
             </div>
@@ -263,10 +263,10 @@ const LoginWidget = ({
     <Dialog.Root onOpenChange={onOpenChange} open={open}>
       <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="ui-fixed ui-z-40 ui-w-screen ui-h-screen ui-bg-black/30" />
+        <Dialog.Overlay className="fixed z-40 w-screen h-screen bg-black/30" />
         <Dialog.Content asChild>
           <div
-            className="ui-flex ui-fixed ui-top-1/2 ui-w-[720px] ui-left-1/2 ui-z-50 ui-bg-white ui-rounded-2xl -ui-translate-x-1/2 -ui-translate-y-1/2 ui-max-h-[450px]"
+            className="flex fixed top-1/2 w-[720px] left-1/2 z-50 bg-white rounded-2xl -translate-x-1/2 -translate-y-1/2 max-h-[450px]"
             style={{ boxShadow: '0px 0px 20px 0px rgba(0, 0, 0, 0.18)' }}
           >
             <Inner onSuccess={handleLogin} />

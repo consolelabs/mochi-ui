@@ -4,25 +4,25 @@ import { HTMLAttributes } from 'react'
 
 const inputWrapperCva = cva(
   [
-    'ui-flex ui-items-center ui-gap-x-2 ui-rounded ui-border ui-border-neutral-300 ui-shadow-input ui-focus-within:border-primary-600 ui-focus-within:shadow-input-focused',
+    'flex items-center gap-x-2 rounded border border-neutral-300 shadow-input focus-within:border-primary-600 focus-within:shadow-input-focused',
   ],
   {
     variants: {
       size: {
-        base: 'ui-px-3.5 ui-py-2.5',
-        large: 'ui-px-4 ui-py-3.5',
+        base: 'px-3.5 py-2.5',
+        large: 'px-4 py-3.5',
       },
       disabled: {
-        true: 'ui-bg-neutral-100',
+        true: 'bg-neutral-100',
       },
       error: {
-        true: 'ui-border-red-700 ui-focus-within:border-red-700 ui-focus-within:shadow-input',
+        true: 'border-red-700 focus-within:border-red-700 focus-within:shadow-input',
       },
       hasStartAdornment: {
-        true: 'ui-pl-0',
+        true: 'pl-0',
       },
       hasEndAdornment: {
-        true: 'ui-pr-0',
+        true: 'pr-0',
       },
     },
     defaultVariants: {
@@ -33,13 +33,13 @@ const inputWrapperCva = cva(
 
 const inputCva = cva(
   [
-    'ui-flex-1 ui-border-none ui-outline-0 ui-text-neutral-800 ui-placeholder:text-neutral-500 ui-disabled:bg-transparent ui-disabled:text-neutral-500',
+    'flex-1 border-none outline-0 text-neutral-800 placeholder:text-neutral-500 disabled:bg-transparent disabled:text-neutral-500',
   ],
   {
     variants: {
       size: {
-        base: 'ui-text-sm',
-        large: 'ui-text-md ui-leading-snug',
+        base: 'text-sm',
+        large: 'text-md leading-snug',
       },
     },
     defaultVariants: {
@@ -48,25 +48,22 @@ const inputCva = cva(
   },
 )
 
-const helperTextCva = cva(
-  ['ui-mt-2 ui-text-xs ui-tracking-tight ui-text-neutral-600'],
-  {
-    variants: {
-      error: {
-        true: 'ui-text-red-700',
-      },
+const helperTextCva = cva(['mt-2 text-xs tracking-tight text-neutral-600'], {
+  variants: {
+    error: {
+      true: 'text-red-700',
     },
   },
-)
+})
 
-const adornmentCva = cva(['ui-text-neutral-800'], {
+const adornmentCva = cva(['text-neutral-800'], {
   variants: {
     size: {
-      base: 'ui-text-sm',
-      large: 'ui-text-md ui-leading-snug',
+      base: 'text-sm',
+      large: 'text-md leading-snug',
     },
     disabled: {
-      true: 'ui-text-neutral-500',
+      true: 'text-neutral-500',
     },
   },
   defaultVariants: {
@@ -107,7 +104,7 @@ export default function InputField({
   return (
     <div className={className}>
       {Boolean(label) && (
-        <div className="ui-text-neutral-500 ui-text-xxs ui-font-bold ui-leading-4 ui-tracking-tight ui-uppercase ui-mb-2">
+        <div className="text-neutral-500 text-xxs font-bold leading-4 tracking-tight uppercase mb-2">
           <label htmlFor={id}>{label}</label>
         </div>
       )}

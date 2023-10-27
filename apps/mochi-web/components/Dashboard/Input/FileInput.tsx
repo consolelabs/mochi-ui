@@ -7,7 +7,6 @@ type Props = JSX.IntrinsicElements['input'] &
   Parameters<typeof input>[0] & { value?: File[] }
 
 export const FileInput = forwardRef(
-  // @ts-ignore
   (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
     const {
       name,

@@ -28,13 +28,14 @@ export const connectorsForWallets = (walletList: WalletList) => {
           createConnector(),
         )
 
+        if (!connector) return
+
         let walletConnectModalConnector: Connector | undefined
         if (
           walletMeta.id === 'walletConnect' &&
           connectionMethods.qrCode &&
           !isMobile()
         ) {
-          // @ts-ignore
           const { chains, options } = connector
 
           walletConnectModalConnector = new WalletConnectConnector({
@@ -56,9 +57,7 @@ export const connectorsForWallets = (walletList: WalletList) => {
           ...walletMeta,
           ...connectionMethods,
         }
-        // @ts-ignore
         if (!connectors.includes(connector)) {
-          // @ts-ignore
           connectors.push(connector)
 
           // Reset private wallet list the first time we see

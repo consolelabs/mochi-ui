@@ -15,8 +15,11 @@ import {
   IconGame,
   IconUser,
   IconSuperGroup,
+  Badge,
+  IconTwinkle,
 } from '@consolelabs/ui-components'
 import { DISCORD_LINK } from '~envs'
+import { useRouter } from 'next/router'
 
 const SidebarHeader = ({ expanded }: { expanded?: boolean }) => {
   return expanded ? (
@@ -30,6 +33,13 @@ const SidebarHeader = ({ expanded }: { expanded?: boolean }) => {
   )
 }
 
+export const getSidebarBadge = {
+  'NEW': <Badge icon={<IconTwinkle/>} label='New' appearance="success" />,
+  'FEATURED': <Badge label='Featured'  appearance="primary" />,
+  'COMING_SOON': <Badge label='Coming soon' appearance="secondary"/>,
+  'FREE_TRIAL': <Badge label='Free trial' appearance="warning" />,
+} as const
+
 export default function AuthenticatedLayout({
   children,
   fullWidth = false,
@@ -41,6 +51,7 @@ export default function AuthenticatedLayout({
   fullWidth?: boolean
   footer?: React.ReactNode
 }) {
+  const { pathname } = useRouter()
   const mounted = useHasMounted()
   const { isLoggedIn, isLoadingSession } = useAuthStore()
 
@@ -66,7 +77,7 @@ export default function AuthenticatedLayout({
                     href: '/profile',
                   },
                   { title: 'Servers', Icon: IconDiscord },
-                  { title: 'App Store', Icon: IconGame },
+                  { title: 'App Store', Icon: IconGame, badge: getSidebarBadge['COMING_SOON']},
                   { title: 'Settings', Icon: IconSetting },
                   { type: 'break' },
                   {
@@ -75,13 +86,18 @@ export default function AuthenticatedLayout({
                     type: 'link',
                     as: Link,
                     href: '/app',
+                    badge: getSidebarBadge['NEW']
                   },
                   {
                     title: 'Gift your friends',
                     Icon: IconSuperGroup,
+                    badge: getSidebarBadge['COMING_SOON']
                   },
                   { title: 'Invite Friends', Icon: IconAddUser },
-                  { title: 'Feedback', Icon: IconStar },
+                  {
+                    title: 'Feedback', Icon: IconStar,
+                    badge: getSidebarBadge['COMING_SOON']
+                  },
                 ]}
                 footerItems={[
                   { title: 'Support', Icon: IconLifeBuoy },
@@ -99,11 +115,14 @@ export default function AuthenticatedLayout({
                   },
                 ]}
                 className="absolute"
+                isSelected={(item) =>
+                  !!item.href && pathname.startsWith(item.href)
+                }
               />
             </div>
             <div
               className={clsx(
-                'flex items-start gap-x-24 mx-auto w-full max-w-full relative',
+                'flex items-start gap-x-24 mx-auto flex-1 relative',
                 {
                   'max-w-5xl my-10 px-4': !fullWidth,
                 },
