@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { use, useMemo, useState } from 'react'
 import { Icon } from '@iconify/react'
 import Modal from '~components/Modal'
 import { TokenList } from './TokenList'
@@ -85,6 +85,12 @@ export const TokenPicker = () => {
     setIsOpenSelector(false)
   }
 
+  function onModalClosed() {
+    // Reset on close
+    setIsOpenSelector(false)
+    setSearchTerm('')
+  }
+
   function onSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     setSearchTerm(e.target.value)
   }
@@ -105,7 +111,7 @@ export const TokenPicker = () => {
         icon={isTokenSelected ? selectedAsset.icon : selectedAsset.moniker.icon}
         onClick={() => setIsOpenSelector(true)}
       />
-      <Modal isOpen={isOpenSelector} onClose={() => setIsOpenSelector(false)}>
+      <Modal isOpen={isOpenSelector} onClose={onModalClosed}>
         <div className="flex flex-col gap-y-1 items-center w-[412px] h-fit py-3 px-3 bg-white-pure rounded-lg shadow-md">
           <InputField
             className="w-full"

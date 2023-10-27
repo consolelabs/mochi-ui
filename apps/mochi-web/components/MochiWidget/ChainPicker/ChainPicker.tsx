@@ -21,6 +21,12 @@ export const ChainPicker = () => {
     setIsOpenSelector(false)
   }
 
+  function onModalClosed() {
+    // Reset on close
+    setIsOpenSelector(false)
+    setSearchTerm('')
+  }
+
   function onSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     setSearchTerm(e.target.value)
   }
@@ -44,7 +50,7 @@ export const ChainPicker = () => {
           className="w-4 h-4 text-[#ADACAA]"
         />
       </button>
-      <Modal isOpen={isOpenSelector} onClose={() => setIsOpenSelector(false)}>
+      <Modal isOpen={isOpenSelector} onClose={onModalClosed}>
         <div className="flex flex-col gap-y-1 items-center w-[412px] h-[477px] py-3 px-3 bg-white-pure rounded-lg shadow-md">
           <InputField
             className="w-full"
