@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Icon } from '@iconify/react'
 import Modal from '~components/Modal'
 import { PlatformList } from './PlatformList'
@@ -36,15 +36,25 @@ const Platforms: Platform[] = [
   },
 ]
 
-export const PlatformPicker = () => {
+interface Props {
+  onSelect?: (item: Platform) => void
+}
+
+export const PlatformPicker: React.FC<Props> = ({ onSelect }) => {
   const [isOpenSelector, setIsOpenSelector] = useState(false)
   const [selectedPlatform, setSelectedPlatform] = useState<Platform>(
     Platforms[0],
   )
 
+  // TODO: Init selected platform. Maybe remove after data binding
+  useEffect(() => {
+    onSelect?.(Platforms[0])
+  }, [])
+
   function handlePlatformSelect(platform: Platform) {
     setSelectedPlatform(platform)
     setIsOpenSelector(false)
+    onSelect?.(platform)
   }
 
   return (
@@ -58,7 +68,10 @@ export const PlatformPicker = () => {
           className="flex-shrink-0 w-[22px] h-[22px]"
         />
         <span className="text-sm font-medium">{selectedPlatform.platform}</span>
-        <Icon icon="majesticons:chevron-down-line" className="w-4 h-4 text-[#ADACAA]" />
+        <Icon
+          icon="majesticons:chevron-down-line"
+          className="w-4 h-4 text-[#ADACAA]"
+        />
       </button>
       <Modal isOpen={isOpenSelector} onClose={() => setIsOpenSelector(false)}>
         <div className="flex gap-x-1 items-center py-3 px-3 bg-white-pure rounded-lg shadow-md">
