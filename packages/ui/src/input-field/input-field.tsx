@@ -1,5 +1,6 @@
 import type { VariantProps } from 'class-variance-authority'
 import { cva } from 'class-variance-authority'
+import { HTMLAttributes } from 'react'
 
 const inputWrapperCva = cva(
   [
@@ -70,19 +71,20 @@ const adornmentCva = cva(['text-neutral-800'], {
   },
 })
 
-type Props = VariantProps<typeof inputWrapperCva> & {
-  id?: string
-  value?: string
-  defaultValue?: string
-  placeholder?: string
-  label?: React.ReactNode
-  helperText?: React.ReactNode
-  startAdornment?: React.ReactNode
-  endAdornment?: React.ReactNode
-  disabled?: boolean
-  error?: boolean
-  className?: string
-}
+type Props = HTMLAttributes<HTMLInputElement> &
+  VariantProps<typeof inputWrapperCva> & {
+    id?: string
+    value?: string
+    defaultValue?: string
+    placeholder?: string
+    label?: React.ReactNode
+    helperText?: React.ReactNode
+    startAdornment?: React.ReactNode
+    endAdornment?: React.ReactNode
+    disabled?: boolean
+    error?: boolean
+    className?: string
+  }
 
 export default function InputField({
   id,
@@ -97,6 +99,7 @@ export default function InputField({
   error,
   size,
   className,
+  ...rest
 }: Props) {
   return (
     <div className={className}>
@@ -126,6 +129,7 @@ export default function InputField({
           id={id}
           placeholder={placeholder}
           value={value}
+          {...rest}
         />
         {Boolean(endAdornment) && (
           <div className={adornmentCva({ size, disabled })}>{endAdornment}</div>

@@ -1,36 +1,58 @@
-import { Icon } from '@iconify/react'
 import Button from '~cpn/base/button'
+import { TokenPicker } from './TokenPicker'
+import { useState } from 'react'
+import { MonikerAsset, TokenAsset } from './TokenPicker/type'
+import { abbreviateNumber, formatNumber } from '~utils/number'
 
 export default function Input() {
+  const [selectedAsset, setSelectedAsset] = useState<
+    TokenAsset | MonikerAsset
+  >()
+  const [tipAmount, setTipAmount] = useState('')
+  const isTokenAsset = selectedAsset && 'token' in selectedAsset
+  const balance = isTokenAsset
+    ? formatNumber(selectedAsset?.token_amount)
+    : formatNumber(selectedAsset?.total_amount || '0')
+  const balanceUnit = isTokenAsset
+    ? selectedAsset.token.name
+    : selectedAsset?.moniker.name
+  const unitPrice =
+    parseFloat(selectedAsset?.total_amount || '0') /
+    parseFloat(selectedAsset?.token_amount || '1')
+  const tipAmountUSD = abbreviateNumber(
+    (parseFloat(tipAmount) || 0) * unitPrice,
+  )
+
   return (
     <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-2">
       <div className="flex justify-between items-center">
-        <button className="flex gap-x-2 items-center py-1 px-3 rounded-lg bg-white-pure">
-          <span className="text-base" role="img">
-            ☕️
-          </span>
-          <span className="text-sm font-medium">coffee</span>
-          <Icon icon="majesticons:chevron-down-line" className="w-4 h-4" />
-        </button>
+        <TokenPicker onSelect={setSelectedAsset} />
       </div>
       <div className="flex flex-col gap-y-2 py-6 px-4 rounded-lg bg-white-pure">
         <div className="flex flex-1 justify-between items-center">
           <input
-            className="outline-none flex-1 text-2xl font-medium text-[#343433]"
-            value={1}
+            className="w-[65%] outline-none text-2xl font-medium text-[#343433] appearance-none"
+            placeholder="0"
+            type="number"
+            value={tipAmount}
+            onChange={(e) => setTipAmount(e.target.value)}
           />
-          <span className="text-sm text-[#848281]">&#8776; 2.08 USD</span>
+          <span className="text-sm text-[#848281] text-right">
+            &#8776; {tipAmountUSD} USD
+          </span>
         </div>
         <div className="flex flex-1 justify-between items-center">
-          <span className="text-[#848281] text-sm">Balance: 800 coffee</span>
+          <span className="text-[#848281] text-sm">
+            Balance: {balance} {balanceUnit}
+          </span>
           <div className="flex gap-x-2">
-            <Button appearance="text" size="xs">
+            <Button appearance="text" size="xs" onClick={() => setTipAmount('1')}>
               1
             </Button>
-            <Button appearance="text" size="xs">
+            <Button appearance="text" size="xs" onClick={() => setTipAmount('2')}>
               2
             </Button>
-            <Button appearance="text" size="xs">
+            <Button appearance="text" size="xs" onClick={() => setTipAmount('5')}>
               5
             </Button>
           </div>

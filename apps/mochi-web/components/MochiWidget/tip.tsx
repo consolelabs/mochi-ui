@@ -1,4 +1,4 @@
-import MoneySource from './money-source'
+import { SourcePicker } from './SourcePicker'
 import Recipient from './recipient'
 import Input from './input'
 import { Icon } from '@iconify/react'
@@ -19,7 +19,7 @@ export default function Tip() {
               by sending them money
             </span>
           </div>
-          <MoneySource />
+          <SourcePicker />
           <Recipient />
           <Input />
         </div>
