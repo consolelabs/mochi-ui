@@ -18,6 +18,8 @@ export interface Item {
   children?: Item[]
   onClick?: MouseEventHandler
   badge?: ReactNode
+  disabled?: boolean
+  className?: string
 }
 
 interface SidebarItemProps {
@@ -33,7 +35,7 @@ export default function SidebarItem({
   className,
   selected,
 }: SidebarItemProps) {
-  const { badge, title, Icon, href, as, type, children = [], ...props } = item
+  const { className: customClassName, disabled, badge, title, Icon, href, as, type, children = [], ...props } = item
 
   const renderTitle = (
     <>
@@ -41,7 +43,8 @@ export default function SidebarItem({
         <Icon
           className={clsx('min-w-max', {
             'text-blue-500': selected,
-            'text-neutral-800': !selected,
+            'text-neutral-800': !selected && !disabled,
+            'text-neutral-600': disabled
           })}
           height={22}
           width={22}
@@ -49,7 +52,12 @@ export default function SidebarItem({
       )}
       {expanded ? (
         <div className="flex gap-2 items-center">
-          <span className="text-left text-neutral-800 text-sm font-medium tracking-tight line-clamp-1">
+          <span className={clsx(
+            "text-left text-sm font-medium tracking-tight line-clamp-1", {
+              "text-neutral-600": disabled,
+              "text-neutral-800 ": !disabled,
+            }
+            )}>
             {title}
           </span>
           {Boolean(badge) && <span className="shrink-0">{badge}</span>}
@@ -60,7 +68,9 @@ export default function SidebarItem({
 
   if (type === 'list') {
     return (
-      <Accordion className="shadow-none !p-0" type="multiple">
+      <Accordion className="shadow-none !p-0" disabled={disabled}
+        type="multiple"
+      >
         <AccordionItem value={title}>
           <AccordionTrigger
             className="!hover:bg-inherit"
@@ -72,6 +82,7 @@ export default function SidebarItem({
                 'p-2.5': expanded,
               },
               className,
+              customClassName
             )}
           >
             <div
@@ -85,7 +96,7 @@ export default function SidebarItem({
           <AccordionContent className="pb-0" hasPadding={false}>
             {children.map((child) => (
               <SidebarItem
-                className={clsx('pl-8', className)}
+                className={clsx('pl-8', className, customClassName)}
                 expanded={expanded}
                 item={child}
                 key={child.title}
@@ -98,8 +109,11 @@ export default function SidebarItem({
   }
 
   const classNameProp = clsx(
-    'flex gap-2 items-center p-2.5 rounded w-full cursor-pointer hover:bg-neutral-150',
+    'flex gap-2 items-center p-2.5 rounded w-full cursor-pointer hover:bg-neutral-150', {
+      "pointer-events-none": disabled
+    },
     className,
+    customClassName
   )
 
   if (type === 'link' && href) {
@@ -112,6 +126,7 @@ export default function SidebarItem({
           href,
           ...(isAbsolute ? { target: '_blank', rel: 'noopener' } : {}),
           ...props,
+          disabled,
         } as Attributes,
         [renderTitle],
       )
@@ -125,7 +140,7 @@ export default function SidebarItem({
   }
 
   return (
-    <button className={classNameProp} type="button" {...props}>
+    <button className={classNameProp} type="button" {...props} disabled={disabled}>
       {renderTitle}
     </button>
   )
