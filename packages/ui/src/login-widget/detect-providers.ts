@@ -7,6 +7,11 @@ import {
 } from '@consolelabs/icons'
 import { useMochi } from '../mochi-store'
 import type { WalletProps } from './wallet'
+import {
+  IconMetamaskWallet,
+  IconPhantomWallet,
+  IconRoninWallet,
+} from '@consolelabs/icons'
 
 const msg = 'Please sign this message to prove that you own this wallet'
 const signEVM =

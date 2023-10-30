@@ -66,6 +66,7 @@ export function Default() {
             Icon: IconGame,
             onClick: () => setSection('App Store'),
           },
+          { title: 'App Store', Icon: IconGame },
           { title: 'Settings', Icon: IconSetting },
           { type: 'break' },
           { title: 'Developer', Icon: IconCoding, disabled: true },

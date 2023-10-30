@@ -17,6 +17,11 @@ import {
   LoginWidgetContext,
   useLoginWidgetContext,
 } from './context'
+import {
+  IconConnectWallets,
+  IconCrossCircled,
+  IconExclamationTriangle,
+} from '@consolelabs/icons'
 
 const connectors = getAvailableWallets()
 
