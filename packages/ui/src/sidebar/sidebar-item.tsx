@@ -1,6 +1,6 @@
 import clsx from 'clsx'
-import type { ReactNode } from 'react'
-import { type Attributes, createElement, type MouseEventHandler } from 'react'
+import type { MouseEventHandler, ReactNode, Attributes } from 'react';
+import { createElement } from 'react'
 import {
   Accordion,
   AccordionContent,
@@ -80,6 +80,7 @@ export default function SidebarItem({
                 'rounded hover:bg-neutral-150': Boolean(expanded),
                 '!p-0': !expanded,
                 'p-2.5': expanded,
+                'bg-neutral-150': selected,
               },
               className,
               customClassName
@@ -110,7 +111,8 @@ export default function SidebarItem({
 
   const classNameProp = clsx(
     'flex gap-2 items-center p-2.5 rounded w-full cursor-pointer hover:bg-neutral-150', {
-      "pointer-events-none": disabled
+      "pointer-events-none": disabled,
+      'bg-neutral-150': selected,
     },
     className,
     customClassName

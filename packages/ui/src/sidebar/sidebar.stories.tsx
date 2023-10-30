@@ -11,6 +11,7 @@ import IconX from '../icons/components/icon-x'
 import Sidebar from './sidebar'
 import { Badge } from '../badge'
 import { IconTwinkle } from '../icons'
+import { useState } from 'react'
 
 export default {
   title: 'ui/Sidebar',
@@ -27,6 +28,9 @@ function Header() {
 }
 
 export function Default() {
+
+  const [ section, setSection ] = useState('Profile')
+
   return (
     <div className="h-[700px] border">
       <Sidebar
@@ -41,12 +45,20 @@ export function Default() {
             title: 'Profile',
             Icon: IconUser,
             type: 'link',
-            href: 'https://mochi.gg',
             badge: <Badge label='New' />,
-            disabled: true
+            onClick: () => setSection('Profile')
           },
-          { title: 'Server Management', Icon: IconDiscord, badge: <Badge appearance="secondary" icon={<IconTwinkle/>} label="Featured"/>},
-          { title: 'App Store', Icon: IconGame },
+          {
+            title: 'Server Management',
+            Icon: IconDiscord,
+            badge: <Badge appearance="secondary" icon={<IconTwinkle/>} label="Featured"/>,
+            onClick: () => setSection('Server Management')
+          },
+          {
+            title: 'App Store',
+            Icon: IconGame,
+            onClick: () => setSection('App Store')
+          },
           { title: 'Settings', Icon: IconSetting },
           { type: 'break' },
           { title: 'Developer', Icon: IconCoding, disabled: true},
@@ -64,6 +76,7 @@ export function Default() {
             ],
           },
         ]}
+        isSelected={(item) => item.title === section}
       />
     </div>
   )
