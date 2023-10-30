@@ -37,11 +37,6 @@ export default function SidebarItem({
 }: SidebarItemProps) {
   const { className: customClassName, disabled, badge, title, Icon, href, as, type, children = [], ...props } = item
 
-  if (disabled) {
-    delete props.onClick
-    props.onClick = (e) => e.preventDefault()
-  }
-
   const renderTitle = (
     <>
       {Icon !== undefined && (
