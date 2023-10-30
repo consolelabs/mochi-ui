@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks -- . */
 import type { Meta, StoryObj } from '@storybook/react'
 import { useCallback, useMemo, useRef, useState } from 'react'
+import { IconStar } from '@consolelabs/icons'
 import { Badge } from '../badge'
-import { IconStar } from '../icons'
 import { Pagination } from '../pagination'
 import { Table } from './table'
 

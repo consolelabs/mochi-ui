@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { IconArrowDown } from '../icons'
+import { IconArrowDown } from '@consolelabs/icons'
 import IconButton from './icon-button'
 
 const meta: Meta<typeof IconButton> = {

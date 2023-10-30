@@ -2,7 +2,7 @@ import * as AccordionPrimitive from '@radix-ui/react-accordion'
 import type { ElementRef, ComponentPropsWithoutRef, ReactNode } from 'react'
 import { forwardRef } from 'react'
 import clsx from 'clsx'
-import { IconChevronDown } from '../icons'
+import { IconChevronDown } from '@consolelabs/icons'
 
 const Accordion = forwardRef<
   ElementRef<typeof AccordionPrimitive.Root>,

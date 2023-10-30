@@ -24,11 +24,12 @@ function deleteFirstLine(str) {
   return lines.join('\n')
 }
 
-const generateSvgs = () => {
-  const svgFilePaths = glob.sync('./src/icons/svg/*.svg')
+const generateSvgs = async () => {
+  const svgFilePaths = glob.sync('./src/svg/*.svg')
 
-  //assets/icons/setting-bar.svg
-  return Promise.all(
+  let exportContent = ''
+
+  await Promise.all(
     svgFilePaths.map(async (svgFilePath) => {
       const content = await fsPromise.readFile(svgFilePath, {
         encoding: 'utf8',
@@ -38,7 +39,7 @@ const generateSvgs = () => {
       //IconSettingBar
       const componentName = `Icon${kebab2Pascal(baseNameWithoutExtension)}`
 
-      const code = await transform(
+      let code = await transform(
         content,
         {
           typescript: true,
@@ -48,44 +49,25 @@ const generateSvgs = () => {
         { componentName },
       )
 
+      exportContent += `export { default as ${componentName} } from './components/icon-${baseNameWithoutExtension}'\n`
+
       await fsPromise.writeFile(
         path.resolve(
           __dirname,
-          '../src/icons/components/',
+          '../src/components/',
           `icon-${baseNameWithoutExtension}.tsx`,
         ),
         await formatCode(deleteFirstLine(code)),
       )
     }),
   )
-}
-
-const exportSvgs = async () => {
-  const svgFilePaths = glob.sync('./src/icons/svg/*.svg')
 
   await fsPromise.writeFile(
-    path.resolve(__dirname, '../src/icons/index.ts'),
-    await formatCode(
-      svgFilePaths
-        .sort((a, b) => {
-          if (a > b) return 1
-          if (a < b) return -1
-          return 0
-        })
-        .map((svgFilePath) => {
-          //setting-bar
-          const baseNameWithoutExtension = path.basename(svgFilePath, '.svg')
-          //IconSettingBar
-          const componentName = `Icon${kebab2Pascal(baseNameWithoutExtension)}`
-
-          return `export { default as ${componentName} } from './components/icon-${baseNameWithoutExtension}'`
-        })
-        .join('\n'),
-    ),
+    path.resolve(__dirname, '../src/index.ts'),
+    exportContent,
   )
 }
 
 module.exports = {
   generateSvgs,
-  exportSvgs,
 }

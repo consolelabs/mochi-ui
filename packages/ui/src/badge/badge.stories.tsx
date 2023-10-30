@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import Avatar from '../avatar/avatar'
 import {
   IconSolidDot,
   IconArrowDown,
   IconClose,
   IconTwinkle,
   IconPlus,
-} from '../icons'
+} from '@consolelabs/icons'
+import Avatar from '../avatar/avatar'
 import Badge from './badge'
 import type { BadgeProps } from './badge'
 

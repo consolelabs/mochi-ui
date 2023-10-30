@@ -44,6 +44,9 @@ importers:
       '@bonfida/spl-name-service':
         specifier: ^0.1.67
         version: 0.1.67(@solana/buffer-layout@4.0.1)(@solana/spl-token@0.3.7)(@solana/web3.js@1.74.0)(bn.js@5.2.1)(borsh@0.7.0)
+      '@consolelabs/icons':
+        specifier: workspace:*
+        version: link:../../packages/icons
       '@consolelabs/mochi-rest':
         specifier: ^3.0.15
         version: 3.0.15
@@ -358,6 +361,48 @@ importers:
         specifier: ^5.11.1
         version: 5.11.1(eslint@8.52.0)(typescript@5.2.2)
 
+  packages/icons:
+    devDependencies:
+      '@svgr/core':
+        specifier: ^8.1.0
+        version: 8.1.0(typescript@5.2.2)
+      '@svgr/plugin-jsx':
+        specifier: ^8.1.0
+        version: 8.1.0(@svgr/core@8.1.0)
+      '@svgr/plugin-svgo':
+        specifier: ^8.1.0
+        version: 8.1.0(@svgr/core@8.1.0)(typescript@5.2.2)
+      '@types/node':
+        specifier: ^18.11.17
+        version: 18.15.5
+      '@types/react':
+        specifier: ^18.2.28
+        version: 18.2.28
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../eslint-config-custom
+      glob:
+        specifier: ^10.3.10
+        version: 10.3.10
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      rimraf:
+        specifier: ^5.0.5
+        version: 5.0.5
+      tsconfig:
+        specifier: workspace:*
+        version: link:../tsconfig
+      tsup:
+        specifier: ^7.2.0
+        version: 7.2.0(@swc/core@1.3.95)(postcss@8.4.31)(ts-node@10.9.1)(typescript@5.2.2)
+      typescript:
+        specifier: ^5.2.2
+        version: 5.2.2
+
   packages/tailwind-config:
     devDependencies:
       tailwindcss:
@@ -368,6 +413,9 @@ importers:
 
   packages/ui:
     dependencies:
+      '@consolelabs/icons':
+        specifier: workspace:*
+        version: link:../icons
       '@radix-ui/react-accordion':
         specifier: ^1.1.2
         version: 1.1.2(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
@@ -3241,7 +3289,7 @@ packages:
     dependencies:
       '@types/istanbul-lib-coverage': 2.0.5
       '@types/istanbul-reports': 3.0.3
-      '@types/node': 18.15.5
+      '@types/node': 18.18.7
       '@types/yargs': 16.0.7
       chalk: 4.1.2
 
@@ -6844,7 +6892,7 @@ packages:
       '@storybook/node-logger': 7.5.1
       '@storybook/types': 7.5.1
       '@types/find-cache-dir': 3.2.1
-      '@types/node': 18.15.5
+      '@types/node': 18.18.7
       '@types/node-fetch': 2.6.7
       '@types/pretty-hrtime': 1.0.2
       chalk: 4.1.2
@@ -8269,7 +8317,7 @@ packages:
   /@types/cross-spawn@6.0.4:
     resolution: {integrity: sha512-GGLpeThc2Bu8FBGmVn76ZU3lix17qZensEI4/MPty0aZpm2CHfgEMis31pf5X5EiudYKcPAsWciAsCALoPo5dw==}
     dependencies:
-      '@types/node': 18.15.5
+      '@types/node': 18.18.7
     dev: true
 
   /@types/debug@4.1.10:
@@ -8331,7 +8379,7 @@ packages:
   /@types/express-serve-static-core@4.17.39:
     resolution: {integrity: sha512-BiEUfAiGCOllomsRAZOiMFP7LAnrifHpt56pc4Z7l9K6ACyN06Ns1JLMBxwkfLOjJRlSf06NwWsT7yzfpaVpyQ==}
     dependencies:
-      '@types/node': 18.15.5
+      '@types/node': 18.18.7
       '@types/qs': 6.9.9
       '@types/range-parser': 1.2.6
       '@types/send': 0.17.3
@@ -8357,7 +8405,7 @@ packages:
   /@types/graceful-fs@4.1.8:
     resolution: {integrity: sha512-NhRH7YzWq8WiNKVavKPBmtLYZHxNY19Hh+az28O/phfp68CF45pMFud+ZzJ8ewnxnC5smIdF3dqFeiSUQ5I+pw==}
     dependencies:
-      '@types/node': 18.15.5
+      '@types/node': 18.18.7
     dev: true
 
   /@types/hast@2.3.7:
@@ -8443,7 +8491,7 @@ packages:
   /@types/node-fetch@2.6.7:
     resolution: {integrity: sha512-lX17GZVpJ/fuCjguZ5b3TjEbSENxmEk1B2z02yoXSK9WMEWRivhdSY73wWMn6bpcCDAOh6qAdktpKHIlkDk2lg==}
     dependencies:
-      '@types/node': 18.15.5
+      '@types/node': 18.18.7
       form-data: 4.0.0
     dev: true
 
@@ -8466,7 +8514,6 @@ packages:
     resolution: {integrity: sha512-bw+lEsxis6eqJYW8Ql6+yTqkE6RuFtsQPSe5JxXbqYRFQEER5aJA9a5UH9igqDWm3X4iLHIKOHlnAXLM4mi7uQ==}
     dependencies:
       undici-types: 5.26.5
-    dev: false
 
   /@types/node@20.5.1:
     resolution: {integrity: sha512-4tT2UrL5LBqDwoed9wZ6N3umC4Yhz3W3FloMmiiG4JwmUJWpie0c7lcnUNd4gtMKuDEO4wRVS8B6Xa0uMRsMKg==}
@@ -8539,7 +8586,7 @@ packages:
     resolution: {integrity: sha512-/7fKxvKUoETxjFUsuFlPB9YndePpxxRAOfGC/yJdc9kTjTeP5kRCTzfnE8kPUKCeyiyIZu0YQ76s50hCedI1ug==}
     dependencies:
       '@types/mime': 1.3.4
-      '@types/node': 18.15.5
+      '@types/node': 18.18.7
     dev: true
 
   /@types/serve-static@1.15.4:
@@ -8547,7 +8594,7 @@ packages:
     dependencies:
       '@types/http-errors': 2.0.3
       '@types/mime': 3.0.3
-      '@types/node': 18.15.5
+      '@types/node': 18.18.7
     dev: true
 
   /@types/sprintf-js@1.1.2:
@@ -8568,7 +8615,7 @@ packages:
   /@types/ws@7.4.7:
     resolution: {integrity: sha512-JQbbmxZTZehdc2iszGKs5oC3NFnjeay7mtAWrdt7qNtAVK0g19muApzAy4bm9byz79xa2ZnO/BOBC2R8RC5Lww==}
     dependencies:
-      '@types/node': 18.15.5
+      '@types/node': 18.18.7
     dev: false
 
   /@types/yargs-parser@21.0.2:
@@ -14806,7 +14853,7 @@ packages:
     dependencies:
       '@jest/types': 29.6.3
       '@types/graceful-fs': 4.1.8
-      '@types/node': 18.15.5
+      '@types/node': 18.18.7
       anymatch: 3.1.3
       fb-watchman: 2.0.2
       graceful-fs: 4.2.11
@@ -14839,7 +14886,7 @@ packages:
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
       '@jest/types': 27.5.1
-      '@types/node': 18.15.5
+      '@types/node': 18.18.7
     dev: true
 
   /jest-mock@29.7.0:
@@ -14878,7 +14925,7 @@ packages:
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 18.15.5
+      '@types/node': 18.18.7
       chalk: 4.1.2
       ci-info: 3.9.0
       graceful-fs: 4.2.11
@@ -14900,7 +14947,7 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 18.15.5
+      '@types/node': 18.18.7
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
@@ -14908,7 +14955,7 @@ packages:
     resolution: {integrity: sha512-eIz2msL/EzL9UFTFFx7jBTkeZfku0yUAyZZZmJ93H2TYEiroIx2PQjEXcwYtYl8zXCxb+PAmA2hLIt/6ZEkPHw==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
-      '@types/node': 18.15.5
+      '@types/node': 18.18.7
       jest-util: 29.7.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
@@ -20559,7 +20606,6 @@ packages:
 
   /undici-types@5.26.5:
     resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
-    dev: false
 
   /unicode-canonical-property-names-ecmascript@2.0.0:
     resolution: {integrity: sha512-yY5PpDlfVIU5+y/BSCxAJRBIS1Zc2dDG3Ujq+sR0U+JjUevW2JhocOF+soROYDSaAezOzOKuyyixhD6mBknSmQ==}

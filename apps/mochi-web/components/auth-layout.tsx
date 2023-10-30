@@ -3,7 +3,6 @@ import { useHasMounted } from '@dwarvesf/react-hooks'
 import { useAuthStore } from '~store'
 import Link from 'next/link'
 import {
-  Sidebar,
   IconLifeBuoy,
   IconX,
   IconDiscord,
@@ -14,11 +13,11 @@ import {
   IconGame,
   IconUser,
   IconSuperGroup,
-  Badge,
   IconTwinkle,
-} from '@consolelabs/ui-components'
+} from '@consolelabs/icons'
 import { DISCORD_LINK } from '~envs'
 import { useRouter } from 'next/router'
+import { Badge, Sidebar } from '@consolelabs/ui-components'
 import { AuthPanel } from './AuthWidget'
 
 const SidebarHeader = ({ expanded }: { expanded?: boolean }) => {

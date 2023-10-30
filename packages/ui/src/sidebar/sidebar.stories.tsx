@@ -1,17 +1,19 @@
+import {
+  IconAddUser,
+  IconCoding,
+  IconDiscord,
+  IconGame,
+  IconLifeBuoy,
+  IconSetting,
+  IconStar,
+  IconSuperGroup,
+  IconTwinkle,
+  IconUser,
+  IconX,
+} from '@consolelabs/icons'
 import { useState } from 'react'
-import IconUser from '../icons/components/icon-user'
-import IconDiscord from '../icons/components/icon-discord'
-import IconGame from '../icons/components/icon-game'
-import IconSetting from '../icons/components/icon-setting'
-import IconCoding from '../icons/components/icon-coding'
-import IconSuperGroup from '../icons/components/icon-super-group'
-import IconAddUser from '../icons/components/icon-add-user'
-import IconStar from '../icons/components/icon-star'
-import IconLifeBuoy from '../icons/components/icon-life-buoy'
-import IconX from '../icons/components/icon-x'
 import Sidebar from './sidebar'
 import { Badge } from '../badge'
-import { IconTwinkle } from '../icons'
 
 export default {
   title: 'ui/Sidebar',

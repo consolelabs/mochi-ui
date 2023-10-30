@@ -1,0 +1,45 @@
+{
+  "name": "@consolelabs/icons",
+  "version": "0.0.1",
+  "sideEffects": false,
+  "types": "./dist/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "tsup",
+    "lint": "eslint --fix src/",
+    "dev": "tsup --watch",
+    "check-types": "tsc --noEmit",
+    "generate-icons": "node ./scripts/generate-icon-components.js && eslint --fix src/components/",
+    "postinstall": "pnpm generate-icons && pnpm build"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@svgr/core": "^8.1.0",
+    "@svgr/plugin-jsx": "^8.1.0",
+    "@svgr/plugin-svgo": "^8.1.0",
+    "@types/node": "^18.11.17",
+    "@types/react": "^18.2.28",
+    "eslint-config-custom": "workspace:*",
+    "glob": "^10.3.10",
+    "prettier": "^3.0.3",
+    "react": "^18.2.0",
+    "rimraf": "^5.0.5",
+    "tsconfig": "workspace:*",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2"
+  }
+}

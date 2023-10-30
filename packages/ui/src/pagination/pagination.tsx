@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import type { HtmlHTMLAttributes } from 'react'
 import { useState, useEffect } from 'react'
-import { IconChevronLeft, IconChevronRight } from '../icons'
+import { IconChevronLeft, IconChevronRight } from '@consolelabs/icons'
 
 interface PaginationProps {
   initalPage?: number
