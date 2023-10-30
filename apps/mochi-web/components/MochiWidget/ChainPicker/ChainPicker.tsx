@@ -3,7 +3,12 @@ import { Icon } from '@iconify/react'
 import { ChainList } from './ChainList'
 import { Chains } from './data'
 import { Chain } from './type'
-import { Modal, ModalTrigger, ModalContent, InputField } from '@consolelabs/ui-components'
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  InputField,
+} from '@consolelabs/ui-components'
 
 export const ChainPicker = () => {
   const [isOpenSelector, setIsOpenSelector] = useState(false)
@@ -17,9 +22,7 @@ export const ChainPicker = () => {
 
   function onOpenChange(isOpen: boolean) {
     setIsOpenSelector(isOpen)
-    if (!isOpen) {
-      setSearchTerm('')
-    }
+    setSearchTerm('')
   }
 
   function handleChainSelect(chain: Chain) {
@@ -32,8 +35,8 @@ export const ChainPicker = () => {
   }
 
   return (
-    <Modal open={isOpenSelector} onOpenChange={onOpenChange}>
-      <ModalTrigger className="flex gap-x-2 items-center py-1.5 rounded-lg bg-[#FAF9F7]">
+    <Popover open={isOpenSelector} onOpenChange={onOpenChange}>
+      <PopoverTrigger className="flex gap-x-2 items-center py-1.5 rounded-lg bg-[#FAF9F7]">
         <span className="text-base" role="img">
           <img
             alt={`${selectedChain.name} icon`}
@@ -46,8 +49,12 @@ export const ChainPicker = () => {
           icon="majesticons:chevron-down-line"
           className="w-4 h-4 text-[#ADACAA]"
         />
-      </ModalTrigger>
-      <ModalContent className="flex flex-col gap-y-2 items-center w-[412px] h-[477px] bg-white-pure">
+      </PopoverTrigger>
+      <PopoverContent
+        align="start"
+        alignOffset={-16}
+        className="flex flex-col gap-y-2 items-center w-[414px] h-[477px] bg-white-pure"
+      >
         <InputField
           className="w-full"
           placeholder="Search"
@@ -62,7 +69,7 @@ export const ChainPicker = () => {
         <span className="w-full text-xs text-[#ADACAA]">
           Only supported tokens are shown
         </span>
-      </ModalContent>
-    </Modal>
+      </PopoverContent>
+    </Popover>
   )
 }

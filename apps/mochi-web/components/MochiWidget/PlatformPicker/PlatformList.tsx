@@ -11,6 +11,7 @@ export const PlatformList = (props: Props) => {
   const { data, onSelect } = props
   return (
     <List
+      rootClassName="w-full"
       data={data}
       renderItem={(item) => <PlatformItem item={item} onSelect={onSelect} />}
     />

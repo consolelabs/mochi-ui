@@ -3,7 +3,11 @@ import { Icon } from '@iconify/react'
 import { SourceList } from './SourceList'
 import { SourceType } from './type'
 import { formatNumber } from '~utils/number'
-import { Modal, ModalContent, ModalTrigger } from '@consolelabs/ui-components'
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from '@consolelabs/ui-components'
 
 const MockSources: SourceType[] = [
   {
@@ -38,10 +42,8 @@ export const SourcePicker = () => {
   }
 
   return (
-    <Modal open={isOpenSelector} onOpenChange={setIsOpenSelector}>
-      <ModalTrigger
-        className="flex gap-x-3 items-center py-3 px-2 bg-blue-50 rounded-lg text-left"
-      >
+    <Popover open={isOpenSelector} onOpenChange={setIsOpenSelector}>
+      <PopoverTrigger className="flex gap-x-3 items-center py-3 px-2 bg-blue-50 rounded-lg text-left">
         <img
           className="flex-shrink-0 w-6 h-6"
           src={selectedSource.source_icon}
@@ -58,11 +60,17 @@ export const SourcePicker = () => {
         <span className="flex-shrink-0 text-sm font-medium text-blue-700">
           ${formatNumber(selectedSource.total_amount)}
         </span>
-        <Icon icon="majesticons:chevron-down-line" className="w-4 h-4 text-[#ADACAA]" />
-      </ModalTrigger>
-      <ModalContent className="flex gap-x-1 items-center py-3 px-3 bg-white-pure rounded-lg shadow-md">
+        <Icon
+          icon="majesticons:chevron-down-line"
+          className="w-4 h-4 text-[#ADACAA]"
+        />
+      </PopoverTrigger>
+      <PopoverContent
+        align="start"
+        className="w-[414px] flex gap-x-1 items-center py-3 px-3 bg-white-pure rounded-lg shadow-md focus-visible:outline-none"
+      >
         <SourceList data={MockSources} onSelect={handleSourceSelect} />
-      </ModalContent>
-    </Modal>
+      </PopoverContent>
+    </Popover>
   )
 }
