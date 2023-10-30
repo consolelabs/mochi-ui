@@ -1,0 +1,9 @@
+import { mochi } from 'tailwind-config/plugin'
+
+module.exports = {
+  content: [
+    '../components/*/src/**/*.{js,jsx,ts,tsx}',
+    '../components/*/stories/**/*.{js,jsx,ts,tsx}',
+  ],
+  plugins: [mochi()],
+}
