@@ -3,11 +3,11 @@ import * as ModalPrimitive from "@radix-ui/react-dialog"
 import clsx from "clsx"
 import { IconClose } from "../icons"
 
-const Modal = ModalPrimitive.Root // exported
+const Modal = ModalPrimitive.Root
 
-const ModalTrigger = ModalPrimitive.Trigger // exported
+const ModalTrigger = ModalPrimitive.Trigger
 
-const ModalPortal = ModalPrimitive.Portal // exported - un
+const ModalPortal = ModalPrimitive.Portal
 
 const ModalClose = ModalPrimitive.Close
 
@@ -51,34 +51,6 @@ const ModalContent = React.forwardRef<
 ))
 ModalContent.displayName = ModalPrimitive.Content.displayName
 
-function ModalHeader({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
-  return <div
-    className={clsx(
-      "flex flex-col space-y-1.5 text-center sm:text-left",
-      className
-    )}
-    {...props}
-  />
-}
-ModalHeader.displayName = "ModalHeader"
-
-function ModalFooter({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
-  return <div
-    className={clsx(
-      "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
-      className
-    )}
-    {...props}
-  />
-}
-ModalFooter.displayName = "ModalFooter"
-
 const ModalTitle = React.forwardRef<
   React.ElementRef<typeof ModalPrimitive.Title>,
   React.ComponentPropsWithoutRef<typeof ModalPrimitive.Title>
@@ -113,8 +85,6 @@ export {
   ModalClose,
   ModalTrigger,
   ModalContent,
-  ModalHeader,
-  ModalFooter,
   ModalTitle,
   ModalDescription,
 }

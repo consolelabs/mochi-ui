@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Modal, ModalContent, ModalDescription, ModalTitle, ModalTrigger } from "./modal";
 import { IconCheckCircled } from "../icons";
+import { Modal, ModalContent, ModalDescription, ModalTitle, ModalTrigger } from "./modal";
 
 const meta: Meta<typeof Modal> = {
     title: 'ui/Modal',
