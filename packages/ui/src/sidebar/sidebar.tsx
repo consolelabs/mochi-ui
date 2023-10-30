@@ -64,24 +64,26 @@ export default function Sidebar({
           <SidebarItemList {...{ expanded, isSelected }} items={footerItems} />
           {Boolean(expanded) && (
             <div className="flex px-4 border-t border-neutral-200">
-              <div className="text-xs text-neutral-600 tracking-tight p-2">
+              <div className="p-2 text-xs tracking-tight text-neutral-600">
                 Version 1.0.0
               </div>
             </div>
           )}
         </div>
       </div>
-      <button
-        className="absolute top-4 -right-5 bg-white border border-neutral-200 rounded-r-lg w-5 h-11 justify-center items-center hidden group-hover:flex"
-        onClick={() => setExpanded(!expanded)}
-        type="button"
-      >
-        <IconSidebarArrow
-          className={clsx('text-neutral-800', { 'rotate-180': expanded })}
-          height={25}
-          width={13}
-        />
-      </button>
+      <div className="absolute top-0 hidden w-10 h-full -right-10 group-hover:block">
+        <button
+          className="items-center justify-center w-5 mt-4 bg-white border rounded-r-lg border-neutral-200 h-11"
+          onClick={() => setExpanded(!expanded)}
+          type="button"
+        >
+          <IconSidebarArrow
+            className={clsx('text-neutral-800', { 'rotate-180': expanded })}
+            height={25}
+            width={13}
+          />
+        </button>
+      </div>
     </div>
   )
 }
