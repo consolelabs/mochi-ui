@@ -35,13 +35,24 @@ export default function SidebarItem({
   className,
   selected,
 }: SidebarItemProps) {
-  const { className: customClassName, disabled, badge, title, Icon, href, as, type, children = [], ...props } = item
+  const {
+    className: customClassName,
+    disabled,
+    badge,
+    title,
+    Icon,
+    href,
+    as = 'a',
+    type,
+    children = [],
+    ...props
+  } = item
 
   const renderTitle = (
     <>
       {Icon !== undefined && (
         <Icon
-          className={clsx('min-w-max', {
+          className={clsx('min-w-[22px]', {
             'text-blue-500': selected,
             'text-neutral-800': !selected && !disabled,
             'text-neutral-600': disabled
@@ -51,7 +62,7 @@ export default function SidebarItem({
         />
       )}
       {expanded ? (
-        <div className="flex gap-2 items-center">
+        <div className="flex items-center gap-2">
           <span className={clsx(
             "text-left text-sm font-medium tracking-tight line-clamp-1", {
               "text-neutral-600": disabled,
@@ -118,24 +129,16 @@ export default function SidebarItem({
 
   if (type === 'link' && href) {
     const isAbsolute = href.startsWith('http')
-    if (as) {
-      return createElement(
-        as,
-        {
-          className: classNameProp,
-          href,
-          ...(isAbsolute ? { target: '_blank', rel: 'noopener' } : {}),
-          ...props,
-          disabled,
-        } as Attributes,
-        [renderTitle],
-      )
-    }
-
-    return (
-      <a className={classNameProp} {...props} href={href}>
-        {renderTitle}
-      </a>
+    return createElement(
+      as,
+      {
+        className: classNameProp,
+        href,
+        ...(isAbsolute ? { target: '_blank', rel: 'noopener' } : {}),
+        ...props,
+        disabled,
+      } as Attributes,
+      [renderTitle],
     )
   }
 
