@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Icon } from '@iconify/react'
-import { Modal, ModalTrigger, ModalContent } from '@consolelabs/ui-components'
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from '@consolelabs/ui-components'
 import { PlatformList } from './PlatformList'
 import { Platform } from './type'
 import PlatformIcon from './PlatformIcon'
@@ -58,10 +62,8 @@ export const PlatformPicker: React.FC<Props> = ({ onSelect }) => {
   }
 
   return (
-    <Modal open={isOpenSelector} onOpenChange={setIsOpenSelector}>
-      <ModalTrigger
-        className="flex gap-x-2 items-center px-2 py-1.5 rounded-lg bg-white-pure"
-      >
+    <Popover open={isOpenSelector} onOpenChange={setIsOpenSelector}>
+      <PopoverTrigger className="flex gap-x-2 items-center px-2 py-1.5 rounded-lg bg-white-pure">
         <PlatformIcon
           platform={selectedPlatform.platform}
           className="flex-shrink-0 w-[22px] h-[22px]"
@@ -71,10 +73,14 @@ export const PlatformPicker: React.FC<Props> = ({ onSelect }) => {
           icon="majesticons:chevron-down-line"
           className="w-4 h-4 text-[#ADACAA]"
         />
-      </ModalTrigger>
-      <ModalContent className="flex gap-x-1 items-center py-3 px-3 bg-white-pure rounded-lg shadow-md">
+      </PopoverTrigger>
+      <PopoverContent
+        align="start"
+        alignOffset={-8}
+        className="flex gap-x-1 items-center py-3 px-3 bg-white-pure rounded-lg shadow-md"
+      >
         <PlatformList data={Platforms} onSelect={handlePlatformSelect} />
-      </ModalContent>
-    </Modal>
+      </PopoverContent>
+    </Popover>
   )
 }

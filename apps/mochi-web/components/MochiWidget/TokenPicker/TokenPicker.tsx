@@ -6,7 +6,13 @@ import { TokenAssets, MonikerAssets } from './data'
 import { MonikerList } from './MonikerList'
 import { sectionFormatter } from './utils'
 import { Tab } from '@headlessui/react'
-import { InputField, Heading, Modal, ModalTrigger, ModalContent } from '@consolelabs/ui-components'
+import {
+  InputField,
+  Heading,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from '@consolelabs/ui-components'
 
 const TokenTabs = [
   {
@@ -80,7 +86,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({ onSelect }) => {
   // TODO: Init selected asset. Maybe remove after data binding
   useEffect(() => {
     onSelect?.(TokenAssets[0])
-  },[])
+  }, [])
 
   function handleTokenSelect(asset: TokenAsset) {
     setSelectedAsset(asset)
@@ -94,9 +100,9 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({ onSelect }) => {
     onSelect?.(asset)
   }
 
-  function onModalClosed() {
+  function onOpenChange(isOpen: boolean) {
     // Reset on close
-    setIsOpenSelector(false)
+    setIsOpenSelector(isOpen)
     setSearchTerm('')
   }
 
@@ -105,8 +111,8 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({ onSelect }) => {
   }
 
   return (
-    <Modal open={isOpenSelector} onOpenChange={setIsOpenSelector}>
-      <ModalTrigger asChild>
+    <Popover open={isOpenSelector} onOpenChange={onOpenChange}>
+      <PopoverTrigger>
         <TokenButton
           isToken={isTokenSelected}
           name={
@@ -114,10 +120,16 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({ onSelect }) => {
               ? selectedAsset.token.name
               : selectedAsset.moniker.name
           }
-          icon={isTokenSelected ? selectedAsset.icon : selectedAsset.moniker.icon}
+          icon={
+            isTokenSelected ? selectedAsset.icon : selectedAsset.moniker.icon
+          }
         />
-      </ModalTrigger>
-      <ModalContent className="flex flex-col gap-y-2 items-center w-[412px] h-fit bg-white-pure rounded-lg shadow-md">
+      </PopoverTrigger>
+      <PopoverContent
+        align="start"
+        alignOffset={-8}
+        className="flex flex-col gap-y-2 items-center w-[414px] h-fit bg-white-pure rounded-lg shadow-md"
+      >
         <InputField
           className="w-full"
           placeholder="Search"
@@ -162,7 +174,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({ onSelect }) => {
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
-      </ModalContent>
-    </Modal>
+      </PopoverContent>
+    </Popover>
   )
 }

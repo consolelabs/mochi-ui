@@ -11,6 +11,7 @@ export const SourceList = (props: Props) => {
   const { data, onSelect } = props
   return (
     <List
+      rootClassName="w-full"
       data={data}
       renderItem={(item) => <SourceItem item={item} onSelect={onSelect} />}
     />
