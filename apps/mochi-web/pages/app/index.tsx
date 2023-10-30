@@ -7,13 +7,13 @@ import { API } from '~constants/api'
 import { useProfileStore } from '~store'
 import { boringAvatar } from '~utils/string'
 import clsx from 'clsx'
-import Modal from '~cpn/Modal'
 import NewAppForm from '~cpn/new-app-form'
 import Button from '~cpn/base/button/button'
 import CopyButton from '~cpn/CopyButton'
-import { useDisclosure } from '@dwarvesf/react-hooks'
 import { NextPageWithLayout } from '~pages/_app'
 import { ReactElement } from 'react-markdown/lib/react-markdown'
+import { useState } from 'react'
+import { Modal, ModalContent, ModalTrigger } from '@consolelabs/ui-components'
 
 const Pattern = (props: any) => {
   return (
@@ -129,7 +129,7 @@ const Box = ({
 }
 
 const App: NextPageWithLayout = () => {
-  const { isOpen, onClose, onOpen } = useDisclosure()
+  const [ isOpen, setIsOpen ] = useState(false)
   const { id } = useProfileStore(
     (s) => ({
       id: s.me?.id,
@@ -149,6 +149,7 @@ const App: NextPageWithLayout = () => {
   )
 
   return (
+    <Modal open={isOpen} onOpenChange={setIsOpen}>
     <div className="flex justify-center items-center h-full">
       <div className="flex flex-col gap-y-12">
         <div className="flex flex-col gap-y-3">
@@ -189,14 +190,15 @@ const App: NextPageWithLayout = () => {
             title="Build an app"
             className="relative bg-[#faf9f7]"
             cta={
-              <Button
-                type="button"
-                onClick={onOpen}
-                appearance="secondary"
-                size="sm"
-              >
-                Create an app
-              </Button>
+              <ModalTrigger asChild>
+                <Button
+                  type="button"
+                  appearance="secondary"
+                  size="sm"
+                >
+                  Create an app
+                </Button>
+              </ModalTrigger>
             }
           >
             <Pattern className="absolute top-0 left-0 w-full" />
@@ -225,11 +227,12 @@ const App: NextPageWithLayout = () => {
             </span>
           </Box>
         </div>
-        <Modal isOpen={isOpen} onClose={onClose}>
-          <NewAppForm onClose={onClose} onCreated={() => refresh()} />
-        </Modal>
+        <ModalContent className="!p-0">
+          <NewAppForm onClose={() => setIsOpen(false)} onCreated={() => refresh()} />
+        </ModalContent>
       </div>
     </div>
+    </Modal>
   )
 }
 

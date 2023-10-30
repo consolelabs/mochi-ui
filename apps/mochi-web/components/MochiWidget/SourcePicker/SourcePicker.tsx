@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Icon } from '@iconify/react'
-import Modal from '~components/Modal'
 import { SourceList } from './SourceList'
 import { SourceType } from './type'
 import { formatNumber } from '~utils/number'
+import { Modal, ModalContent, ModalTrigger } from '@consolelabs/ui-components'
 
 const MockSources: SourceType[] = [
   {
@@ -38,10 +38,9 @@ export const SourcePicker = () => {
   }
 
   return (
-    <>
-      <div
-        className="flex gap-x-3 items-center py-3 px-2 bg-blue-50 rounded-lg"
-        onClick={() => setIsOpenSelector(true)}
+    <Modal open={isOpenSelector} onOpenChange={setIsOpenSelector}>
+      <ModalTrigger
+        className="flex gap-x-3 items-center py-3 px-2 bg-blue-50 rounded-lg text-left"
       >
         <img
           className="flex-shrink-0 w-6 h-6"
@@ -60,12 +59,10 @@ export const SourcePicker = () => {
           ${formatNumber(selectedSource.total_amount)}
         </span>
         <Icon icon="majesticons:chevron-down-line" className="w-4 h-4 text-[#ADACAA]" />
-      </div>
-      <Modal isOpen={isOpenSelector} onClose={() => setIsOpenSelector(false)}>
-        <div className="flex gap-x-1 items-center py-3 px-3 bg-white-pure rounded-lg shadow-md">
-          <SourceList data={MockSources} onSelect={handleSourceSelect} />
-        </div>
-      </Modal>
-    </>
+      </ModalTrigger>
+      <ModalContent className="flex gap-x-1 items-center py-3 px-3 bg-white-pure rounded-lg shadow-md">
+        <SourceList data={MockSources} onSelect={handleSourceSelect} />
+      </ModalContent>
+    </Modal>
   )
 }

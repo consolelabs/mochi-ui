@@ -7,7 +7,7 @@ import '@fontsource/inter/900.css'
 import '@fontsource/poppins/500.css'
 import '~styles/global.css'
 import dynamic from 'next/dynamic'
-import { StrictMode, useEffect } from 'react'
+import { StrictMode, useEffect, useState } from 'react'
 import type { ReactNode, ReactElement } from 'react'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
@@ -20,12 +20,11 @@ import { Toaster } from 'sonner'
 import { useRouter } from 'next/router'
 import { useAuthStore } from '~store'
 import { shallow } from 'zustand/shallow'
-import Modal from '~components/Modal'
-import { useDisclosure } from '@dwarvesf/react-hooks'
 import { isBeta } from '~constants'
 import Button from '~cpn/base/button'
 import Script from 'next/script'
 import { Header } from '~cpn/header'
+import { Modal, ModalContent, ModalTrigger } from '@consolelabs/ui-components'
 
 const TopProgressBar = dynamic(() => import('~app/layout/nprogress'), {
   ssr: false,
@@ -94,23 +93,21 @@ function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
 }
 
 export default function App(props: AppPropsWithLayout) {
-  const {
-    isOpen,
-    onClose: _onClose,
-    onOpen,
-  } = useDisclosure({ defaultIsOpen: false })
+  const [ isOpen, setIsOpen ] = useState(false)
 
-  const onClose = () => {
-    localStorage.setItem('beta-consented', 'true')
-    _onClose()
+  const hanldeOpenChange = (isOpen: boolean) => {
+    setIsOpen(isOpen)
+    if (!isOpen) {
+      localStorage.setItem('beta-consented', 'true')
+    }
   }
 
   useEffect(() => {
     const consented = localStorage.getItem('beta-consented')
     if (!consented && isBeta) {
-      onOpen()
+      setIsOpen(true)
     }
-  }, [onOpen])
+  }, [])
 
   return (
     <StrictMode>
@@ -129,8 +126,8 @@ export default function App(props: AppPropsWithLayout) {
       <WalletProvider>
         <InnerApp {...props} />
       </WalletProvider>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <div className="relative z-50 flex flex-col items-center max-w-sm px-5 py-4 bg-white rounded-xl">
+      <Modal open={isOpen} onOpenChange={hanldeOpenChange}>
+        <ModalContent className="relative z-50 flex flex-col items-center max-w-sm bg-white">
           <span className="text-lg font-semibold">Warning</span>
           <span className="mt-2 font-light text-center text-dashboard-gray-8">
             You&apos;re visiting the <span className="font-semibold">beta</span>{' '}
@@ -139,16 +136,17 @@ export default function App(props: AppPropsWithLayout) {
             beta site, proceed with caution.
           </span>
           <div className="flex self-stretch mt-5 gap-x-2">
-            <Button
-              type="button"
-              appearance="secondary"
-              className="flex-1"
-              onClick={onClose}
-            >
-              I understand the risk
-            </Button>
+            <ModalTrigger asChild>
+              <Button
+                type="button"
+                appearance="secondary"
+                className="flex-1"
+              >
+                I understand the risk
+              </Button>
+            </ModalTrigger>
           </div>
-        </div>
+        </ModalContent>
       </Modal>
     </StrictMode>
   )
