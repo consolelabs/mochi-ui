@@ -1,13 +1,12 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Icon } from '@iconify/react'
-import Modal from '~components/Modal'
 import { TokenList } from './TokenList'
 import { MonikerAsset, SectionBase, TokenAsset } from './type'
 import { TokenAssets, MonikerAssets } from './data'
-import { InputField, Heading } from '@consolelabs/ui-components'
 import { MonikerList } from './MonikerList'
 import { sectionFormatter } from './utils'
 import { Tab } from '@headlessui/react'
+import { InputField, Heading, Modal, ModalTrigger, ModalContent } from '@consolelabs/ui-components'
 
 const TokenTabs = [
   {
@@ -106,65 +105,64 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({ onSelect }) => {
   }
 
   return (
-    <>
-      <TokenButton
-        isToken={isTokenSelected}
-        name={
-          isTokenSelected
-            ? selectedAsset.token.name
-            : selectedAsset.moniker.name
-        }
-        icon={isTokenSelected ? selectedAsset.icon : selectedAsset.moniker.icon}
-        onClick={() => setIsOpenSelector(true)}
-      />
-      <Modal isOpen={isOpenSelector} onClose={onModalClosed}>
-        <div className="flex flex-col gap-y-1 items-center w-[412px] h-fit py-3 px-3 bg-white-pure rounded-lg shadow-md">
-          <InputField
-            className="w-full"
-            placeholder="Search"
-            startAdornment={
-              <div className="pl-2">
-                <Icon icon="ion:search" className="w-5 h-5 text-gray-500" />
-              </div>
-            }
-            onChange={onSearchChange}
-          />
-          <Tab.Group>
-            <Tab.List className="flex w-full gap-6">
-              {TokenTabs.map((tab) => (
-                <Tab key={tab.key} className="focus-visible:outline-none">
-                  {({ selected }) => (
-                    <div className="flex justify-start w-full py-2">
-                      <Heading
-                        as="h2"
-                        className={`text-sm ${
-                          selected ? 'text-[#343433]' : 'text-[#848281]'
-                        }`}
-                      >
-                        {tab.value}
-                      </Heading>
-                    </div>
-                  )}
-                </Tab>
-              ))}
-            </Tab.List>
-            <Tab.Panels className="w-full">
-              <Tab.Panel className="flex flex-col gap-1 h-[400px]">
-                <TokenList data={filteredTokens} onSelect={handleTokenSelect} />
-                <span className="text-xs text-[#ADACAA]">
-                  Only supported tokens are shown
-                </span>
-              </Tab.Panel>
-              <Tab.Panel className="h-[400px]">
-                <MonikerList
-                  data={filteredMonikers}
-                  onSelect={handleMonikerSelect}
-                />
-              </Tab.Panel>
-            </Tab.Panels>
-          </Tab.Group>
-        </div>
-      </Modal>
-    </>
+    <Modal open={isOpenSelector} onOpenChange={setIsOpenSelector}>
+      <ModalTrigger asChild>
+        <TokenButton
+          isToken={isTokenSelected}
+          name={
+            isTokenSelected
+              ? selectedAsset.token.name
+              : selectedAsset.moniker.name
+          }
+          icon={isTokenSelected ? selectedAsset.icon : selectedAsset.moniker.icon}
+        />
+      </ModalTrigger>
+      <ModalContent className="flex flex-col gap-y-2 items-center w-[412px] h-fit bg-white-pure rounded-lg shadow-md">
+        <InputField
+          className="w-full"
+          placeholder="Search"
+          startAdornment={
+            <div className="pl-2">
+              <Icon icon="ion:search" className="w-5 h-5 text-gray-500" />
+            </div>
+          }
+          onChange={onSearchChange}
+        />
+        <Tab.Group>
+          <Tab.List className="flex w-full gap-6">
+            {TokenTabs.map((tab) => (
+              <Tab key={tab.key} className="focus-visible:outline-none">
+                {({ selected }) => (
+                  <div className="flex justify-start w-full py-2">
+                    <Heading
+                      as="h2"
+                      className={`text-sm ${
+                        selected ? 'text-[#343433]' : 'text-[#848281]'
+                      }`}
+                    >
+                      {tab.value}
+                    </Heading>
+                  </div>
+                )}
+              </Tab>
+            ))}
+          </Tab.List>
+          <Tab.Panels className="w-full">
+            <Tab.Panel className="flex flex-col gap-2 h-[400px]">
+              <TokenList data={filteredTokens} onSelect={handleTokenSelect} />
+              <span className="text-xs text-[#ADACAA]">
+                Only supported tokens are shown
+              </span>
+            </Tab.Panel>
+            <Tab.Panel className="h-[400px]">
+              <MonikerList
+                data={filteredMonikers}
+                onSelect={handleMonikerSelect}
+              />
+            </Tab.Panel>
+          </Tab.Panels>
+        </Tab.Group>
+      </ModalContent>
+    </Modal>
   )
 }

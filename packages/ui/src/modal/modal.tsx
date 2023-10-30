@@ -17,7 +17,7 @@ const ModalOverlay = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <ModalPrimitive.Overlay
     className={clsx(
-      "fixed inset-0 z-50 bg-black/40 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      "fixed inset-0 z-50 bg-black/40",
       className
     )}
     ref={ref}
@@ -28,7 +28,7 @@ ModalOverlay.displayName = ModalPrimitive.Overlay.displayName
 
 const ModalContent = React.forwardRef<
   React.ElementRef<typeof ModalPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof ModalPrimitive.Content> & { showCloseBtn: boolean }
+  React.ComponentPropsWithoutRef<typeof ModalPrimitive.Content> & { showCloseBtn?: boolean }
 >(({ className, children, showCloseBtn, ...props }, ref) => (
   <ModalPortal>
     <ModalOverlay />

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Icon } from '@iconify/react'
-import Modal from '~components/Modal'
+import { Modal, ModalTrigger, ModalContent } from '@consolelabs/ui-components'
 import { PlatformList } from './PlatformList'
 import { Platform } from './type'
 import PlatformIcon from './PlatformIcon'
@@ -58,10 +58,9 @@ export const PlatformPicker: React.FC<Props> = ({ onSelect }) => {
   }
 
   return (
-    <>
-      <button
+    <Modal open={isOpenSelector} onOpenChange={setIsOpenSelector}>
+      <ModalTrigger
         className="flex gap-x-2 items-center px-2 py-1.5 rounded-lg bg-white-pure"
-        onClick={() => setIsOpenSelector(true)}
       >
         <PlatformIcon
           platform={selectedPlatform.platform}
@@ -72,12 +71,10 @@ export const PlatformPicker: React.FC<Props> = ({ onSelect }) => {
           icon="majesticons:chevron-down-line"
           className="w-4 h-4 text-[#ADACAA]"
         />
-      </button>
-      <Modal isOpen={isOpenSelector} onClose={() => setIsOpenSelector(false)}>
-        <div className="flex gap-x-1 items-center py-3 px-3 bg-white-pure rounded-lg shadow-md">
-          <PlatformList data={Platforms} onSelect={handlePlatformSelect} />
-        </div>
-      </Modal>
-    </>
+      </ModalTrigger>
+      <ModalContent className="flex gap-x-1 items-center py-3 px-3 bg-white-pure rounded-lg shadow-md">
+        <PlatformList data={Platforms} onSelect={handlePlatformSelect} />
+      </ModalContent>
+    </Modal>
   )
 }
