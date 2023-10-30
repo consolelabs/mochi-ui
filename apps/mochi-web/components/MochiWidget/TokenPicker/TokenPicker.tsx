@@ -38,14 +38,14 @@ interface TokenButtonProps {
 
 const TokenButton = (props: TokenButtonProps) => (
   <button
-    className="flex gap-x-2 items-center px-2 py-1.5 rounded-lg bg-white-pure"
+    className="flex gap-x-2 items-center py-1.5 px-2 rounded-lg bg-white-pure"
     onClick={props.onClick}
   >
     {props.isToken ? (
       <span className="text-base" role="img">
         <img
           alt={`${props.name} icon`}
-          className="w-[22px] h-[22px] rounded-full object-contain"
+          className="object-contain rounded-full w-[22px] h-[22px]"
           src={props.icon}
         />
       </span>
@@ -128,7 +128,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({ onSelect }) => {
       <PopoverContent
         align="start"
         alignOffset={-8}
-        className="flex flex-col gap-y-2 items-center w-[414px] h-fit bg-white-pure rounded-lg shadow-md"
+        className="flex flex-col gap-y-2 items-center rounded-lg shadow-md w-[414px] h-fit bg-white-pure"
       >
         <InputField
           className="w-full"
@@ -141,11 +141,11 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({ onSelect }) => {
           onChange={onSearchChange}
         />
         <Tab.Group>
-          <Tab.List className="flex w-full gap-6">
+          <Tab.List className="flex gap-6 w-full">
             {TokenTabs.map((tab) => (
               <Tab key={tab.key} className="focus-visible:outline-none">
                 {({ selected }) => (
-                  <div className="flex justify-start w-full py-2">
+                  <div className="flex justify-start py-2 w-full">
                     <Heading
                       as="h2"
                       className={`text-sm ${

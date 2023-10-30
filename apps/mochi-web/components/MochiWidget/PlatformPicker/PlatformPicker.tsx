@@ -63,7 +63,7 @@ export const PlatformPicker: React.FC<Props> = ({ onSelect }) => {
 
   return (
     <Popover open={isOpenSelector} onOpenChange={setIsOpenSelector}>
-      <PopoverTrigger className="flex gap-x-2 items-center px-2 py-1.5 rounded-lg bg-white-pure">
+      <PopoverTrigger className="flex gap-x-2 items-center py-1.5 px-2 rounded-lg bg-white-pure">
         <PlatformIcon
           platform={selectedPlatform.platform}
           className="flex-shrink-0 w-[22px] h-[22px]"
@@ -77,7 +77,7 @@ export const PlatformPicker: React.FC<Props> = ({ onSelect }) => {
       <PopoverContent
         align="start"
         alignOffset={-8}
-        className="flex gap-x-1 items-center py-3 px-3 bg-white-pure rounded-lg shadow-md"
+        className="flex gap-x-1 items-center py-3 px-3 rounded-lg shadow-md bg-white-pure"
       >
         <PlatformList data={Platforms} onSelect={handlePlatformSelect} />
       </PopoverContent>

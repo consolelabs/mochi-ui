@@ -9,7 +9,6 @@ import { Switch } from '~components/Dashboard/Switch'
 import { useForm } from 'react-hook-form'
 import { useHasMounted } from '@dwarvesf/react-hooks'
 import { SEO } from '~app/layout/seo'
-import { INVITE_LINK } from '~envs'
 import { Tabs } from '~components/Dashboard/Tabs'
 import { Transition } from '@headlessui/react'
 import { Table } from '~components/Dashboard/Table'
@@ -394,7 +393,7 @@ export default function Default() {
                           <label className={labelStyles()}>Default</label>
                           <div className="flex flex-col gap-y-4 py-4 max-w-xs rounded-lg bg-white-pure">
                             <a
-                              href={INVITE_LINK}
+                              href="/add"
                               target="_blank"
                               rel="noreferrer"
                               style={{
@@ -426,7 +425,7 @@ export default function Default() {
                                         />
                                       ),
                                       text: 'My Profile',
-                                      onClick: () => {},
+                                      onClick: () => { },
                                     },
                                     {
                                       id: 'server-management',
@@ -437,7 +436,7 @@ export default function Default() {
                                         />
                                       ),
                                       text: 'Server Management',
-                                      onClick: () => {},
+                                      onClick: () => { },
                                     },
                                     {
                                       id: 'settings',
@@ -448,7 +447,7 @@ export default function Default() {
                                         />
                                       ),
                                       text: 'Settings',
-                                      onClick: () => {},
+                                      onClick: () => { },
                                     },
                                   ],
                                 ],
@@ -464,7 +463,7 @@ export default function Default() {
                                         />
                                       ),
                                       text: 'Invite Friends',
-                                      onClick: () => {},
+                                      onClick: () => { },
                                       subItems: [
                                         {
                                           text: 'Lorem',
@@ -483,7 +482,7 @@ export default function Default() {
                                         />
                                       ),
                                       text: 'Feedback',
-                                      onClick: () => {},
+                                      onClick: () => { },
                                     },
                                   ],
                                 ],
@@ -499,7 +498,7 @@ export default function Default() {
                                         />
                                       ),
                                       text: 'Logout',
-                                      onClick: () => {},
+                                      onClick: () => { },
                                     },
                                   ],
                                 ],

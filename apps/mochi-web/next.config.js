@@ -19,8 +19,9 @@ module.exports = {
   async redirects() {
     const redirects = [
       {
+        // link to add discord bot
         source: '/add',
-        destination: process.env.INVITE_LINK,
+        destination: process.env.ADD_DISCORD_BOT_LINK,
         permanent: false,
       },
       {
@@ -30,25 +31,12 @@ module.exports = {
         permanent: false,
       },
       {
-        source: '/open-telegram/:id',
-        destination: 'tg://user?id=:id',
-        permanent: false,
-      },
-      {
+        // support legacy route
         source: '/transfer/:external_id',
         destination: '/tx/:external_id',
         permanent: false,
       },
     ]
-
-    // TODO: remove after done dashboard
-    if (isProduction && !isBeta) {
-      redirects.push({
-        source: '/profile/:slug*',
-        destination: '/',
-        permanent: false,
-      })
-    }
 
     return redirects
   },
