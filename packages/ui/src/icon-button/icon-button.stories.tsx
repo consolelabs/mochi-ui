@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { IconConnectWallets } from '../icons'
+import { IconArrow } from '../icons'
 import IconButton from './icon-button'
 
 const meta: Meta<typeof IconButton> = {
@@ -17,6 +17,18 @@ const meta: Meta<typeof IconButton> = {
         disable: true,
       },
     },
+    variant: {
+      control: 'select',
+      options: ['solid', 'outline', 'link', 'ghost'],
+    },
+    color: {
+      control: 'select',
+      options: ['primary', 'secondary', 'danger', 'info'],
+    },
+    size: {
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
+    },
   },
 }
 
@@ -25,6 +37,6 @@ type Story = StoryObj<typeof IconButton>
 
 export const Default: Story = {
   args: {
-    children: <IconConnectWallets height={20} width={20} />,
+    children: <IconArrow height={20} width={20} />,
   },
 }

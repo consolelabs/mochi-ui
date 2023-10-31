@@ -14,17 +14,15 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: [
-        'primary',
-        'secondary-1',
-        'secondary-2',
-        'secondary-3',
-        'danger',
-      ],
+      options: ['solid', 'outline', 'link', 'ghost'],
+    },
+    color: {
+      control: 'select',
+      options: ['primary', 'secondary', 'danger', 'info'],
     },
     size: {
       control: 'select',
-      options: ['small', 'medium', 'large'],
+      options: ['sm', 'md', 'lg'],
     },
   },
 }
