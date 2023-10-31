@@ -82,7 +82,7 @@ function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
         .catch(handleCancelRendering)
         .finally(hideIsLogging)
     }
-  }, [asPath, disconnect, removeToken, replace])
+  }, [asPath, disconnect, hideIsLogging, removeToken, replace])
 
   return (
     <>
@@ -93,7 +93,7 @@ function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
 }
 
 export default function App(props: AppPropsWithLayout) {
-  const [ isOpen, setIsOpen ] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
   const hanldeOpenChange = (isOpen: boolean) => {
     setIsOpen(isOpen)
@@ -127,7 +127,7 @@ export default function App(props: AppPropsWithLayout) {
         <InnerApp {...props} />
       </WalletProvider>
       <Modal open={isOpen} onOpenChange={hanldeOpenChange}>
-        <ModalContent className="relative z-50 flex flex-col items-center max-w-sm bg-white">
+        <ModalContent className="flex relative z-50 flex-col items-center max-w-sm bg-white">
           <span className="text-lg font-semibold">Warning</span>
           <span className="mt-2 font-light text-center text-dashboard-gray-8">
             You&apos;re visiting the <span className="font-semibold">beta</span>{' '}
@@ -135,13 +135,9 @@ export default function App(props: AppPropsWithLayout) {
             Mochi team won&apos;t be responsible for any loss of your assets on
             beta site, proceed with caution.
           </span>
-          <div className="flex self-stretch mt-5 gap-x-2">
+          <div className="flex gap-x-2 self-stretch mt-5">
             <ModalTrigger asChild>
-              <Button
-                type="button"
-                appearance="secondary"
-                className="flex-1"
-              >
+              <Button type="button" appearance="secondary" className="flex-1">
                 I understand the risk
               </Button>
             </ModalTrigger>

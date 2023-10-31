@@ -1,4 +1,5 @@
-import { INVITE_LINK, TELEGRAM_LINK } from '~envs'
+import Link from 'next/link'
+import { TELEGRAM_LINK } from '~envs'
 
 export default function SetupIsSimple() {
   return (
@@ -12,9 +13,9 @@ export default function SetupIsSimple() {
             Make sending and receiving money with friends fun and easy. Turn
             financial transactions into personal connections.
           </div>
-          <a
+          <Link
             target="blank"
-            href={INVITE_LINK}
+            href="/add"
             className="inline-flex overflow-hidden items-center px-5 mr-2 text-xs font-semibold text-white rounded-full sm:text-sm bg-discord py-[10px]"
           >
             <svg
@@ -30,7 +31,7 @@ export default function SetupIsSimple() {
               />
             </svg>
             Add Discord
-          </a>
+          </Link>
           <a
             target="blank"
             href={TELEGRAM_LINK}

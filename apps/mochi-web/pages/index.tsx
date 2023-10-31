@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react'
 import { Layout } from '~app/layout'
 import { SEO } from '~app/layout/seo'
-import { INVITE_LINK, TELEGRAM_LINK } from '~envs'
+import { TELEGRAM_LINK } from '~envs'
 import { home } from '~utils/image'
 import { IntegratedChains } from '~components/IntegratedChains'
 import Typed from 'typed.js'
@@ -9,6 +9,7 @@ import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Feed from '~components/Feed'
 import Stats from '~components/stats'
+import Link from 'next/link'
 
 export default function Index() {
   const currency = useRef<HTMLSpanElement>(null)
@@ -72,15 +73,15 @@ export default function Index() {
             </span>
 
             <div className="flex flex-col gap-3 items-start pt-3 md:flex-row">
-              <a
-                href={INVITE_LINK}
+              <Link
+                href="/add"
                 className="flex gap-x-2 items-center py-2 px-5 whitespace-nowrap rounded-md bg-discord"
               >
                 <Icon icon="carbon:logo-discord" color="#fff" />
                 <span className="text-sm font-medium text-white md:text-base">
                   Add Discord
                 </span>
-              </a>
+              </Link>
               <a
                 href={TELEGRAM_LINK}
                 className="flex gap-x-2 items-center py-2 px-5 whitespace-nowrap rounded-md bg-telegram"
