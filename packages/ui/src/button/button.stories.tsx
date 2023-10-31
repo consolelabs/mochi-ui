@@ -38,112 +38,48 @@ export const Default: Story = {
   },
 }
 
-export function Primary() {
-  const sizes = ['small', 'medium', 'large'] as const
+export function Sizes() {
+  const sizes = ['sm', 'md', 'lg'] as const
 
   return (
-    <div className="space-y-4">
+    <div className="flex items-center space-x-4">
       {sizes.map((size) => (
-        <div className="flex space-x-2" key={size}>
-          <Button size={size}>Connect Wallet</Button>
-          <Button size={size}>
-            Connect Wallet <IconConnectWallets height={16} width={16} />
-          </Button>
-          <Button size={size}>
-            <IconConnectWallets height={16} width={16} /> Connect Wallet
-          </Button>
-        </div>
+        <Button key={size} size={size}>
+          Connect Wallet
+        </Button>
       ))}
     </div>
   )
 }
 
-export function Secondary1() {
-  const sizes = ['small', 'medium', 'large'] as const
-  const variant = 'secondary-1'
-
+export function WithIcons() {
   return (
-    <div className="space-y-4">
-      {sizes.map((size) => (
-        <div className="flex space-x-2" key={size}>
-          <Button size={size} variant={variant}>
-            Connect Wallet
-          </Button>
-          <Button size={size} variant={variant}>
-            Connect Wallet <IconConnectWallets height={16} width={16} />
-          </Button>
-          <Button size={size} variant={variant}>
-            <IconConnectWallets height={16} width={16} /> Connect Wallet
-          </Button>
-        </div>
-      ))}
+    <div className="flex items-center space-x-4">
+      <Button>Connect Wallet</Button>
+      <Button>
+        Connect Wallet <IconConnectWallets height={16} width={16} />
+      </Button>
+      <Button>
+        <IconConnectWallets height={16} width={16} /> Connect Wallet
+      </Button>
     </div>
   )
 }
 
-export function Secondary2() {
-  const sizes = ['small', 'medium', 'large'] as const
-  const variant = 'secondary-2'
+export function VariantsAndColors() {
+  const variants = ['solid', 'outline', 'link', 'ghost'] as const
+  const colors = ['primary', 'secondary', 'danger', 'info'] as const
 
   return (
     <div className="space-y-4">
-      {sizes.map((size) => (
-        <div className="flex space-x-2" key={size}>
-          <Button size={size} variant={variant}>
-            Connect Wallet
-          </Button>
-          <Button size={size} variant={variant}>
-            Connect Wallet <IconConnectWallets height={16} width={16} />
-          </Button>
-          <Button size={size} variant={variant}>
-            <IconConnectWallets height={16} width={16} /> Connect Wallet
-          </Button>
-        </div>
-      ))}
-    </div>
-  )
-}
-
-export function Secondary3() {
-  const sizes = ['small', 'medium', 'large'] as const
-  const variant = 'secondary-3'
-
-  return (
-    <div className="space-y-4">
-      {sizes.map((size) => (
-        <div className="flex space-x-2" key={size}>
-          <Button size={size} variant={variant}>
-            Connect Wallet
-          </Button>
-          <Button size={size} variant={variant}>
-            Connect Wallet <IconConnectWallets height={16} width={16} />
-          </Button>
-          <Button size={size} variant={variant}>
-            <IconConnectWallets height={16} width={16} /> Connect Wallet
-          </Button>
-        </div>
-      ))}
-    </div>
-  )
-}
-
-export function Danger() {
-  const sizes = ['small', 'medium', 'large'] as const
-  const variant = 'danger'
-
-  return (
-    <div className="space-y-4">
-      {sizes.map((size) => (
-        <div className="flex space-x-2" key={size}>
-          <Button size={size} variant={variant}>
-            Connect Wallet
-          </Button>
-          <Button size={size} variant={variant}>
-            Connect Wallet <IconConnectWallets height={16} width={16} />
-          </Button>
-          <Button size={size} variant={variant}>
-            <IconConnectWallets height={16} width={16} /> Connect Wallet
-          </Button>
+      {variants.map((variant) => (
+        <div className="flex items-center space-x-4" key={variant}>
+          {colors.map((color) => (
+            <Button color={color} key={color} variant={variant}>
+              {/* Connect Wallet */}
+              {variant} {color}
+            </Button>
+          ))}
         </div>
       ))}
     </div>

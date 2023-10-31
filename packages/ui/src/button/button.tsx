@@ -3,25 +3,108 @@ import { cva } from 'class-variance-authority'
 import type { ButtonHTMLAttributes } from 'react'
 
 const buttonCva = cva(
-  ['flex items-center gap-x-2 rounded font-semibold shadow-button border'],
+  ['flex items-center gap-x-2 rounded font-semibold h-fit'],
   {
     variants: {
       variant: {
-        primary: 'bg-primary-700 text-white border-transparent',
-        'secondary-1': 'bg-neutral-800 text-white border-transparent',
-        'secondary-2': 'bg-neutral-100 text-neutral-800 border-neutral-200',
-        'secondary-3': 'bg-white text-neutral-800 border-neutral-300',
-        danger: 'bg-red-700 text-white border-transparent',
+        solid: 'shadow-button border',
+        outline:
+          'bg-white text-neutral-800 shadow-button border border-neutral-300',
+        link: 'bg-white text-neutral-800',
+        ghost:
+          'bg-white text-neutral-800 border border-transparent hover:shadow-button hover:border-neutral-300',
+      },
+      color: {
+        primary: '',
+        secondary: '',
+        info: '',
+        danger: '',
       },
       size: {
-        small: 'px-4 py-[7px] text-sm',
-        medium: 'px-4 py-2.5 text-sm',
-        large: 'px-6 py-3 text-base',
+        sm: 'text-sm',
+        md: 'text-sm',
+        lg: 'text-base',
+      },
+      disabled: {
+        true: 'opacity-50 cursor-not-allowed',
       },
     },
+    compoundVariants: [
+      {
+        variant: 'link',
+        size: ['sm', 'md', 'lg'],
+        className: 'px-0 py-0',
+      },
+      {
+        variant: ['solid', 'outline', 'ghost'],
+        size: 'sm',
+        className: 'px-4 py-[7px]',
+      },
+      {
+        variant: ['solid', 'outline', 'ghost'],
+        size: 'md',
+        className: 'px-4 py-2.5',
+      },
+      {
+        variant: ['solid', 'outline', 'ghost'],
+        size: 'lg',
+        className: 'px-6 py-3',
+      },
+      {
+        variant: 'solid',
+        color: 'primary',
+        className: 'bg-primary-700 text-white border-transparent',
+      },
+      {
+        variant: 'solid',
+        color: 'secondary',
+        className: 'bg-neutral-800 text-white border-transparent',
+      },
+      {
+        variant: 'solid',
+        color: 'danger',
+        className: 'bg-red-700 text-white border-transparent',
+      },
+      {
+        variant: 'solid',
+        color: 'info',
+        className: 'bg-neutral-100 text-neutral-800 border-neutral-200',
+      },
+      {
+        variant: 'outline',
+        color: 'primary',
+        className: 'text-primary-700 border-primary-700',
+      },
+      {
+        variant: 'outline',
+        color: 'danger',
+        className: 'text-red-700 border-red-700',
+      },
+      {
+        variant: 'link',
+        color: 'primary',
+        className: 'text-primary-700',
+      },
+      {
+        variant: 'link',
+        color: 'danger',
+        className: 'text-red-700',
+      },
+      {
+        variant: 'ghost',
+        color: 'primary',
+        className: 'text-primary-700 hover:border-primary-700',
+      },
+      {
+        variant: 'ghost',
+        color: 'danger',
+        className: 'text-red-700 hover:border-red-700',
+      },
+    ],
     defaultVariants: {
-      variant: 'primary',
-      size: 'medium',
+      variant: 'solid',
+      color: 'primary',
+      size: 'md',
     },
   },
 )
@@ -35,13 +118,16 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> &
 export default function Button({
   children,
   variant,
+  color,
   size,
+  disabled,
   className,
   ...rest
 }: Props) {
   return (
     <button
-      className={buttonCva({ className, variant, size })}
+      className={buttonCva({ className, variant, color, size, disabled })}
+      disabled={disabled}
       type={rest.type || 'button'}
       {...rest}
     >
