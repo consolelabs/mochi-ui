@@ -33,14 +33,10 @@ interface TokenButtonProps {
   isToken?: boolean
   name?: string
   icon?: string
-  onClick?: () => void
 }
 
 const TokenButton = (props: TokenButtonProps) => (
-  <button
-    className="flex gap-x-2 items-center py-1.5 px-2 rounded-lg bg-white-pure"
-    onClick={props.onClick}
-  >
+  <div className="flex gap-x-2 items-center py-1.5 px-2 rounded-lg bg-white-pure">
     {props.isToken ? (
       <span className="text-base" role="img">
         <img
@@ -59,7 +55,7 @@ const TokenButton = (props: TokenButtonProps) => (
       icon="majesticons:chevron-down-line"
       className="w-4 h-4 text-[#ADACAA]"
     />
-  </button>
+  </div>
 )
 
 export const TokenPicker: React.FC<TokenPickerProps> = ({ onSelect }) => {

@@ -43,3 +43,7 @@ export { default as wedding } from '../public/assets/tx/wedding.png'
 export { default as achievement } from '../public/assets/tx/achievement.png'
 
 export { default as home } from '../public/home.png'
+
+export { default as mochiSnowman } from '../public/mochi-snowman.jpg'
+export { default as mochiWelcome } from '../public/mochi-welcome.jpg'
+export { default as mochiQilin } from '../public/mochi-qilin.jpg'
