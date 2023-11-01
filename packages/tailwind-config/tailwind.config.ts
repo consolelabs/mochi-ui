@@ -88,6 +88,12 @@ const config: Config = {
         'input-focused':
           '0px 0px 0px 4px rgba(1, 122, 255, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.05)',
         button: '0px 0px 8px 0px rgba(0, 0, 0, 0.04)',
+        'button-focused-primary':
+          '0px 0px 0px 4px rgba(1, 122, 255, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.05)',
+        'button-focused-gray':
+          '0px 0px 0px 4px #F4F3F2, 0px 1px 2px 0px rgba(0, 0, 0, 0.05)',
+        'button-focused-destructive':
+          '0px 0px 0px 4px rgba(224, 45, 60, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.05)',
       },
       width: {
         18: '4.5rem',
