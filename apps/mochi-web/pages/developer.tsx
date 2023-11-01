@@ -12,7 +12,6 @@ const gray2 = '#E5E5E3'
 export default function Developer() {
   return (
     <Layout>
-      <LoginRequiredModal/>
       <SEO />
       <div className="flex flex-col items-center mx-auto mt-24 max-w-3xl">
         <p className="text-5xl font-medium text-center font-text">

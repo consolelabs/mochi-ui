@@ -3,7 +3,7 @@ import { WalletAddIcon } from "./login"
 import useSWR from "swr"
 import { API } from "~constants/api"
 import { api } from "~constants/mochi"
-import { Fragment, ReactNode, useCallback, useMemo, useState } from "react"
+import { ReactNode, useCallback, useMemo, useState } from "react"
 import { AUTH_TELEGRAM_ID, MOCHI_PROFILE_API } from "~envs"
 import {
     ModalTitle,
@@ -15,13 +15,14 @@ import {
     IconSlack,
     IconFacebook,
     IconMail,
-    LoginWidget,
-    useMochi
+    useMochi,
+    LoginWidget
 } from "@consolelabs/ui-components"
 import { useAuthStore } from "~store"
 import qs from "query-string"
-import clsx from "clsx"
 import { useEffect } from "react"
+import clsx from "clsx"
+import { Fragment } from "react"
 
 interface AuthPanelProps {
     onOpenConnectWalletChange?: (open: boolean) => void
@@ -30,7 +31,7 @@ interface AuthPanelProps {
 export const AuthPanel = (props: AuthPanelProps) => {
     const { onOpenConnectWalletChange } = props
 
-    const { isLoggedIn, login, isLoadingSession } = useAuthStore()
+    const { login } = useAuthStore()
     const { user } = useMochi()
     const [ isOpenWidget, setIsOpenWidget ] = useState(false)
 

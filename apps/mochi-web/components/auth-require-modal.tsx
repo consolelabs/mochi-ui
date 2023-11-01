@@ -7,6 +7,7 @@ import { useAuthStore } from "~store"
 import clsx from "clsx"
 import { useEffect } from "react"
 import { AuthPanel } from "./auth-panel"
+import { useRouter } from "next/router"
 
 export const LoginRequiredModal = () => {
 
