@@ -4,7 +4,7 @@ import { useWidget } from '..'
 import StepOne from './StepOne'
 import StepTwo from './StepTwo'
 import { create } from 'zustand'
-import { Theme } from './data'
+import { Theme } from '../ThemePicker/data'
 
 interface Request {
   message?: string
