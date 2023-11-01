@@ -20,9 +20,9 @@ export const Header = () => {
   return (
     <nav
       className={clsx(
-        'sticky top-0 flex px-3 py-5 md:px-7 flex-shrink-0 justify-between z-20 h-fit sm:h-20 w-screen flex-col sm:flex-row gap-y-4',
+        'sticky top-0 flex px-3 py-5 md:px-7 flex-shrink-0 justify-between z-20 h-fit sm:h-20 w-screen flex-col sm:flex-row gap-y-4 bg-white-pure',
         {
-          'border-b border-b-dashboard-gray-6 bg-dashboard-gray-5':
+          'border-b border-b-dashboard-gray-6':
             isLoggedIn || !authenticatedRoute.includes(pathname),
           'bg-dashboard-gray-1':
             !isLoggedIn && authenticatedRoute.includes(pathname),

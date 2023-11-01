@@ -58,7 +58,7 @@ export default function AuthenticatedLayout({
   if (!mounted) return <>{childSEO}</>
 
   return (
-    <div className="flex flex-col w-screen min-h-screen bg-dashboard-gray-1">
+    <div className="flex flex-col w-screen min-h-screen bg-white-pure">
       <div className="relative z-10 flex flex-1">
         {isLoadingSession ? null : isLoggedIn ? (
           <>
