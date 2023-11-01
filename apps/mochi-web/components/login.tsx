@@ -11,7 +11,7 @@ import { LoginWidget, useMochi } from '@consolelabs/ui-components'
 import { useAuthStore } from '~store'
 import { useRouter } from 'next/router'
 
-const WalletAddIcon = (props: any) => (
+export const WalletAddIcon = (props: any) => (
   <svg
     {...props}
     viewBox="0 0 17 17"
