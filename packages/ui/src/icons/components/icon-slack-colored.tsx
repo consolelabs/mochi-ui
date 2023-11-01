@@ -1,6 +1,6 @@
 import type { SVGProps } from 'react'
 
-function IconSlack(props: SVGProps<SVGSVGElement>) {
+function IconSlackColored(props: SVGProps<SVGSVGElement>) {
   return <svg
     fill="none"
     height="1em"
@@ -27,4 +27,4 @@ function IconSlack(props: SVGProps<SVGSVGElement>) {
     />
   </svg>
 }
-export default IconSlack
+export default IconSlackColored

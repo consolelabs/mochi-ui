@@ -7,13 +7,14 @@ import { ReactNode, useCallback, useMemo, useState } from "react"
 import { AUTH_TELEGRAM_ID, MOCHI_PROFILE_API } from "~envs"
 import {
     ModalTitle,
-    IconDiscord,
-    IconTelegram,
-    IconTwitter,
-    IconGoogle,
+    IconWallet,
+    IconDiscordColored,
+    IconTelegramColored,
+    IconX,
     IconGithub,
-    IconSlack,
-    IconFacebook,
+    IconGmailColored,
+    IconSlackColored,
+    IconFacebookColored,
     IconMail,
     useMochi,
     LoginWidget
@@ -90,35 +91,35 @@ export const AuthPanel = (props: AuthPanelProps) => {
         {
             name: "Discord",
             icon: (
-                <IconDiscord className="text-[#5865F2]"/>
+                <IconDiscordColored className="text-[#5865F2]"/>
             ),
             href: discordAuthUrl
         },
         {
             name: "Telegram",
             icon: (
-                <IconTelegram/>
+                <IconTelegramColored/>
             ),
             onClick: onAuthTelegram
         },
         {
             name: "Twitter",
             icon: (
-                <IconTwitter/>
+                <IconX/>
             ),
             href: twitterAuthUrl
         },
         {
             name: "Google",
             icon: (
-                <IconGoogle/>
+                <IconGmailColored/>
             ),
             href: mailAuthUrl
         },
         {
             name: "Slack",
             icon: (
-                <IconSlack/>
+                <IconSlackColored/>
             ),
         },
         {
@@ -127,7 +128,7 @@ export const AuthPanel = (props: AuthPanelProps) => {
         },
         {
             name: "Facebook",
-            icon: <IconFacebook/>
+            icon: <IconFacebookColored/>
         },
         {
             name: "Mail",
@@ -188,7 +189,7 @@ export const AuthPanel = (props: AuthPanelProps) => {
                     meUrl="https://api-preview.mochi-profile.console.so/api/v1/profiles/me"
                     trigger={
                         <Button className="text-base px-6 py-3 !bg-blue-700 text-white shadow-none">
-                            <WalletAddIcon className="mr-2 w-5 h-5"/>
+                            <IconWallet className="mr-2 text-xl"/>
                             Connect Wallet
                         </Button>
                     }

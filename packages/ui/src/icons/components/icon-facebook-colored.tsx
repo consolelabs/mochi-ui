@@ -1,6 +1,6 @@
 import type { SVGProps } from 'react'
 
-function IconFacebook(props: SVGProps<SVGSVGElement>) {
+function IconFacebookColored(props: SVGProps<SVGSVGElement>) {
   return <svg
     fill="none"
     height="1em"
@@ -19,4 +19,4 @@ function IconFacebook(props: SVGProps<SVGSVGElement>) {
     />
   </svg>
 }
-export default IconFacebook
+export default IconFacebookColored

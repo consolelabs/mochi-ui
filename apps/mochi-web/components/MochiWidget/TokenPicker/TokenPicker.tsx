@@ -108,7 +108,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({ onSelect }) => {
 
   return (
     <Popover open={isOpenSelector} onOpenChange={onOpenChange}>
-      <PopoverTrigger asChild>
+      <PopoverTrigger>
         <TokenButton
           isToken={isTokenSelected}
           name={
