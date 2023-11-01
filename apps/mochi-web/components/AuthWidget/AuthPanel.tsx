@@ -1,5 +1,4 @@
-import Button from "./base/button/button"
-import { WalletAddIcon } from "./login"
+import Button from "~cpn/base/button/button"
 import useSWR from "swr"
 import { API } from "~constants/api"
 import { api } from "~constants/mochi"
