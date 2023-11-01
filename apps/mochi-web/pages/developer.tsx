@@ -4,7 +4,6 @@ import { Layout } from '~app/layout'
 import { SEO } from '~app/layout/seo'
 import Stats from '~components/stats'
 import { SOCIAL_LINKS } from '~constants'
-import { LoginRequiredModal } from '~cpn/auth-require-modal'
 
 const gray1 = '#F7F6F4'
 const gray2 = '#E5E5E3'
