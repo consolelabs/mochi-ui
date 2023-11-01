@@ -5,40 +5,60 @@ import {
   mochiQilin,
 } from 'utils/image'
 
-export const ThemeList = [
+export type Theme = {
+  id: number
+  group: string
+  src: string
+}
+export const ThemeList: Theme[] = [
   {
     id: 1,
     group: 'New Year',
-    themes: [
-      appreciation.src,
-      mochiSnowman.src,
-      mochiWelcome.src,
-      mochiQilin.src,
-    ],
+    src: appreciation.src,
   },
   {
     id: 2,
-    group: 'Christmas',
-    themes: [],
+    group: 'New Year',
+    src: mochiSnowman.src,
   },
   {
     id: 3,
-    group: 'Birthday',
-    themes: [],
+    group: 'New Year',
+    src: mochiWelcome.src,
   },
   {
     id: 4,
-    group: 'Valentine',
-    themes: [],
+    group: 'New Year',
+    src: mochiQilin.src,
   },
   {
     id: 5,
+    group: 'Christmas',
+    src: '',
+  },
+  {
+    id: 6,
+    group: 'Birthday',
+    src: '',
+  },
+  {
+    id: 7,
+    group: 'Valentine',
+    src: '',
+  },
+  {
+    id: 8,
     group: 'Anniversary',
-    themes: [],
+    src: '',
   },
 ]
 
-export const MessageList = [
+export type Message = {
+  id: number
+  group: string
+  content: string
+}
+export const MessageList: Message[] = [
   {
     id: 1,
     content: '☕️ Coffee treat for you',

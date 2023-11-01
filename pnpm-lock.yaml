@@ -104,6 +104,9 @@ importers:
       dom-to-image:
         specifier: ^2.6.0
         version: 2.6.0
+      emoji-strip:
+        specifier: ^1.0.1
+        version: 1.0.1
       ethers:
         specifier: ^5.7.0
         version: 5.7.0
@@ -234,6 +237,9 @@ importers:
       '@types/dom-to-image':
         specifier: ^2.6.4
         version: 2.6.4
+      '@types/emoji-strip':
+        specifier: ^1.0.1
+        version: 1.0.1
       '@types/fnando__sparkline':
         specifier: ^0.3.4
         version: 0.3.4
@@ -8279,6 +8285,10 @@ packages:
     resolution: {integrity: sha512-fnM/NjByiWdSRJRrmGxgqOSAnmOnsvX1QcNYk5TVyIIj+7ZqOKMb9gQa4OIl/lil2w/8TiTWV+nz3q8yqxez/w==}
     dev: true
 
+  /@types/emoji-strip@1.0.1:
+    resolution: {integrity: sha512-ruivyk7LbFmuom2l/PnQiKNoNF+1E82kPFfiX/GgQayOMgWN+UrpVwe9EjA0cdrKkA2h+kZZtJY/Yco9W4AgZw==}
+    dev: true
+
   /@types/emscripten@1.39.9:
     resolution: {integrity: sha512-ILdWj4XYtNOqxJaW22NEQx2gJsLfV5ncxYhhGX1a1H1lXl2Ta0gUz7QOnOoF1xQbJwWDjImi8gXN9mKdIf6n9g==}
     dev: true
@@ -12249,6 +12259,10 @@ packages:
     resolution: {integrity: sha512-QpLs9D9v9kArv4lfDEgg1X/gN5XLnf/A6l9cs8SPZLRZR3ZkY9+kwIQTxm+fsSej5UMYGE8fdoaZVIBlqG0XTw==}
     dev: false
 
+  /emoji-regex@6.5.1:
+    resolution: {integrity: sha512-PAHp6TxrCy7MGMFidro8uikr+zlJJKJ/Q6mm2ExZ7HwkyR9lSVFfE3kt36qcwa24BQL7y0G9axycGjK1A/0uNQ==}
+    dev: false
+
   /emoji-regex@7.0.3:
     resolution: {integrity: sha512-CwBLREIQ7LvYFB0WyRvwhq5N5qPhc6PMjD6bYggFlI5YyDgl+0vxq5VHbMOFqLg7hfWzmu8T5Z1QofhmTIhItA==}
     dev: false
@@ -12258,6 +12272,12 @@ packages:
 
   /emoji-regex@9.2.2:
     resolution: {integrity: sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==}
+
+  /emoji-strip@1.0.1:
+    resolution: {integrity: sha512-1iU1Bz98ziALBnMTzQHKB104vntCokqgdmJIP9p1eM0Musc3WQ4y8C5noIckorxJ1vihZCTv2lyXMTM1UsemPg==}
+    dependencies:
+      emoji-regex: 6.5.1
+    dev: false
 
   /emojis-list@3.0.0:
     resolution: {integrity: sha512-/kyM18EfinwXZbno9FyUGeFh87KC8HRQBQGildHZbEuRyWFOmv1U10o9BBp8XVZDVNNuQKyIGIu5ZYAAXJ0V2Q==}
