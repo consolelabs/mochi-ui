@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Icon } from '@iconify/react'
 import { SourceList } from './SourceList'
 import { SourceType } from './type'
@@ -30,20 +30,55 @@ const MockSources: SourceType[] = [
   },
 ]
 
-export const SourcePicker = () => {
+const DefaultSource: SourceType = {
+  id: '-1',
+  source: 'Mochi Wallet',
+  source_icon: '/logo.png',
+  profile_id: 'Not connected',
+  total_amount: '0',
+}
+
+interface Props {
+  accessToken: string | null
+  onLoginRequest?: () => void
+}
+
+export const SourcePicker: React.FC<Props> = ({
+  accessToken,
+  onLoginRequest,
+}) => {
   const [isOpenSelector, setIsOpenSelector] = useState(false)
-  const [selectedSource, setSelectedSource] = useState<SourceType>(
-    MockSources[0],
-  )
+  const [sources, setSources] = useState<SourceType[]>([])
+  const [selectedSource, setSelectedSource] =
+    useState<SourceType>(DefaultSource)
+
+  useEffect(() => {
+    if (!accessToken) {
+      setSelectedSource(DefaultSource)
+    } else {
+      // TODO: Fetch sources by token
+      setSources(MockSources)
+      setSelectedSource(MockSources[0])
+    }
+  }, [accessToken])
 
   function handleSourceSelect(source: SourceType) {
     setSelectedSource(source)
     setIsOpenSelector(false)
   }
 
+  function handleTriggerClick() {
+    if (!accessToken) {
+      onLoginRequest?.()
+    }
+  }
+
   return (
     <Popover open={isOpenSelector} onOpenChange={setIsOpenSelector}>
-      <PopoverTrigger className="flex gap-x-3 items-center py-3 px-2 bg-blue-50 rounded-lg text-left">
+      <PopoverTrigger
+        className="flex gap-x-3 items-center py-3 px-2 bg-blue-50 rounded-lg text-left"
+        onClick={handleTriggerClick}
+      >
         <img
           className="flex-shrink-0 w-6 h-6"
           src={selectedSource.source_icon}
@@ -57,20 +92,26 @@ export const SourcePicker = () => {
             {selectedSource.profile_id}
           </span>
         </div>
-        <span className="flex-shrink-0 text-sm font-medium text-blue-700">
-          ${formatNumber(selectedSource.total_amount)}
-        </span>
-        <Icon
-          icon="majesticons:chevron-down-line"
-          className="w-4 h-4 text-[#ADACAA]"
-        />
+        {accessToken && (
+          <>
+            <span className="flex-shrink-0 text-sm font-medium text-blue-700">
+              ${formatNumber(selectedSource.total_amount)}
+            </span>
+            <Icon
+              icon="majesticons:chevron-down-line"
+              className="w-4 h-4 text-[#ADACAA]"
+            />
+          </>
+        )}
       </PopoverTrigger>
-      <PopoverContent
-        align="start"
-        className="w-[414px] flex gap-x-1 items-center py-3 px-3 bg-white-pure rounded-lg shadow-md focus-visible:outline-none"
-      >
-        <SourceList data={MockSources} onSelect={handleSourceSelect} />
-      </PopoverContent>
+      {accessToken && (
+        <PopoverContent
+          align="start"
+          className="w-[414px] flex gap-x-1 items-center py-3 px-3 bg-white-pure rounded-lg shadow-md focus-visible:outline-none"
+        >
+          <SourceList data={sources} onSelect={handleSourceSelect} />
+        </PopoverContent>
+      )}
     </Popover>
   )
 }

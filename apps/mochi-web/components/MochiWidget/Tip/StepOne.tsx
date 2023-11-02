@@ -3,9 +3,15 @@ import Recipient from '../recipient'
 import Input from '../input'
 import { Icon } from '@iconify/react'
 import { useTipWidget } from '.'
+import { useAuthStore } from '~store'
 
 export default function StepOne() {
   const { setStep } = useTipWidget()
+  const { token } = useAuthStore()
+
+  function openLoginPopup() {
+    // TODO: Implement login popup
+  }
 
   return (
     <div className="flex flex-col flex-1 gap-y-3 min-h-0">
@@ -18,7 +24,7 @@ export default function StepOne() {
             by sending them money
           </span>
         </div>
-        <SourcePicker />
+        <SourcePicker accessToken={token} onLoginRequest={openLoginPopup} />
         <Recipient />
         <Input />
       </div>
