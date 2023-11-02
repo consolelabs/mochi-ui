@@ -16,5 +16,6 @@ module.exports = {
     '@typescript-eslint/no-confusing-void-expression': 'off',
     'react/no-array-index-key': 'off',
     'react/no-unknown-property': 'off',
+    'import/export': 'off',
   },
 }

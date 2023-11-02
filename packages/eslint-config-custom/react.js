@@ -36,7 +36,6 @@ module.exports = {
     'react/jsx-key': 'off',
     'no-dupe-class-members': 'off',
     'prefer-arrow-callback': 'off',
-    'import/export': 'off',
     'prettier/prettier': 'error',
   },
   overrides: [

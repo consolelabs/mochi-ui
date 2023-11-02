@@ -25,6 +25,7 @@ module.exports = {
     'no-nested-ternary': 'warn',
     'react/display-name': 'off',
     'import/no-cycle': 'warn',
+    'import/export': 'off',
     '@typescript-eslint/no-unused-expressions': 'warn',
     'react/no-unstable-nested-components': 'warn',
     'react/no-unused-prop-types': 'warn',
