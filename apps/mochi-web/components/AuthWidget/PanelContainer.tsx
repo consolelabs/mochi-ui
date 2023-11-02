@@ -1,4 +1,3 @@
-import { IconWallet, Button } from '@consolelabs/ui-components'
 import { Variant } from './AuthPanel'
 import { ReactNode } from 'react'
 

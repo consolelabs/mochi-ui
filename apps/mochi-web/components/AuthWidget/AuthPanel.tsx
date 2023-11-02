@@ -4,7 +4,6 @@ import { api } from '~constants/mochi'
 import { ReactNode, useCallback, useMemo, useState } from 'react'
 import { AUTH_TELEGRAM_ID, MOCHI_PROFILE_API } from '~envs'
 import {
-  IconWallet,
   IconDiscordColored,
   IconTelegramColored,
   IconX,
