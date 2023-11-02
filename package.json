@@ -34,8 +34,5 @@
   "packageManager": "pnpm@8.6.10",
   "engines": {
     "node": ">=18.0.0"
-  },
-  "lint-staged": {
-    "{apps,packages}/**/*.{js,jsx,ts,tsx}": ["pnpm format"]
   }
 }
