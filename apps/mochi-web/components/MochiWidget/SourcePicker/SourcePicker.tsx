@@ -41,11 +41,13 @@ const DefaultSource: SourceType = {
 interface Props {
   accessToken: string | null
   onLoginRequest?: () => void
+  onSelect?: (item: SourceType) => void
 }
 
 export const SourcePicker: React.FC<Props> = ({
   accessToken,
   onLoginRequest,
+  onSelect,
 }) => {
   const [isOpenSelector, setIsOpenSelector] = useState(false)
   const [sources, setSources] = useState<SourceType[]>([])
@@ -65,6 +67,7 @@ export const SourcePicker: React.FC<Props> = ({
   function handleSourceSelect(source: SourceType) {
     setSelectedSource(source)
     setIsOpenSelector(false)
+    onSelect?.(source)
   }
 
   function handleTriggerClick() {

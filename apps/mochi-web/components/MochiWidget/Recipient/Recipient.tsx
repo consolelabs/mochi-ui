@@ -1,12 +1,26 @@
 import { Icon } from '@iconify/react'
-import { PlatformPicker } from './PlatformPicker'
-import { ChainPicker } from './ChainPicker'
+import { PlatformPicker } from '../PlatformPicker'
+import { ChainPicker } from '../ChainPicker'
 import { useState } from 'react'
-import { Platform } from './PlatformPicker/type'
+import { Platform } from '../PlatformPicker/type'
 
-export default function Recipient() {
+interface RecipientProps {
+  accessToken: string | null
+  onLoginRequest?: () => void
+}
+
+export const Recipient: React.FC<RecipientProps> = ({
+  accessToken,
+  onLoginRequest,
+}) => {
   const [selectedPlatform, setSelectedPlatform] = useState<Platform>()
   const isOnChain = selectedPlatform?.platform === 'On-chain'
+
+  function handleFocusInput() {
+    if (!accessToken) {
+      onLoginRequest?.()
+    }
+  }
 
   return (
     <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-2">
@@ -23,6 +37,7 @@ export default function Recipient() {
         <input
           className="flex-1 h-full bg-transparent outline-none"
           placeholder={isOnChain ? 'Enter address' : 'Enter username'}
+          onFocus={handleFocusInput}
         />
       </div>
     </div>
