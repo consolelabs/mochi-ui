@@ -1,34 +1,32 @@
 {
-    "name": "@consolelabs/storybook",
-    "version": "0.0.1-rc7",
-    "sideEffects": true,
-    "files": [
-      "dist"
-    ],
-    "license": "MIT",
-    "scripts": {
-      "dev": "pnpm storybook dev -p 6006",
-      "build": "pnpm storybook build"
-    },
-    "devDependencies": {
-      "@storybook/addon-actions": "^7.4.6",
-      "@storybook/addon-essentials": "^7.4.6",
-      "@storybook/addon-links": "^7.4.6",
-      "@storybook/addon-storysource": "^7.4.6",
-      "@storybook/addon-styling-webpack": "^0.0.5",
-      "@storybook/nextjs": "^7.4.6",
-      "@storybook/react": "^7.4.6",
-      "autoprefixer": "^10.4.16",
-      "postcss": "^8.4.31",
-      "react": "^18.2.0",
-      "storybook": "^7.4.6",
-      "tailwind-config": "workspace:*",
-      "tailwindcss": "^3.3.3",
-      "typescript": "^5.2.2"
-    },
-    "dependencies": {
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0"
-    }
+  "name": "@consolelabs/storybook",
+  "version": "0.0.1-rc7",
+  "sideEffects": true,
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "dev": "pnpm storybook dev -p 6006",
+    "build": "pnpm storybook build"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^7.4.6",
+    "@storybook/addon-essentials": "^7.4.6",
+    "@storybook/addon-links": "^7.4.6",
+    "@storybook/addon-storysource": "^7.4.6",
+    "@storybook/addon-styling-webpack": "^0.0.5",
+    "@storybook/nextjs": "^7.4.6",
+    "@storybook/react": "^7.4.6",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "storybook": "^7.4.6",
+    "tailwind-config": "workspace:*",
+    "tailwindcss": "^3.3.3",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
-  
+}

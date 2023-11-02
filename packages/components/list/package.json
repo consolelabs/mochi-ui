@@ -1,0 +1,35 @@
+{
+  "name": "@consolelabs/list",
+  "version": "0.0.1-rc7",
+  "sideEffects": false,
+  "main": "src/index.ts",
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "tsup --dts",
+    "lint": "eslint --fix src/",
+    "dev": "tsup --watch",
+    "check-types": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.17",
+    "@types/react": "^18.2.28",
+    "eslint-config-custom": "workspace:*",
+    "prettier": "^3.0.3",
+    "react": "^18.2.0",
+    "tsconfig": "workspace:*",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@consolelabs/heading": "workspace:*",
+    "class-variance-authority": "^0.7.0",
+    "@radix-ui/react-scroll-area": "^1.0.5",
+    "clsx": "^2.0.0"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "name": "@consolelabs/core",
+  "version": "*",
+  "sideEffects": false,
+  "main": "src/index.ts",
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "tsup --dts",
+    "lint": "eslint --fix src/",
+    "dev": "tsup --watch",
+    "check-types": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "eslint-config-custom": "workspace:*",
+    "prettier": "^3.0.3",
+    "react": "^18.2.0",
+    "tsconfig": "workspace:*",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@consolelabs/accordion": "workspace:*",
+    "@consolelabs/alert": "workspace:*",
+    "@consolelabs/avatar": "workspace:*",
+    "@consolelabs/badge": "workspace:*",
+    "@consolelabs/dropdown": "workspace:*",
+    "@consolelabs/heading": "workspace:*",
+    "@consolelabs/icons": "workspace:*",
+    "@consolelabs/input": "workspace:*",
+    "@consolelabs/list": "workspace:*",
+    "@consolelabs/login-widget": "workspace:*",
+    "@consolelabs/mochi-store": "workspace:*",
+    "@consolelabs/popover": "workspace:*",
+    "@consolelabs/profile-badge": "workspace:*",
+    "@consolelabs/section-list": "workspace:*",
+    "@consolelabs/sidebar": "workspace:*",
+    "@consolelabs/switch": "workspace:*",
+    "@consolelabs/tooltip": "workspace:*"
+  }
+}

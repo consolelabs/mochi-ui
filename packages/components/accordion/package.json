@@ -1,25 +1,14 @@
 {
   "name": "@consolelabs/accordion",
   "version": "0.0.1-rc7",
-  "sideEffects": [
-    "**/*.css"
-  ],
-  "types": "./dist/index.d.ts",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "exports": {
-    ".": {
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs"
-    }
-  },
+  "sideEffects": false,
+  "main": "src/index.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "license": "MIT",
   "scripts": {
-    "build": "tsup",
+    "build": "tsup --dts",
     "lint": "eslint --fix src/",
     "dev": "tsup --watch",
     "check-types": "tsc --noEmit"

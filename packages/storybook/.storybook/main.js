@@ -6,7 +6,10 @@ module.exports = {
     options: {},
   },
   // staticDirs: ['./assets'],
-  stories: ['../../components/**/**/*.stories.@(js|jsx|ts|tsx)'],
+  stories: [
+    '../../components/**/src/*.stories.@(js|jsx|ts|tsx)',
+    // '../../components/avatar/**/*.stories.@(js|jsx|ts|tsx)',
+  ],
   addons: [
     '@storybook/addon-essentials',
     '@storybook/addon-storysource',

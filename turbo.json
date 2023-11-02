@@ -13,10 +13,18 @@
       "dependsOn": ["^build"]
     },
     "check-types": {},
+<<<<<<< HEAD
     "storybook": {},
     "build:storybook": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+=======
+    "storybook": {
+      "cache": false
+    },
+    "build:storybook": {
+      "cache": false
+>>>>>>> c5bd763 (feat: move components)
     },
     "dev": {
       "cache": false,

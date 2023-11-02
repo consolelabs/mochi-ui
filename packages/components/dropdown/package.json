@@ -1,0 +1,36 @@
+{
+  "name": "@consolelabs/dropdown",
+  "version": "0.0.1-rc7",
+  "sideEffects": false,
+  "main": "src/index.ts",
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "tsup --dts",
+    "lint": "eslint --fix src/",
+    "dev": "tsup --watch",
+    "check-types": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@consolelabs/avatar": "workspace:0.0.1-rc7",
+    "@types/node": "^18.11.17",
+    "@types/react": "^18.2.28",
+    "eslint-config-custom": "workspace:*",
+    "prettier": "^3.0.3",
+    "react": "^18.2.0",
+    "tsconfig": "workspace:*",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@consolelabs/icons": "workspace:*",
+    "@radix-ui/react-dropdown-menu": "^2.0.6",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0"
+  }
+}
