@@ -7,6 +7,5 @@
   "semi": false,
   "singleQuote": true,
   "tabWidth": 2,
-  "trailingComma": "all",
-  "xmlWhitespaceSensitivity": "ignore"
+  "trailingComma": "all"
 }

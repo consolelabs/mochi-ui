@@ -34,10 +34,10 @@ const SidebarHeader = ({ expanded }: { expanded?: boolean }) => {
 }
 
 export const getSidebarBadge = {
-  'NEW': <Badge icon={<IconTwinkle/>} label='New' appearance="success" />,
-  'FEATURED': <Badge label='Featured'  appearance="primary" />,
-  'SOON': <Badge label='Soon' appearance="secondary"/>,
-  'FREE_TRIAL': <Badge label='Free trial' appearance="warning" />,
+  NEW: <Badge icon={<IconTwinkle />} label="New" appearance="success" />,
+  FEATURED: <Badge label="Featured" appearance="primary" />,
+  SOON: <Badge label="Soon" appearance="secondary" />,
+  FREE_TRIAL: <Badge label="Free trial" appearance="warning" />,
 } as const
 
 export default function AuthenticatedLayout({
@@ -77,7 +77,12 @@ export default function AuthenticatedLayout({
                     href: '/profile',
                   },
                   { title: 'Servers', Icon: IconDiscord },
-                  { title: 'App Store', Icon: IconGame, badge: getSidebarBadge['SOON'], disabled: true},
+                  {
+                    title: 'App Store',
+                    Icon: IconGame,
+                    badge: getSidebarBadge['SOON'],
+                    disabled: true,
+                  },
                   { title: 'Settings', Icon: IconSetting },
                   { type: 'break' },
                   {
@@ -86,19 +91,20 @@ export default function AuthenticatedLayout({
                     type: 'link',
                     as: Link,
                     href: '/app',
-                    badge: getSidebarBadge['NEW']
+                    badge: getSidebarBadge['NEW'],
                   },
                   {
                     title: 'Send gifts',
                     Icon: IconSuperGroup,
                     badge: getSidebarBadge['SOON'],
-                    disabled: true
+                    disabled: true,
                   },
                   { title: 'Invite Friends', Icon: IconAddUser },
                   {
-                    title: 'Feedback', Icon: IconStar,
+                    title: 'Feedback',
+                    Icon: IconStar,
                     badge: getSidebarBadge['SOON'],
-                    disabled: true
+                    disabled: true,
                   },
                 ]}
                 footerItems={[

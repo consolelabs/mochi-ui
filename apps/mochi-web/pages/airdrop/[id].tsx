@@ -143,20 +143,23 @@ export default function Airdrop({
 
   const waitAndGetLink = useCallback(
     (joinId: string) => {
-      setTimeout(() => {
-        API.MOCHI_PAY.get(`/pay-requests/airdrop/${airdropId}/link/${joinId}`)
-          .json((r) => r.data)
-          .then((res) => {
-            if (res) {
-              replace(`/pay/${res?.pay_request?.code}`)
-            } else {
-              // reload to show invalid message
-              reload()
-            }
-          })
-          .catch(() => null)
-        // wait more 3 seconds to make sure
-      }, (timeout ?? 0) + 3000)
+      setTimeout(
+        () => {
+          API.MOCHI_PAY.get(`/pay-requests/airdrop/${airdropId}/link/${joinId}`)
+            .json((r) => r.data)
+            .then((res) => {
+              if (res) {
+                replace(`/pay/${res?.pay_request?.code}`)
+              } else {
+                // reload to show invalid message
+                reload()
+              }
+            })
+            .catch(() => null)
+          // wait more 3 seconds to make sure
+        },
+        (timeout ?? 0) + 3000,
+      )
     },
     [airdropId, reload, replace, timeout],
   )

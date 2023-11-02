@@ -52,8 +52,8 @@ const chains: Record<string, { image: string; symbol: string }> = {
 }
 
 function convertWallets(profile?: ViewProfile | null) {
-  const walletAccounts = profile?.associated_accounts?.filter((aa) =>
-    aa.platform?.endsWith('chain'),
+  const walletAccounts = profile?.associated_accounts?.filter(
+    (aa) => aa.platform?.endsWith('chain'),
   )
 
   return walletAccounts
@@ -323,9 +323,9 @@ export default function PaymentButton({
                         Track the transaction{' '}
                         <a
                           className="underline"
-                          href={`${new URL(chainExplorer).origin}/tx/${
-                            sendTx?.hash
-                          }`}
+                          href={`${
+                            new URL(chainExplorer).origin
+                          }/tx/${sendTx?.hash}`}
                           target="_blank"
                           rel="noopener noreferrer"
                         >

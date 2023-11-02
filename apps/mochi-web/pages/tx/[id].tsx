@@ -50,11 +50,13 @@ export default function Transfer({ data, ogData }: Props) {
         image={`${HOME_URL}/api/transfer-og?data=${encodeURIComponent(
           JSON.stringify(ogData),
         )}`}
-        description={`${data.from} paid ${Array.isArray(data.to) ? `${data.to.length} people` : data.to
-          } ${data.amountDisplay} ${data.unitCurrency}${data.message
+        description={`${data.from} paid ${
+          Array.isArray(data.to) ? `${data.to.length} people` : data.to
+        } ${data.amountDisplay} ${data.unitCurrency}${
+          data.message
             ? ` with message: "${truncate(data.message, 30, false)}"`
             : ''
-          }`}
+        }`}
         url={`${HOME_URL}/transfer/${data.external_id}`}
       />
       <Receipt id={data.external_id} />

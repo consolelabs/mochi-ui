@@ -2701,7 +2701,6 @@ export interface TransactionNode {
   spend_volume: number
   receive_volume: number
   profile: Profile
-
 }
 
 export interface TransactionEdge {
@@ -2713,6 +2712,6 @@ export interface TransactionEdge {
 }
 
 export interface TransactionGraphData {
-  nodes: TransactionNode[],
+  nodes: TransactionNode[]
   edges: TransactionEdge[]
 }

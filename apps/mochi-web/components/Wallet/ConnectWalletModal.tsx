@@ -272,13 +272,18 @@ export default function ConnectWalletModal({ isOpen, onClose }: Props) {
     const msg = getWalletLoginSignMessage(code)
     setSignError(false)
     signMsg(msg)
-      .then((signature) =>
-        connectModalCallback?.({
-          signature,
-          address,
-          msg,
-          platform: isSuiConnected ? 'sui' : isEVMConnected ? 'evm' : 'solana',
-        }),
+      .then(
+        (signature) =>
+          connectModalCallback?.({
+            signature,
+            address,
+            msg,
+            platform: isSuiConnected
+              ? 'sui'
+              : isEVMConnected
+              ? 'evm'
+              : 'solana',
+          }),
       )
       .catch(() => setSignError(true))
       .finally(() => {

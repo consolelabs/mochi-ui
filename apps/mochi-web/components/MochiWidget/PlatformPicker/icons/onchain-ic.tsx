@@ -1,4 +1,4 @@
-import { SVGProps } from "react";
+import { SVGProps } from 'react'
 
 export default function OnChain(props: SVGProps<SVGSVGElement>) {
   return (
