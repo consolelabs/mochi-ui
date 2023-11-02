@@ -1,10 +1,18 @@
 import Button from '~cpn/base/button'
-import { TokenPicker } from './TokenPicker'
-import { useState } from 'react'
-import { MonikerAsset, TokenAsset } from './TokenPicker/type'
+import { TokenPicker } from '../TokenPicker'
+import { useEffect, useState } from 'react'
+import { MonikerAsset, TokenAsset } from '../TokenPicker/type'
 import { abbreviateNumber, formatNumber } from '~utils/number'
 
-export default function Input() {
+interface AmountInputProps {
+  accessToken: string | null
+  onLoginRequest?: () => void
+}
+
+export const AmountInput: React.FC<AmountInputProps> = ({
+  accessToken,
+  onLoginRequest,
+}) => {
   const [selectedAsset, setSelectedAsset] = useState<
     TokenAsset | MonikerAsset
   >()
@@ -23,6 +31,28 @@ export default function Input() {
     (parseFloat(tipAmount) || 0) * unitPrice,
   )
 
+  useEffect(() => {
+    if (!accessToken) {
+      setSelectedAsset(undefined)
+    } else {
+      // TODO: Fetch assets by token
+    }
+  }, [accessToken])
+
+  function handleQuickAmount(amount: string) {
+    if (!accessToken) {
+      onLoginRequest?.()
+    } else {
+      setTipAmount(amount)
+    }
+  }
+
+  function onFocusInput() {
+    if (!accessToken) {
+      onLoginRequest?.()
+    }
+  }
+
   return (
     <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-2">
       <div className="flex justify-between items-center">
@@ -36,6 +66,7 @@ export default function Input() {
             type="number"
             value={tipAmount}
             onChange={(e) => setTipAmount(e.target.value)}
+            onFocus={onFocusInput}
           />
           <span className="text-sm text-[#848281] text-right">
             &#8776; {tipAmountUSD} USD
@@ -49,21 +80,21 @@ export default function Input() {
             <Button
               appearance="text"
               size="xs"
-              onClick={() => setTipAmount('1')}
+              onClick={() => handleQuickAmount('1')}
             >
               1
             </Button>
             <Button
               appearance="text"
               size="xs"
-              onClick={() => setTipAmount('2')}
+              onClick={() => handleQuickAmount('2')}
             >
               2
             </Button>
             <Button
               appearance="text"
               size="xs"
-              onClick={() => setTipAmount('5')}
+              onClick={() => handleQuickAmount('5')}
             >
               5
             </Button>

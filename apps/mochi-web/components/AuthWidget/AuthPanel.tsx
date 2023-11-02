@@ -1,11 +1,9 @@
-import Button from '~cpn/base/button/button'
 import useSWR from 'swr'
 import { API } from '~constants/api'
 import { api } from '~constants/mochi'
 import { ReactNode, useCallback, useMemo, useState } from 'react'
 import { AUTH_TELEGRAM_ID, MOCHI_PROFILE_API } from '~envs'
 import {
-  IconWallet,
   IconDiscordColored,
   IconTelegramColored,
   IconX,
@@ -22,13 +20,19 @@ import qs from 'query-string'
 import { useEffect } from 'react'
 import clsx from 'clsx'
 import { Fragment } from 'react'
+import { PanelHeader } from './PanelHeader'
+import { ConnectButton } from './ConnectButton'
+import { PanelContainer } from './PanelContainer'
+
+export type Variant = 'dropdown' | 'modal'
 
 interface AuthPanelProps {
+  variant?: Variant
   onOpenConnectWalletChange?: (open: boolean) => void
 }
 
 export const AuthPanel = (props: AuthPanelProps) => {
-  const { onOpenConnectWalletChange } = props
+  const { variant = 'modal', onOpenConnectWalletChange } = props
 
   const { login } = useAuthStore()
   const { user } = useMochi()
@@ -140,15 +144,8 @@ export const AuthPanel = (props: AuthPanelProps) => {
   }, [user?.token, login])
 
   return (
-    <div className="p-6 rounded-xl bg-white-pure">
-      <div className="space-y-2 text-center">
-        <h3 className="!text-2xl font-medium text-neutral-900">
-          Welcome back!
-        </h3>
-        <p className="text-sm text-neutral-800">
-          Great to see you again! Sign in your account to continue.
-        </p>
-      </div>
+    <PanelContainer variant={variant}>
+      <PanelHeader variant={variant} />
       <div className="flex flex-col gap-8 text-center mt-8">
         <div className="grid grid-cols-4 grid-rows-2 mx-auto w-fit gap-4 text-3xl">
           {socialAuths.map((item) => {
@@ -183,14 +180,9 @@ export const AuthPanel = (props: AuthPanelProps) => {
           onOpenChange={onOpenLoginWidgetChange}
           authUrl="https://api-preview.mochi-profile.console.so/api/v1/profiles/auth"
           meUrl="https://api-preview.mochi-profile.console.so/api/v1/profiles/me"
-          trigger={
-            <Button className="text-base px-6 py-3 !bg-blue-700 text-white shadow-none">
-              <IconWallet className="mr-2 text-xl" />
-              Connect Wallet
-            </Button>
-          }
+          trigger={<ConnectButton variant={variant} />}
         />
       </div>
-    </div>
+    </PanelContainer>
   )
 }
