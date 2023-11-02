@@ -32,9 +32,7 @@ export const DropdownButton = ({
               ...icon.props,
               className: 'w-full h-full',
             })
-          : image
-          ? image
-          : null}
+          : image || null}
       </div>
       <div className="flex-1 text-start">
         <div className="text-sm font-semibold">{title}</div>

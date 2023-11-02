@@ -1,8 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Modal, ModalContent } from '@consolelabs/ui-components'
 import { useAuthStore } from '~store'
 import clsx from 'clsx'
-import { useEffect } from 'react'
 import { AuthPanel } from './AuthPanel'
 
 export const LoginRequiredModal = () => {

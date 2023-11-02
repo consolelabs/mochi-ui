@@ -43,7 +43,7 @@ export default function CommandMessages() {
   const isVisible = useIsVisible(ref)
 
   useEffect(() => {
-    let interval: NodeJS.Timeout | undefined = undefined
+    let interval: NodeJS.Timeout | undefined
 
     if (isVisible) {
       interval = setInterval(() => {

@@ -219,7 +219,7 @@ export const rainbow = ({ chains }: RainbowOptions): Wallet => ({
         },
       },
       qrCode: {
-        getUri: async () => await connector.getURI(),
+        getUri: async () => connector.getURI(),
         instructions: {
           learnMoreUrl:
             'https://learn.rainbow.me/connect-your-wallet-to-a-website-or-app',
@@ -277,7 +277,7 @@ export const steak = ({ chains }: SteakOptions): Wallet => ({
         },
       },
       qrCode: {
-        getUri: async () => await connector.getURI(),
+        getUri: async () => connector.getURI(),
         instructions: {
           learnMoreUrl:
             'https://blog.steakwallet.fi/introducing-the-steakwallet-beta/',
@@ -349,7 +349,7 @@ export const trust = ({ chains, shimDisconnect }: TrustOptions): Wallet => ({
         },
       },
       qrCode: {
-        getUri: async () => await connector.getURI(),
+        getUri: async () => connector.getURI(),
         instructions: {
           learnMoreUrl:
             'https://trustwallet.com/blog/an-introduction-to-trustwallet',
@@ -395,7 +395,7 @@ export const walletConnect = ({ chains }: WalletConnectOptions): Wallet => ({
       showQrModal: ios,
     })
 
-    const getUri = async () => await connector.getURI()
+    const getUri = async () => connector.getURI()
 
     return {
       connector,

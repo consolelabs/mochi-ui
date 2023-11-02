@@ -1,8 +1,8 @@
 import { useMemo } from 'react'
 import { WalletConnector } from 'context/wallets/useWalletConnectors'
-import { QRCode } from './QRCode'
 import Text from '~cpn/base/text'
 import { button } from '~cpn/base/button'
+import { QRCode } from './QRCode'
 
 export type ConnectDetailProps = {
   connectionError: boolean

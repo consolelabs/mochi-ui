@@ -60,11 +60,11 @@ export default function Index() {
         <div className="flex flex-col-reverse gap-x-10 gap-y-10 justify-center max-w-5xl md:flex-row">
           <div className="flex flex-col flex-1 justify-center">
             <p className="text-3xl md:text-4xl">
-              Send <span ref={currency}></span>
+              Send <span ref={currency} />
               <br />
               to anyone on
               <br />
-              <span ref={platform}></span>
+              <span ref={platform} />
             </p>
             <span className="mt-5 font-thin">
               Use Mochi to send and receive any amount of crypto, directly on
@@ -152,7 +152,7 @@ export default function Index() {
           <div className="flex flex-1 justify-center items-center">
             <div className="flex py-1 px-3 rounded border border-gray-100 shadow text-foreground bg-home-gray-600">
               <span className="text-xl md:text-2xl">
-                /<span ref={command}></span>
+                /<span ref={command} />
               </span>
             </div>
           </div>

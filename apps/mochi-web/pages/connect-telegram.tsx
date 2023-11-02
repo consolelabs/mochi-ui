@@ -57,7 +57,7 @@ export default function ConnectTelegram({
         data-size="large"
         data-auth-url={`https://api.mochi-profile.console.so/api/v1/profiles/auth/telegram?code=${code}`}
         data-request-access="write"
-      ></Script>
+      />
       <SEO title={PAGES.CONNECT_TELEGRAM.title} tailTitle />
       <div className="flex relative flex-col items-center">
         <div className="py-16 px-12 mx-auto max-w-7xl">

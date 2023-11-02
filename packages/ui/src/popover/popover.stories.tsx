@@ -17,7 +17,7 @@ export default meta
 type Story = StoryObj<typeof Popover>
 
 export const Default: Story = {
-  render(_) {
+  render() {
     return (
       <Popover>
         <PopoverTrigger asChild>

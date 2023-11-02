@@ -4,13 +4,13 @@ import { erc20ABI, useBalance } from 'wagmi'
 import { useEns } from '~hooks/wallets/useEns'
 import { useSns } from '~hooks/wallets/useSns'
 import { useSolBalance } from '~hooks/wallets/useSolBalance'
-import { DropdownButton } from './DropdownButton'
 import { BigNumber } from 'ethers'
 import { useCallback } from 'react'
 import { useAppWalletContext } from '~context/wallet-context'
 import { usePayRequest } from '~store/pay-request'
 import { shallow } from 'zustand/shallow'
 import { PublicKey } from '@solana/web3.js'
+import { DropdownButton } from './DropdownButton'
 
 export const WalletButton = ({
   address,

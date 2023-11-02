@@ -1,7 +1,5 @@
 import useSWR from 'swr'
 import { API } from '~constants/api'
-import { templates, type TemplateName } from './template'
-import Template from './template'
 import UI, { Platform, utils as mochiUtils } from '@consolelabs/mochi-ui'
 import {
   discordLogo,
@@ -19,6 +17,8 @@ import clsx from 'clsx'
 import { truncate } from '@dwarvesf/react-utils'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { format } from 'date-fns'
+import Template from './template'
+import { templates, type TemplateName } from './template'
 
 interface Props {
   id: string
@@ -33,7 +33,7 @@ export async function transformData(rawData: any) {
   const isMultipleReceivers = Array.isArray(rawData.other_profiles)
   const success = rawData.status === 'success'
 
-  let avatar = rawData.from_profile.avatar
+  let { avatar } = rawData.from_profile
   let [sender, receiver] = await UI.resolve(
     Platform.Web,
     rawData.from_profile_source === 'mochi-vault'
@@ -71,6 +71,9 @@ export async function transformData(rawData: any) {
     }
     case Platform.Twitter: {
       platformIcon = xlogo.src
+      break
+    }
+    default: {
       break
     }
   }
@@ -175,7 +178,7 @@ export default function Receipt({ id }: Props) {
         .json((r: any) => r.data)
 
       if (!raw) return null
-      return await transformData(raw)
+      return transformData(raw)
     },
   )
 

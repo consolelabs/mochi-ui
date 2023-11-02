@@ -1,8 +1,4 @@
-import { SourcePicker } from '../SourcePicker'
-import { Recipient } from '../Recipient'
-import { AmountInput } from '../AmountInput'
 import { Icon } from '@iconify/react'
-import { useTipWidget } from '.'
 import { useAuthStore } from '~store'
 import { forwardRef, useImperativeHandle, useRef, useState } from 'react'
 import { AuthPanel } from '~cpn/AuthWidget'
@@ -11,12 +7,16 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@consolelabs/ui-components'
+import { SourcePicker } from '../SourcePicker'
+import { Recipient } from '../Recipient'
+import { AmountInput } from '../AmountInput'
+import { useTipWidget } from '.'
 
 interface ConnectButtonRef {
   openLogin: () => void
 }
 
-const ConnectButton = forwardRef<ConnectButtonRef, {}>(({}, ref) => {
+const ConnectButton = forwardRef<ConnectButtonRef, {}>((_, ref) => {
   const [isOpenLoginPopup, openLoginPopup] = useState(false)
 
   useImperativeHandle(

@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react'
+import { useState } from 'react'
 import { PlatformPicker } from '../PlatformPicker'
 import { ChainPicker } from '../ChainPicker'
-import { useState } from 'react'
 import { Platform } from '../PlatformPicker/type'
 
 interface RecipientProps {

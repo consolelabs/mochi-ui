@@ -4,12 +4,9 @@ import React, { Fragment, useCallback, useEffect, useState } from 'react'
 import Button from '~cpn/base/button'
 import Modal from '~components/Modal'
 import { toast } from 'sonner'
-import ConnectSocialButton from './ConnectSocialButton'
-import WalletAddressForm from './WalletAddressForm'
 import ToastSuccess from '~components/Toast/ToastSuccess'
 import { truncate } from '@dwarvesf/react-utils'
 import { Popover } from '@headlessui/react'
-import SocialButtons from './components/SocialButtons'
 import { Float } from '@headlessui-float/react'
 import ToastLoading from '~components/Toast/ToastLoading'
 import { API, GET_PATHS } from '~constants/api'
@@ -19,13 +16,16 @@ import { useAuthStore, useProfileStore } from '~store'
 import { mainnet, useSwitchNetwork } from 'wagmi'
 import useSWR, { KeyedMutator } from 'swr'
 import { ViewProfile } from '~types/mochi-profile-schema'
-import { DropdownButton } from './DropdownButton'
-import { WalletButton } from './WalletButton'
 import { shallow } from 'zustand/shallow'
 import { PayRequest, usePayRequest } from '~store/pay-request'
 import { useSendEVMToken } from '~hooks/wallets/useSendEVMToken'
 import { useSendSOLToken } from '~hooks/wallets/useSendSOLToken'
 import { useLoginAfterConnect } from '~hooks/useLoginAfterConnect'
+import { WalletButton } from './WalletButton'
+import { DropdownButton } from './DropdownButton'
+import SocialButtons from './components/SocialButtons'
+import WalletAddressForm from './WalletAddressForm'
+import ConnectSocialButton from './ConnectSocialButton'
 
 type PayOption = {
   id: 'none' | 'mochi-wallet' | 'public-key' | `${string}-${string}`
@@ -251,7 +251,6 @@ export default function PaymentButton({
                         },
                         { duration: 10000 },
                       )
-                      return
                     }
                   })
                 }, 3000)
@@ -565,45 +564,41 @@ export default function PaymentButton({
         <div className="flex flex-col items-center py-4 px-5 max-w-sm bg-white rounded-xl">
           <span className="text-lg font-semibold">Reminder</span>
           {!isPayMe ? (
-            <>
-              <span className="mt-2 font-light text-center text-dashboard-gray-8">
-                For the safety of your funds, the network you selected is{' '}
-                <span className="font-semibold">
-                  {chainSymbol.toUpperCase() || '???'}
-                </span>
-                , please confirm that your{' '}
-                <span className="font-semibold">withdrawal address</span>{' '}
-                supports the{' '}
-                <span className="font-semibold">
-                  {chainSymbol.toUpperCase() || '???'}
-                </span>{' '}
-                chain network.
+            <span className="mt-2 font-light text-center text-dashboard-gray-8">
+              For the safety of your funds, the network you selected is{' '}
+              <span className="font-semibold">
+                {chainSymbol.toUpperCase() || '???'}
               </span>
-            </>
+              , please confirm that your{' '}
+              <span className="font-semibold">withdrawal address</span> supports
+              the{' '}
+              <span className="font-semibold">
+                {chainSymbol.toUpperCase() || '???'}
+              </span>{' '}
+              chain network.
+            </span>
           ) : (
-            <>
-              <span className="mt-2 font-light text-center text-dashboard-gray-8">
-                You&apos;re sending{' '}
-                <span className="font-semibold">{payAmountFormatted}</span> to{' '}
-                <span className="font-semibold break-all">
-                  {truncate(
-                    isEVM
-                      ? isNative
-                        ? option.args?.request?.to ?? ''
-                        : option.args?.args[0] ?? ''
-                      : option.args?.recipientAddress?.toBase58() ?? '',
-                    8,
-                    true,
-                    '.',
-                  )}
-                </span>
-                , please confirm that you and the recipient are on the{' '}
-                <span className="font-semibold">
-                  {chainSymbol.toUpperCase() || '???'}
-                </span>{' '}
-                chain network before proceeding.
+            <span className="mt-2 font-light text-center text-dashboard-gray-8">
+              You&apos;re sending{' '}
+              <span className="font-semibold">{payAmountFormatted}</span> to{' '}
+              <span className="font-semibold break-all">
+                {truncate(
+                  isEVM
+                    ? isNative
+                      ? option.args?.request?.to ?? ''
+                      : option.args?.args[0] ?? ''
+                    : option.args?.recipientAddress?.toBase58() ?? '',
+                  8,
+                  true,
+                  '.',
+                )}
               </span>
-            </>
+              , please confirm that you and the recipient are on the{' '}
+              <span className="font-semibold">
+                {chainSymbol.toUpperCase() || '???'}
+              </span>{' '}
+              chain network before proceeding.
+            </span>
           )}
           <div className="flex gap-x-2 self-stretch mt-5">
             <Button

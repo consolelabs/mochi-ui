@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import IconUser from '../icons/components/icon-user'
 import IconDiscord from '../icons/components/icon-discord'
 import IconGame from '../icons/components/icon-game'
@@ -11,7 +12,6 @@ import IconX from '../icons/components/icon-x'
 import Sidebar from './sidebar'
 import { Badge } from '../badge'
 import { IconTwinkle } from '../icons'
-import { useState } from 'react'
 
 export default {
   title: 'ui/Sidebar',

@@ -1,5 +1,5 @@
-import { Chain } from './type'
 import { Heading } from '@consolelabs/ui-components'
+import { Chain } from './type'
 
 interface ItemProps {
   item: Chain

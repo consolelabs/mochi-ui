@@ -119,10 +119,7 @@ export default function App(props: AppPropsWithLayout) {
         }}
       />
       <TopProgressBar />
-      <Script
-        async
-        src="https://telegram.org/js/telegram-widget.js?22"
-      ></Script>
+      <Script async src="https://telegram.org/js/telegram-widget.js?22" />
       <WalletProvider>
         <InnerApp {...props} />
       </WalletProvider>

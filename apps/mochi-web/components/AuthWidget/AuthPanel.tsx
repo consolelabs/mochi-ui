@@ -1,7 +1,14 @@
 import useSWR from 'swr'
 import { API } from '~constants/api'
 import { api } from '~constants/mochi'
-import { ReactNode, useCallback, useMemo, useState } from 'react'
+import {
+  ReactNode,
+  useCallback,
+  useMemo,
+  useState,
+  useEffect,
+  Fragment,
+} from 'react'
 import { AUTH_TELEGRAM_ID, MOCHI_PROFILE_API } from '~envs'
 import {
   IconDiscordColored,
@@ -17,9 +24,7 @@ import {
 } from '@consolelabs/ui-components'
 import { useAuthStore } from '~store'
 import qs from 'query-string'
-import { useEffect } from 'react'
 import clsx from 'clsx'
-import { Fragment } from 'react'
 import { PanelHeader } from './PanelHeader'
 import { ConnectButton } from './ConnectButton'
 import { PanelContainer } from './PanelContainer'

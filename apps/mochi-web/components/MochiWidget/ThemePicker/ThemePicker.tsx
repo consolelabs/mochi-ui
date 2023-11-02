@@ -7,9 +7,9 @@ import {
   PopoverTrigger,
 } from '@consolelabs/ui-components'
 import React, { useState } from 'react'
-import { useTipWidget } from '../Tip'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { Tab } from '@headlessui/react'
+import { useTipWidget } from '../Tip'
 import { sectionFormatter } from '../TokenPicker/utils'
 import { ThemeList } from './data'
 

@@ -58,8 +58,8 @@ export default function Avatar({
     <div className={size ? style({ size }) : cc(className, 'flex')}>
       <svg role="none" width="100%" height="100%" viewBox="0 0 100 100">
         <mask id={`circle-mask-${id}`}>
-          <circle fill="white" cx="50%" cy="50%" r="50%"></circle>
-          <circle fill="black" cx="80%" cy="80%" r="24%"></circle>
+          <circle fill="white" cx="50%" cy="50%" r="50%" />
+          <circle fill="black" cx="80%" cy="80%" r="24%" />
         </mask>
         <image
           height="100%"
@@ -74,14 +74,8 @@ export default function Avatar({
               )
             }
           }}
-        ></image>
-        <image
-          height="40%"
-          width="40%"
-          x="60%"
-          y="60%"
-          xlinkHref={cutoutSrc}
-        ></image>
+        />
+        <image height="40%" width="40%" x="60%" y="60%" xlinkHref={cutoutSrc} />
       </svg>
     </div>
   )

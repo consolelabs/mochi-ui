@@ -68,7 +68,7 @@ export const Footer = () => {
             </div>
             <div className="space-y-2 text-[13px]">
               <div className="text-footer-title">Company</div>
-              <a className="block text-footer-body" href="#">
+              <a className="block text-footer-body" href="/#">
                 Become a partner
               </a>
               <a
@@ -78,7 +78,7 @@ export const Footer = () => {
               >
                 Support
               </a>
-              <a className="block text-footer-body" href="#">
+              <a className="block text-footer-body" href="/tos">
                 ToS
               </a>
             </div>

@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import Receipt from '~cpn/receipt'
+import { create } from 'zustand'
 import { useWidget } from '..'
 import StepOne from './StepOne'
 import StepTwo from './StepTwo'
-import { create } from 'zustand'
 import { Theme } from '../ThemePicker/data'
 
 interface Request {

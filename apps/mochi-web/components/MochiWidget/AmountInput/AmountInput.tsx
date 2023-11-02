@@ -1,8 +1,8 @@
 import Button from '~cpn/base/button'
-import { TokenPicker } from '../TokenPicker'
 import { useEffect, useState } from 'react'
-import { MonikerAsset, TokenAsset } from '../TokenPicker/type'
 import { abbreviateNumber, formatNumber } from '~utils/number'
+import { TokenPicker } from '../TokenPicker'
+import { MonikerAsset, TokenAsset } from '../TokenPicker/type'
 
 interface AmountInputProps {
   accessToken: string | null

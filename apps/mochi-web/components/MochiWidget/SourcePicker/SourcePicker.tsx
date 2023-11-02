@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 import { Icon } from '@iconify/react'
-import { SourceList } from './SourceList'
-import { SourceType } from './type'
 import { formatNumber } from '~utils/number'
 import {
   Popover,
   PopoverTrigger,
   PopoverContent,
 } from '@consolelabs/ui-components'
+import { SourceList } from './SourceList'
+import { SourceType } from './type'
 
 const MockSources: SourceType[] = [
   {

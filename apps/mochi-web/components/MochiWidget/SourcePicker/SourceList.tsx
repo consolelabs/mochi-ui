@@ -1,5 +1,5 @@
-import { SourceType } from './type'
 import { List } from '@consolelabs/ui-components'
+import { SourceType } from './type'
 import { SourceItem } from './SourceItem'
 
 interface Props {

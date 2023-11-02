@@ -1,7 +1,7 @@
 import React from 'react'
 import { Tab as HeadlessTab } from '@headlessui/react'
-import { tab } from './styles'
 import clsx from 'clsx'
+import { tab } from './styles'
 
 type Props = {
   headings: {

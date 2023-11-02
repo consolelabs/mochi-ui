@@ -18,7 +18,7 @@ type Props = {
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   await api.isReady
-  const changelogs = api.changelogs
+  const { changelogs } = api
 
   return {
     props: {

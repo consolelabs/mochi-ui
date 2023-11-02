@@ -5,8 +5,8 @@ import { Platform, utils as mochiUtils } from '@consolelabs/mochi-ui'
 import { Icon } from '@iconify/react'
 import { Stats } from '@consolelabs/mochi-rest'
 import { discordLogo, telegramLogo } from '~utils/image'
-import { Pagination } from './Dashboard/Pagination'
 import { Avatar } from '@consolelabs/ui-components'
+import { Pagination } from './Dashboard/Pagination'
 
 const Box = ({
   children,
@@ -48,6 +48,7 @@ export default function Profile() {
         break
       case Platform.Telegram:
         r.most_send.profile.platformIcon = telegramLogo.src
+        break
       default:
         break
     }
@@ -70,6 +71,7 @@ export default function Profile() {
         break
       case Platform.Telegram:
         r.most_receive.profile.platformIcon = telegramLogo.src
+        break
       default:
         break
     }
@@ -214,7 +216,7 @@ export default function Profile() {
             </span>
             <span className="text-sm">Showing 10 txns</span>
           </div>
-          <div className="flex flex-col gap-y-2 h-96"></div>
+          <div className="flex flex-col gap-y-2 h-96" />
           <div className="mx-auto">
             <Pagination page={1} onChange={() => {}} totalPage={10} />
           </div>

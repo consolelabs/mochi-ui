@@ -1,14 +1,14 @@
 import { useMemo, useState } from 'react'
 import { Icon } from '@iconify/react'
-import { ChainList } from './ChainList'
-import { Chains } from './data'
-import { Chain } from './type'
 import {
   Popover,
   PopoverTrigger,
   PopoverContent,
   InputField,
 } from '@consolelabs/ui-components'
+import { ChainList } from './ChainList'
+import { Chains } from './data'
+import { Chain } from './type'
 
 export const ChainPicker = () => {
   const [isOpenSelector, setIsOpenSelector] = useState(false)

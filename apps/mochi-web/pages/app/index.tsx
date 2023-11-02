@@ -1,4 +1,9 @@
-import { Alert } from '@consolelabs/ui-components'
+import {
+  Alert,
+  Modal,
+  ModalContent,
+  ModalTrigger,
+} from '@consolelabs/ui-components'
 import AuthLayout from '~components/auth-layout'
 import Link from 'next/link'
 import useSWR from 'swr'
@@ -13,7 +18,6 @@ import CopyButton from '~cpn/CopyButton'
 import { NextPageWithLayout } from '~pages/_app'
 import { ReactElement } from 'react-markdown/lib/react-markdown'
 import { useState } from 'react'
-import { Modal, ModalContent, ModalTrigger } from '@consolelabs/ui-components'
 
 const Pattern = (props: any) => {
   return (

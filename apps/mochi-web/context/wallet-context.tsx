@@ -9,28 +9,16 @@ import { SolanaWalletProvider } from 'context/wallets/solana/SolanaWalletProvide
 import { EVMWalletProvider } from 'context/wallets/ethereum/EVMWalletProvider'
 import { useNetwork } from 'wagmi'
 import { createContext } from '@dwarvesf/react-utils'
-import { Chain } from './wallets/Wallet'
-import { decorateChains } from './wallets/ethereum/chains'
-import { solanaChain } from './wallets/solana/chains'
 import { useAccount } from '~hooks/wallets/useAccount'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { useAuthStore } from '~store'
+import { Chain } from './wallets/Wallet'
+import { decorateChains } from './wallets/ethereum/chains'
+import { solanaChain } from './wallets/solana/chains'
 import { SuiWalletProvider } from './wallets/sui/SuiWalletProvider'
 
 export type WalletProviderProps = {
   children: ReactNode
-}
-
-export const WalletProvider = ({ children }: WalletProviderProps) => {
-  return (
-    <SuiWalletProvider>
-      <EVMWalletProvider>
-        <SolanaWalletProvider>
-          <AppWalletContextProvider>{children}</AppWalletContextProvider>
-        </SolanaWalletProvider>
-      </EVMWalletProvider>
-    </SuiWalletProvider>
-  )
 }
 
 export type Blockchain = 'EVM' | 'SOL'
@@ -146,6 +134,18 @@ export const AppWalletContextProvider = ({
     >
       {children}
     </Provider>
+  )
+}
+
+export const WalletProvider = ({ children }: WalletProviderProps) => {
+  return (
+    <SuiWalletProvider>
+      <EVMWalletProvider>
+        <SolanaWalletProvider>
+          <AppWalletContextProvider>{children}</AppWalletContextProvider>
+        </SolanaWalletProvider>
+      </EVMWalletProvider>
+    </SuiWalletProvider>
   )
 }
 
