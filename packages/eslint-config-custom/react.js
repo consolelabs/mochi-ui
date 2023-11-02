@@ -37,21 +37,7 @@ module.exports = {
     'no-dupe-class-members': 'off',
     'prefer-arrow-callback': 'off',
     'import/export': 'off',
-    'prettier/prettier': [
-      'error',
-      {
-        bracketSpacing: true,
-        jsxBracketSameLine: false,
-        jsxSingleQuote: false,
-        printWidth: 80,
-        proseWrap: 'always',
-        semi: false,
-        singleQuote: true,
-        tabWidth: 2,
-        trailingComma: 'all',
-        xmlWhitespaceSensitivity: 'ignore',
-      },
-    ],
+    'prettier/prettier': 'error',
   },
   overrides: [
     {

@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-pnpm i
-pnpm format
+
+npx lint-staged
 pnpm lint:fix
 git add .
