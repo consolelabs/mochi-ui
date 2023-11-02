@@ -4,7 +4,6 @@ import { Layout } from '~app/layout'
 import { SEO } from '~app/layout/seo'
 import Stats from '~components/stats'
 import { SOCIAL_LINKS } from '~constants'
-import { LoginRequiredModal } from '~cpn/AuthWidget'
 
 const gray1 = '#F7F6F4'
 const gray2 = '#E5E5E3'
@@ -12,7 +11,6 @@ const gray2 = '#E5E5E3'
 export default function Developer() {
   return (
     <Layout>
-      <LoginRequiredModal/>
       <SEO />
       <div className="flex flex-col items-center mx-auto mt-24 max-w-3xl">
         <p className="text-5xl font-medium text-center font-text">

@@ -5,7 +5,6 @@ import { api } from "~constants/mochi"
 import { ReactNode, useCallback, useMemo, useState } from "react"
 import { AUTH_TELEGRAM_ID, MOCHI_PROFILE_API } from "~envs"
 import {
-    ModalTitle,
     IconWallet,
     IconDiscordColored,
     IconTelegramColored,
@@ -149,7 +148,7 @@ export const AuthPanel = (props: AuthPanelProps) => {
     return (
         <div className="p-6 rounded-xl bg-white-pure">
             <div className="space-y-2 text-center">
-                <ModalTitle className="!text-2xl text-neutral-900">Welcome back!</ModalTitle>
+                <h3 className="!text-2xl font-medium text-neutral-900">Welcome back!</h3>
                 <p className="text-sm text-neutral-800">Great to see you again! Sign in your account to continue.</p>
             </div>
             <div className="flex flex-col gap-8 text-center mt-8">
