@@ -32,11 +32,7 @@ export const RadioGroup = forwardRef(
         value={value}
         name={name}
         onChange={onChange}
-        className={
-          radioGroupClassName
-            ? radioGroupClassName
-            : 'flex flex-wrap w-full text-sm'
-        }
+        className={radioGroupClassName || 'flex flex-wrap w-full text-sm'}
         ref={ref}
       >
         {options.map((option, index) => {

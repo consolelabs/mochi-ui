@@ -15,7 +15,9 @@ export const useSns = (address: string) => {
           return Promise.all(keys.map((k) => reverseLookup(connection, k)))
         })
         .then((names) => setNames(names))
-    } catch (e) {}
+    } catch (e) {
+      console.error(e)
+    }
   }, [address, connection])
 
   return { names }

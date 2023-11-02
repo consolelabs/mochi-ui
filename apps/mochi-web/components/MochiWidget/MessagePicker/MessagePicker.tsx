@@ -8,10 +8,10 @@ import {
   SectionList,
 } from '@consolelabs/ui-components'
 import { useDisclosure } from '@dwarvesf/react-hooks'
+import { useState } from 'react'
 import { Message, MessageList } from './data'
 import { sectionFormatter } from '../TokenPicker/utils'
 import { useTipWidget } from '../Tip'
-import { useState } from 'react'
 
 function SectionItem({
   item,

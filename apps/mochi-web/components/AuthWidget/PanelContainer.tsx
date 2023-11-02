@@ -1,5 +1,5 @@
-import { Variant } from './AuthPanel'
 import { ReactNode } from 'react'
+import { Variant } from './AuthPanel'
 
 interface PanelContainerProps {
   variant?: Variant

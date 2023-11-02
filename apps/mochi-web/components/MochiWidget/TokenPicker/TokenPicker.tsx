@@ -1,10 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Icon } from '@iconify/react'
-import { TokenList } from './TokenList'
-import { MonikerAsset, SectionBase, TokenAsset } from './type'
-import { TokenAssets, MonikerAssets } from './data'
-import { MonikerList } from './MonikerList'
-import { sectionFormatter } from './utils'
 import { Tab } from '@headlessui/react'
 import {
   InputField,
@@ -13,6 +8,11 @@ import {
   PopoverTrigger,
   PopoverContent,
 } from '@consolelabs/ui-components'
+import { TokenList } from './TokenList'
+import { MonikerAsset, SectionBase, TokenAsset } from './type'
+import { TokenAssets, MonikerAssets } from './data'
+import { MonikerList } from './MonikerList'
+import { sectionFormatter } from './utils'
 
 const TokenTabs = [
   {

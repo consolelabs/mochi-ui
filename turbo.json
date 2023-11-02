@@ -9,6 +9,9 @@
     "lint": {
       "dependsOn": ["^build"]
     },
+    "lint:fix": {
+      "dependsOn": ["^build"]
+    },
     "check-types": {},
     "storybook": {},
     "build:storybook": {},

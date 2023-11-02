@@ -28,7 +28,8 @@ export const TipNetworkGraph = ({
   const maxVolume = Math.max(...volumes)
   const minVolume = Math.min(...volumes)
   const radiusStep = Math.round((maxVolume - minVolume) / VOLUME_STEP)
-  const activeNode = hoverNode || selectedNode
+  // eslint-disable-next-line no-underscore-dangle
+  const _activeNode = hoverNode || selectedNode
 
   const updateHighlight = useCallback(() => {
     setHighlightNodeIds(highlightNodeIds)
@@ -84,12 +85,10 @@ export const TipNetworkGraph = ({
         paint(node, ctx, '#FBE9E8', 'rgba(232, 139, 136, 0.8)')
       } else if (highlightIds?.has(node.id)) {
         paint(node, ctx, '#E88B88', 'rgba(244, 201, 200, 0.4)')
+      } else if (selectedNode) {
+        paint(node, ctx, 'rgba(179, 235, 83, 0.2)', 'rgba(179, 235, 83, 0.1)')
       } else {
-        if (selectedNode) {
-          paint(node, ctx, 'rgba(179, 235, 83, 0.2)', 'rgba(179, 235, 83, 0.1)')
-        } else {
-          paint(node, ctx, '#b3eb53', 'rgba(179, 235, 83, 0.2)')
-        }
+        paint(node, ctx, '#b3eb53', 'rgba(179, 235, 83, 0.2)')
       }
     },
     [highlightNodeIds, paint, selectedNode, hoverNode, highlightLink],
@@ -177,7 +176,7 @@ export const TipNetworkGraph = ({
       nodeRelSize={10}
       linkColor={handleLinkColor}
       backgroundColor="#000000"
-      autoPauseRedraw={true}
+      autoPauseRedraw
       linkWidth={(link) => (isHighlightLink(link) ? 2 : 0.5)}
       linkDirectionalParticleColor={() => 'rgba(255,255,255,0.8)'}
       linkDirectionalParticles={3}

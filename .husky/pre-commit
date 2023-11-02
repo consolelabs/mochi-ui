@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
 pnpm i
 pnpm format
+pnpm lint:fix
 git add .

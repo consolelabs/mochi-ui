@@ -1,4 +1,3 @@
-import { select } from './styles'
 import { Combobox, Transition } from '@headlessui/react'
 import {
   ForwardedRef,
@@ -8,9 +7,10 @@ import {
   useMemo,
   useState,
 } from 'react'
-import { Input } from '../Input'
 import clsx from 'clsx'
 import { Icon } from '@iconify/react'
+import { Input } from '../Input'
+import { select } from './styles'
 
 type Option = {
   label: string

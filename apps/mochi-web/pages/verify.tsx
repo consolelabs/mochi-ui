@@ -80,93 +80,91 @@ export default function Verify({
                     with more exclusive privileges.
                   </p>
                   <div className="flex gap-x-2 justify-center">
-                    <>
-                      <button
-                        disabled={loading}
-                        className={button({ size: 'sm' })}
-                        onClick={() =>
-                          showConnectModal(
-                            async ({ signature, address, platform, msg }) => {
-                              if (!code || loading) return
-                              setLoading(true)
-                              const payload = {
-                                wallet_address: address,
-                                code,
-                                signature,
-                                message: msg,
-                              }
+                    <button
+                      disabled={loading}
+                      className={button({ size: 'sm' })}
+                      onClick={() =>
+                        showConnectModal(
+                          async ({ signature, address, platform, msg }) => {
+                            if (!code || loading) return
+                            setLoading(true)
+                            const payload = {
+                              wallet_address: address,
+                              code,
+                              signature,
+                              message: msg,
+                            }
 
-                              API.MOCHI_PROFILE.post(
-                                payload,
-                                `/profiles/me/accounts/connect-${platform}`,
-                              )
-                                .badRequest(setError)
-                                .json((r) => {
-                                  const user_discord_id =
-                                    r.associated_accounts.find(
-                                      (aa: any) => aa.platform === 'discord',
-                                    )?.platform_identifier
-                                  if (!guild_id) {
-                                    setVerified(true)
-                                  } else if (user_discord_id) {
-                                    API.MOCHI.post(
-                                      {
-                                        user_discord_id,
-                                        guild_id,
-                                      },
-                                      `/verify/assign-role`,
-                                    )
-                                      .badRequest(setError)
-                                      .res(() => {
-                                        setVerified(true)
+                            API.MOCHI_PROFILE.post(
+                              payload,
+                              `/profiles/me/accounts/connect-${platform}`,
+                            )
+                              .badRequest(setError)
+                              .json((r) => {
+                                const user_discord_id =
+                                  r.associated_accounts.find(
+                                    (aa: any) => aa.platform === 'discord',
+                                  )?.platform_identifier
+                                if (!guild_id) {
+                                  setVerified(true)
+                                } else if (user_discord_id) {
+                                  API.MOCHI.post(
+                                    {
+                                      user_discord_id,
+                                      guild_id,
+                                    },
+                                    `/verify/assign-role`,
+                                  )
+                                    .badRequest(setError)
+                                    .res(() => {
+                                      setVerified(true)
 
-                                        if (!isLoggedIn) {
-                                          // log the user in with the new connected discord account
-                                          API.MOCHI_PROFILE.post(
-                                            payload,
-                                            `/profiles/auth/${platform}`,
+                                      if (!isLoggedIn) {
+                                        // log the user in with the new connected discord account
+                                        API.MOCHI_PROFILE.post(
+                                          payload,
+                                          `/profiles/auth/${platform}`,
+                                        )
+                                          .json((r) =>
+                                            login({
+                                              token: r.data.access_token,
+                                            }),
                                           )
-                                            .json((r) =>
-                                              login({
-                                                token: r.data.access_token,
-                                              }),
-                                            )
-                                            .catch(setError)
-                                            .finally(() => {
-                                              closeConnectModal()
-                                              setLoading(false)
-                                              disconnect()
-                                            })
-                                        }
-                                      })
-                                      .catch(setError)
-                                      .finally(() => {
-                                        closeConnectModal()
-                                        setLoading(false)
-                                        disconnect()
-                                      })
-                                  }
-                                })
-                                .catch(setError)
-                                .finally(() => {
-                                  closeConnectModal()
-                                  setLoading(false)
-                                  disconnect()
-                                })
-                            },
-                            code,
-                          )
-                        }
-                      >
-                        Connect
-                      </button>
-                      <button
-                        onClick={() => setLoading(false)}
-                        className={button({ size: 'sm' })}
-                      >
-                        Cancel
-                      </button>
-                    </>
+                                          .catch(setError)
+                                          .finally(() => {
+                                            closeConnectModal()
+                                            setLoading(false)
+                                            disconnect()
+                                          })
+                                      }
+                                    })
+                                    .catch(setError)
+                                    .finally(() => {
+                                      closeConnectModal()
+                                      setLoading(false)
+                                      disconnect()
+                                    })
+                                }
+                              })
+                              .catch(setError)
+                              .finally(() => {
+                                closeConnectModal()
+                                setLoading(false)
+                                disconnect()
+                              })
+                          },
+                          code,
+                        )
+                      }
+                    >
+                      Connect
+                    </button>
+                    <button
+                      onClick={() => setLoading(false)}
+                      className={button({ size: 'sm' })}
+                    >
+                      Cancel
+                    </button>
                   </div>
                 </div>
               )

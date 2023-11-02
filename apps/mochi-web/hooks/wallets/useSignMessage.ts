@@ -76,9 +76,10 @@ export const useSignMessage = () => {
       try {
         const messageEncoded = new TextEncoder().encode(message)
 
-        const { signature } = await signSuiMessage?.({
-          message: messageEncoded,
-        })
+        const { signature } =
+          (await signSuiMessage?.({
+            message: messageEncoded,
+          })) || {}
 
         return signature
       } catch (e) {

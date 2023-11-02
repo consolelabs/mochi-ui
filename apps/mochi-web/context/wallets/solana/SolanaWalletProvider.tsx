@@ -4,8 +4,8 @@ import {
   ConnectionProvider,
   WalletProvider as SolWalletProvider,
 } from '@solana/wallet-adapter-react'
-import { getDefaultSolanaWallets } from './getDefaultWallets'
 import { isAndroid } from '~utils/isMobile'
+import { getDefaultSolanaWallets } from './getDefaultWallets'
 
 export type SolanaWalletProviderProps = {
   children: ReactNode

@@ -173,9 +173,7 @@ const LoginWidget = ({
   const [wallet, setWallet] = useState<WalletProps>()
   const [error, setError] = useState('')
 
-  const trigger: React.ReactNode = _trigger ? (
-    _trigger
-  ) : (
+  const trigger: React.ReactNode = _trigger || (
     <button
       className="px-1.5 text-sm rounded-md border shadow bg-neutral-200 border-neutral-500"
       onClick={user ? logout : undefined}
@@ -278,6 +276,8 @@ const LoginWidget = ({
 
   return (
     <LoginWidgetContext.Provider
+      // TODO: fix eslint issue
+      // eslint-disable-next-line react/jsx-no-constructed-context-values
       value={{
         state,
         setState,

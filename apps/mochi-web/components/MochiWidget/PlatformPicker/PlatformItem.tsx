@@ -1,5 +1,5 @@
-import { Platform } from './type'
 import { Heading } from '@consolelabs/ui-components'
+import { Platform } from './type'
 import PlatformIcon from './PlatformIcon'
 
 interface ItemProps {

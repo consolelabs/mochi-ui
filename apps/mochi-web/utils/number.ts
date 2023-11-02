@@ -5,7 +5,7 @@ export function formatNumber(number: number | string) {
   return Intl.NumberFormat().format(number)
 }
 
-export function abbreviateNumber(num: number, digits: number = 2) {
+export function abbreviateNumber(num: number, _digits: number = 2) {
   const lookup = [
     { value: 1, symbol: '' },
     // { value: 1e3, symbol: 'k' }, // TODO: uncomment this if wanna use k
@@ -16,7 +16,7 @@ export function abbreviateNumber(num: number, digits: number = 2) {
     { value: 1e18, symbol: 'E' },
   ]
   const rx = /\.0+$|(\.[0-9]*[1-9])0+$/
-  var item = lookup
+  const item = lookup
     .slice()
     .reverse()
     .find(function (item) {

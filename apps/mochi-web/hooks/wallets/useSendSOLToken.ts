@@ -82,7 +82,7 @@ export const useSendSOLToken = () => {
         }),
       )
 
-      return await sendTx(
+      return sendTx(
         connection,
         publicKey,
         config.recipientAddress!,
@@ -147,7 +147,7 @@ export const useSendSOLToken = () => {
 
       const tx = new Transaction().add(...txInstructions)
 
-      return await sendTx(
+      return sendTx(
         connection,
         publicKey,
         config.recipientAddress!,

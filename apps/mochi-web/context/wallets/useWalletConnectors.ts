@@ -3,10 +3,10 @@ import { useWallet as useSolWallet } from '@solana/wallet-adapter-react'
 import { useWallet as useSuiWallet } from '@suiet/wallet-kit'
 import { WalletName, WalletReadyState } from '@solana/wallet-adapter-base'
 import { useAppWalletContext } from 'context/wallet-context'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { WalletInstance } from './Wallet'
 import { getRecentWalletIds, addRecentWalletId } from './recentWalletIds'
 import { walletDownloadUrls } from './solana/walletAdapters'
-import { useCallback, useEffect, useRef, useState } from 'react'
 
 export interface WalletConnector extends WalletInstance {
   ready?: boolean
@@ -240,12 +240,12 @@ export const useWalletConnectors = () => {
           setErrorMsg('')
           if (wallet.isSui) {
             return await suiConnectWallet(wallet)
-          } else if (wallet.isSolana) {
+          }
+          if (wallet.isSolana) {
             interacted.current = true
             return await solConnectWallet(wallet)
-          } else {
-            return await evmConnectWallet(wallet.id, wallet.connector!)
           }
+          return await evmConnectWallet(wallet.id, wallet.connector!)
         } catch (e: any) {
           if (!(e instanceof ConnectorAlreadyConnectedError)) {
             setErrorMsg(e.message || 'Something went wrong')

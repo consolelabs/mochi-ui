@@ -26,7 +26,7 @@ export const Menu = (props: Props) => {
       {items.map((group, groupIdx) => {
         return (
           <div className="flex flex-col gap-y-1" key={`user-menu-${groupIdx}`}>
-            {groupIdx != 0 && !group[0] ? (
+            {groupIdx !== 0 && !group[0] ? (
               <hr className="my-2 mx-auto w-[85%] bg-black/20 h-[2px]" />
             ) : (
               <span

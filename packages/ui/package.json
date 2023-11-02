@@ -20,7 +20,8 @@
   "license": "MIT",
   "scripts": {
     "build": "tsup",
-    "lint": "eslint --fix src/",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint --fix src --ext .js,.jsx,.ts,.tsx",
     "dev": "tsup --watch",
     "storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build",

@@ -1,5 +1,5 @@
-import { TokenAsset } from './type'
 import { List } from '@consolelabs/ui-components'
+import { TokenAsset } from './type'
 import { TokenItem } from './TokenItem'
 import { EmptyList } from './EmptyList'
 

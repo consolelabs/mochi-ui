@@ -70,11 +70,7 @@ export const useAccount = (): Account => {
   const disconnect = useCallback(async () => {
     select(null)
     setActiveAddress('')
-    return await runAllDisconnectors(
-      disconnectSOL,
-      disconnectEVM,
-      disconnectSui,
-    )
+    return runAllDisconnectors(disconnectSOL, disconnectEVM, disconnectSui)
   }, [disconnectEVM, disconnectSOL, disconnectSui, select])
 
   return {

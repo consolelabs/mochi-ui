@@ -1,6 +1,6 @@
 import { formatNumber } from '~utils/number'
-import { SourceType } from './type'
 import { Heading } from '@consolelabs/ui-components'
+import { SourceType } from './type'
 
 interface ItemProps {
   item: SourceType

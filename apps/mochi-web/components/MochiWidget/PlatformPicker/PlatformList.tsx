@@ -1,5 +1,5 @@
-import { Platform } from './type'
 import { List } from '@consolelabs/ui-components'
+import { Platform } from './type'
 import { PlatformItem } from './PlatformItem'
 
 interface Props {

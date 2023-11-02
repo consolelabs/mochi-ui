@@ -1,4 +1,5 @@
 'use client'
+
 import { GetServerSideProps } from 'next'
 import { Layout } from '~app/layout'
 import { HOME_URL } from '~envs'
@@ -6,7 +7,7 @@ import { SEO } from '~app/layout/seo'
 import { API } from '~constants/api'
 import dynamic from 'next/dynamic'
 import { TransactionGraphData, TransactionEdge } from '~types/mochi-schema'
-import { GraphData } from 'react-force-graph-2d'
+import { GraphData, NodeObject } from 'react-force-graph-2d'
 import { useMemo, useState } from 'react'
 import { ProfileBar } from '~components/TipNetwork/ProfileBar'
 import UI, { Platform } from '@consolelabs/mochi-ui'
@@ -17,7 +18,6 @@ import {
   TipNetworkData,
 } from '~types/tip-graph'
 import { useDisclosure } from '@dwarvesf/react-hooks'
-import { NodeObject } from 'react-force-graph-2d'
 
 const TipNetworkGraph = dynamic(
   () =>
@@ -78,7 +78,7 @@ export default function TipNetwork({ data }: TipNetworkProps) {
         profile: node.profile,
         parsedProfile: parsedProfile[0],
         totalVolume: node.total_volume,
-        neighborIds: neighborIds,
+        neighborIds,
         volumePercent: Number(
           ((node.total_volume * 100) / totalVolume).toFixed(2),
         ),
@@ -138,8 +138,8 @@ export default function TipNetwork({ data }: TipNetworkProps) {
   return (
     <Layout>
       <SEO
-        title={`Tip network from server`}
-        description={`Tip network from server`}
+        title="Tip network from server"
+        description="Tip network from server"
         url={`${HOME_URL}/tip-network/`}
       />
       <div className="flex relative w-full h-full">

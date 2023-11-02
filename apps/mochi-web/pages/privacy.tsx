@@ -9,6 +9,7 @@ export default function PrivacyPolicy() {
       <iframe
         style={{ height: 'calc(100vh - 348px - 80px)' }}
         className="mx-auto w-full"
+        title="privacy-policy-legal-iubenda"
         src="https://www.iubenda.com/privacy-policy/31936890/legal"
       />
     </Layout>

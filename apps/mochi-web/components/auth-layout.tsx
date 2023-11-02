@@ -2,7 +2,6 @@ import clsx from 'clsx'
 import { useHasMounted } from '@dwarvesf/react-hooks'
 import { useAuthStore } from '~store'
 import Link from 'next/link'
-import Login from './login'
 import {
   Sidebar,
   IconLifeBuoy,
@@ -20,6 +19,7 @@ import {
 } from '@consolelabs/ui-components'
 import { DISCORD_LINK } from '~envs'
 import { useRouter } from 'next/router'
+import Login from './login'
 
 const SidebarHeader = ({ expanded }: { expanded?: boolean }) => {
   return expanded ? (

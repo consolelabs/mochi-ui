@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import { create } from 'zustand'
 import GiftIcon from './gift-icon'
 import PaperplaneIcon from './paperplane-icon'
 import PaymeIcon from './payme-icon'
@@ -7,7 +8,6 @@ import Gift from './gift'
 import Tip from './Tip'
 import Payme from './payme'
 import Paylink from './paylink'
-import { create } from 'zustand'
 
 const tabs = [
   {

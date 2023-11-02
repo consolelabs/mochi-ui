@@ -1,5 +1,5 @@
-import { Chain } from './type'
 import { List } from '@consolelabs/ui-components'
+import { Chain } from './type'
 import { ChainItem } from './ChainItem'
 import { EmptyList } from './EmptyList'
 

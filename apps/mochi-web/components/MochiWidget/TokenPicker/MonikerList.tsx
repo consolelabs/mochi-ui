@@ -1,5 +1,5 @@
-import { MonikerAsset, SectionBase } from './type'
 import { SectionList } from '@consolelabs/ui-components'
+import { MonikerAsset, SectionBase } from './type'
 import { MonikerItem } from './MonikerItem'
 import { EmptyList } from './EmptyList'
 

@@ -144,6 +144,9 @@ export const useMochi = create<MochiState>((set, get) => ({
                   .catch(() => {})
               break
             }
+            default: {
+              break
+            }
           }
 
           return a

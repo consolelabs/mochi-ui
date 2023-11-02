@@ -1,6 +1,6 @@
 import { formatNumber } from '~utils/number'
-import { TokenAsset } from './type'
 import { Heading } from '@consolelabs/ui-components'
+import { TokenAsset } from './type'
 
 interface ItemProps {
   item: TokenAsset

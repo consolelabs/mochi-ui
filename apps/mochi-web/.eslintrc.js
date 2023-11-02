@@ -1,0 +1,35 @@
+module.exports = {
+  root: true,
+  extends: ['custom/next', 'next/core-web-vitals', 'next'],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 10,
+    ecmaFeatures: {
+      jsx: true,
+    },
+    project: ['./tsconfig.json'],
+    tsconfigRootDir: __dirname,
+    createDefaultProgram: true,
+    sourceType: 'module',
+  },
+  rules: {
+    // TODO: fix these rules
+    'react/jsx-no-bind': 'warn',
+    'jsx-a11y/label-has-associated-control': 'warn',
+    'jsx-a11y/no-noninteractive-element-interactions': 'warn',
+    'jsx-a11y/no-noninteractive-element-to-interactive-role': 'warn',
+    'jsx-a11y/click-events-have-key-events': 'warn',
+    'jsx-a11y/label-has-associated-control': 'warn',
+    'jsx-a11y/anchor-is-valid': 'warn',
+    'jsx-a11y/no-static-element-interactions': 'warn',
+    'no-nested-ternary': 'warn',
+    'react/display-name': 'off',
+    'import/no-cycle': 'warn',
+    '@typescript-eslint/no-unused-expressions': 'warn',
+    'react/no-unstable-nested-components': 'warn',
+    'react/no-unused-prop-types': 'warn',
+    'react/jsx-no-useless-fragment': 'warn',
+    'no-restricted-exports': 'warn',
+    '@typescript-eslint/no-redeclare': 'warn',
+  },
+}

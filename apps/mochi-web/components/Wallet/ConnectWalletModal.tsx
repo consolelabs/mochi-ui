@@ -24,9 +24,9 @@ import { useAccount } from '~hooks/wallets/useAccount'
 import { useSignMessage } from '~hooks/wallets/useSignMessage'
 import { isAndroid, isMobile } from '~utils/isMobile'
 import { getWalletLoginSignMessage } from '~utils/string'
+import { useAuthStore } from '~store'
 import { ConnectDetail } from './ConnectDetail'
 import { ConnectWalletIntro } from './ConnectWalletIntro'
-import { useAuthStore } from '~store'
 
 type Props = {
   isOpen: boolean

@@ -36,7 +36,7 @@ export default function List() {
     <section className="bg-home-gray-600 py-16 md:py-24">
       <div className="container mx-auto max-w-5xl px-6">
         <ul className="grid md:grid-cols-2 gap-8 sm:gap-12">
-          {DATA.map((item, index) => (
+          {DATA.map((item) => (
             <li key={item.title}>
               <div className="text-[#ED4257] text-lg font-semibold mb-2 sm:mb-4">
                 {item.title}

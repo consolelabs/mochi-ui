@@ -1,9 +1,8 @@
-import { useDisclosure } from '@dwarvesf/react-hooks'
+import { useDisclosure, useMedia } from '@dwarvesf/react-hooks'
 import { Icon } from '@iconify/react'
 import Button from '~cpn/base/button'
 import Modal from '~components/Modal'
 import { QRCode as QRCodeGenerator } from '~components/Wallet/QRCode'
-import { useMedia } from '@dwarvesf/react-hooks'
 import { useEffect, useRef, useState } from 'react'
 import domtoimage from 'dom-to-image'
 import createScrollSnap from 'scroll-snap'
@@ -68,7 +67,7 @@ function Inner({ setIdx, links, refs, image, qrSize }: any) {
           </div>
         )
       }}
-    ></VirtualList>
+    />
   )
 }
 

@@ -1,11 +1,11 @@
 import { Icon } from '@iconify/react'
 import { useCallback, useEffect, useState } from 'react'
-import MochiWidget from './MochiWidget'
-import { api, UI } from '../constants/mochi'
 import { Transition } from '@headlessui/react'
 import { Platform, utils as mochiUtils } from '@consolelabs/mochi-ui'
 import { utils } from 'ethers'
 import Link from 'next/link'
+import { api, UI } from '../constants/mochi'
+import MochiWidget from './MochiWidget'
 
 type Tx = {
   code: string
@@ -95,7 +95,9 @@ export default function Feed() {
             symbol: data.token.symbol,
           },
         })
-      } catch (e) {}
+      } catch (e) {
+        console.error(e)
+      }
     }
 
     ws.onclose = function () {

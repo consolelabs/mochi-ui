@@ -15,7 +15,7 @@ const numberFormat = new Intl.NumberFormat('en-US', { minimumIntegerDigits: 2 })
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const airdropId = ctx.params?.id
-  let joinId = ctx.query.join_id
+  const joinId = ctx.query.join_id
 
   if (!airdropId) {
     return {
