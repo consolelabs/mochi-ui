@@ -60,7 +60,7 @@ export default function MochiWidget() {
   return (
     <div
       style={{
-        height: 'auto',
+        height: 640,
         width: 440,
       }}
       className="p-3 flex relative z-10 flex-col rounded-2xl border border-[#e5e4e3] shadow-xl bg-white-pure"
