@@ -59,3 +59,4 @@ export { default as IconFacebookColored } from './components/icon-facebook-color
 export { default as IconFacebook } from './components/icon-facebook'
 export { default as IconSlack } from './components/icon-slack'
 export { default as IconWalletAdd } from './components/icon-wallet-add'
+export { default as IconSpinner } from './components/icon-spinner'
