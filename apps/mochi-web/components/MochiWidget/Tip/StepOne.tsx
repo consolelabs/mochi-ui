@@ -4,43 +4,62 @@ import { AmountInput } from '../AmountInput'
 import { Icon } from '@iconify/react'
 import { useTipWidget } from '.'
 import { useAuthStore } from '~store'
-import { useState } from 'react'
+import { forwardRef, useImperativeHandle, useRef, useState } from 'react'
+import { AuthPanel } from '~cpn/AuthWidget'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@consolelabs/ui-components'
 
-interface ConnectButtonProps {
-  isOpenLogin: boolean
+interface ConnectButtonRef {
+  openLogin: () => void
 }
 
-const ConnectButton: React.FC<ConnectButtonProps> = ({ isOpenLogin }) => {
+const ConnectButton = forwardRef<ConnectButtonRef, {}>(({}, ref) => {
   const [isOpenLoginPopup, openLoginPopup] = useState(false)
 
-  function toggleLoginPopup() {
-    openLoginPopup(!isOpenLoginPopup)
-  }
-  return (
-    <button
-      onClick={toggleLoginPopup}
-      className="flex gap-x-1 justify-center items-center py-2.5 px-6 bg-blue-700 rounded-lg"
-    >
-      <span className="text-sm font-medium text-white-pure">
-        Connect options
-      </span>
-      <Icon
-        className={`w-5 h-5 text-white-pure transition ${
-          isOpenLoginPopup ? 'rotate-180' : ''
-        }`}
-        icon="majesticons:chevron-down-line"
-      />
-    </button>
+  useImperativeHandle(
+    ref,
+    () => ({
+      openLogin: () => openLoginPopup(true),
+    }),
+    [],
   )
-}
+
+  function onOpenChange(open: boolean) {
+    openLoginPopup(open)
+  }
+
+  return (
+    <Popover open={isOpenLoginPopup} onOpenChange={onOpenChange}>
+      <PopoverTrigger asChild>
+        <button className="flex gap-x-1 justify-center items-center py-2.5 px-6 bg-blue-700 rounded-lg">
+          <span className="text-sm font-medium text-white-pure">
+            Connect options
+          </span>
+          <Icon
+            className={`w-5 h-5 text-white-pure transition ${
+              isOpenLoginPopup ? 'rotate-180' : ''
+            }`}
+            icon="majesticons:chevron-down-line"
+          />
+        </button>
+      </PopoverTrigger>
+      <PopoverContent className="bg-white-pure w-[412px] !p-0">
+        <AuthPanel variant="dropdown" />
+      </PopoverContent>
+    </Popover>
+  )
+})
 
 export default function StepOne() {
   const { setStep } = useTipWidget()
   const { token, isLoggedIn } = useAuthStore()
-  const [isOpenLogin, openLogin] = useState(false)
+  const connectButtonRef = useRef<ConnectButtonRef>(null)
 
   function openLoginPopup() {
-    openLogin(true)
+    connectButtonRef?.current?.openLogin()
   }
 
   return (
@@ -67,7 +86,7 @@ export default function StepOne() {
           <Icon className="w-5 h-5 text-white-pure" icon="ci:arrow-right-sm" />
         </button>
       ) : (
-        <ConnectButton isOpenLogin={isOpenLogin} />
+        <ConnectButton ref={connectButtonRef} />
       )}
     </div>
   )
