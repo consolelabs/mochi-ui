@@ -1,4 +1,4 @@
-import { Chain } from "./type";
+import { Chain } from './type'
 
 export const Chains: Chain[] = [
   {
@@ -40,5 +40,5 @@ export const Chains: Chain[] = [
     id: 8,
     name: 'Chainlink',
     icon: 'https://cryptologos.cc/logos/chainlink-link-logo.png',
-  }
+  },
 ]

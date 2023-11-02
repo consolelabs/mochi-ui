@@ -39,6 +39,6 @@ const PlatformIcon: React.FC<IconProps> = (props: IconProps) => {
       return null
     }
   }
-};
+}
 
-export default PlatformIcon;
+export default PlatformIcon

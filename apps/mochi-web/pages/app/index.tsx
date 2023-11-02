@@ -129,7 +129,7 @@ const Box = ({
 }
 
 const App: NextPageWithLayout = () => {
-  const [ isOpen, setIsOpen ] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const { id } = useProfileStore(
     (s) => ({
       id: s.me?.id,
@@ -150,88 +150,87 @@ const App: NextPageWithLayout = () => {
 
   return (
     <Modal open={isOpen} onOpenChange={setIsOpen}>
-    <div className="flex justify-center items-center h-full">
-      <div className="flex flex-col gap-y-12">
-        <div className="flex flex-col gap-y-3">
-          <span className="text-lg font-medium"> App list </span>
-          <div className="flex flex-wrap gap-3 max-w-3xl">
-            {apps?.length ? (
-              apps?.map((a: any) => {
-                return (
-                  <Link
-                    href={`/app/${a.id}`}
-                    key={a.application_profile_id}
-                    className="flex flex-col gap-y-2 items-center w-20"
-                  >
-                    <div className="p-1 w-20 h-20 rounded-lg border border-gray-300 hover:bg-gray-200 aspect-square">
-                      <img
-                        src={a.avatar || boringAvatar(a.id)}
-                        alt=""
-                        className="w-full h-full rounded-full"
-                      />
-                    </div>
-                    <span className="text-xs font-medium break-words">
-                      {a.name}
-                    </span>
-                  </Link>
-                )
-              })
-            ) : (
-              <Alert title="There are nothing yet" className="w-full">
-                <span className="text-sm">
-                  You have no apps right now, might consider creating one
-                </span>
-              </Alert>
-            )}
+      <div className="flex justify-center items-center h-full">
+        <div className="flex flex-col gap-y-12">
+          <div className="flex flex-col gap-y-3">
+            <span className="text-lg font-medium"> App list </span>
+            <div className="flex flex-wrap gap-3 max-w-3xl">
+              {apps?.length ? (
+                apps?.map((a: any) => {
+                  return (
+                    <Link
+                      href={`/app/${a.id}`}
+                      key={a.application_profile_id}
+                      className="flex flex-col gap-y-2 items-center w-20"
+                    >
+                      <div className="p-1 w-20 h-20 rounded-lg border border-gray-300 hover:bg-gray-200 aspect-square">
+                        <img
+                          src={a.avatar || boringAvatar(a.id)}
+                          alt=""
+                          className="w-full h-full rounded-full"
+                        />
+                      </div>
+                      <span className="text-xs font-medium break-words">
+                        {a.name}
+                      </span>
+                    </Link>
+                  )
+                })
+              ) : (
+                <Alert title="There are nothing yet" className="w-full">
+                  <span className="text-sm">
+                    You have no apps right now, might consider creating one
+                  </span>
+                </Alert>
+              )}
+            </div>
           </div>
-        </div>
-        <div className="flex flex-col gap-y-2">
-          <Box
-            title="Build an app"
-            className="relative bg-[#faf9f7]"
-            cta={
-              <ModalTrigger asChild>
-                <Button
-                  type="button"
-                  appearance="secondary"
-                  size="sm"
-                >
-                  Create an app
+          <div className="flex flex-col gap-y-2">
+            <Box
+              title="Build an app"
+              className="relative bg-[#faf9f7]"
+              cta={
+                <ModalTrigger asChild>
+                  <Button type="button" appearance="secondary" size="sm">
+                    Create an app
+                  </Button>
+                </ModalTrigger>
+              }
+            >
+              <Pattern className="absolute top-0 left-0 w-full" />
+              <span className="relative text-sm text-gray-500">
+                Create an app to get a live API key with access to multiple
+                Mochi products.
+              </span>
+            </Box>
+            <Box title="Test API Key">
+              <span className="text-sm text-gray-500">
+                Make a sample request to any Mochi product with the key below.
+              </span>
+              <CopyButton className="self-start mt-2">1234567890</CopyButton>
+            </Box>
+            <Box
+              title="Account settings"
+              cta={
+                <Button appearance="text" size="sm">
+                  Edit
                 </Button>
-              </ModalTrigger>
-            }
-          >
-            <Pattern className="absolute top-0 left-0 w-full" />
-            <span className="relative text-sm text-gray-500">
-              Create an app to get a live API key with access to multiple Mochi
-              products.
-            </span>
-          </Box>
-          <Box title="Test API Key">
-            <span className="text-sm text-gray-500">
-              Make a sample request to any Mochi product with the key below.
-            </span>
-            <CopyButton className="self-start mt-2">1234567890</CopyButton>
-          </Box>
-          <Box
-            title="Account settings"
-            cta={
-              <Button appearance="text" size="sm">
-                Edit
-              </Button>
-            }
-          >
-            <span className="text-sm text-gray-500">
-              Update your personal information, such as your name, email, and
-              password.
-            </span>
-          </Box>
+              }
+            >
+              <span className="text-sm text-gray-500">
+                Update your personal information, such as your name, email, and
+                password.
+              </span>
+            </Box>
+          </div>
+          <ModalContent className="!p-0">
+            <NewAppForm
+              onClose={() => setIsOpen(false)}
+              onCreated={() => refresh()}
+            />
+          </ModalContent>
         </div>
-        <ModalContent className="!p-0">
-          <NewAppForm onClose={() => setIsOpen(false)} onCreated={() => refresh()} />
-        </ModalContent>
       </div>
-    </div>
     </Modal>
   )
 }

@@ -7,7 +7,11 @@ import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { ROUTES } from '~constants/routes'
 import ProfileDropdown from './profile-dropdrown'
-import { Popover, PopoverTrigger, PopoverContent } from "@consolelabs/ui-components"
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from '@consolelabs/ui-components'
 import { useState } from 'react'
 
 const authenticatedRoute = ['/profile', '/app', '/server']
@@ -60,41 +64,35 @@ export const Header = () => {
         {isLoggedIn && me ? (
           <ProfileDropdown />
         ) : (
-          <LoginPopover isLogging={isLogging}/>
+          <LoginPopover isLogging={isLogging} />
         )}
       </div>
     </nav>
   )
 }
 
-const LoginPopover = ({isLogging}: {isLogging: boolean}) => {
-  const [ isOpen, setIsOpen ] = useState(false)
-  const [ forceHide, setForceHide ] = useState(false)
+const LoginPopover = ({ isLogging }: { isLogging: boolean }) => {
+  const [isOpen, setIsOpen] = useState(false)
+  const [forceHide, setForceHide] = useState(false)
 
   return (
-    <Popover
-      onOpenChange={setIsOpen}
-      open={isOpen}
-    >
+    <Popover onOpenChange={setIsOpen} open={isOpen}>
       <PopoverTrigger className="text-left">
         <span className="text-sm font-semibold">
           {isLogging ? 'Logging into your account...' : 'Login'}
         </span>
       </PopoverTrigger>
       <PopoverContent
-        className={clsx(
-          "!p-4 !px-6",
-          {
-          "hidden": forceHide
-          })
-        }
+        className={clsx('!p-4 !px-6', {
+          hidden: forceHide,
+        })}
         sideOffset={10}
         collisionPadding={20}
       >
-          <LoginPanel
-            onHideLoginPopover={setForceHide}
-            onCloseLoginPopover={setIsOpen}
-          />
+        <LoginPanel
+          onHideLoginPopover={setForceHide}
+          onCloseLoginPopover={setIsOpen}
+        />
       </PopoverContent>
     </Popover>
   )

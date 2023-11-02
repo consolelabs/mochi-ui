@@ -46,13 +46,25 @@ export default function Input() {
             Balance: {balance} {balanceUnit}
           </span>
           <div className="flex gap-x-2">
-            <Button appearance="text" size="xs" onClick={() => setTipAmount('1')}>
+            <Button
+              appearance="text"
+              size="xs"
+              onClick={() => setTipAmount('1')}
+            >
               1
             </Button>
-            <Button appearance="text" size="xs" onClick={() => setTipAmount('2')}>
+            <Button
+              appearance="text"
+              size="xs"
+              onClick={() => setTipAmount('2')}
+            >
               2
             </Button>
-            <Button appearance="text" size="xs" onClick={() => setTipAmount('5')}>
+            <Button
+              appearance="text"
+              size="xs"
+              onClick={() => setTipAmount('5')}
+            >
               5
             </Button>
           </div>

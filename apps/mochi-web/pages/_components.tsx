@@ -425,7 +425,7 @@ export default function Default() {
                                         />
                                       ),
                                       text: 'My Profile',
-                                      onClick: () => { },
+                                      onClick: () => {},
                                     },
                                     {
                                       id: 'server-management',
@@ -436,7 +436,7 @@ export default function Default() {
                                         />
                                       ),
                                       text: 'Server Management',
-                                      onClick: () => { },
+                                      onClick: () => {},
                                     },
                                     {
                                       id: 'settings',
@@ -447,7 +447,7 @@ export default function Default() {
                                         />
                                       ),
                                       text: 'Settings',
-                                      onClick: () => { },
+                                      onClick: () => {},
                                     },
                                   ],
                                 ],
@@ -463,7 +463,7 @@ export default function Default() {
                                         />
                                       ),
                                       text: 'Invite Friends',
-                                      onClick: () => { },
+                                      onClick: () => {},
                                       subItems: [
                                         {
                                           text: 'Lorem',
@@ -482,7 +482,7 @@ export default function Default() {
                                         />
                                       ),
                                       text: 'Feedback',
-                                      onClick: () => { },
+                                      onClick: () => {},
                                     },
                                   ],
                                 ],
@@ -498,7 +498,7 @@ export default function Default() {
                                         />
                                       ),
                                       text: 'Logout',
-                                      onClick: () => { },
+                                      onClick: () => {},
                                     },
                                   ],
                                 ],

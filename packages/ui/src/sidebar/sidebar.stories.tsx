@@ -28,8 +28,7 @@ function Header() {
 }
 
 export function Default() {
-
-  const [ section, setSection ] = useState('Profile')
+  const [section, setSection] = useState('Profile')
 
   return (
     <div className="h-[700px] border">
@@ -45,33 +44,55 @@ export function Default() {
             title: 'Profile',
             Icon: IconUser,
             type: 'link',
-            badge: <Badge label='New' />,
-            onClick: () => setSection('Profile')
+            badge: <Badge label="New" />,
+            onClick: () => setSection('Profile'),
           },
           {
             title: 'Server Management',
             Icon: IconDiscord,
-            badge: <Badge appearance="secondary" icon={<IconTwinkle/>} label="Featured"/>,
-            onClick: () => setSection('Server Management')
+            badge: (
+              <Badge
+                appearance="secondary"
+                icon={<IconTwinkle />}
+                label="Featured"
+              />
+            ),
+            onClick: () => setSection('Server Management'),
           },
           {
             title: 'App Store',
             Icon: IconGame,
-            onClick: () => setSection('App Store')
+            onClick: () => setSection('App Store'),
           },
           { title: 'Settings', Icon: IconSetting },
           { type: 'break' },
-          { title: 'Developer', Icon: IconCoding, disabled: true},
-          { title: 'Gift your friend', Icon: IconSuperGroup, badge: <Badge appearance="secondary" icon={<IconTwinkle/>} label="Featured"/>},
+          { title: 'Developer', Icon: IconCoding, disabled: true },
+          {
+            title: 'Gift your friend',
+            Icon: IconSuperGroup,
+            badge: (
+              <Badge
+                appearance="secondary"
+                icon={<IconTwinkle />}
+                label="Featured"
+              />
+            ),
+          },
           { title: 'Invite Friends', Icon: IconAddUser },
           { title: 'Feedback', Icon: IconStar },
           {
             title: 'List',
-            badge: <Badge appearance="secondary" icon={<IconTwinkle/>} label="Featured"/>,
+            badge: (
+              <Badge
+                appearance="secondary"
+                icon={<IconTwinkle />}
+                label="Featured"
+              />
+            ),
             Icon: IconStar,
             type: 'list',
             children: [
-              { title: 'item 1', disabled: true, type:"link", href:"/"},
+              { title: 'item 1', disabled: true, type: 'link', href: '/' },
               { title: 'item 2' },
             ],
           },

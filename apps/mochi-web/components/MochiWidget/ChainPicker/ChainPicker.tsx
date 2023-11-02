@@ -15,8 +15,8 @@ export const ChainPicker = () => {
   const [selectedChain, setSelectedChain] = useState<Chain>(Chains[0])
   const [searchTerm, setSearchTerm] = useState('')
   const filteredChains = useMemo(() => {
-    return Chains.filter((chain) =>
-      chain.name?.toLowerCase().includes(searchTerm.toLowerCase()),
+    return Chains.filter(
+      (chain) => chain.name?.toLowerCase().includes(searchTerm.toLowerCase()),
     )
   }, [searchTerm])
 
