@@ -63,7 +63,7 @@ function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
       showLoading: true,
     }).then(() => {
       if (!query.token) return
-      replace('/profile', undefined, {
+      replace('', undefined, {
         shallow: true,
       }).catch(handleCancelRendering)
     })

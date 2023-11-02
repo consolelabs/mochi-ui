@@ -42,7 +42,7 @@ const ModalContent = React.forwardRef<
     >
         {children}
         {showCloseBtn ? (
-            <ModalClose className="!m-0 absolute right-6 top-6 rounded-full border border-neutral-300 opacity-70 transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none w-6 h-6 flex items-center justify-center">
+            <ModalClose className="!m-0 absolute translate-x-1/2 -translate-y-1/2 right-6 top-6 rounded-full border border-neutral-300 opacity-70 transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none w-6 h-6 flex items-center justify-center">
                 <IconClose />
             </ModalClose>
         ) : null}
