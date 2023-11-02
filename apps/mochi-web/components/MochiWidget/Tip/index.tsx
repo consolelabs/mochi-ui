@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import Receipt from '~cpn/receipt'
+import Receipt from '~cpn/Receipt'
 import { useWidget } from '..'
 import StepOne from './StepOne'
 import StepTwo from './StepTwo'
