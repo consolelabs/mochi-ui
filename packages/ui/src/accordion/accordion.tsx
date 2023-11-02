@@ -67,7 +67,7 @@ const AccordionTrigger = forwardRef<
     <AccordionPrimitive.Header className="flex">
       <AccordionPrimitive.Trigger
         className={clsx(
-          'flex-1 flex font-medium text-sm items-center justify-between [&[data-state=open]>#chevron]:rotate-180 gap-3 p-2',
+          'flex-1 flex text-sm items-center justify-between [&[data-state=open]>#chevron]:rotate-180 gap-3 p-2',
           wrapperClassName,
         )}
         ref={ref}
