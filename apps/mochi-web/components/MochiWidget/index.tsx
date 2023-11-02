@@ -37,7 +37,7 @@ const tabs = [
 ]
 
 interface WidgetState {
-  activeTab: typeof tabs[0]
+  activeTab: (typeof tabs)[0]
   setActiveTab: (id: string) => void
   overrideWidgetLayoutRender: React.ReactNode
   setOverrideWidgetLayoutRender: (render: React.ReactNode) => void

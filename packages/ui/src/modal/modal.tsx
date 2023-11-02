@@ -1,7 +1,7 @@
-import * as React from "react"
-import * as ModalPrimitive from "@radix-ui/react-dialog"
-import clsx from "clsx"
-import { IconClose } from "../icons"
+import * as React from 'react'
+import * as ModalPrimitive from '@radix-ui/react-dialog'
+import clsx from 'clsx'
+import { IconClose } from '../icons'
 
 const Modal = ModalPrimitive.Root
 
@@ -16,10 +16,7 @@ const ModalOverlay = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof ModalPrimitive.Overlay>
 >(({ className, ...props }, ref) => (
   <ModalPrimitive.Overlay
-    className={clsx(
-      "fixed inset-0 z-50 bg-black/40",
-      className
-    )}
+    className={clsx('fixed inset-0 z-50 bg-black/40', className)}
     ref={ref}
     {...props}
   />
@@ -28,24 +25,26 @@ ModalOverlay.displayName = ModalPrimitive.Overlay.displayName
 
 const ModalContent = React.forwardRef<
   React.ElementRef<typeof ModalPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof ModalPrimitive.Content> & { showCloseBtn?: boolean }
+  React.ComponentPropsWithoutRef<typeof ModalPrimitive.Content> & {
+    showCloseBtn?: boolean
+  }
 >(({ className, children, showCloseBtn, ...props }, ref) => (
   <ModalPortal>
     <ModalOverlay />
     <ModalPrimitive.Content
-        className={clsx(
-            "fixed left-[50%] top-[50%] z-50 -translate-x-1/2 -translate-y-1/2 bg-white p-6 shadow-lg duration-200 rounded-xl",
-            className
-        )}
-        ref={ref}
-        {...props}
+      className={clsx(
+        'fixed left-[50%] top-[50%] z-50 -translate-x-1/2 -translate-y-1/2 bg-white p-6 shadow-lg duration-200 rounded-xl',
+        className,
+      )}
+      ref={ref}
+      {...props}
     >
-        {children}
-        {showCloseBtn ? (
-            <ModalClose className="!m-0 absolute translate-x-1/2 -translate-y-1/2 right-6 top-6 rounded-full border border-neutral-300 opacity-70 transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none w-6 h-6 flex items-center justify-center">
-                <IconClose />
-            </ModalClose>
-        ) : null}
+      {children}
+      {showCloseBtn ? (
+        <ModalClose className="!m-0 absolute translate-x-1/2 -translate-y-1/2 right-6 top-6 rounded-full border border-neutral-300 opacity-70 transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none w-6 h-6 flex items-center justify-center">
+          <IconClose />
+        </ModalClose>
+      ) : null}
     </ModalPrimitive.Content>
   </ModalPortal>
 ))
@@ -56,10 +55,7 @@ const ModalTitle = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof ModalPrimitive.Title>
 >(({ className, ...props }, ref) => (
   <ModalPrimitive.Title
-    className={clsx(
-      "text-lg font-medium tracking-tight",
-      className
-    )}
+    className={clsx('text-lg font-medium tracking-tight', className)}
     ref={ref}
     {...props}
   />
@@ -71,7 +67,7 @@ const ModalDescription = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof ModalPrimitive.Description>
 >(({ className, ...props }, ref) => (
   <ModalPrimitive.Description
-    className={clsx("text-sm", className)}
+    className={clsx('text-sm', className)}
     ref={ref}
     {...props}
   />

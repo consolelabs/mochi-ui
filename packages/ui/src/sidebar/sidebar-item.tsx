@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import type { MouseEventHandler, ReactNode, Attributes } from 'react';
+import type { MouseEventHandler, ReactNode, Attributes } from 'react'
 import { createElement } from 'react'
 import {
   Accordion,
@@ -55,7 +55,7 @@ export default function SidebarItem({
           className={clsx('min-w-[22px]', {
             'text-blue-500': selected,
             'text-neutral-800': !selected && !disabled,
-            'text-neutral-600': disabled
+            'text-neutral-600': disabled,
           })}
           height={22}
           width={22}
@@ -63,12 +63,15 @@ export default function SidebarItem({
       )}
       {expanded ? (
         <div className="flex items-center gap-2">
-          <span className={clsx(
-            "text-left text-sm font-medium tracking-tight line-clamp-1", {
-              "text-neutral-600": disabled,
-              "text-neutral-800 ": !disabled,
-            }
-            )}>
+          <span
+            className={clsx(
+              'text-left text-sm font-medium tracking-tight line-clamp-1',
+              {
+                'text-neutral-600': disabled,
+                'text-neutral-800 ': !disabled,
+              },
+            )}
+          >
             {title}
           </span>
           {Boolean(badge) && <span className="shrink-0">{badge}</span>}
@@ -79,7 +82,9 @@ export default function SidebarItem({
 
   if (type === 'list') {
     return (
-      <Accordion className="shadow-none !p-0" disabled={disabled}
+      <Accordion
+        className="shadow-none !p-0"
+        disabled={disabled}
         type="multiple"
       >
         <AccordionItem value={title}>
@@ -94,7 +99,7 @@ export default function SidebarItem({
                 'bg-neutral-150': selected,
               },
               className,
-              customClassName
+              customClassName,
             )}
           >
             <div
@@ -121,12 +126,13 @@ export default function SidebarItem({
   }
 
   const classNameProp = clsx(
-    'flex gap-2 items-center p-2.5 rounded w-full cursor-pointer hover:bg-neutral-150', {
-      "pointer-events-none": disabled,
+    'flex gap-2 items-center p-2.5 rounded w-full cursor-pointer hover:bg-neutral-150',
+    {
+      'pointer-events-none': disabled,
       'bg-neutral-150': selected,
     },
     className,
-    customClassName
+    customClassName,
   )
 
   if (type === 'link' && href) {
@@ -145,7 +151,12 @@ export default function SidebarItem({
   }
 
   return (
-    <button className={classNameProp} type="button" {...props} disabled={disabled}>
+    <button
+      className={classNameProp}
+      type="button"
+      {...props}
+      disabled={disabled}
+    >
       {renderTitle}
     </button>
   )

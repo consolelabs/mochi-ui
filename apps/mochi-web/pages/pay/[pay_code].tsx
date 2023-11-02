@@ -164,9 +164,8 @@ export default function PayCode({
           isPayMe
             ? `${
                 initialPayRequest?.profile?.name ?? 'Someone'
-              } requests you to pay ${initialPayRequest?.amount} ${
-                initialPayRequest?.token.symbol
-              }${
+              } requests you to pay ${initialPayRequest?.amount} ${initialPayRequest
+                ?.token.symbol}${
                 initialPayRequest?.note
                   ? ` with the message: "${initialPayRequest.note}"`
                   : ''

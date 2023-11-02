@@ -4,4 +4,11 @@ export type Platform = {
   platform: PlatformType
 }
 
-export type PlatformType = 'Discord' | 'Github' | 'Telegram' | 'X' | 'Email' | 'On-chain' | 'Reddit'
+export type PlatformType =
+  | 'Discord'
+  | 'Github'
+  | 'Telegram'
+  | 'X'
+  | 'Email'
+  | 'On-chain'
+  | 'Reddit'

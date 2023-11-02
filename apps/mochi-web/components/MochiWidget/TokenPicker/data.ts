@@ -1,4 +1,4 @@
-import { MonikerAsset, TokenAsset } from "./type";
+import { MonikerAsset, TokenAsset } from './type'
 
 export const TokenAssets: TokenAsset[] = [
   {
@@ -110,7 +110,7 @@ export const TokenAssets: TokenAsset[] = [
     token_amount: '0',
     total_amount: '0',
     icon: 'https://cryptologos.cc/logos/chainlink-link-logo.png',
-  }
+  },
 ]
 
 export const MonikerAssets: MonikerAsset[] = [
@@ -120,7 +120,7 @@ export const MonikerAssets: MonikerAsset[] = [
       id: 1,
       name: 'coffee',
       icon: '☕',
-      group: 'default'
+      group: 'default',
     },
     token_amount: '0.01',
     token_unit: 'BNB',
@@ -132,7 +132,7 @@ export const MonikerAssets: MonikerAsset[] = [
       id: 2,
       name: 'cookie',
       icon: '🍪',
-      group: 'default'
+      group: 'default',
     },
     token_amount: '3',
     token_unit: 'USDT',
@@ -144,7 +144,7 @@ export const MonikerAssets: MonikerAsset[] = [
       id: 3,
       name: 'beer',
       icon: '🍺',
-      group: 'default'
+      group: 'default',
     },
     token_amount: '0.02',
     token_unit: 'DOGE',
@@ -156,7 +156,7 @@ export const MonikerAssets: MonikerAsset[] = [
       id: 4,
       name: 'pho',
       icon: '🍜',
-      group: 'default'
+      group: 'default',
     },
     token_amount: '2',
     token_unit: 'USDT',
@@ -168,7 +168,7 @@ export const MonikerAssets: MonikerAsset[] = [
       id: 5,
       name: 'mochi',
       icon: '🍡',
-      group: 'Dwarves Network\'s Moniker'
+      group: "Dwarves Network's Moniker",
     },
     token_amount: '100',
     token_unit: 'ICY',
@@ -180,10 +180,10 @@ export const MonikerAssets: MonikerAsset[] = [
       id: 6,
       name: 'diamon',
       icon: '💎',
-      group: 'Dwarves Network\'s Moniker'
+      group: "Dwarves Network's Moniker",
     },
     token_amount: '2',
     token_unit: 'ETH',
     total_amount: '4000',
-  }
+  },
 ]

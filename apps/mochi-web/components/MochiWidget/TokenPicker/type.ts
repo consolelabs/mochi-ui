@@ -27,6 +27,6 @@ export type MonikerAsset = {
 }
 
 export type SectionBase<Item> = {
-  title: string,
+  title: string
   data: Item[]
 }

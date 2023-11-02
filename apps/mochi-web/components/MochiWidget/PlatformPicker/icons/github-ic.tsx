@@ -1,4 +1,4 @@
-import { SVGProps } from "react";
+import { SVGProps } from 'react'
 
 export default function Github(props: SVGProps<SVGSVGElement>) {
   return (

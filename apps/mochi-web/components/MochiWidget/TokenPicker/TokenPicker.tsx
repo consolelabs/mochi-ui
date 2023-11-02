@@ -66,8 +66,9 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({ onSelect }) => {
   const [searchTerm, setSearchTerm] = useState('')
   const filteredTokens = useMemo<TokenAsset[]>(
     () =>
-      TokenAssets.filter((token) =>
-        token.token.name?.toLowerCase().includes(searchTerm.toLowerCase()),
+      TokenAssets.filter(
+        (token) =>
+          token.token.name?.toLowerCase().includes(searchTerm.toLowerCase()),
       ),
     [searchTerm],
   )
