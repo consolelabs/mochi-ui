@@ -1,6 +1,6 @@
 import { SourcePicker } from '../SourcePicker'
 import { Recipient } from '../Recipient'
-import Input from '../input'
+import { AmountInput } from '../AmountInput'
 import { Icon } from '@iconify/react'
 import { useTipWidget } from '.'
 import { useAuthStore } from '~store'
@@ -26,7 +26,7 @@ export default function StepOne() {
         </div>
         <SourcePicker accessToken={token} onLoginRequest={openLoginPopup} />
         <Recipient accessToken={token} onLoginRequest={openLoginPopup} />
-        <Input />
+        <AmountInput accessToken={token} onLoginRequest={openLoginPopup} />
       </div>
       <button
         onClick={() => setStep(2)}
