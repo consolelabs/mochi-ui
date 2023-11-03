@@ -157,6 +157,7 @@ function BrowseAPIs() {
         ].map((d) => {
           return (
             <a
+              target="_blank"
               href={HOME_URL}
               key={d.body}
               style={{ backgroundColor: gray1 }}
@@ -260,33 +261,65 @@ function SupportedPlatforms() {
 }
 
 function TryItOut() {
+  const [idx, setIdx] = useState(0)
   return (
     <div className="flex flex-col mx-auto w-full max-w-4xl">
       <p className="text-3xl font-medium font-text">Try it out</p>
       <div className="flex gap-x-4 mt-8">
-        <ul className="flex flex-col p-4 w-1/3 rounded-lg bg-neutral-150">
+        <ul className="flex flex-col gap-y-2 p-4 w-1/3 rounded-lg bg-neutral-150">
           {[
             'Start a payment',
             'Sell a product',
             'Issue coupons',
             'Get your balance',
             'Manage taxes',
-          ].map((item) => {
+          ].map((item, i) => {
             return (
-              <li
-                key={item}
-                className="p-4 font-medium rounded transition hover:bg-white-pure"
-              >
-                {item}
+              <li key={item}>
+                <button
+                  className={clsx(
+                    'p-4 font-medium rounded-md transition hover:bg-white-pure',
+                    {
+                      'bg-white-pure': i === idx,
+                      'bg-transparent': i !== idx,
+                    },
+                  )}
+                  onClick={() => setIdx(i)}
+                >
+                  {item}
+                </button>
               </li>
             )
           })}
         </ul>
-        <div className="flex overflow-auto flex-col p-8 w-2/3 bg-gray-700 rounded-2xl">
+        <div className="flex overflow-auto flex-col gap-y-3 p-8 w-2/3 bg-gray-700 rounded-2xl">
           <div className="flex justify-between">
             <span className="text-xs uppercase text-white-pure">
               curl request
             </span>
+          </div>
+          <code className="text-sm text-white-pure">
+            <pre
+              dangerouslySetInnerHTML={{
+                __html: `curl --location 'http://localhost:8200/api/v1/tip/transfer-v2' \
+--header 'Content-Type: application/json'
+--data '{
+    "sender": "50453",
+    "recipients": [
+        "34123"
+    ],
+    "platform": "discord",
+    "amount": 0.1,
+    "token": "ftm",
+    "transfer_type": "transfer",
+    "chain_id": "250"
+}'`,
+              }}
+            />
+          </code>
+          <div className="sticky bottom-0 p-4 w-full text-sm rounded-lg bg-white-pure">
+            <span className="text-blue-500">Sign in</span> to edit real
+            requests.
           </div>
         </div>
       </div>
