@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { LoginPanel } from '~components/login'
 import { useAuthStore, useProfileStore } from '~store'
 import { logo } from '~utils/image'
 import clsx from 'clsx'
