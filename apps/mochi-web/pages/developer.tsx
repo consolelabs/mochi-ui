@@ -37,8 +37,10 @@ function BuildWithMochiAPIs() {
   const [idx, setIdx] = useState(0)
 
   return (
-    <div className="flex flex-col gap-y-3 mx-auto w-full max-w-4xl">
-      <span className="text-3xl font-medium">Build with Mochi APIs</span>
+    <div className="flex flex-col gap-y-3 px-5 mx-auto w-full max-w-4xl">
+      <span className="text-2xl font-medium md:text-3xl">
+        Build with Mochi APIs
+      </span>
       <div className="flex gap-x-5">
         <ul className="flex flex-col flex-1 gap-y-2">
           {[
@@ -63,25 +65,27 @@ function BuildWithMochiAPIs() {
               <li key={d.title}>
                 <button
                   className={clsx(
-                    'text-left flex flex-col p-6 rounded-lg transition hover:bg-neutral-150',
+                    'text-left flex flex-col p-4 md:p-6 rounded-lg transition hover:bg-neutral-150',
                     {
-                      'bg-neutral-150': i === idx,
-                      'bg-transparent': i !== idx,
+                      'md:bg-neutral-150': i === idx,
+                      'bg-neutral-150 md:bg-transparent': i !== idx,
                     },
                   )}
                   type="button"
                   onClick={() => setIdx(i)}
                 >
-                  <span className="text-xl font-medium leading-4">
+                  <span className="text-lg font-medium leading-4 md:text-xl">
                     {d.title}
                   </span>
-                  <span className="mt-4 text-base font-thin">{d.body}</span>
+                  <span className="mt-3 text-sm font-thin md:mt-4 md:text-base">
+                    {d.body}
+                  </span>
                 </button>
               </li>
             )
           })}
         </ul>
-        <div className="relative flex-1">
+        <div className="hidden relative flex-1 md:block">
           <Image
             className="object-contain"
             fill
@@ -96,61 +100,37 @@ function BuildWithMochiAPIs() {
 
 function BrowseAPIs() {
   return (
-    <div className="flex flex-col mx-auto w-full max-w-4xl">
-      <p className="text-3xl font-medium font-text">Browse APIs</p>
-      <div className="grid grid-cols-2 grid-rows-3 gap-5 mt-5">
+    <div className="flex flex-col px-5 mx-auto w-full max-w-4xl">
+      <p className="text-2xl font-medium md:text-3xl">Browse APIs</p>
+      <div className="flex flex-col gap-5 mt-5 md:grid md:grid-cols-2 md:grid-rows-3">
         {[
           {
-            title: (
-              <div className="font-medium text-gray-500 font-text">
-                <span className="text-foreground">Profile</span> API
-              </div>
-            ),
+            title: 'Profile',
             body: 'Provides end-users data on balance, transaction, and payment requests.',
             icon: '/developer/profile-circle.png',
           },
           {
-            title: (
-              <div className="font-medium text-gray-500 font-text">
-                <span className="text-foreground">Balance</span> API
-              </div>
-            ),
+            title: 'Balance',
             body: 'Query user balance on multichains',
             icon: '/developer/balance.png',
           },
           {
-            title: (
-              <div className="font-medium text-gray-500 font-text">
-                <span className="text-foreground">Tip</span> API
-              </div>
-            ),
+            title: 'Tip',
             body: 'Provides end-users data on balance, transaction, and payment requests.',
             icon: '/developer/tip.png',
           },
           {
-            title: (
-              <div className="font-medium text-gray-500 font-text">
-                <span className="text-foreground">Pay Link</span> API
-              </div>
-            ),
+            title: 'Pay Link',
             body: 'Query user balance on multichains',
             icon: '/developer/link.png',
           },
           {
-            title: (
-              <div className="font-medium text-gray-500 font-text">
-                <span className="text-foreground">Server</span> API
-              </div>
-            ),
+            title: 'Server',
             body: 'Provides end-users data on balance, transaction, and payment requests.',
             icon: '/developer/server.png',
           },
           {
-            title: (
-              <div className="font-medium text-gray-500 font-text">
-                <span className="text-foreground">Vault</span> API
-              </div>
-            ),
+            title: 'Vault',
             body: 'Query user balance on multichains',
             icon: '/developer/vault.png',
           },
@@ -161,7 +141,7 @@ function BrowseAPIs() {
               href={HOME_URL}
               key={d.body}
               style={{ backgroundColor: gray1 }}
-              className="flex overflow-hidden flex-1 items-start rounded-lg"
+              className="flex overflow-hidden items-start rounded-lg"
             >
               <div className="relative flex-shrink-0 w-3 h-full">
                 <Image
@@ -170,16 +150,30 @@ function BrowseAPIs() {
                   src="/developer/browse-api-left-border.jpg"
                 />
               </div>
-              <div className="flex gap-x-4 items-start p-5">
+              <div className="flex gap-x-4 items-start p-6 h-full">
                 <Image
                   width={48}
                   height={48}
                   src={d.icon}
-                  className="object-contain"
+                  className="hidden object-contain md:inline-block"
                   alt=""
                 />
-                <div className="flex flex-col">
-                  {d.title}
+                <div className="flex flex-col gap-y-3 h-full md:gap-0">
+                  <div className="flex gap-x-3">
+                    <Image
+                      width={32}
+                      height={32}
+                      src={d.icon}
+                      className="object-contain md:hidden"
+                      alt=""
+                    />
+                    <div className="font-medium text-gray-500 font-text">
+                      <span className="text-lg md:text-base text-foreground">
+                        {d.title}
+                      </span>{' '}
+                      API
+                    </div>
+                  </div>
                   <span className="text-sm font-text">{d.body}</span>
                 </div>
               </div>
@@ -201,7 +195,7 @@ const comingSoons = [
 ] as const
 function SupportedPlatforms() {
   return (
-    <div className="flex flex-col mx-auto w-full max-w-4xl">
+    <div className="hidden flex-col px-5 mx-auto w-full max-w-4xl md:flex">
       <p className="text-3xl font-medium font-text">Supported platforms</p>
       <div className="flex flex-col gap-y-8 mt-8">
         <div className="flex flex-col gap-y-4">
@@ -263,7 +257,7 @@ function SupportedPlatforms() {
 function TryItOut() {
   const [idx, setIdx] = useState(0)
   return (
-    <div className="flex flex-col mx-auto w-full max-w-4xl">
+    <div className="hidden flex-col px-5 mx-auto w-full max-w-4xl md:flex">
       <p className="text-3xl font-medium font-text">Try it out</p>
       <div className="flex gap-x-4 mt-8">
         <ul className="flex flex-col gap-y-2 p-4 w-1/3 rounded-lg bg-neutral-150">
@@ -335,13 +329,13 @@ export default function Developer() {
   return (
     <Layout>
       <SEO />
-      <div className="flex flex-col items-center mx-auto mt-24 max-w-4xl">
-        <p className="text-5xl font-medium text-center font-text">
+      <div className="flex flex-col items-center px-5 mx-auto mt-24 max-w-4xl">
+        <p className="text-3xl font-medium text-center md:text-5xl font-text">
           Bring Mochi power into
           <br />
           your app
         </p>
-        <span className="mt-8 text-lg font-thin text-center">
+        <span className="mt-8 text-base font-thin text-center md:text-lg">
           Mochi allows developers to create a payment between users on any
           platforms, crossing web2 social platforms to web3 layers via a single
           API call.
@@ -357,19 +351,23 @@ export default function Developer() {
       <BrowseAPIs />
       <Divider />
       <TryItOut />
-      <Divider />
+      <div className="hidden md:block">
+        <Divider />
+      </div>
       <SupportedPlatforms />
-      <Divider />
-      <div className="flex gap-x-10 items-center py-14 mx-auto w-full max-w-4xl">
+      <div className="hidden md:block">
+        <Divider />
+      </div>
+      <div className="flex flex-col gap-x-10 gap-y-10 px-5 mx-auto w-full max-w-4xl md:flex-row md:gap-y-0 md:items-center md:py-14">
         <div className="flex flex-col flex-1">
-          <p className="text-4xl font-medium whitespace-nowrap font-text">
+          <p className="text-2xl font-medium md:text-4xl md:whitespace-nowrap font-text">
             Ready to start building?
           </p>
           <span className="mt-2 font-text">
             Come up with your idea, tooling are ready, LFG.
           </span>
         </div>
-        <div className="flex flex-1 gap-2 justify-end">
+        <div className="flex flex-1 gap-2 md:justify-end">
           <Button size="sm">
             Get API key <IconArrow />
           </Button>
@@ -377,6 +375,9 @@ export default function Developer() {
             View docs
           </Button>
         </div>
+      </div>
+      <div className="block md:hidden">
+        <Divider />
       </div>
     </Layout>
   )

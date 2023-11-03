@@ -7,7 +7,7 @@ import Link from 'next/link'
 export const Footer = () => {
   const year = new Date().getFullYear()
   return (
-    <footer className="pt-16 pb-24 mt-auto">
+    <footer className="py-8 mt-auto">
       <div className="container px-6 mx-auto max-w-5xl">
         <div className="flex flex-col gap-y-5 gap-x-8 sm:gap-x-12 md:flex-row">
           <div className="w-9 h-9 rounded-full">
@@ -19,31 +19,9 @@ export const Footer = () => {
               className="block rounded-full"
             />
           </div>
-          <div className="flex flex-wrap gap-x-8 mb-10 sm:gap-x-12 sm:mb-0">
+          <div className="flex flex-col gap-y-7 gap-x-8 mb-10 sm:gap-x-12 sm:mb-0 md:flex-wrap md:gap-y-0">
             <div className="space-y-2 text-[13px]">
-              <div className="text-footer-title">Home</div>
-              <Link className="block text-footer-body" href="/features">
-                Features
-              </Link>
-              <Link className="block text-footer-body" href="/developer">
-                For developer
-              </Link>
-              <Link className="block text-footer-body" href="/team">
-                For team
-              </Link>
-              <Link className="block text-footer-body" href="/changelog">
-                What&apos;s new
-              </Link>
-              <a
-                className="block text-footer-body"
-                target="_blank"
-                href={SOCIAL_LINKS.GITBOOK}
-              >
-                Tutorial
-              </a>
-            </div>
-            <div className="space-y-2 text-[13px]">
-              <div className="text-footer-title">Developer</div>
+              <div className="text-footer-title">Developers</div>
               <a
                 className="block text-footer-body"
                 target="blank"
@@ -51,13 +29,6 @@ export const Footer = () => {
               >
                 Documentation
               </a>
-              <Link
-                className="block text-footer-body"
-                target="blank"
-                href="/api-status"
-              >
-                API status
-              </Link>
               <a
                 className="block text-footer-body"
                 target="blank"
@@ -67,19 +38,30 @@ export const Footer = () => {
               </a>
             </div>
             <div className="space-y-2 text-[13px]">
+              <div className="text-footer-title">Resources</div>
+              <Link
+                className="block text-footer-body"
+                target="blank"
+                href="/changelog"
+              >
+                Changelog
+              </Link>
+            </div>
+            <div className="space-y-2 text-[13px]">
               <div className="text-footer-title">Company</div>
-              <a className="block text-footer-body" href="/#">
-                Become a partner
-              </a>
               <a
                 className="block text-footer-body"
                 target="_blank"
                 href={SOCIAL_LINKS.DISCORD}
               >
-                Support
+                Contact
               </a>
-              <a className="block text-footer-body" href="/tos">
-                ToS
+              <a
+                className="block text-footer-body"
+                target="_blank"
+                href={SOCIAL_LINKS.TWITTER}
+              >
+                Twitter
               </a>
             </div>
           </div>
