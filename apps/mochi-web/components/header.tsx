@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { LoginPanel } from '~components/login'
 import { useAuthStore, useProfileStore } from '~store'
 import { logo } from '~utils/image'
 import clsx from 'clsx'
@@ -13,6 +12,7 @@ import {
 } from '@consolelabs/ui-components'
 import { useState } from 'react'
 import ProfileDropdown from './profile-dropdrown'
+import { AuthPanel } from './AuthWidget'
 
 const authenticatedRoute = ['/profile', '/app', '/server']
 
@@ -28,16 +28,13 @@ const LoginPopover = ({ isLogging }: { isLogging: boolean }) => {
         </span>
       </PopoverTrigger>
       <PopoverContent
-        className={clsx('!p-4 !px-6', {
+        className={clsx('!p-0', {
           hidden: forceHide,
         })}
         sideOffset={10}
         collisionPadding={20}
       >
-        <LoginPanel
-          onHideLoginPopover={setForceHide}
-          onCloseLoginPopover={setIsOpen}
-        />
+        <AuthPanel onOpenConnectWalletChange={setForceHide} />
       </PopoverContent>
     </Popover>
   )
