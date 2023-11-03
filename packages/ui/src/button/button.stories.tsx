@@ -64,20 +64,76 @@ export function WithIcons() {
   )
 }
 
-export function VariantsAndColors() {
-  const variants = ['solid', 'outline', 'link', 'ghost'] as const
+export function VariantSolid() {
   const colors = ['primary', 'secondary', 'danger', 'info'] as const
 
   return (
     <div className="space-y-4">
-      {variants.map((variant) => (
-        <div className="flex items-center space-x-4" key={variant}>
-          {colors.map((color) => (
-            <Button color={color} key={color} variant={variant}>
-              {/* Connect Wallet */}
-              {variant} {color}
-            </Button>
-          ))}
+      {colors.map((color) => (
+        <div className="flex gap-x-4" key={color}>
+          <Button color={color} variant="solid">
+            {color}
+          </Button>
+          <Button color={color} disabled variant="solid">
+            {color}
+          </Button>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export function VariantOutline() {
+  const colors = ['primary', 'secondary', 'danger', 'info'] as const
+
+  return (
+    <div className="space-y-4">
+      {colors.map((color) => (
+        <div className="flex gap-x-4" key={color}>
+          <Button color={color} variant="outline">
+            {color}
+          </Button>
+          <Button color={color} disabled variant="outline">
+            {color}
+          </Button>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export function VariantLink() {
+  const colors = ['primary', 'secondary', 'danger', 'info'] as const
+
+  return (
+    <div className="space-y-4">
+      {colors.map((color) => (
+        <div className="flex gap-x-4" key={color}>
+          <Button color={color} variant="link">
+            {color}
+          </Button>
+          <Button color={color} disabled variant="link">
+            {color}
+          </Button>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export function VariantGhost() {
+  const colors = ['primary', 'secondary', 'danger', 'info'] as const
+
+  return (
+    <div className="space-y-4">
+      {colors.map((color) => (
+        <div className="flex gap-x-4" key={color}>
+          <Button color={color} variant="ghost">
+            {color}
+          </Button>
+          <Button color={color} disabled variant="ghost">
+            {color}
+          </Button>
         </div>
       ))}
     </div>
