@@ -9,7 +9,7 @@ import {
   Button,
 } from '@consolelabs/ui-components'
 import { IconArrowRight } from '@consolelabs/icons'
-import { SourcePicker } from '../SourcePicker'
+import { WalletPicker } from '../WalletPicker'
 import { Recipient } from '../Recipient'
 import { AmountInput } from '../AmountInput'
 import { useTipWidget } from './store'
@@ -73,7 +73,7 @@ export default function StepOne() {
             by sending them money
           </span>
         </div>
-        <SourcePicker accessToken={token} onLoginRequest={openLoginPopup} />
+        <WalletPicker accessToken={token} onLoginRequest={openLoginPopup} />
         <Recipient accessToken={token} onLoginRequest={openLoginPopup} />
         <AmountInput accessToken={token} onLoginRequest={openLoginPopup} />
       </div>

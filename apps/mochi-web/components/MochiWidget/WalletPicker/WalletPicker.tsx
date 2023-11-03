@@ -6,68 +6,47 @@ import {
   PopoverTrigger,
   PopoverContent,
 } from '@consolelabs/ui-components'
-import { SourceList } from './SourceList'
-import { SourceType } from './type'
+import { useProfileStore } from '~store'
+import { ModelInAppWallet } from '~types/mochi-pay-schema'
+import { truncateWallet } from '~utils/string'
+import { WalletList } from './WalletList'
 
-const MockSources: SourceType[] = [
-  {
-    id: '1',
-    source: 'Mochi Wallet',
-    source_icon: '/logo.png',
-    profile_id: 'baddeed',
-    total_amount: '2511.53',
+const DefaultWallet: ModelInAppWallet = {
+  wallet_address: 'Not connected',
+  chain: {
+    icon: '/logo.png',
+    name: 'Mochi Wallet',
   },
-  {
-    id: '2',
-    source: 'Solana',
-    source_icon: 'https://cryptologos.cc/logos/solana-sol-logo.png',
-    profile_id: 'd3gen.sol',
-    total_amount: '12673',
-    token_amount: '23',
-    chain: {
-      short_name: 'SOL',
-    },
-  },
-]
-
-const DefaultSource: SourceType = {
-  id: '-1',
-  source: 'Mochi Wallet',
-  source_icon: '/logo.png',
-  profile_id: 'Not connected',
-  total_amount: '0',
 }
 
 interface Props {
   accessToken: string | null
   onLoginRequest?: () => void
-  onSelect?: (item: SourceType) => void
+  onSelect?: (item: ModelInAppWallet) => void
 }
 
-export const SourcePicker: React.FC<Props> = ({
+export const WalletPicker: React.FC<Props> = ({
   accessToken,
   onLoginRequest,
   onSelect,
 }) => {
   const [isOpenSelector, setIsOpenSelector] = useState(false)
-  const [sources, setSources] = useState<SourceType[]>([])
-  const [selectedSource, setSelectedSource] =
-    useState<SourceType>(DefaultSource)
+  const [selectedWallet, setSelectedWallet] =
+    useState<ModelInAppWallet>(DefaultWallet)
+  const { wallets } = useProfileStore()
 
   useEffect(() => {
     if (!accessToken) {
-      setSelectedSource(DefaultSource)
-    } else {
-      // TODO: Fetch sources by token
-      setSources(MockSources)
-      setSelectedSource(MockSources[0])
+      setSelectedWallet(DefaultWallet)
+    } else if (wallets.length > 0) {
+      setSelectedWallet(wallets[0])
     }
-  }, [accessToken])
+  }, [accessToken, wallets])
 
-  function handleSourceSelect(source: SourceType) {
-    setSelectedSource(source)
+  function handleWalletSelect(wallet: ModelInAppWallet) {
+    setSelectedWallet(wallet)
     setIsOpenSelector(false)
-    onSelect?.(source)
+    onSelect?.(wallet)
   }
 
   function handleTriggerClick() {
@@ -84,21 +63,21 @@ export const SourcePicker: React.FC<Props> = ({
       >
         <img
           className="flex-shrink-0 w-6 h-6"
-          src={selectedSource.source_icon}
-          alt={`${selectedSource.source} icon`}
+          src={selectedWallet.chain?.icon || '/logo.png'}
+          alt={`${selectedWallet.chain?.name} icon`}
         />
         <div className="flex flex-col flex-1 justify-between">
           <span className="text-sm font-medium text-blue-700">
-            {selectedSource.source}
+            {selectedWallet.chain?.name}
           </span>
           <span className="text-xs text-blue-500">
-            {selectedSource.profile_id}
+            {truncateWallet(selectedWallet.wallet_address || '')}
           </span>
         </div>
         {accessToken && (
           <>
             <span className="flex-shrink-0 text-sm font-medium text-blue-700">
-              ${formatNumber(selectedSource.total_amount)}
+              ${formatNumber(selectedWallet.total_amount || '0')}
             </span>
             <Icon
               icon="majesticons:chevron-down-line"
@@ -112,7 +91,7 @@ export const SourcePicker: React.FC<Props> = ({
           align="start"
           className="w-[414px] flex gap-x-1 items-center py-3 px-3 bg-white-pure rounded-lg shadow-md focus-visible:outline-none"
         >
-          <SourceList data={sources} onSelect={handleSourceSelect} />
+          <WalletList data={wallets} onSelect={handleWalletSelect} />
         </PopoverContent>
       )}
     </Popover>

@@ -8,11 +8,12 @@ import {
 import { api, UI } from '~constants/mochi'
 import { Platform } from '@consolelabs/mochi-ui'
 import { boringAvatar } from '~utils/string'
+import { ModelInAppWallet } from '~types/mochi-pay-schema'
 
 type State = {
   me: ViewProfile | null
   setMe: (me: ViewProfile) => Promise<void>
-  wallets: any
+  wallets: ModelInAppWallet[]
   getActivites: (query: Pagination) => Promise<ViewActivityResponseData>
   updateActivityReadStatus: (ids: number[]) => void
 }
@@ -52,7 +53,7 @@ export const useProfileStore = create<State>((set, get) => ({
       wallets,
     })
   },
-  wallets: null,
+  wallets: [],
 
   getActivites: (query) => {
     return API.MOCHI_PROFILE.query(query)
