@@ -3,7 +3,7 @@ import { forwardRef } from "react"
 import * as SelectPrimitive from '@radix-ui/react-select'
 import clsx from "clsx";
 import { IconCheck, IconChevron } from "../icons";
-import type { SelectProps, SelectItemProps, SelectItemRef, SelectTriggerRef, SelectTriggerProps} from "./type";
+import { type SelectProps, type SelectItemProps, type SelectItemRef, type SelectTriggerRef, type SelectTriggerProps, type SelectGroupRef, SelectGroupProps} from "./type";
 import { getIconWrapperStyle, getSelectItemStyle } from "./utils";
 
 function Select(props: SelectProps) {
@@ -18,7 +18,22 @@ function Select(props: SelectProps) {
 }
 Select.displayName = SelectPrimitive.Root.displayName
 
-const SelectGroup = SelectPrimitive.Group
+const SelectGroup = forwardRef<
+  SelectGroupRef,
+  SelectGroupProps
+>(({className, ...props}, ref) => {
+  return (
+    <SelectPrimitive.Group
+      className={clsx(
+        "space-y-1",
+        className
+      )}
+      ref={ref}
+      {...props}
+    />
+  )
+})
+SelectGroup.displayName = SelectPrimitive.Group.displayName
 
 const SelectValue = SelectPrimitive.Value
 
@@ -100,7 +115,7 @@ const SelectLabel = forwardRef<
   ComponentPropsWithoutRef<typeof SelectPrimitive.Label>
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.Label
-    className={clsx("py-1.5 pl-8 pr-2 text-sm font-semibold", className)}
+    className={clsx("text-[10px] uppercase font-bold text-neutral-500", className)}
     ref={ref}
     {...props}
   />
@@ -161,7 +176,9 @@ const SelectSeparator = forwardRef<
   ComponentPropsWithoutRef<typeof SelectPrimitive.Separator>
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.Separator
-    className={clsx("-mx-1 my-1 h-px bg-muted", className)}
+    className={clsx(
+      "h-px !my-2 bg-neutral-200 -mx-2"
+      , className)}
     ref={ref}
     {...props}
   />
@@ -169,12 +186,12 @@ const SelectSeparator = forwardRef<
 SelectSeparator.displayName = SelectPrimitive.Separator.displayName
 
 export {
-  Select, // Done
+  Select,
   SelectGroup,
-  SelectValue, //
-  SelectTrigger, // Done
-  SelectContent, // Done
-  SelectLabel, 
-  SelectItem, // DOne
+  SelectValue,
+  SelectTrigger,
+  SelectContent,
+  SelectLabel,
+  SelectItem,
   SelectSeparator ,
 }

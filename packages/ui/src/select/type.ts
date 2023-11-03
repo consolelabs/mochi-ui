@@ -26,3 +26,6 @@ export type SelectTriggerProps = ComponentPropsWithoutRef<typeof SelectPrimitive
     rightIcon?: ReactNode
     hideRightIcon?: boolean
 }
+export type SelectGroupRef = ElementRef<typeof SelectPrimitive.Group>
+export type SelectGroupProps = ComponentPropsWithoutRef<typeof SelectPrimitive.Group>
+

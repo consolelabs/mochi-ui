@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 import {
     IconDiscordColored,
     IconGithub,
@@ -12,8 +13,7 @@ import {
     IconAddUser,
     IconWalletAdd
 } from "../icons";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./select";
-import { useState } from "react";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectSeparator, SelectTrigger, SelectValue } from "./select";
 
 const meta: Meta<typeof Select> = {
     title: 'ui/Select',
@@ -97,7 +97,7 @@ export const Default: StoryObj = {
     }
 }
 
-export const WithCustomSelectedLabel: StoryObj = {
+export const WithCustomTriggerLabel: StoryObj = {
 
     render(){
         /* eslint-disable react-hooks/rules-of-hooks -- for demonstration */
@@ -116,6 +116,49 @@ export const WithCustomSelectedLabel: StoryObj = {
                             {label}
                         </SelectItem>
                     ))}
+                </SelectContent>
+            </Select>
+        )
+    }
+}
+
+export const WithLabel: StoryObj = {
+
+    render(){
+        /* eslint-disable react-hooks/rules-of-hooks -- for demonstration */
+        const [ value, setValue ] = useState(items[0].value)
+        const selectedValue = items.find(i => i.value === value)
+        return (
+            <Select onChange={setValue} value={value}>
+                <SelectTrigger leftIcon={selectedValue?.icon}>
+                    <SelectValue placeholder="Select"/>
+                </SelectTrigger>
+                <SelectContent className="min-w-[200px]">
+                    <SelectGroup>
+                        <SelectLabel>
+                            Socials
+                        </SelectLabel>
+                        {items.map(({key, label, ...props}) => (
+                            <SelectItem key={key} leftIcon={props.icon}
+                                value={props.value}
+                            >
+                                {label}
+                            </SelectItem>
+                        ))}
+                    </SelectGroup>
+                    <SelectSeparator/>
+                    <SelectGroup>
+                        <SelectLabel>
+                            2nd Socials Group
+                        </SelectLabel>
+                        {items.map(({key, label, ...props}) => (
+                            <SelectItem key={key} leftIcon={props.icon}
+                                value={`${props.value  }2`}
+                            >
+                                {label}
+                            </SelectItem>
+                        ))}
+                    </SelectGroup>
                 </SelectContent>
             </Select>
         )
