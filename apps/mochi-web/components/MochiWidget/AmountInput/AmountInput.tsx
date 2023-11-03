@@ -81,7 +81,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               size="sm"
               variant="outline"
               color="info"
-              className="!py-1 px-2.5 rounded-lg"
+              style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('1')}
             >
               1
@@ -90,7 +90,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               size="sm"
               variant="outline"
               color="info"
-              className="!py-1 px-2.5 rounded-lg"
+              style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('2')}
             >
               2
@@ -99,7 +99,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               size="sm"
               variant="outline"
               color="info"
-              className="!py-1 px-2.5 rounded-lg"
+              style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('5')}
             >
               5
