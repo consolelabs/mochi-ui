@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import clsx from 'clsx'
 import { Layout } from '~app/layout'
 import { SEO } from '~app/layout/seo'
 import {
@@ -27,15 +28,19 @@ import {
   IconX,
   IconZkSync,
 } from '@consolelabs/ui-components'
+import { HOME_URL } from '~envs'
+import { useState } from 'react'
 
 const gray1 = '#F7F6F4'
 
 function BuildWithMochiAPIs() {
+  const [idx, setIdx] = useState(0)
+
   return (
     <div className="flex flex-col gap-y-3 mx-auto w-full max-w-4xl">
       <span className="text-3xl font-medium">Build with Mochi APIs</span>
       <div className="flex gap-x-5">
-        <ul className="flex flex-col flex-1">
+        <ul className="flex flex-col flex-1 gap-y-2">
           {[
             {
               title: 'Monetize your innovation',
@@ -53,14 +58,25 @@ function BuildWithMochiAPIs() {
               title: "We're here to support",
               body: 'Our dedicated support team is always at your service, ensuring you have all you need to turn your ideas into reality.',
             },
-          ].map((d) => {
+          ].map((d, i) => {
             return (
-              <li
-                key={d.title}
-                className="flex flex-col p-6 bg-transparent rounded-lg transition hover:bg-neutral-150"
-              >
-                <span className="text-xl font-medium leading-4">{d.title}</span>
-                <span className="mt-4 text-base font-thin">{d.body}</span>
+              <li key={d.title}>
+                <button
+                  className={clsx(
+                    'text-left flex flex-col p-6 rounded-lg transition hover:bg-neutral-150',
+                    {
+                      'bg-neutral-150': i === idx,
+                      'bg-transparent': i !== idx,
+                    },
+                  )}
+                  type="button"
+                  onClick={() => setIdx(i)}
+                >
+                  <span className="text-xl font-medium leading-4">
+                    {d.title}
+                  </span>
+                  <span className="mt-4 text-base font-thin">{d.body}</span>
+                </button>
               </li>
             )
           })}
@@ -118,7 +134,7 @@ function BrowseAPIs() {
               </div>
             ),
             body: 'Query user balance on multichains',
-            icon: '/developer/profile-circle.png',
+            icon: '/developer/link.png',
           },
           {
             title: (
@@ -140,12 +156,13 @@ function BrowseAPIs() {
           },
         ].map((d) => {
           return (
-            <div
+            <a
+              href={HOME_URL}
               key={d.body}
               style={{ backgroundColor: gray1 }}
               className="flex overflow-hidden flex-1 items-start rounded-lg"
             >
-              <div className="relative w-5 h-full">
+              <div className="relative flex-shrink-0 w-3 h-full">
                 <Image
                   fill
                   alt=""
@@ -165,7 +182,7 @@ function BrowseAPIs() {
                   <span className="text-sm font-text">{d.body}</span>
                 </div>
               </div>
-            </div>
+            </a>
           )
         })}
       </div>
