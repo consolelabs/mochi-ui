@@ -28,8 +28,7 @@ import clsx from 'clsx'
 import { PanelHeader } from './PanelHeader'
 import { ConnectButton } from './ConnectButton'
 import { PanelContainer } from './PanelContainer'
-
-export type Variant = 'dropdown' | 'modal'
+import type { Variant } from './types'
 
 interface AuthPanelProps {
   variant?: Variant
@@ -151,8 +150,8 @@ export const AuthPanel = (props: AuthPanelProps) => {
   return (
     <PanelContainer variant={variant}>
       <PanelHeader variant={variant} />
-      <div className="flex flex-col gap-8 text-center mt-8">
-        <div className="grid grid-cols-4 grid-rows-2 mx-auto w-fit gap-4 text-3xl">
+      <div className="flex flex-col gap-8 mt-8 text-center">
+        <div className="grid grid-cols-4 grid-rows-2 gap-4 mx-auto text-3xl w-fit">
           {socialAuths.map((item) => {
             const LinkWrapper = item.href ? 'a' : Fragment
             const disabled = !item.onClick && !item.href

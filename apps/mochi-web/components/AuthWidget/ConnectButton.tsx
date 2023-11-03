@@ -1,6 +1,6 @@
 import { IconWallet, Button } from '@consolelabs/ui-components'
 import { MouseEventHandler } from 'react'
-import { Variant } from './AuthPanel'
+import type { Variant } from './types'
 
 interface ConnectButtonProps {
   variant?: Variant

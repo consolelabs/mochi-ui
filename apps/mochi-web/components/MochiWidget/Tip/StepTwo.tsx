@@ -1,11 +1,12 @@
 import { Icon } from '@iconify/react'
-import { useTipWidget } from '.'
+import { useTipWidget } from './store'
 import MessagePicker from '../MessagePicker/MessagePicker'
 import ThemePicker from '../ThemePicker/ThemePicker'
 import TransactionPreview from '../TransactionPreview/TransactionPreview'
 
 export default function StepTwo() {
-  const { setStep, request } = useTipWidget()
+  const { setStep, request, updateRequestTheme, updateRequestMessage } =
+    useTipWidget()
 
   return (
     <div className="flex flex-col flex-1 gap-y-3 min-h-0">
@@ -30,14 +31,17 @@ export default function StepTwo() {
               placeholder="Enter message"
             />
           </div>
-          <MessagePicker />
+          <MessagePicker
+            value={request?.message}
+            onChange={updateRequestMessage}
+          />
         </div>
 
         <div className="flex flex-col gap-y-1">
           <span className="text-sm text-[#343433] font-medium">
             Select theme
           </span>
-          <ThemePicker />
+          <ThemePicker value={request?.theme} onChange={updateRequestTheme} />
         </div>
       </div>
       <button

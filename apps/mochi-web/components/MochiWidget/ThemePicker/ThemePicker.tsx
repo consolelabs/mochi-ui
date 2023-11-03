@@ -9,12 +9,15 @@ import {
 import React, { useState } from 'react'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { Tab } from '@headlessui/react'
-import { useTipWidget } from '../Tip'
 import { sectionFormatter } from '../TokenPicker/utils'
-import { ThemeList } from './data'
+import { Theme, ThemeList } from './data'
 
-export default function ThemePicker() {
-  const { request, updateRequestTheme } = useTipWidget()
+interface ThemePickerProps {
+  value?: Theme
+  onChange: (t: Theme) => void
+}
+
+export default function ThemePicker({ value, onChange }: ThemePickerProps) {
   const [, setThemeSearch] = useState('')
   const { isOpen: isOpenTheme, onToggle: toggleThemePopover } = useDisclosure()
 
@@ -25,11 +28,11 @@ export default function ThemePicker() {
     <div className="grid grid-cols-4 grid-rows-1 gap-x-2">
       <div className="overflow-hidden relative rounded-lg">
         <img
-          src={request?.theme?.src || '/tip-theme-new-year.jpg'}
+          src={value?.src || '/tip-theme-new-year.jpg'}
           className="object-cover w-full h-full"
           alt=""
         />
-        {!request?.theme && (
+        {!value && (
           <span className="absolute top-1/2 left-1/2 text-xs font-medium whitespace-nowrap -translate-x-1/2 -translate-y-1/2 text-white-pure">
             New Year
           </span>
@@ -114,7 +117,10 @@ export default function ThemePicker() {
                           <button
                             type="button"
                             key={`theme-image-${t}`}
-                            onClick={() => updateRequestTheme(d)}
+                            onClick={() => {
+                              onChange(d)
+                              toggleThemePopover()
+                            }}
                           >
                             <img
                               alt=""

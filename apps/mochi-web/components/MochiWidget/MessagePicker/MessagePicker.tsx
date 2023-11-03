@@ -11,7 +11,6 @@ import { useDisclosure } from '@dwarvesf/react-hooks'
 import { useState } from 'react'
 import { Message, MessageList } from './data'
 import { sectionFormatter } from '../TokenPicker/utils'
-import { useTipWidget } from '../Tip'
 
 function SectionItem({
   item,
@@ -24,18 +23,23 @@ function SectionItem({
     <li
       className="flex items-center w-full p-2 hover:bg-[#FAF9F7] rounded-lg space-x-2 cursor-pointer"
       key={item.id}
-      onClick={onSelect}
     >
-      <Heading as="h3" className="text-sm">
-        {item.content}
-      </Heading>
+      <button onClick={onSelect}>
+        <Heading as="h3" className="text-sm">
+          {item.content}
+        </Heading>
+      </button>
     </li>
   )
 }
 
-export default function MessagePicker() {
+interface MessagePickerProps {
+  value?: string
+  onChange: (msg: string) => void
+}
+
+export default function MessagePicker({ value, onChange }: MessagePickerProps) {
   const [messageSearch, setMessageSearch] = useState('')
-  const { updateRequestMessage } = useTipWidget()
   const { isOpen: isOpenMessage, onToggle: toggleMessagePopover } =
     useDisclosure()
 
@@ -56,7 +60,7 @@ export default function MessagePicker() {
             key={message}
             className="px-3 py-1 rounded-lg bg-white-pure font-medium text-sm text-[#343433]"
             type="button"
-            onClick={() => updateRequestMessage(message)}
+            onClick={() => onChange(message)}
           >
             {message}
           </button>
@@ -72,6 +76,7 @@ export default function MessagePicker() {
           className="flex flex-col gap-y-2 items-center rounded-lg shadow-md w-[414px] max-h-[500px] bg-white-pure"
         >
           <InputField
+            value={value}
             className="w-full"
             placeholder="Search"
             startAdornment={
@@ -90,7 +95,7 @@ export default function MessagePicker() {
               <SectionItem
                 item={item}
                 onSelect={() => {
-                  updateRequestMessage(item.content)
+                  onChange(item.content)
                   toggleMessagePopover()
                 }}
               />

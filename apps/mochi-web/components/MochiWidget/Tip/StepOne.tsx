@@ -10,7 +10,7 @@ import {
 import { SourcePicker } from '../SourcePicker'
 import { Recipient } from '../Recipient'
 import { AmountInput } from '../AmountInput'
-import { useTipWidget } from '.'
+import { useTipWidget } from './store'
 
 interface ConnectButtonRef {
   openLogin: () => void
