@@ -34,9 +34,7 @@ const LoginPopover = ({ isLogging }: { isLogging: boolean }) => {
         sideOffset={10}
         collisionPadding={20}
       >
-        <AuthPanel
-          onOpenConnectWalletChange={setForceHide}
-        />
+        <AuthPanel onOpenConnectWalletChange={setForceHide} />
       </PopoverContent>
     </Popover>
   )

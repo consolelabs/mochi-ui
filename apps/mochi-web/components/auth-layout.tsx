@@ -19,8 +19,7 @@ import {
 } from '@consolelabs/ui-components'
 import { DISCORD_LINK } from '~envs'
 import { useRouter } from 'next/router'
-import Login from './login'
-import { AuthPanel, LoginRequiredModal } from './AuthWidget'
+import { AuthPanel } from './AuthWidget'
 
 const SidebarHeader = ({ expanded }: { expanded?: boolean }) => {
   return expanded ? (
@@ -144,8 +143,8 @@ export default function AuthenticatedLayout({
             </div>
           </>
         ) : (
-          <div className='bg-black/40 w-full flex-1 flex items-center justify-center'>
-            <AuthPanel/>
+          <div className="bg-black/40 w-full flex-1 flex items-center justify-center">
+            <AuthPanel />
           </div>
         )}
       </div>
