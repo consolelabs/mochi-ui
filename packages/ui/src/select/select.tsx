@@ -177,8 +177,9 @@ const SelectSeparator = forwardRef<
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.Separator
     className={clsx(
-      "h-px !my-2 bg-neutral-200 -mx-2"
-      , className)}
+      "my-3 h-px bg-neutral-200",
+      className
+    )}
     ref={ref}
     {...props}
   />
