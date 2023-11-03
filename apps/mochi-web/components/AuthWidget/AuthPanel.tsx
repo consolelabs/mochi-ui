@@ -15,7 +15,7 @@ import {
   IconTelegramColored,
   IconX,
   IconGithub,
-  IconGmailColored,
+  IconGoogleColored,
   IconSlackColored,
   IconFacebookColored,
   IconMail,
@@ -113,7 +113,7 @@ export const AuthPanel = (props: AuthPanelProps) => {
         },
         {
           name: 'Google',
-          icon: <IconGmailColored />,
+          icon: <IconGoogleColored />,
           href: mailAuthUrl,
         },
         {
