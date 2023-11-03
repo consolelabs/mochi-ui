@@ -36,7 +36,7 @@ interface TokenButtonProps {
 }
 
 const TokenButton = (props: TokenButtonProps) => (
-  <div className="flex gap-x-2 items-center py-1.5 px-2 rounded-lg bg-white-pure">
+  <div className="flex gap-x-2 items-center py-1.5 px-3 rounded-lg bg-white-pure">
     {props.isToken ? (
       <span className="text-base" role="img">
         <img

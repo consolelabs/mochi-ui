@@ -1,4 +1,4 @@
-import Button from '~cpn/base/button'
+import { Button } from '@consolelabs/ui-components'
 import { useEffect, useState } from 'react'
 import { abbreviateNumber, formatNumber } from '~utils/number'
 import { TokenPicker } from '../TokenPicker'
@@ -54,14 +54,14 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   }
 
   return (
-    <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-2">
+    <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-3">
       <div className="flex justify-between items-center">
         <TokenPicker onSelect={setSelectedAsset} />
       </div>
       <div className="flex flex-col gap-y-2 py-6 px-4 rounded-lg bg-white-pure">
         <div className="flex flex-1 justify-between items-center">
           <input
-            className="w-[65%] outline-none text-2xl font-medium text-[#343433] appearance-none"
+            className="w-[65%] outline-none text-2xl font-medium text-[#343433] appearance-none h-[34px]"
             placeholder="0"
             type="number"
             value={tipAmount}
@@ -73,27 +73,33 @@ export const AmountInput: React.FC<AmountInputProps> = ({
           </span>
         </div>
         <div className="flex flex-1 justify-between items-center">
-          <span className="text-[#848281] text-sm">
+          <span className="text-[#848281] text-[13px]">
             Balance: {balance} {balanceUnit}
           </span>
           <div className="flex gap-x-2">
             <Button
-              appearance="text"
-              size="xs"
+              size="sm"
+              variant="outline"
+              color="info"
+              className="!py-1 px-2.5 rounded-lg"
               onClick={() => handleQuickAmount('1')}
             >
               1
             </Button>
             <Button
-              appearance="text"
-              size="xs"
+              size="sm"
+              variant="outline"
+              color="info"
+              className="!py-1 px-2.5 rounded-lg"
               onClick={() => handleQuickAmount('2')}
             >
               2
             </Button>
             <Button
-              appearance="text"
-              size="xs"
+              size="sm"
+              variant="outline"
+              color="info"
+              className="!py-1 px-2.5 rounded-lg"
               onClick={() => handleQuickAmount('5')}
             >
               5

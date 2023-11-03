@@ -1,4 +1,4 @@
-import { Variant } from './AuthPanel'
+import type { Variant } from './types'
 
 interface PanelHeaderProps {
   variant?: Variant

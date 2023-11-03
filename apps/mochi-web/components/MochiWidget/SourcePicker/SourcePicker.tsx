@@ -79,7 +79,7 @@ export const SourcePicker: React.FC<Props> = ({
   return (
     <Popover open={isOpenSelector} onOpenChange={setIsOpenSelector}>
       <PopoverTrigger
-        className="flex gap-x-3 items-center py-3 px-2 bg-blue-50 rounded-lg text-left"
+        className="flex gap-x-3 items-center py-2.5 px-4 bg-[#017AFF] bg-opacity-10 rounded-lg text-left"
         onClick={handleTriggerClick}
       >
         <img

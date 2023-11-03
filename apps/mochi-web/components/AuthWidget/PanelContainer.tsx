@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Variant } from './AuthPanel'
+import type { Variant } from './types'
 
 interface PanelContainerProps {
   variant?: Variant
@@ -13,7 +13,7 @@ export const PanelContainer: React.FC<PanelContainerProps> = ({
   switch (variant) {
     case 'dropdown':
       return (
-        <div className="px-3 py-[22px] rounded-xl bg-white-pure">
+        <div className="px-3 rounded-xl py-[22px] bg-white-pure">
           {children}
         </div>
       )

@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { create } from 'zustand'
+import { useState } from 'react'
 import GiftIcon from './gift-icon'
 import PaperplaneIcon from './paperplane-icon'
 import PaymeIcon from './payme-icon'
@@ -36,31 +36,13 @@ const tabs = [
   },
 ]
 
-interface WidgetState {
-  activeTab: (typeof tabs)[0]
-  setActiveTab: (id: string) => void
-  overrideWidgetLayoutRender: React.ReactNode
-  setOverrideWidgetLayoutRender: (render: React.ReactNode) => void
-}
-
-export const useWidget = create<WidgetState>((set) => ({
-  activeTab: tabs[0],
-  setActiveTab: (id: string) =>
-    set((s) => ({ ...s, activeTab: tabs.find((t) => t.id === id) })),
-  overrideWidgetLayoutRender: null,
-  setOverrideWidgetLayoutRender: (render) =>
-    set((s) => ({ ...s, overrideWidgetLayoutRender: render })),
-}))
-
 export default function MochiWidget() {
-  const { overrideWidgetLayoutRender, activeTab, setActiveTab } = useWidget()
-
-  if (overrideWidgetLayoutRender) return overrideWidgetLayoutRender
+  const [activeTab, setActiveTab] = useState(tabs[0])
 
   return (
     <div
       style={{
-        height: 'auto',
+        height: 640,
         width: 440,
       }}
       className="p-3 flex relative z-10 flex-col rounded-2xl border border-[#e5e4e3] shadow-xl bg-white-pure"
@@ -75,7 +57,7 @@ export default function MochiWidget() {
               <button
                 key={t.title}
                 type="button"
-                onClick={() => setActiveTab(t.id)}
+                onClick={() => setActiveTab(t)}
                 className={clsx(
                   'whitespace-nowrap text-sm font-text flex-1 flex justify-center items-center gap-x-1',
                   {
