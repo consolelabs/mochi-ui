@@ -48,18 +48,19 @@ const SelectTrigger = forwardRef<SelectTriggerRef, SelectTriggerProps>(
       hideRightIcon,
       rightIcon,
       leftIcon,
+      ...restProps
     } = props
     return (
       <SelectPrimitive.Trigger
         asChild={asChild}
         className={getSelectItemStyle({
-          className,
           isTrigger: true,
           disabled,
+          className,
         })}
         disabled={disabled}
         ref={ref}
-        {...props}
+        {...restProps}
       >
         {asChild ? (
           children
@@ -96,8 +97,6 @@ const SelectContent = forwardRef<
       className={clsx(
         'relative z-50 w-fit bg-white',
         'rounded-lg shadow-md',
-        'space-y-1',
-        'p-3',
         className,
       )}
       position={position}
@@ -107,9 +106,11 @@ const SelectContent = forwardRef<
     >
       <SelectPrimitive.Viewport
         className={clsx(
-          'p-1',
           position === 'popper' &&
-            'h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]',
+            'h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)] ',
+          'space-y-1',
+          'bg-white-pure',
+          'p-3',
         )}
       >
         {children}
@@ -144,6 +145,7 @@ const SelectItem = forwardRef<SelectItemRef, SelectItemProps>((props, ref) => {
     extraRight,
     useIndicator,
     subTitle,
+    ...restProps
   } = props
 
   const RightIconWrapper = useIndicator ? SelectPrimitive.ItemIndicator : 'span'
@@ -155,7 +157,7 @@ const SelectItem = forwardRef<SelectItemRef, SelectItemProps>((props, ref) => {
         disabled,
       })}
       ref={ref}
-      {...props}
+      {...restProps}
     >
       {leftIcon ? (
         <span className={getIconWrapperStyle()}>{leftIcon}</span>

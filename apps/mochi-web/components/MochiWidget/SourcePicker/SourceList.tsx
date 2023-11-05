@@ -4,16 +4,15 @@ import { SourceItem } from './SourceItem'
 
 interface Props {
   data: SourceType[]
-  onSelect?: (item: SourceType) => void
 }
 
 export const SourceList = (props: Props) => {
-  const { data, onSelect } = props
+  const { data } = props
   return (
     <List
       rootClassName="w-full"
       data={data}
-      renderItem={(item) => <SourceItem item={item} onSelect={onSelect} />}
+      renderItem={(item: SourceType) => <SourceItem item={item} />}
     />
   )
 }

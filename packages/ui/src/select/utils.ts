@@ -23,7 +23,6 @@ export const getSelectItemStyle = cva(
       disabled: false,
       isTrigger: false,
     },
-    compoundVariants: [],
   },
 )
 

@@ -21,6 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from './select'
+import { InputField } from '../input-field'
 
 const meta: Meta<typeof Select> = {
   title: 'ui/Select',
@@ -130,6 +131,8 @@ export const WithLabel: StoryObj = {
   render() {
     /* eslint-disable react-hooks/rules-of-hooks -- for demonstration */
     const [value, setValue] = useState(items[0].value)
+    /* eslint-disable react-hooks/rules-of-hooks -- for demonstration */
+    const [search, setSearch] = useState('')
     const selectedValue = items.find((i) => i.value === value)
     return (
       <Select onChange={setValue} value={value}>
@@ -137,6 +140,12 @@ export const WithLabel: StoryObj = {
           <SelectValue placeholder="Select" />
         </SelectTrigger>
         <SelectContent className="min-w-[200px]">
+          <InputField
+            value={search}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              setSearch(e.target.value)
+            }}
+          />
           <SelectGroup>
             <SelectLabel>Socials</SelectLabel>
             {items.map(({ key, label, ...props }) => (
