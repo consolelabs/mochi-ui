@@ -1,10 +1,12 @@
 {
   "name": "@consolelabs/theme",
-  "version": "0.0.1-rc7",
+  "version": "0.0.1-rc8",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
-    "dist"
+    "dist",
+    "plugin.js",
+    "plugin.d.ts"
   ],
   "publishConfig": {
     "access": "public"

@@ -1,6 +1,6 @@
 {
   "name": "@consolelabs/core",
-  "version": "0.0.1-rc10",
+  "version": "0.0.1-rc11",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
