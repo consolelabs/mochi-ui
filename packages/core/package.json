@@ -1,6 +1,6 @@
 {
   "name": "@consolelabs/core",
-  "version": "0.0.1-rc12",
+  "version": "0.0.1-rc13",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
@@ -11,13 +11,16 @@
     "build": "tsup --dts",
     "lint": "eslint --fix src/",
     "dev": "tsup --watch",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "prepack": "clean-package",
+    "postpack": "clean-package restore"
   },
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "clean-package": "^2.2.0",
     "eslint-config-custom": "workspace:*",
     "prettier": "^3.0.3",
     "react": "^18.2.0",
@@ -41,7 +44,8 @@
     "@consolelabs/section-list": "workspace:*",
     "@consolelabs/sidebar": "workspace:*",
     "@consolelabs/switch": "workspace:*",
-    "@consolelabs/tooltip": "workspace:*",
-    "@consolelabs/theme": "workspace:*"
-  }
+    "@consolelabs/theme": "workspace:*",
+    "@consolelabs/tooltip": "workspace:*"
+  },
+  "clean-package": "../../../clean-package.config.json"
 }

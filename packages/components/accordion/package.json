@@ -1,6 +1,6 @@
 {
   "name": "@consolelabs/accordion",
-  "version": "0.0.1-rc10",
+  "version": "0.0.1-rc11",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
@@ -14,13 +14,16 @@
     "build": "tsup src --dts",
     "lint": "eslint --fix src/",
     "dev": "tsup --watch",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "prepack": "clean-package",
+    "postpack": "clean-package restore"
   },
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "clean-package": "^2.2.0",
     "eslint-config-custom": "workspace:*",
     "prettier": "^3.0.3",
     "react": "^18.2.0",
@@ -32,5 +35,6 @@
     "@radix-ui/react-accordion": "^1.1.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0"
-  }
+  },
+  "clean-package": "../../../clean-package.config.json"
 }
