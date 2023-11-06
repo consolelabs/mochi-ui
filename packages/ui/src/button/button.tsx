@@ -25,6 +25,9 @@ const buttonCva = cva(['flex items-center gap-x-2 font-semibold transition'], {
     disabled: {
       true: 'cursor-not-allowed',
     },
+    loading: {
+      true: 'pointer-events-none',
+    },
   },
   compoundVariants: [
     {
@@ -129,6 +132,7 @@ const buttonCva = cva(['flex items-center gap-x-2 font-semibold transition'], {
     variant: 'solid',
     color: 'primary',
     size: 'md',
+    loading: false
   },
 })
 
@@ -174,7 +178,14 @@ export default function Button({
 
   return (
     <button
-      className={buttonCva({ className, variant, color, size, disabled })}
+      className={buttonCva({
+        className,
+        variant,
+        color,
+        size,
+        disabled,
+        loading,
+      })}
       disabled={disabled}
       type={rest.type || 'button'}
       {...rest}

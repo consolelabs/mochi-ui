@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { IconConnectWallets } from '@consolelabs/icons'
+import { IconConnectWallets, IconSpinner } from '../icons'
 import Button from './button'
 
 const meta: Meta<typeof Button> = {
@@ -43,6 +43,39 @@ export function Sizes() {
     <div className="flex items-center space-x-4">
       {sizes.map((size) => (
         <Button key={size} size={size}>
+          Connect Wallet
+        </Button>
+      ))}
+    </div>
+  )
+}
+
+export function Loading() {
+  const sizes = ['sm', 'md', 'lg'] as const
+
+  return (
+    <div className="flex items-center space-x-4">
+      {sizes.map((size) => (
+        <Button key={size} size={size} loading>
+          Connect Wallet
+        </Button>
+      ))}
+    </div>
+  )
+}
+
+export function CustomLoadingIndicator() {
+  const sizes = ['sm', 'md', 'lg'] as const
+
+  return (
+    <div className="flex items-center space-x-4">
+      {sizes.map((size) => (
+        <Button
+          key={size}
+          size={size}
+          loading
+          loadingIndicator={<IconSpinner className="animate-spin" />}
+        >
           Connect Wallet
         </Button>
       ))}
