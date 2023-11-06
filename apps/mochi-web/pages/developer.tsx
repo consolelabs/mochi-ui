@@ -289,7 +289,7 @@ function TryItOut() {
             )
           })}
         </ul>
-        <div className="flex overflow-auto flex-col gap-y-3 p-8 w-2/3 bg-[#3B3B3B] rounded-2xl max-h-[400px]">
+        <div className="flex flex-col p-8 w-2/3 bg-[#3B3B3B] rounded-2xl max-h-[400px]">
           <div className="flex justify-between items-center">
             <span className="text-xs uppercase text-white-pure">
               curl request
@@ -298,10 +298,11 @@ function TryItOut() {
               <IconCopy className="w-5 h-5" />
             </IconButton>
           </div>
-          <code className="text-sm text-white-pure">
-            <pre
-              dangerouslySetInnerHTML={{
-                __html: `curl --location 'http://localhost:8200/api/v1/tip/transfer-v2' \
+          <div className="overflow-auto h-full">
+            <code className="text-sm text-white-pure">
+              <pre
+                dangerouslySetInnerHTML={{
+                  __html: `curl --location 'http://localhost:8200/api/v1/tip/transfer-v2' \
 --header 'Content-Type: application/json'
 --data '{
     "sender": "50453",
@@ -314,20 +315,21 @@ function TryItOut() {
     "transfer_type": "transfer",
     "chain_id": "250"
 }'`,
-              }}
-              className="whitespace-pre-wrap"
-            />
-          </code>
-          <div className="flex sticky bottom-0 justify-between items-center p-4 w-full text-sm rounded-lg bg-white-pure">
-            <span>
-              <span className="text-blue-500">Sign in</span> to edit real
-              requests.
-            </span>
-            <Tooltip content="Download" theme="light">
-              <div className="text-white-pure rounded-lg bg-[#3B3B3B] p-1">
-                <IconArrowDown className="w-4 h-4" />
-              </div>
-            </Tooltip>
+                }}
+                className="whitespace-pre-wrap"
+              />
+            </code>
+            <div className="flex sticky bottom-0 justify-between items-center p-4 w-full text-sm rounded-lg bg-white-pure">
+              <span>
+                <span className="text-blue-500">Sign in</span> to edit real
+                requests.
+              </span>
+              <Tooltip content="Download" theme="light">
+                <div className="text-white-pure rounded-lg bg-[#3B3B3B] p-1">
+                  <IconArrowDown className="w-4 h-4" />
+                </div>
+              </Tooltip>
+            </div>
           </div>
         </div>
       </div>
