@@ -61,7 +61,7 @@ export function Table<T extends RowData>({
                   <tr key={rowIdx}>
                     {headers.map((_: any, idx: number) => (
                       <td
-                        className="py-3 px-4 text-sm font-normal leading-tight rounded border-0 border-b border-gray-200 border-solid text-zinc-800"
+                        className="px-4 py-3 text-sm font-normal leading-tight border-0 border-b border-gray-200 border-solid rounded text-zinc-800"
                         key={idx}
                       >
                         <div className="bg-gray-200 animate-pulse h-[22px]" />
