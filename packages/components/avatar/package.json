@@ -8,18 +8,20 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "tsup --dts",
-    "lint": "eslint --fix src/",
-    "dev": "tsup --watch",
-    "check-types": "tsc --noEmit"
+    "build": "tsup src --dts",
+    "build:fast": "tsup src",
+    "dev": "yarn build:fast -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "prepack": "clean-package",
+    "postpack": "clean-package restore"
   },
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/node": "^18.11.17",
-    "@types/react": "^18.2.28",
+    "clean-package": "^2.2.0",
     "eslint-config-custom": "workspace:*",
     "prettier": "^3.0.3",
     "react": "^18.2.0",
@@ -31,5 +33,6 @@
     "@radix-ui/react-avatar": "^1.0.4",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0"
-  }
+  },
+  "clean-package": "../../../clean-package.config.json"
 }

@@ -8,15 +8,20 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "tsup --dts",
-    "lint": "eslint --fix src/",
-    "dev": "tsup --watch",
-    "check-types": "tsc --noEmit"
+    "build": "tsup src --dts",
+    "build:fast": "tsup src",
+    "dev": "yarn build:fast -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "prepack": "clean-package",
+    "postpack": "clean-package restore"
   },
   "peerDependencies": {
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "clean-package": "^2.2.0",
     "eslint-config-custom": "workspace:*",
     "@consolelabs/icons": "workspace:*",
     "@consolelabs/avatar": "workspace:*",
@@ -30,5 +35,6 @@
     "class-variance-authority": "^0.7.0",
     "@radix-ui/react-popover": "^1.0.7",
     "clsx": "^2.0.0"
-  }
+  },
+  "clean-package": "../../../clean-package.config.json"
 }

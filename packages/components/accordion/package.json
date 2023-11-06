@@ -12,9 +12,10 @@
   "license": "MIT",
   "scripts": {
     "build": "tsup src --dts",
-    "lint": "eslint --fix src/",
-    "dev": "tsup --watch",
-    "check-types": "tsc --noEmit",
+    "build:fast": "tsup src",
+    "dev": "yarn build:fast -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
     "prepack": "clean-package",
     "postpack": "clean-package restore"
   },
