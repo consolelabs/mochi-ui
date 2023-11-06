@@ -24,7 +24,7 @@ import {
   getDropdownItemStyle,
   getIconStyle,
 } from './utils'
-import { IconChevron, IconCheck } from '@consolelabs/icons'
+import { IconChevronDown, IconCheck } from '@consolelabs/icons'
 
 function renderDropdownChildItem(
   props: BaseDropdownItemProps & {
@@ -138,7 +138,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
             rightIcon,
             className,
             defaultRightIcon: (
-              <IconChevron className="-rotate-90 text-neutral-500" />
+              <IconChevronDown className="-rotate-90 text-neutral-500" />
             ),
           })}
     </DropdownMenuPrimitive.SubTrigger>

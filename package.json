@@ -20,14 +20,18 @@
   "devDependencies": {
     "@commitlint/cli": "^17.8.0",
     "@commitlint/config-conventional": "^17.8.0",
-    "eslint": "^8.52.0",
     "@storybook/react": "^7.4.6",
+    "@types/node": "^18.11.17",
+    "@types/react": "^18.2.28",
+    "eslint": "^8.52.0",
     "husky": "^8.0.3",
     "lint-staged": "^15.0.1",
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.3",
     "tsconfig": "workspace:*",
-    "turbo": "latest"
+    "tsup": "^7.2.0",
+    "turbo": "latest",
+    "typescript": "^5.2.2"
   },
   "resolutions": {
     "@typescript-eslint/parser": "^6.9.1"
