@@ -44,14 +44,24 @@ export function Default() {
             Icon: IconUser,
             type: 'link',
             href: 'https://mochi.gg',
-            badge: <Badge label='New' />,
-            disabled: true
+            badge: <Badge label="New" />,
+            disabled: true,
           },
           { title: 'App Store', Icon: IconGame },
           { title: 'Settings', Icon: IconSetting },
           { type: 'break' },
-          { title: 'Developer', Icon: IconCoding, disabled: true},
-          { title: 'Gift your friend', Icon: IconSuperGroup, badge: <Badge appearance="secondary" icon={<IconTwinkle/>} label="Featured"/>},
+          { title: 'Developer', Icon: IconCoding, disabled: true },
+          {
+            title: 'Gift your friend',
+            Icon: IconSuperGroup,
+            badge: (
+              <Badge
+                appearance="secondary"
+                icon={<IconTwinkle />}
+                label="Featured"
+              />
+            ),
+          },
           { title: 'Invite Friends', Icon: IconAddUser },
           { title: 'Feedback', Icon: IconStar },
           {
@@ -66,7 +76,7 @@ export function Default() {
             Icon: IconStar,
             type: 'list',
             children: [
-              { title: 'item 1', disabled: true, type:"link", href:"/"},
+              { title: 'item 1', disabled: true, type: 'link', href: '/' },
               { title: 'item 2' },
             ],
           },

@@ -96,7 +96,7 @@ export const useMochi = create<MochiState>((set, get) => ({
                   .then((accounts: string[]) =>
                     get().connect(accounts, 'evm-chain'),
                   )
-                  .catch(() => { })
+                  .catch(() => {})
               break
             }
             case 'solana-chain': {
@@ -114,7 +114,7 @@ export const useMochi = create<MochiState>((set, get) => ({
                       'solana-chain',
                     ),
                   )
-                  .catch(() => { })
+                  .catch(() => {})
               break
             }
             case 'ronin-chain': {
@@ -141,7 +141,7 @@ export const useMochi = create<MochiState>((set, get) => ({
                       'ronin-chain',
                     ),
                   )
-                  .catch(() => { })
+                  .catch(() => {})
               break
             }
           }

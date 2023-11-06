@@ -1,11 +1,14 @@
 {
-  "name": "@consolelabs/input",
+  "name": "@consolelabs/theme",
   "version": "0.0.1-rc7",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT",
   "scripts": {
     "build": "tsup --dts",
@@ -14,17 +17,13 @@
     "check-types": "tsc --noEmit"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "tailwindcss": "*"
   },
   "devDependencies": {
     "eslint-config-custom": "workspace:*",
-    "@consolelabs/icons": "workspace:*",
-    "@consolelabs/theme": "workspace:*",
     "prettier": "^3.0.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "tsconfig": "workspace:*"
+    "tsconfig": "workspace:*",
+    "tailwindcss": "^3.2.4"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.0",

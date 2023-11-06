@@ -18,11 +18,11 @@ const args: BadgeProps[] = [
     label: 'Label',
     icon: <IconSolidDot />,
   },
-//   {
-//     label: 'Label',
-//     icon: <Avatar src="https://mochi.gg/logo.png" />,
-//     isAvatarIcon: true,
-//   },
+  //   {
+  //     label: 'Label',
+  //     icon: <Avatar src="https://mochi.gg/logo.png" />,
+  //     isAvatarIcon: true,
+  //   },
   {
     label: 'Label',
     icon: <IconClose />,
@@ -71,11 +71,11 @@ const meta: Meta<typeof Badge> = {
     icon: {
       control: 'select',
       options: ['avatar', 'icon-arrow', 'icon-dot'],
-    //   mapping: {
-    //     avatar: <Avatar src="https://mochi.gg/logo.png" />,
-    //     'icon-dot': <IconSolidDot />,
-    //     'icon-arrow': <IconArrow />,
-    //   },
+      //   mapping: {
+      //     avatar: <Avatar src="https://mochi.gg/logo.png" />,
+      //     'icon-dot': <IconSolidDot />,
+      //     'icon-arrow': <IconArrow />,
+      //   },
     },
     appearance: {
       control: 'select',

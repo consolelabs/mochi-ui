@@ -1,0 +1,28 @@
+{
+  "name": "demo-app",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --quiet",
+    "lint:fix": "eslint --fix . --ext .js,.jsx,.ts,.tsx"
+  },
+  "dependencies": {
+    "@consolelabs/core": "workspace:*",
+    "@consolelabs/theme": "workspace:*",
+    "next": "^13.2.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.5",
+    "@types/react": "^18.2.28",
+    "@types/react-dom": "^18.2.4",
+    "autoprefixer": "^10.4.4",
+    "eslint-config-custom": "workspace:*",
+    "postcss": "^8.4.12",
+    "tailwindcss": "^3.2.7"
+  }
+}
