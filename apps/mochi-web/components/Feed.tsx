@@ -125,10 +125,10 @@ export default function Feed() {
             <p className="text-2xl">Recent transactions</p>
           </div>
           <ul className="flex overflow-hidden relative flex-col gap-y-2 py-3 px-1 w-full h-full">
-            {txns.map((item) => {
+            {txns.map((item, i) => {
               return (
                 <Transition
-                  key={item.code}
+                  key={`${item.code}-${i}`}
                   appear
                   show
                   enter="transition duration-300"

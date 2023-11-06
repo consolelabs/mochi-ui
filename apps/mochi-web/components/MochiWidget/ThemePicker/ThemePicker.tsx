@@ -24,6 +24,7 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
   function onThemeSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     setThemeSearch(e.target.value)
   }
+
   return (
     <div className="grid grid-cols-4 grid-rows-1 gap-x-2">
       <div className="overflow-hidden relative rounded-lg">

@@ -24,7 +24,7 @@ function SectionItem({
       className="flex items-center w-full p-2 hover:bg-[#FAF9F7] rounded-lg space-x-2 cursor-pointer"
       key={item.id}
     >
-      <button onClick={onSelect}>
+      <button type="button" onClick={onSelect}>
         <Heading as="h3" className="text-sm">
           {item.content}
         </Heading>

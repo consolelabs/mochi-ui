@@ -1,38 +1,41 @@
 import clsx from 'clsx'
 import { useState } from 'react'
-import GiftIcon from './gift-icon'
-import PaperplaneIcon from './paperplane-icon'
-import PaymeIcon from './payme-icon'
-import PaylinkIcon from './paylink-icon'
-import Gift from './gift'
+import {
+  IconPaperplaneCircled,
+  IconDollarBubbleCircled,
+  IconLinkCircled,
+  IconGift,
+} from '@consolelabs/ui-components'
 import Tip from './Tip'
-import Payme from './payme'
-import Paylink from './paylink'
+
+function ComingSoon() {
+  return <span className="m-4">Coming soon...</span>
+}
 
 const tabs = [
   {
     id: 'tip',
     title: 'Tip',
-    Icon: PaperplaneIcon,
+    Icon: IconPaperplaneCircled,
     render: () => <Tip />,
   },
   {
     id: 'payme',
     title: 'Pay Me',
-    Icon: PaymeIcon,
-    render: () => <Payme />,
+    Icon: IconDollarBubbleCircled,
+    render: ComingSoon,
   },
   {
     id: 'paylink',
     title: 'Pay Link',
-    Icon: PaylinkIcon,
-    render: () => <Paylink />,
+    Icon: IconLinkCircled,
+    render: ComingSoon,
   },
   {
     id: 'gift',
     title: 'Gift',
-    Icon: GiftIcon,
-    render: () => <Gift />,
+    Icon: IconGift,
+    render: ComingSoon,
   },
 ]
 
@@ -45,7 +48,7 @@ export default function MochiWidget() {
         height: 640,
         width: 440,
       }}
-      className="p-3 flex relative z-10 flex-col rounded-2xl border border-[#e5e4e3] shadow-xl bg-white-pure"
+      className="overflow-hidden p-3 flex relative z-10 flex-col rounded-2xl border border-[#e5e4e3] shadow-xl bg-white-pure"
     >
       <div className="flex items-center border-b border-[#e5e4e3] pb-2">
         {tabs.map((t, i) => {
