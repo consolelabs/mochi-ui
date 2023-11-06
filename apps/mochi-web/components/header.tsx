@@ -9,6 +9,7 @@ import {
   Popover,
   PopoverTrigger,
   PopoverContent,
+  Button,
 } from '@consolelabs/ui-components'
 import { useState } from 'react'
 import ProfileDropdown from './profile-dropdrown'
@@ -22,10 +23,14 @@ const LoginPopover = ({ isLogging }: { isLogging: boolean }) => {
 
   return (
     <Popover onOpenChange={setIsOpen} open={isOpen}>
-      <PopoverTrigger className="text-left">
-        <span className="text-sm font-semibold">
-          {isLogging ? 'Logging into your account...' : 'Login'}
-        </span>
+      <PopoverTrigger
+        className="text-left"
+        asChild
+        // wrap Button by div to prevent event loss when use `asChild` props
+      >
+        <div>
+          <Button loading={isLogging}>Login</Button>
+        </div>
       </PopoverTrigger>
       <PopoverContent
         className={clsx('!p-0', {
