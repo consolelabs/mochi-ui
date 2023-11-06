@@ -1,7 +1,7 @@
 import { Layout } from '~app/layout'
 import { SEO } from '~app/layout/seo'
 import Button from '~cpn/base/button/button'
-import { IconArrow } from '@consolelabs/ui-components'
+import { IconArrowDown } from '@consolelabs/ui-components'
 import clsx from 'clsx'
 import { ROUTES } from '~constants/routes'
 import Link from 'next/link'
@@ -27,16 +27,16 @@ export default function NotFoundPage() {
             'sm:gap-6 gap-4',
           )}
         >
-          <h3 className="font-medium text-2xl sm:text-3xl">
+          <h3 className="text-2xl font-medium sm:text-3xl">
             We lost this page
           </h3>
-          <p className="sm:text-lg text-sm">
+          <p className="text-sm sm:text-lg">
             The page you are looking for doesn&apos;t exist or has been moved
           </p>
-          <div className="flex gap-3 sm:w-fit sm:flex-row flex-col-reverse w-full">
+          <div className="flex flex-col-reverse gap-3 w-full sm:flex-row sm:w-fit">
             <Link href={ROUTES.HOME}>
-              <Button className="h-12 w-full sm:w-[144px] gap-2 shadow-sm">
-                <IconArrow className="rotate-180" />
+              <Button className="gap-2 w-full h-12 shadow-sm sm:w-[144px]">
+                <IconArrowDown className="rotate-180" />
                 Go back
               </Button>
             </Link>

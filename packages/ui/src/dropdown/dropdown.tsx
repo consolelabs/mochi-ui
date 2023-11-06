@@ -2,8 +2,7 @@ import * as React from 'react'
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
 import clsx from 'clsx'
 import type { ReactNode } from 'react'
-import IconChevron from '../icons/components/icon-chevron'
-import IconCheck from '../icons/components/icon-check'
+import { IconChevronDown, IconCheck } from '../icons'
 import type {
   DropdownContentRef,
   DropdownContentProps,
@@ -139,7 +138,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
             rightIcon,
             className,
             defaultRightIcon: (
-              <IconChevron className="-rotate-90 text-neutral-500" />
+              <IconChevronDown className="-rotate-90 text-neutral-500" />
             ),
           })}
     </DropdownMenuPrimitive.SubTrigger>

@@ -4,29 +4,32 @@ import { Layout } from '~app/layout'
 import { SEO } from '~app/layout/seo'
 import {
   Button,
-  IconAPT,
-  IconARB,
-  IconATOM,
-  IconArrow,
-  IconBNB,
-  IconBTC,
+  IconApt,
+  IconArb,
+  IconAtom,
+  IconArrowDown,
+  IconBnb,
+  IconBtc,
   IconDiscordColored,
-  IconETH,
-  IconFTM,
+  IconEth,
+  IconFtm,
   IconFacebookColored,
   IconGithub,
   IconGoogleColored,
-  IconMATIC,
-  IconMNT,
-  IconOP,
-  IconRON,
+  IconMatic,
+  IconMnt,
+  IconOp,
+  IconRon,
   IconRedditColored,
-  IconSOL,
-  IconSUI,
+  IconSol,
+  IconSui,
   IconSlackColored,
-  IconTON,
+  IconTon,
   IconX,
   IconZkSync,
+  IconButton,
+  IconCopy,
+  Tooltip,
 } from '@consolelabs/ui-components'
 import { HOME_URL } from '~envs'
 import { useState } from 'react'
@@ -186,12 +189,12 @@ function BrowseAPIs() {
 }
 
 const comingSoons = [
-  IconMNT.name,
-  IconOP.name,
+  IconMnt.name,
+  IconOp.name,
   IconZkSync.name,
-  IconAPT.name,
-  IconSUI.name,
-  IconATOM.name,
+  IconApt.name,
+  IconSui.name,
+  IconAtom.name,
 ] as const
 function SupportedPlatforms() {
   return (
@@ -218,21 +221,21 @@ function SupportedPlatforms() {
           <span>Network</span>
           <div className="flex flex-wrap gap-10">
             {[
-              IconBTC,
-              IconETH,
-              IconBNB,
-              IconFTM,
-              IconMATIC,
-              IconRON,
-              IconARB,
-              IconMNT,
-              IconOP,
+              IconBtc,
+              IconEth,
+              IconBnb,
+              IconFtm,
+              IconMatic,
+              IconRon,
+              IconArb,
+              IconMnt,
+              IconOp,
               IconZkSync,
-              IconSOL,
-              IconTON,
-              IconAPT,
-              IconSUI,
-              IconATOM,
+              IconSol,
+              IconTon,
+              IconApt,
+              IconSui,
+              IconAtom,
             ].map((Icon) => {
               if (comingSoons.includes(Icon.name)) {
                 return (
@@ -260,7 +263,7 @@ function TryItOut() {
     <div className="hidden flex-col px-5 mx-auto w-full max-w-4xl md:flex">
       <p className="text-3xl font-medium font-text">Try it out</p>
       <div className="flex gap-x-4 mt-8">
-        <ul className="flex flex-col gap-y-2 p-4 w-1/3 rounded-lg bg-neutral-150">
+        <ul className="flex flex-col flex-shrink-0 gap-y-2 p-4 w-1/3 rounded-lg bg-neutral-150">
           {[
             'Start a payment',
             'Sell a product',
@@ -272,7 +275,7 @@ function TryItOut() {
               <li key={item}>
                 <button
                   className={clsx(
-                    'p-4 font-medium rounded-md transition hover:bg-white-pure',
+                    'text-left w-full p-4 font-medium rounded-md transition hover:bg-white-pure',
                     {
                       'bg-white-pure': i === idx,
                       'bg-transparent': i !== idx,
@@ -286,11 +289,14 @@ function TryItOut() {
             )
           })}
         </ul>
-        <div className="flex overflow-auto flex-col gap-y-3 p-8 w-2/3 bg-gray-700 rounded-2xl">
-          <div className="flex justify-between">
+        <div className="flex overflow-auto flex-col gap-y-3 p-8 w-2/3 bg-[#3B3B3B] rounded-2xl max-h-[400px]">
+          <div className="flex justify-between items-center">
             <span className="text-xs uppercase text-white-pure">
               curl request
             </span>
+            <IconButton variant="ghost" size="sm">
+              <IconCopy className="w-5 h-5" />
+            </IconButton>
           </div>
           <code className="text-sm text-white-pure">
             <pre
@@ -309,11 +315,19 @@ function TryItOut() {
     "chain_id": "250"
 }'`,
               }}
+              className="whitespace-pre-wrap"
             />
           </code>
-          <div className="sticky bottom-0 p-4 w-full text-sm rounded-lg bg-white-pure">
-            <span className="text-blue-500">Sign in</span> to edit real
-            requests.
+          <div className="flex sticky bottom-0 justify-between items-center p-4 w-full text-sm rounded-lg bg-white-pure">
+            <span>
+              <span className="text-blue-500">Sign in</span> to edit real
+              requests.
+            </span>
+            <Tooltip content="Download" theme="light">
+              <div className="text-white-pure rounded-lg bg-[#3B3B3B] p-1">
+                <IconArrowDown className="w-4 h-4" />
+              </div>
+            </Tooltip>
           </div>
         </div>
       </div>
@@ -342,7 +356,7 @@ export default function Developer() {
         </span>
         <Button className="mt-5">
           Get API key
-          <IconArrow />
+          <IconArrowDown />
         </Button>
       </div>
       <Divider />
@@ -369,7 +383,7 @@ export default function Developer() {
         </div>
         <div className="flex flex-1 gap-2 md:justify-end">
           <Button size="sm">
-            Get API key <IconArrow />
+            Get API key <IconArrowDown />
           </Button>
           <Button size="sm" variant="outline" color="info">
             View docs

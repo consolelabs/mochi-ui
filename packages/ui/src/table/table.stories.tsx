@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { useCallback, useMemo, useRef, useState } from 'react'
 import { Badge } from '../badge'
 import { IconStar } from '../icons'
-import Pagination from '../pagination'
+import { Pagination } from '../pagination'
 import { Table } from './table'
 
 const meta: Meta<typeof Table> = {
@@ -16,9 +16,6 @@ const meta: Meta<typeof Table> = {
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],
   argTypes: {
-    className: {
-      type: 'string',
-    },
     isLoading: {
       type: 'boolean',
     },
@@ -88,7 +85,7 @@ export const Default: Story = {
     }, [])
 
     return (
-      <div className="min-w-[48rem] p-4">
+      <div className="p-4 min-w-[48rem]">
         <Table<(typeof data)[0]>
           columns={[
             {

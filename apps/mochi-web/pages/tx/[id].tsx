@@ -4,7 +4,7 @@ import { Layout } from '~app/layout'
 import { HOME_URL } from '~envs'
 import { SEO } from '~app/layout/seo'
 import { truncate } from '@dwarvesf/react-utils'
-import Receipt, { transformData } from '~cpn/receipt'
+import Receipt, { transformData } from '~cpn/Receipt'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { id } = ctx.query

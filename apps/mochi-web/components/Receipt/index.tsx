@@ -17,8 +17,8 @@ import clsx from 'clsx'
 import { truncate } from '@dwarvesf/react-utils'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { format } from 'date-fns'
-import Template from './template'
-import { templates, type TemplateName } from './template'
+import Template from './Template'
+import { templates, type TemplateName } from './Template'
 
 interface Props {
   id: string

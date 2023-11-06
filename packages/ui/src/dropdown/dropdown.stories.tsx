@@ -1,10 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
 import { Switch } from '../switch'
-import IconClose from '../icons/components/icon-close'
-import IconCoinbaseWallet from '../icons/components/icon-coinbase-wallet'
-import IconArrow from '../icons/components/icon-arrow'
-import IconSolidDot from '../icons/components/icon-solid-dot'
+import {
+  IconClose,
+  IconCoinbaseWallet,
+  IconArrowDown,
+  IconSolidDot,
+} from '../icons'
 import { Avatar } from '../avatar'
 import {
   DropdownMenu,
@@ -68,7 +70,7 @@ export const Default: Story = {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <button
-            className="p-2 bg-primary-500 text-white rounded-md"
+            className="p-2 text-white rounded-md bg-primary-500"
             type="button"
           >
             Open Dropdown
@@ -159,7 +161,7 @@ export const Default: Story = {
           <DropdownMenuSeparator />
           <DropdownMenuItem
             className="text-red-600"
-            leftIcon={<IconArrow className="text-red-600" />}
+            leftIcon={<IconArrowDown className="text-red-600" />}
           >
             Logout
           </DropdownMenuItem>

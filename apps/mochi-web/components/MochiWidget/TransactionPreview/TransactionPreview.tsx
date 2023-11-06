@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  IconChevron,
+  IconChevronDown,
   IconX,
   IconDiscord,
   IconTelegram,
@@ -50,7 +50,7 @@ function TipPreview() {
   return (
     <div className="grid grid-cols-2 gap-y-1 place-content-between p-4 text-sm font-light text-gray-800 rounded-xl border auto-row-auto border-neutral-300">
       <span className="font-medium">Preview</span>
-      <IconChevron className="justify-self-end self-center text-gray-400" />
+      <IconChevronDown className="justify-self-end self-center text-gray-400" />
       <span>Issued by</span>
       <span className="text-right">vincent</span>
       <span>Addressed to</span>
