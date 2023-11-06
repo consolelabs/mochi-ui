@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { IconArrowDown } from '@consolelabs/icons'
+import { IconArrowRight } from '@consolelabs/icons'
 import IconButton from './icon-button'
 
 const meta: Meta<typeof IconButton> = {
@@ -37,6 +37,6 @@ type Story = StoryObj<typeof IconButton>
 
 export const Default: Story = {
   args: {
-    children: <IconArrowDown height={20} width={20} />,
+    children: <IconArrowRight height={20} width={20} />,
   },
 }

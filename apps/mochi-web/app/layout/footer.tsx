@@ -7,8 +7,8 @@ import Link from 'next/link'
 export const Footer = () => {
   const year = new Date().getFullYear()
   return (
-    <footer className="py-8 mt-auto">
-      <div className="container px-6 mx-auto max-w-5xl">
+    <footer className="mt-auto">
+      <div className="container py-18 landing-block md:h-[300px]">
         <div className="flex flex-col gap-y-5 gap-x-8 sm:gap-x-12 md:flex-row">
           <div className="w-9 h-9 rounded-full">
             <Image
@@ -19,7 +19,7 @@ export const Footer = () => {
               className="block rounded-full"
             />
           </div>
-          <div className="flex flex-col gap-y-7 gap-x-8 mb-10 sm:gap-x-12 sm:mb-0 md:flex-row md:flex-wrap md:gap-y-0">
+          <div className="flex flex-col gap-y-7 gap-x-12 mb-10 sm:gap-x-24 sm:mb-0 md:flex-row md:flex-wrap md:gap-y-0">
             <div className="space-y-2 text-[13px]">
               <div className="text-footer-title">Developers</div>
               <a

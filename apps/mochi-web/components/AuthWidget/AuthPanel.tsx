@@ -78,8 +78,6 @@ export const AuthPanel = (props: AuthPanelProps) => {
         lang: 'en',
       },
       (user: any) => {
-        console.log(user)
-
         const telegramAuth = `${MOCHI_PROFILE_API}/profiles/auth/telegram?${qs.stringify(
           {
             ...user,

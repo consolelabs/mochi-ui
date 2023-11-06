@@ -10,10 +10,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     return {
       notFound: true,
     }
-  const g = await API.MOCHI.get(GET_PATHS.GUILD(id as string)).json(
-    (r) => r.data,
-  )
-  console.log(g)
+  await API.MOCHI.get(GET_PATHS.GUILD(id as string)).json((r) => r.data)
 
   return {
     props: { id },

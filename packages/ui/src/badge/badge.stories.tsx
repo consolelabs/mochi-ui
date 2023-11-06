@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import {
   IconSolidDot,
-  IconArrowDown,
+  IconArrowRight,
   IconClose,
   IconTwinkle,
   IconPlus,
@@ -30,7 +30,7 @@ const args: BadgeProps[] = [
   },
   {
     label: 'Label',
-    icon: <IconArrowDown />,
+    icon: <IconArrowRight />,
     iconPosition: 'right',
   },
   {
@@ -74,7 +74,7 @@ const meta: Meta<typeof Badge> = {
       mapping: {
         avatar: <Avatar src="https://mochi.gg/logo.png" />,
         'icon-dot': <IconSolidDot />,
-        'icon-arrow': <IconArrowDown />,
+        'icon-arrow': <IconArrowRight />,
       },
     },
     appearance: {
