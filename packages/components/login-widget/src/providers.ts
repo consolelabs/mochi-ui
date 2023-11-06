@@ -1,4 +1,3 @@
-import hexer from 'browser-string-hexer'
 import bs58 from 'bs58'
 import { useMochi } from '@consolelabs/mochi-store'
 import type { WalletProps } from './wallet'
@@ -7,6 +6,9 @@ import {
   IconPhantomWallet,
   IconRoninWallet,
 } from '@consolelabs/icons'
+
+// FIXME need real implementation
+const hexer = (str: string) => str
 
 const msg = 'Please sign this message to prove that you own this wallet'
 const signEVM =

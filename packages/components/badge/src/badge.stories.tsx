@@ -5,7 +5,7 @@ import type { BadgeProps } from './badge'
 import {
   IconSolidDot,
   IconClose,
-  IconArrow,
+  IconArrowDown,
   IconTwinkle,
   IconPlus,
 } from '@consolelabs/icons'
@@ -30,7 +30,7 @@ const args: BadgeProps[] = [
   },
   {
     label: 'Label',
-    icon: <IconArrow />,
+    icon: <IconArrowDown />,
     iconPosition: 'right',
   },
   {

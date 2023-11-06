@@ -21,7 +21,7 @@ import {
   IconCoinbaseWallet,
   IconClose,
   IconSolidDot,
-  IconArrow,
+  IconArrowDown,
 } from '@consolelabs/icons'
 
 const meta: Meta<typeof DropdownMenu> = {
@@ -160,7 +160,7 @@ export const Default: Story = {
           <DropdownMenuSeparator />
           <DropdownMenuItem
             className="text-red-600"
-            leftIcon={<IconArrow className="text-red-600" />}
+            leftIcon={<IconArrowDown className="text-red-600" />}
           >
             Logout
           </DropdownMenuItem>
