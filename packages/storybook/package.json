@@ -21,12 +21,12 @@
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.31",
     "storybook": "^7.4.6",
-    "tailwind-config": "workspace:*",
     "tailwindcss": "^3.3.3",
     "typescript": "^5.2.2"
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "@consolelabs/theme": "workspace:*"
   }
 }
