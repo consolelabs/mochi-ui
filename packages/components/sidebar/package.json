@@ -18,8 +18,8 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@consolelabs/accordion": "workspace:0.0.1-rc7",
-    "@consolelabs/badge": "workspace:0.0.1-rc7",
+    "@consolelabs/accordion": "workspace:*",
+    "@consolelabs/badge": "workspace:*",
     "eslint-config-custom": "workspace:*",
     "prettier": "^3.0.3",
     "react": "^18.2.0",
@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@consolelabs/icons": "workspace:*",
-    "@consolelabs/tooltip": "workspace:0.0.1-rc7",
+    "@consolelabs/tooltip": "workspace:*",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0"
   }

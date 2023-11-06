@@ -1,6 +1,6 @@
 {
   "name": "@consolelabs/core",
-  "version": "0.0.1-rc9",
+  "version": "0.0.1-rc10",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
@@ -41,6 +41,7 @@
     "@consolelabs/section-list": "workspace:*",
     "@consolelabs/sidebar": "workspace:*",
     "@consolelabs/switch": "workspace:*",
-    "@consolelabs/tooltip": "workspace:*"
+    "@consolelabs/tooltip": "workspace:*",
+    "@consolelabs/theme": "workspace:*"
   }
 }

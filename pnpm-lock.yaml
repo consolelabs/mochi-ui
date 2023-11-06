@@ -785,7 +785,7 @@ importers:
         specifier: workspace:*
         version: link:../../icons
       '@consolelabs/tooltip':
-        specifier: workspace:0.0.1-rc7
+        specifier: workspace:*
         version: link:../tooltip
       class-variance-authority:
         specifier: ^0.7.0
@@ -795,10 +795,10 @@ importers:
         version: 2.0.0
     devDependencies:
       '@consolelabs/accordion':
-        specifier: workspace:0.0.1-rc7
+        specifier: workspace:*
         version: link:../accordion
       '@consolelabs/badge':
-        specifier: workspace:0.0.1-rc7
+        specifier: workspace:*
         version: link:../badge
       eslint-config-custom:
         specifier: workspace:*
@@ -919,6 +919,9 @@ importers:
       '@consolelabs/switch':
         specifier: workspace:*
         version: link:../components/switch
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../theme
       '@consolelabs/tooltip':
         specifier: workspace:*
         version: link:../components/tooltip
