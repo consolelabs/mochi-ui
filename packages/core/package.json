@@ -47,5 +47,5 @@
     "@consolelabs/theme": "workspace:*",
     "@consolelabs/tooltip": "workspace:*"
   },
-  "clean-package": "../../../clean-package.config.json"
+  "clean-package": "../../clean-package.config.json"
 }
