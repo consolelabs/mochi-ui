@@ -6,6 +6,7 @@ module.exports = {
   swcMinify: false,
   experimental: {
     appDir: false,
+    esmExternals: 'loose',
   },
   images: {
     remotePatterns: [

@@ -4,17 +4,16 @@
   "sideEffects": false,
   "types": "./dist/index.d.ts",
   "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "files": [
+    "dist/**"
+  ],
   "exports": {
     ".": {
       "require": "./dist/index.js",
-      "import": "./dist/index.mjs"
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
     }
   },
-  "files": [
-    "dist",
-    "src"
-  ],
   "license": "MIT",
   "scripts": {
     "build": "tsup",
@@ -22,7 +21,7 @@
     "dev": "tsup --watch",
     "check-types": "tsc --noEmit",
     "generate-icons": "node ./scripts/generate-icon-components.js && eslint --fix src/components/",
-    "postinstall": "pnpm generate-icons && pnpm build"
+    "postinstall": "pnpm generate-icons"
   },
   "peerDependencies": {
     "react": "^18.2.0"

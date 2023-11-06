@@ -7,7 +7,7 @@ import {
   IconDango,
   IconWallet,
   IconMochi,
-} from '@consolelabs/ui-components'
+} from '@consolelabs/icons'
 import { Platform } from '@consolelabs/mochi-ui'
 import stripEmoji from 'emoji-strip'
 

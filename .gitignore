@@ -37,3 +37,4 @@ yarn-error.log*
 dist/
 storybook-static
 packages/icons/src/components
+packages/icons/src/index.ts

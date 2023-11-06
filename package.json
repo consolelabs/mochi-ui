@@ -7,6 +7,8 @@
     "build:mochi-web": "turbo run build --filter=mochi-web",
     "build:ui": "turbo run build --filter=@consolelabs/ui-components",
     "dev:ui": "turbo run dev --filter=@consolelabs/ui-components",
+    "build:icons": "turbo run build --filter=@consolelabs/icons",
+    "dev:icons": "turbo run dev --filter=@consolelabs/icons",
     "storybook": "turbo run storybook --filter=@consolelabs/ui-components",
     "build:storybook": "turbo run build:storybook --filter=@consolelabs/ui-components",
     "lint": "turbo lint",

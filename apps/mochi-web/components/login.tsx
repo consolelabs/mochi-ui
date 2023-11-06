@@ -7,11 +7,8 @@ import { AUTH_TELEGRAM_ID, MOCHI_PROFILE_API } from '~envs'
 import { API } from '~constants/api'
 import qs from 'query-string'
 import { useCallback, useEffect, useState } from 'react'
-import {
-  LoginWidget,
-  IconWalletAdd,
-  useMochi,
-} from '@consolelabs/ui-components'
+import { LoginWidget, useMochi } from '@consolelabs/ui-components'
+import { IconWalletAdd } from '@consolelabs/icons'
 import { useAuthStore } from '~store'
 import { useRouter } from 'next/router'
 

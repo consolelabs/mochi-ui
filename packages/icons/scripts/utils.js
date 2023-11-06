@@ -9,6 +9,8 @@ const prettierConfig = JSON.parse(
   fs.readFileSync(path.resolve(__dirname, '../.prettierrc')).toString(),
 )
 
+const reactJsxCode = `import React from 'react'\n`
+
 const formatCode = (code) =>
   prettier.format(code, { parser: 'babel-ts', ...prettierConfig })
 
@@ -39,15 +41,17 @@ const generateSvgs = async () => {
       //IconSettingBar
       const componentName = `Icon${kebab2Pascal(baseNameWithoutExtension)}`
 
-      let code = await transform(
-        content,
-        {
-          typescript: true,
-          icon: true,
-          plugins: ['@svgr/plugin-jsx'],
-        },
-        { componentName },
-      )
+      const code =
+        reactJsxCode +
+        (await transform(
+          content,
+          {
+            typescript: true,
+            icon: true,
+            plugins: ['@svgr/plugin-jsx'],
+          },
+          { componentName },
+        ))
 
       exportContent += `export { default as ${componentName} } from './components/icon-${baseNameWithoutExtension}'\n`
 

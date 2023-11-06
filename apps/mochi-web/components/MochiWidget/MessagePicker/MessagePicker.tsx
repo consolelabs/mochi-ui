@@ -1,12 +1,12 @@
 import {
   Heading,
-  IconMagnifier,
   InputField,
   Popover,
   PopoverContent,
   PopoverTrigger,
   SectionList,
 } from '@consolelabs/ui-components'
+import { IconMagnifier } from '@consolelabs/icons'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { useState } from 'react'
 import { Message, MessageList } from './data'

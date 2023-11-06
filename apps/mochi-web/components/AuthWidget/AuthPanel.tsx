@@ -10,6 +10,8 @@ import {
   Fragment,
 } from 'react'
 import { AUTH_TELEGRAM_ID, MOCHI_PROFILE_API } from '~envs'
+import { useMochi, LoginWidget } from '@consolelabs/ui-components'
+import { useAuthStore } from '~store'
 import {
   IconDiscordColored,
   IconTelegramColored,
@@ -19,10 +21,7 @@ import {
   IconSlackColored,
   IconFacebookColored,
   IconMail,
-  useMochi,
-  LoginWidget,
-} from '@consolelabs/ui-components'
-import { useAuthStore } from '~store'
+} from '@consolelabs/icons'
 import qs from 'query-string'
 import clsx from 'clsx'
 import { PanelHeader } from './PanelHeader'

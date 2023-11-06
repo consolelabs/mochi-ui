@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import {
-  Button,
-  IconCheck,
-  IconLink,
-  IconPlus,
-  IconShare,
-} from '@consolelabs/ui-components'
+import { Button } from '@consolelabs/ui-components'
+import { IconCheck, IconLink, IconPlus, IconShare } from '@consolelabs/icons'
 import { useClipboard } from '@dwarvesf/react-hooks'
 import Link from 'next/link'
 
