@@ -1,10 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import Avatar from '../avatar/avatar'
-import IconSolidDot from '../icons/components/icon-solid-dot'
-import IconArrow from '../icons/components/icon-arrow'
-import IconClose from '../icons/components/icon-close'
-import IconTwinkle from '../icons/components/icon-twinkle'
-import IconPlus from '../icons/components/icon-plus'
+import {
+  IconSolidDot,
+  IconArrowDown,
+  IconClose,
+  IconTwinkle,
+  IconPlus,
+} from '../icons'
 import Badge from './badge'
 import type { BadgeProps } from './badge'
 
@@ -28,7 +30,7 @@ const args: BadgeProps[] = [
   },
   {
     label: 'Label',
-    icon: <IconArrow />,
+    icon: <IconArrowDown />,
     iconPosition: 'right',
   },
   {
@@ -72,7 +74,7 @@ const meta: Meta<typeof Badge> = {
       mapping: {
         avatar: <Avatar src="https://mochi.gg/logo.png" />,
         'icon-dot': <IconSolidDot />,
-        'icon-arrow': <IconArrow />,
+        'icon-arrow': <IconArrowDown />,
       },
     },
     appearance: {

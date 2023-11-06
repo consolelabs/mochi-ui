@@ -19,7 +19,7 @@ export const Footer = () => {
               className="block rounded-full"
             />
           </div>
-          <div className="flex flex-col gap-y-7 gap-x-8 mb-10 sm:gap-x-12 sm:mb-0 md:flex-wrap md:gap-y-0">
+          <div className="flex flex-col gap-y-7 gap-x-8 mb-10 sm:gap-x-12 sm:mb-0 md:flex-row md:flex-wrap md:gap-y-0">
             <div className="space-y-2 text-[13px]">
               <div className="text-footer-title">Developers</div>
               <a

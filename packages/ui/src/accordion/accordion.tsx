@@ -2,7 +2,7 @@ import * as AccordionPrimitive from '@radix-ui/react-accordion'
 import type { ElementRef, ComponentPropsWithoutRef, ReactNode } from 'react'
 import { forwardRef } from 'react'
 import clsx from 'clsx'
-import IconChevron from '../icons/components/icon-chevron'
+import { IconChevronDown } from '../icons'
 
 const Accordion = forwardRef<
   ElementRef<typeof AccordionPrimitive.Root>,
@@ -55,7 +55,7 @@ const AccordionTrigger = forwardRef<
     'text-neutral-500 shrink-0 transition-transform duration-200 text-base'
   const renderRightIcon = (
     <span className={iconStyle} id={!rightIcon ? 'chevron' : undefined}>
-      {!rightIcon ? <IconChevron /> : rightIcon}
+      {!rightIcon ? <IconChevronDown /> : rightIcon}
     </span>
   )
 

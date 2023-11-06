@@ -38,7 +38,7 @@ const generateSvgs = () => {
       //IconSettingBar
       const componentName = `Icon${kebab2Pascal(baseNameWithoutExtension)}`
 
-      let code = await transform(
+      const code = await transform(
         content,
         {
           typescript: true,
@@ -60,6 +60,32 @@ const generateSvgs = () => {
   )
 }
 
+const exportSvgs = async () => {
+  const svgFilePaths = glob.sync('./src/icons/svg/*.svg')
+
+  await fsPromise.writeFile(
+    path.resolve(__dirname, '../src/icons/index.ts'),
+    await formatCode(
+      svgFilePaths
+        .sort((a, b) => {
+          if (a > b) return 1
+          if (a < b) return -1
+          return 0
+        })
+        .map((svgFilePath) => {
+          //setting-bar
+          const baseNameWithoutExtension = path.basename(svgFilePath, '.svg')
+          //IconSettingBar
+          const componentName = `Icon${kebab2Pascal(baseNameWithoutExtension)}`
+
+          return `export { default as ${componentName} } from './components/icon-${baseNameWithoutExtension}'`
+        })
+        .join('\n'),
+    ),
+  )
+}
+
 module.exports = {
   generateSvgs,
+  exportSvgs,
 }

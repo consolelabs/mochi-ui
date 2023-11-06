@@ -1,25 +1,19 @@
-import * as React from 'react'
 import type { SVGProps } from 'react'
 
-function IconArrowRight(props: SVGProps<SVGSVGElement>) {
-  return <svg
-    fill="none"
-    height="1em"
-    viewBox="0 0 24 24"
-    width="1em"
+const IconArrowRight = (props: SVGProps<SVGSVGElement>) => (
+  <svg
     xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 20 20"
     {...props}
   >
-    <g id="Type=No Tail, State=Right">
-      <path
-        d="M10 6L16 12L10 18"
-        id="Union"
-        stroke="#343433"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.5}
-      />
-    </g>
+    <path
+      fill="currentColor"
+      fillRule="evenodd"
+      d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z"
+      clipRule="evenodd"
+    />
   </svg>
-}
+)
 export default IconArrowRight

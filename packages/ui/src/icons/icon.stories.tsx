@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { Tooltip } from '../tooltip'
 import * as icons from '.'
+import { InputField } from '../input-field'
 
 const meta: Meta = {
   title: 'ui/Icon',
@@ -15,11 +17,19 @@ const meta: Meta = {
 export default meta
 type Story = StoryObj
 
-export const Default: Story = {
-  render: () => {
-    return (
+function Icons() {
+  const [search, setSearch] = useState('')
+
+  return (
+    <div className="flex flex-col gap-y-10">
+      <InputField
+        value={search}
+        onChange={(e) => setSearch((e.target as HTMLInputElement).value)}
+        placeholder="Search icons..."
+      />
       <div className="grid grid-cols-10 gap-3 auto-row-auto">
         {Object.entries(icons)
+          .filter((i) => i[0].toLowerCase().includes(search))
           .sort((a, b) => {
             if (a[0] > b[0]) return 1
             if (a[0] < b[0]) return -1
@@ -39,6 +49,10 @@ export const Default: Story = {
             )
           })}
       </div>
-    )
-  },
+    </div>
+  )
+}
+
+export const Default: Story = {
+  render: Icons,
 }

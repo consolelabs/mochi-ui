@@ -1,8 +1,7 @@
 import clsx from 'clsx'
 import type { HtmlHTMLAttributes } from 'react'
 import { useState, useEffect } from 'react'
-import IconArrowLeft from '../icons/components/icon-arrow-left'
-import IconArrowRight from '../icons/components/icon-arrow-right'
+import { IconChevronLeft, IconChevronRight } from '../icons'
 
 interface PaginationProps {
   initalPage?: number
@@ -220,10 +219,10 @@ export function Pagination({
       )}
     >
       {/* TODO: replace with our select component */}
-      <div className="inline-flex items-center justify-start space-x-2">
+      <div className="inline-flex justify-start items-center space-x-2">
         <div>Showing</div>
         <select
-          className="text-neutral-800 text-sm font-medium leading-tight bg-stone-50 px-3 py-2 rounded"
+          className="py-2 px-3 text-sm font-medium leading-tight rounded text-neutral-800 bg-stone-50"
           onChange={(e) => setCurrentItemPerPage(Number(e.target.value))}
         >
           <option selected={currentItemPerPage === 5} value={5}>
@@ -245,10 +244,10 @@ export function Pagination({
         <div>of {totalItems}</div>
       </div>
 
-      <div className="inline-flex items-center justify-center space-x-2">
+      <div className="inline-flex justify-center items-center space-x-2">
         <button
           aria-label="Previous page"
-          className="w-8 h-8 px-1.5 py-1 hover:bg-stone-100 rounded justify-center items-center gap-2 inline-flex cursor-pointer border-none"
+          className="inline-flex gap-2 justify-center items-center py-1 px-1.5 w-8 h-8 rounded border-none cursor-pointer hover:bg-stone-100"
           disabled={currentPage === 1}
           onClick={() => {
             setCurrentPage(currentPage - 1)
@@ -256,12 +255,12 @@ export function Pagination({
           tabIndex={0}
           type="button"
         >
-          <IconArrowLeft className="w-4 h-4 text-stone-500" />
+          <IconChevronLeft className="w-4 h-4 text-stone-500" />
         </button>
         {renderPagination()}
         <button
           aria-label="Next page"
-          className="w-8 h-8 px-1.5 py-1 hover:bg-stone-100 rounded justify-center items-center gap-2 inline-flex cursor-pointer border-none"
+          className="inline-flex gap-2 justify-center items-center py-1 px-1.5 w-8 h-8 rounded border-none cursor-pointer hover:bg-stone-100"
           disabled={currentPage === totalPages}
           onClick={() => {
             setCurrentPage(currentPage + 1)
@@ -269,7 +268,7 @@ export function Pagination({
           tabIndex={0}
           type="button"
         >
-          <IconArrowRight className="w-4 h-4 text-stone-500" />
+          <IconChevronRight className="w-4 h-4 text-stone-500" />
         </button>
       </div>
     </div>

@@ -8,9 +8,9 @@ export type TemplateName =
   | 'achievement'
   | 'anniversary'
 
-type Template = { img: string; phrase: string; title: string }
+type TemplateType = { img: string; phrase: string; title: string }
 
-export const templates: Record<TemplateName, Template> = {
+export const templates: Record<TemplateName, TemplateType> = {
   happy_birthday: {
     phrase: 'sent a birthday gift',
     img: hpbd.src,
@@ -38,7 +38,7 @@ export default function Template({
   img,
   avatar,
   platformIcon,
-}: Template & { platformIcon?: string; avatar: string }) {
+}: TemplateType & { platformIcon?: string; avatar: string }) {
   return (
     <div className="relative w-full bg-inherit h-[200px]">
       <Image

@@ -14,7 +14,6 @@ interface TableProps<T> {
   data: T[]
   isLoading?: boolean
   loadingRows?: number
-  className?: string
 }
 
 export function Table<T extends RowData>({
@@ -38,7 +37,7 @@ export function Table<T extends RowData>({
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
                 <th
-                  className="min-w-[48px] border-solid border-gray-200 border-0 border-b uppercase tracking-tight text-xs text-zinc-500 py-3 px-4 font-semibold text-left"
+                  className="py-3 px-4 text-xs font-semibold tracking-tight text-left uppercase border-0 border-b border-gray-200 border-solid min-w-[48px] text-zinc-500"
                   colSpan={header.colSpan}
                   key={header.id}
                 >
@@ -62,10 +61,10 @@ export function Table<T extends RowData>({
                   <tr key={rowIdx}>
                     {headers.map((_: any, idx: number) => (
                       <td
-                        className="rounded border-solid border-gray-200 border-0 border-b leading-tight text-sm text-zinc-800 py-3 px-4 font-normal"
+                        className="py-3 px-4 text-sm font-normal leading-tight rounded border-0 border-b border-gray-200 border-solid text-zinc-800"
                         key={idx}
                       >
-                        <div className="h-[22px] bg-gray-200 animate-pulse" />
+                        <div className="bg-gray-200 animate-pulse h-[22px]" />
                       </td>
                     ))}
                   </tr>
@@ -77,7 +76,7 @@ export function Table<T extends RowData>({
                 <tr key={row.id}>
                   {row.getVisibleCells().map((cell) => (
                     <td
-                      className="min-w-[48px] border-solid border-gray-200 border-0 border-b leading-tight text-sm text-zinc-800 py-3 px-4 font-normal"
+                      className="py-3 px-4 text-sm font-normal leading-tight border-0 border-b border-gray-200 border-solid min-w-[48px] text-zinc-800"
                       key={cell.id}
                     >
                       {
