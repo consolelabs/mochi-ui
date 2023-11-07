@@ -127,7 +127,7 @@ module.exports = {
         30: '7.5rem',
       },
       screens: {
-        xs: '400px',
+        xs: '375px',
       },
     },
   },

@@ -31,7 +31,7 @@ export default function Feed() {
 
   useEffect(() => {
     api.pay.transactions
-      .getAll({ action: 'transfer', page: 0, size: limit })
+      .getAll({ action: ['transfer'], page: 0, size: limit })
       .then(({ ok, data }) => {
         if (!ok) return
         Promise.allSettled(

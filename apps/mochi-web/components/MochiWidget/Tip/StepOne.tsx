@@ -6,7 +6,9 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
+  Button,
 } from '@consolelabs/ui-components'
+import { IconArrowRight } from '@consolelabs/icons'
 import { SourcePicker } from '../SourcePicker'
 import { Recipient } from '../Recipient'
 import { AmountInput } from '../AmountInput'
@@ -76,13 +78,14 @@ export default function StepOne() {
         <AmountInput accessToken={token} onLoginRequest={openLoginPopup} />
       </div>
       {isLoggedIn ? (
-        <button
+        <Button
+          size="lg"
           onClick={() => setStep(2)}
-          className="flex gap-x-2 justify-center items-center py-3 px-6 bg-blue-700 rounded-lg"
+          className="flex justify-center"
         >
-          <span className="font-semibold text-white-pure">Continue</span>
-          <Icon className="w-5 h-5 text-white-pure" icon="ci:arrow-right-sm" />
-        </button>
+          Continue
+          <IconArrowRight className="w-4 h-4" />
+        </Button>
       ) : (
         <ConnectButton ref={connectButtonRef} />
       )}
