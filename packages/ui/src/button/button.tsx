@@ -1,7 +1,7 @@
 import type { VariantProps } from 'class-variance-authority'
 import { cva } from 'class-variance-authority'
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
-import { IconSolidDot } from '../icons'
+import { IconThreeDotLoading } from '@consolelabs/icons'
 
 const buttonCva = cva(['flex items-center gap-x-2 font-semibold transition'], {
   variants: {
@@ -132,16 +132,16 @@ const buttonCva = cva(['flex items-center gap-x-2 font-semibold transition'], {
     variant: 'solid',
     color: 'primary',
     size: 'md',
-    loading: false
+    loading: false,
   },
 })
 
 const loadIndicatorWrapperCva = cva('flex items-center', {
   variants: {
     size: {
-      sm: 'h-5 gap-px',
-      md: 'h-5 gap-px',
-      lg: 'h-6 gap-0.5',
+      sm: 'h-5 text-sm',
+      md: 'h-5 text-base',
+      lg: 'h-6 text-lg',
     },
   },
   defaultVariants: {
@@ -155,6 +155,7 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> &
     className?: string
     loading?: boolean
     loadingIndicator?: ReactNode
+    loadingIndicatorClassName?: string
   }
 
 export default function Button({
@@ -165,14 +166,18 @@ export default function Button({
   disabled,
   className,
   loading,
-  loadingIndicator,
+  loadingIndicator: customerIndicator,
+  loadingIndicatorClassName,
   ...rest
 }: Props) {
-  const loadIndicator = loadingIndicator ?? (
-    <div className={loadIndicatorWrapperCva({ size })}>
-      <IconSolidDot className="animate-[pulse_1.5s_infinite_100ms]" />
-      <IconSolidDot className="animate-[pulse_1.5s_infinite_200ms]" />
-      <IconSolidDot className="animate-[pulse_1.5s_infinite_400ms]" />
+  const loadingIndicator = (
+    <div
+      className={loadIndicatorWrapperCva({
+        size,
+        className: loadingIndicatorClassName,
+      })}
+    >
+      {customerIndicator ?? <IconThreeDotLoading className="text-[40px]" />}
     </div>
   )
 
@@ -190,7 +195,7 @@ export default function Button({
       type={rest.type || 'button'}
       {...rest}
     >
-      {loading ? loadIndicator : children}
+      {loading ? loadingIndicator : children}
     </button>
   )
 }
