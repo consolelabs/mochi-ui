@@ -9,6 +9,9 @@ module.exports = {
   mode: 'jit',
   theme: {
     extend: {
+      maxWidth: {
+        '1k': '1008px',
+      },
       fontFamily: {
         text: ['Inter', 'sans-serif'],
         heading: ['Inter', 'sans-serif'],
@@ -16,17 +19,16 @@ module.exports = {
       },
       colors: {
         blue: {
-          50: '#edfaff',
-          100: '#d6f2ff',
-          200: '#b5eaff',
-          300: '#83dfff',
-          400: '#48caff',
-          500: '#1eabff',
-          600: '#068dff',
+          100: '#f0f7ff',
+          200: '#dcecfe',
+          300: '#beddfe',
+          400: '#91c5fd',
+          500: '#61abfa',
+          600: '#3d97f7',
           700: '#017aff',
-          800: '#085dc5',
-          900: '#0d509b',
-          950: '#0e315d',
+          800: '#0068d6',
+          900: '#0054ad',
+          1000: '#004085',
         },
         footer: {
           title: '#474645',

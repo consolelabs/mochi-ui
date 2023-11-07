@@ -34,6 +34,15 @@ export const Fallback: Story = {
   },
 }
 
+export const TooShort: Story = {
+  args: {
+    avatar: 'https://mochi.gg/logo.png',
+    platform:
+      'https://static-00.iconduck.com/assets.00/google-icon-2048x2048-czn3g8x8.png',
+    name: 'hnh',
+  },
+}
+
 export const TooLong: Story = {
   args: {
     avatar: 'https://mochi.gg/logo.png',

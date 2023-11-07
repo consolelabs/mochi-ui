@@ -47,7 +47,7 @@ function Group(props: {
   if (!props.wallets.length) return null
   return (
     <div className="flex flex-col md:gap-y-2">
-      <span className="text-xs font-semibold text-neutral-500 uppercase">
+      <span className="text-xs font-semibold uppercase text-neutral-500">
         {props.name}
       </span>
       <div className="flex flex-row gap-x-1 md:flex-col md:gap-x-0 md:gap-y-1">
@@ -102,7 +102,7 @@ function Inner({ onSuccess }: { onSuccess: WidgetProps['onSuccess'] }) {
           })}
         </div>
       </div>
-      <div className="flex relative justify-center items-center py-28 px-16 md:py-5 md:px-10 md:flex-1">
+      <div className="flex relative justify-center items-center py-28 px-16 md:flex-1 md:py-5 md:px-10">
         <Dialog.Close className="hidden absolute top-5 right-5 md:block">
           <IconCrossCircled className="w-6 h-6 transition text-neutral-600 hover:text-neutral-700" />
         </Dialog.Close>
@@ -244,7 +244,7 @@ const LoginWidget = ({
         {/* @ts-ignore */}
         <Drawer.Portal>
           {/* @ts-ignore */}
-          <Drawer.Overlay className="fixed inset-0 z-40 bg-black/30" />
+          <Drawer.Overlay className="fixed inset-0 z-50 bg-black/30" />
           {/* @ts-ignore */}
           <Drawer.Content className="flex fixed right-0 bottom-0 left-0 z-50 flex-col bg-white rounded-t-2xl">
             <div className="flex flex-col w-full">
@@ -266,7 +266,7 @@ const LoginWidget = ({
         <Dialog.Overlay className="fixed z-40 w-screen h-screen bg-black/30" />
         <Dialog.Content asChild>
           <div
-            className="flex fixed top-1/2 w-[720px] left-1/2 z-50 bg-white rounded-2xl -translate-x-1/2 -translate-y-1/2 max-h-[450px]"
+            className="flex fixed top-1/2 left-1/2 z-50 bg-white rounded-2xl -translate-x-1/2 -translate-y-1/2 w-[720px] max-h-[450px]"
             style={{ boxShadow: '0px 0px 20px 0px rgba(0, 0, 0, 0.18)' }}
           >
             <Inner onSuccess={handleLogin} />

@@ -32,8 +32,8 @@ body {
   margin-right: auto;
 }
 
-.body-block {
-  @apply max-w-7xl mx-auto relative z-10;
+.landing-block {
+  @apply w-full max-w-4xl xl:max-w-1k px-5 mx-auto;
 }
 
 /* Gradient block */
