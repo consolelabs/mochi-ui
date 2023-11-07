@@ -1,0 +1,53 @@
+{
+  "name": "@consolelabs/core",
+  "version": "0.0.1",
+  "sideEffects": false,
+  "main": "src/index.ts",
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "tsup --dts",
+    "lint": "eslint --fix src/",
+    "dev": "yarn build:fast -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup",
+    "prepack": "clean-package",
+    "postpack": "clean-package restore"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "clean-package": "^2.2.0",
+    "eslint-config-custom": "workspace:*",
+    "prettier": "^3.0.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tsconfig": "workspace:*"
+  },
+  "dependencies": {
+    "@consolelabs/accordion": "workspace:*",
+    "@consolelabs/alert": "workspace:*",
+    "@consolelabs/avatar": "workspace:*",
+    "@consolelabs/badge": "workspace:*",
+    "@consolelabs/dropdown": "workspace:*",
+    "@consolelabs/heading": "workspace:*",
+    "@consolelabs/icons": "workspace:*",
+    "@consolelabs/input": "workspace:*",
+    "@consolelabs/list": "workspace:*",
+    "@consolelabs/login-widget": "workspace:*",
+    "@consolelabs/mochi-store": "workspace:*",
+    "@consolelabs/popover": "workspace:*",
+    "@consolelabs/profile-badge": "workspace:*",
+    "@consolelabs/section-list": "workspace:*",
+    "@consolelabs/sidebar": "workspace:*",
+    "@consolelabs/switch": "workspace:*",
+    "@consolelabs/theme": "workspace:*",
+    "@consolelabs/tooltip": "workspace:*"
+  },
+  "clean-package": "../../clean-package.config.json"
+}

@@ -17,6 +17,15 @@ importers:
       '@commitlint/config-conventional':
         specifier: ^17.8.0
         version: 17.8.0
+      '@storybook/react':
+        specifier: ^7.4.6
+        version: 7.4.6(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
+      '@types/node':
+        specifier: ^18.11.17
+        version: 18.15.5
+      '@types/react':
+        specifier: ^18.2.28
+        version: 18.2.28
       eslint:
         specifier: ^8.52.0
         version: 8.52.0
@@ -32,12 +41,21 @@ importers:
       prettier-plugin-tailwindcss:
         specifier: ^0.5.3
         version: 0.5.3(prettier@3.0.3)
+      rimraf:
+        specifier: ^5.0.5
+        version: 5.0.5
       tsconfig:
         specifier: workspace:*
         version: link:packages/tsconfig
+      tsup:
+        specifier: ^7.2.0
+        version: 7.2.0(postcss@8.4.31)(ts-node@10.9.1)(typescript@5.2.2)
       turbo:
         specifier: latest
         version: 1.10.16
+      typescript:
+        specifier: ^5.2.2
+        version: 5.2.2
 
   apps/mochi-web:
     dependencies:
@@ -306,9 +324,607 @@ importers:
       tailwindcss:
         specifier: ^3.2.7
         version: 3.3.3(ts-node@10.9.1)
+
+  packages/components/accordion:
+    dependencies:
+      '@consolelabs/icons':
+        specifier: workspace:*
+        version: link:../../icons
+      '@radix-ui/react-accordion':
+        specifier: ^1.1.2
+        version: 1.1.2(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
+      class-variance-authority:
+        specifier: ^0.7.0
+        version: 0.7.0
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
+    devDependencies:
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
       tsconfig:
         specifier: workspace:*
-        version: link:../../packages/tsconfig
+        version: link:../../tsconfig
+
+  packages/components/alert:
+    dependencies:
+      '@consolelabs/icons':
+        specifier: workspace:*
+        version: link:../../icons
+      class-variance-authority:
+        specifier: ^0.7.0
+        version: 0.7.0
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
+    devDependencies:
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
+  packages/components/avatar:
+    dependencies:
+      '@consolelabs/icons':
+        specifier: workspace:*
+        version: link:../../icons
+      '@radix-ui/react-avatar':
+        specifier: ^1.0.4
+        version: 1.0.4(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
+      class-variance-authority:
+        specifier: ^0.7.0
+        version: 0.7.0
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
+    devDependencies:
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
+  packages/components/badge:
+    dependencies:
+      '@consolelabs/icons':
+        specifier: workspace:*
+        version: link:../../icons
+      class-variance-authority:
+        specifier: ^0.7.0
+        version: 0.7.0
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
+    devDependencies:
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
+  packages/components/dropdown:
+    dependencies:
+      '@consolelabs/icons':
+        specifier: workspace:*
+        version: link:../../icons
+      '@radix-ui/react-dropdown-menu':
+        specifier: ^2.0.6
+        version: 2.0.6(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
+      class-variance-authority:
+        specifier: ^0.7.0
+        version: 0.7.0
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
+    devDependencies:
+      '@consolelabs/avatar':
+        specifier: workspace:0.0.1-rc7
+        version: link:../avatar
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
+  packages/components/heading:
+    devDependencies:
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
+  packages/components/input:
+    dependencies:
+      class-variance-authority:
+        specifier: ^0.7.0
+        version: 0.7.0
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
+    devDependencies:
+      '@consolelabs/icons':
+        specifier: workspace:*
+        version: link:../../icons
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../../theme
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
+  packages/components/list:
+    dependencies:
+      '@consolelabs/heading':
+        specifier: workspace:*
+        version: link:../heading
+      '@radix-ui/react-scroll-area':
+        specifier: ^1.0.5
+        version: 1.0.5(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
+      class-variance-authority:
+        specifier: ^0.7.0
+        version: 0.7.0
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
+    devDependencies:
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
+  packages/components/login-widget:
+    dependencies:
+      '@consolelabs/heading':
+        specifier: workspace:0.0.1-rc7
+        version: link:../heading
+      '@consolelabs/icons':
+        specifier: workspace:*
+        version: link:../../icons
+      '@consolelabs/mochi-store':
+        specifier: workspace:0.0.1-rc7
+        version: link:../mochi-store
+      '@radix-ui/react-dialog':
+        specifier: ^1.0.5
+        version: 1.0.5(@types/react-dom@18.2.4)(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
+      '@uidotdev/usehooks':
+        specifier: ^2.4.0
+        version: 2.4.0(react-dom@18.2.0)(react@18.2.0)
+      browser-string-hexer:
+        specifier: ^1.0.0
+        version: 1.0.0
+      bs58:
+        specifier: ^5.0.0
+        version: 5.0.0
+      class-variance-authority:
+        specifier: ^0.7.0
+        version: 0.7.0
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
+      vaul:
+        specifier: ^0.7.2
+        version: 0.7.2(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
+    devDependencies:
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
+  packages/components/mochi-store:
+    dependencies:
+      zustand:
+        specifier: ^4.4.5
+        version: 4.4.5(@types/react@18.2.28)(react@18.2.0)
+    devDependencies:
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
+  packages/components/popover:
+    dependencies:
+      '@consolelabs/icons':
+        specifier: workspace:*
+        version: link:../../icons
+      '@radix-ui/react-popover':
+        specifier: ^1.0.7
+        version: 1.0.7(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
+      class-variance-authority:
+        specifier: ^0.7.0
+        version: 0.7.0
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
+    devDependencies:
+      '@consolelabs/avatar':
+        specifier: workspace:*
+        version: link:../avatar
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
+  packages/components/profile-badge:
+    dependencies:
+      '@consolelabs/avatar':
+        specifier: workspace:*
+        version: link:../avatar
+    devDependencies:
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
+  packages/components/section-list:
+    dependencies:
+      '@radix-ui/react-scroll-area':
+        specifier: ^1.0.5
+        version: 1.0.5(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
+    devDependencies:
+      '@consolelabs/heading':
+        specifier: workspace:*
+        version: link:../heading
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
+  packages/components/sidebar:
+    dependencies:
+      '@consolelabs/icons':
+        specifier: workspace:*
+        version: link:../../icons
+      '@consolelabs/tooltip':
+        specifier: workspace:*
+        version: link:../tooltip
+      class-variance-authority:
+        specifier: ^0.7.0
+        version: 0.7.0
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
+    devDependencies:
+      '@consolelabs/accordion':
+        specifier: workspace:*
+        version: link:../accordion
+      '@consolelabs/badge':
+        specifier: workspace:*
+        version: link:../badge
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
+  packages/components/switch:
+    dependencies:
+      '@radix-ui/react-switch':
+        specifier: ^1.0.3
+        version: 1.0.3(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
+      class-variance-authority:
+        specifier: ^0.7.0
+        version: 0.7.0
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
+    devDependencies:
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
+  packages/components/tooltip:
+    dependencies:
+      '@radix-ui/react-tooltip':
+        specifier: ^1.0.7
+        version: 1.0.7(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
+      class-variance-authority:
+        specifier: ^0.7.0
+        version: 0.7.0
+    devDependencies:
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
+  packages/core:
+    dependencies:
+      '@consolelabs/accordion':
+        specifier: workspace:*
+        version: link:../components/accordion
+      '@consolelabs/alert':
+        specifier: workspace:*
+        version: link:../components/alert
+      '@consolelabs/avatar':
+        specifier: workspace:*
+        version: link:../components/avatar
+      '@consolelabs/badge':
+        specifier: workspace:*
+        version: link:../components/badge
+      '@consolelabs/dropdown':
+        specifier: workspace:*
+        version: link:../components/dropdown
+      '@consolelabs/heading':
+        specifier: workspace:*
+        version: link:../components/heading
+      '@consolelabs/icons':
+        specifier: workspace:*
+        version: link:../icons
+      '@consolelabs/input':
+        specifier: workspace:*
+        version: link:../components/input
+      '@consolelabs/list':
+        specifier: workspace:*
+        version: link:../components/list
+      '@consolelabs/login-widget':
+        specifier: workspace:*
+        version: link:../components/login-widget
+      '@consolelabs/mochi-store':
+        specifier: workspace:*
+        version: link:../components/mochi-store
+      '@consolelabs/popover':
+        specifier: workspace:*
+        version: link:../components/popover
+      '@consolelabs/profile-badge':
+        specifier: workspace:*
+        version: link:../components/profile-badge
+      '@consolelabs/section-list':
+        specifier: workspace:*
+        version: link:../components/section-list
+      '@consolelabs/sidebar':
+        specifier: workspace:*
+        version: link:../components/sidebar
+      '@consolelabs/switch':
+        specifier: workspace:*
+        version: link:../components/switch
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../theme
+      '@consolelabs/tooltip':
+        specifier: workspace:*
+        version: link:../components/tooltip
+    devDependencies:
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../tsconfig
 
   packages/eslint-config-custom:
     devDependencies:
@@ -401,7 +1017,56 @@ importers:
         version: link:../tsconfig
       tsup:
         specifier: ^7.2.0
-        version: 7.2.0(@swc/core@1.3.95)(postcss@8.4.31)(ts-node@10.9.1)(typescript@5.2.2)
+        version: 7.2.0(postcss@8.4.31)(ts-node@10.9.1)(typescript@5.2.2)
+      typescript:
+        specifier: ^5.2.2
+        version: 5.2.2
+
+  packages/storybook:
+    dependencies:
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../theme
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+    devDependencies:
+      '@storybook/addon-actions':
+        specifier: ^7.4.6
+        version: 7.4.6(@types/react-dom@18.2.4)(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/addon-essentials':
+        specifier: ^7.4.6
+        version: 7.4.6(@types/react-dom@18.2.4)(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/addon-links':
+        specifier: ^7.4.6
+        version: 7.4.6(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/addon-storysource':
+        specifier: ^7.4.6
+        version: 7.4.6(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/addon-styling-webpack':
+        specifier: ^0.0.5
+        version: 0.0.5(webpack@5.89.0)
+      '@storybook/nextjs':
+        specifier: ^7.4.6
+        version: 7.4.6(@swc/core@1.3.95)(@types/react@18.2.28)(esbuild@0.18.20)(next@13.5.6)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)(webpack@5.89.0)
+      '@storybook/react':
+        specifier: ^7.4.6
+        version: 7.4.6(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
+      autoprefixer:
+        specifier: ^10.4.16
+        version: 10.4.16(postcss@8.4.31)
+      postcss:
+        specifier: ^8.4.31
+        version: 8.4.31
+      storybook:
+        specifier: ^7.4.6
+        version: 7.4.6
+      tailwindcss:
+        specifier: ^3.3.3
+        version: 3.3.3(ts-node@10.9.1)
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
@@ -411,6 +1076,31 @@ importers:
       tailwindcss:
         specifier: ^3.2.4
         version: 3.3.3(ts-node@10.9.1)
+
+  packages/theme:
+    dependencies:
+      class-variance-authority:
+        specifier: ^0.7.0
+        version: 0.7.0
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
+    devDependencies:
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      tailwindcss:
+        specifier: ^3.2.4
+        version: 3.3.3(ts-node@10.9.1)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../tsconfig
 
   packages/tsconfig: {}
 
@@ -468,27 +1158,6 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3(@types/react@18.2.28)(react@18.2.0)
     devDependencies:
-      '@storybook/addon-actions':
-        specifier: ^7.4.6
-        version: 7.4.6(@types/react-dom@18.2.4)(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
-      '@storybook/addon-essentials':
-        specifier: ^7.4.6
-        version: 7.4.6(@types/react-dom@18.2.4)(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
-      '@storybook/addon-links':
-        specifier: ^7.4.6
-        version: 7.4.6(react-dom@18.2.0)(react@18.2.0)
-      '@storybook/addon-storysource':
-        specifier: ^7.4.6
-        version: 7.4.6(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
-      '@storybook/addon-styling-webpack':
-        specifier: ^0.0.5
-        version: 0.0.5(webpack@5.89.0)
-      '@storybook/nextjs':
-        specifier: ^7.4.6
-        version: 7.4.6(@swc/core@1.3.95)(@types/react@18.2.28)(esbuild@0.18.20)(next@13.5.6)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)(webpack@5.89.0)
-      '@storybook/react':
-        specifier: ^7.4.6
-        version: 7.4.6(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
       '@svgr/core':
         specifier: ^8.1.0
         version: 8.1.0(typescript@5.2.2)
@@ -539,7 +1208,7 @@ importers:
         version: link:../tsconfig
       tsup:
         specifier: ^7.2.0
-        version: 7.2.0(@swc/core@1.3.95)(postcss@8.4.31)(ts-node@10.9.1)(typescript@5.2.2)
+        version: 7.2.0(postcss@8.4.31)(ts-node@10.9.1)(typescript@5.2.2)
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
@@ -2173,7 +2842,7 @@ packages:
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
       resolve-from: 5.0.0
-      ts-node: 10.9.1(@types/node@20.5.1)(typescript@5.2.2)
+      ts-node: 10.9.1(@types/node@18.15.5)(typescript@5.2.2)
       typescript: 5.2.2
     transitivePeerDependencies:
       - '@swc/core'
@@ -3303,7 +3972,7 @@ packages:
       '@jest/schemas': 29.6.3
       '@types/istanbul-lib-coverage': 2.0.5
       '@types/istanbul-reports': 3.0.3
-      '@types/node': 18.15.5
+      '@types/node': 18.18.7
       '@types/yargs': 17.0.29
       chalk: 4.1.2
 
@@ -8309,13 +8978,13 @@ packages:
     resolution: {integrity: sha512-N7UDG0/xiPQa2D/XrVJXjkWbpqHCd2sBaB32ggRF2l83RhPfamgKGF8gwwqyksS95qUS5ZYF9aF+lLPRlwI2UA==}
     dependencies:
       '@types/connect': 3.4.37
-      '@types/node': 18.15.5
+      '@types/node': 18.18.7
     dev: true
 
   /@types/connect@3.4.37:
     resolution: {integrity: sha512-zBUSRqkfZ59OcwXon4HVxhx5oWCJmc0OtBTK05M+p0dYjgN6iTwIL2T/WbsQZrEsdnwaF9cWQ+azOnpPvIqY3Q==}
     dependencies:
-      '@types/node': 18.15.5
+      '@types/node': 18.18.7
 
   /@types/cross-spawn@6.0.4:
     resolution: {integrity: sha512-GGLpeThc2Bu8FBGmVn76ZU3lix17qZensEI4/MPty0aZpm2CHfgEMis31pf5X5EiudYKcPAsWciAsCALoPo5dw==}
@@ -8512,6 +9181,7 @@ packages:
 
   /@types/node@18.15.5:
     resolution: {integrity: sha512-Ark2WDjjZO7GmvsyFFf81MXuGTA/d6oP38anyxWOL6EREyBKAxKoFHwBhaZxCfLRLpO8JgVXwqOwSwa7jRcjew==}
+    dev: true
 
   /@types/node@18.18.7:
     resolution: {integrity: sha512-bw+lEsxis6eqJYW8Ql6+yTqkE6RuFtsQPSe5JxXbqYRFQEER5aJA9a5UH9igqDWm3X4iLHIKOHlnAXLM4mi7uQ==}
@@ -8917,7 +9587,7 @@ packages:
       ethers: 5.7.0
       eventemitter3: 4.0.7
       typescript: 5.2.2
-      zustand: 4.4.3(@types/react@18.2.28)(react@18.2.0)
+      zustand: 4.4.6(@types/react@18.2.28)(react@18.2.0)
     transitivePeerDependencies:
       - '@react-native-async-storage/async-storage'
       - '@types/react'
@@ -10972,6 +11642,13 @@ packages:
       source-map: 0.6.1
     dev: true
 
+  /clean-package@2.2.0:
+    resolution: {integrity: sha512-vLv8kRqvh4smPDpqAYFPLEijTppAd/cfCz4yBcUGoVl/JKu6ZWKhlo+G/cAmwlSa29RudfBeuyiNEzas8bTwEQ==}
+    hasBin: true
+    dependencies:
+      dot-prop: 6.0.1
+    dev: true
+
   /clean-stack@2.2.0:
     resolution: {integrity: sha512-4diC9HaTE+KRAMWhDhrGOECgWZxoevMc5TlkObMqNSsVU62PYzXZ/SMTjzyGAFF1YusgxGcSWTEXBhp0CPwQ1A==}
     engines: {node: '>=6'}
@@ -11368,7 +12045,7 @@ packages:
     dependencies:
       '@types/node': 20.5.1
       cosmiconfig: 8.3.6(typescript@5.2.2)
-      ts-node: 10.9.1(@types/node@20.5.1)(typescript@5.2.2)
+      ts-node: 10.9.1(@types/node@18.15.5)(typescript@5.2.2)
       typescript: 5.2.2
     dev: true
 
@@ -12166,6 +12843,13 @@ packages:
   /dot-prop@5.3.0:
     resolution: {integrity: sha512-QM8q3zDe58hqUqjraQOmzZ1LIH9SWQJTlEKCH4kJ2oQvLZk7RbQXvtDM2XEq3fwkV9CCvvH4LA0AV+ogFsBM2Q==}
     engines: {node: '>=8'}
+    dependencies:
+      is-obj: 2.0.0
+    dev: true
+
+  /dot-prop@6.0.1:
+    resolution: {integrity: sha512-tE7ztYzXHIeyvc7N+hR3oi7FIbf/NIjVP9hmAt3yMXzrQ072/fpjGLx2GxNxGxUl5V73MEqYzioOMoVhGMJ5cA==}
+    engines: {node: '>=10'}
     dependencies:
       is-obj: 2.0.0
     dev: true
@@ -17532,7 +18216,7 @@ packages:
     dependencies:
       lilconfig: 2.1.0
       postcss: 8.4.31
-      ts-node: 10.9.1(@types/node@20.5.1)(typescript@5.2.2)
+      ts-node: 10.9.1(@types/node@18.15.5)(typescript@5.2.2)
       yaml: 2.3.3
     dev: true
 
@@ -20229,7 +20913,7 @@ packages:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
     dev: true
 
-  /ts-node@10.9.1(@types/node@20.5.1)(typescript@5.2.2):
+  /ts-node@10.9.1(@types/node@18.15.5)(typescript@5.2.2):
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -20248,7 +20932,7 @@ packages:
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 20.5.1
+      '@types/node': 18.15.5
       acorn: 8.11.2
       acorn-walk: 8.3.0
       arg: 4.1.3
@@ -20309,7 +20993,7 @@ packages:
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
 
-  /tsup@7.2.0(@swc/core@1.3.95)(postcss@8.4.31)(ts-node@10.9.1)(typescript@5.2.2):
+  /tsup@7.2.0(postcss@8.4.31)(ts-node@10.9.1)(typescript@5.2.2):
     resolution: {integrity: sha512-vDHlczXbgUvY3rWvqFEbSqmC1L7woozbzngMqTtL2PGBODTtWlRwGDDawhvWzr5c1QjKe4OAKqJGfE1xeXUvtQ==}
     engines: {node: '>=16.14'}
     hasBin: true
@@ -20325,7 +21009,6 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@swc/core': 1.3.95
       bundle-require: 4.0.2(esbuild@0.18.20)
       cac: 6.7.14
       chokidar: 3.5.3
@@ -21491,6 +22174,46 @@ packages:
 
   /zustand@4.4.3(@types/react@18.2.28)(react@18.2.0):
     resolution: {integrity: sha512-oRy+X3ZazZvLfmv6viIaQmtLOMeij1noakIsK/Y47PWYhT8glfXzQ4j0YcP5i0P0qI1A4rIB//SGROGyZhx91A==}
+    engines: {node: '>=12.7.0'}
+    peerDependencies:
+      '@types/react': '>=16.8'
+      immer: '>=9.0'
+      react: '>=16.8'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      immer:
+        optional: true
+      react:
+        optional: true
+    dependencies:
+      '@types/react': 18.2.28
+      react: 18.2.0
+      use-sync-external-store: 1.2.0(react@18.2.0)
+    dev: false
+
+  /zustand@4.4.5(@types/react@18.2.28)(react@18.2.0):
+    resolution: {integrity: sha512-jgIrBBLKncQW74PA2Lclct3gwD4aPughwGE4FqlXrv3rDqQox7JCn8rwUiFK6ygJcbBAvfTf8fF+ICg7HLD2FQ==}
+    engines: {node: '>=12.7.0'}
+    peerDependencies:
+      '@types/react': '>=16.8'
+      immer: '>=9.0'
+      react: '>=16.8'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      immer:
+        optional: true
+      react:
+        optional: true
+    dependencies:
+      '@types/react': 18.2.28
+      react: 18.2.0
+      use-sync-external-store: 1.2.0(react@18.2.0)
+    dev: false
+
+  /zustand@4.4.6(@types/react@18.2.28)(react@18.2.0):
+    resolution: {integrity: sha512-Rb16eW55gqL4W2XZpJh0fnrATxYEG3Apl2gfHTyDSE965x/zxslTikpNch0JgNjJA9zK6gEFW8Fl6d1rTZaqgg==}
     engines: {node: '>=12.7.0'}
     peerDependencies:
       '@types/react': '>=16.8'

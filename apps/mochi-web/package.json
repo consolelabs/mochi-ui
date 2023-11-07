@@ -105,7 +105,6 @@
     "storybook": "^7.4.6",
     "swagger-typescript-api": "^12.0.3",
     "tailwind-config": "workspace:*",
-    "tailwindcss": "^3.2.7",
-    "tsconfig": "workspace:*"
+    "tailwindcss": "^3.2.7"
   }
 }
