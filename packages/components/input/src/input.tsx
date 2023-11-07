@@ -1,4 +1,4 @@
-import { input, InputWrapperProps, VariantProps } from '@consolelabs/theme'
+import { input, InputWrapperProps } from '@consolelabs/theme'
 import { HTMLAttributes } from 'react'
 
 type Props = HTMLAttributes<HTMLInputElement> &

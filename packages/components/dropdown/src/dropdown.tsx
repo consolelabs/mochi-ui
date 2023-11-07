@@ -2,6 +2,7 @@ import * as React from 'react'
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
 import clsx from 'clsx'
 import type { ReactNode } from 'react'
+import { IconChevronDown, IconCheck } from '@consolelabs/icons'
 import type {
   DropdownContentRef,
   DropdownContentProps,
@@ -24,7 +25,6 @@ import {
   getDropdownItemStyle,
   getIconStyle,
 } from './utils'
-import { IconChevronDown, IconCheck } from '@consolelabs/icons'
 
 function renderDropdownChildItem(
   props: BaseDropdownItemProps & {

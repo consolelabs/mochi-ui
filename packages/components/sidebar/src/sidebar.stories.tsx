@@ -1,4 +1,3 @@
-import Sidebar from './sidebar'
 import { Badge } from '@consolelabs/badge'
 import {
   IconAddUser,
@@ -13,6 +12,7 @@ import {
   IconUser,
   IconX,
 } from '@consolelabs/icons'
+import Sidebar from './sidebar'
 
 export default {
   title: 'ui/Sidebar',

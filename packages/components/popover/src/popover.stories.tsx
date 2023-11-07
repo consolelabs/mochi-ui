@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Avatar } from '@consolelabs/avatar'
-import { Popover, PopoverContent, PopoverTrigger } from './popover'
 import { IconCheckCircled } from '@consolelabs/icons'
+import { Popover, PopoverContent, PopoverTrigger } from './popover'
 
 const meta: Meta<typeof Popover> = {
   title: 'ui/Popover',

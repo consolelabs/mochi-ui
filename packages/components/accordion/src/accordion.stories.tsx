@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { IconGame, IconQuests } from '@consolelabs/icons'
 import {
   Accordion,
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
 } from './accordion'
-import { IconGame, IconQuests } from '@consolelabs/icons'
 
 const meta: Meta<typeof Accordion> = {
   title: 'ui/Accordion',

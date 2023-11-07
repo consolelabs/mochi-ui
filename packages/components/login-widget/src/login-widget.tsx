@@ -1,9 +1,14 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { Drawer } from 'vaul'
 import { useWindowSize } from '@uidotdev/usehooks'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { Heading } from '@consolelabs/heading'
 import { useMochi } from '@consolelabs/mochi-store'
+import {
+  IconConnectWallets,
+  IconCrossCircled,
+  IconExclamationTriangle,
+} from '@consolelabs/icons'
 import getAvailableWallets from './providers'
 import Wallet from './wallet'
 import type { WalletProps } from './wallet'
@@ -12,11 +17,6 @@ import {
   LoginWidgetContext,
   useLoginWidgetContext,
 } from './context'
-import {
-  IconConnectWallets,
-  IconCrossCircled,
-  IconExclamationTriangle,
-} from '@consolelabs/icons'
 
 const connectors = getAvailableWallets()
 
@@ -175,9 +175,19 @@ const LoginWidget = ({
   const [wallet, setWallet] = useState<WalletProps>()
   const [error, setError] = useState('')
 
-  const trigger: React.ReactNode = _trigger ? (
-    _trigger
-  ) : (
+  const value = useMemo(
+    () => ({
+      state,
+      setState,
+      wallet,
+      setWallet,
+      error,
+      setError,
+    }),
+    [state, setState, wallet, setWallet, error, setError],
+  )
+
+  const trigger: React.ReactNode = _trigger || (
     <button
       className="px-1.5 text-sm rounded-md border shadow bg-neutral-200 border-neutral-500"
       onClick={user ? logout : undefined}
@@ -279,16 +289,7 @@ const LoginWidget = ({
   )
 
   return (
-    <LoginWidgetContext.Provider
-      value={{
-        state,
-        setState,
-        wallet,
-        setWallet,
-        error,
-        setError,
-      }}
-    >
+    <LoginWidgetContext.Provider value={value}>
       {content}
     </LoginWidgetContext.Provider>
   )

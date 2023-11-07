@@ -2,6 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
 import { Avatar } from '@consolelabs/avatar'
 import {
+  IconCoinbaseWallet,
+  IconClose,
+  IconSolidDot,
+  IconArrowDown,
+} from '@consolelabs/icons'
+import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
@@ -17,12 +23,6 @@ import {
   DropdownMenuRadioItem,
 } from './dropdown'
 import type { DropdownItemProps, DropdownRadioItemProps } from './type'
-import {
-  IconCoinbaseWallet,
-  IconClose,
-  IconSolidDot,
-  IconArrowDown,
-} from '@consolelabs/icons'
 
 const meta: Meta<typeof DropdownMenu> = {
   title: 'ui/Dropdown',
@@ -36,7 +36,7 @@ const meta: Meta<typeof DropdownMenu> = {
 export default meta
 type Story = StoryObj<typeof DropdownMenu>
 
-const MenuItems: (args: any) => DropdownItemProps[] = (args) => [
+const MenuItems: (args: any) => DropdownItemProps[] = () => [
   {
     children: 'Billing',
     leftIcon: <IconCoinbaseWallet />,

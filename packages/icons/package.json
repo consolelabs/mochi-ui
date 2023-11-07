@@ -11,6 +11,7 @@
     "build": "tsup src --dts",
     "build:fast": "tsup src",
     "dev": "yarn build:fast -- --watch",
+    "lint": "eslint src/",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
     "prepack": "clean-package",

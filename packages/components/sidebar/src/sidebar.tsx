@@ -1,10 +1,10 @@
 import { cva } from 'class-variance-authority'
 import { useEffect, useState } from 'react'
 import clsx from 'clsx'
+import { IconSidebarArrow } from '@consolelabs/icons'
 import type { Item } from './sidebar-item'
 import type { Break } from './sidebar-item-list'
 import SidebarItemList from './sidebar-item-list'
-import { IconSidebarArrow } from '@consolelabs/icons'
 
 const sidebar = cva(
   ['group bg-white relative h-full border-r border-neutral-200 transition-all'],
