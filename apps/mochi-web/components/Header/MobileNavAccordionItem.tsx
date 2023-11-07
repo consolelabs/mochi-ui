@@ -36,7 +36,7 @@ export const MobileNavAccordionItem = (props: MobileNavAccordion) => {
         onClick={item.onClick}
       >
         <LinkWrapper
-          className="flex h-full gap-3 flex-1"
+          className="flex h-full gap-3 flex-1 items-center"
           href={item.href as any}
         >
           {item.iconLeft && <span className="text-xl">{item.iconLeft}</span>}

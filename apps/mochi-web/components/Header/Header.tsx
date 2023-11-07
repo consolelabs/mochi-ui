@@ -13,9 +13,10 @@ import {
   IconButton,
 } from '@consolelabs/ui-components'
 import { IconMenu, IconClose } from '@consolelabs/icons'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import ProfileDropdown from '~cpn/profile-dropdrown'
 import { AuthPanel } from '~cpn/AuthWidget'
+import { useResponsiveScreen } from '~hooks/useResponsiveScreen'
 import { MobileNav } from './MobileNav'
 
 const authenticatedRoute = ['/profile', '/app', '/server']
@@ -41,7 +42,7 @@ const LoginPopover = (props: LoginPopoverProps) => {
         </div>
       </PopoverTrigger>
       <PopoverContent
-        className={clsx('!p-0 hidden sm:block', {
+        className={clsx('!p-0', {
           hidden: forceHide,
         })}
         sideOffset={10}
@@ -53,38 +54,14 @@ const LoginPopover = (props: LoginPopoverProps) => {
   )
 }
 
-const HeaderLogo = () => {
-  const { isLoggedIn } = useAuthStore()
-  const { pathname } = useRouter()
-
-  return (
-    <div className="flex items-center gap-x-2">
-      <Link href={ROUTES.HOME} className="flex items-center gap-x-2">
-        <Image
-          src={logo}
-          alt="Logo"
-          width={32}
-          height={32}
-          className="block rounded-full"
-        />
-        <span className="text-xl font-black uppercase text-foreground">
-          Mochi<span className="text-mochi">.</span>
-        </span>
-      </Link>
-      {isLoggedIn && authenticatedRoute.includes(pathname) && (
-        <Link href={ROUTES.PROFILE} className="text-base text-gray-500">
-          Dashboard
-        </Link>
-      )}
-    </div>
-  )
-}
-
 export const Header = () => {
   const { pathname } = useRouter()
   const { me } = useProfileStore()
   const { isLoggedIn, isLogging } = useAuthStore()
   const [openMobileNav, setOpenMobileNav] = useState(false)
+  const { isMobile } = useResponsiveScreen()
+
+  const onCloseMobileNav = useCallback(() => setOpenMobileNav(false), [])
 
   return (
     <nav
@@ -101,47 +78,72 @@ export const Header = () => {
         },
       )}
     >
-      <HeaderLogo />
-      <Popover open={openMobileNav} onOpenChange={setOpenMobileNav}>
-        <PopoverTrigger asChild className="sm:hidden">
-          <div>
-            <IconButton
-              size="lg"
-              variant="ghost"
-              className="bg-white-pure !p-2 rounded-none"
-            >
-              {openMobileNav ? (
-                <IconClose className="text-2xl text-neutral-800" />
-              ) : (
-                <IconMenu className="text-2xl text-neutral-800" />
-              )}
-            </IconButton>
-          </div>
-        </PopoverTrigger>
-        <PopoverContent
-          className="w-screen h-screen !p-0 !pb-16 bg-white-pure rounded-none sm:hidden flex flex-col"
-          sideOffset={12}
-          collisionPadding={0}
-        >
-          <MobileNav onClose={() => setOpenMobileNav(false)} />
-        </PopoverContent>
-      </Popover>
-
-      <div className="hidden sm:flex flex-col self-start order-1 gap-y-2 gap-x-6 sm:flex-row sm:self-center sm:ml-auto md:order-2">
-        <div className="flex flex-wrap items-stretch gap-5">
-          <Link
-            href="/features"
-            className="flex items-center text-sm font-semibold"
-          >
-            Features
+      <button
+        className="flex items-center gap-x-2 text-left"
+        onClick={onCloseMobileNav}
+      >
+        <Link href={ROUTES.HOME} className="flex items-center gap-x-2">
+          <Image
+            src={logo}
+            alt="Logo"
+            width={32}
+            height={32}
+            className="block rounded-full"
+          />
+          <span className="text-xl font-black uppercase text-foreground">
+            Mochi<span className="text-mochi">.</span>
+          </span>
+        </Link>
+        {isLoggedIn && authenticatedRoute.includes(pathname) && (
+          <Link href={ROUTES.PROFILE} className="text-base text-gray-500">
+            Dashboard
           </Link>
-        </div>
-        {isLoggedIn && me ? (
-          <ProfileDropdown />
-        ) : (
-          <LoginPopover isLogging={isLogging} />
         )}
-      </div>
+      </button>
+      {isMobile ? (
+        <>
+          <IconButton
+            size="lg"
+            variant="ghost"
+            className="bg-white-pure !p-2 rounded-none hover:border-none"
+            onClick={() => setOpenMobileNav((prev) => !prev)}
+          >
+            {openMobileNav ? (
+              <IconClose className="text-2xl text-neutral-800" />
+            ) : (
+              <IconMenu className="text-2xl text-neutral-800" />
+            )}
+          </IconButton>
+          <div
+            className={clsx(
+              'top-16 inset-0 bg-white-pure rounded-none flex flex-col',
+              'overflow-y-scroll',
+              {
+                hidden: !isMobile || !openMobileNav,
+                fixed: isMobile,
+              },
+            )}
+          >
+            <MobileNav onClose={onCloseMobileNav} />
+          </div>
+        </>
+      ) : (
+        <div className="flex order-1 gap-y-2 gap-x-6 flex-row self-center ml-auto md:order-2">
+          <div className="flex flex-wrap items-stretch gap-5">
+            <Link
+              href="/features"
+              className="flex items-center text-sm font-semibold"
+            >
+              Features
+            </Link>
+          </div>
+          {isLoggedIn && me ? (
+            <ProfileDropdown />
+          ) : (
+            <LoginPopover isLogging={isLogging} />
+          )}
+        </div>
+      )}
     </nav>
   )
 }

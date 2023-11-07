@@ -11,6 +11,7 @@ import {
   IconMonitor,
   IconSlackColored,
   IconChevronRight,
+  IconAppleColored,
 } from '@consolelabs/icons'
 
 import Link from 'next/link'
@@ -18,28 +19,33 @@ import { Fragment, useMemo, useState } from 'react'
 import { AuthPanel } from '~cpn/AuthWidget'
 import { useAuthStore, useProfileStore } from '~store'
 import { ROUTES } from '~constants/routes'
+import clsx from 'clsx'
 import { MobileNavAccordionItem } from './MobileNavAccordionItem'
 import { NavItem } from './type'
 
 const MobileLoginPanel = () => {
   const [isOpenLoginPanel, setOpenLoginPanel] = useState(false)
+  const [hideLoginPanel, setHideLoginPanel] = useState(false)
   const { isLogging } = useAuthStore()
 
   return (
     <Modal open={isOpenLoginPanel} onOpenChange={setOpenLoginPanel}>
       <Button
         className="w-full justify-center sm:hidden"
+        size="lg"
         onClick={() => setOpenLoginPanel(true)}
       >
         {isLogging ? 'Logging in' : 'Login'}
       </Button>
       <ModalContent
-        className="w-full !p-0"
+        className={clsx('w-full !p-0', { hidden: hideLoginPanel })}
         style={{
           width: 'calc(100% - 32px)',
         }}
       >
-        <AuthPanel />
+        <AuthPanel
+          onOpenConnectWalletChange={(open) => setHideLoginPanel(open)}
+        />
       </ModalContent>
     </Modal>
   )
@@ -126,7 +132,7 @@ export const MobileNav = (props: { onClose: () => void }) => {
                   },
                   {
                     label: <span className="text-neutral-500">iOS</span>,
-                    iconLeft: <IconDiscordColored className="opacity-50" />,
+                    iconLeft: <IconAppleColored className="opacity-50" />,
                     href: '#',
                   },
                 ],
@@ -164,7 +170,10 @@ export const MobileNav = (props: { onClose: () => void }) => {
           item.onClick?.()
         }}
       >
-        <LinkWrapper className="block flex-1" href={item.href as any}>
+        <LinkWrapper
+          className="flex items-center flex-1 gap-3"
+          href={item.href as any}
+        >
           {item.iconLeft && <span className="text-xl">{item.iconLeft}</span>}
           {item.label}
         </LinkWrapper>
@@ -173,17 +182,15 @@ export const MobileNav = (props: { onClose: () => void }) => {
   }
 
   return (
-    <div className="flex-1 overflow-y-scroll -mr-4">
-      <div className="flex flex-col">
-        {isLoggedIn && me && <Header onClose={onClose} />}
-        <List
-          rootClassName="flex-1 py-6 px-4 gap-4 w-full"
-          data={mobileNavItems}
-          renderItem={itemRenderer}
-          listClassName="space-y-4 h-fit"
-          viewportClassName="h-fit"
-        />
-      </div>
+    <div className="flex flex-col">
+      {isLoggedIn && me && <Header onClose={onClose} />}
+      <List
+        rootClassName="flex-1 py-6 px-4 gap-4 w-full"
+        data={mobileNavItems}
+        renderItem={itemRenderer}
+        listClassName="space-y-4 h-fit"
+        viewportClassName="h-fit"
+      />
     </div>
   )
 }
