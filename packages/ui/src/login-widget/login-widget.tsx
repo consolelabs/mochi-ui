@@ -7,11 +7,6 @@ import {
   IconExclamationTriangle,
 } from '@consolelabs/icons'
 import React, { useCallback, useState } from 'react'
-import {
-  IconConnectWallets,
-  IconCrossCircled,
-  IconExclamationTriangle,
-} from '@consolelabs/icons'
 import { Heading } from '../heading'
 import { useMochi } from '../mochi-store'
 import getAvailableWallets from './providers'
