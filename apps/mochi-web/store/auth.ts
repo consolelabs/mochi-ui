@@ -1,3 +1,4 @@
+import { api } from '~constants/mochi'
 import { create } from 'zustand'
 import { useMochi } from '@consolelabs/ui-components'
 import { API, apiLogin, apiLogout } from '~constants/api'
@@ -54,6 +55,7 @@ export const useAuthStore = create<State>((set, get) => ({
       set({
         ...(showLoading ? { isLoadingSession: true, isLogging: true } : {}),
       })
+      api.token(token)
       await API.MOCHI_PROFILE.auth(`Bearer ${token}`)
         .get('/profiles/me')
         .badRequest(logout)

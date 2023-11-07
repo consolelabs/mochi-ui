@@ -1,6 +1,7 @@
 import { Icon } from '@iconify/react'
 import clsx from 'clsx'
 import Link from 'next/link'
+import { Button } from '@consolelabs/ui-components'
 import { IconCheck, IconSpinner } from '@consolelabs/icons'
 import { useTipWidget } from './store'
 import MessagePicker from '../MessagePicker/MessagePicker'
@@ -83,16 +84,16 @@ export default function StepTwo() {
           <ThemePicker value={request?.theme} onChange={updateRequestTheme} />
         </div>
       </div>
-      <button
+      <Button
         type="button"
         onClick={transfer}
-        className="flex gap-x-1 justify-center items-center py-2.5 px-6 mt-auto bg-blue-700 rounded-lg text-white-pure"
+        className="flex justify-center mt-auto"
+        size="lg"
+        disabled={isTransferring}
       >
-        <span className="text-sm font-medium">
-          {isTransferring ? <>&#8203;</> : 'Send'}
-        </span>
+        {isTransferring ? <>&#8203;</> : 'Send'}
         {isTransferring ? <IconSpinner /> : <IconCheck />}
-      </button>
+      </Button>
     </div>
   )
 }

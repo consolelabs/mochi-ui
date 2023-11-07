@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { API } from '~constants/api'
-import { Theme } from '../ThemePicker/data'
+import { Theme } from '../ThemePicker/ThemePicker'
 
 interface Request {
   message?: string

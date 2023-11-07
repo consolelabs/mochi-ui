@@ -1,3 +1,6 @@
+import Image from 'next/image'
+import useSWR from 'swr'
+import { api } from '~constants/mochi'
 import {
   Heading,
   InputField,
@@ -10,7 +13,12 @@ import React, { useState } from 'react'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { Tab } from '@headlessui/react'
 import { sectionFormatter } from '../TokenPicker/utils'
-import { Theme, ThemeList } from './data'
+
+export interface Theme {
+  id: number
+  src: string
+  group: string
+}
 
 interface ThemePickerProps {
   value?: Theme
@@ -18,6 +26,16 @@ interface ThemePickerProps {
 }
 
 export default function ThemePicker({ value, onChange }: ThemePickerProps) {
+  const { data: themes = [] } = useSWR<Theme[]>([
+    'tip-widget-themes',
+    async () => {
+      const { data, error, ok } = await api.base.metadata.getThemes()
+      if (!ok || error) return []
+
+      return data.map((d) => ({ id: d.id, src: d.image, group: 'TBD' }))
+    },
+  ])
+
   const [, setThemeSearch] = useState('')
   const { isOpen: isOpenTheme, onToggle: toggleThemePopover } = useDisclosure()
 
@@ -86,7 +104,7 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
           />
           <Tab.Group>
             <Tab.List className="flex overflow-x-auto gap-6 w-full">
-              {sectionFormatter(ThemeList, 'group').map((tab) => (
+              {sectionFormatter(themes, 'group').map((tab) => (
                 <Tab
                   key={`theme-tab-${tab.title}`}
                   className="focus-visible:outline-none"
@@ -105,7 +123,7 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
               ))}
             </Tab.List>
             <Tab.Panels className="w-full">
-              {sectionFormatter(ThemeList, 'group').map((t) => {
+              {sectionFormatter(themes, 'group').map((t) => {
                 return (
                   <Tab.Panel
                     key={`theme-panel-${t.title}`}
@@ -122,8 +140,10 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
                               onChange(d)
                               toggleThemePopover()
                             }}
+                            className="relative"
                           >
-                            <img
+                            <Image
+                              fill
                               alt=""
                               src={d.src}
                               className="object-cover w-full h-full rounded-lg"

@@ -9,7 +9,11 @@ import {
 import Tip from './Tip'
 
 function ComingSoon() {
-  return <span className="m-4">Coming soon...</span>
+  return (
+    <span className="flex flex-1 justify-center items-center m-4 text-neutral-500">
+      Coming soon...
+    </span>
+  )
 }
 
 const tabs = [

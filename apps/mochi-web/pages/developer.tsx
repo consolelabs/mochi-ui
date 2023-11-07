@@ -376,7 +376,7 @@ function Divider({
       className={clsx(
         'w-full',
         {
-          'my-16 mx-auto': !noSpace,
+          'my-8 md:my-16 mx-auto': !noSpace,
           'w-screen': fullWidth,
           'max-w-4xl xl:max-w-1k': !fullWidth,
         },
@@ -416,7 +416,7 @@ export default function Developer() {
         <Divider />
       </div>
       <SupportedPlatforms />
-      <div className="flex flex-col gap-x-10 gap-y-10 mt-36 md:flex-row md:gap-y-0 md:items-center md:py-14 md:pt-4 landing-block">
+      <div className="flex flex-col gap-x-10 gap-y-10 md:flex-row md:gap-y-0 md:items-center md:py-14 md:pt-4 md:mt-36 landing-block">
         <div className="flex flex-col flex-1">
           <p className="text-2xl font-medium md:text-4xl md:whitespace-nowrap font-text">
             Ready to start building?
@@ -434,7 +434,7 @@ export default function Developer() {
           </Button>
         </div>
       </div>
-      <Divider className="mt-32" noSpace fullWidth />
+      <Divider className="mt-12 md:mt-32" noSpace fullWidth />
     </Layout>
   )
 }
