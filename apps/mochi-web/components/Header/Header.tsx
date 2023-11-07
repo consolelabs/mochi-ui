@@ -10,10 +10,14 @@ import {
   PopoverTrigger,
   PopoverContent,
   Button,
+  IconButton,
+  IconMenu,
+  IconClose,
 } from '@consolelabs/ui-components'
 import { useState } from 'react'
-import ProfileDropdown from './profile-dropdrown'
-import { AuthPanel } from './AuthWidget'
+import ProfileDropdown from '~cpn/profile-dropdrown'
+import { AuthPanel } from '~cpn/AuthWidget'
+import { MobileNav } from './MobileNav'
 
 const authenticatedRoute = ['/profile', '/app', '/server']
 
@@ -49,11 +53,15 @@ export const Header = () => {
   const { pathname } = useRouter()
   const { me } = useProfileStore()
   const { isLoggedIn, isLogging } = useAuthStore()
+  const [openMobileNav, setOpenMobileNav] = useState(false)
 
   return (
     <nav
       className={clsx(
-        'sticky top-0 flex px-3 py-5 md:px-7 flex-shrink-0 justify-between z-20 h-fit sm:h-20 w-screen flex-col sm:flex-row gap-y-4 bg-white-pure',
+        'sticky h-16 py-3 w-screen top-0 flex flex-shrink-0 justify-between z-20 bg-white-pure',
+        'pl-4 pr-3 gap-y-4', // mobile
+        'sm:px-8', // desktop
+        'sm:h-16 sm:flex-row', // tablet-desktop
         {
           'border-b border-b-dashboard-gray-6':
             isLoggedIn || !authenticatedRoute.includes(pathname),
@@ -81,7 +89,32 @@ export const Header = () => {
           </Link>
         )}
       </div>
-      <div className="flex flex-col self-start order-1 gap-y-2 gap-x-5 sm:flex-row sm:self-center sm:ml-auto md:order-2">
+
+      <Popover open={openMobileNav} onOpenChange={setOpenMobileNav}>
+        <PopoverTrigger asChild className="sm:hidden">
+          <div>
+            <IconButton
+              size="lg"
+              variant="ghost"
+              className="bg-white-pure !p-2 rounded-none"
+            >
+              {openMobileNav ? (
+                <IconClose className="text-2xl text-neutral-800" />
+              ) : (
+                <IconMenu className="text-2xl text-neutral-800" />
+              )}
+            </IconButton>
+          </div>
+        </PopoverTrigger>
+        <PopoverContent
+          className="w-screen h-screen p-0 pb-16 bg-white-pure rounded-none sm:hidden"
+          sideOffset={12}
+        >
+          <MobileNav />
+        </PopoverContent>
+      </Popover>
+
+      <div className="hidden sm:flex flex-col self-start order-1 gap-y-2 gap-x-6 sm:flex-row sm:self-center sm:ml-auto md:order-2">
         <div className="flex flex-wrap items-stretch gap-5">
           <Link
             href="/features"
