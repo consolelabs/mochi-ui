@@ -1,7 +1,9 @@
 {
   "name": "@consolelabs/ui-components",
   "version": "0.0.1-rc7",
-  "sideEffects": ["**/*.css"],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "types": "./dist/index.d.ts",
   "main": "dist/index.js",
   "exports": {

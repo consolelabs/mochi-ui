@@ -1,0 +1,26 @@
+name: Prepare environment
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Pnpm v8.6.10
+      uses: pnpm/action-setup@v2
+      with:
+        version: 8.6.10
+
+    - name: Setup Node.js 18
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+        cache: 'pnpm'
+
+    - name: Set up timezone OS to Ho_Chi_Minh timezone
+      uses: szenius/set-timezone@v1.2
+      with:
+        timezoneLinux: 'Asia/Ho_Chi_Minh'
+
+    - name: Install Packages
+      shell: bash
+      run: pnpm install --frozen-lockfile
+      env:
+        CI: true
