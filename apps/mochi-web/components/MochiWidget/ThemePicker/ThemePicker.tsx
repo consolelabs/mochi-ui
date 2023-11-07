@@ -1,11 +1,11 @@
 import {
   Heading,
-  IconMagnifier,
   InputField,
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@consolelabs/ui-components'
+import { IconMagnifier } from '@consolelabs/icons'
 import React, { useState } from 'react'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { Tab } from '@headlessui/react'

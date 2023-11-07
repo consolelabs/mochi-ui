@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority'
 import { useEffect, useState } from 'react'
 import clsx from 'clsx'
-import IconSidebarArrow from '../icons/components/icon-sidebar-arrow'
+import { IconSidebarArrow } from '@consolelabs/icons'
 import type { Item } from './sidebar-item'
 import type { Break } from './sidebar-item-list'
 import SidebarItemList from './sidebar-item-list'

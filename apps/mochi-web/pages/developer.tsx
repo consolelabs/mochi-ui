@@ -2,8 +2,8 @@ import Image from 'next/image'
 import clsx from 'clsx'
 import { Layout } from '~app/layout'
 import { SEO } from '~app/layout/seo'
+import { Button, Tooltip, IconButton } from '@consolelabs/ui-components'
 import {
-  Button,
   IconApt,
   IconArb,
   IconAtom,
@@ -27,10 +27,8 @@ import {
   IconTon,
   IconX,
   IconZkSync,
-  IconButton,
   IconCopy,
-  Tooltip,
-} from '@consolelabs/ui-components'
+} from '@consolelabs/icons'
 import { HOME_URL } from '~envs'
 import { useState } from 'react'
 

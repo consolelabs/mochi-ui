@@ -1,11 +1,13 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { Drawer } from 'vaul'
 import { useWindowSize } from '@uidotdev/usehooks'
+import {
+  IconConnectWallets,
+  IconCrossCircled,
+  IconExclamationTriangle,
+} from '@consolelabs/icons'
 import React, { useCallback, useState } from 'react'
-import IconConnectWallets from '../icons/components/icon-connect-wallets'
 import { Heading } from '../heading'
-import IconCrossCircled from '../icons/components/icon-cross-circled'
-import IconExclamationTriangle from '../icons/components/icon-exclamation-triangle'
 import { useMochi } from '../mochi-store'
 import getAvailableWallets from './providers'
 import Wallet from './wallet'

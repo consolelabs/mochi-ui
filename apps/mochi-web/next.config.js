@@ -6,6 +6,7 @@ module.exports = {
   swcMinify: false,
   experimental: {
     appDir: false,
+    esmExternals: 'loose',
   },
   images: {
     remotePatterns: [
@@ -16,6 +17,7 @@ module.exports = {
       },
     ],
   },
+  transpilePackages: ['@consolelabs/icons'],
   async redirects() {
     const redirects = [
       {

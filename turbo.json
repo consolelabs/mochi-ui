@@ -14,7 +14,10 @@
     },
     "check-types": {},
     "storybook": {},
-    "build:storybook": {},
+    "build:storybook": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+    },
     "dev": {
       "cache": false,
       "persistent": true

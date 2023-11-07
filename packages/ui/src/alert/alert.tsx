@@ -1,10 +1,12 @@
 import type { SVGProps } from 'react'
 import type { VariantProps } from 'class-variance-authority'
 import { cva } from 'class-variance-authority'
-import IconCheckCircled from '../icons/components/icon-check-circled'
-import IconInfoCircled from '../icons/components/icon-info-circled'
-import IconCrossCircled from '../icons/components/icon-cross-circled'
-import IconExclamationTriangle from '../icons/components/icon-exclamation-triangle'
+import {
+  IconInfoCircled,
+  IconCheckCircled,
+  IconCrossCircled,
+  IconExclamationTriangle,
+} from '@consolelabs/icons'
 
 const alert = cva(['flex gap-x-2 rounded-lg p-3 border'], {
   variants: {

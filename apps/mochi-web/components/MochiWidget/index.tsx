@@ -5,7 +5,7 @@ import {
   IconDollarBubbleCircled,
   IconLinkCircled,
   IconGift,
-} from '@consolelabs/ui-components'
+} from '@consolelabs/icons'
 import Tip from './Tip'
 
 function ComingSoon() {

@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import IconQuests from '../icons/components/icon-quests'
-import IconGame from '../icons/components/icon-game'
+import { IconGame, IconQuests } from '@consolelabs/icons'
 import {
   Accordion,
   AccordionItem,

@@ -1,4 +1,5 @@
-import { IconWallet, Button } from '@consolelabs/ui-components'
+import { Button } from '@consolelabs/ui-components'
+import { IconWallet } from '@consolelabs/icons'
 import { MouseEventHandler } from 'react'
 import type { Variant } from './types'
 

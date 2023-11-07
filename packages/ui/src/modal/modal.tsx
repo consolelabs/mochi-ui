@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as ModalPrimitive from '@radix-ui/react-dialog'
 import clsx from 'clsx'
-import { IconClose } from '../icons'
+import { IconClose } from '@consolelabs/icons'
 
 const Modal = ModalPrimitive.Root
 

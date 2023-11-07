@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { IconCheckCircled } from '../icons'
+import { IconCheckCircled } from '@consolelabs/icons'
 import { Avatar } from '../avatar'
 import { Popover, PopoverContent, PopoverTrigger } from './popover'
 

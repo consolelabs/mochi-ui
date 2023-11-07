@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
-import { Switch } from '../switch'
 import {
   IconClose,
   IconCoinbaseWallet,
   IconArrowDown,
   IconSolidDot,
-} from '../icons'
+} from '@consolelabs/icons'
+import { Switch } from '../switch'
 import { Avatar } from '../avatar'
 import {
   DropdownMenu,

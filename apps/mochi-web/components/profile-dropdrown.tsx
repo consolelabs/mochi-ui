@@ -4,6 +4,12 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
+  ProfileBadge,
+} from '@consolelabs/ui-components'
+import { useAuthStore, useProfileStore } from '~store'
+import Link from 'next/link'
+import { truncateWallet } from '~utils/string'
+import {
   IconUser,
   IconDiscord,
   IconSetting,
@@ -11,11 +17,7 @@ import {
   IconLogout,
   IconSuperGroup,
   IconCoding,
-  ProfileBadge,
-} from '@consolelabs/ui-components'
-import { useAuthStore, useProfileStore } from '~store'
-import Link from 'next/link'
-import { truncateWallet } from '~utils/string'
+} from '@consolelabs/icons'
 
 export default function ProfileDropdown() {
   const { logout } = useAuthStore()

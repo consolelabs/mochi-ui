@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import IconPhantomWallet from '../icons/components/icon-phantom-wallet'
+import { IconPhantomWallet } from '@consolelabs/icons'
 import InputField from './input-field'
 
 const meta: Meta<typeof InputField> = {

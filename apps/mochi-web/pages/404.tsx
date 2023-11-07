@@ -1,7 +1,7 @@
 import { Layout } from '~app/layout'
 import { SEO } from '~app/layout/seo'
 import Button from '~cpn/base/button/button'
-import { IconArrowDown } from '@consolelabs/ui-components'
+import { IconArrowDown } from '@consolelabs/icons'
 import clsx from 'clsx'
 import { ROUTES } from '~constants/routes'
 import Link from 'next/link'

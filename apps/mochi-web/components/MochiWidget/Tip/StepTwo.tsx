@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react'
 import clsx from 'clsx'
 import Link from 'next/link'
-import { IconCheck, IconSpinner } from '@consolelabs/ui-components'
+import { IconCheck, IconSpinner } from '@consolelabs/icons'
 import { useTipWidget } from './store'
 import MessagePicker from '../MessagePicker/MessagePicker'
 import ThemePicker from '../ThemePicker/ThemePicker'

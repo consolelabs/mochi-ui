@@ -1,9 +1,11 @@
 import hexer from 'browser-string-hexer'
 import bs58 from 'bs58'
+import {
+  IconMetamaskWallet,
+  IconPhantomWallet,
+  IconRoninWallet,
+} from '@consolelabs/icons'
 import { useMochi } from '../mochi-store'
-import IconMetamaskWallet from '../icons/components/icon-metamask-wallet'
-import IconPhantomWallet from '../icons/components/icon-phantom-wallet'
-import IconRoninWallet from '../icons/components/icon-ronin-wallet'
 import type { WalletProps } from './wallet'
 
 const msg = 'Please sign this message to prove that you own this wallet'
