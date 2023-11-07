@@ -78,10 +78,10 @@ export default function Feed() {
         const payload = JSON.parse(e.data)
         const { event, data } = payload
         if (event !== 'TRANSFER_CREATED') return
-        const [from, to] = await UI.resolve(
+        const [from, to] = UI.render(
           Platform.Web,
-          data.from_profile_id,
-          data.other_profile_id,
+          data.from_profile,
+          data.other_profile,
         )
         addNewTxn({
           code: data.external_id,

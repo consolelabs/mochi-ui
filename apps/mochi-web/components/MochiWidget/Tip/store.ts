@@ -48,11 +48,10 @@ export const useTipWidget = create<TipWidgetState>((set, get) => ({
     try {
       set((s) => ({ ...s, isTransferring: true }))
       await new Promise<void>((r) => {
-        setTimeout(r, 2000)
+        setTimeout(r, 1000)
       })
       const tx = await API.MOCHI.post(
         {
-          ...request,
           sender: '48438',
           recipients: ['50453'],
           platform: 'web',
@@ -60,6 +59,8 @@ export const useTipWidget = create<TipWidgetState>((set, get) => ({
           amount: 0.1,
           token: 'butt',
           chain_id: '250',
+          ...(request?.theme?.id ? { theme_id: request.theme.id } : {}),
+          ...(request?.message ? { message: request.message } : {}),
         },
         '/tip/transfer-v2',
       ).json((r) => r.data)

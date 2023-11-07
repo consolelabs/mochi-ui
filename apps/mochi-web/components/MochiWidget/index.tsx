@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import {
   IconPaperplaneCircled,
   IconDollarBubbleCircled,
@@ -57,12 +57,11 @@ export default function MochiWidget() {
       <div className="flex items-center border-b border-[#e5e4e3] pb-2">
         {tabs.map((t, i) => {
           return (
-            <>
+            <React.Fragment key={t.title}>
               {i !== 0 && (
                 <div className="flex-shrink-0 w-px h-4 bg-[#d4d3d0] mx-2" />
               )}
               <button
-                key={t.title}
                 type="button"
                 onClick={() => setActiveTab(t)}
                 className={clsx(
@@ -76,7 +75,7 @@ export default function MochiWidget() {
                 <t.Icon className="w-4 h-4 fill-current" />
                 <span className="font-medium text-current">{t.title}</span>
               </button>
-            </>
+            </React.Fragment>
           )
         })}
       </div>
