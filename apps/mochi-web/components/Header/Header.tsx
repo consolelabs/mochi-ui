@@ -21,8 +21,14 @@ import { MobileNav } from './MobileNav'
 
 const authenticatedRoute = ['/profile', '/app', '/server']
 
-const LoginPopover = ({ isLogging }: { isLogging: boolean }) => {
-  const [isOpen, setIsOpen] = useState(false)
+interface LoginPopoverProps {
+  isLogging: boolean
+  isOpen: boolean
+  setIsOpen: (_: boolean) => void
+}
+
+const LoginPopover = (props: LoginPopoverProps) => {
+  const { isLogging, isOpen, setIsOpen } = props
   const [forceHide, setForceHide] = useState(false)
 
   return (
@@ -37,7 +43,7 @@ const LoginPopover = ({ isLogging }: { isLogging: boolean }) => {
         </div>
       </PopoverTrigger>
       <PopoverContent
-        className={clsx('!p-0', {
+        className={clsx('!p-0 hidden sm:block', {
           hidden: forceHide,
         })}
         sideOffset={10}
@@ -54,6 +60,7 @@ export const Header = () => {
   const { me } = useProfileStore()
   const { isLoggedIn, isLogging } = useAuthStore()
   const [openMobileNav, setOpenMobileNav] = useState(false)
+  const [openLoginPanel, setOpenLoginPanel] = useState(false)
 
   return (
     <nav
@@ -107,10 +114,14 @@ export const Header = () => {
           </div>
         </PopoverTrigger>
         <PopoverContent
-          className="w-screen h-screen p-0 pb-16 bg-white-pure rounded-none sm:hidden"
+          className="w-screen h-screen !p-0 pb-16 bg-white-pure rounded-none sm:hidden"
           sideOffset={12}
+          collisionPadding={0}
         >
-          <MobileNav />
+          <MobileNav
+            setOpenLoginPanel={() => setOpenLoginPanel(true)}
+            isOpenLoginPanel={openLoginPanel}
+          />
         </PopoverContent>
       </Popover>
 
@@ -126,7 +137,11 @@ export const Header = () => {
         {isLoggedIn && me ? (
           <ProfileDropdown />
         ) : (
-          <LoginPopover isLogging={isLogging} />
+          <LoginPopover
+            isOpen={openLoginPanel}
+            setIsOpen={setOpenLoginPanel}
+            isLogging={isLogging}
+          />
         )}
       </div>
     </nav>

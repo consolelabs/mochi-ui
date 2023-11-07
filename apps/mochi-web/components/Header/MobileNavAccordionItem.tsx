@@ -46,9 +46,10 @@ export const MobileNavAccordionItem = (props: MobileNavAccordion) => {
     )
   }
 
-  const renderItemSection = (section: MobileAccordionItem) => (
-    <h3 className="py-2 text-neutral-600 text-sm">{section.title}</h3>
-  )
+  const renderItemSection = (section: MobileAccordionItem) =>
+    section.title ? (
+      <h3 className="py-2 text-neutral-600 text-sm">{section.title}</h3>
+    ) : null
 
   return (
     <Accordion

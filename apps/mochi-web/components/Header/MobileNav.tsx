@@ -5,14 +5,67 @@ import {
   IconSlackColored,
   IconTelegram,
   List,
+  ModalTrigger,
+  Modal,
+  ModalContent,
 } from '@consolelabs/ui-components'
 
 import Link from 'next/link'
 import { Fragment, useMemo } from 'react'
+import { AuthPanel } from '~cpn/AuthWidget'
+import { useAuthStore, useProfileStore } from '~store'
 import { MobileNavAccordionItem } from './MobileNavAccordionItem'
 import { NavItem } from './type'
 
-export const MobileNav = () => {
+interface MobileLoginPanelProps {
+  open: boolean
+  onOpenChange: (_: boolean) => void
+  isLogging: boolean
+}
+
+const MobileLoginPanel = (props: MobileLoginPanelProps) => {
+  const { open, onOpenChange, isLogging } = props
+
+  return (
+    <Modal open={open} onOpenChange={onOpenChange}>
+      <ModalTrigger asChild>
+        <div className="w-full">
+          <Button className="w-full justify-center">
+            {isLogging ? 'Logging in' : 'Login'}
+          </Button>
+        </div>
+      </ModalTrigger>
+      <ModalContent>
+        <AuthPanel />
+      </ModalContent>
+    </Modal>
+  )
+}
+
+interface MobileNavProps {
+  setOpenLoginPanel: (_: boolean) => void
+  isOpenLoginPanel: boolean
+}
+
+const Header = () => {
+  return (
+    <button className="p-4 w-full relative text-left flex h-20">
+      <div className="absolute z-10 inset-0">
+        <img
+          className="object-cover w-full h-full"
+          alt="Header"
+          src="https://pbs.twimg.com/profile_banners/1168522102410010626/1684159976/300x100"
+        />
+      </div>
+    </button>
+  )
+}
+
+export const MobileNav = (props: MobileNavProps) => {
+  const { setOpenLoginPanel, isOpenLoginPanel } = props
+  const { isLogging } = useAuthStore()
+  const { me } = useProfileStore()
+
   const mobileNavItems: NavItem[] = useMemo(
     (): NavItem[] => [
       {
@@ -68,20 +121,22 @@ export const MobileNav = () => {
           />
         ),
       },
-      {
-        label: 'Login',
-        component: (
-          <Button
-            className="w-full justify-center"
-            size="lg"
-            onClick={() => alert('asda')}
-          >
-            Login
-          </Button>
-        ),
-      },
+      ...(!(isLogging && me)
+        ? [
+            {
+              label: 'Login',
+              component: (
+                <MobileLoginPanel
+                  isLogging={isLogging}
+                  open={isOpenLoginPanel}
+                  onOpenChange={setOpenLoginPanel}
+                />
+              ),
+            },
+          ]
+        : []),
     ],
-    [],
+    [isLogging, isOpenLoginPanel, me, setOpenLoginPanel],
   )
 
   const itemRenderer = (item: NavItem) => {
@@ -107,11 +162,15 @@ export const MobileNav = () => {
   }
 
   return (
-    <List
-      rootClassName="py-6 px-4 gap-4 w-full h-full h-full max-h-full"
-      data={mobileNavItems}
-      renderItem={itemRenderer}
-      listClassName="space-y-4"
-    />
+    <div className="flex flex-col">
+      {/* {isLogging && me && <Header />} */}
+      <Header />
+      <List
+        rootClassName="flex-1 py-6 px-4 gap-4 w-full h-full h-full max-h-full"
+        data={mobileNavItems}
+        renderItem={itemRenderer}
+        listClassName="space-y-4"
+      />
+    </div>
   )
 }
