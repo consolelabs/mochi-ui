@@ -17,6 +17,7 @@ module.exports = {
       },
     ],
   },
+  transpilePackages: ['@consolelabs/icons'],
   async redirects() {
     const redirects = [
       {

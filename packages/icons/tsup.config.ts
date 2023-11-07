@@ -1,15 +1,7 @@
 import { defineConfig } from 'tsup'
-import type { Options } from 'tsup'
 
-export default defineConfig((options: Options) => ({
-  treeshake: true,
-  splitting: true,
-  target: 'es5',
-  dts: true,
-  minify: true,
+export default defineConfig(() => ({
   clean: true,
-  entry: ['src/**/*.{ts,tsx}'],
-  format: ['esm', 'cjs'],
-  external: ['react'],
-  ...options,
+  target: 'es2019',
+  format: ['cjs', 'esm'],
 }))

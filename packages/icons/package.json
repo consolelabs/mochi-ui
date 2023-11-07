@@ -2,29 +2,24 @@
   "name": "@consolelabs/icons",
   "version": "0.0.1",
   "sideEffects": false,
-  "types": "./dist/index.d.ts",
-  "main": "dist/index.js",
+  "main": "src/index.ts",
   "files": [
-    "dist/**"
+    "dist"
   ],
-  "exports": {
-    ".": {
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs",
-      "types": "./dist/index.d.ts"
-    }
-  },
   "license": "MIT",
   "scripts": {
-    "build": "tsup",
-    "lint": "eslint --fix src/",
-    "dev": "tsup --watch",
-    "check-types": "tsc --noEmit",
-    "generate-icons": "node ./scripts/generate-icon-components.js && eslint --fix src/components/",
-    "postinstall": "pnpm generate-icons"
+    "build": "tsup src --dts",
+    "build:fast": "tsup src",
+    "dev": "yarn build:fast -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "prepack": "clean-package",
+    "postpack": "clean-package restore",
+    "generate-icons": "node ./scripts/generate-icon-components.js && eslint --fix src/components/"
   },
   "peerDependencies": {
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@svgr/core": "^8.1.0",
@@ -36,9 +31,11 @@
     "glob": "^10.3.10",
     "prettier": "^3.0.3",
     "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "rimraf": "^5.0.5",
     "tsconfig": "workspace:*",
     "tsup": "^7.2.0",
     "typescript": "^5.2.2"
-  }
+  },
+  "clean-package": "../../clean-package.config.json"
 }
