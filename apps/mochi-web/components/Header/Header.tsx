@@ -11,9 +11,8 @@ import {
   PopoverContent,
   Button,
   IconButton,
-  IconMenu,
-  IconClose,
 } from '@consolelabs/ui-components'
+import { IconMenu, IconClose } from '@consolelabs/icons'
 import { useState } from 'react'
 import ProfileDropdown from '~cpn/profile-dropdrown'
 import { AuthPanel } from '~cpn/AuthWidget'
@@ -23,13 +22,12 @@ const authenticatedRoute = ['/profile', '/app', '/server']
 
 interface LoginPopoverProps {
   isLogging: boolean
-  isOpen: boolean
-  setIsOpen: (_: boolean) => void
 }
 
 const LoginPopover = (props: LoginPopoverProps) => {
-  const { isLogging, isOpen, setIsOpen } = props
+  const { isLogging } = props
   const [forceHide, setForceHide] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
     <Popover onOpenChange={setIsOpen} open={isOpen}>
@@ -55,12 +53,38 @@ const LoginPopover = (props: LoginPopoverProps) => {
   )
 }
 
+const HeaderLogo = () => {
+  const { isLoggedIn } = useAuthStore()
+  const { pathname } = useRouter()
+
+  return (
+    <div className="flex items-center gap-x-2">
+      <Link href={ROUTES.HOME} className="flex items-center gap-x-2">
+        <Image
+          src={logo}
+          alt="Logo"
+          width={32}
+          height={32}
+          className="block rounded-full"
+        />
+        <span className="text-xl font-black uppercase text-foreground">
+          Mochi<span className="text-mochi">.</span>
+        </span>
+      </Link>
+      {isLoggedIn && authenticatedRoute.includes(pathname) && (
+        <Link href={ROUTES.PROFILE} className="text-base text-gray-500">
+          Dashboard
+        </Link>
+      )}
+    </div>
+  )
+}
+
 export const Header = () => {
   const { pathname } = useRouter()
   const { me } = useProfileStore()
   const { isLoggedIn, isLogging } = useAuthStore()
   const [openMobileNav, setOpenMobileNav] = useState(false)
-  const [openLoginPanel, setOpenLoginPanel] = useState(false)
 
   return (
     <nav
@@ -77,26 +101,7 @@ export const Header = () => {
         },
       )}
     >
-      <div className="flex items-center gap-x-2">
-        <Link href={ROUTES.HOME} className="flex items-center gap-x-2">
-          <Image
-            src={logo}
-            alt="Logo"
-            width={32}
-            height={32}
-            className="block rounded-full"
-          />
-          <span className="text-xl font-black uppercase text-foreground">
-            Mochi<span className="text-mochi">.</span>
-          </span>
-        </Link>
-        {isLoggedIn && authenticatedRoute.includes(pathname) && (
-          <Link href={ROUTES.PROFILE} className="text-base text-gray-500">
-            Dashboard
-          </Link>
-        )}
-      </div>
-
+      <HeaderLogo />
       <Popover open={openMobileNav} onOpenChange={setOpenMobileNav}>
         <PopoverTrigger asChild className="sm:hidden">
           <div>
@@ -114,14 +119,11 @@ export const Header = () => {
           </div>
         </PopoverTrigger>
         <PopoverContent
-          className="w-screen h-screen !p-0 pb-16 bg-white-pure rounded-none sm:hidden"
+          className="w-screen h-screen !p-0 !pb-16 bg-white-pure rounded-none sm:hidden flex flex-col"
           sideOffset={12}
           collisionPadding={0}
         >
-          <MobileNav
-            setOpenLoginPanel={() => setOpenLoginPanel(true)}
-            isOpenLoginPanel={openLoginPanel}
-          />
+          <MobileNav onClose={() => setOpenMobileNav(false)} />
         </PopoverContent>
       </Popover>
 
@@ -137,11 +139,7 @@ export const Header = () => {
         {isLoggedIn && me ? (
           <ProfileDropdown />
         ) : (
-          <LoginPopover
-            isOpen={openLoginPanel}
-            setIsOpen={setOpenLoginPanel}
-            isLogging={isLogging}
-          />
+          <LoginPopover isLogging={isLogging} />
         )}
       </div>
     </nav>
