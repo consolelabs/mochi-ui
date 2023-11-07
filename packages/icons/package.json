@@ -15,7 +15,8 @@
     "typecheck": "tsc --noEmit",
     "prepack": "clean-package",
     "postpack": "clean-package restore",
-    "generate-icons": "node ./scripts/generate-icon-components.js && eslint --fix src/components/"
+    "generate-icons": "node ./scripts/generate-icon-components.js && eslint --fix src/components/",
+    "postinstall": "pnpm generate-icons"
   },
   "peerDependencies": {
     "react": "^18.2.0",
