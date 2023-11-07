@@ -471,7 +471,7 @@ importers:
         version: 2.0.0
     devDependencies:
       '@consolelabs/avatar':
-        specifier: workspace:0.0.1-rc7
+        specifier: workspace:*
         version: link:../avatar
       clean-package:
         specifier: ^2.2.0
@@ -584,13 +584,13 @@ importers:
   packages/components/login-widget:
     dependencies:
       '@consolelabs/heading':
-        specifier: workspace:0.0.1-rc7
+        specifier: workspace:*
         version: link:../heading
       '@consolelabs/icons':
         specifier: workspace:*
         version: link:../../icons
       '@consolelabs/mochi-store':
-        specifier: workspace:0.0.1-rc7
+        specifier: workspace:*
         version: link:../mochi-store
       '@radix-ui/react-dialog':
         specifier: ^1.0.5

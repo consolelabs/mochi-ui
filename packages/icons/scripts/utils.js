@@ -6,7 +6,7 @@ const prettier = require('prettier')
 const { transform } = require('@svgr/core')
 
 const prettierConfig = JSON.parse(
-  fs.readFileSync(path.resolve(__dirname, '../.prettierrc')).toString(),
+  fs.readFileSync(path.resolve(__dirname, '../../../.prettierrc')).toString(),
 )
 
 const reactJsxCode = `import React from 'react'\n`
