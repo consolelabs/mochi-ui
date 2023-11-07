@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import InputField from './input'
 import { IconPhantomWallet } from '@consolelabs/icons'
+import InputField from './input'
 
 const meta: Meta<typeof InputField> = {
   title: 'ui/Input',

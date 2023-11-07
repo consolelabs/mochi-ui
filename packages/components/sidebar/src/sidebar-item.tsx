@@ -1,6 +1,6 @@
 import clsx from 'clsx'
-import type { ReactNode } from 'react'
-import { type Attributes, createElement, type MouseEventHandler } from 'react'
+import type { ReactNode, Attributes, MouseEventHandler } from 'react'
+import { createElement } from 'react'
 import {
   Accordion,
   AccordionContent,

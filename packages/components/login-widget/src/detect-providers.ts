@@ -1,11 +1,11 @@
 import bs58 from 'bs58'
 import { useMochi } from '@consolelabs/mochi-store'
-import type { WalletProps } from './wallet'
 import {
   IconMetamaskWallet,
   IconPhantomWallet,
   IconRoninWallet,
 } from '@consolelabs/icons'
+import type { WalletProps } from './wallet'
 
 // FIXME need real implementation
 const hexer = (str: string) => str

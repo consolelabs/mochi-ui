@@ -3,9 +3,6 @@ import clsx from 'clsx'
 
 export interface WalletProps {
   icon: string | ((props: SVGProps<SVGSVGElement>) => JSX.Element)
-  // TODO: fix eslint issues
-  // eslint-disable-next-line react/no-unused-prop-types
-  transparent?: boolean
   name: string
   active?: boolean
   isInstalled: boolean

@@ -1,7 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-// import Avatar from '../avatar/avatar'
-import Badge from './badge'
-import type { BadgeProps } from './badge'
 import {
   IconSolidDot,
   IconClose,
@@ -9,6 +6,8 @@ import {
   IconTwinkle,
   IconPlus,
 } from '@consolelabs/icons'
+import Badge from './badge'
+import type { BadgeProps } from './badge'
 
 const args: BadgeProps[] = [
   {
@@ -18,11 +17,6 @@ const args: BadgeProps[] = [
     label: 'Label',
     icon: <IconSolidDot />,
   },
-  //   {
-  //     label: 'Label',
-  //     icon: <Avatar src="https://mochi.gg/logo.png" />,
-  //     isAvatarIcon: true,
-  //   },
   {
     label: 'Label',
     icon: <IconClose />,
