@@ -15,11 +15,11 @@ import {
   IconSuperGroup,
   IconTwinkle,
 } from '@consolelabs/icons'
+import { Badge, Sidebar } from '@consolelabs/ui-components'
 import { DISCORD_LINK } from '~envs'
 import { useRouter } from 'next/router'
 import { Badge, Sidebar } from '@consolelabs/ui-components'
 import { AuthPanel } from './AuthWidget'
-import { Badge, Sidebar } from '@consolelabs/ui-components'
 
 const SidebarHeader = ({ expanded }: { expanded?: boolean }) => {
   return expanded ? (

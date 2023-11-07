@@ -7,6 +7,11 @@ import {
   IconExclamationTriangle,
 } from '@consolelabs/icons'
 import React, { useCallback, useState } from 'react'
+import {
+  IconConnectWallets,
+  IconCrossCircled,
+  IconExclamationTriangle,
+} from '@consolelabs/icons'
 import { Heading } from '../heading'
 import { useMochi } from '../mochi-store'
 import getAvailableWallets from './providers'
@@ -17,11 +22,6 @@ import {
   LoginWidgetContext,
   useLoginWidgetContext,
 } from './context'
-import {
-  IconConnectWallets,
-  IconCrossCircled,
-  IconExclamationTriangle,
-} from '@consolelabs/icons'
 
 const connectors = getAvailableWallets()
 

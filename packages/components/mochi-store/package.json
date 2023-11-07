@@ -4,7 +4,8 @@
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
-    "dist"
+    "dist",
+    "providers.d.ts"
   ],
   "license": "MIT",
   "scripts": {
