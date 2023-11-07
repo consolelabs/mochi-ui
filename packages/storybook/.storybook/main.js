@@ -8,6 +8,7 @@ module.exports = {
   // staticDirs: ['./assets'],
   stories: [
     '../../components/**/src/*.stories.@(js|jsx|ts|tsx)',
+    '../../components/**/stories/*.stories.@(js|jsx|ts|tsx)',
     // '../../components/avatar/**/*.stories.@(js|jsx|ts|tsx)',
   ],
   addons: [

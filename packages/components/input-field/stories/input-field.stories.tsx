@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { IconPhantomWallet } from '@consolelabs/icons'
-import InputField from './input'
+import InputField from '../src/input-field'
 
 const meta: Meta<typeof InputField> = {
-  title: 'ui/Input',
+  title: 'ui/InputField',
   component: InputField,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
@@ -44,7 +44,7 @@ export const Default: Story = {
 
 export function Size() {
   return (
-    <div className="space-y-4">
+    <div style={{ display: 'flex', gap: 16 }}>
       <InputField label="Email" />
       <InputField label="Email" size="large" />
     </div>
@@ -53,7 +53,7 @@ export function Size() {
 
 export function HelperText() {
   return (
-    <div className="space-y-4">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
       <InputField
         helperText="This is helper text"
         label="Email"
@@ -77,24 +77,24 @@ export function HelperText() {
 
 export function Adornment() {
   return (
-    <div className="space-y-4">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
       <InputField
         label="Amount"
         startAdornment={
-          <div className="pl-2">
+          <div style={{ paddingLeft: 8 }}>
             <IconPhantomWallet height={20} width={20} />
           </div>
         }
       />
       <InputField
-        endAdornment={<div className="pr-2">SOL</div>}
+        endAdornment={<div style={{ paddingRight: 8 }}>SOL</div>}
         label="Amount"
       />
       <InputField
-        endAdornment={<div className="pr-2">SOL</div>}
+        endAdornment={<div style={{ paddingRight: 8 }}>SOL</div>}
         label="Amount"
         startAdornment={
-          <div className="pl-2">
+          <div style={{ paddingLeft: 8 }}>
             <IconPhantomWallet height={20} width={20} />
           </div>
         }

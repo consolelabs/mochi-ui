@@ -1,2 +1,2 @@
 export * from './input'
-export { default as InputField } from './input'
+export { default as Input } from './input'

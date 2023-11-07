@@ -40,7 +40,7 @@ export default function Input({
 }: Props) {
   return (
     <input
-      className={inputCva({ size, disabled, error })}
+      className={inputCva({ className, size, disabled, error })}
       disabled={disabled}
       {...rest}
     />
