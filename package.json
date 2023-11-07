@@ -11,6 +11,8 @@
       "dev:icons": "turbo run dev --filter=@consolelabs/icons",
       "storybook": "turbo run storybook --filter=@consolelabs/ui-components",
       "build:storybook": "turbo run build:storybook --filter=@consolelabs/ui-components",
+      "new-storybook": "turbo run dev --filter=@consolelabs/storybook",
+      "build:new-storybook": "turbo run build --filter=@consolelabs/storybook",
       "lint": "turbo lint",
       "lint:fix": "turbo lint:fix",
       "clean": "turbo clean",

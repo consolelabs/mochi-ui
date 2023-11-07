@@ -1,6 +1,6 @@
 {
   "name": "@consolelabs/storybook",
-  "version": "0.0.1-rc7",
+  "version": "0.0.1",
   "sideEffects": true,
   "files": [
     "dist"

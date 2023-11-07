@@ -1,6 +1,6 @@
 {
   "name": "@consolelabs/accordion",
-  "version": "0.0.1-rc11",
+  "version": "0.0.1",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
