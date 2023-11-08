@@ -584,6 +584,40 @@ importers:
         specifier: workspace:*
         version: link:../../tsconfig
 
+  packages/components/input-field:
+    dependencies:
+      class-variance-authority:
+        specifier: ^0.7.0
+        version: 0.7.0
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
+    devDependencies:
+      '@consolelabs/icons':
+        specifier: workspace:*
+        version: link:../../icons
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../../theme
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
   packages/components/list:
     dependencies:
       '@consolelabs/heading':
@@ -949,7 +983,7 @@ importers:
         version: link:../icons
       '@consolelabs/input':
         specifier: workspace:*
-        version: link:../components/input
+        version: link:../components/input-field
       '@consolelabs/list':
         specifier: workspace:*
         version: link:../components/list
