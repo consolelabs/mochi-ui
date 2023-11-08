@@ -6,6 +6,7 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
+    "build:packages": "turbo build --filter=./packages/*",
     "dev:mochi-web": "turbo run dev --filter=mochi-web",
     "build:mochi-web": "turbo run build --filter=mochi-web",
     "build:ui": "turbo run build --filter=@consolelabs/ui-components",
