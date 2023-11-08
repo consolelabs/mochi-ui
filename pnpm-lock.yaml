@@ -994,6 +994,9 @@ importers:
       '@types/react':
         specifier: ^18.2.28
         version: 18.2.28
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
       eslint-config-custom:
         specifier: workspace:*
         version: link:../eslint-config-custom
