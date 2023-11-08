@@ -116,18 +116,16 @@ export const Header = () => {
               <IconMenu className="text-2xl text-neutral-800" />
             )}
           </IconButton>
-          <div
-            className={clsx(
-              'top-16 inset-0 bg-white-pure rounded-none flex flex-col',
-              'overflow-y-scroll',
-              {
-                hidden: !isMobile || !openMobileNav,
-                fixed: isMobile,
-              },
-            )}
-          >
-            <MobileNav onClose={onCloseMobileNav} />
-          </div>
+          {openMobileNav && (
+            <div
+              className={clsx(
+                'fixed top-16 inset-0 bg-white-pure rounded-none flex flex-col',
+                'overflow-y-scroll',
+              )}
+            >
+              <MobileNav onClose={onCloseMobileNav} />
+            </div>
+          )}
         </>
       ) : (
         <div className="flex order-1 gap-y-2 gap-x-6 flex-row self-center ml-auto md:order-2">
