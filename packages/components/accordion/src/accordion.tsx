@@ -8,6 +8,7 @@ const {
   accordionRootClsx,
   accordionTriggerIconClsx,
   accordionTriggerLeftIconClsx,
+  accordionHeaderClsx,
   accordionTriggerWrapperClsx,
   accordionTriggerClsx,
   accordionContentWrapperClsx,
@@ -69,7 +70,7 @@ const AccordionTrigger = forwardRef<
   ) : null
 
   return (
-    <AccordionPrimitive.Header className="flex">
+    <AccordionPrimitive.Header className={accordionHeaderClsx({})}>
       <AccordionPrimitive.Trigger
         className={accordionTriggerWrapperClsx({ className: wrapperClassName })}
         ref={ref}

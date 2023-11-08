@@ -25,6 +25,9 @@ const accordionTriggerWrapperClsx = ({
     className,
   )
 
+const accordionHeaderClsx = ({ className = '' }: { className?: string }) =>
+  clsx('flex', className)
+
 const accordionTriggerClsx = ({ className = '' }: { className?: string }) =>
   clsx('flex flex-1', className)
 
@@ -54,6 +57,7 @@ const accordion = {
   accordionRootClsx,
   accordionTriggerIconClsx,
   accordionTriggerLeftIconClsx,
+  accordionHeaderClsx,
   accordionTriggerWrapperClsx,
   accordionTriggerClsx,
   accordionContentWrapperClsx,
