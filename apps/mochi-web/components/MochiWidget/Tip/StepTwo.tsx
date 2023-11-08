@@ -62,27 +62,12 @@ export default function StepTwo() {
         {/* probably will read data from store */}
         <TransactionPreview.Tip />
 
-        <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-2">
-          <div className="flex gap-x-2 items-center py-5 px-4 rounded-lg bg-white-pure">
-            <input
-              value={request?.message ?? ''}
-              className="flex-1 h-full bg-transparent outline-none"
-              placeholder="Enter message"
-              onChange={(e) => updateRequestMessage(e.target.value)}
-            />
-          </div>
-          <MessagePicker
-            value={request?.message}
-            onChange={updateRequestMessage}
-          />
-        </div>
+        <MessagePicker
+          value={request?.message}
+          onChange={updateRequestMessage}
+        />
 
-        <div className="flex flex-col gap-y-1">
-          <span className="text-sm text-[#343433] font-medium">
-            Select theme
-          </span>
-          <ThemePicker value={request?.theme} onChange={updateRequestTheme} />
-        </div>
+        <ThemePicker value={request?.theme} onChange={updateRequestTheme} />
       </div>
       <Button
         type="button"

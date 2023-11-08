@@ -35,6 +35,7 @@ export const useAuthStore = create<State>((set, get) => ({
   logout: () => {
     useMochi.getState().logout()
     localStorage.removeItem(STORAGE_KEY)
+    api.token(null)
     apiLogout()
   },
   login: async ({ token: tokenParam, showLoading = false }: LoginProps) => {
