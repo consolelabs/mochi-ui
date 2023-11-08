@@ -14,9 +14,14 @@ const alertCva = cva(['flex gap-x-2 rounded-lg p-3 border'], {
       warn: ['bg-yellow-100', 'text-yellow-600', 'border-yellow-300'],
       error: ['bg-red-100', 'text-red-600', 'border-red-300'],
     },
+    size: {
+      sm: 'text-sm',
+      md: 'text-base',
+    },
   },
   defaultVariants: {
     appearance: 'info',
+    size: 'md',
   },
 })
 
@@ -39,7 +44,7 @@ const alert = {
 export type AlertStyleProps = VariantProps<typeof alertCva> & {
   children: React.ReactNode
   className?: string
-  title: string
+  title?: string
 }
 
 export { alert }

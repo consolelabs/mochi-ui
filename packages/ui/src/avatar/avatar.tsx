@@ -4,7 +4,7 @@ import type { VariantProps } from 'class-variance-authority'
 import { useId } from 'react'
 import { boringAvatar } from '../util'
 
-const avatar = cva(['rounded-full'], {
+const avatar = cva(['flex-shrink-0 rounded-full'], {
   variants: {
     size: {
       xs: 'w-4 h-4',
@@ -49,6 +49,7 @@ export default function Avatar({ size, src, smallSrc, fallback = '' }: Props) {
             }}
             width="100%"
             xlinkHref={src}
+            className="overflow-hidden"
           />
           <image
             height="40%"
@@ -63,7 +64,9 @@ export default function Avatar({ size, src, smallSrc, fallback = '' }: Props) {
   }
 
   return (
-    <RadixAvatar.Root className={avatar({ size })}>
+    <RadixAvatar.Root
+      className={avatar({ size, className: 'overflow-hidden' })}
+    >
       <RadixAvatar.Image src={src} />
       <RadixAvatar.Fallback>
         <img alt="fallback" src={fallbackUrl} />

@@ -18,6 +18,28 @@ module.exports = {
         /* heading: ['Poppins', 'sans-serif'], */
       },
       colors: {
+        neutral: {
+          0: '#ffffff',
+          100: '#faf9f7',
+          150: '#f4f3f2',
+          200: '#eeedec',
+          300: '#e5e4e3',
+          400: '#d4d3d0',
+          500: '#adacaa',
+          600: '#848281',
+          700: '#4c4d4d',
+          800: '#343433',
+          900: '#1a1a19',
+          1000: '#000000',
+        },
+        feed: {
+          bg: {
+            DEFAULT: '#141518',
+          },
+          border: {
+            DEFAULT: '#343433',
+          },
+        },
         blue: {
           100: '#f0f7ff',
           200: '#dcecfe',

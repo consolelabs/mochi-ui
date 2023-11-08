@@ -33,76 +33,10 @@ import {
   IconFarcasterColored,
 } from '@consolelabs/icons'
 import { HOME_URL } from '~envs'
+import { TabbedFeatures } from '~cpn/landing/TabbedFeatures'
+import { Divider } from '~cpn/landing/Divider'
 
 const gray1 = '#F7F6F4'
-
-function BuildWithMochiAPIs() {
-  const [idx, setIdx] = useState(0)
-
-  return (
-    <div className="flex flex-col gap-y-7 landing-block">
-      <span className="text-2xl font-medium md:text-4xl">
-        Build with Mochi APIs
-      </span>
-      <div className="flex gap-x-5">
-        <ul className="flex flex-col flex-1">
-          {[
-            {
-              title: 'Monetize your innovation',
-              body: 'Our Open APIs serve as your canvas.With extensive & developer - friendly docs, you can craft secure and efficient payment app for everyone.',
-            },
-            {
-              title: 'Leverage Mochi user base',
-              body: 'Thousands of server are using Mochi. Building upon Mochi will ease your growth process and connect you to diverse demographic and geography.',
-            },
-            {
-              title: 'We made things ready and open',
-              body: "We aggregate and build platform with latest advancements in blockchain and security, so you don't have to rebuild it.",
-            },
-            {
-              title: "We're here to support",
-              body: 'Our dedicated support team is always at your service, ensuring you have all you need to turn your ideas into reality.',
-            },
-          ].map((d, i) => {
-            return (
-              <React.Fragment key={d.title}>
-                <li>
-                  <button
-                    className={clsx(
-                      'text-left flex flex-col p-4 md:p-6 rounded-2xl transition border',
-                      {
-                        'border-blue-700 bg-blue-100': i === idx,
-                        'border-transparent hover:bg-neutral-150': i !== idx,
-                      },
-                    )}
-                    type="button"
-                    onClick={() => setIdx(i)}
-                  >
-                    <span className="text-lg font-medium md:text-2xl md:leading-7">
-                      {d.title}
-                    </span>
-                    <span className="mt-2 text-sm font-thin md:text-base md:leading-5">
-                      {d.body}
-                    </span>
-                  </button>
-                </li>
-                {i !== 3 && <div className="mx-4 h-px bg-neutral-150" />}
-              </React.Fragment>
-            )
-          })}
-        </ul>
-        <div className="hidden relative flex-1 md:block">
-          <Image
-            className="object-contain"
-            fill
-            alt=""
-            src="/developer/build-with-mochi-apis-1.png"
-          />
-        </div>
-      </div>
-    </div>
-  )
-}
 
 function BrowseAPIs() {
   return (
@@ -362,30 +296,6 @@ function TryItOut() {
   )
 }
 
-function Divider({
-  noSpace = false,
-  fullWidth = false,
-  className = '',
-}: {
-  className?: string
-  noSpace?: boolean
-  fullWidth?: boolean
-}) {
-  return (
-    <hr
-      className={clsx(
-        'w-full',
-        {
-          'my-8 md:my-16 mx-auto': !noSpace,
-          'w-screen': fullWidth,
-          'max-w-4xl xl:max-w-1k': !fullWidth,
-        },
-        className,
-      )}
-    />
-  )
-}
-
 export default function Developer() {
   return (
     <Layout>
@@ -407,14 +317,40 @@ export default function Developer() {
         </Button>
       </div>
       <Divider />
-      <BuildWithMochiAPIs />
+      <TabbedFeatures
+        title="Build with Mochi APIs"
+        data={[
+          {
+            id: 'monetize-your-innovation',
+            title: 'Monetize your innovation',
+            body: 'Our Open APIs serve as your canvas.With extensive & developer - friendly docs, you can craft secure and efficient payment app for everyone.',
+            image: '/developer/build-with-mochi-apis-1.png',
+          },
+          {
+            id: 'leverage-mochi-user-base',
+            title: 'Leverage Mochi user base',
+            body: 'Thousands of server are using Mochi. Building upon Mochi will ease your growth process and connect you to diverse demographic and geography.',
+            image: '/developer/build-with-mochi-apis-1.png',
+          },
+          {
+            id: 'we-made-things-ready-and-open',
+            title: 'We made things ready and open',
+            body: "We aggregate and build platform with latest advancements in blockchain and security, so you don't have to rebuild it.",
+            image: '/developer/build-with-mochi-apis-1.png',
+          },
+          {
+            id: 'we-re-here-to-support',
+            title: "We're here to support",
+            body: 'Our dedicated support team is always at your service, ensuring you have all you need to turn your ideas into reality.',
+            image: '/developer/build-with-mochi-apis-1.png',
+          },
+        ]}
+      />
       <Divider />
       <BrowseAPIs />
       <Divider />
       <TryItOut />
-      <div className="hidden md:block">
-        <Divider />
-      </div>
+      <Divider className="hidden md:block" />
       <SupportedPlatforms />
       <div className="flex flex-col gap-x-10 gap-y-10 md:flex-row md:gap-y-0 md:items-center md:py-14 md:pt-4 md:mt-36 landing-block">
         <div className="flex flex-col flex-1">
