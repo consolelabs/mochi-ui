@@ -6,4 +6,5 @@ const config: Pick<Config, 'prefix' | 'presets' | 'theme' | 'plugins'> = {
   theme: {},
   plugins: [mochi()],
 }
+
 export default config
