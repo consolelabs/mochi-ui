@@ -1,4 +1,5 @@
 import type { ComponentPropsWithoutRef, ElementRef } from 'react'
+import { select } from '@consolelabs/theme'
 import { forwardRef } from 'react'
 import * as SelectPrimitive from '@radix-ui/react-select'
 import clsx from 'clsx'
@@ -12,7 +13,6 @@ import {
   type SelectGroupRef,
   SelectGroupProps,
 } from './type'
-import { getIconWrapperStyle, getSelectItemStyle } from './utils'
 
 function Select(props: SelectProps) {
   const { onChange } = props
@@ -27,7 +27,7 @@ const SelectGroup = forwardRef<SelectGroupRef, SelectGroupProps>(
   ({ className, ...props }, ref) => {
     return (
       <SelectPrimitive.Group
-        className={clsx('space-y-1', className)}
+        className={clsx(select.group, className)}
         ref={ref}
         {...props}
       />
@@ -53,7 +53,7 @@ const SelectTrigger = forwardRef<SelectTriggerRef, SelectTriggerProps>(
     return (
       <SelectPrimitive.Trigger
         asChild={asChild}
-        className={getSelectItemStyle({
+        className={select.itemCva({
           isTrigger: true,
           disabled,
           className,
@@ -67,7 +67,7 @@ const SelectTrigger = forwardRef<SelectTriggerRef, SelectTriggerProps>(
         ) : (
           <>
             {leftIcon ? (
-              <SelectPrimitive.Icon asChild className={getIconWrapperStyle()}>
+              <SelectPrimitive.Icon asChild className={select.iconWrapperCva()}>
                 {leftIcon}
               </SelectPrimitive.Icon>
             ) : null}
@@ -75,9 +75,11 @@ const SelectTrigger = forwardRef<SelectTriggerRef, SelectTriggerProps>(
             {hideRightIcon ? null : (
               <SelectPrimitive.Icon
                 asChild
-                className={getIconWrapperStyle({ isRightIcon: true })}
+                className={select.iconWrapperCva({ isRightIcon: true })}
               >
-                {rightIcon ?? <IconChevronDown className="text-sm" />}
+                {rightIcon ?? (
+                  <IconChevronDown className={select.iconChevron} />
+                )}
               </SelectPrimitive.Icon>
             )}
           </>
@@ -94,11 +96,7 @@ const SelectContent = forwardRef<
 >(({ className, children, position = 'popper', ...props }, ref) => (
   <SelectPrimitive.Portal>
     <SelectPrimitive.Content
-      className={clsx(
-        'relative z-50 w-fit bg-white',
-        'rounded-lg shadow-md',
-        className,
-      )}
+      className={clsx(select.content, className)}
       position={position}
       ref={ref}
       sideOffset={8}
@@ -106,11 +104,8 @@ const SelectContent = forwardRef<
     >
       <SelectPrimitive.Viewport
         className={clsx(
-          position === 'popper' &&
-            'h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)] ',
-          'space-y-1',
-          'bg-white-pure',
-          'p-3',
+          position === 'popper' && select.viewportPoperMode,
+          select.viewport,
         )}
       >
         {children}
@@ -125,10 +120,7 @@ const SelectLabel = forwardRef<
   ComponentPropsWithoutRef<typeof SelectPrimitive.Label>
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.Label
-    className={clsx(
-      'text-[10px] uppercase font-bold text-neutral-500',
-      className,
-    )}
+    className={clsx(select.label, className)}
     ref={ref}
     {...props}
   />
@@ -152,7 +144,7 @@ const SelectItem = forwardRef<SelectItemRef, SelectItemProps>((props, ref) => {
 
   return (
     <SelectPrimitive.Item
-      className={getSelectItemStyle({
+      className={select.itemCva({
         className,
         disabled,
       })}
@@ -160,19 +152,19 @@ const SelectItem = forwardRef<SelectItemRef, SelectItemProps>((props, ref) => {
       {...restProps}
     >
       {leftIcon ? (
-        <span className={getIconWrapperStyle()}>{leftIcon}</span>
+        <span className={select.iconWrapperCva()}>{leftIcon}</span>
       ) : null}
-      <div className="flex-1 flex flex-col items-start">
+      <div className={select.bodyWrapper}>
         <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
         {subTitle ? (
-          <span className="text-neutral-600 text-xs">{subTitle}</span>
+          <span className={select.subTitleWrapper}>{subTitle}</span>
         ) : null}
       </div>
       {extraRight}
       {rightIcon ||
         (useIndicator && (
           <RightIconWrapper
-            className={getIconWrapperStyle({ isRightIcon: true })}
+            className={select.iconWrapperCva({ isRightIcon: true })}
           >
             {rightIcon || <IconCheck />}
           </RightIconWrapper>
@@ -187,7 +179,7 @@ const SelectSeparator = forwardRef<
   ComponentPropsWithoutRef<typeof SelectPrimitive.Separator>
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.Separator
-    className={clsx('my-3 h-px bg-neutral-200', className)}
+    className={clsx(select.separator, className)}
     ref={ref}
     {...props}
   />

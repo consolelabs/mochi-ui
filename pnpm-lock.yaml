@@ -63,12 +63,13 @@ importers:
 =======
         version: 1.10.15
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> a85666b (feat: create select component)
+=======
+>>>>>>> f766ca0 (refactor: move style select to theme package)
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
-=======
->>>>>>> d6aca07 (feat: create select component)
 
   apps/mochi-web:
     dependencies:
@@ -813,6 +814,43 @@ importers:
       '@consolelabs/heading':
         specifier: workspace:*
         version: link:../heading
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
+  packages/components/select:
+    dependencies:
+      '@consolelabs/icons':
+        specifier: workspace:*
+        version: link:../../icons
+      '@radix-ui/react-select':
+        specifier: ^2.0.0
+        version: 2.0.0(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
+      class-variance-authority:
+        specifier: ^0.7.0
+        version: 0.7.0
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
+    devDependencies:
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../../theme
       clean-package:
         specifier: ^2.2.0
         version: 2.2.0
