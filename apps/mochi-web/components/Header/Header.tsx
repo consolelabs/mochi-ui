@@ -38,7 +38,9 @@ const LoginPopover = (props: LoginPopoverProps) => {
         // wrap Button by div to prevent event loss when use `asChild` props
       >
         <div>
-          <Button loading={isLogging}>Login</Button>
+          <Button className="w-20 justify-center" loading={isLogging}>
+            Login
+          </Button>
         </div>
       </PopoverTrigger>
       <PopoverContent

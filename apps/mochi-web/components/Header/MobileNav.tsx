@@ -34,8 +34,9 @@ const MobileLoginPanel = () => {
         className="w-full justify-center sm:hidden"
         size="lg"
         onClick={() => setOpenLoginPanel(true)}
+        loading={isLogging}
       >
-        {isLogging ? 'Logging in' : 'Login'}
+        Login
       </Button>
       <ModalContent
         className={clsx('w-full !p-0', { hidden: hideLoginPanel })}
