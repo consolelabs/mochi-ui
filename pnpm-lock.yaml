@@ -475,6 +475,9 @@ importers:
       '@consolelabs/icons':
         specifier: workspace:*
         version: link:../../icons
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../../theme
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
