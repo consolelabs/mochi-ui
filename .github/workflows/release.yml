@@ -27,15 +27,15 @@ jobs:
         uses: ./.github/actions/setup-env
         timeout-minutes: 10
 
-      - name: Build
-        run: pnpm build
-
       - name: Creating .npmrc file
         run: |
           cp .npmrc.example .npmrc
           sed -i "s/NPM_ACCESS_TOKEN/$NPM_TOKEN/g" .npmrc
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Build
+        run: pnpm build:packages
 
       - name: Create Release Pull Request
         uses: changesets/action@v1
