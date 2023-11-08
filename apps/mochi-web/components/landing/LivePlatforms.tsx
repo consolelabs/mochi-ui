@@ -11,7 +11,7 @@ export function LivePlatforms({ className = '' }: { className?: string }) {
   return (
     <div className={clsx('flex flex-col', className)}>
       <span className="text-sm font-medium">Mochi is live on</span>
-      <ul className="flex flex-wrap gap-3 mt-2">
+      <ul className="flex flex-col gap-2 mt-2 md:flex-row">
         {[
           {
             text: (
@@ -19,7 +19,7 @@ export function LivePlatforms({ className = '' }: { className?: string }) {
                 Web
               </span>
             ),
-            icon: <IconMonitor className="w-4 h-4" />,
+            icon: <IconMonitor className="flex-shrink-0 w-4 h-4" />,
             href: '#',
           },
           {
@@ -29,7 +29,9 @@ export function LivePlatforms({ className = '' }: { className?: string }) {
                 <span className="text-[15px] leading-[15px]">Discord</span>
               </div>
             ),
-            icon: <IconDiscordColored className="-ml-1.5 w-6 h-6" />,
+            icon: (
+              <IconDiscordColored className="flex-shrink-0 -ml-1.5 w-6 h-6" />
+            ),
             href: '#',
           },
           {
@@ -39,13 +41,15 @@ export function LivePlatforms({ className = '' }: { className?: string }) {
                 <span className="text-[15px] leading-[15px]">Telegram</span>
               </div>
             ),
-            icon: <IconTelegramColored className="-ml-1.5 w-6 h-6" />,
+            icon: (
+              <IconTelegramColored className="flex-shrink-0 -ml-1.5 w-6 h-6" />
+            ),
             href: '#',
           },
         ].map(({ text, href, icon }, i) => (
           <li key={`mochi-is-live-on-${i}`} className="flex">
             <Link
-              className="flex gap-x-1 items-center py-2 px-4 rounded-lg border transition hover:text-blue-700 hover:bg-blue-100 hover:border-blue-300 group border-neutral-300 bg-white-pure"
+              className="flex flex-1 gap-x-1.5 justify-center items-center py-2 px-4 rounded-lg border transition md:flex-initial hover:text-blue-700 hover:bg-blue-100 hover:border-blue-300 group border-neutral-300 bg-white-pure"
               href={href}
             >
               {icon}

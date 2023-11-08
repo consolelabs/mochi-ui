@@ -65,11 +65,11 @@ export const Footer = () => {
               </a>
             </div>
           </div>
-          <div className="flex flex-col justify-center items-end ml-auto">
+          <div className="flex flex-col justify-center items-center mx-auto md:items-end md:mr-0 md:ml-auto">
             <div className="mb-6 text-xs font-normal text-right text-footer-body">
               Copyright © {year} Mochi, All rights reserved
             </div>
-            <div className="flex gap-4 justify-end items-center">
+            <div className="flex gap-2 items-center">
               <a
                 href={SOCIAL_LINKS.CONSOLE}
                 target="_blank"

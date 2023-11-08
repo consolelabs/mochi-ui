@@ -101,7 +101,7 @@ export default function Feed({ className = '' }: Props) {
         className="overflow-auto px-8"
       >
         <div style={{ minWidth: 1440 }}>
-          <div className="flex sticky top-0 z-20 flex-1 bg-feed-bg">
+          <div className="flex sticky top-0 z-10 flex-1 bg-feed-bg">
             {[
               'issued by',
               '',
@@ -136,7 +136,7 @@ export default function Feed({ className = '' }: Props) {
                 }
               }}
               className={clsx(
-                'flex absolute left-1/2 top-full z-20 gap-x-1 items-center py-1 px-2 mt-2 rounded-full transition -translate-x-1/2 bg-white-pure hover:bg-neutral-300',
+                'flex absolute left-[calc((100vw-4rem)/2)] top-full z-20 gap-x-1 items-center py-1 px-2 mt-2 rounded-full transition -translate-x-1/2 bg-white-pure hover:bg-neutral-300',
                 {
                   'opacity-0': !isShowTopFade,
                   'opacity-100 translate-y-2': isShowTopFade,
@@ -152,7 +152,7 @@ export default function Feed({ className = '' }: Props) {
             </button>
           </div>
 
-          <div className="flex relative z-10 flex-col flex-1 min-h-0">
+          <div className="flex relative flex-col flex-1 min-h-0">
             <AnimatePresence>
               {loading
                 ? Array(10)

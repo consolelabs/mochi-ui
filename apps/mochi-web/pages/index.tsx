@@ -77,37 +77,38 @@ export default function Index() {
   return (
     <Layout>
       <SEO />
-      <div className="flex justify-center py-8 px-4 my-auto w-full md:p-10">
-        <div className="flex flex-col-reverse gap-x-10 gap-y-10 justify-center max-w-5xl md:flex-row">
-          <div className="flex flex-col flex-1 justify-center">
-            <p className="text-3xl md:text-4xl">
-              Send <span style={{ color: currencyColor }} ref={currency} />
-              <br />
-              to anyone on
-              <br />
-              <span style={{ color: platformColor }} ref={platform} />
-            </p>
-            <span className="mt-5 font-thin">
-              Use Mochi to send and receive any amount of crypto, directly on
-              your favorite Discord servers or Telegram groups, without having a
-              wallet or having to pay a single cent in fees.
-            </span>
+      <div className="grid grid-cols-1 auto-rows-min gap-5 py-8 px-4 m-auto w-full max-w-5xl md:grid-rows-2 md:p-10 md:grid-cols-min">
+        <div className="flex flex-col md:justify-end">
+          <p className="text-3xl md:text-4xl">
+            Send <span style={{ color: currencyColor }} ref={currency} />
+            <br />
+            to anyone on
+            <br />
+            <span style={{ color: platformColor }} ref={platform} />
+          </p>
+          <span className="mt-5 font-thin">
+            Use Mochi to send and receive any amount of crypto, directly on your
+            favorite Discord servers or Telegram groups, without having a wallet
+            or having to pay a single cent in fees.
+          </span>
+        </div>
 
-            <LivePlatforms className="mt-10" />
-            <SoonAvailablePlatforms className="mt-5" />
-            <Alert className="mt-5" appearance="info" size="sm">
-              <span>
-                To integrate and run the Mochi bot, embedded devices, or
-                leverage the userbase,{' '}
-                <a href="#" className="inline-block underline">
-                  check our Docs
-                </a>
-              </span>
-            </Alert>
-          </div>
-          <div className="flex relative flex-1">
-            <MochiWidget />
-          </div>
+        <div className="flex justify-center md:col-start-2 md:row-span-2">
+          <MochiWidget />
+        </div>
+
+        <div className="flex flex-col mt-5 md:mt-2">
+          <LivePlatforms />
+          <SoonAvailablePlatforms className="mt-5" />
+          <Alert className="mt-5" appearance="info" size="sm">
+            <span>
+              To integrate and run the Mochi bot, embedded devices, or leverage
+              the userbase,{' '}
+              <a href="#" className="inline-block underline">
+                check our Docs
+              </a>
+            </span>
+          </Alert>
         </div>
       </div>
       <Stats />
@@ -163,55 +164,61 @@ export default function Index() {
             id: 'support-on-chain-and-hybrid',
             title: 'Support On-chain & Hybrid',
             body: 'Lorem ipsum dolor sit amet consectetur. Laoreet risus sagittis laoreet mi. Diam mauris praesent cursus adipiscing. Et aliquam tellus purus odio sapien id arcu egestas. Commodo venenatis aliquet nunc commodo.',
-            icon: <IconBlocksColored className="w-12 h-12" />,
+            icon: <IconBlocksColored className="w-8 h-8 md:w-12 md:h-12" />,
           },
           {
             id: 'self-custodial',
             title: 'Self-custodial',
             body: 'Lorem ipsum dolor sit amet consectetur. Laoreet risus sagittis laoreet mi. Diam mauris praesent cursus adipiscing. Et aliquam tellus purus odio sapien id arcu egestas. Commodo venenatis aliquet nunc commodo.',
-            icon: <IconHandKeyColored className="w-12 h-12" />,
+            icon: <IconHandKeyColored className="w-8 h-8 md:w-12 md:h-12" />,
           },
           {
             id: 'invisible-wallets',
             title: 'Invisible Wallets',
             body: 'Lorem ipsum dolor sit amet consectetur. Laoreet risus sagittis laoreet mi. Diam mauris praesent cursus adipiscing. Et aliquam tellus purus odio sapien id arcu egestas. Commodo venenatis aliquet nunc commodo.',
-            icon: <IconWalletPasswordColored className="w-12 h-12" />,
+            icon: (
+              <IconWalletPasswordColored className="w-8 h-8 md:w-12 md:h-12" />
+            ),
           },
           {
             id: 'multi-auth-method',
             title: 'Multi Auth Method',
             body: 'Lorem ipsum dolor sit amet consectetur. Laoreet risus sagittis laoreet mi. Diam mauris praesent cursus adipiscing. Et aliquam tellus purus odio sapien id arcu egestas. Commodo venenatis aliquet nunc commodo.',
-            icon: <IconLayersColored className="w-12 h-12" />,
+            icon: <IconLayersColored className="w-8 h-8 md:w-12 md:h-12" />,
           },
           {
             id: 'account-abstraction',
             title: 'Account Abstraction',
             body: 'Lorem ipsum dolor sit amet consectetur. Laoreet risus sagittis laoreet mi. Diam mauris praesent cursus adipiscing. Et aliquam tellus purus odio sapien id arcu egestas. Commodo venenatis aliquet nunc commodo.',
-            icon: <IconPasswordLockColored className="w-12 h-12" />,
+            icon: (
+              <IconPasswordLockColored className="w-8 h-8 md:w-12 md:h-12" />
+            ),
           },
           {
             id: '?',
             title: '?',
             body: 'Lorem ipsum dolor sit amet consectetur. Laoreet risus sagittis laoreet mi. Diam mauris praesent cursus adipiscing. Et aliquam tellus purus odio sapien id arcu egestas. Commodo venenatis aliquet nunc commodo.',
-            icon: <IconPasswordLockColored className="w-12 h-12" />,
+            icon: (
+              <IconPasswordLockColored className="w-8 h-8 md:w-12 md:h-12" />
+            ),
           },
         ]}
       />
       <Divider />
       <SupportedPlatforms />
-      <div className="flex justify-center my-36 landing-block">
+      <div className="flex justify-center mb-8 md:my-36 landing-block">
         <div className="flex flex-col-reverse gap-y-10 w-full max-w-5xl md:flex-row">
           <div className="flex flex-col flex-1 gap-y-1">
-            <p className="text-4xl text-neutral-900">
+            <p className="text-3xl md:text-4xl text-neutral-900">
               Simple, intuitive commands
             </p>
-            <span className="mt-2 text-lg font-thin text-neutral-700">
+            <span className="mt-2 text-base font-thin md:text-lg text-neutral-700">
               Mochi has a single, extensible command for tipping, airdropping on
               users.
             </span>
             <LivePlatforms className="mt-3" />
           </div>
-          <div className="flex flex-1 gap-2 justify-center items-center">
+          <div className="hidden flex-1 gap-2 justify-center items-center md:flex">
             <Button className="!px-10">Login</Button>
             <Button color="info" variant="outline">
               View features
