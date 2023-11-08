@@ -1,5 +1,4 @@
 import useSWR from 'swr'
-import { API } from '~constants/api'
 import { api } from '~constants/mochi'
 import {
   ReactNode,
@@ -46,27 +45,36 @@ export const AuthPanel = (props: AuthPanelProps) => {
     onOpenConnectWalletChange?.(open)
   }
 
-  const { data: discordAuthUrl } = useSWR('login-discord', async () => {
-    const { data } = await api.profile.auth.byDiscord({
-      urlLocation: window.location.href,
-      platform: 'web',
-    })
-    return data?.url
+  // auth platforms
+  const { data: urls = [] } = useSWR('login-urls', async () => {
+    const [discord, facebook, twitter, gmail] = await Promise.all([
+      api.profile.auth.byDiscord({
+        urlLocation: window.location.href,
+        platform: 'web',
+      }),
+      api.profile.auth.byFacebook({
+        urlLocation: window.location.href,
+        platform: 'web',
+      }),
+      api.profile.auth.byTwitter({
+        urlLocation: window.location.href,
+        platform: 'web',
+      }),
+      api.profile.auth.byGmail({
+        urlLocation: window.location.href,
+        platform: 'web',
+      }),
+    ])
+
+    return [
+      discord.data?.url,
+      facebook.data?.url,
+      twitter.data?.url,
+      gmail.data?.url,
+    ]
   })
 
-  const { data: twitterAuthUrl } = useSWR('login-twitter', async () => {
-    const data = await API.MOCHI_PROFILE.get(
-      `/profiles/auth/twitter?platform=web&url_location=${window.location.href}`,
-    ).json((r) => r.data)
-    return data?.url
-  })
-
-  const { data: mailAuthUrl } = useSWR('login-mail', async () => {
-    const data = await API.MOCHI_PROFILE.get(
-      `/profiles/auth/mail?platform=web&url_location=${window.location.href}`,
-    ).json((r) => r.data)
-    return data?.url
-  })
+  const [discordAuthUrl, facebookAuthUrl, twitterAuthUrl, gmailAuthUrl] = urls
 
   const onAuthTelegram = useCallback(() => {
     // @ts-ignore
@@ -111,7 +119,12 @@ export const AuthPanel = (props: AuthPanelProps) => {
         {
           name: 'Google',
           icon: <IconGoogleColored />,
-          href: mailAuthUrl,
+          href: gmailAuthUrl,
+        },
+        {
+          name: 'Facebook',
+          icon: <IconFacebookColored />,
+          href: facebookAuthUrl,
         },
         {
           name: 'Slack',
@@ -120,10 +133,6 @@ export const AuthPanel = (props: AuthPanelProps) => {
         {
           name: 'Github',
           icon: <IconGithub />,
-        },
-        {
-          name: 'Facebook',
-          icon: <IconFacebookColored />,
         },
         {
           name: 'Mail',
@@ -135,7 +144,13 @@ export const AuthPanel = (props: AuthPanelProps) => {
         href?: string
         onClick?: () => void
       }>,
-    [discordAuthUrl, mailAuthUrl, onAuthTelegram, twitterAuthUrl],
+    [
+      discordAuthUrl,
+      facebookAuthUrl,
+      gmailAuthUrl,
+      onAuthTelegram,
+      twitterAuthUrl,
+    ],
   )
 
   useEffect(() => {
@@ -159,7 +174,7 @@ export const AuthPanel = (props: AuthPanelProps) => {
                 className={clsx(
                   'w-12 h-12 rounded-full border border-neutral-300 flex items-center justify-center',
                   {
-                    'opacity-60': disabled,
+                    'opacity-40': disabled,
                     'hover:shadow-sm transition': !disabled,
                   },
                 )}
