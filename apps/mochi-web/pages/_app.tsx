@@ -23,7 +23,7 @@ import { shallow } from 'zustand/shallow'
 import { isBeta } from '~constants'
 import Button from '~cpn/base/button'
 import Script from 'next/script'
-import { Header } from '~cpn/header'
+import { Header } from '~cpn/Header'
 import { Modal, ModalContent, ModalTrigger } from '@consolelabs/ui-components'
 
 const TopProgressBar = dynamic(() => import('~app/layout/nprogress'), {
