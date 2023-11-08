@@ -40,6 +40,7 @@ export default function Avatar({ size, src, smallSrc, fallback = '' }: Props) {
           <image
             height="100%"
             mask={`url(#circle-mask-${id})`}
+            // eslint-disable-next-line react/no-unknown-property
             onError={(e) => {
               ;(e.target as SVGImageElement).setAttribute(
                 'xlink:href',
