@@ -33,7 +33,7 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
-    "@consolelabs/icons": "workspace:*",
+    "@consolelabs/theme": "workspace:*",
     "@radix-ui/react-avatar": "^1.0.4",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0"

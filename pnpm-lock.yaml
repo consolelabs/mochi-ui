@@ -336,6 +336,9 @@ importers:
       '@consolelabs/icons':
         specifier: workspace:*
         version: link:../../icons
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../../theme
       '@radix-ui/react-accordion':
         specifier: ^1.1.2
         version: 1.1.2(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
@@ -370,6 +373,9 @@ importers:
       '@consolelabs/icons':
         specifier: workspace:*
         version: link:../../icons
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../../theme
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -398,9 +404,9 @@ importers:
 
   packages/components/avatar:
     dependencies:
-      '@consolelabs/icons':
+      '@consolelabs/theme':
         specifier: workspace:*
-        version: link:../../icons
+        version: link:../../theme
       '@radix-ui/react-avatar':
         specifier: ^1.0.4
         version: 1.0.4(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
@@ -435,6 +441,9 @@ importers:
       '@consolelabs/icons':
         specifier: workspace:*
         version: link:../../icons
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../../theme
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -500,6 +509,9 @@ importers:
       '@consolelabs/icons':
         specifier: workspace:*
         version: link:../../icons
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../../theme
       '@radix-ui/react-dropdown-menu':
         specifier: ^2.0.6
         version: 2.0.6(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
@@ -21706,6 +21718,7 @@ packages:
   /turbo@1.10.16:
     resolution: {integrity: sha512-2CEaK4FIuSZiP83iFa9GqMTQhroW2QryckVqUydmg4tx78baftTOS0O+oDAhvo9r9Nit4xUEtC1RAHoqs6ZEtg==}
     hasBin: true
+    requiresBuild: true
     optionalDependencies:
       turbo-darwin-64: 1.10.16
       turbo-darwin-arm64: 1.10.16

@@ -3,6 +3,7 @@ import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
 import clsx from 'clsx'
 import type { ReactNode } from 'react'
 import { IconChevronDown, IconCheck } from '@consolelabs/icons'
+import { dropdown } from '@consolelabs/theme'
 import type {
   DropdownContentRef,
   DropdownContentProps,
@@ -20,11 +21,17 @@ import type {
   DropdownRadioGroupRef,
   DropdownRadioGroupProps,
 } from './type'
-import {
-  getDropdownContentStyle,
-  getDropdownItemStyle,
-  getIconStyle,
-} from './utils'
+
+const {
+  dropdownIconStyleCva,
+  dropdownChildItemClsx,
+  dropdownChildItemSubtitleClsx,
+  dropdownItemStyleCva,
+  dropdownMenuSubTriggerClsx,
+  dropdownContentStyleCva,
+  dropdownMenuRadioIconClsx,
+  dropdownMenuSeparatorClsx,
+} = dropdown
 
 function renderDropdownChildItem(
   props: BaseDropdownItemProps & {
@@ -50,27 +57,28 @@ function renderDropdownChildItem(
   return (
     <>
       {Boolean(leftIcon) && (
-        <span className={getIconStyle({ isLeftIconAvatar })}>{leftIcon}</span>
+        <span className={dropdownIconStyleCva({ isLeftIconAvatar })}>
+          {leftIcon}
+        </span>
       )}
-      <div
-        className={clsx(
-          'flex-1 py-0.5 flex flex-col text-neutral-800',
-          className,
-        )}
-      >
+      <div className={dropdownChildItemClsx({ className })}>
         {children}
         {subtitle && (
-          <span className={clsx('text-neutral-600 text-xs')}>{subtitle}</span>
+          <span className={dropdownChildItemSubtitleClsx({})}>{subtitle}</span>
         )}
       </div>
       {rightExtra}
       {rightIcon ? (
-        <RightIconWrapper className={getIconStyle({ isRightIcon: true })}>
+        <RightIconWrapper
+          className={dropdownIconStyleCva({ isRightIcon: true })}
+        >
           {rightIcon}
         </RightIconWrapper>
       ) : (
         defaultRightIcon && (
-          <RightIconWrapper className={getIconStyle({ isRightIcon: true })}>
+          <RightIconWrapper
+            className={dropdownIconStyleCva({ isRightIcon: true })}
+          >
             {defaultRightIcon}
           </RightIconWrapper>
         )
@@ -122,7 +130,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
   return (
     <DropdownMenuPrimitive.SubTrigger
       asChild={asChild}
-      className={getDropdownItemStyle({ hasPaddingLeft, disabled, className })}
+      className={dropdownItemStyleCva({ hasPaddingLeft, disabled, className })}
       disabled={disabled}
       ref={ref}
       {...resetProps}
@@ -138,7 +146,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
             rightIcon,
             className,
             defaultRightIcon: (
-              <IconChevronDown className="-rotate-90 text-neutral-500" />
+              <IconChevronDown className={dropdownMenuSubTriggerClsx({})} />
             ),
           })}
     </DropdownMenuPrimitive.SubTrigger>
@@ -155,7 +163,7 @@ const DropdownMenuSubContent = React.forwardRef<
 
   return (
     <DropdownMenuPrimitive.SubContent
-      className={getDropdownContentStyle({ hasShadow, isRounded, className })}
+      className={dropdownContentStyleCva({ hasShadow, isRounded, className })}
       ref={ref}
       {...props}
     />
@@ -170,7 +178,7 @@ const DropdownMenuContent = React.forwardRef<
 >(({ className, sideOffset = 4, hasShadow, isRounded, ...props }, ref) => (
   <DropdownMenuPrimitive.Portal>
     <DropdownMenuPrimitive.Content
-      className={getDropdownContentStyle({ hasShadow, isRounded, className })}
+      className={dropdownContentStyleCva({ hasShadow, isRounded, className })}
       ref={ref}
       sideOffset={sideOffset}
       {...props}
@@ -200,7 +208,7 @@ const DropdownMenuItem = React.forwardRef<DropdownItemRef, DropdownItemProps>(
     return (
       <DropdownMenuPrimitive.Item
         asChild={asChild}
-        className={getDropdownItemStyle({
+        className={dropdownItemStyleCva({
           hasPaddingLeft,
           disabled,
           className: wrapperClassName,
@@ -249,13 +257,11 @@ const DropdownMenuRadioItem = React.forwardRef<
   return (
     <DropdownMenuPrimitive.RadioItem
       asChild={asChild}
-      className={clsx(
-        getDropdownItemStyle({
-          hasPaddingLeft,
-          disabled,
-          className: wrapperClassName,
-        }),
-      )}
+      className={dropdownItemStyleCva({
+        hasPaddingLeft,
+        disabled,
+        className: wrapperClassName,
+      })}
       disabled={disabled}
       // Using onChange for integrate with Hook Form
       onSelect={onChange}
@@ -270,7 +276,9 @@ const DropdownMenuRadioItem = React.forwardRef<
             isLeftIconAvatar,
             rightExtra,
             rightIcon,
-            defaultRightIcon: <IconCheck className="text-primary-700" />,
+            defaultRightIcon: (
+              <IconCheck className={dropdownMenuRadioIconClsx({})} />
+            ),
             className,
             subtitle,
             useIndicator: true,
@@ -302,7 +310,7 @@ const DropdownMenuLabel = React.forwardRef<
   return (
     <DropdownMenuPrimitive.Label
       asChild={asChild}
-      className={getDropdownItemStyle({
+      className={dropdownItemStyleCva({
         hasPaddingLeft,
         disabled,
         className: clsx(wrapperClassName, 'pointer-events-none'),
@@ -331,7 +339,7 @@ const DropdownMenuSeparator = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Separator>
 >(({ className, ...props }, ref) => (
   <DropdownMenuPrimitive.Separator
-    className={clsx('h-px !my-2 bg-neutral-200 -mx-2', className)}
+    className={dropdownMenuSeparatorClsx({ className })}
     ref={ref}
     {...props}
   />

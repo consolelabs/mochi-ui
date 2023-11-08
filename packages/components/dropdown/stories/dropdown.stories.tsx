@@ -21,8 +21,8 @@ import {
   DropdownMenuSub,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
-} from './dropdown'
-import type { DropdownItemProps, DropdownRadioItemProps } from './type'
+} from '../src/dropdown'
+import type { DropdownItemProps, DropdownRadioItemProps } from '../src/type'
 
 const meta: Meta<typeof DropdownMenu> = {
   title: 'ui/Dropdown',
