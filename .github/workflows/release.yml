@@ -29,10 +29,9 @@ jobs:
 
       - name: Creating .npmrc file
         run: |
+          echo "NPM_TOKEN=${{ secrets.NPM_TOKEN }}" >> $GITHUB_ENV
           cp .npmrc.example .npmrc
           sed -i "s/NPM_ACCESS_TOKEN/$NPM_TOKEN/g" .npmrc
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Build
         run: pnpm build:packages
