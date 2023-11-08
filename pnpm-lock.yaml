@@ -641,6 +641,9 @@ importers:
       '@consolelabs/heading':
         specifier: workspace:*
         version: link:../heading
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../../theme
       '@radix-ui/react-scroll-area':
         specifier: ^1.0.5
         version: 1.0.5(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
