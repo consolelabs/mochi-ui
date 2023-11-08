@@ -10,7 +10,7 @@
   "scripts": {
     "build": "tsup --dts",
     "lint": "eslint --fix src/",
-    "dev": "yarn build:fast -- --watch",
+    "dev": "pnpm build:fast -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
     "build:fast": "tsup",
