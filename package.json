@@ -1,5 +1,9 @@
 {
+  "name": "@consolelabs/websites",
   "private": false,
+  "description": "Consolelabs Websites",
+  "author": "@consolelabs",
+  "license": "ISC",
   "publishConfig": {
     "access": "public"
   },

@@ -1,3 +1,4 @@
+auto-install-peers=true
 registry=https://registry.npmjs.org
 @consolelabs:registry=https://npm.pkg.github.com
 //npm.pkg.github.com/:_authToken=NPM_ACCESS_TOKEN
