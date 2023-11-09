@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { sidebar } from '@consolelabs/theme'
 import { Tooltip } from '@consolelabs/tooltip'
 import type { Item } from './sidebar-item'
 import SidebarItem from './sidebar-item'
@@ -12,6 +12,12 @@ interface SidebarItemListProps {
   expanded: boolean
   isSelected?: (item: Item) => boolean | undefined
 }
+
+const {
+  sidebarItemListWrapperClsx,
+  sidebarItemListItemClsx,
+  sidebarItemListTooltipClsx,
+} = sidebar
 
 export default function SidebarItemList({
   items,
@@ -31,12 +37,7 @@ export default function SidebarItemList({
         .map((itemGroup, index) =>
           itemGroup.length ? (
             <div
-              className={clsx(
-                'px-4 py-2 border-neutral-200 flex flex-col gap-y-0.5',
-                {
-                  'border-t': index > 0,
-                },
-              )}
+              className={sidebarItemListWrapperClsx({ index })}
               key={itemGroup[0].title}
             >
               {itemGroup.map((item) =>
@@ -44,19 +45,19 @@ export default function SidebarItemList({
                   <SidebarItem
                     key={item.title}
                     {...{ item, expanded }}
-                    className="h-10"
+                    className={sidebarItemListItemClsx({})}
                     selected={isSelected?.(item)}
                   />
                 ) : (
                   <Tooltip
-                    arrow="right-center"
-                    className="z-10"
+                    arrow="top-start"
+                    className={sidebarItemListTooltipClsx({})}
                     content={item.title}
                     key={item.title}
                   >
                     <SidebarItem
                       {...{ item, expanded }}
-                      className="h-10"
+                      className={sidebarItemListItemClsx({})}
                       selected={isSelected?.(item)}
                     />
                   </Tooltip>

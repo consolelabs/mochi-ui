@@ -35,6 +35,7 @@
   "dependencies": {
     "@consolelabs/heading": "workspace:*",
     "@consolelabs/icons": "workspace:*",
+    "@consolelabs/theme": "workspace:*",
     "@consolelabs/mochi-store": "workspace:*",
     "@radix-ui/react-dialog": "^1.0.5",
     "@uidotdev/usehooks": "^2.4.0",

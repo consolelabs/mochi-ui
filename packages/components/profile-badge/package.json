@@ -33,7 +33,8 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
-    "@consolelabs/avatar": "workspace:*"
+    "@consolelabs/avatar": "workspace:*",
+    "@consolelabs/theme": "workspace:*"
   },
   "clean-package": "../../../clean-package.config.json"
 }

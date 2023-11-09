@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import Tooltip, { ARROW_OPTIONS } from './tooltip'
+import { ARROW_OPTIONS } from '@consolelabs/theme'
+import Tooltip from '../src/tooltip'
 
 const meta: Meta<typeof Tooltip> = {
   title: 'ui/Tooltip',

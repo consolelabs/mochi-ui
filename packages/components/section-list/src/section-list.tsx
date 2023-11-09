@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from 'react'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
-import clsx from 'clsx'
+import { sectionList } from '@consolelabs/theme'
 
 type DefaultSection = Record<string, any>
 
@@ -37,6 +37,16 @@ interface SectionListProps<Item, Section = DefaultSection> {
   onEndReached?: () => void
   onEndReachedThreshold?: number
 }
+
+const {
+  sectionListClsx,
+  sectionListViewportClsx,
+  sectionListContentWrapperClsx,
+  sectionListContentListClsx,
+  sectionListScrollbarClsx,
+  sectionListThumbClsx,
+  sectionListCornerClsx,
+} = sectionList
 
 export default function SectionList<
   Item = NonNullable<object> | string,
@@ -78,20 +88,25 @@ export default function SectionList<
 
   return (
     <ScrollArea.Root
-      className={clsx('overflow-hidden', rootClassName)}
+      className={sectionListClsx({ className: rootClassName })}
       style={rootStyle}
     >
       <ScrollArea.Viewport
-        className={clsx('w-full h-full border-inherit', viewportClassName)}
+        className={sectionListViewportClsx({ className: viewportClassName })}
         onScroll={handleScroll}
         style={viewportStyle}
       >
-        <div className={clsx('space-y-1', listClassName)} style={listStyle}>
+        <div
+          className={sectionListContentWrapperClsx({
+            className: listClassName,
+          })}
+          style={listStyle}
+        >
           {sections.length
             ? sections.map((section, sectionIndex) => {
                 return (
                   <ul
-                    className="space-y-1"
+                    className={sectionListContentListClsx({})}
                     key={(section.key || '') + sectionIndex}
                   >
                     {renderSectionHeader(section, sectionIndex)}
@@ -105,12 +120,12 @@ export default function SectionList<
         </div>
       </ScrollArea.Viewport>
       <ScrollArea.Scrollbar
-        className="flex select-none touch-none p-0.5 bg-gray-200 transition-colors w-2 hover:bg-gray-300"
+        className={sectionListScrollbarClsx({})}
         orientation="vertical"
       >
-        <ScrollArea.Thumb className="flex-1 bg-gray-600 rounded-lg relative before:content-[''] before:absolute before:w-full before:h-full before:min-w-[44px] before:min-h-[44px] before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2" />
+        <ScrollArea.Thumb className={sectionListThumbClsx({})} />
       </ScrollArea.Scrollbar>
-      <ScrollArea.Corner className="bg-gray-300" />
+      <ScrollArea.Corner className={sectionListCornerClsx({})} />
     </ScrollArea.Root>
   )
 }

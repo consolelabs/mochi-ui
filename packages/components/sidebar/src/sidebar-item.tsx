@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import type { ReactNode, Attributes, MouseEventHandler } from 'react'
 import { createElement } from 'react'
 import {
@@ -7,6 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@consolelabs/accordion'
+import { sidebar } from '@consolelabs/theme'
 
 export interface Item {
   title: string
@@ -28,6 +28,20 @@ interface SidebarItemProps {
   className?: string
   selected?: boolean
 }
+
+const {
+  sidebarItemIconClsx,
+  sidebarItemTitleWrapperClsx,
+  sidebarItemTitleClsx,
+  sidebarItemTitleBadgeClsx,
+  sidebarItemAccordionClsx,
+  sidebarItemAccordionTriggerClsx,
+  sidebarItemAccordionWrapperClsx,
+  sidebarItemAccordionTriggerTitleClsx,
+  sidebarItemAccordionContentWrapperClsx,
+  sidebarItemAccordionContentClsx,
+  classNamePropClsx,
+} = sidebar
 
 export default function SidebarItem({
   item,
@@ -52,29 +66,17 @@ export default function SidebarItem({
     <>
       {Icon !== undefined && (
         <Icon
-          className={clsx('min-w-max', {
-            'text-blue-500': selected,
-            'text-neutral-800': !selected && !disabled,
-            'text-neutral-600': disabled,
-          })}
+          className={sidebarItemIconClsx({ selected, disabled })}
           height={22}
           width={22}
         />
       )}
       {expanded ? (
-        <div className="flex gap-2 items-center">
-          <span
-            className={clsx(
-              'text-left text-sm font-medium tracking-tight line-clamp-1',
-              {
-                'text-neutral-600': disabled,
-                'text-neutral-800 ': !disabled,
-              },
-            )}
-          >
-            {title}
-          </span>
-          {Boolean(badge) && <span className="shrink-0">{badge}</span>}
+        <div className={sidebarItemTitleWrapperClsx({})}>
+          <span className={sidebarItemTitleClsx({ disabled })}>{title}</span>
+          {Boolean(badge) && (
+            <span className={sidebarItemTitleBadgeClsx({})}>{badge}</span>
+          )}
         </div>
       ) : null}
     </>
@@ -83,36 +85,35 @@ export default function SidebarItem({
   if (type === 'list') {
     return (
       <Accordion
-        className="shadow-none !p-0"
+        className={sidebarItemAccordionClsx({})}
         disabled={disabled}
         type="multiple"
       >
         <AccordionItem value={title}>
           <AccordionTrigger
-            className="!hover:bg-inherit"
+            className={sidebarItemAccordionTriggerClsx({})}
             rightIcon={expanded ? null : true}
-            wrapperClassName={clsx(
-              {
-                'rounded hover:bg-neutral-150': Boolean(expanded),
-                '!p-0': !expanded,
-                'p-2.5': expanded,
-              },
+            wrapperClassName={sidebarItemAccordionWrapperClsx({
+              expanded,
               className,
               customClassName,
-            )}
+              selected,
+            })}
           >
-            <div
-              className={clsx('flex-1 flex gap-2 items-center rounded', {
-                'hover:bg-neutral-150 p-2.5': !expanded,
-              })}
-            >
+            <div className={sidebarItemAccordionTriggerTitleClsx({ expanded })}>
               {renderTitle}
             </div>
           </AccordionTrigger>
-          <AccordionContent className="pb-0" hasPadding={false}>
+          <AccordionContent
+            className={sidebarItemAccordionContentWrapperClsx({})}
+            hasPadding={false}
+          >
             {children.map((child) => (
               <SidebarItem
-                className={clsx('pl-8', className, customClassName)}
+                className={sidebarItemAccordionContentClsx({
+                  className,
+                  customClassName,
+                })}
                 expanded={expanded}
                 item={child}
                 key={child.title}
@@ -124,14 +125,12 @@ export default function SidebarItem({
     )
   }
 
-  const classNameProp = clsx(
-    'flex gap-2 items-center p-2.5 rounded w-full cursor-pointer hover:bg-neutral-150',
-    {
-      'pointer-events-none': disabled,
-    },
+  const classNameProp = classNamePropClsx({
+    disabled,
     className,
     customClassName,
-  )
+    selected,
+  })
 
   if (type === 'link' && href) {
     const isAbsolute = href.startsWith('http')
