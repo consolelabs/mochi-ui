@@ -1,31 +1,30 @@
 ## Introduction
 
-Console Labs UI is a UI library for React that helps you build beautiful and
-accessible user interfaces, especially for web3 applications. It was built on
-top of [Tailwind CSS](https://tailwindcss.com/) and
-[Radix UI](https://www.radix-ui.com/).
+Console Labs UI is a React-based UI toolkit designed to create beautiful and
+accessible interfaces, particularly for web3 projects. It leverages the
+capabilities of [Tailwind CSS](https://tailwindcss.com/) and
+[Radix UI](https://www.radix-ui.com/) as its foundation.
 
-Its primary goal is to streamline the development process, help to build web
-applications faster while enhancing user experiences.
+The main objective of this library is to simplify the development workflow,
+enabling faster creation of web applications with an improved user experience.
 
 ## Installation
 
-Requirements:
+Prerequisites:
 
 - [React](https://react.dev/) >= 18
 - [Tailwind CSS](https://tailwindcss.com/) >= 3
 
-To use Console Labs UI in your project, you need to follow the following steps:
+To integrate Console Labs UI into your project, follow these steps:
 
 ### Global Installation
 
-The easiest way to get started with Console Labs UI is to use the global
-installation. Which means that all the components are imported from a single
-package.
+For a quick start, the global setup is recommended. This approach involves
+importing all components from a single package.
 
 **1. Install packages**
 
-To install Console Labs UI, run one of the following commands in your terminal:
+Execute the following command in your terminal to install Console Labs UI:
 
 ```sh
 pnpm add @consolelabs/core
@@ -33,11 +32,10 @@ pnpm add @consolelabs/core
 
 **2. TailwindCSS setup**
 
-Console Labs UI is built on top of Tailwind CSS, so you need to install Tailwind
-CSS first. You can follow the official
-[installation guide](https://tailwindcss.com/docs/installation) to install
-Tailwind CSS. Then you need to add the following code to your
-`tailwind.config.js` file:
+Since Console Labs UI is based on Tailwind CSS, it's necessary to install
+Tailwind CSS first. Follow the official
+[guide for installation](https://tailwindcss.com/docs/installation). Afterward,
+add this code to your `tailwind.config.js`:
 
 ```js
 // tailwind.config.js
@@ -55,37 +53,33 @@ module.exports = {
 
 ### Individual Installation
 
-Console Labs UI is also available as individual packages. You can install each
-package separately. This is useful if you want to reduce the size of your CSS
-bundle as it will only include styles for the components you're actually using.
+Console Labs UI also supports modular installation, allowing you to install
+components individually. This approach is beneficial for reducing your CSS
+bundle size, as it includes only the styles for the components in use.
 
-> Note: JavaScript bundle size will not change due to tree shaking support in
-> Console Labs UI.
+> Note: The JavaScript bundle size remains unaffected due to Console Labs UI's
+> tree shaking feature.
 
-Follow the steps below to install each package separately:
+To install components individually, follow these steps:
 
-**1. Install Core Packages**
+**1. Core Package Installation**
 
 ```sh
 pnpm add @consolelabs/theme
 ```
 
-**2. Install Component**
+**2. Component Installation**
 
-Now, let's install the component you want to use. For example, if you want to
-use the Button component, you need to run one of the following commands in your
-terminal:
+Install the desired component. For instance, to use the Button component, run:
 
 ```sh
 pnpm add @consolelabs/button
 ```
 
-**3. Tailwind CSS Setup**
+**3. Tailwind CSS Configuration**
 
-TailwindCSS setup changes a bit when you use individual packages. You only need
-to add the styles of the components your using to your `tailwind.config.js`
-file. For example, for the Button component, you need to add the following code
-to your `tailwind.config.js` file:
+When using individual packages, modify your `tailwind.config.js` to include only
+the styles of the components you are using. For the Button component, add:
 
 ```js
 // tailwind.config.js
@@ -105,7 +99,7 @@ module.exports = {
 
 **4. Use the Component**
 
-Now, you can use the component you installed in your application:
+You can now use the installed component in your application:
 
 ```js
 import * as React from 'react'
@@ -116,6 +110,40 @@ function App() {
 }
 ```
 
-## Design Principles
+## Design Philosophy
 
-TBD
+Console Labs UI adheres to key principles ensuring consistency and reliability
+in its components. Understanding these principles is crucial for effective
+contribution to the library.
+
+Our aim is to craft straightforward, modular components that address common UI
+design challenges. We adhere to a set of guidelines to maintain this focus.
+
+#### Simplicity
+
+We prioritize simplicity in our component APIs, showcasing practical use cases.
+
+#### Composition
+
+We design components as small, manageable units with minimal properties,
+allowing for easy composition and ensuring style and functionality are both
+flexible and extendable.
+
+#### Accessibility
+
+Accessibility is a core consideration in our component design, encompassing
+aspects like keyboard navigation, focus management, color contrast, voice-over
+compatibility, and appropriate use of `aria-*` attributes.
+
+#### API Consistency
+
+Console Labs UI maintains a uniform API across all components. Common attributes
+are consistently named, using auxiliary verbs like `does`, `has`, `is`, `and`
+`should`, facilitating predictability and easing the learning process for
+developers.
+
+#### Adherence to Web Standards
+
+Our components mirror native web attributes. For instance, form components
+include `value` and `onChange` props, and the Button component supports
+attributes like `disabled` and `loading`.
