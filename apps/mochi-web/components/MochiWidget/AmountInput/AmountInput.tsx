@@ -1,8 +1,9 @@
 import { Button } from '@consolelabs/ui-components'
 import { useEffect, useState } from 'react'
 import { abbreviateNumber, formatNumber } from '~utils/number'
+import { ModelBalance } from '~types/mochi-pay-schema'
 import { TokenPicker } from '../TokenPicker'
-import { MonikerAsset, TokenAsset } from '../TokenPicker/type'
+import { MonikerAsset } from '../TokenPicker/type'
 
 interface AmountInputProps {
   accessToken: string | null
@@ -14,19 +15,19 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   onLoginRequest,
 }) => {
   const [selectedAsset, setSelectedAsset] = useState<
-    TokenAsset | MonikerAsset
+    ModelBalance | MonikerAsset
   >()
   const [tipAmount, setTipAmount] = useState('')
-  const isTokenAsset = selectedAsset && 'token' in selectedAsset
-  const balance = isTokenAsset
-    ? formatNumber(selectedAsset?.token_amount)
-    : formatNumber(selectedAsset?.total_amount || '0')
-  const balanceUnit = isTokenAsset
-    ? selectedAsset.token.name
-    : selectedAsset?.moniker.name
-  const unitPrice =
-    parseFloat(selectedAsset?.total_amount || '0') /
-    parseFloat(selectedAsset?.token_amount || '1')
+  const isMonikerAsset = selectedAsset && 'moniker' in selectedAsset
+  const balance = isMonikerAsset
+    ? formatNumber(selectedAsset?.amount ?? '0')
+    : formatNumber(selectedAsset?.amount ?? '0')
+  const balanceUnit = isMonikerAsset
+    ? selectedAsset.token?.name
+    : (selectedAsset as MonikerAsset)?.moniker.moniker
+  const unitPrice = selectedAsset?.token?.price
+    ? parseFloat(selectedAsset?.amount || '0') / selectedAsset.token.price
+    : 0
   const tipAmountUSD = abbreviateNumber(
     (parseFloat(tipAmount) || 0) * unitPrice,
   )

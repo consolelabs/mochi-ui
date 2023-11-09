@@ -1,10 +1,11 @@
 import { formatNumber } from '~utils/number'
 import { Heading } from '@consolelabs/ui-components'
-import { TokenAsset } from './type'
+import { ModelBalance } from '~types/mochi-pay-schema'
+import Image from 'next/image'
 
 interface ItemProps {
-  item: TokenAsset
-  onSelect?: (item: TokenAsset) => void
+  item: ModelBalance
+  onSelect?: (item: ModelBalance) => void
 }
 
 export const TokenItem: React.FC<ItemProps> = ({ item, onSelect }) => (
@@ -13,19 +14,21 @@ export const TokenItem: React.FC<ItemProps> = ({ item, onSelect }) => (
     key={item.id}
     onClick={() => onSelect?.(item)}
   >
-    <img
-      alt={`${item.token.name} icon`}
+    <Image
+      alt={`${item.token?.name} icon`}
       className="w-6 h-6 rounded-full object-contain"
-      src={item.icon}
+      src={item.token?.icon || '/logo.png'}
+      width={24}
+      height={24}
     />
     <div className="flex flex-col flex-1">
       <Heading as="h3" className="text-sm">
-        {item.token.name}
+        {item.token?.name}
       </Heading>
       <span className="text-xs text-[#848281]">
-        {formatNumber(item.token_amount)}
+        {formatNumber(item.amount ?? '0')}
       </span>
     </div>
-    <span className="text-sm">${formatNumber(item.total_amount)}</span>
+    <span className="text-sm">${formatNumber(item.amount ?? '0')}</span>
   </li>
 )
