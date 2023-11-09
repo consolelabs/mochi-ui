@@ -6,13 +6,16 @@ import {
   PopoverTrigger,
   PopoverContent,
 } from '@consolelabs/ui-components'
-import { useProfileStore } from '~store'
-import { ModelInAppWallet } from '~types/mochi-pay-schema'
+import { Wallet, useWalletStore } from '~store'
 import { truncateWallet } from '~utils/string'
+import Image from 'next/image'
 import { WalletList } from './WalletList'
 
-const DefaultWallet: ModelInAppWallet = {
-  wallet_address: 'Not connected',
+const DefaultWallet: Wallet = {
+  wallet: {
+    platform: 'Mochi Wallet',
+    platform_identifier: 'Not connected',
+  },
   chain: {
     icon: '/logo.png',
     name: 'Mochi Wallet',
@@ -22,7 +25,7 @@ const DefaultWallet: ModelInAppWallet = {
 interface Props {
   accessToken: string | null
   onLoginRequest?: () => void
-  onSelect?: (item: ModelInAppWallet) => void
+  onSelect?: (item: Wallet) => void
 }
 
 export const WalletPicker: React.FC<Props> = ({
@@ -31,9 +34,8 @@ export const WalletPicker: React.FC<Props> = ({
   onSelect,
 }) => {
   const [isOpenSelector, setIsOpenSelector] = useState(false)
-  const [selectedWallet, setSelectedWallet] =
-    useState<ModelInAppWallet>(DefaultWallet)
-  const { wallets } = useProfileStore()
+  const [selectedWallet, setSelectedWallet] = useState<Wallet>(DefaultWallet)
+  const { wallets } = useWalletStore()
 
   useEffect(() => {
     if (!accessToken) {
@@ -43,7 +45,7 @@ export const WalletPicker: React.FC<Props> = ({
     }
   }, [accessToken, wallets])
 
-  function handleWalletSelect(wallet: ModelInAppWallet) {
+  function handleWalletSelect(wallet: Wallet) {
     setSelectedWallet(wallet)
     setIsOpenSelector(false)
     onSelect?.(wallet)
@@ -61,23 +63,25 @@ export const WalletPicker: React.FC<Props> = ({
         className="flex gap-x-3 items-center py-2.5 px-4 bg-[#017AFF] bg-opacity-10 rounded-lg text-left"
         onClick={handleTriggerClick}
       >
-        <img
+        <Image
           className="flex-shrink-0 w-6 h-6"
           src={selectedWallet.chain?.icon || '/logo.png'}
           alt={`${selectedWallet.chain?.name} icon`}
+          width={24}
+          height={24}
         />
         <div className="flex flex-col flex-1 justify-between">
           <span className="text-sm font-medium text-blue-700">
-            {selectedWallet.chain?.name}
+            {selectedWallet.wallet?.platform}
           </span>
           <span className="text-xs text-blue-500">
-            {truncateWallet(selectedWallet.wallet_address || '')}
+            {truncateWallet(selectedWallet.wallet.platform_identifier || '')}
           </span>
         </div>
         {accessToken && (
           <>
             <span className="flex-shrink-0 text-sm font-medium text-blue-700">
-              ${formatNumber(selectedWallet.total_amount || '0')}
+              ${formatNumber(selectedWallet.total || '0')}
             </span>
             <Icon
               icon="majesticons:chevron-down-line"

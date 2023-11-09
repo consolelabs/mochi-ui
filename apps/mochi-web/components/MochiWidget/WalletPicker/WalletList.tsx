@@ -1,10 +1,10 @@
 import { List } from '@consolelabs/ui-components'
-import { ModelInAppWallet } from '~types/mochi-pay-schema'
+import { Wallet } from '~store'
 import { WalletItem } from './WalletItem'
 
 interface Props {
-  data: ModelInAppWallet[]
-  onSelect?: (item: ModelInAppWallet) => void
+  data: Wallet[]
+  onSelect?: (item: Wallet) => void
 }
 
 export const WalletList = (props: Props) => {

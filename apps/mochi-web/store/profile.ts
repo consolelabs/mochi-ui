@@ -9,9 +9,15 @@ import { api, UI } from '~constants/mochi'
 import { Platform } from '@consolelabs/mochi-ui'
 import { boringAvatar } from '~utils/string'
 import { ModelInAppWallet } from '~types/mochi-pay-schema'
+import { useWalletStore } from './wallets'
+
+type ProfilePlatform = {
+  platform?: string
+  platformIcon?: string
+}
 
 type State = {
-  me: ViewProfile | null
+  me: (ViewProfile & ProfilePlatform) | null
   setMe: (me: ViewProfile) => Promise<void>
   wallets: ModelInAppWallet[]
   getActivites: (query: Pagination) => Promise<ViewActivityResponseData>
@@ -30,28 +36,32 @@ const platformIcons: Record<string, string> = {
 
 export const useProfileStore = create<State>((set, get) => ({
   me: null,
+  platform: null,
   setMe: async (me: ViewProfile) => {
     const [p] = await UI.resolve(Platform.Web, me.id ?? '')
     const { ok, data } = await api.pay.mochiWallet.getWallets(me.id ?? '')
-    let wallets: any[] = []
+    let wallets: ModelInAppWallet[] = []
     if (ok) {
       wallets = data
     }
 
     const avatar = me.avatar || boringAvatar(p?.plain)
+    const profile = {
+      ...me,
+      profile_name: (me.profile_name || p?.plain) ?? '',
+      avatar,
+      platform: p?.platform ?? '',
+      platformIcon:
+        platformIcons[p?.platform ?? ''] ??
+        'data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cg fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"%3E%3Cpath d="M21.1 8.004C21.045 8 20.984 8 20.92 8h-2.525c-2.068 0-3.837 1.628-3.837 3.75s1.77 3.75 3.837 3.75h2.525c.064 0 .125 0 .182-.004a1.755 1.755 0 0 0 1.645-1.628c.004-.06.004-.125.004-.185V9.817c0-.06 0-.125-.004-.185a1.755 1.755 0 0 0-1.645-1.628Zm-2.928 4.746c.532 0 .963-.448.963-1s-.431-1-.963-1c-.533 0-.964.448-.964 1s.431 1 .964 1Z"%2F%3E%3Cpath d="M20.918 17a.22.22 0 0 1 .221.278c-.2.712-.519 1.32-1.03 1.83c-.749.75-1.698 1.081-2.87 1.239c-1.14.153-2.595.153-4.433.153h-2.112c-1.838 0-3.294 0-4.433-.153c-1.172-.158-2.121-.49-2.87-1.238c-.748-.749-1.08-1.698-1.238-2.87C2 15.099 2 13.644 2 11.806v-.112C2 9.856 2 8.4 2.153 7.26c.158-1.172.49-2.121 1.238-2.87c.749-.748 1.698-1.08 2.87-1.238C7.401 3 8.856 3 10.694 3h2.112c1.838 0 3.294 0 4.433.153c1.172.158 2.121.49 2.87 1.238c.511.512.83 1.119 1.03 1.831a.22.22 0 0 1-.221.278h-2.524c-2.837 0-5.337 2.24-5.337 5.25s2.5 5.25 5.337 5.25h2.524ZM5.75 7a.75.75 0 0 0 0 1.5h4a.75.75 0 0 0 0-1.5h-4Z"%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E',
+    }
 
     set({
-      me: {
-        ...me,
-        profile_name: (me.profile_name || p?.plain) ?? '',
-        avatar,
-        platform: p?.platform ?? '',
-        platformIcon:
-          platformIcons[p?.platform ?? ''] ??
-          'data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cg fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"%3E%3Cpath d="M21.1 8.004C21.045 8 20.984 8 20.92 8h-2.525c-2.068 0-3.837 1.628-3.837 3.75s1.77 3.75 3.837 3.75h2.525c.064 0 .125 0 .182-.004a1.755 1.755 0 0 0 1.645-1.628c.004-.06.004-.125.004-.185V9.817c0-.06 0-.125-.004-.185a1.755 1.755 0 0 0-1.645-1.628Zm-2.928 4.746c.532 0 .963-.448.963-1s-.431-1-.963-1c-.533 0-.964.448-.964 1s.431 1 .964 1Z"%2F%3E%3Cpath d="M20.918 17a.22.22 0 0 1 .221.278c-.2.712-.519 1.32-1.03 1.83c-.749.75-1.698 1.081-2.87 1.239c-1.14.153-2.595.153-4.433.153h-2.112c-1.838 0-3.294 0-4.433-.153c-1.172-.158-2.121-.49-2.87-1.238c-.748-.749-1.08-1.698-1.238-2.87C2 15.099 2 13.644 2 11.806v-.112C2 9.856 2 8.4 2.153 7.26c.158-1.172.49-2.121 1.238-2.87c.749-.748 1.698-1.08 2.87-1.238C7.401 3 8.856 3 10.694 3h2.112c1.838 0 3.294 0 4.433.153c1.172.158 2.121.49 2.87 1.238c.511.512.83 1.119 1.03 1.831a.22.22 0 0 1-.221.278h-2.524c-2.837 0-5.337 2.24-5.337 5.25s2.5 5.25 5.337 5.25h2.524ZM5.75 7a.75.75 0 0 0 0 1.5h4a.75.75 0 0 0 0-1.5h-4Z"%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E',
-      },
+      me: profile,
       wallets,
     })
+    // Trigger load balances
+    useWalletStore.getState().setWallets(profile)
   },
   wallets: [],
 
