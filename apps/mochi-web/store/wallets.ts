@@ -57,25 +57,25 @@ export const useWalletStore = create<State>((set) => ({
           ),
         ).json((r) => r.data),
       )
-      try {
-        const balances: any[] = await Promise.allSettled(balRequestors)
-        payableAccounts.map((w, i) =>
+      const balances: PromiseSettledResult<any>[] =
+        await Promise.allSettled(balRequestors)
+      payableAccounts.forEach((w, i) => {
+        if (balances[i].status === 'fulfilled') {
+          const { value } = balances[i] as PromiseFulfilledResult<any>
           wallets.push({
             wallet: w,
-            balances: balances[i].value.balance,
-            total: balances[i].value.latest_snapshot_bal,
-          }),
-        )
-      } catch (e) {
-        console.log('balances error', e)
-      }
+            balances: value.balance,
+            total: value.latest_snapshot_bal,
+          })
+        }
+      })
     }
 
     // Default Mochi Wallets
     const mochiWallet: Wallet = structuredClone(MochiWalletBase)
     mochiWallet.wallet.platform_identifier = me.profile_name
     mochiWallet.balances = await API.MOCHI_PAY.get(
-      `/mochi-wallet/${me?.id}/balances`,
+      GET_PATHS.MOCHI_BALANCES(me.id ?? ''),
     ).json((r) => r.data)
     set({ wallets: [mochiWallet, ...wallets] })
   },

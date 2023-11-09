@@ -8,6 +8,7 @@ import {
   PopoverTrigger,
   PopoverContent,
 } from '@consolelabs/ui-components'
+import { ModelBalance } from '~types/mochi-pay-schema'
 import { TokenList } from './TokenList'
 import { MonikerAsset, SectionBase, TokenAsset } from './type'
 import { TokenAssets, MonikerAssets } from './data'
@@ -26,6 +27,7 @@ const TokenTabs = [
 ]
 
 interface TokenPickerProps {
+  balances?: ModelBalance[]
   onSelect?: (item: TokenAsset | MonikerAsset) => void
 }
 

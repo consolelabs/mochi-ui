@@ -54,7 +54,7 @@ const ConnectButton = forwardRef<ConnectButtonRef, {}>((_, ref) => {
 })
 
 export default function StepOne() {
-  const { setStep } = useTipWidget()
+  const { setStep, updateSourceWallet } = useTipWidget()
   const { token, isLoggedIn } = useAuthStore()
   const connectButtonRef = useRef<ConnectButtonRef>(null)
 
@@ -73,7 +73,11 @@ export default function StepOne() {
             by sending them money
           </span>
         </div>
-        <WalletPicker accessToken={token} onLoginRequest={openLoginPopup} />
+        <WalletPicker
+          accessToken={token}
+          onLoginRequest={openLoginPopup}
+          onSelect={updateSourceWallet}
+        />
         <Recipient accessToken={token} onLoginRequest={openLoginPopup} />
         <AmountInput accessToken={token} onLoginRequest={openLoginPopup} />
       </div>

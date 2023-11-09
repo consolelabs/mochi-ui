@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { API } from '~constants/api'
+import { Wallet } from '~store'
 import { Theme } from '../ThemePicker/ThemePicker'
 
 interface Request {
@@ -9,6 +10,7 @@ interface Request {
 
 interface TipWidgetState {
   step: number
+  from?: Wallet
   setStep: (s: number) => void
   request?: Request
   updateRequestMessage: (message: string) => void
@@ -17,6 +19,7 @@ interface TipWidgetState {
   reset: () => void
   isTransferring: boolean
   tx: any
+  updateSourceWallet: (s: Wallet) => void
 }
 
 export const useTipWidget = create<TipWidgetState>((set, get) => ({
@@ -71,4 +74,5 @@ export const useTipWidget = create<TipWidgetState>((set, get) => ({
       set((s) => ({ ...s, isTransferring: false }))
     }
   },
+  updateSourceWallet: (wallet: Wallet) => set((s) => ({ ...s, from: wallet })),
 }))
