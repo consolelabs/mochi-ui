@@ -28,7 +28,7 @@ package.
 To install Console Labs UI, run one of the following commands in your terminal:
 
 ```sh
-pnpm install @consolelabs/core @consolelabs/theme
+pnpm add @consolelabs/core
 ```
 
 **2. TailwindCSS setup**
@@ -67,7 +67,7 @@ Follow the steps below to install each package separately:
 **1. Install Core Packages**
 
 ```sh
-pnpm install @consolelabs/theme
+pnpm add @consolelabs/theme
 ```
 
 **2. Install Component**
@@ -77,7 +77,7 @@ use the Button component, you need to run one of the following commands in your
 terminal:
 
 ```sh
-pnpm install @consolelabs/button
+pnpm add @consolelabs/button
 ```
 
 **3. Tailwind CSS Setup**
