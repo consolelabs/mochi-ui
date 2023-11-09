@@ -1,7 +1,7 @@
 import * as RadixTooltip from '@radix-ui/react-tooltip'
 import { tooltip, TooltipStyleProps } from '@consolelabs/theme'
 
-const { tooltipCva, tooltipArrowCva } = tooltip
+const { tooltipCva, tooltipArrowCva, tooltipTriggerClsx } = tooltip
 
 export default function Tooltip({
   children,
@@ -21,7 +21,7 @@ export default function Tooltip({
   return (
     <RadixTooltip.Provider>
       <RadixTooltip.Root delayDuration={0}>
-        <RadixTooltip.Trigger className="w-fit">
+        <RadixTooltip.Trigger className={tooltipTriggerClsx({})}>
           {children}
         </RadixTooltip.Trigger>
         <RadixTooltip.Portal>

@@ -1,4 +1,5 @@
 import { cva, VariantProps } from 'class-variance-authority'
+import clsx from 'clsx'
 
 const tooltipCva = cva(['rounded-lg px-3 py-2 text-xs font-semibold'], {
   variants: {
@@ -24,7 +25,10 @@ const tooltipArrowCva = cva([], {
   },
 })
 
-const tooltip = { tooltipCva, tooltipArrowCva }
+const tooltipTriggerClsx = ({ className = '' }: { className?: string }) =>
+  clsx('w-fit', className)
+
+const tooltip = { tooltipCva, tooltipArrowCva, tooltipTriggerClsx }
 
 export const ARROW_OPTIONS = [
   'none',

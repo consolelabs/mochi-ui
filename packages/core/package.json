@@ -34,10 +34,12 @@
     "@consolelabs/alert": "workspace:*",
     "@consolelabs/avatar": "workspace:*",
     "@consolelabs/badge": "workspace:*",
+    "@consolelabs/button": "workspace:*",
     "@consolelabs/dropdown": "workspace:*",
     "@consolelabs/heading": "workspace:*",
     "@consolelabs/icons": "workspace:*",
     "@consolelabs/input": "workspace:*",
+    "@consolelabs/input-field": "workspace:*",
     "@consolelabs/list": "workspace:*",
     "@consolelabs/login-widget": "workspace:*",
     "@consolelabs/mochi-store": "workspace:*",
@@ -47,6 +49,7 @@
     "@consolelabs/sidebar": "workspace:*",
     "@consolelabs/switch": "workspace:*",
     "@consolelabs/theme": "workspace:*",
+    "@consolelabs/toggle-button": "workspace:*",
     "@consolelabs/tooltip": "workspace:*"
   },
   "clean-package": "../../clean-package.config.json"
