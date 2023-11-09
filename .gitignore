@@ -32,6 +32,7 @@ yarn-error.log*
 
 # turbo
 .turbo
+turbo-build-debug.json
 
 # ui
 dist/

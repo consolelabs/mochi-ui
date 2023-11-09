@@ -20,6 +20,7 @@ import { AuthPanel } from '~cpn/AuthWidget'
 import { useAuthStore, useProfileStore } from '~store'
 import { ROUTES } from '~constants/routes'
 import clsx from 'clsx'
+import useLockScreenScroll from '~hooks/useLockScreenScroll'
 import { MobileNavAccordionItem } from './MobileNavAccordionItem'
 import { NavItem } from './type'
 
@@ -86,6 +87,8 @@ export const MobileNav = (props: { onClose: () => void }) => {
   const { isLoggedIn } = useAuthStore()
   const { onClose } = props
   const { me } = useProfileStore()
+
+  useLockScreenScroll()
 
   const mobileNavItems: NavItem[] = useMemo(
     (): NavItem[] => [

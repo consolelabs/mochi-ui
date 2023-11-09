@@ -1,6 +1,6 @@
 {
   "name": "@consolelabs/alert",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "@consolelabs/icons": "workspace:*",
+    "@consolelabs/theme": "workspace:*",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0"
   },
