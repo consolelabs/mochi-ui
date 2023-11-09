@@ -75,7 +75,7 @@ const adornmentVariants = cva(['text-neutral-800'], {
 const labelClassName =
   'mb-2 font-bold leading-4 tracking-tight uppercase text-neutral-500 text-xxs'
 
-const inputfield = {
+export const inputfield = {
   inputWrapperVariants,
   inputFieldVariants,
   helperTextVariants,
@@ -84,5 +84,3 @@ const inputfield = {
 }
 
 export type InputWrapperProps = VariantProps<typeof inputWrapperVariants>
-
-export { inputfield }

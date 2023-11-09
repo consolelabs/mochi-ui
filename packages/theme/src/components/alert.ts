@@ -29,7 +29,7 @@ const alertContentClsx = ({ className = '' }: { className?: string }) =>
 const alertTitleClsx = ({ className = '' }: { className?: string }) =>
   clsx('text-sm font-medium text-current', className)
 
-const alert = {
+export const alert = {
   alertCva,
   alertIconClsx,
   alertContentClsx,
@@ -41,5 +41,3 @@ export type AlertStyleProps = VariantProps<typeof alertCva> & {
   className?: string
   title: string
 }
-
-export { alert }

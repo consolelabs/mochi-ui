@@ -92,7 +92,7 @@ const dropdownMenuSeparatorClsx = ({
   className?: string
 }) => clsx('h-px !my-2 bg-neutral-200 -mx-2', className)
 
-const dropdown = {
+export const dropdown = {
   dropdownIconStyleCva,
   dropdownChildItemClsx,
   dropdownChildItemSubtitleClsx,
@@ -102,5 +102,3 @@ const dropdown = {
   dropdownMenuRadioIconClsx,
   dropdownMenuSeparatorClsx,
 }
-
-export { dropdown }

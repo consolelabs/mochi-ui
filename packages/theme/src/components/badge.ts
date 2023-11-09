@@ -88,11 +88,9 @@ const badgeIconCva = cva(['flex'], {
   },
 })
 
-const badge = {
+export const badge = {
   badgeWrapperCva,
   badgeIconCva,
 }
 
 export type BadgeStyleProps = VariantProps<typeof badgeWrapperCva>
-
-export { badge }

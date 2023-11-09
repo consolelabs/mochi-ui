@@ -151,7 +151,7 @@ const buttonloadIndicatorCva = cva('flex items-center', {
 const buttonLoadingIconClsx = ({ className = '' }: { className?: string }) =>
   clsx('text-[40px]', className)
 
-const button = {
+export const button = {
   buttonCva,
   buttonloadIndicatorCva,
   buttonLoadingIconClsx,
@@ -165,5 +165,3 @@ export type ButtonStyleProps = ButtonHTMLAttributes<HTMLButtonElement> &
     loadingIndicator?: ReactNode
     loadingIndicatorClassName?: string
   }
-
-export { button }

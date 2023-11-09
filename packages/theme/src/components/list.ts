@@ -24,7 +24,7 @@ const listThumbClsx = ({ className = '' }: { className?: string }) =>
 const listCornerClsx = ({ className = '' }: { className?: string }) =>
   clsx('bg-gray-300', className)
 
-const list = {
+export const list = {
   listWrapperClsx,
   listViewportClsx,
   listViewportContentClsx,
@@ -32,5 +32,3 @@ const list = {
   listThumbClsx,
   listCornerClsx,
 }
-
-export { list }

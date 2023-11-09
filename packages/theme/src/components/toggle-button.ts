@@ -6,7 +6,7 @@ const toggleButtonVariants = cva([
 
 const toggleButtonGroupVariants = cva(['flex gap-x-2'])
 
-const toggleButton = {
+export const toggleButton = {
   toggleButtonVariants,
   toggleButtonGroupVariants,
 }
@@ -15,5 +15,3 @@ export type ToggleButtonProps = VariantProps<typeof toggleButtonVariants>
 export type ToggleButtonGroupProps = VariantProps<
   typeof toggleButtonGroupVariants
 >
-
-export { toggleButton }
