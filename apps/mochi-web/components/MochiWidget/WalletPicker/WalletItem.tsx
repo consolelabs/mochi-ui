@@ -1,7 +1,7 @@
 import { formatNumber } from '~utils/number'
 import { Heading } from '@consolelabs/ui-components'
 import { truncateWallet } from '~utils/string'
-import { Wallet } from '~store'
+import { MochiWalletBase, Wallet } from '~store'
 
 interface ItemProps {
   item: Wallet
@@ -22,6 +22,9 @@ export const WalletItem: React.FC<ItemProps> = ({ item, onSelect }) => (
     <div className="flex flex-col flex-1">
       <Heading as="h3" className="text-sm text-ellipsis">
         {truncateWallet(item.wallet.platform_identifier || '')}
+        {item.wallet.id === MochiWalletBase.wallet.id && (
+          <span className="text-[#979CA3]"> ({item.wallet.platform})</span>
+        )}
       </Heading>
       <span className="text-xs text-[#848281]">
         ${formatNumber(item.total || 0)}

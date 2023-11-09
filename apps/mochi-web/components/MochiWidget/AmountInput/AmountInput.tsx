@@ -25,9 +25,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   const balanceUnit = isMonikerAsset
     ? (selectedAsset as MonikerAsset)?.moniker.moniker
     : selectedAsset?.token?.symbol
-  const unitPrice = selectedAsset?.token?.price
-    ? parseFloat(selectedAsset?.amount || '0') / selectedAsset.token.price
-    : 0
+  const unitPrice = selectedAsset?.token?.price ?? 0
   const tipAmountUSD = abbreviateNumber(
     (parseFloat(tipAmount) || 0) * unitPrice,
   )
@@ -35,8 +33,6 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   useEffect(() => {
     if (!accessToken) {
       setSelectedAsset(undefined)
-    } else {
-      // TODO: Fetch assets by token
     }
   }, [accessToken])
 
@@ -44,7 +40,12 @@ export const AmountInput: React.FC<AmountInputProps> = ({
     if (!accessToken) {
       onLoginRequest?.()
     } else {
-      setTipAmount(amount)
+      // Amount is USD -> convert to token amount
+      setTipAmount(
+        (parseFloat(amount) / unitPrice).toFixed(
+          selectedAsset?.token?.decimal ?? 2,
+        ),
+      )
     }
   }
 
@@ -54,10 +55,18 @@ export const AmountInput: React.FC<AmountInputProps> = ({
     }
   }
 
+  function handleAssetChanged(asset: Balance | MonikerAsset) {
+    setSelectedAsset(asset)
+    setTipAmount('0')
+  }
+
   return (
     <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-3">
       <div className="flex justify-between items-center">
-        <TokenPicker onSelect={setSelectedAsset} balances={wallet?.balances} />
+        <TokenPicker
+          onSelect={handleAssetChanged}
+          balances={wallet?.balances}
+        />
       </div>
       <div className="flex flex-col gap-y-2 py-6 px-4 rounded-lg bg-white-pure">
         <div className="flex flex-1 justify-between items-center">
