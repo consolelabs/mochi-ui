@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react'
-import { Icon } from '@iconify/react'
 import { formatNumber } from '~utils/number'
 import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
+  Select,
+  SelectTrigger,
+  SelectContent,
 } from '@consolelabs/ui-components'
-import { SourceList } from './SourceList'
 import { SourceType } from './type'
+import { SourceList } from './SourceList'
 
 const MockSources: SourceType[] = [
   {
@@ -49,7 +48,6 @@ export const SourcePicker: React.FC<Props> = ({
   onLoginRequest,
   onSelect,
 }) => {
-  const [isOpenSelector, setIsOpenSelector] = useState(false)
   const [sources, setSources] = useState<SourceType[]>([])
   const [selectedSource, setSelectedSource] =
     useState<SourceType>(DefaultSource)
@@ -64,22 +62,22 @@ export const SourcePicker: React.FC<Props> = ({
     }
   }, [accessToken])
 
-  function handleSourceSelect(source: SourceType) {
-    setSelectedSource(source)
-    setIsOpenSelector(false)
-    onSelect?.(source)
-  }
-
   function handleTriggerClick() {
     if (!accessToken) {
       onLoginRequest?.()
     }
   }
 
+  const onSelectValueChange = (id: string) => {
+    const selectedItem = sources.find((s) => s.id === id)
+    onSelect?.(selectedItem as SourceType)
+    setSelectedSource(selectedItem as SourceType)
+  }
+
   return (
-    <Popover open={isOpenSelector} onOpenChange={setIsOpenSelector}>
-      <PopoverTrigger
-        className="flex gap-x-3 items-center py-2.5 px-4 bg-[#017AFF] bg-opacity-10 rounded-lg text-left"
+    <Select value={selectedSource.id} onChange={onSelectValueChange}>
+      <SelectTrigger
+        className="flex gap-x-3 focus:outline-none items-center py-2.5 px-4 bg-[#017AFF] bg-opacity-10 rounded-lg text-left"
         onClick={handleTriggerClick}
       >
         <img
@@ -96,25 +94,16 @@ export const SourcePicker: React.FC<Props> = ({
           </span>
         </div>
         {accessToken && (
-          <>
-            <span className="flex-shrink-0 text-sm font-medium text-blue-700">
-              ${formatNumber(selectedSource.total_amount)}
-            </span>
-            <Icon
-              icon="majesticons:chevron-down-line"
-              className="w-4 h-4 text-[#ADACAA]"
-            />
-          </>
+          <span className="flex-shrink-0 text-sm font-medium text-blue-700">
+            ${formatNumber(selectedSource.total_amount)}
+          </span>
         )}
-      </PopoverTrigger>
+      </SelectTrigger>
       {accessToken && (
-        <PopoverContent
-          align="start"
-          className="w-[414px] flex gap-x-1 items-center py-3 px-3 bg-white-pure rounded-lg shadow-md focus-visible:outline-none"
-        >
-          <SourceList data={sources} onSelect={handleSourceSelect} />
-        </PopoverContent>
+        <SelectContent className=" w-full max-w-full">
+          <SourceList data={sources} />
+        </SelectContent>
       )}
-    </Popover>
+    </Select>
   )
 }
