@@ -23,15 +23,16 @@ export default function Alert({
   children,
   className,
   appearance: _appearance,
+  size,
 }: AlertStyleProps) {
   const appearance = _appearance ?? 'info'
   const Icon = icons[appearance]
 
   return (
-    <div className={alertCva({ className, appearance })}>
+    <div className={alertCva({ size, className, appearance })}>
       <Icon className={alertIconClsx({})} />
       <div className={alertContentClsx({})}>
-        <span className={alertTitleClsx({})}>{title}</span>
+        {title && <span className={alertTitleClsx({})}>{title}</span>}
         {children}
       </div>
     </div>

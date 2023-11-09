@@ -1,11 +1,6 @@
 import format from 'date-fns/format'
 
-type DateFormat = 'MMM dd, yyyy'
-
-export function formatDate(
-  date: string,
-  template: DateFormat = 'MMM dd, yyyy',
-) {
+export function formatDate(date: string, template: string = 'MMM dd, yyyy') {
   if (!date) {
     return ''
   }

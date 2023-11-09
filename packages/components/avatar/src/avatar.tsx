@@ -33,6 +33,7 @@ export default function Avatar({
             }}
             width="100%"
             xlinkHref={src}
+            className="overflow-hidden"
           />
           <image
             height="40%"
@@ -47,7 +48,9 @@ export default function Avatar({
   }
 
   return (
-    <RadixAvatar.Root className={avatarCva({ size })}>
+    <RadixAvatar.Root
+      className={avatarCva({ size, className: 'overflow-hidden' })}
+    >
       <RadixAvatar.Image src={src} />
       <RadixAvatar.Fallback>
         <img alt="fallback" src={fallbackUrl} />

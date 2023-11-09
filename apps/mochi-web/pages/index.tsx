@@ -1,55 +1,76 @@
-import { Icon } from '@iconify/react'
 import { Layout } from '~app/layout'
 import { SEO } from '~app/layout/seo'
-import { TELEGRAM_LINK } from '~envs'
-import { home } from '~utils/image'
-import { IntegratedChains } from '~components/IntegratedChains'
 import Typed from 'typed.js'
-import { useEffect, useRef } from 'react'
-import Image from 'next/image'
-import Feed from '~components/Feed'
+import { useEffect, useRef, useState } from 'react'
 import Stats from '~components/stats'
-import Link from 'next/link'
+import MochiWidget from '~cpn/MochiWidget'
+import { Alert } from '@consolelabs/alert'
+import { TabbedFeatures } from '~cpn/landing/TabbedFeatures'
+import { SupportedPlatforms } from '~cpn/landing/SupportedPlatforms'
+import { LivePlatforms } from '~cpn/landing/LivePlatforms'
+import { SoonAvailablePlatforms } from '~cpn/landing/SoonAvailablePlatforms'
+import { Divider } from '~cpn/landing/Divider'
+import { Button } from '@consolelabs/ui-components'
+import {
+  IconArrowRight,
+  IconBlocksColored,
+  IconHandKeyColored,
+  IconLayersColored,
+  IconPasswordLockColored,
+  IconWalletPasswordColored,
+} from '@consolelabs/icons'
+import { GridFeatures } from '~cpn/landing/GridFeatures'
+import Feed from '~cpn/Feed'
+
+const colorsByCurrency = {
+  Ethereum: '#8A93B2',
+  Bitcoin: '#F7931A',
+  Solana: '#14F195',
+  Dogecoin: '#cb9800',
+}
+
+const colorsByPlatform = {
+  Discord: '#5865F2',
+  Telegram: '#229ED9',
+  Email: '#c71610',
+  'any text interface': '#017AFF',
+}
+
+const currencies = ['Ethereum', 'Bitcoin', 'Solana', 'Dogecoin']
+const platforms = ['Discord', 'Telegram', 'Email', 'any text interface']
 
 export default function Index() {
   const currency = useRef<HTMLSpanElement>(null)
   const platform = useRef<HTMLSpanElement>(null)
-  const command = useRef<HTMLSpanElement>(null)
+  const [currencyColor, setCurrencyColor] = useState(colorsByCurrency.Ethereum)
+  const [platformColor, setPlatformColor] = useState(colorsByPlatform.Discord)
 
   useEffect(() => {
     const typedCur = new Typed(currency.current, {
-      strings: ['Ethereum', 'Bitcoin', 'Solana', 'Dogecoin'],
+      strings: currencies,
       typeSpeed: 80,
       backDelay: 1800,
       loop: true,
-      shuffle: true,
+      preStringTyped: (idx) => {
+        const cur = currencies[idx] as keyof typeof colorsByCurrency
+        setCurrencyColor(colorsByCurrency[cur])
+      },
     })
 
     const typedPlat = new Typed(platform.current, {
-      strings: ['Discord', 'Telegram', 'Email', 'any text interface'],
+      strings: platforms,
       typeSpeed: 50,
       backDelay: 1800,
       loop: true,
-    })
-
-    const typedCommand = new Typed(command.current, {
-      strings: [
-        'tip @john 1 eth',
-        'tip all 10 sol each',
-        'tip vincent@console.so 2 eth',
-        'airdrop 2 doge in 2 minutes',
-        'airdrop 2 ftm for 3 in 5 minutes',
-      ],
-      typeSpeed: 30,
-      backDelay: 1800,
-      backSpeed: 55,
-      loop: true,
+      preStringTyped: (idx) => {
+        const cur = platforms[idx] as keyof typeof colorsByPlatform
+        setPlatformColor(colorsByPlatform[cur])
+      },
     })
 
     return () => {
       typedCur.destroy()
       typedPlat.destroy()
-      typedCommand.destroy()
     }
   }, [])
 
@@ -60,104 +81,146 @@ export default function Index() {
         <div className="flex flex-col-reverse gap-x-10 gap-y-10 justify-center max-w-5xl md:flex-row">
           <div className="flex flex-col flex-1 justify-center">
             <p className="text-3xl md:text-4xl">
-              Send <span ref={currency} />
+              Send <span style={{ color: currencyColor }} ref={currency} />
               <br />
               to anyone on
               <br />
-              <span ref={platform} />
+              <span style={{ color: platformColor }} ref={platform} />
             </p>
             <span className="mt-5 font-thin">
               Use Mochi to send and receive any amount of crypto, directly on
               your favorite Discord servers or Telegram groups, without having a
-              wallet or having to pay a single cent in fees!
+              wallet or having to pay a single cent in fees.
             </span>
 
-            <div className="flex flex-col gap-3 items-start pt-3 md:flex-row">
-              <Link
-                href="/add"
-                className="flex gap-x-2 items-center py-2 px-5 whitespace-nowrap rounded-md bg-discord"
-              >
-                <Icon icon="carbon:logo-discord" color="#fff" />
-                <span className="text-sm font-medium text-white md:text-base">
-                  Add Discord
-                </span>
-              </Link>
-              <a
-                href={TELEGRAM_LINK}
-                className="flex gap-x-2 items-center py-2 px-5 whitespace-nowrap rounded-md bg-telegram"
-              >
-                <Icon icon="bi:telegram" color="#fff" />
-                <span className="text-sm font-medium text-white md:text-base">
-                  Add Telegram
-                </span>
-              </a>
-            </div>
-            <div className="flex flex-col gap-y-1 mt-4">
-              <span className="text-sm font-medium">Soon available on:</span>
-              <div className="flex gap-2">
-                {[
-                  { icon: 'simple-icons:slack' },
-                  {
-                    icon: 'simple-icons:windowsterminal',
-                  },
-                ].map(({ icon }) => {
-                  return (
-                    <div
-                      key={icon}
-                      className="flex flex-col gap-y-1 items-center"
-                    >
-                      <div className="p-1.5 w-6 h-6 rounded bg-foreground-secondary">
-                        <Icon
-                          icon={icon}
-                          className="flex-shrink-0 w-full h-full text-white"
-                        />
-                      </div>
-                    </div>
-                  )
-                })}
-                <div className="flex flex-col gap-y-1 items-center">
-                  <div className="p-1.5 w-6 h-6 rounded bg-foreground-secondary">
-                    <Image
-                      alt=""
-                      width={24}
-                      height={24}
-                      className="rounded invert"
-                      src="/warpcast.png"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
+            <LivePlatforms className="mt-10" />
+            <SoonAvailablePlatforms className="mt-5" />
+            <Alert className="mt-5" appearance="info" size="sm">
+              <span>
+                To integrate and run the Mochi bot, embedded devices, or
+                leverage the userbase,{' '}
+                <a href="#" className="inline-block underline">
+                  check our Docs
+                </a>
+              </span>
+            </Alert>
           </div>
           <div className="flex relative flex-1">
-            <img className="mx-auto w-1/2 md:w-auto" src={home.src} alt="" />
+            <MochiWidget />
           </div>
         </div>
       </div>
       <Stats />
       <Feed />
-      <div className="flex flex-col mb-20">
-        <p className="mx-auto mb-3 text-xl">Mochi supports these chains</p>
-        <IntegratedChains />
-      </div>
-      <div className="flex justify-center py-7 px-8 bg-white md:py-14 md:px-16">
+      <TabbedFeatures
+        className="mt-20"
+        title="Faster, more fun payments"
+        data={[
+          {
+            id: 'tip-anyone',
+            title: 'Tip anyone',
+            body: (
+              <>
+                Send money to anyone, anywhere, and Mochi will automatically
+                calculate the split. You can send to a recipient by{' '}
+                <span className="text-sm leading-7 rounded border px-[3px] py-[2px] border-neutral-400">
+                  @role
+                </span>
+                ,{' '}
+                <span className="text-sm leading-7 rounded border px-[3px] py-[2px] border-neutral-400">
+                  #channel
+                </span>{' '}
+                or even on other socials.
+              </>
+            ),
+            image: '/developer/build-with-mochi-apis-1.png',
+          },
+          {
+            id: 'send-a-gift',
+            title: 'Send a gift',
+            body: 'Spread the joy to your frens and show them your heartwarming affection: buy them a Starbucks, celebrate a birthday, or just be generous – because you can!',
+            image: '/developer/build-with-mochi-apis-1.png',
+          },
+          {
+            id: 'create-a-paylink',
+            title: 'Create a pay link',
+            body: "We aggregate and build platform with latest advancements in blockchain and security, so you don't have to rebuild it.",
+            image: '/developer/build-with-mochi-apis-1.png',
+          },
+          {
+            id: 'transfer-nft',
+            title: 'Transfer NFT',
+            body: 'Our dedicated support team is always at your service, ensuring you have all you need to turn your ideas into reality.',
+            image: '/developer/build-with-mochi-apis-1.png',
+          },
+        ]}
+      />
+      <Divider />
+      <GridFeatures
+        title="Mochi goes Web3"
+        data={[
+          {
+            id: 'support-on-chain-and-hybrid',
+            title: 'Support On-chain & Hybrid',
+            body: 'Lorem ipsum dolor sit amet consectetur. Laoreet risus sagittis laoreet mi. Diam mauris praesent cursus adipiscing. Et aliquam tellus purus odio sapien id arcu egestas. Commodo venenatis aliquet nunc commodo.',
+            icon: <IconBlocksColored className="w-12 h-12" />,
+          },
+          {
+            id: 'self-custodial',
+            title: 'Self-custodial',
+            body: 'Lorem ipsum dolor sit amet consectetur. Laoreet risus sagittis laoreet mi. Diam mauris praesent cursus adipiscing. Et aliquam tellus purus odio sapien id arcu egestas. Commodo venenatis aliquet nunc commodo.',
+            icon: <IconHandKeyColored className="w-12 h-12" />,
+          },
+          {
+            id: 'invisible-wallets',
+            title: 'Invisible Wallets',
+            body: 'Lorem ipsum dolor sit amet consectetur. Laoreet risus sagittis laoreet mi. Diam mauris praesent cursus adipiscing. Et aliquam tellus purus odio sapien id arcu egestas. Commodo venenatis aliquet nunc commodo.',
+            icon: <IconWalletPasswordColored className="w-12 h-12" />,
+          },
+          {
+            id: 'multi-auth-method',
+            title: 'Multi Auth Method',
+            body: 'Lorem ipsum dolor sit amet consectetur. Laoreet risus sagittis laoreet mi. Diam mauris praesent cursus adipiscing. Et aliquam tellus purus odio sapien id arcu egestas. Commodo venenatis aliquet nunc commodo.',
+            icon: <IconLayersColored className="w-12 h-12" />,
+          },
+          {
+            id: 'account-abstraction',
+            title: 'Account Abstraction',
+            body: 'Lorem ipsum dolor sit amet consectetur. Laoreet risus sagittis laoreet mi. Diam mauris praesent cursus adipiscing. Et aliquam tellus purus odio sapien id arcu egestas. Commodo venenatis aliquet nunc commodo.',
+            icon: <IconPasswordLockColored className="w-12 h-12" />,
+          },
+          {
+            id: '?',
+            title: '?',
+            body: 'Lorem ipsum dolor sit amet consectetur. Laoreet risus sagittis laoreet mi. Diam mauris praesent cursus adipiscing. Et aliquam tellus purus odio sapien id arcu egestas. Commodo venenatis aliquet nunc commodo.',
+            icon: <IconPasswordLockColored className="w-12 h-12" />,
+          },
+        ]}
+      />
+      <Divider />
+      <SupportedPlatforms />
+      <div className="flex justify-center my-36 landing-block">
         <div className="flex flex-col-reverse gap-y-10 w-full max-w-5xl md:flex-row">
           <div className="flex flex-col flex-1 gap-y-1">
-            <p className="text-3xl">Simple, intuitive commands</p>
-            <span>
+            <p className="text-4xl text-neutral-900">
+              Simple, intuitive commands
+            </p>
+            <span className="mt-2 text-lg font-thin text-neutral-700">
               Mochi has a single, extensible command for tipping, airdropping on
               users.
             </span>
+            <LivePlatforms className="mt-3" />
           </div>
-          <div className="flex flex-1 justify-center items-center">
-            <div className="flex py-1 px-3 rounded border border-gray-100 shadow text-foreground bg-home-gray-600">
-              <span className="text-xl md:text-2xl">
-                /<span ref={command} />
-              </span>
-            </div>
+          <div className="flex flex-1 gap-2 justify-center items-center">
+            <Button className="!px-10">Login</Button>
+            <Button color="info" variant="outline">
+              View features
+              <IconArrowRight />
+            </Button>
           </div>
         </div>
       </div>
+      <Divider noSpace fullWidth />
     </Layout>
   )
 }
