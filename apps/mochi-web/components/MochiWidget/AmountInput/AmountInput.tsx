@@ -1,30 +1,30 @@
 import { Button } from '@consolelabs/ui-components'
 import { useEffect, useState } from 'react'
 import { abbreviateNumber, formatNumber } from '~utils/number'
-import { ModelBalance } from '~types/mochi-pay-schema'
+import { Balance, Wallet } from '~store'
 import { TokenPicker } from '../TokenPicker'
 import { MonikerAsset } from '../TokenPicker/type'
 
 interface AmountInputProps {
+  wallet?: Wallet
   accessToken: string | null
   onLoginRequest?: () => void
 }
 
 export const AmountInput: React.FC<AmountInputProps> = ({
+  wallet,
   accessToken,
   onLoginRequest,
 }) => {
-  const [selectedAsset, setSelectedAsset] = useState<
-    ModelBalance | MonikerAsset
-  >()
+  const [selectedAsset, setSelectedAsset] = useState<Balance | MonikerAsset>()
   const [tipAmount, setTipAmount] = useState('')
   const isMonikerAsset = selectedAsset && 'moniker' in selectedAsset
   const balance = isMonikerAsset
-    ? formatNumber(selectedAsset?.amount ?? '0')
-    : formatNumber(selectedAsset?.amount ?? '0')
+    ? formatNumber(selectedAsset?.asset_balance ?? 0)
+    : formatNumber(selectedAsset?.asset_balance ?? 0)
   const balanceUnit = isMonikerAsset
-    ? selectedAsset.token?.name
-    : (selectedAsset as MonikerAsset)?.moniker.moniker
+    ? (selectedAsset as MonikerAsset)?.moniker.moniker
+    : selectedAsset?.token?.symbol
   const unitPrice = selectedAsset?.token?.price
     ? parseFloat(selectedAsset?.amount || '0') / selectedAsset.token.price
     : 0
@@ -57,7 +57,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   return (
     <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-3">
       <div className="flex justify-between items-center">
-        <TokenPicker onSelect={setSelectedAsset} />
+        <TokenPicker onSelect={setSelectedAsset} balances={wallet?.balances} />
       </div>
       <div className="flex flex-col gap-y-2 py-6 px-4 rounded-lg bg-white-pure">
         <div className="flex flex-1 justify-between items-center">

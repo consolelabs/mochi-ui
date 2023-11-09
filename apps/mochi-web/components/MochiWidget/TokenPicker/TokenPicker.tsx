@@ -8,10 +8,10 @@ import {
   PopoverTrigger,
   PopoverContent,
 } from '@consolelabs/ui-components'
-import { ModelBalance } from '~types/mochi-pay-schema'
+import { Balance } from '~store'
 import { TokenList } from './TokenList'
 import { MonikerAsset, SectionBase } from './type'
-import { TokenAssets, MonikerAssets } from './data'
+import { DefaultBalances, MonikerAssets } from './data'
 import { MonikerList } from './MonikerList'
 import { sectionFormatter } from './utils'
 
@@ -27,8 +27,8 @@ const TokenTabs = [
 ]
 
 interface TokenPickerProps {
-  balances?: ModelBalance[]
-  onSelect?: (item: ModelBalance | MonikerAsset) => void
+  balances?: Balance[]
+  onSelect?: (item: Balance | MonikerAsset) => void
 }
 
 interface TokenButtonProps {
@@ -44,7 +44,7 @@ const TokenButton = (props: TokenButtonProps) => (
         <img
           alt={`${props.name} icon`}
           className="object-contain rounded-full w-[22px] h-[22px]"
-          src={props.icon}
+          src={props.icon || '/logo.png'}
         />
       </span>
     ) : (
@@ -60,19 +60,25 @@ const TokenButton = (props: TokenButtonProps) => (
   </div>
 )
 
-export const TokenPicker: React.FC<TokenPickerProps> = ({ onSelect }) => {
+export const TokenPicker: React.FC<TokenPickerProps> = ({
+  balances,
+  onSelect,
+}) => {
+  const [tokenBalances, setTokenBalances] = useState<Balance[]>(
+    balances || DefaultBalances,
+  )
   const [isOpenSelector, setIsOpenSelector] = useState(false)
-  const [selectedAsset, setSelectedAsset] = useState<
-    ModelBalance | MonikerAsset
-  >(TokenAssets[0])
+  const [selectedAsset, setSelectedAsset] = useState<Balance | MonikerAsset>(
+    tokenBalances[0],
+  )
   const [searchTerm, setSearchTerm] = useState('')
-  const filteredTokens = useMemo<ModelBalance[]>(
+  const filteredTokens = useMemo<Balance[]>(
     () =>
-      TokenAssets.filter(
+      tokenBalances.filter(
         (bal) =>
           bal.token?.name?.toLowerCase().includes(searchTerm.toLowerCase()),
       ),
-    [searchTerm],
+    [searchTerm, tokenBalances],
   )
   const filteredMonikers = useMemo<SectionBase<MonikerAsset>[]>(() => {
     const filteredData = MonikerAssets.filter(
@@ -87,10 +93,16 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({ onSelect }) => {
 
   // TODO: Init selected asset. Maybe remove after data binding
   useEffect(() => {
-    onSelect?.(TokenAssets[0])
+    onSelect?.(tokenBalances[0])
   }, [])
 
-  function handleTokenSelect(asset: ModelBalance) {
+  useEffect(() => {
+    if (balances) {
+      setTokenBalances(balances)
+    }
+  }, [balances])
+
+  function handleTokenSelect(asset: Balance) {
     setSelectedAsset(asset)
     setIsOpenSelector(false)
     onSelect?.(asset)
@@ -119,7 +131,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({ onSelect }) => {
           isToken={isTokenSelected}
           name={
             isTokenSelected
-              ? selectedAsset.token?.name
+              ? selectedAsset.token?.symbol
               : (selectedAsset as MonikerAsset).moniker.moniker
           }
           icon={

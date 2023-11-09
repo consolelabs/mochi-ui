@@ -1,12 +1,12 @@
-import { ModelBalance } from '~types/mochi-pay-schema'
+import { Balance } from '~store'
 import { MonikerAsset } from './type'
 
-export const TokenAssets: ModelBalance[] = [
+export const DefaultBalances: Balance[] = [
   {
     id: '1',
     token: {
       id: '1',
-      name: 'BTC',
+      symbol: 'BTC',
       icon: 'https://assets.coingecko.com/coins/images/1/small/bitcoin.png?1696501400',
     },
   },
@@ -14,7 +14,7 @@ export const TokenAssets: ModelBalance[] = [
     id: '2',
     token: {
       id: '2',
-      name: 'ETH',
+      symbol: 'ETH',
       icon: 'https://assets.coingecko.com/coins/images/279/small/ethereum.png?1696479627',
     },
   },
@@ -22,7 +22,7 @@ export const TokenAssets: ModelBalance[] = [
     id: '3',
     token: {
       id: '3',
-      name: 'USDT',
+      symbol: 'USDT',
       icon: 'https://assets.coingecko.com/coins/images/325/small/Tether.png?1696501661',
     },
   },
@@ -30,7 +30,7 @@ export const TokenAssets: ModelBalance[] = [
     id: '4',
     token: {
       id: '4',
-      name: 'BNB',
+      symbol: 'BNB',
       icon: 'https://assets.coingecko.com/coins/images/825/small/bnb-icon2_2x.png?1644979850',
     },
   },
@@ -38,7 +38,7 @@ export const TokenAssets: ModelBalance[] = [
     id: '5',
     token: {
       id: '5',
-      name: 'FTM',
+      symbol: 'FTM',
       icon: 'https://assets.coingecko.com/coins/images/4001/small/Fantom_round.png?1669652346',
     },
   },
@@ -46,7 +46,7 @@ export const TokenAssets: ModelBalance[] = [
     id: '6',
     token: {
       id: '6',
-      name: 'AAVE',
+      symbol: 'AAVE',
       icon: 'https://assets.coingecko.com/coins/images/12645/small/AAVE.png',
     },
   },
@@ -54,7 +54,7 @@ export const TokenAssets: ModelBalance[] = [
     id: '7',
     token: {
       id: '7',
-      name: 'MATIC',
+      symbol: 'MATIC',
       icon: 'https://assets.coingecko.com/coins/images/4713/small/matic-token-icon.png?1624446912',
     },
   },
@@ -62,7 +62,7 @@ export const TokenAssets: ModelBalance[] = [
     id: '8',
     token: {
       id: '8',
-      name: 'USDC',
+      symbol: 'USDC',
       icon: 'https://assets.coingecko.com/coins/images/6319/small/USD_Coin_icon.png',
     },
   },
@@ -70,7 +70,7 @@ export const TokenAssets: ModelBalance[] = [
     id: '9',
     token: {
       id: '9',
-      name: 'SOL',
+      symbol: 'SOL',
       icon: 'https://assets.coingecko.com/coins/images/4128/small/solana.png?1696504756',
     },
   },
@@ -78,7 +78,7 @@ export const TokenAssets: ModelBalance[] = [
     id: '10',
     token: {
       id: '10',
-      name: 'ARB',
+      symbol: 'ARB',
       icon: 'https://assets.coingecko.com/coins/images/16547/small/photo_2023-03-29_21.47.00.jpeg?1696516109',
     },
   },
@@ -86,7 +86,7 @@ export const TokenAssets: ModelBalance[] = [
     id: '11',
     token: {
       id: '11',
-      name: 'LINK',
+      symbol: 'LINK',
       icon: 'https://assets.coingecko.com/coins/images/877/small/chainlink-new-logo.png?1696502009',
     },
   },

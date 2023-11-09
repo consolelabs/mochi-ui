@@ -10,7 +10,7 @@ interface Request {
 
 interface TipWidgetState {
   step: number
-  from?: Wallet
+  fromWallet?: Wallet
   setStep: (s: number) => void
   request?: Request
   updateRequestMessage: (message: string) => void
@@ -74,5 +74,6 @@ export const useTipWidget = create<TipWidgetState>((set, get) => ({
       set((s) => ({ ...s, isTransferring: false }))
     }
   },
-  updateSourceWallet: (wallet: Wallet) => set((s) => ({ ...s, from: wallet })),
+  updateSourceWallet: (wallet: Wallet) =>
+    set((s) => ({ ...s, fromWallet: wallet })),
 }))

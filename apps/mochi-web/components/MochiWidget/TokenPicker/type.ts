@@ -1,6 +1,6 @@
 // TODO: replace it with Mochi Types
 import { ModelMonikerConfig, ModelToken } from 'types/mochi-schema'
-import { ModelBalance } from '~types/mochi-pay-schema'
+import { Balance } from '~store'
 
 export const TokenTypes = ['Token', 'Moniker']
 
@@ -21,7 +21,7 @@ export type TokenAsset = {
   icon: string
 }
 
-export type MonikerAsset = ModelBalance & {
+export type MonikerAsset = Balance & {
   moniker: ModelMonikerConfig
   group: string
   token_amount: string // token unit

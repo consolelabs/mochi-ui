@@ -3,11 +3,17 @@ import { ModelBalance, ModelChain } from '~types/mochi-pay-schema'
 import { API, GET_PATHS } from '~constants/api'
 import { ViewAssociatedAccount, ViewProfile } from '~types/mochi-profile-schema'
 import { AddressChainType } from '@consolelabs/mochi-ui'
+import { epsilonToDecimalNumber } from '~utils/number'
+
+export type Balance = ModelBalance & {
+  asset_balance?: number
+  usd_balance?: number
+}
 
 export type Wallet = {
   wallet: ViewAssociatedAccount
   chain?: ModelChain
-  balances?: ModelBalance[]
+  balances?: Balance[]
   total?: number
   loading?: boolean
 }
@@ -74,9 +80,22 @@ export const useWalletStore = create<State>((set) => ({
     // Default Mochi Wallets
     const mochiWallet: Wallet = structuredClone(MochiWalletBase)
     mochiWallet.wallet.platform_identifier = me.profile_name
-    mochiWallet.balances = await API.MOCHI_PAY.get(
+    const mochiBalances: Balance[] = await API.MOCHI_PAY.get(
       GET_PATHS.MOCHI_BALANCES(me.id ?? ''),
     ).json((r) => r.data)
+    // Calculate assets
+    let total = 0
+    mochiWallet.balances = mochiBalances.map((b) => {
+      const assetBal = epsilonToDecimalNumber(b.amount ?? '0', b.token?.decimal)
+      const usdBal = assetBal * (b.token?.price ?? 0)
+      total += usdBal
+      return {
+        ...b,
+        asset_balance: assetBal,
+        usd_balance: usdBal,
+      }
+    })
+    mochiWallet.total = total
     set({ wallets: [mochiWallet, ...wallets] })
   },
 }))

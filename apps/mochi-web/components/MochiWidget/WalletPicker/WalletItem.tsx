@@ -2,7 +2,6 @@ import { formatNumber } from '~utils/number'
 import { Heading } from '@consolelabs/ui-components'
 import { truncateWallet } from '~utils/string'
 import { Wallet } from '~store'
-import Image from 'next/image'
 
 interface ItemProps {
   item: Wallet
@@ -15,12 +14,10 @@ export const WalletItem: React.FC<ItemProps> = ({ item, onSelect }) => (
     key={item.wallet.platform}
     onClick={() => onSelect?.(item)}
   >
-    <Image
+    <img
       alt={`${item.chain?.name} icon`}
       className="w-6 h-6 rounded-full object-contain"
       src={item.chain?.icon || '/logo.png'}
-      width={24}
-      height={24}
     />
     <div className="flex flex-col flex-1">
       <Heading as="h3" className="text-sm text-ellipsis">

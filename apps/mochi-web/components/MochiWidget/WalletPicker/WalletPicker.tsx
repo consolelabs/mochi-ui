@@ -8,7 +8,6 @@ import {
 } from '@consolelabs/ui-components'
 import { Wallet, useWalletStore } from '~store'
 import { truncateWallet } from '~utils/string'
-import Image from 'next/image'
 import { WalletList } from './WalletList'
 
 const DefaultWallet: Wallet = {
@@ -39,9 +38,9 @@ export const WalletPicker: React.FC<Props> = ({
 
   useEffect(() => {
     if (!accessToken) {
-      setSelectedWallet(DefaultWallet)
+      handleWalletSelect(DefaultWallet)
     } else if (wallets.length > 0) {
-      setSelectedWallet(wallets[0])
+      handleWalletSelect(wallets[0])
     }
   }, [accessToken, wallets])
 
@@ -63,12 +62,10 @@ export const WalletPicker: React.FC<Props> = ({
         className="flex gap-x-3 items-center py-2.5 px-4 bg-[#017AFF] bg-opacity-10 rounded-lg text-left"
         onClick={handleTriggerClick}
       >
-        <Image
+        <img
           className="flex-shrink-0 w-6 h-6"
           src={selectedWallet.chain?.icon || '/logo.png'}
           alt={`${selectedWallet.chain?.name} icon`}
-          width={24}
-          height={24}
         />
         <div className="flex flex-col flex-1 justify-between">
           <span className="text-sm font-medium text-blue-700">
