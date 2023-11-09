@@ -6,8 +6,8 @@ import {
   IconTwinkle,
   IconPlus,
 } from '@consolelabs/icons'
-import Badge from './badge'
-import type { BadgeProps } from './badge'
+import Badge from '../src/badge'
+import type { BadgeProps } from '../src/badge'
 
 const args: BadgeProps[] = [
   {

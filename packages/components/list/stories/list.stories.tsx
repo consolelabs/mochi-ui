@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Heading } from '@consolelabs/heading'
-import List from './list'
+import List from '../src/list'
 
 const meta: Meta<typeof List> = {
   title: 'ui/List',

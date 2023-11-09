@@ -1,15 +1,26 @@
 import * as AccordionPrimitive from '@radix-ui/react-accordion'
 import type { ElementRef, ComponentPropsWithoutRef, ReactNode } from 'react'
 import { forwardRef } from 'react'
-import clsx from 'clsx'
 import { IconChevronDown } from '@consolelabs/icons'
+import { accordion } from '@consolelabs/theme'
+
+const {
+  accordionRootClsx,
+  accordionTriggerIconClsx,
+  accordionTriggerLeftIconClsx,
+  accordionHeaderClsx,
+  accordionTriggerWrapperClsx,
+  accordionTriggerClsx,
+  accordionContentWrapperClsx,
+  accordionContentClsx,
+} = accordion
 
 const Accordion = forwardRef<
   ElementRef<typeof AccordionPrimitive.Root>,
   ComponentPropsWithoutRef<typeof AccordionPrimitive.Root>
 >(({ className, ...props }, ref) => (
   <AccordionPrimitive.Root
-    className={clsx('p-2 space-y-1 rounded-lg shadow-md', className)}
+    className={accordionRootClsx({ className })}
     ref={ref}
     {...props}
   />
@@ -21,11 +32,7 @@ const AccordionItem = forwardRef<
   ElementRef<typeof AccordionPrimitive.Item>,
   ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
 >(({ className, ...props }, ref) => (
-  <AccordionPrimitive.Item
-    className={clsx('', className)}
-    ref={ref}
-    {...props}
-  />
+  <AccordionPrimitive.Item className={className} ref={ref} {...props} />
 ))
 AccordionItem.displayName = 'AccordionItem'
 
@@ -51,8 +58,7 @@ const AccordionTrigger = forwardRef<
     ...restProps
   } = props
 
-  const iconStyle =
-    'text-neutral-500 shrink-0 transition-transform duration-200 text-base'
+  const iconStyle = accordionTriggerIconClsx({})
   const renderRightIcon = (
     <span className={iconStyle} id={!rightIcon ? 'chevron' : undefined}>
       {!rightIcon ? <IconChevronDown /> : rightIcon}
@@ -60,21 +66,18 @@ const AccordionTrigger = forwardRef<
   )
 
   const renderLeftIcon = leftIcon ? (
-    <span className="text-xl">{leftIcon}</span>
+    <span className={accordionTriggerLeftIconClsx({})}>{leftIcon}</span>
   ) : null
 
   return (
-    <AccordionPrimitive.Header className="flex">
+    <AccordionPrimitive.Header className={accordionHeaderClsx({})}>
       <AccordionPrimitive.Trigger
-        className={clsx(
-          'flex-1 flex font-medium text-sm items-center justify-between [&[data-state=open]>#chevron]:rotate-180 gap-3 p-2',
-          wrapperClassName,
-        )}
+        className={accordionTriggerWrapperClsx({ className: wrapperClassName })}
         ref={ref}
         {...restProps}
       >
         {renderLeftIcon}
-        <span className={clsx('flex flex-1', className)}>{children}</span>
+        <span className={accordionTriggerClsx({ className })}>{children}</span>
         {renderRightIcon}
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
@@ -102,20 +105,11 @@ const AccordionContent = forwardRef<
   } = props
   return (
     <AccordionPrimitive.Content
-      className={clsx('text-sm', wrapperClassName)}
+      className={accordionContentWrapperClsx({ className: wrapperClassName })}
       ref={ref}
       {...restProps}
     >
-      <div
-        className={clsx(
-          'py-2',
-          {
-            'px-10': hasPadding,
-            'px-2 ': !hasPadding,
-          },
-          className,
-        )}
-      >
+      <div className={accordionContentClsx({ className, hasPadding })}>
         {children}
       </div>
     </AccordionPrimitive.Content>

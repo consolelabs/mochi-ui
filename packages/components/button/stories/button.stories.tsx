@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { IconConnectWallets, IconSpinner } from '@consolelabs/icons'
-import Button from './button'
+import Button from '../src/button'
 
 const meta: Meta<typeof Button> = {
   title: 'ui/Button',

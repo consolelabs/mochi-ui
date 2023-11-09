@@ -1,6 +1,15 @@
 import React, { useCallback, useRef } from 'react'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
-import clsx from 'clsx'
+import { list } from '@consolelabs/theme'
+
+const {
+  listWrapperClsx,
+  listViewportClsx,
+  listViewportContentClsx,
+  listScrollbarClsx,
+  listThumbClsx,
+  listCornerClsx,
+} = list
 
 export type ListRenderItem<Item> = (
   item: Item,
@@ -57,25 +66,28 @@ export default function List<Item extends NonNullable<object> | string>({
 
   return (
     <ScrollArea.Root
-      className={clsx('overflow-hidden', rootClassName)}
+      className={listWrapperClsx({ className: rootClassName })}
       style={rootStyle}
     >
       <ScrollArea.Viewport
-        className={clsx('w-full h-full border-inherit', viewportClassName)}
+        className={listViewportClsx({ className: viewportClassName })}
         onScroll={handleScroll}
         style={viewportStyle}
       >
-        <ul className={clsx('space-y-1', listClassName)} style={listStyle}>
+        <ul
+          className={listViewportContentClsx({ className: listClassName })}
+          style={listStyle}
+        >
           {data.length ? data.map(renderItem) : ListEmpty}
         </ul>
       </ScrollArea.Viewport>
       <ScrollArea.Scrollbar
-        className="flex select-none touch-none p-0.5 bg-gray-200 transition-colors w-2 hover:bg-gray-300"
+        className={listScrollbarClsx({})}
         orientation="vertical"
       >
-        <ScrollArea.Thumb className="flex-1 bg-gray-600 rounded-lg relative before:content-[''] before:absolute before:w-full before:h-full before:min-w-[44px] before:min-h-[44px] before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2" />
+        <ScrollArea.Thumb className={listThumbClsx({})} />
       </ScrollArea.Scrollbar>
-      <ScrollArea.Corner className="bg-gray-300" />
+      <ScrollArea.Corner className={listCornerClsx({})} />
     </ScrollArea.Root>
   )
 }
