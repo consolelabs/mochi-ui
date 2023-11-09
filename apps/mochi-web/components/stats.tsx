@@ -18,11 +18,15 @@ function Spotlight({
   subtitle: string
 }) {
   return (
-    <div className="flex gap-x-5 items-center">
+    <div className="flex flex-col gap-y-2 items-center md:flex-row md:gap-x-5">
       {icon}
-      <p className="flex flex-col">
-        <span className="text-lg leading-8">{title}</span>
-        <span className="text-sm leading-5 text-neutral-600">{subtitle}</span>
+      <p className="flex flex-col items-center">
+        <span className="text-sm leading-5 md:text-lg md:leading-8">
+          {title}
+        </span>
+        <span className="text-xs leading-4 md:text-sm md:leading-5 text-neutral-600">
+          {subtitle}
+        </span>
       </p>
     </div>
   )
@@ -34,7 +38,7 @@ export default function Stats() {
   )
 
   return (
-    <div className="flex justify-between items-center my-10 landing-block">
+    <div className="flex justify-between items-center my-5 mt-10 md:my-10 landing-block">
       <Spotlight
         icon={<IconHeartColored className="w-8 h-8" />}
         title={`${data?.tips_given ?? 1602}+`}

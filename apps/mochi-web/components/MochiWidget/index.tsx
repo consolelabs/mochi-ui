@@ -50,7 +50,8 @@ export default function MochiWidget() {
     <div
       style={{
         height: 640,
-        width: 440,
+        maxWidth: 440,
+        minWidth: 340,
       }}
       className="overflow-hidden p-3 flex relative z-10 flex-col rounded-2xl border border-[#e5e4e3] shadow-xl bg-white-pure"
     >
