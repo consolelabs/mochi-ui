@@ -1,5 +1,5 @@
 {
   "extends": "tsconfig/react-library.json",
-  "include": ["src", "index.ts"],
+  "include": ["src", "index.ts", "stories/select.stories.tsx"],
   "exclude": ["dist", "node_modules"]
 }
