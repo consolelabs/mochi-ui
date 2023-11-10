@@ -5,11 +5,11 @@ import {
   IconCrossCircled,
   IconExclamationTriangle,
 } from '@consolelabs/icons'
-import { alert, AlertStyleProps } from '@consolelabs/theme'
+import { alert, AlertProps } from '@consolelabs/theme'
 
 const { alertCva, alertIconClsx, alertContentClsx, alertTitleClsx } = alert
 
-type Appearance = Exclude<AlertStyleProps['appearance'], null | undefined>
+type Appearance = Exclude<AlertProps['appearance'], null | undefined>
 
 const icons = {
   info: IconInfoCircled,
@@ -24,7 +24,7 @@ export default function Alert({
   className,
   appearance: _appearance,
   size,
-}: AlertStyleProps) {
+}: AlertProps) {
   const appearance = _appearance ?? 'info'
   const Icon = icons[appearance]
 

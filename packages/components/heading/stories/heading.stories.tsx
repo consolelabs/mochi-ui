@@ -1,4 +1,4 @@
-import Heading from './heading'
+import Heading from '../src/heading'
 
 export default {
   title: 'ui/Heading',

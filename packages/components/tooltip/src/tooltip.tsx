@@ -1,5 +1,5 @@
 import * as RadixTooltip from '@radix-ui/react-tooltip'
-import { tooltip, TooltipStyleProps } from '@consolelabs/theme'
+import { tooltip, TooltipProps } from '@consolelabs/theme'
 
 const { tooltipCva, tooltipArrowCva, tooltipTriggerClsx } = tooltip
 
@@ -9,7 +9,7 @@ export default function Tooltip({
   theme,
   arrow = 'none',
   className,
-}: TooltipStyleProps) {
+}: TooltipProps) {
   const [side, align] =
     arrow === 'none'
       ? []
