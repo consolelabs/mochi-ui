@@ -43,11 +43,9 @@ const tabTriggerVariants = cva(
 const tabTriggerWrapperClassName =
   'inline-flex flex-1 px-2 border-r border-r-neutral-200 last:border-none sm:border-none'
 
-const tabs = {
+export const tabs = {
   tabTriggerVariants,
   tabTriggerWrapperClassName,
 }
 
 export type TabTriggerProps = VariantProps<typeof tabTriggerVariants>
-
-export { tabs }

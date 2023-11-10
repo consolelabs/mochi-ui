@@ -58,7 +58,7 @@ const iconWrapperCva = cva('', {
   },
 })
 
-const select = {
+export const select = {
   group,
   content,
   label,
@@ -73,5 +73,3 @@ const select = {
 }
 
 export type selectItemProps = VariantProps<typeof itemCva>
-
-export { select }

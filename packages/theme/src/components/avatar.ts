@@ -15,12 +15,10 @@ const avatarCva = cva(['flex-shrink-0 rounded-full'], {
   },
 })
 
-const avatar = { avatarCva }
+export const avatar = { avatarCva }
 
 export type AvatarStyleProps = VariantProps<typeof avatarCva> & {
   src: string
   smallSrc?: string
   fallback?: string
 }
-
-export { avatar }

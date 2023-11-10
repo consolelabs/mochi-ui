@@ -23,10 +23,8 @@ const inputVariants = cva(
   },
 )
 
-const input = {
+export const input = {
   inputVariants,
 }
 
 export type InputProps = VariantProps<typeof inputVariants>
-
-export { input }

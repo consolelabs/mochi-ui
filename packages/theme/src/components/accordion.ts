@@ -53,7 +53,7 @@ const accordionContentClsx = ({
     className,
   )
 
-const accordion = {
+export const accordion = {
   accordionRootClsx,
   accordionTriggerIconClsx,
   accordionTriggerLeftIconClsx,
@@ -63,5 +63,3 @@ const accordion = {
   accordionContentWrapperClsx,
   accordionContentClsx,
 }
-
-export { accordion }
