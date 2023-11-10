@@ -45,11 +45,24 @@ import { consolelabs } from '@consolelabs/core'
 module.exports = {
   content: [
     // ...
-    './node_modules/@consolelabs/theme/src/components/**/*.{js,jsx,ts,tsx}',
+    './node_modules/@consolelabs/theme/dist/components/**/*.{js,jsx,ts,tsx}',
   ],
   plugins: [consolelabs()],
 }
 ```
+
+**3. Configuring pnpm (Optional)**
+
+For those utilizing pnpm, it's necessary to modify your `.npmrc` file with the
+following code. This step ensures that the package paths align correctly,
+allowing TailwindCSS to accurately interpret Tailwind class names:
+
+```sh
+public-hoist-pattern[]=*@consolelabs/*
+```
+
+Once you've updated the `.npmrc` file, execute pnpm install once more to
+guarantee proper installation of the dependencies.
 
 ### Individual Installation
 
@@ -109,6 +122,19 @@ function App() {
   return <Button>Press me</Button>
 }
 ```
+
+**5. Configuring pnpm (Optional)**
+
+For those utilizing pnpm, it's necessary to modify your `.npmrc` file with the
+following code. This step ensures that the package paths align correctly,
+allowing TailwindCSS to accurately interpret Tailwind class names:
+
+```sh
+public-hoist-pattern[]=*@consolelabs/*
+```
+
+Once you've updated the `.npmrc` file, execute pnpm install once more to
+guarantee proper installation of the dependencies.
 
 ## Design Philosophy
 
