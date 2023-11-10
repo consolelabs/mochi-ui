@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-import-module-exports
-import { mochi } from 'tailwind-config/plugin'
+import { consolelabs } from 'tailwind-config/plugin'
 
 module.exports = {
   content: [
@@ -153,5 +153,5 @@ module.exports = {
       },
     },
   },
-  plugins: [mochi()],
+  plugins: [consolelabs()],
 }
