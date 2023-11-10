@@ -9,7 +9,7 @@ export function SoonAvailablePlatforms({
 }) {
   return (
     <div className={clsx('flex flex-col', className)}>
-      <span className="text-sm font-thin text-neutral-600">
+      <span className="text-sm font-normal text-neutral-600">
         Soon available on
       </span>
       <ul className="flex flex-wrap gap-3 mt-2">

@@ -53,7 +53,7 @@ export default function MochiWidget() {
         maxWidth: 440,
         minWidth: 340,
       }}
-      className="overflow-hidden p-3 flex relative z-10 flex-col rounded-2xl border border-[#e5e4e3] shadow-xl bg-white-pure"
+      className="w-screen overflow-hidden p-3 flex relative z-10 flex-col rounded-2xl border border-[#e5e4e3] shadow-xl bg-white-pure"
     >
       <div className="flex items-center border-b border-[#e5e4e3] pb-2">
         {tabs.map((t, i) => {
@@ -66,7 +66,7 @@ export default function MochiWidget() {
                 type="button"
                 onClick={() => setActiveTab(t)}
                 className={clsx(
-                  'whitespace-nowrap text-sm font-text flex-1 flex justify-center items-center gap-x-1',
+                  'whitespace-nowrap text-sm flex-1 flex justify-center items-center gap-x-1',
                   {
                     'text-[#343433]': t.id === activeTab.id,
                     'text-[#848281]': t.id !== activeTab.id,

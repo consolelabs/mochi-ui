@@ -27,7 +27,7 @@ function Icons() {
         onChange={(e) => setSearch((e.target as HTMLInputElement).value)}
         placeholder="Search icons..."
       />
-      <div className="grid grid-cols-10 gap-3 auto-row-auto">
+      <div className="grid grid-cols-7 gap-3 md:grid-cols-10 auto-row-auto">
         {Object.entries(icons)
           .filter((i) => i[0].toLowerCase().includes(search))
           .sort((a, b) => {
