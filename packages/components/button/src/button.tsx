@@ -3,8 +3,6 @@ import { IconThreeDotLoading } from '@consolelabs/icons'
 
 const { buttonCva, buttonloadIndicatorCva, buttonLoadingIconClsx } = button
 
-type ButtonProps = ButtonStyleProps
-
 export default function Button({
   children,
   variant,
