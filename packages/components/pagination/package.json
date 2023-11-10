@@ -1,5 +1,5 @@
 {
-  "name": "@consolelabs/modal",
+  "name": "@consolelabs/pagination",
   "version": "0.0.1",
   "sideEffects": false,
   "main": "src/index.ts",
@@ -34,8 +34,7 @@
   },
   "dependencies": {
     "@consolelabs/icons": "workspace:*",
-    "@consolelabs/theme": "workspace:*",
-    "@radix-ui/react-dialog": "^1.0.5"
+    "@consolelabs/theme": "workspace:*"
   },
   "clean-package": "../../../clean-package.config.json"
 }
