@@ -43,8 +43,7 @@ export const SizeLg: StoryObj<typeof Checkbox> = {
 }
 
 export const WithControll: StoryObj<typeof Checkbox> = {
-  render() {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+  render: function Render() {
     const [isChecked, setIsChecked] = useState<CheckedState>(false)
     return (
       <div className="flex gap-4">
