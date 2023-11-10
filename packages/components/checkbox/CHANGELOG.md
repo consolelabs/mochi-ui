@@ -1,5 +1,17 @@
 # @consolelabs/checkbox
 
+## 0.0.3
+
+### Patch Changes
+
+- [#134](https://github.com/consolelabs/websites/pull/134)
+  [`1242eb9`](https://github.com/consolelabs/websites/commit/1242eb9215f4753ca6ca0edb8f424212f0508b2b)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Bump new icon version
+
+- Updated dependencies
+  [[`1242eb9`](https://github.com/consolelabs/websites/commit/1242eb9215f4753ca6ca0edb8f424212f0508b2b)]:
+  - @consolelabs/icons@0.0.3
+
 ## 0.0.2
 
 ### Patch Changes

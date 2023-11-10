@@ -1,5 +1,13 @@
 # @consolelabs/button
 
+## 0.0.7
+
+### Patch Changes
+
+- Updated dependencies
+  [[`1242eb9`](https://github.com/consolelabs/websites/commit/1242eb9215f4753ca6ca0edb8f424212f0508b2b)]:
+  - @consolelabs/icons@0.0.3
+
 ## 0.0.6
 
 ### Patch Changes
