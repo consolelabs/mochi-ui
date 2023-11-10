@@ -1,5 +1,22 @@
 # @consolelabs/core
 
+## 0.0.4
+
+### Patch Changes
+
+- [#125](https://github.com/consolelabs/websites/pull/125)
+  [`44e1596`](https://github.com/consolelabs/websites/commit/44e1596633b4d5532fe922eab5204ea8869607ff)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Bump new version
+
+- Updated dependencies
+  [[`44e1596`](https://github.com/consolelabs/websites/commit/44e1596633b4d5532fe922eab5204ea8869607ff)]:
+  - @consolelabs/toggle-button@0.0.3
+  - @consolelabs/section-list@0.0.2
+  - @consolelabs/input-field@0.0.3
+  - @consolelabs/tooltip@0.0.2
+  - @consolelabs/button@0.0.5
+  - @consolelabs/sidebar@0.0.3
+
 ## 0.0.3
 
 ### Patch Changes
