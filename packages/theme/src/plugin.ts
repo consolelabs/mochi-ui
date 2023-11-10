@@ -1,6 +1,6 @@
 import plugin from 'tailwindcss/plugin.js'
 
-export const mochi = () =>
+export const consolelabs = () =>
   plugin(() => {}, {
     theme: {
       extend: {

@@ -41,7 +41,7 @@ Tailwind CSS. Then you need to add the following code to your
 
 ```js
 // tailwind.config.js
-import { mochi } from '@consolelabs/theme'
+import { consolelabs } from '@consolelabs/core'
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -49,7 +49,7 @@ module.exports = {
     // ...
     './node_modules/@consolelabs/theme/src/components/**/*.{js,jsx,ts,tsx}',
   ],
-  plugins: [mochi()],
+  plugins: [consolelabs()],
 }
 ```
 
@@ -89,7 +89,7 @@ to your `tailwind.config.js` file:
 
 ```js
 // tailwind.config.js
-import { mochi } from '@consolelabs/theme'
+import { consolelabs } from '@consolelabs/theme'
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -99,7 +99,7 @@ module.exports = {
     // or you can use a glob pattern (multiple component styles)
     './node_modules/@consolelabs/theme/dist/components/(button|snippet|code|input).js',
   ],
-  plugins: [mochi()],
+  plugins: [consolelabs()],
 }
 ```
 
