@@ -1,5 +1,29 @@
 # @consolelabs/core
 
+## 0.0.6
+
+### Patch Changes
+
+- [#134](https://github.com/consolelabs/websites/pull/134)
+  [`1242eb9`](https://github.com/consolelabs/websites/commit/1242eb9215f4753ca6ca0edb8f424212f0508b2b)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Bump new icon version
+
+- Updated dependencies
+  [[`1242eb9`](https://github.com/consolelabs/websites/commit/1242eb9215f4753ca6ca0edb8f424212f0508b2b)]:
+  - @consolelabs/checkbox@0.0.3
+  - @consolelabs/icons@0.0.3
+  - @consolelabs/accordion@0.0.5
+  - @consolelabs/alert@0.0.5
+  - @consolelabs/badge@0.0.5
+  - @consolelabs/button@0.0.7
+  - @consolelabs/dropdown@0.0.5
+  - @consolelabs/input@0.0.1
+  - @consolelabs/input-field@0.0.3
+  - @consolelabs/login-widget@0.0.4
+  - @consolelabs/popover@0.0.4
+  - @consolelabs/sidebar@0.0.5
+  - @consolelabs/toggle-button@0.0.3
+
 ## 0.0.5
 
 ### Patch Changes
