@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-import-module-exports
-import { mochi } from 'tailwind-config/plugin'
+import { consolelabs } from 'tailwind-config/plugin'
 
 module.exports = {
   content: [
@@ -92,7 +92,7 @@ module.exports = {
         telegram: {
           DEFAULT: '#26A8EA',
         },
-        mochi: {
+        consolelabs: {
           DEFAULT: '#E88B88',
           50: '#FBE9E8',
           100: '#F9DEDD',
@@ -153,5 +153,5 @@ module.exports = {
       },
     },
   },
-  plugins: [mochi()],
+  plugins: [consolelabs()],
 }

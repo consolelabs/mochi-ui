@@ -1,4 +1,4 @@
-import { mochi } from '@consolelabs/theme'
+import { consolelabs } from '@consolelabs/theme'
 
 module.exports = {
   content: [
@@ -6,5 +6,5 @@ module.exports = {
     '../components/*/stories/**/*.stories.{js,jsx,ts,tsx}',
     '../theme/src/components/**/*.{js,jsx,ts,tsx}',
   ],
-  plugins: [mochi()],
+  plugins: [consolelabs()],
 }
