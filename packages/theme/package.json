@@ -14,7 +14,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsup src --dts",
-    "lint": "eslint src/",
+    "lint": "eslint src/ --cache",
     "dev": "tsup --watch",
     "check-types": "tsc --noEmit",
     "prepack": "clean-package",

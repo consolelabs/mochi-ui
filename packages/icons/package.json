@@ -11,7 +11,7 @@
     "build": "tsup src --dts",
     "build:fast": "tsup src",
     "dev": "pnpm build:fast -- --watch",
-    "lint": "eslint src/",
+    "lint": "eslint src/ --cache",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
     "prepack": "clean-package",

@@ -7,7 +7,3 @@ interface Window {
   martian: any
   suiet: any
 }
-
-declare module 'browser-string-hexer' {
-  export default function hexer(msg: string): string
-}
