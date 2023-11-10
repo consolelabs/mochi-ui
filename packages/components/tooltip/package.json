@@ -33,8 +33,8 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
-    "@radix-ui/react-tooltip": "^1.0.7",
     "@consolelabs/theme": "workspace:*",
+    "@radix-ui/react-tooltip": "^1.0.7",
     "class-variance-authority": "^0.7.0"
   },
   "clean-package": "../../../clean-package.config.json"
