@@ -23,7 +23,7 @@ export default function Button({
       })}
     >
       {customerIndicator ?? (
-        <IconThreeDotLoading className={buttonLoadingIconClsx({})} />
+        <IconThreeDotLoading className={buttonLoadingIconClsx()} />
       )}
     </div>
   )

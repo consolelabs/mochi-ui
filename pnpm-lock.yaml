@@ -693,6 +693,9 @@ importers:
       '@consolelabs/mochi-store':
         specifier: workspace:*
         version: link:../mochi-store
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../../theme
       '@radix-ui/react-dialog':
         specifier: ^1.0.5
         version: 1.0.5(@types/react-dom@18.2.4)(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
@@ -785,6 +788,9 @@ importers:
       '@consolelabs/icons':
         specifier: workspace:*
         version: link:../../icons
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../../theme
       '@radix-ui/react-popover':
         specifier: ^1.0.7
         version: 1.0.7(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
@@ -822,6 +828,9 @@ importers:
       '@consolelabs/avatar':
         specifier: workspace:*
         version: link:../avatar
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../../theme
     devDependencies:
       clean-package:
         specifier: ^2.2.0
@@ -844,6 +853,9 @@ importers:
 
   packages/components/section-list:
     dependencies:
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../../theme
       '@radix-ui/react-scroll-area':
         specifier: ^1.0.5
         version: 1.0.5(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
@@ -946,6 +958,9 @@ importers:
       '@consolelabs/icons':
         specifier: workspace:*
         version: link:../../icons
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../../theme
       '@consolelabs/tooltip':
         specifier: workspace:*
         version: link:../tooltip
@@ -983,6 +998,9 @@ importers:
 
   packages/components/switch:
     dependencies:
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../../theme
       '@radix-ui/react-switch':
         specifier: ^1.0.3
         version: 1.0.3(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
@@ -1088,6 +1106,9 @@ importers:
 
   packages/components/tooltip:
     dependencies:
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../../theme
       '@radix-ui/react-tooltip':
         specifier: ^1.0.7
         version: 1.0.7(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
@@ -1128,6 +1149,9 @@ importers:
       '@consolelabs/badge':
         specifier: workspace:*
         version: link:../components/badge
+      '@consolelabs/button':
+        specifier: workspace:*
+        version: link:../components/button
       '@consolelabs/dropdown':
         specifier: workspace:*
         version: link:../components/dropdown
@@ -1140,6 +1164,9 @@ importers:
       '@consolelabs/input':
         specifier: workspace:*
         version: link:../components/input
+      '@consolelabs/input-field':
+        specifier: workspace:*
+        version: link:../components/input-field
       '@consolelabs/list':
         specifier: workspace:*
         version: link:../components/list
@@ -1167,6 +1194,9 @@ importers:
       '@consolelabs/theme':
         specifier: workspace:*
         version: link:../theme
+      '@consolelabs/toggle-button':
+        specifier: workspace:*
+        version: link:../components/toggle-button
       '@consolelabs/tooltip':
         specifier: workspace:*
         version: link:../components/tooltip

@@ -1,6 +1,8 @@
 import * as React from 'react'
 import * as PopoverPrimitive from '@radix-ui/react-popover'
-import clsx from 'clsx'
+import { popover } from '@consolelabs/theme'
+
+const { popoverContentClsx } = popover
 
 const Popover = PopoverPrimitive.Root
 
@@ -14,10 +16,7 @@ const PopoverContent = React.forwardRef<
   <PopoverPrimitive.Portal>
     <PopoverPrimitive.Content
       align={align}
-      className={clsx(
-        'z-50 bg-white p-2 rounded-lg border border-neutral-200 shadow-md',
-        className,
-      )}
+      className={popoverContentClsx({ className })}
       ref={ref}
       sideOffset={sideOffset}
       {...props}

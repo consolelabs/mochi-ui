@@ -9,6 +9,7 @@ import {
   IconCrossCircled,
   IconExclamationTriangle,
 } from '@consolelabs/icons'
+import { loginWidget } from '@consolelabs/theme'
 import getAvailableWallets from './providers'
 import Wallet from './wallet'
 import type { WalletProps } from './wallet'
@@ -17,6 +18,25 @@ import {
   LoginWidgetContext,
   useLoginWidgetContext,
 } from './context'
+
+const {
+  loginGroupWrapperClsx,
+  loginGroupNameClsx,
+  loginGroupWalletsClsx,
+  loginInnerWrapperClsx,
+  loginInnerTitleClsx,
+  loginInnerGroupClsx,
+  loginInnerContentClsx,
+  loginInnerCloseButtonClsx,
+  loginInnerCloseIconClsx,
+  loginInnerStateClsx,
+  loginWidgetTriggerClsx,
+  loginWidgetMobileDrawerOverlayClsx,
+  loginWidgetMobileDrawerContentWrapperClsx,
+  loginWidgetMobileDrawerContentClsx,
+  loginWidgetDialogOverlayClsx,
+  loginWidgetDialogContentWrapperClsx,
+} = loginWidget
 
 const connectors = getAvailableWallets()
 
@@ -46,11 +66,9 @@ function Group(props: {
 }) {
   if (!props.wallets.length) return null
   return (
-    <div className="flex flex-col md:gap-y-2">
-      <span className="text-xs font-semibold text-neutral-500 uppercase">
-        {props.name}
-      </span>
-      <div className="flex flex-row gap-x-1 md:flex-col md:gap-x-0 md:gap-y-1">
+    <div className={loginGroupWrapperClsx()}>
+      <span className={loginGroupNameClsx()}>{props.name}</span>
+      <div className={loginGroupWalletsClsx()}>
         {props.wallets.map((w) => {
           return (
             <Wallet
@@ -81,9 +99,11 @@ function Inner({ onSuccess }: { onSuccess: WidgetProps['onSuccess'] }) {
 
   return (
     <>
-      <div className="flex flex-col gap-y-2 p-5 w-full md:overflow-auto md:gap-y-5 md:w-auto md:border-r md:border-neutral-400 md:min-w-[287px]">
-        <Dialog.Title className="text-base">Choose your wallet</Dialog.Title>
-        <div className="flex overflow-auto flex-row gap-x-5 md:flex-col md:gap-x-0 md:gap-y-5">
+      <div className={loginInnerWrapperClsx()}>
+        <Dialog.Title className={loginInnerTitleClsx()}>
+          Choose your wallet
+        </Dialog.Title>
+        <div className={loginInnerGroupClsx()}>
           {Object.entries(connectors).map((e) => {
             return (
               <Group
@@ -102,9 +122,9 @@ function Inner({ onSuccess }: { onSuccess: WidgetProps['onSuccess'] }) {
           })}
         </div>
       </div>
-      <div className="flex relative justify-center items-center py-28 px-16 md:py-5 md:px-10 md:flex-1">
-        <Dialog.Close className="hidden absolute top-5 right-5 md:block">
-          <IconCrossCircled className="w-6 h-6 transition text-neutral-600 hover:text-neutral-700" />
+      <div className={loginInnerContentClsx()}>
+        <Dialog.Close className={loginInnerCloseButtonClsx()}>
+          <IconCrossCircled className={loginInnerCloseIconClsx()} />
         </Dialog.Close>
         {(() => {
           switch (true) {
@@ -113,45 +133,48 @@ function Inner({ onSuccess }: { onSuccess: WidgetProps['onSuccess'] }) {
               Boolean(wallet): {
               const Icon = wallet?.icon ?? IconExclamationTriangle
 
+              const innerClsx = loginInnerStateClsx().connecting
+
               return (
-                <div className="flex flex-col items-center">
-                  <div className="flex items-center">
+                <div className={innerClsx.container}>
+                  <div className={innerClsx.imgWrapper}>
                     <img
                       alt="mochi icon"
-                      className="w-12 h-12 rounded-full"
+                      className={innerClsx.img}
                       src="https://mochi.gg/logo.png"
                     />
-                    <div className="w-16 border border-dashed border-primary-500" />
-                    <Icon className="w-12 h-12 rounded" />
+                    <div className={innerClsx.divider} />
+                    <Icon className={innerClsx.icon} />
                   </div>
-                  <span className="mt-4 text-sm">
+                  <span className={innerClsx.message}>
                     {state === LoginState.Connecting
                       ? `Opening ${wallet?.name}...`
                       : 'Logging into your account...'}
                   </span>
                   {error ? (
-                    <span className="text-sm text-center text-red-500">
-                      {error}
-                    </span>
+                    <span className={innerClsx.error}>{error}</span>
                   ) : null}
                 </div>
               )
             }
 
             case state === LoginState.Idle:
-            default:
+            default: {
+              const innerClsx = loginInnerStateClsx().idle
+
               return (
-                <div className="flex flex-col items-center">
-                  <IconConnectWallets className="mb-7 w-20 h-20" />
-                  <Heading as="h3" className="text-base text-neutral-800">
+                <div className={innerClsx.container}>
+                  <IconConnectWallets className={innerClsx.icon} />
+                  <Heading as="h3" className={innerClsx.heading}>
                     Connect your wallet
                   </Heading>
-                  <span className="text-sm font-light text-center text-neutral-600">
+                  <span className={innerClsx.message}>
                     By connecting your wallet, you agree to your Term of Service
                     and our Privacy Policy
                   </span>
                 </div>
               )
+            }
           }
         })()}
       </div>
@@ -189,7 +212,7 @@ const LoginWidget = ({
 
   const trigger: React.ReactNode = _trigger || (
     <button
-      className="px-1.5 text-sm rounded-md border shadow bg-neutral-200 border-neutral-500"
+      className={loginWidgetTriggerClsx()}
       onClick={user ? logout : undefined}
       type="button"
     >
@@ -256,12 +279,16 @@ const LoginWidget = ({
         {/* @ts-ignore */}
         <Drawer.Portal>
           {/* @ts-ignore */}
-          <Drawer.Overlay className="fixed inset-0 z-40 bg-black/30" />
+          <Drawer.Overlay className={loginWidgetMobileDrawerOverlayClsx()} />
           {/* @ts-ignore */}
-          <Drawer.Content className="flex fixed right-0 bottom-0 left-0 z-50 flex-col bg-white rounded-t-2xl">
-            <div className="flex flex-col w-full">
-              <div className="sticky top-2 z-10 flex-shrink-0 mx-auto mt-2 w-20 h-1.5 rounded-full bg-neutral-400" />
-              <div className="flex flex-col-reverse w-full">
+          <Drawer.Content
+            className={loginWidgetMobileDrawerContentWrapperClsx()}
+          >
+            <div className={loginWidgetMobileDrawerContentClsx().container}>
+              <div className={loginWidgetMobileDrawerContentClsx().divider} />
+              <div
+                className={loginWidgetMobileDrawerContentClsx().innerWrapper}
+              >
                 <Inner onSuccess={handleLogin} />
               </div>
             </div>
@@ -275,10 +302,10 @@ const LoginWidget = ({
     <Dialog.Root onOpenChange={onOpenChange} open={open}>
       <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed z-40 w-screen h-screen bg-black/30" />
+        <Dialog.Overlay className={loginWidgetDialogOverlayClsx()} />
         <Dialog.Content asChild>
           <div
-            className="flex fixed top-1/2 w-[720px] left-1/2 z-50 bg-white rounded-2xl -translate-x-1/2 -translate-y-1/2 max-h-[450px]"
+            className={loginWidgetDialogContentWrapperClsx()}
             style={{ boxShadow: '0px 0px 20px 0px rgba(0, 0, 0, 0.18)' }}
           >
             <Inner onSuccess={handleLogin} />

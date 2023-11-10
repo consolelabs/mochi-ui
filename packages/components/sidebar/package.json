@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@consolelabs/icons": "workspace:*",
+    "@consolelabs/theme": "workspace:*",
     "@consolelabs/tooltip": "workspace:*",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0"

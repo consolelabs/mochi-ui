@@ -2,7 +2,7 @@ import { Fragment, useEffect, useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import clsx from 'clsx'
 import { useMochi } from '@consolelabs/mochi-store'
-import LoginWidget from './login-widget'
+import LoginWidget from '../src/login-widget'
 
 const meta: Meta<typeof LoginWidget> = {
   title: 'ui/LoginWidget',

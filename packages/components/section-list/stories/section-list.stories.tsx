@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Heading } from '@consolelabs/heading'
-import SectionList from './section-list'
+import SectionList from '../src/section-list'
 
 const meta: Meta<typeof SectionList> = {
   title: 'ui/SectionList',

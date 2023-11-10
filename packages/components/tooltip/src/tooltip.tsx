@@ -1,54 +1,7 @@
 import * as RadixTooltip from '@radix-ui/react-tooltip'
-import type { VariantProps } from 'class-variance-authority'
-import { cva } from 'class-variance-authority'
+import { tooltip, TooltipStyleProps } from '@consolelabs/theme'
 
-const tooltip = cva(['rounded-lg px-3 py-2 text-xs font-semibold'], {
-  variants: {
-    theme: {
-      light: ['bg-white', 'text-neutral-800'],
-      dark: ['bg-neutral-800', 'text-white'],
-    },
-  },
-  defaultVariants: {
-    theme: 'light',
-  },
-})
-
-const arrowCva = cva([], {
-  variants: {
-    theme: {
-      light: ['fill-white'],
-      dark: ['fill-neutral-800'],
-    },
-  },
-  defaultVariants: {
-    theme: 'light',
-  },
-})
-
-export const ARROW_OPTIONS = [
-  'none',
-  'top-start',
-  'top-center',
-  'top-end',
-  'right-start',
-  'right-center',
-  'right-end',
-  'bottom-start',
-  'bottom-center',
-  'bottom-end',
-  'left-start',
-  'left-center',
-  'left-end',
-] as const
-type Arrow = (typeof ARROW_OPTIONS)[number]
-
-type Props = VariantProps<typeof tooltip> & {
-  children: React.ReactNode
-  content: React.ReactNode
-  arrow?: Arrow | 'none'
-  className?: string
-}
+const { tooltipCva, tooltipArrowCva, tooltipTriggerClsx } = tooltip
 
 export default function Tooltip({
   children,
@@ -56,7 +9,7 @@ export default function Tooltip({
   theme,
   arrow = 'none',
   className,
-}: Props) {
+}: TooltipStyleProps) {
   const [side, align] =
     arrow === 'none'
       ? []
@@ -68,13 +21,13 @@ export default function Tooltip({
   return (
     <RadixTooltip.Provider>
       <RadixTooltip.Root delayDuration={0}>
-        <RadixTooltip.Trigger className="w-fit">
+        <RadixTooltip.Trigger className={tooltipTriggerClsx()}>
           {children}
         </RadixTooltip.Trigger>
         <RadixTooltip.Portal>
           <RadixTooltip.Content
             align={align}
-            className={tooltip({ className, theme })}
+            className={tooltipCva({ className, theme })}
             side={side}
             style={{
               boxShadow:
@@ -83,7 +36,7 @@ export default function Tooltip({
           >
             {content}
             {arrow !== 'none' && (
-              <RadixTooltip.Arrow className={arrowCva({ theme })} />
+              <RadixTooltip.Arrow className={tooltipArrowCva({ theme })} />
             )}
           </RadixTooltip.Content>
         </RadixTooltip.Portal>

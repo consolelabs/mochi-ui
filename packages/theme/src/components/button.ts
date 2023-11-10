@@ -148,8 +148,9 @@ const buttonloadIndicatorCva = cva('flex items-center', {
   },
 })
 
-const buttonLoadingIconClsx = ({ className = '' }: { className?: string }) =>
-  clsx('text-[40px]', className)
+const buttonLoadingIconClsx = ({
+  className = '',
+}: { className?: string } = {}) => clsx('text-[40px]', className)
 
 export const button = {
   buttonCva,

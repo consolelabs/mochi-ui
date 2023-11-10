@@ -82,12 +82,12 @@ export default function List<Item extends NonNullable<object> | string>({
         </ul>
       </ScrollArea.Viewport>
       <ScrollArea.Scrollbar
-        className={listScrollbarClsx({})}
+        className={listScrollbarClsx()}
         orientation="vertical"
       >
-        <ScrollArea.Thumb className={listThumbClsx({})} />
+        <ScrollArea.Thumb className={listThumbClsx()} />
       </ScrollArea.Scrollbar>
-      <ScrollArea.Corner className={listCornerClsx({})} />
+      <ScrollArea.Corner className={listCornerClsx()} />
     </ScrollArea.Root>
   )
 }
