@@ -92,7 +92,7 @@ module.exports = {
         telegram: {
           DEFAULT: '#26A8EA',
         },
-        consolelabs: {
+        mochi: {
           DEFAULT: '#E88B88',
           50: '#FBE9E8',
           100: '#F9DEDD',
