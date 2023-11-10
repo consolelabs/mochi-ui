@@ -80,6 +80,7 @@ interface State {
   txns: Tx[]
   addNewTx: (tx: Tx) => void
   loading: boolean
+  isUseLayout: boolean
   fetchTxns: () => Promise<void>
   initWs: (override?: boolean) => void
   ws: WebSocket | null
@@ -88,10 +89,14 @@ interface State {
 export const useTipFeed = create<State>((set, get) => ({
   txns: [],
   loading: true,
+  isUseLayout: false,
   addNewTx: (tx) => {
     set((s) => ({ ...s, txns: [tx, ...s.txns].slice(0, limit) }))
   },
   fetchTxns: async () => {
+    await new Promise((r) => {
+      setTimeout(r, 1000)
+    })
     set((s) => ({ ...s, loading: true }))
     return API.MOCHI_PAY.get('/transactions/latest')
       .json((r) => r.data)
@@ -122,6 +127,7 @@ export const useTipFeed = create<State>((set, get) => ({
         const payload = JSON.parse(e.data)
         const { event, data } = payload
         if (event !== 'TRANSFER_CREATED') return
+        set((s) => ({ ...s, isUseLayout: true }))
         get().addNewTx(await transform(data))
       } catch (e) {
         console.error(e)

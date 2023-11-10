@@ -131,12 +131,6 @@ importers:
       '@fnando/sparkline':
         specifier: ^0.3.10
         version: 0.3.10
-      '@fontsource/inter':
-        specifier: ^4.5.7
-        version: 4.5.7
-      '@fontsource/poppins':
-        specifier: ^5.0.8
-        version: 5.0.8
       '@headlessui-float/react':
         specifier: ^0.11.0
         version: 0.11.0(@headlessui/react@1.7.5)(react-dom@18.2.0)(react@18.2.0)
@@ -4352,14 +4346,6 @@ packages:
 
   /@fnando/sparkline@0.3.10:
     resolution: {integrity: sha512-Rwz2swatdSU5F4sCOvYG8EOWdjtLgq5d8nmnqlZ3PXdWJI9Zq9BRUvJ/9ygjajJG8qOyNpMFX3GEVFjZIuB1Jg==}
-    dev: false
-
-  /@fontsource/inter@4.5.7:
-    resolution: {integrity: sha512-25k3thupaOEBexuU+jAkGqieKPbuhSuA+sinDwp1iBNhqQPiJ9QHDvsXgoCgCbZ4sGlE8aCwZmSlDJrPdJHNkw==}
-    dev: false
-
-  /@fontsource/poppins@5.0.8:
-    resolution: {integrity: sha512-P8owfYWluoUY5Nyzk4gT/L6LmLmseP6ezFWhj6VBUa5pRIdnCvNJpoQ6i/vhekjtJOfqX6nKlB+LCttoUl2GQQ==}
     dev: false
 
   /@fractalwagmi/popup-connection@1.1.1(react-dom@18.2.0)(react@18.2.0):

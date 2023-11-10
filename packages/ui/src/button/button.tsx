@@ -2,6 +2,7 @@ import type { VariantProps } from 'class-variance-authority'
 import { cva } from 'class-variance-authority'
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
 import { IconThreeDotLoading } from '@consolelabs/icons'
+import React from 'react'
 
 const buttonCva = cva(['flex items-center gap-x-2 font-semibold transition'], {
   variants: {
@@ -158,44 +159,52 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> &
     loadingIndicatorClassName?: string
   }
 
-export default function Button({
-  children,
-  variant,
-  color,
-  size,
-  disabled,
-  className,
-  loading,
-  loadingIndicator: customerIndicator,
-  loadingIndicatorClassName,
-  ...rest
-}: Props) {
-  const loadingIndicator = (
-    <div
-      className={loadIndicatorWrapperCva({
-        size,
-        className: loadingIndicatorClassName,
-      })}
-    >
-      {customerIndicator ?? <IconThreeDotLoading className="text-[40px]" />}
-    </div>
-  )
+const Button = React.forwardRef<HTMLButtonElement, Props>(
+  (
+    {
+      children,
+      variant,
+      color,
+      size,
+      disabled,
+      className,
+      loading,
+      loadingIndicator: customerIndicator,
+      loadingIndicatorClassName,
+      ...rest
+    },
+    ref,
+  ) => {
+    const loadingIndicator = (
+      <div
+        className={loadIndicatorWrapperCva({
+          size,
+          className: loadingIndicatorClassName,
+        })}
+      >
+        {customerIndicator ?? <IconThreeDotLoading className="text-[40px]" />}
+      </div>
+    )
 
-  return (
-    <button
-      className={buttonCva({
-        className,
-        variant,
-        color,
-        size,
-        disabled,
-        loading,
-      })}
-      disabled={disabled}
-      type={rest.type || 'button'}
-      {...rest}
-    >
-      {loading ? loadingIndicator : children}
-    </button>
-  )
-}
+    return (
+      <button
+        ref={ref}
+        className={buttonCva({
+          className,
+          variant,
+          color,
+          size,
+          disabled,
+          loading,
+        })}
+        disabled={disabled}
+        type={rest.type || 'button'}
+        {...rest}
+      >
+        {loading ? loadingIndicator : children}
+      </button>
+    )
+  },
+)
+
+export default Button

@@ -28,8 +28,6 @@
     "@dwarvesf/react-hooks": "^0.7.0",
     "@dwarvesf/react-utils": "^0.4.1",
     "@fnando/sparkline": "^0.3.10",
-    "@fontsource/inter": "^4.5.7",
-    "@fontsource/poppins": "^5.0.8",
     "@headlessui-float/react": "^0.11.0",
     "@headlessui/react": "1.7.5",
     "@solana/spl-token": "^0.3.7",

@@ -12,15 +12,25 @@ import RowSkeleton from './RowSkeleton'
 const showTopFadeLimit = 35 as const
 const showBotFadeLimit = -35 as const
 const colWidth = [
-  'w-2/12', // from
+  'w-[205px]', // from
   'w-min', // arrow icon
-  'w-2/12', // to
-  'w-1/12', // method
-  'w-1/12', // amount
-  'w-2/12', // channel
-  'w-1/12', // tx id
-  'w-2/12', // wen
-  'w-1/12', // status
+  'w-[205px]', // to
+  'w-[130px]', // method
+  'w-[205px]', // amount
+  'w-[200px]', // channel
+  'w-[110px]', // tx id
+  'w-[170px]', // wen
+  'w-[100px]', // status
+  //
+  /* 'w-2/12', // from */
+  /* 'w-min', // arrow icon */
+  /* 'w-2/12', // to */
+  /* 'w-1/12', // method */
+  /* 'w-1/12', // amount */
+  /* 'w-1/12', // channel */
+  /* 'w-2/12', // tx id */
+  /* 'w-2/12', // wen */
+  /* 'w-1/12', // status */
 ]
 
 interface Props {
@@ -41,7 +51,7 @@ export default function Feed({ className = '' }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
 
   const [lastTopCode, setLastTopCode] = useState('')
-  const { loading, ws, fetchTxns, initWs, txns } = useTipFeed()
+  const { loading, ws, fetchTxns, initWs, txns, isUseLayout } = useTipFeed()
 
   useEffect(() => {
     fetchTxns()
@@ -77,7 +87,10 @@ export default function Feed({ className = '' }: Props) {
           },
         )}
       />
-      <div className="flex justify-between items-center py-6 px-8">
+      <div
+        style={{ maxWidth: 1440 }}
+        className="flex justify-between items-center py-6 px-8 mx-auto w-screen"
+      >
         <span className="px-4 text-sm leading-5 text-white-pure">
           Recent Transactions
         </span>
@@ -98,9 +111,12 @@ export default function Feed({ className = '' }: Props) {
           if (bottomSpace > showBotFadeLimit && isShowBotFade) hideBotFade()
           if (bottomSpace <= showBotFadeLimit && !isShowBotFade) showBotFade()
         }}
-        className="overflow-auto px-8"
+        className={clsx('', {
+          'overflow-auto': !loading,
+          'overflow-hidden': loading,
+        })}
       >
-        <div style={{ minWidth: 1440 }}>
+        <div className="px-8 mx-auto" style={{ width: 1440 }}>
           <div className="flex sticky top-0 z-10 flex-1 bg-feed-bg">
             {[
               'issued by',
@@ -165,7 +181,7 @@ export default function Feed({ className = '' }: Props) {
                 : txns.map((tx) => {
                     return (
                       <motion.div
-                        layout
+                        layout={isUseLayout}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
