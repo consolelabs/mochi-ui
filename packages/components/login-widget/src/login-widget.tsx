@@ -66,9 +66,9 @@ function Group(props: {
 }) {
   if (!props.wallets.length) return null
   return (
-    <div className={loginGroupWrapperClsx({})}>
-      <span className={loginGroupNameClsx({})}>{props.name}</span>
-      <div className={loginGroupWalletsClsx({})}>
+    <div className={loginGroupWrapperClsx()}>
+      <span className={loginGroupNameClsx()}>{props.name}</span>
+      <div className={loginGroupWalletsClsx()}>
         {props.wallets.map((w) => {
           return (
             <Wallet
@@ -99,11 +99,11 @@ function Inner({ onSuccess }: { onSuccess: WidgetProps['onSuccess'] }) {
 
   return (
     <>
-      <div className={loginInnerWrapperClsx({})}>
-        <Dialog.Title className={loginInnerTitleClsx({})}>
+      <div className={loginInnerWrapperClsx()}>
+        <Dialog.Title className={loginInnerTitleClsx()}>
           Choose your wallet
         </Dialog.Title>
-        <div className={loginInnerGroupClsx({})}>
+        <div className={loginInnerGroupClsx()}>
           {Object.entries(connectors).map((e) => {
             return (
               <Group
@@ -122,9 +122,9 @@ function Inner({ onSuccess }: { onSuccess: WidgetProps['onSuccess'] }) {
           })}
         </div>
       </div>
-      <div className={loginInnerContentClsx({})}>
-        <Dialog.Close className={loginInnerCloseButtonClsx({})}>
-          <IconCrossCircled className={loginInnerCloseIconClsx({})} />
+      <div className={loginInnerContentClsx()}>
+        <Dialog.Close className={loginInnerCloseButtonClsx()}>
+          <IconCrossCircled className={loginInnerCloseIconClsx()} />
         </Dialog.Close>
         {(() => {
           switch (true) {
@@ -212,7 +212,7 @@ const LoginWidget = ({
 
   const trigger: React.ReactNode = _trigger || (
     <button
-      className={loginWidgetTriggerClsx({})}
+      className={loginWidgetTriggerClsx()}
       onClick={user ? logout : undefined}
       type="button"
     >
@@ -279,10 +279,10 @@ const LoginWidget = ({
         {/* @ts-ignore */}
         <Drawer.Portal>
           {/* @ts-ignore */}
-          <Drawer.Overlay className={loginWidgetMobileDrawerOverlayClsx({})} />
+          <Drawer.Overlay className={loginWidgetMobileDrawerOverlayClsx()} />
           {/* @ts-ignore */}
           <Drawer.Content
-            className={loginWidgetMobileDrawerContentWrapperClsx({})}
+            className={loginWidgetMobileDrawerContentWrapperClsx()}
           >
             <div className={loginWidgetMobileDrawerContentClsx().container}>
               <div className={loginWidgetMobileDrawerContentClsx().divider} />
@@ -302,10 +302,10 @@ const LoginWidget = ({
     <Dialog.Root onOpenChange={onOpenChange} open={open}>
       <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className={loginWidgetDialogOverlayClsx({})} />
+        <Dialog.Overlay className={loginWidgetDialogOverlayClsx()} />
         <Dialog.Content asChild>
           <div
-            className={loginWidgetDialogContentWrapperClsx({})}
+            className={loginWidgetDialogContentWrapperClsx()}
             style={{ boxShadow: '0px 0px 20px 0px rgba(0, 0, 0, 0.18)' }}
           >
             <Inner onSuccess={handleLogin} />

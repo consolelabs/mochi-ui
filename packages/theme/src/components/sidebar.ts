@@ -13,34 +13,37 @@ const sidebarCva = cva(
   },
 )
 
-const sidebarContentClsx = ({ className = '' }: { className?: string }) =>
+const sidebarContentClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx(
     'flex flex-col justify-between h-full overflow-x-hidden overflow-y-auto',
     className,
   )
 
-const sidebarItemsWrapperClsx = ({ className = '' }: { className?: string }) =>
-  clsx('pt-2', className)
+const sidebarItemsWrapperClsx = ({
+  className = '',
+}: { className?: string } = {}) => clsx('pt-2', className)
 
 const sidebarFooterItemsWrapperClsx = ({
   className = '',
 }: {
   className?: string
-}) => clsx('border-t border-neutral-200', className)
+} = {}) => clsx('border-t border-neutral-200', className)
 
 const sidebarFooterVersionWrapperClsx = ({
   className = '',
 }: {
   className?: string
-}) => clsx('flex px-4 border-t border-neutral-200', className)
+} = {}) => clsx('flex px-4 border-t border-neutral-200', className)
 
 const sidebarFooterVersionTextClsx = ({
   className = '',
 }: {
   className?: string
-}) => clsx('text-xs text-neutral-600 tracking-tight p-2', className)
+} = {}) => clsx('text-xs text-neutral-600 tracking-tight p-2', className)
 
-const sidebarToggleButtonClsx = ({ className = '' }: { className?: string }) =>
+const sidebarToggleButtonClsx = ({
+  className = '',
+}: { className?: string } = {}) =>
   clsx(
     'absolute top-4 -right-5 bg-white border border-neutral-200 rounded-r-lg w-5 h-11 justify-center items-center hidden group-hover:flex',
     className,
@@ -77,7 +80,7 @@ const sidebarItemTitleWrapperClsx = ({
   className = '',
 }: {
   className?: string
-}) => clsx('flex gap-2 items-center', className)
+} = {}) => clsx('flex gap-2 items-center', className)
 
 const sidebarItemTitleClsx = ({
   className = '',
@@ -99,16 +102,17 @@ const sidebarItemTitleBadgeClsx = ({
   className = '',
 }: {
   className?: string
-}) => clsx('shrink-0', className)
+} = {}) => clsx('shrink-0', className)
 
-const sidebarItemAccordionClsx = ({ className = '' }: { className?: string }) =>
-  clsx('shadow-none !p-0', className)
+const sidebarItemAccordionClsx = ({
+  className = '',
+}: { className?: string } = {}) => clsx('shadow-none !p-0', className)
 
 const sidebarItemAccordionTriggerClsx = ({
   className = '',
 }: {
   className?: string
-}) => clsx('!hover:bg-inherit', className)
+} = {}) => clsx('!hover:bg-inherit', className)
 
 const sidebarItemAccordionWrapperClsx = ({
   className = '',
@@ -151,7 +155,7 @@ const sidebarItemAccordionContentWrapperClsx = ({
   className = '',
 }: {
   className?: string
-}) => clsx('pb-0', className)
+} = {}) => clsx('pb-0', className)
 
 const sidebarItemAccordionContentClsx = ({
   className = '',
@@ -197,14 +201,15 @@ const sidebarItemListWrapperClsx = ({
     className,
   )
 
-const sidebarItemListItemClsx = ({ className = '' }: { className?: string }) =>
-  clsx('h-10', className)
+const sidebarItemListItemClsx = ({
+  className = '',
+}: { className?: string } = {}) => clsx('h-10', className)
 
 const sidebarItemListTooltipClsx = ({
   className = '',
 }: {
   className?: string
-}) => clsx('z-10', className)
+} = {}) => clsx('z-10', className)
 
 const sidebar = {
   sidebarCva,

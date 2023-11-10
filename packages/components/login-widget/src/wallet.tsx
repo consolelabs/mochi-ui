@@ -1,7 +1,7 @@
 import type { SVGProps } from 'react'
 import { loginWidget } from '@consolelabs/theme'
 
-const { loginWallet, loginWalletIcon, loginWalletName } = loginWidget
+const { loginWallet, loginWalletIconClsx, loginWalletNameClsx } = loginWidget
 
 export interface WalletProps {
   icon: string | ((props: SVGProps<SVGSVGElement>) => JSX.Element)
@@ -23,8 +23,8 @@ export default function Wallet(props: WalletProps) {
       onClick={() => void props.connect()}
       type="button"
     >
-      <Icon className={loginWalletIcon({})} />
-      <span className={loginWalletName({})}>{props.name}</span>
+      <Icon className={loginWalletIconClsx()} />
+      <span className={loginWalletNameClsx()}>{props.name}</span>
     </button>
   )
 }

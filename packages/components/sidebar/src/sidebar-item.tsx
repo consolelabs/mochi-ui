@@ -72,10 +72,10 @@ export default function SidebarItem({
         />
       )}
       {expanded ? (
-        <div className={sidebarItemTitleWrapperClsx({})}>
+        <div className={sidebarItemTitleWrapperClsx()}>
           <span className={sidebarItemTitleClsx({ disabled })}>{title}</span>
           {Boolean(badge) && (
-            <span className={sidebarItemTitleBadgeClsx({})}>{badge}</span>
+            <span className={sidebarItemTitleBadgeClsx()}>{badge}</span>
           )}
         </div>
       ) : null}
@@ -85,13 +85,13 @@ export default function SidebarItem({
   if (type === 'list') {
     return (
       <Accordion
-        className={sidebarItemAccordionClsx({})}
+        className={sidebarItemAccordionClsx()}
         disabled={disabled}
         type="multiple"
       >
         <AccordionItem value={title}>
           <AccordionTrigger
-            className={sidebarItemAccordionTriggerClsx({})}
+            className={sidebarItemAccordionTriggerClsx()}
             rightIcon={expanded ? null : true}
             wrapperClassName={sidebarItemAccordionWrapperClsx({
               expanded,
@@ -105,7 +105,7 @@ export default function SidebarItem({
             </div>
           </AccordionTrigger>
           <AccordionContent
-            className={sidebarItemAccordionContentWrapperClsx({})}
+            className={sidebarItemAccordionContentWrapperClsx()}
             hasPadding={false}
           >
             {children.map((child) => (

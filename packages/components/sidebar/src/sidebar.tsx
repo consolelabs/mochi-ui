@@ -48,21 +48,21 @@ export default function Sidebar({
 
   return (
     <div className={sidebarCva({ className, expanded })}>
-      <div className={sidebarContentClsx({})}>
+      <div className={sidebarContentClsx()}>
         <div>
           {Header ? <Header expanded={expanded} /> : null}
-          <div className={sidebarItemsWrapperClsx({})}>
+          <div className={sidebarItemsWrapperClsx()}>
             <SidebarItemList
               {...{ expanded, isSelected }}
               items={headerItems}
             />
           </div>
         </div>
-        <div className={sidebarFooterItemsWrapperClsx({})}>
+        <div className={sidebarFooterItemsWrapperClsx()}>
           <SidebarItemList {...{ expanded, isSelected }} items={footerItems} />
           {Boolean(expanded) && (
-            <div className={sidebarFooterVersionWrapperClsx({})}>
-              <div className={sidebarFooterVersionTextClsx({})}>
+            <div className={sidebarFooterVersionWrapperClsx()}>
+              <div className={sidebarFooterVersionTextClsx()}>
                 Version 1.0.0
               </div>
             </div>
@@ -70,7 +70,7 @@ export default function Sidebar({
         </div>
       </div>
       <button
-        className={sidebarToggleButtonClsx({})}
+        className={sidebarToggleButtonClsx()}
         onClick={() => setExpanded(!expanded)}
         type="button"
       >

@@ -25,13 +25,13 @@ const alertCva = cva(['flex gap-x-2 rounded-lg p-3 border'], {
   },
 })
 
-const alertIconClsx = ({ className = '' }: { className?: string }) =>
+const alertIconClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx('flex-shrink-0 w-5 h-5 text-current', className)
 
-const alertContentClsx = ({ className = '' }: { className?: string }) =>
+const alertContentClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx('flex flex-col flex-1 text-current', className)
 
-const alertTitleClsx = ({ className = '' }: { className?: string }) =>
+const alertTitleClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx('text-sm font-medium text-current', className)
 
 export const alert = {

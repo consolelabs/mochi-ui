@@ -25,7 +25,7 @@ const switchThumbCva = cva([''], {
   },
 })
 
-const switchWrapperClsx = ({ className = '' }: { className?: string }) =>
+const switchWrapperClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx('flex gap-x-4', className)
 
 const switchRootClsx = ({
@@ -36,7 +36,7 @@ const switchRootClsx = ({
   className?: string
   disabled?: boolean
   checked?: boolean
-}) =>
+} = {}) =>
   clsx(
     'focus-visible:outline-none w-9 h-5 p-0.5 rounded-full transition ring-0 ring-offset-0 ring-transparent focus:ring-4 focus:ring-primary-200',
     {
@@ -56,7 +56,7 @@ const switchThumbClsx = ({
   className?: string
   checked?: boolean
   size?: 'sm' | 'md' | null
-}) =>
+} = {}) =>
   clsx(
     'transition origin-center block w-4 h-4 rounded-full bg-neutral-0',
     {

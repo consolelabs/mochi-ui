@@ -21,7 +21,7 @@ export default function Tooltip({
   return (
     <RadixTooltip.Provider>
       <RadixTooltip.Root delayDuration={0}>
-        <RadixTooltip.Trigger className={tooltipTriggerClsx({})}>
+        <RadixTooltip.Trigger className={tooltipTriggerClsx()}>
           {children}
         </RadixTooltip.Trigger>
         <RadixTooltip.Portal>

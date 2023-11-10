@@ -106,7 +106,7 @@ export default function SectionList<
             ? sections.map((section, sectionIndex) => {
                 return (
                   <ul
-                    className={sectionListContentListClsx({})}
+                    className={sectionListContentListClsx()}
                     key={(section.key || '') + sectionIndex}
                   >
                     {renderSectionHeader(section, sectionIndex)}
@@ -120,12 +120,12 @@ export default function SectionList<
         </div>
       </ScrollArea.Viewport>
       <ScrollArea.Scrollbar
-        className={sectionListScrollbarClsx({})}
+        className={sectionListScrollbarClsx()}
         orientation="vertical"
       >
-        <ScrollArea.Thumb className={sectionListThumbClsx({})} />
+        <ScrollArea.Thumb className={sectionListThumbClsx()} />
       </ScrollArea.Scrollbar>
-      <ScrollArea.Corner className={sectionListCornerClsx({})} />
+      <ScrollArea.Corner className={sectionListCornerClsx()} />
     </ScrollArea.Root>
   )
 }

@@ -64,7 +64,7 @@ function renderDropdownChildItem(
       <div className={dropdownChildItemClsx({ className })}>
         {children}
         {subtitle && (
-          <span className={dropdownChildItemSubtitleClsx({})}>{subtitle}</span>
+          <span className={dropdownChildItemSubtitleClsx()}>{subtitle}</span>
         )}
       </div>
       {rightExtra}
@@ -146,7 +146,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
             rightIcon,
             className,
             defaultRightIcon: (
-              <IconChevronDown className={dropdownMenuSubTriggerClsx({})} />
+              <IconChevronDown className={dropdownMenuSubTriggerClsx()} />
             ),
           })}
     </DropdownMenuPrimitive.SubTrigger>
@@ -277,7 +277,7 @@ const DropdownMenuRadioItem = React.forwardRef<
             rightExtra,
             rightIcon,
             defaultRightIcon: (
-              <IconCheck className={dropdownMenuRadioIconClsx({})} />
+              <IconCheck className={dropdownMenuRadioIconClsx()} />
             ),
             className,
             subtitle,

@@ -17,16 +17,16 @@ const {
 export const ProfileBadge = forwardRef<HTMLButtonElement, Props>(
   ({ name, avatar, platform, ...rest }, ref) => (
     <button
-      className={profileBadgeClsx({})}
+      className={profileBadgeClsx()}
       style={{ minWidth: 150, maxWidth: 200 }}
       type="button"
       ref={ref}
       {...rest}
     >
-      <div className={profileBadgeAvatarWrapperClsx({})}>
+      <div className={profileBadgeAvatarWrapperClsx()}>
         <Avatar fallback={name} size="sm" smallSrc={platform} src={avatar} />
       </div>
-      <span className={profileBadgeNameClsx({})}>{name}</span>
+      <span className={profileBadgeNameClsx()}>{name}</span>
     </button>
   ),
 )

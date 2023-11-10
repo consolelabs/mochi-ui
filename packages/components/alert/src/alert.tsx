@@ -30,9 +30,9 @@ export default function Alert({
 
   return (
     <div className={alertCva({ size, className, appearance })}>
-      <Icon className={alertIconClsx({})} />
-      <div className={alertContentClsx({})}>
-        {title && <span className={alertTitleClsx({})}>{title}</span>}
+      <Icon className={alertIconClsx()} />
+      <div className={alertContentClsx()}>
+        <span className={alertTitleClsx()}>{title}</span>
         {children}
       </div>
     </div>

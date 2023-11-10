@@ -58,7 +58,7 @@ const AccordionTrigger = forwardRef<
     ...restProps
   } = props
 
-  const iconStyle = accordionTriggerIconClsx({})
+  const iconStyle = accordionTriggerIconClsx()
   const renderRightIcon = (
     <span className={iconStyle} id={!rightIcon ? 'chevron' : undefined}>
       {!rightIcon ? <IconChevronDown /> : rightIcon}
@@ -66,11 +66,11 @@ const AccordionTrigger = forwardRef<
   )
 
   const renderLeftIcon = leftIcon ? (
-    <span className={accordionTriggerLeftIconClsx({})}>{leftIcon}</span>
+    <span className={accordionTriggerLeftIconClsx()}>{leftIcon}</span>
   ) : null
 
   return (
-    <AccordionPrimitive.Header className={accordionHeaderClsx({})}>
+    <AccordionPrimitive.Header className={accordionHeaderClsx()}>
       <AccordionPrimitive.Trigger
         className={accordionTriggerWrapperClsx({ className: wrapperClassName })}
         ref={ref}

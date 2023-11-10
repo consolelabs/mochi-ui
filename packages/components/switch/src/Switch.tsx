@@ -15,7 +15,7 @@ export default function Switch(props: SwitchProps) {
   const id = useId()
 
   return (
-    <div className={switchWrapperClsx({})}>
+    <div className={switchWrapperClsx()}>
       {label ? <label htmlFor={id}>{label}</label> : null}
       <RadixSwitch.Root
         checked={checked}

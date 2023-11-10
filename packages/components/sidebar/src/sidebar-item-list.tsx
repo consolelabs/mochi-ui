@@ -45,19 +45,19 @@ export default function SidebarItemList({
                   <SidebarItem
                     key={item.title}
                     {...{ item, expanded }}
-                    className={sidebarItemListItemClsx({})}
+                    className={sidebarItemListItemClsx()}
                     selected={isSelected?.(item)}
                   />
                 ) : (
                   <Tooltip
                     arrow="top-start"
-                    className={sidebarItemListTooltipClsx({})}
+                    className={sidebarItemListTooltipClsx()}
                     content={item.title}
                     key={item.title}
                   >
                     <SidebarItem
                       {...{ item, expanded }}
-                      className={sidebarItemListItemClsx({})}
+                      className={sidebarItemListItemClsx()}
                       selected={isSelected?.(item)}
                     />
                   </Tooltip>

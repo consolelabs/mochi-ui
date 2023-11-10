@@ -25,7 +25,7 @@ const tooltipArrowCva = cva([], {
   },
 })
 
-const tooltipTriggerClsx = ({ className = '' }: { className?: string }) =>
+const tooltipTriggerClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx('w-fit', className)
 
 const tooltip = { tooltipCva, tooltipArrowCva, tooltipTriggerClsx }
