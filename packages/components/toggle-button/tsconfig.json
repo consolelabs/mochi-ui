@@ -1,5 +1,10 @@
 {
   "extends": "tsconfig/react-library.json",
-  "include": ["src", "index.ts", "stories/toggle-button.stories.tsx"],
+  "include": [
+    "src",
+    "index.ts",
+    "__tests__/*.tsx",
+    "stories"
+  ],
   "exclude": ["dist", "node_modules"]
 }

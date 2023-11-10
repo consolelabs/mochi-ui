@@ -1,0 +1,72 @@
+name: Checks
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v3
+
+      - name: Install environment
+        uses: ./.github/actions/setup-env
+
+      - name: Build packages
+        run: pnpm build:packages
+
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v3
+
+      - name: Install environment
+        uses: ./.github/actions/setup-env
+
+      - name: Run tests
+        run: pnpm test:cov
+
+  eslint:
+    name: ESLint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v3
+
+      - name: Install environment
+        uses: ./.github/actions/setup-env
+
+      - name: Run ESLint
+        run: pnpm lint
+
+  types:
+    name: TypeScript
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v3
+
+      - name: Install environment
+        uses: ./.github/actions/setup-env
+
+      - name: Run typecheck packages
+        run: pnpm typecheck
+
+  prettier:
+    name: Prettier
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v3
+
+      - name: Install environment
+        uses: ./.github/actions/setup-env
+
+      - name: Run prettier check format
+        run: pnpm format:check

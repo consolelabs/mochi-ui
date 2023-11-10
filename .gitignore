@@ -15,6 +15,9 @@ build
 .swc/
 tsconfig.tsbuildinfo
 
+# lint stuff
+.eslintcache
+
 # misc
 .DS_Store
 *.pem
