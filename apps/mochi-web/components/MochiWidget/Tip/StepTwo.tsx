@@ -1,8 +1,7 @@
-import { Icon } from '@iconify/react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { Button } from '@consolelabs/ui-components'
-import { IconCheck, IconSpinner } from '@consolelabs/icons'
+import { IconCheck, IconChevronLeft, IconSpinner } from '@consolelabs/icons'
 import { useTipWidget } from './store'
 import MessagePicker from '../MessagePicker/MessagePicker'
 import ThemePicker from '../ThemePicker/ThemePicker'
@@ -51,7 +50,7 @@ export default function StepTwo() {
       </div>
       <div className="flex overflow-y-auto flex-col gap-y-2">
         <button onClick={() => setStep(1)} className="self-start mt-3">
-          <Icon icon="ic:round-chevron-left" className="w-5 h-5" />
+          <IconChevronLeft className="w-5 h-5" />
         </button>
         <span className="mx-auto text-base text-[#343433]">You send</span>
         <p className="mx-auto text-3xl font-medium leading-5 text-black">

@@ -26,10 +26,10 @@ function Spotlight({
       className="flex flex-col flex-1 gap-y-2 justify-center items-center md:flex-row md:gap-x-5"
     >
       {icon}
-      <p className="flex flex-col items-center">
+      <p className="flex flex-col items-start w-full">
         <span
           className={clsx('text-sm leading-5 md:text-2xl md:leading-8', {
-            'bg-neutral-300 rounded animate-pulse h-full w-full': loading,
+            'bg-neutral-300 rounded animate-pulse h-full w-2/3': loading,
           })}
         >
           {loading ? <>&#8203;</> : title}
@@ -59,28 +59,28 @@ export default function Stats() {
     <div className="flex justify-center items-center my-5 mt-10 md:my-10 landing-block">
       <Spotlight
         loading={isLoading}
-        icon={<IconHeartColored className="w-8 h-8" />}
+        icon={<IconHeartColored className="flex-shrink-0 w-8 h-8" />}
         title={`${data?.tips_given ?? 1602}+`}
         subtitle="tips given"
       />
       <Divider />
       <Spotlight
         loading={isLoading}
-        icon={<IconDollarColored className="w-8 h-8" />}
+        icon={<IconDollarColored className="flex-shrink-0 w-8 h-8" />}
         title={data ? utils.formatUsdDigit(data.total_volume) : '$271,023'}
         subtitle="total volume"
       />
       <Divider />
       <Spotlight
         loading={isLoading}
-        icon={<IconUserShieldColored className="w-8 h-8" />}
+        icon={<IconUserShieldColored className="flex-shrink-0 w-8 h-8" />}
         title={`${data?.users ?? 1000}+`}
         subtitle="total users"
       />
       <Divider />
       <Spotlight
         loading={isLoading}
-        icon={<IconLinkColored className="w-8 h-8" />}
+        icon={<IconLinkColored className="flex-shrink-0 w-8 h-8" />}
         title="145+"
         subtitle="networks"
       />

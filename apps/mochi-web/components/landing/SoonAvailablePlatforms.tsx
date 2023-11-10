@@ -16,7 +16,7 @@ export function SoonAvailablePlatforms({
         {[
           {
             text: (
-              <div className="flex flex-col text-neutral-900">
+              <div className="flex flex-col gap-y-0.5 text-neutral-900">
                 <span className="text-[9px] leading-[9px]">Coming soon</span>
                 <span className="text-[15px] leading-[15px]">Slack</span>
               </div>
@@ -25,7 +25,7 @@ export function SoonAvailablePlatforms({
           },
           {
             text: (
-              <div className="flex flex-col text-neutral-900">
+              <div className="flex flex-col gap-y-0.5 text-neutral-900">
                 <span className="text-[9px] leading-[9px]">Coming soon</span>
                 <span className="text-[15px] leading-[15px]">App Store</span>
               </div>
