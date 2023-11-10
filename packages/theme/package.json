@@ -1,6 +1,6 @@
 {
   "name": "@consolelabs/theme",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
