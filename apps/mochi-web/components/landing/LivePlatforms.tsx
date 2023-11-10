@@ -24,7 +24,7 @@ export function LivePlatforms({ className = '' }: { className?: string }) {
           },
           {
             text: (
-              <div className="flex flex-col -mr-1.5 text-neutral-900">
+              <div className="flex flex-col gap-y-0.5 -mr-1.5 text-neutral-900">
                 <span className="text-[9px] leading-[9px]">Run on the</span>
                 <span className="text-[15px] leading-[15px]">Discord</span>
               </div>
@@ -36,7 +36,7 @@ export function LivePlatforms({ className = '' }: { className?: string }) {
           },
           {
             text: (
-              <div className="flex flex-col -mr-1.5 text-neutral-900">
+              <div className="flex flex-col gap-y-0.5 -mr-1.5 text-neutral-900">
                 <span className="text-[9px] leading-[9px]">Run on the</span>
                 <span className="text-[15px] leading-[15px]">Telegram</span>
               </div>
