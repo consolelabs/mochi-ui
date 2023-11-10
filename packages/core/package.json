@@ -50,7 +50,8 @@
     "@consolelabs/switch": "workspace:*",
     "@consolelabs/theme": "workspace:*",
     "@consolelabs/toggle-button": "workspace:*",
-    "@consolelabs/tooltip": "workspace:*"
+    "@consolelabs/tooltip": "workspace:*",
+    "@consolelabs/checkbox": "workspace:*"
   },
   "clean-package": "../../clean-package.config.json"
 }

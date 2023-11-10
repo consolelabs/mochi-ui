@@ -1213,6 +1213,9 @@ importers:
       '@consolelabs/button':
         specifier: workspace:*
         version: link:../components/button
+      '@consolelabs/checkbox':
+        specifier: workspace:*
+        version: link:../components/checkbox
       '@consolelabs/dropdown':
         specifier: workspace:*
         version: link:../components/dropdown
