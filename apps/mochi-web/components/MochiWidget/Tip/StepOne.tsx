@@ -9,7 +9,7 @@ import {
   Button,
 } from '@consolelabs/ui-components'
 import { IconArrowRight } from '@consolelabs/icons'
-import { SourcePicker } from '../SourcePicker'
+import { WalletPicker } from '../WalletPicker'
 import { Recipient } from '../Recipient'
 import { AmountInput } from '../AmountInput'
 import { useTipWidget } from './store'
@@ -54,7 +54,7 @@ const ConnectButton = forwardRef<ConnectButtonRef, {}>((_, ref) => {
 })
 
 export default function StepOne() {
-  const { setStep } = useTipWidget()
+  const { fromWallet, setStep, updateSourceWallet } = useTipWidget()
   const { token, isLoggedIn } = useAuthStore()
   const connectButtonRef = useRef<ConnectButtonRef>(null)
 
@@ -73,9 +73,17 @@ export default function StepOne() {
             by sending them money
           </span>
         </div>
-        <SourcePicker accessToken={token} onLoginRequest={openLoginPopup} />
+        <WalletPicker
+          accessToken={token}
+          onLoginRequest={openLoginPopup}
+          onSelect={updateSourceWallet}
+        />
         <Recipient accessToken={token} onLoginRequest={openLoginPopup} />
-        <AmountInput accessToken={token} onLoginRequest={openLoginPopup} />
+        <AmountInput
+          accessToken={token}
+          onLoginRequest={openLoginPopup}
+          wallet={fromWallet}
+        />
       </div>
       {isLoggedIn ? (
         <Button

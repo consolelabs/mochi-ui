@@ -1,10 +1,10 @@
 import { formatNumber } from '~utils/number'
 import { Heading } from '@consolelabs/ui-components'
-import { TokenAsset } from './type'
+import { Balance } from '~store'
 
 interface ItemProps {
-  item: TokenAsset
-  onSelect?: (item: TokenAsset) => void
+  item: Balance
+  onSelect?: (item: Balance) => void
 }
 
 export const TokenItem: React.FC<ItemProps> = ({ item, onSelect }) => (
@@ -14,18 +14,18 @@ export const TokenItem: React.FC<ItemProps> = ({ item, onSelect }) => (
     onClick={() => onSelect?.(item)}
   >
     <img
-      alt={`${item.token.name} icon`}
+      alt={`${item.token?.name} icon`}
       className="w-6 h-6 rounded-full object-contain"
-      src={item.icon}
+      src={item.token?.icon || '/logo.png'}
     />
     <div className="flex flex-col flex-1">
       <Heading as="h3" className="text-sm">
-        {item.token.name}
+        {item.token?.symbol}
       </Heading>
       <span className="text-xs text-[#848281]">
-        {formatNumber(item.token_amount)}
+        {formatNumber(item.asset_balance ?? 0)}
       </span>
     </div>
-    <span className="text-sm">${formatNumber(item.total_amount)}</span>
+    <span className="text-sm">${formatNumber(item.usd_balance ?? 0)}</span>
   </li>
 )

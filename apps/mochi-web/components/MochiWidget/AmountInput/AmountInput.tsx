@@ -1,32 +1,31 @@
 import { Button } from '@consolelabs/ui-components'
 import { useEffect, useState } from 'react'
 import { abbreviateNumber, formatNumber } from '~utils/number'
+import { Balance, Wallet } from '~store'
 import { TokenPicker } from '../TokenPicker'
-import { MonikerAsset, TokenAsset } from '../TokenPicker/type'
+import { MonikerAsset } from '../TokenPicker/type'
 
 interface AmountInputProps {
+  wallet?: Wallet
   accessToken: string | null
   onLoginRequest?: () => void
 }
 
 export const AmountInput: React.FC<AmountInputProps> = ({
+  wallet,
   accessToken,
   onLoginRequest,
 }) => {
-  const [selectedAsset, setSelectedAsset] = useState<
-    TokenAsset | MonikerAsset
-  >()
+  const [selectedAsset, setSelectedAsset] = useState<Balance | MonikerAsset>()
   const [tipAmount, setTipAmount] = useState('')
-  const isTokenAsset = selectedAsset && 'token' in selectedAsset
-  const balance = isTokenAsset
-    ? formatNumber(selectedAsset?.token_amount)
-    : formatNumber(selectedAsset?.total_amount || '0')
-  const balanceUnit = isTokenAsset
-    ? selectedAsset.token.name
-    : selectedAsset?.moniker.name
-  const unitPrice =
-    parseFloat(selectedAsset?.total_amount || '0') /
-    parseFloat(selectedAsset?.token_amount || '1')
+  const isMonikerAsset = selectedAsset && 'moniker' in selectedAsset
+  const balance = isMonikerAsset
+    ? formatNumber(selectedAsset?.asset_balance ?? 0)
+    : formatNumber(selectedAsset?.asset_balance ?? 0)
+  const balanceUnit = isMonikerAsset
+    ? (selectedAsset as MonikerAsset)?.moniker.moniker
+    : selectedAsset?.token?.symbol
+  const unitPrice = selectedAsset?.token?.price ?? 0
   const tipAmountUSD = abbreviateNumber(
     (parseFloat(tipAmount) || 0) * unitPrice,
   )
@@ -34,8 +33,6 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   useEffect(() => {
     if (!accessToken) {
       setSelectedAsset(undefined)
-    } else {
-      // TODO: Fetch assets by token
     }
   }, [accessToken])
 
@@ -43,7 +40,12 @@ export const AmountInput: React.FC<AmountInputProps> = ({
     if (!accessToken) {
       onLoginRequest?.()
     } else {
-      setTipAmount(amount)
+      // Amount is USD -> convert to token amount
+      setTipAmount(
+        (parseFloat(amount) / unitPrice).toFixed(
+          selectedAsset?.token?.decimal ?? 2,
+        ),
+      )
     }
   }
 
@@ -53,10 +55,18 @@ export const AmountInput: React.FC<AmountInputProps> = ({
     }
   }
 
+  function handleAssetChanged(asset: Balance | MonikerAsset) {
+    setSelectedAsset(asset)
+    setTipAmount('0')
+  }
+
   return (
     <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-3">
       <div className="flex justify-between items-center">
-        <TokenPicker onSelect={setSelectedAsset} />
+        <TokenPicker
+          onSelect={handleAssetChanged}
+          balances={wallet?.balances}
+        />
       </div>
       <div className="flex flex-col gap-y-2 py-6 px-4 rounded-lg bg-white-pure">
         <div className="flex flex-1 justify-between items-center">
@@ -81,7 +91,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               size="sm"
               variant="outline"
               color="info"
-              className="!py-1 px-2.5 rounded-lg"
+              style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('1')}
             >
               1
@@ -90,7 +100,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               size="sm"
               variant="outline"
               color="info"
-              className="!py-1 px-2.5 rounded-lg"
+              style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('2')}
             >
               2
@@ -99,7 +109,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               size="sm"
               variant="outline"
               color="info"
-              className="!py-1 px-2.5 rounded-lg"
+              style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('5')}
             >
               5

@@ -1,11 +1,11 @@
 import { List } from '@consolelabs/ui-components'
-import { TokenAsset } from './type'
+import { ModelBalance } from '~types/mochi-pay-schema'
 import { TokenItem } from './TokenItem'
 import { EmptyList } from './EmptyList'
 
 interface Props {
-  data: TokenAsset[]
-  onSelect?: (item: TokenAsset) => void
+  data: ModelBalance[]
+  onSelect?: (item: ModelBalance) => void
 }
 
 export const TokenList = (props: Props) => {

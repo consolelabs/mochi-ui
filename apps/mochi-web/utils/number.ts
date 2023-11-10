@@ -19,10 +19,17 @@ export function abbreviateNumber(num: number, _digits: number = 2) {
   const item = lookup
     .slice()
     .reverse()
-    .find(function (item) {
+    .find((item) => {
       return num >= item.value
     })
   return item
     ? formatNumber(num / item.value).replace(rx, '$1') + item.symbol
     : '0'
+}
+
+export function epsilonToDecimalNumber(number: number | string, decimal = 2) {
+  if (typeof number === 'string') {
+    return parseInt(number, 10) / 10 ** decimal
+  }
+  return number / 10 ** decimal
 }

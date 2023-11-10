@@ -15,6 +15,11 @@ module.exports = {
         hostname: 'cdn.discordapp.com',
         port: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'assets.coingecko.com',
+        port: '',
+      },
     ],
   },
   transpilePackages: ['@consolelabs/icons'],

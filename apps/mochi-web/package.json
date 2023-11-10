@@ -11,7 +11,9 @@
     "type-check": "tsc",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --quiet",
     "lint:fix": "eslint --fix . --ext .js,.jsx,.ts,.tsx",
-    "fetch-definitions": "swagger-typescript-api --no-client -p https://api.mochi-profile.console.so/swagger/doc.json -o ./types -n mochi-profile-schema.ts && swagger-typescript-api --no-client -p https://api.mochi.pod.town/swagger/doc.json -o ./types -n mochi-schema.ts",
+    "fetch-definitions:mochi": "swagger-typescript-api --no-client -p https://api.mochi.pod.town/swagger/doc.json -o ./types -n mochi-schema.ts",
+    "fetch-definitions:mochi-profile": "swagger-typescript-api --no-client -p https://api.mochi-profile.console.so/swagger/doc.json -o ./types -n mochi-profile-schema.ts",
+    "fetch-definitions:mochi-pay": "swagger-typescript-api --no-client -p https://api-preview.mochi-pay.console.so/swagger/doc.json -o ./types -n mochi-pay-schema.ts",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },

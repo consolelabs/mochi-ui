@@ -29,9 +29,9 @@ export default function ProfileDropdown() {
       <DropdownMenuTrigger asChild>
         {isLoggedIn && me && (
           <ProfileBadge
-            avatar={me?.avatar}
-            name={truncateWallet(me.profile_name)}
-            platform={me.platformIcon}
+            avatar={me?.avatar || '/logo.png'}
+            name={truncateWallet(me.profile_name) || 'unknown'}
+            platform={me.platformIcon || '/logo.png'}
           />
         )}
       </DropdownMenuTrigger>

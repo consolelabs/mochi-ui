@@ -1,6 +1,6 @@
 import { formatNumber } from '~utils/number'
 import { Heading } from '@consolelabs/ui-components'
-import { MonikerAsset } from './type'
+import { MonikerAsset, MonikerIcons } from './type'
 
 interface ItemProps {
   item: MonikerAsset
@@ -14,11 +14,13 @@ export const MonikerItem: React.FC<ItemProps> = ({ item, onSelect }) => (
     onClick={() => onSelect?.(item)}
   >
     <div className="flex justify-center items-center w-6 h-6 rounded-full border border-[#E5E4E3]">
-      <span className="text-sm">{item.moniker.icon}</span>
+      <span className="text-sm">
+        {MonikerIcons.get(item.moniker.moniker ?? '')}
+      </span>
     </div>
     <div className="flex flex-col flex-1">
       <Heading as="h3" className="text-sm">
-        {item.moniker.name}
+        {item.moniker.moniker}
       </Heading>
       <span className="text-xs text-[#848281]">
         {`${formatNumber(item.token_amount)} ${item.token_unit}`}
