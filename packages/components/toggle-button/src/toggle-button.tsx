@@ -2,14 +2,18 @@ import * as ToggleGroup from '@radix-ui/react-toggle-group'
 import React from 'react'
 import {
   toggleButton,
-  ToggleButtonProps,
-  ToggleButtonGroupProps,
+  ToggleButtonStylesProps,
+  ToggleButtonGroupStylesProps,
 } from '@consolelabs/theme'
+
+type ToggleButtonGroupProps = React.ComponentPropsWithoutRef<
+  typeof ToggleGroup.Root
+> &
+  ToggleButtonGroupStylesProps
 
 const ToggleButtonGroup = React.forwardRef<
   React.ElementRef<typeof ToggleGroup.Root>,
-  React.ComponentPropsWithoutRef<typeof ToggleGroup.Root> &
-    ToggleButtonGroupProps
+  ToggleButtonGroupProps
 >(({ className, ...props }, ref) => {
   const { toggleButtonGroupVariants } = toggleButton
 
@@ -23,9 +27,14 @@ const ToggleButtonGroup = React.forwardRef<
 })
 ToggleButtonGroup.displayName = ToggleGroup.Root.displayName
 
+type ToggleButtonProps = React.ComponentPropsWithoutRef<
+  typeof ToggleGroup.Item
+> &
+  ToggleButtonStylesProps
+
 const ToggleButton = React.forwardRef<
   React.ElementRef<typeof ToggleGroup.Item>,
-  React.ComponentPropsWithoutRef<typeof ToggleGroup.Item> & ToggleButtonProps
+  ToggleButtonProps
 >(({ className, ...props }, ref) => {
   const { toggleButtonVariants } = toggleButton
 
@@ -39,4 +48,9 @@ const ToggleButton = React.forwardRef<
 })
 ToggleButton.displayName = ToggleGroup.Item.displayName
 
-export { ToggleButtonGroup, ToggleButton }
+export {
+  ToggleButtonGroup,
+  ToggleButton,
+  type ToggleButtonGroupProps,
+  type ToggleButtonProps,
+}

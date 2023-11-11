@@ -1,8 +1,8 @@
-import { inputfield, InputWrapperProps } from '@consolelabs/theme'
+import { inputfield, InputWrapperStylesProps } from '@consolelabs/theme'
 import { HTMLAttributes } from 'react'
 
-type Props = HTMLAttributes<HTMLInputElement> &
-  InputWrapperProps & {
+type InputFieldProps = HTMLAttributes<HTMLInputElement> &
+  InputWrapperStylesProps & {
     id?: string
     value?: string
     defaultValue?: string
@@ -30,7 +30,7 @@ export default function InputField({
   size,
   className,
   ...rest
-}: Props) {
+}: InputFieldProps) {
   const {
     inputWrapperVariants,
     inputFieldVariants,
@@ -81,3 +81,5 @@ export default function InputField({
     </div>
   )
 }
+
+export { type InputFieldProps }

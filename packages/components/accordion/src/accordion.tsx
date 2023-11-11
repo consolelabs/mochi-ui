@@ -15,9 +15,11 @@ const {
   accordionContentClsx,
 } = accordion
 
+type AccordionProps = ComponentPropsWithoutRef<typeof AccordionPrimitive.Root>
+
 const Accordion = forwardRef<
   ElementRef<typeof AccordionPrimitive.Root>,
-  ComponentPropsWithoutRef<typeof AccordionPrimitive.Root>
+  AccordionProps
 >(({ className, ...props }, ref) => (
   <AccordionPrimitive.Root
     className={accordionRootClsx({ className })}
@@ -28,9 +30,13 @@ const Accordion = forwardRef<
 
 Accordion.displayName = AccordionPrimitive.Root.displayName
 
+type AccordionItemProps = ComponentPropsWithoutRef<
+  typeof AccordionPrimitive.Item
+>
+
 const AccordionItem = forwardRef<
   ElementRef<typeof AccordionPrimitive.Item>,
-  ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
+  AccordionItemProps
 >(({ className, ...props }, ref) => (
   <AccordionPrimitive.Item className={className} ref={ref} {...props} />
 ))
@@ -118,4 +124,13 @@ const AccordionContent = forwardRef<
 
 AccordionContent.displayName = AccordionPrimitive.Content.displayName
 
-export { Accordion, AccordionItem, AccordionContent, AccordionTrigger }
+export {
+  Accordion,
+  AccordionItem,
+  AccordionContent,
+  AccordionTrigger,
+  type AccordionProps,
+  type AccordionItemProps,
+  type AccordionContentProps,
+  type AccordionTriggerProps,
+}

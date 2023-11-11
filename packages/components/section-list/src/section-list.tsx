@@ -129,3 +129,5 @@ export default function SectionList<
     </ScrollArea.Root>
   )
 }
+
+export { type SectionListProps }

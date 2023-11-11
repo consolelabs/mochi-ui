@@ -11,7 +11,7 @@ export const toggleButton = {
   toggleButtonGroupVariants,
 }
 
-export type ToggleButtonProps = VariantProps<typeof toggleButtonVariants>
-export type ToggleButtonGroupProps = VariantProps<
+export type ToggleButtonStylesProps = VariantProps<typeof toggleButtonVariants>
+export type ToggleButtonGroupStylesProps = VariantProps<
   typeof toggleButtonGroupVariants
 >

@@ -1,14 +1,23 @@
 import * as RadixTabs from '@radix-ui/react-tabs'
 import React from 'react'
-import { tabs, TabTriggerProps } from '@consolelabs/theme'
+import { tabs, TabTriggerStylesProps } from '@consolelabs/theme'
+
+type TabsProps = typeof RadixTabs.Root
+type TabListProps = typeof RadixTabs.List
+type TabContentProps = typeof RadixTabs.Content
 
 const Tabs = RadixTabs.Root
 const TabList = RadixTabs.List
 const TabContent = RadixTabs.Content
 
+type TabTriggerProps = React.ComponentPropsWithoutRef<
+  typeof RadixTabs.Trigger
+> &
+  TabTriggerStylesProps
+
 const TabTrigger = React.forwardRef<
   React.ElementRef<typeof RadixTabs.Trigger>,
-  React.ComponentPropsWithoutRef<typeof RadixTabs.Trigger> & TabTriggerProps
+  TabTriggerProps
 >(({ className, variant, disabled, ...props }, ref) => {
   const { tabTriggerVariants, tabTriggerWrapperClassName } = tabs
 
@@ -25,4 +34,13 @@ const TabTrigger = React.forwardRef<
 })
 TabTrigger.displayName = RadixTabs.Trigger.displayName
 
-export { Tabs, TabList, TabContent, TabTrigger }
+export {
+  Tabs,
+  TabList,
+  TabContent,
+  TabTrigger,
+  type TabTriggerProps,
+  type TabsProps,
+  type TabListProps,
+  type TabContentProps,
+}

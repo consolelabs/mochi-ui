@@ -1,9 +1,15 @@
 import * as RadixAvatar from '@radix-ui/react-avatar'
 import { useId } from 'react'
-import { avatar, AvatarProps } from '@consolelabs/theme'
+import { avatar, AvatarStylesProps } from '@consolelabs/theme'
 import { boringAvatar } from './util'
 
 const { avatarCva } = avatar
+
+interface AvatarProps extends AvatarStylesProps {
+  src: string
+  smallSrc?: string
+  fallback?: string
+}
 
 export default function Avatar({
   size,
@@ -58,3 +64,5 @@ export default function Avatar({
     </RadixAvatar.Root>
   )
 }
+
+export { type AvatarProps }
