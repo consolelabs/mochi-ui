@@ -1,5 +1,15 @@
 # @consolelabs/login-widget
 
+## 0.0.5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`b46a8eb`](https://github.com/consolelabs/websites/commit/b46a8eb5699a24f674d3d6179dc4b9df672623bb),
+  [`1af15c8`](https://github.com/consolelabs/websites/commit/1af15c838aeeb0f4132722f4ca3ad3f38e6eb749)]:
+  - @consolelabs/theme@0.0.4
+  - @consolelabs/heading@0.0.2
+
 ## 0.0.4
 
 ### Patch Changes
