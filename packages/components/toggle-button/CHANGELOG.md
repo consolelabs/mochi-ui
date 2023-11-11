@@ -1,5 +1,14 @@
 # @consolelabs/toggle-button
 
+## 0.0.4
+
+### Patch Changes
+
+- [#138](https://github.com/consolelabs/websites/pull/138)
+  [`b46a8eb`](https://github.com/consolelabs/websites/commit/b46a8eb5699a24f674d3d6179dc4b9df672623bb)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Export component
+  interfaces
+
 ## 0.0.3
 
 ### Patch Changes
