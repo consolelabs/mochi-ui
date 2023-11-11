@@ -36,8 +36,7 @@
     "@consolelabs/heading": "workspace:*",
     "@consolelabs/theme": "workspace:*",
     "class-variance-authority": "^0.7.0",
-    "@radix-ui/react-scroll-area": "^1.0.5",
-    "clsx": "^2.0.0"
+    "@radix-ui/react-scroll-area": "^1.0.5"
   },
   "clean-package": "../../../clean-package.config.json"
 }

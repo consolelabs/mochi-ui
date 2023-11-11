@@ -158,7 +158,7 @@ export const button = {
   buttonLoadingIconClsx,
 }
 
-export type ButtonStyleProps = ButtonHTMLAttributes<HTMLButtonElement> &
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProps<typeof buttonCva> & {
     children?: React.ReactNode
     className?: string

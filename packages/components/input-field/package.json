@@ -26,16 +26,15 @@
   "devDependencies": {
     "clean-package": "^2.2.0",
     "eslint-config-custom": "workspace:*",
-    "@consolelabs/icons": "workspace:*",
-    "@consolelabs/theme": "workspace:*",
     "prettier": "^3.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tsconfig": "workspace:*"
   },
   "dependencies": {
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.0.0"
+    "@consolelabs/icons": "workspace:*",
+    "@consolelabs/theme": "workspace:*",
+    "class-variance-authority": "^0.7.0"
   },
   "clean-package": "../../../clean-package.config.json"
 }

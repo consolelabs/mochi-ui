@@ -1,6 +1,6 @@
 import * as RadixAvatar from '@radix-ui/react-avatar'
 import { useId } from 'react'
-import { avatar, AvatarStyleProps } from '@consolelabs/theme'
+import { avatar, AvatarProps } from '@consolelabs/theme'
 import { boringAvatar } from './util'
 
 const { avatarCva } = avatar
@@ -10,7 +10,7 @@ export default function Avatar({
   src,
   smallSrc,
   fallback = '',
-}: AvatarStyleProps) {
+}: AvatarProps) {
   const id = useId()
   const fallbackUrl = boringAvatar(fallback)
 

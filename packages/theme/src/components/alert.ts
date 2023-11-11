@@ -41,7 +41,7 @@ export const alert = {
   alertTitleClsx,
 }
 
-export type AlertStyleProps = VariantProps<typeof alertCva> & {
+export type AlertProps = VariantProps<typeof alertCva> & {
   children: React.ReactNode
   className?: string
   title?: string

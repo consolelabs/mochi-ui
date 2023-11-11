@@ -1,9 +1,7 @@
-import { button, ButtonStyleProps } from '@consolelabs/theme'
+import { button, ButtonProps } from '@consolelabs/theme'
 import { IconThreeDotLoading } from '@consolelabs/icons'
 
 const { buttonCva, buttonloadIndicatorCva, buttonLoadingIconClsx } = button
-
-type ButtonProps = ButtonStyleProps
 
 export default function Button({
   children,
