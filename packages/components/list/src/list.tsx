@@ -91,3 +91,5 @@ export default function List<Item extends NonNullable<object> | string>({
     </ScrollArea.Root>
   )
 }
+
+export { type ListProps }

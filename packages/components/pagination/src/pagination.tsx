@@ -15,7 +15,7 @@ const {
   paginationNavigationIconClsx,
 } = pagination
 
-export interface PaginationProps {
+interface PaginationProps {
   initalPage?: number
   totalPages?: number
   totalItems: number
@@ -274,3 +274,5 @@ export default function Pagination({
     </div>
   )
 }
+
+export { type PaginationProps }

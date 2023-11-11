@@ -83,3 +83,5 @@ export default function Sidebar({
     </div>
   )
 }
+
+export { type SidebarProps }

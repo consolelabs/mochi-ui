@@ -3,9 +3,11 @@ import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 import clsx from 'clsx'
 import { separator as separatorClassName } from '@consolelabs/theme'
 
+type SeparatorProps = ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>
+
 const Separator = forwardRef<
   ElementRef<typeof SeparatorPrimitive.Root>,
-  ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>
+  SeparatorProps
 >((props, ref) => {
   const {
     orientation = 'horizontal',
@@ -33,4 +35,4 @@ const Separator = forwardRef<
 
 Separator.displayName = SeparatorPrimitive.Root.displayName
 
-export { Separator }
+export { Separator, type SeparatorProps }

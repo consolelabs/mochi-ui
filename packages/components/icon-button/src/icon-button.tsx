@@ -1,6 +1,13 @@
-import { iconButton, IconButtonProps } from '@consolelabs/theme'
+import { iconButton, IconButtonStylesProps } from '@consolelabs/theme'
+import { ButtonHTMLAttributes } from 'react'
 
 const { iconButtonCva } = iconButton
+
+type IconButtonProps = IconButtonStylesProps &
+  ButtonHTMLAttributes<HTMLButtonElement> & {
+    children?: React.ReactNode
+    className?: string
+  }
 
 export default function IconButton({
   children,
@@ -22,3 +29,5 @@ export default function IconButton({
     </button>
   )
 }
+
+export { type IconButtonProps }

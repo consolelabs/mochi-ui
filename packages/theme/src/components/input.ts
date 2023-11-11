@@ -27,4 +27,4 @@ export const input = {
   inputVariants,
 }
 
-export type InputProps = VariantProps<typeof inputVariants>
+export type InputStylesProps = VariantProps<typeof inputVariants>

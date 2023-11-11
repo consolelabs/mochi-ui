@@ -48,4 +48,4 @@ export const tabs = {
   tabTriggerWrapperClassName,
 }
 
-export type TabTriggerProps = VariantProps<typeof tabTriggerVariants>
+export type TabTriggerStylesProps = VariantProps<typeof tabTriggerVariants>

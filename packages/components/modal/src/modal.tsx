@@ -19,9 +19,13 @@ const ModalPortal = ModalPrimitive.Portal
 
 const ModalClose = ModalPrimitive.Close
 
+type ModalOverlayProps = React.ComponentPropsWithoutRef<
+  typeof ModalPrimitive.Overlay
+>
+
 const ModalOverlay = React.forwardRef<
   React.ElementRef<typeof ModalPrimitive.Overlay>,
-  React.ComponentPropsWithoutRef<typeof ModalPrimitive.Overlay>
+  ModalOverlayProps
 >(({ className, ...props }, ref) => (
   <ModalPrimitive.Overlay
     className={modalOverlayClsx({ className })}
@@ -31,11 +35,15 @@ const ModalOverlay = React.forwardRef<
 ))
 ModalOverlay.displayName = ModalPrimitive.Overlay.displayName
 
+type ModalContentProps = React.ComponentPropsWithoutRef<
+  typeof ModalPrimitive.Content
+> & {
+  showCloseBtn?: boolean
+}
+
 const ModalContent = React.forwardRef<
   React.ElementRef<typeof ModalPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof ModalPrimitive.Content> & {
-    showCloseBtn?: boolean
-  }
+  ModalContentProps
 >(({ className, children, showCloseBtn, ...props }, ref) => (
   <ModalPortal>
     <ModalOverlay />
@@ -55,9 +63,13 @@ const ModalContent = React.forwardRef<
 ))
 ModalContent.displayName = ModalPrimitive.Content.displayName
 
+type ModalTitleProps = React.ComponentPropsWithoutRef<
+  typeof ModalPrimitive.Title
+>
+
 const ModalTitle = React.forwardRef<
   React.ElementRef<typeof ModalPrimitive.Title>,
-  React.ComponentPropsWithoutRef<typeof ModalPrimitive.Title>
+  ModalTitleProps
 >(({ className, ...props }, ref) => (
   <ModalPrimitive.Title
     className={modalTitleClsx({ className })}
@@ -67,9 +79,13 @@ const ModalTitle = React.forwardRef<
 ))
 ModalTitle.displayName = ModalPrimitive.Title.displayName
 
+type ModalDescriptionProps = React.ComponentPropsWithoutRef<
+  typeof ModalPrimitive.Description
+>
+
 const ModalDescription = React.forwardRef<
   React.ElementRef<typeof ModalPrimitive.Description>,
-  React.ComponentPropsWithoutRef<typeof ModalPrimitive.Description>
+  ModalDescriptionProps
 >(({ className, ...props }, ref) => (
   <ModalPrimitive.Description
     className={modalDescriptionClsx({ className })}
@@ -88,4 +104,8 @@ export {
   ModalContent,
   ModalTitle,
   ModalDescription,
+  type ModalOverlayProps,
+  type ModalTitleProps,
+  type ModalContentProps,
+  type ModalDescriptionProps,
 }

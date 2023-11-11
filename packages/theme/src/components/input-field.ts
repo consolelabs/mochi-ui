@@ -83,4 +83,4 @@ export const inputfield = {
   labelClassName,
 }
 
-export type InputWrapperProps = VariantProps<typeof inputWrapperVariants>
+export type InputWrapperStylesProps = VariantProps<typeof inputWrapperVariants>

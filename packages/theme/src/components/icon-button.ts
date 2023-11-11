@@ -1,6 +1,5 @@
 import type { VariantProps } from 'class-variance-authority'
 import { cva } from 'class-variance-authority'
-import { ButtonHTMLAttributes } from 'react'
 
 const iconButtonCva = cva(
   ['flex items-center gap-x-2 rounded-full font-semibold h-fit'],
@@ -134,11 +133,7 @@ const iconButtonCva = cva(
   },
 )
 
-export type IconButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
-  VariantProps<typeof iconButtonCva> & {
-    children?: React.ReactNode
-    className?: string
-  }
+export type IconButtonStylesProps = VariantProps<typeof iconButtonCva>
 
 const iconButton = { iconButtonCva }
 

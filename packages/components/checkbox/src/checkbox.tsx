@@ -37,4 +37,4 @@ const Checkbox = forwardRef<
     </CheckboxPrimitive.Root>
   )
 })
-export { Checkbox, type CheckedState }
+export { Checkbox, type CheckedState, type CheckboxProps }

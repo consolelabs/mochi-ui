@@ -67,12 +67,7 @@ const switchThumbClsx = ({
     className,
   )
 
-export type SwitchProps = VariantProps<typeof switchContainerCva> & {
-  label?: string
-  checked: boolean
-  onChange?: (c: boolean) => void
-  disabled?: boolean
-}
+export type SwitchStylesProps = VariantProps<typeof switchContainerCva>
 
 const switchInput = {
   switchContainerCva,

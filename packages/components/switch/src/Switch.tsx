@@ -1,6 +1,6 @@
 import * as RadixSwitch from '@radix-ui/react-switch'
 import { useId } from 'react'
-import { switchInput, SwitchProps } from '@consolelabs/theme'
+import { switchInput, SwitchStylesProps } from '@consolelabs/theme'
 
 const {
   switchContainerCva,
@@ -9,6 +9,13 @@ const {
   switchRootClsx,
   switchThumbClsx,
 } = switchInput
+
+interface SwitchProps extends SwitchStylesProps {
+  label?: string
+  checked: boolean
+  onChange?: (c: boolean) => void
+  disabled?: boolean
+}
 
 export default function Switch(props: SwitchProps) {
   const { label, checked = false, disabled = false, size, onChange } = props
@@ -43,3 +50,5 @@ export default function Switch(props: SwitchProps) {
     </div>
   )
 }
+
+export { type SwitchProps }

@@ -1,8 +1,8 @@
-import { input, InputProps } from '@consolelabs/theme'
+import { input, InputStylesProps } from '@consolelabs/theme'
 import { HTMLAttributes } from 'react'
 
-type Props = HTMLAttributes<HTMLInputElement> &
-  InputProps & {
+type InputProps = HTMLAttributes<HTMLInputElement> &
+  InputStylesProps & {
     disabled?: boolean
     error?: boolean
     className?: string
@@ -14,7 +14,7 @@ export default function Input({
   size,
   className,
   ...rest
-}: Props) {
+}: InputProps) {
   const { inputVariants } = input
 
   return (
@@ -25,3 +25,5 @@ export default function Input({
     />
   )
 }
+
+export { type InputProps }

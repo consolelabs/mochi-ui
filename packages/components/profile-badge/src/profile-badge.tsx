@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react'
 import { Avatar } from '@consolelabs/avatar'
 import { profileBadge } from '@consolelabs/theme'
 
-type Props = React.HTMLAttributes<HTMLButtonElement> & {
+type ProfileBadgeProps = React.HTMLAttributes<HTMLButtonElement> & {
   avatar: string
   platform: string
   name: string
@@ -14,7 +14,7 @@ const {
   profileBadgeNameClsx,
 } = profileBadge
 
-export const ProfileBadge = forwardRef<HTMLButtonElement, Props>(
+export const ProfileBadge = forwardRef<HTMLButtonElement, ProfileBadgeProps>(
   ({ name, avatar, platform, ...rest }, ref) => (
     <button
       className={profileBadgeClsx()}
@@ -32,3 +32,4 @@ export const ProfileBadge = forwardRef<HTMLButtonElement, Props>(
 )
 
 export default ProfileBadge
+export { type ProfileBadgeProps }
