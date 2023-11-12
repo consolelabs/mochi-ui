@@ -14,15 +14,22 @@ import { Platform } from '../PlatformPicker/type'
 import { RecipientList } from './RecipientList'
 import { DefaultAccounts } from './data'
 import { PlatformPicker } from '../PlatformPicker'
+import { SelectedRecipient } from './SelectedRecipient'
 
 interface RecipientProps {
   accessToken: string | null
   onLoginRequest?: () => void
+  selectedRecipients?: ViewProfile[]
+  onSelectRecipient?: (item: ViewProfile) => void
+  onRemoveRecipient?: (item: ViewProfile) => void
 }
 
 export const Recipient: React.FC<RecipientProps> = ({
   accessToken,
   onLoginRequest,
+  selectedRecipients,
+  onSelectRecipient,
+  onRemoveRecipient,
 }) => {
   const [isOpenRecipients, openRecipients] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
@@ -86,6 +93,18 @@ export const Recipient: React.FC<RecipientProps> = ({
               onFocus={handleFocusInput}
             />
           </div>
+          <div className="grid grid-cols-4 gap-7 px-4 py-2">
+            {selectedRecipients?.map((item: ViewProfile) => (
+              <SelectedRecipient
+                key={
+                  (item.id || 'unknown') +
+                  (item.associated_accounts?.[0].id || 'unknown')
+                }
+                profile={item}
+                onRemove={onRemoveRecipient}
+              />
+            ))}
+          </div>
         </div>
       </PopoverAnchor>
       <PopoverContent
@@ -122,7 +141,7 @@ export const Recipient: React.FC<RecipientProps> = ({
           }
           onChange={onSearchChange}
         />
-        <RecipientList data={filteredRecipients} />
+        <RecipientList data={filteredRecipients} onSelect={onSelectRecipient} />
       </PopoverContent>
     </Popover>
   )

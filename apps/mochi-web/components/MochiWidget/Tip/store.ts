@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { API } from '~constants/api'
 import { Wallet } from '~store'
+import { ViewProfile } from '~types/mochi-profile-schema'
 import { Theme } from '../ThemePicker/ThemePicker'
 
 interface Request {
@@ -11,6 +12,7 @@ interface Request {
 interface TipWidgetState {
   step: number
   fromWallet?: Wallet
+  recipients?: ViewProfile[]
   setStep: (s: number) => void
   request?: Request
   updateRequestMessage: (message: string) => void
@@ -20,6 +22,8 @@ interface TipWidgetState {
   isTransferring: boolean
   tx: any
   updateSourceWallet: (s: Wallet) => void
+  addRecipient: (recipient: ViewProfile) => void
+  removeRecipient: (recipient: ViewProfile) => void
 }
 
 export const useTipWidget = create<TipWidgetState>((set, get) => ({
@@ -76,4 +80,28 @@ export const useTipWidget = create<TipWidgetState>((set, get) => ({
   },
   updateSourceWallet: (wallet: Wallet) =>
     set((s) => ({ ...s, fromWallet: wallet })),
+  addRecipient: (recipient: ViewProfile) => {
+    if (
+      get().recipients?.find(
+        (r) =>
+          r.associated_accounts?.[0].id ===
+          recipient.associated_accounts?.[0].id,
+      )
+    ) {
+      return
+    }
+    return set((s) => ({
+      ...s,
+      recipients: [...(s.recipients || []), recipient],
+    }))
+  },
+  removeRecipient: (recipient: ViewProfile) =>
+    set((s) => ({
+      ...s,
+      recipients: get().recipients?.filter(
+        (r) =>
+          r.associated_accounts?.[0].id !==
+          recipient.associated_accounts?.[0].id,
+      ),
+    })),
 }))
