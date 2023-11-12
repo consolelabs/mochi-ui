@@ -24,19 +24,25 @@ export const Recipient: React.FC<RecipientProps> = ({
   accessToken,
   onLoginRequest,
 }) => {
-  const [selectedPlatform] = useState<Platform>()
   const [isOpenRecipients, openRecipients] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
+  const [selectedPlatform, setSelectedPlatform] = useState<Platform>()
   const isOnChain = selectedPlatform?.platform === 'on-chain'
   const recipients: ViewProfile[] = DefaultAccounts
   const filteredRecipients = useMemo(
     () =>
       recipients.filter((item) => {
-        return item.associated_accounts?.[0].platform_metadata?.username
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase())
+        const isPlatformMatch =
+          item.associated_accounts?.[0].platform?.toLowerCase() ===
+          selectedPlatform?.platform.toLowerCase()
+
+        const isSearchMatch =
+          item.associated_accounts?.[0].platform_metadata?.username
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase())
+        return isPlatformMatch && isSearchMatch
       }),
-    [searchTerm, recipients],
+    [searchTerm, selectedPlatform, recipients],
   )
 
   function handleFocusInput() {
@@ -72,11 +78,7 @@ export const Recipient: React.FC<RecipientProps> = ({
             <span className="text-sm font-semibold text-neutral-600">0/20</span>
           </div>
           <div className="flex gap-x-2 items-center py-2.5 px-4 rounded-lg bg-white-pure">
-            {isOnChain ? (
-              <ChainPicker />
-            ) : (
-              <span className="h-[34px] text-lg text-[#848281] pt-0.5">@</span>
-            )}
+            <span className="h-[34px] text-lg text-[#848281] pt-0.5">@</span>
             <input
               id="recipients"
               className="flex-1 h-full bg-transparent outline-none"
@@ -97,7 +99,7 @@ export const Recipient: React.FC<RecipientProps> = ({
           >
             Select platform
           </Heading>
-          <PlatformPicker />
+          <PlatformPicker onSelect={setSelectedPlatform} />
           <IconButton
             style={{ width: 24, height: 24, padding: 4.5 }}
             variant="outline"
@@ -110,9 +112,13 @@ export const Recipient: React.FC<RecipientProps> = ({
         </div>
         <InputField
           className="w-full text-sm"
-          placeholder="Search username"
+          placeholder={isOnChain ? 'Search address' : 'Search username'}
           startAdornment={
-            <span className="pl-3 font-medium text-neutral-500">@</span>
+            isOnChain ? (
+              <ChainPicker className="ml-3" />
+            ) : (
+              <span className="pl-3 font-medium text-neutral-500">@</span>
+            )
           }
           onChange={onSearchChange}
         />
