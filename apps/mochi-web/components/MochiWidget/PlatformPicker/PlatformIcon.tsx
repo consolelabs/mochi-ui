@@ -1,39 +1,66 @@
-import DiscordIcon from './icons/discord-ic'
-import TelegramIcon from './icons/telegram-ic'
-import GithubIcon from './icons/github-ic'
-import RedditIcon from './icons/reddit-ic'
-import XIcon from './icons/x-ic'
-import EmailIcon from './icons/google-ic'
-import OnchainIcon from './icons/onchain-ic'
+import {
+  IconDiscord,
+  IconDiscordColored,
+  IconGithub,
+  IconGoogle,
+  IconGoogleColored,
+  IconReddit,
+  IconRedditColored,
+  IconTelegram,
+  IconTelegramColored,
+  IconWallet,
+  IconX,
+} from '@consolelabs/icons'
 import { PlatformType } from './type'
 
 interface IconProps {
-  platform: PlatformType
+  platform: PlatformType | string
+  compact?: boolean
   className?: string
 }
 
-const PlatformIcon: React.FC<IconProps> = (props: IconProps) => {
-  switch (props.platform) {
-    case 'Discord': {
-      return <DiscordIcon className={props.className} />
+const PlatformIcon: React.FC<IconProps> = ({
+  platform,
+  compact,
+  className,
+}) => {
+  switch (platform.toLowerCase()) {
+    case 'discord': {
+      return compact ? (
+        <IconDiscord className={className} />
+      ) : (
+        <IconDiscordColored className={className} />
+      )
     }
-    case 'Telegram': {
-      return <TelegramIcon className={props.className} />
+    case 'telegram': {
+      return compact ? (
+        <IconTelegram className={className} />
+      ) : (
+        <IconTelegramColored className={className} />
+      )
     }
-    case 'Email': {
-      return <EmailIcon className={props.className} />
+    case 'email': {
+      return compact ? (
+        <IconGoogle className={className} />
+      ) : (
+        <IconGoogleColored className={className} />
+      )
     }
-    case 'X': {
-      return <XIcon className={props.className} />
+    case 'x': {
+      return <IconX className={className} />
     }
-    case 'Github': {
-      return <GithubIcon className={props.className} />
+    case 'github': {
+      return <IconGithub className={className} />
     }
-    case 'Reddit': {
-      return <RedditIcon className={props.className} />
+    case 'reddit': {
+      return compact ? (
+        <IconReddit className={className} />
+      ) : (
+        <IconRedditColored className={className} />
+      )
     }
-    case 'On-chain': {
-      return <OnchainIcon className={props.className} />
+    case 'on-chain': {
+      return <IconWallet className={className} />
     }
     default: {
       return null

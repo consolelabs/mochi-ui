@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-import { Icon } from '@iconify/react'
 import {
   Popover,
   PopoverTrigger,
   PopoverContent,
 } from '@consolelabs/ui-components'
+import { IconChevronDown } from '@consolelabs/icons'
 import { PlatformList } from './PlatformList'
 import { Platform } from './type'
 import PlatformIcon from './PlatformIcon'
@@ -12,31 +12,31 @@ import PlatformIcon from './PlatformIcon'
 const Platforms: Platform[] = [
   {
     id: '1',
-    platform: 'Discord',
+    platform: 'discord',
   },
   {
     id: '2',
-    platform: 'Telegram',
+    platform: 'telegram',
   },
   {
     id: '3',
-    platform: 'Email',
+    platform: 'email',
   },
   {
     id: '4',
-    platform: 'X',
+    platform: 'x',
   },
   {
     id: '5',
-    platform: 'Github',
+    platform: 'github',
   },
   {
     id: '6',
-    platform: 'Reddit',
+    platform: 'reddit',
   },
   {
     id: '7',
-    platform: 'On-chain',
+    platform: 'on-chain',
   },
 ]
 
@@ -63,16 +63,15 @@ export const PlatformPicker: React.FC<Props> = ({ onSelect }) => {
 
   return (
     <Popover open={isOpenSelector} onOpenChange={setIsOpenSelector}>
-      <PopoverTrigger className="flex gap-x-2 items-center py-1.5 px-2 rounded-lg bg-white-pure">
+      <PopoverTrigger className="flex gap-x-2 items-center py-1.5 px-3 rounded-lg bg-neutral-100">
         <PlatformIcon
           platform={selectedPlatform.platform}
           className="flex-shrink-0 w-[22px] h-[22px]"
         />
-        <span className="text-sm font-medium">{selectedPlatform.platform}</span>
-        <Icon
-          icon="majesticons:chevron-down-line"
-          className="w-4 h-4 text-[#ADACAA]"
-        />
+        <span className="text-sm font-medium capitalize">
+          {selectedPlatform.platform}
+        </span>
+        <IconChevronDown className="w-4 h-4 text-[#ADACAA]" />
       </PopoverTrigger>
       <PopoverContent
         align="start"
