@@ -45,9 +45,8 @@ async function transform(d: any): Promise<Tx> {
   let channel = 'Unknown'
   if (d.metadata) {
     try {
-      const { channel_name } = JSON.parse(atob(d.metadata))
-      if (channel_name) {
-        channel = channel_name
+      if ('channel_name' in d.metadata) {
+        channel = d.metadata.channel_name
       }
     } catch (e) {
       console.log(e)
@@ -80,7 +79,6 @@ interface State {
   txns: Tx[]
   addNewTx: (tx: Tx) => void
   loading: boolean
-  isUseLayout: boolean
   fetchTxns: () => Promise<void>
   initWs: (override?: boolean) => void
   ws: WebSocket | null
@@ -89,7 +87,6 @@ interface State {
 export const useTipFeed = create<State>((set, get) => ({
   txns: [],
   loading: true,
-  isUseLayout: false,
   addNewTx: (tx) => {
     set((s) => ({ ...s, txns: [tx, ...s.txns].slice(0, limit) }))
   },
@@ -127,7 +124,6 @@ export const useTipFeed = create<State>((set, get) => ({
         const payload = JSON.parse(e.data)
         const { event, data } = payload
         if (event !== 'TRANSFER_CREATED') return
-        set((s) => ({ ...s, isUseLayout: true }))
         get().addNewTx(await transform(data))
       } catch (e) {
         console.error(e)

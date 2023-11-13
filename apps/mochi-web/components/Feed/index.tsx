@@ -51,7 +51,7 @@ export default function Feed({ className = '' }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
 
   const [lastTopCode, setLastTopCode] = useState('')
-  const { loading, ws, fetchTxns, initWs, txns, isUseLayout } = useTipFeed()
+  const { loading, ws, fetchTxns, initWs, txns } = useTipFeed()
 
   useEffect(() => {
     fetchTxns()
@@ -80,7 +80,7 @@ export default function Feed({ className = '' }: Props) {
     >
       <div
         className={clsx(
-          'transition bottom-0 left-0 absolute w-full h-20 bg-gradient-to-t pointer-events-none from-feed',
+          'transition bottom-0 left-0 absolute w-full h-20 bg-gradient-to-t pointer-events-none from-feed-bg z-10',
           {
             'opacity-100': isShowBotFade,
             'opacity-0': !isShowBotFade,
@@ -137,7 +137,7 @@ export default function Feed({ className = '' }: Props) {
             })}
             <div
               className={clsx(
-                'transition top-full left-0 absolute w-full h-20 bg-gradient-to-b pointer-events-none from-feed',
+                'transition top-full left-0 absolute w-full h-20 bg-gradient-to-b pointer-events-none from-feed-bg',
                 {
                   'opacity-100': isShowTopFade,
                   'opacity-0': !isShowTopFade,
@@ -152,7 +152,7 @@ export default function Feed({ className = '' }: Props) {
                 }
               }}
               className={clsx(
-                'flex absolute left-[calc((100vw-4rem)/2)] top-full z-20 gap-x-1 items-center py-1 px-2 mt-2 rounded-full transition -translate-x-1/2 bg-white-pure hover:bg-neutral-300',
+                'flex absolute left-[calc((1440px-4rem)/2)] top-full z-20 gap-x-1 items-center py-1 px-2 mt-2 rounded-full transition -translate-x-1/2 bg-white-pure hover:bg-neutral-300',
                 {
                   'opacity-0': !isShowTopFade,
                   'opacity-100 translate-y-2': isShowTopFade,
@@ -181,7 +181,6 @@ export default function Feed({ className = '' }: Props) {
                 : txns.map((tx) => {
                     return (
                       <motion.div
-                        layout={isUseLayout}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}

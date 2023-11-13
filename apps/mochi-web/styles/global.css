@@ -12,9 +12,34 @@ body {
   @apply bg-white-pure;
   overflow: hidden;
   position: relative;
-  height: 100vh;
+  height: 100svh;
   letter-spacing: -0.2px;
   color: #474645;
+}
+
+.ethereum-color {
+  color: #8a93b2;
+}
+.bitcoin-color {
+  color: #f7931a;
+}
+.solana-color {
+  color: #14f195;
+}
+.dogecoin-color {
+  color: #cb9800;
+}
+.discord-color {
+  color: #5865f2;
+}
+.telegram-color {
+  color: #229ed9;
+}
+.email-color {
+  color: #c71610;
+}
+.any-text-interface-color {
+  color: #017aff;
 }
 
 .title-tracking {

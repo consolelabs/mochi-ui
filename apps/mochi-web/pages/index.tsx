@@ -1,7 +1,7 @@
 import { Layout } from '~app/layout'
 import { SEO } from '~app/layout/seo'
 import Typed from 'typed.js'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import Stats from '~components/stats'
 import MochiWidget from '~cpn/MochiWidget'
 import { Alert } from '@consolelabs/alert'
@@ -22,50 +22,38 @@ import {
 import { GridFeatures } from '~cpn/landing/GridFeatures'
 import Feed from '~cpn/Feed'
 
-const colorsByCurrency = {
-  Ethereum: '#8A93B2',
-  Bitcoin: '#F7931A',
-  Solana: '#14F195',
-  Dogecoin: '#cb9800',
-}
-
-const colorsByPlatform = {
-  Discord: '#5865F2',
-  Telegram: '#229ED9',
-  Email: '#c71610',
-  'any text interface': '#017AFF',
-}
-
-const currencies = ['Ethereum', 'Bitcoin', 'Solana', 'Dogecoin']
-const platforms = ['Discord', 'Telegram', 'Email', 'any text interface']
+const currencies = [
+  '<span class="ethereum-color">Ethereum</span>',
+  '<span class="bitcoin-color">Bitcoin</span>',
+  '<span class="solana-color">Solana</span>',
+  '<span class="dogecoin-color">Dogecoin</span>',
+]
+const platforms = [
+  '<span class="discord-color">Discord</span>',
+  '<span class="telegram-color">Telegram</span>',
+  '<span class="email-color">Email</span>',
+  '<span class="any-text-interface-color">any text interface</span>',
+]
 
 export default function Index() {
   const currency = useRef<HTMLSpanElement>(null)
   const platform = useRef<HTMLSpanElement>(null)
-  const [currencyColor, setCurrencyColor] = useState(colorsByCurrency.Ethereum)
-  const [platformColor, setPlatformColor] = useState(colorsByPlatform.Discord)
 
   useEffect(() => {
     const typedCur = new Typed(currency.current, {
+      showCursor: false,
       strings: currencies,
-      typeSpeed: 80,
-      backDelay: 1800,
-      loop: true,
-      preStringTyped: (idx) => {
-        const cur = currencies[idx] as keyof typeof colorsByCurrency
-        setCurrencyColor(colorsByCurrency[cur])
-      },
-    })
-
-    const typedPlat = new Typed(platform.current, {
-      strings: platforms,
       typeSpeed: 50,
       backDelay: 1800,
       loop: true,
-      preStringTyped: (idx) => {
-        const cur = platforms[idx] as keyof typeof colorsByPlatform
-        setPlatformColor(colorsByPlatform[cur])
-      },
+    })
+
+    const typedPlat = new Typed(platform.current, {
+      showCursor: false,
+      strings: platforms,
+      typeSpeed: 30,
+      backDelay: 1800,
+      loop: true,
     })
 
     return () => {
@@ -77,18 +65,19 @@ export default function Index() {
   return (
     <Layout>
       <SEO />
-      <div className="grid grid-cols-1 auto-rows-min gap-5 py-8 px-4 m-auto w-full max-w-5xl md:grid-rows-2 md:p-10 md:grid-cols-min">
+      <div className="grid grid-cols-1 auto-rows-min gap-5 py-8 px-4 m-auto w-full max-w-5xl md:grid-rows-2 md:p-8 md:grid-cols-min">
         <div className="flex flex-col md:justify-end">
-          <p className="text-3xl md:text-4xl title-tracking">
+          <p className="text-[32px] leading-[38.4px] title-tracking md:text-[40px] md:leading-[48px]">
             Send{' '}
-            <span style={{ color: currencyColor }} ref={currency}>
-              &#8203;
+            <span ref={currency} className="font-medium">
+              <span>&#8203;</span>
             </span>
             <br />
             to anyone on
             <br />
-            <span style={{ color: platformColor }} ref={platform}>
+            <span>
               &#8203;
+              <span ref={platform} className="font-medium" />
             </span>
           </p>
           <span className="mt-5 font-normal">
@@ -103,7 +92,7 @@ export default function Index() {
         </div>
 
         <div className="flex flex-col mt-5 md:mt-2">
-          <LivePlatforms />
+          <LivePlatforms useGridOnMobile />
           <SoonAvailablePlatforms className="mt-5" />
           <Alert className="mt-5" appearance="info" size="sm">
             <span>
@@ -221,10 +210,21 @@ export default function Index() {
             users.
           </span>
           <LivePlatforms className="mt-3" />
+          <Button
+            className="justify-center mt-1"
+            size="lg"
+            color="info"
+            variant="outline"
+          >
+            View features
+            <IconArrowRight />
+          </Button>
         </div>
         <div className="hidden gap-2 justify-center items-center md:flex">
-          <Button className="!px-10">Login</Button>
-          <Button color="info" variant="outline">
+          <Button size="lg" className="!px-10">
+            Login
+          </Button>
+          <Button size="lg" color="info" variant="outline">
             View features
             <IconArrowRight />
           </Button>
