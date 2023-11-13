@@ -5,7 +5,7 @@ import { useMochi } from '@consolelabs/mochi-store'
 import LoginWidget from '../src/login-widget'
 
 const meta: Meta<typeof LoginWidget> = {
-  title: 'ui/LoginWidget',
+  title: 'components/LoginWidget',
   component: LoginWidget,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout

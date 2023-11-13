@@ -3,7 +3,7 @@ import { ARROW_OPTIONS } from '@consolelabs/theme'
 import Tooltip from '../src/tooltip'
 
 const meta: Meta<typeof Tooltip> = {
-  title: 'ui/Tooltip',
+  title: 'components/Tooltip',
   component: Tooltip,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout

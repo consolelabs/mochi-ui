@@ -2,7 +2,7 @@ import { Tabs, TabList, TabTrigger, TabContent } from '../src/tabs'
 import { IconCoding, IconSetting, IconUser } from '@consolelabs/icons'
 
 export default {
-  title: 'ui/Tabs',
+  title: 'components/Tabs',
 }
 
 export function Default() {

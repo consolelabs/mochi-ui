@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import ProfileBadge from '../src/profile-badge'
 
 const meta: Meta<typeof ProfileBadge> = {
-  title: 'ui/ProfileBadge',
+  title: 'components/ProfileBadge',
   component: ProfileBadge,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout

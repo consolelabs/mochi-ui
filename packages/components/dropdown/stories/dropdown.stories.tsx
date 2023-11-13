@@ -25,7 +25,7 @@ import {
 import type { DropdownItemProps, DropdownRadioItemProps } from '../src/type'
 
 const meta: Meta<typeof DropdownMenu> = {
-  title: 'ui/Dropdown',
+  title: 'components/Dropdown',
   component: DropdownMenu,
   tags: ['autodocs'],
   parameters: {

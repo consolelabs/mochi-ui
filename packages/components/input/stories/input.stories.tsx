@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import Input from '../src/input'
 
 const meta: Meta<typeof Input> = {
-  title: 'ui/Input',
+  title: 'components/Input',
   component: Input,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout

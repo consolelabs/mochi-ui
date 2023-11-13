@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Pagination from '../src/pagination'
 
 const meta: Meta<typeof Pagination> = {
-  title: 'ui/Pagination',
+  title: 'components/Pagination',
   component: Pagination,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
