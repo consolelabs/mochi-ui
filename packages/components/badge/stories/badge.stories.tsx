@@ -131,3 +131,15 @@ export const Black: Story = {
 export const White: Story = {
   render: () => renderByAppearance('white'),
 }
+
+export const TruncateText: Story = {
+  render: () => (
+    <Badge
+      label={
+        <span className="w-32 truncate">
+          The quick brown fox jumps over the lazy dog
+        </span>
+      }
+    />
+  ),
+}
