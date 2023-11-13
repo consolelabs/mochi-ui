@@ -5,11 +5,10 @@ module.exports = {
     name: '@storybook/nextjs',
     options: {},
   },
-  // staticDirs: ['./assets'],
+  staticDirs: ['./assets'],
   stories: [
     '../../components/**/src/*.stories.@(js|jsx|ts|tsx)',
     '../../components/**/stories/*.stories.@(js|jsx|ts|tsx)',
-    // '../../components/avatar/**/*.stories.@(js|jsx|ts|tsx)',
   ],
   addons: [
     '@storybook/addon-essentials',
