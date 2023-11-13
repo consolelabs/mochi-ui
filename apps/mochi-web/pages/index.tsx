@@ -65,8 +65,8 @@ export default function Index() {
   return (
     <Layout>
       <SEO />
-      <div className="grid grid-cols-1 auto-rows-min gap-5 py-8 px-4 m-auto w-full max-w-5xl md:grid-rows-2 md:p-8 md:grid-cols-min">
-        <div className="flex flex-col md:justify-end">
+      <div className="grid grid-cols-1 auto-rows-min gap-y-7 gap-x-20 py-8 px-4 m-auto w-full max-w-5xl lg:grid-rows-2 lg:p-8 lg:grid-cols-min">
+        <div className="flex flex-col lg:justify-end">
           <p className="text-[32px] leading-[38.4px] title-tracking md:text-[40px] md:leading-[48px]">
             Send{' '}
             <span ref={currency} className="font-medium">
@@ -87,11 +87,11 @@ export default function Index() {
           </span>
         </div>
 
-        <div className="flex justify-center md:col-start-2 md:row-span-2">
+        <div className="flex justify-center lg:col-start-2 lg:row-span-2">
           <MochiWidget />
         </div>
 
-        <div className="flex flex-col mt-5 md:mt-2">
+        <div className="flex flex-col mt-5 lg:mt-2">
           <LivePlatforms useGridOnMobile />
           <SoonAvailablePlatforms className="mt-5" />
           <Alert className="mt-5" appearance="info" size="sm">
@@ -200,7 +200,7 @@ export default function Index() {
       />
       <Divider />
       <SupportedPlatforms />
-      <div className="flex justify-between mb-8 md:my-36 landing-block">
+      <div className="flex justify-center mb-8 md:justify-between md:my-36 landing-block">
         <div className="flex flex-col gap-y-1">
           <p className="text-3xl md:text-4xl title-tracking text-neutral-900">
             Simple, intuitive commands
@@ -211,7 +211,7 @@ export default function Index() {
           </span>
           <LivePlatforms className="mt-3" />
           <Button
-            className="justify-center mt-1"
+            className="justify-center mt-1 md:hidden"
             size="lg"
             color="info"
             variant="outline"
