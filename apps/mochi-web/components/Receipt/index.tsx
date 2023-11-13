@@ -38,7 +38,7 @@ export default function Receipt({ id }: Props) {
   if (isLoading || !data) return null
 
   return (
-    <div className="flex flex-col gap-y-7 m-auto w-full max-w-md">
+    <div className="flex flex-col flex-1 gap-y-7 m-auto w-full max-w-md">
       <div className="px-4 font-sans drop-shadow-md">
         <div className="flex overflow-hidden relative flex-col gap-y-6 w-full text-center bg-white rounded receipt">
           <Header
