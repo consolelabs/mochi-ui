@@ -1,17 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Badge renders correctly with a truncated text 1`] = `
-<span
-  class="rounded-2xl py-0.5 text-xs font-medium flex items-center justify-center leading-[18px] px-2 gap-1 bg-primary-100 text-primary-700 pl-[6px] !px-2"
->
-  <span
-    class="w-32 truncate"
-  >
-    The quick brown fox jumps over the lazy fox
-  </span>
-</span>
-`;
-
 exports[`Badge renders correctly with appearance 1`] = `
 <span
   class="rounded-2xl py-0.5 text-xs font-medium flex items-center justify-center leading-[18px] px-2 gap-1 bg-primary-100 text-primary-700 pl-[6px]"
