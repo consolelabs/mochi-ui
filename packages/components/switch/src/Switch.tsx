@@ -12,7 +12,7 @@ const {
 
 interface SwitchProps extends SwitchStylesProps {
   label?: string
-  checked: boolean
+  checked?: boolean
   onChange?: (c: boolean) => void
   disabled?: boolean
 }

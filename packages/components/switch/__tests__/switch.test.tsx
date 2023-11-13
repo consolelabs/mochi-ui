@@ -4,7 +4,7 @@ import { Switch } from '../src'
 describe('Switch', () => {
   it('renders the switch with the correct label', () => {
     const labelText = 'Click me'
-    const { getByText } = render(<Switch label={labelText} checked />)
+    const { getByText } = render(<Switch checked label={labelText} />)
     const button = getByText(labelText)
     expect(button).toBeInTheDocument()
   })

@@ -6,7 +6,7 @@ describe('ToggleButtonGroup', () => {
     const labelText = 'Click me'
     const { getByText } = render(
       <ToggleButtonGroup type="single">
-        <ToggleButton>{labelText}</ToggleButton>
+        <ToggleButton value="1">{labelText}</ToggleButton>
       </ToggleButtonGroup>,
     )
     const label = getByText(labelText)
@@ -14,7 +14,7 @@ describe('ToggleButtonGroup', () => {
   })
 
   it('toggles buttons correctly', () => {
-    const { getByText } = render(
+    render(
       <ToggleButtonGroup type="single" defaultValue="1">
         <ToggleButton value="1" data-testid="toggle-button-1">
           1
@@ -33,7 +33,7 @@ describe('ToggleButtonGroup', () => {
   })
 
   it('disables button correctly', () => {
-    const { getByText } = render(
+    render(
       <ToggleButtonGroup type="multiple" defaultValue={['1']}>
         <ToggleButton value="1" data-testid="toggle-button-1">
           1
