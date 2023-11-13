@@ -67,6 +67,13 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
       <span className="text-sm text-[#343433] font-medium">Select theme</span>
       <div className="grid grid-cols-4 grid-rows-1 gap-x-2 h-20">
         {themes.slice(0, 3).map((t, i) => {
+          const selectedIndex = themes.findIndex(
+            (theme) => theme.id === value?.id,
+          )
+          const isSelected =
+            (selectedIndex > 2 && i === 0) ||
+            (selectedIndex <= 2 && selectedIndex === i)
+
           return (
             <button
               key={t.name}
@@ -80,12 +87,12 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
               <Image
                 fill
                 alt={t.name}
-                src={i === 0 && value?.src ? value.src : t.src}
+                src={isSelected && value?.src ? value?.src : t.src}
                 className={clsx('object-cover w-full h-full', {
-                  'brightness-50': i !== 0 || !value?.src,
+                  'brightness-50': !isSelected,
                 })}
               />
-              {(i !== 0 || !value?.src) && (
+              {!isSelected && (
                 <span className="absolute top-1/2 left-1/2 px-2 text-xs font-medium -translate-x-1/2 -translate-y-1/2 text-white-pure">
                   {t.name}
                 </span>

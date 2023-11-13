@@ -7,31 +7,37 @@ import { truncate } from '@dwarvesf/react-utils'
 import Receipt, { transformData } from '~cpn/Receipt'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { id } = ctx.query
+  try {
+    const { id } = ctx.query
 
-  if (!id) {
-    return {
-      props: {},
+    if (!id) {
+      return {
+        props: {},
+      }
     }
-  }
 
-  const transfer = await API.MOCHI_PAY.get(`/transfer/${id}`)
-    .notFound(() => null)
-    .json((r: any) => r.data)
+    const transfer = await API.MOCHI_PAY.get(`/transfer/${id}`)
+      .fetchError(() => null)
+      .json((r: any) => r.data)
 
-  if (!transfer) {
+    if (!transfer) {
+      return {
+        notFound: true,
+      }
+    }
+
+    const { data, ogDataOnly } = await transformData(transfer)
+
+    return {
+      props: {
+        data,
+        ogData: ogDataOnly,
+      },
+    }
+  } catch (e) {
     return {
       notFound: true,
     }
-  }
-
-  const { data, ogDataOnly } = await transformData(transfer)
-
-  return {
-    props: {
-      data,
-      ogData: ogDataOnly,
-    },
   }
 }
 
