@@ -9,9 +9,16 @@ for more information.
 
 ## Installation
 
+Feel free to use the package manager of your choice:
+
 ```sh
+# Using PNPM
 pnpm i @consolelabs/switch
-# or
+
+# Using NPM
+npm i @consolelabs/switch
+
+# Using Yarn
 yarn add @consolelabs/switch
 ```
 

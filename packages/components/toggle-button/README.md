@@ -9,9 +9,16 @@ for more information.
 
 ## Installation
 
+Feel free to use the package manager of your choice:
+
 ```sh
+# Using PNPM
 pnpm i @consolelabs/toggle-button
-# or
+
+# Using NPM
+npm i @consolelabs/toggle-button
+
+# Using Yarn
 yarn add @consolelabs/toggle-button
 ```
 
