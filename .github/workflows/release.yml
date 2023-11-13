@@ -48,8 +48,8 @@ jobs:
         with:
           publish: pnpm release
           version: pnpm version-packages
-          commit: 'release: bump npm package(s)'
-          title: 'release: (skip ci) npm package(s)'
+          commit: 'release[skip ci]: bump npm package(s)'
+          title: 'release[skip ci]: npm package(s)'
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
