@@ -16,46 +16,46 @@ describe('ToggleButtonGroup', () => {
   it('toggles buttons correctly', () => {
     render(
       <ToggleButtonGroup type="single" defaultValue="1">
-        <ToggleButton value="1" data-testid="toggle-button-1">
+        <ToggleButton value="1" data-testid="toggle-button-one">
           1
         </ToggleButton>
-        <ToggleButton value="2" data-testid="toggle-button-2">
+        <ToggleButton value="2" data-testid="toggle-button-two">
           2
         </ToggleButton>
       </ToggleButtonGroup>,
     )
 
-    const toggleButton1 = screen.getByTestId('toggle-button-1')
-    const toggleButton2 = screen.getByTestId('toggle-button-2')
+    const toggleButtonOne = screen.getByTestId('toggle-button-one')
+    const toggleButtonTwo = screen.getByTestId('toggle-button-two')
 
-    fireEvent.click(toggleButton2)
-    expect(toggleButton1.getAttribute('data-state')).toBe('off')
+    fireEvent.click(toggleButtonTwo)
+    expect(toggleButtonOne.getAttribute('data-state')).toBe('off')
   })
 
   it('disables button correctly', () => {
     render(
       <ToggleButtonGroup type="multiple" defaultValue={['1']}>
-        <ToggleButton value="1" data-testid="toggle-button-1">
+        <ToggleButton value="1" data-testid="toggle-button-one">
           1
         </ToggleButton>
-        <ToggleButton value="2" data-testid="toggle-button-2" disabled>
+        <ToggleButton value="2" data-testid="toggle-button-two" disabled>
           2
         </ToggleButton>
-        <ToggleButton value="3" data-testid="toggle-button-3">
+        <ToggleButton value="3" data-testid="toggle-button-three">
           3
         </ToggleButton>
       </ToggleButtonGroup>,
     )
 
-    const toggleButton1 = screen.getByTestId('toggle-button-1')
-    const toggleButton2 = screen.getByTestId('toggle-button-2')
-    const toggleButton3 = screen.getByTestId('toggle-button-3')
+    const toggleButtonOne = screen.getByTestId('toggle-button-one')
+    const toggleButtonTwo = screen.getByTestId('toggle-button-two')
+    const toggleButtonThree = screen.getByTestId('toggle-button-three')
 
-    fireEvent.click(toggleButton2)
-    expect(toggleButton1.getAttribute('data-state')).toBe('on')
+    fireEvent.click(toggleButtonTwo)
+    expect(toggleButtonOne.getAttribute('data-state')).toBe('on')
 
-    fireEvent.click(toggleButton3)
-    expect(toggleButton1.getAttribute('data-state')).toBe('on')
-    expect(toggleButton3.getAttribute('data-state')).toBe('on')
+    fireEvent.click(toggleButtonThree)
+    expect(toggleButtonOne.getAttribute('data-state')).toBe('on')
+    expect(toggleButtonThree.getAttribute('data-state')).toBe('on')
   })
 })

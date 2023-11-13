@@ -10,16 +10,14 @@ for more information.
 ## Installation
 
 ```sh
-yarn add @consolelabs/switch
+pnpm i @consolelabs/switch
 # or
-npm i @consolelabs/switch
+yarn add @consolelabs/switch
 ```
 
 ## Contribution
 
-<!-- TODO: Add contributing guidelines -->
-
-Yes please! See the contributing guidelines for details.
+Yes please! See the [contributing guidelines](/CONTRIBUTING.md) for details.
 
 ## Licence
 

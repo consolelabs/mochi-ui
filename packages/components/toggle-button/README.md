@@ -10,16 +10,14 @@ for more information.
 ## Installation
 
 ```sh
-yarn add @consolelabs/toggle-button
+pnpm i @consolelabs/toggle-button
 # or
-npm i @consolelabs/toggle-button
+yarn add @consolelabs/toggle-button
 ```
 
 ## Contribution
 
-<!-- TODO: Add contributing guidelines -->
-
-Yes please! See the contributing guidelines for details.
+Yes please! See the [contributing guidelines](/CONTRIBUTING.md) for details.
 
 ## Licence
 
