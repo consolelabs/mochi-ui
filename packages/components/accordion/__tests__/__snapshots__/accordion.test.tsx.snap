@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Accordion renders correctly 1`] = `
+<div>
+  <div
+    class="p-2 space-y-1 rounded-lg shadow-md"
+    data-orientation="vertical"
+  >
+    <div
+      data-orientation="vertical"
+      data-state="closed"
+    >
+      <h3
+        class="flex"
+        data-orientation="vertical"
+        data-state="closed"
+      >
+        <button
+          aria-controls="radix-:r1:"
+          aria-expanded="false"
+          class="flex-1 flex font-medium text-sm items-center justify-between [&[data-state=open]>#chevron]:rotate-180 gap-3 p-2"
+          data-orientation="vertical"
+          data-radix-collection-item=""
+          data-state="closed"
+          id="radix-:r0:"
+          type="button"
+        >
+          <span
+            class="flex flex-1"
+          >
+            Item 1
+          </span>
+          <span
+            class="text-neutral-500 shrink-0 transition-transform duration-200 text-base"
+            id="chevron"
+          >
+            <svg
+              height="1em"
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.168l3.71-3.938a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06Z"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+        </button>
+      </h3>
+      <div
+        aria-labelledby="radix-:r0:"
+        class="text-sm"
+        data-orientation="vertical"
+        data-state="closed"
+        hidden=""
+        id="radix-:r1:"
+        role="region"
+        style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+      />
+    </div>
+    <div
+      data-orientation="vertical"
+      data-state="closed"
+    >
+      <h3
+        class="flex"
+        data-orientation="vertical"
+        data-state="closed"
+      >
+        <button
+          aria-controls="radix-:r3:"
+          aria-expanded="false"
+          class="flex-1 flex font-medium text-sm items-center justify-between [&[data-state=open]>#chevron]:rotate-180 gap-3 p-2"
+          data-orientation="vertical"
+          data-radix-collection-item=""
+          data-state="closed"
+          id="radix-:r2:"
+          type="button"
+        >
+          <span
+            class="flex flex-1"
+          >
+            Item 2
+          </span>
+          <span
+            class="text-neutral-500 shrink-0 transition-transform duration-200 text-base"
+            id="chevron"
+          >
+            <svg
+              height="1em"
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.168l3.71-3.938a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06Z"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+        </button>
+      </h3>
+      <div
+        aria-labelledby="radix-:r2:"
+        class="text-sm"
+        data-orientation="vertical"
+        data-state="closed"
+        hidden=""
+        id="radix-:r3:"
+        role="region"
+        style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+      />
+    </div>
+  </div>
+</div>
+`;

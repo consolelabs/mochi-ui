@@ -22,4 +22,14 @@ describe('Button', () => {
     const button = container.querySelector('button')
     expect(button).toHaveClass('pointer-events-none')
   })
+
+  it('matches snapshot', () => {
+    const { container } = render(<Button>Click me</Button>)
+    expect(container).toMatchSnapshot()
+  })
+
+  it('matches snapshot when loading', () => {
+    const { container } = render(<Button loading>Click me</Button>)
+    expect(container).toMatchSnapshot()
+  })
 })
