@@ -16,6 +16,7 @@ import { Platform } from '../PlatformPicker/type'
 import { RecipientList } from './RecipientList'
 import { PlatformPicker } from '../PlatformPicker'
 import { SelectedRecipient } from './SelectedRecipient'
+import { MAX_RECIPIENTS } from '../Tip/store'
 
 interface RecipientProps {
   accessToken: string | null
@@ -103,7 +104,9 @@ export const Recipient: React.FC<RecipientProps> = ({
             >
               Recipients
             </label>
-            <span className="text-sm font-semibold text-neutral-600">0/20</span>
+            <span className="text-sm font-semibold text-neutral-600">
+              {selectedRecipients?.length ?? 0}/{MAX_RECIPIENTS}
+            </span>
           </div>
           <div className="flex gap-x-2 items-center py-2.5 px-4 rounded-lg bg-white-pure">
             <span className="h-[34px] text-lg text-[#848281] pt-0.5">@</span>
@@ -152,6 +155,7 @@ export const Recipient: React.FC<RecipientProps> = ({
         </div>
         <InputField
           className="w-full text-sm"
+          autoFocus
           placeholder={isOnChain ? 'Search address' : 'Search username'}
           startAdornment={
             isOnChain ? (

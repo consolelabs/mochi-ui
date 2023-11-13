@@ -4,6 +4,8 @@ import { Wallet } from '~store'
 import { ViewProfile } from '~types/mochi-profile-schema'
 import { Theme } from '../ThemePicker/ThemePicker'
 
+export const MAX_RECIPIENTS = 20
+
 interface Request {
   message?: string
   theme?: Theme
@@ -81,13 +83,12 @@ export const useTipWidget = create<TipWidgetState>((set, get) => ({
   updateSourceWallet: (wallet: Wallet) =>
     set((s) => ({ ...s, fromWallet: wallet })),
   addRecipient: (recipient: ViewProfile) => {
-    if (
-      get().recipients?.find(
-        (r) =>
-          r.associated_accounts?.[0].id ===
-          recipient.associated_accounts?.[0].id,
-      )
-    ) {
+    const isMax = (get().recipients?.length ?? 0) >= MAX_RECIPIENTS
+    const isExist = get().recipients?.find(
+      (r) =>
+        r.associated_accounts?.[0].id === recipient.associated_accounts?.[0].id,
+    )
+    if (isMax || isExist) {
       return
     }
     return set((s) => ({
@@ -98,7 +99,7 @@ export const useTipWidget = create<TipWidgetState>((set, get) => ({
   removeRecipient: (recipient: ViewProfile) =>
     set((s) => ({
       ...s,
-      recipients: get().recipients?.filter(
+      recipients: s.recipients?.filter(
         (r) =>
           r.associated_accounts?.[0].id !==
           recipient.associated_accounts?.[0].id,
