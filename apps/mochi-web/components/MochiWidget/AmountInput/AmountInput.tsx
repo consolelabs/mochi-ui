@@ -1,5 +1,5 @@
 import { Button } from '@consolelabs/ui-components'
-import { useEffect, useState } from 'react'
+import { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react'
 import { abbreviateNumber, formatNumber } from '~utils/number'
 import { Balance, Wallet } from '~store'
 import { TokenPicker } from '../TokenPicker'
@@ -66,6 +66,18 @@ export const AmountInput: React.FC<AmountInputProps> = ({
     onAmountChanged?.(0)
   }
 
+  function handleAmountChanged(event: ChangeEvent<HTMLInputElement>) {
+    setTipAmount(event.target.value)
+    onAmountChanged?.(parseFloat(event.target.value))
+  }
+
+  function handleKeyDown(event: KeyboardEvent) {
+    // No negative numbers
+    if (event.key === '-') {
+      event.preventDefault()
+    }
+  }
+
   return (
     <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-3">
       <div className="flex justify-between items-center">
@@ -80,8 +92,10 @@ export const AmountInput: React.FC<AmountInputProps> = ({
             className="w-[65%] outline-none text-2xl font-medium text-[#343433] appearance-none h-[34px]"
             placeholder="0"
             type="number"
+            min={0}
+            onKeyDown={handleKeyDown}
             value={tipAmount}
-            onChange={(e) => setTipAmount(e.target.value)}
+            onChange={handleAmountChanged}
             onFocus={onFocusInput}
           />
           <span className="text-sm text-[#848281] text-right">

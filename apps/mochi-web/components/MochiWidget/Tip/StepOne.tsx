@@ -1,5 +1,11 @@
 import { useAuthStore } from '~store'
-import { forwardRef, useImperativeHandle, useRef, useState } from 'react'
+import {
+  forwardRef,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import { AuthPanel } from '~cpn/AuthWidget'
 import {
   Popover,
@@ -12,6 +18,7 @@ import { WalletPicker } from '../WalletPicker'
 import { Recipient } from '../Recipient'
 import { AmountInput } from '../AmountInput'
 import { useTipWidget } from './store'
+import { ErrorMessage } from '../ErrorMessage/ErrorMessage'
 
 interface ConnectButtonRef {
   openLogin: () => void
@@ -55,6 +62,8 @@ export default function StepOne() {
   const {
     fromWallet,
     recipients,
+    asset,
+    amount,
     setStep,
     updateSourceWallet,
     addRecipient,
@@ -64,6 +73,12 @@ export default function StepOne() {
   } = useTipWidget()
   const { token, isLoggedIn } = useAuthStore()
   const connectButtonRef = useRef<ConnectButtonRef>(null)
+  const amountErrorMgs = useMemo(() => {
+    if ((amount ?? 0) > (asset?.asset_balance ?? 0)) {
+      return 'Insufficient balance. Please add more tokens and try again.'
+    }
+    return ''
+  }, [asset, amount])
 
   function openLoginPopup() {
     connectButtonRef?.current?.openLogin()
@@ -99,6 +114,7 @@ export default function StepOne() {
           onSelectAsset={setAsset}
           onAmountChanged={setAmount}
         />
+        <ErrorMessage>{amountErrorMgs}</ErrorMessage>
       </div>
       {isLoggedIn ? (
         <Button
