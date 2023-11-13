@@ -1,6 +1,6 @@
 # @consolelabs/button
 
-Button allows users to perform actions and choose with a single tap.
+Button component allows users to perform actions and choose with a single tap.
 
 For further details, visit our
 [Button Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-button--docs).
