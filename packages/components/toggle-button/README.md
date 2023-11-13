@@ -3,9 +3,8 @@
 The ToggleButtonGroup component enables seamless toggling between states,
 supporting both multi-selection and single-selection configurations.
 
-Please refer to the
-[documentation](https://web-design-system-consolelabs.vercel.app/?path=/story/ui-togglebutton--default)
-for more information.
+For further details, visit our
+[Toggle Button Documentation](https://web-design-system-consolelabs.vercel.app/?path=/story/ui-togglebutton--default).
 
 ## Installation
 
@@ -24,7 +23,8 @@ yarn add @consolelabs/toggle-button
 
 ## Contribution
 
-Yes please! See the [contributing guidelines](/CONTRIBUTING.md) for details.
+We welcome your contributions! For guidance on how to contribute, please refer
+to our [Contribution Guidelines](/CONTRIBUTING.md).
 
 ## Licence
 

@@ -3,9 +3,8 @@
 The Switch component is used as an alternative between checked and not checked
 states.
 
-Please refer to the
-[documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-switch--docs)
-for more information.
+For further details, visit our
+[Switch Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-switch--docs).
 
 ## Installation
 
@@ -24,7 +23,8 @@ yarn add @consolelabs/switch
 
 ## Contribution
 
-Yes please! See the [contributing guidelines](/CONTRIBUTING.md) for details.
+We welcome your contributions! For guidance on how to contribute, please refer
+to our [Contribution Guidelines](/CONTRIBUTING.md).
 
 ## Licence
 
