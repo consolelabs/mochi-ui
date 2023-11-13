@@ -1,10 +1,10 @@
-# @consolelabs/toggle-button
+# @consolelabs/avatar
 
-Toggle Button Group component enables seamless toggling between states,
-supporting both multi-selection and single-selection configurations.
+Avatar component is used to represent a user, and displays the profile picture,
+initials or fallback icon.
 
 For further details, visit our
-[Toggle Button Documentation](https://web-design-system-consolelabs.vercel.app/?path=/story/ui-togglebutton--default).
+[Avatar Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-avatar--docs).
 
 ## Installation
 
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/toggle-button
+pnpm i @consolelabs/avatar
 
 # Using NPM
-npm i @consolelabs/toggle-button
+npm i @consolelabs/avatar
 
 # Using Yarn
-yarn add @consolelabs/toggle-button
+yarn add @consolelabs/avatar
 ```
 
 ## Contribution

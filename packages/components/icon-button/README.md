@@ -1,10 +1,9 @@
-# @consolelabs/toggle-button
+# @consolelabs/icon-button
 
-Toggle Button Group component enables seamless toggling between states,
-supporting both multi-selection and single-selection configurations.
+Icon Button component is the button adorned with an easily recognizable icon.
 
 For further details, visit our
-[Toggle Button Documentation](https://web-design-system-consolelabs.vercel.app/?path=/story/ui-togglebutton--default).
+[Icon Button Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-iconbutton--docs).
 
 ## Installation
 
@@ -12,13 +11,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/toggle-button
+pnpm i @consolelabs/icon-button
 
 # Using NPM
-npm i @consolelabs/toggle-button
+npm i @consolelabs/icon-button
 
 # Using Yarn
-yarn add @consolelabs/toggle-button
+yarn add @consolelabs/icon-button
 ```
 
 ## Contribution

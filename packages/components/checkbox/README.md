@@ -1,10 +1,10 @@
-# @consolelabs/toggle-button
+# @consolelabs/checkbox
 
-Toggle Button Group component enables seamless toggling between states,
-supporting both multi-selection and single-selection configurations.
+Checkbox allows users to select multiple items from a list of individual items,
+or to mark one individual item as selected.
 
 For further details, visit our
-[Toggle Button Documentation](https://web-design-system-consolelabs.vercel.app/?path=/story/ui-togglebutton--default).
+[Checkbox Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-checkbox--docs).
 
 ## Installation
 
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/toggle-button
+pnpm i @consolelabs/checkbox
 
 # Using NPM
-npm i @consolelabs/toggle-button
+npm i @consolelabs/checkbox
 
 # Using Yarn
-yarn add @consolelabs/toggle-button
+yarn add @consolelabs/checkbox
 ```
 
 ## Contribution

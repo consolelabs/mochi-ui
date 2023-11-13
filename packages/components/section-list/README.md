@@ -1,10 +1,10 @@
-# @consolelabs/toggle-button
+# @consolelabs/section-list
 
-Toggle Button Group component enables seamless toggling between states,
-supporting both multi-selection and single-selection configurations.
+Section List component structures and displays a collection of items,
+categorizing them by sections for a structured and organized presentation.
 
 For further details, visit our
-[Toggle Button Documentation](https://web-design-system-consolelabs.vercel.app/?path=/story/ui-togglebutton--default).
+[Section List Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-sectionlist--docs).
 
 ## Installation
 
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/toggle-button
+pnpm i @consolelabs/section-list
 
 # Using NPM
-npm i @consolelabs/toggle-button
+npm i @consolelabs/section-list
 
 # Using Yarn
-yarn add @consolelabs/toggle-button
+yarn add @consolelabs/section-list
 ```
 
 ## Contribution

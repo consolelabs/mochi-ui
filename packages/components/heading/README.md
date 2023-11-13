@@ -1,10 +1,9 @@
-# @consolelabs/toggle-button
+# @consolelabs/heading
 
-Toggle Button Group component enables seamless toggling between states,
-supporting both multi-selection and single-selection configurations.
+Represents heading within the application.
 
 For further details, visit our
-[Toggle Button Documentation](https://web-design-system-consolelabs.vercel.app/?path=/story/ui-togglebutton--default).
+[Heading Documentation](https://web-design-system-consolelabs.vercel.app/?path=/story/ui-heading--default).
 
 ## Installation
 
@@ -12,13 +11,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/toggle-button
+pnpm i @consolelabs/heading
 
 # Using NPM
-npm i @consolelabs/toggle-button
+npm i @consolelabs/heading
 
 # Using Yarn
-yarn add @consolelabs/toggle-button
+yarn add @consolelabs/heading
 ```
 
 ## Contribution

@@ -1,10 +1,9 @@
-# @consolelabs/toggle-button
+# @consolelabs/input-field
 
-Toggle Button Group component enables seamless toggling between states,
-supporting both multi-selection and single-selection configurations.
+Input Field component allows users to enter text.
 
 For further details, visit our
-[Toggle Button Documentation](https://web-design-system-consolelabs.vercel.app/?path=/story/ui-togglebutton--default).
+[Input Field Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-inputfield--docs).
 
 ## Installation
 
@@ -12,13 +11,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/toggle-button
+pnpm i @consolelabs/input-field
 
 # Using NPM
-npm i @consolelabs/toggle-button
+npm i @consolelabs/input-field
 
 # Using Yarn
-yarn add @consolelabs/toggle-button
+yarn add @consolelabs/input-field
 ```
 
 ## Contribution

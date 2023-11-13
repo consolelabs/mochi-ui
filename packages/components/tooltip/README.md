@@ -1,10 +1,10 @@
-# @consolelabs/toggle-button
+# @consolelabs/tooltip
 
-Toggle Button Group component enables seamless toggling between states,
-supporting both multi-selection and single-selection configurations.
+Tooltip component displays a brief, informative message that appears when a user
+interacts with an element.
 
 For further details, visit our
-[Toggle Button Documentation](https://web-design-system-consolelabs.vercel.app/?path=/story/ui-togglebutton--default).
+[Tooltip Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-tooltip--docs).
 
 ## Installation
 
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/toggle-button
+pnpm i @consolelabs/tooltip
 
 # Using NPM
-npm i @consolelabs/toggle-button
+npm i @consolelabs/tooltip
 
 # Using Yarn
-yarn add @consolelabs/toggle-button
+yarn add @consolelabs/tooltip
 ```
 
 ## Contribution
