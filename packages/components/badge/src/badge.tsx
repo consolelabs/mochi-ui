@@ -7,7 +7,7 @@ export interface BadgeProps
   icon?: JSX.Element
   className?: string
   iconClassName?: string
-  label?: string
+  label?: React.ReactNode
 }
 
 export default function Badge(props: BadgeProps) {

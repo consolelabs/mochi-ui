@@ -57,4 +57,17 @@ describe('Badge', () => {
     )
     expect(container.firstChild).toMatchSnapshot()
   })
+
+  it('renders correctly with a truncated text', () => {
+    const { container } = render(
+      <Badge
+        label={
+          <span className="w-32 truncate">
+            The quick brown fox jumps over the lazy fox
+          </span>
+        }
+      />,
+    )
+    expect(container.firstChild).toMatchSnapshot()
+  })
 })
