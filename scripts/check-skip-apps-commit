@@ -2,7 +2,7 @@
 
 commit_msg=$(git log -1 --pretty=%B)
 
-if echo "$commit_msg" | grep -qiE "\[(skip[-\s]?ci|ci[-\s]?skip|skip ci|ci skip)\]"; then
+if echo "$commit_msg" | grep -qiE "\((skip[-\s]?ci|ci[-\s]?skip|skip ci|ci skip)\)"; then
   echo "Skipping Vercel Build CI"
   exit 0
 else
