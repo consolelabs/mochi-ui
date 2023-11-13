@@ -1,0 +1,5 @@
+{
+  "version": 2,
+  "public": true,
+  "ignoreCommand": "sh ../../scripts/check-skip-apps-commit"
+}
