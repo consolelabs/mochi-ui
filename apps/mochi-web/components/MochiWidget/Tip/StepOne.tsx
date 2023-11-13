@@ -90,7 +90,7 @@ export default function StepOne() {
         <div className="flex flex-col gap-y-2.5 items-center py-3 mt-3">
           <p className="text-xl text-[#343433] font-medium">Send a tip</p>
           <span className="text-[#848281] text-xs text-center">
-            Celebrate someone&apos; birthday or achievement
+            Celebrate someone&apos;s birthday or achievement
             <br />
             by sending them money
           </span>

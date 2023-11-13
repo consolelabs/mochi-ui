@@ -50,13 +50,18 @@ function Divider() {
   )
 }
 
-export default function Stats() {
+export default function Stats({ className = '' }: { className?: string }) {
   const { data, isLoading } = useSWR(['transaction-summary'], async () => {
     return API.MOCHI_PAY.get('/transactions/summary').json((r) => r.data)
   })
 
   return (
-    <div className="flex justify-center items-center my-5 mt-10 md:my-10 landing-block">
+    <div
+      className={clsx(
+        'flex justify-center items-center my-5 mt-10 md:my-10 landing-block',
+        className,
+      )}
+    >
       <Spotlight
         loading={isLoading}
         icon={<IconHeartColored className="flex-shrink-0 w-8 h-8" />}
@@ -74,14 +79,14 @@ export default function Stats() {
       <Spotlight
         loading={isLoading}
         icon={<IconUserShieldColored className="flex-shrink-0 w-8 h-8" />}
-        title={`${data?.users ?? 1000}+`}
-        subtitle="total users"
+        title={`${data?.active_users ?? 1000}+`}
+        subtitle="active users"
       />
       <Divider />
       <Spotlight
         loading={isLoading}
         icon={<IconLinkColored className="flex-shrink-0 w-8 h-8" />}
-        title="145+"
+        title={`${data?.total_networks ?? 145}+`}
         subtitle="networks"
       />
     </div>

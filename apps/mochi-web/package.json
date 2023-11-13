@@ -19,8 +19,6 @@
   },
   "dependencies": {
     "@bonfida/spl-name-service": "^0.1.67",
-    "@consolelabs/alert": "workspace:*",
-    "@consolelabs/avatar": "workspace:*",
     "@consolelabs/core": "workspace:*",
     "@consolelabs/icons": "workspace:*",
     "@consolelabs/mochi-rest": "^4.2.1",

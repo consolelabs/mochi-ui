@@ -1,6 +1,5 @@
 import { IconArrowRight } from '@consolelabs/icons'
-import { Badge } from '@consolelabs/ui-components'
-import { Avatar } from '@consolelabs/avatar'
+import { Avatar, Badge } from '@consolelabs/core'
 import React from 'react'
 import { Tx } from './store'
 import RowCell from './RowCell'
@@ -14,7 +13,7 @@ export default function Row({ tx, colWidth }: { tx: Tx; colWidth: string[] }) {
           src={tx.fromAvatar}
           fallback={tx.from}
         />
-        <div className="flex flex-col min-w-0">
+        <div className="flex flex-col justify-between min-w-0">
           <span className="text-sm leading-5 break-words truncate text-white-pure">
             {tx.from}
           </span>
@@ -29,13 +28,14 @@ export default function Row({ tx, colWidth }: { tx: Tx; colWidth: string[] }) {
         </div>
       </RowCell>
       <RowCell className="gap-x-2" width={colWidth[2]}>
-        <Avatar smallSrc={tx.platformIcon} src={tx.toAvatar} fallback={tx.to} />
-        <div className="flex flex-col min-w-0">
+        <Avatar
+          smallSrc={tx.toPlatformIcon}
+          src={tx.toAvatar}
+          fallback={tx.to}
+        />
+        <div className="flex flex-col justify-between min-w-0">
           <span className="text-sm leading-5 break-words truncate text-white-pure">
             {tx.to}
-          </span>
-          <span className="text-xs font-normal capitalize text-neutral-600">
-            {tx.sourcePlatform}
           </span>
         </div>
       </RowCell>
@@ -54,10 +54,10 @@ export default function Row({ tx, colWidth }: { tx: Tx; colWidth: string[] }) {
       </RowCell>
       <RowCell className="items-center" width={colWidth[5]}>
         <Badge
-          className="bg-neutral-800 text-white-pure"
+          className="max-w-full bg-neutral-800 text-white-pure"
           icon={<Avatar src="TODO" size="xs" />}
           iconClassName="-ml-0.5"
-          label={tx.channel}
+          label={<span className="w-full truncate">{tx.channel}</span>}
           appearance="black"
         />
       </RowCell>

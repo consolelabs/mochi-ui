@@ -4,11 +4,9 @@ import Typed from 'typed.js'
 import { useEffect, useRef } from 'react'
 import Stats from '~components/stats'
 import MochiWidget from '~cpn/MochiWidget'
-import { Alert } from '@consolelabs/alert'
 import { TabbedFeatures } from '~cpn/landing/TabbedFeatures'
 import { SupportedPlatforms } from '~cpn/landing/SupportedPlatforms'
 import { LivePlatforms } from '~cpn/landing/LivePlatforms'
-import { SoonAvailablePlatforms } from '~cpn/landing/SoonAvailablePlatforms'
 import { Divider } from '~cpn/landing/Divider'
 import { Button } from '@consolelabs/ui-components'
 import {
@@ -21,6 +19,9 @@ import {
 } from '@consolelabs/icons'
 import { GridFeatures } from '~cpn/landing/GridFeatures'
 import Feed from '~cpn/Feed'
+import Link from 'next/link'
+import { useAuthStore } from '~store'
+import { useShallow } from 'zustand/react/shallow'
 
 const currencies = [
   '<span class="ethereum-color">Ethereum</span>',
@@ -36,6 +37,7 @@ const platforms = [
 ]
 
 export default function Index() {
+  const isLoggedIn = useAuthStore(useShallow((s) => s.isLoggedIn))
   const currency = useRef<HTMLSpanElement>(null)
   const platform = useRef<HTMLSpanElement>(null)
 
@@ -93,19 +95,19 @@ export default function Index() {
 
         <div className="flex flex-col mt-5 lg:mt-2">
           <LivePlatforms useGridOnMobile />
-          <SoonAvailablePlatforms className="mt-5" />
-          <Alert className="mt-5" appearance="info" size="sm">
-            <span>
-              To integrate and run the Mochi bot, embedded devices, or leverage
-              the userbase,{' '}
-              <a href="#" className="inline-block underline">
-                check our Docs
-              </a>
-            </span>
-          </Alert>
+          {/* <SoonAvailablePlatforms className="mt-5" /> */}
+          {/* <Alert className="mt-5" appearance="info" size="sm"> */}
+          {/*   <span> */}
+          {/*     To integrate and run the Mochi bot, embedded devices, or leverage */}
+          {/*     the userbase,{' '} */}
+          {/*     <a href="#" className="inline-block underline"> */}
+          {/*       check our Docs */}
+          {/*     </a> */}
+          {/*   </span> */}
+          {/* </Alert> */}
         </div>
       </div>
-      <Stats />
+      <Stats className="hidden md:flex" />
       <Feed />
       <TabbedFeatures
         className="mt-20"
@@ -210,24 +212,30 @@ export default function Index() {
             users.
           </span>
           <LivePlatforms className="mt-3" />
-          <Button
-            className="justify-center mt-1 md:hidden"
-            size="lg"
-            color="info"
-            variant="outline"
-          >
-            View features
-            <IconArrowRight />
-          </Button>
+          <Link href="/features">
+            <Button
+              className="justify-center mt-1 md:hidden"
+              size="lg"
+              color="info"
+              variant="outline"
+            >
+              View features
+              <IconArrowRight />
+            </Button>
+          </Link>
         </div>
         <div className="hidden gap-2 justify-center items-center md:flex">
-          <Button size="lg" className="!px-10">
-            Login
-          </Button>
-          <Button size="lg" color="info" variant="outline">
-            View features
-            <IconArrowRight />
-          </Button>
+          <Link href="/profile">
+            <Button size="lg" className="!px-10">
+              {isLoggedIn ? 'Profile' : 'Login'}
+            </Button>
+          </Link>
+          <Link href="/features">
+            <Button size="lg" color="info" variant="outline">
+              View features
+              <IconArrowRight />
+            </Button>
+          </Link>
         </div>
       </div>
       <Divider noSpace fullWidth />

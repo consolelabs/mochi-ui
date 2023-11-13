@@ -73,8 +73,8 @@ export default function Feed({ className = '' }: Props) {
 
   return (
     <div
-      style={{ maxHeight: 700 }}
-      className={clsx('relative bg-feed-bg w-screen flex flex-col', {
+      style={{ maxHeight: 850 }}
+      className={clsx('h-screen relative bg-feed-bg w-screen flex flex-col', {
         className,
       })}
     >
@@ -116,7 +116,7 @@ export default function Feed({ className = '' }: Props) {
         <span className="px-4 text-sm leading-5 text-white-pure">
           Recent Transactions
         </span>
-        <div className="px-4">
+        <div className="hidden px-4">
           <Button variant="link">
             View all <IconArrowRight />
           </Button>
@@ -133,10 +133,7 @@ export default function Feed({ className = '' }: Props) {
           if (bottomSpace > showBotFadeLimit && isShowBotFade) hideBotFade()
           if (bottomSpace <= showBotFadeLimit && !isShowBotFade) showBotFade()
         }}
-        className={clsx('', {
-          'overflow-auto': !loading,
-          'overflow-hidden': loading,
-        })}
+        className="overflow-y-hidden h-screen max-h-full"
       >
         <div className="px-8 mx-auto" style={{ width: 1440 }}>
           <div className="flex sticky top-0 z-10 flex-1 bg-feed-bg">
@@ -146,7 +143,7 @@ export default function Feed({ className = '' }: Props) {
               'recipients',
               'method',
               'amount',
-              'channel',
+              'where',
               'tx id',
               'wen',
               'status',
@@ -184,7 +181,7 @@ export default function Feed({ className = '' }: Props) {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        key={`feed-row-${tx.code}`}
+                        key={`feed-row-${tx.from}-${tx.to}-${tx.code}`}
                         className="flex"
                       >
                         <Row tx={tx} colWidth={colWidth} />
