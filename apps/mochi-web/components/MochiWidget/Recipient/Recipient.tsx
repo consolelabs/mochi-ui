@@ -14,7 +14,6 @@ import { API, GET_PATHS } from '~constants/api'
 import { ChainPicker } from '../ChainPicker'
 import { Platform } from '../PlatformPicker/type'
 import { RecipientList } from './RecipientList'
-import { DefaultAccounts } from './data'
 import { PlatformPicker } from '../PlatformPicker'
 import { SelectedRecipient } from './SelectedRecipient'
 
@@ -39,7 +38,7 @@ export const Recipient: React.FC<RecipientProps> = ({
   const debouncedSearchTerm = useDebounce(searchTerm, 500)
   const [selectedPlatform, setSelectedPlatform] = useState<Platform>()
   const isOnChain = selectedPlatform?.platform === 'on-chain'
-  const [recipients, setRecipients] = useState<ViewProfile[]>(DefaultAccounts)
+  const [recipients, setRecipients] = useState<ViewProfile[]>([])
   const filteredRecipients = useMemo(
     () =>
       recipients.filter((item) => {
@@ -67,7 +66,7 @@ export const Recipient: React.FC<RecipientProps> = ({
           })
           .finally(() => setIsSearching(false))
       } else {
-        setRecipients(DefaultAccounts)
+        setRecipients([])
         setIsSearching(false)
       }
     },
