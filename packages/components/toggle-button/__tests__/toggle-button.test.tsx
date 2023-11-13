@@ -32,7 +32,7 @@ describe('ToggleButtonGroup', () => {
     expect(toggleButton1.getAttribute('data-state')).toBe('off')
   })
 
-  it('diables button correctly', () => {
+  it('disables button correctly', () => {
     const { getByText } = render(
       <ToggleButtonGroup type="multiple" defaultValue={['1']}>
         <ToggleButton value="1" data-testid="toggle-button-1">
