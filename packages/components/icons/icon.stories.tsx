@@ -5,7 +5,7 @@ import { Tooltip } from '../tooltip'
 import { InputField } from '../input-field'
 
 const meta: Meta = {
-  title: 'Icons/Default',
+  title: 'Icons/List',
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
     layout: 'centered',
