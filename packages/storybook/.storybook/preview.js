@@ -17,8 +17,8 @@ export const parameters = {
       order: [
         'Introduction',
         ['Welcome', 'Installation', 'Design Philosophy'],
-        'Components',
         'Icons',
+        'Components',
       ],
     },
   },

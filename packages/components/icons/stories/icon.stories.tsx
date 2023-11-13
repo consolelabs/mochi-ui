@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import * as icons from '@consolelabs/icons'
-import { Tooltip } from '../tooltip'
-import { InputField } from '../input-field'
+import * as icons from '../../../icons/src'
+import { Tooltip } from '../../tooltip/src'
+import { InputField } from '../../input-field/src'
 
 const meta: Meta = {
   title: 'Icons/List',
