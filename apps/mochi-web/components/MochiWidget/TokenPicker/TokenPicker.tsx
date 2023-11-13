@@ -142,7 +142,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
       <PopoverContent
         align="start"
         alignOffset={-8}
-        className="flex flex-col gap-y-2 items-center rounded-lg shadow-md w-[388px] h-fit bg-white-pure"
+        className="flex flex-col gap-y-2 items-center rounded-lg shadow-md w-[412px] h-fit bg-white-pure"
       >
         <InputField
           className="w-full"

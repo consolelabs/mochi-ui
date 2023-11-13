@@ -133,7 +133,7 @@ export const Recipient: React.FC<RecipientProps> = ({
       </PopoverAnchor>
       <PopoverContent
         align="start"
-        className="flex flex-col w-[388px] gap-x-1 items-center py-3 px-3 rounded-lg shadow-md bg-white-pure"
+        className="flex flex-col w-[412px] gap-x-1 items-center py-3 px-3 rounded-lg shadow-md bg-white-pure"
       >
         <div className="flex flex-row w-full gap-1 pb-2 items-center">
           <Heading

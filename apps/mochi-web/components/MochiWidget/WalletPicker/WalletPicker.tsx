@@ -90,7 +90,7 @@ export const WalletPicker: React.FC<Props> = ({
       {accessToken && (
         <PopoverContent
           align="start"
-          className="w-[388px] flex gap-x-1 items-center py-3 px-3 bg-white-pure rounded-lg shadow-md focus-visible:outline-none"
+          className="w-[412px] flex gap-x-1 items-center py-3 px-3 bg-white-pure rounded-lg shadow-md focus-visible:outline-none"
         >
           <WalletList data={wallets} onSelect={handleWalletSelect} />
         </PopoverContent>
