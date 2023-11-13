@@ -94,7 +94,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('1')}
             >
-              1
+              $1
             </Button>
             <Button
               size="sm"
@@ -103,7 +103,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('2')}
             >
-              2
+              $2
             </Button>
             <Button
               size="sm"
@@ -112,7 +112,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('5')}
             >
-              5
+              $5
             </Button>
           </div>
         </div>
