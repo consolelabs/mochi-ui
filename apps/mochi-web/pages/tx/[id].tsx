@@ -59,7 +59,9 @@ export default function Transfer({ data, ogData }: Props) {
         }`}
         url={`${HOME_URL}/transfer/${data.external_id}`}
       />
-      <Receipt id={data.external_id} />
+      <div className="flex items-center p-10 my-auto">
+        <Receipt id={data.external_id} />
+      </div>
     </Layout>
   )
 }

@@ -15,20 +15,20 @@ export async function transformData(rawData: any) {
   const success = rawData.status === 'success'
 
   let avatar = (rawData.from_profile.avatar || '') as string
-  let [sender, receiver] = await UI.resolve(
+  let [sender, receiver] = UI.render(
     Platform.Web,
     rawData.from_profile_source === 'mochi-vault'
       ? {
           type: 'vault',
           id: rawData.metadata.vault_request.vault_id.toString(),
         }
-      : rawData.from_profile_id,
+      : rawData.from_profile,
     rawData.other_profile_source === 'mochi-vault'
       ? {
           type: 'vault',
           id: rawData.metadata.vault_request.vault_id.toString(),
         }
-      : rawData.other_profile_id,
+      : rawData.other_profile,
   )
 
   if (sender?.plain && template?.title) {
@@ -96,15 +96,11 @@ export async function transformData(rawData: any) {
   }
 
   if (isMultipleReceivers) {
-    const promises = await Promise.allSettled(
-      rawData.other_profiles.map(async (p: any) => {
-        const [profile] = await UI.resolve(Platform.Web, p.id)
+    data.to = rawData.other_profiles
+      .map((p: any) => {
+        const [profile] = UI.render(Platform.Web, p)
         return profile?.plain ?? ''
-      }),
-    )
-
-    data.to = promises
-      .map((p) => (p.status === 'fulfilled' ? p.value : ''))
+      })
       .filter(Boolean)
   }
 
