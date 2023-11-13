@@ -1,5 +1,20 @@
 # @consolelabs/table
 
+## 0.1.1
+
+### Patch Changes
+
+- [#161](https://github.com/consolelabs/websites/pull/161)
+  [`53ba02b`](https://github.com/consolelabs/websites/commit/53ba02b62105fb117a8916ac74ad3b65a8763038)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Write README for all
+  component packages
+
+- Updated dependencies
+  [[`53ba02b`](https://github.com/consolelabs/websites/commit/53ba02b62105fb117a8916ac74ad3b65a8763038),
+  [`df2f8aa`](https://github.com/consolelabs/websites/commit/df2f8aa51190efebef08f508c2f73a62b624ba06)]:
+  - @consolelabs/pagination@0.1.1
+  - @consolelabs/badge@0.1.0
+
 ## 0.1.0
 
 ### Minor Changes
