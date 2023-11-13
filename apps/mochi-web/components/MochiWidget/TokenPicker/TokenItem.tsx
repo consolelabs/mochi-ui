@@ -1,6 +1,6 @@
-import { formatNumber } from '~utils/number'
 import { Heading } from '@consolelabs/ui-components'
 import { Balance } from '~store'
+import { utils } from '@consolelabs/mochi-ui'
 
 interface ItemProps {
   item: Balance
@@ -24,9 +24,14 @@ export const TokenItem: React.FC<ItemProps> = ({ item, onSelect }) => (
         {item.token?.symbol}
       </Heading>
       <span className="text-xs text-[#848281] font-medium">
-        {formatNumber(item.asset_balance ?? 0)}
+        {utils.formatTokenDigit({
+          value: item.asset_balance ?? 0,
+          fractionDigits: item.token?.decimal ?? 0,
+        })}
       </span>
     </div>
-    <span className="text-sm">${formatNumber(item.usd_balance ?? 0)}</span>
+    <span className="text-sm">
+      ${utils.formatDigit({ value: item.usd_balance ?? 0, fractionDigits: 2 })}
+    </span>
   </li>
 )
