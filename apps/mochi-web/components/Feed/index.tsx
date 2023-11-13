@@ -78,6 +78,28 @@ export default function Feed({ className = '' }: Props) {
         className,
       })}
     >
+      <button
+        type="button"
+        onClick={() => {
+          if (containerRef.current) {
+            containerRef.current.scrollTop = 0
+          }
+        }}
+        className={clsx(
+          'flex absolute left-1/2 top-[110px] z-20 gap-x-1 items-center py-1 px-2 rounded-full transition -translate-x-1/2 bg-white-pure hover:bg-neutral-300',
+          {
+            'opacity-0': !isShowTopFade,
+            'opacity-100 translate-y-2': isShowTopFade,
+          },
+        )}
+      >
+        <IconArrowUp className="w-4 h-4" />
+        {hasNewUpdate ? (
+          <span className="text-sm">New update</span>
+        ) : (
+          <span className="text-sm">Scroll to top</span>
+        )}
+      </button>
       <div
         className={clsx(
           'transition bottom-0 left-0 absolute w-full h-20 bg-gradient-to-t pointer-events-none from-feed-bg z-10',
@@ -144,28 +166,6 @@ export default function Feed({ className = '' }: Props) {
                 },
               )}
             />
-            <button
-              type="button"
-              onClick={() => {
-                if (containerRef.current) {
-                  containerRef.current.scrollTop = 0
-                }
-              }}
-              className={clsx(
-                'flex absolute left-[calc((1440px-4rem)/2)] top-full z-20 gap-x-1 items-center py-1 px-2 mt-2 rounded-full transition -translate-x-1/2 bg-white-pure hover:bg-neutral-300',
-                {
-                  'opacity-0': !isShowTopFade,
-                  'opacity-100 translate-y-2': isShowTopFade,
-                },
-              )}
-            >
-              <IconArrowUp className="w-4 h-4" />
-              {hasNewUpdate ? (
-                <span className="text-sm">New update</span>
-              ) : (
-                <span className="text-sm">Scroll to top</span>
-              )}
-            </button>
           </div>
 
           <div className="flex relative flex-col flex-1 min-h-0">
