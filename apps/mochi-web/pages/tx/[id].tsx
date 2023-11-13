@@ -17,6 +17,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     }
 
     const transfer = await API.MOCHI_PAY.get(`/transfer/${id}`)
+      .setTimeout(2000)
       .fetchError(() => null)
       .json((r: any) => r.data)
 
