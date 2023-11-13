@@ -1,0 +1,131 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title="Introduction/Installation" />
+
+# Installation
+
+Prerequisites:
+
+- [React](https://react.dev/) >= 18
+- [Tailwind CSS](https://tailwindcss.com/) >= 3
+
+To integrate Console Labs UI into your project, follow these steps:
+
+### Global Installation
+
+For a quick start, the global setup is recommended. This approach involves
+importing all components from a single package.
+
+**1. Install packages**
+
+Execute the following command in your terminal to install Console Labs UI:
+
+```sh
+pnpm add @consolelabs/core
+```
+
+**2. TailwindCSS setup**
+
+Since Console Labs UI is based on Tailwind CSS, it's necessary to install
+Tailwind CSS first. Follow the official
+[guide for installation](https://tailwindcss.com/docs/installation). Afterward,
+add this code to your `tailwind.config.js`:
+
+```js
+// tailwind.config.js
+import { consolelabs } from '@consolelabs/core'
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    // ...
+    './node_modules/@consolelabs/theme/dist/components/**/*.{js,jsx,ts,tsx}',
+  ],
+  plugins: [consolelabs()],
+}
+```
+
+**3. Configuring pnpm (Optional)**
+
+For those utilizing pnpm, it's necessary to modify your `.npmrc` file with the
+following code. This step ensures that the package paths align correctly,
+allowing TailwindCSS to accurately interpret Tailwind class names:
+
+```sh
+public-hoist-pattern[]=*@consolelabs/*
+```
+
+Once you've updated the `.npmrc` file, execute pnpm install once more to
+guarantee proper installation of the dependencies.
+
+### Individual Installation
+
+Console Labs UI also supports modular installation, allowing you to install
+components individually. This approach is beneficial for reducing your CSS
+bundle size, as it includes only the styles for the components in use.
+
+> Note: The JavaScript bundle size remains unaffected due to Console Labs UI's
+> tree shaking feature.
+
+To install components individually, follow these steps:
+
+**1. Core Package Installation**
+
+```sh
+pnpm add @consolelabs/theme
+```
+
+**2. Component Installation**
+
+Install the desired component. For instance, to use the Button component, run:
+
+```sh
+pnpm add @consolelabs/button
+```
+
+**3. Tailwind CSS Configuration**
+
+When using individual packages, modify your `tailwind.config.js` to include only
+the styles of the components you are using. For the Button component, add:
+
+```js
+// tailwind.config.js
+import { consolelabs } from '@consolelabs/theme'
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    // single component styles
+    './node_modules/@consolelabs/theme/dist/components/button.js',
+    // or you can use a glob pattern (multiple component styles)
+    './node_modules/@consolelabs/theme/dist/components/(button|snippet|code|input).js',
+  ],
+  plugins: [consolelabs()],
+}
+```
+
+**4. Use the Component**
+
+You can now use the installed component in your application:
+
+```js
+import * as React from 'react'
+import { Button } from '@consolelabs/button'
+
+function App() {
+  return <Button>Press me</Button>
+}
+```
+
+**5. Configuring pnpm (Optional)**
+
+For those utilizing pnpm, it's necessary to modify your `.npmrc` file with the
+following code. This step ensures that the package paths align correctly,
+allowing TailwindCSS to accurately interpret Tailwind class names:
+
+```sh
+public-hoist-pattern[]=*@consolelabs/*
+```
+
+Once you've updated the `.npmrc` file, execute pnpm install once more to
+guarantee proper installation of the dependencies.

@@ -1,7 +1,7 @@
 import Heading from '../src/heading'
 
 export default {
-  title: 'ui/Heading',
+  title: 'components/Heading',
 }
 
 export function Default() {

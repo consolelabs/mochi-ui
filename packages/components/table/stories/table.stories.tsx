@@ -7,7 +7,7 @@ import { Pagination } from '@consolelabs/pagination'
 import Table from '../src/table'
 
 const meta: Meta<typeof Table> = {
-  title: 'ui/Table',
+  title: 'components/Table',
   component: Table,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout

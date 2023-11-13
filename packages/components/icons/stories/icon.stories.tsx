@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import * as icons from '@consolelabs/icons'
-import { Tooltip } from '../tooltip'
-import { InputField } from '../input-field'
+import * as icons from '../../../icons/src'
+import { Tooltip } from '../../tooltip/src'
+import { InputField } from '../../input-field/src'
 
 const meta: Meta = {
-  title: 'Icons/Default',
+  title: 'Icons/List',
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
     layout: 'centered',

@@ -4,7 +4,7 @@ import { IconCheckCircled } from '@consolelabs/icons'
 import { Popover, PopoverContent, PopoverTrigger } from '../src/popover'
 
 const meta: Meta<typeof Popover> = {
-  title: 'ui/Popover',
+  title: 'components/Popover',
   component: Popover,
   tags: ['autodocs'],
   args: {
