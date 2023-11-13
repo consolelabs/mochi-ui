@@ -6,11 +6,16 @@ import {
   PopoverContent,
   InputField,
 } from '@consolelabs/ui-components'
+import clsx from 'clsx'
 import { ChainList } from './ChainList'
 import { Chains } from './data'
 import { Chain } from './type'
 
-export const ChainPicker = () => {
+type ChainPickerProps = {
+  className?: string
+}
+
+export const ChainPicker: React.FC<ChainPickerProps> = ({ className }) => {
   const [isOpenSelector, setIsOpenSelector] = useState(false)
   const [selectedChain, setSelectedChain] = useState<Chain>(Chains[0])
   const [searchTerm, setSearchTerm] = useState('')
@@ -36,7 +41,12 @@ export const ChainPicker = () => {
 
   return (
     <Popover open={isOpenSelector} onOpenChange={onOpenChange}>
-      <PopoverTrigger className="flex gap-x-2 items-center py-1.5 rounded-lg bg-[#FAF9F7]">
+      <PopoverTrigger
+        className={clsx(
+          'flex gap-x-2 items-center py-1.5 px-1 rounded-md bg-[#F2F2F0]',
+          className,
+        )}
+      >
         <span className="text-base" role="img">
           <img
             alt={`${selectedChain.name} icon`}
@@ -53,7 +63,7 @@ export const ChainPicker = () => {
       <PopoverContent
         align="start"
         alignOffset={-16}
-        className="flex flex-col gap-y-2 items-center w-[414px] h-[477px] bg-white-pure"
+        className="flex flex-col gap-y-2 items-center w-[388px] h-[368px] bg-white-pure"
       >
         <InputField
           className="w-full"

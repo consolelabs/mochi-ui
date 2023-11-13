@@ -1,7 +1,10 @@
 import { create } from 'zustand'
 import { API } from '~constants/api'
 import { Wallet } from '~store'
+import { ViewProfile } from '~types/mochi-profile-schema'
 import { Theme } from '../ThemePicker/ThemePicker'
+
+export const MAX_RECIPIENTS = 20
 
 interface Request {
   message?: string
@@ -11,6 +14,7 @@ interface Request {
 interface TipWidgetState {
   step: number
   fromWallet?: Wallet
+  recipients?: ViewProfile[]
   setStep: (s: number) => void
   request?: Request
   updateRequestMessage: (message: string) => void
@@ -20,6 +24,8 @@ interface TipWidgetState {
   isTransferring: boolean
   tx: any
   updateSourceWallet: (s: Wallet) => void
+  addRecipient: (recipient: ViewProfile) => void
+  removeRecipient: (recipient: ViewProfile) => void
 }
 
 export const useTipWidget = create<TipWidgetState>((set, get) => ({
@@ -76,4 +82,27 @@ export const useTipWidget = create<TipWidgetState>((set, get) => ({
   },
   updateSourceWallet: (wallet: Wallet) =>
     set((s) => ({ ...s, fromWallet: wallet })),
+  addRecipient: (recipient: ViewProfile) => {
+    const isMax = (get().recipients?.length ?? 0) >= MAX_RECIPIENTS
+    const isExist = get().recipients?.find(
+      (r) =>
+        r.associated_accounts?.[0].id === recipient.associated_accounts?.[0].id,
+    )
+    if (isMax || isExist) {
+      return
+    }
+    return set((s) => ({
+      ...s,
+      recipients: [...(s.recipients || []), recipient],
+    }))
+  },
+  removeRecipient: (recipient: ViewProfile) =>
+    set((s) => ({
+      ...s,
+      recipients: s.recipients?.filter(
+        (r) =>
+          r.associated_accounts?.[0].id !==
+          recipient.associated_accounts?.[0].id,
+      ),
+    })),
 }))
