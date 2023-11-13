@@ -1,5 +1,5 @@
 {
   "version": 2,
   "public": true,
-  "ignoreCommand": "sh ../../scripts/check-skip-apps-commit"
+  "ignoreCommand": "node ../../scripts/check-build-apps.js"
 }
