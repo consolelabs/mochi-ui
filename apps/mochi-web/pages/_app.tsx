@@ -1,10 +1,4 @@
-import '@fontsource/inter/300.css'
-import '@fontsource/inter/400.css'
-import '@fontsource/inter/500.css'
-import '@fontsource/inter/600.css'
-import '@fontsource/inter/700.css'
-import '@fontsource/inter/900.css'
-import '@fontsource/poppins/500.css'
+import { Inter } from 'next/font/google'
 import '~styles/global.css'
 import dynamic from 'next/dynamic'
 import { StrictMode, useEffect, useState } from 'react'
@@ -25,6 +19,8 @@ import Button from '~cpn/base/button'
 import Script from 'next/script'
 import { Header } from '~cpn/Header'
 import { Modal, ModalContent, ModalTrigger } from '@consolelabs/ui-components'
+
+const inter = Inter({ subsets: ['latin'] })
 
 const TopProgressBar = dynamic(() => import('~app/layout/nprogress'), {
   ssr: false,
@@ -86,6 +82,11 @@ function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <>
+      <style jsx global>{`
+        html {
+          font-family: ${inter.style.fontFamily};
+        }
+      `}</style>
       <Header />
       {getLayout(<Component {...pageProps} />)}
     </>

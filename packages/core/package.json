@@ -1,6 +1,6 @@
 {
   "name": "@consolelabs/core",
-  "version": "0.0.4",
+  "version": "0.0.7",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
@@ -50,7 +50,8 @@
     "@consolelabs/switch": "workspace:*",
     "@consolelabs/theme": "workspace:*",
     "@consolelabs/toggle-button": "workspace:*",
-    "@consolelabs/tooltip": "workspace:*"
+    "@consolelabs/tooltip": "workspace:*",
+    "@consolelabs/checkbox": "workspace:*"
   },
   "clean-package": "../../clean-package.config.json"
 }

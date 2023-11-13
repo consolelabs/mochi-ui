@@ -29,11 +29,11 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 }
 
 const Heading = ({ children }: { children: React.ReactNode }) => {
-  return <p className="text-2xl font-medium font-heading">{children}</p>
+  return <p className="text-2xl font-medium">{children}</p>
 }
 
 const Paragraph = ({ children }: { children: React.ReactNode }) => {
-  return <span className="mb-8 font-normal font-text">{children}</span>
+  return <span className="mb-8 font-normal">{children}</span>
 }
 
 const Image = (props: any) => {
@@ -57,7 +57,7 @@ const ChangelogItem = ({ name, content }: Page) => (
         </div>
       </div>
     </div>
-    <div className="flex flex-col flex-1 pb-6 max-w-prose whitespace-pre-wrap font-text">
+    <div className="flex flex-col flex-1 pb-6 max-w-prose whitespace-pre-wrap">
       <ReactMarkdown
         components={{
           h1: Heading,
@@ -82,7 +82,7 @@ export default function Changelog({ data }: Props) {
     <Layout>
       <SEO title={PAGES.CHANGE_LOG.title} tailTitle />
       <div className="flex flex-col py-16 px-6 mx-auto max-w-7xl md:px-12">
-        <div className="mb-12 text-3xl text-center md:text-4xl lg:text-5xl font-heading">
+        <div className="mb-12 text-3xl text-center md:text-4xl lg:text-5xl">
           Changelog
         </div>
         {data?.map(

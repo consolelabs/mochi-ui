@@ -1,6 +1,6 @@
 {
   "name": "@consolelabs/list",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
@@ -14,7 +14,7 @@
     "build": "tsup src --dts",
     "build:fast": "tsup src",
     "dev": "pnpm build:fast -- --watch",
-    "lint": "eslint src/",
+    "lint": "eslint src/ --cache",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
     "prepack": "clean-package",
@@ -36,8 +36,7 @@
     "@consolelabs/heading": "workspace:*",
     "@consolelabs/theme": "workspace:*",
     "class-variance-authority": "^0.7.0",
-    "@radix-ui/react-scroll-area": "^1.0.5",
-    "clsx": "^2.0.0"
+    "@radix-ui/react-scroll-area": "^1.0.5"
   },
   "clean-package": "../../../clean-package.config.json"
 }

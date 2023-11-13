@@ -257,7 +257,7 @@ export default function Airdrop({
                 <div className="flex justify-center items-center text-3xl">
                   <Countdown countdown={countdown} />
                 </div>
-                <p className="text-sm font-thin">until airdrop ends</p>
+                <p className="text-sm font-normal">until airdrop ends</p>
                 <p className="mt-3">Patience is a virtue!</p>
               </div>
             )

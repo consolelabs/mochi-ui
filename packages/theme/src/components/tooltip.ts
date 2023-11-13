@@ -48,7 +48,7 @@ export const ARROW_OPTIONS = [
 
 export type Arrow = (typeof ARROW_OPTIONS)[number]
 
-export type TooltipStyleProps = VariantProps<typeof tooltipCva> & {
+export type TooltipProps = VariantProps<typeof tooltipCva> & {
   children: React.ReactNode
   content: React.ReactNode
   arrow?: Arrow | 'none'

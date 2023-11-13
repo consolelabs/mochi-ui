@@ -9,14 +9,14 @@ export function SoonAvailablePlatforms({
 }) {
   return (
     <div className={clsx('flex flex-col', className)}>
-      <span className="text-sm font-thin text-neutral-600">
+      <span className="text-sm font-normal text-neutral-600">
         Soon available on
       </span>
       <ul className="flex flex-wrap gap-3 mt-2">
         {[
           {
             text: (
-              <div className="flex flex-col text-neutral-900">
+              <div className="flex flex-col gap-y-0.5 text-neutral-900">
                 <span className="text-[9px] leading-[9px]">Coming soon</span>
                 <span className="text-[15px] leading-[15px]">Slack</span>
               </div>
@@ -25,7 +25,7 @@ export function SoonAvailablePlatforms({
           },
           {
             text: (
-              <div className="flex flex-col text-neutral-900">
+              <div className="flex flex-col gap-y-0.5 text-neutral-900">
                 <span className="text-[9px] leading-[9px]">Coming soon</span>
                 <span className="text-[15px] leading-[15px]">App Store</span>
               </div>

@@ -1,6 +1,6 @@
 {
   "name": "@consolelabs/badge",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
@@ -14,7 +14,7 @@
     "build": "tsup src --dts",
     "build:fast": "tsup src",
     "dev": "pnpm build:fast -- --watch",
-    "lint": "eslint src/",
+    "lint": "eslint src/ --cache",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
     "prepack": "clean-package",

@@ -4,14 +4,21 @@ import { popover } from '@consolelabs/theme'
 
 const { popoverContentClsx } = popover
 
-const Popover = PopoverPrimitive.Root
+type PopoverProps = typeof PopoverPrimitive.Root
+type PopoverTriggerProps = typeof PopoverPrimitive.Trigger
+type PopoverCloseProps = typeof PopoverPrimitive.Close
 
+const Popover = PopoverPrimitive.Root
 const PopoverTrigger = PopoverPrimitive.Trigger
 const PopoverClose = PopoverPrimitive.Close
 
+type PopoverContentProps = React.ComponentPropsWithoutRef<
+  typeof PopoverPrimitive.Content
+>
+
 const PopoverContent = React.forwardRef<
   React.ElementRef<typeof PopoverPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>
+  PopoverContentProps
 >(({ className, align = 'center', sideOffset = 4, ...props }, ref) => (
   <PopoverPrimitive.Portal>
     <PopoverPrimitive.Content
@@ -25,4 +32,13 @@ const PopoverContent = React.forwardRef<
 ))
 PopoverContent.displayName = PopoverPrimitive.Content.displayName
 
-export { Popover, PopoverTrigger, PopoverContent, PopoverClose }
+export {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverClose,
+  type PopoverContentProps,
+  type PopoverProps,
+  type PopoverTriggerProps,
+  type PopoverCloseProps,
+}

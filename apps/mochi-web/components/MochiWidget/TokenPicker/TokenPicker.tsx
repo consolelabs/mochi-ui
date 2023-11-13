@@ -1,3 +1,4 @@
+import { IconChevronDown } from '@consolelabs/icons'
 import { useEffect, useMemo, useState } from 'react'
 import { Icon } from '@iconify/react'
 import { Tab } from '@headlessui/react'
@@ -53,10 +54,7 @@ const TokenButton = (props: TokenButtonProps) => (
       </span>
     )}
     <span className="text-sm font-medium">{props.name}</span>
-    <Icon
-      icon="majesticons:chevron-down-line"
-      className="w-4 h-4 text-[#ADACAA]"
-    />
+    <IconChevronDown className="w-4 h-4 text-[#ADACAA]" />
   </div>
 )
 

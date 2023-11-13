@@ -107,14 +107,14 @@ function BrowseAPIs() {
                       className="object-contain md:hidden"
                       alt=""
                     />
-                    <div className="font-medium text-gray-500 font-text">
+                    <div className="font-medium text-gray-500">
                       <span className="text-lg md:text-base text-foreground">
                         {d.title}
                       </span>{' '}
                       API
                     </div>
                   </div>
-                  <span className="text-sm font-text">{d.body}</span>
+                  <span className="text-sm">{d.body}</span>
                 </div>
               </div>
             </a>
@@ -162,9 +162,7 @@ const networks: [
 function SupportedPlatforms() {
   return (
     <div className="hidden flex-col mt-16 md:flex landing-block">
-      <p className="text-4xl font-medium text-center font-text">
-        Supported platforms
-      </p>
+      <p className="text-4xl font-medium text-center">Supported platforms</p>
       <div className="flex flex-col gap-y-8 mt-8">
         <div className="flex flex-col gap-y-4">
           <span className="text-lg font-medium">Socials</span>
@@ -220,7 +218,7 @@ function TryItOut() {
   const [idx, setIdx] = useState(0)
   return (
     <div className="hidden flex-col md:flex landing-block">
-      <p className="text-4xl font-medium font-text">Try it out</p>
+      <p className="text-4xl font-medium">Try it out</p>
       <div className="flex gap-x-5 mt-8">
         <ul className="flex flex-col flex-shrink-0 gap-y-2 w-1/3">
           {[
@@ -301,12 +299,12 @@ export default function Developer() {
     <Layout>
       <SEO />
       <div className="flex flex-col items-center mt-24 landing-block">
-        <p className="text-3xl font-medium text-center md:text-6xl font-text">
+        <p className="text-3xl font-medium text-center md:text-6xl">
           Bring Mochi power into
           <br />
           your app
         </p>
-        <span className="mt-8 text-base font-thin text-center md:max-w-2xl md:text-lg">
+        <span className="mt-8 text-base font-normal text-center md:max-w-2xl md:text-lg">
           Mochi allows developers to create a payment between users on any
           platforms, crossing web2 social platforms to web3 layers via a single
           API call.
@@ -354,10 +352,10 @@ export default function Developer() {
       <SupportedPlatforms />
       <div className="flex flex-col gap-x-10 gap-y-10 md:flex-row md:gap-y-0 md:items-center md:py-14 md:pt-4 md:mt-36 landing-block">
         <div className="flex flex-col flex-1">
-          <p className="text-2xl font-medium md:text-4xl md:whitespace-nowrap font-text">
+          <p className="text-2xl font-medium md:text-4xl md:whitespace-nowrap">
             Ready to start building?
           </p>
-          <span className="mt-2 font-text">
+          <span className="mt-2">
             Come up with your idea, tooling are ready, LFG.
           </span>
         </div>

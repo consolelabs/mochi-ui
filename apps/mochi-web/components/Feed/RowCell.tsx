@@ -16,7 +16,7 @@ export default function RowCell({
     <div
       style={style}
       className={clsx(
-        'border-feed-border whitespace-nowrap border-b flex p-4',
+        'flex-shrink-0 border-feed-border whitespace-nowrap border-b flex p-4 min-w-0',
         width,
         className,
       )}

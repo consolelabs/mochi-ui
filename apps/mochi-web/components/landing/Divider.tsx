@@ -16,7 +16,7 @@ export function Divider({
         {
           'my-8 md:my-16 mx-auto': !noSpace,
           'w-screen': fullWidth,
-          'max-w-4xl xl:max-w-1k': !fullWidth,
+          'max-w-4xl xl:max-w-7xl': !fullWidth,
         },
         className,
       )}

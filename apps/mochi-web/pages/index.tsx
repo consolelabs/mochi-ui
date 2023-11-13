@@ -79,14 +79,19 @@ export default function Index() {
       <SEO />
       <div className="grid grid-cols-1 auto-rows-min gap-5 py-8 px-4 m-auto w-full max-w-5xl md:grid-rows-2 md:p-10 md:grid-cols-min">
         <div className="flex flex-col md:justify-end">
-          <p className="text-3xl md:text-4xl">
-            Send <span style={{ color: currencyColor }} ref={currency} />
+          <p className="text-3xl md:text-4xl title-tracking">
+            Send{' '}
+            <span style={{ color: currencyColor }} ref={currency}>
+              &#8203;
+            </span>
             <br />
             to anyone on
             <br />
-            <span style={{ color: platformColor }} ref={platform} />
+            <span style={{ color: platformColor }} ref={platform}>
+              &#8203;
+            </span>
           </p>
-          <span className="mt-5 font-thin">
+          <span className="mt-5 font-normal">
             Use Mochi to send and receive any amount of crypto, directly on your
             favorite Discord servers or Telegram groups, without having a wallet
             or having to pay a single cent in fees.
@@ -206,25 +211,23 @@ export default function Index() {
       />
       <Divider />
       <SupportedPlatforms />
-      <div className="flex justify-center mb-8 md:my-36 landing-block">
-        <div className="flex flex-col-reverse gap-y-10 w-full max-w-5xl md:flex-row">
-          <div className="flex flex-col flex-1 gap-y-1">
-            <p className="text-3xl md:text-4xl text-neutral-900">
-              Simple, intuitive commands
-            </p>
-            <span className="mt-2 text-base font-thin md:text-lg text-neutral-700">
-              Mochi has a single, extensible command for tipping, airdropping on
-              users.
-            </span>
-            <LivePlatforms className="mt-3" />
-          </div>
-          <div className="hidden flex-1 gap-2 justify-center items-center md:flex">
-            <Button className="!px-10">Login</Button>
-            <Button color="info" variant="outline">
-              View features
-              <IconArrowRight />
-            </Button>
-          </div>
+      <div className="flex justify-between mb-8 md:my-36 landing-block">
+        <div className="flex flex-col gap-y-1">
+          <p className="text-3xl md:text-4xl title-tracking text-neutral-900">
+            Simple, intuitive commands
+          </p>
+          <span className="mt-2 text-base font-normal md:text-lg text-neutral-700">
+            Mochi has a single, extensible command for tipping, airdropping on
+            users.
+          </span>
+          <LivePlatforms className="mt-3" />
+        </div>
+        <div className="hidden gap-2 justify-center items-center md:flex">
+          <Button className="!px-10">Login</Button>
+          <Button color="info" variant="outline">
+            View features
+            <IconArrowRight />
+          </Button>
         </div>
       </div>
       <Divider noSpace fullWidth />

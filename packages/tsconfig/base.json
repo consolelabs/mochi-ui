@@ -12,6 +12,7 @@
     "inlineSources": false,
     "isolatedModules": true,
     "moduleResolution": "node",
+    "types": ["@testing-library/jest-dom"],
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "preserveWatchOutput": true,

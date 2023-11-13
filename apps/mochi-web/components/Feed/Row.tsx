@@ -14,11 +14,11 @@ export default function Row({ tx, colWidth }: { tx: Tx; colWidth: string[] }) {
           src={tx.fromAvatar}
           fallback={tx.from}
         />
-        <div className="flex flex-col">
-          <span className="text-sm leading-5 whitespace-nowrap text-white-pure">
+        <div className="flex flex-col min-w-0">
+          <span className="text-sm leading-5 break-words truncate text-white-pure">
             {tx.from}
           </span>
-          <span className="text-xs font-thin capitalize text-neutral-600">
+          <span className="text-xs font-normal capitalize text-neutral-600">
             {tx.sourcePlatform}
           </span>
         </div>
@@ -30,11 +30,11 @@ export default function Row({ tx, colWidth }: { tx: Tx; colWidth: string[] }) {
       </RowCell>
       <RowCell className="gap-x-2" width={colWidth[2]}>
         <Avatar smallSrc={tx.platformIcon} src={tx.toAvatar} fallback={tx.to} />
-        <div className="flex flex-col">
-          <span className="text-sm leading-5 whitespace-nowrap text-white-pure">
+        <div className="flex flex-col min-w-0">
+          <span className="text-sm leading-5 break-words truncate text-white-pure">
             {tx.to}
           </span>
-          <span className="text-xs font-thin capitalize text-neutral-600">
+          <span className="text-xs font-normal capitalize text-neutral-600">
             {tx.sourcePlatform}
           </span>
         </div>
@@ -48,7 +48,7 @@ export default function Row({ tx, colWidth }: { tx: Tx; colWidth: string[] }) {
       </RowCell>
       <RowCell className="gap-x-2 items-center" width={colWidth[4]}>
         <Avatar src={tx.token.icon} size="sm" />
-        <span className="text-sm font-thin leading-5 text-white-pure">
+        <span className="text-sm font-normal leading-5 text-white-pure">
           {tx.amount} {tx.token.symbol}
         </span>
       </RowCell>
@@ -62,12 +62,12 @@ export default function Row({ tx, colWidth }: { tx: Tx; colWidth: string[] }) {
         />
       </RowCell>
       <RowCell className="items-center" width={colWidth[6]}>
-        <span className="text-sm font-thin leading-5 text-white-pure">
-          {tx.code}
+        <span className="text-sm font-normal leading-5 text-white-pure">
+          {tx.code.slice(0, 9)}
         </span>
       </RowCell>
       <RowCell className="items-center" width={colWidth[7]}>
-        <span className="text-sm font-thin leading-5 text-white-pure">
+        <span className="text-sm font-normal leading-5 text-white-pure">
           {tx.date}
         </span>
       </RowCell>
@@ -75,8 +75,8 @@ export default function Row({ tx, colWidth }: { tx: Tx; colWidth: string[] }) {
         <Badge
           className={
             tx.isSuccess
-              ? 'bg-[#088752]/[.15] text-[#34C77B]'
-              : 'bg-[#E02D3C]/[.15] text-[#EB5757]'
+              ? '!bg-[#088752]/[.15] !text-[#34C77B]'
+              : '!bg-[#E02D3C]/[.15] !text-[#EB5757]'
           }
           appearance={tx.isSuccess ? 'success' : 'danger'}
           label={tx.isSuccess ? 'Success' : 'Failed'}

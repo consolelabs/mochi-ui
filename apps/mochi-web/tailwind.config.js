@@ -9,14 +9,6 @@ module.exports = {
   mode: 'jit',
   theme: {
     extend: {
-      maxWidth: {
-        '1k': '1008px',
-      },
-      fontFamily: {
-        text: ['Inter', 'sans-serif'],
-        heading: ['Inter', 'sans-serif'],
-        /* heading: ['Poppins', 'sans-serif'], */
-      },
       colors: {
         neutral: {
           0: '#ffffff',

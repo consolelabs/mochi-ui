@@ -15,7 +15,7 @@ export default function Banner() {
         </div>
       </div>
       <div>
-        <h1 className="font-text text-center text-5xl sm:text-6xl lg:leading-tight lg:text-7xl tracking-tight leading-tight mb-12 mx-auto font-normal text-[#343433]">
+        <h1 className="text-center text-5xl sm:text-6xl lg:leading-tight lg:text-7xl tracking-tight leading-tight mb-12 mx-auto font-normal text-[#343433]">
           Pay your frens using crypto
         </h1>
         <div className="flex z-10 flex-col items-center mt-auto">

@@ -1,9 +1,17 @@
-import { button, ButtonStyleProps } from '@consolelabs/theme'
+import { button, ButtonStylesProps } from '@consolelabs/theme'
 import { IconThreeDotLoading } from '@consolelabs/icons'
+import { ButtonHTMLAttributes, ReactNode } from 'react'
 
 const { buttonCva, buttonloadIndicatorCva, buttonLoadingIconClsx } = button
 
-type ButtonProps = ButtonStyleProps
+export type ButtonProps = ButtonStylesProps &
+  ButtonHTMLAttributes<HTMLButtonElement> & {
+    children?: React.ReactNode
+    className?: string
+    loading?: boolean
+    loadingIndicator?: ReactNode
+    loadingIndicatorClassName?: string
+  }
 
 export default function Button({
   children,
@@ -48,5 +56,3 @@ export default function Button({
     </button>
   )
 }
-
-export { type ButtonProps }

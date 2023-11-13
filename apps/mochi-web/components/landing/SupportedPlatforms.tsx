@@ -63,7 +63,7 @@ const networks: [
 export function SupportedPlatforms() {
   return (
     <div className="hidden flex-col mt-16 md:flex landing-block">
-      <p className="text-4xl font-medium text-center font-text">
+      <p className="text-4xl font-medium text-center title-tracking">
         Supported platforms
       </p>
       <div className="flex flex-col gap-y-8 mt-8">

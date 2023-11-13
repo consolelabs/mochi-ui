@@ -1,6 +1,6 @@
 {
   "name": "@consolelabs/theme",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
@@ -14,7 +14,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsup src --dts",
-    "lint": "eslint src/",
+    "lint": "eslint src/ --cache",
     "dev": "tsup --watch",
     "check-types": "tsc --noEmit",
     "prepack": "clean-package",

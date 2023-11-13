@@ -1,4 +1,3 @@
-import { ButtonHTMLAttributes, ReactNode } from 'react'
 import { cva, VariantProps } from 'class-variance-authority'
 import { clsx } from 'clsx'
 
@@ -158,11 +157,4 @@ export const button = {
   buttonLoadingIconClsx,
 }
 
-export type ButtonStyleProps = ButtonHTMLAttributes<HTMLButtonElement> &
-  VariantProps<typeof buttonCva> & {
-    children?: React.ReactNode
-    className?: string
-    loading?: boolean
-    loadingIndicator?: ReactNode
-    loadingIndicatorClassName?: string
-  }
+export type ButtonStylesProps = VariantProps<typeof buttonCva>
