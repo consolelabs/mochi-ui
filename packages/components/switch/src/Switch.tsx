@@ -18,7 +18,14 @@ interface SwitchProps extends SwitchStylesProps {
 }
 
 export default function Switch(props: SwitchProps) {
-  const { label, checked = false, disabled = false, size, onChange } = props
+  const {
+    label,
+    checked = false,
+    disabled = false,
+    size,
+    onChange,
+    ...rest
+  } = props
   const id = useId()
 
   return (
@@ -34,6 +41,7 @@ export default function Switch(props: SwitchProps) {
         disabled={disabled}
         id={id}
         onCheckedChange={onChange}
+        {...rest}
       >
         <RadixSwitch.Thumb
           className={switchThumbClsx({
