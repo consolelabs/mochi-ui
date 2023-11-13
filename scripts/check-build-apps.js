@@ -7,7 +7,8 @@ function checkIsProceedBuildApplications() {
   const commitMsg = execSync(getCommitMsg).toString().trim()
   const branchName = execSync(getBranchName).toString().trim()
 
-  const skipCIRegex = /\[(skip[-\s]?ci|ci[-\s]?skip|skip ci|ci skip)\]/gi
+  const skipCIRegex =
+    /\[(skip[-\s]?apps|apps[-\s]?skip|skip apps|apps skip)\]/gi
   // Is changeset-release branch
   if (branchName.startsWith('changeset-release/')) {
     console.log(
