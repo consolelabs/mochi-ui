@@ -1,4 +1,5 @@
-import { fireEvent, render, waitFor } from '@testing-library/react'
+import { render, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import {
   Accordion,
   AccordionContent,
@@ -57,17 +58,17 @@ describe('Accordion', () => {
     expect(item1Trigger).toBeInTheDocument()
     expect(item2Trigger).toBeInTheDocument()
 
-    fireEvent.click(item1Trigger)
+    userEvent.click(item1Trigger)
     await waitFor(() => {
       expect(item1Trigger).toHaveAttribute('aria-expanded', 'true')
     })
 
-    fireEvent.click(item2Trigger)
+    userEvent.click(item2Trigger)
     await waitFor(() => {
       expect(item2Trigger).toHaveAttribute('aria-expanded', 'true')
     })
 
-    fireEvent.click(item2Trigger)
+    userEvent.click(item2Trigger)
     await waitFor(() => {
       expect(item1Trigger).toHaveAttribute('aria-expanded', 'false')
     })
