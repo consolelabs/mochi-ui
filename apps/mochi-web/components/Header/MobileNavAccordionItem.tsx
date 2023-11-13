@@ -4,8 +4,9 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@consolelabs/ui-components'
-import { Button, SectionList } from '@consolelabs/core'
+  Button,
+  SectionList
+} from '@consolelabs/core'
 import Link from 'next/link'
 import { Fragment } from 'react'
 import { NavItem } from './type'
