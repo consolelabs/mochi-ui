@@ -10,12 +10,9 @@ interface Props {
 
 export const TokenList = (props: Props) => {
   const { data, onSelect } = props
-  const sortedData = data.sort((a, b) => {
-    return (b.usd_balance ?? 0) - (a.usd_balance ?? 0)
-  })
   return (
     <List
-      data={sortedData}
+      data={data}
       renderItem={(item) => <TokenItem item={item} onSelect={onSelect} />}
       ListEmpty={<EmptyList />}
       rootClassName="w-full h-full"

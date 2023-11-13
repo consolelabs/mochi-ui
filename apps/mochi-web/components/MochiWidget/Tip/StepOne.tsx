@@ -59,6 +59,8 @@ export default function StepOne() {
     updateSourceWallet,
     addRecipient,
     removeRecipient,
+    setAsset,
+    setAmount,
   } = useTipWidget()
   const { token, isLoggedIn } = useAuthStore()
   const connectButtonRef = useRef<ConnectButtonRef>(null)
@@ -94,6 +96,8 @@ export default function StepOne() {
           accessToken={token}
           onLoginRequest={openLoginPopup}
           wallet={fromWallet}
+          onSelectAsset={setAsset}
+          onAmountChanged={setAmount}
         />
       </div>
       {isLoggedIn ? (

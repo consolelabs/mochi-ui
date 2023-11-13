@@ -9,12 +9,16 @@ interface AmountInputProps {
   wallet?: Wallet
   accessToken: string | null
   onLoginRequest?: () => void
+  onSelectAsset?: (item: Balance) => void
+  onAmountChanged?: (amount: number) => void
 }
 
 export const AmountInput: React.FC<AmountInputProps> = ({
   wallet,
   accessToken,
   onLoginRequest,
+  onSelectAsset,
+  onAmountChanged,
 }) => {
   const [selectedAsset, setSelectedAsset] = useState<Balance | MonikerAsset>()
   const [tipAmount, setTipAmount] = useState('')
@@ -41,11 +45,11 @@ export const AmountInput: React.FC<AmountInputProps> = ({
       onLoginRequest?.()
     } else {
       // Amount is USD -> convert to token amount
-      setTipAmount(
-        (parseFloat(amount) / unitPrice).toFixed(
-          selectedAsset?.token?.decimal ?? 2,
-        ),
+      const amountInToken = (parseFloat(amount) / unitPrice).toFixed(
+        selectedAsset?.token?.decimal ?? 2,
       )
+      setTipAmount(amountInToken)
+      onAmountChanged?.(parseFloat(amountInToken))
     }
   }
 
@@ -58,6 +62,8 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   function handleAssetChanged(asset: Balance | MonikerAsset) {
     setSelectedAsset(asset)
     setTipAmount('0')
+    onSelectAsset?.(asset)
+    onAmountChanged?.(0)
   }
 
   return (
