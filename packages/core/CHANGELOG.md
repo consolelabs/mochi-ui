@@ -1,5 +1,14 @@
 # @consolelabs/core
 
+## 0.0.8
+
+### Patch Changes
+
+- Updated dependencies
+  [[`d1b2ade`](https://github.com/consolelabs/websites/commit/d1b2ade819a9c45e22241f94535c0bd2f0b08a27)]:
+  - @consolelabs/toggle-button@0.0.5
+  - @consolelabs/switch@0.0.4
+
 ## 0.0.7
 
 ### Patch Changes

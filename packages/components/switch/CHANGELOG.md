@@ -1,5 +1,14 @@
 # @consolelabs/switch
 
+## 0.0.4
+
+### Patch Changes
+
+- [#150](https://github.com/consolelabs/websites/pull/150)
+  [`d1b2ade`](https://github.com/consolelabs/websites/commit/d1b2ade819a9c45e22241f94535c0bd2f0b08a27)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Write unit test for
+  Switch and Toggle button
+
 ## 0.0.3
 
 ### Patch Changes
