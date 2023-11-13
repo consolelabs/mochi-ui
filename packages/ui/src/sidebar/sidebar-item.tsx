@@ -53,7 +53,7 @@ export default function SidebarItem({
       {Icon !== undefined && (
         <Icon
           className={clsx('min-w-[22px]', {
-            'text-blue-500': selected,
+            'text-primary-700': selected,
             'text-neutral-800': !selected && !disabled,
             'text-neutral-600': disabled,
           })}
