@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   InputField,
   Popover,
@@ -8,7 +8,9 @@ import {
   IconButton,
 } from '@consolelabs/ui-components'
 import { ViewProfile } from '~types/mochi-profile-schema'
-import { IconClose } from '@consolelabs/icons'
+import { IconClose, IconSpinner } from '@consolelabs/icons'
+import { useDebounce } from '@dwarvesf/react-hooks'
+import { API, GET_PATHS } from '~constants/api'
 import { ChainPicker } from '../ChainPicker'
 import { Platform } from '../PlatformPicker/type'
 import { RecipientList } from './RecipientList'
@@ -33,9 +35,11 @@ export const Recipient: React.FC<RecipientProps> = ({
 }) => {
   const [isOpenRecipients, openRecipients] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
+  const [isSearching, setIsSearching] = useState(false)
+  const debouncedSearchTerm = useDebounce(searchTerm, 500)
   const [selectedPlatform, setSelectedPlatform] = useState<Platform>()
   const isOnChain = selectedPlatform?.platform === 'on-chain'
-  const recipients: ViewProfile[] = DefaultAccounts
+  const [recipients, setRecipients] = useState<ViewProfile[]>(DefaultAccounts)
   const filteredRecipients = useMemo(
     () =>
       recipients.filter((item) => {
@@ -50,6 +54,24 @@ export const Recipient: React.FC<RecipientProps> = ({
         return isPlatformMatch && isSearchMatch
       }),
     [searchTerm, selectedPlatform, recipients],
+  )
+
+  useEffect(
+    () => {
+      if (debouncedSearchTerm) {
+        setIsSearching(true)
+        API.MOCHI_PROFILE.get(GET_PATHS.PROFILE_SEARCH(searchTerm))
+          .json((r) => r.data)
+          .then((data: ViewProfile[]) => {
+            setRecipients(data || [])
+          })
+          .finally(() => setIsSearching(false))
+      } else {
+        setRecipients(DefaultAccounts)
+        setIsSearching(false)
+      }
+    },
+    [debouncedSearchTerm], // Only call effect if debounced search term changes
   )
 
   function handleFocusInput() {
@@ -120,7 +142,7 @@ export const Recipient: React.FC<RecipientProps> = ({
           </Heading>
           <PlatformPicker onSelect={setSelectedPlatform} />
           <IconButton
-            style={{ width: 24, height: 24, padding: 4.5 }}
+            style={{ width: 24, height: 24, padding: 4.5 }} // Override css cuz size "sm" doen't match design
             variant="outline"
             color="info"
             size="sm"
@@ -139,6 +161,7 @@ export const Recipient: React.FC<RecipientProps> = ({
               <span className="pl-3 font-medium text-neutral-500">@</span>
             )
           }
+          endAdornment={isSearching && <IconSpinner className="mr-3" />}
           onChange={onSearchChange}
         />
         <RecipientList data={filteredRecipients} onSelect={onSelectRecipient} />
