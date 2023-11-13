@@ -1,10 +1,10 @@
-# @consolelabs/toggle-button
+# @consolelabs/accordion
 
-Toggle Button Group component enables seamless toggling between states,
-supporting both multi-selection and single-selection configurations.
+Accordion component displays a list of high-level options that can
+expand/collapse to reveal more information.
 
 For further details, visit our
-[Toggle Button Documentation](https://web-design-system-consolelabs.vercel.app/?path=/story/ui-togglebutton--default).
+[Accordion Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-accordion--docs).
 
 ## Installation
 
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/toggle-button
+pnpm i @consolelabs/accordion
 
 # Using NPM
-npm i @consolelabs/toggle-button
+npm i @consolelabs/accordion
 
 # Using Yarn
-yarn add @consolelabs/toggle-button
+yarn add @consolelabs/accordion
 ```
 
 ## Contribution

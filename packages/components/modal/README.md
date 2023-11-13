@@ -1,10 +1,10 @@
-# @consolelabs/toggle-button
+# @consolelabs/modal
 
-Toggle Button Group component enables seamless toggling between states,
-supporting both multi-selection and single-selection configurations.
+Modal component displays a dialog with a custom content that requires attention
+or provides additional information.
 
 For further details, visit our
-[Toggle Button Documentation](https://web-design-system-consolelabs.vercel.app/?path=/story/ui-togglebutton--default).
+[Modal Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-modal--docs).
 
 ## Installation
 
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/toggle-button
+pnpm i @consolelabs/modal
 
 # Using NPM
-npm i @consolelabs/toggle-button
+npm i @consolelabs/modal
 
 # Using Yarn
-yarn add @consolelabs/toggle-button
+yarn add @consolelabs/modal
 ```
 
 ## Contribution

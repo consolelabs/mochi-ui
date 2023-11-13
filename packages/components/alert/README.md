@@ -1,10 +1,10 @@
-# @consolelabs/toggle-button
+# @consolelabs/alert
 
-Toggle Button Group component enables seamless toggling between states,
-supporting both multi-selection and single-selection configurations.
+Alert component efficiently communicates essential information, warnings or
+errors to users.
 
 For further details, visit our
-[Toggle Button Documentation](https://web-design-system-consolelabs.vercel.app/?path=/story/ui-togglebutton--default).
+[Alert Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-alert--docs).
 
 ## Installation
 
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/toggle-button
+pnpm i @consolelabs/alert
 
 # Using NPM
-npm i @consolelabs/toggle-button
+npm i @consolelabs/alert
 
 # Using Yarn
-yarn add @consolelabs/toggle-button
+yarn add @consolelabs/alert
 ```
 
 ## Contribution

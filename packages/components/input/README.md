@@ -1,10 +1,10 @@
-# @consolelabs/toggle-button
+# @consolelabs/input
 
-Toggle Button Group component enables seamless toggling between states,
-supporting both multi-selection and single-selection configurations.
+Input component allows users to enter text. It can be used to get user inputs in
+forms, search fields, and more.
 
 For further details, visit our
-[Toggle Button Documentation](https://web-design-system-consolelabs.vercel.app/?path=/story/ui-togglebutton--default).
+[Input Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-input--docs).
 
 ## Installation
 
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/toggle-button
+pnpm i @consolelabs/input
 
 # Using NPM
-npm i @consolelabs/toggle-button
+npm i @consolelabs/input
 
 # Using Yarn
-yarn add @consolelabs/toggle-button
+yarn add @consolelabs/input
 ```
 
 ## Contribution

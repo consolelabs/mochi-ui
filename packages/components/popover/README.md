@@ -1,10 +1,10 @@
-# @consolelabs/toggle-button
+# @consolelabs/popover
 
-Toggle Button Group component enables seamless toggling between states,
-supporting both multi-selection and single-selection configurations.
+Popover is a non-modal dialog that floats around its disclosure. It's commonly
+used for displaying additional rich content on top of something.
 
 For further details, visit our
-[Toggle Button Documentation](https://web-design-system-consolelabs.vercel.app/?path=/story/ui-togglebutton--default).
+[Popover Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-popover--docs).
 
 ## Installation
 
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/toggle-button
+pnpm i @consolelabs/popover
 
 # Using NPM
-npm i @consolelabs/toggle-button
+npm i @consolelabs/popover
 
 # Using Yarn
-yarn add @consolelabs/toggle-button
+yarn add @consolelabs/popover
 ```
 
 ## Contribution

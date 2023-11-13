@@ -1,10 +1,9 @@
-# @consolelabs/toggle-button
+# @consolelabs/dropdown
 
-Toggle Button Group component enables seamless toggling between states,
-supporting both multi-selection and single-selection configurations.
+Dropdown component displays list of actions or options that a user can choose.
 
 For further details, visit our
-[Toggle Button Documentation](https://web-design-system-consolelabs.vercel.app/?path=/story/ui-togglebutton--default).
+[Dropdown Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-dropdown--docs).
 
 ## Installation
 
@@ -12,13 +11,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/toggle-button
+pnpm i @consolelabs/dropdown
 
 # Using NPM
-npm i @consolelabs/toggle-button
+npm i @consolelabs/dropdown
 
 # Using Yarn
-yarn add @consolelabs/toggle-button
+yarn add @consolelabs/dropdown
 ```
 
 ## Contribution
