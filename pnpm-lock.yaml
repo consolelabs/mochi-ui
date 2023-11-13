@@ -110,6 +110,9 @@ importers:
       '@consolelabs/avatar':
         specifier: workspace:*
         version: link:../../packages/components/avatar
+      '@consolelabs/core':
+        specifier: workspace:*
+        version: link:../../packages/core
       '@consolelabs/icons':
         specifier: workspace:*
         version: link:../../packages/icons
