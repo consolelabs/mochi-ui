@@ -4,8 +4,8 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-  SectionList,
 } from '@consolelabs/ui-components'
+import { SectionList } from '@consolelabs/core'
 import { IconMagnifier } from '@consolelabs/icons'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { useState } from 'react'
