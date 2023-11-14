@@ -5,7 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger,
   Button,
-  SectionList
+  SectionList,
 } from '@consolelabs/core'
 import Link from 'next/link'
 import { Fragment } from 'react'
