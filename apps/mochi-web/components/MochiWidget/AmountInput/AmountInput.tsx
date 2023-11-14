@@ -2,8 +2,14 @@ import { Button } from '@consolelabs/ui-components'
 import { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react'
 import { Balance, Wallet } from '~store'
 import { utils } from '@consolelabs/mochi-ui'
+import { TokenAmount, formatTokenAmount } from '~utils/number'
 import { TokenPicker } from '../TokenPicker'
 import { MonikerAsset } from '../TokenPicker/type'
+
+const INIT_AMOUNT: TokenAmount = {
+  value: 0,
+  display: '',
+}
 
 interface AmountInputProps {
   wallet?: Wallet
@@ -21,16 +27,20 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   onAmountChanged,
 }) => {
   const [selectedAsset, setSelectedAsset] = useState<Balance | MonikerAsset>()
-  const [tipAmount, setTipAmount] = useState('')
+  const [tipAmount, setTipAmount] = useState<TokenAmount>(INIT_AMOUNT)
   const isMonikerAsset = selectedAsset && 'moniker' in selectedAsset
   const balance = utils.formatTokenDigit(selectedAsset?.asset_balance ?? 0)
   const balanceUnit = isMonikerAsset
     ? (selectedAsset as MonikerAsset)?.moniker.moniker
     : selectedAsset?.token?.symbol
   const unitPrice = selectedAsset?.token?.price ?? 0
-  const tipAmountUSD = utils
-    .formatUsdDigit((parseFloat(tipAmount) || 0) * unitPrice) // tipAmountUSD will be inaccurate if we round by formatUsdDigit. Ex: $1 -> $0.99
-    .replace('$', '') // Format with USD instead of $
+  // tipAmountUSD will be inaccurate if it's rounded by formatUsdDigit. Ex: $1 -> $0.99, $2 -> $1.99
+  const tipAmountUSD = utils.formatDigit({
+    value: tipAmount.value * unitPrice,
+    fractionDigits: 2,
+    shorten: true,
+    scientificFormat: true,
+  })
 
   useEffect(() => {
     if (!accessToken) {
@@ -43,11 +53,10 @@ export const AmountInput: React.FC<AmountInputProps> = ({
       onLoginRequest?.()
     } else {
       // Amount is USD -> convert to token amount
-      const amountInToken = utils.formatTokenDigit(
-        parseFloat(amount) / unitPrice,
-      )
-      setTipAmount(amountInToken)
-      onAmountChanged?.(parseFloat(amountInToken))
+      const amountInToken = Number(amount) / unitPrice
+      const formattedAmount = formatTokenAmount(amountInToken)
+      setTipAmount(formattedAmount)
+      onAmountChanged?.(formattedAmount.value)
     }
   }
 
@@ -59,21 +68,51 @@ export const AmountInput: React.FC<AmountInputProps> = ({
 
   function handleAssetChanged(asset: Balance | MonikerAsset) {
     setSelectedAsset(asset)
-    setTipAmount('0')
     onSelectAsset?.(asset)
-    onAmountChanged?.(0)
+    setTipAmount(INIT_AMOUNT)
+    onAmountChanged?.(INIT_AMOUNT.value)
   }
 
   function handleAmountChanged(event: ChangeEvent<HTMLInputElement>) {
-    setTipAmount(event.target.value)
-    onAmountChanged?.(parseFloat(event.target.value))
+    const formattedAmount = formatTokenAmount(event.target.value)
+    formattedAmount.display = event.target.value // Keep displaying the original user input
+    setTipAmount(formattedAmount)
   }
 
   function handleKeyDown(event: KeyboardEvent) {
-    // No negative numbers
-    if (event.key === '-') {
+    // Accept only a positive integer / float input
+    if (
+      event.key === 'Backspace' ||
+      event.key === 'Delete' ||
+      event.key === 'Tab' ||
+      event.key === 'Escape' ||
+      event.key === 'Enter' ||
+      event.key === '.' ||
+      event.key === ',' ||
+      event.key === 'ArrowLeft' ||
+      event.key === 'ArrowRight' ||
+      Number.isFinite(Number(event.key))
+    ) {
+      // Accept only one dot(".")
+      if (tipAmount.display.indexOf('.') !== -1 && event.key === '.') {
+        event.preventDefault()
+      } else {
+        // Accept the first dot(".")
+        return
+      }
+    } else {
       event.preventDefault()
     }
+    if (event.key === '-' || !Number.isFinite(Number(event.key))) {
+      event.preventDefault()
+    }
+  }
+
+  function onBlurInput(event: ChangeEvent<HTMLInputElement>) {
+    // Format number on blur
+    const formattedAmount = formatTokenAmount(event.target.value)
+    setTipAmount(formattedAmount)
+    onAmountChanged?.(formattedAmount.value)
   }
 
   return (
@@ -89,12 +128,13 @@ export const AmountInput: React.FC<AmountInputProps> = ({
           <input
             className="w-[65%] outline-none text-2xl font-medium text-[#343433] appearance-none h-[34px]"
             placeholder="0"
-            type="number"
+            type="text"
             min={0}
             onKeyDown={handleKeyDown}
-            value={tipAmount}
+            value={tipAmount.display}
             onChange={handleAmountChanged}
             onFocus={onFocusInput}
+            onBlur={onBlurInput}
           />
           <span className="text-sm text-[#848281] text-right">
             &#8776; {tipAmountUSD} USD
