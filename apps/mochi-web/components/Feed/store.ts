@@ -16,6 +16,7 @@ export interface Tx {
   fromAvatar: string
   to: string
   toAvatar: string
+  toPlatformIcon?: string
   token: {
     icon: string
     symbol: string
@@ -25,8 +26,13 @@ export interface Tx {
   isSuccess?: boolean
 }
 
+function isVault(source: string) {
+  return source === 'mochi-vault'
+}
+
 async function transform(d: any): Promise<Tx> {
-  const [from, to] = UI.render(Platform.Web, d.from_profile, d.other_profile)
+  let [from, to] = UI.render(Platform.Web, d.from_profile, d.other_profile)
+  let [fromAvatar, toAvatar] = [d.from_profile.avatar, d.other_profile.avatar]
 
   let platformIcon
   switch (d.source_platform) {
@@ -45,23 +51,53 @@ async function transform(d: any): Promise<Tx> {
   let channel = 'Unknown'
   if (d.metadata) {
     try {
+      // get channel name
       if ('channel_name' in d.metadata) {
         channel = d.metadata.channel_name
+      }
+
+      // get vault name (if it's a vault_transfer tx)
+      if (isVault(d.from_profile_source) && 'vault' in d.metadata) {
+        const [newFrom] = UI.render(Platform.Web, d.metadata.vault)
+        from = newFrom
+      }
+      if (isVault(d.other_profile_source) && 'vault' in d.metadata) {
+        const [newTo] = UI.render(Platform.Web, d.metadata.vault)
+        to = newTo
       }
     } catch (e) {
       console.log(e)
     }
   }
 
+  if (d.type === 'in') {
+    ;[from, to] = [to, from]
+    ;[fromAvatar, toAvatar] = [toAvatar, fromAvatar]
+  }
+
+  let toPlatformIcon
+  switch (to?.platform) {
+    case Platform.Discord: {
+      toPlatformIcon = discordLogo.src
+      break
+    }
+    case Platform.Telegram: {
+      toPlatformIcon = telegramLogo.src
+      break
+    }
+    default:
+      break
+  }
+
   return {
     code: d.external_id,
     sourcePlatform: d.source_platform,
     platformIcon,
-    from: (d.type === 'in' ? to?.plain : from?.plain) ?? '?',
-    fromAvatar:
-      d.type === 'in' ? d.other_profile.avatar : d.from_profile.avatar,
-    to: (d.type === 'in' ? from?.plain : to?.plain) ?? '?',
-    toAvatar: d.type === 'in' ? d.from_profile.avatar : d.other_profile.avatar,
+    from: from?.plain ?? '?',
+    fromAvatar,
+    to: to?.plain ?? '?',
+    toAvatar,
+    toPlatformIcon,
     channel,
     token: {
       icon: d.token.icon,

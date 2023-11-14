@@ -6,6 +6,7 @@ import {
 import Link from 'next/link'
 import React from 'react'
 import clsx from 'clsx'
+import { DISCORD_LINK, TELEGRAM_LINK } from '~envs'
 
 export function LivePlatforms({
   className = '',
@@ -31,7 +32,7 @@ export function LivePlatforms({
               </span>
             ),
             icon: <IconMonitor className="flex-shrink-0 w-4 h-4" />,
-            href: '#',
+            href: '/',
           },
           {
             text: (
@@ -43,7 +44,7 @@ export function LivePlatforms({
             icon: (
               <IconDiscordColored className="flex-shrink-0 -ml-1.5 w-6 h-6" />
             ),
-            href: '#',
+            href: DISCORD_LINK,
           },
           {
             text: (
@@ -55,7 +56,7 @@ export function LivePlatforms({
             icon: (
               <IconTelegramColored className="flex-shrink-0 -ml-1.5 w-6 h-6" />
             ),
-            href: '#',
+            href: TELEGRAM_LINK,
           },
         ].map(({ text, href, icon }, i) => (
           <li
