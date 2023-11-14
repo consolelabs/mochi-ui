@@ -1,4 +1,4 @@
-import { Avatar } from '@consolelabs/ui-components'
+import { Avatar } from '@consolelabs/core'
 import Image from 'next/image'
 import { hpbd, appreciation, achievement, wedding } from '~utils/image'
 

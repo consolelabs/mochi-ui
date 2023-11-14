@@ -5,7 +5,7 @@ import { Platform, utils as mochiUtils } from '@consolelabs/mochi-ui'
 import { Icon } from '@iconify/react'
 import { Stats } from '@consolelabs/mochi-rest'
 import { discordLogo, telegramLogo } from '~utils/image'
-import { Avatar } from '@consolelabs/ui-components'
+import { Avatar } from '@consolelabs/core'
 import { Pagination } from './Dashboard/Pagination'
 
 const Box = ({
