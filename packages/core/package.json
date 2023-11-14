@@ -52,7 +52,8 @@
     "@consolelabs/toggle-button": "workspace:*",
     "@consolelabs/tooltip": "workspace:*",
     "@consolelabs/checkbox": "workspace:*",
-    "@consolelabs/icon-button": "workspace:*"
+    "@consolelabs/icon-button": "workspace:*",
+    "@consolelabs/modal": "workspace:*"
   },
   "clean-package": "../../clean-package.config.json"
 }

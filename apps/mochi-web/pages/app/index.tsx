@@ -1,9 +1,5 @@
-import {
-  Alert,
-  Modal,
-  ModalContent,
-  ModalTrigger,
-} from '@consolelabs/ui-components'
+import { Alert } from '@consolelabs/ui-components'
+import { Modal, ModalContent, ModalTrigger } from '@consolelabs/core'
 import AuthLayout from '~components/auth-layout'
 import Link from 'next/link'
 import useSWR from 'swr'
