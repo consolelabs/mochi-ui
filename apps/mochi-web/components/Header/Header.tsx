@@ -9,9 +9,8 @@ import {
   Popover,
   PopoverTrigger,
   PopoverContent,
-  IconButton,
 } from '@consolelabs/ui-components'
-import { Button } from '@consolelabs/core'
+import { Button, IconButton } from '@consolelabs/core'
 import { IconMenu, IconClose } from '@consolelabs/icons'
 import { useCallback, useState } from 'react'
 import ProfileDropdown from '~cpn/profile-dropdrown'

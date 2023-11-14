@@ -1,4 +1,5 @@
-import { Avatar, IconButton } from '@consolelabs/ui-components'
+import { Avatar } from '@consolelabs/ui-components'
+import { IconButton } from '@consolelabs/core'
 import { ViewProfile } from '~types/mochi-profile-schema'
 import { IconClose } from '@consolelabs/icons'
 import PlatformIcon from '../PlatformPicker/PlatformIcon'
@@ -37,7 +38,7 @@ export const SelectedRecipient: React.FC<SelectedRecipientProps> = ({
         <IconClose />
       </IconButton>
       <PlatformIcon
-        className="absolute w-4 h-4 left-0 bottom-0"
+        className="absolute bottom-0 left-0 w-4 h-4"
         platform={profile.associated_accounts?.[0].platform ?? ''}
       />
     </div>
