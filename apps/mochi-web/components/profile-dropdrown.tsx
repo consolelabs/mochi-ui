@@ -4,7 +4,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
- ProfileBadge,
+  ProfileBadge,
 } from '@consolelabs/core'
 import { useAuthStore, useProfileStore } from '~store'
 import Link from 'next/link'
