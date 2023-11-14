@@ -1,4 +1,4 @@
-import { Button, List, Avatar } from '@consolelabs/ui-components'
+import { List, Avatar } from '@consolelabs/ui-components'
 import { Modal, ModalContent } from '@consolelabs/core'
 import {
   IconDiscordColored,
@@ -8,6 +8,7 @@ import {
   IconChevronRight,
   IconAppleColored,
 } from '@consolelabs/icons'
+import { Button } from '@consolelabs/core'
 import Link from 'next/link'
 import { Fragment, useMemo, useState } from 'react'
 import { AuthPanel } from '~cpn/AuthWidget'
