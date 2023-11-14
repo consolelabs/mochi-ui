@@ -1,10 +1,10 @@
-# @consolelabs/badge
+# @consolelabs/tabs
 
-Badge component is used as a small numerical value or status descriptor for UI
-elements.
+Tabs component organizes content into multiple sections and allow users to
+navigate between them.
 
 For further details, visit our
-[Badge Documentation](https://ds.console.so/?path=/docs/components-badge--docs).
+[Tabs Documentation](https://ds.console.so/?path=/story/components-tabs--default).
 
 ## Installation
 
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/badge
+pnpm i @consolelabs/tabs
 
 # Using NPM
-npm i @consolelabs/badge
+npm i @consolelabs/tabs
 
 # Using Yarn
-yarn add @consolelabs/badge
+yarn add @consolelabs/tabs
 ```
 
 ## Contribution

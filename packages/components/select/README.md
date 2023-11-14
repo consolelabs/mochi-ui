@@ -1,10 +1,10 @@
-# @consolelabs/badge
+# @consolelabs/select
 
-Badge component is used as a small numerical value or status descriptor for UI
-elements.
+Select component displays a collapsible list of options and allows a user to
+select one of them.
 
 For further details, visit our
-[Badge Documentation](https://ds.console.so/?path=/docs/components-badge--docs).
+[Select Documentation](https://ds.console.so/?path=/docs/components-select--docs).
 
 ## Installation
 
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/badge
+pnpm i @consolelabs/select
 
 # Using NPM
-npm i @consolelabs/badge
+npm i @consolelabs/select
 
 # Using Yarn
-yarn add @consolelabs/badge
+yarn add @consolelabs/select
 ```
 
 ## Contribution

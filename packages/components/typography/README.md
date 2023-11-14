@@ -1,10 +1,10 @@
-# @consolelabs/badge
+# @consolelabs/typography
 
-Badge component is used as a small numerical value or status descriptor for UI
-elements.
+Typography component encompasses a range of elements designed to represent
+various text styles within an application
 
 For further details, visit our
-[Badge Documentation](https://ds.console.so/?path=/docs/components-badge--docs).
+[Typography Documentation](https://ds.console.so/?path=/docs/components-typography--docs).
 
 ## Installation
 
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/badge
+pnpm i @consolelabs/typography
 
 # Using NPM
-npm i @consolelabs/badge
+npm i @consolelabs/typography
 
 # Using Yarn
-yarn add @consolelabs/badge
+yarn add @consolelabs/typography
 ```
 
 ## Contribution

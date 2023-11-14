@@ -1,10 +1,10 @@
-# @consolelabs/badge
+# @consolelabs/modal
 
-Badge component is used as a small numerical value or status descriptor for UI
-elements.
+Modal component displays a dialog with a custom content that requires attention
+or provides additional information.
 
 For further details, visit our
-[Badge Documentation](https://ds.console.so/?path=/docs/components-badge--docs).
+[Modal Documentation](https://ds.console.so/?path=/docs/components-modal--docs).
 
 ## Installation
 
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/badge
+pnpm i @consolelabs/modal
 
 # Using NPM
-npm i @consolelabs/badge
+npm i @consolelabs/modal
 
 # Using Yarn
-yarn add @consolelabs/badge
+yarn add @consolelabs/modal
 ```
 
 ## Contribution
