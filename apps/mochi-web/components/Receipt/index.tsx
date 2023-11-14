@@ -1,7 +1,7 @@
 import useSWR from 'swr'
 import { API } from '~constants/api'
 import { successStampIcon, failStampIcon, coinIcon } from '~utils/image'
-import { Avatar } from '@consolelabs/ui-components'
+import { Avatar } from '@consolelabs/core'
 import clsx from 'clsx'
 import { truncate } from '@dwarvesf/react-utils'
 import { useDisclosure } from '@dwarvesf/react-hooks'

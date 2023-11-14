@@ -1,5 +1,4 @@
-import { Avatar } from '@consolelabs/ui-components'
-import { IconButton } from '@consolelabs/core'
+import { IconButton, Avatar } from '@consolelabs/core'
 import { ViewProfile } from '~types/mochi-profile-schema'
 import { IconClose } from '@consolelabs/icons'
 import PlatformIcon from '../PlatformPicker/PlatformIcon'
