@@ -1,5 +1,49 @@
 # @consolelabs/core
 
+## 0.0.10
+
+### Patch Changes
+
+- [#175](https://github.com/consolelabs/websites/pull/175)
+  [`8457341`](https://github.com/consolelabs/websites/commit/8457341631ae28bb9f9d226e3b9c287d81cc9685)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Update README
+
+- [#193](https://github.com/consolelabs/websites/pull/193)
+  [`4db69e4`](https://github.com/consolelabs/websites/commit/4db69e4b2bf4c537ecfa2a06268d68a60d4e2dd6)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Remove extra outline
+  input field
+
+- Updated dependencies
+  [[`be29690`](https://github.com/consolelabs/websites/commit/be29690eaec5fd91718608b972383c94672c90bf),
+  [`8457341`](https://github.com/consolelabs/websites/commit/8457341631ae28bb9f9d226e3b9c287d81cc9685),
+  [`e933930`](https://github.com/consolelabs/websites/commit/e933930b06f038d0e5b1184f787bbf786025a883),
+  [`4db69e4`](https://github.com/consolelabs/websites/commit/4db69e4b2bf4c537ecfa2a06268d68a60d4e2dd6),
+  [`8457341`](https://github.com/consolelabs/websites/commit/8457341631ae28bb9f9d226e3b9c287d81cc9685),
+  [`12abe24`](https://github.com/consolelabs/websites/commit/12abe24297aa49f72cffc98fa6d9adfd33b77e9a),
+  [`696a6f7`](https://github.com/consolelabs/websites/commit/696a6f73c9aaa59f0dbeb737d05f2789125a5b4b)]:
+  - @consolelabs/login-widget@0.0.7
+  - @consolelabs/theme@0.0.5
+  - @consolelabs/profile-badge@0.0.7
+  - @consolelabs/toggle-button@0.0.7
+  - @consolelabs/section-list@0.0.6
+  - @consolelabs/icon-button@0.1.2
+  - @consolelabs/input-field@0.0.6
+  - @consolelabs/accordion@0.0.8
+  - @consolelabs/checkbox@0.0.6
+  - @consolelabs/dropdown@0.0.8
+  - @consolelabs/heading@0.0.4
+  - @consolelabs/popover@0.0.7
+  - @consolelabs/sidebar@0.0.8
+  - @consolelabs/tooltip@0.0.6
+  - @consolelabs/avatar@0.0.7
+  - @consolelabs/button@0.0.10
+  - @consolelabs/switch@0.0.5
+  - @consolelabs/alert@0.0.8
+  - @consolelabs/badge@0.1.1
+  - @consolelabs/input@0.0.4
+  - @consolelabs/list@0.0.6
+  - @consolelabs/icons@0.0.4
+
 ## 0.0.9
 
 ### Patch Changes

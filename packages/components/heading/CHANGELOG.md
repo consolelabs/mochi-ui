@@ -1,5 +1,14 @@
 # @consolelabs/heading
 
+## 0.0.4
+
+### Patch Changes
+
+- [#171](https://github.com/consolelabs/websites/pull/171)
+  [`e933930`](https://github.com/consolelabs/websites/commit/e933930b06f038d0e5b1184f787bbf786025a883)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Update docs path in
+  README
+
 ## 0.0.3
 
 ### Patch Changes

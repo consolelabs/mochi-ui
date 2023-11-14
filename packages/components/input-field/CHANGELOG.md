@@ -1,5 +1,26 @@
 # @consolelabs/input-field
 
+## 0.0.6
+
+### Patch Changes
+
+- [#171](https://github.com/consolelabs/websites/pull/171)
+  [`e933930`](https://github.com/consolelabs/websites/commit/e933930b06f038d0e5b1184f787bbf786025a883)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Update docs path in
+  README
+
+- [#193](https://github.com/consolelabs/websites/pull/193)
+  [`4db69e4`](https://github.com/consolelabs/websites/commit/4db69e4b2bf4c537ecfa2a06268d68a60d4e2dd6)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Remove extra outline
+  input field
+
+- Updated dependencies
+  [[`8457341`](https://github.com/consolelabs/websites/commit/8457341631ae28bb9f9d226e3b9c287d81cc9685),
+  [`4db69e4`](https://github.com/consolelabs/websites/commit/4db69e4b2bf4c537ecfa2a06268d68a60d4e2dd6),
+  [`8457341`](https://github.com/consolelabs/websites/commit/8457341631ae28bb9f9d226e3b9c287d81cc9685)]:
+  - @consolelabs/theme@0.0.5
+  - @consolelabs/icons@0.0.4
+
 ## 0.0.5
 
 ### Patch Changes
