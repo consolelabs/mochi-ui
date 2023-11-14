@@ -24,14 +24,11 @@ export const TokenItem: React.FC<ItemProps> = ({ item, onSelect }) => (
         {item.token?.symbol}
       </Heading>
       <span className="text-xs text-[#848281] font-medium">
-        {utils.formatTokenDigit({
-          value: item.asset_balance ?? 0,
-          fractionDigits: item.token?.decimal ?? 0,
-        })}
+        {utils.formatTokenDigit(item.asset_balance ?? 0)}
       </span>
     </div>
     <span className="text-sm">
-      ${utils.formatDigit({ value: item.usd_balance ?? 0, fractionDigits: 2 })}
+      {utils.formatUsdDigit(item.usd_balance ?? 0)}
     </span>
   </li>
 )

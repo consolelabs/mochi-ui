@@ -78,11 +78,7 @@ export const WalletPicker: React.FC<Props> = ({
         {accessToken && (
           <>
             <span className="flex-shrink-0 text-sm font-medium text-blue-700">
-              $
-              {utils.formatDigit({
-                value: selectedWallet.total || '0',
-                fractionDigits: 2,
-              })}
+              {utils.formatUsdDigit(selectedWallet.total || '0')}
             </span>
             <Icon
               icon="majesticons:chevron-down-line"
