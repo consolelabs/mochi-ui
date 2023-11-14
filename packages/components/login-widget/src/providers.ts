@@ -48,16 +48,21 @@ export default function getAvailableWallets() {
           name: 'MetaMask',
           icon: IconMetamaskWallet,
           isInstalled: !isSSR && Boolean(window.ethereum),
-          connect: () =>
-            window.ethereum
-              .request({
-                method: 'eth_requestAccounts',
-                // params: [{ eth_accounts: {} }],
-              })
-              // .then(() =>
-              //   window.ethereum.request({ method: 'eth_requestAccounts' }),
-              // )
-              .then(signEVM(window.ethereum)),
+          connect: () => {
+            if (window.ethereum) {
+              return (
+                window.ethereum
+                  .request({
+                    method: 'eth_requestAccounts',
+                    // params: [{ eth_accounts: {} }],
+                  })
+                  // .then(() =>
+                  //   window.ethereum.request({ method: 'eth_requestAccounts' }),
+                  // )
+                  .then(signEVM(window.ethereum))
+              )
+            }
+          },
         },
       ],
       Solana: [
@@ -65,10 +70,13 @@ export default function getAvailableWallets() {
           name: 'Phantom',
           icon: IconPhantomWallet,
           isInstalled: !isSSR && Boolean(window.phantom),
-          connect: () =>
-            window.phantom.solana
-              .connect()
-              .then(signSol(window.phantom.solana)),
+          connect: () => {
+            if (window.phantom) {
+              return window.phantom.solana
+                .connect()
+                .then(signSol(window.phantom.solana))
+            }
+          },
         },
       ],
       RONIN: [
