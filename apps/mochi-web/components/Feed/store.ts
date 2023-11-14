@@ -11,7 +11,10 @@ export interface Tx {
   code: string
   sourcePlatform: string
   platformIcon?: string
-  channel: string
+  where: {
+    text: string
+    avatar: string
+  }
   from: string
   fromAvatar: string
   to: string
@@ -48,12 +51,31 @@ async function transform(d: any): Promise<Tx> {
       break
   }
 
-  let channel = 'Unknown'
+  const where = {
+    text: 'Unknown',
+    avatar: '',
+  }
   if (d.metadata) {
     try {
+      // defaults for discord
+      if (d.source_platform === Platform.Discord) {
+        where.text = 'Discord'
+        where.avatar = discordLogo.src
+      }
+
+      // defaults for telegram
+      if (d.source_platform === Platform.Telegram) {
+        where.text = 'Telegram'
+        where.avatar = telegramLogo.src
+      }
+
       // get channel name
-      if ('channel_name' in d.metadata) {
-        channel = d.metadata.channel_name
+      if ('channel_name' in d.metadata && d.metadata.channel_name) {
+        where.text = d.metadata.channel_name
+      }
+      // get channel avatar
+      if ('channel_avatar' in d.metadata && d.metadata.channel_avatar) {
+        where.avatar = d.metadata.channel_avatar
       }
 
       // get vault name (if it's a vault_transfer tx)
@@ -98,7 +120,7 @@ async function transform(d: any): Promise<Tx> {
     to: to?.plain ?? '?',
     toAvatar,
     toPlatformIcon,
-    channel,
+    where,
     token: {
       icon: d.token.icon,
       symbol: d.token.symbol,

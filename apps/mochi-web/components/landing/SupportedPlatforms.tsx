@@ -22,6 +22,7 @@ import {
   IconX,
   IconZkSync,
   IconFarcasterColored,
+  IconTelegramColored,
 } from '@consolelabs/icons'
 import clsx from 'clsx'
 
@@ -30,32 +31,33 @@ const socials: [
   string,
   boolean,
 ][] = [
-  [IconFacebookColored, 'Facebook', true],
-  [IconDiscordColored, 'Discord', true],
-  [IconRedditColored, 'Reddit', false],
-  [IconGoogleColored, 'Google', true],
-  [IconX, 'X', true],
-  [IconGithub, 'Github', false],
-  [IconSlackColored, 'Slack', false],
-  [IconFarcasterColored, 'Farcaster', false],
+  [IconFacebookColored, 'Facebook', false],
+  [IconDiscordColored, 'Discord', false],
+  [IconTelegramColored, 'Telegram', false],
+  [IconRedditColored, 'Reddit', true],
+  [IconGoogleColored, 'Google', false],
+  [IconX, 'X', false],
+  [IconGithub, 'Github', true],
+  [IconSlackColored, 'Slack', true],
+  [IconFarcasterColored, 'Farcaster', true],
 ]
 const networks: [
   (props: React.SVGProps<SVGSVGElement>) => JSX.Element,
   string,
   boolean,
 ][] = [
-  [IconBtc, 'BTC', false],
+  [IconBtc, 'BTC', true],
   [IconEth, 'Ethereum', false],
   [IconBnb, 'Binance', false],
   [IconFtm, 'Fantom', false],
   [IconMatic, 'Polygon', false],
-  [IconRon, 'Ronin', false],
-  [IconArb, 'Arbitrum', true],
-  [IconMnt, 'Mantle', true],
-  [IconOp, 'Optimism', true],
-  [IconZkSync, 'zkSync', true],
+  [IconRon, 'Ronin', true],
+  [IconArb, 'Arbitrum', false],
+  [IconMnt, 'Mantle', false],
+  [IconOp, 'Optimism', false],
+  [IconZkSync, 'zkSync', false],
   [IconSol, 'Solana', false],
-  [IconTon, 'Ton', true],
+  [IconTon, 'Ton', false],
   [IconApt, 'Aptos', true],
   [IconSui, 'Sui', true],
   [IconAtom, 'Cosmos', true],
@@ -79,7 +81,7 @@ function Platform({
           })}
         />
         {comingSoon && (
-          <span className="absolute bottom-0 left-1/2 px-1 leading-3 rounded-full border -translate-x-1/2 text-xxs bg-white-pure border-neutral-200">
+          <span className="absolute bottom-0 left-1/2 px-1 leading-3 rounded-full border -translate-x-1/2 translate-y-1/2 text-xxs bg-white-pure border-neutral-200">
             soon
           </span>
         )}
