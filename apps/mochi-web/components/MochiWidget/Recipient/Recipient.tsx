@@ -1,9 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import {
-  InputField,
-  PopoverAnchor,
-  Heading,
-} from '@consolelabs/ui-components'
+import { InputField, PopoverAnchor, Heading } from '@consolelabs/ui-components'
 import { IconButton, Popover, PopoverContent } from '@consolelabs/core'
 import { ViewProfile } from '~types/mochi-profile-schema'
 import { IconClose, IconSpinner } from '@consolelabs/icons'
