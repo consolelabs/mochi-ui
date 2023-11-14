@@ -1,5 +1,14 @@
 # @consolelabs/button
 
+## 0.0.11
+
+### Patch Changes
+
+- [#194](https://github.com/consolelabs/websites/pull/194)
+  [`74ed3cc`](https://github.com/consolelabs/websites/commit/74ed3cc21f683e63cdcb21615a3511f2e6c92a2c)
+  Thanks [@tuanddd](https://github.com/tuanddd)! - Forward ref of button
+  component
+
 ## 0.0.10
 
 ### Patch Changes
