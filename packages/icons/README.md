@@ -1,10 +1,9 @@
-# @consolelabs/core
+# @consolelabs/icons
 
-The core package includes all essential components and elements required for
-developing React web applications using the Console Labs design system.
+A set of icons to use in Console Labs's design system
 
 For further details, visit our
-[Setup Documentation](https://ds.console.so/?path=/docs/introduction-installation--docs).
+[Icons Documentation](https://ds.console.so/?path=/docs/icons-list--docs).
 
 ## Installation
 
@@ -12,13 +11,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/core
+pnpm i @consolelabs/icons
 
 # Using NPM
-npm i @consolelabs/core
+npm i @consolelabs/icons
 
 # Using Yarn
-yarn add @consolelabs/core
+yarn add @consolelabs/icons
 ```
 
 ## Contribution

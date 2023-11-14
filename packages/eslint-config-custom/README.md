@@ -1,3 +1,3 @@
-# `@turbo/eslint-config`
+# `@consolelabs/eslint-config`
 
 Collection of internal eslint configurations.

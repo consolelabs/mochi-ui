@@ -1,10 +1,10 @@
-# @consolelabs/core
+# @consolelabs/theme
 
-The core package includes all essential components and elements required for
-developing React web applications using the Console Labs design system.
+The theme package encompasses the TailwindCSS configuration, which includes
+elements such as `plugin`, `colors`, `spacing`, and various other design tokens.
 
 For further details, visit our
-[Setup Documentation](https://ds.console.so/?path=/docs/introduction-installation--docs).
+[Installation Documentation](https://ds.console.so/?path=/docs/introduction-installation--docs).
 
 ## Installation
 
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/core
+pnpm i @consolelabs/theme
 
 # Using NPM
-npm i @consolelabs/core
+npm i @consolelabs/theme
 
 # Using Yarn
-yarn add @consolelabs/core
+yarn add @consolelabs/theme
 ```
 
 ## Contribution
