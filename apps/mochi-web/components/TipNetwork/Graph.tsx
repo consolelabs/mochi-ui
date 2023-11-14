@@ -78,8 +78,8 @@ export const TipNetworkGraph = ({
       const highlightIds = selectedNode
         ? selectedNode.neighborIds
         : highlightNodeIds?.size > 0
-        ? highlightNodeIds
-        : new Set()
+          ? highlightNodeIds
+          : new Set()
 
       if ([selectedNode?.id, hoverNode?.id].includes(node.id)) {
         paint(node, ctx, '#FBE9E8', 'rgba(232, 139, 136, 0.8)')

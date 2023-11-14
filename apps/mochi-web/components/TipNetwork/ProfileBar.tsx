@@ -55,8 +55,8 @@ export const ProfileBar = ({
               selectedNode?.id === profile.id
                 ? 'bg-[#de219a]'
                 : selectedNode?.neighborIds?.has(profile.id as string)
-                ? 'bg-[#4D3B51] hover:bg-[rgba(255,255,255,0.1)]'
-                : 'hover:bg-[rgba(255,255,255,0.1)]',
+                  ? 'bg-[#4D3B51] hover:bg-[rgba(255,255,255,0.1)]'
+                  : 'hover:bg-[rgba(255,255,255,0.1)]',
             )}
             role="button"
             data-set={selectedNode?.neighborIds?.has(profile.id as string)}

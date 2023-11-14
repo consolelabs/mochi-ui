@@ -68,14 +68,14 @@ export default function Field<T extends FieldValues = FieldValues>({
                       ...renderRest,
                     })
                   : React.isValidElement<any>(children)
-                  ? React.cloneElement(children, {
-                      ...children.props,
-                      ...field,
-                      ...fieldState,
-                      ...renderRest,
-                      ...(valueProps ? { [valueProps]: field.value } : {}),
-                    })
-                  : null}
+                    ? React.cloneElement(children, {
+                        ...children.props,
+                        ...field,
+                        ...fieldState,
+                        ...renderRest,
+                        ...(valueProps ? { [valueProps]: field.value } : {}),
+                      })
+                    : null}
                 {fieldState.error && (
                   <span className="mt-1 text-xs text-mochi-500">
                     {fieldState.error.message}
