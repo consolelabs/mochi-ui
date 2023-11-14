@@ -5,8 +5,8 @@ import {
   PopoverContent,
   PopoverAnchor,
   Heading,
-  IconButton,
 } from '@consolelabs/ui-components'
+import { IconButton } from '@consolelabs/core'
 import { ViewProfile } from '~types/mochi-profile-schema'
 import { IconClose, IconSpinner } from '@consolelabs/icons'
 import { useDebounce } from '@dwarvesf/react-hooks'
@@ -118,7 +118,7 @@ export const Recipient: React.FC<RecipientProps> = ({
             />
           </div>
           {!!selectedRecipients?.length && (
-            <div className="grid grid-cols-4 gap-7 px-4 py-2">
+            <div className="grid grid-cols-4 px-4 py-2 gap-7">
               {selectedRecipients?.map((item: ViewProfile) => (
                 <SelectedRecipient
                   key={
@@ -137,7 +137,7 @@ export const Recipient: React.FC<RecipientProps> = ({
         align="start"
         className="flex flex-col w-[414px] gap-x-1 items-center py-3 px-3 rounded-lg shadow-md bg-white-pure"
       >
-        <div className="flex flex-row w-full gap-1 pb-2 items-center">
+        <div className="flex flex-row items-center w-full gap-1 pb-2">
           <Heading
             as="h4"
             className="flex-1 text-sm font-medium text-neutral-800"
