@@ -3,8 +3,7 @@ import Image from 'next/image'
 import clsx from 'clsx'
 import { Layout } from '~app/layout'
 import { SEO } from '~app/layout/seo'
-import { Tooltip } from '@consolelabs/ui-components'
-import { Button, IconButton } from '@consolelabs/core'
+import { Button, IconButton, Tooltip } from '@consolelabs/core'
 import {
   IconApt,
   IconArb,
