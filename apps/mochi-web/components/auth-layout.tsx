@@ -62,7 +62,7 @@ export default function AuthenticatedLayout({
         {isLoadingSession ? null : isLoggedIn ? (
           <>
             <div
-              style={{ top: 80, height: 'calc(100vh - 80px)' }}
+              style={{ top: 64, height: 'calc(100vh - 64px)' }}
               className="sticky left-0 z-10"
             >
               <Sidebar
@@ -142,7 +142,7 @@ export default function AuthenticatedLayout({
             </div>
           </>
         ) : (
-          <div className="bg-black/40 w-full flex-1 flex items-center justify-center">
+          <div className="flex items-center justify-center flex-1 w-full bg-black/40">
             <AuthPanel />
           </div>
         )}
