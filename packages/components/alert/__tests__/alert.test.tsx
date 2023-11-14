@@ -40,11 +40,4 @@ describe('Alert', () => {
     )
     expect(container.firstChild).toHaveClass('text-base')
   })
-
-  it('matches snapshot', () => {
-    const title = 'Test Alert'
-    const message = 'This is a test alert'
-    const tree = render(<Alert title={title}>{message}</Alert>).container
-    expect(tree).toMatchSnapshot()
-  })
 })

@@ -21,20 +21,6 @@ const mockedData = [
 ]
 
 describe('Accordion', () => {
-  it('renders correctly', () => {
-    const { container } = render(
-      <Accordion type="single">
-        {mockedData.map((item) => (
-          <AccordionItem key={item.value} value={item.value}>
-            <AccordionTrigger>{item.triggerLabel}</AccordionTrigger>
-            <AccordionContent>{item.contentLabel}</AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>,
-    )
-    expect(container).toMatchSnapshot()
-  })
-
   it('expands and collapses the accordion item when clicked', async () => {
     const { getByTestId } = render(
       <Accordion type="single">

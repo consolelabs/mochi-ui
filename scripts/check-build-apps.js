@@ -3,9 +3,9 @@ const execSync = require('node:child_process').execSync
 const getCommitMsg = `git log -1 --pretty=%B`
 const getBranchName = `git rev-parse --abbrev-ref HEAD`
 
-function checkIsProceedBuildApplications() {
-  const commitMsg = execSync(getCommitMsg).toString().trim()
-  const branchName = execSync(getBranchName).toString().trim()
+function checkIgnoreProceedBuildApplications() {
+  const commitMsg = execSync(getCommitMsg).toString('utf-8').trim()
+  const branchName = execSync(getBranchName).toString('utf-8').trim()
 
   const skipCIRegex =
     /\[(skip[-\s]?apps|apps[-\s]?skip|skip apps|apps skip)\]/gi
@@ -18,7 +18,9 @@ function checkIsProceedBuildApplications() {
   }
 
   if (skipCIRegex.test(commitMsg)) {
-    console.log('Skipping Vercel Build CI')
+    console.log(
+      'Skip build applications detected in commit message\nSkipping Vercel Build CI',
+    )
     process.exit(0)
   }
 
@@ -26,4 +28,4 @@ function checkIsProceedBuildApplications() {
   process.exit(1)
 }
 
-checkIsProceedBuildApplications()
+checkIgnoreProceedBuildApplications()

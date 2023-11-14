@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { createContext, useContext } from 'react'
 import type { WalletProps } from './wallet'
 

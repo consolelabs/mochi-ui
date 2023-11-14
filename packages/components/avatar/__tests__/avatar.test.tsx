@@ -1,33 +1,44 @@
-import { render } from '@testing-library/react'
+import { cleanup, render } from '@testing-library/react'
 import Avatar from '../src/avatar'
 
 describe('Avatar', () => {
-  it('renders correctly with src', () => {
-    const { container } = render(
-      <Avatar size="base" src="https://example.com/avatar.png" />,
-    )
-    expect(container.firstChild).toMatchSnapshot()
-  })
-
+  afterEach(cleanup)
   it('renders correctly with smallSrc', () => {
     const { container } = render(
       <Avatar
         size="sm"
-        src="https://example.com/avatar.png"
-        smallSrc="https://example.com/small-avatar.png"
+        src="https://ui-avatars.com/api/?name=John+Doe"
+        smallSrc="https://ui-avatars.com/api/?name=Adam+Smith"
       />,
     )
-    expect(container.firstChild).toMatchSnapshot()
+    expect(container.querySelector('svg')).toBeInTheDocument()
+    const images = container.querySelectorAll('image')
+    expect(images.length).toBe(2)
+
+    const [image1, image2] = Array.from(images)
+    expect(image1).toHaveAttribute(
+      'xlink:href',
+      'https://ui-avatars.com/api/?name=John+Doe',
+    )
+    expect(image2).toHaveAttribute(
+      'xlink:href',
+      'https://ui-avatars.com/api/?name=Adam+Smith',
+    )
   })
 
-  it('renders correctly with fallback', () => {
+  it('renders correctly with fallback name', () => {
     const { container } = render(
       <Avatar
         size="base"
-        fallback="fallback"
         src="https://example.com/avatar.png"
+        fallback="example-fallback"
       />,
     )
-    expect(container.firstChild).toMatchSnapshot()
+    expect(container.querySelector('img')).toHaveAttribute(
+      'src',
+      expect.stringContaining(
+        'https://source.boringavatars.com/beam/120/example-fallback',
+      ),
+    )
   })
 })

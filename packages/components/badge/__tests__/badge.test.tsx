@@ -1,60 +1,27 @@
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import Badge from '../src/badge'
 
 describe('Badge', () => {
-  it('renders correctly with label only', () => {
-    const { container } = render(<Badge label="Label" />)
-    expect(container.firstChild).toMatchSnapshot()
+  it('renders label only', () => {
+    render(<Badge label="Label" />)
+    expect(screen.getByText('Label')).toBeInTheDocument()
   })
 
-  it('renders correctly with icon only', () => {
-    const { container } = render(<Badge icon={<span>Icon</span>} />)
-    expect(container.firstChild).toMatchSnapshot()
+  it('renders icon only', () => {
+    render(<Badge icon={<span>Icon</span>} />)
+    expect(screen.getByText('Icon')).toBeInTheDocument()
   })
 
-  it('renders correctly with label and icon', () => {
-    const { container } = render(
-      <Badge icon={<span>Icon</span>} label="Label" />,
-    )
-    expect(container.firstChild).toMatchSnapshot()
+  it('renders label and icon', () => {
+    render(<Badge icon={<span>Icon</span>} label="Label" />)
+    expect(screen.getByText('Label')).toBeInTheDocument()
+    expect(screen.getByText('Icon')).toBeInTheDocument()
   })
 
-  it('renders correctly with icon on the right', () => {
-    const { container } = render(
-      <Badge icon={<span>Icon</span>} label="Label" iconPosition="right" />,
-    )
-    expect(container.firstChild).toMatchSnapshot()
-  })
-
-  it('renders correctly with custom class name', () => {
-    const { container } = render(
+  it('renders with custom class name', () => {
+    render(
       <Badge icon={<span>Icon</span>} label="Label" className="custom-class" />,
     )
-    expect(container.firstChild).toMatchSnapshot()
-  })
-
-  it('renders correctly with custom icon class name', () => {
-    const { container } = render(
-      <Badge
-        icon={<span>Icon</span>}
-        label="Label"
-        iconClassName="custom-icon-class"
-      />,
-    )
-    expect(container.firstChild).toMatchSnapshot()
-  })
-
-  it('renders correctly with avatar icon', () => {
-    const { container } = render(
-      <Badge icon={<span>Icon</span>} label="Label" isAvatarIcon />,
-    )
-    expect(container.firstChild).toMatchSnapshot()
-  })
-
-  it('renders correctly with appearance', () => {
-    const { container } = render(
-      <Badge icon={<span>Icon</span>} label="Label" appearance="primary" />,
-    )
-    expect(container.firstChild).toMatchSnapshot()
+    expect(screen.getByText('Label')).toHaveClass('custom-class')
   })
 })

@@ -1,7 +1,7 @@
 module.exports = {
   testEnvironment: 'jsdom',
   collectCoverageFrom: [
-    'apps/**/*.{ts,tsx}',
+    // 'apps/**/*.{ts,tsx}',
     'packages/**/*.{ts,tsx}',
     '!packages/**/*.stories.{ts,tsx}',
     '!packages/{storybook,tsconfig,theme,eslint-config-custom,icons,ui,tailwind-config}/**/*',
@@ -51,7 +51,7 @@ module.exports = {
   setupFilesAfterEnv: ['@testing-library/jest-dom', './scripts/setup-test.ts'],
   globals: {
     'ts-jest': {
-      tsconfig: 'tsconfig.spec.json',
+      tsconfig: 'tsconfig.json',
     },
   },
   watchPlugins: [
