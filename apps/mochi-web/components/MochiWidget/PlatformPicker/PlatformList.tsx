@@ -1,4 +1,4 @@
-import { List } from '@consolelabs/ui-components'
+import { List } from '@consolelabs/core'
 import { Platform } from './type'
 import { PlatformItem } from './PlatformItem'
 
