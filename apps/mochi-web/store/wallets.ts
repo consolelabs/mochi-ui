@@ -68,9 +68,12 @@ export const useWalletStore = create<State>((set) => ({
       payableAccounts.forEach((w, i) => {
         if (balances[i].status === 'fulfilled') {
           const { value } = balances[i] as PromiseFulfilledResult<any>
+          const sortedData = value.balance.sort((a: Balance, b: Balance) => {
+            return (b.usd_balance ?? 0) - (a.usd_balance ?? 0)
+          })
           wallets.push({
             wallet: w,
-            balances: value.balance,
+            balances: sortedData,
             total: value.latest_snapshot_bal,
           })
         }
@@ -85,16 +88,24 @@ export const useWalletStore = create<State>((set) => ({
     ).json((r) => r.data)
     // Calculate assets
     let total = 0
-    mochiWallet.balances = mochiBalances.map((b) => {
-      const assetBal = epsilonToDecimalNumber(b.amount ?? '0', b.token?.decimal)
-      const usdBal = assetBal * (b.token?.price ?? 0)
-      total += usdBal
-      return {
-        ...b,
-        asset_balance: assetBal,
-        usd_balance: usdBal,
-      }
-    })
+    mochiWallet.balances = mochiBalances
+      .map((b) => {
+        const assetBal = epsilonToDecimalNumber(
+          b.amount ?? '0',
+          b.token?.decimal,
+        )
+        const usdBal = assetBal * (b.token?.price ?? 0)
+        total += usdBal
+        return {
+          ...b,
+          asset_balance: assetBal,
+          usd_balance: usdBal,
+        }
+      })
+      .sort((a, b) => {
+        // Sort balance by USD value
+        return (b.usd_balance ?? 0) - (a.usd_balance ?? 0)
+      })
     mochiWallet.total = total
     set({ wallets: [mochiWallet, ...wallets] })
   },

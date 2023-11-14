@@ -1,7 +1,7 @@
-import { formatNumber } from '~utils/number'
 import { Heading } from '@consolelabs/ui-components'
 import { truncateWallet } from '~utils/string'
 import { MochiWalletBase, Wallet } from '~store'
+import { utils } from '@consolelabs/mochi-ui'
 
 interface ItemProps {
   item: Wallet
@@ -28,7 +28,7 @@ export const WalletItem: React.FC<ItemProps> = ({ item, onSelect }) => (
         )}
       </Heading>
       <span className="text-xs text-[#848281] font-medium">
-        ${formatNumber(item.total || 0)}
+        {utils.formatUsdDigit(item.total || 0)}
         {item.chain?.symbol ? ` (${item.total} ${item.chain?.symbol})` : ''}
       </span>
     </div>

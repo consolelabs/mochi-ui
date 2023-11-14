@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Icon } from '@iconify/react'
-import { formatNumber } from '~utils/number'
 import {
   Popover,
   PopoverTrigger,
@@ -8,6 +7,7 @@ import {
 } from '@consolelabs/ui-components'
 import { Wallet, useWalletStore } from '~store'
 import { truncateWallet } from '~utils/string'
+import { utils } from '@consolelabs/mochi-ui'
 import { WalletList } from './WalletList'
 
 const DefaultWallet: Wallet = {
@@ -78,7 +78,7 @@ export const WalletPicker: React.FC<Props> = ({
         {accessToken && (
           <>
             <span className="flex-shrink-0 text-sm font-medium text-blue-700">
-              ${formatNumber(selectedWallet.total || '0')}
+              {utils.formatUsdDigit(selectedWallet.total || '0')}
             </span>
             <Icon
               icon="majesticons:chevron-down-line"

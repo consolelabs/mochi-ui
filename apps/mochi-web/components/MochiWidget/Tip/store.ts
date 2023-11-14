@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { API } from '~constants/api'
-import { Wallet } from '~store'
+import { Balance, Wallet } from '~store'
 import { ViewProfile } from '~types/mochi-profile-schema'
 import { Theme } from '../ThemePicker/ThemePicker'
 
@@ -15,6 +15,8 @@ interface TipWidgetState {
   step: number
   fromWallet?: Wallet
   recipients?: ViewProfile[]
+  asset?: Balance
+  amount?: number
   setStep: (s: number) => void
   request?: Request
   updateRequestMessage: (message: string) => void
@@ -26,6 +28,8 @@ interface TipWidgetState {
   updateSourceWallet: (s: Wallet) => void
   addRecipient: (recipient: ViewProfile) => void
   removeRecipient: (recipient: ViewProfile) => void
+  setAsset: (asset?: Balance) => void
+  setAmount: (amount: number) => void
 }
 
 export const useTipWidget = create<TipWidgetState>((set, get) => ({
@@ -105,4 +109,6 @@ export const useTipWidget = create<TipWidgetState>((set, get) => ({
           recipient.associated_accounts?.[0].id,
       ),
     })),
+  setAsset: (asset?: Balance) => set((s) => ({ ...s, asset })),
+  setAmount: (amount: number) => set((s) => ({ ...s, amount })),
 }))

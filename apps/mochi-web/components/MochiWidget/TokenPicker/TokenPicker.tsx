@@ -89,14 +89,10 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
   }, [searchTerm])
   const isTokenSelected = 'token' in selectedAsset
 
-  // TODO: Init selected asset. Maybe remove after data binding
-  useEffect(() => {
-    onSelect?.(tokenBalances[0])
-  }, [])
-
   useEffect(() => {
     if (balances) {
       setTokenBalances(balances)
+      handleTokenSelect(balances[0])
     }
   }, [balances])
 

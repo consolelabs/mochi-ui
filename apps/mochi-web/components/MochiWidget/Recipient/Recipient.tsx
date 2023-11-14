@@ -117,18 +117,20 @@ export const Recipient: React.FC<RecipientProps> = ({
               onFocus={handleFocusInput}
             />
           </div>
-          <div className="grid grid-cols-4 gap-7 px-4 py-2">
-            {selectedRecipients?.map((item: ViewProfile) => (
-              <SelectedRecipient
-                key={
-                  (item.id || 'unknown') +
-                  (item.associated_accounts?.[0].id || 'unknown')
-                }
-                profile={item}
-                onRemove={onRemoveRecipient}
-              />
-            ))}
-          </div>
+          {!!selectedRecipients?.length && (
+            <div className="grid grid-cols-4 gap-7 px-4 py-2">
+              {selectedRecipients?.map((item: ViewProfile) => (
+                <SelectedRecipient
+                  key={
+                    (item.id || 'unknown') +
+                    (item.associated_accounts?.[0].id || 'unknown')
+                  }
+                  profile={item}
+                  onRemove={onRemoveRecipient}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </PopoverAnchor>
       <PopoverContent

@@ -1,7 +1,7 @@
 import { Button } from '@consolelabs/ui-components'
-import { useEffect, useState } from 'react'
-import { abbreviateNumber, formatNumber } from '~utils/number'
+import { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react'
 import { Balance, Wallet } from '~store'
+import { utils } from '@consolelabs/mochi-ui'
 import { TokenPicker } from '../TokenPicker'
 import { MonikerAsset } from '../TokenPicker/type'
 
@@ -9,26 +9,28 @@ interface AmountInputProps {
   wallet?: Wallet
   accessToken: string | null
   onLoginRequest?: () => void
+  onSelectAsset?: (item: Balance) => void
+  onAmountChanged?: (amount: number) => void
 }
 
 export const AmountInput: React.FC<AmountInputProps> = ({
   wallet,
   accessToken,
   onLoginRequest,
+  onSelectAsset,
+  onAmountChanged,
 }) => {
   const [selectedAsset, setSelectedAsset] = useState<Balance | MonikerAsset>()
   const [tipAmount, setTipAmount] = useState('')
   const isMonikerAsset = selectedAsset && 'moniker' in selectedAsset
-  const balance = isMonikerAsset
-    ? formatNumber(selectedAsset?.asset_balance ?? 0)
-    : formatNumber(selectedAsset?.asset_balance ?? 0)
+  const balance = utils.formatTokenDigit(selectedAsset?.asset_balance ?? 0)
   const balanceUnit = isMonikerAsset
     ? (selectedAsset as MonikerAsset)?.moniker.moniker
     : selectedAsset?.token?.symbol
   const unitPrice = selectedAsset?.token?.price ?? 0
-  const tipAmountUSD = abbreviateNumber(
-    (parseFloat(tipAmount) || 0) * unitPrice,
-  )
+  const tipAmountUSD = utils
+    .formatUsdDigit((parseFloat(tipAmount) || 0) * unitPrice) // tipAmountUSD will be inaccurate if we round by formatUsdDigit. Ex: $1 -> $0.99
+    .replace('$', '') // Format with USD instead of $
 
   useEffect(() => {
     if (!accessToken) {
@@ -41,11 +43,11 @@ export const AmountInput: React.FC<AmountInputProps> = ({
       onLoginRequest?.()
     } else {
       // Amount is USD -> convert to token amount
-      setTipAmount(
-        (parseFloat(amount) / unitPrice).toFixed(
-          selectedAsset?.token?.decimal ?? 2,
-        ),
+      const amountInToken = utils.formatTokenDigit(
+        parseFloat(amount) / unitPrice,
       )
+      setTipAmount(amountInToken)
+      onAmountChanged?.(parseFloat(amountInToken))
     }
   }
 
@@ -58,6 +60,20 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   function handleAssetChanged(asset: Balance | MonikerAsset) {
     setSelectedAsset(asset)
     setTipAmount('0')
+    onSelectAsset?.(asset)
+    onAmountChanged?.(0)
+  }
+
+  function handleAmountChanged(event: ChangeEvent<HTMLInputElement>) {
+    setTipAmount(event.target.value)
+    onAmountChanged?.(parseFloat(event.target.value))
+  }
+
+  function handleKeyDown(event: KeyboardEvent) {
+    // No negative numbers
+    if (event.key === '-') {
+      event.preventDefault()
+    }
   }
 
   return (
@@ -74,8 +90,10 @@ export const AmountInput: React.FC<AmountInputProps> = ({
             className="w-[65%] outline-none text-2xl font-medium text-[#343433] appearance-none h-[34px]"
             placeholder="0"
             type="number"
+            min={0}
+            onKeyDown={handleKeyDown}
             value={tipAmount}
-            onChange={(e) => setTipAmount(e.target.value)}
+            onChange={handleAmountChanged}
             onFocus={onFocusInput}
           />
           <span className="text-sm text-[#848281] text-right">
