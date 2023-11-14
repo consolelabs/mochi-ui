@@ -31,7 +31,7 @@ const inputWrapperVariants = cva(
 
 const inputFieldVariants = cva(
   [
-    'flex-1 border-none outline-0 text-neutral-800 placeholder:text-neutral-500 disabled:bg-transparent disabled:text-neutral-500',
+    'flex-1 border-none outline-none text-neutral-800 placeholder:text-neutral-500 disabled:bg-transparent disabled:text-neutral-500',
   ],
   {
     variants: {
