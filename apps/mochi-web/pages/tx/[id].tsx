@@ -1,7 +1,6 @@
 import { GetServerSideProps } from 'next'
-import { API } from '~constants/api'
 import { Layout } from '~app/layout'
-import { HOME_URL } from '~envs'
+import { HOME_URL, MOCHI_PAY_API } from '~envs'
 import { SEO } from '~app/layout/seo'
 import { truncate } from '@dwarvesf/react-utils'
 import Receipt, { transformData } from '~cpn/Receipt'
@@ -16,10 +15,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       }
     }
 
-    const transfer = await API.MOCHI_PAY.get(`/transfer/${id}`)
-      .setTimeout(2000)
-      .fetchError(() => null)
-      .json((r: any) => r.data)
+    const res = await fetch(`${MOCHI_PAY_API}/transfer/${id}`)
+    const json = await res.json()
+    const transfer = json.data
 
     if (!transfer) {
       return {
@@ -47,16 +45,13 @@ interface Props {
   ogData: any
 }
 
-export default function Transfer({ data, ogData }: Props) {
+export default function Transfer({ data }: Props) {
   return (
     <Layout>
       <SEO
         title={
           data.template ? data.template.title : `Tip from ${data.from} - Mochi`
         }
-        image={`${HOME_URL}/api/transfer-og?data=${encodeURIComponent(
-          JSON.stringify(ogData),
-        )}`}
         description={`${data.from} paid ${
           Array.isArray(data.to) ? `${data.to.length} people` : data.to
         } ${data.amountDisplay} ${data.unitCurrency}${

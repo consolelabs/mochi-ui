@@ -63,9 +63,10 @@ export default function getAvailableWallets() {
           name: 'Phantom',
           icon: IconPhantomWallet,
           isInstalled: !isSSR && Boolean(window.phantom),
-          connect: window.phantom.solana
-            .connect()
-            .then(signSol(window.phantom.solana)),
+          connect: () =>
+            window.phantom.solana
+              .connect()
+              .then(signSol(window.phantom.solana)),
         },
       ],
       RONIN: [
