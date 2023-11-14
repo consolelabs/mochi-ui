@@ -1,4 +1,4 @@
-import { Button } from '@consolelabs/ui-components'
+import { Button } from '@consolelabs/core'
 import { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react'
 import { Balance, Wallet } from '~store'
 import { utils } from '@consolelabs/mochi-ui'
@@ -117,14 +117,14 @@ export const AmountInput: React.FC<AmountInputProps> = ({
 
   return (
     <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-3">
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <TokenPicker
           onSelect={handleAssetChanged}
           balances={wallet?.balances}
         />
       </div>
-      <div className="flex flex-col gap-y-2 py-6 px-4 rounded-lg bg-white-pure">
-        <div className="flex flex-1 justify-between items-center">
+      <div className="flex flex-col px-4 py-6 rounded-lg gap-y-2 bg-white-pure">
+        <div className="flex items-center justify-between flex-1">
           <input
             className="w-[65%] outline-none text-2xl font-medium text-[#343433] appearance-none h-[34px]"
             placeholder="0"
@@ -140,7 +140,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
             &#8776; {tipAmountUSD} USD
           </span>
         </div>
-        <div className="flex flex-1 justify-between items-center">
+        <div className="flex items-center justify-between flex-1">
           <span className="text-[#848281] text-[13px]">
             Balance: {balance} {balanceUnit}
           </span>

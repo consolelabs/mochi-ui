@@ -1,10 +1,4 @@
-import {
-  Button,
-  List,
-  Modal,
-  ModalContent,
-  Avatar,
-} from '@consolelabs/ui-components'
+import { List, Modal, ModalContent, Avatar } from '@consolelabs/ui-components'
 import {
   IconDiscordColored,
   IconTelegramColored,
@@ -13,7 +7,7 @@ import {
   IconChevronRight,
   IconAppleColored,
 } from '@consolelabs/icons'
-
+import { Button } from '@consolelabs/core'
 import Link from 'next/link'
 import { Fragment, useMemo, useState } from 'react'
 import { AuthPanel } from '~cpn/AuthWidget'
@@ -32,7 +26,7 @@ const MobileLoginPanel = () => {
   return (
     <Modal open={isOpenLoginPanel} onOpenChange={setOpenLoginPanel}>
       <Button
-        className="w-full justify-center sm:hidden"
+        className="justify-center w-full sm:hidden"
         size="lg"
         onClick={() => setOpenLoginPanel(true)}
         loading={isLogging}
@@ -57,7 +51,7 @@ const Header = ({ onClose }: { onClose: () => void }) => {
   const { me } = useProfileStore()
   return (
     <button className="" onClick={onClose}>
-      <Link href={ROUTES.PROFILE} className="block w-full relative h-20 group">
+      <Link href={ROUTES.PROFILE} className="relative block w-full h-20 group">
         <div className="absolute inset-0 bg-transparent">
           <img
             className="object-cover w-full h-full"
@@ -65,18 +59,18 @@ const Header = ({ onClose }: { onClose: () => void }) => {
             src="https://pbs.twimg.com/profile_banners/1168522102410010626/1684159976/300x100"
           />
         </div>
-        <div className="relative z-10 flex h-full p-4 w-full items-center gap-4 text-white">
+        <div className="relative z-10 flex items-center w-full h-full gap-4 p-4 text-white">
           <Avatar
             fallback={me?.profile_name}
             smallSrc={me?.platformIcon}
             src={me?.avatar as string}
           />
-          <div className="flex-1 font-medium flex items-center">
-            <span className=" inline-block w-40 whitespace-nowrap truncate">
+          <div className="flex items-center flex-1 font-medium">
+            <span className="inline-block w-40 truncate  whitespace-nowrap">
               {me?.profile_name}
             </span>
           </div>
-          <IconChevronRight className="text-lg group-hover:translate-x-1 transition" />
+          <IconChevronRight className="text-lg transition group-hover:translate-x-1" />
         </div>
       </Link>
     </button>

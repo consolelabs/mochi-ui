@@ -9,9 +9,9 @@ import {
   Popover,
   PopoverTrigger,
   PopoverContent,
-  Button,
   IconButton,
 } from '@consolelabs/ui-components'
+import { Button } from '@consolelabs/core'
 import { IconMenu, IconClose } from '@consolelabs/icons'
 import { useCallback, useState } from 'react'
 import ProfileDropdown from '~cpn/profile-dropdrown'
@@ -38,7 +38,7 @@ const LoginPopover = (props: LoginPopoverProps) => {
         // wrap Button by div to prevent event loss when use `asChild` props
       >
         <div>
-          <Button className="w-20 justify-center" loading={isLogging}>
+          <Button className="justify-center w-20" loading={isLogging}>
             Login
           </Button>
         </div>
@@ -81,7 +81,7 @@ export const Header = () => {
       )}
     >
       <button
-        className="flex items-center gap-x-2 text-left"
+        className="flex items-center text-left gap-x-2"
         onClick={onCloseMobileNav}
       >
         <Link href={ROUTES.HOME} className="flex items-center gap-x-2">
@@ -128,7 +128,7 @@ export const Header = () => {
           )}
         </>
       ) : (
-        <div className="flex order-1 gap-y-2 gap-x-6 flex-row self-center ml-auto md:order-2">
+        <div className="flex flex-row self-center order-1 ml-auto gap-y-2 gap-x-6 md:order-2">
           <div className="flex flex-wrap items-stretch gap-5">
             <Link
               href="/features"

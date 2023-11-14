@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button } from '@consolelabs/ui-components'
+import { Button } from '@consolelabs/core'
 import { IconCheck, IconLink, IconPlus, IconShare } from '@consolelabs/icons'
 import { useClipboard } from '@dwarvesf/react-hooks'
 import Link from 'next/link'
@@ -24,7 +24,7 @@ export default function Buttons({ shareLink }: Props) {
   }
 
   return (
-    <div className="flex gap-x-2 mx-auto">
+    <div className="flex mx-auto gap-x-2">
       {canShare && (
         <Button
           type="button"

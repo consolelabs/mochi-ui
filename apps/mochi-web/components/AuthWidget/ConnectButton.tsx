@@ -1,4 +1,4 @@
-import { Button } from '@consolelabs/ui-components'
+import { Button } from '@consolelabs/core'
 import { IconWallet } from '@consolelabs/icons'
 import { MouseEventHandler } from 'react'
 import type { Variant } from './types'
@@ -15,7 +15,7 @@ export const ConnectButton: React.FC<ConnectButtonProps> = ({
   switch (variant) {
     case 'dropdown':
       return (
-        <div className="flex justify-center items-center w-full">
+        <div className="flex items-center justify-center w-full">
           <Button variant="outline" color="info" {...rest}>
             <IconWallet className="text-xl" />
             Connect Wallet
