@@ -1,5 +1,4 @@
 import { Heading, InputField } from '@consolelabs/ui-components'
-import {} from '@consolelabs/core'
 import {
   SectionList,
   Popover,
