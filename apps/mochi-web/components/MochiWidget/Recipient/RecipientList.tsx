@@ -1,4 +1,4 @@
-import { List } from '@consolelabs/ui-components'
+import { List } from '@consolelabs/core'
 import { ViewProfile } from '~types/mochi-profile-schema'
 import { RecipientItem } from './RecipientItem'
 import { EmptyList } from './EmptyList'

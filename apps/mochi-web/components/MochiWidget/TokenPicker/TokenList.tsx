@@ -1,4 +1,4 @@
-import { List } from '@consolelabs/ui-components'
+import { List } from '@consolelabs/core'
 import { Balance } from '~store'
 import { TokenItem } from './TokenItem'
 import { EmptyList } from './EmptyList'

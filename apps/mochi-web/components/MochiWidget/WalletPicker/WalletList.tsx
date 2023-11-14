@@ -1,4 +1,4 @@
-import { List } from '@consolelabs/ui-components'
+import { List } from '@consolelabs/core'
 import { Wallet } from '~store'
 import { WalletItem } from './WalletItem'
 

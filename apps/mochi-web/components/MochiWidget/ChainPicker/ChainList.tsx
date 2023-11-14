@@ -1,4 +1,4 @@
-import { List } from '@consolelabs/ui-components'
+import { List } from '@consolelabs/core'
 import { Chain } from './type'
 import { ChainItem } from './ChainItem'
 import { EmptyList } from './EmptyList'
