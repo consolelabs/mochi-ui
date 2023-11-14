@@ -4,7 +4,7 @@ Input component allows users to enter text. It can be used to get user inputs in
 forms, search fields, and more.
 
 For further details, visit our
-[Input Documentation](https://ds.console.so/?path=/docs/ui-input--docs).
+[Input Documentation](https://ds.console.so/?path=/docs/components-input--docs).
 
 ## Installation
 

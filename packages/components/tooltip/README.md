@@ -4,7 +4,7 @@ Tooltip component displays a brief, informative message that appears when a user
 interacts with an element.
 
 For further details, visit our
-[Tooltip Documentation](https://ds.console.so/?path=/docs/ui-tooltip--docs).
+[Tooltip Documentation](https://ds.console.so/?path=/docs/components-tooltip--docs).
 
 ## Installation
 

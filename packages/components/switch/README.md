@@ -4,7 +4,7 @@ The Switch component is used as an alternative between checked and not checked
 states.
 
 For further details, visit our
-[Switch Documentation](https://ds.console.so/?path=/docs/ui-switch--docs).
+[Switch Documentation](https://ds.console.so/?path=/docs/components-switch--docs).
 
 ## Installation
 

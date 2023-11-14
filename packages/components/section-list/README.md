@@ -4,7 +4,7 @@ Section List component structures and displays a collection of items,
 categorizing them by sections for a structured and organized presentation.
 
 For further details, visit our
-[Section List Documentation](https://ds.console.so/?path=/docs/ui-sectionlist--docs).
+[Section List Documentation](https://ds.console.so/?path=/docs/components-sectionlist--docs).
 
 ## Installation
 

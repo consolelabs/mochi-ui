@@ -4,7 +4,7 @@ Badge component is used as a small numerical value or status descriptor for UI
 elements.
 
 For further details, visit our
-[Badge Documentation](https://ds.console.so/?path=/docs/ui-badge--docs).
+[Badge Documentation](https://ds.console.so/?path=/docs/components-badge--docs).
 
 ## Installation
 

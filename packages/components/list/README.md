@@ -4,7 +4,7 @@ List component structures and displays a collection of items in an organized
 format.
 
 For further details, visit our
-[List Documentation](https://ds.console.so/?path=/docs/ui-list--docs).
+[List Documentation](https://ds.console.so/?path=/docs/components-list--docs).
 
 ## Installation
 
