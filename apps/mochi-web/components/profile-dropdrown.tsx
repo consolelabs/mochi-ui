@@ -4,8 +4,8 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
-  ProfileBadge,
 } from '@consolelabs/ui-components'
+import { ProfileBadge } from '@consolelabs/core'
 import { useAuthStore, useProfileStore } from '~store'
 import Link from 'next/link'
 import { truncateWallet } from '~utils/string'
