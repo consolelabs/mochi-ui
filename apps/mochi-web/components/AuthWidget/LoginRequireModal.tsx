@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Modal, ModalContent } from '@consolelabs/ui-components'
+import { Modal, ModalContent } from '@consolelabs/core'
 import { useAuthStore } from '~store'
 import clsx from 'clsx'
 import { AuthPanel } from './AuthPanel'
