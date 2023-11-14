@@ -3,7 +3,7 @@
 Represents heading within the application.
 
 For further details, visit our
-[Heading Documentation](https://web-design-system-consolelabs.vercel.app/?path=/story/ui-heading--default).
+[Heading Documentation](https://ds.console.so/?path=/story/ui-heading--default).
 
 ## Installation
 

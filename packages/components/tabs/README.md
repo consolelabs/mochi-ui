@@ -4,7 +4,7 @@ Tabs component organizes content into multiple sections and allow users to
 navigate between them.
 
 For further details, visit our
-[Tabs Documentation](https://web-design-system-consolelabs.vercel.app/?path=/story/ui-tabs--default).
+[Tabs Documentation](https://ds.console.so/?path=/story/components-tabs--default).
 
 ## Installation
 

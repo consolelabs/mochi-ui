@@ -10,9 +10,8 @@ to craft visually appealing and accessible web applications.
 
 - For contribution details, see our
   [Contribution Guidelines](./CONTRIBUTING.md).
-- Explore our
-  [UI Documentation](https://web-design-system-consolelabs.vercel.app/) for
-  design system insights.
+- Explore our [UI Documentation](https://ds.console.so/) for design system
+  insights.
 
 ## Engaging with Our Community
 

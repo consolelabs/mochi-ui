@@ -4,7 +4,7 @@ Select component displays a collapsible list of options and allows a user to
 select one of them.
 
 For further details, visit our
-[Select Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-select--docs).
+[Select Documentation](https://ds.console.so/?path=/docs/components-select--docs).
 
 ## Installation
 

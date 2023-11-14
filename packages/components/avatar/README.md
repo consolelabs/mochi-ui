@@ -4,7 +4,7 @@ Avatar component is used to represent a user, and displays the profile picture,
 initials or fallback icon.
 
 For further details, visit our
-[Avatar Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-avatar--docs).
+[Avatar Documentation](https://ds.console.so/?path=/docs/components-avatar--docs).
 
 ## Installation
 

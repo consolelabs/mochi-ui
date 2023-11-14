@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import Switch from '../src/Switch'
 
 const meta: Meta<typeof Switch> = {
-  title: 'components/Switch',
+  title: 'Components/Switch',
   component: Switch,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout

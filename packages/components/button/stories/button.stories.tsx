@@ -3,7 +3,7 @@ import { IconConnectWallets, IconSpinner } from '@consolelabs/icons'
 import Button from '../src/button'
 
 const meta: Meta<typeof Button> = {
-  title: 'components/Button',
+  title: 'Components/Button',
   component: Button,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout

@@ -4,7 +4,7 @@ Login Widget component empowers users with access to the web3 application by
 offering diverse login options through various web3 wallets.
 
 For further details, visit our
-[Login Widget Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-loginwidget--docs).
+[Login Widget Documentation](https://ds.console.so/?path=/docs/components-loginwidget--docs).
 
 ## Installation
 

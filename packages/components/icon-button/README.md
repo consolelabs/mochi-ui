@@ -3,7 +3,7 @@
 Icon Button component is the button adorned with an easily recognizable icon.
 
 For further details, visit our
-[Icon Button Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-iconbutton--docs).
+[Icon Button Documentation](https://ds.console.so/?path=/docs/components-iconbutton--docs).
 
 ## Installation
 

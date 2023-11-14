@@ -4,7 +4,7 @@ Alert component efficiently communicates essential information, warnings or
 errors to users.
 
 For further details, visit our
-[Alert Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-alert--docs).
+[Alert Documentation](https://ds.console.so/?path=/docs/components-alert--docs).
 
 ## Installation
 

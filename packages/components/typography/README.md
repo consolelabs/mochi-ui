@@ -4,7 +4,7 @@ Typography component encompasses a range of elements designed to represent
 various text styles within an application
 
 For further details, visit our
-[Typography Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-typography--docs).
+[Typography Documentation](https://ds.console.so/?path=/docs/components-typography--docs).
 
 ## Installation
 

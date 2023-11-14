@@ -4,7 +4,7 @@ Pagination component allows you to display active page and navigate between
 multiple pages.
 
 For further details, visit our
-[Pagination Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-pagination--docs).
+[Pagination Documentation](https://ds.console.so/?path=/docs/components-pagination--docs).
 
 ## Installation
 

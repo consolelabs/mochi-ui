@@ -4,7 +4,7 @@ Modal component displays a dialog with a custom content that requires attention
 or provides additional information.
 
 For further details, visit our
-[Modal Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-modal--docs).
+[Modal Documentation](https://ds.console.so/?path=/docs/components-modal--docs).
 
 ## Installation
 

@@ -3,7 +3,7 @@ import { IconPhantomWallet } from '@consolelabs/icons'
 import InputField from '../src/input-field'
 
 const meta: Meta<typeof InputField> = {
-  title: 'components/InputField',
+  title: 'Components/InputField',
   component: InputField,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout

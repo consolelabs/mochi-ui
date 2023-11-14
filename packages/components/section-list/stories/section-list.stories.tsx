@@ -3,7 +3,7 @@ import { Heading } from '@consolelabs/heading'
 import SectionList from '../src/section-list'
 
 const meta: Meta<typeof SectionList> = {
-  title: 'components/SectionList',
+  title: 'Components/SectionList',
   component: SectionList,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
