@@ -5,12 +5,7 @@ import { logo } from '~utils/image'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { ROUTES } from '~constants/routes'
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-} from '@consolelabs/ui-components'
-import { Button, IconButton } from '@consolelabs/core'
+import { Popover, PopoverTrigger, PopoverContent, Button, IconButton } from '@consolelabs/core'
 import { IconMenu, IconClose } from '@consolelabs/icons'
 import { useCallback, useState } from 'react'
 import ProfileDropdown from '~cpn/profile-dropdrown'

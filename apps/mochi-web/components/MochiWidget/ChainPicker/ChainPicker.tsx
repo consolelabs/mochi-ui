@@ -1,11 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Icon } from '@iconify/react'
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  InputField,
-} from '@consolelabs/ui-components'
+import { InputField } from '@consolelabs/ui-components'
+import { Popover, PopoverTrigger, PopoverContent } from '@consolelabs/core'
 import clsx from 'clsx'
 import { ChainList } from './ChainList'
 import { Chains } from './data'

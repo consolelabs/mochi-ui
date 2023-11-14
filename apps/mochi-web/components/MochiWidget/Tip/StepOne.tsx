@@ -7,12 +7,7 @@ import {
   useState,
 } from 'react'
 import { AuthPanel } from '~cpn/AuthWidget'
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@consolelabs/ui-components'
-import { Button } from '@consolelabs/core'
+import { Button, Popover, PopoverContent, PopoverTrigger } from '@consolelabs/core'
 import { IconArrowRight, IconChevronDown } from '@consolelabs/icons'
 import { WalletPicker } from '../WalletPicker'
 import { Recipient } from '../Recipient'

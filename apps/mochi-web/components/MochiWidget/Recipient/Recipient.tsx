@@ -1,12 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
 import {
   InputField,
-  Popover,
-  PopoverContent,
   PopoverAnchor,
   Heading,
 } from '@consolelabs/ui-components'
-import { IconButton } from '@consolelabs/core'
+import { IconButton, Popover, PopoverContent } from '@consolelabs/core'
 import { ViewProfile } from '~types/mochi-profile-schema'
 import { IconClose, IconSpinner } from '@consolelabs/icons'
 import { useDebounce } from '@dwarvesf/react-hooks'

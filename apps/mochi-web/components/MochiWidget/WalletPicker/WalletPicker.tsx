@@ -1,10 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Icon } from '@iconify/react'
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-} from '@consolelabs/ui-components'
+import { Popover, PopoverTrigger, PopoverContent } from '@consolelabs/core'
 import { Wallet, useWalletStore } from '~store'
 import { truncateWallet } from '~utils/string'
 import { utils } from '@consolelabs/mochi-ui'

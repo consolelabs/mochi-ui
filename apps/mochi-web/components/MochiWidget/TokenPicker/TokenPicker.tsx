@@ -2,13 +2,8 @@ import { IconChevronDown } from '@consolelabs/icons'
 import { useEffect, useMemo, useState } from 'react'
 import { Icon } from '@iconify/react'
 import { Tab } from '@headlessui/react'
-import {
-  InputField,
-  Heading,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-} from '@consolelabs/ui-components'
+import { InputField, Heading } from '@consolelabs/ui-components'
+import { Popover, PopoverTrigger, PopoverContent } from '@consolelabs/core'
 import { Balance } from '~store'
 import { TokenList } from './TokenList'
 import { MonikerAsset, SectionBase } from './type'
