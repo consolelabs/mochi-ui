@@ -14,15 +14,20 @@ import Buttons from './Buttons'
 export { transformData }
 
 interface Props {
-  id: string
+  id?: string
+  // data will override and disable request fetching
+  // instead the UI will use this data to render
+  data?: any
 }
 
-export default function Receipt({ id }: Props) {
+export default function Receipt({ id, data: _data }: Props) {
   const { data, isLoading } = useSWR(
     [`transfer/${id}`, id],
     async ([_, id]) => {
+      if (_data) return _data
       const raw = await API.MOCHI_PAY.get(`/transfer/${id}`)
-        .notFound(() => null)
+        .setTimeout(2000)
+        .fetchError(() => null)
         .json((r: any) => r.data)
 
       if (!raw) return null
@@ -121,7 +126,7 @@ export default function Receipt({ id }: Props) {
                   >
                     {Array.isArray(data.data.to) ? (
                       <div className="flex flex-col gap-y-2 items-end">
-                        {data.data.to.slice(0, 3).map((n) => (
+                        {data.data.to.slice(0, 3).map((n: any) => (
                           <span key={n} className="font-semibold text-current">
                             {n}
                           </span>

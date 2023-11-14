@@ -1,9 +1,10 @@
 import { GetServerSideProps } from 'next'
 import { Layout } from '~app/layout'
-import { HOME_URL, MOCHI_PAY_API } from '~envs'
+import { HOME_URL } from '~envs'
 import { SEO } from '~app/layout/seo'
 import { truncate } from '@dwarvesf/react-utils'
 import Receipt, { transformData } from '~cpn/Receipt'
+import { API } from '~constants/api'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {
@@ -15,9 +16,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       }
     }
 
-    const res = await fetch(`${MOCHI_PAY_API}/transfer/${id}`)
-    const json = await res.json()
-    const transfer = json.data
+    const transfer = await API.MOCHI_PAY.get(`/transfer/${id}`)
+      .setTimeout(2000)
+      .fetchError(() => null)
+      .json((r: any) => r.data)
 
     if (!transfer) {
       return {
@@ -25,7 +27,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       }
     }
 
-    const { data, ogDataOnly } = await transformData(transfer)
+    const { ogDataOnly, ...data } = await transformData(transfer)
 
     return {
       props: {
@@ -45,24 +47,31 @@ interface Props {
   ogData: any
 }
 
-export default function Transfer({ data }: Props) {
+export default function Transfer({ data, ogData }: Props) {
   return (
     <Layout>
       <SEO
         title={
-          data.template ? data.template.title : `Tip from ${data.from} - Mochi`
+          data.data.template
+            ? data.data.template.title
+            : `Tip from ${data.data.from} - Mochi`
         }
-        description={`${data.from} paid ${
-          Array.isArray(data.to) ? `${data.to.length} people` : data.to
+        image={`${HOME_URL}/api/transfer-og?data=${encodeURIComponent(
+          JSON.stringify(ogData),
+        )}`}
+        description={`${data.data.from} paid ${
+          Array.isArray(data.data.to)
+            ? `${data.data.to.length} people`
+            : data.data.to
         } ${data.amountDisplay} ${data.unitCurrency}${
           data.message
             ? ` with message: "${truncate(data.message, 30, false)}"`
             : ''
         }`}
-        url={`${HOME_URL}/transfer/${data.external_id}`}
+        url={`${HOME_URL}/transfer/${data.data.external_id}`}
       />
       <div className="flex items-center p-10 my-auto">
-        <Receipt id={data.external_id} />
+        <Receipt data={data} />
       </div>
     </Layout>
   )

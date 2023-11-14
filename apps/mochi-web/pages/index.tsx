@@ -238,7 +238,6 @@ export default function Index() {
           </Link>
         </div>
       </div>
-      <Divider noSpace fullWidth />
     </Layout>
   )
 }

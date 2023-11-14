@@ -1,20 +1,15 @@
 import clsx from 'clsx'
 import React, { useState } from 'react'
-import {
-  IconPaperplaneCircled,
-  IconDollarBubbleCircled,
-  IconLinkCircled,
-  IconGift,
-} from '@consolelabs/icons'
+import { IconPaperplaneCircled } from '@consolelabs/icons'
 import Tip from './Tip'
 
-function ComingSoon() {
-  return (
-    <span className="flex flex-1 justify-center items-center m-4 text-neutral-500">
-      Coming soon...
-    </span>
-  )
-}
+/* function ComingSoon() { */
+/*   return ( */
+/*     <span className="flex flex-1 justify-center items-center m-4 text-neutral-500"> */
+/*       Coming soon... */
+/*     </span> */
+/*   ) */
+/* } */
 
 const tabs = [
   {
@@ -23,24 +18,24 @@ const tabs = [
     Icon: IconPaperplaneCircled,
     render: () => <Tip />,
   },
-  {
-    id: 'payme',
-    title: 'Pay Me',
-    Icon: IconDollarBubbleCircled,
-    render: ComingSoon,
-  },
-  {
-    id: 'paylink',
-    title: 'Pay Link',
-    Icon: IconLinkCircled,
-    render: ComingSoon,
-  },
-  {
-    id: 'gift',
-    title: 'Gift',
-    Icon: IconGift,
-    render: ComingSoon,
-  },
+  /* { */
+  /*   id: 'payme', */
+  /*   title: 'Pay Me', */
+  /*   Icon: IconDollarBubbleCircled, */
+  /*   render: ComingSoon, */
+  /* }, */
+  /* { */
+  /*   id: 'paylink', */
+  /*   title: 'Pay Link', */
+  /*   Icon: IconLinkCircled, */
+  /*   render: ComingSoon, */
+  /* }, */
+  /* { */
+  /*   id: 'gift', */
+  /*   title: 'Gift', */
+  /*   Icon: IconGift, */
+  /*   render: ComingSoon, */
+  /* }, */
 ]
 
 export default function MochiWidget() {
