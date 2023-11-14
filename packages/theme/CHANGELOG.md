@@ -1,5 +1,18 @@
 # @consolelabs/theme
 
+## 0.0.5
+
+### Patch Changes
+
+- [#175](https://github.com/consolelabs/websites/pull/175)
+  [`8457341`](https://github.com/consolelabs/websites/commit/8457341631ae28bb9f9d226e3b9c287d81cc9685)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Update README
+
+- [#193](https://github.com/consolelabs/websites/pull/193)
+  [`4db69e4`](https://github.com/consolelabs/websites/commit/4db69e4b2bf4c537ecfa2a06268d68a60d4e2dd6)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Remove extra outline
+  input field
+
 ## 0.0.4
 
 ### Patch Changes

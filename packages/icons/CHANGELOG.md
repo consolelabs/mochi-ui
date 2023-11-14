@@ -1,5 +1,13 @@
 # @consolelabs/icons
 
+## 0.0.4
+
+### Patch Changes
+
+- [#175](https://github.com/consolelabs/websites/pull/175)
+  [`8457341`](https://github.com/consolelabs/websites/commit/8457341631ae28bb9f9d226e3b9c287d81cc9685)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Add README
+
 ## 0.0.3
 
 ### Patch Changes

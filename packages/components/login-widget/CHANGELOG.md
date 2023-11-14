@@ -1,5 +1,38 @@
 # @consolelabs/login-widget
 
+## 0.0.7
+
+### Patch Changes
+
+- [#181](https://github.com/consolelabs/websites/pull/181)
+  [`be29690`](https://github.com/consolelabs/websites/commit/be29690eaec5fd91718608b972383c94672c90bf)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Fail type check due to
+  not return promise
+
+- [#171](https://github.com/consolelabs/websites/pull/171)
+  [`e933930`](https://github.com/consolelabs/websites/commit/e933930b06f038d0e5b1184f787bbf786025a883)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Update docs path in
+  README
+
+- [#176](https://github.com/consolelabs/websites/pull/176)
+  [`12abe24`](https://github.com/consolelabs/websites/commit/12abe24297aa49f72cffc98fa6d9adfd33b77e9a)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Add condition check for
+  provide references
+
+- [#183](https://github.com/consolelabs/websites/pull/183)
+  [`696a6f7`](https://github.com/consolelabs/websites/commit/696a6f73c9aaa59f0dbeb737d05f2789125a5b4b)
+  Thanks [@tuanddd](https://github.com/tuanddd)! - Fix Solana connect func to
+  delay window type check
+
+- Updated dependencies
+  [[`8457341`](https://github.com/consolelabs/websites/commit/8457341631ae28bb9f9d226e3b9c287d81cc9685),
+  [`e933930`](https://github.com/consolelabs/websites/commit/e933930b06f038d0e5b1184f787bbf786025a883),
+  [`4db69e4`](https://github.com/consolelabs/websites/commit/4db69e4b2bf4c537ecfa2a06268d68a60d4e2dd6),
+  [`8457341`](https://github.com/consolelabs/websites/commit/8457341631ae28bb9f9d226e3b9c287d81cc9685)]:
+  - @consolelabs/theme@0.0.5
+  - @consolelabs/heading@0.0.4
+  - @consolelabs/icons@0.0.4
+
 ## 0.0.6
 
 ### Patch Changes
