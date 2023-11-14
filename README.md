@@ -6,14 +6,14 @@ Welcome to the central hub for ConsoleLabs' web3 applications and design system
 packages. Our team and the broader community collaboratively use these resources
 to craft visually appealing and accessible web applications.
 
-## Resources and Documentation
+## Documentation
 
 - For contribution details, see our
   [Contribution Guidelines](./CONTRIBUTING.md).
 - Explore our [UI Documentation](https://ds.console.so/) for design system
   insights.
 
-## Engaging with Our Community
+## Community
 
 Your participation in our frontend ecosystem is highly valued. Whether it's
 sharing ideas, reporting bugs, or showcasing your projects, your engagement
