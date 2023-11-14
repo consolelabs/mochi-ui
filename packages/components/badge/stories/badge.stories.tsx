@@ -49,7 +49,7 @@ const renderByAppearance = (appearance: BadgeProps['appearance']) => (
 )
 
 const meta: Meta<typeof Badge> = {
-  title: 'components/Badge',
+  title: 'Components/Badge',
   component: Badge,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout

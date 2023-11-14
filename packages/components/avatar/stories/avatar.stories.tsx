@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import Avatar from '../src/avatar'
 
 const meta: Meta<typeof Avatar> = {
-  title: 'components/Avatar',
+  title: 'Components/Avatar',
   component: Avatar,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout

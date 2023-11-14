@@ -1,7 +1,7 @@
 import { ToggleButton, ToggleButtonGroup } from '../src/toggle-button'
 
 export default {
-  title: 'components/ToggleButton',
+  title: 'Components/ToggleButton',
 }
 
 export function Default() {
