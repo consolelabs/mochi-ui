@@ -71,6 +71,7 @@ export default function List<Item extends NonNullable<object> | string>({
     >
       <ScrollArea.Viewport
         className={listViewportClsx({ className: viewportClassName })}
+        data-testid="list-viewport"
         onScroll={handleScroll}
         style={viewportStyle}
       >
