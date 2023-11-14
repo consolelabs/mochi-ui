@@ -1,10 +1,10 @@
-# @consolelabs/pagination
+# @consolelabs/badge
 
-Pagination component allows you to display active page and navigate between
-multiple pages.
+Badge component is used as a small numerical value or status descriptor for UI
+elements.
 
 For further details, visit our
-[Pagination Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-pagination--docs).
+[Badge Documentation](https://ds.console.so/?path=/docs/ui-badge--docs).
 
 ## Installation
 
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/pagination
+pnpm i @consolelabs/badge
 
 # Using NPM
-npm i @consolelabs/pagination
+npm i @consolelabs/badge
 
 # Using Yarn
-yarn add @consolelabs/pagination
+yarn add @consolelabs/badge
 ```
 
 ## Contribution
@@ -30,3 +30,4 @@ to our [Contribution Guidelines](/CONTRIBUTING.md).
 
 This project is licensed under the terms of the
 [MIT license](https://choosealicense.com/licenses/mit/).
+oosealicense.com/licenses/mit/).

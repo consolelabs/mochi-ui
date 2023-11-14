@@ -4,7 +4,7 @@ Checkbox component allows users to select multiple items from a list of
 individual items, or to mark one individual item as selected.
 
 For further details, visit our
-[Checkbox Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-checkbox--docs).
+[Checkbox Documentation](https://ds.console.so/?path=/docs/ui-checkbox--docs).
 
 ## Installation
 

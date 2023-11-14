@@ -4,7 +4,7 @@ List component structures and displays a collection of items in an organized
 format.
 
 For further details, visit our
-[List Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-list--docs).
+[List Documentation](https://ds.console.so/?path=/docs/ui-list--docs).
 
 ## Installation
 

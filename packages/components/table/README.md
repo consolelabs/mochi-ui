@@ -3,7 +3,7 @@
 Table component is used to display tabular data using rows and columns.
 
 For further details, visit our
-[Table Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-table--docs).
+[Table Documentation](https://ds.console.so/?path=/docs/ui-table--docs).
 
 ## Installation
 

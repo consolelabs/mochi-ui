@@ -3,7 +3,7 @@
 Dropdown component displays list of actions or options that a user can choose.
 
 For further details, visit our
-[Dropdown Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-dropdown--docs).
+[Dropdown Documentation](https://ds.console.so/?path=/docs/ui-dropdown--docs).
 
 ## Installation
 

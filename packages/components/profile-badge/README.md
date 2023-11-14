@@ -4,7 +4,7 @@ Profile Badge displays user information, including their name, platform, and
 avatar.
 
 For further details, visit our
-[Profile Badge Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-profilebadge--docs).
+[Profile Badge Documentation](https://ds.console.so/?path=/docs/ui-profilebadge--docs).
 
 ## Installation
 

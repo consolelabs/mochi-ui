@@ -1,10 +1,10 @@
-# @consolelabs/select
+# @consolelabs/badge
 
-Select component displays a collapsible list of options and allows a user to
-select one of them.
+Badge component is used as a small numerical value or status descriptor for UI
+elements.
 
 For further details, visit our
-[Select Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-select--docs).
+[Badge Documentation](https://ds.console.so/?path=/docs/ui-badge--docs).
 
 ## Installation
 
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/select
+pnpm i @consolelabs/badge
 
 # Using NPM
-npm i @consolelabs/select
+npm i @consolelabs/badge
 
 # Using Yarn
-yarn add @consolelabs/select
+yarn add @consolelabs/badge
 ```
 
 ## Contribution

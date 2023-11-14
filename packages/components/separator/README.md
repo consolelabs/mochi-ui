@@ -1,10 +1,10 @@
-# @consolelabs/separator
+# @consolelabs/badge
 
-Separator component creates a clear distinction or spacing between content
-sections or items.
+Badge component is used as a small numerical value or status descriptor for UI
+elements.
 
 For further details, visit our
-[Separator Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-separator--docs).
+[Badge Documentation](https://ds.console.so/?path=/docs/ui-badge--docs).
 
 ## Installation
 
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/separator
+pnpm i @consolelabs/badge
 
 # Using NPM
-npm i @consolelabs/separator
+npm i @consolelabs/badge
 
 # Using Yarn
-yarn add @consolelabs/separator
+yarn add @consolelabs/badge
 ```
 
 ## Contribution

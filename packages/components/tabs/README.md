@@ -1,10 +1,10 @@
-# @consolelabs/tabs
+# @consolelabs/badge
 
-Tabs component organizes content into multiple sections and allow users to
-navigate between them.
+Badge component is used as a small numerical value or status descriptor for UI
+elements.
 
 For further details, visit our
-[Tabs Documentation](https://web-design-system-consolelabs.vercel.app/?path=/story/ui-tabs--default).
+[Badge Documentation](https://ds.console.so/?path=/docs/ui-badge--docs).
 
 ## Installation
 
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/tabs
+pnpm i @consolelabs/badge
 
 # Using NPM
-npm i @consolelabs/tabs
+npm i @consolelabs/badge
 
 # Using Yarn
-yarn add @consolelabs/tabs
+yarn add @consolelabs/badge
 ```
 
 ## Contribution

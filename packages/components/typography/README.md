@@ -1,10 +1,10 @@
-# @consolelabs/typography
+# @consolelabs/badge
 
-Typography component encompasses a range of elements designed to represent
-various text styles within an application
+Badge component is used as a small numerical value or status descriptor for UI
+elements.
 
 For further details, visit our
-[Typography Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-typography--docs).
+[Badge Documentation](https://ds.console.so/?path=/docs/ui-badge--docs).
 
 ## Installation
 
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/typography
+pnpm i @consolelabs/badge
 
 # Using NPM
-npm i @consolelabs/typography
+npm i @consolelabs/badge
 
 # Using Yarn
-yarn add @consolelabs/typography
+yarn add @consolelabs/badge
 ```
 
 ## Contribution

@@ -1,9 +1,10 @@
-# @consolelabs/icon-button
+# @consolelabs/badge
 
-Icon Button component is the button adorned with an easily recognizable icon.
+Badge component is used as a small numerical value or status descriptor for UI
+elements.
 
 For further details, visit our
-[Icon Button Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-iconbutton--docs).
+[Badge Documentation](https://ds.console.so/?path=/docs/ui-badge--docs).
 
 ## Installation
 
@@ -11,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/icon-button
+pnpm i @consolelabs/badge
 
 # Using NPM
-npm i @consolelabs/icon-button
+npm i @consolelabs/badge
 
 # Using Yarn
-yarn add @consolelabs/icon-button
+yarn add @consolelabs/badge
 ```
 
 ## Contribution

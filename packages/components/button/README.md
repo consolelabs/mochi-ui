@@ -3,7 +3,7 @@
 Button component allows users to perform actions and choose with a single tap.
 
 For further details, visit our
-[Button Documentation](https://web-design-system-consolelabs.vercel.app/?path=/docs/ui-button--docs).
+[Button Documentation](https://ds.console.so/?path=/docs/ui-button--docs).
 
 ## Installation
 
