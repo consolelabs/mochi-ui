@@ -24,9 +24,8 @@ export const connectorsForWallets = (walletList: WalletList) => {
       wallets.forEach(({ createConnector, ...walletMeta }) => {
         index++
 
-        const { connector, ...connectionMethods } = omitUndefinedValues(
-          createConnector(),
-        )
+        const { connector, ...connectionMethods } =
+          omitUndefinedValues(createConnector())
 
         if (!connector) return
 

@@ -381,8 +381,8 @@ export default function PaymentButton({
         ? sendNativeEVM
         : sendNonNativeEVM
       : isNative
-      ? sendNativeSOL
-      : sendNonNativeSOL
+        ? sendNativeSOL
+        : sendNonNativeSOL
     if (!payFn || (isEVM && !switchNetworkAsync)) {
       if ((isEVM && !emptyConfigSOL) || (!isEVM && !emptyConfigEVM)) {
         disconnect()

@@ -79,17 +79,17 @@ export const WalletButton = ({
                 isAddressEVM,
               }
           : isNative
-          ? {
-              recipientAddress: new PublicKey(address),
-              amount: BigNumber.from(amount),
-              isAddressEVM,
-            }
-          : {
-              tokenMint: new PublicKey(tokenAddress),
-              recipientAddress: new PublicKey(address),
-              amount: BigNumber.from(amount),
-              isAddressEVM,
-            },
+            ? {
+                recipientAddress: new PublicKey(address),
+                amount: BigNumber.from(amount),
+                isAddressEVM,
+              }
+            : {
+                tokenMint: new PublicKey(tokenAddress),
+                recipientAddress: new PublicKey(address),
+                amount: BigNumber.from(amount),
+                isAddressEVM,
+              },
       )
     })
   }, [

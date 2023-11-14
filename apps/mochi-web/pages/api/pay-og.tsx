@@ -31,8 +31,8 @@ const og = async (req: NextRequest) => {
   const amount = !data.amount
     ? '???'
     : data.moniker
-    ? data.original_amount
-    : data.amount
+      ? data.original_amount
+      : data.amount
 
   data.amount = amount
   data.symbol = unitCurrency

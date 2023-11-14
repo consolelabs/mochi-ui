@@ -9,9 +9,8 @@ const adaptersForWallets = (wallets: WalletList) => {
   wallets.forEach(({ groupName, wallets }) => {
     wallets.forEach(({ createConnector, ...walletMeta }) => {
       index++
-      const { adapter, ...connectionMethods } = omitUndefinedValues(
-        createConnector(),
-      )
+      const { adapter, ...connectionMethods } =
+        omitUndefinedValues(createConnector())
 
       const walletInstance: WalletInstance = {
         adapter,

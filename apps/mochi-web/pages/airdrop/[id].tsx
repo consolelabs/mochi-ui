@@ -243,8 +243,8 @@ export default function Airdrop({
             isWaiting
               ? '/assets/mochisan-meditate.png'
               : redirectingToPaylink
-              ? '/assets/mochisan.png'
-              : '/assets/mochisan-stars.png'
+                ? '/assets/mochisan.png'
+                : '/assets/mochisan-stars.png'
           }
           alt="mochisan with a lot of stars"
         />

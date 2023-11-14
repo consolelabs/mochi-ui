@@ -42,8 +42,8 @@ const og = async (req: NextRequest) => {
   const amount = !data.amount
     ? '???'
     : data.moniker
-    ? data.original_amount
-    : data.amount
+      ? data.original_amount
+      : data.amount
 
   const regular = await regularFont
   const bold = await boldFont
@@ -109,10 +109,10 @@ const og = async (req: NextRequest) => {
                 randomInt <= 0.2
                   ? 'mochisan-money'
                   : randomInt <= 0.5
-                  ? 'mochisan-vault'
-                  : randomInt <= 0.7
-                  ? 'mochisan-stars'
-                  : 'mochisan-spaceship'
+                    ? 'mochisan-vault'
+                    : randomInt <= 0.7
+                      ? 'mochisan-stars'
+                      : 'mochisan-spaceship'
               }.png`}
               alt="mochisan"
             />

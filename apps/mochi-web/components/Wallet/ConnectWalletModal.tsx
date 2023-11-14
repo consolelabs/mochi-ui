@@ -281,8 +281,8 @@ export default function ConnectWalletModal({ isOpen, onClose }: Props) {
             platform: isSuiConnected
               ? 'sui'
               : isEVMConnected
-              ? 'evm'
-              : 'solana',
+                ? 'evm'
+                : 'solana',
           }),
       )
       .catch(() => setSignError(true))

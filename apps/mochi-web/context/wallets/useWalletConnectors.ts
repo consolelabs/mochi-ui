@@ -265,8 +265,8 @@ export const useWalletConnectors = () => {
       connecting: wallet.isSui
         ? suiConnecting
         : wallet.isSolana
-        ? solConnecting
-        : false,
+          ? solConnecting
+          : false,
       ready,
       recent,
       // showWalletConnectModal:
