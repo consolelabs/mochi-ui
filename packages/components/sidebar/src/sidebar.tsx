@@ -24,6 +24,7 @@ const {
   sidebarFooterItemsWrapperClsx,
   sidebarFooterVersionWrapperClsx,
   sidebarFooterVersionTextClsx,
+  sidebarToggleButtonWrapperClsx,
   sidebarToggleButtonClsx,
   sidebarToggleArrowClsx,
 } = sidebar
@@ -69,17 +70,19 @@ export default function Sidebar({
           )}
         </div>
       </div>
-      <button
-        className={sidebarToggleButtonClsx()}
-        onClick={() => setExpanded(!expanded)}
-        type="button"
-      >
-        <IconSidebarArrow
-          className={sidebarToggleArrowClsx({ expanded })}
-          height={25}
-          width={13}
-        />
-      </button>
+      <div className={sidebarToggleButtonWrapperClsx()}>
+        <button
+          className={sidebarToggleButtonClsx()}
+          onClick={() => setExpanded(!expanded)}
+          type="button"
+        >
+          <IconSidebarArrow
+            className={sidebarToggleArrowClsx({ expanded })}
+            height={25}
+            width={13}
+          />
+        </button>
+      </div>
     </div>
   )
 }
