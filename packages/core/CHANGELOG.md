@@ -1,5 +1,18 @@
 # @consolelabs/core
 
+## 0.0.11
+
+### Patch Changes
+
+- [#194](https://github.com/consolelabs/websites/pull/194)
+  [`74ed3cc`](https://github.com/consolelabs/websites/commit/74ed3cc21f683e63cdcb21615a3511f2e6c92a2c)
+  Thanks [@tuanddd](https://github.com/tuanddd)! - Bump version of core
+
+- Updated dependencies
+  [[`74ed3cc`](https://github.com/consolelabs/websites/commit/74ed3cc21f683e63cdcb21615a3511f2e6c92a2c)]:
+  - @consolelabs/button@0.0.11
+  - @consolelabs/popover@0.0.7
+
 ## 0.0.10
 
 ### Patch Changes
