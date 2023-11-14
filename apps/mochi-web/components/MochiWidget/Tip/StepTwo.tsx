@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import Link from 'next/link'
-import { Button } from '@consolelabs/ui-components'
+import { Button } from '@consolelabs/core'
 import { IconCheck, IconChevronLeft, IconSpinner } from '@consolelabs/icons'
 import { useTipWidget } from './store'
 import MessagePicker from '../MessagePicker/MessagePicker'
@@ -20,7 +20,7 @@ export default function StepTwo() {
   } = useTipWidget()
 
   return (
-    <div className="flex flex-col flex-1 gap-y-3 min-h-0">
+    <div className="flex flex-col flex-1 min-h-0 gap-y-3">
       <div
         className={clsx(
           'will-change-transform transition absolute left-0 top-0 w-full h-full',
@@ -48,7 +48,7 @@ export default function StepTwo() {
           View tx
         </Link>
       </div>
-      <div className="flex overflow-y-auto flex-col gap-y-2">
+      <div className="flex flex-col overflow-y-auto gap-y-2">
         <button onClick={() => setStep(1)} className="self-start mt-3">
           <IconChevronLeft className="w-5 h-5" />
         </button>

@@ -11,8 +11,8 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-  Button,
 } from '@consolelabs/ui-components'
+import { Button } from '@consolelabs/core'
 import { IconArrowRight, IconChevronDown } from '@consolelabs/icons'
 import { WalletPicker } from '../WalletPicker'
 import { Recipient } from '../Recipient'
@@ -85,8 +85,8 @@ export default function StepOne() {
   }
 
   return (
-    <div className="flex flex-col flex-1 gap-y-3 min-h-0">
-      <div className="flex overflow-y-auto flex-col gap-y-2 h-full">
+    <div className="flex flex-col flex-1 min-h-0 gap-y-3">
+      <div className="flex flex-col h-full overflow-y-auto gap-y-2">
         <div className="flex flex-col gap-y-2.5 items-center py-3 mt-3">
           <p className="text-xl text-[#343433] font-medium">Send a tip</p>
           <span className="text-[#848281] text-xs text-center">

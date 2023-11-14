@@ -8,7 +8,7 @@ import { TabbedFeatures } from '~cpn/landing/TabbedFeatures'
 import { SupportedPlatforms } from '~cpn/landing/SupportedPlatforms'
 import { LivePlatforms } from '~cpn/landing/LivePlatforms'
 import { Divider } from '~cpn/landing/Divider'
-import { Button } from '@consolelabs/ui-components'
+import { Button } from '@consolelabs/core'
 import {
   IconArrowRight,
   IconBlocksColored,
@@ -67,7 +67,7 @@ export default function Index() {
   return (
     <Layout>
       <SEO />
-      <div className="grid grid-cols-1 auto-rows-min gap-y-7 gap-x-20 py-8 px-4 m-auto w-full max-w-5xl lg:grid-rows-2 lg:p-8 lg:grid-cols-min">
+      <div className="grid w-full max-w-5xl grid-cols-1 px-4 py-8 m-auto auto-rows-min gap-y-7 gap-x-20 lg:grid-rows-2 lg:p-8 lg:grid-cols-min">
         <div className="flex flex-col lg:justify-end">
           <p className="text-[32px] leading-[38.4px] title-tracking md:text-[40px] md:leading-[48px]">
             Send{' '}
@@ -224,7 +224,7 @@ export default function Index() {
             </Button>
           </Link>
         </div>
-        <div className="hidden gap-2 justify-center items-center md:flex">
+        <div className="items-center justify-center hidden gap-2 md:flex">
           <Link href="/profile">
             <Button size="lg" className="!px-10">
               {isLoggedIn ? 'Profile' : 'Login'}

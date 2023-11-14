@@ -3,7 +3,8 @@ import Image from 'next/image'
 import clsx from 'clsx'
 import { Layout } from '~app/layout'
 import { SEO } from '~app/layout/seo'
-import { Button, IconButton, Tooltip } from '@consolelabs/ui-components'
+import { IconButton, Tooltip } from '@consolelabs/ui-components'
+import { Button } from '@consolelabs/core'
 import {
   IconApt,
   IconArb,
@@ -81,7 +82,7 @@ function BrowseAPIs() {
               href={HOME_URL}
               key={d.body}
               style={{ backgroundColor: gray1 }}
-              className="flex overflow-hidden items-start rounded-lg"
+              className="flex items-start overflow-hidden rounded-lg"
             >
               <div className="relative flex-shrink-0 w-3 h-full">
                 <Image
@@ -90,7 +91,7 @@ function BrowseAPIs() {
                   src="/developer/browse-api-left-border.jpg"
                 />
               </div>
-              <div className="flex gap-x-4 items-start p-6 h-full">
+              <div className="flex items-start h-full p-6 gap-x-4">
                 <Image
                   width={48}
                   height={48}
@@ -98,7 +99,7 @@ function BrowseAPIs() {
                   className="hidden object-contain md:inline-block"
                   alt=""
                 />
-                <div className="flex flex-col gap-y-3 h-full md:gap-0">
+                <div className="flex flex-col h-full gap-y-3 md:gap-0">
                   <div className="flex gap-x-3">
                     <Image
                       width={32}
@@ -161,16 +162,16 @@ const networks: [
 ]
 function SupportedPlatforms() {
   return (
-    <div className="hidden flex-col mt-16 md:flex landing-block">
+    <div className="flex-col hidden mt-16 md:flex landing-block">
       <p className="text-4xl font-medium text-center">Supported platforms</p>
-      <div className="flex flex-col gap-y-8 mt-8">
+      <div className="flex flex-col mt-8 gap-y-8">
         <div className="flex flex-col gap-y-4">
           <span className="text-lg font-medium">Socials</span>
-          <div className="grid grid-cols-5 auto-rows-auto border-t border-l border-neutral-300">
+          <div className="grid grid-cols-5 border-t border-l auto-rows-auto border-neutral-300">
             {socials.map(([Icon, name]) => (
               <div
                 key={name}
-                className="flex flex-col gap-y-3 justify-center items-center p-6 border-r border-b border-neutral-300"
+                className="flex flex-col items-center justify-center p-6 border-b border-r gap-y-3 border-neutral-300"
               >
                 <Icon key={name} className="w-10 h-10" />
                 <span className="text-base">{name}</span>
@@ -180,12 +181,12 @@ function SupportedPlatforms() {
         </div>
         <div className="flex flex-col gap-y-4">
           <span className="text-lg font-medium">Networks</span>
-          <div className="grid grid-cols-5 auto-rows-auto border-t border-l border-neutral-300">
+          <div className="grid grid-cols-5 border-t border-l auto-rows-auto border-neutral-300">
             {networks.map(([Icon, name, comingSoon]) => {
               return (
                 <div
                   key={name}
-                  className="flex flex-col gap-y-3 justify-center items-center p-6 border-r border-b border-neutral-300"
+                  className="flex flex-col items-center justify-center p-6 border-b border-r gap-y-3 border-neutral-300"
                 >
                   <div className="relative">
                     <Icon
@@ -194,7 +195,7 @@ function SupportedPlatforms() {
                       })}
                     />
                     {comingSoon && (
-                      <span className="absolute bottom-0 left-1/2 px-1 leading-3 rounded-full border -translate-x-1/2 text-xxs bg-white-pure border-neutral-200">
+                      <span className="absolute bottom-0 px-1 leading-3 -translate-x-1/2 border rounded-full left-1/2 text-xxs bg-white-pure border-neutral-200">
                         soon
                       </span>
                     )}
@@ -217,10 +218,10 @@ function SupportedPlatforms() {
 function TryItOut() {
   const [idx, setIdx] = useState(0)
   return (
-    <div className="hidden flex-col md:flex landing-block">
+    <div className="flex-col hidden md:flex landing-block">
       <p className="text-4xl font-medium">Try it out</p>
-      <div className="flex gap-x-5 mt-8">
-        <ul className="flex flex-col flex-shrink-0 gap-y-2 w-1/3">
+      <div className="flex mt-8 gap-x-5">
+        <ul className="flex flex-col flex-shrink-0 w-1/3 gap-y-2">
           {[
             'Start a payment',
             'Sell a product',
@@ -247,7 +248,7 @@ function TryItOut() {
           })}
         </ul>
         <div className="flex flex-col p-8 w-2/3 bg-[#3B3B3B] rounded-2xl max-h-[500px]">
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <span className="text-xs uppercase text-white-pure">
               curl request
             </span>
@@ -255,7 +256,7 @@ function TryItOut() {
               <IconCopy className="w-5 h-5" />
             </IconButton>
           </div>
-          <div className="overflow-auto h-full">
+          <div className="h-full overflow-auto">
             <code className="text-sm text-white-pure">
               <pre
                 dangerouslySetInnerHTML={{
@@ -276,7 +277,7 @@ function TryItOut() {
                 className="whitespace-pre-wrap"
               />
             </code>
-            <div className="flex sticky bottom-0 justify-between items-center p-4 w-full text-sm font-medium rounded-lg bg-white-pure">
+            <div className="sticky bottom-0 flex items-center justify-between w-full p-4 text-sm font-medium rounded-lg bg-white-pure">
               <span>
                 <span className="text-blue-500">Sign in</span> to edit real
                 requests.

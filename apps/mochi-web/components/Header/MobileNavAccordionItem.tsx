@@ -5,8 +5,8 @@ import {
   AccordionItem,
   AccordionTrigger,
   SectionList,
-  Button,
 } from '@consolelabs/ui-components'
+import { Button } from '@consolelabs/core'
 import Link from 'next/link'
 import { Fragment } from 'react'
 import { NavItem } from './type'
@@ -36,7 +36,7 @@ export const MobileNavAccordionItem = (props: MobileNavAccordion) => {
         onClick={item.onClick}
       >
         <LinkWrapper
-          className="flex h-full gap-3 flex-1 items-center"
+          className="flex items-center flex-1 h-full gap-3"
           href={item.href as any}
         >
           {item.iconLeft && <span className="text-xl">{item.iconLeft}</span>}
@@ -48,7 +48,7 @@ export const MobileNavAccordionItem = (props: MobileNavAccordion) => {
 
   const renderItemSection = (section: MobileAccordionItem) =>
     section.title ? (
-      <h3 className="py-2 text-neutral-600 text-sm">{section.title}</h3>
+      <h3 className="py-2 text-sm text-neutral-600">{section.title}</h3>
     ) : null
 
   return (

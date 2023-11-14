@@ -1,6 +1,6 @@
 import { IconArrowRight, IconArrowUp } from '@consolelabs/icons'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Button } from '@consolelabs/ui-components'
+import { Button } from '@consolelabs/core'
 import clsx from 'clsx'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { useEffect, useMemo, useRef, useState } from 'react'
@@ -111,7 +111,7 @@ export default function Feed({ className = '' }: Props) {
       />
       <div
         style={{ maxWidth: 1440 }}
-        className="flex justify-between items-center py-6 px-8 mx-auto w-screen"
+        className="flex items-center justify-between w-screen px-8 py-6 mx-auto"
       >
         <span className="px-4 text-sm leading-5 text-white-pure">
           Recent Transactions
@@ -136,7 +136,7 @@ export default function Feed({ className = '' }: Props) {
         className="overflow-y-hidden h-screen max-h-full"
       >
         <div className="px-8 mx-auto" style={{ width: 1440 }}>
-          <div className="flex sticky top-0 z-10 flex-1 bg-feed-bg">
+          <div className="sticky top-0 z-10 flex flex-1 bg-feed-bg">
             {[
               'issued by',
               '',
@@ -165,7 +165,7 @@ export default function Feed({ className = '' }: Props) {
             />
           </div>
 
-          <div className="flex relative flex-col flex-1 min-h-0">
+          <div className="relative flex flex-col flex-1 min-h-0">
             <AnimatePresence>
               {loading
                 ? Array(10)
