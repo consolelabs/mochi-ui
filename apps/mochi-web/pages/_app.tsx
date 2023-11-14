@@ -18,7 +18,7 @@ import { isBeta } from '~constants'
 import Button from '~cpn/base/button'
 import Script from 'next/script'
 import { Header } from '~cpn/Header'
-import { Modal, ModalContent, ModalTrigger } from '@consolelabs/ui-components'
+import { Modal, ModalContent, ModalTrigger } from '@consolelabs/core'
 
 const inter = Inter({ subsets: ['latin'] })
 
