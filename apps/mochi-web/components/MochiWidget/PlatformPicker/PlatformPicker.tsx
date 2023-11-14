@@ -1,9 +1,5 @@
 import { useEffect, useState } from 'react'
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-} from '@consolelabs/ui-components'
+import { Popover, PopoverTrigger, PopoverContent } from '@consolelabs/core'
 import { IconChevronDown } from '@consolelabs/icons'
 import { PlatformList } from './PlatformList'
 import { Platform } from './type'

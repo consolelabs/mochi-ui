@@ -1,11 +1,10 @@
+import { Heading, InputField } from '@consolelabs/ui-components'
 import {
-  Heading,
-  InputField,
+  SectionList,
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@consolelabs/ui-components'
-import { SectionList } from '@consolelabs/core'
+} from '@consolelabs/core'
 import { IconMagnifier } from '@consolelabs/icons'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { useState } from 'react'

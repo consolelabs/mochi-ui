@@ -8,11 +8,11 @@ import {
 } from 'react'
 import { AuthPanel } from '~cpn/AuthWidget'
 import {
+  Button,
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@consolelabs/ui-components'
-import { Button } from '@consolelabs/core'
+} from '@consolelabs/core'
 import { IconArrowRight, IconChevronDown } from '@consolelabs/icons'
 import { WalletPicker } from '../WalletPicker'
 import { Recipient } from '../Recipient'
