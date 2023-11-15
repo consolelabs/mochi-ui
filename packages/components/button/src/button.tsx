@@ -1,26 +1,27 @@
 import { button, ButtonStylesProps } from '@consolelabs/theme'
 import { IconThreeDotLoading } from '@consolelabs/icons'
-import React, { ButtonHTMLAttributes, ReactNode } from 'react'
+import type * as Polymorphic from '@consolelabs/polymorphic'
+import React, { ReactNode } from 'react'
 
 const { buttonCva, buttonloadIndicatorCva, buttonLoadingIconClsx } = button
 
-export type ButtonProps = ButtonStylesProps &
-  ButtonHTMLAttributes<HTMLButtonElement> & {
-    children?: React.ReactNode
-    className?: string
-    loading?: boolean
-    loadingIndicator?: ReactNode
-    loadingIndicatorClassName?: string
-  }
+export type ButtonProps = ButtonStylesProps & {
+  loading?: boolean
+  loadingIndicator?: ReactNode
+  loadingIndicatorClassName?: string
+}
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+type PolymorphicButton = Polymorphic.ForwardRefComponent<'button', ButtonProps>
+
+const Button = React.forwardRef(
   (
     {
+      as: Component = 'button',
       children,
       variant,
       color,
       size,
-      disabled,
+      disabled = false,
       className,
       loading,
       loadingIndicator: customerIndicator,
@@ -43,7 +44,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     )
 
     return (
-      <button
+      <Component
         className={buttonCva({
           className,
           variant,
@@ -52,15 +53,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           disabled,
           loading,
         })}
-        disabled={disabled}
-        type={rest.type || 'button'}
+        disabled={disabled as boolean | undefined}
         ref={ref}
         {...rest}
       >
         {loading ? loadingIndicator : children}
-      </button>
+      </Component>
     )
   },
-)
+) as PolymorphicButton
 
 export default Button
