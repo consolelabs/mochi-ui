@@ -13,7 +13,13 @@ export const TokenList = (props: Props) => {
   return (
     <List
       data={data}
-      renderItem={(item) => <TokenItem item={item} onSelect={onSelect} />}
+      renderItem={(item) => (
+        <TokenItem
+          key={`token-list-${item.id}`}
+          item={item}
+          onSelect={onSelect}
+        />
+      )}
       ListEmpty={<EmptyList />}
       rootClassName="w-full h-full"
     />

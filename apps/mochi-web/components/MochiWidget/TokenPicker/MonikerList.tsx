@@ -13,7 +13,13 @@ export const MonikerList = (props: Props) => {
   return (
     <SectionList
       sections={data}
-      renderItem={(item) => <MonikerItem item={item} onSelect={onSelect} />}
+      renderItem={(item) => (
+        <MonikerItem
+          key={`moniker-list-${item.id}`}
+          item={item}
+          onSelect={onSelect}
+        />
+      )}
       renderSectionHeader={(section) => (
         <label className="font-bold text-[0.625rem] uppercase text-[#ADACAA]">
           {section.title}

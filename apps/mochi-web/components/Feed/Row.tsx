@@ -8,18 +8,16 @@ import RowCell from './RowCell'
 export default function Row({ tx, colWidth }: { tx: Tx; colWidth: string[] }) {
   return (
     <>
-      <RowCell className="gap-x-2" width={colWidth[0]}>
+      <RowCell className="flex gap-x-2 items-center" width={colWidth[0]}>
         <Avatar
           smallSrc={tx.platformIcon}
           src={tx.fromAvatar}
           fallback={tx.from}
+          size="sm"
         />
         <div className="flex flex-col justify-between min-w-0">
           <span className="text-sm leading-5 break-words truncate text-white-pure">
             {tx.from}
-          </span>
-          <span className="text-xs font-normal capitalize text-neutral-600">
-            {tx.sourcePlatform}
           </span>
         </div>
       </RowCell>
@@ -28,11 +26,12 @@ export default function Row({ tx, colWidth }: { tx: Tx; colWidth: string[] }) {
           <IconArrowRight className="w-full h-full scale-125" />
         </div>
       </RowCell>
-      <RowCell className="gap-x-2" width={colWidth[2]}>
+      <RowCell className="flex gap-x-2 items-center" width={colWidth[2]}>
         <Avatar
           smallSrc={tx.toPlatformIcon}
           src={tx.toAvatar}
           fallback={tx.to}
+          size="sm"
         />
         <div className="flex flex-col justify-between min-w-0">
           <span className="text-sm leading-5 break-words truncate text-white-pure">
@@ -42,8 +41,8 @@ export default function Row({ tx, colWidth }: { tx: Tx; colWidth: string[] }) {
       </RowCell>
       <RowCell className="items-center" width={colWidth[3]}>
         <Badge
-          className="bg-neutral-800 text-white-pure"
-          label="Transfer"
+          className="capitalize bg-neutral-800 text-white-pure"
+          label={tx.action}
           appearance="black"
         />
       </RowCell>

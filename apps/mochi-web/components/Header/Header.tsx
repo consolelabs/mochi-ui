@@ -1,3 +1,4 @@
+import { useHasMounted } from '@dwarvesf/react-hooks'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useAuthStore, useProfileStore } from '~store'
@@ -62,6 +63,7 @@ export const Header = () => {
   const { isLoggedIn, isLogging } = useAuthStore()
   const [openMobileNav, setOpenMobileNav] = useState(false)
   const { isMobile } = useResponsiveScreen()
+  const isMounted = useHasMounted()
 
   const onCloseMobileNav = useCallback(() => setOpenMobileNav(false), [])
 
@@ -81,10 +83,10 @@ export const Header = () => {
       )}
     >
       <button
-        className="flex items-center text-left gap-x-2"
+        className="flex gap-x-2 items-center text-left"
         onClick={onCloseMobileNav}
       >
-        <Link href={ROUTES.HOME} className="flex items-center gap-x-2">
+        <Link href={ROUTES.HOME} className="flex gap-x-2 items-center">
           <Image
             src={logo}
             alt="Logo"
@@ -102,48 +104,50 @@ export const Header = () => {
           </Link>
         )}
       </button>
-      {isMobile ? (
-        <>
-          <IconButton
-            size="lg"
-            variant="ghost"
-            className="bg-white-pure !p-2 rounded-none hover:border-none"
-            onClick={() => setOpenMobileNav((prev) => !prev)}
-          >
-            {openMobileNav ? (
-              <IconClose className="text-2xl text-neutral-800" />
-            ) : (
-              <IconMenu className="text-2xl text-neutral-800" />
-            )}
-          </IconButton>
-          {openMobileNav && (
-            <div
-              className={clsx(
-                'fixed top-16 inset-0 bg-white-pure rounded-none flex flex-col',
-                'overflow-y-scroll',
+      {isMounted ? (
+        isMobile ? (
+          <>
+            <IconButton
+              size="lg"
+              variant="ghost"
+              className="bg-white-pure !p-2 rounded-none hover:border-none"
+              onClick={() => setOpenMobileNav((prev) => !prev)}
+            >
+              {openMobileNav ? (
+                <IconClose className="text-2xl text-neutral-800" />
+              ) : (
+                <IconMenu className="text-2xl text-neutral-800" />
               )}
-            >
-              <MobileNav onClose={onCloseMobileNav} />
+            </IconButton>
+            {openMobileNav && (
+              <div
+                className={clsx(
+                  'fixed top-16 inset-0 bg-white-pure rounded-none flex flex-col',
+                  'overflow-y-scroll',
+                )}
+              >
+                <MobileNav onClose={onCloseMobileNav} />
+              </div>
+            )}
+          </>
+        ) : (
+          <div className="flex flex-row order-1 gap-y-2 gap-x-6 self-center ml-auto md:order-2">
+            <div className="flex flex-wrap gap-5 items-stretch">
+              <Link
+                href="/features"
+                className="flex items-center text-sm font-semibold"
+              >
+                Features
+              </Link>
             </div>
-          )}
-        </>
-      ) : (
-        <div className="flex flex-row self-center order-1 ml-auto gap-y-2 gap-x-6 md:order-2">
-          <div className="flex flex-wrap items-stretch gap-5">
-            <Link
-              href="/features"
-              className="flex items-center text-sm font-semibold"
-            >
-              Features
-            </Link>
+            {isLoggedIn && me ? (
+              <ProfileDropdown />
+            ) : (
+              <LoginPopover isLogging={isLogging} />
+            )}
           </div>
-          {isLoggedIn && me ? (
-            <ProfileDropdown />
-          ) : (
-            <LoginPopover isLogging={isLogging} />
-          )}
-        </div>
-      )}
+        )
+      ) : null}
     </nav>
   )
 }

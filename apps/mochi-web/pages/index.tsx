@@ -45,16 +45,18 @@ export default function Index() {
     const typedCur = new Typed(currency.current, {
       showCursor: false,
       strings: currencies,
-      typeSpeed: 50,
-      backDelay: 1800,
+      typeSpeed: 90,
+      backSpeed: 50,
+      backDelay: 1000,
       loop: true,
     })
 
     const typedPlat = new Typed(platform.current, {
       showCursor: false,
       strings: platforms,
-      typeSpeed: 30,
-      backDelay: 1800,
+      typeSpeed: 90,
+      backDelay: 1000,
+      backSpeed: 50,
       loop: true,
     })
 
@@ -67,7 +69,7 @@ export default function Index() {
   return (
     <Layout>
       <SEO />
-      <div className="grid w-full max-w-5xl grid-cols-1 px-4 py-8 m-auto auto-rows-min gap-y-7 gap-x-20 lg:grid-rows-2 lg:p-8 lg:grid-cols-min">
+      <div className="grid grid-cols-1 auto-rows-min gap-y-7 gap-x-20 py-8 px-4 m-auto w-full max-w-5xl lg:grid-rows-2 lg:p-8 lg:grid-cols-min">
         <div className="flex flex-col lg:justify-end">
           <p className="text-[32px] leading-[38.4px] title-tracking md:text-[40px] md:leading-[48px]">
             Send{' '}
@@ -212,9 +214,9 @@ export default function Index() {
             users.
           </span>
           <LivePlatforms className="mt-3" />
-          <Link href="/features">
+          <Link href="/features" className="mt-1 md:hidden">
             <Button
-              className="justify-center mt-1 md:hidden"
+              className="justify-center w-full"
               size="lg"
               color="info"
               variant="outline"
@@ -224,7 +226,7 @@ export default function Index() {
             </Button>
           </Link>
         </div>
-        <div className="items-center justify-center hidden gap-2 md:flex">
+        <div className="hidden gap-2 justify-center items-center md:flex">
           <Link href="/profile">
             <Button size="lg" className="!px-10">
               {isLoggedIn ? 'Profile' : 'Login'}

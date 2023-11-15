@@ -1,3 +1,4 @@
+import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { IconArrowRight, IconArrowUp } from '@consolelabs/icons'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Button } from '@consolelabs/core'
@@ -9,8 +10,8 @@ import { useTipFeed } from './store'
 import Row from './Row'
 import RowSkeleton from './RowSkeleton'
 
-const showTopFadeLimit = 35 as const
-const showBotFadeLimit = -35 as const
+/* const showTopFadeLimit = 35 as const */
+/* const showBotFadeLimit = -35 as const */
 const colWidth = [
   'w-[205px]', // from
   'w-min', // arrow icon
@@ -40,13 +41,13 @@ interface Props {
 export default function Feed({ className = '' }: Props) {
   const {
     isOpen: isShowTopFade,
-    onOpen: showTopFade,
-    onClose: hideTopFade,
+    /* onOpen: showTopFade, */
+    /* onClose: hideTopFade, */
   } = useDisclosure()
   const {
     isOpen: isShowBotFade,
-    onOpen: showBotFade,
-    onClose: hideBotFade,
+    /* onOpen: showBotFade, */
+    /* onClose: hideBotFade, */
   } = useDisclosure({ defaultIsOpen: true })
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -73,7 +74,7 @@ export default function Feed({ className = '' }: Props) {
 
   return (
     <div
-      style={{ maxHeight: 850 }}
+      style={{ maxHeight: 700 }}
       className={clsx('h-screen relative bg-feed-bg w-screen flex flex-col', {
         className,
       })}
@@ -86,7 +87,7 @@ export default function Feed({ className = '' }: Props) {
           }
         }}
         className={clsx(
-          'flex absolute left-1/2 top-[110px] z-20 gap-x-1 items-center py-1 px-2 rounded-full transition -translate-x-1/2 bg-white-pure hover:bg-neutral-300',
+          'hidden absolute left-1/2 top-[110px] z-20 gap-x-1 items-center py-1 px-2 rounded-full transition -translate-x-1/2 bg-white-pure hover:bg-neutral-300',
           {
             'opacity-0': !isShowTopFade,
             'opacity-100 translate-y-2': isShowTopFade,
@@ -111,7 +112,7 @@ export default function Feed({ className = '' }: Props) {
       />
       <div
         style={{ maxWidth: 1440 }}
-        className="flex items-center justify-between w-screen px-8 py-6 mx-auto"
+        className="flex justify-between items-center py-6 px-8 mx-auto w-screen"
       >
         <span className="px-4 text-sm leading-5 text-white-pure">
           Recent Transactions
@@ -122,76 +123,86 @@ export default function Feed({ className = '' }: Props) {
           </Button>
         </div>
       </div>
-      <div
-        ref={containerRef}
-        onScroll={(e) => {
-          const el = e.target as HTMLDivElement
-          const bottomSpace = el.scrollTop - (el.scrollHeight - el.offsetHeight)
-          if (el.scrollTop > showTopFadeLimit && !isShowTopFade) showTopFade()
-          if (el.scrollTop <= showTopFadeLimit && isShowTopFade) hideTopFade()
+      <ScrollArea.Root className="min-h-0">
+        <ScrollArea.Viewport
+          ref={containerRef}
+          /* onScroll={(e) => { */
+          /*   const el = e.target as HTMLDivElement */
+          /*   const bottomSpace = */
+          /*     el.scrollTop - (el.scrollHeight - el.offsetHeight) */
+          /*   if (el.scrollTop > showTopFadeLimit && !isShowTopFade) showTopFade() */
+          /*   if (el.scrollTop <= showTopFadeLimit && isShowTopFade) hideTopFade() */
+          /**/
+          /*   if (bottomSpace > showBotFadeLimit && isShowBotFade) hideBotFade() */
+          /*   if (bottomSpace <= showBotFadeLimit && !isShowBotFade) showBotFade() */
+          /* }} */
+          className="overflow-hidden h-screen max-h-full"
+        >
+          <div className="px-8 mx-auto" style={{ width: 1440 }}>
+            <div className="flex sticky top-0 z-10 flex-1 bg-feed-bg">
+              {[
+                'issued by',
+                '',
+                'recipients',
+                'method',
+                'amount',
+                'where',
+                'tx id',
+                'wen',
+                'status',
+              ].map((column, i) => {
+                return (
+                  <HeaderCell
+                    className={i === 8 ? 'pl-6' : ''}
+                    key={`feed-column-${column}`}
+                    width={colWidth[i]}
+                  >
+                    {i === 1 ? <div className="w-5" /> : column}
+                  </HeaderCell>
+                )
+              })}
+              <div
+                className={clsx(
+                  'transition top-full left-0 absolute w-full h-20 bg-gradient-to-b pointer-events-none from-feed-bg',
+                  {
+                    'opacity-100': isShowTopFade,
+                    'opacity-0': !isShowTopFade,
+                  },
+                )}
+              />
+            </div>
 
-          if (bottomSpace > showBotFadeLimit && isShowBotFade) hideBotFade()
-          if (bottomSpace <= showBotFadeLimit && !isShowBotFade) showBotFade()
-        }}
-        className="overflow-y-hidden h-screen max-h-full"
-      >
-        <div className="px-8 mx-auto" style={{ width: 1440 }}>
-          <div className="sticky top-0 z-10 flex flex-1 bg-feed-bg">
-            {[
-              'issued by',
-              '',
-              'recipients',
-              'method',
-              'amount',
-              'where',
-              'tx id',
-              'wen',
-              'status',
-            ].map((column, i) => {
-              return (
-                <HeaderCell key={`feed-column-${column}`} width={colWidth[i]}>
-                  {i === 1 ? <div className="w-5" /> : column}
-                </HeaderCell>
-              )
-            })}
-            <div
-              className={clsx(
-                'transition top-full left-0 absolute w-full h-20 bg-gradient-to-b pointer-events-none from-feed-bg',
-                {
-                  'opacity-100': isShowTopFade,
-                  'opacity-0': !isShowTopFade,
-                },
-              )}
-            />
+            <div className="flex relative flex-col flex-1 min-h-0">
+              <AnimatePresence>
+                {loading
+                  ? Array(10)
+                      .fill(0)
+                      .map((_, i) => (
+                        <div key={`rows-skeleton-${i}`} className="flex">
+                          <RowSkeleton colWidth={colWidth} />
+                        </div>
+                      ))
+                  : txns.map((tx) => {
+                      return (
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          key={`feed-row-${tx.from}-${tx.to}-${tx.code}`}
+                          className="flex"
+                        >
+                          <Row tx={tx} colWidth={colWidth} />
+                        </motion.div>
+                      )
+                    })}
+              </AnimatePresence>
+            </div>
           </div>
-
-          <div className="relative flex flex-col flex-1 min-h-0">
-            <AnimatePresence>
-              {loading
-                ? Array(10)
-                    .fill(0)
-                    .map((_, i) => (
-                      <div key={`rows-skeleton-${i}`} className="flex">
-                        <RowSkeleton colWidth={colWidth} />
-                      </div>
-                    ))
-                : txns.map((tx) => {
-                    return (
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        key={`feed-row-${tx.from}-${tx.to}-${tx.code}`}
-                        className="flex"
-                      >
-                        <Row tx={tx} colWidth={colWidth} />
-                      </motion.div>
-                    )
-                  })}
-            </AnimatePresence>
-          </div>
-        </div>
-      </div>
+        </ScrollArea.Viewport>
+        <ScrollArea.Scrollbar orientation="horizontal">
+          <ScrollArea.Thumb />
+        </ScrollArea.Scrollbar>
+      </ScrollArea.Root>
     </div>
   )
 }

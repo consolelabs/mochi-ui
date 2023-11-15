@@ -13,7 +13,13 @@ export const PlatformList = (props: Props) => {
     <List
       rootClassName="w-full"
       data={data}
-      renderItem={(item) => <PlatformItem item={item} onSelect={onSelect} />}
+      renderItem={(item) => (
+        <PlatformItem
+          key={`platform-list-${item.id}`}
+          item={item}
+          onSelect={onSelect}
+        />
+      )}
     />
   )
 }

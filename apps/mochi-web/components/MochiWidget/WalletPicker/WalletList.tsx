@@ -13,7 +13,13 @@ export const WalletList = (props: Props) => {
     <List
       rootClassName="w-full"
       data={data}
-      renderItem={(item) => <WalletItem item={item} onSelect={onSelect} />}
+      renderItem={(item) => (
+        <WalletItem
+          key={`wallet-item-${item.wallet.id}`}
+          item={item}
+          onSelect={onSelect}
+        />
+      )}
     />
   )
 }
