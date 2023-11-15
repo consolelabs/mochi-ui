@@ -6,7 +6,6 @@ import {
   IconArrowDown,
   IconSolidDot,
 } from '@consolelabs/icons'
-import { Switch } from '../switch'
 import { Avatar } from '../avatar'
 import {
   DropdownMenu,
@@ -48,11 +47,11 @@ const MenuItems: (args: any) => DropdownItemProps[] = (args) => [
   },
   {
     children: 'Try click',
-    rightExtra: (
-      <button onClick={(e) => e.stopPropagation()} type="button">
-        <Switch checked={args.checked} onChange={(c) => args.setSelected(c)} />
-      </button>
-    ),
+    // rightExtra: (
+    //   <button onClick={(e) => e.stopPropagation()} type="button">
+    //     <Switch checked={args.checked} onChange={(c) => args.setSelected(c)} />
+    //   </button>
+    // ),
     // eslint-disable-next-line no-alert -- for demo
     onClick: () => {
       alert('Clicked')
