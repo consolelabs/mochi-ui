@@ -1,6 +1,6 @@
 // TODO: replace it with Mochi Types
 import { ModelMonikerConfig, ModelToken } from 'types/mochi-schema'
-import { Balance } from '~store'
+import { type Balance } from '~store'
 
 export const TokenTypes = ['Token', 'Moniker']
 

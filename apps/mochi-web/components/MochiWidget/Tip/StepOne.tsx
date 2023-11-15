@@ -1,3 +1,4 @@
+import { useShallow } from 'zustand/react/shallow'
 import { useAuthStore } from '~store'
 import {
   forwardRef,
@@ -61,9 +62,7 @@ const ConnectButton = forwardRef<ConnectButtonRef, {}>((_, ref) => {
 export default function StepOne() {
   const {
     fromWallet,
-    recipients = [],
-    asset,
-    amount,
+    request,
     setStep,
     updateSourceWallet,
     addRecipient,
@@ -71,14 +70,14 @@ export default function StepOne() {
     setAsset,
     setAmount,
   } = useTipWidget()
-  const { token, isLoggedIn } = useAuthStore()
+  const isLoggedIn = useAuthStore(useShallow((s) => s.isLoggedIn))
   const connectButtonRef = useRef<ConnectButtonRef>(null)
   const amountErrorMgs = useMemo(() => {
-    if ((amount ?? 0) > (asset?.asset_balance ?? 0)) {
+    if ((request.amount ?? 0) > (request.asset?.asset_balance ?? 0)) {
       return 'Insufficient balance. Please add more tokens and try again.'
     }
     return ''
-  }, [asset, amount])
+  }, [request.asset, request.amount])
 
   function openLoginPopup() {
     connectButtonRef?.current?.openLogin()
@@ -96,19 +95,16 @@ export default function StepOne() {
           </span>
         </div>
         <WalletPicker
-          accessToken={token}
           onLoginRequest={openLoginPopup}
           onSelect={updateSourceWallet}
         />
         <Recipient
-          accessToken={token}
           onLoginRequest={openLoginPopup}
-          selectedRecipients={recipients}
+          selectedRecipients={request.recipients ?? []}
           onSelectRecipient={addRecipient}
           onRemoveRecipient={removeRecipient}
         />
         <AmountInput
-          accessToken={token}
           onLoginRequest={openLoginPopup}
           wallet={fromWallet}
           onSelectAsset={setAsset}
@@ -121,7 +117,11 @@ export default function StepOne() {
           size="lg"
           onClick={() => setStep(2)}
           className="flex justify-center"
-          disabled={!!amountErrorMgs || recipients.length <= 0 || !amount}
+          disabled={
+            !!amountErrorMgs ||
+            (request.recipients?.length ?? 0) <= 0 ||
+            !request.amount
+          }
         >
           Continue
           <IconArrowRight className="w-4 h-4" />

@@ -8,7 +8,7 @@ export const Footer = () => {
   const year = new Date().getFullYear()
   return (
     <footer className="mt-auto border-t border-[#ebeae9]">
-      <div className="container pt-16 pb-5 landing-block md:py-18 md:h-[300px]">
+      <div className="pt-16 pb-5 landing-block md:py-18 md:h-[300px]">
         <div className="flex flex-col gap-y-5 gap-x-8 sm:gap-x-12 md:flex-row">
           <div className="w-9 h-9 rounded-full">
             <Image

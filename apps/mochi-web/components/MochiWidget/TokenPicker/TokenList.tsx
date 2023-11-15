@@ -13,9 +13,9 @@ export const TokenList = (props: Props) => {
   return (
     <List
       data={data}
-      renderItem={(item) => (
+      renderItem={(item, i) => (
         <TokenItem
-          key={`token-list-${item.id}`}
+          key={`token-list-${item.id ?? i}`}
           item={item}
           onSelect={onSelect}
         />
