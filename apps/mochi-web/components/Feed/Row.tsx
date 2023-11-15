@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { IconArrowRight } from '@consolelabs/icons'
 import { Avatar, Badge } from '@consolelabs/core'
 import React from 'react'
@@ -55,16 +56,19 @@ export default function Row({ tx, colWidth }: { tx: Tx; colWidth: string[] }) {
       <RowCell className="items-center" width={colWidth[5]}>
         <Badge
           className="max-w-full bg-neutral-800 text-white-pure"
-          icon={<Avatar src="TODO" size="xs" />}
+          icon={<Avatar src={tx.where.avatar} size="xs" />}
           iconClassName="-ml-0.5"
-          label={<span className="w-full truncate">{tx.channel}</span>}
+          label={<span className="w-full truncate">{tx.where.text}</span>}
           appearance="black"
         />
       </RowCell>
       <RowCell className="items-center" width={colWidth[6]}>
-        <span className="text-sm font-normal leading-5 text-white-pure">
+        <Link
+          href={`/tx/${tx.code}`}
+          className="text-sm font-normal leading-5 text-white-pure"
+        >
           {tx.code.slice(0, 9)}
-        </span>
+        </Link>
       </RowCell>
       <RowCell className="items-center" width={colWidth[7]}>
         <span className="text-sm font-normal leading-5 text-white-pure">
