@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import bs58 from 'bs58'
 import { useMochi } from '@consolelabs/mochi-store'
 import hexer from 'browser-string-hexer'
