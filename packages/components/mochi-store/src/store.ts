@@ -75,24 +75,20 @@ export const useMochi = create<MochiState>((set, get) => ({
 
           switch (aa.platform) {
             case 'evm-chain': {
-              // @ts-ignore
               if (!window.ethereum) {
                 a.isWalletNotInstalled = true
                 break
               }
-              // @ts-ignore
               a.chainId = await window.ethereum.request({
                 method: 'eth_chainId',
               })
               a.connect = () =>
-                // @ts-ignore
                 window.ethereum
                   .request({
                     method: 'wallet_requestPermissions',
                     params: [{ eth_accounts: {} }],
                   })
                   .then(() =>
-                    // @ts-ignore
                     window.ethereum.request({
                       method: 'eth_requestAccounts',
                     }),
@@ -104,16 +100,13 @@ export const useMochi = create<MochiState>((set, get) => ({
               break
             }
             case 'solana-chain': {
-              // @ts-ignore
               if (!window.phantom) {
                 a.isWalletNotInstalled = true
                 break
               }
               a.connect = () =>
-                // @ts-ignore
                 window.phantom.solana
                   .disconnect()
-                  // @ts-ignore
                   .then(() => window.phantom.solana.connect())
                   .then((pb: any) =>
                     get().connect(
@@ -125,17 +118,14 @@ export const useMochi = create<MochiState>((set, get) => ({
               break
             }
             case 'ronin-chain': {
-              // @ts-ignore
               if (!window.ronin) {
                 a.isWalletNotInstalled = true
                 break
               }
-              // @ts-ignore
               a.chainId = await window.ronin.provider.request({
                 method: 'eth_chainId',
               })
               a.connect = () =>
-                // @ts-ignore
                 window.ronin.provider
                   .request({
                     method: 'eth_requestAccounts',
@@ -154,11 +144,15 @@ export const useMochi = create<MochiState>((set, get) => ({
                   .catch(() => {})
               break
             }
+            default: {
+              break
+            }
           }
 
           return a
         }),
     )
+    console.log({ associatedAccounts })
 
     set((state) => {
       const newState = {
