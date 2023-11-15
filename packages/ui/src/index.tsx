@@ -11,7 +11,6 @@ export * from './login-widget'
 export * from './popover'
 export * from './switch'
 export * from './input'
-export * from './select'
 
 export * from './util'
 export { useMochi } from './mochi-store'

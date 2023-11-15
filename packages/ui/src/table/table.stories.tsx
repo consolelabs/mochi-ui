@@ -1,9 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks -- . */
 import type { Meta, StoryObj } from '@storybook/react'
-import { useCallback, useMemo, useRef, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { IconStar } from '@consolelabs/icons'
 import { Badge } from '../badge'
-import { Pagination } from '../pagination'
 import { Table } from './table'
 
 const meta: Meta<typeof Table> = {
@@ -60,10 +59,9 @@ const data = new Array(50)
 
 export const Default: Story = {
   render: () => {
-    const [itemPerPage, setItemPerPage] = useState(5)
-    const [page, setPage] = useState(1)
-    const [loading, setLoading] = useState(false)
-    const timeoutRef = useRef<number | NodeJS.Timeout>()
+    const [itemPerPage, _setItemPerPage] = useState(5)
+    const [page, _setPage] = useState(1)
+    const [loading, _setLoading] = useState(false)
 
     const dataList = useMemo(() => {
       const chunkedArray = []
@@ -72,17 +70,6 @@ export const Default: Story = {
       }
       return chunkedArray
     }, [itemPerPage])
-
-    const onPageChange = useCallback((pg: number) => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current)
-      }
-      setLoading(true)
-      timeoutRef.current = setTimeout(() => {
-        setPage(pg)
-        setLoading(false)
-      }, 500)
-    }, [])
 
     return (
       <div className="p-4 min-w-[48rem]">
@@ -121,14 +108,6 @@ export const Default: Story = {
           ]}
           data={dataList[page - 1]}
           isLoading={loading}
-        />
-        <Pagination
-          initItemsPerPage={itemPerPage}
-          initalPage={page}
-          onItemPerPageChange={setItemPerPage}
-          onPageChange={onPageChange}
-          totalItems={data.length}
-          totalPages={Math.ceil(data.length / itemPerPage)}
         />
       </div>
     )
