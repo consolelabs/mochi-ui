@@ -2,7 +2,7 @@
   "$schema": "https://unpkg.com/@changesets/config@2.3.1/schema.json",
   "changelog": [
     "@changesets/changelog-github",
-    { "repo": "consolelabs/websites" }
+    { "repo": "consolelabs/web-foundation" }
   ],
   "commit": false,
   "fixed": [],
@@ -10,5 +10,9 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["mochi-web", "@consolelabs/storybook", "@consolelabs/ui-components"]
+  "ignore": [
+    "mochi-web",
+    "@consolelabs/storybook",
+    "@consolelabs/ui-components"
+  ]
 }
