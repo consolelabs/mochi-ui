@@ -1,7 +1,12 @@
 import { Profile } from '@consolelabs/mochi-rest'
 import { useEffect, useMemo, useState } from 'react'
-import { InputField, PopoverAnchor, Heading } from '@consolelabs/ui-components'
-import { IconButton, Popover, PopoverContent } from '@consolelabs/core'
+import { PopoverAnchor, Heading } from '@consolelabs/ui-components'
+import {
+  InputField,
+  IconButton,
+  Popover,
+  PopoverContent,
+} from '@consolelabs/core'
 import { IconClose, IconSpinner } from '@consolelabs/icons'
 import { useDebounce } from '@dwarvesf/react-hooks'
 import { API, GET_PATHS } from '~constants/api'

@@ -1,7 +1,11 @@
 import { useMemo, useState } from 'react'
 import { Icon } from '@iconify/react'
-import { InputField } from '@consolelabs/ui-components'
-import { Popover, PopoverTrigger, PopoverContent } from '@consolelabs/core'
+import {
+  InputField,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from '@consolelabs/core'
 import clsx from 'clsx'
 import { ChainList } from './ChainList'
 import { Chains } from './data'
@@ -46,7 +50,7 @@ export const ChainPicker: React.FC<ChainPickerProps> = ({ className }) => {
         <span className="text-base" role="img">
           <img
             alt={`${selectedChain.name} icon`}
-            className="w-[22px] h-[22px] rounded-full object-contain"
+            className="object-contain rounded-full w-[22px] h-[22px]"
             src={selectedChain.icon}
           />
         </span>
