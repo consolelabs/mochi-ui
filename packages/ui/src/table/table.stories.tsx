@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { useCallback, useMemo, useRef, useState } from 'react'
 import { IconStar } from '@consolelabs/icons'
 import { Badge } from '../badge'
-import { Pagination } from '../pagination'
 import { Table } from './table'
 
 const meta: Meta<typeof Table> = {
@@ -121,14 +120,6 @@ export const Default: Story = {
           ]}
           data={dataList[page - 1]}
           isLoading={loading}
-        />
-        <Pagination
-          initItemsPerPage={itemPerPage}
-          initalPage={page}
-          onItemPerPageChange={setItemPerPage}
-          onPageChange={onPageChange}
-          totalItems={data.length}
-          totalPages={Math.ceil(data.length / itemPerPage)}
         />
       </div>
     )

@@ -19,7 +19,6 @@ export * from './sidebar'
 export * from './switch'
 export * from './tooltip'
 export * from './input'
-export * from './select'
 
 export * from './util'
 export { useMochi } from './mochi-store'
