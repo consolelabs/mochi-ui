@@ -4,7 +4,7 @@ module.exports = {
     // 'apps/**/*.{ts,tsx}',
     'packages/**/*.{ts,tsx}',
     '!packages/**/*.stories.{ts,tsx}',
-    '!packages/{storybook,tsconfig,theme,eslint-config-custom,icons,ui,tailwind-config}/**/*',
+    '!packages/{storybook,tsconfig,theme,eslint-config-custom,icons}/**/*',
   ],
   // TODO: update test cases and uncomment this
   // coverageThreshold: {
@@ -25,7 +25,7 @@ module.exports = {
   modulePathIgnorePatterns: [
     // Add patterns to ignore
     '[/\\\\](dist|build|.next)[/\\\\].+\\.(js|jsx|d.ts)$',
-    '<rootDir>/packages/(icons|ui|theme|eslint-config-custom|tsconfig|storybook|tailwind-config)/',
+    '<rootDir>/packages/(icons|ui|theme|eslint-config-custom|tsconfig|storybook)/',
     '[/\\\\](packages|apps)[/\\\\].+\\.(config|stories).(js|ts|tsx)$',
   ],
   transform: {
