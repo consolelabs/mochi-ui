@@ -10,7 +10,6 @@ export * from './util'
 export * from './login-widget'
 export * from './popover'
 export * from './switch'
-export * from './tooltip'
 export * from './input'
 export * from './select'
 
