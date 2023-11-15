@@ -9,7 +9,7 @@ import {
   Fragment,
 } from 'react'
 import { AUTH_TELEGRAM_ID, MOCHI_PROFILE_API } from '~envs'
-import { useMochi, LoginWidget } from '@consolelabs/ui-components'
+import { useMochi, LoginWidget } from '@consolelabs/core'
 import { useAuthStore } from '~store'
 import {
   IconDiscordColored,

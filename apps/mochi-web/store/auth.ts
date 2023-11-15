@@ -1,6 +1,6 @@
 import { api } from '~constants/mochi'
 import { create } from 'zustand'
-import { useMochi } from '@consolelabs/ui-components'
+import { useMochi } from '@consolelabs/core'
 import { API, apiLogin, apiLogout } from '~constants/api'
 import { useProfileStore } from './profile'
 
