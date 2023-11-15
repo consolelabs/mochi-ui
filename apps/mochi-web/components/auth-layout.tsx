@@ -15,8 +15,7 @@ import {
   IconSuperGroup,
   IconTwinkle,
 } from '@consolelabs/icons'
-import { Badge } from '@consolelabs/ui-components'
-import { Sidebar } from '@consolelabs/core'
+import { Sidebar, Badge } from '@consolelabs/core'
 import { DISCORD_LINK } from '~envs'
 import { useRouter } from 'next/router'
 import { AuthPanel } from './AuthWidget'

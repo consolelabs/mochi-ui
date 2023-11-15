@@ -1,8 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks -- . */
 import type { Meta, StoryObj } from '@storybook/react'
 import { useMemo, useState } from 'react'
-import { IconStar } from '@consolelabs/icons'
-import { Badge } from '../badge'
 import { Table } from './table'
 
 const meta: Meta<typeof Table> = {
@@ -95,15 +93,7 @@ export const Default: Story = {
             {
               header: 'Role',
               accessorKey: 'role',
-              cell: (cell) => {
-                return (
-                  <Badge
-                    appearance="primary"
-                    icon={<IconStar />}
-                    label={cell.getValue() as string}
-                  />
-                )
-              },
+              cell: (cell) => cell.getValue(),
             },
           ]}
           data={dataList[page - 1]}
