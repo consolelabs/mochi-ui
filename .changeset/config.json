@@ -10,9 +10,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": [
-    "mochi-web",
-    "@consolelabs/storybook",
-    "@consolelabs/ui-components"
-  ]
+  "ignore": ["mochi-web", "@consolelabs/storybook"]
 }

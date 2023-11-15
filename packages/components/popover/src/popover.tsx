@@ -6,10 +6,12 @@ const { popoverContentClsx } = popover
 
 type PopoverProps = typeof PopoverPrimitive.Root
 type PopoverTriggerProps = typeof PopoverPrimitive.Trigger
+type PopoverAnchorProps = typeof PopoverPrimitive.Anchor
 type PopoverCloseProps = typeof PopoverPrimitive.Close
 
 const Popover = PopoverPrimitive.Root
 const PopoverTrigger = PopoverPrimitive.Trigger
+const PopoverAnchor = PopoverPrimitive.Anchor
 const PopoverClose = PopoverPrimitive.Close
 
 type PopoverContentProps = React.ComponentPropsWithoutRef<
@@ -37,8 +39,10 @@ export {
   PopoverTrigger,
   PopoverContent,
   PopoverClose,
+  PopoverAnchor,
   type PopoverContentProps,
   type PopoverProps,
   type PopoverTriggerProps,
+  type PopoverAnchorProps,
   type PopoverCloseProps,
 }
