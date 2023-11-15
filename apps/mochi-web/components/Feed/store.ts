@@ -1,15 +1,15 @@
+import { OffchainTx } from '@consolelabs/mochi-rest'
 import UI, { Platform, utils as mochiUtils } from '@consolelabs/mochi-ui'
 import { utils } from 'ethers'
 import { create } from 'zustand'
 import { API } from '~constants/api'
 import { formatDate } from '~utils/time'
-import { discordLogo, telegramLogo } from '~utils/image'
+import { webLogo, discordLogo, telegramLogo } from '~utils/image'
 
 const limit = 20 as const
 
 export interface Tx {
   code: string
-  sourcePlatform: string
   platformIcon?: string
   where: {
     text: string
@@ -24,6 +24,7 @@ export interface Tx {
     icon: string
     symbol: string
   }
+  action: string
   amount: string
   date: string
   isSuccess?: boolean
@@ -31,6 +32,17 @@ export interface Tx {
 
 function isVault(source: string) {
   return source === 'mochi-vault'
+}
+
+const actionString: Record<OffchainTx['action'], string> = {
+  transfer: 'tip',
+  vault_transfer: 'vault transfer',
+  swap: 'swap',
+  payme: 'pay me',
+  paylink: 'pay link',
+  airdrop: 'airdrop',
+  deposit: 'deposit',
+  withdraw: 'widthdraw',
 }
 
 async function transform(d: any): Promise<Tx> {
@@ -45,6 +57,15 @@ async function transform(d: any): Promise<Tx> {
     }
     case Platform.Telegram: {
       platformIcon = telegramLogo.src
+      break
+    }
+    case 'web':
+    case Platform.Web: {
+      platformIcon = webLogo.src
+      break
+    }
+    case 'app':
+    case Platform.App: {
       break
     }
     default:
@@ -67,6 +88,15 @@ async function transform(d: any): Promise<Tx> {
       if (d.source_platform === Platform.Telegram) {
         where.text = 'Telegram'
         where.avatar = telegramLogo.src
+      }
+
+      if ([Platform.Web, 'web'].includes(d.source_platform)) {
+        where.text = 'Web'
+        where.avatar = webLogo.src
+      }
+
+      if ([Platform.App, 'app'].includes(d.source_platform)) {
+        where.text = 'App'
       }
 
       // get channel name
@@ -111,9 +141,18 @@ async function transform(d: any): Promise<Tx> {
       break
   }
 
+  const action = actionString[d.action as OffchainTx['action']] ?? 'tip'
+
+  if (from?.platform === Platform.Mochi) {
+    from.plain = '🍡 Mochi user'
+  }
+
+  if (to?.platform === Platform.Mochi) {
+    to.plain = '🍡 Mochi user'
+  }
+
   return {
     code: d.external_id,
-    sourcePlatform: d.source_platform,
     platformIcon,
     from: from?.plain ?? '?',
     fromAvatar,
@@ -128,8 +167,9 @@ async function transform(d: any): Promise<Tx> {
     amount: mochiUtils.formatTokenDigit(
       utils.formatUnits(d.amount, d.token.decimal),
     ),
-    date: formatDate(d.created_at, 'dd/MM/yyyy hh:mmaa'),
+    date: formatDate(d.created_at, 'MMM do HH:mm'),
     isSuccess: d.status === 'success',
+    action,
   }
 }
 

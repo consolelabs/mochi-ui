@@ -8,7 +8,7 @@ import {
 } from '@consolelabs/icons'
 import { List, Button, Modal, ModalContent, Avatar } from '@consolelabs/core'
 import Link from 'next/link'
-import { Fragment, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { AuthPanel } from '~cpn/AuthWidget'
 import { useAuthStore, useProfileStore } from '~store'
 import { ROUTES } from '~constants/routes'
@@ -50,7 +50,7 @@ const Header = ({ onClose }: { onClose: () => void }) => {
   const { me } = useProfileStore()
   return (
     <button className="" onClick={onClose}>
-      <Link href={ROUTES.PROFILE} className="relative block w-full h-20 group">
+      <Link href={ROUTES.PROFILE} className="block relative w-full h-20 group">
         <div className="absolute inset-0 bg-transparent">
           <img
             className="object-cover w-full h-full"
@@ -58,14 +58,14 @@ const Header = ({ onClose }: { onClose: () => void }) => {
             src="https://pbs.twimg.com/profile_banners/1168522102410010626/1684159976/300x100"
           />
         </div>
-        <div className="relative z-10 flex items-center w-full h-full gap-4 p-4 text-white">
+        <div className="flex relative z-10 gap-4 items-center p-4 w-full h-full text-white">
           <Avatar
             fallback={me?.profile_name}
             smallSrc={me?.platformIcon}
             src={me?.avatar as string}
           />
-          <div className="flex items-center flex-1 font-medium">
-            <span className="inline-block w-40 truncate  whitespace-nowrap">
+          <div className="flex flex-1 items-center font-medium">
+            <span className="inline-block w-40 whitespace-nowrap truncate">
               {me?.profile_name}
             </span>
           </div>
@@ -155,8 +155,6 @@ export const MobileNav = (props: { onClose: () => void }) => {
     const wrapperClassName =
       'flex w-full text-left !text-base px-2 py-3 bg-white-pure !text-neutral-800 !font-normal hover:!text-black'
 
-    const LinkWrapper = item.href ? Link : Fragment
-
     return (
       <Button
         variant="link"
@@ -166,14 +164,15 @@ export const MobileNav = (props: { onClose: () => void }) => {
           onClose()
           item.onClick?.()
         }}
+        key={`mobile-nav-item-header-${item.label}`}
       >
-        <LinkWrapper
-          className="flex items-center flex-1 gap-3"
-          href={item.href as any}
+        <Link
+          className="flex flex-1 gap-3 items-center"
+          href={item.href ?? '/'}
         >
           {item.iconLeft && <span className="text-xl">{item.iconLeft}</span>}
           {item.label}
-        </LinkWrapper>
+        </Link>
       </Button>
     )
   }

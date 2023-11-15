@@ -62,7 +62,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
   )
   const [isOpenSelector, setIsOpenSelector] = useState(false)
   const [selectedAsset, setSelectedAsset] = useState<Balance | MonikerAsset>(
-    tokenBalances[0],
+    tokenBalances[0] ?? DefaultBalances[0],
   )
   const [searchTerm, setSearchTerm] = useState('')
   const filteredTokens = useMemo<Balance[]>(
@@ -85,7 +85,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
   const isTokenSelected = 'token' in selectedAsset
 
   useEffect(() => {
-    if (balances) {
+    if (Array.isArray(balances) && balances.length) {
       setTokenBalances(balances)
       handleTokenSelect(balances[0])
     }

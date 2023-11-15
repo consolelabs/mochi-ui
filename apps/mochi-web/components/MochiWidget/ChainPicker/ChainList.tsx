@@ -13,7 +13,13 @@ export const ChainList = (props: Props) => {
   return (
     <List
       data={data}
-      renderItem={(item) => <ChainItem item={item} onSelect={onSelect} />}
+      renderItem={(item) => (
+        <ChainItem
+          key={`chain-list-${item.id}`}
+          item={item}
+          onSelect={onSelect}
+        />
+      )}
       ListEmpty={<EmptyList />}
       rootClassName="w-full h-full"
     />

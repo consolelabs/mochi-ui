@@ -32,6 +32,7 @@ export const RecipientList = (props: Props) => {
       ListEmpty={<EmptyList />}
       renderItem={(item) => (
         <RecipientItem
+          key={`recipient-list-${item.id}`}
           profile={item || ProfilePlaceholder}
           onSelect={onSelect}
         />
