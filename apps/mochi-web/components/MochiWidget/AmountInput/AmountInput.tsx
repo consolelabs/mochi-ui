@@ -5,6 +5,7 @@ import { utils } from '@consolelabs/mochi-ui'
 import { TokenAmount, formatTokenAmount } from '~utils/number'
 import { TokenPicker } from '../TokenPicker'
 import { MonikerAsset } from '../TokenPicker/type'
+import { useTipWidget } from '../Tip/store'
 
 const INIT_AMOUNT: TokenAmount = {
   value: 0,
@@ -26,8 +27,11 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   onSelectAsset,
   onAmountChanged,
 }) => {
+  const { amount } = useTipWidget()
   const [selectedAsset, setSelectedAsset] = useState<Balance | MonikerAsset>()
-  const [tipAmount, setTipAmount] = useState<TokenAmount>(INIT_AMOUNT)
+  const [tipAmount, setTipAmount] = useState<TokenAmount>(
+    amount ? formatTokenAmount(amount) : INIT_AMOUNT,
+  )
   const isMonikerAsset = selectedAsset && 'moniker' in selectedAsset
   const balance = utils.formatTokenDigit(selectedAsset?.asset_balance ?? 0)
   const balanceUnit = isMonikerAsset
@@ -117,14 +121,14 @@ export const AmountInput: React.FC<AmountInputProps> = ({
 
   return (
     <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-3">
-      <div className="flex items-center justify-between">
+      <div className="flex justify-between items-center">
         <TokenPicker
           onSelect={handleAssetChanged}
           balances={wallet?.balances}
         />
       </div>
-      <div className="flex flex-col px-4 py-6 rounded-lg gap-y-2 bg-white-pure">
-        <div className="flex items-center justify-between flex-1">
+      <div className="flex flex-col gap-y-2 py-6 px-4 rounded-lg bg-white-pure">
+        <div className="flex flex-1 justify-between items-center">
           <input
             className="w-[65%] outline-none text-2xl font-medium text-[#343433] appearance-none h-[34px]"
             placeholder="0"
@@ -140,7 +144,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
             &#8776; {tipAmountUSD} USD
           </span>
         </div>
-        <div className="flex items-center justify-between flex-1">
+        <div className="flex flex-1 justify-between items-center">
           <span className="text-[#848281] text-[13px]">
             Balance: {balance} {balanceUnit}
           </span>

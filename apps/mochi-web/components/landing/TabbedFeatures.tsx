@@ -28,7 +28,7 @@ export function TabbedFeatures({ title, data, className }: Props) {
                 <li>
                   <button
                     className={clsx(
-                      'text-left flex flex-col p-4 md:p-6 rounded-2xl transition md:border',
+                      'text-left flex flex-col p-4 md:p-6 rounded-2xl transition md:border pointer-events-none md:pointer-events-auto',
                       {
                         'md:border-blue-700 md:bg-blue-100': i === idx,
                         'md:border-transparent md:hover:bg-neutral-150':

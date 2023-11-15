@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { API } from '~constants/api'
-import { Balance, Wallet } from '~store'
-import { ViewProfile } from '~types/mochi-profile-schema'
+import { Profile } from '@consolelabs/mochi-rest'
+import { Balance, Wallet, useProfileStore } from '~store'
 import { Theme } from '../ThemePicker/ThemePicker'
 
 export const MAX_RECIPIENTS = 20
@@ -14,7 +14,7 @@ interface Request {
 interface TipWidgetState {
   step: number
   fromWallet?: Wallet
-  recipients?: ViewProfile[]
+  recipients?: Profile[]
   asset?: Balance
   amount?: number
   setStep: (s: number) => void
@@ -26,8 +26,8 @@ interface TipWidgetState {
   isTransferring: boolean
   tx: any
   updateSourceWallet: (s: Wallet) => void
-  addRecipient: (recipient: ViewProfile) => void
-  removeRecipient: (recipient: ViewProfile) => void
+  addRecipient: (recipient: Profile) => void
+  removeRecipient: (recipient: Profile) => void
   setAsset: (asset?: Balance) => void
   setAmount: (amount: number) => void
 }
@@ -52,10 +52,21 @@ export const useTipWidget = create<TipWidgetState>((set, get) => ({
       },
     })),
   tx: null,
-  reset: () => set((s) => ({ ...s, tx: null, isTransferring: false })),
+  reset: () =>
+    set((s) => ({
+      ...s,
+      recipients: [],
+      request: undefined,
+      fromWallet: undefined,
+      amount: undefined,
+      asset: undefined,
+      tx: null,
+      isTransferring: false,
+    })),
   isTransferring: false,
   transfer: async () => {
-    const { request } = get()
+    const { asset, request, amount, recipients } = get()
+    const { me } = useProfileStore.getState()
 
     // TODO
     try {
@@ -65,13 +76,13 @@ export const useTipWidget = create<TipWidgetState>((set, get) => ({
       })
       const tx = await API.MOCHI.post(
         {
-          sender: '48438',
-          recipients: ['50453'],
+          sender: me?.id,
+          recipients: recipients?.map((r) => r.id),
           platform: 'web',
           transfer_type: 'transfer',
-          amount: 0.1,
-          token: 'butt',
-          chain_id: '250',
+          amount,
+          token: asset?.token?.symbol,
+          chain_id: asset?.token?.chain_id,
           ...(request?.theme?.id ? { theme_id: request.theme.id } : {}),
           ...(request?.message ? { message: request.message } : {}),
         },
@@ -86,7 +97,7 @@ export const useTipWidget = create<TipWidgetState>((set, get) => ({
   },
   updateSourceWallet: (wallet: Wallet) =>
     set((s) => ({ ...s, fromWallet: wallet })),
-  addRecipient: (recipient: ViewProfile) => {
+  addRecipient: (recipient) => {
     const isMax = (get().recipients?.length ?? 0) >= MAX_RECIPIENTS
     const isExist = get().recipients?.find(
       (r) =>
@@ -100,7 +111,7 @@ export const useTipWidget = create<TipWidgetState>((set, get) => ({
       recipients: [...(s.recipients || []), recipient],
     }))
   },
-  removeRecipient: (recipient: ViewProfile) =>
+  removeRecipient: (recipient) =>
     set((s) => ({
       ...s,
       recipients: s.recipients?.filter(

@@ -1,20 +1,21 @@
 import { List } from '@consolelabs/core'
-import { ViewProfile } from '~types/mochi-profile-schema'
+import { Profile } from '@consolelabs/mochi-rest'
 import { RecipientItem } from './RecipientItem'
 import { EmptyList } from './EmptyList'
 
 interface Props {
-  data: ViewProfile[]
-  onSelect?: (account: ViewProfile) => void
+  data: Profile[]
+  onSelect?: (account: Profile) => void
 }
 
-const ProfilePlaceholder: ViewProfile = {
+const ProfilePlaceholder: Profile = {
   id: 'unknown',
   avatar: '/logo.png',
   associated_accounts: [
     {
       id: 'unknown',
-      platform: 'Mochi',
+      // @ts-ignore
+      platform: '',
       platform_identifier: '0x00000000000000000000000000000000000000000',
       platform_metadata: {
         username: 'unknown',

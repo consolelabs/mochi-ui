@@ -61,7 +61,7 @@ const ConnectButton = forwardRef<ConnectButtonRef, {}>((_, ref) => {
 export default function StepOne() {
   const {
     fromWallet,
-    recipients,
+    recipients = [],
     asset,
     amount,
     setStep,
@@ -121,6 +121,7 @@ export default function StepOne() {
           size="lg"
           onClick={() => setStep(2)}
           className="flex justify-center"
+          disabled={!!amountErrorMgs || recipients.length <= 0 || !amount}
         >
           Continue
           <IconArrowRight className="w-4 h-4" />
