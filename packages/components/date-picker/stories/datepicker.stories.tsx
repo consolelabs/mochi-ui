@@ -12,7 +12,7 @@ const meta: Meta<typeof DatePicker> = {
   tags: ['autodocs'],
 }
 
-export default Meta
+export default meta
 
 type Story = StoryObj<typeof DatePicker>
 
