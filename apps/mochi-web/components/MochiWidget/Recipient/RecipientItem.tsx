@@ -1,12 +1,12 @@
 import { Heading } from '@consolelabs/ui-components'
 import { Avatar } from '@consolelabs/core'
-import { ViewProfile } from '~types/mochi-profile-schema'
+import { Profile } from '@consolelabs/mochi-rest'
 import { truncateWallet } from '~utils/string'
 import PlatformIcon from '../PlatformPicker/PlatformIcon'
 
 interface ItemProps {
-  profile: ViewProfile
-  onSelect?: (item: ViewProfile) => void
+  profile: Profile
+  onSelect?: (item: Profile) => void
 }
 
 export const RecipientItem: React.FC<ItemProps> = ({ profile, onSelect }) => {

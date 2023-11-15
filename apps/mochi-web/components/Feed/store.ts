@@ -4,7 +4,7 @@ import { utils } from 'ethers'
 import { create } from 'zustand'
 import { API } from '~constants/api'
 import { formatDate } from '~utils/time'
-import { webLogo, discordLogo, telegramLogo } from '~utils/image'
+import { appLogo, webLogo, discordLogo, telegramLogo } from '~utils/image'
 
 const limit = 20 as const
 
@@ -66,6 +66,7 @@ async function transform(d: any): Promise<Tx> {
     }
     case 'app':
     case Platform.App: {
+      platformIcon = appLogo.src
       break
     }
     default:
@@ -97,6 +98,7 @@ async function transform(d: any): Promise<Tx> {
 
       if ([Platform.App, 'app'].includes(d.source_platform)) {
         where.text = 'App'
+        where.avatar = appLogo.src
       }
 
       // get channel name

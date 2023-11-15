@@ -2,6 +2,7 @@ import { api } from '~constants/mochi'
 import { create } from 'zustand'
 import { useMochi } from '@consolelabs/ui-components'
 import { API, apiLogin, apiLogout } from '~constants/api'
+import { useTipWidget } from '~cpn/MochiWidget/Tip/store'
 import { useProfileStore } from './profile'
 
 const STORAGE_KEY = 'mochi.token'
@@ -34,6 +35,7 @@ export const useAuthStore = create<State>((set, get) => ({
   },
   logout: () => {
     useMochi.getState().logout()
+    useTipWidget.getState().reset()
     localStorage.removeItem(STORAGE_KEY)
     api.token(null)
     apiLogout()

@@ -1,4 +1,6 @@
 import clsx from 'clsx'
+import { formatTokenAmount } from '~utils/number'
+import { utils } from '@consolelabs/mochi-ui'
 import Link from 'next/link'
 import { Button } from '@consolelabs/core'
 import { IconCheck, IconChevronLeft, IconSpinner } from '@consolelabs/icons'
@@ -17,10 +19,12 @@ export default function StepTwo() {
     updateRequestMessage,
     request,
     reset,
+    asset,
+    amount,
   } = useTipWidget()
 
   return (
-    <div className="flex flex-col flex-1 min-h-0 gap-y-3">
+    <div className="flex flex-col flex-1 gap-y-3 min-h-0">
       <div
         className={clsx(
           'will-change-transform transition absolute left-0 top-0 w-full h-full',
@@ -48,15 +52,24 @@ export default function StepTwo() {
           View tx
         </Link>
       </div>
-      <div className="flex flex-col overflow-y-auto gap-y-2">
+      <div className="flex overflow-y-auto flex-col gap-y-2">
         <button onClick={() => setStep(1)} className="self-start mt-3">
           <IconChevronLeft className="w-5 h-5" />
         </button>
         <span className="mx-auto text-base text-[#343433]">You send</span>
         <p className="mx-auto text-3xl font-medium leading-5 text-black">
-          100 USD
+          {formatTokenAmount(amount ?? 0).display} {asset?.token?.symbol}
         </p>
-        <span className="text-sm text-[#7a7e85] mx-auto">&#8776; 10 BTC</span>
+        <span className="text-sm text-[#7a7e85] mx-auto">
+          &#8776;{' '}
+          {utils.formatDigit({
+            value: (asset?.token?.price ?? 0) * (amount ?? 0),
+            fractionDigits: 2,
+            shorten: true,
+            scientificFormat: true,
+          })}{' '}
+          USD
+        </span>
 
         {/* probably will read data from store */}
         <TransactionPreview.Tip />

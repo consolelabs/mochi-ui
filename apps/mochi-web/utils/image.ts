@@ -37,6 +37,7 @@ export { default as discordLogo } from '../public/platforms/discord.png'
 export { default as telegramLogo } from '../public/platforms/telegram.webp'
 export { default as xlogo } from '../public/platforms/x.png'
 export { default as webLogo } from '../public/platforms/web.png'
+export { default as appLogo } from '../public/platforms/app.png'
 
 export { default as hpbd } from '../public/assets/tx/hpbd.png'
 export { default as appreciation } from '../public/assets/tx/appreciation.png'

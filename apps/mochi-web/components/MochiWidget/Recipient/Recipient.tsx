@@ -1,7 +1,7 @@
+import { Profile } from '@consolelabs/mochi-rest'
 import { useEffect, useMemo, useState } from 'react'
 import { InputField, PopoverAnchor, Heading } from '@consolelabs/ui-components'
 import { IconButton, Popover, PopoverContent } from '@consolelabs/core'
-import { ViewProfile } from '~types/mochi-profile-schema'
 import { IconClose, IconSpinner } from '@consolelabs/icons'
 import { useDebounce } from '@dwarvesf/react-hooks'
 import { API, GET_PATHS } from '~constants/api'
@@ -15,9 +15,9 @@ import { MAX_RECIPIENTS } from '../Tip/store'
 interface RecipientProps {
   accessToken: string | null
   onLoginRequest?: () => void
-  selectedRecipients?: ViewProfile[]
-  onSelectRecipient?: (item: ViewProfile) => void
-  onRemoveRecipient?: (item: ViewProfile) => void
+  selectedRecipients?: Profile[]
+  onSelectRecipient?: (item: Profile) => void
+  onRemoveRecipient?: (item: Profile) => void
 }
 
 export const Recipient: React.FC<RecipientProps> = ({
@@ -33,7 +33,7 @@ export const Recipient: React.FC<RecipientProps> = ({
   const debouncedSearchTerm = useDebounce(searchTerm, 500)
   const [selectedPlatform, setSelectedPlatform] = useState<Platform>()
   const isOnChain = selectedPlatform?.platform === 'on-chain'
-  const [recipients, setRecipients] = useState<ViewProfile[]>([])
+  const [recipients, setRecipients] = useState<Profile[]>([])
   const filteredRecipients = useMemo(
     () =>
       recipients.filter((item) => {
@@ -43,7 +43,7 @@ export const Recipient: React.FC<RecipientProps> = ({
 
         const isSearchMatch =
           item.associated_accounts?.[0].platform_metadata?.username
-            .toLowerCase()
+            ?.toLowerCase()
             .includes(searchTerm.toLowerCase())
         return isPlatformMatch && isSearchMatch
       }),
@@ -56,7 +56,7 @@ export const Recipient: React.FC<RecipientProps> = ({
         setIsSearching(true)
         API.MOCHI_PROFILE.get(GET_PATHS.PROFILE_SEARCH(searchTerm))
           .json((r) => r.data)
-          .then((data: ViewProfile[]) => {
+          .then((data: Profile[]) => {
             setRecipients(data || [])
           })
           .finally(() => setIsSearching(false))
@@ -112,8 +112,8 @@ export const Recipient: React.FC<RecipientProps> = ({
             />
           </div>
           {!!selectedRecipients?.length && (
-            <div className="grid grid-cols-4 px-4 py-2 gap-7">
-              {selectedRecipients?.map((item: ViewProfile) => (
+            <div className="grid grid-cols-4 gap-7 py-2 px-4">
+              {selectedRecipients?.map((item) => (
                 <SelectedRecipient
                   key={
                     (item.id || 'unknown') +
@@ -129,9 +129,9 @@ export const Recipient: React.FC<RecipientProps> = ({
       </PopoverAnchor>
       <PopoverContent
         align="start"
-        className="flex flex-col w-[414px] gap-x-1 items-center py-3 px-3 rounded-lg shadow-md bg-white-pure"
+        className="flex flex-col gap-x-1 items-center py-3 px-3 rounded-lg shadow-md w-[414px] bg-white-pure"
       >
-        <div className="flex flex-row items-center w-full gap-1 pb-2">
+        <div className="flex flex-row gap-1 items-center pb-2 w-full">
           <Heading
             as="h4"
             className="flex-1 text-sm font-medium text-neutral-800"
