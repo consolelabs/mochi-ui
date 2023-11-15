@@ -1,5 +1,13 @@
 # @consolelabs/theme
 
+## 0.0.6
+
+### Patch Changes
+
+- [#208](https://github.com/consolelabs/web-foundation/pull/208)
+  [`81a751a`](https://github.com/consolelabs/web-foundation/commit/81a751a81bc836cee24a6a0fb5cda09e00d74e49)
+  Thanks [@tuanddd](https://github.com/tuanddd)! - Fix input outline
+
 ## 0.0.5
 
 ### Patch Changes

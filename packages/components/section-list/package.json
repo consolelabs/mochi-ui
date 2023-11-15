@@ -1,6 +1,6 @@
 {
   "name": "@consolelabs/section-list",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
