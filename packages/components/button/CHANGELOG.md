@@ -1,5 +1,13 @@
 # @consolelabs/button
 
+## 0.0.12
+
+### Patch Changes
+
+- Updated dependencies
+  [[`81a751a`](https://github.com/consolelabs/web-foundation/commit/81a751a81bc836cee24a6a0fb5cda09e00d74e49)]:
+  - @consolelabs/theme@0.0.6
+
 ## 0.0.11
 
 ### Patch Changes
