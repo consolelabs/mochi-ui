@@ -2,7 +2,7 @@ import { cva, VariantProps } from 'class-variance-authority'
 
 const inputVariants = cva(
   [
-    'flex-1 h-fit outline-0 rounded border border-neutral-300 shadow-input text-neutral-800 placeholder:text-neutral-500 focus:border-primary-600 focus:shadow-input-focused',
+    'flex-1 h-fit focus:outline-none rounded border border-neutral-300 shadow-input text-neutral-800 placeholder:text-neutral-500 focus:border-primary-600 focus:shadow-input-focused',
   ],
   {
     variants: {
