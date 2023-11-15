@@ -95,6 +95,7 @@ export default function SectionList<
         className={sectionListViewportClsx({ className: viewportClassName })}
         onScroll={handleScroll}
         style={viewportStyle}
+        data-testid="section-list-viewport"
       >
         <div
           className={sectionListContentWrapperClsx({

@@ -48,7 +48,10 @@ export default function Sidebar({
   }, [])
 
   return (
-    <div className={sidebarCva({ className, expanded })}>
+    <div
+      data-testid="sidebar-content"
+      className={sidebarCva({ className, expanded })}
+    >
       <div className={sidebarContentClsx()}>
         <div>
           {Header ? <Header expanded={expanded} /> : null}
@@ -75,6 +78,7 @@ export default function Sidebar({
           className={sidebarToggleButtonClsx()}
           onClick={() => setExpanded(!expanded)}
           type="button"
+          data-testid="collapsible-button"
         >
           <IconSidebarArrow
             className={sidebarToggleArrowClsx({ expanded })}

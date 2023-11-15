@@ -19,6 +19,7 @@ module.exports = {
     '.eslintrc.js',
     '**/*.css',
     '*.snap',
+    'jest.config.js',
   ],
   settings: {
     'import/resolver': {

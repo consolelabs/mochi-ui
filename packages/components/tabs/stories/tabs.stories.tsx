@@ -1,5 +1,5 @@
-import { Tabs, TabList, TabTrigger, TabContent } from '../src/tabs'
 import { IconCoding, IconSetting, IconUser } from '@consolelabs/icons'
+import { Tabs, TabList, TabTrigger, TabContent } from '../src/tabs'
 
 export default {
   title: 'components/Tabs',
