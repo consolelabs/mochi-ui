@@ -1,8 +1,8 @@
-# ConsoleLabs
+# Console Labs Web Foundation
 
 ## Introduction
 
-Welcome to the central hub for ConsoleLabs' web3 applications and design system
+Welcome to the central hub for Console Labs' web3 applications and design system
 packages. Our team and the broader community collaboratively use these resources
 to craft visually appealing and accessible web applications.
 
@@ -20,7 +20,7 @@ sharing ideas, reporting bugs, or showcasing your projects, your engagement
 helps us grow and improve.
 
 - Share your thoughts and issues on
-  [Github](https://github.com/consolelabs/websites/issues/new/choose).
+  [Github](https://github.com/consolelabs/web-foundation/issues/new/choose).
 - Join our conversation on [Discord](https://discord.com/invite/HNdcU8Kvfh).
 
 ## Contributing

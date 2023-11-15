@@ -1,23 +1,23 @@
-Welcome to the ConsoleLabs community! 🌟 Your interest and enthusiasm mean a lot
-to us. ConsoleLabs, like many open-source projects, thrives on collaboration and
-we're excited to have you on board.
+Welcome to Web Foundation by Console Labs' team! 🌟 Your interest and enthusiasm
+mean a lot to us. This repository, like many open-source projects, thrives on
+collaboration and we're excited to have you on board.
 
 Whether you're fixing bugs, proposing new features, or enhancing documentation,
 your contributions are immensely valuable. Let's get you started on how you can
-contribute to ConsoleLabs.
+contribute to the repository.
 
 ## Setting Up the Project
 
-To begin contributing to ConsoleLabs, follow these steps to set up the project
-on your local machine:
+To begin contributing to Web Foundation, follow these steps to set up the
+project on your local machine:
 
-1. **Fork the Repository**: Start by forking the ConsoleLabs repository. Click
-   the <kbd>Fork</kbd> button at the top right of this page.
+1. **Fork the Repository**: Start by forking the repository. Click the
+   <kbd>Fork</kbd> button at the top right of this page.
 2. **Clone Your Fork**: Clone your fork to your local machine for development.
 
 ```sh
-git clone https://github.com/<your_github_username>/websites.git
-cd websites
+git clone https://github.com/<your_github_username>/web-foundation.git
+cd web-foundation
 ```
 
 3. **Install Dependencies**: Execute `pnpm install` to set up all the necessary
@@ -29,7 +29,7 @@ cd websites
 
 ## Development Process
 
-ConsoleLabs operates on a monorepo structure, containing both UI packages and
+Web Foundation operates on a monorepo structure, containing both UI packages and
 applications. Each component and application is treated as an independent unit.
 
 ### Packages Development
@@ -54,7 +54,7 @@ For package development, we use the following tools:
 
 ### Application Development
 
-For developing applications within ConsoleLabs, the process is streamlined:
+For developing applications within the monorepo, the process is streamlined:
 
 **Commands**
 
@@ -84,12 +84,13 @@ This assists in making the intended change more comprehensible.
 
 Ensure your commits follow our convention: `category(scope or module): message`,
 using categories like `feat`, `fix`, `refactor`, `docs`, `build`, `test`, `ci`,
-and `chore`. For more details, visit Conventional Commits.
+and `chore`. For more details, visit
+[Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
 Steps to Submit a PR
 
-- Fork and clone your fork of the ConsoleLabs repository.
-- Create a new branch following the [type/scope] convention.
+- Fork and clone your fork of the repository.
+- Create a new branch following the `[type/scope]` convention.
 - Commit your changes adhering to our commit convention.
 - Use `pnpm changeset` for detailed change descriptions, crucial for changelog
   generation.
@@ -101,8 +102,8 @@ All bug fixes or feature additions must be accompanied by appropriate tests.
 
 ## License
 
-By contributing to the ConsoleLabs GitHub repository, you agree to license your
-contribution under our project's license.
+By contributing to the Web Foundation GitHub repository, you agree to license
+your contribution under our project's license.
 
-Your participation and contributions are what make ConsoleLabs an exciting and
-evolving project. We look forward to your creative and innovative input!
+Your participation and contributions are what make the project exciting and
+evolving. We look forward to your creative and innovative input!
