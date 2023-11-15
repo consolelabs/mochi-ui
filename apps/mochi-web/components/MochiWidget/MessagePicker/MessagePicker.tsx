@@ -1,5 +1,6 @@
-import { Heading, InputField } from '@consolelabs/ui-components'
+import { Heading } from '@consolelabs/ui-components'
 import {
+  InputField,
   SectionList,
   Popover,
   PopoverContent,

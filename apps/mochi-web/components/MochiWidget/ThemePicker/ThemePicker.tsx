@@ -2,8 +2,13 @@ import Image from 'next/image'
 import useSWR from 'swr'
 import clsx from 'clsx'
 import { api } from '~constants/mochi'
-import { Heading, InputField } from '@consolelabs/ui-components'
-import { Popover, PopoverContent, PopoverTrigger } from '@consolelabs/core'
+import { Heading } from '@consolelabs/ui-components'
+import {
+  InputField,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@consolelabs/core'
 import { IconMagnifier } from '@consolelabs/icons'
 import React, { useState } from 'react'
 import { useDisclosure } from '@dwarvesf/react-hooks'
