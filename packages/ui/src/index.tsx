@@ -1,7 +1,6 @@
 // components
 export * from './accordion'
 export * from './alert'
-export * from './dropdown'
 export * from './heading'
 export * from './input-field'
 export * from './popover'
