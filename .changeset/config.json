@@ -12,7 +12,6 @@
   "updateInternalDependencies": "patch",
   "ignore": [
     "mochi-web",
-    "@consolelabs/storybook",
-    "@consolelabs/ui-components"
+    "@consolelabs/storybook"
   ]
 }

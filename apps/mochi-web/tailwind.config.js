@@ -5,7 +5,6 @@ module.exports = {
   content: [
     './**/*.{html,ts,tsx}',
     // TODO remove when the migration completed
-    './node_modules/@consolelabs/ui-components/dist/**/*.{js,ts,jsx,tsx}',
     './node_modules/@consolelabs/theme/dist/components/**/*.{js,jsx,ts,tsx}',
   ],
   mode: 'jit',

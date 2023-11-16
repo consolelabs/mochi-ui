@@ -14,9 +14,6 @@ dependencies:
   '@consolelabs/mochi-ui':
     specifier: ^10.0.30
     version: 10.0.30(@consolelabs/mochi-rest@3.0.14)(ioredis@5.3.2)
-  '@consolelabs/ui-components':
-    specifier: ^0.0.1-rc6
-    version: 0.0.1-rc6(@types/react-dom@18.0.11)(@types/react@18.0.28)(react-dom@18.2.0)(react@18.2.0)
   '@dwarvesf/react-hooks':
     specifier: ^0.7.0
     version: 0.7.0(react-dom@18.2.0)(react@18.2.0)
@@ -1822,33 +1819,6 @@ packages:
       - encoding
       - supports-color
       - utf-8-validate
-    dev: false
-
-  /@consolelabs/ui-components@0.0.1-rc6(@types/react-dom@18.0.11)(@types/react@18.0.28)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-jk3G+Q0J+rFwceRbhDe5tc+FrRzhvU1lSm1qYdUw71UebVI9G2lgH7AuZuswwTaX5NIwXHZtqvItmT6L9b881Q==}
-    peerDependencies:
-      react: ^18.2.0
-    dependencies:
-      '@radix-ui/react-accordion': 1.1.2(@types/react-dom@18.0.11)(@types/react@18.0.28)(react-dom@18.2.0)(react@18.2.0)
-      '@radix-ui/react-avatar': 1.0.4(@types/react-dom@18.0.11)(@types/react@18.0.28)(react-dom@18.2.0)(react@18.2.0)
-      '@radix-ui/react-dialog': 1.0.5(@types/react-dom@18.0.11)(@types/react@18.0.28)(react-dom@18.2.0)(react@18.2.0)
-      '@radix-ui/react-scroll-area': 1.0.5(@types/react-dom@18.0.11)(@types/react@18.0.28)(react-dom@18.2.0)(react@18.2.0)
-      '@radix-ui/react-switch': 1.0.3(@types/react-dom@18.0.11)(@types/react@18.0.28)(react-dom@18.2.0)(react@18.2.0)
-      '@radix-ui/react-tooltip': 1.0.7(@types/react-dom@18.0.11)(@types/react@18.0.28)(react-dom@18.2.0)(react@18.2.0)
-      '@uidotdev/usehooks': 2.4.0(react-dom@18.2.0)(react@18.2.0)
-      browser-string-hexer: 1.0.0
-      bs58: 5.0.0
-      class-variance-authority: 0.7.0
-      clsx: 2.0.0
-      react: 18.2.0
-      vaul: 0.7.2(@types/react-dom@18.0.11)(@types/react@18.0.28)(react-dom@18.2.0)(react@18.2.0)
-      zustand: 4.4.3(@types/react@18.0.28)(react@18.2.0)
-    transitivePeerDependencies:
-      - '@types/react'
-      - '@types/react-dom'
-      - immer
-      - react-dom
-      - supports-color
     dev: false
 
   /@coral-xyz/anchor@0.28.1-beta.2:

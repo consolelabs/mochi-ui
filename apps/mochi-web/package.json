@@ -23,7 +23,6 @@
     "@consolelabs/icons": "workspace:*",
     "@consolelabs/mochi-rest": "^4.2.1",
     "@consolelabs/mochi-ui": "^14.0.1",
-    "@consolelabs/ui-components": "workspace:*",
     "@dwarvesf/react-hooks": "^0.7.0",
     "@dwarvesf/react-utils": "^0.4.1",
     "@fnando/sparkline": "^0.3.10",
