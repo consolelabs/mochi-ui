@@ -1,3 +1,4 @@
+import { renderToString } from 'react-dom/server'
 import { Layout } from '~app/layout'
 import { SEO } from '~app/layout/seo'
 import Typed from 'typed.js'
@@ -24,10 +25,34 @@ import { useAuthStore } from '~store'
 import { useShallow } from 'zustand/react/shallow'
 
 const currencies = [
-  '<span class="ethereum-color">Ethereum</span>',
-  '<span class="bitcoin-color">Bitcoin</span>',
-  '<span class="solana-color">Solana</span>',
-  '<span class="dogecoin-color">Dogecoin</span>',
+  `<span class="banner-token ethereum-color">&#8203;${renderToString(
+    <img
+      src="https://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/256/Ethereum-ETH-icon.png"
+      className="object-contain w-10 h-12"
+      alt=""
+    />,
+  )}Ethereum</span>`,
+  `<span class="banner-token bitcoin-color">&#8203;${renderToString(
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/128px-Bitcoin.svg.png"
+      alt=""
+      className="w-10 h-10"
+    />,
+  )}Bitcoin</span>`,
+  `<span class="banner-token solana-color">&#8203;${renderToString(
+    <img
+      src="https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png"
+      alt=""
+      className="w-10 h-10"
+    />,
+  )}Solana</span>`,
+  `<span class="banner-token dogecoin-color">&#8203;${renderToString(
+    <img
+      className="w-10 h-10"
+      src="https://upload.wikimedia.org/wikipedia/en/d/d0/Dogecoin_Logo.png"
+      alt=""
+    />,
+  )}Dogecoin</span>`,
 ]
 const platforms = [
   '<span class="discord-color">Discord</span>',
@@ -73,7 +98,10 @@ export default function Index() {
         <div className="flex flex-col lg:justify-end">
           <p className="text-[32px] leading-[38.4px] title-tracking md:text-[40px] md:leading-[48px]">
             Send{' '}
-            <span ref={currency} className="font-medium">
+            <span
+              ref={currency}
+              className="inline-flex items-baseline font-medium"
+            >
               <span>&#8203;</span>
             </span>
             <br />

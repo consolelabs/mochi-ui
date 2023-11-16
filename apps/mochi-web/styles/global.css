@@ -17,6 +17,12 @@ body {
   color: #474645;
 }
 
+.banner-token {
+  @apply inline-flex gap-x-1 items-baseline;
+}
+.banner-token > img {
+  margin: auto;
+}
 .ethereum-color {
   color: #8a93b2;
 }
