@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-import-module-exports, import/no-unresolved
+// eslint-disable-next-line import/no-import-module-exports
 import { consolelabs } from '@consolelabs/theme'
 
 module.exports = {
