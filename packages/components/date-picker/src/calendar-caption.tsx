@@ -1,8 +1,8 @@
 import { CaptionProps, useNavigation } from 'react-day-picker'
 import { ReactNode } from 'react'
 import format from 'date-fns/format'
-import { cva } from 'class-variance-authority'
 import { IconChevronLeft, IconChevronRight } from '@consolelabs/icons'
+import { dayPickerCaption } from '@consolelabs/theme'
 
 type CalendarCaptionProps = CaptionProps & {
   formater?: (_: Date) => ReactNode
@@ -18,7 +18,7 @@ const CalendarCaption = (props: CalendarCaptionProps) => {
   // captionLayout === 'buttons' || captionLayout === 'dropdown-buttons'
 
   const renderLabel = (
-    <h3 className="text-sm font-medium flex items-center gap-1 mb-3">
+    <h3 className={dayPickerCaption.label}>
       {formater?.(displayMonth) ?? (
         <>
           <span>{format(displayMonth, 'MMMMMMMM')}</span>
@@ -30,33 +30,33 @@ const CalendarCaption = (props: CalendarCaptionProps) => {
 
   const renderLeftButton = isDisplayNavButton && (
     <button onClick={() => previousMonth && goToMonth(previousMonth)}>
-      <IconChevronLeft className="text-xl" />
+      <IconChevronLeft className={dayPickerCaption.icon} />
     </button>
   )
 
   const renderRightButton = isDisplayNavButton && (
     <button onClick={() => nextMonth && goToMonth(nextMonth)}>
-      <IconChevronRight className="text-xl" />
+      <IconChevronRight className={dayPickerCaption.icon} />
     </button>
   )
 
   const renderCaptionLayout = alignCaptionCenter ? (
-    <div className="w-full flex justify-between">
+    <div className={dayPickerCaption.layout}>
       {renderLeftButton}
       {renderLabel}
       {renderRightButton}
     </div>
   ) : (
-    <div className="w-full flex justify-between">
+    <div className={dayPickerCaption.layout}>
       {renderLabel}
-      <div className="flex gap-2">
+      <div className={dayPickerCaption.buttonGroup}>
         {renderLeftButton}
         {renderRightButton}
       </div>
     </div>
   )
 
-  return <div className="w-full h-fit mb-3">{renderCaptionLayout}</div>
+  return <div className={dayPickerCaption.wrapper}>{renderCaptionLayout}</div>
 }
 
 export { CalendarCaption }
