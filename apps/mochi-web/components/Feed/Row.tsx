@@ -39,20 +39,20 @@ export default function Row({ tx, colWidth }: { tx: Tx; colWidth: string[] }) {
           </span>
         </div>
       </RowCell>
-      <RowCell className="items-center" width={colWidth[3]}>
-        <Badge
-          className="capitalize bg-neutral-800 text-white-pure"
-          label={tx.action}
-          appearance="black"
-        />
-      </RowCell>
-      <RowCell className="gap-x-2 items-center" width={colWidth[4]}>
+      {/* <RowCell className="items-center" width={colWidth[3]}> */}
+      {/*   <Badge */}
+      {/*     className="capitalize bg-neutral-800 text-white-pure" */}
+      {/*     label={tx.action} */}
+      {/*     appearance="black" */}
+      {/*   /> */}
+      {/* </RowCell> */}
+      <RowCell className="gap-x-2 items-center" width={colWidth[3]}>
         <Avatar src={tx.token.icon} size="sm" />
         <span className="text-sm font-normal leading-5 text-white-pure">
           {tx.amount} {tx.token.symbol}
         </span>
       </RowCell>
-      <RowCell className="items-center" width={colWidth[5]}>
+      <RowCell className="items-center" width={colWidth[4]}>
         <Badge
           className="max-w-full bg-neutral-800 text-white-pure"
           icon={<Avatar src={tx.where.avatar} size="xs" />}
@@ -61,7 +61,7 @@ export default function Row({ tx, colWidth }: { tx: Tx; colWidth: string[] }) {
           appearance="black"
         />
       </RowCell>
-      <RowCell className="items-center" width={colWidth[6]}>
+      <RowCell className="items-center" width={colWidth[5]}>
         <Link
           href={`/tx/${tx.code}`}
           className="text-sm font-normal leading-5 text-white-pure"
@@ -69,12 +69,12 @@ export default function Row({ tx, colWidth }: { tx: Tx; colWidth: string[] }) {
           {tx.code.slice(0, 9)}
         </Link>
       </RowCell>
-      <RowCell className="items-center" width={colWidth[7]}>
+      <RowCell className="items-center" width={colWidth[6]}>
         <span className="text-sm font-normal leading-5 text-white-pure">
           {tx.date}
         </span>
       </RowCell>
-      <RowCell className="items-center" width={colWidth[8]}>
+      <RowCell className="items-center" width={colWidth[7]}>
         <Badge
           className={
             tx.isSuccess
