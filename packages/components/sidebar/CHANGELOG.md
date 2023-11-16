@@ -1,5 +1,13 @@
 # @consolelabs/sidebar
 
+## 0.0.10
+
+### Patch Changes
+
+- [#218](https://github.com/consolelabs/web-foundation/pull/218)
+  [`ae28441`](https://github.com/consolelabs/web-foundation/commit/ae28441d9e6673ea76971bbb5da5ea9354f7d444)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Fix document path
+
 ## 0.0.9
 
 ### Patch Changes

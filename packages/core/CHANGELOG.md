@@ -1,5 +1,30 @@
 # @consolelabs/core
 
+## 0.0.13
+
+### Patch Changes
+
+- [#220](https://github.com/consolelabs/web-foundation/pull/220)
+  [`e486812`](https://github.com/consolelabs/web-foundation/commit/e48681267b513a98bce54c62414e36e02f3df8cc)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Export Select
+  component in core package
+
+- [#217](https://github.com/consolelabs/web-foundation/pull/217)
+  [`eed0ae9`](https://github.com/consolelabs/web-foundation/commit/eed0ae93d658252973a9c98213f328a0528f0889)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Export Anchor
+  from Popover component
+
+- Updated dependencies
+  [[`ae28441`](https://github.com/consolelabs/web-foundation/commit/ae28441d9e6673ea76971bbb5da5ea9354f7d444),
+  [`eed0ae9`](https://github.com/consolelabs/web-foundation/commit/eed0ae93d658252973a9c98213f328a0528f0889)]:
+  - @consolelabs/toggle-button@0.0.8
+  - @consolelabs/heading@0.0.5
+  - @consolelabs/sidebar@0.0.10
+  - @consolelabs/popover@0.1.0
+  - @consolelabs/list@0.0.8
+  - @consolelabs/login-widget@0.0.9
+  - @consolelabs/section-list@0.0.7
+
 ## 0.0.12
 
 ### Patch Changes
