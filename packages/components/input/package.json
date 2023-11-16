@@ -35,6 +35,7 @@
   "dependencies": {
     "class-variance-authority": "^0.7.0",
     "@consolelabs/icons": "workspace:*",
+    "@consolelabs/polymorphic": "workspace:*",
     "@consolelabs/theme": "workspace:*"
   },
   "clean-package": "../../../clean-package.config.json"

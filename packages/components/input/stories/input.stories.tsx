@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import Input from '../src/input'
+import Input, { InputRoot } from '../src/input'
 
 const meta: Meta<typeof Input> = {
   title: 'Components/Input',
@@ -27,9 +27,9 @@ export const Default: Story = {
 
 export function Size() {
   return (
-    <div style={{ display: 'flex', gap: 16 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
       <Input />
-      <Input size="large" />
+      <Input size="lg" />
     </div>
   )
 }
@@ -40,4 +40,13 @@ export function Disabled() {
 
 export function Error() {
   return <Input error placeholder="Placeholder" />
+}
+
+export function Custom() {
+  return (
+    <InputRoot>
+      <div className="shrink-0 w-5 h-5 bg-red-300" />
+      <Input className="" error placeholder="Hello world" />
+    </InputRoot>
+  )
 }
