@@ -1,7 +1,7 @@
 import { Profile } from '@consolelabs/mochi-rest'
 import { useEffect, useMemo, useState } from 'react'
-import { Heading } from '@consolelabs/ui-components'
 import {
+  Heading,
   InputField,
   IconButton,
   Popover,

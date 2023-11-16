@@ -1,4 +1,4 @@
-import { Heading } from '@consolelabs/ui-components'
+import { Heading } from '@consolelabs/core'
 import { Platform } from './type'
 import PlatformIcon from './PlatformIcon'
 

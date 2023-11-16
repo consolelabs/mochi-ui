@@ -1,5 +1,5 @@
 import { formatNumber } from '~utils/number'
-import { Heading } from '@consolelabs/ui-components'
+import { Heading } from '@consolelabs/core'
 import { MonikerAsset, MonikerIcons } from './type'
 
 interface ItemProps {

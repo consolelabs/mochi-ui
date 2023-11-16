@@ -2,8 +2,8 @@ import Image from 'next/image'
 import useSWR from 'swr'
 import clsx from 'clsx'
 import { api } from '~constants/mochi'
-import { Heading } from '@consolelabs/ui-components'
 import {
+  Heading,
   InputField,
   Popover,
   PopoverContent,

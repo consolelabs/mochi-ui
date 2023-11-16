@@ -2,8 +2,8 @@ import { IconChevronDown } from '@consolelabs/icons'
 import { useEffect, useMemo, useState } from 'react'
 import { Icon } from '@iconify/react'
 import { Tab } from '@headlessui/react'
-import { Heading } from '@consolelabs/ui-components'
 import {
+  Heading,
   InputField,
   Popover,
   PopoverTrigger,
