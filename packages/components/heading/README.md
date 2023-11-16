@@ -3,7 +3,7 @@
 Represents heading within the application.
 
 For further details, visit our
-[Heading Documentation](https://ds.console.so/?path=/story/ui-heading--default).
+[Heading Documentation](https://ds.console.so/?path=/story/components-heading--default).
 
 ## Installation
 

@@ -4,7 +4,7 @@ Sidebar is a navigational component positioned on the side of a user interface,
 providing quick access to essential features, menus, or sections.
 
 For further details, visit our
-[Sidebar Documentation](https://ds.console.so/?path=/story/ui-sidebar--default).
+[Sidebar Documentation](https://ds.console.so/?path=/story/components-sidebar--default).
 
 ## Installation
 
