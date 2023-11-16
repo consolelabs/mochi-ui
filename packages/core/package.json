@@ -54,7 +54,8 @@
     "@consolelabs/checkbox": "workspace:*",
     "@consolelabs/icon-button": "workspace:*",
     "@consolelabs/modal": "workspace:*",
-    "@consolelabs/date-picker": "workspace:*"
+    "@consolelabs/date-picker": "workspace:*",
+    "@consolelabs/select": "workspace:*"
   },
   "clean-package": "../../clean-package.config.json"
 }

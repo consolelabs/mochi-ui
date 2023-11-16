@@ -582,6 +582,9 @@ importers:
       '@consolelabs/icons':
         specifier: workspace:*
         version: link:../../icons
+      '@consolelabs/select':
+        specifier: workspace:*
+        version: link:../select
       '@consolelabs/theme':
         specifier: workspace:*
         version: link:../../theme
@@ -591,6 +594,9 @@ importers:
       clsx:
         specifier: ^2.0.0
         version: 2.0.0
+      date-fns:
+        specifier: ^2.28.0
+        version: 2.28.0
       react-day-picker:
         specifier: ^8.9.1
         version: 8.9.1(date-fns@2.28.0)(react@18.2.0)
@@ -1450,6 +1456,9 @@ importers:
       '@consolelabs/section-list':
         specifier: workspace:*
         version: link:../components/section-list
+      '@consolelabs/select':
+        specifier: workspace:*
+        version: link:../components/select
       '@consolelabs/sidebar':
         specifier: workspace:*
         version: link:../components/sidebar

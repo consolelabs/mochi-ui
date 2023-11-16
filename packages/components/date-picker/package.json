@@ -35,8 +35,10 @@
   "dependencies": {
     "@consolelabs/icons": "workspace:*",
     "@consolelabs/theme": "workspace:*",
+    "@consolelabs/select": "workspace:*",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "date-fns": "^2.28.0",
     "react-day-picker": "^8.9.1"
   },
   "clean-package": "../../../clean-package.config.json"
