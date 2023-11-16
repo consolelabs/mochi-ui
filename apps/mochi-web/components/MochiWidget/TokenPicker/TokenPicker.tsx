@@ -2,12 +2,12 @@ import { IconChevronDown } from '@consolelabs/icons'
 import { useEffect, useMemo, useState } from 'react'
 import { Icon } from '@iconify/react'
 import { Tab } from '@headlessui/react'
-import { Heading } from '@consolelabs/core'
 import {
   InputField,
   Popover,
   PopoverTrigger,
   PopoverContent,
+  Heading,
 } from '@consolelabs/core'
 import { Balance } from '~store'
 import { TokenList } from './TokenList'
@@ -94,6 +94,8 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
       setTokenBalances(balances)
       handleTokenSelect(balances[0])
     }
+    // TODO: ingore to avoid build warning. Need An Tran to double check
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [balances])
 
   function handleTokenSelect(asset: Balance) {
