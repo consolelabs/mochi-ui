@@ -1,7 +1,7 @@
 {
-  "name": "@consolelabs/websites",
+  "name": "@consolelabs/web-foundation",
   "private": false,
-  "description": "Consolelabs Websites",
+  "description": "Consolelabs Web Foundation",
   "author": "@consolelabs",
   "license": "ISC",
   "publishConfig": {

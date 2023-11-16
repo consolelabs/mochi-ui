@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-import-module-exports
 import { consolelabs } from '@consolelabs/core'
 
 module.exports = {
