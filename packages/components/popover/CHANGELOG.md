@@ -1,5 +1,14 @@
 # @consolelabs/popover
 
+## 0.1.0
+
+### Minor Changes
+
+- [#217](https://github.com/consolelabs/web-foundation/pull/217)
+  [`eed0ae9`](https://github.com/consolelabs/web-foundation/commit/eed0ae93d658252973a9c98213f328a0528f0889)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Export Anchor
+  from Popover component
+
 ## 0.0.8
 
 ### Patch Changes
