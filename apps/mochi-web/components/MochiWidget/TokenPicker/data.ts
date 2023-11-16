@@ -152,7 +152,7 @@ export const MonikerAssets: MonikerAsset[] = [
     id: '6',
     moniker: {
       id: '6',
-      moniker: 'diamon',
+      moniker: 'diamond',
     },
     group: "Dwarves network's moniker",
     token_amount: '2',

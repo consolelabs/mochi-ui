@@ -1,3 +1,5 @@
+import { useAuthStore } from '~store'
+import { useShallow } from 'zustand/react/shallow'
 import { Profile } from '@consolelabs/mochi-rest'
 import { useEffect, useMemo, useState } from 'react'
 import {
@@ -9,7 +11,7 @@ import {
   PopoverAnchor,
 } from '@consolelabs/core'
 import { IconClose, IconSpinner } from '@consolelabs/icons'
-import { useDebounce } from '@dwarvesf/react-hooks'
+import { useDebounce, useDisclosure } from '@dwarvesf/react-hooks'
 import { API, GET_PATHS } from '~constants/api'
 import { ChainPicker } from '../ChainPicker'
 import { Platform } from '../PlatformPicker/type'
@@ -19,7 +21,6 @@ import { SelectedRecipient } from './SelectedRecipient'
 import { MAX_RECIPIENTS } from '../Tip/store'
 
 interface RecipientProps {
-  accessToken: string | null
   onLoginRequest?: () => void
   selectedRecipients?: Profile[]
   onSelectRecipient?: (item: Profile) => void
@@ -27,15 +28,24 @@ interface RecipientProps {
 }
 
 export const Recipient: React.FC<RecipientProps> = ({
-  accessToken,
   onLoginRequest,
   selectedRecipients,
   onSelectRecipient,
   onRemoveRecipient,
 }) => {
-  const [isOpenRecipients, openRecipients] = useState(false)
+  const accessToken = useAuthStore(useShallow((s) => s.token))
+  const {
+    isOpen: isOpenRecipients,
+    onToggle: toggleRecipients,
+    onOpen: openRecipients,
+    onClose: hideRecipients,
+  } = useDisclosure()
+  const {
+    isOpen: isSearching,
+    onOpen: setIsSearching,
+    onClose: setIsNotSearching,
+  } = useDisclosure()
   const [searchTerm, setSearchTerm] = useState('')
-  const [isSearching, setIsSearching] = useState(false)
   const debouncedSearchTerm = useDebounce(searchTerm, 500)
   const [selectedPlatform, setSelectedPlatform] = useState<Platform>()
   const isOnChain = selectedPlatform?.platform === 'on-chain'
@@ -59,16 +69,16 @@ export const Recipient: React.FC<RecipientProps> = ({
   useEffect(
     () => {
       if (debouncedSearchTerm) {
-        setIsSearching(true)
+        setIsSearching()
         API.MOCHI_PROFILE.get(GET_PATHS.PROFILE_SEARCH(searchTerm))
           .json((r) => r.data)
           .then((data: Profile[]) => {
             setRecipients(data || [])
           })
-          .finally(() => setIsSearching(false))
+          .finally(() => setIsNotSearching())
       } else {
         setRecipients([])
-        setIsSearching(false)
+        setIsNotSearching()
       }
     },
     [debouncedSearchTerm], // Only call effect if debounced search term changes
@@ -79,13 +89,17 @@ export const Recipient: React.FC<RecipientProps> = ({
       onLoginRequest?.()
     } else {
       // toggle the recipient list
-      openRecipients((prev) => !prev)
+      toggleRecipients()
     }
   }
 
   function onOpenChange(isOpen: boolean) {
     // Reset on close
-    openRecipients(isOpen)
+    if (isOpen) {
+      openRecipients()
+    } else {
+      hideRecipients()
+    }
     setSearchTerm('')
   }
 

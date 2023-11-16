@@ -1,6 +1,5 @@
 import clsx from 'clsx'
 import { formatTokenAmount } from '~utils/number'
-import { utils } from '@consolelabs/mochi-ui'
 import Link from 'next/link'
 import { Button } from '@consolelabs/core'
 import { IconCheck, IconChevronLeft, IconSpinner } from '@consolelabs/icons'
@@ -13,14 +12,13 @@ export default function StepTwo() {
   const {
     isTransferring,
     tx,
-    transfer,
+    execute,
     setStep,
     updateRequestTheme,
     updateRequestMessage,
     request,
     reset,
-    asset,
-    amount,
+    amountUsd,
   } = useTipWidget()
 
   return (
@@ -58,32 +56,29 @@ export default function StepTwo() {
         </button>
         <span className="mx-auto text-base text-[#343433]">You send</span>
         <p className="mx-auto text-3xl font-medium leading-5 text-black">
-          {formatTokenAmount(amount ?? 0).display} {asset?.token?.symbol}
+          {formatTokenAmount(request.amount ?? 0).display}{' '}
+          {request.asset?.token?.symbol}
         </p>
         <span className="text-sm text-[#7a7e85] mx-auto">
-          &#8776;{' '}
-          {utils.formatDigit({
-            value: (asset?.token?.price ?? 0) * (amount ?? 0),
-            fractionDigits: 2,
-            shorten: true,
-            scientificFormat: true,
-          })}{' '}
-          USD
+          &#8776; {amountUsd} USD
         </span>
 
         {/* probably will read data from store */}
         <TransactionPreview.Tip />
 
         <MessagePicker
-          value={request?.message}
+          value={request.message ?? ''}
           onChange={updateRequestMessage}
         />
 
-        <ThemePicker value={request?.theme} onChange={updateRequestTheme} />
+        <ThemePicker
+          value={request.theme ?? { id: 0, src: '', name: '', group: '' }}
+          onChange={updateRequestTheme}
+        />
       </div>
       <Button
         type="button"
-        onClick={transfer}
+        onClick={execute}
         className="flex justify-center mt-auto"
         size="lg"
         disabled={isTransferring}

@@ -160,42 +160,42 @@ export default function Index() {
         data={[
           {
             id: 'support-on-chain-and-hybrid',
-            title: 'Support On-chain & Hybrid',
-            body: 'Lorem ipsum dolor sit amet consectetur. Laoreet risus sagittis laoreet mi. Diam mauris praesent cursus adipiscing. Et aliquam tellus purus odio sapien id arcu egestas. Commodo venenatis aliquet nunc commodo.',
+            title: 'On-chain & Hybrid Support',
+            body: 'Make gasless transactions easily using social handles, ensuring strong security. Connect with different blockchains for both on-chain and hybrid transactions.',
             icon: <IconBlocksColored className="w-8 h-8 md:w-12 md:h-12" />,
           },
           {
-            id: 'self-custodial',
-            title: 'Self-custodial',
-            body: 'Lorem ipsum dolor sit amet consectetur. Laoreet risus sagittis laoreet mi. Diam mauris praesent cursus adipiscing. Et aliquam tellus purus odio sapien id arcu egestas. Commodo venenatis aliquet nunc commodo.',
+            id: 'self-custodial-solutions',
+            title: 'Self-custodial Solutions',
+            body: "Take command of your assets with Mochi's self-custodial solutions, ensuring true ownership. Enjoy secure storage without compromising usability.",
             icon: <IconHandKeyColored className="w-8 h-8 md:w-12 md:h-12" />,
           },
           {
             id: 'invisible-wallets',
             title: 'Invisible Wallets',
-            body: 'Lorem ipsum dolor sit amet consectetur. Laoreet risus sagittis laoreet mi. Diam mauris praesent cursus adipiscing. Et aliquam tellus purus odio sapien id arcu egestas. Commodo venenatis aliquet nunc commodo.',
+            body: "Login with Telegram, Discord, SSO or Facebook account make onboarding seamless. Nevermind where's the seedphrase.",
             icon: (
               <IconWalletPasswordColored className="w-8 h-8 md:w-12 md:h-12" />
             ),
           },
           {
-            id: 'multi-auth-method',
-            title: 'Multi Auth Method',
-            body: 'Lorem ipsum dolor sit amet consectetur. Laoreet risus sagittis laoreet mi. Diam mauris praesent cursus adipiscing. Et aliquam tellus purus odio sapien id arcu egestas. Commodo venenatis aliquet nunc commodo.',
+            id: 'keyless-wallet',
+            title: 'Keyless Wallet',
+            body: 'Elevate security by multiple protection layer while keep the friendly experience for all both crypto wizard and newbie.',
             icon: <IconLayersColored className="w-8 h-8 md:w-12 md:h-12" />,
           },
           {
             id: 'account-abstraction',
             title: 'Account Abstraction',
-            body: 'Lorem ipsum dolor sit amet consectetur. Laoreet risus sagittis laoreet mi. Diam mauris praesent cursus adipiscing. Et aliquam tellus purus odio sapien id arcu egestas. Commodo venenatis aliquet nunc commodo.',
+            body: 'Enables smart accounts, that can initiate and execute transactions without the need for an external account.',
             icon: (
               <IconPasswordLockColored className="w-8 h-8 md:w-12 md:h-12" />
             ),
           },
           {
-            id: '?',
-            title: '?',
-            body: 'Lorem ipsum dolor sit amet consectetur. Laoreet risus sagittis laoreet mi. Diam mauris praesent cursus adipiscing. Et aliquam tellus purus odio sapien id arcu egestas. Commodo venenatis aliquet nunc commodo.',
+            id: 'advanded-security-measures',
+            title: 'Advanced Security Measures',
+            body: 'Protect your assets by a high-tech lock - strong encryption, providing a worry-free Web3 experience.',
             icon: (
               <IconPasswordLockColored className="w-8 h-8 md:w-12 md:h-12" />
             ),

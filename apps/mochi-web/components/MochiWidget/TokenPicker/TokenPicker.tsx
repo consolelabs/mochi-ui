@@ -3,15 +3,15 @@ import { useEffect, useMemo, useState } from 'react'
 import { Icon } from '@iconify/react'
 import { Tab } from '@headlessui/react'
 import {
-  Heading,
   InputField,
   Popover,
   PopoverTrigger,
   PopoverContent,
+  Heading,
 } from '@consolelabs/core'
 import { Balance } from '~store'
 import { TokenList } from './TokenList'
-import { MonikerAsset, SectionBase } from './type'
+import { MonikerAsset, MonikerIcons, SectionBase } from './type'
 import { DefaultBalances, MonikerAssets } from './data'
 import { MonikerList } from './MonikerList'
 import { sectionFormatter } from './utils'
@@ -28,6 +28,7 @@ const TokenTabs = [
 ]
 
 interface TokenPickerProps {
+  selectedAsset: Balance | MonikerAsset | null
   balances?: Balance[]
   onSelect?: (item: Balance | MonikerAsset) => void
 }
@@ -50,7 +51,7 @@ const TokenButton = (props: TokenButtonProps) => (
       </span>
     ) : (
       <span className="text-base w-[22px] h-[22px]" role="img">
-        {props.icon}
+        {MonikerIcons.get(props.name ?? '')}
       </span>
     )}
     <span className="text-sm font-medium">{props.name}</span>
@@ -59,6 +60,7 @@ const TokenButton = (props: TokenButtonProps) => (
 )
 
 export const TokenPicker: React.FC<TokenPickerProps> = ({
+  selectedAsset,
   balances,
   onSelect,
 }) => {
@@ -66,9 +68,6 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
     balances || DefaultBalances,
   )
   const [isOpenSelector, setIsOpenSelector] = useState(false)
-  const [selectedAsset, setSelectedAsset] = useState<Balance | MonikerAsset>(
-    tokenBalances[0] ?? DefaultBalances[0],
-  )
   const [searchTerm, setSearchTerm] = useState('')
   const filteredTokens = useMemo<Balance[]>(
     () =>
@@ -87,23 +86,24 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
     )
     return sectionFormatter(filteredData, 'group')
   }, [searchTerm])
-  const isTokenSelected = 'token' in selectedAsset
+  const isTokenSelected = (selectedAsset && 'token' in selectedAsset) ?? true
 
   useEffect(() => {
     if (Array.isArray(balances) && balances.length) {
       setTokenBalances(balances)
       handleTokenSelect(balances[0])
+    } else {
+      setTokenBalances([])
+      handleTokenSelect(DefaultBalances[0])
     }
-  }, [balances])
+  }, [balances, selectedAsset])
 
   function handleTokenSelect(asset: Balance) {
-    setSelectedAsset(asset)
     setIsOpenSelector(false)
     onSelect?.(asset)
   }
 
   function handleMonikerSelect(asset: MonikerAsset) {
-    setSelectedAsset(asset)
     setIsOpenSelector(false)
     onSelect?.(asset)
   }
@@ -125,12 +125,12 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
           isToken={isTokenSelected}
           name={
             isTokenSelected
-              ? selectedAsset.token?.symbol
+              ? selectedAsset?.token?.symbol
               : (selectedAsset as MonikerAsset).moniker.moniker
           }
           icon={
             isTokenSelected
-              ? selectedAsset.token?.icon
+              ? selectedAsset?.token?.icon ?? '/logo.png'
               : (selectedAsset as MonikerAsset).moniker.moniker
           }
         />

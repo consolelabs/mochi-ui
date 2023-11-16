@@ -1,6 +1,6 @@
 import {
-  Heading,
   InputField,
+  Heading,
   SectionList,
   Popover,
   PopoverContent,
@@ -20,10 +20,7 @@ function SectionItem({
   onSelect: () => void
 }) {
   return (
-    <li
-      className="flex items-center w-full p-2 hover:bg-[#FAF9F7] rounded-lg space-x-2 cursor-pointer"
-      key={item.id}
-    >
+    <li className="flex items-center w-full p-2 hover:bg-[#FAF9F7] rounded-lg space-x-2 cursor-pointer">
       <button type="button" onClick={onSelect}>
         <Heading as="h3" className="text-sm">
           {item.content}
@@ -34,7 +31,7 @@ function SectionItem({
 }
 
 interface MessagePickerProps {
-  value?: string
+  value: string
   onChange: (msg: string) => void
 }
 
@@ -100,8 +97,9 @@ export default function MessagePicker({ value, onChange }: MessagePickerProps) {
                 ),
                 'group',
               )}
-              renderItem={(item: any) => (
+              renderItem={(item) => (
                 <SectionItem
+                  key={`message-list-${item.id}`}
                   item={item}
                   onSelect={() => {
                     onChange(item.content)
