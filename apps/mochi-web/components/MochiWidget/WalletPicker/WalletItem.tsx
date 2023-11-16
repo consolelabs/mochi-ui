@@ -1,4 +1,4 @@
-import { Heading } from '@consolelabs/ui-components'
+import { Heading } from '@consolelabs/core'
 import { truncateWallet } from '~utils/string'
 import { MochiWalletBase, Wallet } from '~store'
 import { utils } from '@consolelabs/mochi-ui'

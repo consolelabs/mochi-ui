@@ -1,5 +1,4 @@
-import { Heading } from '@consolelabs/ui-components'
-import { Avatar } from '@consolelabs/core'
+import { Avatar, Heading } from '@consolelabs/core'
 import { Profile } from '@consolelabs/mochi-rest'
 import { truncateWallet } from '~utils/string'
 import PlatformIcon from '../PlatformPicker/PlatformIcon'

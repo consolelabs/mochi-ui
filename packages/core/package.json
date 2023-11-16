@@ -46,6 +46,7 @@
     "@consolelabs/popover": "workspace:*",
     "@consolelabs/profile-badge": "workspace:*",
     "@consolelabs/section-list": "workspace:*",
+    "@consolelabs/select": "workspace:*",
     "@consolelabs/sidebar": "workspace:*",
     "@consolelabs/switch": "workspace:*",
     "@consolelabs/theme": "workspace:*",
