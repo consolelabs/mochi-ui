@@ -1,5 +1,5 @@
-// eslint-disable-next-line import/no-import-module-exports
-import { consolelabs } from 'tailwind-config/plugin'
+// eslint-disable-next-line import/no-import-module-exports, import/no-unresolved
+import { consolelabs } from '@consolelabs/theme'
 
 module.exports = {
   content: [
