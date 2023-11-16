@@ -4,7 +4,7 @@ Toggle Button Group component enables seamless toggling between states,
 supporting both multi-selection and single-selection configurations.
 
 For further details, visit our
-[Toggle Button Documentation](https://ds.console.so/?path=/story/ui-togglebutton--default).
+[Toggle Button Documentation](https://ds.console.so/?path=/story/components-togglebutton--default).
 
 ## Installation
 
