@@ -27,6 +27,7 @@ module.exports = {
         feed: {
           bg: {
             DEFAULT: '#141518',
+            hover: '#1a1b1f',
           },
           border: {
             DEFAULT: '#343433',

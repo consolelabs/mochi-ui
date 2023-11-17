@@ -1,16 +1,17 @@
+import { api } from '~constants/mochi'
 import { create } from 'zustand'
 import { API } from '~constants/api'
 import { Profile } from '@consolelabs/mochi-rest'
 import { Balance, Wallet, useProfileStore } from '~store'
 import { Theme } from '../ThemePicker/ThemePicker'
-import { MonikerAsset } from '../TokenPicker/type'
+import { Moniker } from '../TokenPicker/type'
 
 export const MAX_RECIPIENTS = 20
 
 interface Request {
   recipients: Profile[] | null
   amount: number | null
-  asset: Balance | MonikerAsset | null
+  asset: Balance | Moniker | null
   message: string | null
   theme: Theme | null
 }
@@ -31,7 +32,7 @@ interface TipWidgetState {
   updateSourceWallet: (s: Wallet) => void
   addRecipient: (recipient: Profile) => void
   removeRecipient: (recipient: Profile) => void
-  setAsset: (asset: Balance) => void
+  setAsset: (asset: Balance | Moniker) => void
   setAmount: (amount: number) => void
 }
 
@@ -110,8 +111,35 @@ export const useTipWidget = create<TipWidgetState>((set, get) => ({
       set((s) => ({ ...s, isTransferring: false }))
     }
   },
-  updateSourceWallet: (wallet: Wallet) =>
-    set((s) => ({ ...s, fromWallet: wallet })),
+  updateSourceWallet: (wallet: Wallet) => {
+    const missingIconBalances = new Set(
+      wallet.balances
+        ?.filter((b) => !b.token?.icon)
+        .map((b) => b.token?.symbol ?? '') ?? [],
+    )
+    api.base.metadata
+      .getEmojis({
+        codes: Array.from(missingIconBalances),
+      })
+      .then(({ data, ok }) => {
+        if (ok) {
+          const icons = Object.fromEntries(
+            data.map((d) => [d.code, d.emoji_url]),
+          )
+          wallet.balances?.forEach((b) => {
+            if (
+              b.token &&
+              !b.token.icon &&
+              b.token.symbol &&
+              icons[b.token.symbol]
+            ) {
+              b.token.icon = icons[b.token.symbol]
+            }
+          })
+          set((s) => ({ ...s, fromWallet: wallet }))
+        }
+      })
+  },
   addRecipient: (recipient) => {
     const { recipients } = get().request
     const isMax = (recipients?.length ?? 0) >= MAX_RECIPIENTS

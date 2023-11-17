@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { IconArrowRight, IconArrowUp } from '@consolelabs/icons'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -189,9 +190,14 @@ export default function Feed({ className = '' }: Props) {
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
                           key={`feed-row-${tx.from}-${tx.to}-${tx.code}`}
-                          className="flex"
                         >
-                          <Row tx={tx} colWidth={colWidth} />
+                          <Link
+                            className="flex bg-transparent transition cursor-pointer hover:bg-feed-bg-hover"
+                            href={`/tx/${tx.code}`}
+                            target="_blank"
+                          >
+                            <Row tx={tx} colWidth={colWidth} />
+                          </Link>
                         </motion.div>
                       )
                     })}

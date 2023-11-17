@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { IconArrowRight } from '@consolelabs/icons'
 import { Avatar, Badge } from '@consolelabs/core'
 import React from 'react'
@@ -62,12 +61,9 @@ export default function Row({ tx, colWidth }: { tx: Tx; colWidth: string[] }) {
         />
       </RowCell>
       <RowCell className="items-center" width={colWidth[5]}>
-        <Link
-          href={`/tx/${tx.code}`}
-          className="text-sm font-normal leading-5 text-white-pure"
-        >
+        <span className="text-sm font-normal leading-5 text-white-pure">
           {tx.code.slice(0, 9)}
-        </Link>
+        </span>
       </RowCell>
       <RowCell className="items-center" width={colWidth[6]}>
         <span className="text-sm font-normal leading-5 text-white-pure">

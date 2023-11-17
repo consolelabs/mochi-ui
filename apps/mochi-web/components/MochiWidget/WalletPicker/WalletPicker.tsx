@@ -34,7 +34,7 @@ export const WalletPicker: React.FC<Props> = ({ onLoginRequest, onSelect }) => {
   } = useDisclosure()
   const accessToken = useAuthStore(useShallow((s) => s.token))
   const [selectedWallet, setSelectedWallet] = useState<Wallet>(DefaultWallet)
-  const { wallets } = useWalletStore()
+  const { wallets, isFetching } = useWalletStore()
 
   useEffect(() => {
     if (!accessToken) {
@@ -46,7 +46,6 @@ export const WalletPicker: React.FC<Props> = ({ onLoginRequest, onSelect }) => {
 
   function handleWalletSelect(wallet: Wallet) {
     setSelectedWallet(wallet)
-    hideSelector()
     onSelect?.(wallet)
   }
 
@@ -91,7 +90,14 @@ export const WalletPicker: React.FC<Props> = ({ onLoginRequest, onSelect }) => {
           align="start"
           className="flex gap-x-1 items-center py-3 px-3 rounded-lg shadow-md focus-visible:outline-none w-[414px] bg-white-pure"
         >
-          <WalletList data={wallets} onSelect={handleWalletSelect} />
+          <WalletList
+            loading={isFetching}
+            data={wallets}
+            onSelect={(w) => {
+              handleWalletSelect(w)
+              hideSelector()
+            }}
+          />
         </PopoverContent>
       )}
     </Popover>
