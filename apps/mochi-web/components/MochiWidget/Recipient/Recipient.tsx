@@ -32,7 +32,11 @@ export const Recipient: React.FC<RecipientProps> = ({
   onRemoveRecipient,
 }) => {
   const accessToken = useAuthStore(useShallow((s) => s.token))
-  const { isOpen: isOpenRecipients, onOpen: openRecipients } = useDisclosure()
+  const {
+    isOpen: isOpenRecipients,
+    onOpen: openRecipients,
+    onClose: closeRecipients,
+  } = useDisclosure()
   const {
     isOpen: isSearching,
     onOpen: setIsSearching,
@@ -83,6 +87,14 @@ export const Recipient: React.FC<RecipientProps> = ({
     }
   }
 
+  function onOpenChange(isOpen: boolean) {
+    if (isOpen) {
+      openRecipients()
+    } else {
+      closeRecipients()
+    }
+  }
+
   function onSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     setSearchTerm(e.target.value)
   }
@@ -110,7 +122,7 @@ export const Recipient: React.FC<RecipientProps> = ({
   }
 
   return (
-    <Popover open={isOpenRecipients} onOpenChange={openRecipients}>
+    <Popover open={isOpenRecipients} onOpenChange={onOpenChange}>
       <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-3">
         <div className="flex justify-between items-center px-4 h-[34px]">
           <label
