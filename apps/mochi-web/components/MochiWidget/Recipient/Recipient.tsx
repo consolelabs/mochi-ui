@@ -198,6 +198,7 @@ export const Recipient: React.FC<RecipientProps> = ({
           {isOnChain && (
             <InputField
               className="w-full text-sm"
+              inputWrapperClassName="rounded-lg"
               autoFocus
               placeholder="Search address"
               startAdornment={<ChainPicker className="ml-3" />}
