@@ -5,6 +5,7 @@ import { Profile } from '@consolelabs/mochi-rest'
 import { Balance, Wallet, useProfileStore } from '~store'
 import { Theme } from '../ThemePicker/ThemePicker'
 import { Moniker } from '../TokenPicker/type'
+import { isToken } from '../TokenPicker/utils'
 
 export const MAX_RECIPIENTS = 20
 
@@ -89,13 +90,17 @@ export const useTipWidget = create<TipWidgetState>((set, get) => ({
       await new Promise<void>((r) => {
         setTimeout(r, 1000)
       })
+      const amount = request.amount ?? 0
+      if (!amount) return
       const tx = await API.MOCHI.post(
         {
           sender: me?.id,
           recipients: request.recipients?.map((r) => r.id),
           platform: 'web',
           transfer_type: 'transfer',
-          amount: request.amount,
+          amount: isToken(request.asset)
+            ? amount
+            : amount * (request.asset?.token_amount ?? 0),
           token: request.asset?.token?.symbol,
           chain_id: request.asset?.token?.chain_id,
           // optional

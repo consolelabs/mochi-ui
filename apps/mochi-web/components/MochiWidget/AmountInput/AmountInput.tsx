@@ -42,7 +42,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   const isMonikerAsset = !isToken(selectedAsset)
 
   const balance = isMonikerAsset
-    ? getBalanceByMoniker(selectedAsset, wallet)
+    ? getBalanceByMoniker(selectedAsset, wallet).display
     : `${utils.formatTokenDigit(selectedAsset?.asset_balance ?? 0)} ${
         selectedAsset?.token?.symbol ?? ''
       }`.trim()
@@ -175,9 +175,12 @@ export const AmountInput: React.FC<AmountInputProps> = ({
           <button
             type="button"
             onClick={() =>
-              !isMonikerAsset &&
               onBlurInput({
-                target: { value: String(selectedAsset?.asset_balance ?? 0) },
+                target: {
+                  value: isMonikerAsset
+                    ? getBalanceByMoniker(selectedAsset, wallet).value
+                    : String(selectedAsset?.asset_balance ?? 0),
+                },
               } as any)
             }
             className="text-[#848281] text-[13px]"

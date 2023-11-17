@@ -27,16 +27,18 @@ export const MonikerIcons = new Map([
 ])
 
 export function getBalanceByMoniker(moniker: Moniker | null, wallet?: Wallet) {
-  if (!moniker) return '0'
+  if (!moniker) return { value: 0, display: '0' }
   const assetAmount =
     wallet?.balances?.find((b) => b.token?.symbol === moniker.token.symbol)
       ?.asset_balance ?? 0
 
-  return `${
-    formatTokenAmount(
-      (assetAmount / moniker.asset_balance).toFixed(MAX_AMOUNT_PRECISION),
-    ).display
-  } ${moniker.name}`
+  const value = formatTokenAmount(
+    (assetAmount / moniker.asset_balance).toFixed(MAX_AMOUNT_PRECISION),
+  )
+  return {
+    value: value.value,
+    display: `${value.display} ${moniker.name}`,
+  }
 }
 
 export function isToken(asset: Balance | Moniker | null): asset is Balance {
