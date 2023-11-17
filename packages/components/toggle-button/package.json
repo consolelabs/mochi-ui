@@ -1,6 +1,6 @@
 {
   "name": "@consolelabs/toggle-button",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [

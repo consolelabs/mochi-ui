@@ -23,7 +23,7 @@ export interface Theme {
 }
 
 interface ThemePickerProps {
-  value?: Theme
+  value: Theme
   onChange: (t: Theme) => void
 }
 

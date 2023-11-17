@@ -3,6 +3,7 @@ import { MonikerAsset } from './type'
 
 export const DefaultBalances: Balance[] = [
   {
+    type: 'token',
     id: '1',
     token: {
       id: '1',
@@ -11,6 +12,7 @@ export const DefaultBalances: Balance[] = [
     },
   },
   {
+    type: 'token',
     id: '2',
     token: {
       id: '2',
@@ -19,6 +21,7 @@ export const DefaultBalances: Balance[] = [
     },
   },
   {
+    type: 'token',
     id: '3',
     token: {
       id: '3',
@@ -27,6 +30,7 @@ export const DefaultBalances: Balance[] = [
     },
   },
   {
+    type: 'token',
     id: '4',
     token: {
       id: '4',
@@ -35,6 +39,7 @@ export const DefaultBalances: Balance[] = [
     },
   },
   {
+    type: 'token',
     id: '5',
     token: {
       id: '5',
@@ -43,6 +48,7 @@ export const DefaultBalances: Balance[] = [
     },
   },
   {
+    type: 'token',
     id: '6',
     token: {
       id: '6',
@@ -51,6 +57,7 @@ export const DefaultBalances: Balance[] = [
     },
   },
   {
+    type: 'token',
     id: '7',
     token: {
       id: '7',
@@ -59,6 +66,7 @@ export const DefaultBalances: Balance[] = [
     },
   },
   {
+    type: 'token',
     id: '8',
     token: {
       id: '8',
@@ -67,6 +75,7 @@ export const DefaultBalances: Balance[] = [
     },
   },
   {
+    type: 'token',
     id: '9',
     token: {
       id: '9',
@@ -75,6 +84,7 @@ export const DefaultBalances: Balance[] = [
     },
   },
   {
+    type: 'token',
     id: '10',
     token: {
       id: '10',
@@ -83,6 +93,7 @@ export const DefaultBalances: Balance[] = [
     },
   },
   {
+    type: 'token',
     id: '11',
     token: {
       id: '11',
@@ -94,6 +105,7 @@ export const DefaultBalances: Balance[] = [
 
 export const MonikerAssets: MonikerAsset[] = [
   {
+    type: 'moniker',
     id: '1',
     moniker: {
       id: '1',
@@ -102,9 +114,9 @@ export const MonikerAssets: MonikerAsset[] = [
     group: 'Default',
     token_amount: '0.01',
     token_unit: 'BNB',
-    total_amount: '2.08',
   },
   {
+    type: 'moniker',
     id: '2',
     moniker: {
       id: '2',
@@ -113,9 +125,9 @@ export const MonikerAssets: MonikerAsset[] = [
     group: 'Default',
     token_amount: '3',
     token_unit: 'USDT',
-    total_amount: '3',
   },
   {
+    type: 'moniker',
     id: '3',
     moniker: {
       id: '3',
@@ -124,9 +136,9 @@ export const MonikerAssets: MonikerAsset[] = [
     group: 'Default',
     token_amount: '0.02',
     token_unit: 'DOGE',
-    total_amount: '0.01',
   },
   {
+    type: 'moniker',
     id: '4',
     moniker: {
       id: '4',
@@ -135,9 +147,9 @@ export const MonikerAssets: MonikerAsset[] = [
     group: 'Default',
     token_amount: '2',
     token_unit: 'USDT',
-    total_amount: '2',
   },
   {
+    type: 'moniker',
     id: '5',
     moniker: {
       id: '5',
@@ -146,17 +158,16 @@ export const MonikerAssets: MonikerAsset[] = [
     group: "Dwarves network's moniker",
     token_amount: '100',
     token_unit: 'ICY',
-    total_amount: '150',
   },
   {
+    type: 'moniker',
     id: '6',
     moniker: {
       id: '6',
-      moniker: 'diamon',
+      moniker: 'diamond',
     },
     group: "Dwarves network's moniker",
     token_amount: '2',
     token_unit: 'ETH',
-    total_amount: '4000',
   },
 ]

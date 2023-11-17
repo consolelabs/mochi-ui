@@ -3,18 +3,18 @@ import { useEffect, useMemo, useState } from 'react'
 import { Icon } from '@iconify/react'
 import { Tab } from '@headlessui/react'
 import {
-  Heading,
   InputField,
   Popover,
   PopoverTrigger,
   PopoverContent,
+  Heading,
 } from '@consolelabs/core'
 import { Balance } from '~store'
 import { TokenList } from './TokenList'
-import { MonikerAsset, SectionBase } from './type'
-import { DefaultBalances, MonikerAssets } from './data'
+import { Moniker } from './type'
+import { DefaultBalances } from './data'
 import { MonikerList } from './MonikerList'
-import { sectionFormatter } from './utils'
+import { MonikerIcons, isToken } from './utils'
 
 const TokenTabs = [
   {
@@ -28,8 +28,9 @@ const TokenTabs = [
 ]
 
 interface TokenPickerProps {
+  selectedAsset: Balance | Moniker | null
   balances?: Balance[]
-  onSelect?: (item: Balance | MonikerAsset) => void
+  onSelect?: (item: Balance | Moniker) => void
 }
 
 interface TokenButtonProps {
@@ -50,7 +51,7 @@ const TokenButton = (props: TokenButtonProps) => (
       </span>
     ) : (
       <span className="text-base w-[22px] h-[22px]" role="img">
-        {props.icon}
+        {MonikerIcons.get(props.name ?? '')}
       </span>
     )}
     <span className="text-sm font-medium">{props.name}</span>
@@ -58,7 +59,14 @@ const TokenButton = (props: TokenButtonProps) => (
   </div>
 )
 
+function getFilterTokenNameFunc(searchTerm: string) {
+  return function filterTokenName(bal: Balance) {
+    return bal.token?.name?.toLowerCase().includes(searchTerm.toLowerCase())
+  }
+}
+
 export const TokenPicker: React.FC<TokenPickerProps> = ({
+  selectedAsset,
   balances,
   onSelect,
 }) => {
@@ -66,46 +74,33 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
     balances || DefaultBalances,
   )
   const [isOpenSelector, setIsOpenSelector] = useState(false)
-  const [selectedAsset, setSelectedAsset] = useState<Balance | MonikerAsset>(
-    tokenBalances[0] ?? DefaultBalances[0],
-  )
   const [searchTerm, setSearchTerm] = useState('')
   const filteredTokens = useMemo<Balance[]>(
-    () =>
-      tokenBalances.filter(
-        (bal) =>
-          bal.token?.name?.toLowerCase().includes(searchTerm.toLowerCase()),
-      ),
+    () => tokenBalances.filter(getFilterTokenNameFunc(searchTerm)),
     [searchTerm, tokenBalances],
   )
-  const filteredMonikers = useMemo<SectionBase<MonikerAsset>[]>(() => {
-    const filteredData = MonikerAssets.filter(
-      (section) =>
-        section.moniker.moniker
-          ?.toLowerCase()
-          .includes(searchTerm.toLowerCase()),
-    )
-    return sectionFormatter(filteredData, 'group')
-  }, [searchTerm])
-  const isTokenSelected = 'token' in selectedAsset
+  const isTokenSelected = isToken(selectedAsset)
+  const [tabIdx, setTabIdx] = useState(isTokenSelected ? 0 : 1)
 
   useEffect(() => {
     if (Array.isArray(balances) && balances.length) {
       setTokenBalances(balances)
-      handleTokenSelect(balances[0])
+      if (!selectedAsset) {
+        handleTokenSelect(balances[0])
+      }
     }
   }, [balances])
 
   function handleTokenSelect(asset: Balance) {
-    setSelectedAsset(asset)
     setIsOpenSelector(false)
     onSelect?.(asset)
+    setTabIdx(0)
   }
 
-  function handleMonikerSelect(asset: MonikerAsset) {
-    setSelectedAsset(asset)
+  function handleMonikerSelect(asset: Moniker) {
     setIsOpenSelector(false)
     onSelect?.(asset)
+    setTabIdx(1)
   }
 
   function onOpenChange(isOpen: boolean) {
@@ -125,13 +120,13 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
           isToken={isTokenSelected}
           name={
             isTokenSelected
-              ? selectedAsset.token?.symbol
-              : (selectedAsset as MonikerAsset).moniker.moniker
+              ? selectedAsset?.token?.symbol ?? DefaultBalances[0].token?.symbol
+              : selectedAsset?.name
           }
           icon={
             isTokenSelected
-              ? selectedAsset.token?.icon
-              : (selectedAsset as MonikerAsset).moniker.moniker
+              ? selectedAsset?.token?.icon ?? DefaultBalances[0].token?.icon
+              : selectedAsset?.name
           }
         />
       </PopoverTrigger>
@@ -150,7 +145,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
           }
           onChange={onSearchChange}
         />
-        <Tab.Group>
+        <Tab.Group selectedIndex={tabIdx} onChange={setTabIdx}>
           <Tab.List className="flex gap-6 w-full">
             {TokenTabs.map((tab) => (
               <Tab key={tab.key} className="focus-visible:outline-none">
@@ -169,16 +164,16 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
               </Tab>
             ))}
           </Tab.List>
-          <Tab.Panels className="w-full">
-            <Tab.Panel className="flex flex-col gap-2 h-[400px]">
+          <Tab.Panels className="w-full h-[350px]">
+            <Tab.Panel className="flex flex-col gap-2 h-full">
               <TokenList data={filteredTokens} onSelect={handleTokenSelect} />
               <span className="text-xs text-[#ADACAA]">
                 Only supported tokens are shown
               </span>
             </Tab.Panel>
-            <Tab.Panel className="h-[400px]">
+            <Tab.Panel className="h-full">
               <MonikerList
-                data={filteredMonikers}
+                searchTerm={searchTerm}
                 onSelect={handleMonikerSelect}
               />
             </Tab.Panel>

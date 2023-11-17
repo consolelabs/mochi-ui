@@ -1,7 +1,8 @@
+import { truncate } from '@dwarvesf/react-utils'
 import { Heading } from '@consolelabs/core'
-import { truncateWallet } from '~utils/string'
 import { MochiWalletBase, Wallet } from '~store'
 import { utils } from '@consolelabs/mochi-ui'
+import { WalletChainIcon } from './WalletChainIcon'
 
 interface ItemProps {
   item: Wallet
@@ -15,14 +16,10 @@ export const WalletItem: React.FC<ItemProps> = ({ item, onSelect }) => (
     role="presentation"
     onClick={() => onSelect?.(item)}
   >
-    <img
-      alt={`${item.chain?.name} icon`}
-      className="w-6 h-6 rounded-full object-contain"
-      src={item.chain?.icon || '/logo.png'}
-    />
+    <WalletChainIcon platform={item.wallet.platform ?? ''} />
     <div className="flex flex-col flex-1">
-      <Heading as="h3" className="text-sm text-ellipsis font-medium">
-        {truncateWallet(item.wallet.platform_identifier || '')}
+      <Heading as="h3" className="text-sm font-medium text-ellipsis">
+        {truncate(item.wallet.platform_identifier || '', 10, true)}
         {item.wallet.id === MochiWalletBase.wallet.id && (
           <span className="text-[#979CA3]"> ({item.wallet.platform})</span>
         )}

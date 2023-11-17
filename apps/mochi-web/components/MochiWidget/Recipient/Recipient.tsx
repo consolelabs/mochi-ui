@@ -1,3 +1,5 @@
+import { useAuthStore } from '~store'
+import { useShallow } from 'zustand/react/shallow'
 import { Profile } from '@consolelabs/mochi-rest'
 import { useEffect, useMemo, useState } from 'react'
 import {
@@ -7,7 +9,7 @@ import {
   PopoverAnchor,
 } from '@consolelabs/core'
 import { IconSpinner } from '@consolelabs/icons'
-import { useDebounce } from '@dwarvesf/react-hooks'
+import { useDebounce, useDisclosure } from '@dwarvesf/react-hooks'
 import { API, GET_PATHS } from '~constants/api'
 import { ChainPicker } from '../ChainPicker'
 import { Platform } from '../PlatformPicker/type'
@@ -17,7 +19,6 @@ import { SelectedRecipient } from './SelectedRecipient'
 import { MAX_RECIPIENTS } from '../Tip/store'
 
 interface RecipientProps {
-  accessToken: string | null
   onLoginRequest?: () => void
   selectedRecipients?: Profile[]
   onSelectRecipient?: (item: Profile) => void
@@ -25,15 +26,19 @@ interface RecipientProps {
 }
 
 export const Recipient: React.FC<RecipientProps> = ({
-  accessToken,
   onLoginRequest,
   selectedRecipients,
   onSelectRecipient,
   onRemoveRecipient,
 }) => {
-  const [isOpenRecipients, openRecipients] = useState(false)
+  const accessToken = useAuthStore(useShallow((s) => s.token))
+  const { isOpen: isOpenRecipients, onOpen: openRecipients } = useDisclosure()
+  const {
+    isOpen: isSearching,
+    onOpen: setIsSearching,
+    onClose: setIsNotSearching,
+  } = useDisclosure()
   const [searchTerm, setSearchTerm] = useState('')
-  const [isSearching, setIsSearching] = useState(false)
   const debouncedSearchTerm = useDebounce(searchTerm, 500)
   const [selectedPlatform, setSelectedPlatform] = useState<Platform>()
   const [recipients, setRecipients] = useState<Profile[]>([])
@@ -46,13 +51,13 @@ export const Recipient: React.FC<RecipientProps> = ({
             ?.toLowerCase()
             .includes(searchTerm.toLowerCase()),
       ),
-    [searchTerm, selectedPlatform, recipients],
+    [searchTerm, recipients],
   )
 
   useEffect(
     () => {
       if (debouncedSearchTerm) {
-        setIsSearching(true)
+        setIsSearching()
         API.MOCHI_PROFILE.get(
           GET_PATHS.PROFILE_SEARCH(searchTerm, selectedPlatform?.platform),
         )
@@ -60,10 +65,10 @@ export const Recipient: React.FC<RecipientProps> = ({
           .then((data: Profile[]) => {
             setRecipients(data || [])
           })
-          .finally(() => setIsSearching(false))
+          .finally(() => setIsNotSearching())
       } else {
         setRecipients([])
-        setIsSearching(false)
+        setIsNotSearching()
       }
     },
     [debouncedSearchTerm, selectedPlatform], // Only call effect if debounced search term changes
@@ -74,7 +79,7 @@ export const Recipient: React.FC<RecipientProps> = ({
       onLoginRequest?.()
     } else if (!isOpenRecipients) {
       // open the recipient list
-      openRecipients(true)
+      openRecipients()
     }
   }
 

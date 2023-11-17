@@ -1,10 +1,9 @@
 // eslint-disable-next-line import/no-import-module-exports
-import { consolelabs } from 'tailwind-config/plugin'
+import { consolelabs } from '@consolelabs/theme'
 
 module.exports = {
   content: [
     './**/*.{html,ts,tsx}',
-    // TODO remove when the migration completed
     './node_modules/@consolelabs/theme/dist/components/**/*.{js,jsx,ts,tsx}',
   ],
   mode: 'jit',
@@ -28,6 +27,7 @@ module.exports = {
         feed: {
           bg: {
             DEFAULT: '#141518',
+            hover: '#1a1b1f',
           },
           border: {
             DEFAULT: '#343433',

@@ -1,3 +1,4 @@
+import { useShallow } from 'zustand/react/shallow'
 import { useAuthStore } from '~store'
 import {
   forwardRef,
@@ -14,11 +15,13 @@ import {
   PopoverTrigger,
 } from '@consolelabs/core'
 import { IconArrowRight, IconChevronDown } from '@consolelabs/icons'
+import { MAX_AMOUNT_PRECISION, formatTokenAmount } from '~utils/number'
 import { WalletPicker } from '../WalletPicker'
 import { Recipient } from '../Recipient'
 import { AmountInput } from '../AmountInput'
 import { useTipWidget } from './store'
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage'
+import { isToken } from '../TokenPicker/utils'
 
 interface ConnectButtonRef {
   openLogin: () => void
@@ -58,12 +61,13 @@ const ConnectButton = forwardRef<ConnectButtonRef, {}>((_, ref) => {
   )
 })
 
+const notEnoughtBalMsg =
+  'Insufficient balance. Please add more tokens and try again.'
+
 export default function StepOne() {
   const {
     fromWallet,
-    recipients = [],
-    asset,
-    amount,
+    request,
     setStep,
     updateSourceWallet,
     addRecipient,
@@ -71,14 +75,31 @@ export default function StepOne() {
     setAsset,
     setAmount,
   } = useTipWidget()
-  const { token, isLoggedIn } = useAuthStore()
+  const isLoggedIn = useAuthStore(useShallow((s) => s.isLoggedIn))
   const connectButtonRef = useRef<ConnectButtonRef>(null)
   const amountErrorMgs = useMemo(() => {
-    if ((amount ?? 0) > (asset?.asset_balance ?? 0)) {
-      return 'Insufficient balance. Please add more tokens and try again.'
+    if (!request.amount) return ''
+    if (isToken(request.asset)) {
+      if (request.amount > (request.asset?.asset_balance ?? 0))
+        return notEnoughtBalMsg
+    } else {
+      const assetAmount =
+        fromWallet?.balances?.find(
+          (b) =>
+            !isToken(request.asset) &&
+            b.token?.symbol === request.asset?.token.symbol,
+        )?.asset_balance ?? 0
+
+      const monikerAmount = request.asset?.asset_balance ?? 0
+      const currentMonikerAmount = monikerAmount
+        ? formatTokenAmount(
+            (assetAmount / monikerAmount).toFixed(MAX_AMOUNT_PRECISION),
+          ).value
+        : 0
+      if (request.amount > currentMonikerAmount) return notEnoughtBalMsg
     }
     return ''
-  }, [asset, amount])
+  }, [request.amount, request.asset, fromWallet?.balances])
 
   function openLoginPopup() {
     connectButtonRef?.current?.openLogin()
@@ -96,19 +117,16 @@ export default function StepOne() {
           </span>
         </div>
         <WalletPicker
-          accessToken={token}
           onLoginRequest={openLoginPopup}
           onSelect={updateSourceWallet}
         />
         <Recipient
-          accessToken={token}
           onLoginRequest={openLoginPopup}
-          selectedRecipients={recipients}
+          selectedRecipients={request.recipients ?? []}
           onSelectRecipient={addRecipient}
           onRemoveRecipient={removeRecipient}
         />
         <AmountInput
-          accessToken={token}
           onLoginRequest={openLoginPopup}
           wallet={fromWallet}
           onSelectAsset={setAsset}
@@ -121,7 +139,11 @@ export default function StepOne() {
           size="lg"
           onClick={() => setStep(2)}
           className="flex justify-center"
-          disabled={!!amountErrorMgs || recipients.length <= 0 || !amount}
+          disabled={
+            !!amountErrorMgs ||
+            (request.recipients?.length ?? 0) <= 0 ||
+            !request.amount
+          }
         >
           Continue
           <IconArrowRight className="w-4 h-4" />

@@ -1,3 +1,4 @@
+import { renderToString } from 'react-dom/server'
 import { Layout } from '~app/layout'
 import { SEO } from '~app/layout/seo'
 import Typed from 'typed.js'
@@ -24,10 +25,34 @@ import { useAuthStore } from '~store'
 import { useShallow } from 'zustand/react/shallow'
 
 const currencies = [
-  '<span class="ethereum-color">Ethereum</span>',
-  '<span class="bitcoin-color">Bitcoin</span>',
-  '<span class="solana-color">Solana</span>',
-  '<span class="dogecoin-color">Dogecoin</span>',
+  `<span class="banner-token ethereum-color">&#8203;${renderToString(
+    <img
+      src="https://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/256/Ethereum-ETH-icon.png"
+      className="object-contain w-10 h-12"
+      alt=""
+    />,
+  )}Ethereum</span>`,
+  `<span class="banner-token bitcoin-color">&#8203;${renderToString(
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/128px-Bitcoin.svg.png"
+      alt=""
+      className="w-10 h-10"
+    />,
+  )}Bitcoin</span>`,
+  `<span class="banner-token solana-color">&#8203;${renderToString(
+    <img
+      src="https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png"
+      alt=""
+      className="w-10 h-10"
+    />,
+  )}Solana</span>`,
+  `<span class="banner-token dogecoin-color">&#8203;${renderToString(
+    <img
+      className="w-10 h-10"
+      src="https://upload.wikimedia.org/wikipedia/en/d/d0/Dogecoin_Logo.png"
+      alt=""
+    />,
+  )}Dogecoin</span>`,
 ]
 const platforms = [
   '<span class="discord-color">Discord</span>',
@@ -73,7 +98,10 @@ export default function Index() {
         <div className="flex flex-col lg:justify-end">
           <p className="text-[32px] leading-[38.4px] title-tracking md:text-[40px] md:leading-[48px]">
             Send{' '}
-            <span ref={currency} className="font-medium">
+            <span
+              ref={currency}
+              className="inline-flex items-baseline font-medium"
+            >
               <span>&#8203;</span>
             </span>
             <br />
@@ -160,42 +188,42 @@ export default function Index() {
         data={[
           {
             id: 'support-on-chain-and-hybrid',
-            title: 'Support On-chain & Hybrid',
-            body: 'Lorem ipsum dolor sit amet consectetur. Laoreet risus sagittis laoreet mi. Diam mauris praesent cursus adipiscing. Et aliquam tellus purus odio sapien id arcu egestas. Commodo venenatis aliquet nunc commodo.',
+            title: 'On-chain & Hybrid Support',
+            body: 'Make gasless transactions easily using social handles, ensuring strong security. Connect with different blockchains for both on-chain and hybrid transactions.',
             icon: <IconBlocksColored className="w-8 h-8 md:w-12 md:h-12" />,
           },
           {
-            id: 'self-custodial',
-            title: 'Self-custodial',
-            body: 'Lorem ipsum dolor sit amet consectetur. Laoreet risus sagittis laoreet mi. Diam mauris praesent cursus adipiscing. Et aliquam tellus purus odio sapien id arcu egestas. Commodo venenatis aliquet nunc commodo.',
+            id: 'self-custodial-solutions',
+            title: 'Self-custodial Solutions',
+            body: "Take command of your assets with Mochi's self-custodial solutions, ensuring true ownership. Enjoy secure storage without compromising usability.",
             icon: <IconHandKeyColored className="w-8 h-8 md:w-12 md:h-12" />,
           },
           {
             id: 'invisible-wallets',
             title: 'Invisible Wallets',
-            body: 'Lorem ipsum dolor sit amet consectetur. Laoreet risus sagittis laoreet mi. Diam mauris praesent cursus adipiscing. Et aliquam tellus purus odio sapien id arcu egestas. Commodo venenatis aliquet nunc commodo.',
+            body: "Login with Telegram, Discord, SSO or Facebook account make onboarding seamless. Nevermind where's the seedphrase.",
             icon: (
               <IconWalletPasswordColored className="w-8 h-8 md:w-12 md:h-12" />
             ),
           },
           {
-            id: 'multi-auth-method',
-            title: 'Multi Auth Method',
-            body: 'Lorem ipsum dolor sit amet consectetur. Laoreet risus sagittis laoreet mi. Diam mauris praesent cursus adipiscing. Et aliquam tellus purus odio sapien id arcu egestas. Commodo venenatis aliquet nunc commodo.',
+            id: 'keyless-wallet',
+            title: 'Keyless Wallet',
+            body: 'Elevate security by multiple protection layer while keep the friendly experience for all both crypto wizard and newbie.',
             icon: <IconLayersColored className="w-8 h-8 md:w-12 md:h-12" />,
           },
           {
             id: 'account-abstraction',
             title: 'Account Abstraction',
-            body: 'Lorem ipsum dolor sit amet consectetur. Laoreet risus sagittis laoreet mi. Diam mauris praesent cursus adipiscing. Et aliquam tellus purus odio sapien id arcu egestas. Commodo venenatis aliquet nunc commodo.',
+            body: 'Enables smart accounts, that can initiate and execute transactions without the need for an external account.',
             icon: (
               <IconPasswordLockColored className="w-8 h-8 md:w-12 md:h-12" />
             ),
           },
           {
-            id: '?',
-            title: '?',
-            body: 'Lorem ipsum dolor sit amet consectetur. Laoreet risus sagittis laoreet mi. Diam mauris praesent cursus adipiscing. Et aliquam tellus purus odio sapien id arcu egestas. Commodo venenatis aliquet nunc commodo.',
+            id: 'advanded-security-measures',
+            title: 'Advanced Security Measures',
+            body: 'Protect your assets by a high-tech lock - strong encryption, providing a worry-free Web3 experience.',
             icon: (
               <IconPasswordLockColored className="w-8 h-8 md:w-12 md:h-12" />
             ),

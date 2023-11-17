@@ -1,5 +1,13 @@
 # @consolelabs/list
 
+## 0.0.8
+
+### Patch Changes
+
+- Updated dependencies
+  [[`ae28441`](https://github.com/consolelabs/web-foundation/commit/ae28441d9e6673ea76971bbb5da5ea9354f7d444)]:
+  - @consolelabs/heading@0.0.5
+
 ## 0.0.7
 
 ### Patch Changes

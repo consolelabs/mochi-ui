@@ -16,7 +16,7 @@ export const TokenItem: React.FC<ItemProps> = ({ item, onSelect }) => (
   >
     <img
       alt={`${item.token?.name} icon`}
-      className="w-6 h-6 rounded-full object-contain"
+      className="object-contain w-6 h-6 rounded-full"
       src={item.token?.icon || '/logo.png'}
     />
     <div className="flex flex-col flex-1">

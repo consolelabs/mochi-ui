@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { IconArrowRight, IconArrowUp } from '@consolelabs/icons'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -16,12 +17,12 @@ const colWidth = [
   'w-[205px]', // from
   'w-min', // arrow icon
   'w-[205px]', // to
-  'w-[130px]', // method
+  /* 'w-[130px]', // method */
   'w-[205px]', // amount
   'w-[200px]', // channel
   'w-[110px]', // tx id
   'w-[170px]', // wen
-  'w-[100px]', // status
+  'w-[230px]', // status
   //
   /* 'w-2/12', // from */
   /* 'w-min', // arrow icon */
@@ -144,7 +145,7 @@ export default function Feed({ className = '' }: Props) {
                 'issued by',
                 '',
                 'recipients',
-                'method',
+                /* 'method', */
                 'amount',
                 'where',
                 'tx id',
@@ -153,7 +154,7 @@ export default function Feed({ className = '' }: Props) {
               ].map((column, i) => {
                 return (
                   <HeaderCell
-                    className={i === 8 ? 'pl-6' : ''}
+                    className={i === 7 ? 'pl-6' : ''}
                     key={`feed-column-${column}`}
                     width={colWidth[i]}
                   >
@@ -189,9 +190,14 @@ export default function Feed({ className = '' }: Props) {
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
                           key={`feed-row-${tx.from}-${tx.to}-${tx.code}`}
-                          className="flex"
                         >
-                          <Row tx={tx} colWidth={colWidth} />
+                          <Link
+                            className="flex bg-transparent transition cursor-pointer hover:bg-feed-bg-hover"
+                            href={`/tx/${tx.code}`}
+                            target="_blank"
+                          >
+                            <Row tx={tx} colWidth={colWidth} />
+                          </Link>
                         </motion.div>
                       )
                     })}

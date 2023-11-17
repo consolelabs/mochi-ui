@@ -1,6 +1,5 @@
 import clsx from 'clsx'
-import { formatTokenAmount } from '~utils/number'
-import { utils } from '@consolelabs/mochi-ui'
+import { MAX_AMOUNT_PRECISION, formatTokenAmount } from '~utils/number'
 import Link from 'next/link'
 import { Button } from '@consolelabs/core'
 import { IconCheck, IconChevronLeft, IconSpinner } from '@consolelabs/icons'
@@ -8,19 +7,19 @@ import { useTipWidget } from './store'
 import MessagePicker from '../MessagePicker/MessagePicker'
 import ThemePicker from '../ThemePicker/ThemePicker'
 import TransactionPreview from '../TransactionPreview/TransactionPreview'
+import { isToken } from '../TokenPicker/utils'
 
 export default function StepTwo() {
   const {
     isTransferring,
     tx,
-    transfer,
+    execute,
     setStep,
     updateRequestTheme,
     updateRequestMessage,
     request,
     reset,
-    asset,
-    amount,
+    amountUsd,
   } = useTipWidget()
 
   return (
@@ -58,32 +57,46 @@ export default function StepTwo() {
         </button>
         <span className="mx-auto text-base text-[#343433]">You send</span>
         <p className="mx-auto text-3xl font-medium leading-5 text-black">
-          {formatTokenAmount(amount ?? 0).display} {asset?.token?.symbol}
+          {formatTokenAmount(request.amount ?? 0).display}{' '}
+          {isToken(request.asset)
+            ? request.asset?.token?.symbol
+            : request.asset?.name}
         </p>
-        <span className="text-sm text-[#7a7e85] mx-auto">
-          &#8776;{' '}
-          {utils.formatDigit({
-            value: (asset?.token?.price ?? 0) * (amount ?? 0),
-            fractionDigits: 2,
-            shorten: true,
-            scientificFormat: true,
-          })}{' '}
-          USD
-        </span>
+        <div className="flex flex-col">
+          {!isToken(request.asset) && (
+            <span className="text-sm text-[#7a7e85] mx-auto">
+              &#8776;{' '}
+              {
+                formatTokenAmount(
+                  (
+                    (request.amount ?? 0) * (request.asset?.token_amount ?? 0)
+                  ).toFixed(MAX_AMOUNT_PRECISION),
+                ).display
+              }{' '}
+              {request.asset?.token.symbol}
+            </span>
+          )}
+          <span className="text-sm text-[#7a7e85] mx-auto">
+            &#8776; {amountUsd} USD
+          </span>
+        </div>
 
         {/* probably will read data from store */}
         <TransactionPreview.Tip />
 
         <MessagePicker
-          value={request?.message}
+          value={request.message ?? ''}
           onChange={updateRequestMessage}
         />
 
-        <ThemePicker value={request?.theme} onChange={updateRequestTheme} />
+        <ThemePicker
+          value={request.theme ?? { id: 0, src: '', name: '', group: '' }}
+          onChange={updateRequestTheme}
+        />
       </div>
       <Button
         type="button"
-        onClick={transfer}
+        onClick={execute}
         className="flex justify-center mt-auto"
         size="lg"
         disabled={isTransferring}

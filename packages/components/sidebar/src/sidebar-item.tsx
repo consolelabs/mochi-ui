@@ -65,11 +65,13 @@ export default function SidebarItem({
   const renderTitle = (
     <>
       {Icon !== undefined && (
-        <Icon
-          className={sidebarItemIconClsx({ selected, disabled })}
-          height={22}
-          width={22}
-        />
+        <div>
+          <Icon
+            className={sidebarItemIconClsx({ selected, disabled })}
+            height={22}
+            width={22}
+          />
+        </div>
       )}
       {expanded ? (
         <div className={sidebarItemTitleWrapperClsx()}>

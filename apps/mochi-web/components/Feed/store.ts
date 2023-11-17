@@ -3,7 +3,7 @@ import UI, { Platform, utils as mochiUtils } from '@consolelabs/mochi-ui'
 import { utils } from 'ethers'
 import { create } from 'zustand'
 import { API } from '~constants/api'
-import { formatDate } from '~utils/time'
+import { formatRelative } from '~utils/time'
 import { appLogo, webLogo, discordLogo, telegramLogo } from '~utils/image'
 
 const limit = 20 as const
@@ -169,7 +169,7 @@ async function transform(d: any): Promise<Tx> {
     amount: mochiUtils.formatTokenDigit(
       utils.formatUnits(d.amount, d.token.decimal),
     ),
-    date: formatDate(d.created_at, 'MMM do HH:mm'),
+    date: formatRelative(d.created_at),
     isSuccess: d.status === 'success',
     action,
   }
