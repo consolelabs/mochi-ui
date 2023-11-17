@@ -59,6 +59,20 @@ const TokenButton = (props: TokenButtonProps) => (
   </div>
 )
 
+function getFilterTokenNameFunc(searchTerm: string) {
+  return function filterTokenName(bal: Balance) {
+    return bal.token?.name?.toLowerCase().includes(searchTerm.toLowerCase())
+  }
+}
+
+function getFilterMonikerNameFunc(searchTerm: string) {
+  return function filterMonikerName(monikerAsset: MonikerAsset) {
+    return monikerAsset.moniker.moniker
+      ?.toLowerCase()
+      .includes(searchTerm.toLowerCase())
+  }
+}
+
 export const TokenPicker: React.FC<TokenPickerProps> = ({
   selectedAsset,
   balances,
@@ -70,19 +84,12 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
   const [isOpenSelector, setIsOpenSelector] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
   const filteredTokens = useMemo<Balance[]>(
-    () =>
-      tokenBalances.filter(
-        (bal) =>
-          bal.token?.name?.toLowerCase().includes(searchTerm.toLowerCase()),
-      ),
+    () => tokenBalances.filter(getFilterTokenNameFunc(searchTerm)),
     [searchTerm, tokenBalances],
   )
   const filteredMonikers = useMemo<SectionBase<MonikerAsset>[]>(() => {
     const filteredData = MonikerAssets.filter(
-      (section) =>
-        section.moniker.moniker
-          ?.toLowerCase()
-          .includes(searchTerm.toLowerCase()),
+      getFilterMonikerNameFunc(searchTerm),
     )
     return sectionFormatter(filteredData, 'group')
   }, [searchTerm])
@@ -91,12 +98,11 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
   useEffect(() => {
     if (Array.isArray(balances) && balances.length) {
       setTokenBalances(balances)
-      handleTokenSelect(balances[0])
-    } else {
-      setTokenBalances([])
-      handleTokenSelect(DefaultBalances[0])
+      if (!selectedAsset) {
+        handleTokenSelect(balances[0])
+      }
     }
-  }, [balances, selectedAsset])
+  }, [balances])
 
   function handleTokenSelect(asset: Balance) {
     setIsOpenSelector(false)
@@ -125,12 +131,12 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
           isToken={isTokenSelected}
           name={
             isTokenSelected
-              ? selectedAsset?.token?.symbol
+              ? selectedAsset?.token?.symbol ?? DefaultBalances[0].token?.symbol
               : (selectedAsset as MonikerAsset).moniker.moniker
           }
           icon={
             isTokenSelected
-              ? selectedAsset?.token?.icon ?? '/logo.png'
+              ? selectedAsset?.token?.icon ?? DefaultBalances[0].token?.icon
               : (selectedAsset as MonikerAsset).moniker.moniker
           }
         />

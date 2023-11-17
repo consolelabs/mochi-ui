@@ -1,3 +1,4 @@
+import { api } from '~constants/mochi'
 import { create } from 'zustand'
 import { API } from '~constants/api'
 import { Profile } from '@consolelabs/mochi-rest'
@@ -110,8 +111,35 @@ export const useTipWidget = create<TipWidgetState>((set, get) => ({
       set((s) => ({ ...s, isTransferring: false }))
     }
   },
-  updateSourceWallet: (wallet: Wallet) =>
-    set((s) => ({ ...s, fromWallet: wallet })),
+  updateSourceWallet: (wallet: Wallet) => {
+    const missingIconBalances = new Set(
+      wallet.balances
+        ?.filter((b) => !b.token?.icon)
+        .map((b) => b.token?.symbol ?? '') ?? [],
+    )
+    api.base.metadata
+      .getEmojis({
+        codes: Array.from(missingIconBalances),
+      })
+      .then(({ data, ok }) => {
+        if (ok) {
+          const icons = Object.fromEntries(
+            data.map((d) => [d.code, d.emoji_url]),
+          )
+          wallet.balances?.forEach((b) => {
+            if (
+              b.token &&
+              !b.token.icon &&
+              b.token.symbol &&
+              icons[b.token.symbol]
+            ) {
+              b.token.icon = icons[b.token.symbol]
+            }
+          })
+          set((s) => ({ ...s, fromWallet: wallet }))
+        }
+      })
+  },
   addRecipient: (recipient) => {
     const { recipients } = get().request
     const isMax = (recipients?.length ?? 0) >= MAX_RECIPIENTS
