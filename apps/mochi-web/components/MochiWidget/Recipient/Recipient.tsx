@@ -82,7 +82,7 @@ export const Recipient: React.FC<RecipientProps> = ({
   function handleFocusInput() {
     if (!accessToken) {
       onLoginRequest?.()
-    } else if (!isOpenRecipients) {
+    } else {
       // open the recipient list
       openRecipients()
     }
@@ -159,6 +159,7 @@ export const Recipient: React.FC<RecipientProps> = ({
               placeholder={isOnChain ? 'Enter address' : 'Enter username'}
               value={searchTerm}
               onFocus={handleFocusInput}
+              onClick={openRecipients}
               onChange={onSearchChange}
             />
             {isSearching && <IconSpinner width={18} height={18} />}

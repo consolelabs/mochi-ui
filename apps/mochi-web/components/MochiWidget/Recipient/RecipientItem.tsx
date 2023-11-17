@@ -1,6 +1,5 @@
 import { Avatar, Heading } from '@consolelabs/core'
 import { Profile } from '@consolelabs/mochi-rest'
-import { truncateWallet } from '~utils/string'
 import { IconCheck, IconClose } from '@consolelabs/icons'
 import { MouseEventHandler, useState } from 'react'
 import PlatformIcon from '../PlatformPicker/PlatformIcon'
@@ -58,9 +57,6 @@ export const RecipientItem: React.FC<ItemProps> = ({
         <Heading as="h3" className="text-sm font-medium">
           {account?.platform_metadata.username}
         </Heading>
-        <span className="text-xs text-[#848281] capitalize font-medium">
-          {account?.platform} • {truncateWallet(account?.platform_identifier)}
-        </span>
       </div>
       {isSelected ? (
         <CheckIcon onRemoveClick={() => onRemove?.(profile)} />
