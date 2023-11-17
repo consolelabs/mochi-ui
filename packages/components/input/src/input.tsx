@@ -86,7 +86,7 @@ type InputProps = Omit<InputStylesProps, 'size' | 'disabled' | 'error'> &
     spacing?: 'md' | 'lg'
   }
 
-export const InputField = React.forwardRef<HTMLInputElement, InputProps>(
+export const InputInner = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
       className,
@@ -158,7 +158,7 @@ const Input = Object.assign(
   {
     Root: InputRoot,
     Slot: InputSlot,
-    InputField,
+    InputField: InputInner,
   },
 )
 
