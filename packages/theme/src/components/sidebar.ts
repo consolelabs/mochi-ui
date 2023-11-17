@@ -75,7 +75,6 @@ const sidebarItemIconClsx = ({
   disabled?: boolean
 }) =>
   clsx(
-    'min-w-max',
     {
       'text-primary-700': selected,
       'text-neutral-800': !selected && !disabled,
