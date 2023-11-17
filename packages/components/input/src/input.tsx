@@ -1,5 +1,5 @@
 import { input, InputStylesProps } from '@consolelabs/theme'
-import React, { InputHTMLAttributes } from 'react'
+import React, { InputHTMLAttributes, useMemo } from 'react'
 import type * as Polymorphic from '@consolelabs/polymorphic'
 
 // root
@@ -8,6 +8,7 @@ type TextFieldContextValue = {
   size?: 'md' | 'lg'
   disabled?: boolean
   error?: boolean
+  spacing?: 'md' | 'lg'
 }
 const TextFieldContext = React.createContext<TextFieldContextValue | undefined>(
   undefined,
@@ -20,51 +21,59 @@ type PolymorphicInputRoot = Polymorphic.ForwardRefComponent<
   InputRootProps
 >
 
-export const InputRoot = React.forwardRef(
-  (
-    {
-      as: Component = 'div',
-      children,
+export const InputRoot = React.forwardRef<HTMLDivElement, any>((props, ref) => {
+  const {
+    as: Component = 'div',
+    children,
+    size,
+    disabled,
+    error,
+    spacing,
+    className,
+    ...rest
+  } = props
+
+  const contextValue = useMemo(
+    () => ({
       size,
       disabled,
       error,
-      className,
-      ...rest
-    },
-    ref,
-  ) => {
-    return (
-      <Component
-        className={input.root({ className })}
-        ref={ref}
-        onPointerDown={(event) => {
-          const target = event.target as HTMLElement
-          if (target.closest('input, button, a')) return
+      spacing,
+    }),
+    [disabled, error, size, spacing],
+  )
 
-          const input = event.currentTarget.querySelector(
-            'input',
-          ) as HTMLInputElement | null
-          if (!input) return
+  return (
+    <Component
+      className={input.root({ className, spacing, error })}
+      ref={ref}
+      onPointerDown={(event: MouseEvent) => {
+        const target = event.target as HTMLElement
+        if (target.closest('input, button, a')) return
 
-          const position = input.compareDocumentPosition(target)
-          const targetIsBeforeInput =
-            (position & Node.DOCUMENT_POSITION_PRECEDING) !== 0
-          const cursorPosition = targetIsBeforeInput ? 0 : input.value.length
+        const input = (event?.currentTarget as HTMLElement)?.querySelector(
+          'input',
+        ) as HTMLInputElement | null
+        if (!input) return
 
-          requestAnimationFrame(() => {
-            input.setSelectionRange(cursorPosition, cursorPosition)
-            input.focus()
-          })
-        }}
-        {...rest}
-      >
-        <TextFieldContext.Provider value={{ size, disabled, error }}>
-          {children}
-        </TextFieldContext.Provider>
-      </Component>
-    )
-  },
-) as PolymorphicInputRoot
+        const position = input.compareDocumentPosition(target)
+        const targetIsBeforeInput =
+          (position & Node.DOCUMENT_POSITION_PRECEDING) !== 0
+        const cursorPosition = targetIsBeforeInput ? 0 : input.value.length
+
+        requestAnimationFrame(() => {
+          input.setSelectionRange(cursorPosition, cursorPosition)
+          input.focus()
+        })
+      }}
+      {...rest}
+    >
+      <TextFieldContext.Provider value={contextValue}>
+        {children}
+      </TextFieldContext.Provider>
+    </Component>
+  )
+}) as PolymorphicInputRoot
 
 type InputProps = Omit<InputStylesProps, 'size' | 'disabled' | 'error'> &
   Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> & {
@@ -72,36 +81,19 @@ type InputProps = Omit<InputStylesProps, 'size' | 'disabled' | 'error'> &
     size?: 'md' | 'lg'
     disabled?: boolean
     error?: boolean
+    spacing?: 'md' | 'lg'
   }
 
-// type PolymorphicInput = Polymorphic.ForwardRefComponent<'input', InputProps>
-
-// export default function Input({
-//   disabled,
-//   error,
-//   size,
-//   className,
-//   ...rest
-// }: InputProps) {
-//   const { inputVariants } = input
-
-//   return (
-//     <input
-//       className={inputVariants({
-//         className: `rt-TextFieldInput  ${className}`,
-//         size,
-//         disabled,
-//         error,
-//       })}
-//       disabled={disabled}
-//       {...rest}
-//     />
-//   )
-// }
-
-export const Input = React.forwardRef<HTMLInputElement, InputProps>(
+export const InputInner = React.forwardRef<HTMLInputElement, InputProps>(
   (
-    { className, size = 'md', error = false, disabled = false, ...rest },
+    {
+      className,
+      size = 'md',
+      error = false,
+      disabled = false,
+      spacing = 'lg',
+      ...rest
+    },
     ref,
   ) => {
     const { inputVariants } = input
@@ -114,25 +106,55 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <input
           className={inputVariants({
             className,
-            size,
-            disabled,
-            error,
+            size: context?.size ?? size,
+            error: context?.error ?? error,
+            disabled: context?.disabled ?? disabled,
           })}
-          disabled={disabled}
+          disabled={context?.disabled ?? disabled}
           ref={ref}
           {...rest}
         />
-        <div className={input.mask({ disabled, error })} />
+        <div
+          className={input.mask({
+            error: context?.error ?? error,
+            disabled: context?.disabled ?? disabled,
+          })}
+        />
       </>
     )
 
     return hasRoot ? (
       inputElement
     ) : (
-      <InputRoot size={size} disabled={disabled} error={error}>
+      <InputRoot
+        size={size}
+        disabled={disabled}
+        error={error}
+        spacing={spacing}
+      >
         {inputElement}
       </InputRoot>
     )
+  },
+)
+
+type TextFieldSlotElement = React.ElementRef<'div'>
+
+const InputSlot = React.forwardRef<TextFieldSlotElement, any>(
+  (props, forwardedRef) => {
+    const { className, ...rest } = props
+    return (
+      <div {...rest} ref={forwardedRef} className={input.slot({ className })} />
+    )
+  },
+)
+
+const Input = Object.assign(
+  {},
+  {
+    Root: InputRoot,
+    Slot: InputSlot,
+    InputField: InputInner,
   },
 )
 

@@ -677,6 +677,9 @@ importers:
 
   packages/components/input:
     dependencies:
+      '@consolelabs/avatar':
+        specifier: workspace:*
+        version: link:../avatar
       '@consolelabs/icons':
         specifier: workspace:*
         version: link:../../icons
