@@ -97,8 +97,6 @@ export const consolelabs = () => {
     }
   }
 
-  console.log('resolved', resolved)
-
   return plugin(
     ({ addVariant, addUtilities }) => {
       // add the css variables to "@layer utilities"

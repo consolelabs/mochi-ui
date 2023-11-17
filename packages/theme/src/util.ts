@@ -1,16 +1,18 @@
 import { flatten } from 'flat'
 
-function removeDefaultKeys<T extends Object>(obj: T) {
-  const newObj = {}
+function removeDefaultKeys<T extends Record<string, any>>(obj: T): Partial<T> {
+  const newObj: Partial<T> = {}
 
   for (const key in obj) {
-    if (key.endsWith('-DEFAULT')) {
-      // @ts-ignore
-      newObj[key.replace('-DEFAULT', '')] = obj[key]
-      continue
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      if (key.endsWith('-DEFAULT')) {
+        const newKey = key.replace('-DEFAULT', '') as keyof T
+        newObj[newKey] = obj[key]
+      } else {
+        const newKey = key as keyof T
+        newObj[newKey] = obj[key]
+      }
     }
-    // @ts-ignore
-    newObj[key] = obj[key]
   }
 
   return newObj
