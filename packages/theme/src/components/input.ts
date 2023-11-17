@@ -2,20 +2,13 @@ import { cva, VariantProps } from 'class-variance-authority'
 
 const root = cva(
   [
-    'flex relative items-stretch cursor-text overflow-hidden focus-within:shadow-input-focused rounded gap-2',
+    'flex relative items-stretch cursor-text overflow-hidden focus-within:shadow-input-focused rounded gap-2 px-3.5',
   ],
   {
     variants: {
-      spacing: {
-        md: 'px-3',
-        lg: 'px-3.5',
-      },
       error: {
         true: 'focus-within:shadow-none',
       },
-    },
-    defaultVariants: {
-      spacing: 'lg',
     },
   },
 )

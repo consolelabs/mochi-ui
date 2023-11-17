@@ -26,7 +26,6 @@
   },
   "devDependencies": {
     "@consolelabs/icons": "workspace:*",
-    "@consolelabs/theme": "workspace:*",
     "clean-package": "^2.2.0",
     "eslint-config-custom": "workspace:*",
     "prettier": "^3.0.3",
@@ -35,6 +34,7 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
+    "@consolelabs/theme": "workspace:*",
     "@radix-ui/react-tabs": "^1.0.4",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0"

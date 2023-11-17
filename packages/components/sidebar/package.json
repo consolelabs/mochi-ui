@@ -26,7 +26,6 @@
   },
   "devDependencies": {
     "clean-package": "^2.2.0",
-    "@consolelabs/accordion": "workspace:*",
     "@consolelabs/badge": "workspace:*",
     "eslint-config-custom": "workspace:*",
     "prettier": "^3.0.3",
@@ -35,6 +34,7 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
+    "@consolelabs/accordion": "workspace:*",
     "@consolelabs/icons": "workspace:*",
     "@consolelabs/theme": "workspace:*",
     "@consolelabs/tooltip": "workspace:*",

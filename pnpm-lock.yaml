@@ -477,9 +477,6 @@ importers:
 
   packages/components/badge:
     dependencies:
-      '@consolelabs/icons':
-        specifier: workspace:*
-        version: link:../../icons
       '@consolelabs/theme':
         specifier: workspace:*
         version: link:../../theme
@@ -490,6 +487,9 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
     devDependencies:
+      '@consolelabs/icons':
+        specifier: workspace:*
+        version: link:../../icons
       clean-package:
         specifier: ^2.2.0
         version: 2.2.0
@@ -582,9 +582,6 @@ importers:
 
   packages/components/dropdown:
     dependencies:
-      '@consolelabs/avatar':
-        specifier: workspace:*
-        version: link:../avatar
       '@consolelabs/icons':
         specifier: workspace:*
         version: link:../../icons
@@ -601,6 +598,9 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
     devDependencies:
+      '@consolelabs/avatar':
+        specifier: workspace:*
+        version: link:../avatar
       clean-package:
         specifier: ^2.2.0
         version: 2.2.0
@@ -656,6 +656,9 @@ importers:
         specifier: ^0.7.0
         version: 0.7.0
     devDependencies:
+      '@consolelabs/icons':
+        specifier: workspace:*
+        version: link:../../icons
       clean-package:
         specifier: ^2.2.0
         version: 2.2.0
@@ -677,12 +680,6 @@ importers:
 
   packages/components/input:
     dependencies:
-      '@consolelabs/avatar':
-        specifier: workspace:*
-        version: link:../avatar
-      '@consolelabs/icons':
-        specifier: workspace:*
-        version: link:../../icons
       '@consolelabs/polymorphic':
         specifier: workspace:*
         version: link:../polymorphic
@@ -693,6 +690,12 @@ importers:
         specifier: ^0.7.0
         version: 0.7.0
     devDependencies:
+      '@consolelabs/avatar':
+        specifier: workspace:*
+        version: link:../avatar
+      '@consolelabs/icons':
+        specifier: workspace:*
+        version: link:../../icons
       clean-package:
         specifier: ^2.2.0
         version: 2.2.0
@@ -714,9 +717,6 @@ importers:
 
   packages/components/input-field:
     dependencies:
-      '@consolelabs/icons':
-        specifier: workspace:*
-        version: link:../../icons
       '@consolelabs/theme':
         specifier: workspace:*
         version: link:../../theme
@@ -727,6 +727,9 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
     devDependencies:
+      '@consolelabs/icons':
+        specifier: workspace:*
+        version: link:../../icons
       clean-package:
         specifier: ^2.2.0
         version: 2.2.0
@@ -748,9 +751,6 @@ importers:
 
   packages/components/list:
     dependencies:
-      '@consolelabs/heading':
-        specifier: workspace:*
-        version: link:../heading
       '@consolelabs/theme':
         specifier: workspace:*
         version: link:../../theme
@@ -761,6 +761,9 @@ importers:
         specifier: ^0.7.0
         version: 0.7.0
     devDependencies:
+      '@consolelabs/heading':
+        specifier: workspace:*
+        version: link:../heading
       clean-package:
         specifier: ^2.2.0
         version: 2.2.0
@@ -942,9 +945,6 @@ importers:
 
   packages/components/popover:
     dependencies:
-      '@consolelabs/icons':
-        specifier: workspace:*
-        version: link:../../icons
       '@consolelabs/theme':
         specifier: workspace:*
         version: link:../../theme
@@ -964,6 +964,9 @@ importers:
       '@consolelabs/button':
         specifier: workspace:*
         version: link:../button
+      '@consolelabs/icons':
+        specifier: workspace:*
+        version: link:../../icons
       clean-package:
         specifier: ^2.2.0
         version: 2.2.0
@@ -1050,6 +1053,9 @@ importers:
       '@consolelabs/icons':
         specifier: workspace:*
         version: link:../../icons
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../../theme
       '@radix-ui/react-select':
         specifier: ^2.0.0
         version: 2.0.0(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
@@ -1060,9 +1066,6 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
     devDependencies:
-      '@consolelabs/theme':
-        specifier: workspace:*
-        version: link:../../theme
       clean-package:
         specifier: ^2.2.0
         version: 2.2.0
@@ -1115,6 +1118,9 @@ importers:
 
   packages/components/sidebar:
     dependencies:
+      '@consolelabs/accordion':
+        specifier: workspace:*
+        version: link:../accordion
       '@consolelabs/icons':
         specifier: workspace:*
         version: link:../../icons
@@ -1131,9 +1137,6 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
     devDependencies:
-      '@consolelabs/accordion':
-        specifier: workspace:*
-        version: link:../accordion
       '@consolelabs/badge':
         specifier: workspace:*
         version: link:../badge
@@ -1192,6 +1195,13 @@ importers:
 
   packages/components/table:
     dependencies:
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../../theme
+      '@tanstack/react-table':
+        specifier: ^8.10.7
+        version: 8.10.7(react-dom@18.2.0)(react@18.2.0)
+    devDependencies:
       '@consolelabs/badge':
         specifier: workspace:*
         version: link:../badge
@@ -1201,13 +1211,6 @@ importers:
       '@consolelabs/pagination':
         specifier: workspace:*
         version: link:../pagination
-      '@consolelabs/theme':
-        specifier: workspace:*
-        version: link:../../theme
-      '@tanstack/react-table':
-        specifier: ^8.10.7
-        version: 8.10.7(react-dom@18.2.0)(react@18.2.0)
-    devDependencies:
       clean-package:
         specifier: ^2.2.0
         version: 2.2.0
@@ -1229,6 +1232,9 @@ importers:
 
   packages/components/tabs:
     dependencies:
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../../theme
       '@radix-ui/react-tabs':
         specifier: ^1.0.4
         version: 1.0.4(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
@@ -1242,9 +1248,6 @@ importers:
       '@consolelabs/icons':
         specifier: workspace:*
         version: link:../../icons
-      '@consolelabs/theme':
-        specifier: workspace:*
-        version: link:../../theme
       clean-package:
         specifier: ^2.2.0
         version: 2.2.0

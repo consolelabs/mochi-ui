@@ -25,10 +25,6 @@ const meta: Meta<typeof Input.InputField> = {
       control: 'boolean',
       defaultValue: false,
     },
-    spacing: {
-      control: 'select',
-      options: ['md', 'lg'],
-    },
   },
 }
 
@@ -43,8 +39,6 @@ export function Size() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
       <Input.InputField placeholder="Default" />
-
-      <Input.InputField placeholder="Small spacing" spacing="md" />
 
       <Input.InputField placeholder="Large size" size="lg" />
     </div>
