@@ -152,7 +152,6 @@ export const useMochi = create<MochiState>((set, get) => ({
           return a
         }),
     )
-    console.log({ associatedAccounts })
 
     set((state) => {
       const newState = {
