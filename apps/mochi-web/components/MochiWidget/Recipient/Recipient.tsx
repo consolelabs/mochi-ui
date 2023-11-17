@@ -40,18 +40,12 @@ export const Recipient: React.FC<RecipientProps> = ({
   const isOnChain = selectedPlatform?.platform === 'on-chain'
   const filteredRecipients = useMemo(
     () =>
-      // TODO: remove this filter when API supprts platform query
-      recipients.filter((item) => {
-        const isPlatformMatch =
-          item.associated_accounts?.[0].platform?.toLowerCase() ===
-          selectedPlatform?.platform.toLowerCase()
-
-        const isSearchMatch =
+      recipients.filter(
+        (item) =>
           item.associated_accounts?.[0].platform_metadata?.username
             ?.toLowerCase()
-            .includes(searchTerm.toLowerCase())
-        return isPlatformMatch && isSearchMatch
-      }),
+            .includes(searchTerm.toLowerCase()),
+      ),
     [searchTerm, selectedPlatform, recipients],
   )
 
@@ -175,25 +169,29 @@ export const Recipient: React.FC<RecipientProps> = ({
       <PopoverContent
         align="start"
         sideOffset={0}
-        style={{ borderRadius: '0 0 8px 8px' }}
-        className="flex flex-col gap-x-1 items-center py-3 px-3 shadow-md w-[398px] bg-white-pure"
         onInteractOutside={handleInteractOutside}
         onOpenAutoFocus={(e) => e.preventDefault()}
+        asChild
       >
-        {isOnChain && (
-          <InputField
-            className="w-full text-sm !rounded-lg"
-            autoFocus
-            placeholder="Search address"
-            startAdornment={<ChainPicker className="ml-3" />}
-            onChange={onChainSearch}
+        <div
+          style={{ borderRadius: '0 0 8px 8px' }}
+          className="flex flex-col gap-y-2 items-center py-3 px-3 shadow-md w-[398px] bg-white-pure"
+        >
+          {isOnChain && (
+            <InputField
+              className="w-full text-sm"
+              autoFocus
+              placeholder="Search address"
+              startAdornment={<ChainPicker className="ml-3" />}
+              onChange={onChainSearch}
+            />
+          )}
+          <RecipientList
+            data={filteredRecipients}
+            selectedRecipients={selectedRecipients}
+            onSelect={onSelectRecipient}
           />
-        )}
-        <RecipientList
-          data={filteredRecipients}
-          selectedRecipients={selectedRecipients}
-          onSelect={onSelectRecipient}
-        />
+        </div>
       </PopoverContent>
     </Popover>
   )
