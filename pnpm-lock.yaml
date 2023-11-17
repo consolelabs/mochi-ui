@@ -640,6 +640,9 @@ importers:
       '@consolelabs/icons':
         specifier: workspace:*
         version: link:../../icons
+      '@consolelabs/polymorphic':
+        specifier: workspace:*
+        version: link:../polymorphic
       '@consolelabs/theme':
         specifier: workspace:*
         version: link:../../theme

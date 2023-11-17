@@ -1,33 +1,41 @@
 import { iconButton, IconButtonStylesProps } from '@consolelabs/theme'
-import { ButtonHTMLAttributes } from 'react'
+import React from 'react'
+import type * as Polymorphic from '@consolelabs/polymorphic'
 
 const { iconButtonCva } = iconButton
 
-type IconButtonProps = IconButtonStylesProps &
-  ButtonHTMLAttributes<HTMLButtonElement> & {
-    children?: React.ReactNode
-    className?: string
-  }
+export type IconButtonProps = IconButtonStylesProps
 
-export default function IconButton({
-  children,
-  variant,
-  color,
-  size,
-  disabled,
-  className,
-  ...rest
-}: IconButtonProps) {
-  return (
-    <button
-      className={iconButtonCva({ className, variant, color, size, disabled })}
-      disabled={disabled}
-      type={rest.type || 'button'}
-      {...rest}
-    >
-      {children}
-    </button>
-  )
-}
+type PolymorphicIconButton = Polymorphic.ForwardRefComponent<
+  'button',
+  IconButtonProps
+>
 
-export { type IconButtonProps }
+const IconButton = React.forwardRef(
+  (
+    {
+      as: Component = 'button',
+      children,
+      variant,
+      color,
+      size,
+      disabled = false,
+      className,
+      ...rest
+    },
+    ref,
+  ) => {
+    return (
+      <Component
+        ref={ref}
+        className={iconButtonCva({ className, variant, color, size, disabled })}
+        disabled={disabled as boolean | undefined}
+        {...rest}
+      >
+        {children}
+      </Component>
+    )
+  },
+) as PolymorphicIconButton
+
+export default IconButton
