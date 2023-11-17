@@ -1,5 +1,6 @@
 import { inputfield, InputWrapperStylesProps } from '@consolelabs/theme'
 import { HTMLAttributes } from 'react'
+import clsx from 'clsx'
 
 type InputFieldProps = HTMLAttributes<HTMLInputElement> &
   InputWrapperStylesProps & {
@@ -14,6 +15,7 @@ type InputFieldProps = HTMLAttributes<HTMLInputElement> &
     disabled?: boolean
     error?: boolean
     className?: string
+    inputWrapperClassName?: string
   }
 
 export default function InputField({
@@ -29,6 +31,7 @@ export default function InputField({
   error,
   size,
   className,
+  inputWrapperClassName,
   ...rest
 }: InputFieldProps) {
   const {
@@ -47,13 +50,16 @@ export default function InputField({
         </div>
       )}
       <div
-        className={inputWrapperVariants({
-          size,
-          disabled,
-          error,
-          hasStartAdornment: Boolean(startAdornment),
-          hasEndAdornment: Boolean(endAdornment),
-        })}
+        className={clsx(
+          inputWrapperVariants({
+            size,
+            disabled,
+            error,
+            hasStartAdornment: Boolean(startAdornment),
+            hasEndAdornment: Boolean(endAdornment),
+          }),
+          inputWrapperClassName,
+        )}
       >
         {Boolean(startAdornment) && (
           <div className={adornmentVariants({ size, disabled })}>
