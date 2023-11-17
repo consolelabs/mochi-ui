@@ -75,6 +75,8 @@ export const InputRoot = React.forwardRef<HTMLDivElement, any>((props, ref) => {
   )
 }) as PolymorphicInputRoot
 
+// input field
+
 type InputProps = Omit<InputStylesProps, 'size' | 'disabled' | 'error'> &
   Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> & {
     className?: string
@@ -84,7 +86,7 @@ type InputProps = Omit<InputStylesProps, 'size' | 'disabled' | 'error'> &
     spacing?: 'md' | 'lg'
   }
 
-export const InputInner = React.forwardRef<HTMLInputElement, InputProps>(
+export const InputField = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
       className,
@@ -138,6 +140,8 @@ export const InputInner = React.forwardRef<HTMLInputElement, InputProps>(
   },
 )
 
+// slot
+
 type TextFieldSlotElement = React.ElementRef<'div'>
 
 const InputSlot = React.forwardRef<TextFieldSlotElement, any>(
@@ -154,7 +158,7 @@ const Input = Object.assign(
   {
     Root: InputRoot,
     Slot: InputSlot,
-    InputField: InputInner,
+    InputField,
   },
 )
 
