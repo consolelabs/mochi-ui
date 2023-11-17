@@ -7,6 +7,7 @@ interface Props {
   data: Profile[]
   selectedRecipients?: Profile[]
   onSelect?: (account: Profile) => void
+  onRemove?: (account: Profile) => void
 }
 
 const ProfilePlaceholder: Profile = {
@@ -26,7 +27,7 @@ const ProfilePlaceholder: Profile = {
 }
 
 export const RecipientList = (props: Props) => {
-  const { data, selectedRecipients = [], onSelect } = props
+  const { data, selectedRecipients = [], onSelect, onRemove } = props
   return (
     <List
       rootClassName="w-full"
@@ -41,6 +42,7 @@ export const RecipientList = (props: Props) => {
               item?.associated_accounts?.[0].id,
           )}
           onSelect={onSelect}
+          onRemove={onRemove}
         />
       )}
     />

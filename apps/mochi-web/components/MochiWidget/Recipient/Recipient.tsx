@@ -190,6 +190,7 @@ export const Recipient: React.FC<RecipientProps> = ({
             data={filteredRecipients}
             selectedRecipients={selectedRecipients}
             onSelect={onSelectRecipient}
+            onRemove={onRemoveRecipient}
           />
         </div>
       </PopoverContent>

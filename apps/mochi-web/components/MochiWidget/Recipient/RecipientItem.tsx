@@ -1,19 +1,47 @@
 import { Avatar, Heading } from '@consolelabs/core'
 import { Profile } from '@consolelabs/mochi-rest'
 import { truncateWallet } from '~utils/string'
-import { IconCheck } from '@consolelabs/icons'
+import { IconCheck, IconClose } from '@consolelabs/icons'
+import { MouseEventHandler, useState } from 'react'
 import PlatformIcon from '../PlatformPicker/PlatformIcon'
+
+type CheckIconProps = {
+  onRemoveClick?: MouseEventHandler<SVGSVGElement>
+}
+
+const CheckIcon: React.FC<CheckIconProps> = ({ onRemoveClick }) => {
+  const [isHovering, setIsHovering] = useState(false)
+
+  function handleRemoveClick(event: React.MouseEvent<SVGSVGElement>) {
+    event.stopPropagation()
+    onRemoveClick?.(event)
+  }
+  return isHovering ? (
+    <IconClose
+      className="text-red-700 text-xl"
+      onMouseLeave={() => setIsHovering(false)}
+      onClick={handleRemoveClick}
+    />
+  ) : (
+    <IconCheck
+      className="text-primary-700"
+      onMouseEnter={() => setIsHovering(true)}
+    />
+  )
+}
 
 interface ItemProps {
   profile: Profile
-  onSelect?: (item: Profile) => void
   isSelected?: boolean
+  onSelect?: (item: Profile) => void
+  onRemove?: (item: Profile) => void
 }
 
 export const RecipientItem: React.FC<ItemProps> = ({
   profile,
-  onSelect,
   isSelected,
+  onSelect,
+  onRemove,
 }) => {
   const { id, avatar, associated_accounts } = profile
   const account = associated_accounts?.[0]
@@ -35,7 +63,7 @@ export const RecipientItem: React.FC<ItemProps> = ({
         </span>
       </div>
       {isSelected ? (
-        <IconCheck className="text-primary-700" />
+        <CheckIcon onRemoveClick={() => onRemove?.(profile)} />
       ) : (
         <PlatformIcon
           className="text-neutral-500"
