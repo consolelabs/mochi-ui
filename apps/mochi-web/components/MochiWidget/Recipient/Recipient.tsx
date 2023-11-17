@@ -186,7 +186,11 @@ export const Recipient: React.FC<RecipientProps> = ({
             onChange={onChainSearch}
           />
         )}
-        <RecipientList data={filteredRecipients} onSelect={onSelectRecipient} />
+        <RecipientList
+          data={filteredRecipients}
+          selectedRecipients={selectedRecipients}
+          onSelect={onSelectRecipient}
+        />
       </PopoverContent>
     </Popover>
   )

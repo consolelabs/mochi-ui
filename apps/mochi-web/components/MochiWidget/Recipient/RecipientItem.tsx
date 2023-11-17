@@ -1,16 +1,23 @@
 import { Avatar, Heading } from '@consolelabs/core'
 import { Profile } from '@consolelabs/mochi-rest'
 import { truncateWallet } from '~utils/string'
+import { IconCheck } from '@consolelabs/icons'
 import PlatformIcon from '../PlatformPicker/PlatformIcon'
 
 interface ItemProps {
   profile: Profile
   onSelect?: (item: Profile) => void
+  isSelected?: boolean
 }
 
-export const RecipientItem: React.FC<ItemProps> = ({ profile, onSelect }) => {
+export const RecipientItem: React.FC<ItemProps> = ({
+  profile,
+  onSelect,
+  isSelected,
+}) => {
   const { id, avatar, associated_accounts } = profile
   const account = associated_accounts?.[0]
+
   return (
     <li
       className="flex flex-row items-center w-full min-w-[230px] p-2 hover:bg-[#FAF9F7] rounded-lg space-x-2 cursor-pointer"
@@ -27,11 +34,15 @@ export const RecipientItem: React.FC<ItemProps> = ({ profile, onSelect }) => {
           {account?.platform} • {truncateWallet(account?.platform_identifier)}
         </span>
       </div>
-      <PlatformIcon
-        className="text-neutral-500"
-        platform={account?.platform ?? ''}
-        compact
-      />
+      {isSelected ? (
+        <IconCheck className="text-primary-700" />
+      ) : (
+        <PlatformIcon
+          className="text-neutral-500"
+          platform={account?.platform ?? ''}
+          compact
+        />
+      )}
     </li>
   )
 }
