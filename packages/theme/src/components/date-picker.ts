@@ -1,8 +1,9 @@
 const wrapper = 'rounded space-y-3'
+const wrapperShadow = 'shadow-md'
 
-const wrapperMdPadding = 'p-3'
+const wrapperMdPadding = 'p-3 w-[248px]'
 
-const wrapperLgPadding = 'p-3'
+const wrapperLgPadding = 'p-5 w-[256]'
 
 const table = 'w-full border-collapse'
 
@@ -16,6 +17,8 @@ const headCell = [
   'justify-center',
   'text-neutral-800',
   'tracking-tight',
+  '[&:nth-last-child(2)]:text-neutral-600',
+  'last:text-neutral-600',
 ].join(' ')
 
 const row = 'flex w-full mt-1'
@@ -37,6 +40,9 @@ const cell = [
 
 const day = [
   'h-8 w-8',
+  'flex',
+  'items-center',
+  'justify-center',
   'relative',
   'text-xs',
   'rounded-full',
@@ -86,7 +92,7 @@ const dayPickerCaption = {
   icon: 'text-xl',
   layout: 'w-full flex justify-between',
   buttonGroup: 'flex gap-2',
-  wrapper: 'w-full h-fit mb-3',
+  wrapper: 'w-full h-fit mb-3 flex flex-col gap-3',
 }
 
 const dayPicker = {
@@ -107,6 +113,14 @@ const dayPicker = {
   table,
   headRow,
   headCell,
+  wrapperShadow,
 }
 
-export { dayPicker, dayPickerCaption }
+const rangeInputGroup = {
+  wrapper: 'flex gap-2 h-10 w-full items-center',
+  input:
+    'flex-1 h-full flex items-center w-1/2 px-[14px] border border-neutral-300 text-sm tracking-tight rounded-[4px]',
+  divider: 'w-[5px] h-px bg-neutral-800',
+}
+
+export { dayPicker, dayPickerCaption, rangeInputGroup }

@@ -7,14 +7,16 @@ import { dayPickerCaption } from '@consolelabs/theme'
 type CalendarCaptionProps = CaptionProps & {
   formater?: (_: Date) => ReactNode
   alignCaptionCenter?: boolean
+  extra?: ReactNode
 }
 
 const CalendarCaption = (props: CalendarCaptionProps) => {
-  const { formater, alignCaptionCenter, displayMonth } = props
+  const { formater, alignCaptionCenter, displayMonth, extra } = props
   const { goToMonth, nextMonth, previousMonth } = useNavigation()
 
   const isDisplayNavButton = true
   // NOTE: Hide nav button if layout is dropdown only
+  // TODO: Implement dropdown layout later
   // captionLayout === 'buttons' || captionLayout === 'dropdown-buttons'
 
   const renderLabel = (
@@ -56,7 +58,12 @@ const CalendarCaption = (props: CalendarCaptionProps) => {
     </div>
   )
 
-  return <div className={dayPickerCaption.wrapper}>{renderCaptionLayout}</div>
+  return (
+    <div className={dayPickerCaption.wrapper}>
+      {renderCaptionLayout}
+      {extra}
+    </div>
+  )
 }
 
 export { CalendarCaption }

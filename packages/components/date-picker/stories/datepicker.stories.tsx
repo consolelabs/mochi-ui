@@ -1,10 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
-import { DatePicker, DateRange } from '../src'
+import { format } from 'date-fns'
+import { DateRange } from 'react-day-picker'
+import { DayPicker } from '../src'
+import { DayRangePickerWithInput } from '../src/day-range-picker-with-input'
 
-const meta: Meta<typeof DatePicker> = {
-  title: 'Components/DatePicker',
-  component: DatePicker,
+const meta: Meta<typeof DayPicker> = {
+  title: 'Components/DayPicker',
+  component: DayPicker,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
     layout: 'centered',
@@ -15,17 +18,28 @@ const meta: Meta<typeof DatePicker> = {
 
 export default meta
 
-type Story = StoryObj<typeof DatePicker>
+type Story = StoryObj<typeof DayPicker>
 
 export const Default: Story = {
   render: function render() {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [date, setDate] = useState<Date>()
-
+    const [selectedRange, setSelectedRange] = useState<DateRange>()
     return (
       <div>
-        <span className=" text-xs">{JSON.stringify(date)}</span>
-        <DatePicker mode="single" selected={date} onSelect={setDate} />
+        <div className="flex flex-col text-xs mb-3">
+          <span>
+            from: {selectedRange?.from && format(selectedRange.from, 'PP')}
+          </span>
+          <span>to: {selectedRange?.to && format(selectedRange.to, 'PP')}</span>
+        </div>
+        <DayRangePickerWithInput
+          hasShadow
+          selected={selectedRange}
+          onSelect={setSelectedRange}
+          inputProps={{
+            placeholder: '1/1/2023',
+          }}
+        />
       </div>
     )
   },
@@ -38,12 +52,7 @@ export const AlignCenter: Story = {
     return (
       <div>
         <span className=" text-xs">{JSON.stringify(date)}</span>
-        <DatePicker
-          mode="single"
-          selected={date}
-          onSelect={setDate}
-          alignCaptionCenter
-        />
+        <DayPicker selected={date} onSelect={setDate} alignCaptionCenter />
       </div>
     )
   },
@@ -56,7 +65,7 @@ export const DropdownCaption: Story = {
     return (
       <div>
         <span className=" text-xs">{JSON.stringify(date)}</span>
-        <DatePicker
+        <DayPicker
           mode="single"
           selected={date}
           onSelect={setDate}
@@ -76,7 +85,7 @@ export const RangeSelector: Story = {
     return (
       <div>
         <span className=" text-xs">{JSON.stringify(date)}</span>
-        <DatePicker
+        <DayPicker
           mode="range"
           min={2}
           max={30}
@@ -95,8 +104,10 @@ export const MultipleMode: Story = {
     return (
       <div>
         <span className=" text-xs">{JSON.stringify(date)}</span>
-        <DatePicker
+        <DayPicker
           mode="multiple"
+          min={0}
+          max={5}
           selected={date}
           onSelect={setDate}
           alignCaptionCenter
