@@ -31,7 +31,7 @@ export const MobileNavAccordionItem = (props: MobileNavAccordion) => {
     return (
       <Button
         variant="link"
-        color="info"
+        color="neutral"
         className={wrapperClassName}
         onClick={item.onClick}
       >

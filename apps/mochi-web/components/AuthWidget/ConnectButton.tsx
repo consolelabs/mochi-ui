@@ -16,7 +16,7 @@ export const ConnectButton: React.FC<ConnectButtonProps> = ({
     case 'dropdown':
       return (
         <div className="flex items-center justify-center w-full">
-          <Button variant="outline" color="info" {...rest}>
+          <Button variant="outline" color="neutral" {...rest}>
             <IconWallet className="text-xl" />
             Connect Wallet
           </Button>

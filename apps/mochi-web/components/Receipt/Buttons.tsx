@@ -30,7 +30,7 @@ export default function Buttons({ shareLink }: Props) {
           type="button"
           onClick={onShare}
           variant="outline"
-          color="info"
+          color="neutral"
           size="sm"
         >
           <IconShare />
@@ -41,7 +41,7 @@ export default function Buttons({ shareLink }: Props) {
         type="button"
         onClick={onCopy}
         variant="outline"
-        color="info"
+        color="neutral"
         size="sm"
       >
         {hasCopied ? <IconCheck /> : <IconLink />}

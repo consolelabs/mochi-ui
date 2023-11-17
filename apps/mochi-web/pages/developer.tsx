@@ -363,7 +363,7 @@ export default function Developer() {
           <Button size="sm">
             Get API key <IconArrowRight />
           </Button>
-          <Button size="sm" variant="outline" color="info">
+          <Button size="sm" variant="outline" color="neutral">
             View docs
           </Button>
         </div>

@@ -1,136 +1,149 @@
 import { commonColors, gray } from './common'
 
-const primary = commonColors.blue
-const secondary = commonColors.purple
-const success = commonColors.green
-const warning = commonColors.yellow
-const danger = commonColors.red
-
 export const semanticColors = {
   light: {
     primary: {
       solid: {
-        DEFAULT: primary['700'], // for background
+        DEFAULT: commonColors.primary['700'], // for background
         fg: commonColors.white, // for foreground
-        hover: primary['800'],
-        active: primary['800'],
-        disable: primary['400'],
-        focus: primary['400'],
+        hover: commonColors.primary['800'],
+        active: commonColors.primary['800'],
+        disable: commonColors.primary['400'],
+        focus: commonColors.primary['400'],
       },
       outline: {
-        DEFAULT: primary['100'],
-        fg: primary['700'],
-        border: primary['300'],
-        hover: primary['200'],
-        active: primary['200'],
-        'disable-fg': primary['400'],
+        DEFAULT: commonColors.primary['100'],
+        fg: commonColors.primary['700'],
+        border: commonColors.primary['300'],
+        hover: commonColors.primary['200'],
+        active: commonColors.primary['200'],
+        'disable-fg': commonColors.primary['400'],
       },
       plain: {
-        DEFAULT: commonColors.white,
-        fg: primary['700'],
-        hover: primary['100'],
-        active: primary['800'],
-        'disable-fg': gray['400'],
+        fg: commonColors.primary['700'],
+        hover: commonColors.primary['100'],
+        active: commonColors.primary['100'],
+        'disable-fg': commonColors.primary['400'],
       },
     },
     secondary: {
       solid: {
-        DEFAULT: secondary['700'], // for background
+        DEFAULT: commonColors.secondary['700'], // for background
         fg: commonColors.white, // for foreground
-        hover: secondary['800'],
-        active: secondary['800'],
-        disable: secondary['400'],
-        focus: secondary['400'],
+        hover: commonColors.secondary['800'],
+        active: commonColors.secondary['800'],
+        disable: commonColors.secondary['400'],
+        focus: commonColors.secondary['400'],
       },
       outline: {
-        DEFAULT: secondary['100'],
-        fg: secondary['700'],
-        border: secondary['300'],
-        hover: secondary['200'],
-        active: secondary['200'],
-        'disable-fg': secondary['400'],
+        DEFAULT: commonColors.secondary['100'],
+        fg: commonColors.secondary['700'],
+        border: commonColors.secondary['300'],
+        hover: commonColors.secondary['200'],
+        active: commonColors.secondary['200'],
+        'disable-fg': commonColors.secondary['400'],
       },
       plain: {
-        DEFAULT: commonColors.white,
-        fg: secondary['700'],
-        hover: secondary['100'],
-        active: secondary['800'],
-        'disable-fg': gray['400'],
+        fg: commonColors.secondary['700'],
+        hover: commonColors.secondary['100'],
+        active: commonColors.secondary['100'],
+        'disable-fg': commonColors.secondary['400'],
       },
     },
     success: {
       solid: {
-        DEFAULT: success['700'], // for background
+        DEFAULT: commonColors.success['700'], // for background
         fg: commonColors.white, // for foreground
-        hover: success['800'],
-        active: success['800'],
-        disable: success['400'],
-        focus: success['400'],
+        hover: commonColors.success['800'],
+        active: commonColors.success['800'],
+        disable: commonColors.success['400'],
+        focus: commonColors.success['400'],
       },
       outline: {
-        DEFAULT: success['100'],
-        fg: success['700'],
-        border: success['300'],
-        hover: success['200'],
-        active: success['200'],
-        'disable-fg': success['400'],
+        DEFAULT: commonColors.success['100'],
+        fg: commonColors.success['700'],
+        border: commonColors.success['300'],
+        hover: commonColors.success['200'],
+        active: commonColors.success['200'],
+        'disable-fg': commonColors.success['400'],
       },
       plain: {
-        DEFAULT: commonColors.white,
-        fg: success['700'],
-        hover: success['100'],
-        active: success['800'],
-        'disable-fg': gray['400'],
+        fg: commonColors.success['700'],
+        hover: commonColors.success['100'],
+        active: commonColors.success['100'],
+        'disable-fg': commonColors.success['400'],
       },
     },
     warning: {
       solid: {
-        DEFAULT: warning['700'], // for background
+        DEFAULT: commonColors.warning['700'], // for background
         fg: commonColors.white, // for foreground
-        hover: warning['800'],
-        active: warning['800'],
-        disable: warning['400'],
-        focus: warning['400'],
+        hover: commonColors.warning['800'],
+        active: commonColors.warning['800'],
+        disable: commonColors.warning['400'],
+        focus: commonColors.warning['400'],
       },
       outline: {
-        DEFAULT: warning['100'],
-        fg: warning['700'],
-        border: warning['300'],
-        hover: warning['200'],
-        active: warning['200'],
-        'disable-fg': warning['400'],
+        DEFAULT: commonColors.warning['100'],
+        fg: commonColors.warning['700'],
+        border: commonColors.warning['300'],
+        hover: commonColors.warning['200'],
+        active: commonColors.warning['200'],
+        'disable-fg': commonColors.warning['400'],
       },
       plain: {
-        DEFAULT: commonColors.white,
-        fg: warning['700'],
-        hover: warning['100'],
-        active: warning['800'],
-        'disable-fg': gray['400'],
+        fg: commonColors.warning['700'],
+        hover: commonColors.warning['100'],
+        active: commonColors.warning['100'],
+        'disable-fg': commonColors.warning['400'],
       },
     },
     danger: {
       solid: {
-        DEFAULT: danger['700'], // for background
+        DEFAULT: commonColors.danger['700'], // for background
         fg: commonColors.white, // for foreground
-        hover: danger['800'],
-        active: danger['800'],
-        disable: danger['400'],
-        focus: danger['400'],
+        hover: commonColors.danger['800'],
+        active: commonColors.danger['800'],
+        disable: commonColors.danger['400'],
+        focus: commonColors.danger['400'],
       },
       outline: {
-        DEFAULT: danger['100'],
-        fg: danger['700'],
-        border: danger['300'],
-        hover: danger['200'],
-        active: danger['200'],
-        'disable-fg': danger['400'],
+        DEFAULT: commonColors.danger['100'],
+        fg: commonColors.danger['700'],
+        border: commonColors.danger['300'],
+        hover: commonColors.danger['200'],
+        active: commonColors.danger['200'],
+        'disable-fg': commonColors.danger['400'],
       },
       plain: {
-        DEFAULT: commonColors.white,
-        fg: danger['700'],
-        hover: danger['100'],
-        active: danger['800'],
-        'disable-fg': gray['400'],
+        fg: commonColors.danger['700'],
+        hover: commonColors.danger['100'],
+        active: commonColors.danger['100'],
+        'disable-fg': commonColors.danger['400'],
+      },
+    },
+    neutral: {
+      solid: {
+        DEFAULT: commonColors.neutral['700'], // for background
+        fg: commonColors.white, // for foreground
+        hover: commonColors.neutral['800'],
+        active: commonColors.neutral['800'],
+        disable: commonColors.neutral['400'],
+        focus: commonColors.neutral['400'],
+      },
+      outline: {
+        DEFAULT: commonColors.neutral['100'],
+        fg: commonColors.neutral['700'],
+        border: commonColors.neutral['300'],
+        hover: commonColors.neutral['200'],
+        active: commonColors.neutral['200'],
+        'disable-fg': commonColors.neutral['400'],
+      },
+      plain: {
+        fg: commonColors.neutral['700'],
+        hover: commonColors.neutral['100'],
+        active: commonColors.neutral['100'],
+        'disable-fg': commonColors.neutral['400'],
       },
     },
     text: {
@@ -151,126 +164,126 @@ export const semanticColors = {
   dark: {
     primary: {
       solid: {
-        DEFAULT: primary['700'], // for background
+        DEFAULT: commonColors.primary['700'], // for background
         fg: commonColors.white, // for foreground
-        hover: primary['800'],
-        active: primary['800'],
-        disable: primary['400'],
-        focus: primary['400'],
+        hover: commonColors.primary['800'],
+        active: commonColors.primary['800'],
+        disable: commonColors.primary['400'],
+        focus: commonColors.primary['400'],
       },
       outline: {
-        DEFAULT: primary['100'],
-        fg: primary['700'],
-        border: primary['300'],
-        hover: primary['200'],
-        active: primary['200'],
-        'disable-fg': primary['400'],
+        DEFAULT: commonColors.primary['100'],
+        fg: commonColors.primary['700'],
+        border: commonColors.primary['300'],
+        hover: commonColors.primary['200'],
+        active: commonColors.primary['200'],
+        'disable-fg': commonColors.primary['400'],
       },
       plain: {
         DEFAULT: commonColors.white,
-        fg: primary['700'],
-        hover: primary['100'],
-        active: primary['800'],
+        fg: commonColors.primary['700'],
+        hover: commonColors.primary['100'],
+        active: commonColors.primary['800'],
         'disable-fg': gray['400'],
       },
     },
     secondary: {
       solid: {
-        DEFAULT: secondary['700'], // for background
+        DEFAULT: commonColors.secondary['700'], // for background
         fg: commonColors.white, // for foreground
-        hover: secondary['800'],
-        active: secondary['800'],
-        disable: secondary['400'],
-        focus: secondary['400'],
+        hover: commonColors.secondary['800'],
+        active: commonColors.secondary['800'],
+        disable: commonColors.secondary['400'],
+        focus: commonColors.secondary['400'],
       },
       outline: {
-        DEFAULT: secondary['100'],
-        fg: secondary['700'],
-        border: secondary['300'],
-        hover: secondary['200'],
-        active: secondary['200'],
-        'disable-fg': secondary['400'],
+        DEFAULT: commonColors.secondary['100'],
+        fg: commonColors.secondary['700'],
+        border: commonColors.secondary['300'],
+        hover: commonColors.secondary['200'],
+        active: commonColors.secondary['200'],
+        'disable-fg': commonColors.secondary['400'],
       },
       plain: {
         DEFAULT: commonColors.white,
-        fg: secondary['700'],
-        hover: secondary['100'],
-        active: secondary['800'],
+        fg: commonColors.secondary['700'],
+        hover: commonColors.secondary['100'],
+        active: commonColors.secondary['800'],
         'disable-fg': gray['400'],
       },
     },
     success: {
       solid: {
-        DEFAULT: success['700'], // for background
+        DEFAULT: commonColors.success['700'], // for background
         fg: commonColors.white, // for foreground
-        hover: success['800'],
-        active: success['800'],
-        disable: success['400'],
-        focus: success['400'],
+        hover: commonColors.success['800'],
+        active: commonColors.success['800'],
+        disable: commonColors.success['400'],
+        focus: commonColors.success['400'],
       },
       outline: {
-        DEFAULT: success['100'],
-        fg: success['700'],
-        border: success['300'],
-        hover: success['200'],
-        active: success['200'],
-        'disable-fg': success['400'],
+        DEFAULT: commonColors.success['100'],
+        fg: commonColors.success['700'],
+        border: commonColors.success['300'],
+        hover: commonColors.success['200'],
+        active: commonColors.success['200'],
+        'disable-fg': commonColors.success['400'],
       },
       plain: {
         DEFAULT: commonColors.white,
-        fg: success['700'],
-        hover: success['100'],
-        active: success['800'],
+        fg: commonColors.success['700'],
+        hover: commonColors.success['100'],
+        active: commonColors.success['800'],
         'disable-fg': gray['400'],
       },
     },
     warning: {
       solid: {
-        DEFAULT: warning['700'], // for background
+        DEFAULT: commonColors.warning['700'], // for background
         fg: commonColors.white, // for foreground
-        hover: warning['800'],
-        active: warning['800'],
-        disable: warning['400'],
-        focus: warning['400'],
+        hover: commonColors.warning['800'],
+        active: commonColors.warning['800'],
+        disable: commonColors.warning['400'],
+        focus: commonColors.warning['400'],
       },
       outline: {
-        DEFAULT: warning['100'],
-        fg: warning['700'],
-        border: warning['300'],
-        hover: warning['200'],
-        active: warning['200'],
-        'disable-fg': warning['400'],
+        DEFAULT: commonColors.warning['100'],
+        fg: commonColors.warning['700'],
+        border: commonColors.warning['300'],
+        hover: commonColors.warning['200'],
+        active: commonColors.warning['200'],
+        'disable-fg': commonColors.warning['400'],
       },
       plain: {
         DEFAULT: commonColors.white,
-        fg: warning['700'],
-        hover: warning['100'],
-        active: warning['800'],
+        fg: commonColors.warning['700'],
+        hover: commonColors.warning['100'],
+        active: commonColors.warning['800'],
         'disable-fg': gray['400'],
       },
     },
     danger: {
       solid: {
-        DEFAULT: danger['700'], // for background
+        DEFAULT: commonColors.danger['700'], // for background
         fg: commonColors.white, // for foreground
-        hover: danger['800'],
-        active: danger['800'],
-        disable: danger['400'],
-        focus: danger['400'],
+        hover: commonColors.danger['800'],
+        active: commonColors.danger['800'],
+        disable: commonColors.danger['400'],
+        focus: commonColors.danger['400'],
       },
       outline: {
-        DEFAULT: danger['100'],
-        fg: danger['700'],
-        border: danger['300'],
-        hover: danger['200'],
-        active: danger['200'],
-        'disable-fg': danger['400'],
+        DEFAULT: commonColors.danger['100'],
+        fg: commonColors.danger['700'],
+        border: commonColors.danger['300'],
+        hover: commonColors.danger['200'],
+        active: commonColors.danger['200'],
+        'disable-fg': commonColors.danger['400'],
       },
       plain: {
         DEFAULT: commonColors.white,
-        fg: danger['700'],
-        hover: danger['100'],
-        active: danger['800'],
+        fg: commonColors.danger['700'],
+        hover: commonColors.danger['100'],
+        active: commonColors.danger['800'],
         'disable-fg': gray['400'],
       },
     },

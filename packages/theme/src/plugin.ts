@@ -78,7 +78,7 @@ export const consolelabs = () => {
         // set the dynamic color in tailwind config theme.colors
         resolved.colors[colorName] = ({ opacityVariable, opacityValue }) => {
           // if the opacity is set  with a slash (e.g. bg-primary/90), use the provided value
-          if (!isNaN(+opacityValue)) {
+          if (!Number.isNaN(+opacityValue)) {
             return `hsl(var(${colorVariable}) / ${opacityValue})`
           }
           // if no opacityValue was provided (=it is not parsable to a number)
@@ -195,7 +195,10 @@ export const consolelabs = () => {
             xxs: '10px',
           },
           boxShadow: {
+            small:
+              '0px 0px 0px 4px rgba(1, 122, 255, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.05)',
             input: '0px 1px 2px 0px rgba(0, 0, 0, 0.05)',
+            demp: '0px 1px 2px 0px rgba(0, 0, 0, 0.05)',
             'input-focused':
               '0px 0px 0px 4px rgba(1, 122, 255, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.05)',
             button: '0px 0px 8px 0px rgba(0, 0, 0, 0.04)',

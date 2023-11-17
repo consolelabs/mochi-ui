@@ -18,7 +18,6 @@ export const blue = {
   200: '#dcecfe',
   300: '#beddfe',
   400: '#91c5fd',
-  '400/40': '#91c5fd',
   500: '#61abfa',
   600: '#3d97f7',
   700: '#017aff',
@@ -82,12 +81,19 @@ export const red = {
 export const commonColors = {
   white: '#ffffff',
   black: '#000000',
+  transparent: 'transparent',
   gray,
   blue,
   purple,
   green,
   yellow,
   red,
+  primary: blue,
+  secondary: purple,
+  success: green,
+  warning: yellow,
+  danger: red,
+  neutral: gray,
 }
 
 export type CommonColors = typeof commonColors
