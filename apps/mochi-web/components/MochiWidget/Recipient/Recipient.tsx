@@ -60,6 +60,7 @@ export const Recipient: React.FC<RecipientProps> = ({
 
   useEffect(
     () => {
+      // TODO: remove condition for recent recipients
       if (debouncedSearchTerm) {
         setIsSearching()
         API.MOCHI_PROFILE.get(
