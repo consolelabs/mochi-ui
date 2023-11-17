@@ -40,6 +40,7 @@ export const Recipient: React.FC<RecipientProps> = ({
   const isOnChain = selectedPlatform?.platform === 'on-chain'
   const filteredRecipients = useMemo(
     () =>
+      // TODO: remove this filter when API supprts platform query
       recipients.filter((item) => {
         const isPlatformMatch =
           item.associated_accounts?.[0].platform?.toLowerCase() ===
@@ -58,7 +59,9 @@ export const Recipient: React.FC<RecipientProps> = ({
     () => {
       if (debouncedSearchTerm) {
         setIsSearching(true)
-        API.MOCHI_PROFILE.get(GET_PATHS.PROFILE_SEARCH(searchTerm))
+        API.MOCHI_PROFILE.get(
+          GET_PATHS.PROFILE_SEARCH(searchTerm, selectedPlatform?.platform),
+        )
           .json((r) => r.data)
           .then((data: Profile[]) => {
             setRecipients(data || [])
@@ -69,7 +72,7 @@ export const Recipient: React.FC<RecipientProps> = ({
         setIsSearching(false)
       }
     },
-    [debouncedSearchTerm], // Only call effect if debounced search term changes
+    [debouncedSearchTerm, selectedPlatform], // Only call effect if debounced search term changes
   )
 
   function handleFocusInput() {
@@ -140,7 +143,7 @@ export const Recipient: React.FC<RecipientProps> = ({
             <span className="h-[34px] text-lg text-[#848281] pt-0.5">@</span>
             <input
               id="recipients"
-              className="min-w-min h-full bg-transparent outline-none"
+              className="flex-1 min-w-[100px] h-full bg-transparent outline-none"
               placeholder={isOnChain ? 'Enter address' : 'Enter username'}
               value={searchTerm}
               onFocus={handleFocusInput}
