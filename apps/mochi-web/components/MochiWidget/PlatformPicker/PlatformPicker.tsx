@@ -37,10 +37,18 @@ const Platforms: Platform[] = [
 ]
 
 interface Props {
+  triggerId?: string
+  contentId?: string
   onSelect?: (item: Platform) => void
+  focusOnOpen?: boolean
 }
 
-export const PlatformPicker: React.FC<Props> = ({ onSelect }) => {
+export const PlatformPicker: React.FC<Props> = ({
+  triggerId = 'platform-picker-trigger',
+  contentId = 'platform-picker-content',
+  onSelect,
+  focusOnOpen = false,
+}) => {
   const [isOpenSelector, setIsOpenSelector] = useState(false)
   const [selectedPlatform, setSelectedPlatform] = useState<Platform>(
     Platforms[0],
@@ -57,22 +65,34 @@ export const PlatformPicker: React.FC<Props> = ({ onSelect }) => {
     onSelect?.(platform)
   }
 
+  function handleOpenAutoFocus(event: Event) {
+    if (!focusOnOpen) {
+      event.preventDefault()
+    }
+  }
+
   return (
     <Popover open={isOpenSelector} onOpenChange={setIsOpenSelector}>
-      <PopoverTrigger className="flex gap-x-2 items-center py-1.5 px-3 rounded-lg bg-neutral-100">
-        <PlatformIcon
-          platform={selectedPlatform.platform}
-          className="flex-shrink-0 w-[22px] h-[22px]"
-        />
-        <span className="text-sm font-medium capitalize">
-          {selectedPlatform.platform}
-        </span>
-        <IconChevronDown className="w-4 h-4 text-[#ADACAA]" />
+      <PopoverTrigger asChild>
+        <div
+          id={triggerId}
+          className="flex gap-x-2 items-center py-1.5 px-3 rounded-lg bg-neutral-100"
+        >
+          <PlatformIcon
+            platform={selectedPlatform.platform}
+            className="flex-shrink-0 w-[22px] h-[22px]"
+          />
+          <span className="text-sm font-medium capitalize whitespace-nowrap">
+            {selectedPlatform.platform}
+          </span>
+          <IconChevronDown className="w-4 h-4 text-[#ADACAA]" />
+        </div>
       </PopoverTrigger>
       <PopoverContent
+        id={contentId}
         align="start"
-        alignOffset={-8}
         className="flex gap-x-1 items-center py-3 px-3 rounded-lg shadow-md bg-white-pure"
+        onOpenAutoFocus={handleOpenAutoFocus}
       >
         <PlatformList data={Platforms} onSelect={handlePlatformSelect} />
       </PopoverContent>
