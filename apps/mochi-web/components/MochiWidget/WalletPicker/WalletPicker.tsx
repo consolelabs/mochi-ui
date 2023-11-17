@@ -46,7 +46,6 @@ export const WalletPicker: React.FC<Props> = ({ onLoginRequest, onSelect }) => {
 
   function handleWalletSelect(wallet: Wallet) {
     setSelectedWallet(wallet)
-    hideSelector()
     onSelect?.(wallet)
   }
 
@@ -94,7 +93,10 @@ export const WalletPicker: React.FC<Props> = ({ onLoginRequest, onSelect }) => {
           <WalletList
             loading={isFetching}
             data={wallets}
-            onSelect={handleWalletSelect}
+            onSelect={(w) => {
+              handleWalletSelect(w)
+              hideSelector()
+            }}
           />
         </PopoverContent>
       )}

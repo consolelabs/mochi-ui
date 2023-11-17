@@ -15,11 +15,13 @@ import {
   PopoverTrigger,
 } from '@consolelabs/core'
 import { IconArrowRight, IconChevronDown } from '@consolelabs/icons'
+import { MAX_AMOUNT_PRECISION, formatTokenAmount } from '~utils/number'
 import { WalletPicker } from '../WalletPicker'
 import { Recipient } from '../Recipient'
 import { AmountInput } from '../AmountInput'
 import { useTipWidget } from './store'
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage'
+import { isToken } from '../TokenPicker/utils'
 
 interface ConnectButtonRef {
   openLogin: () => void
@@ -59,6 +61,9 @@ const ConnectButton = forwardRef<ConnectButtonRef, {}>((_, ref) => {
   )
 })
 
+const notEnoughtBalMsg =
+  'Insufficient balance. Please add more tokens and try again.'
+
 export default function StepOne() {
   const {
     fromWallet,
@@ -73,11 +78,28 @@ export default function StepOne() {
   const isLoggedIn = useAuthStore(useShallow((s) => s.isLoggedIn))
   const connectButtonRef = useRef<ConnectButtonRef>(null)
   const amountErrorMgs = useMemo(() => {
-    if ((request.amount ?? 0) > (request.asset?.asset_balance ?? 0)) {
-      return 'Insufficient balance. Please add more tokens and try again.'
+    if (!request.amount) return ''
+    if (isToken(request.asset)) {
+      if (request.amount > (request.asset?.asset_balance ?? 0))
+        return notEnoughtBalMsg
+    } else {
+      const assetAmount =
+        fromWallet?.balances?.find(
+          (b) =>
+            !isToken(request.asset) &&
+            b.token?.symbol === request.asset?.token.symbol,
+        )?.asset_balance ?? 0
+
+      const monikerAmount = request.asset?.asset_balance ?? 0
+      const currentMonikerAmount = monikerAmount
+        ? formatTokenAmount(
+            (assetAmount / monikerAmount).toFixed(MAX_AMOUNT_PRECISION),
+          ).value
+        : 0
+      if (request.amount > currentMonikerAmount) return notEnoughtBalMsg
     }
     return ''
-  }, [request.asset, request.amount])
+  }, [request.amount, request.asset, fromWallet?.balances])
 
   function openLoginPopup() {
     connectButtonRef?.current?.openLogin()

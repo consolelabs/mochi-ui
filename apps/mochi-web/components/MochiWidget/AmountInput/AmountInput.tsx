@@ -9,8 +9,9 @@ import {
   formatTokenAmount,
 } from '~utils/number'
 import { TokenPicker } from '../TokenPicker'
-import { MonikerAsset } from '../TokenPicker/type'
+import { Moniker } from '../TokenPicker/type'
 import { useTipWidget } from '../Tip/store'
+import { getBalanceByMoniker, isToken } from '../TokenPicker/utils'
 
 const INIT_AMOUNT: TokenAmount = {
   value: 0,
@@ -20,7 +21,7 @@ const INIT_AMOUNT: TokenAmount = {
 interface AmountInputProps {
   wallet?: Wallet
   onLoginRequest?: () => void
-  onSelectAsset?: (item: Balance) => void
+  onSelectAsset?: (item: Balance | Moniker) => void
   onAmountChanged?: (amount: number) => void
 }
 
@@ -32,23 +33,29 @@ export const AmountInput: React.FC<AmountInputProps> = ({
 }) => {
   const accessToken = useAuthStore(useShallow((s) => s.token))
   const { request, setAmountUsd } = useTipWidget()
-  const [selectedAsset, setSelectedAsset] = useState<
-    Balance | MonikerAsset | null
-  >(request.asset)
+  const [selectedAsset, setSelectedAsset] = useState<Balance | Moniker | null>(
+    request.asset,
+  )
   const [tipAmount, setTipAmount] = useState<TokenAmount>(
     request.amount ? formatTokenAmount(request.amount) : INIT_AMOUNT,
   )
-  const isMonikerAsset = selectedAsset && 'moniker' in selectedAsset
-  const balance = utils.formatTokenDigit(selectedAsset?.asset_balance ?? 0)
-  const balanceUnit = isMonikerAsset
-    ? (selectedAsset as MonikerAsset)?.moniker.moniker
-    : selectedAsset?.token?.symbol
+  const isMonikerAsset = !isToken(selectedAsset)
+
+  const balance = isMonikerAsset
+    ? getBalanceByMoniker(selectedAsset, wallet)
+    : `${utils.formatTokenDigit(selectedAsset?.asset_balance ?? 0)} ${
+        selectedAsset?.token?.symbol ?? ''
+      }`.trim()
+
   const unitPrice = selectedAsset?.token?.price ?? 0
   // tipAmountUSD will be inaccurate if it's rounded by formatUsdDigit. Ex: $1 -> $0.99, $2 -> $1.99
+  const value = isToken(request.asset)
+    ? tipAmount.value * unitPrice
+    : tipAmount.value * (request.asset?.token_amount ?? 0) * unitPrice
   const tipAmountUSD = utils.formatDigit({
-    value: tipAmount.value * unitPrice,
+    value,
     fractionDigits: 2,
-    shorten: tipAmount.value * unitPrice >= 1,
+    shorten: value >= 1,
     scientificFormat: true,
     takeExtraDecimal: 1,
   })
@@ -87,10 +94,10 @@ export const AmountInput: React.FC<AmountInputProps> = ({
     }
   }
 
-  function handleAssetChanged(asset: Balance | MonikerAsset) {
+  function handleAssetChanged(asset: Balance | Moniker) {
     setSelectedAsset(asset)
-    onSelectAsset?.(asset)
     setTipAmount(INIT_AMOUNT)
+    onSelectAsset?.(asset)
     onAmountChanged?.(INIT_AMOUNT.value)
   }
 
@@ -168,13 +175,14 @@ export const AmountInput: React.FC<AmountInputProps> = ({
           <button
             type="button"
             onClick={() =>
+              !isMonikerAsset &&
               onBlurInput({
                 target: { value: String(selectedAsset?.asset_balance ?? 0) },
               } as any)
             }
             className="text-[#848281] text-[13px]"
           >
-            Balance: {balance} {balanceUnit}
+            Balance: {balance}
           </button>
           <div className="flex gap-x-2">
             <Button

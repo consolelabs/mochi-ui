@@ -1,10 +1,11 @@
-import { formatNumber } from '~utils/number'
+import { utils } from '@consolelabs/mochi-ui'
 import { Heading } from '@consolelabs/core'
-import { MonikerAsset, MonikerIcons } from './type'
+import { Moniker } from './type'
+import { MonikerIcons } from './utils'
 
 interface ItemProps {
-  item: MonikerAsset
-  onSelect?: (item: MonikerAsset) => void
+  item: Moniker
+  onSelect?: (item: Moniker) => void
 }
 
 export const MonikerItem: React.FC<ItemProps> = ({ item, onSelect }) => (
@@ -14,19 +15,19 @@ export const MonikerItem: React.FC<ItemProps> = ({ item, onSelect }) => (
       onClick={() => onSelect?.(item)}
     >
       <div className="flex justify-center items-center w-6 h-6 rounded-full border border-[#E5E4E3]">
-        <span className="text-sm">
-          {MonikerIcons.get(item.moniker.moniker ?? '')}
-        </span>
+        <span className="text-sm">{MonikerIcons.get(item.name)}</span>
       </div>
       <div className="flex flex-col flex-1 items-start">
         <Heading as="h3" className="text-sm">
-          {item.moniker.moniker}
+          {item.name}
         </Heading>
         <span className="text-xs text-[#848281]">
-          {`${formatNumber(item.token_amount)} ${item.token_unit}`}
+          {`${utils.formatTokenDigit(item.token_amount)} ${item.token.symbol}`}
         </span>
       </div>
-      <span className="text-sm">${formatNumber(item.total_amount)}</span>
+      <span className="text-sm">
+        {utils.formatUsdDigit(item.token_amount * item.token.price)}
+      </span>
     </button>
   </li>
 )

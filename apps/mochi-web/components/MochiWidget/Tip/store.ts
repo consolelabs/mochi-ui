@@ -4,14 +4,14 @@ import { API } from '~constants/api'
 import { Profile } from '@consolelabs/mochi-rest'
 import { Balance, Wallet, useProfileStore } from '~store'
 import { Theme } from '../ThemePicker/ThemePicker'
-import { MonikerAsset } from '../TokenPicker/type'
+import { Moniker } from '../TokenPicker/type'
 
 export const MAX_RECIPIENTS = 20
 
 interface Request {
   recipients: Profile[] | null
   amount: number | null
-  asset: Balance | MonikerAsset | null
+  asset: Balance | Moniker | null
   message: string | null
   theme: Theme | null
 }
@@ -32,7 +32,7 @@ interface TipWidgetState {
   updateSourceWallet: (s: Wallet) => void
   addRecipient: (recipient: Profile) => void
   removeRecipient: (recipient: Profile) => void
-  setAsset: (asset: Balance) => void
+  setAsset: (asset: Balance | Moniker) => void
   setAmount: (amount: number) => void
 }
 

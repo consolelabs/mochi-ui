@@ -8,6 +8,7 @@ import { epsilonToDecimalNumber } from '~utils/number'
 export type Balance = ModelBalance & {
   asset_balance?: number
   usd_balance?: number
+  type: string
 }
 
 export type Wallet = {

@@ -11,10 +11,10 @@ import {
 } from '@consolelabs/core'
 import { Balance } from '~store'
 import { TokenList } from './TokenList'
-import { MonikerAsset, MonikerIcons, SectionBase } from './type'
-import { DefaultBalances, MonikerAssets } from './data'
+import { Moniker } from './type'
+import { DefaultBalances } from './data'
 import { MonikerList } from './MonikerList'
-import { sectionFormatter } from './utils'
+import { MonikerIcons, isToken } from './utils'
 
 const TokenTabs = [
   {
@@ -28,9 +28,9 @@ const TokenTabs = [
 ]
 
 interface TokenPickerProps {
-  selectedAsset: Balance | MonikerAsset | null
+  selectedAsset: Balance | Moniker | null
   balances?: Balance[]
-  onSelect?: (item: Balance | MonikerAsset) => void
+  onSelect?: (item: Balance | Moniker) => void
 }
 
 interface TokenButtonProps {
@@ -65,14 +65,6 @@ function getFilterTokenNameFunc(searchTerm: string) {
   }
 }
 
-function getFilterMonikerNameFunc(searchTerm: string) {
-  return function filterMonikerName(monikerAsset: MonikerAsset) {
-    return monikerAsset.moniker.moniker
-      ?.toLowerCase()
-      .includes(searchTerm.toLowerCase())
-  }
-}
-
 export const TokenPicker: React.FC<TokenPickerProps> = ({
   selectedAsset,
   balances,
@@ -87,13 +79,8 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
     () => tokenBalances.filter(getFilterTokenNameFunc(searchTerm)),
     [searchTerm, tokenBalances],
   )
-  const filteredMonikers = useMemo<SectionBase<MonikerAsset>[]>(() => {
-    const filteredData = MonikerAssets.filter(
-      getFilterMonikerNameFunc(searchTerm),
-    )
-    return sectionFormatter(filteredData, 'group')
-  }, [searchTerm])
-  const isTokenSelected = (selectedAsset && 'token' in selectedAsset) ?? true
+  const isTokenSelected = isToken(selectedAsset)
+  const [tabIdx, setTabIdx] = useState(isTokenSelected ? 0 : 1)
 
   useEffect(() => {
     if (Array.isArray(balances) && balances.length) {
@@ -107,11 +94,13 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
   function handleTokenSelect(asset: Balance) {
     setIsOpenSelector(false)
     onSelect?.(asset)
+    setTabIdx(0)
   }
 
-  function handleMonikerSelect(asset: MonikerAsset) {
+  function handleMonikerSelect(asset: Moniker) {
     setIsOpenSelector(false)
     onSelect?.(asset)
+    setTabIdx(1)
   }
 
   function onOpenChange(isOpen: boolean) {
@@ -132,12 +121,12 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
           name={
             isTokenSelected
               ? selectedAsset?.token?.symbol ?? DefaultBalances[0].token?.symbol
-              : (selectedAsset as MonikerAsset).moniker.moniker
+              : selectedAsset?.name
           }
           icon={
             isTokenSelected
               ? selectedAsset?.token?.icon ?? DefaultBalances[0].token?.icon
-              : (selectedAsset as MonikerAsset).moniker.moniker
+              : selectedAsset?.name
           }
         />
       </PopoverTrigger>
@@ -156,7 +145,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
           }
           onChange={onSearchChange}
         />
-        <Tab.Group>
+        <Tab.Group selectedIndex={tabIdx} onChange={setTabIdx}>
           <Tab.List className="flex gap-6 w-full">
             {TokenTabs.map((tab) => (
               <Tab key={tab.key} className="focus-visible:outline-none">
@@ -175,16 +164,16 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
               </Tab>
             ))}
           </Tab.List>
-          <Tab.Panels className="w-full">
-            <Tab.Panel className="flex flex-col gap-2 h-[400px]">
+          <Tab.Panels className="w-full h-[350px]">
+            <Tab.Panel className="flex flex-col gap-2 h-full">
               <TokenList data={filteredTokens} onSelect={handleTokenSelect} />
               <span className="text-xs text-[#ADACAA]">
                 Only supported tokens are shown
               </span>
             </Tab.Panel>
-            <Tab.Panel className="h-[400px]">
+            <Tab.Panel className="h-full">
               <MonikerList
-                data={filteredMonikers}
+                searchTerm={searchTerm}
                 onSelect={handleMonikerSelect}
               />
             </Tab.Panel>

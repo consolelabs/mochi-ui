@@ -14,12 +14,12 @@ export const WalletList = (props: Props) => {
 
   return (
     <List
-      viewportClassName="max-h-[400px]"
+      listClassName="h-[400px]"
       rootClassName="w-full"
       data={props.loading ? [{ wallet: {} }] : data}
       renderItem={(item) =>
         props.loading ? (
-          <Skeleton />
+          <Skeleton key="skeleton" />
         ) : (
           <WalletItem
             key={`wallet-item-${item.wallet.id}`}
