@@ -18,6 +18,8 @@ import { PlatformPicker } from '../PlatformPicker'
 import { SelectedRecipient } from './SelectedRecipient'
 import { MAX_RECIPIENTS } from '../Tip/store'
 
+const SEARCH_DEBOUNCE_TIME = 250
+
 interface RecipientProps {
   onLoginRequest?: () => void
   selectedRecipients?: Profile[]
@@ -43,7 +45,7 @@ export const Recipient: React.FC<RecipientProps> = ({
     onClose: setIsNotSearching,
   } = useDisclosure()
   const [searchTerm, setSearchTerm] = useState('')
-  const debouncedSearchTerm = useDebounce(searchTerm, 500)
+  const debouncedSearchTerm = useDebounce(searchTerm, SEARCH_DEBOUNCE_TIME)
   const [selectedPlatform, setSelectedPlatform] = useState<Platform>()
   const [recipients, setRecipients] = useState<Profile[]>([])
   const isOnChain = selectedPlatform?.platform === 'on-chain'
