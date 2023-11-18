@@ -3,16 +3,17 @@ import { ReactNode } from 'react'
 import format from 'date-fns/format'
 import { IconChevronLeft, IconChevronRight } from '@consolelabs/icons'
 import { dayPickerCaption } from '@consolelabs/theme'
+import { useStyleContext } from './context'
 
 type CalendarCaptionProps = CaptionProps & {
   formater?: (_: Date) => ReactNode
-  alignCaptionCenter?: boolean
   extra?: ReactNode
 }
 
 const CalendarCaption = (props: CalendarCaptionProps) => {
-  const { formater, alignCaptionCenter, displayMonth, extra } = props
+  const { formater, displayMonth, extra } = props
   const { goToMonth, nextMonth, previousMonth } = useNavigation()
+  const { alignCaptionCenter } = useStyleContext()
 
   const isDisplayNavButton = true
   // NOTE: Hide nav button if layout is dropdown only

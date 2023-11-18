@@ -4,6 +4,7 @@ import { dayPicker } from '@consolelabs/theme'
 import { CalendarCaption } from './calendar-caption'
 import { formatWeekdayName, calendarStyleClassNames } from './utils'
 import { DayPickerProps } from './type'
+import { DayPickerStylePropsProvider } from './context'
 
 function DayPicker(props: DayPickerProps) {
   const {
@@ -17,35 +18,36 @@ function DayPicker(props: DayPickerProps) {
     ...restProps
   } = props
 
+  // NOTE: Use context provider to pass props to customer component instead
+  // to prevent mount loosing focus input field in component.
   return (
-    <PrimitiveDayPicker
-      formatters={{
-        formatWeekdayName,
-      }}
-      weekStartsOn={1}
-      showOutsideDays={showOutsideDays}
-      className={clsx(
-        dayPicker.wrapper,
-        {
-          [dayPicker.wrapperShadow]: hasShadow,
-          [dayPicker.wrapperMdPadding]: paddingSize === 'md',
-          [dayPicker.wrapperLgPadding]: paddingSize === 'lg',
-        },
-        className,
-      )}
-      classNames={{
-        ...calendarStyleClassNames,
-        ...classNames,
-      }}
-      components={{
-        // eslint-disable-next-line react/no-unstable-nested-components
-        Caption: (props) => (
-          <CalendarCaption {...props} alignCaptionCenter={alignCaptionCenter} />
-        ),
-        ...customComponents,
-      }}
-      {...restProps}
-    />
+    <DayPickerStylePropsProvider alignCaptionCenter={alignCaptionCenter}>
+      <PrimitiveDayPicker
+        formatters={{
+          formatWeekdayName,
+        }}
+        weekStartsOn={1}
+        showOutsideDays={showOutsideDays}
+        className={clsx(
+          dayPicker.wrapper,
+          {
+            [dayPicker.wrapperShadow]: hasShadow,
+            [dayPicker.wrapperMdPadding]: paddingSize === 'md',
+            [dayPicker.wrapperLgPadding]: paddingSize === 'lg',
+          },
+          className,
+        )}
+        classNames={{
+          ...calendarStyleClassNames,
+          ...classNames,
+        }}
+        components={{
+          Caption: CalendarCaption,
+          ...customComponents,
+        }}
+        {...restProps}
+      />
+    </DayPickerStylePropsProvider>
   )
 }
 DayPicker.displayName = 'DayPicker'

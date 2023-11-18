@@ -1,6 +1,7 @@
 import { format, endOfMonth, startOfDay, startOfMonth } from 'date-fns'
 import { DateFormatter, DayPickerBase } from 'react-day-picker'
 import { dayPicker } from '@consolelabs/theme'
+import { FC, PropsWithChildren, createContext, useContext } from 'react'
 
 export const DEFAULT_DATE_FORMAT = 'MMM dd, yyyy'
 export const DEFAULT_DATE_TIME_FORMAT = 'PPpp'
@@ -63,3 +64,38 @@ export function parseFromToProps(
     toDate: toDate ? startOfDay(toDate) : undefined,
   }
 }
+
+interface CreatePassPropsContextOptions {
+  name: string
+}
+
+// Use this to create Context Provider that pass props to child node.
+export const createPassPropsContext = <ContextType,>(
+  props: CreatePassPropsContextOptions,
+) => {
+  const { name } = props
+  const Context = createContext<ContextType | undefined>(undefined)
+  Context.displayName = name
+
+  const usePassPropsContext = () => useContext<ContextType | undefined>(Context)
+
+  const BasePassPropsProvider: FC<PropsWithChildren<ContextType>> = (
+    props: PropsWithChildren<ContextType>,
+  ) => {
+    const { children, ...restProps } = props
+    return (
+      <Context.Provider value={restProps as any}>{children}</Context.Provider>
+    )
+  }
+  return [
+    BasePassPropsProvider,
+    usePassPropsContext,
+    Context,
+  ] as CreatePassPropsContextReturn<ContextType>
+}
+
+type CreatePassPropsContextReturn<T> = [
+  FC<PropsWithChildren<T>>,
+  () => T,
+  React.Context<T>,
+]
