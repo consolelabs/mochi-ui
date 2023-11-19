@@ -1,6 +1,7 @@
-import { IconChevronDown } from '@consolelabs/icons'
-import { useEffect, useMemo, useState } from 'react'
-import { Icon } from '@iconify/react'
+import Image from 'next/image'
+import { IconChevronDown, IconMagnifier } from '@consolelabs/icons'
+import { useShallow } from 'zustand/react/shallow'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Tab } from '@headlessui/react'
 import {
   InputField,
@@ -9,12 +10,12 @@ import {
   PopoverContent,
   Heading,
 } from '@consolelabs/core'
-import { Balance } from '~store'
+import { Balance, useWalletStore } from '~store'
 import { TokenList } from './TokenList'
 import { Moniker } from './type'
-import { DefaultBalances } from './data'
 import { MonikerList } from './MonikerList'
 import { MonikerIcons, isToken } from './utils'
+import { DEFAULT_BALANCE } from './default-data'
 
 const TokenTabs = [
   {
@@ -43,9 +44,11 @@ const TokenButton = (props: TokenButtonProps) => (
   <div className="flex gap-x-2 items-center py-1.5 px-3 rounded-lg bg-white-pure">
     {props.isToken ? (
       <span className="text-base" role="img">
-        <img
+        <Image
+          width={22}
+          height={22}
           alt={`${props.name} icon`}
-          className="object-contain rounded-full w-[22px] h-[22px]"
+          className="object-contain rounded-full"
           src={props.icon || '/logo.png'}
         />
       </span>
@@ -70,8 +73,9 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
   balances,
   onSelect,
 }) => {
+  const isFetchingWallets = useWalletStore(useShallow((s) => s.isFetching))
   const [tokenBalances, setTokenBalances] = useState<Balance[]>(
-    balances || DefaultBalances,
+    balances || [DEFAULT_BALANCE],
   )
   const [isOpenSelector, setIsOpenSelector] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
@@ -82,6 +86,15 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
   const isTokenSelected = isToken(selectedAsset)
   const [tabIdx, setTabIdx] = useState(isTokenSelected ? 0 : 1)
 
+  const handleTokenSelect = useCallback(
+    (asset: Balance) => {
+      setIsOpenSelector(false)
+      onSelect?.(asset)
+      setTabIdx(0)
+    },
+    [onSelect],
+  )
+
   useEffect(() => {
     if (Array.isArray(balances) && balances.length) {
       setTokenBalances(balances)
@@ -89,13 +102,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
         handleTokenSelect(balances[0])
       }
     }
-  }, [balances])
-
-  function handleTokenSelect(asset: Balance) {
-    setIsOpenSelector(false)
-    onSelect?.(asset)
-    setTabIdx(0)
-  }
+  }, [balances, handleTokenSelect, selectedAsset])
 
   function handleMonikerSelect(asset: Moniker) {
     setIsOpenSelector(false)
@@ -120,12 +127,12 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
           isToken={isTokenSelected}
           name={
             isTokenSelected
-              ? selectedAsset?.token?.symbol ?? DefaultBalances[0].token?.symbol
+              ? selectedAsset?.token?.symbol ?? DEFAULT_BALANCE.token.symbol
               : selectedAsset?.name
           }
           icon={
             isTokenSelected
-              ? selectedAsset?.token?.icon ?? DefaultBalances[0].token?.icon
+              ? selectedAsset?.token?.icon ?? DEFAULT_BALANCE.token?.icon
               : selectedAsset?.name
           }
         />
@@ -140,7 +147,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
           placeholder="Search"
           startAdornment={
             <div className="pl-2">
-              <Icon icon="ion:search" className="w-5 h-5 text-gray-500" />
+              <IconMagnifier className="w-5 h-5 text-gray-500" />
             </div>
           }
           onChange={onSearchChange}
@@ -166,7 +173,11 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
           </Tab.List>
           <Tab.Panels className="w-full h-[350px]">
             <Tab.Panel className="flex flex-col gap-2 h-full">
-              <TokenList data={filteredTokens} onSelect={handleTokenSelect} />
+              <TokenList
+                loading={isFetchingWallets}
+                data={filteredTokens}
+                onSelect={handleTokenSelect}
+              />
               <span className="text-xs text-[#ADACAA]">
                 Only supported tokens are shown
               </span>

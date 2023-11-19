@@ -1,36 +1,8 @@
 import { create } from 'zustand'
-import { ModelBalance, ModelChain } from '~types/mochi-pay-schema'
-import { API, GET_PATHS } from '~constants/api'
-import { ViewAssociatedAccount, ViewProfile } from '~types/mochi-profile-schema'
-import { AddressChainType } from '@consolelabs/mochi-ui'
-import { epsilonToDecimalNumber } from '~utils/number'
-
-export type Balance = ModelBalance & {
-  asset_balance?: number
-  usd_balance?: number
-  type: string
-}
-
-export type Wallet = {
-  wallet: ViewAssociatedAccount
-  chain?: ModelChain
-  balances?: Balance[]
-  total?: number
-  loading?: boolean
-}
-
-export const MochiWalletBase: Wallet = Object.freeze({
-  wallet: {
-    id: 'mochi',
-    platform: 'Mochi Wallet',
-  },
-  chain: {
-    id: 'mochi',
-    name: 'Mochi Wallet',
-    icon: '/logo.png',
-  },
-  balances: [],
-})
+import { api } from '~constants/mochi'
+import type { Profile, Token } from '@consolelabs/mochi-rest'
+import UI, { AddressChainType, Platform, utils } from '@consolelabs/mochi-ui'
+import { truncate } from '@dwarvesf/react-utils'
 
 // Create map of payable platforms from AddressChainType
 export const PaymentPlatforms: Map<string, string> = new Map(
@@ -40,19 +12,61 @@ export const PaymentPlatforms: Map<string, string> = new Map(
   ]),
 )
 
+export type Balance = {
+  type: 'token'
+  asset_balance: number
+  usd_balance: number
+  token: Token
+}
+
+export type Wallet = {
+  id: string
+  icon: string
+  title: string
+  subtitle: string
+  usd_amount: string
+  balances: Balance[]
+  type: 'offchain' | 'onchain'
+}
+
 type State = {
   wallets: Wallet[]
-  setWallets: (me: ViewProfile) => Promise<void>
+  setWallets: (me: Profile) => Promise<void>
   isFetching: boolean
 }
 
 export const useWalletStore = create<State>((set) => ({
   isFetching: false,
   wallets: [],
+  mochiWallet: null,
   setWallets: async (me) => {
     try {
       set((s) => ({ ...s, isFetching: true }))
       const wallets: Wallet[] = []
+
+      // Default Mochi Wallets
+      const { ok, data: mochiWallet } = await api.pay.mochiWallet.getBalance({
+        profileId: me.id,
+      })
+      if (ok) {
+        const [p] = UI.render(Platform.Web, me)
+        wallets.push({
+          id: 'mochi',
+          icon: '',
+          title: 'Mochi Wallet',
+          subtitle: p?.plain ?? me.profile_name,
+          usd_amount: utils.formatUsdDigit(mochiWallet.usd_total),
+          balances: mochiWallet.balances.map((b) => ({
+            type: 'token',
+            token: b.token,
+            asset_balance: parseInt(b.amount, 10) / 10 ** b.token.decimal,
+            usd_balance:
+              (parseInt(b.amount, 10) / 10 ** b.token.decimal) * b.token.price,
+          })),
+          type: 'offchain',
+        })
+      }
+
       // Payable platform from associated accounts.
       const payableAccounts = me.associated_accounts?.filter((a) =>
         PaymentPlatforms.has(a.platform || ''),
@@ -60,59 +74,42 @@ export const useWalletStore = create<State>((set) => ({
       if (payableAccounts?.length) {
         // Fetch balances of associated accounts.
         const balRequestors = payableAccounts.map((w) =>
-          API.MOCHI.get(
-            GET_PATHS.FIND_ONE_WALLET(
-              me.id ?? '',
-              w.platform_identifier ?? '',
-              PaymentPlatforms.get(w.platform ?? '') ?? '',
-            ),
-          ).json((r) => r.data),
+          api.base.users.getWalletAssets({
+            profileId: me.id,
+            address: w.platform_identifier,
+            chainType: PaymentPlatforms.get(w.platform) ?? '',
+          }),
         )
-        const balances = await Promise.allSettled(balRequestors)
+        const balances = await Promise.all(balRequestors)
         payableAccounts.forEach((w, i) => {
-          if (balances[i].status === 'fulfilled') {
-            const { value } = balances[i] as PromiseFulfilledResult<any>
-            const sortedData = value.balance.sort((a: Balance, b: Balance) => {
+          const { ok, data, error } = balances[i]
+          if (ok) {
+            data.balance.sort((a, b) => {
               return (b.usd_balance ?? 0) - (a.usd_balance ?? 0)
             })
             wallets.push({
-              wallet: w,
-              balances: sortedData,
-              total: value.latest_snapshot_bal,
+              id: w.platform_identifier,
+              icon: w.platform,
+              title: truncate(w.platform_identifier, 10, true),
+              subtitle: w.platform.replace('-chain', ''),
+              usd_amount: utils.formatUsdDigit(data.latest_snapshot_bal),
+              balances: data.balance.map((b) => ({
+                type: 'token',
+                token: b.token as Token,
+                asset_balance: b.asset_balance,
+                usd_balance: b.usd_balance,
+              })),
+              type: 'onchain',
             })
+          } else {
+            console.log(error.issues)
           }
         })
       }
 
-      // Default Mochi Wallets
-      const mochiWallet: Wallet = structuredClone(MochiWalletBase)
-      mochiWallet.wallet.platform_identifier = me.profile_name
-      const mochiBalances: Balance[] = await API.MOCHI_PAY.get(
-        GET_PATHS.MOCHI_BALANCES(me.id ?? ''),
-      ).json((r) => r.data)
-      // Calculate assets
-      let total = 0
-      mochiWallet.balances = mochiBalances
-        .map((b) => {
-          const assetBal = epsilonToDecimalNumber(
-            b.amount ?? '0',
-            b.token?.decimal,
-          )
-          const usdBal = assetBal * (b.token?.price ?? 0)
-          total += usdBal
-          return {
-            ...b,
-            asset_balance: assetBal,
-            usd_balance: usdBal,
-          }
-        })
-        .sort((a, b) => {
-          // Sort balance by USD value
-          return (b.usd_balance ?? 0) - (a.usd_balance ?? 0)
-        })
-      mochiWallet.total = total
-      set({ wallets: [mochiWallet, ...wallets], isFetching: false })
+      set({ isFetching: false, wallets })
     } catch (e) {
+      console.log(e)
       set((s) => ({ ...s, isFetching: false }))
     }
   },

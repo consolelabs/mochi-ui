@@ -1,27 +1,17 @@
+import { Profile as MochiProfile } from '@consolelabs/mochi-rest'
 import { create } from 'zustand'
-import { API, GET_PATHS } from '~constants/api'
-import { Pagination } from '~types/api'
-import {
-  ViewActivityResponseData,
-  ViewProfile,
-} from '~types/mochi-profile-schema'
 import { api, UI } from '~constants/mochi'
 import { Platform } from '@consolelabs/mochi-ui'
 import { boringAvatar } from '~utils/string'
 import { ModelInAppWallet } from '~types/mochi-pay-schema'
 import { useWalletStore } from './wallets'
 
-type ProfilePlatform = {
-  platform?: string
-  platformIcon?: string
-}
+export type Profile = MochiProfile & { platformIcon: string }
 
 type State = {
-  me: (ViewProfile & ProfilePlatform) | null
-  setMe: (me: ViewProfile) => Promise<void>
+  me: Profile | null
+  setMe: (me: Profile) => Promise<void>
   wallets: ModelInAppWallet[]
-  getActivites: (query: Pagination) => Promise<ViewActivityResponseData>
-  updateActivityReadStatus: (ids: number[]) => void
 }
 
 const platformIcons: Record<string, string> = {
@@ -34,10 +24,9 @@ const platformIcons: Record<string, string> = {
   [Platform.Mochi]: 'https://mochi.gg/logo.png',
 }
 
-export const useProfileStore = create<State>((set, get) => ({
+export const useProfileStore = create<State>((set) => ({
   me: null,
-  platform: null,
-  setMe: async (me: ViewProfile) => {
+  setMe: async (me: Profile) => {
     const [p] = await UI.resolve(Platform.Web, me.id ?? '')
     const { ok, data } = await api.pay.mochiWallet.getWallets(me.id ?? '')
     let wallets: ModelInAppWallet[] = []
@@ -64,16 +53,4 @@ export const useProfileStore = create<State>((set, get) => ({
     useWalletStore.getState().setWallets(profile)
   },
   wallets: [],
-
-  getActivites: (query) => {
-    return API.MOCHI_PROFILE.query(query)
-      .get(GET_PATHS.PROFILE_ACTIVITES(get().me?.id || ''))
-      .res((res) => res.json())
-  },
-  updateActivityReadStatus: (ids) => {
-    API.MOCHI_PROFILE.put(
-      { ids },
-      GET_PATHS.PROFILE_ACTIVITES(get().me?.id || ''),
-    )
-  },
 }))

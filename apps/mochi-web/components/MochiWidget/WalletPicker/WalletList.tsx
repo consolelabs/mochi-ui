@@ -16,18 +16,12 @@ export const WalletList = (props: Props) => {
     <List
       listClassName="h-[400px]"
       rootClassName="w-full"
-      data={props.loading ? [{ wallet: {} }] : data}
-      renderItem={(item) =>
-        props.loading ? (
-          <Skeleton key="skeleton" />
-        ) : (
-          <WalletItem
-            key={`wallet-item-${item.wallet.id}`}
-            item={item}
-            onSelect={onSelect}
-          />
-        )
-      }
+      loading={props.loading}
+      data={data}
+      renderLoader={Skeleton}
+      renderItem={(item, i) => (
+        <WalletItem key={`wallet-item-${i}`} item={item} onSelect={onSelect} />
+      )}
     />
   )
 }
