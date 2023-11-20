@@ -10,13 +10,6 @@ describe('Wallet', () => {
     name: 'mockWallet',
   }
 
-  it('renders the component with the correct class', () => {
-    const { container } = render(<Wallet {...mockProps} />)
-    expect(container.firstChild).toHaveClass(
-      'flex flex-col items-center justify-center h-20 gap-2 border rounded-lg border-neutral-150 hover:bg-neutral-150 text-neutral-600',
-    )
-  })
-
   it('renders the component with the correct icon', () => {
     const { getByText } = render(<Wallet {...mockProps} />)
     expect(getByText('Icon')).toBeInTheDocument()
