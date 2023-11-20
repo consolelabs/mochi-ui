@@ -5,10 +5,10 @@ const paginationButtonClsx = ({
   active,
 }: { className?: string; active?: boolean } = {}) =>
   clsx(
-    'w-6 h-6 py-1 px-2.5 rounded-full flex-col justify-center items-center inline-flex border-none cursor-pointer text-text-primary',
+    'w-6 h-6 py-1 px-2.5 rounded-full flex-col justify-center items-center inline-flex border-none cursor-pointer',
     {
-      'hover:bg-neutral-plain-hover': !active,
-      'bg-neutral-solid !text-neutral-solid-fg': active,
+      'hover:bg-neutral-plain-hover text-text-primary': !active,
+      'bg-neutral-solid text-neutral-solid-fg': active,
     },
     className,
   )
