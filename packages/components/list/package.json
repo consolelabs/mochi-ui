@@ -25,6 +25,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@consolelabs/heading": "workspace:*",
     "clean-package": "^2.2.0",
     "eslint-config-custom": "workspace:*",
     "prettier": "^3.0.3",
@@ -33,7 +34,6 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
-    "@consolelabs/heading": "workspace:*",
     "@consolelabs/theme": "workspace:*",
     "class-variance-authority": "^0.7.0",
     "@radix-ui/react-scroll-area": "^1.0.5"

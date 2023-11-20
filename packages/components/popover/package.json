@@ -36,7 +36,6 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
-    "@consolelabs/icons": "workspace:*",
     "@consolelabs/theme": "workspace:*",
     "class-variance-authority": "^0.7.0",
     "@radix-ui/react-popover": "^1.0.7",

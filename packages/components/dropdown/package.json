@@ -25,6 +25,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@consolelabs/avatar": "workspace:*",
     "clean-package": "^2.2.0",
     "eslint-config-custom": "workspace:*",
     "prettier": "^3.0.3",
@@ -33,7 +34,6 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
-    "@consolelabs/avatar": "workspace:*",
     "@consolelabs/icons": "workspace:*",
     "@consolelabs/theme": "workspace:*",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
