@@ -1,6 +1,6 @@
-import { Balance, Wallet } from '~store'
 import groupBy from 'lodash.groupby'
 import { MAX_AMOUNT_PRECISION, formatTokenAmount } from '~utils/number'
+import { Balance, Wallet } from '~store'
 import { Moniker, SectionBase } from './type'
 
 export function sectionFormatter<T>(list: T[], interatee: string) {
@@ -26,10 +26,13 @@ export const MonikerIcons = new Map([
   ['pizza', '🍕'],
 ])
 
-export function getBalanceByMoniker(moniker: Moniker | null, wallet?: Wallet) {
+export function getBalanceByMoniker(
+  moniker: Moniker | null,
+  wallet: Wallet | null,
+) {
   if (!moniker) return { value: 0, display: '0' }
   const assetAmount =
-    wallet?.balances?.find((b) => b.token?.symbol === moniker.token.symbol)
+    wallet?.balances.find((b) => b.token.symbol === moniker.token.symbol)
       ?.asset_balance ?? 0
 
   const value = formatTokenAmount(
@@ -43,6 +46,6 @@ export function getBalanceByMoniker(moniker: Moniker | null, wallet?: Wallet) {
 
 export function isToken(asset: Balance | Moniker | null): asset is Balance {
   if (!asset) return true
-  if ('type' in asset && asset.type === 'moniker') return false
-  return true
+  if (asset.type === 'token') return true
+  return false
 }

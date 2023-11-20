@@ -1,19 +1,8 @@
 import { useShallow } from 'zustand/react/shallow'
-import { useAuthStore } from '~store'
-import {
-  forwardRef,
-  useImperativeHandle,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
-import { AuthPanel } from '~cpn/AuthWidget'
-import {
-  Button,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@consolelabs/core'
+import { useDisclosure } from '@dwarvesf/react-hooks'
+import { useAuthStore, useWalletStore } from '~store'
+import { useMemo } from 'react'
+import { Button, Popover, PopoverTrigger } from '@consolelabs/core'
 import { IconArrowRight, IconChevronDown } from '@consolelabs/icons'
 import { MAX_AMOUNT_PRECISION, formatTokenAmount } from '~utils/number'
 import { WalletPicker } from '../WalletPicker'
@@ -23,50 +12,13 @@ import { useTipWidget } from './store'
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage'
 import { isToken } from '../TokenPicker/utils'
 
-interface ConnectButtonRef {
-  openLogin: () => void
-}
-
-const ConnectButton = forwardRef<ConnectButtonRef, {}>((_, ref) => {
-  const [isOpenLoginPopup, openLoginPopup] = useState(false)
-
-  useImperativeHandle(
-    ref,
-    () => ({
-      openLogin: () => openLoginPopup(true),
-    }),
-    [],
-  )
-
-  function onOpenChange(open: boolean) {
-    openLoginPopup(open)
-  }
-
-  return (
-    <Popover open={isOpenLoginPopup} onOpenChange={onOpenChange}>
-      <PopoverTrigger asChild>
-        <Button className="justify-center" size="lg" type="button">
-          Connect options
-          <IconChevronDown
-            className={`w-5 h-5 text-white-pure transition ${
-              isOpenLoginPopup ? 'rotate-180' : ''
-            }`}
-          />
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="bg-white-pure w-[412px] !p-0">
-        <AuthPanel variant="dropdown" />
-      </PopoverContent>
-    </Popover>
-  )
-})
-
 const notEnoughtBalMsg =
   'Insufficient balance. Please add more tokens and try again.'
 
 export default function StepOne() {
   const {
-    fromWallet,
+    unauthorizedContent,
+    wallet,
     request,
     setStep,
     updateSourceWallet,
@@ -75,17 +27,21 @@ export default function StepOne() {
     setAsset,
     setAmount,
   } = useTipWidget()
+  const {
+    isOpen: isOpenLoginPopup,
+    onOpen: showLoginPopup,
+    onClose: hideLoginPopup,
+  } = useDisclosure()
   const isLoggedIn = useAuthStore(useShallow((s) => s.isLoggedIn))
-  const connectButtonRef = useRef<ConnectButtonRef>(null)
   const amountErrorMgs = useMemo(() => {
     if (!request.amount) return ''
     if (isToken(request.asset)) {
-      if (request.amount > (request.asset?.asset_balance ?? 0))
+      if (request.amount > (request.asset.asset_balance ?? 0))
         return notEnoughtBalMsg
     } else {
       const assetAmount =
-        fromWallet?.balances?.find(
-          (b) =>
+        wallet?.balances?.find(
+          (b: any) =>
             !isToken(request.asset) &&
             b.token?.symbol === request.asset?.token.symbol,
         )?.asset_balance ?? 0
@@ -99,11 +55,9 @@ export default function StepOne() {
       if (request.amount > currentMonikerAmount) return notEnoughtBalMsg
     }
     return ''
-  }, [request.amount, request.asset, fromWallet?.balances])
+  }, [request.amount, request.asset, wallet?.balances])
 
-  function openLoginPopup() {
-    connectButtonRef?.current?.openLogin()
-  }
+  const { isFetching: isFetchingWallets, wallets } = useWalletStore()
 
   return (
     <div className="flex flex-col flex-1 gap-y-3 min-h-0">
@@ -117,18 +71,19 @@ export default function StepOne() {
           </span>
         </div>
         <WalletPicker
-          onLoginRequest={openLoginPopup}
+          authorized={isLoggedIn}
+          data={wallets}
+          loading={isFetchingWallets}
           onSelect={updateSourceWallet}
         />
         <Recipient
-          onLoginRequest={openLoginPopup}
           selectedRecipients={request.recipients ?? []}
           onSelectRecipient={addRecipient}
           onRemoveRecipient={removeRecipient}
         />
         <AmountInput
-          onLoginRequest={openLoginPopup}
-          wallet={fromWallet}
+          authorized={isLoggedIn}
+          wallet={wallet}
           onSelectAsset={setAsset}
           onAmountChanged={setAmount}
         />
@@ -149,7 +104,22 @@ export default function StepOne() {
           <IconArrowRight className="w-4 h-4" />
         </Button>
       ) : (
-        <ConnectButton ref={connectButtonRef} />
+        <Popover
+          open={isOpenLoginPopup}
+          onOpenChange={(o) => (o ? showLoginPopup() : hideLoginPopup())}
+        >
+          <PopoverTrigger asChild>
+            <Button className="justify-center" size="lg" type="button">
+              Connect options
+              <IconChevronDown
+                className={`w-5 h-5 text-white-pure transition ${
+                  isOpenLoginPopup ? 'rotate-180' : ''
+                }`}
+              />
+            </Button>
+          </PopoverTrigger>
+          {unauthorizedContent}
+        </Popover>
       )}
     </div>
   )

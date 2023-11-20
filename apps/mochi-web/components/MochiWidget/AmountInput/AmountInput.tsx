@@ -1,7 +1,12 @@
-import { useShallow } from 'zustand/react/shallow'
 import { Button } from '@consolelabs/core'
-import { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react'
-import { Balance, Wallet, useAuthStore } from '~store'
+import {
+  ChangeEvent,
+  KeyboardEvent,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react'
+import { Balance, Wallet } from '~store'
 import { utils } from '@consolelabs/mochi-ui'
 import {
   MAX_AMOUNT_PRECISION,
@@ -19,19 +24,18 @@ const INIT_AMOUNT: TokenAmount = {
 }
 
 interface AmountInputProps {
-  wallet?: Wallet
-  onLoginRequest?: () => void
+  authorized: boolean
+  wallet: Wallet | null
   onSelectAsset?: (item: Balance | Moniker) => void
   onAmountChanged?: (amount: number) => void
 }
 
 export const AmountInput: React.FC<AmountInputProps> = ({
+  authorized,
   wallet,
-  onLoginRequest,
   onSelectAsset,
   onAmountChanged,
 }) => {
-  const accessToken = useAuthStore(useShallow((s) => s.token))
   const { request, setAmountUsd } = useTipWidget()
   const [selectedAsset, setSelectedAsset] = useState<Balance | Moniker | null>(
     request.asset,
@@ -65,41 +69,30 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   }, [setAmountUsd, tipAmountUSD])
 
   useEffect(() => {
-    if (!accessToken) {
+    if (!authorized) {
       setSelectedAsset(null)
     }
-  }, [accessToken])
-
-  useEffect(() => {
-    setSelectedAsset(wallet?.balances?.[0] ?? null)
-  }, [wallet?.wallet.id, wallet?.balances])
+  }, [authorized])
 
   function handleQuickAmount(amount: string) {
-    if (!accessToken) {
-      onLoginRequest?.()
-    } else {
-      // Amount is USD -> convert to token amount
-      const amountInToken = Number(amount) / unitPrice
-      const formattedAmount = formatTokenAmount(
-        amountInToken.toFixed(MAX_AMOUNT_PRECISION),
-      )
-      setTipAmount(formattedAmount)
-      onAmountChanged?.(formattedAmount.value)
-    }
+    // Amount is USD -> convert to token amount
+    const amountInToken = Number(amount) / unitPrice
+    const formattedAmount = formatTokenAmount(
+      amountInToken.toFixed(MAX_AMOUNT_PRECISION),
+    )
+    setTipAmount(formattedAmount)
+    onAmountChanged?.(formattedAmount.value)
   }
 
-  function onFocusInput() {
-    if (!accessToken) {
-      onLoginRequest?.()
-    }
-  }
-
-  function handleAssetChanged(asset: Balance | Moniker) {
-    setSelectedAsset(asset)
-    setTipAmount(INIT_AMOUNT)
-    onSelectAsset?.(asset)
-    onAmountChanged?.(INIT_AMOUNT.value)
-  }
+  const handleAssetChanged = useCallback(
+    (asset: Balance | Moniker) => {
+      setSelectedAsset(asset)
+      setTipAmount(INIT_AMOUNT)
+      onSelectAsset?.(asset)
+      onAmountChanged?.(INIT_AMOUNT.value)
+    },
+    [onAmountChanged, onSelectAsset],
+  )
 
   function handleAmountChanged(event: ChangeEvent<HTMLInputElement>) {
     const formattedAmount = formatTokenAmount(event.target.value)
@@ -145,6 +138,13 @@ export const AmountInput: React.FC<AmountInputProps> = ({
     onAmountChanged?.(formattedAmount.value)
   }
 
+  useEffect(() => {
+    const bal = wallet?.balances.at(0)
+    if (bal) {
+      handleAssetChanged(bal)
+    }
+  }, [handleAssetChanged, wallet?.balances, wallet?.id])
+
   return (
     <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-3">
       <div className="flex justify-between items-center">
@@ -164,7 +164,6 @@ export const AmountInput: React.FC<AmountInputProps> = ({
             onKeyDown={handleKeyDown}
             value={tipAmount.display}
             onChange={handleAmountChanged}
-            onFocus={onFocusInput}
             onBlur={onBlurInput}
           />
           <span className="text-sm text-[#848281] text-right">

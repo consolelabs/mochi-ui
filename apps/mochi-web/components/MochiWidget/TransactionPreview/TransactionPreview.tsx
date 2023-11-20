@@ -9,7 +9,6 @@ import {
   IconMochi,
 } from '@consolelabs/icons'
 import { useProfileStore } from '~store'
-import { truncate } from '@dwarvesf/react-utils'
 import UI, { Platform } from '@consolelabs/mochi-ui'
 import stripEmoji from 'emoji-strip'
 import { useTipWidget } from '../Tip/store'
@@ -51,7 +50,7 @@ function Recipient({
 
 function TipPreview() {
   const { me } = useProfileStore()
-  const { fromWallet, request, amountUsd } = useTipWidget()
+  const { wallet, request, amountUsd } = useTipWidget()
 
   return (
     <div className="grid grid-cols-2 gap-y-1 place-content-between p-4 text-sm font-light text-gray-800 rounded-xl border auto-row-auto border-neutral-300">
@@ -83,7 +82,7 @@ function TipPreview() {
       </div>
       <span>Money source</span>
       <div className="flex gap-x-1 justify-end items-center">
-        {fromWallet?.wallet.id === 'mochi' ? (
+        {wallet?.type === 'offchain' ? (
           <>
             <IconMochi />
             <span className="text-right">Mochi wallet</span>
@@ -91,9 +90,7 @@ function TipPreview() {
         ) : (
           <>
             <IconWallet />
-            <span className="text-right">
-              {truncate(fromWallet?.wallet.platform_identifier ?? '', 5)}
-            </span>
+            <span className="text-right">{wallet?.title}</span>
           </>
         )}
       </div>

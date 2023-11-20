@@ -12,10 +12,9 @@ import ToastLoading from '~components/Toast/ToastLoading'
 import { API, GET_PATHS } from '~constants/api'
 import ToastError from '~components/Toast/ToastError'
 import { useAppWalletContext } from '~context/wallet-context'
-import { useAuthStore, useProfileStore } from '~store'
+import { Profile, useAuthStore, useProfileStore } from '~store'
 import { mainnet, useSwitchNetwork } from 'wagmi'
 import useSWR, { KeyedMutator } from 'swr'
-import { ViewProfile } from '~types/mochi-profile-schema'
 import { shallow } from 'zustand/shallow'
 import { PayRequest, usePayRequest } from '~store/pay-request'
 import { useSendEVMToken } from '~hooks/wallets/useSendEVMToken'
@@ -51,7 +50,7 @@ const chains: Record<string, { image: string; symbol: string }> = {
   },
 }
 
-function convertWallets(profile?: ViewProfile | null) {
+function convertWallets(profile?: Profile | null) {
   const walletAccounts = profile?.associated_accounts?.filter(
     (aa) => aa.platform?.endsWith('chain'),
   )

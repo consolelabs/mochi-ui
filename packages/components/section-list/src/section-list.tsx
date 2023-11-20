@@ -20,6 +20,8 @@ export type SectionListRenderItem<Item, Section = DefaultSection> = (
   index?: number,
 ) => React.ReactNode
 
+export type SectionListRenderLoader = () => React.ReactNode
+
 interface SectionListProps<Item, Section = DefaultSection> {
   rootClassName?: string
   rootStyle?: React.CSSProperties
@@ -36,6 +38,8 @@ interface SectionListProps<Item, Section = DefaultSection> {
   SectionEmpty?: React.ReactNode
   onEndReached?: () => void
   onEndReachedThreshold?: number
+  renderLoader?: SectionListRenderLoader
+  loading?: boolean
 }
 
 const {
@@ -64,6 +68,8 @@ export default function SectionList<
   SectionEmpty,
   onEndReached,
   onEndReachedThreshold = 0,
+  loading = false,
+  renderLoader,
 }: SectionListProps<Item, Section>) {
   const endReachedFired = useRef(false)
 
@@ -86,6 +92,26 @@ export default function SectionList<
     [onEndReached, onEndReachedThreshold],
   )
 
+  let content = sections.length
+    ? sections.map((section, sectionIndex) => {
+        return (
+          <ul
+            className={sectionListContentListClsx()}
+            key={(section.key || '') + sectionIndex}
+          >
+            {renderSectionHeader(section, sectionIndex)}
+            {section.data.map((item, itemIndex) =>
+              renderItem(item, section, itemIndex),
+            )}
+          </ul>
+        )
+      })
+    : SectionEmpty
+
+  if (loading) {
+    content = renderLoader?.() ?? ''
+  }
+
   return (
     <ScrollArea.Root
       className={sectionListClsx({ className: rootClassName })}
@@ -103,21 +129,7 @@ export default function SectionList<
           })}
           style={listStyle}
         >
-          {sections.length
-            ? sections.map((section, sectionIndex) => {
-                return (
-                  <ul
-                    className={sectionListContentListClsx()}
-                    key={(section.key || '') + sectionIndex}
-                  >
-                    {renderSectionHeader(section, sectionIndex)}
-                    {section.data.map((item, itemIndex) =>
-                      renderItem(item, section, itemIndex),
-                    )}
-                  </ul>
-                )
-              })
-            : SectionEmpty}
+          {content}
         </div>
       </ScrollArea.Viewport>
       <ScrollArea.Scrollbar

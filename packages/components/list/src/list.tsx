@@ -16,6 +16,8 @@ export type ListRenderItem<Item> = (
   index?: number,
 ) => React.ReactNode
 
+export type ListRenderLoader = () => React.ReactNode
+
 interface ListProps<Item> {
   rootClassName?: string
   rootStyle?: React.CSSProperties
@@ -28,6 +30,8 @@ interface ListProps<Item> {
   ListEmpty?: React.ReactNode
   onEndReached?: () => void
   onEndReachedThreshold?: number
+  renderLoader?: ListRenderLoader
+  loading?: boolean
 }
 
 export default function List<Item extends NonNullable<object> | string>({
@@ -42,6 +46,8 @@ export default function List<Item extends NonNullable<object> | string>({
   ListEmpty,
   onEndReached,
   onEndReachedThreshold = 0,
+  loading = false,
+  renderLoader,
 }: ListProps<Item>) {
   const endReachedFired = useRef(false)
 
@@ -64,6 +70,12 @@ export default function List<Item extends NonNullable<object> | string>({
     [onEndReached, onEndReachedThreshold],
   )
 
+  let content = data.length ? data.map(renderItem) : ListEmpty
+
+  if (loading) {
+    content = renderLoader?.() ?? ''
+  }
+
   return (
     <ScrollArea.Root
       className={listWrapperClsx({ className: rootClassName })}
@@ -79,7 +91,7 @@ export default function List<Item extends NonNullable<object> | string>({
           className={listViewportContentClsx({ className: listClassName })}
           style={listStyle}
         >
-          {data.length ? data.map(renderItem) : ListEmpty}
+          {content}
         </ul>
       </ScrollArea.Viewport>
       <ScrollArea.Scrollbar

@@ -14,6 +14,7 @@ module.exports = {
   },
   rules: {
     // TODO: fix these rules
+    'no-return-assign': 'off',
     'react/jsx-no-bind': 'off',
     'jsx-a11y/label-has-associated-control': 'warn',
     'jsx-a11y/no-noninteractive-element-interactions': 'warn',
