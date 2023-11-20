@@ -1,13 +1,13 @@
 import clsx from 'clsx'
 
 const accordionRootClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx('p-2 space-y-1 rounded-lg shadow-md', className)
+  clsx('p-2 space-y-1 rounded-lg shadow-md text-text-primary', className)
 
 const accordionTriggerIconClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
-    'text-neutral-500 shrink-0 transition-transform duration-200 text-base',
+    'text-text-secondary shrink-0 transition-transform duration-200 text-base',
     className,
   )
 
