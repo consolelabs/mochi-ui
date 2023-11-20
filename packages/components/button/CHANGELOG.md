@@ -1,5 +1,25 @@
 # @consolelabs/button
 
+## 0.1.0
+
+### Minor Changes
+
+- [#233](https://github.com/consolelabs/web-foundation/pull/233)
+  [`42bba8e`](https://github.com/consolelabs/web-foundation/commit/42bba8e6f3937c9a1346cbd91e91ae9f36d35aa8)
+  Thanks [@trankhacvy](https://github.com/trankhacvy)! - Update tailwind
+  configuration to support dark mode transition
+
+### Patch Changes
+
+- [#215](https://github.com/consolelabs/web-foundation/pull/215)
+  [`1f7c4dc`](https://github.com/consolelabs/web-foundation/commit/1f7c4dc18cffeeef41cf8fb72d58ffae962cdec6)
+  Thanks [@trankhacvy](https://github.com/trankhacvy)! - apply polymorphic
+  button
+
+- Updated dependencies
+  [[`42bba8e`](https://github.com/consolelabs/web-foundation/commit/42bba8e6f3937c9a1346cbd91e91ae9f36d35aa8)]:
+  - @consolelabs/theme@0.1.0
+
 ## 0.0.12
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @consolelabs/theme
 
+## 0.1.0
+
+### Minor Changes
+
+- [#233](https://github.com/consolelabs/web-foundation/pull/233)
+  [`42bba8e`](https://github.com/consolelabs/web-foundation/commit/42bba8e6f3937c9a1346cbd91e91ae9f36d35aa8)
+  Thanks [@trankhacvy](https://github.com/trankhacvy)! - Update tailwind
+  configuration to support dark mode transition
+
 ## 0.0.6
 
 ### Patch Changes

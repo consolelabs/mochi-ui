@@ -1,5 +1,19 @@
 # @consolelabs/profile-badge
 
+## 0.0.9
+
+### Patch Changes
+
+- [#238](https://github.com/consolelabs/web-foundation/pull/238)
+  [`a08cf94`](https://github.com/consolelabs/web-foundation/commit/a08cf943008011facf8d0f6e5dcefebae1f0155b)
+  Thanks [@tuanddd](https://github.com/tuanddd)! - Remove min-width constraint
+  in ProfileBadge component
+
+- Updated dependencies
+  [[`42bba8e`](https://github.com/consolelabs/web-foundation/commit/42bba8e6f3937c9a1346cbd91e91ae9f36d35aa8)]:
+  - @consolelabs/theme@0.1.0
+  - @consolelabs/avatar@0.0.9
+
 ## 0.0.8
 
 ### Patch Changes

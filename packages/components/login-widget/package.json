@@ -1,6 +1,6 @@
 {
   "name": "@consolelabs/login-widget",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
