@@ -1,4 +1,4 @@
-import { SVGProps, useState } from 'react'
+import { Fragment, SVGProps, useState } from 'react'
 import { Tabs, TabList, TabTrigger, TabContent } from '@consolelabs/tabs'
 import {
   DropdownMenu,
@@ -18,7 +18,9 @@ const connectorNames =
 const {
   loginWalletListTabsClsx,
   loginWalletListTabListClsx,
+  loginWalletListTabTriggerWrapperClsx,
   loginWalletListTabTriggerClsx,
+  loginWalletListTabTriggerDividerClsx,
   loginWalletListTabContentClsx,
   loginWalletListDropdownTriggerClsx,
   loginWalletListDropdownItemWrapperClsx,
@@ -61,21 +63,27 @@ export const WalletList = ({
     }))
     .sort((a, b) => b.index - a.index)
     .map(({ connector }) => connector)
+  const selectedIndex = sortedConnectors.indexOf(selectedConnector)
 
   return (
     <Tabs value={selectedConnector} className={loginWalletListTabsClsx()}>
       <TabList className={loginWalletListTabListClsx()}>
-        {sortedConnectors.slice(0, 4).map((connector) => (
-          <TabTrigger
-            key={connector}
-            value={connector}
-            className={loginWalletListTabTriggerClsx({
-              isSelected: connector === selectedConnector,
-            })}
-            onClick={() => setSelectedConnector(connector)}
-          >
-            {connector}
-          </TabTrigger>
+        {sortedConnectors.slice(0, 4).map((connector, index) => (
+          <Fragment key={connector}>
+            <TabTrigger
+              value={connector}
+              wrapperClassName={loginWalletListTabTriggerWrapperClsx()}
+              className={loginWalletListTabTriggerClsx({
+                isSelected: connector === selectedConnector,
+              })}
+              onClick={() => setSelectedConnector(connector)}
+            >
+              {connector}
+            </TabTrigger>
+            {selectedIndex !== index && selectedIndex !== index + 1 && (
+              <div className={loginWalletListTabTriggerDividerClsx()} />
+            )}
+          </Fragment>
         ))}
         <DropdownMenu>
           <DropdownMenuTrigger className={loginWalletListDropdownTriggerClsx()}>

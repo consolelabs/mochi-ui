@@ -776,6 +776,9 @@ importers:
 
   packages/components/login-widget:
     dependencies:
+      '@consolelabs/button':
+        specifier: workspace:*
+        version: link:../button
       '@consolelabs/dropdown':
         specifier: workspace:*
         version: link:../dropdown

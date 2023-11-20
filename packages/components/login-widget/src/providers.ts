@@ -58,7 +58,8 @@ export default function getAvailableWallets() {
             // .then(() =>
             //   window.ethereum.request({ method: 'eth_requestAccounts' }),
             // )
-            .then(signEVM(window.ethereum)),
+            .then(signEVM(window.ethereum))
+            .catch(console.error),
       },
       {
         name: 'Phantom',

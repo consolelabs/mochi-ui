@@ -2,13 +2,21 @@ import clsx from 'clsx'
 
 const loginInnerStateClsx = () => ({
   connecting: {
-    container: 'flex flex-col items-center justify-center p-3',
-    imgWrapper: 'flex items-center',
+    container: 'flex flex-col items-center justify-center p-3 w-full',
+    imgWrapper: 'flex items-center mt-5',
     img: 'w-12 h-12 rounded-full',
-    divider: 'w-16 border border-dashed border-primary-500',
+    divider: 'w-16 border border-dashed border-primary-500 relative',
     icon: 'w-12 h-12 rounded',
-    message: 'mt-4 text-sm',
+    message: 'mt-5 text-sm font-semibold text-neutral-900',
+    'message-detail': 'mt-2 text-sm text-neutral-600 text-center',
     error: 'text-sm text-center text-red-500',
+    header: 'mt-4 text-lg font-medium text-center text-neutral-800',
+    buttons: 'mt-8 space-x-3',
+    'connect-icon-success':
+      'flex items-center justify-center w-5 h-5 bg-success-700 rounded-full absolute -top-2.5 left-1/2 -translate-x-1/2',
+    'connect-icon-error':
+      'flex items-center justify-center w-5 h-5 bg-danger-700 rounded-full absolute -top-2.5 left-1/2 -translate-x-1/2',
+    'connect-icon': 'w-3 h-3 text-white',
   },
   idle: {
     container: 'flex flex-col items-center',
@@ -44,19 +52,15 @@ const loginWidgetDialogContentWrapperClsx = ({
 
 const loginWallet = ({
   isInstalled,
-  active,
   className = '',
 }: {
   isInstalled?: boolean
-  active?: boolean
   className?: string
 }) =>
   clsx(
     'flex flex-col items-center justify-center h-20 gap-2 border rounded-lg border-neutral-150 hover:bg-neutral-150',
     {
       'opacity-50 cursor-not-allowed': !isInstalled,
-      'text-neutral-600': !active,
-      'text-neutral-800': Boolean(active),
     },
     className,
   )
@@ -65,7 +69,7 @@ const loginWalletIconClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx('w-6 h-6 rounded', className)
 
 const loginWalletNameClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx('text-sm font-medium', className)
+  clsx('text-sm font-medium text-neutral-600', className)
 
 const loginWalletListTabsClsx = ({
   className = '',
@@ -74,13 +78,22 @@ const loginWalletListTabsClsx = ({
 const loginWalletListTabListClsx = ({
   className = '',
 }: { className?: string } = {}) =>
-  clsx('flex rounded-lg bg-neutral-200 p-0.5', className)
+  clsx('flex rounded-lg bg-neutral-200 p-0.5 items-center', className)
+
+const loginWalletListTabTriggerWrapperClsx = ({
+  className = '',
+}: { className?: string } = {}) => clsx('pl-0 pr-0', className)
 
 const loginWalletListTabTriggerClsx = ({
   className = '',
   isSelected,
 }: { className?: string; isSelected?: boolean } = {}) =>
-  clsx('rounded-md', { 'bg-white': isSelected }, className)
+  clsx('rounded-md ', { 'bg-white': isSelected }, className)
+
+const loginWalletListTabTriggerDividerClsx = ({
+  className = '',
+}: { className?: string } = {}) =>
+  clsx('h-3 border-r border-neutral-400', className)
 
 const loginWalletListTabContentClsx = ({
   className = '',
@@ -90,7 +103,7 @@ const loginWalletListDropdownTriggerClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
-    'flex items-center justify-center rounded-md hover:bg-white text-neutral-600 w-7',
+    'flex items-center justify-center rounded-md hover:bg-white text-neutral-600 w-7 h-7',
     className,
   )
 
@@ -112,7 +125,9 @@ const loginWidget = {
   loginWalletNameClsx,
   loginWalletListTabsClsx,
   loginWalletListTabListClsx,
+  loginWalletListTabTriggerWrapperClsx,
   loginWalletListTabTriggerClsx,
+  loginWalletListTabTriggerDividerClsx,
   loginWalletListTabContentClsx,
   loginWalletListDropdownTriggerClsx,
   loginWalletListDropdownItemWrapperClsx,

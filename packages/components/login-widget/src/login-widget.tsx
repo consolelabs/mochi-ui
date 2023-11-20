@@ -1,7 +1,12 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import React, { useCallback, useMemo, useState } from 'react'
 import { useMochi } from '@consolelabs/mochi-store'
-import { IconExclamationTriangle } from '@consolelabs/icons'
+import {
+  IconCheck,
+  IconClose,
+  IconExclamationTriangle,
+} from '@consolelabs/icons'
+import { Button } from '@consolelabs/button'
 import { loginWidget } from '@consolelabs/theme'
 import type { WalletProps } from './wallet'
 import {
@@ -32,14 +37,22 @@ function Inner({ onSuccess }: { onSuccess: WidgetProps['onSuccess'] }) {
   const { state, setState, wallet, setWallet, error, setError } =
     useLoginWidgetContext()
 
+  const onReset = () => {
+    setState(LoginState.Idle)
+    setWallet(undefined)
+    setError('')
+  }
+
+  const onSelectWallet = (wallet: WalletProps) => {
+    setError('')
+    setState(LoginState.Connecting)
+    setWallet(wallet)
+  }
+
   if (state === LoginState.Idle) {
     return (
       <WalletList
-        onSelectWallet={(wallet) => {
-          setError('')
-          setState(LoginState.Connecting)
-          setWallet(wallet)
-        }}
+        onSelectWallet={onSelectWallet}
         onSuccess={onSuccess}
         onError={setError}
       />
@@ -48,30 +61,119 @@ function Inner({ onSuccess }: { onSuccess: WidgetProps['onSuccess'] }) {
 
   const Icon = wallet?.icon ?? IconExclamationTriangle
   const innerClsx = loginInnerStateClsx().connecting
+  const isSuccess = error ? -1 : Number(state === LoginState.Authenticated)
 
-  if (state === LoginState.Connecting || state === LoginState.Authenticating) {
+  if (
+    state === LoginState.Connecting ||
+    state === LoginState.Authenticating ||
+    state === LoginState.Authenticated
+  ) {
     return (
       <div className={innerClsx.container}>
+        <div className={innerClsx.header}>Connect to {wallet?.name} Wallet</div>
         <div className={innerClsx.imgWrapper}>
           <img
             alt="mochi icon"
             className={innerClsx.img}
             src="https://mochi.gg/logo.png"
           />
-          <div className={innerClsx.divider} />
+          <div className={innerClsx.divider}>
+            {isSuccess === 1 && (
+              <div className={innerClsx['connect-icon-success']}>
+                <IconCheck className={innerClsx['connect-icon']} />
+              </div>
+            )}
+            {isSuccess === -1 && (
+              <div className={innerClsx['connect-icon-error']}>
+                <IconClose className={innerClsx['connect-icon']} />
+              </div>
+            )}
+          </div>
           <Icon className={innerClsx.icon} />
         </div>
-        <span className={innerClsx.message}>
-          {state === LoginState.Connecting
-            ? `Opening ${wallet?.name}...`
-            : 'Logging into your account...'}
-        </span>
-        {error ? <span className={innerClsx.error}>{error}</span> : null}
+        {isSuccess === -1 && (
+          <>
+            <div className={innerClsx.message}>
+              {wallet?.name} connection failed
+            </div>
+            <div className={innerClsx['message-detail']}>
+              Try again or use another wallet to connect
+            </div>
+          </>
+        )}
+        {isSuccess === 1 && (
+          <>
+            <div className={innerClsx.message}>Connection successful</div>
+            <div className={innerClsx['message-detail']}>
+              You have successfully connected your {wallet?.name} wallet to
+              Mochi
+            </div>
+          </>
+        )}
+        {isSuccess === 0 && (
+          <>
+            <div className={innerClsx.message}>Opening {wallet?.name}</div>
+            <div className={innerClsx['message-detail']}>
+              Please waiting for connection...
+            </div>
+          </>
+        )}
+        <div className={innerClsx.buttons}>
+          {isSuccess === -1 ? (
+            <Button
+              variant="solid"
+              color="primary"
+              size="lg"
+              onClick={() => {
+                if (wallet) {
+                  onSelectWallet(wallet)
+                }
+              }}
+            >
+              Try again
+            </Button>
+          ) : (
+            <Button
+              variant="outline"
+              color="neutral"
+              size="lg"
+              onClick={onReset}
+            >
+              Cancel
+            </Button>
+          )}
+        </div>
       </div>
     )
   }
 
-  return null
+  return (
+    <div className={innerClsx.container}>
+      <div className={innerClsx.header}>Connect to {wallet?.name} Wallet</div>
+      <div className={innerClsx.message}>
+        <div className={innerClsx['message-detail']}>
+          Unfortunately, we did not receive the confirmation. Please, try again.
+        </div>
+      </div>
+      <div className={innerClsx.buttons}>
+        <Button variant="outline" color="neutral" size="lg" onClick={onReset}>
+          Cancel
+        </Button>
+        <Button
+          variant="solid"
+          color="primary"
+          size="lg"
+          onClick={() => {
+            if (wallet) {
+              onSelectWallet(wallet)
+            }
+          }}
+        >
+          Try again
+        </Button>
+      </div>
+    </div>
+  )
 }
 
 const LoginWidget = ({
