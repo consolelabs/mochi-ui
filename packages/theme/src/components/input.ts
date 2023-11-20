@@ -40,7 +40,7 @@ const slot = cva('relative z-[1] flex justify-center items-center')
 
 const mask = cva(
   [
-    'absolute z-0 inset-0 rounded pointer-events-none	border border-neutral-outline-border peer-focus:border-primary-outline-fg',
+    'absolute z-0 inset-0 rounded pointer-events-none border border-neutral-outline-border peer-focus:border-primary-outline-fg',
   ],
   {
     variants: {
