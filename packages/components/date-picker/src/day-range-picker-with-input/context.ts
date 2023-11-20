@@ -1,16 +1,10 @@
-import { ChangeEventHandler } from 'react'
 import { createPassPropsContext } from '../utils'
+import { UseDayRangeInputReturn } from '../type'
 
-interface InputPropsContextValue {
-  fromInputProps?: {
-    value: string
-    onChange: ChangeEventHandler<HTMLInputElement>
-  }
-  toInputProps?: {
-    value: string
-    onChange: ChangeEventHandler<HTMLInputElement>
-  }
-}
+type InputPropsContextValue = Pick<
+  UseDayRangeInputReturn,
+  'fromInputProps' | 'toInputProps' | 'inputState'
+>
 
 const [InputControllProvider, useInputProps] =
   createPassPropsContext<InputPropsContextValue>({ name: 'InputPassProps' })

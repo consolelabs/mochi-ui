@@ -121,6 +121,7 @@ const rangeInputGroup = {
   input:
     'flex-1 h-full flex items-center w-1/2 px-[14px] border border-neutral-300 text-sm tracking-tight rounded-[4px]',
   divider: 'w-[5px] h-px bg-neutral-800',
+  error: 'border border-red-700',
 }
 
 export { dayPicker, dayPickerCaption, rangeInputGroup }

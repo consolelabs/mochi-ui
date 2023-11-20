@@ -64,9 +64,12 @@ export const WithInputRange: Story = {
           hasShadow
           selected={selectedRange}
           onSelect={setSelectedRange}
+          dayTextFormat="PP"
           inputProps={{
             placeholder: '1/1/2023',
           }}
+          fromDate={new Date('1/10/2023')}
+          toDate={new Date('1/15/2023')}
         />
       </div>
     )

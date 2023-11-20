@@ -4,7 +4,9 @@ import { Head } from 'react-day-picker'
 import { useInputProps } from './context'
 
 export const HeadWithRangeInput = () => {
-  const { fromInputProps, toInputProps } = useInputProps()
+  const { fromInputProps, toInputProps, inputState } = useInputProps()
+
+  const { isFromDateValid, isToDateValid } = inputState
 
   const inputProps = {
     className: '',
@@ -15,12 +17,16 @@ export const HeadWithRangeInput = () => {
     <div className={rangeInputGroup.wrapper}>
       <input
         {...fromInputProps}
-        className={clsx(rangeInputGroup.input, inputProps?.className)}
+        className={clsx(rangeInputGroup.input, inputProps?.className, {
+          [rangeInputGroup.error]: !isFromDateValid,
+        })}
       />
       <div className={rangeInputGroup.divider} />
       <input
         {...toInputProps}
-        className={clsx(rangeInputGroup.input, inputProps?.className)}
+        className={clsx(rangeInputGroup.input, inputProps?.className, {
+          [rangeInputGroup.error]: !isToDateValid,
+        })}
       />
     </div>
   )

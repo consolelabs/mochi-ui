@@ -17,20 +17,36 @@ export const DayRangePickerWithInput = (
   props: DayRangePickerWithInputProps,
 ) => {
   const {
-    textFormat = 'dd/MM/yyyy',
+    dayTextFormat = 'dd/MM/yyyy',
     selected = emptyRange,
     onSelect = dumpOnSelect,
+    fromDate,
+    toDate,
+    fromMonth,
+    toMonth,
+    fromYear,
+    toYear,
+    locale,
+    today,
     ...restProps
   } = props
 
-  const { dayPickerProps, ...pairInputProps } = useDayRangeInput(
-    selected,
-    textFormat,
-    onSelect,
-  )
+  const { dayPickerProps, ...passedInputProps } = useDayRangeInput({
+    dayTextFormat,
+    selectedRange: selected,
+    onRangeChanged: onSelect,
+    fromDate,
+    toDate,
+    fromMonth,
+    toMonth,
+    fromYear,
+    toYear,
+    locale,
+    today,
+  })
 
   return (
-    <InputControllProvider {...pairInputProps}>
+    <InputControllProvider {...passedInputProps}>
       <DayPicker
         {...dayPickerProps}
         {...restProps}
