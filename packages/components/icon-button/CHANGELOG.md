@@ -1,5 +1,20 @@
 # @consolelabs/icon-button
 
+## 0.2.0
+
+### Minor Changes
+
+- [#216](https://github.com/consolelabs/web-foundation/pull/216)
+  [`4ee58c7`](https://github.com/consolelabs/web-foundation/commit/4ee58c78e145eb7ee8c678290f0e4f4e5a5d4a01)
+  Thanks [@trankhacvy](https://github.com/trankhacvy)! - Apply polymorphic for
+  icon button
+
+### Patch Changes
+
+- Updated dependencies
+  [[`42bba8e`](https://github.com/consolelabs/web-foundation/commit/42bba8e6f3937c9a1346cbd91e91ae9f36d35aa8)]:
+  - @consolelabs/theme@0.1.0
+
 ## 0.1.3
 
 ### Patch Changes

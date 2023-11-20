@@ -1,5 +1,13 @@
 # @consolelabs/section-list
 
+## 0.0.8
+
+### Patch Changes
+
+- Updated dependencies
+  [[`42bba8e`](https://github.com/consolelabs/web-foundation/commit/42bba8e6f3937c9a1346cbd91e91ae9f36d35aa8)]:
+  - @consolelabs/theme@0.1.0
+
 ## 0.0.7
 
 ### Patch Changes

@@ -1,5 +1,20 @@
 # @consolelabs/input-field
 
+## 0.1.0
+
+### Minor Changes
+
+- [#231](https://github.com/consolelabs/web-foundation/pull/231)
+  [`5314339`](https://github.com/consolelabs/web-foundation/commit/5314339ec855e26a48691158b134119d897dde50)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Allow to input field to
+  custom input wrapper className
+
+### Patch Changes
+
+- Updated dependencies
+  [[`42bba8e`](https://github.com/consolelabs/web-foundation/commit/42bba8e6f3937c9a1346cbd91e91ae9f36d35aa8)]:
+  - @consolelabs/theme@0.1.0
+
 ## 0.0.7
 
 ### Patch Changes

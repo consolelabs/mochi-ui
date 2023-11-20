@@ -1,5 +1,60 @@
 # @consolelabs/core
 
+## 0.1.0
+
+### Minor Changes
+
+- [#233](https://github.com/consolelabs/web-foundation/pull/233)
+  [`42bba8e`](https://github.com/consolelabs/web-foundation/commit/42bba8e6f3937c9a1346cbd91e91ae9f36d35aa8)
+  Thanks [@trankhacvy](https://github.com/trankhacvy)! - Update tailwind
+  configuration to support dark mode transition
+
+### Patch Changes
+
+- [#231](https://github.com/consolelabs/web-foundation/pull/231)
+  [`5314339`](https://github.com/consolelabs/web-foundation/commit/5314339ec855e26a48691158b134119d897dde50)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Allow to input field to
+  custom input wrapper className
+
+- [#215](https://github.com/consolelabs/web-foundation/pull/215)
+  [`1f7c4dc`](https://github.com/consolelabs/web-foundation/commit/1f7c4dc18cffeeef41cf8fb72d58ffae962cdec6)
+  Thanks [@trankhacvy](https://github.com/trankhacvy)! - apply polymorphic
+  button
+
+- [#216](https://github.com/consolelabs/web-foundation/pull/216)
+  [`4ee58c7`](https://github.com/consolelabs/web-foundation/commit/4ee58c78e145eb7ee8c678290f0e4f4e5a5d4a01)
+  Thanks [@trankhacvy](https://github.com/trankhacvy)! - Apply polymorphic for
+  icon button
+
+- Updated dependencies
+  [[`a08cf94`](https://github.com/consolelabs/web-foundation/commit/a08cf943008011facf8d0f6e5dcefebae1f0155b),
+  [`42bba8e`](https://github.com/consolelabs/web-foundation/commit/42bba8e6f3937c9a1346cbd91e91ae9f36d35aa8),
+  [`5314339`](https://github.com/consolelabs/web-foundation/commit/5314339ec855e26a48691158b134119d897dde50),
+  [`1f7c4dc`](https://github.com/consolelabs/web-foundation/commit/1f7c4dc18cffeeef41cf8fb72d58ffae962cdec6),
+  [`4ee58c7`](https://github.com/consolelabs/web-foundation/commit/4ee58c78e145eb7ee8c678290f0e4f4e5a5d4a01)]:
+  - @consolelabs/profile-badge@0.0.9
+  - @consolelabs/button@0.1.0
+  - @consolelabs/theme@0.1.0
+  - @consolelabs/input-field@0.1.0
+  - @consolelabs/icon-button@0.2.0
+  - @consolelabs/popover@0.1.1
+  - @consolelabs/accordion@0.0.10
+  - @consolelabs/alert@0.0.10
+  - @consolelabs/avatar@0.0.9
+  - @consolelabs/badge@0.1.3
+  - @consolelabs/checkbox@0.0.8
+  - @consolelabs/dropdown@0.0.10
+  - @consolelabs/input@0.0.6
+  - @consolelabs/list@0.0.9
+  - @consolelabs/login-widget@0.0.10
+  - @consolelabs/modal@0.1.4
+  - @consolelabs/section-list@0.0.8
+  - @consolelabs/select@0.0.6
+  - @consolelabs/sidebar@0.0.11
+  - @consolelabs/switch@0.0.7
+  - @consolelabs/toggle-button@0.0.8
+  - @consolelabs/tooltip@0.0.8
+
 ## 0.0.13
 
 ### Patch Changes
