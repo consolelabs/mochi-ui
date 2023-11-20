@@ -11,6 +11,7 @@ import { useRouter } from 'next/router'
 import { useAuthStore } from '~store'
 import { useShallow } from 'zustand/react/shallow'
 import Script from 'next/script'
+import { LazyMotion, domAnimation } from 'framer-motion'
 
 const Header = dynamic(() => import('~cpn/Header').then((m) => m.Header))
 const WalletProvider = dynamic(() =>
@@ -103,7 +104,9 @@ export default function App(props: AppPropsWithLayout) {
       <TopProgressBar />
       <Script async src="https://telegram.org/js/telegram-widget.js?22" />
       <WalletProvider>
-        <InnerApp {...props} />
+        <LazyMotion strict features={domAnimation}>
+          <InnerApp {...props} />
+        </LazyMotion>
       </WalletProvider>
     </StrictMode>
   )

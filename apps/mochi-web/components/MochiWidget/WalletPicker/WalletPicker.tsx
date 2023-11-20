@@ -6,10 +6,10 @@ import { Popover, PopoverTrigger, PopoverContent } from '@consolelabs/core'
 import { Wallet } from '~store'
 import { WalletList } from './WalletList'
 import { WalletChainIcon } from './WalletChainIcon'
-import { useTipWidget } from '../Tip/store'
 
 interface Props {
   authorized: boolean
+  unauthorizedContent?: React.ReactNode
   data: Wallet[]
   onSelect?: (item: Wallet) => void
   loading?: boolean
@@ -19,9 +19,9 @@ export const WalletPicker: React.FC<Props> = ({
   data,
   loading = true,
   authorized,
+  unauthorizedContent,
   onSelect,
 }) => {
-  const { unauthorizedContent } = useTipWidget()
   const {
     isOpen: isOpenSelector,
     onClose: hideSelector,
@@ -69,13 +69,18 @@ export const WalletPicker: React.FC<Props> = ({
             <span className="flex-shrink-0 text-sm font-medium text-blue-700">
               {selectedWallet.usd_amount}
             </span>
-            <IconChevronDown className="w-4 h-4 text-blue-700" />
+            <IconChevronDown
+              className={clsx('w-4 h-4 text-blue-700 transition', {
+                'rotate-180': isOpenSelector,
+              })}
+            />
           </>
         )}
       </PopoverTrigger>
       {authorized ? (
         <PopoverContent
           align="start"
+          avoidCollisions={false}
           className="flex gap-x-1 items-center py-3 px-3 rounded-lg shadow-md focus-visible:outline-none w-[414px] bg-white-pure"
         >
           <WalletList

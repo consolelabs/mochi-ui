@@ -3,10 +3,10 @@ import { api } from '~constants/mochi'
 import { useMemo } from 'react'
 import useSWR from 'swr'
 import { SectionList } from '@consolelabs/core'
+import Skeleton from '../Tip/Skeleton'
 import { sectionFormatter } from './utils'
 import { MonikerItem } from './MonikerItem'
 import { EmptyList } from './EmptyList'
-import Skeleton from './Skeleton'
 import { Moniker } from './type'
 
 interface Props {
@@ -62,6 +62,7 @@ export const MonikerList = (props: Props) => {
   return (
     <>
       <SectionList
+        listClassName="max-h-[350px]"
         sections={filteredMonikers}
         loading={isLoading}
         renderItem={(item) => (
@@ -71,7 +72,7 @@ export const MonikerList = (props: Props) => {
             onSelect={onSelect}
           />
         )}
-        renderLoader={Skeleton}
+        renderLoader={() => <Skeleton />}
         renderSectionHeader={(section) => (
           <label className="font-bold text-[0.625rem] uppercase text-[#ADACAA]">
             {section.title}

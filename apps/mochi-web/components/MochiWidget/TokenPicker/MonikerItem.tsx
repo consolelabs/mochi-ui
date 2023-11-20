@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { utils } from '@consolelabs/mochi-ui'
 import { Heading } from '@consolelabs/core'
 import { Moniker } from './type'
@@ -9,10 +10,22 @@ interface ItemProps {
 }
 
 export const MonikerItem: React.FC<ItemProps> = ({ item, onSelect }) => (
-  <li className="flex" key={item.id}>
+  <li
+    className={clsx('flex', {
+      'opacity-30': item.disabled,
+    })}
+    key={item.id}
+  >
     <button
-      className="flex flex-row items-center w-full p-2 hover:bg-[#FAF9F7] rounded-lg space-x-2 cursor-pointer"
+      className={clsx(
+        'flex flex-row items-center w-full p-2 rounded-lg space-x-2',
+        {
+          'cursor-pointer hover:bg-[#FAF9F7] transition': !item.disabled,
+          'cursor-not-allowed': item.disabled,
+        },
+      )}
       onClick={() => onSelect?.(item)}
+      disabled={item.disabled}
     >
       <div className="flex justify-center items-center w-6 h-6 rounded-full border border-[#E5E4E3]">
         <span className="text-sm">{MonikerIcons.get(item.name)}</span>

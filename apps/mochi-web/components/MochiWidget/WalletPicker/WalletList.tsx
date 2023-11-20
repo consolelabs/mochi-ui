@@ -1,7 +1,7 @@
 import { List } from '@consolelabs/core'
 import { Wallet } from '~store'
 import { WalletItem } from './WalletItem'
-import Skeleton from './Skeleton'
+import Skeleton from '../Tip/Skeleton'
 
 interface Props {
   loading: boolean
@@ -14,11 +14,11 @@ export const WalletList = (props: Props) => {
 
   return (
     <List
-      listClassName="h-[400px]"
+      listClassName="max-h-[400px]"
       rootClassName="w-full"
       loading={props.loading}
       data={data}
-      renderLoader={Skeleton}
+      renderLoader={() => <Skeleton />}
       renderItem={(item, i) => (
         <WalletItem key={`wallet-item-${i}`} item={item} onSelect={onSelect} />
       )}

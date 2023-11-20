@@ -25,13 +25,15 @@ const INIT_AMOUNT: TokenAmount = {
 
 interface AmountInputProps {
   authorized: boolean
+  unauthorizedContent?: React.ReactNode
   wallet: Wallet | null
-  onSelectAsset?: (item: Balance | Moniker) => void
+  onSelectAsset?: (item: Balance | Moniker | null) => void
   onAmountChanged?: (amount: number) => void
 }
 
 export const AmountInput: React.FC<AmountInputProps> = ({
   authorized,
+  unauthorizedContent,
   wallet,
   onSelectAsset,
   onAmountChanged,
@@ -85,11 +87,15 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   }
 
   const handleAssetChanged = useCallback(
-    (asset: Balance | Moniker) => {
+    (asset: Balance | Moniker | null) => {
       setSelectedAsset(asset)
-      setTipAmount(INIT_AMOUNT)
+      // only set to init if asset is null
+      // otherwise user might be coming back from step 2
+      if (!asset) {
+        setTipAmount(INIT_AMOUNT)
+        onAmountChanged?.(INIT_AMOUNT.value)
+      }
       onSelectAsset?.(asset)
-      onAmountChanged?.(INIT_AMOUNT.value)
     },
     [onAmountChanged, onSelectAsset],
   )
@@ -149,6 +155,8 @@ export const AmountInput: React.FC<AmountInputProps> = ({
     <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-3">
       <div className="flex justify-between items-center">
         <TokenPicker
+          authorized={authorized}
+          unauthorizedContent={unauthorizedContent}
           selectedAsset={selectedAsset}
           onSelect={handleAssetChanged}
           balances={wallet?.balances}

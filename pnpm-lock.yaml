@@ -111,11 +111,11 @@ importers:
         specifier: workspace:*
         version: link:../../packages/icons
       '@consolelabs/mochi-rest':
-        specifier: ^5.0.6
-        version: 5.0.6
+        specifier: ^5.1.0
+        version: 5.1.0
       '@consolelabs/mochi-ui':
-        specifier: ^15.0.6
-        version: 15.0.6(@consolelabs/mochi-rest@5.0.6)(ioredis@5.3.2)
+        specifier: ^16.0.0
+        version: 16.0.0(@consolelabs/mochi-rest@5.1.0)(ioredis@5.3.2)
       '@consolelabs/theme':
         specifier: workspace:*
         version: link:../../packages/theme
@@ -3564,8 +3564,8 @@ packages:
       chalk: 4.1.2
     dev: true
 
-  /@consolelabs/mochi-rest@5.0.6:
-    resolution: {integrity: sha512-OPXRxJSFYkH/yO06N3Zz7460Li43LpfnhBkC3AUwufK3GrfS2BfrNZqoHPWQZx5QAOQcMUiNk2sts+qKumjAfw==}
+  /@consolelabs/mochi-rest@5.1.0:
+    resolution: {integrity: sha512-oUmbKGI7TD/rfx7ikt9xrRcHQ3Lm6ZWWlCHoUmA48a8vSr5O4Echn8ssyoAUGHkVKUSj0fuKCMxg3yTMiQTYNQ==}
     dependencies:
       deepmerge: 4.3.1
       lodash.snakecase: 4.1.1
@@ -3577,14 +3577,14 @@ packages:
       zod: 3.22.4
     dev: false
 
-  /@consolelabs/mochi-ui@15.0.6(@consolelabs/mochi-rest@5.0.6)(ioredis@5.3.2):
-    resolution: {integrity: sha512-sRzmgHKtwDjMMT3r4swir7VP3PCcFWDkOV2j1rWLQ4sByX1WfXxhGPJKuW+qJL0gKvlAuf1+NIc5HfQglTLxAg==}
+  /@consolelabs/mochi-ui@16.0.0(@consolelabs/mochi-rest@5.1.0)(ioredis@5.3.2):
+    resolution: {integrity: sha512-dbeBorqCNyq9PlW5Lb+1wjVXzE9Unc9OlCSH7TzLga49YeWyrNDhUKG/H72eh2/B9iW/5ppM5OxNCWPXkyXvCg==}
     peerDependencies:
-      '@consolelabs/mochi-rest': ^5.0.6
+      '@consolelabs/mochi-rest': ^5.1.0
       ioredis: ^5.x.x
     dependencies:
       '@bonfida/spl-name-service': 1.5.0(@solana/web3.js@1.87.6)
-      '@consolelabs/mochi-rest': 5.0.6
+      '@consolelabs/mochi-rest': 5.1.0
       '@solana/web3.js': 1.87.6
       change-case: 4.1.2
       ethers: 6.8.1

@@ -1,5 +1,6 @@
-import { useAuthStore } from '~store'
-import { useShallow } from 'zustand/react/shallow'
+import clsx from 'clsx'
+import * as ScrollArea from '@radix-ui/react-scroll-area'
+import { Combobox } from '@headlessui/react'
 import { Profile } from '@consolelabs/mochi-rest'
 import { useEffect, useMemo, useState } from 'react'
 import {
@@ -17,23 +18,33 @@ import { RecipientList } from './RecipientList'
 import { PlatformPicker } from '../PlatformPicker'
 import { SelectedRecipient } from './SelectedRecipient'
 import { MAX_RECIPIENTS } from '../Tip/store'
+import { InitialList } from './InitialList'
 
 const SEARCH_DEBOUNCE_TIME = 250
 
 interface RecipientProps {
-  onLoginRequest?: () => void
+  authorized: boolean
+  unauthorizedContent?: React.ReactNode
   selectedRecipients?: Profile[]
-  onSelectRecipient?: (item: Profile) => void
+  onUpdateRecipient?: (item: Profile[]) => void
   onRemoveRecipient?: (item: Profile) => void
 }
 
+function getFilterRecipientFunc(searchTerm: string) {
+  return function filterRecipient(item: Profile) {
+    return item.associated_accounts?.[0].platform_metadata?.username
+      ?.toLowerCase()
+      .includes(searchTerm.toLowerCase())
+  }
+}
+
 export const Recipient: React.FC<RecipientProps> = ({
-  onLoginRequest,
+  authorized,
+  unauthorizedContent,
   selectedRecipients,
-  onSelectRecipient,
+  onUpdateRecipient,
   onRemoveRecipient,
 }) => {
-  const accessToken = useAuthStore(useShallow((s) => s.token))
   const {
     isOpen: isOpenRecipients,
     onOpen: openRecipients,
@@ -50,13 +61,7 @@ export const Recipient: React.FC<RecipientProps> = ({
   const [recipients, setRecipients] = useState<Profile[]>([])
   const isOnChain = selectedPlatform?.platform === 'on-chain'
   const filteredRecipients = useMemo(
-    () =>
-      recipients.filter(
-        (item) =>
-          item.associated_accounts?.[0].platform_metadata?.username
-            ?.toLowerCase()
-            .includes(searchTerm.toLowerCase()),
-      ),
+    () => recipients.filter(getFilterRecipientFunc(searchTerm)),
     [searchTerm, recipients],
   )
 
@@ -82,12 +87,7 @@ export const Recipient: React.FC<RecipientProps> = ({
   )
 
   function handleFocusInput() {
-    if (!accessToken) {
-      onLoginRequest?.()
-    } else {
-      // open the recipient list
-      openRecipients()
-    }
+    openRecipients()
   }
 
   function onOpenChange(isOpen: boolean) {
@@ -125,97 +125,130 @@ export const Recipient: React.FC<RecipientProps> = ({
   }
 
   return (
-    <Popover open={isOpenRecipients} onOpenChange={onOpenChange}>
-      <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-3">
-        <div className="flex justify-between items-center px-4 h-[34px]">
-          <label
-            htmlFor="recipients"
-            className="text-sm font-semibold text-neutral-600"
-          >
-            Recipients
-          </label>
-          <span className="text-sm font-semibold text-neutral-600">
-            {selectedRecipients?.length ?? 0}/{MAX_RECIPIENTS}
-          </span>
-        </div>
+    <Combobox
+      multiple
+      value={selectedRecipients ?? []}
+      onChange={(recipients) => {
+        setSearchTerm('')
+        closeRecipients()
+        onUpdateRecipient?.(recipients)
+      }}
+    >
+      <Popover open={isOpenRecipients} onOpenChange={onOpenChange}>
+        <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-3">
+          <div className="flex justify-between items-center px-4 h-[34px]">
+            <label
+              htmlFor="recipients"
+              className="text-sm font-semibold text-neutral-600"
+            >
+              Recipients
+            </label>
+            <span className="text-sm font-semibold text-neutral-600">
+              {selectedRecipients?.length ?? 0}/{MAX_RECIPIENTS}
+            </span>
+          </div>
 
-        <PopoverAnchor>
-          <div
-            className="flex gap-x-2 items-center py-2.5 px-4 rounded-lg bg-white-pure border border-white-pure"
-            style={
-              isOpenRecipients
-                ? {
-                    borderBottomLeftRadius: 0,
-                    borderBottomRightRadius: 0,
-                    border: '1px solid #017AFF',
-                    boxShadow:
-                      '0px 0px 0px 4px rgba(1, 122, 255, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.05)',
-                  }
-                : {}
-            }
-          >
-            <span className="h-[34px] text-lg text-[#848281] pt-0.5">@</span>
-            <input
-              id="recipients"
-              className="flex-1 min-w-[100px] h-full bg-transparent outline-none"
-              placeholder={isOnChain ? 'Enter address' : 'Enter username'}
-              value={searchTerm}
-              onFocus={handleFocusInput}
-              onClick={openRecipients}
-              onChange={onSearchChange}
-            />
-            {isSearching && <IconSpinner width={18} height={18} />}
-            <PlatformPicker
-              triggerId="platform-picker-trigger"
-              contentId="platform-picker-content"
-              onSelect={setSelectedPlatform}
-            />
-          </div>
-        </PopoverAnchor>
-        {!!selectedRecipients?.length && (
-          <div className="grid grid-cols-4 gap-7 py-2 px-4">
-            {selectedRecipients?.map((item) => (
-              <SelectedRecipient
-                key={
-                  (item.id || 'unknown') +
-                  (item.associated_accounts?.[0].id || 'unknown')
-                }
-                profile={item}
-                onRemove={onRemoveRecipient}
+          <PopoverAnchor>
+            <div
+              className="flex gap-x-2 items-center py-2.5 px-4 rounded-lg border bg-white-pure border-white-pure"
+              style={
+                isOpenRecipients
+                  ? {
+                      borderBottomLeftRadius: 0,
+                      borderBottomRightRadius: 0,
+                      border: '1px solid #017AFF',
+                      boxShadow:
+                        '0px 0px 0px 4px rgba(1, 122, 255, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.05)',
+                    }
+                  : {}
+              }
+            >
+              <span className="h-[34px] text-lg text-[#848281] pt-0.5">@</span>
+              <Combobox.Input
+                id="recipients"
+                className="flex-1 h-full bg-transparent outline-none min-w-[100px]"
+                placeholder={isOnChain ? 'Enter address' : 'Enter username'}
+                value={searchTerm}
+                onFocus={handleFocusInput}
+                onClick={openRecipients}
+                onChange={onSearchChange}
+                autoComplete="off"
               />
-            ))}
-          </div>
-        )}
-      </div>
-      <PopoverContent
-        align="start"
-        sideOffset={0}
-        onInteractOutside={handleInteractOutside}
-        onOpenAutoFocus={(e) => e.preventDefault()}
-        asChild
-      >
-        <div
-          style={{ borderRadius: '0 0 8px 8px' }}
-          className="flex flex-col gap-y-2 items-center py-3 px-3 shadow-md w-[398px] bg-white-pure"
-        >
-          {isOnChain && (
-            <InputField
-              className="w-full text-sm"
-              inputWrapperClassName="rounded-lg"
-              autoFocus
-              placeholder="Search address"
-              startAdornment={<ChainPicker className="ml-3" />}
-              onChange={onChainSearch}
-            />
+              <IconSpinner
+                width={18}
+                height={18}
+                className={clsx({
+                  'opacity-0': !isSearching,
+                  'opacity-100': isSearching,
+                })}
+              />
+              <PlatformPicker
+                triggerId="platform-picker-trigger"
+                contentId="platform-picker-content"
+                onSelect={setSelectedPlatform}
+              />
+            </div>
+          </PopoverAnchor>
+          {!!selectedRecipients?.length && (
+            <ScrollArea.Viewport>
+              <div
+                style={{ maxHeight: 84 }}
+                className="grid grid-cols-4 gap-y-7 place-content-between pb-2"
+              >
+                {selectedRecipients?.map((item) => (
+                  <SelectedRecipient
+                    key={
+                      (item.id || 'unknown') +
+                      (item.associated_accounts?.[0].id || 'unknown')
+                    }
+                    profile={item}
+                    onRemove={onRemoveRecipient}
+                  />
+                ))}
+              </div>
+            </ScrollArea.Viewport>
           )}
-          <RecipientList
-            data={filteredRecipients}
-            selectedRecipients={selectedRecipients}
-            onSelect={onSelectRecipient}
-            onRemove={onRemoveRecipient}
-          />
         </div>
-      </PopoverContent>
-    </Popover>
+        <PopoverContent
+          align="start"
+          avoidCollisions={false}
+          sideOffset={0}
+          onInteractOutside={handleInteractOutside}
+          onOpenAutoFocus={(e) => e.preventDefault()}
+          asChild
+        >
+          {authorized ? (
+            <div
+              style={{ borderRadius: '0 0 8px 8px' }}
+              className="flex flex-col gap-y-2 items-center py-3 px-3 shadow-md w-[398px] bg-white-pure"
+            >
+              {isOnChain && (
+                <InputField
+                  className="w-full text-sm"
+                  inputWrapperClassName="rounded-lg"
+                  autoFocus
+                  placeholder="Search address"
+                  startAdornment={<ChainPicker className="ml-3" />}
+                  onChange={onChainSearch}
+                />
+              )}
+              {isOpenRecipients && searchTerm === '' ? (
+                <InitialList />
+              ) : (
+                <Combobox.Options static className="w-full">
+                  <RecipientList
+                    loading={isSearching}
+                    data={filteredRecipients}
+                    selectedRecipients={selectedRecipients}
+                  />
+                </Combobox.Options>
+              )}
+            </div>
+          ) : (
+            unauthorizedContent
+          )}
+        </PopoverContent>
+      </Popover>
+    </Combobox>
   )
 }

@@ -1,4 +1,5 @@
 import { useShallow } from 'zustand/react/shallow'
+import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { useAuthStore, useWalletStore } from '~store'
 import { useMemo } from 'react'
@@ -22,7 +23,7 @@ export default function StepOne() {
     request,
     setStep,
     updateSourceWallet,
-    addRecipient,
+    setRecipients,
     removeRecipient,
     setAsset,
     setAmount,
@@ -60,35 +61,40 @@ export default function StepOne() {
   const { isFetching: isFetchingWallets, wallets } = useWalletStore()
 
   return (
-    <div className="flex flex-col flex-1 gap-y-3 min-h-0">
-      <div className="flex overflow-y-auto flex-col gap-y-2 h-full">
-        <div className="flex flex-col gap-y-2.5 items-center pb-3">
-          <p className="text-xl text-[#343433] font-medium">Send a tip</p>
-          <span className="text-[#848281] text-xs text-center">
-            Celebrate someone&apos;s birthday or achievement
-            <br />
-            by sending them money
-          </span>
+    <div className="flex flex-col flex-1 gap-y-3 h-full min-h-0">
+      <ScrollArea.Viewport className="[&>div]:!block">
+        <div className="flex flex-col gap-y-2 h-full">
+          <div className="flex flex-col gap-y-2.5 items-center pb-3">
+            <p className="text-xl text-[#343433] font-medium">Send a tip</p>
+            <span className="text-[#848281] text-xs text-center">
+              Celebrate someone&apos;s birthday or achievement
+              <br />
+              by sending them money
+            </span>
+          </div>
+          <WalletPicker
+            authorized={isLoggedIn}
+            unauthorizedContent={unauthorizedContent}
+            data={wallets}
+            loading={isFetchingWallets}
+            onSelect={updateSourceWallet}
+          />
+          <Recipient
+            authorized={isLoggedIn}
+            unauthorizedContent={unauthorizedContent}
+            selectedRecipients={request.recipients ?? []}
+            onUpdateRecipient={setRecipients}
+            onRemoveRecipient={removeRecipient}
+          />
+          <AmountInput
+            authorized={isLoggedIn}
+            wallet={wallet}
+            onSelectAsset={setAsset}
+            onAmountChanged={setAmount}
+          />
+          <ErrorMessage>{amountErrorMgs}</ErrorMessage>
         </div>
-        <WalletPicker
-          authorized={isLoggedIn}
-          data={wallets}
-          loading={isFetchingWallets}
-          onSelect={updateSourceWallet}
-        />
-        <Recipient
-          selectedRecipients={request.recipients ?? []}
-          onSelectRecipient={addRecipient}
-          onRemoveRecipient={removeRecipient}
-        />
-        <AmountInput
-          authorized={isLoggedIn}
-          wallet={wallet}
-          onSelectAsset={setAsset}
-          onAmountChanged={setAmount}
-        />
-        <ErrorMessage>{amountErrorMgs}</ErrorMessage>
-      </div>
+      </ScrollArea.Viewport>
       {isLoggedIn ? (
         <Button
           size="lg"

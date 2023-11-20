@@ -1,56 +1,53 @@
+import { useDisclosure } from '@dwarvesf/react-hooks'
+import clsx from 'clsx'
 import { Avatar, Heading } from '@consolelabs/core'
 import { Profile } from '@consolelabs/mochi-rest'
 import { IconCheck, IconClose } from '@consolelabs/icons'
-import { MouseEventHandler, useState } from 'react'
 import PlatformIcon from '../PlatformPicker/PlatformIcon'
 
 type CheckIconProps = {
-  onRemoveClick?: MouseEventHandler<SVGSVGElement>
+  isHovering: boolean
+  isSelected: boolean
 }
 
-const CheckIcon: React.FC<CheckIconProps> = ({ onRemoveClick }) => {
-  const [isHovering, setIsHovering] = useState(false)
-
-  function handleRemoveClick(event: React.MouseEvent<SVGSVGElement>) {
-    event.stopPropagation()
-    onRemoveClick?.(event)
-  }
-  return isHovering ? (
-    <IconClose
-      className="text-red-700 text-xl"
-      onMouseLeave={() => setIsHovering(false)}
-      onClick={handleRemoveClick}
-    />
+const CheckIcon: React.FC<CheckIconProps> = ({ isSelected, isHovering }) => {
+  return (isSelected && !isHovering) || (!isSelected && isHovering) ? (
+    <IconCheck className="p-1 w-6 h-6 text-primary-700" />
   ) : (
-    <IconCheck
-      className="text-primary-700"
-      onMouseEnter={() => setIsHovering(true)}
-    />
+    <IconClose className="w-6 h-6 text-xl text-red-700" />
   )
 }
 
 interface ItemProps {
   profile: Profile
   isSelected?: boolean
-  onSelect?: (item: Profile) => void
-  onRemove?: (item: Profile) => void
+  active: boolean
 }
 
 export const RecipientItem: React.FC<ItemProps> = ({
   profile,
-  isSelected,
-  onSelect,
-  onRemove,
+  isSelected = false,
+  active,
 }) => {
-  const { id, avatar, associated_accounts } = profile
+  const { avatar, associated_accounts } = profile
   const account = associated_accounts?.[0]
+  const {
+    isOpen: isHovering,
+    onOpen: setIsHovering,
+    onClose: setIsNotHovering,
+  } = useDisclosure()
 
   return (
-    <li
-      className="flex flex-row items-center w-full min-w-[230px] p-2 hover:bg-[#FAF9F7] rounded-lg space-x-2 cursor-pointer"
-      key={id}
-      role="presentation"
-      onClick={() => onSelect?.(profile)}
+    <div
+      className={clsx(
+        'group flex flex-row items-center w-full min-w-[230px] p-2 rounded-lg space-x-2 cursor-pointer',
+        {
+          'bg-neutral-100': active,
+          'hover:bg-neutral-100': !active || !isSelected,
+        },
+      )}
+      onMouseEnter={setIsHovering}
+      onMouseLeave={setIsNotHovering}
     >
       <Avatar src={avatar || '/logo.png'} size="sm" />
       <div className="flex flex-col flex-1">
@@ -58,15 +55,15 @@ export const RecipientItem: React.FC<ItemProps> = ({
           {account?.platform_metadata.username}
         </Heading>
       </div>
-      {isSelected ? (
-        <CheckIcon onRemoveClick={() => onRemove?.(profile)} />
+      {isSelected || isHovering || active ? (
+        <CheckIcon isSelected={isSelected} isHovering={isHovering || active} />
       ) : (
         <PlatformIcon
-          className="text-neutral-500"
+          className="p-1 w-6 h-6 text-neutral-500"
           platform={account?.platform ?? ''}
           compact
         />
       )}
-    </li>
+    </div>
   )
 }

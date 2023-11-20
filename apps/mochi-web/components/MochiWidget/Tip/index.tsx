@@ -1,13 +1,57 @@
+import clsx from 'clsx'
+import Link from 'next/link'
 import { useShallow } from 'zustand/react/shallow'
+import { AnimatePresence, Transition, Variants, m } from 'framer-motion'
 import { useEffect } from 'react'
 import { useAuthStore } from '~store'
 import StepOne from './StepOne'
 import StepTwo from './StepTwo'
 import { useTipWidget } from './store'
+import Timer from '../Timer'
+
+const variants: Variants = {
+  enter: (direction: number) => {
+    return {
+      position: 'relative',
+      x: direction > 0 ? '100%' : '-100%',
+      opacity: 0.2,
+      scale: 0.95,
+    }
+  },
+  center: {
+    zIndex: 1,
+    x: 0,
+    opacity: 1,
+    scale: 1,
+  },
+  exit: (direction: number) => {
+    return {
+      position: 'absolute',
+      zIndex: 0,
+      x: direction < 0 ? '100%' : '-100%',
+      opacity: 0.2,
+      scale: 0.95,
+    }
+  },
+}
+
+const transition: Transition = {
+  type: 'spring',
+  stiffness: 300,
+  damping: 30,
+}
+
+const commonProps = {
+  transition,
+  variants,
+  initial: 'enter',
+  animate: 'center',
+  exit: 'exit',
+}
 
 export default function Tip() {
   const isLoggedIn = useAuthStore(useShallow((s) => s.isLoggedIn))
-  const { step, reset } = useTipWidget()
+  const { step, tx, direction, clearTx, reset } = useTipWidget()
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -15,9 +59,36 @@ export default function Tip() {
     }
   }, [isLoggedIn, reset])
 
-  if (step === 1) {
-    return <StepOne />
-  }
-
-  return <StepTwo />
+  return (
+    <div className="relative">
+      <div
+        className={clsx(
+          'flex justify-between z-10 transition-transform absolute top-0 w-full p-3 duration-300 rounded-md bg-green-50 border border-green-200 text-green-700 font-medium text-sm',
+          {
+            'translate-y-0 shadow-xl': !!tx,
+            'translate-y-[calc(-100%-12px)]': !tx,
+          },
+        )}
+      >
+        <span>
+          🎉 Transfer success,{' '}
+          <Link className="underline" href={`/tx/${tx?.external_id}`}>
+            here is your receipt
+          </Link>
+        </span>
+        <Timer className="w-5 h-5" start={!!tx} onEnd={clearTx} time={6000} />
+      </div>
+      <AnimatePresence initial={false} custom={direction}>
+        {step === 1 ? (
+          <m.div key={step} custom={direction} {...commonProps}>
+            <StepOne />
+          </m.div>
+        ) : (
+          <m.div key={step} custom={direction} {...commonProps}>
+            <StepTwo />
+          </m.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
 }

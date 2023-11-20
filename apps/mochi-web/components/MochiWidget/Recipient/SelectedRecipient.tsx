@@ -13,7 +13,7 @@ export const SelectedRecipient: React.FC<SelectedRecipientProps> = ({
   onRemove,
 }) => (
   <li
-    className="flex flex-col gap-1 items-center w-[56px]"
+    className="flex flex-col gap-1 items-center mx-auto w-[56px]"
     key={profile.id}
     role="presentation"
   >
@@ -41,7 +41,7 @@ export const SelectedRecipient: React.FC<SelectedRecipientProps> = ({
         platform={profile.associated_accounts?.[0].platform ?? ''}
       />
     </div>
-    <span className="overflow-auto text-sm font-medium text-center w-[56px] overflow-ellipsis">
+    <span className="text-xs font-medium text-center w-[56px] truncate">
       {profile.associated_accounts?.[0].platform_metadata.username}
     </span>
   </li>

@@ -10,7 +10,7 @@ import {
   PopoverTrigger,
 } from '@consolelabs/core'
 import { IconMagnifier } from '@consolelabs/icons'
-import React, { useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { Tab } from '@headlessui/react'
 import { sectionFormatter } from '../TokenPicker/utils'
@@ -23,11 +23,18 @@ export interface Theme {
 }
 
 interface ThemePickerProps {
-  value: Theme
-  onChange: (t: Theme) => void
+  value?: Theme | null
+  onChange: (t: Theme | null) => void
+}
+
+function getFilterThemeFunc(searchTerm: string) {
+  return function filterTheme(t: Theme) {
+    return t.name.toLowerCase().includes(searchTerm.toLowerCase())
+  }
 }
 
 export default function ThemePicker({ value, onChange }: ThemePickerProps) {
+  const [selectedIndex, setSelectedIndex] = useState(0)
   const { data: themes = [] } = useSWR<Theme[]>(
     ['tip-widget-themes'],
     async () => {
@@ -60,11 +67,40 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
 
   function onThemeSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     setThemeSearch(e.target.value)
+    if (!e.target.value) {
+      setSelectedIndex(0)
+    }
   }
+
+  const groupByTheme = useMemo(
+    () => sectionFormatter(themes, 'group'),
+    [themes],
+  )
+
+  useEffect(() => {
+    const firstGroupHasValueIdx = groupByTheme.findIndex(
+      (g) => g.data.filter(getFilterThemeFunc(themeSearch)).length,
+    )
+    setSelectedIndex(firstGroupHasValueIdx)
+  }, [groupByTheme, themeSearch])
 
   return (
     <div className="flex flex-col gap-y-1">
-      <span className="text-sm text-[#343433] font-medium">Select theme</span>
+      <span className="text-sm text-[#343433] font-medium">
+        Select theme{' '}
+        {value ? (
+          <>
+            &#8212;{' '}
+            <button
+              type="button"
+              onClick={() => onChange(null)}
+              className="text-sm text-red-500 hover:underline"
+            >
+              Clear
+            </button>
+          </>
+        ) : null}
+      </span>
       <div className="grid grid-cols-4 grid-rows-1 gap-x-2 h-20">
         {themes.slice(0, 3).map((t, i) => {
           const selectedIndex = themes.findIndex(
@@ -127,9 +163,12 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
               }
               onChange={onThemeSearchChange}
             />
-            <Tab.Group>
+            <Tab.Group
+              selectedIndex={selectedIndex}
+              onChange={setSelectedIndex}
+            >
               <Tab.List className="flex overflow-x-auto flex-shrink-0 gap-6 w-full">
-                {sectionFormatter(themes, 'group').map((tab) => (
+                {groupByTheme.map((tab) => (
                   <Tab
                     key={`theme-tab-${tab.title}`}
                     className="focus-visible:outline-none"
@@ -148,12 +187,7 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
                 ))}
               </Tab.List>
               <Tab.Panels className="overflow-y-auto w-full">
-                {sectionFormatter(
-                  themes.filter((t) =>
-                    t.name.toLowerCase().includes(themeSearch.toLowerCase()),
-                  ),
-                  'group',
-                ).map((t) => {
+                {groupByTheme.map((t) => {
                   return (
                     <Tab.Panel
                       key={`theme-panel-${t.title}`}
@@ -161,11 +195,12 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
                     >
                       {t.data
                         .filter((d) => !!d.src)
+                        .filter(getFilterThemeFunc(themeSearch))
                         .map((d) => {
                           return (
                             <button
                               type="button"
-                              key={`theme-image-${t}`}
+                              key={`theme-image-${d.name}-${d.id}`}
                               onClick={() => {
                                 onChange(d)
                                 toggleThemePopover()

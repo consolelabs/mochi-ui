@@ -2,7 +2,7 @@ import { List } from '@consolelabs/core'
 import { Balance } from '~store'
 import { TokenItem } from './TokenItem'
 import { EmptyList } from './EmptyList'
-import Skeleton from './Skeleton'
+import Skeleton from '../Tip/Skeleton'
 
 interface Props {
   loading: boolean
@@ -15,6 +15,7 @@ export const TokenList = (props: Props) => {
 
   return (
     <List
+      listClassName="max-h-[350px]"
       data={data}
       loading={loading}
       renderItem={(item) => (
@@ -24,7 +25,7 @@ export const TokenList = (props: Props) => {
           onSelect={onSelect}
         />
       )}
-      renderLoader={Skeleton}
+      renderLoader={() => <Skeleton />}
       ListEmpty={<EmptyList />}
       rootClassName="w-full h-full"
     />

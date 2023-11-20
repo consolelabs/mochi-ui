@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { useEffect, useState } from 'react'
 import { Popover, PopoverTrigger, PopoverContent } from '@consolelabs/core'
 import { IconChevronDown } from '@consolelabs/icons'
@@ -74,7 +75,7 @@ export const PlatformPicker: React.FC<Props> = ({
   return (
     <Popover open={isOpenSelector} onOpenChange={setIsOpenSelector}>
       <PopoverTrigger asChild>
-        <div
+        <button
           id={triggerId}
           className="flex gap-x-2 items-center py-1.5 px-3 rounded-lg bg-neutral-100"
         >
@@ -85,12 +86,17 @@ export const PlatformPicker: React.FC<Props> = ({
           <span className="text-sm font-medium capitalize whitespace-nowrap">
             {selectedPlatform.platform}
           </span>
-          <IconChevronDown className="w-4 h-4 text-[#ADACAA]" />
-        </div>
+          <IconChevronDown
+            className={clsx('w-4 h-4 text-[#ADACAA] transition', {
+              'rotate-180': isOpenSelector,
+            })}
+          />
+        </button>
       </PopoverTrigger>
       <PopoverContent
         id={contentId}
         align="start"
+        avoidCollisions={false}
         className="flex gap-x-1 items-center py-3 px-3 rounded-lg shadow-md bg-white-pure"
         onOpenAutoFocus={handleOpenAutoFocus}
       >

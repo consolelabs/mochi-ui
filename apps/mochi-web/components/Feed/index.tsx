@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { IconArrowRight, IconArrowUp } from '@consolelabs/icons'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, m } from 'framer-motion'
 import { Button } from '@consolelabs/core'
 import clsx from 'clsx'
 import { useDisclosure } from '@dwarvesf/react-hooks'
@@ -185,7 +185,7 @@ export default function Feed({ className = '' }: Props) {
                       ))
                   : txns.map((tx) => {
                       return (
-                        <motion.div
+                        <m.div
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
@@ -198,16 +198,13 @@ export default function Feed({ className = '' }: Props) {
                           >
                             <Row tx={tx} colWidth={colWidth} />
                           </Link>
-                        </motion.div>
+                        </m.div>
                       )
                     })}
               </AnimatePresence>
             </div>
           </div>
         </ScrollArea.Viewport>
-        <ScrollArea.Scrollbar orientation="horizontal">
-          <ScrollArea.Thumb />
-        </ScrollArea.Scrollbar>
       </ScrollArea.Root>
     </div>
   )
