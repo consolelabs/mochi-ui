@@ -5,14 +5,26 @@ const alertCva = cva(['flex gap-x-2 rounded-lg p-3 border'], {
   variants: {
     appearance: {
       info: [
-        'bg-neutral-100',
-        'text-neutral-600',
+        'bg-neutral-plain-hover',
+        'text-neutral-solid',
         'border',
-        'border-neutral-300',
+        'border-neutral-outline-border',
       ],
-      success: ['bg-green-100', 'text-green-600', 'border-green-300'],
-      warn: ['bg-yellow-100', 'text-yellow-600', 'border-yellow-300'],
-      error: ['bg-red-100', 'text-red-600', 'border-red-300'],
+      success: [
+        'bg-success-plain-hover',
+        'text-success-solid',
+        'border-success-outline-border',
+      ],
+      warn: [
+        'bg-warning-plain-hover',
+        'text-warning-solid',
+        'border-warning-outline-border',
+      ],
+      error: [
+        'bg-danger-plain-hover',
+        'text-danger-solid',
+        'border-danger-outline-border',
+      ],
     },
     size: {
       sm: 'text-sm',
