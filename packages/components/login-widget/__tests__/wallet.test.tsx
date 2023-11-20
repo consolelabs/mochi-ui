@@ -13,7 +13,7 @@ describe('Wallet', () => {
   it('renders the component with the correct class', () => {
     const { container } = render(<Wallet {...mockProps} />)
     expect(container.firstChild).toHaveClass(
-      'flex gap-x-3 items-center py-3 px-6 rounded-xl transition hover:bg-neutral-100 text-neutral-600',
+      'flex flex-col items-center justify-center h-20 gap-2 border rounded-lg border-neutral-150 hover:bg-neutral-150 text-neutral-600',
     )
   })
 
