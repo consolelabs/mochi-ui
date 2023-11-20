@@ -9,13 +9,18 @@ const badgeWrapperCva = cva(
   {
     variants: {
       appearance: {
-        primary: ['bg-primary-100', 'text-primary-700'],
-        secondary: ['bg-secondary-100', 'text-secondary-700'],
-        success: ['bg-green-100', 'text-green-700'],
-        danger: ['bg-red-100', 'text-red-700'],
-        warning: ['bg-yellow-100', 'text-yellow-700'],
-        black: ['bg-neutral-150', 'text-neutral-800'],
-        white: ['bg-white', 'border', 'text-neutral-800', 'border-neutral-200'],
+        primary: ['bg-primary-outline', 'text-primary-solid'],
+        secondary: ['bg-secondary-outline', 'text-secondary-solid'],
+        success: ['bg-success-outline', 'text-success-solid'],
+        danger: ['bg-danger-outline', 'text-danger-solid'],
+        warning: ['bg-warning-outline', 'text-warning-solid'],
+        black: ['bg-neutral-outline', 'text-neutral-solid-hover'],
+        white: [
+          'bg-neutral-solid-fg',
+          'border',
+          'text-neutral-solid-active',
+          'border-neutral-outline-hover',
+        ],
       },
       iconPosition: {
         left: 'pl-[6px]',
@@ -58,11 +63,11 @@ const badgeWrapperCva = cva(
 const badgeIconCva = cva(['flex'], {
   variants: {
     appearance: {
-      primary: 'text-primary-500',
-      secondary: 'text-secondary-500',
-      success: 'text-green-500',
-      danger: 'text-red-500',
-      warning: 'text-yellow-500',
+      primary: 'text-primary-solid-focus',
+      secondary: 'text-secondary-solid-focus',
+      success: 'text-success-solid-focus',
+      danger: 'text-danger-solid-focus',
+      warning: 'text-warning-solid-focus',
       black: 'text-neutral-500',
       white: 'text-neutral-500',
     },
@@ -73,12 +78,12 @@ const badgeIconCva = cva(['flex'], {
     {
       appearance: 'primary',
       hasIconOnly: true,
-      className: 'text-primary-700',
+      className: 'text-primary-solid',
     },
     {
       appearance: 'secondary',
       hasIconOnly: true,
-      className: 'text-secondary-700',
+      className: 'text-secondary-solid',
     },
   ],
   defaultVariants: {
