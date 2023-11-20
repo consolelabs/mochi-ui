@@ -246,7 +246,7 @@ export default function Index() {
             <Button
               className="justify-center w-full"
               size="lg"
-              color="info"
+              color="neutral"
               variant="outline"
             >
               View features
@@ -261,7 +261,7 @@ export default function Index() {
             </Button>
           </Link>
           <Link href="/features">
-            <Button size="lg" color="info" variant="outline">
+            <Button size="lg" color="neutral" variant="outline">
               View features
               <IconArrowRight />
             </Button>

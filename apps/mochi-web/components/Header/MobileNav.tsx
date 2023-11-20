@@ -158,7 +158,7 @@ export const MobileNav = (props: { onClose: () => void }) => {
     return (
       <Button
         variant="link"
-        color="info"
+        color="neutral"
         className={wrapperClassName}
         onClick={() => {
           onClose()

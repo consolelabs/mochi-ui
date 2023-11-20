@@ -191,7 +191,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
             <Button
               size="sm"
               variant="outline"
-              color="info"
+              color="neutral"
               style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('1')}
             >
@@ -200,7 +200,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
             <Button
               size="sm"
               variant="outline"
-              color="info"
+              color="neutral"
               style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('2')}
             >
@@ -209,7 +209,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
             <Button
               size="sm"
               variant="outline"
-              color="info"
+              color="neutral"
               style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('5')}
             >

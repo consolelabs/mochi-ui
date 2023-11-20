@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/react'
-import Button from '../src/button'
+import { Button } from '../src'
 
 describe('Button', () => {
   it('renders the button with the correct text', () => {

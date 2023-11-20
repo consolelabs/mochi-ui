@@ -24,6 +24,8 @@
     "tailwindcss": "*"
   },
   "devDependencies": {
+    "@types/color": "^3.0.6",
+    "@types/flat": "^5.0.5",
     "clean-package": "^2.2.0",
     "eslint-config-custom": "workspace:*",
     "prettier": "^3.0.3",
@@ -32,6 +34,8 @@
   },
   "dependencies": {
     "class-variance-authority": "^0.7.0",
-    "clsx": "^2.0.0"
+    "clsx": "^2.0.0",
+    "color": "^4.2.3",
+    "flat": "^6.0.1"
   }
 }

@@ -1,6 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { IconConnectWallets, IconSpinner } from '@consolelabs/icons'
-import Button from '../src/button'
+import Button, { ButtonProps } from '../src/button'
+
+const buttonColorVariants: ButtonProps['color'][] = [
+  'primary',
+  'secondary',
+  'warning',
+  'danger',
+  'success',
+  'neutral',
+]
+
+const buttonVariants: ButtonProps['variant'][] = ['solid', 'outline', 'link']
+
+const buttonSizes: ButtonProps['size'][] = ['sm', 'md', 'lg']
 
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',
@@ -14,15 +27,15 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['solid', 'outline', 'link', 'ghost'],
+      options: buttonVariants,
     },
     color: {
       control: 'select',
-      options: ['primary', 'secondary', 'danger', 'info'],
+      options: buttonColorVariants,
     },
     size: {
       control: 'select',
-      options: ['sm', 'md', 'lg'],
+      options: buttonSizes,
     },
   },
 }
@@ -33,15 +46,14 @@ type Story = StoryObj<typeof Button>
 export const Default: Story = {
   args: {
     children: 'Connect Wallet',
+    disabled: false,
   },
 }
 
 export function Sizes() {
-  const sizes = ['sm', 'md', 'lg'] as const
-
   return (
     <div className="flex items-center space-x-4">
-      {sizes.map((size) => (
+      {buttonSizes.map((size) => (
         <Button key={size} size={size}>
           Connect Wallet
         </Button>
@@ -51,11 +63,9 @@ export function Sizes() {
 }
 
 export function Loading() {
-  const sizes = ['sm', 'md', 'lg'] as const
-
   return (
     <div className="flex items-center space-x-4">
-      {sizes.map((size) => (
+      {buttonSizes.map((size) => (
         <Button key={size} size={size} loading>
           Connect Wallet
         </Button>
@@ -65,11 +75,9 @@ export function Loading() {
 }
 
 export function CustomLoadingIndicator() {
-  const sizes = ['sm', 'md', 'lg'] as const
-
   return (
     <div className="flex items-center space-x-4">
-      {sizes.map((size) => (
+      {buttonSizes.map((size) => (
         <Button
           key={size}
           size={size}
@@ -98,11 +106,9 @@ export function WithIcons() {
 }
 
 export function VariantSolid() {
-  const colors = ['primary', 'secondary', 'danger', 'info'] as const
-
   return (
     <div className="space-y-4">
-      {colors.map((color) => (
+      {buttonColorVariants.map((color) => (
         <div className="flex gap-x-4" key={color}>
           <Button color={color} variant="solid">
             {color}
@@ -117,11 +123,9 @@ export function VariantSolid() {
 }
 
 export function VariantOutline() {
-  const colors = ['primary', 'secondary', 'danger', 'info'] as const
-
   return (
     <div className="space-y-4">
-      {colors.map((color) => (
+      {buttonColorVariants.map((color) => (
         <div className="flex gap-x-4" key={color}>
           <Button color={color} variant="outline">
             {color}
@@ -136,35 +140,14 @@ export function VariantOutline() {
 }
 
 export function VariantLink() {
-  const colors = ['primary', 'secondary', 'danger', 'info'] as const
-
   return (
     <div className="space-y-4">
-      {colors.map((color) => (
+      {buttonColorVariants.map((color) => (
         <div className="flex gap-x-4" key={color}>
           <Button color={color} variant="link">
             {color}
           </Button>
           <Button color={color} disabled variant="link">
-            {color}
-          </Button>
-        </div>
-      ))}
-    </div>
-  )
-}
-
-export function VariantGhost() {
-  const colors = ['primary', 'secondary', 'danger', 'info'] as const
-
-  return (
-    <div className="space-y-4">
-      {colors.map((color) => (
-        <div className="flex gap-x-4" key={color}>
-          <Button color={color} variant="ghost">
-            {color}
-          </Button>
-          <Button color={color} disabled variant="ghost">
             {color}
           </Button>
         </div>

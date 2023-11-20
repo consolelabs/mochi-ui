@@ -48,7 +48,7 @@ module.exports = {
     '^~cpn/(.*)$': '<rootDir>/apps/mochi-web/components/$1',
     '^~(.*)$': '<rootDir>/apps/mochi-web/$1',
   },
-  transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$'],
+  transformIgnorePatterns: [`node_modules/(?!(?:.pnpm/)?(flat))`],
   setupFilesAfterEnv: ['@testing-library/jest-dom', './scripts/setup-test.ts'],
   globals: {
     'ts-jest': {
