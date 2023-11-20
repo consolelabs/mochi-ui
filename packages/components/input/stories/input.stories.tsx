@@ -1,4 +1,8 @@
-import { IconDiscordColored, IconSlack } from '@consolelabs/icons'
+import {
+  IconDiscordColored,
+  IconPasswordLockColored,
+  IconSlack,
+} from '@consolelabs/icons'
 import type { Meta, StoryObj } from '@storybook/react'
 import { Avatar } from '@consolelabs/avatar'
 import Input from '../src/input'
@@ -81,14 +85,10 @@ export function Slot() {
         <Input.InputField placeholder="Search the docs…" />
       </Input.Root>
 
-      <Input.Root>
+      <Input.Root error>
         <Input.InputField placeholder="Search the docs…" />
         <Input.Slot>
-          <Avatar
-            size="xs"
-            smallSrc="https://cdn.discordapp.com/emojis/1093923016691421205.png?size=240&quality=lossless"
-            src="https://mochi.gg/logo.png"
-          />
+          <IconPasswordLockColored />
         </Input.Slot>
       </Input.Root>
     </div>

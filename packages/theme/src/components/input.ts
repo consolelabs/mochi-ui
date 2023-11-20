@@ -15,7 +15,7 @@ const root = cva(
 
 const inputVariants = cva(
   [
-    'peer block flex-1 appearance-none outline-none bg-transparent relative z-[1] rounded shrink-0 py-2.5 caret-primary-600',
+    'peer block flex-1 appearance-none outline-none bg-transparent relative z-[1] rounded shrink-0 py-2.5 caret-primary-outline-fg placeholder:text-text-secondary',
   ],
   {
     variants: {
@@ -24,10 +24,10 @@ const inputVariants = cva(
         lg: 'h-[52px] text-md leading-snug',
       },
       disabled: {
-        true: 'bg-neutral-100 text-neutral-500 cursor-not-allowed',
+        true: 'text-text-secondary cursor-not-allowed',
       },
       error: {
-        true: 'border-red-700 focus:border-red-700 caret-red-700',
+        true: '!caret-danger-outline-fg',
       },
     },
     defaultVariants: {
@@ -36,19 +36,19 @@ const inputVariants = cva(
   },
 )
 
-const slot = cva('flex justify-center items-center')
+const slot = cva('relative z-[1] flex justify-center items-center')
 
 const mask = cva(
   [
-    'absolute z-0 inset-0 rounded pointer-events-none	border border-neutral-300 peer-focus:border-primary-600',
+    'absolute z-0 inset-0 rounded pointer-events-none	border border-neutral-outline-border peer-focus:border-primary-outline-fg',
   ],
   {
     variants: {
       disabled: {
-        true: 'bg-neutral-400/20 text-neutral-500 cursor-not-allowed',
+        true: 'bg-neutral-outline cursor-not-allowed',
       },
       error: {
-        true: 'border-red-700 peer-focus:border-red-700',
+        true: '!border-danger-outline-fg peer-focus:!border-danger-outline-fg',
       },
     },
     defaultVariants: {
