@@ -3,14 +3,12 @@ import { useShallow } from 'zustand/react/shallow'
 import { Profile } from '@consolelabs/mochi-rest'
 import { useEffect, useMemo, useState } from 'react'
 import {
-  Heading,
   InputField,
-  IconButton,
   Popover,
   PopoverContent,
   PopoverAnchor,
 } from '@consolelabs/core'
-import { IconClose, IconSpinner } from '@consolelabs/icons'
+import { IconSpinner } from '@consolelabs/icons'
 import { useDebounce, useDisclosure } from '@dwarvesf/react-hooks'
 import { API, GET_PATHS } from '~constants/api'
 import { ChainPicker } from '../ChainPicker'
@@ -19,6 +17,8 @@ import { RecipientList } from './RecipientList'
 import { PlatformPicker } from '../PlatformPicker'
 import { SelectedRecipient } from './SelectedRecipient'
 import { MAX_RECIPIENTS } from '../Tip/store'
+
+const SEARCH_DEBOUNCE_TIME = 250
 
 interface RecipientProps {
   onLoginRequest?: () => void
@@ -36,9 +36,8 @@ export const Recipient: React.FC<RecipientProps> = ({
   const accessToken = useAuthStore(useShallow((s) => s.token))
   const {
     isOpen: isOpenRecipients,
-    onToggle: toggleRecipients,
     onOpen: openRecipients,
-    onClose: hideRecipients,
+    onClose: closeRecipients,
   } = useDisclosure()
   const {
     isOpen: isSearching,
@@ -46,31 +45,29 @@ export const Recipient: React.FC<RecipientProps> = ({
     onClose: setIsNotSearching,
   } = useDisclosure()
   const [searchTerm, setSearchTerm] = useState('')
-  const debouncedSearchTerm = useDebounce(searchTerm, 500)
+  const debouncedSearchTerm = useDebounce(searchTerm, SEARCH_DEBOUNCE_TIME)
   const [selectedPlatform, setSelectedPlatform] = useState<Platform>()
-  const isOnChain = selectedPlatform?.platform === 'on-chain'
   const [recipients, setRecipients] = useState<Profile[]>([])
+  const isOnChain = selectedPlatform?.platform === 'on-chain'
   const filteredRecipients = useMemo(
     () =>
-      recipients.filter((item) => {
-        const isPlatformMatch =
-          item.associated_accounts?.[0].platform?.toLowerCase() ===
-          selectedPlatform?.platform.toLowerCase()
-
-        const isSearchMatch =
+      recipients.filter(
+        (item) =>
           item.associated_accounts?.[0].platform_metadata?.username
             ?.toLowerCase()
-            .includes(searchTerm.toLowerCase())
-        return isPlatformMatch && isSearchMatch
-      }),
-    [searchTerm, selectedPlatform, recipients],
+            .includes(searchTerm.toLowerCase()),
+      ),
+    [searchTerm, recipients],
   )
 
   useEffect(
     () => {
+      // TODO: remove condition for recent recipients
       if (debouncedSearchTerm) {
         setIsSearching()
-        API.MOCHI_PROFILE.get(GET_PATHS.PROFILE_SEARCH(searchTerm))
+        API.MOCHI_PROFILE.get(
+          GET_PATHS.PROFILE_SEARCH(searchTerm, selectedPlatform?.platform),
+        )
           .json((r) => r.data)
           .then((data: Profile[]) => {
             setRecipients(data || [])
@@ -81,109 +78,143 @@ export const Recipient: React.FC<RecipientProps> = ({
         setIsNotSearching()
       }
     },
-    [debouncedSearchTerm], // Only call effect if debounced search term changes
+    [debouncedSearchTerm, selectedPlatform], // Only call effect if debounced search term changes
   )
 
   function handleFocusInput() {
     if (!accessToken) {
       onLoginRequest?.()
     } else {
-      // toggle the recipient list
-      toggleRecipients()
+      // open the recipient list
+      openRecipients()
     }
   }
 
   function onOpenChange(isOpen: boolean) {
-    // Reset on close
     if (isOpen) {
       openRecipients()
     } else {
-      hideRecipients()
+      closeRecipients()
     }
-    setSearchTerm('')
   }
 
   function onSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     setSearchTerm(e.target.value)
   }
 
+  function onChainSearch() {
+    // TODO: handle search onchain recipients
+  }
+
+  function handleInteractOutside(event: CustomEvent) {
+    // Prevent recipients list from closing when interacting with platform picker and input
+    const target = event.target as HTMLElement
+    const platformPickerTrigger = document.getElementById(
+      'platform-picker-trigger',
+    )
+    const platformPickerContent = document.getElementById(
+      'platform-picker-content',
+    )
+    if (
+      target.id === 'recipients' ||
+      platformPickerTrigger?.contains(target) ||
+      platformPickerContent?.contains(target)
+    ) {
+      event.preventDefault()
+    }
+  }
+
   return (
     <Popover open={isOpenRecipients} onOpenChange={onOpenChange}>
-      <PopoverAnchor>
-        <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-3">
-          <div className="flex justify-between items-center px-4 h-[34px]">
-            <label
-              htmlFor="recipients"
-              className="text-sm font-semibold text-neutral-600"
-            >
-              Recipients
-            </label>
-            <span className="text-sm font-semibold text-neutral-600">
-              {selectedRecipients?.length ?? 0}/{MAX_RECIPIENTS}
-            </span>
-          </div>
-          <div className="flex gap-x-2 items-center py-2.5 px-4 rounded-lg bg-white-pure">
+      <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-3">
+        <div className="flex justify-between items-center px-4 h-[34px]">
+          <label
+            htmlFor="recipients"
+            className="text-sm font-semibold text-neutral-600"
+          >
+            Recipients
+          </label>
+          <span className="text-sm font-semibold text-neutral-600">
+            {selectedRecipients?.length ?? 0}/{MAX_RECIPIENTS}
+          </span>
+        </div>
+
+        <PopoverAnchor>
+          <div
+            className="flex gap-x-2 items-center py-2.5 px-4 rounded-lg bg-white-pure border border-white-pure"
+            style={
+              isOpenRecipients
+                ? {
+                    borderBottomLeftRadius: 0,
+                    borderBottomRightRadius: 0,
+                    border: '1px solid #017AFF',
+                    boxShadow:
+                      '0px 0px 0px 4px rgba(1, 122, 255, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.05)',
+                  }
+                : {}
+            }
+          >
             <span className="h-[34px] text-lg text-[#848281] pt-0.5">@</span>
             <input
               id="recipients"
-              className="flex-1 h-full bg-transparent outline-none"
+              className="flex-1 min-w-[100px] h-full bg-transparent outline-none"
               placeholder={isOnChain ? 'Enter address' : 'Enter username'}
+              value={searchTerm}
               onFocus={handleFocusInput}
+              onClick={openRecipients}
+              onChange={onSearchChange}
+            />
+            {isSearching && <IconSpinner width={18} height={18} />}
+            <PlatformPicker
+              triggerId="platform-picker-trigger"
+              contentId="platform-picker-content"
+              onSelect={setSelectedPlatform}
             />
           </div>
-          {!!selectedRecipients?.length && (
-            <div className="grid grid-cols-4 gap-7 py-2 px-4">
-              {selectedRecipients?.map((item) => (
-                <SelectedRecipient
-                  key={
-                    (item.id || 'unknown') +
-                    (item.associated_accounts?.[0].id || 'unknown')
-                  }
-                  profile={item}
-                  onRemove={onRemoveRecipient}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-      </PopoverAnchor>
+        </PopoverAnchor>
+        {!!selectedRecipients?.length && (
+          <div className="grid grid-cols-4 gap-7 py-2 px-4">
+            {selectedRecipients?.map((item) => (
+              <SelectedRecipient
+                key={
+                  (item.id || 'unknown') +
+                  (item.associated_accounts?.[0].id || 'unknown')
+                }
+                profile={item}
+                onRemove={onRemoveRecipient}
+              />
+            ))}
+          </div>
+        )}
+      </div>
       <PopoverContent
         align="start"
-        className="flex flex-col gap-x-1 items-center py-3 px-3 rounded-lg shadow-md w-[414px] bg-white-pure"
+        sideOffset={0}
+        onInteractOutside={handleInteractOutside}
+        onOpenAutoFocus={(e) => e.preventDefault()}
+        asChild
       >
-        <div className="flex flex-row gap-1 items-center pb-2 w-full">
-          <Heading
-            as="h4"
-            className="flex-1 text-sm font-medium text-neutral-800"
-          >
-            Select platform
-          </Heading>
-          <PlatformPicker onSelect={setSelectedPlatform} />
-          <IconButton
-            style={{ width: 24, height: 24, padding: 4.5 }} // Override css cuz size "sm" doen't match design
-            variant="outline"
-            color="info"
-            size="sm"
-            onClick={() => onOpenChange(false)}
-          >
-            <IconClose />
-          </IconButton>
+        <div
+          style={{ borderRadius: '0 0 8px 8px' }}
+          className="flex flex-col gap-y-2 items-center py-3 px-3 shadow-md w-[398px] bg-white-pure"
+        >
+          {isOnChain && (
+            <InputField
+              className="w-full text-sm"
+              inputWrapperClassName="rounded-lg"
+              autoFocus
+              placeholder="Search address"
+              startAdornment={<ChainPicker className="ml-3" />}
+              onChange={onChainSearch}
+            />
+          )}
+          <RecipientList
+            data={filteredRecipients}
+            selectedRecipients={selectedRecipients}
+            onSelect={onSelectRecipient}
+            onRemove={onRemoveRecipient}
+          />
         </div>
-        <InputField
-          className="w-full text-sm"
-          autoFocus
-          placeholder={isOnChain ? 'Search address' : 'Search username'}
-          startAdornment={
-            isOnChain ? (
-              <ChainPicker className="ml-3" />
-            ) : (
-              <span className="pl-3 font-medium text-neutral-500">@</span>
-            )
-          }
-          endAdornment={isSearching && <IconSpinner className="mr-3" />}
-          onChange={onSearchChange}
-        />
-        <RecipientList data={filteredRecipients} onSelect={onSelectRecipient} />
       </PopoverContent>
     </Popover>
   )

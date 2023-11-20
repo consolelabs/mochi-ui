@@ -5,7 +5,9 @@ import { EmptyList } from './EmptyList'
 
 interface Props {
   data: Profile[]
+  selectedRecipients?: Profile[]
   onSelect?: (account: Profile) => void
+  onRemove?: (account: Profile) => void
 }
 
 const ProfilePlaceholder: Profile = {
@@ -25,7 +27,7 @@ const ProfilePlaceholder: Profile = {
 }
 
 export const RecipientList = (props: Props) => {
-  const { data, onSelect } = props
+  const { data, selectedRecipients = [], onSelect, onRemove } = props
   return (
     <List
       rootClassName="w-full"
@@ -33,9 +35,14 @@ export const RecipientList = (props: Props) => {
       ListEmpty={<EmptyList />}
       renderItem={(item) => (
         <RecipientItem
-          key={`recipient-list-${item.id}`}
           profile={item || ProfilePlaceholder}
+          isSelected={selectedRecipients.some(
+            (recipient) =>
+              recipient.associated_accounts?.[0].id ===
+              item?.associated_accounts?.[0].id,
+          )}
           onSelect={onSelect}
+          onRemove={onRemove}
         />
       )}
     />
