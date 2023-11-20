@@ -1,6 +1,6 @@
 import { VariantProps, cva } from 'class-variance-authority'
 
-const wrapperCva = cva(['border bg-white'], {
+const wrapperCva = cva(['border bg-background-body'], {
   variants: {
     size: {
       md: 'w-4 h-4 rounded',
@@ -9,22 +9,22 @@ const wrapperCva = cva(['border bg-white'], {
     disabled: {
       true: [
         'cursor-not-allowed',
-        'text-neutral-200',
-        'bg-neutral-100',
-        'border-neutral-200',
+        'text-neutral-outline-hover',
+        'bg-neutral-outline',
+        'border-neutral-outline-hover',
       ],
       false: [
-        'hover:border-primary-700',
-        'focus:ring-4 focus:ring-primary-700/10',
+        'hover:border-primary-solid',
+        'focus:ring-4 focus:ring-primary-solid/10',
         'focus-visible:outline-none',
         'focus-visible:ring-4',
         'transition-shadow duration-100 ease-in',
-        'data-[state=checked]:bg-primary-700',
-        'data-[state=checked]:text-white',
-        'data-[state=checked]:border-primary-700',
-        'data-[state=indeterminate]:bg-primary-700',
-        'data-[state=indeterminate]:text-white',
-        'data-[state=indeterminate]:border-primary-700',
+        'data-[state=checked]:bg-primary-solid',
+        'data-[state=checked]:text-primary-solid-fg',
+        'data-[state=checked]:border-primary-solid',
+        'data-[state=indeterminate]:bg-primary-solid',
+        'data-[state=indeterminate]:text-primary-solid-fg',
+        'data-[state=indeterminate]:border-primary-solid',
       ],
     },
   },
