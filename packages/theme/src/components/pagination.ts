@@ -5,10 +5,10 @@ const paginationButtonClsx = ({
   active,
 }: { className?: string; active?: boolean } = {}) =>
   clsx(
-    'w-6 h-6 py-1 px-2.5 rounded-full flex-col justify-center items-center inline-flex border-none cursor-pointer text-neutral-800',
+    'w-6 h-6 py-1 px-2.5 rounded-full flex-col justify-center items-center inline-flex border-none cursor-pointer',
     {
-      'hover:bg-stone-100': !active,
-      'bg-neutral-800 text-white': active,
+      'hover:bg-neutral-plain-hover text-text-primary': !active,
+      'bg-neutral-solid text-neutral-solid-fg': active,
     },
     className,
   )
@@ -37,7 +37,7 @@ const paginationAmountPerPageSelectClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
-    'py-2 px-3 text-sm font-medium leading-tight rounded text-neutral-800 bg-stone-50',
+    'py-2 px-3 text-sm font-medium leading-tight rounded text-text-primary bg-neutral-plain-hover',
     className,
   )
 
@@ -50,13 +50,14 @@ const paginationNavigationButtonClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
-    'inline-flex gap-2 justify-center items-center py-1 px-1.5 w-8 h-8 rounded border-none cursor-pointer hover:bg-stone-100',
+    'inline-flex gap-2 justify-center items-center py-1 px-1.5 w-8 h-8 rounded border-none cursor-pointer hover:bg-neutral-plain-hover',
     className,
   )
 
 const paginationNavigationIconClsx = ({
   className = '',
-}: { className?: string } = {}) => clsx('w-4 h-4 text-stone-500', className)
+}: { className?: string } = {}) =>
+  clsx('w-4 h-4 text-text-secondary', className)
 
 const pagination = {
   paginationButtonClsx,
