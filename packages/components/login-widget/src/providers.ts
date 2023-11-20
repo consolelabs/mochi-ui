@@ -40,49 +40,52 @@ const signSol = (p: any) => () =>
 export default function getAvailableWallets() {
   const isSSR = typeof window === 'undefined'
 
-  const connectors: Record<'EVM' | 'Solana' | 'RONIN' | 'Sui', WalletProps[]> =
-    {
-      EVM: [
-        {
-          name: 'MetaMask',
-          icon: IconMetamaskWallet,
-          isInstalled: !isSSR && Boolean(window.ethereum),
-          connect: () =>
-            window.ethereum
-              .request({
-                method: 'eth_requestAccounts',
-                // params: [{ eth_accounts: {} }],
-              })
-              // .then(() =>
-              //   window.ethereum.request({ method: 'eth_requestAccounts' }),
-              // )
-              .then(signEVM(window.ethereum)),
-        },
-      ],
-      Solana: [
-        {
-          name: 'Phantom',
-          icon: IconPhantomWallet,
-          isInstalled: !isSSR && Boolean(window.phantom),
-          connect: () =>
-            window.phantom.solana
-              .connect()
-              .then(signSol(window.phantom.solana)),
-        },
-      ],
-      RONIN: [
-        {
-          name: 'Ronin',
-          icon: IconRoninWallet,
-          isInstalled: !isSSR && Boolean(window.ronin),
-          connect: () =>
-            window.ronin.provider
-              .request({ method: 'eth_requestAccounts' })
-              .then(signEVM(window.ronin.provider, 'ronin')),
-        },
-      ],
-      Sui: [],
-    }
+  const connectors: Record<
+    'EVM' | 'RON' | 'SUI' | 'TON' | 'BTC' | 'Aptos' | 'Cosmos',
+    WalletProps[]
+  > = {
+    EVM: [
+      {
+        name: 'MetaMask',
+        icon: IconMetamaskWallet,
+        isInstalled: !isSSR && Boolean(window.ethereum),
+        connect: () =>
+          window.ethereum
+            .request({
+              method: 'eth_requestAccounts',
+              // params: [{ eth_accounts: {} }],
+            })
+            // .then(() =>
+            //   window.ethereum.request({ method: 'eth_requestAccounts' }),
+            // )
+            .then(signEVM(window.ethereum)),
+      },
+      {
+        name: 'Phantom',
+        icon: IconPhantomWallet,
+        isInstalled: !isSSR && Boolean(window.phantom),
+        connect: () =>
+          window.phantom.solana.connect().then(signSol(window.phantom.solana)),
+      },
+    ],
+    // Solana: [],
+    RON: [
+      {
+        name: 'Ronin',
+        icon: IconRoninWallet,
+        isInstalled: !isSSR && Boolean(window.ronin),
+        connect: () =>
+          window.ronin.provider
+            .request({ method: 'eth_requestAccounts' })
+            .then(signEVM(window.ronin.provider, 'ronin')),
+      },
+    ],
+    SUI: [],
+    TON: [],
+    BTC: [],
+    Aptos: [],
+    Cosmos: [],
+  }
 
   if (isSSR) return connectors
 

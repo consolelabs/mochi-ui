@@ -1,56 +1,8 @@
 import clsx from 'clsx'
 
-const loginGroupWrapperClsx = ({
-  className = '',
-}: { className?: string } = {}) => clsx('flex flex-col md:gap-y-2', className)
-
-const loginGroupNameClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx('text-xs font-semibold text-neutral-500 uppercase', className)
-
-const loginGroupWalletsClsx = ({
-  className = '',
-}: { className?: string } = {}) =>
-  clsx('flex flex-row gap-x-1 md:flex-col md:gap-x-0 md:gap-y-1', className)
-
-const loginInnerWrapperClsx = ({
-  className = '',
-}: { className?: string } = {}) =>
-  clsx(
-    'flex flex-col gap-y-2 p-5 w-full md:overflow-auto md:gap-y-5 md:w-auto md:border-r md:border-neutral-400 md:min-w-[287px]',
-    className,
-  )
-
-const loginInnerTitleClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx('text-base', className)
-
-const loginInnerGroupClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx(
-    'flex overflow-auto flex-row gap-x-5 md:flex-col md:gap-x-0 md:gap-y-5',
-    className,
-  )
-
-const loginInnerContentClsx = ({
-  className = '',
-}: { className?: string } = {}) =>
-  clsx(
-    'flex relative justify-center items-center py-28 px-16 md:py-5 md:px-10 md:flex-1',
-    className,
-  )
-
-const loginInnerCloseButtonClsx = ({
-  className = '',
-}: {
-  className?: string
-} = {}) => clsx('hidden absolute top-5 right-5 md:block', className)
-
-const loginInnerCloseIconClsx = ({
-  className = '',
-}: { className?: string } = {}) =>
-  clsx('w-6 h-6 transition text-neutral-600 hover:text-neutral-700', className)
-
 const loginInnerStateClsx = () => ({
   connecting: {
-    container: 'flex flex-col items-center',
+    container: 'flex flex-col items-center justify-center p-3',
     imgWrapper: 'flex items-center',
     img: 'w-12 h-12 rounded-full',
     divider: 'w-16 border border-dashed border-primary-500',
@@ -74,29 +26,6 @@ const loginWidgetTriggerClsx = ({
     className,
   )
 
-const loginWidgetMobileDrawerOverlayClsx = ({
-  className = '',
-}: {
-  className?: string
-} = {}) => clsx('fixed inset-0 z-40 bg-black/30', className)
-
-const loginWidgetMobileDrawerContentWrapperClsx = ({
-  className = '',
-}: {
-  className?: string
-} = {}) =>
-  clsx(
-    'flex fixed right-0 bottom-0 left-0 z-50 flex-col bg-white rounded-t-2xl',
-    className,
-  )
-
-const loginWidgetMobileDrawerContentClsx = () => ({
-  container: 'flex flex-col w-full',
-  divider:
-    'sticky top-2 z-10 flex-shrink-0 mx-auto mt-2 w-20 h-1.5 rounded-full bg-neutral-400',
-  innerWrapper: 'flex flex-col-reverse w-full',
-})
-
 const loginWidgetDialogOverlayClsx = ({
   className = '',
 }: {
@@ -109,7 +38,7 @@ const loginWidgetDialogContentWrapperClsx = ({
   className?: string
 } = {}) =>
   clsx(
-    'flex fixed top-1/2 w-[720px] left-1/2 z-50 bg-white rounded-2xl -translate-x-1/2 -translate-y-1/2 max-h-[450px]',
+    'flex fixed top-1/2 w-full max-w-sm left-1/2 z-50 bg-white rounded-2xl -translate-x-1/2 -translate-y-1/2 p-3',
     className,
   )
 
@@ -123,9 +52,9 @@ const loginWallet = ({
   className?: string
 }) =>
   clsx(
-    'flex gap-x-3 items-center py-3 px-6 rounded-xl transition hover:bg-neutral-100',
+    'flex flex-col items-center justify-center h-20 gap-2 border rounded-lg border-neutral-150 hover:bg-neutral-150',
     {
-      'opacity-50': !isInstalled,
+      'opacity-50 cursor-not-allowed': !isInstalled,
       'text-neutral-600': !active,
       'text-neutral-800': Boolean(active),
     },
@@ -136,28 +65,58 @@ const loginWalletIconClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx('w-6 h-6 rounded', className)
 
 const loginWalletNameClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx('text-sm text-left', className)
+  clsx('text-sm font-medium', className)
+
+const loginWalletListTabsClsx = ({
+  className = '',
+}: { className?: string } = {}) => clsx('w-full space-y-3', className)
+
+const loginWalletListTabListClsx = ({
+  className = '',
+}: { className?: string } = {}) =>
+  clsx('flex rounded-lg bg-neutral-200 p-0.5', className)
+
+const loginWalletListTabTriggerClsx = ({
+  className = '',
+  isSelected,
+}: { className?: string; isSelected?: boolean } = {}) =>
+  clsx('rounded-md', { 'bg-white': isSelected }, className)
+
+const loginWalletListTabContentClsx = ({
+  className = '',
+}: { className?: string } = {}) => clsx('grid grid-cols-4 gap-1', className)
+
+const loginWalletListDropdownTriggerClsx = ({
+  className = '',
+}: { className?: string } = {}) =>
+  clsx(
+    'flex items-center justify-center rounded-md hover:bg-white text-neutral-600 w-7',
+    className,
+  )
+
+const loginWalletListDropdownItemWrapperClsx = ({
+  className = '',
+}: { className?: string } = {}) => clsx('py-0.5', className)
+
+const loginWalletListDropdownItemClsx = ({
+  className = '',
+}: { className?: string } = {}) => clsx('text-neutral-600', className)
 
 const loginWidget = {
-  loginGroupWrapperClsx,
-  loginGroupNameClsx,
-  loginGroupWalletsClsx,
-  loginInnerWrapperClsx,
-  loginInnerTitleClsx,
-  loginInnerGroupClsx,
-  loginInnerContentClsx,
-  loginInnerCloseButtonClsx,
-  loginInnerCloseIconClsx,
   loginInnerStateClsx,
   loginWidgetTriggerClsx,
-  loginWidgetMobileDrawerOverlayClsx,
-  loginWidgetMobileDrawerContentWrapperClsx,
-  loginWidgetMobileDrawerContentClsx,
   loginWidgetDialogOverlayClsx,
   loginWidgetDialogContentWrapperClsx,
   loginWallet,
   loginWalletIconClsx,
   loginWalletNameClsx,
+  loginWalletListTabsClsx,
+  loginWalletListTabListClsx,
+  loginWalletListTabTriggerClsx,
+  loginWalletListTabContentClsx,
+  loginWalletListDropdownTriggerClsx,
+  loginWalletListDropdownItemWrapperClsx,
+  loginWalletListDropdownItemClsx,
 }
 
 export { loginWidget }
