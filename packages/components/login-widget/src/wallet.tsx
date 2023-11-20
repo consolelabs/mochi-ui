@@ -21,7 +21,7 @@ export default function Wallet(props: WalletProps) {
       onClick={() => void props.connect()}
       type="button"
     >
-      <Icon className={loginWalletIconClsx()} />
+      <Icon width={24} height={24} className={loginWalletIconClsx()} />
       <span className={loginWalletNameClsx()}>{props.name}</span>
     </button>
   )
