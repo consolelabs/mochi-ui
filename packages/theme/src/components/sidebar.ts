@@ -3,7 +3,7 @@ import clsx from 'clsx'
 
 const sidebarCva = cva(
   [
-    'group bg-surface relative h-full border-r border-neutral-outline-active transition-all',
+    'group bg-background-surface relative h-full border-r border-neutral-outline-active transition-all',
   ],
   {
     variants: {
@@ -55,7 +55,7 @@ const sidebarToggleButtonClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
-    'items-center justify-center w-5 mt-4 bg-surface border rounded-r-lg border-neutral-outline-active h-11',
+    'items-center justify-center w-5 mt-4 bg-background-surface border rounded-r-lg border-neutral-outline-active h-11',
     className,
   )
 
