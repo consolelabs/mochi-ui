@@ -2,7 +2,7 @@ import clsx from 'clsx'
 
 const profileBadgeClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx(
-    'flex gap-x-2 items-center p-1 pr-2 bg-white rounded-lg border transition border-neutral-300 hover:bg-neutral-100',
+    'flex gap-x-2 items-center p-1 pr-2 rounded-lg border transition border-neutral-outline-border bg-surface hover:bg-neutral-outline',
     className,
   )
 
@@ -16,7 +16,7 @@ const profileBadgeNameClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
-    'whitespace-nowrap truncate text-sm font-medium text-neutral-800',
+    'whitespace-nowrap truncate text-sm font-medium text-text-primary',
     className,
   )
 
