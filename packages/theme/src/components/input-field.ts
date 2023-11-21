@@ -2,7 +2,14 @@ import { cva, VariantProps } from 'class-variance-authority'
 
 const inputWrapperVariants = cva(
   [
-    'flex items-center gap-x-2 rounded border border-neutral-300 shadow-input focus-within:border-primary-600 focus-within:shadow-input-focused',
+    'flex',
+    'items-center',
+    'gap-x-2',
+    'rounded',
+    'border',
+    'shadow-input',
+    'border-neutral-outline-border',
+    'focus-within:border-primary-solid',
   ],
   {
     variants: {
@@ -14,7 +21,8 @@ const inputWrapperVariants = cva(
         true: 'bg-neutral-100',
       },
       error: {
-        true: 'border-red-700 focus-within:border-red-700 focus-within:shadow-input',
+        true: 'border-danger-solid focus-within:border-danger-solid',
+        false: ['focus-within:ring-primary-solid/10', 'focus-within:ring-4'],
       },
       hasStartAdornment: {
         true: 'pl-0',
@@ -31,7 +39,7 @@ const inputWrapperVariants = cva(
 
 const inputFieldVariants = cva(
   [
-    'flex-1 border-none outline-none text-neutral-800 placeholder:text-neutral-500 disabled:bg-transparent disabled:text-neutral-500',
+    'flex-1 border-none outline-none text-text-primary placeholder:text-text-secondary disabled:bg-transparent disabled:text-text-secondary',
   ],
   {
     variants: {
@@ -47,24 +55,24 @@ const inputFieldVariants = cva(
 )
 
 const helperTextVariants = cva(
-  ['mt-2 text-xs tracking-tight text-neutral-600'],
+  ['mt-2 text-xs tracking-tight text-text-secondary'],
   {
     variants: {
       error: {
-        true: 'text-red-700',
+        true: 'text-danger-solid',
       },
     },
   },
 )
 
-const adornmentVariants = cva(['text-neutral-800'], {
+const adornmentVariants = cva(['text-text-primary'], {
   variants: {
     size: {
       base: 'text-sm',
       large: 'text-md leading-snug',
     },
     disabled: {
-      true: 'text-neutral-500',
+      true: 'text-text-secondary',
     },
   },
   defaultVariants: {
@@ -73,7 +81,7 @@ const adornmentVariants = cva(['text-neutral-800'], {
 })
 
 const labelClassName =
-  'mb-2 font-bold leading-4 tracking-tight uppercase text-neutral-500 text-xxs'
+  'mb-2 font-bold leading-4 tracking-tight uppercase text-text-secondary text-xxs'
 
 export const inputfield = {
   inputWrapperVariants,
