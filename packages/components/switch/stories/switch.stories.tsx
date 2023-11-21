@@ -1,18 +1,15 @@
-import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import Switch from '../src/Switch'
+import Switch, { SwitchProps } from '../src/Switch'
 
 const meta: Meta<typeof Switch> = {
   title: 'Components/Switch',
   component: Switch,
   parameters: {
-    // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
     layout: 'centered',
   },
-  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],
   argTypes: {
-    checked: {
+    disabled: {
       type: 'boolean',
     },
     size: {
@@ -26,21 +23,45 @@ const meta: Meta<typeof Switch> = {
 export default meta
 type Story = StoryObj<typeof Switch>
 
-function Controlled() {
-  const [checked, setChecked] = useState(false)
-
-  return (
-    <div className="grid grid-cols-2 grid-rows-2 gap-2">
-      <span className="text-sm">Default</span>
-      <span className="text-sm">Disabled</span>
-      <Switch checked={checked} onChange={setChecked} />
-      <Switch checked disabled />
-      <Switch checked={checked} onChange={setChecked} size="md" />
-      <Switch checked disabled size="md" />
-    </div>
-  )
+export const Default: Story = {
+  render: (props) => <Switch defaultChecked {...props} />,
 }
 
-export const Default: Story = {
-  render: () => <Controlled />,
+export const Size: Story = {
+  render: (props) => (
+    <div className="flex gap-5">
+      <Switch size="sm" defaultChecked {...props} />
+      <Switch size="md" defaultChecked {...props} />
+    </div>
+  ),
+}
+
+export const WithLabel: Story = {
+  render: (props) => (
+    <div className="flex items-center gap-2">
+      <label htmlFor="switch">Turn alarm on</label>
+      <Switch id="switch" defaultChecked {...props} />
+    </div>
+  ),
+}
+
+export const Colors: Story = {
+  render: (props) => {
+    const colors: SwitchProps['color'][] = [
+      'primary',
+      'secondary',
+      'success',
+      'warning',
+      'danger',
+      'neutral',
+    ]
+
+    return (
+      <div className="flex flex-col gap-4 items-center">
+        {colors.map((color) => (
+          <Switch key={color} color={color} defaultChecked {...props} />
+        ))}
+      </div>
+    )
+  },
 }
