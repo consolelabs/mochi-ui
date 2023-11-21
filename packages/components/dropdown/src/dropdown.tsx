@@ -4,22 +4,24 @@ import clsx from 'clsx'
 import type { ReactNode } from 'react'
 import { IconChevronDown, IconCheck } from '@consolelabs/icons'
 import { dropdown } from '@consolelabs/theme'
-import type {
-  DropdownContentRef,
-  DropdownContentProps,
-  DropdownSubContentRef,
-  DropdownSubContentProps,
-  DropdownSubTriggerRef,
-  DropdownSubTriggerProps,
-  DropdownItemRef,
-  DropdownLabelProps,
-  DropdownLabelRef,
-  BaseDropdownItemProps,
-  DropdownItemProps,
-  DropdownRadioItemRef,
-  DropdownRadioItemProps,
-  DropdownRadioGroupRef,
-  DropdownRadioGroupProps,
+import {
+  type DropdownContentRef,
+  type DropdownContentProps,
+  type DropdownSubContentRef,
+  type DropdownSubContentProps,
+  type DropdownSubTriggerRef,
+  type DropdownSubTriggerProps,
+  type DropdownItemRef,
+  type DropdownLabelProps,
+  type DropdownLabelRef,
+  type BaseDropdownItemProps,
+  type DropdownItemProps,
+  type DropdownRadioItemRef,
+  type DropdownRadioItemProps,
+  type DropdownRadioGroupRef,
+  type DropdownRadioGroupProps,
+  DropdownTriggerRef,
+  DropdownTriggerProps,
 } from './type'
 
 const {
@@ -31,6 +33,7 @@ const {
   dropdownContentStyleCva,
   dropdownMenuRadioIconClsx,
   dropdownMenuSeparatorClsx,
+  dropdownTriggerClsx,
 } = dropdown
 
 function renderDropdownChildItem(
@@ -89,7 +92,16 @@ function renderDropdownChildItem(
 
 const DropdownMenu = DropdownMenuPrimitive.Root
 
-const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger
+const DropdownMenuTrigger = React.forwardRef<
+  DropdownTriggerRef,
+  DropdownTriggerProps
+>(({ className, ...props }, ref) => (
+  <DropdownMenuPrimitive.Trigger
+    className={dropdownTriggerClsx({ className })}
+    {...props}
+    ref={ref}
+  />
+))
 
 const DropdownMenuGroup = DropdownMenuPrimitive.Group
 

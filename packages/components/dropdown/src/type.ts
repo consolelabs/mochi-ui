@@ -82,3 +82,10 @@ export type DropdownRadioGroupProps = Omit<
     typeof DropdownMenuPrimitive.RadioGroup
   >['onValueChange']
 }
+
+export type DropdownTriggerRef = React.ElementRef<
+  typeof DropdownMenuPrimitive.Trigger
+>
+export type DropdownTriggerProps = React.ComponentPropsWithoutRef<
+  typeof DropdownMenuPrimitive.Trigger
+>

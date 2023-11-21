@@ -17,6 +17,9 @@ const dropdownIconStyleCva = cva(['shrink-0 flex text-inherit'], {
   },
 })
 
+const dropdownTriggerClsx = ({ className = '' }: { className?: string }) =>
+  clsx('focus-visible:outline-none', className)
+
 const dropdownChildItemClsx = ({
   className = '',
 }: { className?: string } = {}) =>
@@ -104,4 +107,5 @@ export const dropdown = {
   dropdownContentStyleCva,
   dropdownMenuRadioIconClsx,
   dropdownMenuSeparatorClsx,
+  dropdownTriggerClsx,
 }
