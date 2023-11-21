@@ -1,0 +1,54 @@
+name: Discord release notify
+
+inputs:
+  github-token:
+    description: 'Token to access the github'
+    required: true
+  discord-webhook:
+    description: 'The Discord webhook URL'
+    required: true
+  tags-info:
+    description: 'JSON array of name and version of released tags'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Get current time
+      uses: josStorer/get-current-time@v2
+      id: current-time
+      with:
+        format: MMMM Do YYYY, h:mm a
+        utcOffset: '+07:00'
+
+    - name: Get Discord Content
+      id: discord-content
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const breakLine = "\n";
+          const tagsInfo = Array.from(${{ fromJson(inputs.tags-info) }})
+          const footer = "*Released at ${{ steps.current-time.outputs.formattedTime }}*";
+          const contentInfo = tagsInfo
+            .map((tag) => {
+              const name = tag.name;
+              const version = tag.version;
+              return `- **${name}** was released to version: **${version}**`;
+            })
+            .join(breakLine);
+          const info = [contentInfo, breakLine, footer].join("");
+          return [
+            {
+              title: "New releases! 🚀🚀🚀",
+              description: `${info}`,
+              color: 1127128,
+            },
+          ];
+
+    - name: Discord notification
+      uses: Ilshidur/action-discord@master
+      env:
+        DISCORD_WEBHOOK: ${{ inputs.discord-webhook }}
+        DISCORD_USERNAME: Github Release
+        DISCORD_AVATAR: https://cdn.discordapp.com/avatars/1176117154010120202/df91181b3f1cf0ef1592fbe18e0962d7.webp?size=80
+        DISCORD_EMBEDS: ${{ steps.discord-content.outputs.result }}
