@@ -81,3 +81,15 @@ export const Colors: StoryObj<typeof Checkbox> = {
     )
   },
 }
+
+export const disabled: StoryObj<typeof Checkbox> = {
+  render() {
+    return (
+      <div className="flex gap-4">
+        <Checkbox disabled defaultChecked={false} />
+        <Checkbox disabled defaultChecked />
+        <Checkbox disabled defaultChecked="indeterminate" />
+      </div>
+    )
+  },
+}
