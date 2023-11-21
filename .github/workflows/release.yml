@@ -64,3 +64,5 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           discord-webhook: ${{ secrets.DISCORD_WEBHOOK }}
           tags-info: ${{ toJson(steps.changesets.outputs.publishedPackages) }}
+          repo: ${{ github.repository }}
+          server-url: ${{ github.server_url }}

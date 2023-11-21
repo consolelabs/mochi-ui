@@ -8,7 +8,13 @@ inputs:
     description: 'The Discord webhook URL'
     required: true
   tags-info:
-    description: 'JSON array of name and version of released tags'
+    description: 'JSON array of name, version, tag_name and ignore_npm_released of released tags'
+    required: true
+  repo:
+    description: 'The owner and repository name'
+    required: true
+  server-url:
+    description: 'The URL of the GitHub server'
     required: true
 
 runs:
@@ -28,12 +34,23 @@ runs:
         script: |
           const breakLine = "\n";
           const tagsInfo = Array.from(${{ fromJson(inputs.tags-info) }})
+          const npmURLtemplate = "https://www.npmjs.com/package/{name}/v/{version}"
           const footer = "*Released at ${{ steps.current-time.outputs.formattedTime }}*";
           const contentInfo = tagsInfo
             .map((tag) => {
               const name = tag.name;
               const version = tag.version;
-              return `- **${name}** was released to version: **${version}**`;
+              const tagName = tag.tag_name;
+
+              const githubTagName = tagName || `${name}@${version}`
+
+              const npmLink = npmURLtemplate.replace("{name}", name).replace("{version}", version)
+              const githubURL = `${{ inputs.server-url }}/${{ inputs.repo }}/releases/tag/${encodeURIComponent(githubTagName)}`
+
+              const isIgnoreNPMReleased = tag.ignore_npm_released
+              const packageName = isIgnoreNPMReleased ? `**${name}**` : `[**${name}**](${npmLink})`
+
+              return `- ${packageName} was released to version: [**${version}**](${githubURL})`;
             })
             .join(breakLine);
           const info = [contentInfo, breakLine, footer].join("");
