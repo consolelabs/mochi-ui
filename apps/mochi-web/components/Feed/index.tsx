@@ -205,6 +205,9 @@ export default function Feed({ className = '' }: Props) {
             </div>
           </div>
         </ScrollArea.Viewport>
+        <ScrollArea.Scrollbar orientation="horizontal">
+          <ScrollArea.Thumb />
+        </ScrollArea.Scrollbar>
       </ScrollArea.Root>
     </div>
   )
