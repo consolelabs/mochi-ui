@@ -1,4 +1,4 @@
-import { useWalletStore } from '~store'
+import { Balance } from '~store'
 import { api } from '~constants/mochi'
 import { useMemo } from 'react'
 import useSWR from 'swr'
@@ -12,6 +12,7 @@ import { Moniker } from './type'
 interface Props {
   searchTerm: string
   onSelect?: (item: Moniker) => void
+  balances: Balance[]
 }
 
 function getFilterMonikerNameFunc(searchTerm: string) {
@@ -21,36 +22,32 @@ function getFilterMonikerNameFunc(searchTerm: string) {
 }
 
 export const MonikerList = (props: Props) => {
-  const { wallets } = useWalletStore()
   const { searchTerm, onSelect } = props
 
-  const { data = [], isLoading } = useSWR<
-    Moniker[],
-    any,
-    [string, typeof wallets]
-  >(['moniker-list', wallets], async ([_, _wallets]) => {
-    const { ok, data } = await api.base.configDefi.getDefaultMonikers()
-    if (!ok) return []
+  const { data = [], isLoading } = useSWR<Moniker[], any, [string, Balance[]]>(
+    ['moniker-list', props.balances],
+    async ([_, balances]) => {
+      const { ok, data } = await api.base.configDefi.getDefaultMonikers()
+      if (!ok) return []
 
-    const tokenIdsSet = new Set(
-      wallets.flatMap((w) => w.balances.flatMap((b) => b.token.id)),
-    )
+      const tokenIdsSet = new Set(balances.map((b) => b.token.id))
 
-    return data.map((d) => ({
-      type: 'moniker',
-      group: 'Default',
-      id: d.moniker.id,
-      name: d.moniker.moniker,
-      asset_balance: d.moniker.amount,
-      token_amount: d.value,
-      disabled: !tokenIdsSet.has(d.moniker.token_id),
-      token: {
-        price: d.moniker.token.token_price,
-        symbol: d.moniker.token.token_symbol,
-        chain_id: d.moniker.token.chain_id,
-      },
-    }))
-  })
+      return data.map((d) => ({
+        type: 'moniker',
+        group: 'Default',
+        id: d.moniker.id,
+        name: d.moniker.moniker,
+        asset_balance: d.moniker.amount,
+        token_amount: d.value,
+        disabled: !tokenIdsSet.has(d.moniker.token_id),
+        token: {
+          price: d.moniker.token.token_price,
+          symbol: d.moniker.token.token_symbol,
+          chain_id: d.moniker.token.chain_id,
+        },
+      }))
+    },
+  )
 
   const isUserHasUnusableMoniker = data.some((d) => d.disabled)
 

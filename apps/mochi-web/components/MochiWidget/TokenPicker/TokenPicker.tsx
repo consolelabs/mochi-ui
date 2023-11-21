@@ -202,6 +202,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
                 </Tab.Panel>
                 <Tab.Panel className="flex flex-col gap-2 h-full">
                   <MonikerList
+                    balances={tokenBalances}
                     searchTerm={searchTerm}
                     onSelect={handleMonikerSelect}
                   />
