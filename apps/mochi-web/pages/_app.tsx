@@ -8,10 +8,10 @@ import type { AppProps } from 'next/app'
 import 'nprogress/nprogress.css'
 import '~styles/nprogress.css'
 import { useRouter } from 'next/router'
-import { useAuthStore } from '~store'
 import { useShallow } from 'zustand/react/shallow'
 import Script from 'next/script'
 import { LazyMotion, domAnimation } from 'framer-motion'
+import { useAuthStore } from '../store/auth'
 
 const Header = dynamic(() => import('~cpn/Header').then((m) => m.Header))
 const WalletProvider = dynamic(() =>

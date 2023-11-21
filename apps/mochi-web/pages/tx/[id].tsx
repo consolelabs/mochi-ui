@@ -3,7 +3,8 @@ import { Layout } from '~app/layout'
 import { HOME_URL } from '~envs'
 import { SEO } from '~app/layout/seo'
 import { truncate } from '@dwarvesf/react-utils'
-import Receipt, { transformData } from '~cpn/Receipt'
+import Receipt from '~cpn/Receipt'
+import { transformData } from '~cpn/Receipt/utils'
 import { API } from '~constants/api'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
