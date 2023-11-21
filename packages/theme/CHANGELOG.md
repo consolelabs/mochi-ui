@@ -1,5 +1,55 @@
 # @consolelabs/theme
 
+## 0.2.0
+
+### Minor Changes
+
+- [#239](https://github.com/consolelabs/web-foundation/pull/239)
+  [`6ca09d3`](https://github.com/consolelabs/web-foundation/commit/6ca09d31a42bdc6f3cc5f3e116a0dad04df3709c)
+  Thanks [@leduyhien152](https://github.com/leduyhien152)! - New design for
+  login widget
+
+- [#251](https://github.com/consolelabs/web-foundation/pull/251)
+  [`46eae3f`](https://github.com/consolelabs/web-foundation/commit/46eae3f3b56fa8647a772e42c776368e472b1537)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Use semantic tailwind
+  classes in section list component styling
+
+- [#250](https://github.com/consolelabs/web-foundation/pull/250)
+  [`976f471`](https://github.com/consolelabs/web-foundation/commit/976f4714d9ba4e309b7edb721c2497d4dcd9ea71)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Use semantic tailwind
+  classes in sidebar component styling
+
+- [#249](https://github.com/consolelabs/web-foundation/pull/249)
+  [`c5b5ca6`](https://github.com/consolelabs/web-foundation/commit/c5b5ca64f08c6a962314481f4d5049bd03ac6926)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Use semantice
+  tailwind classes in section list component styling
+
+### Patch Changes
+
+- [#254](https://github.com/consolelabs/web-foundation/pull/254)
+  [`8b80423`](https://github.com/consolelabs/web-foundation/commit/8b8042327aa304d9316d1948f377dc85e654f1e7)
+  Thanks [@trankhacvy](https://github.com/trankhacvy)! - Update Separator
+  semantic color
+
+- [#236](https://github.com/consolelabs/web-foundation/pull/236)
+  [`cacf81d`](https://github.com/consolelabs/web-foundation/commit/cacf81d6a9798532db711c3e9805f1dcecdb6226)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Update input
+  component
+
+- [#256](https://github.com/consolelabs/web-foundation/pull/256)
+  [`c1a37a5`](https://github.com/consolelabs/web-foundation/commit/c1a37a55baa86eb71173f91ca194318771052a16)
+  Thanks [@trankhacvy](https://github.com/trankhacvy)! - Update Typography
+
+- [#247](https://github.com/consolelabs/web-foundation/pull/247)
+  [`3c299e2`](https://github.com/consolelabs/web-foundation/commit/3c299e2fb3860692fda39a52ee6677fd31c74bba)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Use semantic tailwind
+  classes in list component styling
+
+- [#246](https://github.com/consolelabs/web-foundation/pull/246)
+  [`c7ff58e`](https://github.com/consolelabs/web-foundation/commit/c7ff58e1acf9073175c6ff82e47600c954036c67)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Use semantic tailwind
+  classes in pagination component styling
+
 ## 0.1.0
 
 ### Minor Changes
