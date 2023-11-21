@@ -4,15 +4,36 @@ import clsx from 'clsx'
 const alertCva = cva(['flex gap-x-2 rounded-lg p-3 border'], {
   variants: {
     appearance: {
-      info: [
-        'bg-neutral-100',
-        'text-neutral-600',
-        'border',
-        'border-neutral-300',
+      primary: [
+        'bg-primary-outline',
+        'text-primary-outline-fg',
+        'border-primary-outline-border',
       ],
-      success: ['bg-green-100', 'text-green-600', 'border-green-300'],
-      warn: ['bg-yellow-100', 'text-yellow-600', 'border-yellow-300'],
-      error: ['bg-red-100', 'text-red-600', 'border-red-300'],
+      secondary: [
+        'bg-secondary-outline',
+        'text-secondary-outline-fg',
+        'border-secondary-outline-border',
+      ],
+      neutral: [
+        'bg-neutral-outline',
+        'text-neutral-outline-fg',
+        'border-neutral-outline-border',
+      ],
+      success: [
+        'bg-success-outline',
+        'text-success-outline-fg',
+        'border-success-outline-border',
+      ],
+      warning: [
+        'bg-warning-outline',
+        'text-warning-outline-fg',
+        'border-warning-outline-border',
+      ],
+      danger: [
+        'bg-danger-outline',
+        'text-danger-outline-fg',
+        'border-danger-outline-border',
+      ],
     },
     size: {
       sm: 'text-sm',
@@ -20,7 +41,7 @@ const alertCva = cva(['flex gap-x-2 rounded-lg p-3 border'], {
     },
   },
   defaultVariants: {
-    appearance: 'info',
+    appearance: 'neutral',
     size: 'md',
   },
 })
