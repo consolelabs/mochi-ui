@@ -21,7 +21,15 @@ const meta: Meta<typeof Alert> = {
     },
     appearance: {
       control: 'select',
-      options: ['info', 'warn', 'success', 'error'],
+      options: [
+        'info',
+        'warn',
+        'success',
+        'error',
+        'neutral',
+        'primary',
+        'secondary',
+      ],
     },
   },
 }

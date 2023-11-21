@@ -12,6 +12,9 @@ const { alertCva, alertIconClsx, alertContentClsx, alertTitleClsx } = alert
 type Appearance = Exclude<AlertStylesProps['appearance'], null | undefined>
 
 const icons = {
+  primary: IconInfoCircled,
+  secondary: IconInfoCircled,
+  neutral: IconInfoCircled,
   info: IconInfoCircled,
   success: IconCheckCircled,
   warn: IconExclamationTriangle,
