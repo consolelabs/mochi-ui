@@ -4,17 +4,36 @@ import clsx from 'clsx'
 const alertCva = cva(['flex gap-x-2 rounded-lg p-3 border'], {
   variants: {
     appearance: {
-      primary: ['bg-primary-100', 'text-primary-700', 'border-primary-300'],
-      secondary: [
-        'bg-secondary-100',
-        'text-secondary-700',
-        'border-secondary-300',
+      primary: [
+        'bg-primary-outline',
+        'text-primary-outline-fg',
+        'border-primary-outline-border',
       ],
-      neutral: ['bg-neutral-100', 'text-neutral-700', 'border-neutral-300'],
-      info: ['bg-neutral-100', 'text-neutral-700', 'border-neutral-300'],
-      success: ['bg-success-100', 'text-success-700', 'border-success-300'],
-      warn: ['bg-warning-100', 'text-warning-700', 'border-warning-300'],
-      error: ['bg-danger-100', 'text-danger-700', 'border-danger-300'],
+      secondary: [
+        'bg-secondary-outline',
+        'text-secondary-outline-fg',
+        'border-secondary-outline-border',
+      ],
+      neutral: [
+        'bg-neutral-outline',
+        'text-neutral-outline-fg',
+        'border-neutral-outline-border',
+      ],
+      success: [
+        'bg-success-outline',
+        'text-success-outline-fg',
+        'border-success-outline-border',
+      ],
+      warning: [
+        'bg-warning-outline',
+        'text-warning-outline-fg',
+        'border-warning-outline-border',
+      ],
+      danger: [
+        'bg-danger-outline',
+        'text-danger-outline-fg',
+        'border-danger-outline-border',
+      ],
     },
     size: {
       sm: 'text-sm',
@@ -22,7 +41,7 @@ const alertCva = cva(['flex gap-x-2 rounded-lg p-3 border'], {
     },
   },
   defaultVariants: {
-    appearance: 'info',
+    appearance: 'neutral',
     size: 'md',
   },
 })

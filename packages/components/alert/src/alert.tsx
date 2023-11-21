@@ -15,10 +15,9 @@ const icons = {
   primary: IconInfoCircled,
   secondary: IconInfoCircled,
   neutral: IconInfoCircled,
-  info: IconInfoCircled,
   success: IconCheckCircled,
-  warn: IconExclamationTriangle,
-  error: IconCrossCircled,
+  warning: IconExclamationTriangle,
+  danger: IconCrossCircled,
 } satisfies Record<Appearance, (p: SVGProps<SVGSVGElement>) => JSX.Element>
 
 interface AlertProps extends AlertStylesProps {
@@ -31,10 +30,10 @@ export default function Alert({
   title,
   children,
   className,
-  appearance: _appearance,
+  appearance: appearanceProp,
   size,
 }: AlertProps) {
-  const appearance = _appearance ?? 'info'
+  const appearance = appearanceProp ?? 'neutral'
   const Icon = icons[appearance]
 
   return (
