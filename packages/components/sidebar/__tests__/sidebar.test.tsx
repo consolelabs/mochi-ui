@@ -132,11 +132,11 @@ describe('Sidebar', () => {
     const { getByText } = render(<Component />)
     const serverManagement = getByText('Server Management')
     const button = serverManagement.closest('button') as HTMLElement
-    expect(button).not.toHaveClass('bg-neutral-150')
+    expect(button).not.toHaveClass('bg-neutral-outline-active')
     await act(async () => {
       await userEvent.click(button)
     })
-    expect(button).toHaveClass('bg-neutral-150')
+    expect(button).toHaveClass('bg-neutral-outline-active')
   })
 
   it('expands and collapses the sidebar when the toggle button is clicked', async () => {
