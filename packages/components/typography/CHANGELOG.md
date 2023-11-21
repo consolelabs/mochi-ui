@@ -1,5 +1,13 @@
 # @consolelabs/typography
 
+## 0.0.4
+
+### Patch Changes
+
+- [#256](https://github.com/consolelabs/web-foundation/pull/256)
+  [`c1a37a5`](https://github.com/consolelabs/web-foundation/commit/c1a37a55baa86eb71173f91ca194318771052a16)
+  Thanks [@trankhacvy](https://github.com/trankhacvy)! - Update Typography
+
 ## 0.0.3
 
 ### Patch Changes

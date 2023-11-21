@@ -1,5 +1,58 @@
 # @consolelabs/core
 
+## 0.1.1
+
+### Patch Changes
+
+- [#251](https://github.com/consolelabs/web-foundation/pull/251)
+  [`46eae3f`](https://github.com/consolelabs/web-foundation/commit/46eae3f3b56fa8647a772e42c776368e472b1537)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Use semantic tailwind
+  classes in section list component styling
+
+- [#250](https://github.com/consolelabs/web-foundation/pull/250)
+  [`976f471`](https://github.com/consolelabs/web-foundation/commit/976f4714d9ba4e309b7edb721c2497d4dcd9ea71)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Use semantic tailwind
+  classes in sidebar component styling
+
+- [#249](https://github.com/consolelabs/web-foundation/pull/249)
+  [`c5b5ca6`](https://github.com/consolelabs/web-foundation/commit/c5b5ca64f08c6a962314481f4d5049bd03ac6926)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Use semantice
+  tailwind classes in section list component styling
+
+- Updated dependencies
+  [[`8b80423`](https://github.com/consolelabs/web-foundation/commit/8b8042327aa304d9316d1948f377dc85e654f1e7),
+  [`cacf81d`](https://github.com/consolelabs/web-foundation/commit/cacf81d6a9798532db711c3e9805f1dcecdb6226),
+  [`6ca09d3`](https://github.com/consolelabs/web-foundation/commit/6ca09d31a42bdc6f3cc5f3e116a0dad04df3709c),
+  [`46eae3f`](https://github.com/consolelabs/web-foundation/commit/46eae3f3b56fa8647a772e42c776368e472b1537),
+  [`976f471`](https://github.com/consolelabs/web-foundation/commit/976f4714d9ba4e309b7edb721c2497d4dcd9ea71),
+  [`c1a37a5`](https://github.com/consolelabs/web-foundation/commit/c1a37a55baa86eb71173f91ca194318771052a16),
+  [`3c299e2`](https://github.com/consolelabs/web-foundation/commit/3c299e2fb3860692fda39a52ee6677fd31c74bba),
+  [`c5b5ca6`](https://github.com/consolelabs/web-foundation/commit/c5b5ca64f08c6a962314481f4d5049bd03ac6926),
+  [`c7ff58e`](https://github.com/consolelabs/web-foundation/commit/c7ff58e1acf9073175c6ff82e47600c954036c67)]:
+  - @consolelabs/theme@0.2.0
+  - @consolelabs/input@0.1.0
+  - @consolelabs/login-widget@0.1.0
+  - @consolelabs/icons@0.1.0
+  - @consolelabs/section-list@0.0.9
+  - @consolelabs/sidebar@0.0.12
+  - @consolelabs/profile-badge@0.0.10
+  - @consolelabs/accordion@0.0.11
+  - @consolelabs/alert@0.0.11
+  - @consolelabs/avatar@0.0.10
+  - @consolelabs/badge@0.1.4
+  - @consolelabs/button@0.1.1
+  - @consolelabs/checkbox@0.0.9
+  - @consolelabs/dropdown@0.0.11
+  - @consolelabs/icon-button@0.2.1
+  - @consolelabs/input-field@0.1.1
+  - @consolelabs/list@0.0.10
+  - @consolelabs/modal@0.1.5
+  - @consolelabs/popover@0.1.2
+  - @consolelabs/select@0.0.7
+  - @consolelabs/switch@0.0.8
+  - @consolelabs/toggle-button@0.0.8
+  - @consolelabs/tooltip@0.0.9
+
 ## 0.1.0
 
 ### Minor Changes

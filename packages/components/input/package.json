@@ -1,6 +1,6 @@
 {
   "name": "@consolelabs/input",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [

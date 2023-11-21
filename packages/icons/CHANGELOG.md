@@ -1,5 +1,14 @@
 # @consolelabs/icons
 
+## 0.1.0
+
+### Minor Changes
+
+- [#239](https://github.com/consolelabs/web-foundation/pull/239)
+  [`6ca09d3`](https://github.com/consolelabs/web-foundation/commit/6ca09d31a42bdc6f3cc5f3e116a0dad04df3709c)
+  Thanks [@leduyhien152](https://github.com/leduyhien152)! - New design for
+  login widget
+
 ## 0.0.4
 
 ### Patch Changes
