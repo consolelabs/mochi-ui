@@ -13,7 +13,7 @@ describe('Typography', () => {
       <Typography level="h1">Hello, world!</Typography>,
     )
     const element = container.firstChild
-    expect(element).toHaveClass('text-4xl font-bold')
+    expect(element).toHaveClass('text-7xl font-bold')
   })
 
   it('applies the correct color class', () => {
@@ -21,15 +21,7 @@ describe('Typography', () => {
       <Typography color="primary">Hello, world!</Typography>,
     )
     const element = container.firstChild
-    expect(element).toHaveClass('text-primary-700 border-primary-700')
-  })
-
-  it('applies the correct variant class', () => {
-    const { container } = render(
-      <Typography variant="outlined">Hello, world!</Typography>,
-    )
-    const element = container.firstChild
-    expect(element).toHaveClass('border text-opacity-70')
+    expect(element).toHaveClass('text-primary-plain-fg')
   })
 
   it('applies the noWrap class when noWrap is true', () => {

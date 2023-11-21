@@ -1,12 +1,9 @@
-import { typography, TypographyProps } from '@consolelabs/theme'
+import { typography, TypographyStyleProps } from '@consolelabs/theme'
 
-type Props = TypographyProps & {
+export type TypographyProps = TypographyStyleProps & {
   children?: React.ReactNode
   className?: string
-  levelMapping?: Record<
-    NonNullable<TypographyProps['level']>,
-    keyof JSX.IntrinsicElements
-  >
+  component?: React.ElementType
 }
 
 const defaultLevelMapping = {
@@ -14,6 +11,8 @@ const defaultLevelMapping = {
   h2: 'h2',
   h3: 'h3',
   h4: 'h4',
+  h5: 'h5',
+  h6: 'h6',
   'title-lg': 'p',
   'title-md': 'p',
   'title-sm': 'p',
@@ -27,15 +26,14 @@ const defaultLevelMapping = {
 export default function Typography({
   children,
   level: levelProp,
-  levelMapping,
+  component: componentProp,
   color,
-  variant,
   noWrap,
   className,
-}: Props) {
+}: TypographyProps) {
   const { typographyVariants } = typography
   const level = levelProp || 'body-md'
-  const Component = levelMapping?.[level] || defaultLevelMapping[level]
+  const Component = componentProp || defaultLevelMapping[level]
 
   return (
     <Component
@@ -43,7 +41,6 @@ export default function Typography({
         className,
         level,
         color,
-        variant,
         noWrap,
       })}
     >
