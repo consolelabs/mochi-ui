@@ -1,8 +1,6 @@
-import { api } from '~constants/mochi'
 import { create } from 'zustand'
 import { useMochi } from '@consolelabs/core'
 import { API, apiLogin, apiLogout } from '~constants/api'
-import { useProfileStore } from './profile'
 
 const STORAGE_KEY = 'mochi.token'
 
@@ -35,8 +33,8 @@ export const useAuthStore = create<State>((set, get) => ({
   logout: () => {
     useMochi.getState().logout()
     localStorage.removeItem(STORAGE_KEY)
-    api.token(null)
     apiLogout()
+    import('../constants/mochi').then(({ api }) => api.token(null))
   },
   login: async ({ token: tokenParam, showLoading = false }: LoginProps) => {
     const { logout: _logout } = get()
@@ -56,7 +54,8 @@ export const useAuthStore = create<State>((set, get) => ({
       set({
         ...(showLoading ? { isLoadingSession: true, isLogging: true } : {}),
       })
-      api.token(token)
+
+      import('../constants/mochi').then(({ api }) => api.token(token))
       await API.MOCHI_PROFILE.auth(`Bearer ${token}`)
         .get('/profiles/me')
         .badRequest(logout)
@@ -70,7 +69,11 @@ export const useAuthStore = create<State>((set, get) => ({
           set({ isLoadingSession: false })
           return res.json()
         })
-        .then((me) => useProfileStore.getState().setMe(me))
+        .then((me) => {
+          import('./profile').then(({ useProfileStore }) => {
+            useProfileStore.getState().setMe(me)
+          })
+        })
     }
   },
   hideIsLogging: () => {

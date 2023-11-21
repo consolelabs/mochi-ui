@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic'
 import Text from '~cpn/base/text'
 import { SEO } from '~app/layout/seo'
 import QRCodeButton from '~components/Pay/QRCodeButton'
@@ -23,6 +24,8 @@ import { useEffect } from 'react'
 import { PayRequest, usePayRequest } from '~store/pay-request'
 import { Platform, utils as mochiUtils } from '@consolelabs/mochi-ui'
 import { UI } from '../../constants/mochi'
+
+const Toaster = dynamic(() => import('sonner').then((m) => m.Toaster))
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { pay_code } = ctx.query
@@ -150,6 +153,13 @@ export default function PayCode({
 
   return (
     <Layout>
+      <Toaster
+        position="top-right"
+        closeButton
+        toastOptions={{
+          className: 'w-full',
+        }}
+      />
       <SEO
         title={
           isPayMe

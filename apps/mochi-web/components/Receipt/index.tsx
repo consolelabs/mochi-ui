@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import useSWR from 'swr'
 import { API } from '~constants/api'
 import { successStampIcon, failStampIcon, coinIcon } from '~utils/image'
@@ -8,10 +9,7 @@ import { useDisclosure } from '@dwarvesf/react-hooks'
 import { HOME_URL } from '~envs'
 import DataList from './DataList'
 import Header from './Header'
-import { transformData } from './utils'
 import Buttons from './Buttons'
-
-export { transformData }
 
 interface Props {
   id?: string
@@ -19,6 +17,8 @@ interface Props {
   // instead the UI will use this data to render
   data?: any
 }
+
+let transformData: any
 
 export default function Receipt({ id, data: _data }: Props) {
   const { data, isLoading } = useSWR(
@@ -31,6 +31,9 @@ export default function Receipt({ id, data: _data }: Props) {
         .json((r: any) => r.data)
 
       if (!raw) return null
+      if (!transformData) {
+        ;({ transformData } = await import('./utils'))
+      }
       return transformData(raw)
     },
   )
@@ -75,8 +78,10 @@ export default function Receipt({ id, data: _data }: Props) {
                     'items-baseline': !data.isLongNumber,
                   })}
                 >
-                  <img
-                    className={clsx('mr-1 w-7 h-7', {})}
+                  <Image
+                    width={28}
+                    height={28}
+                    className="mr-1"
                     src={data.data.tokenIcon || coinIcon.src}
                     alt=""
                   />
@@ -183,9 +188,7 @@ export default function Receipt({ id, data: _data }: Props) {
                 </DataList>
               </div>
               <div className="flex justify-between px-2 mt-5 text-xs font-light">
-                <a className="text-current" href="#">
-                  Mochi &copy; 2023
-                </a>
+                <span className="text-current">Mochi &copy; 2023</span>
                 <span className="text-current">{data.data.full_date}</span>
               </div>
             </div>
