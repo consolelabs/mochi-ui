@@ -20,7 +20,7 @@ const dropdownIconStyleCva = cva(['shrink-0 flex text-inherit'], {
 const dropdownChildItemClsx = ({
   className = '',
 }: { className?: string } = {}) =>
-  clsx('flex-1 py-0.5 flex flex-col text-neutral-800', className)
+  clsx('flex-1 py-0.5 flex flex-col text-text-primary', className)
 
 const dropdownChildItemSubtitleClsx = ({
   className = '',
@@ -42,7 +42,7 @@ export const dropdownItemStyleCva = cva(
       },
       disabled: {
         true: ['text-neutral-600'],
-        false: ['hover:bg-neutral-150 transition duration-100'],
+        false: ['hover:bg-neutral-100 transition duration-100'],
       },
     },
     defaultVariants: {
@@ -56,13 +56,13 @@ const dropdownMenuSubTriggerClsx = ({
   className = '',
 }: {
   className?: string
-} = {}) => clsx('-rotate-90 text-neutral-500', className)
+} = {}) => clsx('-rotate-90 text-text-secondary', className)
 
 export const dropdownContentStyleCva = cva(
   [
     'border border-neutral-200 z-50',
     'p-2',
-    'bg-white',
+    'bg-background-popup',
     'space-y-1',
     'min-w-[240px]',
   ],
@@ -86,7 +86,7 @@ const dropdownMenuRadioIconClsx = ({
   className = '',
 }: {
   className?: string
-} = {}) => clsx('text-primary-700', className)
+} = {}) => clsx('text-primary-solid', className)
 
 const dropdownMenuSeparatorClsx = ({
   className = '',
