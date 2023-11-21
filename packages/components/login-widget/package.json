@@ -34,6 +34,9 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
+    "@consolelabs/button": "workspace:*",
+    "@consolelabs/dropdown": "workspace:*",
+    "@consolelabs/tabs": "workspace:*",
     "@consolelabs/heading": "workspace:*",
     "@consolelabs/icons": "workspace:*",
     "@consolelabs/theme": "workspace:*",

@@ -1,4 +1,5 @@
 import { VariantProps, cva } from 'class-variance-authority'
+import clsx from 'clsx'
 
 const tabTriggerVariants = cva(
   [
@@ -40,8 +41,11 @@ const tabTriggerVariants = cva(
   },
 )
 
-const tabTriggerWrapperClassName =
-  'inline-flex flex-1 px-2 border-r border-r-neutral-200 last:border-none sm:border-none'
+const tabTriggerWrapperClassName = ({ className }: { className?: string }) =>
+  clsx(
+    'inline-flex flex-1 px-2 border-r border-r-neutral-200 last:border-none sm:border-none',
+    className,
+  )
 
 export const tabs = {
   tabTriggerVariants,

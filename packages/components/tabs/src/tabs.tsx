@@ -13,16 +13,20 @@ const TabContent = RadixTabs.Content
 type TabTriggerProps = React.ComponentPropsWithoutRef<
   typeof RadixTabs.Trigger
 > &
-  TabTriggerStylesProps
+  TabTriggerStylesProps & {
+    wrapperClassName?: string
+  }
 
 const TabTrigger = React.forwardRef<
   React.ElementRef<typeof RadixTabs.Trigger>,
   TabTriggerProps
->(({ className, variant, disabled, ...props }, ref) => {
+>(({ wrapperClassName, className, variant, disabled, ...props }, ref) => {
   const { tabTriggerVariants, tabTriggerWrapperClassName } = tabs
 
   return (
-    <div className={tabTriggerWrapperClassName}>
+    <div
+      className={tabTriggerWrapperClassName({ className: wrapperClassName })}
+    >
       <RadixTabs.Trigger
         className={tabTriggerVariants({ className, variant, disabled })}
         disabled={disabled}

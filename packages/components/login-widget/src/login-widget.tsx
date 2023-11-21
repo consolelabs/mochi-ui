@@ -1,51 +1,27 @@
 import * as Dialog from '@radix-ui/react-dialog'
-import { Drawer } from 'vaul'
-import { useWindowSize } from '@uidotdev/usehooks'
 import React, { useCallback, useMemo, useState } from 'react'
-import { Heading } from '@consolelabs/heading'
 import { useMochi } from '@consolelabs/mochi-store'
 import {
-  IconConnectWallets,
-  IconCrossCircled,
+  IconCheck,
+  IconClose,
   IconExclamationTriangle,
 } from '@consolelabs/icons'
+import { Button } from '@consolelabs/button'
 import { loginWidget } from '@consolelabs/theme'
-import getAvailableWallets from './providers'
-import Wallet from './wallet'
 import type { WalletProps } from './wallet'
 import {
   LoginState,
   LoginWidgetContext,
   useLoginWidgetContext,
 } from './context'
+import { WalletList, OnSuccess } from './wallet-list'
 
 const {
-  loginGroupWrapperClsx,
-  loginGroupNameClsx,
-  loginGroupWalletsClsx,
-  loginInnerWrapperClsx,
-  loginInnerTitleClsx,
-  loginInnerGroupClsx,
-  loginInnerContentClsx,
-  loginInnerCloseButtonClsx,
-  loginInnerCloseIconClsx,
   loginInnerStateClsx,
   loginWidgetTriggerClsx,
-  loginWidgetMobileDrawerOverlayClsx,
-  loginWidgetMobileDrawerContentWrapperClsx,
-  loginWidgetMobileDrawerContentClsx,
   loginWidgetDialogOverlayClsx,
   loginWidgetDialogContentWrapperClsx,
 } = loginWidget
-
-const connectors = getAvailableWallets()
-
-type OnSuccess = (data: {
-  signature: string
-  msg: string
-  addresses: string[]
-  platform: 'evm' | 'solana' | 'ronin' | 'sui'
-}) => void
 
 interface WidgetProps {
   open: boolean
@@ -57,128 +33,146 @@ interface WidgetProps {
   meUrl: string
 }
 
-function Group(props: {
-  name: string
-  wallets: WalletProps[]
-  onSelectWallet: (w: WalletProps) => void
-  onError: (e: string) => void
-  onSuccess: WidgetProps['onSuccess']
-}) {
-  if (!props.wallets.length) return null
-  return (
-    <div className={loginGroupWrapperClsx()}>
-      <span className={loginGroupNameClsx()}>{props.name}</span>
-      <div className={loginGroupWalletsClsx()}>
-        {props.wallets.map((w) => {
-          return (
-            <Wallet
-              {...w}
-              connect={() => {
-                props.onSelectWallet(w)
-                return w
-                  .connect()
-                  .then(props.onSuccess)
-                  .catch((e: { message?: string; cause?: string }) => {
-                    props.onError(
-                      e.message ?? e.cause ?? 'Something went wrong',
-                    )
-                  })
-              }}
-              key={w.name}
-            />
-          )
-        })}
-      </div>
-    </div>
-  )
-}
-
 function Inner({ onSuccess }: { onSuccess: WidgetProps['onSuccess'] }) {
   const { state, setState, wallet, setWallet, error, setError } =
     useLoginWidgetContext()
 
-  return (
-    <>
-      <div className={loginInnerWrapperClsx()}>
-        <Dialog.Title className={loginInnerTitleClsx()}>
-          Choose your wallet
-        </Dialog.Title>
-        <div className={loginInnerGroupClsx()}>
-          {Object.entries(connectors).map((e) => {
-            return (
-              <Group
-                key={`group-${e[0]}`}
-                name={e[0]}
-                onError={setError}
-                onSelectWallet={(w) => {
-                  setError('')
-                  setState(LoginState.Connecting)
-                  setWallet(w)
-                }}
-                onSuccess={onSuccess}
-                wallets={e[1]}
-              />
-            )
-          })}
+  const onReset = () => {
+    setState(LoginState.Idle)
+    setWallet(undefined)
+    setError('')
+  }
+
+  const onSelectWallet = (wallet: WalletProps) => {
+    setError('')
+    setState(LoginState.Connecting)
+    setWallet(wallet)
+  }
+
+  if (state === LoginState.Idle) {
+    return (
+      <WalletList
+        onSelectWallet={onSelectWallet}
+        onSuccess={onSuccess}
+        onError={setError}
+      />
+    )
+  }
+
+  const Icon = wallet?.icon ?? IconExclamationTriangle
+  const innerClsx = loginInnerStateClsx().connecting
+  const isSuccess = error ? -1 : Number(state === LoginState.Authenticated)
+
+  if (
+    state === LoginState.Connecting ||
+    state === LoginState.Authenticating ||
+    state === LoginState.Authenticated
+  ) {
+    return (
+      <div className={innerClsx.container}>
+        <div className={innerClsx.header}>Connect to {wallet?.name} Wallet</div>
+        <div className={innerClsx.imgWrapper}>
+          <img
+            alt="mochi icon"
+            className={innerClsx.img}
+            src="https://mochi.gg/logo.png"
+          />
+          <div className={innerClsx.divider}>
+            {isSuccess === 1 && (
+              <div className={innerClsx['connect-icon-success']}>
+                <IconCheck className={innerClsx['connect-icon']} />
+              </div>
+            )}
+            {isSuccess === -1 && (
+              <div className={innerClsx['connect-icon-error']}>
+                <IconClose className={innerClsx['connect-icon']} />
+              </div>
+            )}
+          </div>
+          <Icon className={innerClsx.icon} />
+        </div>
+        {isSuccess === -1 && (
+          <>
+            <div className={innerClsx.message}>
+              {wallet?.name} connection failed
+            </div>
+            <div className={innerClsx['message-detail']}>
+              Try again or use another wallet to connect
+            </div>
+          </>
+        )}
+        {isSuccess === 1 && (
+          <>
+            <div className={innerClsx.message}>Connection successful</div>
+            <div className={innerClsx['message-detail']}>
+              You have successfully connected your {wallet?.name} wallet to
+              Mochi
+            </div>
+          </>
+        )}
+        {isSuccess === 0 && (
+          <>
+            <div className={innerClsx.message}>Opening {wallet?.name}</div>
+            <div className={innerClsx['message-detail']}>
+              Please waiting for connection...
+            </div>
+          </>
+        )}
+        <div className={innerClsx.buttons}>
+          {isSuccess === -1 ? (
+            <Button
+              variant="solid"
+              color="primary"
+              size="lg"
+              onClick={() => {
+                if (wallet) {
+                  onSelectWallet(wallet)
+                }
+              }}
+            >
+              Try again
+            </Button>
+          ) : (
+            <Button
+              variant="outline"
+              color="neutral"
+              size="lg"
+              onClick={onReset}
+            >
+              Cancel
+            </Button>
+          )}
         </div>
       </div>
-      <div className={loginInnerContentClsx()}>
-        <Dialog.Close className={loginInnerCloseButtonClsx()}>
-          <IconCrossCircled className={loginInnerCloseIconClsx()} />
-        </Dialog.Close>
-        {(() => {
-          switch (true) {
-            case (state === LoginState.Connecting ||
-              state === LoginState.Authenticating) &&
-              Boolean(wallet): {
-              const Icon = wallet?.icon ?? IconExclamationTriangle
+    )
+  }
 
-              const innerClsx = loginInnerStateClsx().connecting
-
-              return (
-                <div className={innerClsx.container}>
-                  <div className={innerClsx.imgWrapper}>
-                    <img
-                      alt="mochi icon"
-                      className={innerClsx.img}
-                      src="https://mochi.gg/logo.png"
-                    />
-                    <div className={innerClsx.divider} />
-                    <Icon className={innerClsx.icon} />
-                  </div>
-                  <span className={innerClsx.message}>
-                    {state === LoginState.Connecting
-                      ? `Opening ${wallet?.name}...`
-                      : 'Logging into your account...'}
-                  </span>
-                  {error ? (
-                    <span className={innerClsx.error}>{error}</span>
-                  ) : null}
-                </div>
-              )
-            }
-
-            case state === LoginState.Idle:
-            default: {
-              const innerClsx = loginInnerStateClsx().idle
-
-              return (
-                <div className={innerClsx.container}>
-                  <IconConnectWallets className={innerClsx.icon} />
-                  <Heading as="h3" className={innerClsx.heading}>
-                    Connect your wallet
-                  </Heading>
-                  <span className={innerClsx.message}>
-                    By connecting your wallet, you agree to your Term of Service
-                    and our Privacy Policy
-                  </span>
-                </div>
-              )
-            }
-          }
-        })()}
+  return (
+    <div className={innerClsx.container}>
+      <div className={innerClsx.header}>Connect to {wallet?.name} Wallet</div>
+      <div className={innerClsx.message}>
+        <div className={innerClsx['message-detail']}>
+          Unfortunately, we did not receive the confirmation. Please, try again.
+        </div>
       </div>
-    </>
+      <div className={innerClsx.buttons}>
+        <Button variant="outline" color="neutral" size="lg" onClick={onReset}>
+          Cancel
+        </Button>
+        <Button
+          variant="solid"
+          color="primary"
+          size="lg"
+          onClick={() => {
+            if (wallet) {
+              onSelectWallet(wallet)
+            }
+          }}
+        >
+          Try again
+        </Button>
+      </div>
+    </div>
   )
 }
 
@@ -192,7 +186,6 @@ const LoginWidget = ({
   meUrl,
 }: WidgetProps) => {
   const { user, login, logout } = useMochi()
-  const size = useWindowSize()
 
   const [state, setState] = useState<LoginState>(LoginState.Idle)
   const [wallet, setWallet] = useState<WalletProps>()
@@ -269,55 +262,22 @@ const LoginWidget = ({
     return trigger
   }
 
-  let content: React.ReactNode = null
-
-  if ((size.width ?? 0) <= 768) {
-    content = (
-      <Drawer.Root>
-        {/* @ts-ignore */}
-        <Drawer.Trigger asChild>{trigger}</Drawer.Trigger>
-        {/* @ts-ignore */}
-        <Drawer.Portal>
-          {/* @ts-ignore */}
-          <Drawer.Overlay className={loginWidgetMobileDrawerOverlayClsx()} />
-          {/* @ts-ignore */}
-          <Drawer.Content
-            className={loginWidgetMobileDrawerContentWrapperClsx()}
-          >
-            <div className={loginWidgetMobileDrawerContentClsx().container}>
-              <div className={loginWidgetMobileDrawerContentClsx().divider} />
-              <div
-                className={loginWidgetMobileDrawerContentClsx().innerWrapper}
-              >
-                <Inner onSuccess={handleLogin} />
-              </div>
-            </div>
-          </Drawer.Content>
-        </Drawer.Portal>
-      </Drawer.Root>
-    )
-  }
-
-  content = (
-    <Dialog.Root onOpenChange={onOpenChange} open={open}>
-      <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
-      <Dialog.Portal>
-        <Dialog.Overlay className={loginWidgetDialogOverlayClsx()} />
-        <Dialog.Content asChild>
-          <div
-            className={loginWidgetDialogContentWrapperClsx()}
-            style={{ boxShadow: '0px 0px 20px 0px rgba(0, 0, 0, 0.18)' }}
-          >
-            <Inner onSuccess={handleLogin} />
-          </div>
-        </Dialog.Content>
-      </Dialog.Portal>
-    </Dialog.Root>
-  )
-
   return (
     <LoginWidgetContext.Provider value={value}>
-      {content}
+      <Dialog.Root onOpenChange={onOpenChange} open={open}>
+        <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
+        <Dialog.Portal>
+          <Dialog.Overlay className={loginWidgetDialogOverlayClsx()} />
+          <Dialog.Content asChild>
+            <div
+              className={loginWidgetDialogContentWrapperClsx()}
+              style={{ boxShadow: '0px 0px 20px 0px rgba(0, 0, 0, 0.18)' }}
+            >
+              <Inner onSuccess={handleLogin} />
+            </div>
+          </Dialog.Content>
+        </Dialog.Portal>
+      </Dialog.Root>
     </LoginWidgetContext.Provider>
   )
 }
