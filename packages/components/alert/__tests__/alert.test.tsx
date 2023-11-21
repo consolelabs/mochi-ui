@@ -16,7 +16,7 @@ describe('Alert', () => {
     const title = 'Test Alert'
     const message = 'This is a test alert'
     const { container } = render(<Alert title={title}>{message}</Alert>)
-    expect(container.firstChild).toHaveClass('bg-neutral-plain-hover')
+    expect(container.firstChild).toHaveClass('bg-neutral-100')
   })
 
   it('renders with the provided appearance', () => {
@@ -27,7 +27,7 @@ describe('Alert', () => {
         {message}
       </Alert>,
     )
-    expect(container.firstChild).toHaveClass('bg-success-plain-hover')
+    expect(container.firstChild).toHaveClass('bg-success-100')
   })
 
   it('renders with the provided size', () => {
