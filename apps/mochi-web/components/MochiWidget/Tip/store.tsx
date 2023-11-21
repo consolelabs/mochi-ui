@@ -42,7 +42,7 @@ interface TipWidgetState {
   isTransferring: boolean
 
   tx: any
-  clearTx: () => void
+  error: any | null
   reset: () => void
 }
 
@@ -83,7 +83,7 @@ export const useTipWidget = create(
         s.request.theme = theme
       }),
     tx: null,
-    clearTx: () => set({ tx: null }),
+    error: null,
     reset: () =>
       set((s) => {
         s.direction = -1
@@ -130,6 +130,7 @@ export const useTipWidget = create(
         set({ tx })
       } catch (e) {
         console.error(e)
+        set({ error: e })
       } finally {
         set({ isTransferring: false })
         get().reset()

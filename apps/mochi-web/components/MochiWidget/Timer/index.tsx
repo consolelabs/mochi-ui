@@ -26,7 +26,7 @@ function count(
     onEnd?.()
     return
   }
-  p.current -= 100
+  p.current -= 10
 
   if (element) {
     element.style.strokeDashoffset = String(
@@ -48,7 +48,7 @@ export default function Timer(props: TimerProps) {
     if (props.start && !id) {
       id = setInterval(() => {
         count(p, props.time ?? 5000, ref.current, onEnd)
-      }, 100)
+      }, 10)
     }
 
     return () => {
@@ -78,7 +78,7 @@ export default function Timer(props: TimerProps) {
         cx={size / 2}
         cy={size / 2}
         fill="transparent"
-        stroke="#60e6a8"
+        stroke="currentColor"
         strokeLinecap="round"
         strokeWidth={4}
         strokeDasharray={c}

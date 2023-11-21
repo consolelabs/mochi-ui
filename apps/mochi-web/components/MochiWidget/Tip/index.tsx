@@ -1,3 +1,4 @@
+import { useDisclosure } from '@dwarvesf/react-hooks'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useShallow } from 'zustand/react/shallow'
@@ -51,7 +52,9 @@ const commonProps = {
 
 export default function Tip() {
   const isLoggedIn = useAuthStore(useShallow((s) => s.isLoggedIn))
-  const { step, tx, direction, clearTx, reset } = useTipWidget()
+  const { step, error, tx, direction, reset } = useTipWidget()
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -59,24 +62,49 @@ export default function Tip() {
     }
   }, [isLoggedIn, reset])
 
+  useEffect(() => {
+    if ((error && !tx) || (!error && tx)) onOpen()
+  }, [error, onOpen, tx])
+
   return (
     <div className="relative">
       <div
         className={clsx(
-          'flex justify-between z-10 transition-transform absolute top-0 w-full p-3 duration-300 rounded-md bg-green-50 border border-green-200 text-green-700 font-medium text-sm',
+          'origin-center flex justify-between z-10 transition-transform absolute top-0 w-full p-3 duration-300 rounded-md border font-medium text-sm',
           {
-            'translate-y-0 shadow-xl': !!tx,
-            'translate-y-[calc(-100%-12px)]': !tx,
+            'border-green-200 bg-green-50 text-green-700': !error,
+            'border-red-200 bg-red-50 text-red-700': error,
+            'scale-1 translate-y-0 shadow-xl': isOpen,
+            'shadow scale-[0.9] translate-y-[calc(-100%-16px)]': !isOpen,
           },
         )}
       >
-        <span>
-          🎉 Transfer success,{' '}
-          <Link className="underline" href={`/tx/${tx?.external_id}`}>
-            here is your receipt
-          </Link>
-        </span>
-        <Timer className="w-5 h-5" start={!!tx} onEnd={clearTx} time={6000} />
+        {!error ? (
+          <>
+            <span>
+              🎉 Transfer success,{' '}
+              <Link className="underline" href={`/tx/${tx?.external_id}`}>
+                here is your receipt
+              </Link>
+            </span>
+            <Timer
+              className="w-5 h-5 text-green-500"
+              start={isOpen}
+              onEnd={onClose}
+              time={6000}
+            />
+          </>
+        ) : (
+          <>
+            <span>😕 Something went wrong, please try again</span>
+            <Timer
+              className="w-5 h-5 text-red-500"
+              start={isOpen}
+              onEnd={onClose}
+              time={6000}
+            />
+          </>
+        )}
       </div>
       <AnimatePresence initial={false} custom={direction}>
         {step === 1 ? (
