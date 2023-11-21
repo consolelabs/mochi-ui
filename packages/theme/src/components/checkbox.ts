@@ -12,6 +12,7 @@ const wrapperCva = cva(['border bg-background-body'], {
       neutral: '',
       danger: '',
       warning: '',
+      success: '',
     },
     disabled: {
       true: [
@@ -97,6 +98,20 @@ const wrapperCva = cva(['border bg-background-body'], {
         'data-[state=indeterminate]:bg-neutral-solid',
         'data-[state=indeterminate]:text-neutral-solid-fg',
         'data-[state=indeterminate]:border-neutral-solid',
+      ],
+    },
+    {
+      disabled: false,
+      appearance: 'success',
+      className: [
+        'hover:border-success-solid',
+        'focus:ring-success-solid/10',
+        'data-[state=checked]:bg-success-solid',
+        'data-[state=checked]:text-success-solid-fg',
+        'data-[state=checked]:border-success-solid',
+        'data-[state=indeterminate]:bg-success-solid',
+        'data-[state=indeterminate]:text-success-solid-fg',
+        'data-[state=indeterminate]:border-success-solid',
       ],
     },
   ],

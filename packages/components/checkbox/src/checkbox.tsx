@@ -27,6 +27,8 @@ const Checkbox = forwardRef<
     appearance,
     onChange,
     disabled = false,
+    asChild,
+    children,
     ...restProps
   } = props
   return (
@@ -37,10 +39,14 @@ const Checkbox = forwardRef<
       onCheckedChange={onChange}
       {...restProps}
     >
-      <CheckboxPrimitive.Indicator className={checkbox.indicator}>
-        <IconCheck id="check" />
-        <IconMinus id="minus" />
-      </CheckboxPrimitive.Indicator>
+      {asChild ? (
+        children
+      ) : (
+        <CheckboxPrimitive.Indicator className={checkbox.indicator}>
+          <IconCheck id="check" />
+          <IconMinus id="minus" />
+        </CheckboxPrimitive.Indicator>
+      )}
     </CheckboxPrimitive.Root>
   )
 })

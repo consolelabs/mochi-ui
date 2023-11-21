@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react'
-import { useState } from 'react'
-import { Checkbox, CheckedState } from '../src/checkbox'
+import { CheckBoxStyleProps } from '@consolelabs/theme'
+import { Checkbox, CheckboxProps } from '../src/checkbox'
 
 const meta: Meta<typeof Checkbox> = {
   title: 'Components/Checkbox',
@@ -15,7 +15,14 @@ const meta: Meta<typeof Checkbox> = {
     },
     appearance: {
       control: 'select',
-      options: ['primary', 'secondary', 'neutral', 'warning', 'danger'],
+      options: [
+        'primary',
+        'secondary',
+        'neutral',
+        'success',
+        'warning',
+        'danger',
+      ],
     },
   },
 }
@@ -34,24 +41,42 @@ export const Default: StoryObj<typeof Checkbox> = {
   },
 }
 
-export const SizeLg: StoryObj<typeof Checkbox> = {
+export const Sizes: StoryObj<typeof Checkbox> = {
   render() {
+    const sizes: CheckboxProps['size'][] = ['md', 'lg']
     return (
-      <div className="flex gap-4">
-        <Checkbox size="lg" defaultChecked={false} />
-        <Checkbox size="lg" defaultChecked />
-        <Checkbox size="lg" defaultChecked="indeterminate" />
+      <div className="flex gap-4 flex-col">
+        {sizes.map((s) => (
+          <div key={s} className="flex gap-4">
+            <Checkbox size={s} defaultChecked={false} />
+            <Checkbox size={s} defaultChecked />
+            <Checkbox size={s} defaultChecked="indeterminate" />
+          </div>
+        ))}
       </div>
     )
   },
 }
 
-export const WithControll: StoryObj<typeof Checkbox> = {
-  render: function Render() {
-    const [isChecked, setIsChecked] = useState<CheckedState>(false)
+export const Colors: StoryObj<typeof Checkbox> = {
+  render() {
+    const appearances: CheckBoxStyleProps['appearance'][] = [
+      'primary',
+      'secondary',
+      'neutral',
+      'success',
+      'warning',
+      'danger',
+    ]
     return (
-      <div className="flex gap-4">
-        <Checkbox checked={isChecked} onChange={setIsChecked} />
+      <div className="flex flex-col gap-3">
+        {appearances.map((a) => (
+          <div key={a} className="flex gap-4">
+            <Checkbox appearance={a} defaultChecked={false} />
+            <Checkbox appearance={a} defaultChecked />
+            <Checkbox appearance={a} defaultChecked="indeterminate" />
+          </div>
+        ))}
       </div>
     )
   },
