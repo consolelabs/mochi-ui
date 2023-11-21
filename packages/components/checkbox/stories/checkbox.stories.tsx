@@ -13,6 +13,10 @@ const meta: Meta<typeof Checkbox> = {
     disabled: {
       control: 'boolean',
     },
+    appearance: {
+      control: 'select',
+      options: ['primary', 'secondary', 'neutral', 'warning', 'danger'],
+    },
   },
 }
 

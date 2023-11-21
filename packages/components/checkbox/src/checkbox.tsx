@@ -21,11 +21,18 @@ const Checkbox = forwardRef<
   ElementRef<typeof CheckboxPrimitive.Root>,
   CheckboxProps
 >((props, ref) => {
-  const { className, size, onChange, disabled = false, ...restProps } = props
+  const {
+    className,
+    size,
+    appearance,
+    onChange,
+    disabled = false,
+    ...restProps
+  } = props
   return (
     <CheckboxPrimitive.Root
       ref={ref}
-      className={checkbox.wrapperCva({ disabled, size, className })}
+      className={checkbox.wrapperCva({ disabled, size, className, appearance })}
       disabled={disabled}
       onCheckedChange={onChange}
       {...restProps}
