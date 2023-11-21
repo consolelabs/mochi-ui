@@ -2,7 +2,9 @@ import { cva } from 'class-variance-authority'
 import clsx from 'clsx'
 
 const sidebarCva = cva(
-  ['group bg-white relative h-full border-r border-neutral-200 transition-all'],
+  [
+    'group bg-surface relative h-full border-r border-neutral-outline-active transition-all',
+  ],
   {
     variants: {
       expanded: {
@@ -27,19 +29,19 @@ const sidebarFooterItemsWrapperClsx = ({
   className = '',
 }: {
   className?: string
-} = {}) => clsx('border-t border-neutral-200', className)
+} = {}) => clsx('border-t border-neutral-outline-active', className)
 
 const sidebarFooterVersionWrapperClsx = ({
   className = '',
 }: {
   className?: string
-} = {}) => clsx('flex px-4 border-t border-neutral-200', className)
+} = {}) => clsx('flex px-4 border-t border-neutral-outline-active', className)
 
 const sidebarFooterVersionTextClsx = ({
   className = '',
 }: {
   className?: string
-} = {}) => clsx('text-xs text-neutral-600 tracking-tight p-2', className)
+} = {}) => clsx('text-xs text-text-secondary tracking-tight p-2', className)
 
 const sidebarToggleButtonWrapperClsx = ({
   className = '',
@@ -53,7 +55,7 @@ const sidebarToggleButtonClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
-    'items-center justify-center w-5 mt-4 bg-white border rounded-r-lg border-neutral-200 h-11',
+    'items-center justify-center w-5 mt-4 bg-surface border rounded-r-lg border-neutral-outline-active h-11',
     className,
   )
 
@@ -63,7 +65,7 @@ const sidebarToggleArrowClsx = ({
 }: {
   className?: string
   expanded?: boolean
-}) => clsx('text-neutral-800', { 'rotate-180': expanded }, className)
+}) => clsx('text-text-primary', { 'rotate-180': expanded }, className)
 
 const sidebarItemIconClsx = ({
   className = '',
@@ -76,9 +78,9 @@ const sidebarItemIconClsx = ({
 }) =>
   clsx(
     {
-      'text-primary-700': selected,
-      'text-neutral-800': !selected && !disabled,
-      'text-neutral-600': disabled,
+      'text-primary-plain-fg': selected,
+      'text-text-primary': !selected && !disabled,
+      'text-text-secondary': disabled,
     },
     className,
   )
@@ -99,8 +101,8 @@ const sidebarItemTitleClsx = ({
   clsx(
     'text-left text-sm font-medium tracking-tight line-clamp-1',
     {
-      'text-neutral-600': disabled,
-      'text-neutral-800 ': !disabled,
+      'text-text-secondary': disabled,
+      'text-text-primary ': !disabled,
     },
     className,
   )
@@ -134,10 +136,10 @@ const sidebarItemAccordionWrapperClsx = ({
 }) =>
   clsx(
     {
-      'rounded hover:bg-neutral-150': Boolean(expanded),
+      'rounded hover:bg-neutral-outline-hover': Boolean(expanded),
       '!p-0': !expanded,
       'p-2.5': expanded,
-      'bg-neutral-150': selected,
+      'bg-neutral-outline-active': selected,
     },
     className,
     customClassName,
@@ -153,7 +155,7 @@ const sidebarItemAccordionTriggerTitleClsx = ({
   clsx(
     'flex-1 flex gap-2 items-center rounded',
     {
-      'hover:bg-neutral-150 p-2.5': !expanded,
+      'hover:bg-neutral-outline-hover p-2.5': !expanded,
     },
     className,
   )
@@ -184,10 +186,10 @@ const classNamePropClsx = ({
   selected?: boolean
 }) =>
   clsx(
-    'flex gap-2 items-center p-2.5 rounded w-full cursor-pointer hover:bg-neutral-150',
+    'flex gap-2 items-center p-2.5 rounded w-full cursor-pointer hover:bg-neutral-outline-hover',
     {
       'pointer-events-none': disabled,
-      'bg-neutral-150': selected,
+      'bg-neutral-outline-active': selected,
     },
     className,
     customClassName,
@@ -201,7 +203,7 @@ const sidebarItemListWrapperClsx = ({
   index: number
 }) =>
   clsx(
-    'px-4 py-2 border-neutral-200 flex flex-col gap-y-0.5',
+    'px-4 py-2 border-neutral-outline-active flex flex-col gap-y-0.5',
     {
       'border-t': index > 0,
     },
