@@ -23,7 +23,11 @@
   },
   "peerDependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "@consolelabs/mochi-rest": "^5.1.0",
+    "@consolelabs/mochi-ui": "^16.0.0",
+    "@consolelabs/theme": "workspace:*",
+    "@dwarvesf/react-utils": "^0.4.1"
   },
   "devDependencies": {
     "clean-package": "^2.2.0",
