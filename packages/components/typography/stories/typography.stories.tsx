@@ -1,14 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import Typography from '../src/typography'
+import Typography, { TypographyProps } from '../src/typography'
 
 const meta: Meta<typeof Typography> = {
   title: 'components/Typography',
   component: Typography,
   parameters: {
-    // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
     layout: 'centered',
   },
-  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],
   argTypes: {
     level: {
@@ -32,16 +30,15 @@ const meta: Meta<typeof Typography> = {
       control: 'select',
       options: [
         'primary',
+        'secondary',
         'success',
         'warning',
         'danger',
         'neutral',
-        undefined,
+        'textPrimary',
+        'textSecondary',
+        'textTertiary',
       ],
-    },
-    variant: {
-      control: 'select',
-      options: ['plain', 'outlined', 'soft', 'solid', undefined],
     },
     noWrap: {
       control: 'boolean',
@@ -54,7 +51,58 @@ type Story = StoryObj<typeof Typography>
 
 export const Default: Story = {
   args: {
-    children:
-      'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.',
+    children: 'Lorem ipsum',
   },
+}
+
+const levelVariants: TypographyProps['level'][] = [
+  'h1',
+  'h2',
+  'h3',
+  'h4',
+  'title-lg',
+  'title-md',
+  'title-sm',
+  'body-lg',
+  'body-md',
+  'body-sm',
+  'body-xs',
+  'inherit',
+]
+
+export const Levels: Story = {
+  render: () => (
+    <div className="flex flex-col gap-2">
+      {levelVariants.map((level) => (
+        <Typography key={level} level={level}>
+          Lorem ipsum
+        </Typography>
+      ))}
+    </div>
+  ),
+}
+
+const colorVariants: TypographyProps['color'][] = [
+  'primary',
+  'secondary',
+  'danger',
+  'success',
+
+  'warning',
+  'neutral',
+  'textPrimary',
+  'textSecondary',
+  'textTertiary',
+]
+
+export const Colors: Story = {
+  render: () => (
+    <div className="flex flex-col gap-2">
+      {colorVariants.map((color) => (
+        <Typography key={color} color={color}>
+          Lorem ipsum
+        </Typography>
+      ))}
+    </div>
+  ),
 }
