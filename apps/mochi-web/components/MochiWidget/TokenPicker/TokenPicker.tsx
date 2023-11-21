@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import Image from 'next/image'
 import { IconChevronDown, IconMagnifier } from '@consolelabs/icons'
 import { useShallow } from 'zustand/react/shallow'
@@ -29,15 +30,18 @@ const TokenTabs = [
 ]
 
 interface TokenPickerProps {
+  authorized: boolean
+  unauthorizedContent?: React.ReactNode
   selectedAsset: Balance | Moniker | null
   balances?: Balance[]
-  onSelect?: (item: Balance | Moniker) => void
+  onSelect?: (item: Balance | Moniker | null) => void
 }
 
 interface TokenButtonProps {
   isToken?: boolean
   name?: string
   icon?: string
+  isOpenSelector?: boolean
 }
 
 const TokenButton = (props: TokenButtonProps) => (
@@ -58,7 +62,11 @@ const TokenButton = (props: TokenButtonProps) => (
       </span>
     )}
     <span className="text-sm font-medium">{props.name}</span>
-    <IconChevronDown className="w-4 h-4 text-[#ADACAA]" />
+    <IconChevronDown
+      className={clsx('transition w-4 h-4 text-[#ADACAA]', {
+        'rotate-180': props.isOpenSelector,
+      })}
+    />
   </div>
 )
 
@@ -72,6 +80,8 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
   selectedAsset,
   balances,
   onSelect,
+  authorized,
+  unauthorizedContent,
 }) => {
   const isFetchingWallets = useWalletStore(useShallow((s) => s.isFetching))
   const [tokenBalances, setTokenBalances] = useState<Balance[]>(
@@ -87,7 +97,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
   const [tabIdx, setTabIdx] = useState(isTokenSelected ? 0 : 1)
 
   const handleTokenSelect = useCallback(
-    (asset: Balance) => {
+    (asset: Balance | null) => {
       setIsOpenSelector(false)
       onSelect?.(asset)
       setTabIdx(0)
@@ -96,11 +106,15 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
   )
 
   useEffect(() => {
-    if (Array.isArray(balances) && balances.length) {
+    if (!Array.isArray(balances)) return
+    if (balances.length) {
       setTokenBalances(balances)
       if (!selectedAsset) {
         handleTokenSelect(balances[0])
       }
+    } else {
+      setTokenBalances([DEFAULT_BALANCE])
+      handleTokenSelect(null)
     }
   }, [balances, handleTokenSelect, selectedAsset])
 
@@ -135,61 +149,69 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
               ? selectedAsset?.token?.icon ?? DEFAULT_BALANCE.token?.icon
               : selectedAsset?.name
           }
+          isOpenSelector={isOpenSelector}
         />
       </PopoverTrigger>
       <PopoverContent
         align="start"
+        avoidCollisions={false}
         alignOffset={-8}
         className="flex flex-col gap-y-2 items-center rounded-lg shadow-md w-[414px] h-fit bg-white-pure"
       >
-        <InputField
-          className="w-full"
-          placeholder="Search"
-          startAdornment={
-            <div className="pl-2">
-              <IconMagnifier className="w-5 h-5 text-gray-500" />
-            </div>
-          }
-          onChange={onSearchChange}
-        />
-        <Tab.Group selectedIndex={tabIdx} onChange={setTabIdx}>
-          <Tab.List className="flex gap-6 w-full">
-            {TokenTabs.map((tab) => (
-              <Tab key={tab.key} className="focus-visible:outline-none">
-                {({ selected }) => (
-                  <div className="flex justify-start py-2 w-full">
-                    <Heading
-                      as="h2"
-                      className={`text-sm ${
-                        selected ? 'text-[#343433]' : 'text-[#848281]'
-                      }`}
-                    >
-                      {tab.value}
-                    </Heading>
-                  </div>
-                )}
-              </Tab>
-            ))}
-          </Tab.List>
-          <Tab.Panels className="w-full h-[350px]">
-            <Tab.Panel className="flex flex-col gap-2 h-full">
-              <TokenList
-                loading={isFetchingWallets}
-                data={filteredTokens}
-                onSelect={handleTokenSelect}
-              />
-              <span className="text-xs text-[#ADACAA]">
-                Only supported tokens are shown
-              </span>
-            </Tab.Panel>
-            <Tab.Panel className="h-full">
-              <MonikerList
-                searchTerm={searchTerm}
-                onSelect={handleMonikerSelect}
-              />
-            </Tab.Panel>
-          </Tab.Panels>
-        </Tab.Group>
+        {authorized ? (
+          <>
+            <InputField
+              className="w-full"
+              placeholder="Search"
+              startAdornment={
+                <div className="pl-2">
+                  <IconMagnifier className="w-5 h-5 text-gray-500" />
+                </div>
+              }
+              onChange={onSearchChange}
+            />
+            <Tab.Group selectedIndex={tabIdx} onChange={setTabIdx}>
+              <Tab.List className="flex gap-6 w-full">
+                {TokenTabs.map((tab) => (
+                  <Tab key={tab.key} className="focus-visible:outline-none">
+                    {({ selected }) => (
+                      <div className="flex justify-start py-2 w-full">
+                        <Heading
+                          as="h2"
+                          className={`text-sm ${
+                            selected ? 'text-[#343433]' : 'text-[#848281]'
+                          }`}
+                        >
+                          {tab.value}
+                        </Heading>
+                      </div>
+                    )}
+                  </Tab>
+                ))}
+              </Tab.List>
+              <Tab.Panels className="w-full">
+                <Tab.Panel className="flex flex-col gap-2 h-full">
+                  <TokenList
+                    loading={isFetchingWallets}
+                    data={filteredTokens}
+                    onSelect={handleTokenSelect}
+                  />
+                  <span className="text-xs text-[#ADACAA]">
+                    Only supported tokens are shown
+                  </span>
+                </Tab.Panel>
+                <Tab.Panel className="flex flex-col gap-2 h-full">
+                  <MonikerList
+                    searchTerm={searchTerm}
+                    onSelect={handleMonikerSelect}
+                  />
+                </Tab.Panel>
+              </Tab.Panels>
+            </Tab.Group>
+          </>
+        ) : (
+          unauthorizedContent
+        )}
       </PopoverContent>
     </Popover>
   )

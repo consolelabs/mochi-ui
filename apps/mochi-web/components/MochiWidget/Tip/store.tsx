@@ -1,9 +1,9 @@
 import { create } from 'zustand'
+import { API } from '~constants/api'
 import { immer } from 'zustand/middleware/immer'
 import { PopoverContent } from '@consolelabs/core'
 import { AuthPanel } from '~cpn/AuthWidget'
 import { api } from '~constants/mochi'
-import { API } from '~constants/api'
 import { Profile } from '@consolelabs/mochi-rest'
 import { Balance, Wallet, useProfileStore } from '~store'
 import { Theme } from '../ThemePicker/ThemePicker'
@@ -24,23 +24,25 @@ interface TipWidgetState {
   unauthorizedContent: React.ReactNode
   step: number
   setStep: (s: number) => void
+  direction: number
 
   wallet: Wallet | null
   amountUsd: string
   setAmountUsd: (usd: string) => void
   request: Request
   updateRequestMessage: (message: string) => void
-  updateRequestTheme: (theme: Theme) => void
+  updateRequestTheme: (theme: Theme | null) => void
   updateSourceWallet: (s: Wallet) => void
-  addRecipient: (recipient: Profile) => void
+  setRecipients: (recipients: Profile[]) => void
   removeRecipient: (recipient: Profile) => void
-  setAsset: (asset: Balance | Moniker) => void
+  setAsset: (asset: Balance | Moniker | null) => void
   setAmount: (amount: number) => void
 
   execute: () => Promise<void>
   isTransferring: boolean
 
   tx: any
+  clearTx: () => void
   reset: () => void
 }
 
@@ -63,17 +65,29 @@ export const useTipWidget = create(
     },
     amountUsd: '',
     setAmountUsd: (amountUsd) => set({ amountUsd }),
+
     step: 1,
-    setStep: (step) => set({ step }),
+    setStep: (step) =>
+      set((s) => {
+        s.direction = s.step > step ? -1 : 1
+        s.step = step
+      }),
+    direction: 0,
+
     updateRequestMessage: (message) =>
-      set((s) => (s.request.message = message)),
+      set((s) => {
+        s.request.message = message
+      }),
     updateRequestTheme: (theme) =>
       set((s) => {
         s.request.theme = theme
       }),
     tx: null,
+    clearTx: () => set({ tx: null }),
     reset: () =>
       set((s) => {
+        s.direction = -1
+        s.step = 1
         s.request = {
           recipients: [],
           message: null,
@@ -82,7 +96,6 @@ export const useTipWidget = create(
           theme: null,
         }
         s.wallet = null
-        s.tx = null
         s.isTransferring = false
       }),
     isTransferring: false,
@@ -119,6 +132,7 @@ export const useTipWidget = create(
         console.error(e)
       } finally {
         set({ isTransferring: false })
+        get().reset()
       }
     },
     updateSourceWallet: (wallet) => {
@@ -157,19 +171,11 @@ export const useTipWidget = create(
           }
         })
     },
-    addRecipient: (recipient) => {
-      const { recipients } = get().request
+    setRecipients: (recipients) => {
       const isMax = (recipients?.length ?? 0) >= MAX_RECIPIENTS
-      const isExist = recipients?.find(
-        (r) =>
-          r.associated_accounts?.[0].id ===
-          recipient.associated_accounts?.[0].id,
-      )
-      if (isMax || isExist) {
-        return
-      }
+      if (isMax) return
       set((s) => {
-        s.request.recipients = [...(s.request.recipients || []), recipient]
+        s.request.recipients = recipients
       })
     },
     removeRecipient: (recipient) =>

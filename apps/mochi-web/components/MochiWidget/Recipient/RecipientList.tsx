@@ -1,13 +1,14 @@
+import { Combobox } from '@headlessui/react'
 import { List } from '@consolelabs/core'
 import { Profile } from '@consolelabs/mochi-rest'
 import { RecipientItem } from './RecipientItem'
 import { EmptyList } from './EmptyList'
+import Skeleton from '../Tip/Skeleton'
 
 interface Props {
+  loading: boolean
   data: Profile[]
   selectedRecipients?: Profile[]
-  onSelect?: (account: Profile) => void
-  onRemove?: (account: Profile) => void
 }
 
 const ProfilePlaceholder: Profile = {
@@ -27,24 +28,30 @@ const ProfilePlaceholder: Profile = {
 }
 
 export const RecipientList = (props: Props) => {
-  const { data, selectedRecipients = [], onSelect, onRemove } = props
+  const { data, selectedRecipients = [] } = props
   return (
     <List
+      listClassName="max-h-[350px]"
+      loading={props.loading}
       rootClassName="w-full"
       data={data}
       ListEmpty={<EmptyList />}
       renderItem={(item) => (
-        <RecipientItem
-          profile={item || ProfilePlaceholder}
-          isSelected={selectedRecipients.some(
-            (recipient) =>
-              recipient.associated_accounts?.[0].id ===
-              item?.associated_accounts?.[0].id,
+        <Combobox.Option key={item.id} value={item}>
+          {({ active }) => (
+            <RecipientItem
+              active={active}
+              profile={item || ProfilePlaceholder}
+              isSelected={selectedRecipients.some(
+                (recipient) =>
+                  recipient.associated_accounts?.[0].id ===
+                  item?.associated_accounts?.[0].id,
+              )}
+            />
           )}
-          onSelect={onSelect}
-          onRemove={onRemove}
-        />
+        </Combobox.Option>
       )}
+      renderLoader={() => <Skeleton />}
     />
   )
 }
