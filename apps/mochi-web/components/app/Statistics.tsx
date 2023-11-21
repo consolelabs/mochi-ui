@@ -7,6 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
   Tooltip,
+  Typography,
 } from '@consolelabs/core'
 import { IconArrowUp, IconCheck } from '@consolelabs/icons'
 import clsx from 'clsx'
@@ -23,12 +24,12 @@ const DataBox = ({
   percentage?: number
 }) => (
   <div className="p-4 space-y-4 bg-neutral-0 rounded-xl">
-    <div className="text-sm font-medium tracking-tight text-neutral-800">
+    <Typography level="title-sm" color="textPrimary">
       {label}
-    </div>
-    <div className="text-2xl font-semibold tracking-tight text-neutral-1000">
+    </Typography>
+    <Typography level="h5" color="textPrimary">
       {amount}
-    </div>
+    </Typography>
     <div
       className={clsx('flex items-center space-x-1', {
         invisible: !percentage,
@@ -40,17 +41,15 @@ const DataBox = ({
           percentage > 0 ? 'text-success-500' : 'text-danger-500 rotate-180',
         )}
       />
-      <span
-        className={clsx(
-          'text-sm font-medium tracking-tight',
-          percentage > 0 ? 'text-success-700' : 'text-danger-700',
-        )}
+      <Typography
+        level="title-sm"
+        color={percentage > 0 ? 'success' : 'danger'}
       >
         {Math.abs(percentage) * 100}%
-      </span>
-      <span className="text-sm tracking-tight text-neutral-600">
+      </Typography>
+      <Typography level="body-sm" color="textSecondary">
         vs last month
-      </span>
+      </Typography>
     </div>
   </div>
 )
@@ -62,13 +61,13 @@ export const Statistics = () => {
     <>
       <div className="flex items-center justify-between space-x-8">
         <div>
-          <div className="text-neutral-900 text-[22px] font-semibold">
+          <Typography level="h5" color="textPrimary">
             Developer Portal
-          </div>
-          <div className="text-sm tracking-tight text-neutral-600">
+          </Typography>
+          <Typography level="body-sm" color="textSecondary">
             Build secure and frictionless payments across Web2 and Web3
             platforms with a single API call.
-          </div>
+          </Typography>
         </div>
         <div className="flex space-x-2">
           <Button variant="outline" color="neutral" className="!bg-neutral-0">
@@ -124,13 +123,13 @@ export const Statistics = () => {
             alt=""
             src="/assets/app-statistics.png"
           />
-          <div className="text-lg font-medium tracking-tight text-neutral-800">
+          <Typography level="title-lg" color="textPrimary">
             Build an app
-          </div>
-          <div className="text-sm tracking-tight text-neutral-600">
+          </Typography>
+          <Typography level="body-sm" color="textSecondary">
             Create an app to get a live API key with access to multiple Mochi
             products.
-          </div>
+          </Typography>
           <Button size="sm">Create an app</Button>
         </div>
         <div className="grid flex-1 grid-cols-3 gap-2">
