@@ -13,12 +13,33 @@ const meta: Meta<typeof LoginWidget> = {
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],
-  argTypes: {},
+  argTypes: {
+    stage: {
+      description: 'API stage default to production',
+      control: {
+        type: 'select',
+        options: ['preview', 'production'],
+      },
+    },
+    authUrl: {
+      description: '@deprecated use stage instead',
+      control: {
+        type: 'text',
+      },
+    },
+    meUrl: {
+      description: '@deprecated use stage instead',
+      control: {
+        type: 'text',
+      },
+    },
+  },
 }
 
 const authUrl =
-  'https://api.mochi-profile.console.so/api/v1/profiles/auth' as const
-const meUrl = 'https://api.mochi-profile.console.so/api/v1/profiles/me' as const
+  'https://api-preview.mochi-profile.console.so/api/v1/profiles/auth' as const
+const meUrl =
+  'https://api-preview.mochi-profile.console.so/api/v1/profiles/me' as const
 
 export default meta
 type Story = StoryObj<typeof LoginWidget>
@@ -36,7 +57,9 @@ function Widget() {
         onSuccess={setData}
         open={open}
       />
-      {data ? <code>{JSON.stringify(data)}</code> : null}
+      {data ? (
+        <code className="max-w-[320px]">{JSON.stringify(data)}</code>
+      ) : null}
     </>
   )
 }
@@ -94,12 +117,7 @@ function AssocWallet() {
           </div>
         </div>
       ) : null}
-      <LoginWidget
-        authUrl={authUrl}
-        meUrl={meUrl}
-        onOpenChange={setOpen}
-        open={open}
-      />
+      <LoginWidget onOpenChange={setOpen} open={open} />
     </div>
   )
 }

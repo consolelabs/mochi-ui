@@ -1,5 +1,5 @@
 import * as Dialog from '@radix-ui/react-dialog'
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useMochi } from '@consolelabs/mochi-store'
 import {
   IconCheck,
@@ -8,6 +8,11 @@ import {
 } from '@consolelabs/icons'
 import { Button } from '@consolelabs/button'
 import { loginWidget } from '@consolelabs/theme'
+import {
+  InitMochiAPI,
+  MOCHI_ENDPOINTS,
+  MOCHI_PREVIEW_ENDPOINTS,
+} from '@consolelabs/mochi-store/src/mochi'
 import type { WalletProps } from './wallet'
 import {
   LoginState,
@@ -29,8 +34,12 @@ interface WidgetProps {
   trigger?: React.ReactNode
   onSuccess?: OnSuccess
   onError?: (error: any) => void
-  authUrl: string
-  meUrl: string
+  // default to production
+  stage?: 'production' | 'preview'
+  // @deprecated use stage instead
+  authUrl?: string
+  // @deprecated use stage instead
+  meUrl?: string
 }
 
 function Inner({ onSuccess }: { onSuccess: WidgetProps['onSuccess'] }) {
@@ -182,8 +191,9 @@ const LoginWidget = ({
   trigger: _trigger,
   onSuccess,
   onError,
-  authUrl,
-  meUrl,
+  authUrl: _authUrl,
+  meUrl: _meUrl,
+  stage: _stage,
 }: WidgetProps) => {
   const { user, login, logout } = useMochi()
 
@@ -203,6 +213,32 @@ const LoginWidget = ({
     [state, setState, wallet, setWallet, error, setError],
   )
 
+  // backward comparability with authUrl and meUrl
+  // by default, use production endpoints
+  const { endpoint: profileEndpoint, stage } = useMemo(() => {
+    let endpoint = MOCHI_ENDPOINTS.MOCHI_PROFILE_API
+    let stage = _stage ?? 'production'
+    if (
+      _stage === 'preview' ||
+      _authUrl?.includes('preview') ||
+      _meUrl?.includes('preview')
+    ) {
+      endpoint = MOCHI_PREVIEW_ENDPOINTS.MOCHI_PROFILE_API
+      stage = 'preview'
+    }
+
+    return { endpoint, stage }
+  }, [_stage, _authUrl, _meUrl])
+
+  // initialize mochi api
+  useEffect(() => {
+    if (stage === 'preview') {
+      InitMochiAPI(MOCHI_PREVIEW_ENDPOINTS)
+    } else {
+      InitMochiAPI(MOCHI_ENDPOINTS)
+    }
+  }, [stage])
+
   const trigger: React.ReactNode = _trigger || (
     <button
       className={loginWidgetTriggerClsx()}
@@ -215,47 +251,42 @@ const LoginWidget = ({
 
   const handleLogin = useCallback<OnSuccess>(
     async (data) => {
-      setState(LoginState.Authenticating)
-      fetch(`${authUrl}/${data.platform}`, {
-        method: 'POST',
-        body: JSON.stringify({
-          wallet_address: data.addresses.at(0),
-          message: data.msg,
-          signature: data.signature,
-          platform: data.platform,
-        }),
-      })
-        .then((r) => r.json())
-        .then((r) => {
-          fetch(meUrl, {
-            headers: {
-              Authorization: `Bearer ${r.data.access_token}`,
-            },
-          })
-            .then((r1) => r1.json())
-            .then((me) =>
-              login(
-                me,
-                r.data.access_token as string,
-                data.platform === 'ronin'
-                  ? data.addresses.map((a) => `ronin:${a.slice(2)}`)
-                  : data.addresses,
-              ).then(() => {
-                setState(LoginState.Authenticated)
-                onSuccess?.(data)
-              }),
-            )
-            .catch((e) => {
-              setError(e?.message ?? 'Unknown error')
-              onError?.(e)
-            })
-        })
-        .catch((e) => {
-          setError(e?.message ?? 'Unknown error')
-          onError?.(e)
-        })
+      try {
+        const authUrl = `${profileEndpoint}/profiles/auth/${data.platform}`
+        const meUrl = `${profileEndpoint}/profiles/me`
+
+        setState(LoginState.Authenticating)
+        const resp = await fetch(authUrl, {
+          method: 'POST',
+          body: JSON.stringify({
+            wallet_address: data.addresses.at(0),
+            message: data.msg,
+            signature: data.signature,
+            platform: data.platform,
+          }),
+        }).then((r) => r.json())
+
+        const me = await fetch(meUrl, {
+          headers: {
+            Authorization: `Bearer ${resp.data.access_token}`,
+          },
+        }).then((r1) => r1.json())
+
+        await login(
+          me,
+          resp.data.access_token as string,
+          data.platform === 'ronin'
+            ? data.addresses.map((a) => `ronin:${a.slice(2)}`)
+            : data.addresses,
+        )
+        setState(LoginState.Authenticated)
+        onSuccess?.(data)
+      } catch (e: any) {
+        setError(e?.message ?? 'Unknown error')
+        onError?.(e)
+      }
     },
-    [authUrl, login, meUrl, onSuccess, onError],
+    [profileEndpoint, login, onSuccess, onError],
   )
 
   if (user) {
