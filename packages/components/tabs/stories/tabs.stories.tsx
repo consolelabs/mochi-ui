@@ -8,7 +8,7 @@ export default {
 export function Default() {
   return (
     <div className="space-y-4">
-      <div className="w-full max-w-md border rounded shadow">
+      <div className="w-full max-w-md border rounded">
         <Tabs defaultValue="account">
           <TabList className="flex justify-between py-1.5">
             <TabTrigger value="account">
@@ -27,7 +27,7 @@ export function Default() {
 
           <div className="border-b" />
 
-          <div>
+          <div className="p-4 bg-neutral-outline">
             <TabContent value="account">
               Make changes to your account.
             </TabContent>
@@ -41,7 +41,7 @@ export function Default() {
         </Tabs>
       </div>
 
-      <div className="w-full max-w-md border rounded shadow">
+      <div className="w-full max-w-md border rounded">
         <Tabs defaultValue="account">
           <TabList className="flex justify-between py-1.5">
             <TabTrigger value="account" variant="solid">
@@ -57,7 +57,7 @@ export function Default() {
 
           <div className="border-b" />
 
-          <div>
+          <div className="p-4 bg-neutral-outline">
             <TabContent value="account">
               Make changes to your account.
             </TabContent>
