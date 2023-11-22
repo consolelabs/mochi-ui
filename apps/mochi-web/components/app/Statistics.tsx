@@ -69,7 +69,7 @@ export const Statistics = () => {
             platforms with a single API call.
           </Typography>
         </div>
-        <div className="flex space-x-2 min-w-max">
+        <div className="flex justify-end w-full space-x-2 min-w-max sm:w-auto">
           <Button variant="outline" color="neutral" className="!bg-neutral-0">
             See docs
           </Button>
