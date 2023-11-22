@@ -1,5 +1,25 @@
 # @consolelabs/switch
 
+## 0.0.9
+
+### Patch Changes
+
+- [#252](https://github.com/consolelabs/web-foundation/pull/252)
+  [`55f990e`](https://github.com/consolelabs/web-foundation/commit/55f990e50c3a355f00729d2e9f568b1578e1c503)
+  Thanks [@trankhacvy](https://github.com/trankhacvy)! - Update Switch component
+
+- Updated dependencies
+  [[`2191b3d`](https://github.com/consolelabs/web-foundation/commit/2191b3d28757aa03146dc7caba093598b758c5ac),
+  [`ac61500`](https://github.com/consolelabs/web-foundation/commit/ac61500225604e973508a76a50b48bfd22b13089),
+  [`381e53c`](https://github.com/consolelabs/web-foundation/commit/381e53c915288e127290bd6ddc51468343637aed),
+  [`b038782`](https://github.com/consolelabs/web-foundation/commit/b03878263d717796581edf08d6e6e9ad60dcdc2b),
+  [`6aad54c`](https://github.com/consolelabs/web-foundation/commit/6aad54cc391ec4820c6d9ca3a5fd15c634cfd918),
+  [`6aad54c`](https://github.com/consolelabs/web-foundation/commit/6aad54cc391ec4820c6d9ca3a5fd15c634cfd918),
+  [`55f990e`](https://github.com/consolelabs/web-foundation/commit/55f990e50c3a355f00729d2e9f568b1578e1c503),
+  [`ff7f47b`](https://github.com/consolelabs/web-foundation/commit/ff7f47b4ff224bd17fea51455303aff56495ca10),
+  [`f0e6e55`](https://github.com/consolelabs/web-foundation/commit/f0e6e55c7e2a0837b8d0885683f2aeb8d423f9c3)]:
+  - @consolelabs/theme@0.3.0
+
 ## 0.0.8
 
 ### Patch Changes

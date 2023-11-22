@@ -1,5 +1,84 @@
 # @consolelabs/core
 
+## 0.2.0
+
+### Minor Changes
+
+- [#266](https://github.com/consolelabs/web-foundation/pull/266)
+  [`2191b3d`](https://github.com/consolelabs/web-foundation/commit/2191b3d28757aa03146dc7caba093598b758c5ac)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - -
+  [feat/migrate-badge-semantic-colors](https://github.com/consolelabs/web-foundation/pull/243)
+
+  - [feat/migrate-accordion-semantic-color](https://github.com/consolelabs/web-foundation/pull/240)
+
+  Update changeset for migrate accordion, badge to use semantic tailwind
+
+- [#244](https://github.com/consolelabs/web-foundation/pull/244)
+  [`ac61500`](https://github.com/consolelabs/web-foundation/commit/ac61500225604e973508a76a50b48bfd22b13089)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Update alert
+  variants
+
+- [#255](https://github.com/consolelabs/web-foundation/pull/255)
+  [`6aad54c`](https://github.com/consolelabs/web-foundation/commit/6aad54cc391ec4820c6d9ca3a5fd15c634cfd918)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Update
+  DropdownTrigger style
+
+- [#245](https://github.com/consolelabs/web-foundation/pull/245)
+  [`ff7f47b`](https://github.com/consolelabs/web-foundation/commit/ff7f47b4ff224bd17fea51455303aff56495ca10)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Update
+  Checkbox variants
+
+- [#265](https://github.com/consolelabs/web-foundation/pull/265)
+  [`f0e6e55`](https://github.com/consolelabs/web-foundation/commit/f0e6e55c7e2a0837b8d0885683f2aeb8d423f9c3)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Update input
+  field semantic color
+
+### Patch Changes
+
+- [#264](https://github.com/consolelabs/web-foundation/pull/264)
+  [`381e53c`](https://github.com/consolelabs/web-foundation/commit/381e53c915288e127290bd6ddc51468343637aed)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Use semantic tailwind
+  classes for tabs component styling
+
+- [#261](https://github.com/consolelabs/web-foundation/pull/261)
+  [`b038782`](https://github.com/consolelabs/web-foundation/commit/b03878263d717796581edf08d6e6e9ad60dcdc2b)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Use semantic tailwind
+  classes in table component styling
+
+- Updated dependencies
+  [[`2191b3d`](https://github.com/consolelabs/web-foundation/commit/2191b3d28757aa03146dc7caba093598b758c5ac),
+  [`ac61500`](https://github.com/consolelabs/web-foundation/commit/ac61500225604e973508a76a50b48bfd22b13089),
+  [`381e53c`](https://github.com/consolelabs/web-foundation/commit/381e53c915288e127290bd6ddc51468343637aed),
+  [`b038782`](https://github.com/consolelabs/web-foundation/commit/b03878263d717796581edf08d6e6e9ad60dcdc2b),
+  [`6aad54c`](https://github.com/consolelabs/web-foundation/commit/6aad54cc391ec4820c6d9ca3a5fd15c634cfd918),
+  [`6aad54c`](https://github.com/consolelabs/web-foundation/commit/6aad54cc391ec4820c6d9ca3a5fd15c634cfd918),
+  [`55f990e`](https://github.com/consolelabs/web-foundation/commit/55f990e50c3a355f00729d2e9f568b1578e1c503),
+  [`ff7f47b`](https://github.com/consolelabs/web-foundation/commit/ff7f47b4ff224bd17fea51455303aff56495ca10),
+  [`f0e6e55`](https://github.com/consolelabs/web-foundation/commit/f0e6e55c7e2a0837b8d0885683f2aeb8d423f9c3)]:
+  - @consolelabs/accordion@0.1.0
+  - @consolelabs/badge@0.2.0
+  - @consolelabs/theme@0.3.0
+  - @consolelabs/alert@0.1.0
+  - @consolelabs/dropdown@0.1.0
+  - @consolelabs/switch@0.0.9
+  - @consolelabs/checkbox@0.1.0
+  - @consolelabs/sidebar@0.0.13
+  - @consolelabs/avatar@0.0.11
+  - @consolelabs/button@0.1.2
+  - @consolelabs/icon-button@0.2.2
+  - @consolelabs/input@0.1.1
+  - @consolelabs/input-field@0.1.2
+  - @consolelabs/list@0.0.11
+  - @consolelabs/login-widget@0.1.1
+  - @consolelabs/modal@0.1.6
+  - @consolelabs/popover@0.1.3
+  - @consolelabs/profile-badge@0.0.11
+  - @consolelabs/section-list@0.0.10
+  - @consolelabs/select@0.0.8
+  - @consolelabs/toggle-button@0.0.8
+  - @consolelabs/tooltip@0.0.10
+  - @consolelabs/typography@0.0.4
+
 ## 0.1.1
 
 ### Patch Changes

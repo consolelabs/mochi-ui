@@ -1,6 +1,6 @@
 {
   "name": "@consolelabs/switch",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
