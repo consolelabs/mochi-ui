@@ -21,6 +21,7 @@ export interface BaseDropdownItemProps extends BaseDropDownItemStyle {
   subtitle?: ReactNode
   isLeftIconAvatar?: boolean
   wrapperClassName?: string
+  disabled?: boolean
 }
 export type DropdownItemRef = ElementRef<typeof DropdownMenuPrimitive.Item>
 export type DropdownItemProps = ComponentPropsWithoutRef<
@@ -82,3 +83,10 @@ export type DropdownRadioGroupProps = Omit<
     typeof DropdownMenuPrimitive.RadioGroup
   >['onValueChange']
 }
+
+export type DropdownTriggerRef = React.ElementRef<
+  typeof DropdownMenuPrimitive.Trigger
+>
+export type DropdownTriggerProps = React.ComponentPropsWithoutRef<
+  typeof DropdownMenuPrimitive.Trigger
+>

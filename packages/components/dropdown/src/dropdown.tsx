@@ -20,6 +20,8 @@ import type {
   DropdownRadioItemProps,
   DropdownRadioGroupRef,
   DropdownRadioGroupProps,
+  DropdownTriggerRef,
+  DropdownTriggerProps,
 } from './type'
 
 const {
@@ -31,6 +33,7 @@ const {
   dropdownContentStyleCva,
   dropdownMenuRadioIconClsx,
   dropdownMenuSeparatorClsx,
+  dropdownTriggerClsx,
 } = dropdown
 
 function renderDropdownChildItem(
@@ -89,7 +92,16 @@ function renderDropdownChildItem(
 
 const DropdownMenu = DropdownMenuPrimitive.Root
 
-const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger
+const DropdownMenuTrigger = React.forwardRef<
+  DropdownTriggerRef,
+  DropdownTriggerProps
+>(({ className, ...props }, ref) => (
+  <DropdownMenuPrimitive.Trigger
+    className={dropdownTriggerClsx({ className })}
+    {...props}
+    ref={ref}
+  />
+))
 
 const DropdownMenuGroup = DropdownMenuPrimitive.Group
 
@@ -130,7 +142,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
   return (
     <DropdownMenuPrimitive.SubTrigger
       asChild={asChild}
-      className={dropdownItemStyleCva({ hasPaddingLeft, disabled, className })}
+      className={dropdownItemStyleCva({ hasPaddingLeft, className })}
       disabled={disabled}
       ref={ref}
       {...resetProps}
@@ -210,7 +222,6 @@ const DropdownMenuItem = React.forwardRef<DropdownItemRef, DropdownItemProps>(
         asChild={asChild}
         className={dropdownItemStyleCva({
           hasPaddingLeft,
-          disabled,
           className: wrapperClassName,
         })}
         disabled={disabled}
@@ -259,7 +270,6 @@ const DropdownMenuRadioItem = React.forwardRef<
       asChild={asChild}
       className={dropdownItemStyleCva({
         hasPaddingLeft,
-        disabled,
         className: wrapperClassName,
       })}
       disabled={disabled}
@@ -295,7 +305,6 @@ const DropdownMenuLabel = React.forwardRef<
   const {
     className,
     hasPaddingLeft,
-    disabled,
     leftIcon,
     isLeftIconAvatar,
     rightIcon,
@@ -312,8 +321,7 @@ const DropdownMenuLabel = React.forwardRef<
       asChild={asChild}
       className={dropdownItemStyleCva({
         hasPaddingLeft,
-        disabled,
-        className: clsx(wrapperClassName, 'pointer-events-none'),
+        className: clsx(wrapperClassName),
       })}
       ref={ref}
       {...restProps}
