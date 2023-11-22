@@ -145,7 +145,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   }
 
   useEffect(() => {
-    const bal = wallet?.balances.at(0)
+    const bal = wallet?.balances[0]
     if (bal) {
       handleAssetChanged(bal)
     }
