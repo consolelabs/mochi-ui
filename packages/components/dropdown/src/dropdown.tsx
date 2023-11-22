@@ -142,7 +142,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
   return (
     <DropdownMenuPrimitive.SubTrigger
       asChild={asChild}
-      className={dropdownItemStyleCva({ hasPaddingLeft, disabled, className })}
+      className={dropdownItemStyleCva({ hasPaddingLeft, className })}
       disabled={disabled}
       ref={ref}
       {...resetProps}
@@ -222,7 +222,6 @@ const DropdownMenuItem = React.forwardRef<DropdownItemRef, DropdownItemProps>(
         asChild={asChild}
         className={dropdownItemStyleCva({
           hasPaddingLeft,
-          disabled,
           className: wrapperClassName,
         })}
         disabled={disabled}
@@ -271,7 +270,6 @@ const DropdownMenuRadioItem = React.forwardRef<
       asChild={asChild}
       className={dropdownItemStyleCva({
         hasPaddingLeft,
-        disabled,
         className: wrapperClassName,
       })}
       disabled={disabled}
@@ -307,7 +305,6 @@ const DropdownMenuLabel = React.forwardRef<
   const {
     className,
     hasPaddingLeft,
-    disabled,
     leftIcon,
     isLeftIconAvatar,
     rightIcon,
@@ -324,8 +321,7 @@ const DropdownMenuLabel = React.forwardRef<
       asChild={asChild}
       className={dropdownItemStyleCva({
         hasPaddingLeft,
-        disabled,
-        className: clsx(wrapperClassName, 'pointer-events-none'),
+        className: clsx(wrapperClassName),
       })}
       ref={ref}
       {...restProps}

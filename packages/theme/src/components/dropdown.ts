@@ -23,35 +23,37 @@ const dropdownTriggerClsx = ({ className = '' }: { className?: string }) =>
 const dropdownChildItemClsx = ({
   className = '',
 }: { className?: string } = {}) =>
-  clsx('flex-1 py-0.5 flex flex-col text-text-primary', className)
+  clsx(
+    'flex-1 py-0.5 flex flex-col text-text-primary group-data-[disabled]:text-neutral-plain-disable-fg',
+    className,
+  )
 
 const dropdownChildItemSubtitleClsx = ({
   className = '',
 }: {
   className?: string
-} = {}) => clsx('text-neutral-600 text-xs', className)
+} = {}) =>
+  clsx(
+    'text-text-secondary group-data-[disabled]:text-neutral-plain-disable-fg',
+    className,
+  )
 
 export const dropdownItemStyleCva = cva(
   [
-    'p-2 text-sm font-medium',
+    'group p-2 text-sm font-medium',
     'flex items-center justify-between gap-3',
     'cursor-default',
     'rounded-md',
-    'focus-visible:outline-none',
+    'focus-visible:outline-none data-[highlighted]:bg-neutral-plain-hover',
   ],
   {
     variants: {
       hasPaddingLeft: {
         true: 'pl-11',
       },
-      disabled: {
-        true: ['text-neutral-600'],
-        false: ['hover:bg-neutral-100 transition duration-100'],
-      },
     },
     defaultVariants: {
       hasPaddingLeft: false,
-      disabled: false,
     },
   },
 )
@@ -64,7 +66,7 @@ const dropdownMenuSubTriggerClsx = ({
 
 export const dropdownContentStyleCva = cva(
   [
-    'border border-neutral-200 z-50',
+    'border border-neutral-outline-border z-50',
     'p-2',
     'bg-background-popup',
     'space-y-1',
@@ -90,13 +92,13 @@ const dropdownMenuRadioIconClsx = ({
   className = '',
 }: {
   className?: string
-} = {}) => clsx('text-primary-solid', className)
+} = {}) => clsx('text-text-icon', className)
 
 const dropdownMenuSeparatorClsx = ({
   className = '',
 }: {
   className?: string
-} = {}) => clsx('h-px !my-2 bg-neutral-200 -mx-2', className)
+} = {}) => clsx('h-px !my-2 bg-divider -mx-2', className)
 
 export const dropdown = {
   dropdownIconStyleCva,

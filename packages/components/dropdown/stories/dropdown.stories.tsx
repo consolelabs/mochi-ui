@@ -40,6 +40,7 @@ const MenuItems: (args: any) => DropdownItemProps[] = () => [
   {
     children: 'Billing',
     leftIcon: <IconCoinbaseWallet />,
+    disabled: true,
   },
   {
     children: 'Keyboard shortcuts',
