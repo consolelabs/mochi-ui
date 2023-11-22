@@ -1,33 +1,75 @@
-import { IconCoding, IconSetting, IconUser } from '@consolelabs/icons'
 import { Tabs, TabList, TabTrigger, TabContent } from '../src/tabs'
 
 export default {
   title: 'components/Tabs',
+  tags: ['autodocs'],
 }
+
+const items = [
+  {
+    label: 'My Account',
+    value: 'my-account',
+  },
+  {
+    label: 'Profile',
+    value: 'profile',
+  },
+  {
+    label: 'Safety & Privacy',
+    value: 'safety-privacy',
+  },
+  {
+    label: 'Devices',
+    value: 'devices',
+  },
+  {
+    label: 'Friend Requests',
+    value: 'friend-requests',
+  },
+  {
+    label: 'Subscriptions',
+    value: 'subscriptions',
+  },
+]
 
 export function Default() {
   return (
+    <div className="w-full max-w-4xl">
+      <Tabs defaultValue="my-account">
+        <TabList className="flex justify-between py-1.5">
+          {items.map((item) => (
+            <TabTrigger value={item.value}>{item.label}</TabTrigger>
+          ))}
+        </TabList>
+
+        <div className="border-b" />
+
+        <div className="p-4">
+          {items.map((item) => (
+            <TabContent value={item.value}>{item.label}</TabContent>
+          ))}
+        </div>
+      </Tabs>
+    </div>
+  )
+}
+
+export function Variant() {
+  return (
     <div className="space-y-4">
-      <div className="w-full max-w-md border rounded">
+      <div className="w-full max-w-sm border rounded">
         <Tabs defaultValue="account">
           <TabList className="flex justify-between py-1.5">
-            <TabTrigger value="account">
-              <IconUser width={16} height={16} />
-              Account
-            </TabTrigger>
-            <TabTrigger value="documents">
-              <IconCoding width={16} height={16} />
-              Documents
-            </TabTrigger>
+            <TabTrigger value="account">Account</TabTrigger>
+            <TabTrigger value="documents">Documents</TabTrigger>
             <TabTrigger disabled value="settings">
-              <IconSetting width={16} height={16} />
               Settings
             </TabTrigger>
           </TabList>
 
           <div className="border-b" />
 
-          <div className="p-4 bg-neutral-outline">
+          <div className="p-4">
             <TabContent value="account">
               Make changes to your account.
             </TabContent>
@@ -41,7 +83,7 @@ export function Default() {
         </Tabs>
       </div>
 
-      <div className="w-full max-w-md border rounded">
+      <div className="w-full max-w-sm border rounded">
         <Tabs defaultValue="account">
           <TabList className="flex justify-between py-1.5">
             <TabTrigger value="account" variant="solid">
@@ -57,7 +99,7 @@ export function Default() {
 
           <div className="border-b" />
 
-          <div className="p-4 bg-neutral-outline">
+          <div className="p-4">
             <TabContent value="account">
               Make changes to your account.
             </TabContent>
@@ -72,8 +114,4 @@ export function Default() {
       </div>
     </div>
   )
-}
-
-Default.story = {
-  name: 'default',
 }
