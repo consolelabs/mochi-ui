@@ -13,7 +13,7 @@ export const SelectedRecipient: React.FC<SelectedRecipientProps> = ({
   onRemove,
 }) => (
   <li
-    className="flex flex-col gap-1 items-center mx-auto w-[56px]"
+    className="flex flex-col gap-1 items-center w-[56px]"
     key={profile.id}
     role="presentation"
   >

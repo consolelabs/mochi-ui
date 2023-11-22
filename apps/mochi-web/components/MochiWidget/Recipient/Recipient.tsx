@@ -2,14 +2,14 @@ import clsx from 'clsx'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { Combobox } from '@headlessui/react'
 import { Profile } from '@consolelabs/mochi-rest'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   InputField,
   Popover,
   PopoverContent,
   PopoverAnchor,
 } from '@consolelabs/core'
-import { IconSpinner } from '@consolelabs/icons'
+import { IconProfileGuardSuccess, IconSpinner } from '@consolelabs/icons'
 import { useDebounce, useDisclosure } from '@dwarvesf/react-hooks'
 import { API, GET_PATHS } from '~constants/api'
 import { ChainPicker } from '../ChainPicker'
@@ -44,6 +44,7 @@ export const Recipient: React.FC<RecipientProps> = ({
   onUpdateRecipient,
   onRemoveRecipient,
 }) => {
+  const inputRef = useRef<HTMLInputElement>(null)
   const {
     isOpen: isOpenRecipients,
     onOpen: openRecipients,
@@ -71,13 +72,14 @@ export const Recipient: React.FC<RecipientProps> = ({
         debouncedSearchTerm,
     )
     if (!exactResult && debouncedSearchTerm) {
+      const id = `${debouncedSearchTerm}-${selectedPlatform?.platform}`
       // if there are no exact result, we need to show an option for user to still select it
       result.push({
-        id: '',
+        id,
         associated_accounts: [
           {
             pnl: '',
-            id: '',
+            id,
             platform_metadata: { username: debouncedSearchTerm },
             platform_identifier: '',
             platform: (selectedPlatform?.platform as any) ?? '',
@@ -172,7 +174,7 @@ export const Recipient: React.FC<RecipientProps> = ({
       }}
     >
       <Popover open={isOpenRecipients} onOpenChange={onOpenChange}>
-        <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-3">
+        <div className="flex flex-col gap-y-3 p-2 rounded-xl bg bg-neutral-150">
           <div className="flex justify-between items-center px-4 h-[34px]">
             <label
               htmlFor="recipients"
@@ -200,15 +202,25 @@ export const Recipient: React.FC<RecipientProps> = ({
                   : {}
               }
             >
-              <span className="h-[34px] text-lg text-[#848281] pt-0.5">@</span>
+              <span className="pt-0.5 text-lg h-[34px] text-neutral-600">
+                @
+              </span>
               <Combobox.Input
                 id="recipients"
                 className="flex-1 h-full bg-transparent outline-none min-w-[100px]"
                 placeholder={isOnChain ? 'Enter address' : 'Enter username'}
                 value={searchTerm}
+                ref={inputRef}
                 onChange={onSearchChange}
                 onFocus={openRecipients}
+                onClick={openRecipients}
                 onBlur={(e: any) => e.preventDefault()}
+                onKeyDown={(e: any) => {
+                  if (e.key === 'Escape' && isOpenRecipients) {
+                    e.preventDefault()
+                    closeRecipients()
+                  }
+                }}
                 autoComplete="off"
               />
               <IconSpinner
@@ -226,24 +238,41 @@ export const Recipient: React.FC<RecipientProps> = ({
               />
             </div>
           </PopoverAnchor>
-          {!!selectedRecipients?.length && (
-            <ScrollArea.Viewport>
-              <div
-                style={{ maxHeight: 84 }}
-                className="grid grid-cols-4 gap-y-7 place-content-between pb-2"
-              >
-                {selectedRecipients?.map((item) => (
-                  <SelectedRecipient
-                    key={
-                      (item.id || 'unknown') +
-                      (item.associated_accounts?.[0].id || 'unknown')
-                    }
-                    profile={item}
-                    onRemove={onRemoveRecipient}
-                  />
-                ))}
-              </div>
-            </ScrollArea.Viewport>
+          {selectedRecipients?.length ? (
+            <ScrollArea.Root className="relative">
+              <div className="absolute top-0 left-0 z-10 -ml-2 w-10 h-full bg-gradient-to-r pointer-events-none from-neutral-150 from-20%" />
+              <ScrollArea.Viewport className="relative">
+                <div
+                  style={{ height: 84 }}
+                  className="flex gap-x-7 px-5 pb-2 min-w-full"
+                >
+                  {selectedRecipients?.map((item) => (
+                    <SelectedRecipient
+                      key={
+                        (item.id || 'unknown') +
+                        (item.associated_accounts?.[0].id || 'unknown')
+                      }
+                      profile={item}
+                      onRemove={onRemoveRecipient}
+                    />
+                  ))}
+                </div>
+              </ScrollArea.Viewport>
+              <div className="absolute top-0 right-0 z-10 -mr-2 w-10 h-full bg-gradient-to-l pointer-events-none from-neutral-150 from-20%" />
+              <ScrollArea.Scrollbar orientation="horizontal">
+                <ScrollArea.Thumb />
+              </ScrollArea.Scrollbar>
+            </ScrollArea.Root>
+          ) : (
+            <div
+              className="flex flex-col gap-y-2 justify-center items-center text-neutral-500"
+              style={{ height: 84 }}
+            >
+              <IconProfileGuardSuccess className="w-10 h-10" />
+              <span className="text-xs font-normal">
+                Select your recipients to send money
+              </span>
+            </div>
           )}
         </div>
         <PopoverContent
