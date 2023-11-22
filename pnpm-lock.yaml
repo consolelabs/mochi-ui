@@ -1452,6 +1452,9 @@ importers:
       '@consolelabs/tooltip':
         specifier: workspace:*
         version: link:../components/tooltip
+      '@consolelabs/typography':
+        specifier: workspace:*
+        version: link:../components/typography
     devDependencies:
       clean-package:
         specifier: ^2.2.0
