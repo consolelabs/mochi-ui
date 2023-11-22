@@ -4,22 +4,22 @@ import clsx from 'clsx'
 import type { ReactNode } from 'react'
 import { IconChevronDown, IconCheck } from '@consolelabs/icons'
 import { dropdown } from '@consolelabs/theme'
-import {
-  type DropdownContentRef,
-  type DropdownContentProps,
-  type DropdownSubContentRef,
-  type DropdownSubContentProps,
-  type DropdownSubTriggerRef,
-  type DropdownSubTriggerProps,
-  type DropdownItemRef,
-  type DropdownLabelProps,
-  type DropdownLabelRef,
-  type BaseDropdownItemProps,
-  type DropdownItemProps,
-  type DropdownRadioItemRef,
-  type DropdownRadioItemProps,
-  type DropdownRadioGroupRef,
-  type DropdownRadioGroupProps,
+import type {
+  DropdownContentRef,
+  DropdownContentProps,
+  DropdownSubContentRef,
+  DropdownSubContentProps,
+  DropdownSubTriggerRef,
+  DropdownSubTriggerProps,
+  DropdownItemRef,
+  DropdownLabelProps,
+  DropdownLabelRef,
+  BaseDropdownItemProps,
+  DropdownItemProps,
+  DropdownRadioItemRef,
+  DropdownRadioItemProps,
+  DropdownRadioGroupRef,
+  DropdownRadioGroupProps,
   DropdownTriggerRef,
   DropdownTriggerProps,
 } from './type'
