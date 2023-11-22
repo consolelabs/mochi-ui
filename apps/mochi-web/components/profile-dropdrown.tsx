@@ -26,14 +26,16 @@ export default function ProfileDropdown() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
-        {isLoggedIn && me && (
-          <ProfileBadge
-            avatar={me?.avatar || '/logo.png'}
-            name={truncateWallet(me.profile_name) || 'unknown'}
-            platform={me.platformIcon || '/logo.png'}
-          />
-        )}
+      <DropdownMenuTrigger asChild>
+        <div>
+          {isLoggedIn && me && (
+            <ProfileBadge
+              avatar={me?.avatar || '/logo.png'}
+              name={truncateWallet(me.profile_name) || 'unknown'}
+              platform={me.platformIcon || '/logo.png'}
+            />
+          )}
+        </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <Link href="/profile">
