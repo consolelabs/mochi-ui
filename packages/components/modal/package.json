@@ -1,6 +1,6 @@
 {
   "name": "@consolelabs/modal",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
