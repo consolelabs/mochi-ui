@@ -69,12 +69,16 @@ export const Statistics = () => {
             platforms with a single API call.
           </Typography>
         </div>
-        <div className="flex space-x-2">
-          <Button variant="outline" color="neutral" className="!bg-neutral-0">
+        <div className="flex flex-wrap justify-end gap-2 sm:min-w-max">
+          <Button
+            variant="outline"
+            color="neutral"
+            className="!bg-neutral-0 min-w-max"
+          >
             See docs
           </Button>
           <Select value={selectedApp} onChange={setSelectedApp}>
-            <SelectTrigger className="rounded bg-neutral-150">
+            <SelectTrigger className="rounded bg-neutral-150 min-w-max">
               <Tooltip
                 content="Selected app"
                 arrow="top-center"
