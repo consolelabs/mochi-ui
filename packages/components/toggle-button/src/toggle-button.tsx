@@ -35,12 +35,12 @@ type ToggleButtonProps = React.ComponentPropsWithoutRef<
 const ToggleButton = React.forwardRef<
   React.ElementRef<typeof ToggleGroup.Item>,
   ToggleButtonProps
->(({ className, ...props }, ref) => {
+>(({ className, appearance, ...props }, ref) => {
   const { toggleButtonVariants } = toggleButton
 
   return (
     <ToggleGroup.Item
-      className={toggleButtonVariants({ className })}
+      className={toggleButtonVariants({ appearance, className })}
       ref={ref}
       {...props}
     />
