@@ -190,7 +190,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
                 },
               } as any)
             }
-            className="text-[#848281] text-[13px]"
+            className="outline-none text-[#848281] text-[13px]"
           >
             Balance: {balance}
           </button>

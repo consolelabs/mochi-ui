@@ -21,7 +21,7 @@ function SectionItem({
 }) {
   return (
     <li className="flex items-center w-full p-2 hover:bg-[#FAF9F7] rounded-lg space-x-2 cursor-pointer">
-      <button type="button" onClick={onSelect}>
+      <button type="button" className="outline-none" onClick={onSelect}>
         <Heading as="h3" className="text-sm">
           {item.content}
         </Heading>
@@ -64,7 +64,7 @@ export default function MessagePicker({ value, onChange }: MessagePickerProps) {
           return (
             <button
               key={message}
-              className="px-3 py-1 rounded-lg bg-white-pure font-medium text-sm text-[#343433]"
+              className="outline-none px-3 py-1 rounded-lg bg-white-pure font-medium text-sm text-[#343433]"
               type="button"
               onClick={() => onChange(message)}
             >

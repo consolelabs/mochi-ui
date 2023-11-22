@@ -44,7 +44,7 @@ export default function MochiWidget() {
   const [activeTab] = useState(tabs[0])
 
   return (
-    <AnimateHeight className="rounded-2xl shadow-xl border border-[#e5e4e3]">
+    <AnimateHeight className="bg-white-pure rounded-2xl shadow-xl border border-[#e5e4e3]">
       <ScrollArea.Root
         style={{
           /* height: 570, */
@@ -52,7 +52,7 @@ export default function MochiWidget() {
           maxWidth: 440,
           minWidth: 340,
         }}
-        className="flex overflow-hidden relative z-10 flex-col p-3 w-screen bg-white-pure"
+        className="flex overflow-hidden relative z-10 flex-col p-3 w-screen"
       >
         {/* <div className="flex items-center border-b border-[#e5e4e3] pb-2"> */}
         {/*   {tabs.map((t, i) => { */}

@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { Heading } from '@consolelabs/core'
 import { Chain } from './type'
 
@@ -9,12 +10,14 @@ interface ItemProps {
 export const ChainItem: React.FC<ItemProps> = ({ item, onSelect }) => (
   <li key={item.id}>
     <button
-      className="flex flex-row items-center w-full p-2 hover:bg-[#FAF9F7] rounded-lg space-x-2 cursor-pointer"
+      className="outline-none flex flex-row items-center w-full p-2 hover:bg-[#FAF9F7] rounded-lg space-x-2 cursor-pointer"
       onClick={() => onSelect?.(item)}
     >
-      <img
+      <Image
+        width={24}
+        height={24}
         alt={`${item.name} icon`}
-        className="object-contain w-6 h-6 rounded-full"
+        className="object-contain rounded-full"
         src={item.icon}
       />
       <div className="flex flex-col flex-1 items-start">

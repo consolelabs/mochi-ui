@@ -18,14 +18,13 @@ import { RecipientList } from './RecipientList'
 import { PlatformPicker } from '../PlatformPicker'
 import { SelectedRecipient } from './SelectedRecipient'
 import { MAX_RECIPIENTS } from '../Tip/store'
-import { InitialList } from './InitialList'
 
 const SEARCH_DEBOUNCE_TIME = 250
 
 interface RecipientProps {
   authorized: boolean
   unauthorizedContent?: React.ReactNode
-  selectedRecipients?: Profile[]
+  selectedRecipients?: Array<Profile & { create_new?: boolean }>
   onUpdateRecipient?: (item: Profile[]) => void
   onRemoveRecipient?: (item: Profile) => void
 }
@@ -58,37 +57,71 @@ export const Recipient: React.FC<RecipientProps> = ({
   const [searchTerm, setSearchTerm] = useState('')
   const debouncedSearchTerm = useDebounce(searchTerm, SEARCH_DEBOUNCE_TIME)
   const [selectedPlatform, setSelectedPlatform] = useState<Platform>()
-  const [recipients, setRecipients] = useState<Profile[]>([])
+  const [recipients, setRecipients] = useState<
+    Array<Profile & { create_new?: boolean }>
+  >([])
   const isOnChain = selectedPlatform?.platform === 'on-chain'
-  const filteredRecipients = useMemo(
-    () => recipients.filter(getFilterRecipientFunc(searchTerm)),
-    [searchTerm, recipients],
-  )
+  const filteredRecipients = useMemo(() => {
+    const result = recipients.filter(
+      getFilterRecipientFunc(debouncedSearchTerm),
+    )
+    const exactResult = recipients.some(
+      (r) =>
+        r.associated_accounts?.[0].platform_metadata.username ===
+        debouncedSearchTerm,
+    )
+    if (!exactResult && debouncedSearchTerm) {
+      // if there are no exact result, we need to show an option for user to still select it
+      result.push({
+        id: '',
+        associated_accounts: [
+          {
+            pnl: '',
+            id: '',
+            platform_metadata: { username: debouncedSearchTerm },
+            platform_identifier: '',
+            platform: (selectedPlatform?.platform as any) ?? '',
+            created_at: '',
+            updated_at: '',
+            profile_id: '',
+            total_amount: '',
+          },
+        ],
+        profile_name: debouncedSearchTerm,
+        application: null,
+        avatar: '',
+        type: 'user',
+        pnl: '',
+        create_new: true,
+      })
+    }
+    return result
+  }, [debouncedSearchTerm, recipients, selectedPlatform?.platform])
 
-  useEffect(
-    () => {
-      // TODO: remove condition for recent recipients
-      if (debouncedSearchTerm) {
-        setIsSearching()
-        API.MOCHI_PROFILE.get(
-          GET_PATHS.PROFILE_SEARCH(searchTerm, selectedPlatform?.platform),
-        )
-          .json((r) => r.data)
-          .then((data: Profile[]) => {
-            setRecipients(data || [])
-          })
-          .finally(() => setIsNotSearching())
-      } else {
-        setRecipients([])
-        setIsNotSearching()
-      }
-    },
-    [debouncedSearchTerm, selectedPlatform], // Only call effect if debounced search term changes
-  )
-
-  function handleFocusInput() {
-    openRecipients()
-  }
+  useEffect(() => {
+    if (authorized && isOpenRecipients) {
+      setIsSearching()
+      API.MOCHI_PROFILE.query({
+        ...(debouncedSearchTerm && { username: debouncedSearchTerm }),
+        ...(selectedPlatform?.platform && {
+          platform: selectedPlatform.platform,
+        }),
+      })
+        .get(GET_PATHS.PROFILE_SEARCH)
+        .json((r) => r.data)
+        .then((data: Profile[]) => {
+          setRecipients(data || [])
+        })
+        .finally(() => setIsNotSearching())
+    }
+  }, [
+    authorized,
+    debouncedSearchTerm,
+    isOpenRecipients,
+    selectedPlatform?.platform,
+    setIsNotSearching,
+    setIsSearching,
+  ])
 
   function onOpenChange(isOpen: boolean) {
     if (isOpen) {
@@ -131,7 +164,11 @@ export const Recipient: React.FC<RecipientProps> = ({
       onChange={(recipients) => {
         setSearchTerm('')
         closeRecipients()
-        onUpdateRecipient?.(recipients)
+        onUpdateRecipient?.(
+          recipients.filter(
+            (r, _idx, arr) => arr.filter((a) => a.id === r.id).length === 1,
+          ),
+        )
       }}
     >
       <Popover open={isOpenRecipients} onOpenChange={onOpenChange}>
@@ -169,9 +206,9 @@ export const Recipient: React.FC<RecipientProps> = ({
                 className="flex-1 h-full bg-transparent outline-none min-w-[100px]"
                 placeholder={isOnChain ? 'Enter address' : 'Enter username'}
                 value={searchTerm}
-                onFocus={handleFocusInput}
-                onClick={openRecipients}
                 onChange={onSearchChange}
+                onFocus={openRecipients}
+                onBlur={(e: any) => e.preventDefault()}
                 autoComplete="off"
               />
               <IconSpinner
@@ -232,17 +269,13 @@ export const Recipient: React.FC<RecipientProps> = ({
                   onChange={onChainSearch}
                 />
               )}
-              {isOpenRecipients && searchTerm === '' ? (
-                <InitialList />
-              ) : (
-                <Combobox.Options static className="w-full">
-                  <RecipientList
-                    loading={isSearching}
-                    data={filteredRecipients}
-                    selectedRecipients={selectedRecipients}
-                  />
-                </Combobox.Options>
-              )}
+              <Combobox.Options static className="w-full">
+                <RecipientList
+                  loading={isSearching}
+                  data={filteredRecipients}
+                  selectedRecipients={selectedRecipients}
+                />
+              </Combobox.Options>
             </div>
           ) : (
             unauthorizedContent

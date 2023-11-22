@@ -55,7 +55,7 @@ export const useAuthStore = create<State>((set, get) => ({
         ...(showLoading ? { isLoadingSession: true, isLogging: true } : {}),
       })
 
-      import('../constants/mochi').then(({ api }) => api.token(token))
+      await import('../constants/mochi').then(({ api }) => api.token(token))
       await API.MOCHI_PROFILE.auth(`Bearer ${token}`)
         .get('/profiles/me')
         .badRequest(logout)

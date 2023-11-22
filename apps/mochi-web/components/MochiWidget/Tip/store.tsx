@@ -13,7 +13,7 @@ import { isToken } from '../TokenPicker/utils'
 export const MAX_RECIPIENTS = 20
 
 interface Request {
-  recipients: Profile[] | null
+  recipients: Array<Profile & { create_new?: boolean }> | null
   amount: number | null
   asset: Balance | Moniker | null
   message: string | null
@@ -110,10 +110,49 @@ export const useTipWidget = create(
         })
         const amount = request.amount ?? 0
         if (!amount) return
+
+        let recipients = request.recipients?.map((r) => r.id ?? '')
+        const hasNewProfile = request.recipients?.some((r) => r.create_new)
+        if (hasNewProfile) {
+          recipients = await Promise.all<string>(
+            request.recipients?.map(async (r) => {
+              if (!r.create_new && r.id) return r.id
+              const acc = r.associated_accounts?.[0]
+              if (!acc)
+                throw new Error(`Cannot resolve profile ${r.profile_name}`)
+
+              switch (acc.platform) {
+                case 'discord': {
+                  const { data, ok } = await api.profile.discord.getByUsername(
+                    acc.platform_metadata.username ?? '',
+                  )
+                  if (ok) return data.id
+                  throw new Error(
+                    `Cannot resolve discord ${acc.platform_metadata.username}`,
+                  )
+                }
+                case 'telegram': {
+                  const { data, ok } = await api.profile.telegram.getByUsername(
+                    acc.platform_metadata.username ?? '',
+                  )
+                  if (ok) return data.id
+                  throw new Error(
+                    `Cannot resolve telegram ${acc.platform_metadata.username}`,
+                  )
+                }
+                default:
+                  throw new Error(
+                    `Cannot resolve profile ${r.profile_name} on ${acc.platform}`,
+                  )
+              }
+            }) ?? [],
+          )
+        }
+
         const tx = await API.MOCHI.post(
           {
             sender: me?.id,
-            recipients: request.recipients?.map((r) => r.id),
+            recipients,
             platform: 'web',
             transfer_type: 'transfer',
             amount: isToken(request.asset)

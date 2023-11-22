@@ -47,6 +47,5 @@ export const GET_PATHS = {
   FIND_ONE_WALLET: (id: string, wallet_address: string, chain: string) =>
     `/users/${id}/wallets/${wallet_address}/${chain}/assets`,
   MOCHI_BALANCES: (id: string) => `/mochi-wallet/${id}/balances`,
-  PROFILE_SEARCH: (username: string, platform?: string) =>
-    `/profiles/search?username=${username}&platform=${platform || ''}`,
+  PROFILE_SEARCH: '/profiles/search',
 }

@@ -69,7 +69,7 @@ function TipPreview() {
   return (
     <div className="flex flex-col p-4 rounded-xl border border-neutral-300">
       <button
-        className="flex justify-between p-4 -m-4"
+        className="flex justify-between p-4 -m-4 outline-none"
         type="button"
         onClick={onToggle}
       >
