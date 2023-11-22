@@ -18,7 +18,7 @@ export const MonikerItem: React.FC<ItemProps> = ({ item, onSelect }) => (
   >
     <button
       className={clsx(
-        'flex flex-row items-center w-full p-2 rounded-lg space-x-2',
+        'outline-none flex flex-row items-center w-full p-2 rounded-lg space-x-2',
         {
           'cursor-pointer hover:bg-[#FAF9F7] transition': !item.disabled,
           'cursor-not-allowed': item.disabled,

@@ -119,8 +119,17 @@ export default function Index() {
           </span>
         </div>
 
-        <div className="flex justify-center lg:col-start-2 lg:row-span-2">
-          <MochiWidget />
+        <div
+          style={{
+            height: 680,
+            maxWidth: 440,
+            minWidth: 340,
+          }}
+          className="flex relative justify-center mx-auto w-screen lg:col-start-2 lg:row-span-2"
+        >
+          <div className="absolute w-full">
+            <MochiWidget />
+          </div>
         </div>
 
         <div className="flex flex-col mt-5 lg:mt-2">

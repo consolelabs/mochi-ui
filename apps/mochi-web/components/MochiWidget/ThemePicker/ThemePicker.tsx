@@ -94,7 +94,7 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
             <button
               type="button"
               onClick={() => onChange(null)}
-              className="text-sm text-red-500 hover:underline"
+              className="text-sm text-red-500 outline-none hover:underline"
             >
               Clear
             </button>
@@ -114,7 +114,7 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
             <button
               key={t.name}
               type="button"
-              className="overflow-hidden relative rounded-lg"
+              className="overflow-hidden relative rounded-lg outline-none"
               onClick={() => {
                 onChange(t)
                 closeThemePopover()
@@ -138,7 +138,7 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
         })}
         <Popover open={isOpenTheme} onOpenChange={toggleThemePopover}>
           <PopoverTrigger asChild>
-            <button className="overflow-hidden relative">
+            <button className="overflow-hidden relative outline-none">
               <Image
                 fill
                 src="/tip-theme-more.jpg"
@@ -205,7 +205,7 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
                                 onChange(d)
                                 toggleThemePopover()
                               }}
-                              className="relative h-full aspect-video"
+                              className="relative h-full outline-none aspect-video"
                             >
                               <Image
                                 fill

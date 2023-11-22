@@ -19,7 +19,7 @@ const CheckIcon: React.FC<CheckIconProps> = ({ isSelected, isHovering }) => {
 }
 
 interface ItemProps {
-  profile: Profile
+  profile: Profile & { create_new?: boolean }
   isSelected?: boolean
   active: boolean
 }

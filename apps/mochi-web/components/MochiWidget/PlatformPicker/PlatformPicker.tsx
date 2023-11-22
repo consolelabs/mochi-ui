@@ -77,7 +77,7 @@ export const PlatformPicker: React.FC<Props> = ({
       <PopoverTrigger asChild>
         <button
           id={triggerId}
-          className="flex gap-x-2 items-center py-1.5 px-3 rounded-lg bg-neutral-100"
+          className="flex gap-x-2 items-center py-1.5 px-3 rounded-lg outline-none bg-neutral-100"
         >
           <PlatformIcon
             platform={selectedPlatform.platform}
