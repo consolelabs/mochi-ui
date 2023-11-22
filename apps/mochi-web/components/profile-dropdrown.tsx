@@ -26,7 +26,7 @@ export default function ProfileDropdown() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger>
         {isLoggedIn && me && (
           <ProfileBadge
             avatar={me?.avatar || '/logo.png'}

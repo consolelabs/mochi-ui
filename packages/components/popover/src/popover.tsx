@@ -9,9 +9,19 @@ type PopoverTriggerProps = typeof PopoverPrimitive.Trigger
 type PopoverCloseProps = typeof PopoverPrimitive.Close
 
 const Popover = PopoverPrimitive.Root
-const PopoverTrigger = PopoverPrimitive.Trigger
 const PopoverClose = PopoverPrimitive.Close
 const PopoverAnchor = PopoverPrimitive.Anchor
+
+const PopoverTrigger = React.forwardRef<
+  React.ElementRef<typeof PopoverPrimitive.Trigger>,
+  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Trigger>
+>(({ className, ...props }, ref) => (
+  <PopoverPrimitive.Trigger
+    ref={ref}
+    className={popover.popoverTriggerClsx({ className })}
+    {...props}
+  />
+))
 
 type PopoverContentProps = React.ComponentPropsWithoutRef<
   typeof PopoverPrimitive.Content

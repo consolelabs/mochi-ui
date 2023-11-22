@@ -21,7 +21,12 @@ const subTitleWrapper = 'text-neutral-600 text-xs'
 const separator = 'block !my-3 w-full h-px bg-neutral-200'
 
 const itemCva = cva(
-  ['flex gap-2 items-center', 'transition duration-100', 'text-sm rounded-md'],
+  [
+    'flex gap-2 items-center',
+    'transition duration-100',
+    'text-sm rounded-md',
+    'focus-visible:outline-none',
+  ],
   {
     variants: {
       disabled: {
