@@ -2,6 +2,7 @@ import { IconChevronLeft } from '@consolelabs/icons'
 import { Typography } from '@consolelabs/typography'
 import { IconButton } from '@consolelabs/icon-button'
 import { pageHeader } from '@consolelabs/theme'
+import { Fragment } from 'react'
 
 type PageHeaderProps = {
   title: string
@@ -93,7 +94,9 @@ const PageHeader = (props: PageHeaderProps) => {
 
       {actions.length ? (
         <div className={pageHeaderActionsWrapperClsx()}>
-          {actions.map((Action) => Action)}
+          {actions.map((action, index) => (
+            <Fragment key={index}>{action}</Fragment>
+          ))}
         </div>
       ) : null}
     </header>
