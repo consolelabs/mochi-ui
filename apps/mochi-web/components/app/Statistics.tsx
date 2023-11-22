@@ -1,5 +1,6 @@
 import {
   Button,
+  PageHeader,
   Select,
   SelectContent,
   SelectItem,
@@ -59,21 +60,24 @@ export const Statistics = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-between gap-8 sm:flex-row">
-        <div>
-          <Typography level="h5" color="textPrimary">
-            Developer Portal
-          </Typography>
-          <Typography level="body-sm" color="textSecondary">
-            Build secure and frictionless payments across Web2 and Web3
-            platforms with a single API call.
-          </Typography>
-        </div>
-        <div className="flex justify-end w-full space-x-2 min-w-max sm:w-auto">
-          <Button variant="outline" color="neutral" className="!bg-neutral-0">
+      <PageHeader
+        title="Developer Portal"
+        description="Build secure and frictionless payments across Web2 and Web3
+      platforms with a single API call."
+        actions={[
+          <Button
+            variant="outline"
+            color="neutral"
+            className="!bg-neutral-0"
+            key="see-docs-button"
+          >
             See docs
-          </Button>
-          <Select value={selectedApp} onChange={setSelectedApp}>
+          </Button>,
+          <Select
+            value={selectedApp}
+            onChange={setSelectedApp}
+            key="app-select"
+          >
             <SelectTrigger className="rounded bg-neutral-150">
               <Tooltip
                 content="Selected app"
@@ -111,9 +115,9 @@ export const Statistics = () => {
                 Create an app
               </button>
             </SelectContent>
-          </Select>
-        </div>
-      </div>
+          </Select>,
+        ]}
+      />
 
       <div className="flex flex-col gap-2 p-2 mt-8 bg-neutral-150 rounded-2xl sm:flex-row">
         <div className="w-full px-6 pb-8 space-y-2 sm:w-1/3 bg-neutral-0 rounded-xl">

@@ -43,6 +43,7 @@
     "@consolelabs/list": "workspace:*",
     "@consolelabs/login-widget": "workspace:*",
     "@consolelabs/mochi-store": "workspace:*",
+    "@consolelabs/page-header": "workspace:*",
     "@consolelabs/popover": "workspace:*",
     "@consolelabs/profile-badge": "workspace:*",
     "@consolelabs/section-list": "workspace:*",
