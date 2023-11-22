@@ -59,7 +59,7 @@ export const Statistics = () => {
 
   return (
     <>
-      <div className="flex items-center justify-between space-x-8">
+      <div className="flex flex-col items-center justify-between gap-8 sm:flex-row">
         <div>
           <Typography level="h5" color="textPrimary">
             Developer Portal
@@ -69,16 +69,12 @@ export const Statistics = () => {
             platforms with a single API call.
           </Typography>
         </div>
-        <div className="flex flex-wrap justify-end gap-2 sm:min-w-max">
-          <Button
-            variant="outline"
-            color="neutral"
-            className="!bg-neutral-0 min-w-max"
-          >
+        <div className="flex space-x-2 min-w-max">
+          <Button variant="outline" color="neutral" className="!bg-neutral-0">
             See docs
           </Button>
           <Select value={selectedApp} onChange={setSelectedApp}>
-            <SelectTrigger className="rounded bg-neutral-150 min-w-max">
+            <SelectTrigger className="rounded bg-neutral-150">
               <Tooltip
                 content="Selected app"
                 arrow="top-center"
@@ -136,7 +132,7 @@ export const Statistics = () => {
           </Typography>
           <Button size="sm">Create an app</Button>
         </div>
-        <div className="grid flex-1 grid-cols-3 gap-2">
+        <div className="grid flex-1 grid-cols-2 gap-2 sm:grid-cols-3">
           <DataBox label="All time Users" amount="3,298" percentage={0.4} />
           <DataBox label="7 days Users" />
           <DataBox label="All time Txs" />
