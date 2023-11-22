@@ -1,0 +1,151 @@
+name: 'Discord notify release'
+
+on:
+  workflow_call:
+    inputs:
+      tags-info:
+        description: 'JSON array of name, version, release_name and ignore_npm_released of released tags'
+        required: true
+        type: string
+      repo:
+        description: 'The owner and repository name'
+        required: true
+        type: string
+      server-url:
+        description: 'The URL of the GitHub server'
+        required: true
+        type: string
+    secrets:
+      discord-webhook:
+        description: 'The Discord webhook URL'
+        required: false
+
+jobs:
+  discord-descriptions:
+    name: Get Discord Description Message
+    runs-on: ubuntu-latest
+    outputs:
+      chunks-data: ${{ fromJson(steps.discord-tags-content.outputs.result).data }}
+      data-indexes: ${{ toJson(fromJson(steps.discord-tags-content.outputs.result).indexes) }}
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          # see `fetch-depth` in README: https://github.com/actions/checkout#checkout-v4,
+          # we set to `0` so the referenced commits are available for the command below
+          fetch-depth: 0
+      - name: Get current time
+        uses: josStorer/get-current-time@v2
+        id: current-time
+        with:
+          format: MMMM Do YYYY, h:mm a
+          utcOffset: '+07:00'
+
+      - name: Get Discord Content
+        id: discord-tags-content
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const tagsInfo = Array.from(${{ fromJson(inputs.tags-info) }})
+            const breakLine = "\n";
+            const maximumDiscordContentThreshold = 3950
+            const maximumSendEmbeds = 10
+            const npmURLtemplate = "https://www.npmjs.com/package/{name}/v/{version}"
+            const footer = "*Released at ${{ steps.current-time.outputs.formattedTime }}*";
+
+            function chunk(array, size = 1) {
+              size = Math.max(size, 0);
+              const length = array == null ? 0 : array.length;
+              if (!length || size < 1) {
+                  return [];
+              }
+              let index = 0;
+              let resIndex = 0;
+              const result = new Array(Math.ceil(length / size));
+              while (index < length) {
+                  result[resIndex++] = array.slice(index, (index += size));
+              }
+              return result;
+            }
+
+            const contentInfo = tagsInfo
+              .map((tag) => {
+                const name = tag.name;
+                const version = tag.version;
+                const tagName = tag.tag_name;
+
+                const githubTagName = tagName || `${name}@${version}`
+
+                const npmLink = npmURLtemplate.replace("{name}", name).replace("{version}", version)
+                const githubURL = `${{ inputs.server-url }}/${{ inputs.repo }}/releases/tag/${encodeURIComponent(githubTagName)}`
+
+                const isIgnoreNPMReleased = tag.ignore_npm_released
+                const packageName = isIgnoreNPMReleased ? `**${name}**` : `[**${name}**](${npmLink})`
+
+                return `- ${packageName} was released to version: [**${version}**](${githubURL})`;
+              })
+              const data = contentInfo.reduce((acc, item, idx) => {
+                const nextAcc = [...acc]
+                const itemLength = item.length
+                const currentItem = nextAcc.pop()
+                if (!currentItem) {
+                  return [item]
+                }
+                const nextLength = currentItem.length + itemLength
+                if (nextLength > maximumDiscordContentThreshold) {
+                  const currentItemWithFooter = [currentItem, breakLine, footer].join("");
+                  return [...nextAcc, currentItemWithFooter, item]
+                }
+                const isLastItem = idx === contentInfo.length - 1
+                const nextItem = `${currentItem}${breakLine}${item}`
+                const nextItemWithFooter = isLastItem ? [nextItem, breakLine, footer].join("") : nextItem
+                return [...nextAcc, nextItemWithFooter]
+              }, [])
+              const isNeedRunAnotherActionToSendNotify = data.length > maximumSendEmbeds
+              let chunkData = [data]
+              if (isNeedRunAnotherActionToSendNotify) {
+                chunkData = chunk(data, maximumSendEmbeds)
+              }
+              const indexes = new Array(chunkData.length).fill(0).map((_, index) => {
+                return index
+              })
+            return { data: JSON.stringify(chunkData), indexes }
+  send-discord-notify:
+    name: Send Discord Notify
+    runs-on: ubuntu-latest
+    needs: [discord-descriptions]
+    env:
+      CONTENT_DATA: ${{ needs.discord-descriptions.outputs.chunks-data }}
+    strategy:
+      matrix:
+        send-index: ${{ fromJson(needs.discord-descriptions.outputs.data-indexes) }}
+    steps:
+      - name: Get Discord Embeds
+        id: embeds-content
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const chunkData = JSON.parse(process.env.CONTENT_DATA)
+            const index = parseInt(${{ matrix.send-index }}, 10)
+            const embedsData = chunkData[index]
+            if (!embedsData) {
+              return null
+            }
+            return Array.from(embedsData).map((d) => {
+              return {
+                title: "New releases! 🚀🚀🚀",
+                description: d,
+                color: 1127128,
+              }
+            })
+
+      - name: Discord notification
+        if: steps.embeds-content.outputs.result != 'null'
+        uses: Ilshidur/action-discord@master
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.discord-webhook }}
+          DISCORD_USERNAME: Github Release
+          DISCORD_AVATAR: https://cdn.discordapp.com/avatars/1176117154010120202/df91181b3f1cf0ef1592fbe18e0962d7.webp?size=80
+          DISCORD_EMBEDS: ${{ steps.embeds-content.outputs.result }}
+        with:
+          args: ''
