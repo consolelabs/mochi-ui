@@ -209,3 +209,57 @@ export const WithSubtittle: StoryObj = {
     )
   },
 }
+
+export const DisabledTrigger: StoryObj = {
+  render() {
+    return (
+      <Select>
+        <SelectTrigger disabled>
+          <SelectValue placeholder="Select" />
+        </SelectTrigger>
+        <SelectContent className="min-w-[200px]">
+          {items.map(({ key, label, rightIcon, subtitle, value, icon }) => (
+            <SelectItem
+              key={key}
+              leftIcon={icon}
+              rightIcon={rightIcon}
+              subTitle={subtitle}
+              useIndicator
+              value={value}
+              disabled
+            >
+              {label}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    )
+  },
+}
+
+export const Disabled: StoryObj = {
+  render() {
+    return (
+      <Select>
+        <SelectTrigger>
+          <SelectValue placeholder="Select" />
+        </SelectTrigger>
+        <SelectContent className="min-w-[200px]">
+          {items.map(({ key, label, rightIcon, subtitle, value, icon }) => (
+            <SelectItem
+              key={key}
+              leftIcon={icon}
+              rightIcon={rightIcon}
+              subTitle={subtitle}
+              useIndicator
+              value={value}
+              disabled
+            >
+              {label}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    )
+  },
+}
