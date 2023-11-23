@@ -24,12 +24,16 @@ const modalDescriptionClsx = ({
   className = '',
 }: { className?: string } = {}) => clsx('text-sm', className)
 
+const modalTriggerClsx = ({ className = '' }: { className?: string }) =>
+  clsx('focus-visible:outline-none', className)
+
 const modal = {
   modalOverlayClsx,
   modalContentClsx,
   modalCloseButtonClsx,
   modalTitleClsx,
   modalDescriptionClsx,
+  modalTriggerClsx,
 }
 
 export { modal }

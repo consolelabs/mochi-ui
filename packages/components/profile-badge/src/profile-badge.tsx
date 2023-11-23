@@ -15,9 +15,9 @@ const {
 } = profileBadge
 
 export const ProfileBadge = forwardRef<HTMLButtonElement, ProfileBadgeProps>(
-  ({ name, avatar, platform, ...rest }, ref) => (
+  ({ name, avatar, platform, className, ...rest }, ref) => (
     <button
-      className={profileBadgeClsx()}
+      className={profileBadgeClsx({ className })}
       style={{ maxWidth: 200 }}
       type="button"
       ref={ref}

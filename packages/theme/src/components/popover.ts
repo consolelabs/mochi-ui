@@ -6,6 +6,9 @@ const popoverContentClsx = ({ className = '' }: { className?: string }) =>
     className,
   )
 
-const popover = { popoverContentClsx }
+const popoverTriggerClsx = ({ className = '' }: { className?: string }) =>
+  clsx('focus-visible:outline-none', className)
+
+const popover = { popoverContentClsx, popoverTriggerClsx }
 
 export { popover }
