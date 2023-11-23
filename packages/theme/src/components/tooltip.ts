@@ -12,7 +12,7 @@ const tooltipClsx = ({ className = '' }: { className?: string }) =>
     className,
   )
 
-const tooltipArrowClxs = 'fill-background-tooltip'
+const tooltipArrowClxs = 'fill-neutral-0'
 
 const tooltipTriggerClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx('w-fit', className)
