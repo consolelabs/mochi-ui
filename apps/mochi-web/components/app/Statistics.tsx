@@ -12,6 +12,7 @@ import { IconArrowUp, IconCheck, IconChevronDown } from '@consolelabs/icons'
 import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
+import { ViewApplication } from '~types/mochi-pay-schema'
 
 const DataBox = ({
   label,
@@ -53,7 +54,12 @@ const DataBox = ({
   </div>
 )
 
-export const Statistics = () => {
+interface Props {
+  apps?: ViewApplication[]
+  onOpenCreateAppModal: () => void
+}
+
+export const Statistics = ({ apps = [], onOpenCreateAppModal }: Props) => {
   return (
     <>
       <PageHeader
@@ -84,16 +90,13 @@ export const Statistics = () => {
               >
                 All apps
               </DropdownMenuItem>
-              {[
-                { id: '1', name: 'App name 1' },
-                { id: '2', name: 'App name 2' },
-              ].map((app) => (
+              {apps.map((app) => (
                 <Link key={app.id} href={`app/${app.id}`}>
                   <DropdownMenuItem key={app.id}>{app.name}</DropdownMenuItem>
                 </Link>
               ))}
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={onOpenCreateAppModal}>
                 <Typography level="title-sm" color="primary">
                   Create an app
                 </Typography>
@@ -118,7 +121,9 @@ export const Statistics = () => {
             Create an app to get a live API key with access to multiple Mochi
             products.
           </Typography>
-          <Button size="sm">Create an app</Button>
+          <Button size="sm" onClick={onOpenCreateAppModal}>
+            Create an app
+          </Button>
         </div>
         <div className="grid flex-1 grid-cols-2 gap-2 sm:grid-cols-3">
           <DataBox label="All time Users" amount="3,298" percentage={0.4} />
