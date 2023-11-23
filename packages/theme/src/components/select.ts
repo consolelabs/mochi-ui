@@ -18,7 +18,7 @@ const bodyWrapper = 'flex-1 flex flex-col items-start'
 
 const subTitleWrapper = 'text-text-secondary text-xs'
 
-const separator = 'block !my-3 w-full h-px bg-neutral-outline-border'
+const separator = 'block !my-3 w-full h-px bg-divider'
 
 const itemCva = cva(
   ['flex gap-2 items-center', 'transition duration-100', 'text-sm rounded-md'],
