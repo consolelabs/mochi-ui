@@ -1,12 +1,36 @@
 import * as RadixTooltip from '@radix-ui/react-tooltip'
-import { tooltip, TooltipProps } from '@consolelabs/theme'
+import { tooltip } from '@consolelabs/theme'
 
-const { tooltipCva, tooltipArrowCva, tooltipTriggerClsx } = tooltip
+const { tooltipClsx, tooltipArrowClxs, tooltipTriggerClsx } = tooltip
+
+export const ARROW_OPTIONS = [
+  'none',
+  'top-start',
+  'top-center',
+  'top-end',
+  'right-start',
+  'right-center',
+  'right-end',
+  'bottom-start',
+  'bottom-center',
+  'bottom-end',
+  'left-start',
+  'left-center',
+  'left-end',
+] as const
+
+export type Arrow = (typeof ARROW_OPTIONS)[number]
+
+export type TooltipProps = {
+  children: React.ReactNode
+  content: React.ReactNode
+  arrow?: Arrow | 'none'
+  className?: string
+}
 
 export default function Tooltip({
   children,
   content,
-  theme,
   arrow = 'none',
   className,
 }: TooltipProps) {
@@ -27,7 +51,7 @@ export default function Tooltip({
         <RadixTooltip.Portal>
           <RadixTooltip.Content
             align={align}
-            className={tooltipCva({ className, theme })}
+            className={tooltipClsx({ className })}
             side={side}
             style={{
               boxShadow:
@@ -36,7 +60,7 @@ export default function Tooltip({
           >
             {content}
             {arrow !== 'none' && (
-              <RadixTooltip.Arrow className={tooltipArrowCva({ theme })} />
+              <RadixTooltip.Arrow className={tooltipArrowClxs} />
             )}
           </RadixTooltip.Content>
         </RadixTooltip.Portal>
