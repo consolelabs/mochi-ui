@@ -1,18 +1,17 @@
 import {
   Button,
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectSeparator,
-  SelectTrigger,
-  SelectValue,
-  Tooltip,
+  PageHeader,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
   Typography,
 } from '@consolelabs/core'
-import { IconArrowUp, IconCheck } from '@consolelabs/icons'
+import { IconArrowUp, IconCheck, IconChevronDown } from '@consolelabs/icons'
 import clsx from 'clsx'
 import Image from 'next/image'
-import { useState } from 'react'
+import Link from 'next/link'
 
 const DataBox = ({
   label,
@@ -55,65 +54,54 @@ const DataBox = ({
 )
 
 export const Statistics = () => {
-  const [selectedApp, setSelectedApp] = useState('all')
-
   return (
     <>
-      <div className="flex flex-col items-center justify-between gap-8 sm:flex-row">
-        <div>
-          <Typography level="h5" color="textPrimary">
-            Developer Portal
-          </Typography>
-          <Typography level="body-sm" color="textSecondary">
-            Build secure and frictionless payments across Web2 and Web3
-            platforms with a single API call.
-          </Typography>
-        </div>
-        <div className="flex justify-end w-full space-x-2 min-w-max sm:w-auto">
-          <Button variant="outline" color="neutral" className="!bg-neutral-0">
+      <PageHeader
+        title="Developer Portal"
+        description="Build secure and frictionless payments across Web2 and Web3
+      platforms with a single API call."
+        actions={[
+          <Button
+            variant="outline"
+            color="neutral"
+            className="!bg-neutral-0"
+            key="see-docs-button"
+          >
             See docs
-          </Button>
-          <Select value={selectedApp} onChange={setSelectedApp}>
-            <SelectTrigger className="rounded bg-neutral-150">
-              <Tooltip
-                content="Selected app"
-                arrow="top-center"
-                className="z-20"
+          </Button>,
+          <DropdownMenu key="app-select">
+            <DropdownMenuTrigger className="">
+              <Button className="!bg-neutral-150">
+                <Typography level="body-sm">All apps</Typography>
+                <IconChevronDown className="w-4 h-4 text-neutral-800" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem
+                rightIcon={
+                  <IconCheck className="w-4 h-4 ml-4 text-primary-700" />
+                }
               >
-                <SelectValue placeholder="All apps" />
-              </Tooltip>
-            </SelectTrigger>
-            <SelectContent>
+                All apps
+              </DropdownMenuItem>
               {[
-                { key: 'all', name: 'All apps' },
-                { key: '1', name: 'App name 1' },
-                { key: '2', name: 'App name 2' },
+                { id: '1', name: 'App name 1' },
+                { id: '2', name: 'App name 2' },
               ].map((app) => (
-                <SelectItem
-                  key={app.key}
-                  value={app.key}
-                  rightIcon={
-                    <IconCheck
-                      className={clsx(
-                        'w-4 h-4 ml-4',
-                        app.key === selectedApp
-                          ? 'text-primary-700'
-                          : 'invisible',
-                      )}
-                    />
-                  }
-                >
-                  {app.name}
-                </SelectItem>
+                <Link key={app.id} href={`app/${app.id}`}>
+                  <DropdownMenuItem key={app.id}>{app.name}</DropdownMenuItem>
+                </Link>
               ))}
-              <SelectSeparator />
-              <button className="px-2 text-sm font-medium tracking-tight text-primary-700">
-                Create an app
-              </button>
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <Typography level="title-sm" color="primary">
+                  Create an app
+                </Typography>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>,
+        ]}
+      />
 
       <div className="flex flex-col gap-2 p-2 mt-8 bg-neutral-150 rounded-2xl sm:flex-row">
         <div className="w-full px-6 pb-8 space-y-2 sm:w-1/3 bg-neutral-0 rounded-xl">

@@ -2,13 +2,14 @@ import { cva, VariantProps } from 'class-variance-authority'
 import { clsx } from 'clsx'
 
 const buttonCva = cva(
-  'inline-flex items-center justify-center outline-none overflow-hidden gap-x-2 font-semibold appearance-none transition',
+  'inline-flex items-center justify-center outline-none gap-x-2 font-semibold appearance-none transition whitespace-nowrap',
   {
     variants: {
       variant: {
         solid: '',
         outline: 'shadow-button border',
-        link: '',
+        ghost: '',
+        link: 'p-0 rounded-md hover:underline',
       },
       color: {
         primary: '',
@@ -19,9 +20,9 @@ const buttonCva = cva(
         neutral: '',
       },
       size: {
-        sm: 'text-sm h-[34px] leading-4',
-        md: 'text-sm h-10 leading-4',
-        lg: 'text-base h-12 leading-6',
+        sm: 'text-sm leading-4',
+        md: 'text-sm leading-4',
+        lg: 'text-base leading-6',
       },
       disabled: {
         true: 'cursor-not-allowed pointer-events-none',
@@ -32,19 +33,19 @@ const buttonCva = cva(
     },
     compoundVariants: [
       {
-        variant: ['solid', 'outline', 'link'],
+        variant: ['solid', 'outline', 'ghost'],
         size: 'sm',
-        className: 'px-4 py-1.5 rounded',
+        className: 'px-4 h-[34px] rounded',
       },
       {
-        variant: ['solid', 'outline', 'link'],
+        variant: ['solid', 'outline', 'ghost'],
         size: 'md',
-        className: 'px-4 py-[9px] rounded-lg',
+        className: 'px-4 h-10 rounded-lg',
       },
       {
-        variant: ['solid', 'outline', 'link'],
+        variant: ['solid', 'outline', 'ghost'],
         size: 'lg',
-        className: 'px-6 py-3 rounded-lg',
+        className: 'px-6 h-12 rounded-lg',
       },
       {
         variant: 'solid',
@@ -185,7 +186,7 @@ const buttonCva = cva(
         ],
       },
       {
-        variant: 'link',
+        variant: 'ghost',
         color: ['primary'],
         className: [
           'text-primary-plain-fg bg-transparent',
@@ -195,7 +196,7 @@ const buttonCva = cva(
         ],
       },
       {
-        variant: 'link',
+        variant: 'ghost',
         color: ['secondary'],
         className: [
           'text-secondary-plain-fg bg-transparent',
@@ -205,7 +206,7 @@ const buttonCva = cva(
         ],
       },
       {
-        variant: 'link',
+        variant: 'ghost',
         color: ['success'],
         className: [
           'text-success-plain-fg bg-transparent',
@@ -215,7 +216,7 @@ const buttonCva = cva(
         ],
       },
       {
-        variant: 'link',
+        variant: 'ghost',
         color: ['warning'],
         className: [
           'text-warning-plain-fg bg-transparent',
@@ -225,7 +226,7 @@ const buttonCva = cva(
         ],
       },
       {
-        variant: 'link',
+        variant: 'ghost',
         color: ['danger'],
         className: [
           'text-danger-plain-fg bg-transparent',
@@ -235,13 +236,67 @@ const buttonCva = cva(
         ],
       },
       {
-        variant: 'link',
+        variant: 'ghost',
         color: ['neutral'],
         className: [
           'text-neutral-plain-fg bg-transparent',
           'hover:bg-neutral-plain-hover',
           'active:bg-neutral-plain-active',
           'disabled:text-neutral-plain-disable-fg',
+        ],
+      },
+      {
+        variant: 'link',
+        color: 'primary',
+        className: [
+          'text-primary-plain-fg',
+          'disabled:text-primary-plain-disable-fg',
+          'focus:shadow-small focus:shadow-primary-700/10',
+        ],
+      },
+      {
+        variant: 'link',
+        color: 'secondary',
+        className: [
+          'text-secondary-plain-fg',
+          'disabled:text-secondary-plain-disable-fg',
+          'focus:shadow-small focus:shadow-secondary-700/10',
+        ],
+      },
+      {
+        variant: 'link',
+        color: 'success',
+        className: [
+          'text-success-plain-fg',
+          'disabled:text-success-plain-disable-fg',
+          'focus:shadow-small focus:shadow-success-700/10',
+        ],
+      },
+      {
+        variant: 'link',
+        color: 'danger',
+        className: [
+          'text-danger-plain-fg',
+          'disabled:text-danger-plain-disable-fg',
+          'focus:shadow-small focus:shadow-danger-700/10',
+        ],
+      },
+      {
+        variant: 'link',
+        color: 'warning',
+        className: [
+          'text-warning-plain-fg',
+          'disabled:text-warning-plain-disable-fg',
+          'focus:shadow-small focus:shadow-warning-700/10',
+        ],
+      },
+      {
+        variant: 'link',
+        color: 'neutral',
+        className: [
+          'text-neutral-plain-fg',
+          'disabled:text-neutral-plain-disable-fg',
+          'focus:shadow-small focus:shadow-neutral-700/10',
         ],
       },
     ],

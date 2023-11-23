@@ -13,8 +13,6 @@ const {
 
 const Modal = ModalPrimitive.Root
 
-const ModalTrigger = ModalPrimitive.Trigger
-
 const ModalPortal = ModalPrimitive.Portal
 
 const ModalClose = ModalPrimitive.Close
@@ -22,6 +20,17 @@ const ModalClose = ModalPrimitive.Close
 type ModalOverlayProps = React.ComponentPropsWithoutRef<
   typeof ModalPrimitive.Overlay
 >
+
+const ModalTrigger = React.forwardRef<
+  React.ElementRef<typeof ModalPrimitive.Trigger>,
+  React.ComponentPropsWithoutRef<typeof ModalPrimitive.Trigger>
+>(({ className, ...props }, ref) => (
+  <ModalPrimitive.Trigger
+    ref={ref}
+    className={modal.modalTriggerClsx({ className })}
+    {...props}
+  />
+))
 
 const ModalOverlay = React.forwardRef<
   React.ElementRef<typeof ModalPrimitive.Overlay>,

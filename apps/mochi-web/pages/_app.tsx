@@ -65,7 +65,7 @@ function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
 
   useEffect(() => {
     const parts = asPath.split('#')
-    const hash = parts[0]
+    const hash = parts[1]
     const path = parts[0]?.split('?')[0]
     if (hash && hash === 'logout') {
       disconnect()

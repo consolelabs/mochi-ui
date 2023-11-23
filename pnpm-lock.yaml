@@ -903,6 +903,52 @@ importers:
         specifier: workspace:*
         version: link:../../tsconfig
 
+  packages/components/page-header:
+    dependencies:
+      '@consolelabs/icon-button':
+        specifier: workspace:*
+        version: link:../icon-button
+      '@consolelabs/icons':
+        specifier: workspace:*
+        version: link:../../icons
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../../theme
+      '@consolelabs/typography':
+        specifier: workspace:*
+        version: link:../typography
+    devDependencies:
+      '@consolelabs/button':
+        specifier: workspace:*
+        version: link:../button
+      '@consolelabs/select':
+        specifier: workspace:*
+        version: link:../select
+      '@consolelabs/tooltip':
+        specifier: workspace:*
+        version: link:../tooltip
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.1.0
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
   packages/components/pagination:
     dependencies:
       '@consolelabs/icons':
@@ -1428,6 +1474,9 @@ importers:
       '@consolelabs/modal':
         specifier: workspace:*
         version: link:../components/modal
+      '@consolelabs/page-header':
+        specifier: workspace:*
+        version: link:../components/page-header
       '@consolelabs/popover':
         specifier: workspace:*
         version: link:../components/popover
@@ -1446,6 +1495,9 @@ importers:
       '@consolelabs/switch':
         specifier: workspace:*
         version: link:../components/switch
+      '@consolelabs/table':
+        specifier: workspace:*
+        version: link:../components/table
       '@consolelabs/theme':
         specifier: workspace:*
         version: link:../theme
@@ -13703,7 +13755,6 @@ packages:
   /clsx@2.0.0:
     resolution: {integrity: sha512-rQ1+kcj+ttHG0MKVGBUXwayCCF1oh39BF5COIpRzuCEv8Mwjv0XucrI2ExNTOn9IlLifGClWQcU9BrZORvtw6Q==}
     engines: {node: '>=6'}
-    dev: false
 
   /cluster-key-slot@1.1.2:
     resolution: {integrity: sha512-RMr0FhtfXemyinomL4hrWcYJxmX6deFdCxpJzhDttxgO1+bcCnkk+9drydLVDmAMG7NE6aN/fl4F7ucU/90gAA==}

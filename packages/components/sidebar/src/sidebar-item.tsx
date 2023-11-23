@@ -110,7 +110,7 @@ export default function SidebarItem({
             className={sidebarItemAccordionContentWrapperClsx()}
             hasPadding={false}
           >
-            {children.map((child) => (
+            {children.map((child, index) => (
               <SidebarItem
                 className={sidebarItemAccordionContentClsx({
                   className,
@@ -118,7 +118,7 @@ export default function SidebarItem({
                 })}
                 expanded={expanded}
                 item={child}
-                key={child.title}
+                key={`${index} ${child.title}`}
               />
             ))}
           </AccordionContent>
