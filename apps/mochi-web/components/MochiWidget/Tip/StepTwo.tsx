@@ -20,9 +20,9 @@ export default function StepTwo() {
   } = useTipWidget()
 
   return (
-    <div className="flex flex-col flex-1 gap-y-3 min-h-0">
-      <ScrollArea.Viewport className="[&>div]:!block">
-        <div className="flex flex-col gap-y-2 h-full">
+    <div className="flex flex-col flex-1 gap-y-3 h-full min-h-0">
+      <ScrollArea.Viewport className="flex-1 [&>div]:!h-full [&>div]:!block">
+        <div className="flex flex-col justify-between h-full">
           <button
             onClick={() => setStep(1)}
             className="self-start mt-3 outline-none"

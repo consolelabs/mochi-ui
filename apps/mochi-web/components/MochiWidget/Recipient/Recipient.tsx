@@ -1,8 +1,10 @@
 import clsx from 'clsx'
+import { api } from '~constants/mochi'
+import useSWR from 'swr'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { Combobox } from '@headlessui/react'
 import { Profile } from '@consolelabs/mochi-rest'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import {
   InputField,
   Popover,
@@ -11,7 +13,6 @@ import {
 } from '@consolelabs/core'
 import { IconProfileGuardSuccess, IconSpinner } from '@consolelabs/icons'
 import { useDebounce, useDisclosure } from '@dwarvesf/react-hooks'
-import { API, GET_PATHS } from '~constants/api'
 import { ChainPicker } from '../ChainPicker'
 import { Platform } from '../PlatformPicker/type'
 import { RecipientList } from './RecipientList'
@@ -50,18 +51,36 @@ export const Recipient: React.FC<RecipientProps> = ({
     onOpen: openRecipients,
     onClose: closeRecipients,
   } = useDisclosure()
-  const {
-    isOpen: isSearching,
-    onOpen: setIsSearching,
-    onClose: setIsNotSearching,
-  } = useDisclosure()
   const [searchTerm, setSearchTerm] = useState('')
   const debouncedSearchTerm = useDebounce(searchTerm, SEARCH_DEBOUNCE_TIME)
   const [selectedPlatform, setSelectedPlatform] = useState<Platform>()
-  const [recipients, setRecipients] = useState<
-    Array<Profile & { create_new?: boolean }>
-  >([])
   const isOnChain = selectedPlatform?.platform === 'on-chain'
+
+  const { data: recipients = [], isLoading } = useSWR<
+    Array<Profile & { create_new?: boolean }>,
+    any,
+    [string, boolean, boolean, string, string | undefined]
+  >(
+    [
+      'recent-recipients',
+      authorized,
+      isOpenRecipients,
+      debouncedSearchTerm,
+      selectedPlatform?.platform,
+    ],
+    async ([_, isOpenRecipients, authorized, username, platform]) => {
+      if (!authorized || !isOpenRecipients) return []
+      const { data, ok } = await api.profile.users.search({
+        username,
+        platform,
+      })
+      if (!ok) return []
+      return data
+    },
+  )
+
+  const isSearching = isLoading
+
   const filteredRecipients = useMemo(() => {
     const result = recipients.filter(
       getFilterRecipientFunc(debouncedSearchTerm),
@@ -99,31 +118,6 @@ export const Recipient: React.FC<RecipientProps> = ({
     }
     return result
   }, [debouncedSearchTerm, recipients, selectedPlatform?.platform])
-
-  useEffect(() => {
-    if (authorized && isOpenRecipients) {
-      setIsSearching()
-      API.MOCHI_PROFILE.query({
-        ...(debouncedSearchTerm && { username: debouncedSearchTerm }),
-        ...(selectedPlatform?.platform && {
-          platform: selectedPlatform.platform,
-        }),
-      })
-        .get(GET_PATHS.PROFILE_SEARCH)
-        .json((r) => r.data)
-        .then((data: Profile[]) => {
-          setRecipients(data || [])
-        })
-        .finally(() => setIsNotSearching())
-    }
-  }, [
-    authorized,
-    debouncedSearchTerm,
-    isOpenRecipients,
-    selectedPlatform?.platform,
-    setIsNotSearching,
-    setIsSearching,
-  ])
 
   function onOpenChange(isOpen: boolean) {
     if (isOpen) {
