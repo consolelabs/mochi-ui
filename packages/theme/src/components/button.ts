@@ -2,7 +2,7 @@ import { cva, VariantProps } from 'class-variance-authority'
 import { clsx } from 'clsx'
 
 const buttonCva = cva(
-  'inline-flex items-center justify-center outline-none gap-x-2 font-semibold appearance-none transition',
+  'inline-flex items-center justify-center outline-none gap-x-2 font-semibold appearance-none transition whitespace-nowrap',
   {
     variants: {
       variant: {
