@@ -11,7 +11,12 @@ const buttonColorVariants: ButtonProps['color'][] = [
   'neutral',
 ]
 
-const buttonVariants: ButtonProps['variant'][] = ['solid', 'outline', 'link']
+const buttonVariants: ButtonProps['variant'][] = [
+  'solid',
+  'outline',
+  'ghost',
+  'link',
+]
 
 const buttonSizes: ButtonProps['size'][] = ['sm', 'md', 'lg']
 
@@ -19,12 +24,13 @@ const meta: Meta<typeof Button> = {
   title: 'Components/Button',
   component: Button,
   parameters: {
-    // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
     layout: 'centered',
   },
-  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],
   argTypes: {
+    disabled: {
+      type: 'boolean',
+    },
     variant: {
       control: 'select',
       options: buttonVariants,
@@ -46,8 +52,37 @@ type Story = StoryObj<typeof Button>
 export const Default: Story = {
   args: {
     children: 'Connect Wallet',
-    disabled: false,
   },
+}
+
+export function Variants() {
+  return (
+    <div className="flex items-stretch space-x-4">
+      {buttonVariants.map((variant) => (
+        <div key={variant} className="flex flex-col justify-around gap-4">
+          <Button variant={variant}>{variant}</Button>
+          <Button disabled variant={variant}>
+            {variant}
+          </Button>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export function Colors() {
+  return (
+    <div className="flex items-stretch space-x-4">
+      {buttonColorVariants.map((color) => (
+        <div key={color} className="flex flex-col justify-around gap-4">
+          <Button color={color}>{color}</Button>
+          <Button disabled color={color}>
+            {color}
+          </Button>
+        </div>
+      ))}
+    </div>
+  )
 }
 
 export function Sizes() {
@@ -101,57 +136,6 @@ export function WithIcons() {
       <Button>
         <IconConnectWallets height={16} width={16} /> Connect Wallet
       </Button>
-    </div>
-  )
-}
-
-export function VariantSolid() {
-  return (
-    <div className="space-y-4">
-      {buttonColorVariants.map((color) => (
-        <div className="flex gap-x-4" key={color}>
-          <Button color={color} variant="solid">
-            {color}
-          </Button>
-          <Button color={color} disabled variant="solid">
-            {color}
-          </Button>
-        </div>
-      ))}
-    </div>
-  )
-}
-
-export function VariantOutline() {
-  return (
-    <div className="space-y-4">
-      {buttonColorVariants.map((color) => (
-        <div className="flex gap-x-4" key={color}>
-          <Button color={color} variant="outline">
-            {color}
-          </Button>
-          <Button color={color} disabled variant="outline">
-            {color}
-          </Button>
-        </div>
-      ))}
-    </div>
-  )
-}
-
-export function VariantLink() {
-  return (
-    <div className="space-y-4">
-      {buttonColorVariants.map((color) => (
-        <div className="flex gap-x-4" key={color}>
-          <Button color={color} variant="link">
-            {color}
-          </Button>
-          <Button color={color} disabled variant="link">
-            {color}
-          </Button>
-        </div>
-      ))}
     </div>
   )
 }
