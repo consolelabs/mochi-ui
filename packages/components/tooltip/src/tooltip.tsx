@@ -60,7 +60,10 @@ export default function Tooltip({
           >
             {content}
             {arrow !== 'none' && (
-              <RadixTooltip.Arrow className={tooltipArrowClxs} />
+              <RadixTooltip.Arrow
+                style={{ fill: 'white' }}
+                className={tooltipArrowClxs}
+              />
             )}
           </RadixTooltip.Content>
         </RadixTooltip.Portal>
