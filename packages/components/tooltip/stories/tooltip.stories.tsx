@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { ARROW_OPTIONS } from '@consolelabs/theme'
-import Tooltip from '../src/tooltip'
+import Tooltip, { ARROW_OPTIONS } from '../src/tooltip'
 
 const meta: Meta<typeof Tooltip> = {
   title: 'Components/Tooltip',
@@ -20,10 +19,6 @@ const meta: Meta<typeof Tooltip> = {
       type: 'string',
       control: 'text',
     },
-    theme: {
-      control: 'select',
-      options: ['light', 'dark'],
-    },
     arrow: {
       control: 'select',
       options: ARROW_OPTIONS,
@@ -36,7 +31,6 @@ type Story = StoryObj<typeof Tooltip>
 
 export const Light: Story = {
   args: {
-    theme: 'light',
     children: 'Hover me',
     content: 'This is a tooltip',
   },
@@ -44,7 +38,6 @@ export const Light: Story = {
 
 export const Dark: Story = {
   args: {
-    theme: 'dark',
     children: 'Hover me',
     content: 'This is a tooltip',
   },
