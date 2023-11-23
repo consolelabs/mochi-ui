@@ -20,6 +20,7 @@ module.exports = {
     '**/*.css',
     '*.snap',
     'jest.config.js',
+    '**/*.js',
   ],
   settings: {
     'import/resolver': {

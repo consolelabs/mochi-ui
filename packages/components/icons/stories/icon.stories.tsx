@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import * as icons from '../../../icons/src'
+import * as icons from '../../../icons/src/components'
 import { Tooltip } from '../../tooltip/src'
 import { InputField } from '../../input-field/src'
 
