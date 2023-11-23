@@ -1492,6 +1492,9 @@ importers:
       '@consolelabs/switch':
         specifier: workspace:*
         version: link:../components/switch
+      '@consolelabs/table':
+        specifier: workspace:*
+        version: link:../components/table
       '@consolelabs/theme':
         specifier: workspace:*
         version: link:../theme

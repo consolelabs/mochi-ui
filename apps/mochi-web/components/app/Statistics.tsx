@@ -1,19 +1,17 @@
 import {
   Button,
   PageHeader,
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectSeparator,
-  SelectTrigger,
-  SelectValue,
-  Tooltip,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
   Typography,
 } from '@consolelabs/core'
-import { IconArrowUp, IconCheck } from '@consolelabs/icons'
+import { IconArrowUp, IconCheck, IconChevronDown } from '@consolelabs/icons'
 import clsx from 'clsx'
 import Image from 'next/image'
-import { useState } from 'react'
+import Link from 'next/link'
 
 const DataBox = ({
   label,
@@ -56,8 +54,6 @@ const DataBox = ({
 )
 
 export const Statistics = () => {
-  const [selectedApp, setSelectedApp] = useState('all')
-
   return (
     <>
       <PageHeader
@@ -73,49 +69,37 @@ export const Statistics = () => {
           >
             See docs
           </Button>,
-          <Select
-            value={selectedApp}
-            onChange={setSelectedApp}
-            key="app-select"
-          >
-            <SelectTrigger className="rounded bg-neutral-150">
-              <Tooltip
-                content="Selected app"
-                arrow="top-center"
-                className="z-20"
+          <DropdownMenu key="app-select">
+            <DropdownMenuTrigger className="">
+              <Button className="!bg-neutral-150">
+                <Typography level="body-sm">All apps</Typography>
+                <IconChevronDown className="w-4 h-4 text-neutral-800" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem
+                rightIcon={
+                  <IconCheck className="w-4 h-4 ml-4 text-primary-700" />
+                }
               >
-                <SelectValue placeholder="All apps" />
-              </Tooltip>
-            </SelectTrigger>
-            <SelectContent>
+                All apps
+              </DropdownMenuItem>
               {[
-                { key: 'all', name: 'All apps' },
-                { key: '1', name: 'App name 1' },
-                { key: '2', name: 'App name 2' },
+                { id: '1', name: 'App name 1' },
+                { id: '2', name: 'App name 2' },
               ].map((app) => (
-                <SelectItem
-                  key={app.key}
-                  value={app.key}
-                  rightIcon={
-                    <IconCheck
-                      className={clsx(
-                        'w-4 h-4 ml-4',
-                        app.key === selectedApp
-                          ? 'text-primary-700'
-                          : 'invisible',
-                      )}
-                    />
-                  }
-                >
-                  {app.name}
-                </SelectItem>
+                <Link key={app.id} href={`app/${app.id}`}>
+                  <DropdownMenuItem key={app.id}>{app.name}</DropdownMenuItem>
+                </Link>
               ))}
-              <SelectSeparator />
-              <button className="px-2 text-sm font-medium tracking-tight text-primary-700">
-                Create an app
-              </button>
-            </SelectContent>
-          </Select>,
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <Typography level="title-sm" color="primary">
+                  Create an app
+                </Typography>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>,
         ]}
       />
 
