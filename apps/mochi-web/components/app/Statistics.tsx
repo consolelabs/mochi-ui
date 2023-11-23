@@ -23,7 +23,7 @@ const DataBox = ({
   percentage?: number
 }) => (
   <div className="p-4 space-y-4 bg-neutral-0 rounded-xl">
-    <Typography level="title-sm" color="textPrimary">
+    <Typography level="h8" color="textPrimary">
       {label}
     </Typography>
     <Typography level="h5" color="textPrimary">
@@ -40,13 +40,10 @@ const DataBox = ({
           percentage > 0 ? 'text-success-500' : 'text-danger-500 rotate-180',
         )}
       />
-      <Typography
-        level="title-sm"
-        color={percentage > 0 ? 'success' : 'danger'}
-      >
+      <Typography level="h8" color={percentage > 0 ? 'success' : 'danger'}>
         {Math.abs(percentage) * 100}%
       </Typography>
-      <Typography level="body-sm" color="textSecondary">
+      <Typography level="p5" color="textSecondary">
         vs last month
       </Typography>
     </div>
@@ -72,7 +69,7 @@ export const Statistics = () => {
           <DropdownMenu key="app-select">
             <DropdownMenuTrigger className="">
               <Button className="!bg-neutral-150">
-                <Typography level="body-sm">All apps</Typography>
+                <Typography level="p5">All apps</Typography>
                 <IconChevronDown className="w-4 h-4 text-neutral-800" />
               </Button>
             </DropdownMenuTrigger>
@@ -94,7 +91,7 @@ export const Statistics = () => {
               ))}
               <DropdownMenuSeparator />
               <DropdownMenuItem>
-                <Typography level="title-sm" color="primary">
+                <Typography level="h8" color="primary">
                   Create an app
                 </Typography>
               </DropdownMenuItem>
@@ -111,10 +108,10 @@ export const Statistics = () => {
             alt=""
             src="/assets/app-statistics.png"
           />
-          <Typography level="title-lg" color="textPrimary">
+          <Typography level="h6" color="textPrimary">
             Build an app
           </Typography>
-          <Typography level="body-sm" color="textSecondary">
+          <Typography level="p5" color="textSecondary">
             Create an app to get a live API key with access to multiple Mochi
             products.
           </Typography>
