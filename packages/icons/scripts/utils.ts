@@ -3,18 +3,8 @@ import fs from 'node:fs'
 import path from 'node:path'
 import fsPromise from 'node:fs/promises'
 import { glob } from 'glob'
-import prettier from 'prettier'
 import { transform } from '@svgr/core'
 import * as paths from './paths'
-
-const prettierConfig = JSON.parse(
-  fs.readFileSync(path.resolve(__dirname, '../../../.prettierrc')).toString(),
-)
-
-const reactJsxCode = `import React from 'react'\n`
-
-const formatCode = (code: string) =>
-  prettier.format(code, { parser: 'babel-ts', ...prettierConfig })
 
 const kebab2Pascal = (inputStr: string) =>
   inputStr
@@ -56,21 +46,19 @@ const generateSvgs = async () => {
         //IconSettingBar
         const componentName = `Icon${kebab2Pascal(baseNameWithoutExtension)}`
 
-        const code =
-          reactJsxCode +
-          (await transform(
-            content,
-            {
-              typescript: true,
-              icon: true,
-              plugins: ['@svgr/plugin-jsx'],
-            },
-            { componentName },
-          ))
+        const code = await transform(
+          content,
+          {
+            typescript: true,
+            icon: true,
+            plugins: ['@svgr/plugin-jsx'],
+          },
+          { componentName },
+        )
 
         await fsPromise.writeFile(
           `${dirPath}/icon-${baseNameWithoutExtension}.tsx`,
-          await formatCode(deleteFirstLine(code)),
+          deleteFirstLine(code),
         )
         dirIndexContent += `export { default as ${componentName} } from './icon-${baseNameWithoutExtension}'\n`
       }),

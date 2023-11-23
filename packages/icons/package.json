@@ -23,7 +23,7 @@
     "postpack": "clean-package restore",
     "prepublishOnly": "MODIFY_PACKAGE_JSON=UPDATE ts-node ../../scripts/modify-publish-root.ts",
     "postpublish": "ts-node ../../scripts/modify-publish-root.ts",
-    "generate-icons": "ts-node ./scripts/generate-icon-components.ts && prettier --write \"./src/**/*.{ts,tsx}\" && eslint --fix src/components/",
+    "generate-icons": "ts-node ./scripts/generate-icon-components.ts && eslint --fix src/components/",
     "postinstall": "pnpm generate-icons"
   },
   "peerDependencies": {
