@@ -2,6 +2,13 @@ import fs from 'fs'
 import path from 'path'
 import { rimraf } from 'rimraf'
 
+/**
+ * Updates the publishConfig in the package.json file with the specified root directory.
+ * If no root directory is provided, it defaults to './dist'.
+ *
+ * @param {string} root - The root directory for publishing.
+ * @returns {void}
+ */
 function updatePackagePublishConfig(root = './dist') {
   const packagePath = path.resolve('./package.json')
   let packageData = fs.readFileSync(packagePath, 'utf8')
@@ -18,6 +25,9 @@ function updatePackagePublishConfig(root = './dist') {
   console.log(`Updated ${packagePath}`)
 }
 
+/**
+ * Removes the "publishConfig" property from the package.json file.
+ */
 function removePackagePublishConfig() {
   const packagePath = path.resolve('./package.json')
   let packageData = fs.readFileSync(packagePath, 'utf8')

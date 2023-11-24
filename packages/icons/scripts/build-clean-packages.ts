@@ -6,6 +6,9 @@ import { getDirectories } from '../../../scripts/script-utils'
 
 rimraf.sync(paths.cleanPackageJsonPath)
 
+/**
+ * Configuration object for cleaning up package.json file.
+ */
 const cleanPackageJson = {
   remove: ['devDependencies', 'scripts.postinstall', 'publishConfig'],
   replace: {

@@ -5,7 +5,3 @@ declare module '*.svg' {
   const src: string
   export default src
 }
-
-declare module 'browser-string-hexer' {
-  export default function hexer(msg: string): string
-}
