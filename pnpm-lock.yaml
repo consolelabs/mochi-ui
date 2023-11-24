@@ -632,6 +632,43 @@ importers:
         specifier: workspace:*
         version: link:../../tsconfig
 
+  packages/components/form-control:
+    dependencies:
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../../theme
+      class-variance-authority:
+        specifier: ^0.7.0
+        version: 0.7.0
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
+    devDependencies:
+      '@consolelabs/icons':
+        specifier: workspace:*
+        version: link:../../icons
+      '@consolelabs/input':
+        specifier: workspace:*
+        version: link:../input
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.1.0
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
   packages/components/heading:
     devDependencies:
       clean-package:
@@ -3789,7 +3826,11 @@ packages:
     engines: {node: '>=12.0.0'}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': 6.x
+<<<<<<< HEAD
       '@typescript-eslint/parser': ^6.9.1
+=======
+      '@typescript-eslint/parser': ^6.12.0
+>>>>>>> 7a8b62b (feat: create form control, form label)
       babel-eslint: 10.x
       eslint: 8.x
       eslint-config-airbnb: 19.x
@@ -11127,7 +11168,11 @@ packages:
     resolution: {integrity: sha512-XOpZ3IyJUIV1b15M7HVOpgQxPPF7lGXgsfcEIu3yDxFPaf/xZKt7s9QO/pbk7vpWQyVulpJbu4E5LwpZiQo4kA==}
     engines: {node: ^16.0.0 || >=18.0.0}
     peerDependencies:
+<<<<<<< HEAD
       '@typescript-eslint/parser': ^6.9.1
+=======
+      '@typescript-eslint/parser': ^6.12.0
+>>>>>>> 7a8b62b (feat: create form control, form label)
       eslint: ^7.0.0 || ^8.0.0
       typescript: '*'
     peerDependenciesMeta:
@@ -15505,7 +15550,7 @@ packages:
     resolution: {integrity: sha512-GPxI5URre6dDpJ0CtcthSZVBAfI+Uw7un5OYNVxP2EYi3H81Jw701yFP7AU+/vCE7xBtFmjge7kfhhk4+RAiig==}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': ^5.13.0 || ^6.0.0
-      '@typescript-eslint/parser': ^6.9.1
+      '@typescript-eslint/parser': ^6.12.0
       eslint: ^7.32.0 || ^8.2.0
       eslint-plugin-import: ^2.25.3
     dependencies:
