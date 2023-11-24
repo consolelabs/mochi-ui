@@ -48,4 +48,5 @@ export const GET_PATHS = {
     `/users/${id}/wallets/${wallet_address}/${chain}/assets`,
   MOCHI_BALANCES: (id: string) => `/mochi-wallet/${id}/balances`,
   PROFILE_SEARCH: '/profiles/search',
+  APP_DETAIL: (id?: string | number) => `/app/${id}`,
 }

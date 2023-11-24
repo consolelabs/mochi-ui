@@ -26,6 +26,10 @@ export type TooltipProps = {
   content: React.ReactNode
   arrow?: Arrow | 'none'
   className?: string
+  componentProps?: {
+    trigger?: RadixTooltip.TooltipTriggerProps
+    root?: RadixTooltip.TooltipProps
+  }
 }
 
 export default function Tooltip({
@@ -33,6 +37,7 @@ export default function Tooltip({
   content,
   arrow = 'none',
   className,
+  componentProps: { trigger, root } = {},
 }: TooltipProps) {
   const [side, align] =
     arrow === 'none'
@@ -44,8 +49,13 @@ export default function Tooltip({
 
   return (
     <RadixTooltip.Provider>
-      <RadixTooltip.Root delayDuration={0}>
-        <RadixTooltip.Trigger className={tooltipTriggerClsx()}>
+      <RadixTooltip.Root delayDuration={0} {...root}>
+        <RadixTooltip.Trigger
+          {...trigger}
+          className={tooltipTriggerClsx({
+            className: trigger?.className,
+          })}
+        >
           {children}
         </RadixTooltip.Trigger>
         <RadixTooltip.Portal>

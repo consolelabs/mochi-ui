@@ -29,6 +29,7 @@
     "@fnando/sparkline": "^0.3.10",
     "@headlessui-float/react": "^0.11.0",
     "@headlessui/react": "1.7.5",
+    "@hookform/resolvers": "^3.3.2",
     "@radix-ui/react-scroll-area": "^1.0.5",
     "@solana/spl-token": "^0.3.7",
     "@solana/wallet-adapter-base": "0.9.22",
@@ -75,6 +76,7 @@
     "wagmi": "^0.12.1",
     "webp-converter": "^2.3.3",
     "wretch": "^2.6.0",
+    "zod": "^3.22.4",
     "zustand": "^4.3.6"
   },
   "devDependencies": {

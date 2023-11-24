@@ -12,14 +12,21 @@ import { ArrowUpLine, CheckLine, ChevronDownLine } from '@consolelabs/icons'
 import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
+import { ViewApplication } from '~types/mochi-pay-schema'
+import { formatNumber } from '~utils/number'
+import { useFetchApplicationStats } from '~hooks/app/useFetchApplicationStats'
+import { SOCIAL_LINKS } from '~constants'
+import { GET_PATHS } from '~constants/api'
 
 const DataBox = ({
   label,
-  amount = '0',
+  amount = 0,
+  formatAmount = formatNumber,
   percentage = 0,
 }: {
   label: string
-  amount?: string
+  amount?: number
+  formatAmount?: (amount: number) => string
   percentage?: number
 }) => (
   <div className="p-4 space-y-4 bg-neutral-0 rounded-xl">
@@ -27,10 +34,10 @@ const DataBox = ({
       {label}
     </Typography>
     <Typography level="h5" color="textPrimary">
-      {amount}
+      {formatAmount ? formatAmount(amount) : amount}
     </Typography>
     <div
-      className={clsx('flex items-center space-x-1', {
+      className={clsx('flex items-center space-x-1 flex-wrap', {
         invisible: !percentage,
       })}
     >
@@ -50,7 +57,15 @@ const DataBox = ({
   </div>
 )
 
-export const Statistics = () => {
+interface Props {
+  id?: string
+  apps?: ViewApplication[]
+  onOpenCreateAppModal: () => void
+}
+
+export const Statistics = ({ id, apps = [], onOpenCreateAppModal }: Props) => {
+  const { data: stats } = useFetchApplicationStats(id)
+
   return (
     <>
       <PageHeader
@@ -63,6 +78,7 @@ export const Statistics = () => {
             color="neutral"
             className="!bg-neutral-0"
             key="see-docs-button"
+            onClick={() => window.open(SOCIAL_LINKS.DOCS, '_blank')}
           >
             See docs
           </Button>,
@@ -81,16 +97,13 @@ export const Statistics = () => {
               >
                 All apps
               </DropdownMenuItem>
-              {[
-                { id: '1', name: 'App name 1' },
-                { id: '2', name: 'App name 2' },
-              ].map((app) => (
-                <Link key={app.id} href={`app/${app.id}`}>
+              {apps.map((app) => (
+                <Link key={app.id} href={GET_PATHS.APP_DETAIL(app.id)}>
                   <DropdownMenuItem key={app.id}>{app.name}</DropdownMenuItem>
                 </Link>
               ))}
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={onOpenCreateAppModal}>
                 <Typography level="h8" color="primary">
                   Create an app
                 </Typography>
@@ -115,15 +128,43 @@ export const Statistics = () => {
             Create an app to get a live API key with access to multiple Mochi
             products.
           </Typography>
-          <Button size="sm">Create an app</Button>
+          <Button size="sm" onClick={onOpenCreateAppModal}>
+            Create an app
+          </Button>
         </div>
         <div className="grid flex-1 grid-cols-2 gap-2 sm:grid-cols-3">
-          <DataBox label="All time Users" amount="3,298" percentage={0.4} />
-          <DataBox label="7 days Users" />
-          <DataBox label="All time Txs" />
-          <DataBox label="7 days Txs" amount="3,298" percentage={-0.06} />
-          <DataBox label="All time Revenue" />
-          <DataBox label="7 days Revenue" />
+          <DataBox
+            label="All time Users"
+            amount={stats?.users_in_total}
+            percentage={stats?.users_in_total_change?.last_month_percentage}
+          />
+          <DataBox
+            label="7 days Users"
+            amount={stats?.users_in_7d}
+            percentage={stats?.users_in_7d_change?.last_month_percentage}
+          />
+          <DataBox
+            label="All time Txs"
+            amount={stats?.txs_in_total}
+            percentage={stats?.txs_in_total_change?.last_month_percentage}
+          />
+          <DataBox
+            label="7 days Txs"
+            amount={stats?.txs_in_7d}
+            percentage={stats?.txs_in_7d_change?.last_month_percentage}
+          />
+          <DataBox
+            label="All time Revenue"
+            amount={stats?.revenue_in_total}
+            formatAmount={(amount) => `$${formatNumber(amount)}`}
+            percentage={stats?.revenue_in_total_change?.last_month_percentage}
+          />
+          <DataBox
+            label="7 days Revenue"
+            amount={stats?.revenue_in_7d}
+            formatAmount={(amount) => `$${formatNumber(amount)}`}
+            percentage={stats?.revenue_in_7d_change?.last_month_percentage}
+          />
         </div>
       </div>
     </>

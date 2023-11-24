@@ -18,7 +18,7 @@ body {
 }
 
 .banner-token {
-  @apply inline-flex gap-x-1 items-baseline;
+  @apply inline-flex items-baseline gap-x-1;
 }
 .banner-token > img {
   margin: auto;
@@ -67,7 +67,7 @@ body {
 }
 
 .landing-block {
-  @apply w-full px-5 xl:max-w-7xl 2xl:px-0 mx-auto;
+  @apply w-full px-5 mx-auto xl:max-w-7xl 2xl:px-0;
 }
 
 /* Gradient block */
@@ -105,4 +105,8 @@ iframe[id^='telegram-login'] {
   input[type='number']::-webkit-outer-spin-button {
     @apply appearance-none;
   }
+}
+
+div[data-radix-popper-content-wrapper]:has(.tooltip) {
+  z-index: 60 !important;
 }
