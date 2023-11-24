@@ -1,22 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-
-// const getDirectories = (source: string) =>
-//   fs
-//     .readdirSync(source, { withFileTypes: true })
-//     .filter((dirent) => dirent.isDirectory())
-//     .map((dirent) => dirent.name)
-
-const checkFolder = (folderPath: string) => {
-  // Throw error if folder path doesn't exist
-  if (!folderPath) {
-    throw Error('Folder path is required')
-  }
-
-  // Check folder exists in the path using `fs.existsSync`
-  const isFolderExist = fs.existsSync(folderPath)
-  return isFolderExist
-}
+import { checkFolder } from './script-utils'
 
 const includeFileInBuild = (file: string, packagePath: string) => {
   try {

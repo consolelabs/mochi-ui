@@ -1,6 +1,8 @@
+/* eslint-disable import/no-relative-packages */
 import fs from 'node:fs'
 import { rimraf } from 'rimraf'
 import * as paths from './paths'
+import { getDirectories } from '../../../scripts/script-utils'
 
 rimraf.sync(paths.cleanPackageJsonPath)
 
@@ -20,12 +22,6 @@ const cleanPackageJson = {
     },
   },
 }
-
-const getDirectories = (source: string) =>
-  fs
-    .readdirSync(source, { withFileTypes: true })
-    .filter((dirent) => dirent.isDirectory())
-    .map((dirent) => dirent.name)
 
 const componentsDir = getDirectories(paths.componentsPath)
 
