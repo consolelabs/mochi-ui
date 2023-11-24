@@ -6,22 +6,36 @@ export type TypographyProps = TypographyStyleProps & {
   component?: React.ElementType
 }
 
-const defaultLevelMapping = {
-  h1: 'h1',
-  h2: 'h2',
-  h3: 'h3',
-  h4: 'h4',
-  h5: 'h5',
-  h6: 'h6',
-  'title-lg': 'p',
-  'title-md': 'p',
-  'title-sm': 'p',
-  'body-lg': 'p',
-  'body-md': 'p',
-  'body-sm': 'p',
-  'body-xs': 'span',
-  inherit: 'p',
-} as const
+const levelMapping = (level: TypographyProps['level']) => {
+  switch (level) {
+    case 'h1':
+      return 'h1'
+    case 'h2':
+      return 'h2'
+    case 'h3':
+      return 'h3'
+    case 'h4':
+      return 'h4'
+    case 'h5':
+      return 'h5'
+    case 'h6':
+    case 'h7':
+    case 'h8':
+    case 'h9':
+      return 'h6'
+    case 'p1':
+    case 'p2':
+    case 'p3':
+    case 'p4':
+    case 'p5':
+      return 'p'
+    case 'p6':
+    case 'p7':
+      return 'span'
+    default:
+      return 'p'
+  }
+}
 
 export default function Typography({
   children,
@@ -32,8 +46,8 @@ export default function Typography({
   className,
 }: TypographyProps) {
   const { typographyVariants } = typography
-  const level = levelProp || 'body-md'
-  const Component = componentProp || defaultLevelMapping[level]
+  const level = levelProp || 'p4'
+  const Component = componentProp || levelMapping(level)
 
   return (
     <Component

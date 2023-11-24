@@ -74,7 +74,7 @@ const PageHeader = (props: PageHeaderProps) => {
 
             {titleExtra ? (
               <Typography
-                level="body-xs"
+                level="p6"
                 color="textSecondary"
                 className={pageHeaderTitleExtraClsx({
                   className: titleExtraClassName,
@@ -85,7 +85,7 @@ const PageHeader = (props: PageHeaderProps) => {
             ) : null}
           </div>
           {description ? (
-            <Typography level="body-sm" color="textSecondary">
+            <Typography level="p5" color="textSecondary">
               {description}
             </Typography>
           ) : null}

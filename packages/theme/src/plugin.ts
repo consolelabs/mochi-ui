@@ -191,6 +191,8 @@ export const consolelabs = () => {
           },
           fontSize: {
             xxs: '10px',
+            '3.5xl': '32px',
+            '4.5xl': '40px',
           },
           boxShadow: {
             small:
