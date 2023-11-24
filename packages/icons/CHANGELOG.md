@@ -1,5 +1,26 @@
 # @consolelabs/icons
 
+## 0.2.0
+
+### Minor Changes
+
+- [#278](https://github.com/consolelabs/web-foundation/pull/278)
+  [`a504968`](https://github.com/consolelabs/web-foundation/commit/a50496823bdfb169b5a8c30c1849cdb07534de78)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Create PageHeader
+  component package
+
+### Patch Changes
+
+- [#286](https://github.com/consolelabs/web-foundation/pull/286)
+  [`17899ed`](https://github.com/consolelabs/web-foundation/commit/17899edf82cda80441450ef240569831e427f45b)
+  Thanks [@chinhld12](https://github.com/chinhld12)! - Restructure icons
+  packages by icon variants
+
+- [#276](https://github.com/consolelabs/web-foundation/pull/276)
+  [`cd2a974`](https://github.com/consolelabs/web-foundation/commit/cd2a9743f24f08deb03bacdf29c3a7d5e2512ab5)
+  Thanks [@tuanddd](https://github.com/tuanddd)! - Add new ProfileGuardSuccess
+  icon
+
 ## 0.1.0
 
 ### Minor Changes

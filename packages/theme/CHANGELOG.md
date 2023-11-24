@@ -1,5 +1,75 @@
 # @consolelabs/theme
 
+## 0.4.0
+
+### Minor Changes
+
+- [#281](https://github.com/consolelabs/web-foundation/pull/281)
+  [`35397e3`](https://github.com/consolelabs/web-foundation/commit/35397e3d3d7599009f9af862a89887ac0c6b34b3)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Update
+  tooltip semantic color
+
+- [#278](https://github.com/consolelabs/web-foundation/pull/278)
+  [`a504968`](https://github.com/consolelabs/web-foundation/commit/a50496823bdfb169b5a8c30c1849cdb07534de78)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Create PageHeader
+  component package
+
+- [#282](https://github.com/consolelabs/web-foundation/pull/282)
+  [`6abb483`](https://github.com/consolelabs/web-foundation/commit/6abb483a80940ab463add9b1daf5a0638bc7a3d2)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Update Modal
+  use semantic color
+
+- [#284](https://github.com/consolelabs/web-foundation/pull/284)
+  [`b305580`](https://github.com/consolelabs/web-foundation/commit/b30558023c82036f78b76a10a68985618b728948)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Update select
+  use semantic color
+
+- [#280](https://github.com/consolelabs/web-foundation/pull/280)
+  [`d849e4e`](https://github.com/consolelabs/web-foundation/commit/d849e4edc83bddeb990b34d1675674b06c4c16bb)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Update Icon
+  Button variants
+
+- [#273](https://github.com/consolelabs/web-foundation/pull/273)
+  [`39b8004`](https://github.com/consolelabs/web-foundation/commit/39b8004ab0b84cfa8b34bf416bee4f6722b294c2)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Remove
+  focus-visible outline on trigger
+
+- [#259](https://github.com/consolelabs/web-foundation/pull/259)
+  [`48b0612`](https://github.com/consolelabs/web-foundation/commit/48b061226a533c20ab4f87787576afd1fd6a96f1)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Use semantic tailwind
+  classes in login widget styling
+
+- [#273](https://github.com/consolelabs/web-foundation/pull/273)
+  [`39b8004`](https://github.com/consolelabs/web-foundation/commit/39b8004ab0b84cfa8b34bf416bee4f6722b294c2)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Remove focus
+  state component Trigger
+
+- [#258](https://github.com/consolelabs/web-foundation/pull/258)
+  [`4157504`](https://github.com/consolelabs/web-foundation/commit/4157504d0c15310c559bbba45a2d2f4d0246fdde)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Use semantic tailwind
+  classes in popover component styling
+
+- [#280](https://github.com/consolelabs/web-foundation/pull/280)
+  [`d849e4e`](https://github.com/consolelabs/web-foundation/commit/d849e4edc83bddeb990b34d1675674b06c4c16bb)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Reuse button
+  variants for icon button
+
+- [#272](https://github.com/consolelabs/web-foundation/pull/272)
+  [`74087fd`](https://github.com/consolelabs/web-foundation/commit/74087fd9f316956e25453e6a2df0595fdf715025)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Update toggle
+  button variants
+
+### Patch Changes
+
+- [#283](https://github.com/consolelabs/web-foundation/pull/283)
+  [`f088b6f`](https://github.com/consolelabs/web-foundation/commit/f088b6fc00801843fafde8f7fb3f5995ef491368)
+  Thanks [@trankhacvy](https://github.com/trankhacvy)! - Add button link variant
+
+- [#290](https://github.com/consolelabs/web-foundation/pull/290)
+  [`c594e9a`](https://github.com/consolelabs/web-foundation/commit/c594e9a0117ba184f31dc55e7079f406838c43f2)
+  Thanks [@trankhacvy](https://github.com/trankhacvy)! - Update Typo variant
+  names
+
 ## 0.3.0
 
 ### Minor Changes
