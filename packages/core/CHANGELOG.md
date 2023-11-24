@@ -1,5 +1,31 @@
 # @consolelabs/core
 
+## 0.3.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`538fac5`](https://github.com/consolelabs/web-foundation/commit/538fac5b23861bfd01d02413746b80b89d8c50fd)]:
+  - @consolelabs/icons@0.2.1
+  - @consolelabs/accordion@0.1.2
+  - @consolelabs/alert@0.1.2
+  - @consolelabs/badge@0.2.1
+  - @consolelabs/button@0.2.1
+  - @consolelabs/checkbox@0.1.2
+  - @consolelabs/dropdown@0.1.2
+  - @consolelabs/icon-button@0.3.1
+  - @consolelabs/input@0.1.2
+  - @consolelabs/input-field@0.1.3
+  - @consolelabs/login-widget@0.1.3
+  - @consolelabs/modal@0.2.1
+  - @consolelabs/page-header@0.1.1
+  - @consolelabs/popover@0.2.0
+  - @consolelabs/select@0.1.1
+  - @consolelabs/sidebar@0.0.15
+  - @consolelabs/table@0.1.7
+  - @consolelabs/toggle-button@0.1.0
+  - @consolelabs/typography@0.0.5
+
 ## 0.3.0
 
 ### Minor Changes

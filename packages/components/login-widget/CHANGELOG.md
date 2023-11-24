@@ -1,5 +1,16 @@
 # @consolelabs/login-widget
 
+## 0.1.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`538fac5`](https://github.com/consolelabs/web-foundation/commit/538fac5b23861bfd01d02413746b80b89d8c50fd)]:
+  - @consolelabs/icons@0.2.1
+  - @consolelabs/button@0.2.1
+  - @consolelabs/dropdown@0.1.2
+  - @consolelabs/tabs@0.1.2
+
 ## 0.1.2
 
 ### Patch Changes
