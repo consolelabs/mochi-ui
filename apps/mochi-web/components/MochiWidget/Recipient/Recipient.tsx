@@ -11,7 +11,7 @@ import {
   PopoverContent,
   PopoverAnchor,
 } from '@consolelabs/core'
-import { IconProfileGuardSuccess, IconSpinner } from '@consolelabs/icons'
+import { ProfileGuardSuccessLine, Spinner } from '@consolelabs/icons'
 import { useDebounce, useDisclosure } from '@dwarvesf/react-hooks'
 import { ChainPicker } from '../ChainPicker'
 import { Platform } from '../PlatformPicker/type'
@@ -217,7 +217,7 @@ export const Recipient: React.FC<RecipientProps> = ({
                 }}
                 autoComplete="off"
               />
-              <IconSpinner
+              <Spinner
                 width={18}
                 height={18}
                 className={clsx({
@@ -262,7 +262,7 @@ export const Recipient: React.FC<RecipientProps> = ({
               className="flex flex-col gap-y-2 justify-center items-center text-neutral-500"
               style={{ height: 84 }}
             >
-              <IconProfileGuardSuccess className="w-10 h-10" />
+              <ProfileGuardSuccessLine className="w-10 h-10" />
               <span className="text-xs font-normal">
                 Select your recipients to send money
               </span>

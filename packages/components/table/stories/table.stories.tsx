@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks -- . */
 import type { Meta, StoryObj } from '@storybook/react'
 import { useCallback, useMemo, useRef, useState } from 'react'
-import { IconStar } from '@consolelabs/icons'
+import { StarSolid } from '@consolelabs/icons'
 import { Badge } from '@consolelabs/badge'
 import { Pagination } from '@consolelabs/pagination'
 import Table from '../src/table'
@@ -112,7 +112,7 @@ export const Default: Story = {
                 return (
                   <Badge
                     appearance="primary"
-                    icon={<IconStar />}
+                    icon={<StarSolid />}
                     label={cell.getValue() as string}
                   />
                 )

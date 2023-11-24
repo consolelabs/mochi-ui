@@ -1,7 +1,7 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { MAX_AMOUNT_PRECISION, formatTokenAmount } from '~utils/number'
 import { Button } from '@consolelabs/core'
-import { IconCheck, IconChevronLeft, IconSpinner } from '@consolelabs/icons'
+import { CheckLine, ChevronLeftLine, Spinner } from '@consolelabs/icons'
 import { useTipWidget } from './store'
 import MessagePicker from '../MessagePicker/MessagePicker'
 import ThemePicker from '../ThemePicker/ThemePicker'
@@ -27,7 +27,7 @@ export default function StepTwo() {
             onClick={() => setStep(1)}
             className="self-start mt-3 outline-none"
           >
-            <IconChevronLeft className="w-5 h-5" />
+            <ChevronLeftLine className="w-5 h-5" />
           </button>
           <span className="mx-auto text-base text-neutral-800">You send</span>
           <p className="mx-auto text-3xl font-medium leading-5 text-black">
@@ -73,7 +73,7 @@ export default function StepTwo() {
         disabled={isTransferring}
       >
         {isTransferring ? <>&#8203;</> : 'Send'}
-        {isTransferring ? <IconSpinner /> : <IconCheck />}
+        {isTransferring ? <Spinner /> : <CheckLine />}
       </Button>
     </div>
   )

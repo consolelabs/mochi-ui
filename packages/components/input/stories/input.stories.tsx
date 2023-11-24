@@ -1,8 +1,4 @@
-import {
-  IconDiscordColored,
-  IconPasswordLockColored,
-  IconSlack,
-} from '@consolelabs/icons'
+import { DiscordColored, PasswordLockColored, Slack } from '@consolelabs/icons'
 import type { Meta, StoryObj } from '@storybook/react'
 import { Avatar } from '@consolelabs/avatar'
 import Input from '../src/input'
@@ -73,14 +69,14 @@ export function Slot() {
 
       <Input.Root size="lg">
         <Input.Slot>
-          <IconDiscordColored />
+          <DiscordColored />
         </Input.Slot>
         <Input.InputField placeholder="Search the docs…" />
       </Input.Root>
 
       <Input.Root disabled>
         <Input.Slot>
-          <IconSlack />
+          <Slack />
         </Input.Slot>
         <Input.InputField placeholder="Search the docs…" />
       </Input.Root>
@@ -88,7 +84,7 @@ export function Slot() {
       <Input.Root error>
         <Input.InputField placeholder="Search the docs…" />
         <Input.Slot>
-          <IconPasswordLockColored />
+          <PasswordLockColored />
         </Input.Slot>
       </Input.Root>
     </div>

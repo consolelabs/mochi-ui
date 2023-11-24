@@ -1,7 +1,7 @@
 import * as AccordionPrimitive from '@radix-ui/react-accordion'
 import type { ElementRef, ComponentPropsWithoutRef, ReactNode } from 'react'
 import { forwardRef } from 'react'
-import { IconChevronDown } from '@consolelabs/icons'
+import { ChevronDownLine } from '@consolelabs/icons'
 import { accordion } from '@consolelabs/theme'
 
 const {
@@ -67,7 +67,7 @@ const AccordionTrigger = forwardRef<
   const iconStyle = accordionTriggerIconClsx()
   const renderRightIcon = (
     <span className={iconStyle} id={!rightIcon ? 'chevron' : undefined}>
-      {!rightIcon ? <IconChevronDown /> : rightIcon}
+      {!rightIcon ? <ChevronDownLine /> : rightIcon}
     </span>
   )
 

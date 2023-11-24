@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
 import clsx from 'clsx'
 import type { ReactNode } from 'react'
-import { IconChevronDown, IconCheck } from '@consolelabs/icons'
+import { ChevronDownLine, CheckLine } from '@consolelabs/icons'
 import { dropdown } from '@consolelabs/theme'
 import type {
   DropdownContentRef,
@@ -158,7 +158,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
             rightIcon,
             className,
             defaultRightIcon: (
-              <IconChevronDown className={dropdownMenuSubTriggerClsx()} />
+              <ChevronDownLine className={dropdownMenuSubTriggerClsx()} />
             ),
           })}
     </DropdownMenuPrimitive.SubTrigger>
@@ -287,7 +287,7 @@ const DropdownMenuRadioItem = React.forwardRef<
             rightExtra,
             rightIcon,
             defaultRightIcon: (
-              <IconCheck className={dropdownMenuRadioIconClsx()} />
+              <CheckLine className={dropdownMenuRadioIconClsx()} />
             ),
             className,
             subtitle,

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Button } from '@consolelabs/core'
-import { IconCheck, IconLink, IconPlus, IconShare } from '@consolelabs/icons'
+import { CheckLine, LinkLine, PlusLine, ShareSolid } from '@consolelabs/icons'
 import { useClipboard } from '@dwarvesf/react-hooks'
 import Link from 'next/link'
 
@@ -33,7 +33,7 @@ export default function Buttons({ shareLink }: Props) {
           color="neutral"
           size="sm"
         >
-          <IconShare />
+          <ShareSolid />
           Share
         </Button>
       )}
@@ -44,12 +44,12 @@ export default function Buttons({ shareLink }: Props) {
         color="neutral"
         size="sm"
       >
-        {hasCopied ? <IconCheck /> : <IconLink />}
+        {hasCopied ? <CheckLine /> : <LinkLine />}
         {hasCopied ? 'Copied' : 'Copy link'}
       </Button>
       <Link href="/">
         <Button size="sm">
-          <IconPlus />
+          <PlusLine />
           New tip
         </Button>
       </Link>

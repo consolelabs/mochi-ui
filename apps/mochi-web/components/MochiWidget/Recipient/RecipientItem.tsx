@@ -2,7 +2,7 @@ import { useDisclosure } from '@dwarvesf/react-hooks'
 import clsx from 'clsx'
 import { Avatar, Heading } from '@consolelabs/core'
 import { Profile } from '@consolelabs/mochi-rest'
-import { IconCheck, IconClose } from '@consolelabs/icons'
+import { CheckLine, CloseLine } from '@consolelabs/icons'
 import PlatformIcon from '../PlatformPicker/PlatformIcon'
 
 type CheckIconProps = {
@@ -12,9 +12,9 @@ type CheckIconProps = {
 
 const CheckIcon: React.FC<CheckIconProps> = ({ isSelected, isHovering }) => {
   return (isSelected && !isHovering) || (!isSelected && isHovering) ? (
-    <IconCheck className="p-1 w-6 h-6 text-primary-700" />
+    <CheckLine className="p-1 w-6 h-6 text-primary-700" />
   ) : (
-    <IconClose className="w-6 h-6 text-xl text-red-700" />
+    <CloseLine className="w-6 h-6 text-xl text-red-700" />
   )
 }
 

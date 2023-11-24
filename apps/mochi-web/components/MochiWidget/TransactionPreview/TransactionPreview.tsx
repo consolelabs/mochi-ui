@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react'
 import {
-  IconX,
-  IconDiscord,
-  IconTelegram,
-  IconDango,
-  IconWallet,
-  IconMochi,
+  X,
+  Discord,
+  Telegram,
+  Dango,
+  WalletSolid,
+  Mochi,
 } from '@consolelabs/icons'
 import { useProfileStore } from '~store'
 import UI, { Platform } from '@consolelabs/mochi-ui'
@@ -23,19 +23,19 @@ function Recipient({
   let Icon
   switch (platform) {
     case Platform.Discord:
-      Icon = IconDiscord
+      Icon = Discord
       break
     case Platform.Twitter:
-      Icon = IconX
+      Icon = X
       break
     case Platform.Telegram:
-      Icon = IconTelegram
+      Icon = Telegram
       break
     case Platform.Mochi:
-      Icon = IconDango
+      Icon = Dango
       break
     default:
-      Icon = IconWallet
+      Icon = WalletSolid
       break
   }
 
@@ -96,12 +96,12 @@ function TipPreview() {
         <div className="flex gap-x-1 justify-end items-center">
           {wallet?.type === 'offchain' ? (
             <>
-              <IconMochi />
+              <Mochi />
               <span className="text-right">Mochi wallet</span>
             </>
           ) : (
             <>
-              <IconWallet />
+              <WalletSolid />
               <span className="text-right">{wallet?.title}</span>
             </>
           )}

@@ -1,15 +1,15 @@
 import {
-  IconDiscord,
-  IconDiscordColored,
-  IconGithub,
-  IconGoogle,
-  IconGoogleColored,
-  IconReddit,
-  IconRedditColored,
-  IconTelegram,
-  IconTelegramColored,
-  IconWallet,
-  IconX,
+  Discord,
+  DiscordColored,
+  Github,
+  Google,
+  GoogleColored,
+  Reddit,
+  RedditColored,
+  Telegram,
+  TelegramColored,
+  WalletSolid,
+  X,
 } from '@consolelabs/icons'
 import { PlatformType } from './type'
 
@@ -27,40 +27,40 @@ const PlatformIcon: React.FC<IconProps> = ({
   switch (platform.toLowerCase()) {
     case 'discord': {
       return compact ? (
-        <IconDiscord className={className} />
+        <Discord className={className} />
       ) : (
-        <IconDiscordColored className={className} />
+        <DiscordColored className={className} />
       )
     }
     case 'telegram': {
       return compact ? (
-        <IconTelegram className={className} />
+        <Telegram className={className} />
       ) : (
-        <IconTelegramColored className={className} />
+        <TelegramColored className={className} />
       )
     }
     case 'email': {
       return compact ? (
-        <IconGoogle className={className} />
+        <Google className={className} />
       ) : (
-        <IconGoogleColored className={className} />
+        <GoogleColored className={className} />
       )
     }
     case 'x': {
-      return <IconX className={className} />
+      return <X className={className} />
     }
     case 'github': {
-      return <IconGithub className={className} />
+      return <Github className={className} />
     }
     case 'reddit': {
       return compact ? (
-        <IconReddit className={className} />
+        <Reddit className={className} />
       ) : (
-        <IconRedditColored className={className} />
+        <RedditColored className={className} />
       )
     }
     case 'on-chain': {
-      return <IconWallet className={className} />
+      return <WalletSolid className={className} />
     }
     default: {
       return null

@@ -1,6 +1,6 @@
 /* import clsx from 'clsx' */
 import React, { useState } from 'react'
-import { IconPaperplaneCircled } from '@consolelabs/icons'
+import { PaperplaneCircleSolid } from '@consolelabs/icons'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import Tip from './Tip'
 
@@ -16,7 +16,7 @@ const tabs = [
   {
     id: 'tip',
     title: 'Tip',
-    Icon: IconPaperplaneCircled,
+    Icon: PaperplaneCircleSolid,
     render: () => <Tip />,
   },
   /* { */

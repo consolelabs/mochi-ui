@@ -1,4 +1,4 @@
-import { IconCheck, IconMinus } from '@consolelabs/icons'
+import { CheckLine, MinusLine } from '@consolelabs/icons'
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 import { checkbox, CheckBoxStyleProps } from '@consolelabs/theme'
@@ -43,8 +43,8 @@ const Checkbox = forwardRef<
         children
       ) : (
         <CheckboxPrimitive.Indicator className={checkbox.indicator}>
-          <IconCheck id="check" />
-          <IconMinus id="minus" />
+          <CheckLine id="check" />
+          <MinusLine id="minus" />
         </CheckboxPrimitive.Indicator>
       )}
     </CheckboxPrimitive.Root>

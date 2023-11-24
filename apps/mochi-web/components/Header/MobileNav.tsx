@@ -1,10 +1,10 @@
 import {
-  IconDiscordColored,
-  IconTelegramColored,
-  IconMonitor,
-  IconSlackColored,
-  IconChevronRight,
-  IconAppleColored,
+  DiscordColored,
+  TelegramColored,
+  MonitorLine,
+  SlackColored,
+  ChevronRightLine,
+  AppleColored,
 } from '@consolelabs/icons'
 import { List, Button, Modal, ModalContent, Avatar } from '@consolelabs/core'
 import Link from 'next/link'
@@ -69,7 +69,7 @@ const Header = ({ onClose }: { onClose: () => void }) => {
               {me?.profile_name}
             </span>
           </div>
-          <IconChevronRight className="text-lg transition group-hover:translate-x-1" />
+          <ChevronRightLine className="text-lg transition group-hover:translate-x-1" />
         </div>
       </Link>
     </button>
@@ -104,17 +104,17 @@ export const MobileNav = (props: { onClose: () => void }) => {
                 data: [
                   {
                     label: 'Web Dashboard',
-                    iconLeft: <IconMonitor />,
+                    iconLeft: <MonitorLine />,
                     href: '#',
                   },
                   {
                     label: 'Discord',
-                    iconLeft: <IconDiscordColored />,
+                    iconLeft: <DiscordColored />,
                     href: '#',
                   },
                   {
                     label: 'Telegram',
-                    iconLeft: <IconTelegramColored />,
+                    iconLeft: <TelegramColored />,
                     href: '#',
                   },
                 ],
@@ -124,12 +124,12 @@ export const MobileNav = (props: { onClose: () => void }) => {
                 data: [
                   {
                     label: <span className="text-neutral-500">Discord</span>,
-                    iconLeft: <IconSlackColored className="opacity-50" />,
+                    iconLeft: <SlackColored className="opacity-50" />,
                     href: '#',
                   },
                   {
                     label: <span className="text-neutral-500">iOS</span>,
-                    iconLeft: <IconAppleColored className="opacity-50" />,
+                    iconLeft: <AppleColored className="opacity-50" />,
                     href: '#',
                   },
                 ],

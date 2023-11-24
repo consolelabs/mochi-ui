@@ -2,9 +2,9 @@ import * as Dialog from '@radix-ui/react-dialog'
 import React, { useCallback, useMemo, useState } from 'react'
 import { useMochi } from '@consolelabs/mochi-store'
 import {
-  IconCheck,
-  IconClose,
-  IconExclamationTriangle,
+  CheckLine,
+  CloseLine,
+  ExclamationTriangleOutlined,
 } from '@consolelabs/icons'
 import { Button } from '@consolelabs/button'
 import { loginWidget } from '@consolelabs/theme'
@@ -59,7 +59,7 @@ function Inner({ onSuccess }: { onSuccess: WidgetProps['onSuccess'] }) {
     )
   }
 
-  const Icon = wallet?.icon ?? IconExclamationTriangle
+  const Icon = wallet?.icon ?? ExclamationTriangleOutlined
   const innerClsx = loginInnerStateClsx().connecting
   const isSuccess = error ? -1 : Number(state === LoginState.Authenticated)
 
@@ -80,12 +80,12 @@ function Inner({ onSuccess }: { onSuccess: WidgetProps['onSuccess'] }) {
           <div className={innerClsx.divider}>
             {isSuccess === 1 && (
               <div className={innerClsx['connect-icon-success']}>
-                <IconCheck className={innerClsx['connect-icon']} />
+                <CheckLine className={innerClsx['connect-icon']} />
               </div>
             )}
             {isSuccess === -1 && (
               <div className={innerClsx['connect-icon-error']}>
-                <IconClose className={innerClsx['connect-icon']} />
+                <CloseLine className={innerClsx['connect-icon']} />
               </div>
             )}
           </div>

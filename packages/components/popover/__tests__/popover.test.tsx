@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/react'
-import { IconCheckCircled } from '@consolelabs/icons'
+import { CheckCircleOutlined } from '@consolelabs/icons'
 import { Popover, PopoverTrigger, PopoverContent } from '../src/popover'
 
 const Component = () => {
@@ -22,7 +22,7 @@ const Component = () => {
                   <p>Console Labs {index}</p>
                   <p className="text-xs text-[#848281]">Lvl {430 + index}</p>
                 </div>
-                <IconCheckCircled />
+                <CheckCircleOutlined />
               </div>
             ))}
         </div>

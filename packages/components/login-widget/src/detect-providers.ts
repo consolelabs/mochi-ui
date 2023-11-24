@@ -1,11 +1,7 @@
 import bs58 from 'bs58'
 import { useMochi } from '@consolelabs/mochi-store'
 import hexer from 'browser-string-hexer'
-import {
-  IconMetamaskWallet,
-  IconPhantomWallet,
-  IconRoninWallet,
-} from '@consolelabs/icons'
+import { MetamaskWallet, PhantomWallet, RoninWallet } from '@consolelabs/icons'
 import type { WalletProps } from './wallet'
 
 const msg = 'Please sign this message to prove that you own this wallet'
@@ -44,7 +40,7 @@ export default function getAvailableWallets() {
       EVM: [
         {
           name: 'MetaMask',
-          icon: IconMetamaskWallet,
+          icon: MetamaskWallet,
           isInstalled: Boolean(window.ethereum),
           connect: () =>
             window.ethereum
@@ -61,7 +57,7 @@ export default function getAvailableWallets() {
       Solana: [
         {
           name: 'Phantom',
-          icon: IconPhantomWallet,
+          icon: PhantomWallet,
           isInstalled: Boolean(window.phantom),
           connect: () =>
             window.phantom.solana
@@ -72,7 +68,7 @@ export default function getAvailableWallets() {
       RONIN: [
         {
           name: 'Ronin',
-          icon: IconRoninWallet,
+          icon: RoninWallet,
           isInstalled: Boolean(window.ronin),
           connect: () =>
             window.ronin.provider

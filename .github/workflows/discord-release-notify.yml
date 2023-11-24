@@ -18,7 +18,7 @@ on:
     secrets:
       discord-webhook:
         description: 'The Discord webhook URL'
-        required: false
+        required: true
 
 jobs:
   discord-descriptions:

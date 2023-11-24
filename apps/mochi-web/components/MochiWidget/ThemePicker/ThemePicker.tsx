@@ -9,7 +9,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@consolelabs/core'
-import { IconCrossCircled, IconMagnifier } from '@consolelabs/icons'
+import { CrossCircleOutlined, MagnifierLine } from '@consolelabs/icons'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { Tab } from '@headlessui/react'
@@ -137,7 +137,7 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
                   onClick={() => onChange(null)}
                   className="overflow-hidden absolute top-0 right-0 w-4 h-4 bg-gray-800 rounded-full translate-x-1/2 -translate-y-1/2 text-white-pure"
                 >
-                  <IconCrossCircled className="scale-150" />
+                  <CrossCircleOutlined className="scale-150" />
                 </button>
               )}
             </div>
@@ -166,7 +166,7 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
               className="w-full"
               placeholder="Search"
               startAdornment={
-                <IconMagnifier className="pl-2 w-5 h-5 text-gray-500" />
+                <MagnifierLine className="pl-2 w-5 h-5 text-gray-500" />
               }
               onChange={onThemeSearchChange}
             />

@@ -1,0 +1,6 @@
+{
+  "extends": "../../icons/tsconfig.json",
+  "include": [
+    "stories",
+  ],
+}

@@ -1,9 +1,9 @@
 import type { SVGProps } from 'react'
 import {
-  IconInfoCircled,
-  IconCheckCircled,
-  IconCrossCircled,
-  IconExclamationTriangle,
+  InfoCircleOutlined,
+  CheckCircleOutlined,
+  CrossCircleOutlined,
+  ExclamationTriangleOutlined,
 } from '@consolelabs/icons'
 import { alert, AlertStylesProps } from '@consolelabs/theme'
 
@@ -12,12 +12,12 @@ const { alertCva, alertIconClsx, alertContentClsx, alertTitleClsx } = alert
 type Appearance = Exclude<AlertStylesProps['appearance'], null | undefined>
 
 const icons = {
-  primary: IconInfoCircled,
-  secondary: IconInfoCircled,
-  neutral: IconInfoCircled,
-  success: IconCheckCircled,
-  warning: IconExclamationTriangle,
-  danger: IconCrossCircled,
+  primary: InfoCircleOutlined,
+  secondary: InfoCircleOutlined,
+  neutral: InfoCircleOutlined,
+  success: CheckCircleOutlined,
+  warning: ExclamationTriangleOutlined,
+  danger: CrossCircleOutlined,
 } satisfies Record<Appearance, (p: SVGProps<SVGSVGElement>) => JSX.Element>
 
 interface AlertProps extends AlertStylesProps {

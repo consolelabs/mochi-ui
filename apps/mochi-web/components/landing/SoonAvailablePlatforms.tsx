@@ -1,6 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
-import { IconApple, IconSlackColored } from '@consolelabs/icons'
+import { Apple, SlackColored } from '@consolelabs/icons'
 
 export function SoonAvailablePlatforms({
   className = '',
@@ -21,7 +21,7 @@ export function SoonAvailablePlatforms({
                 <span className="text-[15px] leading-[15px]">Slack</span>
               </div>
             ),
-            icon: <IconSlackColored className="w-6 h-6" />,
+            icon: <SlackColored className="w-6 h-6" />,
           },
           {
             text: (
@@ -30,7 +30,7 @@ export function SoonAvailablePlatforms({
                 <span className="text-[15px] leading-[15.72px]">App Store</span>
               </div>
             ),
-            icon: <IconApple className="w-6 h-6" />,
+            icon: <Apple className="w-6 h-6" />,
           },
         ].map(({ text, icon }, i) => (
           <li

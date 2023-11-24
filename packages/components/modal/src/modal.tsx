@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as ModalPrimitive from '@radix-ui/react-dialog'
-import { IconClose } from '@consolelabs/icons'
+import { CloseLine } from '@consolelabs/icons'
 import { modal } from '@consolelabs/theme'
 
 const {
@@ -64,7 +64,7 @@ const ModalContent = React.forwardRef<
       {children}
       {showCloseBtn ? (
         <ModalClose className={modalCloseButtonClsx()}>
-          <IconClose />
+          <CloseLine />
         </ModalClose>
       ) : null}
     </ModalPrimitive.Content>

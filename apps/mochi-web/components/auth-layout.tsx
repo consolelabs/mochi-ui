@@ -3,17 +3,17 @@ import { useHasMounted } from '@dwarvesf/react-hooks'
 import { useAuthStore } from '~store'
 import Link from 'next/link'
 import {
-  IconLifeBuoy,
-  IconX,
-  IconDiscord,
-  IconStar,
-  IconAddUser,
-  IconCoding,
-  IconSetting,
-  IconGame,
-  IconUser,
-  IconSuperGroup,
-  IconTwinkle,
+  LifeBuoySolid,
+  X,
+  Discord,
+  StarSolid,
+  AddUserSolid,
+  CodingSolid,
+  SettingSolid,
+  GameSolid,
+  UserSolid,
+  SuperGroupSolid,
+  TwinkleSolid,
 } from '@consolelabs/icons'
 import { Sidebar, Badge } from '@consolelabs/core'
 import { DISCORD_LINK } from '~envs'
@@ -33,7 +33,7 @@ const SidebarHeader = ({ expanded }: { expanded?: boolean }) => {
 }
 
 export const getSidebarBadge = {
-  NEW: <Badge icon={<IconTwinkle />} label="New" appearance="success" />,
+  NEW: <Badge icon={<TwinkleSolid />} label="New" appearance="success" />,
   FEATURED: <Badge label="Featured" appearance="primary" />,
   SOON: <Badge label="Soon" appearance="secondary" />,
   FREE_TRIAL: <Badge label="Free trial" appearance="warning" />,
@@ -70,23 +70,23 @@ export default function AuthenticatedLayout({
                 headerItems={[
                   {
                     title: 'Profile',
-                    Icon: IconUser,
+                    Icon: UserSolid,
                     type: 'link',
                     as: Link,
                     href: '/profile',
                   },
-                  { title: 'Servers', Icon: IconDiscord },
+                  { title: 'Servers', Icon: Discord },
                   {
                     title: 'App Store',
-                    Icon: IconGame,
+                    Icon: GameSolid,
                     badge: getSidebarBadge['SOON'],
                     disabled: true,
                   },
-                  { title: 'Settings', Icon: IconSetting },
+                  { title: 'Settings', Icon: SettingSolid },
                   { type: 'break' },
                   {
                     title: 'Developer',
-                    Icon: IconCoding,
+                    Icon: CodingSolid,
                     type: 'link',
                     as: Link,
                     href: '/app',
@@ -94,29 +94,29 @@ export default function AuthenticatedLayout({
                   },
                   {
                     title: 'Send gifts',
-                    Icon: IconSuperGroup,
+                    Icon: SuperGroupSolid,
                     badge: getSidebarBadge['SOON'],
                     disabled: true,
                   },
-                  { title: 'Invite Friends', Icon: IconAddUser },
+                  { title: 'Invite Friends', Icon: AddUserSolid },
                   {
                     title: 'Feedback',
-                    Icon: IconStar,
+                    Icon: StarSolid,
                     badge: getSidebarBadge['SOON'],
                     disabled: true,
                   },
                 ]}
                 footerItems={[
-                  { title: 'Support', Icon: IconLifeBuoy },
+                  { title: 'Support', Icon: LifeBuoySolid },
                   {
                     title: 'Follow Us',
-                    Icon: IconX,
+                    Icon: X,
                     type: 'link',
                     href: 'https://twitter.com/mochi_gg_',
                   },
                   {
                     title: 'Join Community',
-                    Icon: IconDiscord,
+                    Icon: Discord,
                     type: 'link',
                     href: DISCORD_LINK,
                   },

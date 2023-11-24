@@ -1,7 +1,7 @@
 import { Layout } from '~app/layout'
 import { SEO } from '~app/layout/seo'
 import Button from '~cpn/base/button/button'
-import { IconArrowRight } from '@consolelabs/icons'
+import { ArrowRightLine } from '@consolelabs/icons'
 import clsx from 'clsx'
 import { ROUTES } from '~constants/routes'
 import Link from 'next/link'
@@ -36,7 +36,7 @@ export default function NotFoundPage() {
           <div className="flex flex-col-reverse gap-3 w-full sm:flex-row sm:w-fit">
             <Link href={ROUTES.HOME}>
               <Button className="gap-2 w-full h-12 shadow-sm sm:w-[144px]">
-                <IconArrowRight />
+                <ArrowRightLine />
                 Go back
               </Button>
             </Link>

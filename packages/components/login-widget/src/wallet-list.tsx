@@ -6,7 +6,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from '@consolelabs/dropdown'
-import { IconChevronDown } from '@consolelabs/icons'
+import { ChevronDownLine } from '@consolelabs/icons'
 import { loginWidget } from '@consolelabs/theme'
 import getAvailableWallets from './providers'
 import Wallet from './wallet'
@@ -87,7 +87,7 @@ export const WalletList = ({
         ))}
         <DropdownMenu>
           <DropdownMenuTrigger className={loginWalletListDropdownTriggerClsx()}>
-            <IconChevronDown width={20} height={20} />
+            <ChevronDownLine width={20} height={20} />
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             {sortedConnectors.slice(4).map((connector) => (

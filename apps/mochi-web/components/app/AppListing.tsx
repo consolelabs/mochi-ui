@@ -8,7 +8,7 @@ import {
   Table,
   Typography,
 } from '@consolelabs/core'
-import { IconThreeDot } from '@consolelabs/icons'
+import { ThreeDotLine } from '@consolelabs/icons'
 import Link from 'next/link'
 
 interface App {
@@ -82,7 +82,7 @@ const Name: ColumnProps<App>['cell'] = (props) => (
 const Actions: ColumnProps<App>['cell'] = () => (
   <DropdownMenu>
     <DropdownMenuTrigger className="flex items-center justify-center w-6 h-6 border rounded-full border-neutral-300">
-      <IconThreeDot width={15} height={15} />
+      <ThreeDotLine width={15} height={15} />
     </DropdownMenuTrigger>
     <DropdownMenuContent align="end">
       <DropdownMenuItem>Copy API key</DropdownMenuItem>

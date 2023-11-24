@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Avatar } from '@consolelabs/avatar'
 import { Button } from '@consolelabs/button'
-import { IconCheckCircled } from '@consolelabs/icons'
+import { CheckCircleOutlined } from '@consolelabs/icons'
 import { Popover, PopoverContent, PopoverTrigger } from '../src/popover'
 
 const meta: Meta<typeof Popover> = {
@@ -40,7 +40,7 @@ export const Default: Story = {
                     <p>Console Labs</p>
                     <p className="text-xs text-[#848281]">Lvl 430</p>
                   </div>
-                  <IconCheckCircled />
+                  <CheckCircleOutlined />
                 </div>
               ))}
           </div>
@@ -73,7 +73,7 @@ export const WithButton: Story = {
                     <p>Console Labs</p>
                     <p className="text-xs text-[#848281]">Lvl 430</p>
                   </div>
-                  <IconCheckCircled />
+                  <CheckCircleOutlined />
                 </div>
               ))}
           </div>

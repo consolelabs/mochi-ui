@@ -1,16 +1,16 @@
 import { Badge } from '@consolelabs/badge'
 import {
-  IconAddUser,
-  IconCoding,
-  IconDiscord,
-  IconGame,
-  IconLifeBuoy,
-  IconSetting,
-  IconStar,
-  IconSuperGroup,
-  IconTwinkle,
-  IconUser,
-  IconX,
+  AddUserSolid,
+  CodingSolid,
+  Discord,
+  GameSolid,
+  LifeBuoySolid,
+  SettingSolid,
+  StarSolid,
+  SuperGroupSolid,
+  TwinkleSolid,
+  UserSolid,
+  X,
 } from '@consolelabs/icons'
 import { act, render } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
@@ -34,25 +34,25 @@ function Component() {
       <Sidebar
         Header={Header}
         footerItems={[
-          { title: 'Support', Icon: IconLifeBuoy },
-          { title: 'Follow Us', Icon: IconX },
-          { title: 'Join Community', Icon: IconDiscord },
+          { title: 'Support', Icon: LifeBuoySolid },
+          { title: 'Follow Us', Icon: X },
+          { title: 'Join Community', Icon: Discord },
         ]}
         headerItems={[
           {
             title: 'Profile',
-            Icon: IconUser,
+            Icon: UserSolid,
             type: 'link',
             badge: <Badge label="New" />,
             onClick: () => setSection('Profile'),
           },
           {
             title: 'Server Management',
-            Icon: IconDiscord,
+            Icon: Discord,
             badge: (
               <Badge
                 appearance="secondary"
-                icon={<IconTwinkle />}
+                icon={<TwinkleSolid />}
                 label="Featured"
               />
             ),
@@ -60,35 +60,35 @@ function Component() {
           },
           {
             title: 'App Store',
-            Icon: IconGame,
+            Icon: GameSolid,
             onClick: () => setSection('App Store'),
           },
-          { title: 'Settings', Icon: IconSetting },
+          { title: 'Settings', Icon: SettingSolid },
           { type: 'break' },
-          { title: 'Developer', Icon: IconCoding, disabled: true },
+          { title: 'Developer', Icon: CodingSolid, disabled: true },
           {
             title: 'Gift your friend',
-            Icon: IconSuperGroup,
+            Icon: SuperGroupSolid,
             badge: (
               <Badge
                 appearance="secondary"
-                icon={<IconTwinkle />}
+                icon={<TwinkleSolid />}
                 label="Featured"
               />
             ),
           },
-          { title: 'Invite Friends', Icon: IconAddUser },
-          { title: 'Feedback', Icon: IconStar },
+          { title: 'Invite Friends', Icon: AddUserSolid },
+          { title: 'Feedback', Icon: StarSolid },
           {
             title: 'List',
             badge: (
               <Badge
                 appearance="secondary"
-                icon={<IconTwinkle />}
+                icon={<TwinkleSolid />}
                 label="Featured"
               />
             ),
-            Icon: IconStar,
+            Icon: StarSolid,
             type: 'list',
             children: [
               { title: 'item 1', disabled: true, type: 'link', href: '/' },

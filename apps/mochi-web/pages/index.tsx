@@ -11,12 +11,12 @@ import { LivePlatforms } from '~cpn/landing/LivePlatforms'
 import { Divider } from '~cpn/landing/Divider'
 import { Button } from '@consolelabs/core'
 import {
-  IconArrowRight,
-  IconBlocksColored,
-  IconHandKeyColored,
-  IconLayersColored,
-  IconPasswordLockColored,
-  IconWalletPasswordColored,
+  ArrowRightLine,
+  BlocksColored,
+  HandKeyColored,
+  LayersColored,
+  PasswordLockColored,
+  WalletPasswordColored,
 } from '@consolelabs/icons'
 import { GridFeatures } from '~cpn/landing/GridFeatures'
 import Feed from '~cpn/Feed'
@@ -199,43 +199,37 @@ export default function Index() {
             id: 'support-on-chain-and-hybrid',
             title: 'On-chain & Hybrid Support',
             body: 'Make gasless transactions easily using social handles, ensuring strong security. Connect with different blockchains for both on-chain and hybrid transactions.',
-            icon: <IconBlocksColored className="w-8 h-8 md:w-12 md:h-12" />,
+            icon: <BlocksColored className="w-8 h-8 md:w-12 md:h-12" />,
           },
           {
             id: 'self-custodial-solutions',
             title: 'Self-custodial Solutions',
             body: "Take command of your assets with Mochi's self-custodial solutions, ensuring true ownership. Enjoy secure storage without compromising usability.",
-            icon: <IconHandKeyColored className="w-8 h-8 md:w-12 md:h-12" />,
+            icon: <HandKeyColored className="w-8 h-8 md:w-12 md:h-12" />,
           },
           {
             id: 'invisible-wallets',
             title: 'Invisible Wallets',
             body: "Login with Telegram, Discord, SSO or Facebook account make onboarding seamless. Nevermind where's the seedphrase.",
-            icon: (
-              <IconWalletPasswordColored className="w-8 h-8 md:w-12 md:h-12" />
-            ),
+            icon: <WalletPasswordColored className="w-8 h-8 md:w-12 md:h-12" />,
           },
           {
             id: 'keyless-wallet',
             title: 'Keyless Wallet',
             body: 'Elevate security by multiple protection layer while keep the friendly experience for all both crypto wizard and newbie.',
-            icon: <IconLayersColored className="w-8 h-8 md:w-12 md:h-12" />,
+            icon: <LayersColored className="w-8 h-8 md:w-12 md:h-12" />,
           },
           {
             id: 'account-abstraction',
             title: 'Account Abstraction',
             body: 'Enables smart accounts, that can initiate and execute transactions without the need for an external account.',
-            icon: (
-              <IconPasswordLockColored className="w-8 h-8 md:w-12 md:h-12" />
-            ),
+            icon: <PasswordLockColored className="w-8 h-8 md:w-12 md:h-12" />,
           },
           {
             id: 'advanded-security-measures',
             title: 'Advanced Security Measures',
             body: 'Protect your assets by a high-tech lock - strong encryption, providing a worry-free Web3 experience.',
-            icon: (
-              <IconPasswordLockColored className="w-8 h-8 md:w-12 md:h-12" />
-            ),
+            icon: <PasswordLockColored className="w-8 h-8 md:w-12 md:h-12" />,
           },
         ]}
       />
@@ -259,7 +253,7 @@ export default function Index() {
               variant="outline"
             >
               View features
-              <IconArrowRight />
+              <ArrowRightLine />
             </Button>
           </Link>
         </div>
@@ -272,7 +266,7 @@ export default function Index() {
           <Link href="/features">
             <Button size="lg" color="neutral" variant="outline">
               View features
-              <IconArrowRight />
+              <ArrowRightLine />
             </Button>
           </Link>
         </div>

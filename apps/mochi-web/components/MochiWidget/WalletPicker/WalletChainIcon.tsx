@@ -1,5 +1,5 @@
 import React from 'react'
-import { IconApt, IconEth, IconRon, IconSol, IconSui } from '@consolelabs/icons'
+import { Apt, Eth, Ron, Sol, Sui } from '@consolelabs/icons'
 import { AddressChainType } from '@consolelabs/mochi-ui'
 import Image from 'next/image'
 
@@ -14,11 +14,11 @@ const MochiLogo = () => (
 )
 
 const chainIcons: Record<AddressChainType, (...props: any) => JSX.Element> = {
-  [AddressChainType.EVM]: IconEth,
-  [AddressChainType.SOL]: IconSol,
-  [AddressChainType.APT]: IconApt,
-  [AddressChainType.RON]: IconRon,
-  [AddressChainType.SUI]: IconSui,
+  [AddressChainType.EVM]: Eth,
+  [AddressChainType.SOL]: Sol,
+  [AddressChainType.APT]: Apt,
+  [AddressChainType.RON]: Ron,
+  [AddressChainType.SUI]: Sui,
   [AddressChainType.NEAR]: MochiLogo,
   [AddressChainType.UNKNOWN]: MochiLogo,
 }

@@ -1,12 +1,12 @@
 import { render, act } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import {
-  IconDiscordColored,
-  IconTelegramColored,
-  IconDiscord,
-  IconTelegram,
-  IconSlackColored,
-  IconSlack,
+  DiscordColored,
+  TelegramColored,
+  Discord,
+  Telegram,
+  SlackColored,
+  Slack,
 } from '@consolelabs/icons'
 import {
   Select,
@@ -25,24 +25,24 @@ const items = [
     subtitle: 'Chat and voice communication platform',
     value: '1',
     key: 'Discord',
-    icon: <IconDiscordColored />,
-    rightIcon: <IconDiscord />,
+    icon: <DiscordColored />,
+    rightIcon: <Discord />,
   },
   {
     label: 'Telegram',
     subtitle: 'Instant messaging app',
     value: '2',
     key: 'Telegram',
-    icon: <IconTelegramColored />,
-    rightIcon: <IconTelegram />,
+    icon: <TelegramColored />,
+    rightIcon: <Telegram />,
   },
   {
     label: 'Slack',
     subtitle: 'Collaboration hub for work',
     value: '3',
     key: 'Slack',
-    icon: <IconSlackColored />,
-    rightIcon: <IconSlack />,
+    icon: <SlackColored />,
+    rightIcon: <Slack />,
   },
 ]
 
