@@ -25,7 +25,7 @@ const INIT_AMOUNT: TokenAmount = {
 
 interface AmountInputProps {
   authorized: boolean
-  unauthorizedContent?: React.ReactNode
+  unauthorizedContent: React.ReactNode
   wallet: Wallet | null
   onSelectAsset?: (item: Balance | Moniker | null) => void
   onAmountChanged?: (amount: number) => void

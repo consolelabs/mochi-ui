@@ -1,7 +1,8 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
-import { Popover, PopoverTrigger, PopoverContent } from '@consolelabs/core'
 import { ChevronDownLine } from '@consolelabs/icons'
+import { BottomSheet } from '~cpn/BottomSheet'
+import { useDisclosure } from '@dwarvesf/react-hooks'
 import { PlatformList } from './PlatformList'
 import { Platform } from './type'
 import PlatformIcon from './PlatformIcon'
@@ -38,19 +39,17 @@ const Platforms: Platform[] = [
 ]
 
 interface Props {
-  triggerId?: string
-  contentId?: string
   onSelect?: (item: Platform) => void
-  focusOnOpen?: boolean
+  authorized: boolean
+  unauthorizedContent: React.ReactNode
 }
 
 export const PlatformPicker: React.FC<Props> = ({
-  triggerId = 'platform-picker-trigger',
-  contentId = 'platform-picker-content',
+  authorized,
+  unauthorizedContent,
   onSelect,
-  focusOnOpen = false,
 }) => {
-  const [isOpenSelector, setIsOpenSelector] = useState(false)
+  const { isOpen, onClose, onOpen } = useDisclosure()
   const [selectedPlatform, setSelectedPlatform] = useState<Platform>(
     Platforms[0],
   )
@@ -62,46 +61,41 @@ export const PlatformPicker: React.FC<Props> = ({
 
   function handlePlatformSelect(platform: Platform) {
     setSelectedPlatform(platform)
-    setIsOpenSelector(false)
+    onClose()
     onSelect?.(platform)
   }
 
-  function handleOpenAutoFocus(event: Event) {
-    if (!focusOnOpen) {
-      event.preventDefault()
-    }
-  }
-
   return (
-    <Popover open={isOpenSelector} onOpenChange={setIsOpenSelector}>
-      <PopoverTrigger asChild>
-        <button
-          id={triggerId}
-          className="flex gap-x-2 items-center py-1.5 px-3 rounded-lg outline-none bg-neutral-100"
-        >
-          <PlatformIcon
-            platform={selectedPlatform.platform}
-            className="flex-shrink-0 w-[22px] h-[22px]"
-          />
-          <span className="text-sm font-medium capitalize whitespace-nowrap">
-            {selectedPlatform.platform}
-          </span>
-          <ChevronDownLine
-            className={clsx('w-4 h-4 text-[#ADACAA] transition', {
-              'rotate-180': isOpenSelector,
-            })}
-          />
-        </button>
-      </PopoverTrigger>
-      <PopoverContent
-        id={contentId}
-        align="start"
-        avoidCollisions={false}
-        className="flex gap-x-1 items-center py-3 px-3 rounded-lg shadow-md bg-white-pure"
-        onOpenAutoFocus={handleOpenAutoFocus}
+    <>
+      <button
+        type="button"
+        onClick={onOpen}
+        className="flex gap-x-2 items-center py-1.5 px-3 rounded-lg outline-none bg-neutral-100"
       >
-        <PlatformList data={Platforms} onSelect={handlePlatformSelect} />
-      </PopoverContent>
-    </Popover>
+        <PlatformIcon
+          platform={selectedPlatform.platform}
+          className="flex-shrink-0 w-[22px] h-[22px]"
+        />
+        <span className="text-sm font-medium capitalize whitespace-nowrap">
+          {selectedPlatform.platform}
+        </span>
+        <ChevronDownLine
+          className={clsx('w-4 h-4 text-[#ADACAA] transition', {
+            'rotate-180': isOpen,
+          })}
+        />
+      </button>
+      <BottomSheet
+        isOpen={isOpen}
+        onClose={onClose}
+        title={authorized ? 'Choose platform' : ''}
+      >
+        {authorized ? (
+          <PlatformList data={Platforms} onSelect={handlePlatformSelect} />
+        ) : (
+          unauthorizedContent
+        )}
+      </BottomSheet>
+    </>
   )
 }

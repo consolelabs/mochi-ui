@@ -3,9 +3,10 @@ import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { useAuthStore, useWalletStore } from '~store'
 import { useMemo } from 'react'
-import { Button, Popover, PopoverTrigger } from '@consolelabs/core'
+import { Button } from '@consolelabs/core'
 import { ArrowRightLine, ChevronDownLine } from '@consolelabs/icons'
 import { MAX_AMOUNT_PRECISION, formatTokenAmount } from '~utils/number'
+import { BottomSheet } from '~cpn/BottomSheet'
 import { WalletPicker } from '../WalletPicker'
 import { Recipient } from '../Recipient'
 import { AmountInput } from '../AmountInput'
@@ -28,11 +29,7 @@ export default function StepOne() {
     setAsset,
     setAmount,
   } = useTipWidget()
-  const {
-    isOpen: isOpenLoginPopup,
-    onOpen: showLoginPopup,
-    onClose: hideLoginPopup,
-  } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const isLoggedIn = useAuthStore(useShallow((s) => s.isLoggedIn))
   const amountErrorMgs = useMemo(() => {
     if (!request.amount) return ''
@@ -111,22 +108,20 @@ export default function StepOne() {
           <ArrowRightLine className="w-4 h-4" />
         </Button>
       ) : (
-        <Popover
-          open={isOpenLoginPopup}
-          onOpenChange={(o) => (o ? showLoginPopup() : hideLoginPopup())}
-        >
-          <PopoverTrigger asChild>
-            <Button className="justify-center" size="lg" type="button">
-              Connect options
-              <ChevronDownLine
-                className={`w-5 h-5 text-white-pure transition ${
-                  isOpenLoginPopup ? 'rotate-180' : ''
-                }`}
-              />
-            </Button>
-          </PopoverTrigger>
-          {unauthorizedContent}
-        </Popover>
+        <>
+          <Button
+            onClick={onOpen}
+            className="justify-center"
+            size="lg"
+            type="button"
+          >
+            Connect options
+            <ChevronDownLine className="w-5 h-5 text-white-pure" />
+          </Button>
+          <BottomSheet isOpen={isOpen} onClose={onClose}>
+            {unauthorizedContent}
+          </BottomSheet>
+        </>
       )}
     </div>
   )

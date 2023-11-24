@@ -83,7 +83,11 @@ export default function Tip() {
           <>
             <span>
               🎉 Transfer success,{' '}
-              <Link className="underline" href={`/tx/${tx?.external_id}`}>
+              <Link
+                target="_blank"
+                className="underline"
+                href={`/tx/${tx?.external_id}`}
+              >
                 here is your receipt
               </Link>
             </span>

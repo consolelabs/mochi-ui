@@ -4,7 +4,7 @@ import useSWR from 'swr'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { Combobox } from '@headlessui/react'
 import { Profile } from '@consolelabs/mochi-rest'
-import { useMemo, useRef, useState } from 'react'
+import { useMemo, useState } from 'react'
 import {
   InputField,
   Popover,
@@ -24,7 +24,7 @@ const SEARCH_DEBOUNCE_TIME = 250
 
 interface RecipientProps {
   authorized: boolean
-  unauthorizedContent?: React.ReactNode
+  unauthorizedContent: React.ReactNode
   selectedRecipients?: Array<Profile & { create_new?: boolean }>
   onUpdateRecipient?: (item: Profile[]) => void
   onRemoveRecipient?: (item: Profile) => void
@@ -45,7 +45,6 @@ export const Recipient: React.FC<RecipientProps> = ({
   onUpdateRecipient,
   onRemoveRecipient,
 }) => {
-  const inputRef = useRef<HTMLInputElement>(null)
   const {
     isOpen: isOpenRecipients,
     onOpen: openRecipients,
@@ -129,45 +128,28 @@ export const Recipient: React.FC<RecipientProps> = ({
 
   function onSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     setSearchTerm(e.target.value)
+    openRecipients()
   }
 
   function onChainSearch() {
     // TODO: handle search onchain recipients
   }
 
-  function handleInteractOutside(event: CustomEvent) {
-    // Prevent recipients list from closing when interacting with platform picker and input
-    const target = event.target as HTMLElement
-    const platformPickerTrigger = document.getElementById(
-      'platform-picker-trigger',
-    )
-    const platformPickerContent = document.getElementById(
-      'platform-picker-content',
-    )
-    if (
-      target.id === 'recipients' ||
-      platformPickerTrigger?.contains(target) ||
-      platformPickerContent?.contains(target)
-    ) {
-      event.preventDefault()
-    }
-  }
-
   return (
-    <Combobox
-      multiple
-      value={selectedRecipients ?? []}
-      onChange={(recipients) => {
-        setSearchTerm('')
-        closeRecipients()
-        onUpdateRecipient?.(
-          recipients.filter(
-            (r, _idx, arr) => arr.filter((a) => a.id === r.id).length === 1,
-          ),
-        )
-      }}
-    >
-      <Popover open={isOpenRecipients} onOpenChange={onOpenChange}>
+    <Popover open={isOpenRecipients} onOpenChange={onOpenChange}>
+      <Combobox
+        multiple
+        value={selectedRecipients ?? []}
+        onChange={(recipients) => {
+          setSearchTerm('')
+          closeRecipients()
+          onUpdateRecipient?.(
+            recipients.filter(
+              (r, _idx, arr) => arr.filter((a) => a.id === r.id).length === 1,
+            ),
+          )
+        }}
+      >
         <div className="flex flex-col gap-y-3 p-2 rounded-xl bg bg-neutral-150">
           <div className="flex justify-between items-center px-4 h-[34px]">
             <label
@@ -181,7 +163,7 @@ export const Recipient: React.FC<RecipientProps> = ({
             </span>
           </div>
 
-          <PopoverAnchor>
+          <PopoverAnchor asChild>
             <div
               className="flex gap-x-2 items-center py-2.5 px-4 rounded-lg border bg-white-pure border-white-pure"
               style={
@@ -204,9 +186,11 @@ export const Recipient: React.FC<RecipientProps> = ({
                 className="flex-1 h-full bg-transparent outline-none min-w-[100px]"
                 placeholder={isOnChain ? 'Enter address' : 'Enter username'}
                 value={searchTerm}
-                ref={inputRef}
                 onChange={onSearchChange}
-                onFocus={openRecipients}
+                onFocus={(e: any) => {
+                  e.stopPropagation()
+                  openRecipients()
+                }}
                 onClick={openRecipients}
                 onBlur={(e: any) => e.preventDefault()}
                 onKeyDown={(e: any) => {
@@ -226,9 +210,9 @@ export const Recipient: React.FC<RecipientProps> = ({
                 })}
               />
               <PlatformPicker
-                triggerId="platform-picker-trigger"
-                contentId="platform-picker-content"
+                authorized={authorized}
                 onSelect={setSelectedPlatform}
+                unauthorizedContent={unauthorizedContent}
               />
             </div>
           </PopoverAnchor>
@@ -273,14 +257,13 @@ export const Recipient: React.FC<RecipientProps> = ({
           align="start"
           avoidCollisions={false}
           sideOffset={0}
-          onInteractOutside={handleInteractOutside}
           onOpenAutoFocus={(e) => e.preventDefault()}
           asChild
         >
           {authorized ? (
             <div
               style={{ borderRadius: '0 0 8px 8px' }}
-              className="flex flex-col gap-y-2 items-center py-3 px-3 shadow-md w-[398px] bg-white-pure"
+              className="flex flex-col gap-y-2 items-center py-3 px-3 shadow-md w-[400px] bg-white-pure"
             >
               {isOnChain && (
                 <InputField
@@ -301,10 +284,10 @@ export const Recipient: React.FC<RecipientProps> = ({
               </Combobox.Options>
             </div>
           ) : (
-            unauthorizedContent
+            <div className="w-[400px]">{unauthorizedContent}</div>
           )}
         </PopoverContent>
-      </Popover>
-    </Combobox>
+      </Combobox>
+    </Popover>
   )
 }

@@ -1,7 +1,6 @@
 import { create } from 'zustand'
 import { API } from '~constants/api'
 import { immer } from 'zustand/middleware/immer'
-import { PopoverContent } from '@consolelabs/core'
 import { AuthPanel } from '~cpn/AuthWidget'
 import { api } from '~constants/mochi'
 import { Profile } from '@consolelabs/mochi-rest'
@@ -21,10 +20,11 @@ interface Request {
 }
 
 interface TipWidgetState {
-  unauthorizedContent: React.ReactNode
   step: number
   setStep: (s: number) => void
   direction: number
+
+  unauthorizedContent: React.ReactNode
 
   wallet: Wallet | null
   amountUsd: string
@@ -48,13 +48,9 @@ interface TipWidgetState {
 
 export const useTipWidget = create(
   immer<TipWidgetState>((set, get) => ({
-    unauthorizedContent: (
-      <PopoverContent className="bg-white-pure w-[412px] !p-0">
-        <AuthPanel variant="dropdown" />
-      </PopoverContent>
-    ),
-
     wallet: null,
+
+    unauthorizedContent: <AuthPanel variant="modal" />,
 
     request: {
       recipients: [],

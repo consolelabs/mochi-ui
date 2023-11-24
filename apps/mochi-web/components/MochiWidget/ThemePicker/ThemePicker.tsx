@@ -2,17 +2,12 @@ import Image from 'next/image'
 import useSWR from 'swr'
 import clsx from 'clsx'
 import { api } from '~constants/mochi'
-import {
-  Heading,
-  InputField,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@consolelabs/core'
+import { Heading, Input } from '@consolelabs/core'
 import { CrossCircleOutlined, MagnifierLine } from '@consolelabs/icons'
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { Tab } from '@headlessui/react'
+import { BottomSheet } from '~cpn/BottomSheet'
 import { sectionFormatter } from '../TokenPicker/utils'
 
 export interface Theme {
@@ -34,6 +29,7 @@ function getFilterThemeFunc(searchTerm: string) {
 }
 
 export default function ThemePicker({ value, onChange }: ThemePickerProps) {
+  const inputRef = useRef<HTMLInputElement | null>(null)
   const [selectedIndex, setSelectedIndex] = useState(0)
   const { data: themes = [] } = useSWR<Theme[]>(
     ['tip-widget-themes'],
@@ -59,11 +55,7 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
   )
 
   const [themeSearch, setThemeSearch] = useState('')
-  const {
-    isOpen: isOpenTheme,
-    onClose: closeThemePopover,
-    onToggle: toggleThemePopover,
-  } = useDisclosure()
+  const { isOpen, onClose, onOpen } = useDisclosure()
 
   function onThemeSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     setThemeSearch(e.target.value)
@@ -83,6 +75,14 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
     )
     setSelectedIndex(firstGroupHasValueIdx)
   }, [groupByTheme, themeSearch])
+
+  useEffect(() => {
+    if (isOpen) {
+      setTimeout(() => {
+        inputRef.current?.focus({ preventScroll: true })
+      }, 0)
+    }
+  }, [isOpen])
 
   return (
     <div className="flex flex-col gap-y-1">
@@ -115,7 +115,7 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
                 type="button"
                 onClick={() => {
                   onChange(t)
-                  closeThemePopover()
+                  onClose()
                 }}
               >
                 <Image
@@ -128,7 +128,7 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
                 />
               </button>
               {!isSelected ? (
-                <span className="absolute top-1/2 left-1/2 px-2 text-xs font-medium -translate-x-1/2 -translate-y-1/2 text-white-pure">
+                <span className="absolute top-1/2 left-1/2 px-2 text-xs font-medium -translate-x-1/2 -translate-y-1/2 pointer-events-none text-white-pure">
                   {t.name}
                 </span>
               ) : (
@@ -143,93 +143,89 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
             </div>
           )
         })}
-        <Popover open={isOpenTheme} onOpenChange={toggleThemePopover}>
-          <PopoverTrigger asChild>
-            <button className="overflow-hidden relative rounded-lg border-4 border-transparent outline-none">
-              <Image
-                fill
-                src="/tip-theme-more.jpg"
-                className="object-cover w-full h-full rounded-lg"
-                alt=""
-              />
-              <span className="absolute top-1/2 left-1/2 text-xs font-medium whitespace-nowrap -translate-x-1/2 -translate-y-1/2 text-white-pure">
-                +More
-              </span>
-            </button>
-          </PopoverTrigger>
-          <PopoverContent
-            align="end"
-            className="flex flex-col gap-y-2 items-center rounded-lg shadow-md w-[414px] max-h-[500px] bg-white-pure"
-          >
-            <InputField
+        <button
+          type="button"
+          onClick={onOpen}
+          className="overflow-hidden relative rounded-lg border-4 border-transparent outline-none"
+        >
+          <Image
+            fill
+            src="/tip-theme-more.jpg"
+            className="object-cover w-full h-full rounded-lg"
+            alt=""
+          />
+          <span className="absolute top-1/2 left-1/2 text-xs font-medium whitespace-nowrap -translate-x-1/2 -translate-y-1/2 text-white-pure">
+            +More
+          </span>
+        </button>
+        <BottomSheet title="Choose theme" isOpen={isOpen} onClose={onClose}>
+          <Input.Root className="flex-shrink-0 mt-2">
+            <Input.Slot>
+              <MagnifierLine className="w-5 h-5 text-gray-500" />
+            </Input.Slot>
+            <Input.InputField
+              ref={inputRef}
               value={themeSearch}
-              className="w-full"
               placeholder="Search"
-              startAdornment={
-                <MagnifierLine className="pl-2 w-5 h-5 text-gray-500" />
-              }
               onChange={onThemeSearchChange}
             />
-            <Tab.Group
-              selectedIndex={selectedIndex}
-              onChange={setSelectedIndex}
-            >
-              <Tab.List className="flex overflow-x-auto flex-shrink-0 gap-6 w-full">
-                {groupByTheme.map((tab) => (
-                  <Tab
-                    key={`theme-tab-${tab.title}`}
-                    className="focus-visible:outline-none"
-                  >
-                    {({ selected }) => (
-                      <Heading
-                        as="h2"
-                        className={`whitespace-nowrap text-sm ${
-                          selected ? 'text-[#343433]' : 'text-[#848281]'
-                        }`}
-                      >
-                        {tab.title}
-                      </Heading>
-                    )}
-                  </Tab>
-                ))}
-              </Tab.List>
-              <Tab.Panels className="overflow-y-auto w-full">
-                {groupByTheme.map((t) => {
-                  return (
-                    <Tab.Panel
-                      key={`theme-panel-${t.title}`}
-                      className="grid grid-cols-2 auto-rows-fr gap-4 p-4"
+          </Input.Root>
+          <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
+            <Tab.List className="flex overflow-x-auto flex-shrink-0 gap-6 mt-2 w-full">
+              {groupByTheme.map((tab) => (
+                <Tab
+                  key={`theme-tab-${tab.title}`}
+                  className="focus-visible:outline-none"
+                >
+                  {({ selected }) => (
+                    <Heading
+                      as="h2"
+                      className={`py-2 whitespace-nowrap text-sm ${
+                        selected ? 'text-[#343433]' : 'text-[#848281]'
+                      }`}
                     >
-                      {t.data
-                        .filter((d) => !!d.src)
-                        .filter(getFilterThemeFunc(themeSearch))
-                        .map((d) => {
-                          return (
-                            <button
-                              type="button"
-                              key={`theme-image-${d.name}-${d.id}`}
-                              onClick={() => {
-                                onChange(d)
-                                toggleThemePopover()
-                              }}
-                              className="relative h-full outline-none aspect-video"
-                            >
-                              <Image
-                                fill
-                                alt=""
-                                src={d.src}
-                                className="object-cover w-full h-full rounded-lg"
-                              />
-                            </button>
-                          )
-                        })}
-                    </Tab.Panel>
-                  )
-                })}
-              </Tab.Panels>
-            </Tab.Group>
-          </PopoverContent>
-        </Popover>
+                      {tab.title}
+                    </Heading>
+                  )}
+                </Tab>
+              ))}
+            </Tab.List>
+            <Tab.Panels className="overflow-y-auto w-full">
+              {groupByTheme.map((t) => {
+                return (
+                  <Tab.Panel
+                    key={`theme-panel-${t.title}`}
+                    className="grid grid-cols-2 auto-rows-fr gap-4"
+                  >
+                    {t.data
+                      .filter((d) => !!d.src)
+                      .filter(getFilterThemeFunc(themeSearch))
+                      .map((d) => {
+                        return (
+                          <button
+                            type="button"
+                            key={`theme-image-${d.name}-${d.id}`}
+                            onClick={() => {
+                              onChange(d)
+                              onClose()
+                            }}
+                            className="relative h-full outline-none aspect-video"
+                          >
+                            <Image
+                              fill
+                              alt=""
+                              src={d.src}
+                              className="object-cover w-full h-full rounded-lg"
+                            />
+                          </button>
+                        )
+                      })}
+                  </Tab.Panel>
+                )
+              })}
+            </Tab.Panels>
+          </Tab.Group>
+        </BottomSheet>
       </div>
     </div>
   )

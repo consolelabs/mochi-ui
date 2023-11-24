@@ -15,7 +15,7 @@ export const TokenList = (props: Props) => {
 
   return (
     <List
-      listClassName="max-h-[350px]"
+      listClassName="max-h-full"
       data={data}
       loading={loading}
       renderItem={(item) => (

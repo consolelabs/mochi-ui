@@ -1,6 +1,6 @@
 import { Button } from '@consolelabs/core'
 import { WalletSolid } from '@consolelabs/icons'
-import { MouseEventHandler } from 'react'
+import React, { MouseEventHandler } from 'react'
 import type { Variant } from './types'
 
 interface ConnectButtonProps {
@@ -8,15 +8,15 @@ interface ConnectButtonProps {
   onClick?: MouseEventHandler<HTMLButtonElement>
 }
 
-export const ConnectButton: React.FC<ConnectButtonProps> = ({
-  variant,
-  ...rest
-}) => {
+export const ConnectButton = React.forwardRef<
+  HTMLButtonElement,
+  ConnectButtonProps
+>(({ variant, ...rest }, ref) => {
   switch (variant) {
     case 'dropdown':
       return (
-        <div className="flex items-center justify-center w-full">
-          <Button variant="outline" color="neutral" {...rest}>
+        <div className="flex justify-center items-center w-full">
+          <Button ref={ref} variant="outline" color="neutral" {...rest}>
             <WalletSolid className="text-xl" />
             Connect Wallet
           </Button>
@@ -26,6 +26,7 @@ export const ConnectButton: React.FC<ConnectButtonProps> = ({
     default:
       return (
         <Button
+          ref={ref}
           className="flex gap-x-2 items-center justify-center h-[48px] px-6 py-3 bg-blue-700 !text-base text-white shadow-none rounded-lg"
           {...rest}
         >
@@ -34,4 +35,4 @@ export const ConnectButton: React.FC<ConnectButtonProps> = ({
         </Button>
       )
   }
-}
+})
