@@ -49,7 +49,7 @@ jobs:
             const tagsInfo = Array.from(${{ fromJson(inputs.tags-info) }})
             const breakLine = "\n";
             const maximumDiscordContentThreshold = 3950
-            const maximumSendEmbeds = 10
+            const maximumSendEmbeds = 1
             const npmURLtemplate = "https://www.npmjs.com/package/{name}/v/{version}"
             const footer = "*Released at ${{ steps.current-time.outputs.formattedTime }}*";
 
