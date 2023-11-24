@@ -73,6 +73,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   useEffect(() => {
     if (!authorized) {
       setSelectedAsset(null)
+      setTipAmount({ value: 0, display: '' })
     }
   }, [authorized])
 
@@ -99,12 +100,6 @@ export const AmountInput: React.FC<AmountInputProps> = ({
     },
     [onAmountChanged, onSelectAsset],
   )
-
-  function handleAmountChanged(event: ChangeEvent<HTMLInputElement>) {
-    const formattedAmount = formatTokenAmount(event.target.value)
-    formattedAmount.display = event.target.value // Keep displaying the original user input
-    setTipAmount(formattedAmount)
-  }
 
   function handleKeyDown(event: KeyboardEvent) {
     // Accept only a positive integer / float input
@@ -135,6 +130,13 @@ export const AmountInput: React.FC<AmountInputProps> = ({
     if (event.key === '-' || !Number.isFinite(Number(event.key))) {
       event.preventDefault()
     }
+  }
+
+  function handleAmountChanged(event: ChangeEvent<HTMLInputElement>) {
+    const formattedAmount = formatTokenAmount(event.target.value)
+    formattedAmount.display = event.target.value // Keep displaying the original user input
+    setTipAmount(formattedAmount)
+    onAmountChanged?.(formattedAmount.value)
   }
 
   function onBlurInput(event: ChangeEvent<HTMLInputElement>) {

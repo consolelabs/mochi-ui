@@ -5,12 +5,21 @@ import UI, { AddressChainType, Platform, utils } from '@consolelabs/mochi-ui'
 import { truncate } from '@dwarvesf/react-utils'
 
 // Create map of payable platforms from AddressChainType
-export const PaymentPlatforms: Map<string, string> = new Map(
+const PaymentPlatforms: Map<string, string> = new Map(
   Object.keys(AddressChainType).map((key) => [
     AddressChainType[key as keyof typeof AddressChainType],
     key.toLowerCase(),
   ]),
 )
+
+const ChainDisplayNames = new Map<string, string>([
+  [AddressChainType.EVM, 'Ethereum'],
+  [AddressChainType.SOL, 'Solana'],
+  [AddressChainType.SUI, 'Sui'],
+  [AddressChainType.RON, 'Ronin'],
+  [AddressChainType.APT, 'Aptos'],
+  [AddressChainType.NEAR, 'Near'],
+])
 
 export type Balance = {
   type: 'token'
@@ -91,7 +100,7 @@ export const useWalletStore = create<State>((set) => ({
               id: w.platform_identifier,
               icon: w.platform,
               title: truncate(w.platform_identifier, 10, true),
-              subtitle: w.platform.replace('-chain', ''),
+              subtitle: ChainDisplayNames.get(w.platform) || '',
               usd_amount: utils.formatUsdDigit(data.latest_snapshot_bal),
               balances: data.balance.map((b) => ({
                 type: 'token',
