@@ -2,6 +2,9 @@ import fs from 'node:fs'
 import { rimraf } from 'rimraf'
 import * as paths from './paths'
 
+/**
+ * Performs clean up by clearing components, index files, and recreating the icon folder.
+ */
 function doCleanUp() {
   // Clear components
   rimraf.sync(paths.componentsPath)

@@ -5,10 +5,10 @@ import path from 'node:path'
 import fsPromise from 'node:fs/promises'
 import { glob } from 'glob'
 import { transform } from '@svgr/core'
+import chalk from 'chalk'
 import * as paths from './paths'
 import doCleanUp from './clean'
 import { getDirectories, kebab2Pascal } from '../../../scripts/script-utils'
-import chalk from 'chalk'
 
 function deleteFirstLine(str: string) {
   const lines = str.split('\n')
@@ -18,13 +18,21 @@ function deleteFirstLine(str: string) {
 
 const supportedDirNamesType = ['line', 'outlined', 'solid', 'two-tone']
 
+/**
+ * Generates icon components from SVG files in the specified directory.
+ * The generated components are exported and organized in a directory structure based on the SVG file's parent folder.
+ * Each SVG file is transformed into a TypeScript component using SVGR.
+ * The generated components are saved as individual files and an index file is created for each directory.
+ * The generated components and index files are exported for easy import.
+ */
 const generateSvgs = async () => {
   const dirList = getDirectories(paths.svgPath)
   let exportContent = ''
   console.log(
     chalk.bgBlue.yellow(
-      'Generate icon naming with folder only support named folders are: ' +
-        supportedDirNamesType.join(', '),
+      `Generate icon naming with folder only support named folders are: ${supportedDirNamesType.join(
+        ', ',
+      )}`,
     ),
   )
   console.log(chalk.green(`Found svg dirs: ${dirList.join(', ')}`))
@@ -91,10 +99,13 @@ const generateSvgs = async () => {
     exportContent += `export * from './${dir}'\n`
   })
 
+  // Create all components
   await Promise.all(promiseCreateComponents)
 
+  // Create components root index
   await fsPromise.writeFile(paths.indexPath, exportContent)
 
+  // Create source root index
   await fsPromise.writeFile(
     paths.rootIndexPath,
     `export * from './components'\n`,
