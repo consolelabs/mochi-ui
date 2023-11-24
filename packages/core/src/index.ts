@@ -1,3 +1,4 @@
+// Plop adding component indicator - do not remove this line
 export * from '@consolelabs/accordion'
 export * from '@consolelabs/alert'
 export * from '@consolelabs/avatar'

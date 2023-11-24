@@ -1,0 +1,16 @@
+import { PropsWithChildren, forwardRef } from 'react'
+import { {{camelCase consoleTheme}} } from '@consolelabs/theme'
+
+interface {{capitalize componentName}}Props extends PropsWithChildren {}
+
+const {{capitalize componentName}} = forwardRef<HTMLDivElement, {{capitalize componentName}}Props>(({ children, ...props}, ref) => {
+  return (
+    <div ref={ref} {...props}>
+      {children}
+    </div>
+  );
+});
+
+{{capitalize componentName}}.displayName = "@consolelabs.{{capitalize componentName}}";
+
+export { {{capitalize componentName}}, type {{capitalize componentName}}Props }

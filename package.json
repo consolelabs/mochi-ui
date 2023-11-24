@@ -32,6 +32,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\" --cache",
     "format:check": "prettier --check \"**/*.{ts,tsx,md}\" --cache",
     "changeset": "changeset",
+    "create:component": "NODE_OPTIONS=\"--loader ts-node/esm --no-warnings\" plop component",
     "version-packages": "changeset version",
     "release": "changeset publish",
     "postinstall": "npx husky install"
@@ -60,6 +61,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "jest-watch-typeahead": "^2.2.2",
     "lint-staged": "^15.0.1",
+    "plop": "^4.0.0",
     "prettier": "^3.1.0",
     "prettier-plugin-tailwindcss": "^0.5.3",
     "rimraf": "^5.0.5",

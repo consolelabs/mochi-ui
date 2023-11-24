@@ -1,0 +1,56 @@
+{
+  "name": "@consolelabs/{{componentName}}",
+  "version": "0.0.1",
+  "description": "{{description}}",
+  "keywords": [
+    "{{componentName}}"
+  ],
+  "author": "@consolelabs",
+  "homepage": "https://ds.console.so",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/consolelabs/web-foundation.git",
+    "directory": "packages/{{outDir}}/{{componentName}}"
+  },
+  "bugs": {
+    "url": "https://github.com/consolelabs/web-foundation.git"
+  },
+  "scripts": {
+    "build": "tsup src --dts",
+    "build:fast": "tsup src",
+    "dev": "pnpm build:fast -- --watch",
+    "lint": "eslint src/ --cache",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "prepack": "clean-package",
+    "postpack": "clean-package restore"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "dependencies": {
+    "@consolelabs/icons": "workspace:*",
+    "@consolelabs/theme": "workspace:*",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0"
+  },
+  "devDependencies": {
+    "clean-package": "^2.2.0",
+    "eslint-config-custom": "workspace:*",
+    "prettier": "^3.0.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tsconfig": "workspace:*"
+  },
+  "clean-package": "../../../clean-package.config.json"
+}
