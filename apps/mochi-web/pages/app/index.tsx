@@ -36,7 +36,7 @@ const App: NextPageWithLayout = () => {
 
   return (
     <div>
-      <Statistics apps={apps?.data} onOpenCreateAppModal={onOpen} />
+      <Statistics id={id} apps={apps?.data} onOpenCreateAppModal={onOpen} />
       <AppListing
         apps={apps?.data}
         onOpenCreateAppModal={onOpen}

@@ -13,14 +13,18 @@ import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ViewApplication } from '~types/mochi-pay-schema'
+import { formatNumber } from '~utils/number'
+import { useFetchApplicationStats } from '~hooks/app/useFetchApplicationStats'
 
 const DataBox = ({
   label,
-  amount = '0',
+  amount = 0,
+  formatAmount = formatNumber,
   percentage = 0,
 }: {
   label: string
-  amount?: string
+  amount?: number
+  formatAmount?: (amount: number) => string
   percentage?: number
 }) => (
   <div className="p-4 space-y-4 bg-neutral-0 rounded-xl">
@@ -28,10 +32,10 @@ const DataBox = ({
       {label}
     </Typography>
     <Typography level="h5" color="textPrimary">
-      {amount}
+      {formatAmount ? formatAmount(amount) : amount}
     </Typography>
     <div
-      className={clsx('flex items-center space-x-1', {
+      className={clsx('flex items-center space-x-1 flex-wrap', {
         invisible: !percentage,
       })}
     >
@@ -55,11 +59,14 @@ const DataBox = ({
 )
 
 interface Props {
+  id?: string
   apps?: ViewApplication[]
   onOpenCreateAppModal: () => void
 }
 
-export const Statistics = ({ apps = [], onOpenCreateAppModal }: Props) => {
+export const Statistics = ({ id, apps = [], onOpenCreateAppModal }: Props) => {
+  const { data: stats } = useFetchApplicationStats(id)
+
   return (
     <>
       <PageHeader
@@ -126,12 +133,38 @@ export const Statistics = ({ apps = [], onOpenCreateAppModal }: Props) => {
           </Button>
         </div>
         <div className="grid flex-1 grid-cols-2 gap-2 sm:grid-cols-3">
-          <DataBox label="All time Users" amount="3,298" percentage={0.4} />
-          <DataBox label="7 days Users" />
-          <DataBox label="All time Txs" />
-          <DataBox label="7 days Txs" amount="3,298" percentage={-0.06} />
-          <DataBox label="All time Revenue" />
-          <DataBox label="7 days Revenue" />
+          <DataBox
+            label="All time Users"
+            amount={stats?.users_in_total}
+            percentage={stats?.users_in_total_change?.last_month_percentage}
+          />
+          <DataBox
+            label="7 days Users"
+            amount={stats?.users_in_7d}
+            percentage={stats?.users_in_7d_change?.last_month_percentage}
+          />
+          <DataBox
+            label="All time Txs"
+            amount={stats?.txs_in_total}
+            percentage={stats?.txs_in_total_change?.last_month_percentage}
+          />
+          <DataBox
+            label="7 days Txs"
+            amount={stats?.txs_in_7d}
+            percentage={stats?.txs_in_7d_change?.last_month_percentage}
+          />
+          <DataBox
+            label="All time Revenue"
+            amount={stats?.revenue_in_total}
+            formatAmount={(amount) => `$${formatNumber(amount)}`}
+            percentage={stats?.revenue_in_total_change?.last_month_percentage}
+          />
+          <DataBox
+            label="7 days Revenue"
+            amount={stats?.revenue_in_7d}
+            formatAmount={(amount) => `$${formatNumber(amount)}`}
+            percentage={stats?.revenue_in_7d_change?.last_month_percentage}
+          />
         </div>
       </div>
     </>
