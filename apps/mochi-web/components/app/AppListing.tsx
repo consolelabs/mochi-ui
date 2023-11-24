@@ -72,7 +72,7 @@ const Name: ColumnProps<App>['cell'] = (props) => (
     {/* eslint-disable-next-line @next/next/no-img-element */}
     <img alt="" src={props.row.original.icon} width={40} height={40} />
     <Link href={`app/${props.row.original.id}`}>
-      <Typography level="body-sm" className="font-bold">
+      <Typography level="p5" className="font-bold">
         {props.row.original.name}
       </Typography>
     </Link>
@@ -96,7 +96,7 @@ const Actions: ColumnProps<App>['cell'] = () => (
 export const AppListing = ({ apps = data }: Props) => {
   return (
     <div className="mt-8">
-      <Typography level="title-md" color="textPrimary">
+      <Typography level="h7" color="textPrimary">
         My Applications
       </Typography>
       {apps?.length ? (
@@ -129,12 +129,8 @@ export const AppListing = ({ apps = data }: Props) => {
         </div>
       ) : (
         <div>
-          <Typography
-            level="body-sm"
-            color="textSecondary"
-            className="flex gap-1"
-          >
-            <Typography level="title-sm" color="textSecondary">
+          <Typography level="p5" color="textSecondary" className="flex gap-1">
+            <Typography level="h8" color="textSecondary">
               You don’t have any applications yet.
             </Typography>
             Please{' '}

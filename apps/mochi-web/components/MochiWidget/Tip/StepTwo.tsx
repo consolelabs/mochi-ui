@@ -1,7 +1,7 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { MAX_AMOUNT_PRECISION, formatTokenAmount } from '~utils/number'
 import { Button } from '@consolelabs/core'
-import { CheckLine, ChevronLeftLine } from '@consolelabs/icons'
+import { CheckLine, ChevronLeftLine, Spinner } from '@consolelabs/icons'
 import { useTipWidget } from './store'
 import MessagePicker from '../MessagePicker/MessagePicker'
 import ThemePicker from '../ThemePicker/ThemePicker'
@@ -20,16 +20,16 @@ export default function StepTwo() {
   } = useTipWidget()
 
   return (
-    <div className="flex flex-col flex-1 gap-y-3 min-h-0">
-      <ScrollArea.Viewport className="[&>div]:!block">
-        <div className="flex flex-col gap-y-2 h-full">
+    <div className="flex flex-col flex-1 gap-y-3 h-full min-h-0">
+      <ScrollArea.Viewport className="flex-1 [&>div]:!h-full [&>div]:!block">
+        <div className="flex flex-col justify-between h-full">
           <button
             onClick={() => setStep(1)}
             className="self-start mt-3 outline-none"
           >
             <ChevronLeftLine className="w-5 h-5" />
           </button>
-          <span className="mx-auto text-base text-[#343433]">You send</span>
+          <span className="mx-auto text-base text-neutral-800">You send</span>
           <p className="mx-auto text-3xl font-medium leading-5 text-black">
             {formatTokenAmount(request.amount ?? 0).display}{' '}
             {isToken(request.asset)
@@ -72,8 +72,8 @@ export default function StepTwo() {
         size="lg"
         disabled={isTransferring}
       >
-        Send
-        <CheckLine />
+        {isTransferring ? <>&#8203;</> : 'Send'}
+        {isTransferring ? <Spinner /> : <CheckLine />}
       </Button>
     </div>
   )

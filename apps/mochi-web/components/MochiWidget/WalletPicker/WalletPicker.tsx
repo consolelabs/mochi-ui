@@ -15,6 +15,16 @@ interface Props {
   loading?: boolean
 }
 
+const defaultState: Wallet = {
+  id: 'mochi',
+  type: 'offchain',
+  balances: [],
+  usd_amount: '$0',
+  subtitle: '',
+  title: 'Mochi Wallet',
+  icon: '',
+}
+
 export const WalletPicker: React.FC<Props> = ({
   data,
   loading = true,
@@ -27,15 +37,7 @@ export const WalletPicker: React.FC<Props> = ({
     onClose: hideSelector,
     onToggle: toggleSelector,
   } = useDisclosure()
-  const [selectedWallet, setSelectedWallet] = useState<Wallet>({
-    id: 'mochi',
-    type: 'offchain',
-    balances: [],
-    usd_amount: '$0',
-    subtitle: '',
-    title: 'Mochi Wallet',
-    icon: '',
-  })
+  const [selectedWallet, setSelectedWallet] = useState<Wallet>(defaultState)
 
   const handleWalletSelect = useCallback(
     (wallet: Wallet) => {
@@ -51,6 +53,12 @@ export const WalletPicker: React.FC<Props> = ({
       handleWalletSelect(mochiWallet)
     }
   }, [data, handleWalletSelect])
+
+  useEffect(() => {
+    if (!authorized) {
+      setSelectedWallet(defaultState)
+    }
+  }, [authorized])
 
   return (
     <Popover open={isOpenSelector} onOpenChange={toggleSelector}>

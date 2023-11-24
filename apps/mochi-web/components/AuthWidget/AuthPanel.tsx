@@ -196,7 +196,7 @@ export const AuthPanel = (props: AuthPanelProps) => {
           onOpenChange={onOpenLoginWidgetChange}
           authUrl="https://api-preview.mochi-profile.console.so/api/v1/profiles/auth"
           meUrl="https://api-preview.mochi-profile.console.so/api/v1/profiles/me"
-          trigger={<ConnectButton variant={variant} />}
+          trigger={<ConnectButton variant="modal" />}
         />
       </div>
     </PanelContainer>

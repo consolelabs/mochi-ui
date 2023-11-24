@@ -281,7 +281,7 @@ function TryItOut() {
                 <span className="text-blue-500">Sign in</span> to edit real
                 requests.
               </span>
-              <Tooltip content="Download" theme="light" arrow="top-center">
+              <Tooltip content="Download" arrow="top-center">
                 <div className="text-white-pure rounded-lg bg-[#3B3B3B] p-1">
                   <ArrowDownLine className="w-4 h-4" />
                 </div>

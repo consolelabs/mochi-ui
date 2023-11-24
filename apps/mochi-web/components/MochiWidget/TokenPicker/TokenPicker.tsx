@@ -152,68 +152,66 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
           isOpenSelector={isOpenSelector}
         />
       </PopoverTrigger>
-      <PopoverContent
-        align="start"
-        avoidCollisions={false}
-        alignOffset={-8}
-        className="flex flex-col gap-y-2 items-center rounded-lg shadow-md w-[414px] h-fit bg-white-pure"
-      >
-        {authorized ? (
-          <>
-            <InputField
-              className="w-full"
-              placeholder="Search"
-              startAdornment={
-                <div className="pl-2">
-                  <MagnifierLine className="w-5 h-5 text-gray-500" />
-                </div>
-              }
-              onChange={onSearchChange}
-            />
-            <Tab.Group selectedIndex={tabIdx} onChange={setTabIdx}>
-              <Tab.List className="flex gap-6 w-full">
-                {TokenTabs.map((tab) => (
-                  <Tab key={tab.key} className="focus-visible:outline-none">
-                    {({ selected }) => (
-                      <div className="flex justify-start py-2 w-full">
-                        <Heading
-                          as="h2"
-                          className={`text-sm ${
-                            selected ? 'text-[#343433]' : 'text-[#848281]'
-                          }`}
-                        >
-                          {tab.value}
-                        </Heading>
-                      </div>
-                    )}
-                  </Tab>
-                ))}
-              </Tab.List>
-              <Tab.Panels className="w-full">
-                <Tab.Panel className="flex flex-col gap-2 h-full">
-                  <TokenList
-                    loading={isFetchingWallets}
-                    data={filteredTokens}
-                    onSelect={handleTokenSelect}
-                  />
-                  <span className="text-xs text-[#ADACAA]">
-                    Only supported tokens are shown
-                  </span>
-                </Tab.Panel>
-                <Tab.Panel className="flex flex-col gap-2 h-full">
-                  <MonikerList
-                    balances={tokenBalances}
-                    searchTerm={searchTerm}
-                    onSelect={handleMonikerSelect}
-                  />
-                </Tab.Panel>
-              </Tab.Panels>
-            </Tab.Group>
-          </>
-        ) : (
-          unauthorizedContent
-        )}
-      </PopoverContent>
+      {authorized ? (
+        <PopoverContent
+          align="start"
+          avoidCollisions={false}
+          alignOffset={-8}
+          className="flex flex-col gap-y-2 items-center rounded-lg shadow-md w-[414px] h-fit bg-white-pure"
+        >
+          <InputField
+            className="w-full"
+            placeholder="Search"
+            startAdornment={
+              <div className="pl-2">
+                <MagnifierLine className="w-5 h-5 text-gray-500" />
+              </div>
+            }
+            onChange={onSearchChange}
+          />
+          <Tab.Group selectedIndex={tabIdx} onChange={setTabIdx}>
+            <Tab.List className="flex gap-6 w-full">
+              {TokenTabs.map((tab) => (
+                <Tab key={tab.key} className="focus-visible:outline-none">
+                  {({ selected }) => (
+                    <div className="flex justify-start py-2 w-full">
+                      <Heading
+                        as="h2"
+                        className={`text-sm ${
+                          selected ? 'text-[#343433]' : 'text-[#848281]'
+                        }`}
+                      >
+                        {tab.value}
+                      </Heading>
+                    </div>
+                  )}
+                </Tab>
+              ))}
+            </Tab.List>
+            <Tab.Panels className="w-full">
+              <Tab.Panel className="flex flex-col gap-2 h-full">
+                <TokenList
+                  loading={isFetchingWallets}
+                  data={filteredTokens}
+                  onSelect={handleTokenSelect}
+                />
+                <span className="text-xs text-[#ADACAA]">
+                  Only supported tokens are shown
+                </span>
+              </Tab.Panel>
+              <Tab.Panel className="flex flex-col gap-2 h-full">
+                <MonikerList
+                  balances={tokenBalances}
+                  searchTerm={searchTerm}
+                  onSelect={handleMonikerSelect}
+                />
+              </Tab.Panel>
+            </Tab.Panels>
+          </Tab.Group>
+        </PopoverContent>
+      ) : (
+        unauthorizedContent
+      )}
     </Popover>
   )
 }

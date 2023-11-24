@@ -67,7 +67,7 @@ export default function Tip() {
   }, [error, onOpen, tx])
 
   return (
-    <div className="relative">
+    <div className="relative flex-1">
       <div
         className={clsx(
           'origin-center flex justify-between z-10 transition-transform absolute top-0 w-full p-3 duration-300 rounded-md border font-medium text-sm',
@@ -112,7 +112,12 @@ export default function Tip() {
             <StepOne />
           </m.div>
         ) : (
-          <m.div key={step} custom={direction} {...commonProps}>
+          <m.div
+            className="h-full"
+            key={step}
+            custom={direction}
+            {...commonProps}
+          >
             <StepTwo />
           </m.div>
         )}

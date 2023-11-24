@@ -1,6 +1,22 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { ArrowRightLine } from '@consolelabs/icons'
-import IconButton from '../src/icon-button'
+import IconButton, { IconButtonProps } from '../src/icon-button'
+
+const colors: IconButtonProps['color'][] = [
+  'primary',
+  'secondary',
+  'success',
+  'warning',
+  'danger',
+  'neutral',
+  'info',
+]
+const variants: IconButtonProps['variant'][] = [
+  'solid',
+  'outline',
+  'ghost',
+  'link',
+]
 
 const meta: Meta<typeof IconButton> = {
   title: 'components/IconButton',
@@ -17,13 +33,16 @@ const meta: Meta<typeof IconButton> = {
         disable: true,
       },
     },
+    disabled: {
+      control: 'boolean',
+    },
     variant: {
       control: 'select',
-      options: ['solid', 'outline', 'link', 'ghost'],
+      options: variants,
     },
     color: {
       control: 'select',
-      options: ['primary', 'secondary', 'danger', 'info'],
+      options: colors,
     },
     size: {
       control: 'select',
@@ -38,5 +57,50 @@ type Story = StoryObj<typeof IconButton>
 export const Default: Story = {
   args: {
     children: <ArrowRightLine height={20} width={20} />,
+  },
+}
+
+export const Colors: Story = {
+  render() {
+    return (
+      <div className="grid grid-cols-4 gap-4">
+        {colors.map((color) =>
+          variants.map((variant) => (
+            <div className="flex items-center justify-center w-full h-10">
+              <IconButton
+                key={`${color}_${variant}`}
+                color={color}
+                variant={variant}
+              >
+                <ArrowRightLine height={20} width={20} />
+              </IconButton>
+            </div>
+          )),
+        )}
+      </div>
+    )
+  },
+}
+
+export const Disabled: Story = {
+  render() {
+    return (
+      <div className="grid grid-cols-4 gap-4">
+        {colors.map((color) =>
+          variants.map((variant) => (
+            <div className="flex items-center justify-center w-full h-10">
+              <IconButton
+                key={`${color}_${variant}`}
+                color={color}
+                variant={variant}
+                disabled
+              >
+                <ArrowRightLine height={20} width={20} />
+              </IconButton>
+            </div>
+          )),
+        )}
+      </div>
+    )
   },
 }

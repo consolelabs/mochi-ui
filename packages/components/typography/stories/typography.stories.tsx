@@ -16,13 +16,18 @@ const meta: Meta<typeof Typography> = {
         'h2',
         'h3',
         'h4',
-        'title-lg',
-        'title-md',
-        'title-sm',
-        'body-lg',
-        'body-md',
-        'body-sm',
-        'body-xs',
+        'h5',
+        'h6',
+        'h7',
+        'h8',
+        'h9',
+        'p1',
+        'p2',
+        'p3',
+        'p4',
+        'p5',
+        'p6',
+        'p7',
         'inherit',
       ],
     },
@@ -60,13 +65,18 @@ const levelVariants: TypographyProps['level'][] = [
   'h2',
   'h3',
   'h4',
-  'title-lg',
-  'title-md',
-  'title-sm',
-  'body-lg',
-  'body-md',
-  'body-sm',
-  'body-xs',
+  'h5',
+  'h6',
+  'h7',
+  'h8',
+  'h9',
+  'p1',
+  'p2',
+  'p3',
+  'p4',
+  'p5',
+  'p6',
+  'p7',
   'inherit',
 ]
 
@@ -75,7 +85,7 @@ export const Levels: Story = {
     <div className="flex flex-col gap-2">
       {levelVariants.map((level) => (
         <Typography key={level} level={level}>
-          Lorem ipsum
+          Lorem ipsum ({level})
         </Typography>
       ))}
     </div>
@@ -87,7 +97,6 @@ const colorVariants: TypographyProps['color'][] = [
   'secondary',
   'danger',
   'success',
-
   'warning',
   'neutral',
   'textPrimary',
@@ -100,7 +109,7 @@ export const Colors: Story = {
     <div className="flex flex-col gap-2">
       {colorVariants.map((color) => (
         <Typography key={color} color={color}>
-          Lorem ipsum
+          Lorem ipsum ({color})
         </Typography>
       ))}
     </div>

@@ -79,6 +79,7 @@ export const red = {
 }
 
 export const commonColors = {
+  current: 'currentColor',
   white: '#ffffff',
   black: '#000000',
   transparent: 'transparent',

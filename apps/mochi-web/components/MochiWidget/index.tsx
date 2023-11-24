@@ -2,7 +2,6 @@
 import React, { useState } from 'react'
 import { PaperplaneCircleSolid } from '@consolelabs/icons'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
-import { AnimateHeight } from '~cpn/AnimateHeight'
 import Tip from './Tip'
 
 /* function ComingSoon() { */
@@ -44,11 +43,12 @@ export default function MochiWidget() {
   const [activeTab] = useState(tabs[0])
 
   return (
-    <AnimateHeight className="bg-white-pure rounded-2xl shadow-xl border border-[#e5e4e3]">
+    <div className="rounded-2xl border shadow-xl bg-white-pure border-neutral-300">
       <ScrollArea.Root
         style={{
           /* height: 570, */
           /* height: 640, */
+          height: 670,
           maxWidth: 440,
           minWidth: 340,
         }}
@@ -90,6 +90,6 @@ export default function MochiWidget() {
           <ScrollArea.Thumb />
         </ScrollArea.Scrollbar>
       </ScrollArea.Root>
-    </AnimateHeight>
+    </div>
   )
 }

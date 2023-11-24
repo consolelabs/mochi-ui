@@ -5,9 +5,9 @@ export const DEFAULT_BALANCE = {
   amount: '$0',
   token: {
     id: '',
-    name: 'bitcoin',
-    symbol: 'BTC',
-    icon: 'https://cdn.discordapp.com/attachments/1062201917046005801/1175819018591027220/btc.png?ex=656c9dcb&is=655a28cb&hm=e3ba8563ecf61c187eb3d0c79ea7b13e99e4d774dcbe2b8156efd679bf1a09a6&',
+    name: 'sol',
+    symbol: 'SOL',
+    icon: 'https://cdn.discordapp.com/emojis/1150803875884978216.png?size=240&quality=lossless',
   },
   type: 'token',
   asset_balance: 0,
