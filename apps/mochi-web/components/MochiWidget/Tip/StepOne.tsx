@@ -88,6 +88,7 @@ export default function StepOne() {
           />
           <AmountInput
             authorized={isLoggedIn}
+            unauthorizedContent={unauthorizedContent}
             wallet={wallet}
             onSelectAsset={setAsset}
             onAmountChanged={setAmount}

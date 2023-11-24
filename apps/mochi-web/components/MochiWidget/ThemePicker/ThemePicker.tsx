@@ -9,7 +9,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@consolelabs/core'
-import { IconMagnifier } from '@consolelabs/icons'
+import { IconCrossCircled, IconMagnifier } from '@consolelabs/icons'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { Tab } from '@headlessui/react'
@@ -86,63 +86,70 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
 
   return (
     <div className="flex flex-col gap-y-1">
-      <span className="text-sm text-[#343433] font-medium">
+      <span className="text-sm font-medium text-neutral-800">
         Select theme{' '}
-        {value ? (
-          <>
-            &#8212;{' '}
-            <button
-              type="button"
-              onClick={() => onChange(null)}
-              className="text-sm text-red-500 outline-none hover:underline"
-            >
-              Clear
-            </button>
-          </>
-        ) : null}
       </span>
-      <div className="grid grid-cols-4 grid-rows-1 gap-x-2 h-20">
+      <div className="grid grid-cols-4 grid-rows-1 h-20">
         {themes.slice(0, 3).map((t, i) => {
           const selectedIndex = themes.findIndex(
             (theme) => theme.id === value?.id,
           )
-          const isSelected =
-            (selectedIndex > 2 && i === 0) ||
-            (selectedIndex <= 2 && selectedIndex === i)
+          const isSelected = Boolean(
+            ((selectedIndex > 2 && i === 0) ||
+              (selectedIndex <= 2 && selectedIndex === i)) &&
+              value?.src,
+          )
 
           return (
-            <button
+            <div
               key={t.name}
-              type="button"
-              className="overflow-hidden relative rounded-lg outline-none"
-              onClick={() => {
-                onChange(t)
-                closeThemePopover()
-              }}
+              className={clsx(
+                'flex-shrink-0 relative relative rounded-lg outline-none border-4',
+                {
+                  'border-transparent': !isSelected,
+                  'border-blue-700': isSelected,
+                },
+              )}
             >
-              <Image
-                fill
-                alt={t.name}
-                src={isSelected && value?.src ? value?.src : t.src}
-                className={clsx('object-cover w-full h-full', {
-                  'brightness-50': !isSelected,
-                })}
-              />
-              {!isSelected && (
+              <button
+                type="button"
+                onClick={() => {
+                  onChange(t)
+                  closeThemePopover()
+                }}
+              >
+                <Image
+                  fill
+                  alt={t.name}
+                  src={isSelected && value?.src ? value?.src : t.src}
+                  className={clsx('object-cover w-full h-full rounded', {
+                    'brightness-50': !isSelected,
+                  })}
+                />
+              </button>
+              {!isSelected ? (
                 <span className="absolute top-1/2 left-1/2 px-2 text-xs font-medium -translate-x-1/2 -translate-y-1/2 text-white-pure">
                   {t.name}
                 </span>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => onChange(null)}
+                  className="overflow-hidden absolute top-0 right-0 w-4 h-4 bg-gray-800 rounded-full translate-x-1/2 -translate-y-1/2 text-white-pure"
+                >
+                  <IconCrossCircled className="scale-150" />
+                </button>
               )}
-            </button>
+            </div>
           )
         })}
         <Popover open={isOpenTheme} onOpenChange={toggleThemePopover}>
           <PopoverTrigger asChild>
-            <button className="overflow-hidden relative outline-none">
+            <button className="overflow-hidden relative rounded-lg border-4 border-transparent outline-none">
               <Image
                 fill
                 src="/tip-theme-more.jpg"
-                className="object-cover w-full h-full"
+                className="object-cover w-full h-full rounded-lg"
                 alt=""
               />
               <span className="absolute top-1/2 left-1/2 text-xs font-medium whitespace-nowrap -translate-x-1/2 -translate-y-1/2 text-white-pure">
