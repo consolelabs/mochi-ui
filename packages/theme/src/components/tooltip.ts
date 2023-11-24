@@ -9,6 +9,7 @@ const tooltipClsx = ({ className = '' }: { className?: string }) =>
     'font-semibold',
     'bg-background-tooltip',
     'text-text-primary',
+    'tooltip',
     className,
   )
 

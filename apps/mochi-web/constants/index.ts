@@ -56,6 +56,7 @@ export const SOCIAL_LINKS = {
   DISCORBOTLIST: 'https://discordbotlist.com/bots/mochi-bot/upvote',
   CONSOLE: CONSOLE_LINK,
   README: README_LINK,
+  DOCS: 'https://docs.mochi.gg/',
 }
 
 export const TOKEN_NAME = '$MOCHI'
