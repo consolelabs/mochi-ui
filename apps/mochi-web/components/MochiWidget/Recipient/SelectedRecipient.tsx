@@ -1,6 +1,6 @@
 import { IconButton, Avatar } from '@consolelabs/core'
 import { Profile } from '@consolelabs/mochi-rest'
-import { IconClose } from '@consolelabs/icons'
+import { CloseLine } from '@consolelabs/icons'
 import PlatformIcon from '../PlatformPicker/PlatformIcon'
 
 interface SelectedRecipientProps {
@@ -34,7 +34,7 @@ export const SelectedRecipient: React.FC<SelectedRecipientProps> = ({
         color="info"
         onClick={() => onRemove?.(profile)}
       >
-        <IconClose />
+        <CloseLine />
       </IconButton>
       <PlatformIcon
         className="absolute bottom-0 left-0 w-4 h-4"

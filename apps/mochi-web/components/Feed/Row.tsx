@@ -1,4 +1,4 @@
-import { IconArrowRight } from '@consolelabs/icons'
+import { ArrowRightLine } from '@consolelabs/icons'
 import { Avatar, Badge } from '@consolelabs/core'
 import React from 'react'
 import { Tx } from './store'
@@ -22,7 +22,7 @@ export default function Row({ tx, colWidth }: { tx: Tx; colWidth: string[] }) {
       </RowCell>
       <RowCell width={colWidth[1]} className="justify-center items-center">
         <div className="p-1 w-5 h-5 rounded-full border border-blue-700 text-white-pure bg-primary-700/25">
-          <IconArrowRight className="w-full h-full scale-125" />
+          <ArrowRightLine className="w-full h-full scale-125" />
         </div>
       </RowCell>
       <RowCell className="flex gap-x-2 items-center" width={colWidth[2]}>

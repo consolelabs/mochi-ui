@@ -9,7 +9,7 @@ import {
   PopoverContent,
   PopoverAnchor,
 } from '@consolelabs/core'
-import { IconSpinner } from '@consolelabs/icons'
+import { Spinner } from '@consolelabs/icons'
 import { useDebounce, useDisclosure } from '@dwarvesf/react-hooks'
 import { API, GET_PATHS } from '~constants/api'
 import { ChainPicker } from '../ChainPicker'
@@ -211,7 +211,7 @@ export const Recipient: React.FC<RecipientProps> = ({
                 onBlur={(e: any) => e.preventDefault()}
                 autoComplete="off"
               />
-              <IconSpinner
+              <Spinner
                 width={18}
                 height={18}
                 className={clsx({

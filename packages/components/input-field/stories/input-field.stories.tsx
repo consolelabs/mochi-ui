@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { IconPhantomWallet } from '@consolelabs/icons'
+import { PhantomWallet } from '@consolelabs/icons'
 import InputField from '../src/input-field'
 
 const meta: Meta<typeof InputField> = {
@@ -82,7 +82,7 @@ export function Adornment() {
         label="Amount"
         startAdornment={
           <div style={{ paddingLeft: 8 }}>
-            <IconPhantomWallet height={20} width={20} />
+            <PhantomWallet height={20} width={20} />
           </div>
         }
       />
@@ -95,7 +95,7 @@ export function Adornment() {
         label="Amount"
         startAdornment={
           <div style={{ paddingLeft: 8 }}>
-            <IconPhantomWallet height={20} width={20} />
+            <PhantomWallet height={20} width={20} />
           </div>
         }
       />

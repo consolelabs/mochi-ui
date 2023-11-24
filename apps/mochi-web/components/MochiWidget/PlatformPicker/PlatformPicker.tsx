@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
 import { Popover, PopoverTrigger, PopoverContent } from '@consolelabs/core'
-import { IconChevronDown } from '@consolelabs/icons'
+import { ChevronDownLine } from '@consolelabs/icons'
 import { PlatformList } from './PlatformList'
 import { Platform } from './type'
 import PlatformIcon from './PlatformIcon'
@@ -86,7 +86,7 @@ export const PlatformPicker: React.FC<Props> = ({
           <span className="text-sm font-medium capitalize whitespace-nowrap">
             {selectedPlatform.platform}
           </span>
-          <IconChevronDown
+          <ChevronDownLine
             className={clsx('w-4 h-4 text-[#ADACAA] transition', {
               'rotate-180': isOpenSelector,
             })}

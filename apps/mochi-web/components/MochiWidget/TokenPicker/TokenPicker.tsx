@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import Image from 'next/image'
-import { IconChevronDown, IconMagnifier } from '@consolelabs/icons'
+import { ChevronDownLine, MagnifierLine } from '@consolelabs/icons'
 import { useShallow } from 'zustand/react/shallow'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Tab } from '@headlessui/react'
@@ -62,7 +62,7 @@ const TokenButton = (props: TokenButtonProps) => (
       </span>
     )}
     <span className="text-sm font-medium">{props.name}</span>
-    <IconChevronDown
+    <ChevronDownLine
       className={clsx('transition w-4 h-4 text-[#ADACAA]', {
         'rotate-180': props.isOpenSelector,
       })}
@@ -165,7 +165,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
               placeholder="Search"
               startAdornment={
                 <div className="pl-2">
-                  <IconMagnifier className="w-5 h-5 text-gray-500" />
+                  <MagnifierLine className="w-5 h-5 text-gray-500" />
                 </div>
               }
               onChange={onSearchChange}

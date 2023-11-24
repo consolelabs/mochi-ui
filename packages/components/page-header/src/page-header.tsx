@@ -1,4 +1,4 @@
-import { IconChevronLeft } from '@consolelabs/icons'
+import { ChevronLeftLine } from '@consolelabs/icons'
 import { Typography } from '@consolelabs/typography'
 import { IconButton } from '@consolelabs/icon-button'
 import { pageHeader } from '@consolelabs/theme'
@@ -48,7 +48,7 @@ const PageHeader = (props: PageHeaderProps) => {
       onClick={backHref ? undefined : onBack}
       className={pageHeaderBackButtonWrapperClsx()}
     >
-      <IconChevronLeft className={pageHeaderBackIconWrapperClsx()} />
+      <ChevronLeftLine className={pageHeaderBackIconWrapperClsx()} />
     </IconButton>
   )
 

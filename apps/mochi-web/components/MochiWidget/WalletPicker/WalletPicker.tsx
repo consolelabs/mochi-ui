@@ -1,5 +1,5 @@
 import { useDisclosure } from '@dwarvesf/react-hooks'
-import { IconChevronDown } from '@consolelabs/icons'
+import { ChevronDownLine } from '@consolelabs/icons'
 import clsx from 'clsx'
 import { useCallback, useEffect, useState } from 'react'
 import { Popover, PopoverTrigger, PopoverContent } from '@consolelabs/core'
@@ -69,7 +69,7 @@ export const WalletPicker: React.FC<Props> = ({
             <span className="flex-shrink-0 text-sm font-medium text-blue-700">
               {selectedWallet.usd_amount}
             </span>
-            <IconChevronDown
+            <ChevronDownLine
               className={clsx('w-4 h-4 text-blue-700 transition', {
                 'rotate-180': isOpenSelector,
               })}

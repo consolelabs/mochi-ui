@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
   Typography,
 } from '@consolelabs/core'
-import { IconArrowUp, IconCheck, IconChevronDown } from '@consolelabs/icons'
+import { ArrowUpLine, CheckLine, ChevronDownLine } from '@consolelabs/icons'
 import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -34,7 +34,7 @@ const DataBox = ({
         invisible: !percentage,
       })}
     >
-      <IconArrowUp
+      <ArrowUpLine
         className={clsx(
           'w-4 h-4',
           percentage > 0 ? 'text-success-500' : 'text-danger-500 rotate-180',
@@ -73,13 +73,13 @@ export const Statistics = () => {
             <DropdownMenuTrigger className="">
               <Button className="!bg-neutral-150">
                 <Typography level="body-sm">All apps</Typography>
-                <IconChevronDown className="w-4 h-4 text-neutral-800" />
+                <ChevronDownLine className="w-4 h-4 text-neutral-800" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuItem
                 rightIcon={
-                  <IconCheck className="w-4 h-4 ml-4 text-primary-700" />
+                  <CheckLine className="w-4 h-4 ml-4 text-primary-700" />
                 }
               >
                 All apps

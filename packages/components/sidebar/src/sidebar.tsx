@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { IconSidebarArrow } from '@consolelabs/icons'
+import { SidebarArrowLine } from '@consolelabs/icons'
 import { sidebar } from '@consolelabs/theme'
 import type { Item } from './sidebar-item'
 import type { Break } from './sidebar-item-list'
@@ -80,7 +80,7 @@ export default function Sidebar({
           type="button"
           data-testid="collapsible-button"
         >
-          <IconSidebarArrow
+          <SidebarArrowLine
             className={sidebarToggleArrowClsx({ expanded })}
             height={25}
             width={13}

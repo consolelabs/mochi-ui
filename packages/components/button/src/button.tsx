@@ -1,5 +1,5 @@
 import { button, ButtonStylesProps } from '@consolelabs/theme'
-import { IconThreeDotLoading } from '@consolelabs/icons'
+import { ThreeDotLoading } from '@consolelabs/icons'
 import type * as Polymorphic from '@consolelabs/polymorphic'
 import React, { ReactNode } from 'react'
 
@@ -38,7 +38,7 @@ const Button = React.forwardRef(
         })}
       >
         {customerIndicator ?? (
-          <IconThreeDotLoading className={buttonLoadingIconClsx()} />
+          <ThreeDotLoading className={buttonLoadingIconClsx()} />
         )}
       </div>
     )

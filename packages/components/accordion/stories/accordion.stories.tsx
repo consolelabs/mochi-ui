@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { IconGame, IconQuests } from '@consolelabs/icons'
+import { GameSolid, QuestsSolid } from '@consolelabs/icons'
 import {
   Accordion,
   AccordionItem,
@@ -33,7 +33,7 @@ export const Default: Story = {
     return (
       <Accordion {...props}>
         <AccordionItem value="2">
-          <AccordionTrigger leftIcon={<IconQuests />}>
+          <AccordionTrigger leftIcon={<QuestsSolid />}>
             Server Management
           </AccordionTrigger>
           <AccordionContent>
@@ -42,7 +42,7 @@ export const Default: Story = {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="3">
-          <AccordionTrigger leftIcon={<IconGame />}>
+          <AccordionTrigger leftIcon={<GameSolid />}>
             Game Store
           </AccordionTrigger>
           <AccordionContent hasPadding>PodTown</AccordionContent>

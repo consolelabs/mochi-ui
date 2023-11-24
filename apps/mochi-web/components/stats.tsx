@@ -2,10 +2,10 @@ import useSWR from 'swr'
 import { utils } from '@consolelabs/mochi-ui'
 import { API } from '~constants/api'
 import {
-  IconDollarColored,
-  IconHeartColored,
-  IconLinkColored,
-  IconUserShieldColored,
+  DollarColored,
+  HeartColored,
+  LinkColored,
+  UserShieldColored,
 } from '@consolelabs/icons'
 import clsx from 'clsx'
 
@@ -64,28 +64,28 @@ export default function Stats({ className = '' }: { className?: string }) {
     >
       <Spotlight
         loading={isLoading}
-        icon={<IconHeartColored className="flex-shrink-0 w-8 h-8" />}
+        icon={<HeartColored className="flex-shrink-0 w-8 h-8" />}
         title={`${data?.tips_given ?? 1602}+`}
         subtitle="tips given"
       />
       <Divider />
       <Spotlight
         loading={isLoading}
-        icon={<IconDollarColored className="flex-shrink-0 w-8 h-8" />}
+        icon={<DollarColored className="flex-shrink-0 w-8 h-8" />}
         title={data ? utils.formatUsdDigit(data.total_volume) : '$271,023'}
         subtitle="total volume"
       />
       <Divider />
       <Spotlight
         loading={isLoading}
-        icon={<IconUserShieldColored className="flex-shrink-0 w-8 h-8" />}
+        icon={<UserShieldColored className="flex-shrink-0 w-8 h-8" />}
         title={`${data?.active_users ?? 1000}+`}
         subtitle="active users"
       />
       <Divider />
       <Spotlight
         loading={isLoading}
-        icon={<IconLinkColored className="flex-shrink-0 w-8 h-8" />}
+        icon={<LinkColored className="flex-shrink-0 w-8 h-8" />}
         title={`${data?.total_networks ?? 145}+`}
         subtitle="networks"
       />

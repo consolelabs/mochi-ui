@@ -10,13 +10,13 @@ import { useAuthStore, useProfileStore } from '~store'
 import Link from 'next/link'
 import { truncateWallet } from '~utils/string'
 import {
-  IconUser,
-  IconDiscord,
-  IconSetting,
-  IconAddUser,
-  IconLogout,
-  IconSuperGroup,
-  IconCoding,
+  UserSolid,
+  Discord,
+  SettingSolid,
+  AddUserSolid,
+  LogoutSolid,
+  SuperGroupSolid,
+  CodingSolid,
 } from '@consolelabs/icons'
 
 export default function ProfileDropdown() {
@@ -37,17 +37,17 @@ export default function ProfileDropdown() {
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <Link href="/profile">
-          <DropdownMenuItem leftIcon={<IconUser />}>Profile</DropdownMenuItem>
+          <DropdownMenuItem leftIcon={<UserSolid />}>Profile</DropdownMenuItem>
         </Link>
 
         <Link href="#">
-          <DropdownMenuItem leftIcon={<IconSuperGroup />}>
+          <DropdownMenuItem leftIcon={<SuperGroupSolid />}>
             Gift Your Friends
           </DropdownMenuItem>
         </Link>
 
         <Link href="#">
-          <DropdownMenuItem leftIcon={<IconSetting />}>
+          <DropdownMenuItem leftIcon={<SettingSolid />}>
             Settings
           </DropdownMenuItem>
         </Link>
@@ -55,19 +55,17 @@ export default function ProfileDropdown() {
         <DropdownMenuSeparator />
 
         <Link href="#">
-          <DropdownMenuItem leftIcon={<IconDiscord />}>
-            My Servers
-          </DropdownMenuItem>
+          <DropdownMenuItem leftIcon={<Discord />}>My Servers</DropdownMenuItem>
         </Link>
 
         <Link href="#">
-          <DropdownMenuItem leftIcon={<IconDiscord />}>
+          <DropdownMenuItem leftIcon={<Discord />}>
             Install Mochi
           </DropdownMenuItem>
         </Link>
 
         <Link href="#">
-          <DropdownMenuItem leftIcon={<IconAddUser />}>
+          <DropdownMenuItem leftIcon={<AddUserSolid />}>
             Invite Friends
           </DropdownMenuItem>
         </Link>
@@ -75,13 +73,13 @@ export default function ProfileDropdown() {
         <DropdownMenuSeparator />
 
         <Link href="#">
-          <DropdownMenuItem leftIcon={<IconCoding />}>
+          <DropdownMenuItem leftIcon={<CodingSolid />}>
             Create Application
           </DropdownMenuItem>
         </Link>
 
         <Link href="#">
-          <DropdownMenuItem leftIcon={<IconCoding />}>
+          <DropdownMenuItem leftIcon={<CodingSolid />}>
             Developer Docs
           </DropdownMenuItem>
         </Link>
@@ -99,7 +97,7 @@ export default function ProfileDropdown() {
         <DropdownMenuSeparator />
 
         <Link href="/#logout" onClick={logout}>
-          <DropdownMenuItem leftIcon={<IconLogout />}>Logout</DropdownMenuItem>
+          <DropdownMenuItem leftIcon={<LogoutSolid />}>Logout</DropdownMenuItem>
         </Link>
       </DropdownMenuContent>
     </DropdownMenu>

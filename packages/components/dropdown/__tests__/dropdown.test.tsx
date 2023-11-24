@@ -1,6 +1,6 @@
 import { render, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { IconCoinbaseWallet } from '@consolelabs/icons'
+import { CoinbaseWallet } from '@consolelabs/icons'
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -22,7 +22,7 @@ const onClickFnc = jest.fn()
 const MenuItems = [
   {
     children: 'Billing',
-    leftIcon: <IconCoinbaseWallet />,
+    leftIcon: <CoinbaseWallet />,
   },
   {
     children: 'Keyboard shortcuts',

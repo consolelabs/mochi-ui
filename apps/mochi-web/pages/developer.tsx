@@ -5,32 +5,32 @@ import { Layout } from '~app/layout'
 import { SEO } from '~app/layout/seo'
 import { Button, IconButton, Tooltip } from '@consolelabs/core'
 import {
-  IconApt,
-  IconArb,
-  IconAtom,
-  IconArrowRight,
-  IconArrowDown,
-  IconBnb,
-  IconBtc,
-  IconDiscordColored,
-  IconEth,
-  IconFtm,
-  IconFacebookColored,
-  IconGithub,
-  IconGoogleColored,
-  IconMatic,
-  IconMnt,
-  IconOp,
-  IconRon,
-  IconRedditColored,
-  IconSol,
-  IconSui,
-  IconSlackColored,
-  IconTon,
-  IconX,
-  IconZkSync,
-  IconCopy,
-  IconFarcasterColored,
+  Apt,
+  Arb,
+  Atom,
+  ArrowRightLine,
+  ArrowDownLine,
+  Bnb,
+  Btc,
+  DiscordColored,
+  Eth,
+  Ftm,
+  FacebookColored,
+  Github,
+  GoogleColored,
+  Matic,
+  Mnt,
+  Op,
+  Ron,
+  RedditColored,
+  Sol,
+  Sui,
+  SlackColored,
+  Ton,
+  X,
+  ZkSync,
+  CopySolid,
+  FarcasterColored,
 } from '@consolelabs/icons'
 import { HOME_URL } from '~envs'
 import { TabbedFeatures } from '~cpn/landing/TabbedFeatures'
@@ -129,35 +129,35 @@ const socials: [
   (props: React.SVGProps<SVGSVGElement>) => JSX.Element,
   string,
 ][] = [
-  [IconFacebookColored, 'Facebook'],
-  [IconDiscordColored, 'Discord'],
-  [IconRedditColored, 'Reddit'],
-  [IconGoogleColored, 'Google'],
-  [IconX, 'X'],
-  [IconGithub, 'Github'],
-  [IconSlackColored, 'Slack'],
-  [IconFarcasterColored, 'Farcaster'],
+  [FacebookColored, 'Facebook'],
+  [DiscordColored, 'Discord'],
+  [RedditColored, 'Reddit'],
+  [GoogleColored, 'Google'],
+  [X, 'X'],
+  [Github, 'Github'],
+  [SlackColored, 'Slack'],
+  [FarcasterColored, 'Farcaster'],
 ]
 const networks: [
   (props: React.SVGProps<SVGSVGElement>) => JSX.Element,
   string,
   boolean,
 ][] = [
-  [IconBtc, 'BTC', false],
-  [IconEth, 'Ethereum', false],
-  [IconBnb, 'Binance', false],
-  [IconFtm, 'Fantom', false],
-  [IconMatic, 'Polygon', false],
-  [IconRon, 'Ronin', false],
-  [IconArb, 'Arbitrum', true],
-  [IconMnt, 'Mantle', true],
-  [IconOp, 'Optimism', true],
-  [IconZkSync, 'zkSync', true],
-  [IconSol, 'Solana', false],
-  [IconTon, 'Ton', true],
-  [IconApt, 'Aptos', true],
-  [IconSui, 'Sui', true],
-  [IconAtom, 'Cosmos', true],
+  [Btc, 'BTC', false],
+  [Eth, 'Ethereum', false],
+  [Bnb, 'Binance', false],
+  [Ftm, 'Fantom', false],
+  [Matic, 'Polygon', false],
+  [Ron, 'Ronin', false],
+  [Arb, 'Arbitrum', true],
+  [Mnt, 'Mantle', true],
+  [Op, 'Optimism', true],
+  [ZkSync, 'zkSync', true],
+  [Sol, 'Solana', false],
+  [Ton, 'Ton', true],
+  [Apt, 'Aptos', true],
+  [Sui, 'Sui', true],
+  [Atom, 'Cosmos', true],
 ]
 function SupportedPlatforms() {
   return (
@@ -252,7 +252,7 @@ function TryItOut() {
               curl request
             </span>
             <IconButton variant="ghost" size="sm">
-              <IconCopy className="w-5 h-5" />
+              <CopySolid className="w-5 h-5" />
             </IconButton>
           </div>
           <div className="h-full overflow-auto">
@@ -283,7 +283,7 @@ function TryItOut() {
               </span>
               <Tooltip content="Download" theme="light" arrow="top-center">
                 <div className="text-white-pure rounded-lg bg-[#3B3B3B] p-1">
-                  <IconArrowDown className="w-4 h-4" />
+                  <ArrowDownLine className="w-4 h-4" />
                 </div>
               </Tooltip>
             </div>
@@ -311,7 +311,7 @@ export default function Developer() {
         </span>
         <Button className="mt-5">
           Get API key
-          <IconArrowRight />
+          <ArrowRightLine />
         </Button>
       </div>
       <Divider />
@@ -361,7 +361,7 @@ export default function Developer() {
         </div>
         <div className="flex flex-1 gap-2 md:justify-end">
           <Button size="sm">
-            Get API key <IconArrowRight />
+            Get API key <ArrowRightLine />
           </Button>
           <Button size="sm" variant="outline" color="neutral">
             View docs

@@ -8,6 +8,7 @@ import { transform } from '@svgr/core'
 import * as paths from './paths'
 import doCleanUp from './clean'
 import { getDirectories, kebab2Pascal } from '../../../scripts/script-utils'
+import chalk from 'chalk'
 
 function deleteFirstLine(str: string) {
   const lines = str.split('\n')
@@ -15,12 +16,31 @@ function deleteFirstLine(str: string) {
   return lines.join('\n')
 }
 
+const supportedDirNamesType = ['line', 'outlined', 'solid', 'two-tone']
+
 const generateSvgs = async () => {
   const dirList = getDirectories(paths.svgPath)
   let exportContent = ''
-  console.log(`Found svg dirs: ${dirList.join(', ')}`)
+  console.log(
+    chalk.bgBlue.yellow(
+      'Generate icon naming with folder only support named folders are: ' +
+        supportedDirNamesType.join(', '),
+    ),
+  )
+  console.log(chalk.green(`Found svg dirs: ${dirList.join(', ')}`))
 
   const promiseCreateComponents = dirList.map(async (dir) => {
+    const dirFiles = fs.readdirSync(`${paths.svgPath}/${dir}`, {
+      withFileTypes: true,
+    })
+    const files = dirFiles.filter((d) => d.isFile())
+    if (!files.length) {
+      console.log(
+        chalk.redBright(`Detected: "${dir}" directory is empty files!`),
+      )
+      return
+    }
+
     let dirIndexContent = ''
     const dirPath = `${paths.componentsPath}/${dir}`
     fs.mkdirSync(dirPath)
@@ -34,8 +54,18 @@ const generateSvgs = async () => {
         })
         //setting-bar
         const baseNameWithoutExtension = path.basename(svgFilePath, '.svg')
-        //IconSettingBar
-        const componentName = `Icon${kebab2Pascal(baseNameWithoutExtension)}`
+
+        /**
+         * The suffix to be added to the icon component name based on the directory name.
+         * If the directory name is included in the supported directory names, a hyphen followed by the directory name will be added.
+         * Otherwise, an empty string will be added.
+         */
+        const dirType = supportedDirNamesType.includes(dir) ? `-${dir}` : ''
+
+        //SettingBar
+        const componentName = `${kebab2Pascal(
+          `${baseNameWithoutExtension}${dirType}`,
+        )}`
 
         const code = await transform(
           content,
@@ -48,10 +78,10 @@ const generateSvgs = async () => {
         )
 
         await fsPromise.writeFile(
-          `${dirPath}/icon-${baseNameWithoutExtension}.tsx`,
+          `${dirPath}/${baseNameWithoutExtension}.tsx`,
           deleteFirstLine(code),
         )
-        dirIndexContent += `export { default as ${componentName} } from './icon-${baseNameWithoutExtension}'\n`
+        dirIndexContent += `export { default as ${componentName} } from './${baseNameWithoutExtension}'\n`
       }),
     )
 
@@ -75,5 +105,7 @@ const generateSvgs = async () => {
 doCleanUp()
 
 generateSvgs().then(() => {
-  console.info('generate svg components successfully')
+  console.log(
+    chalk.green('Generate svg components to JSX components successfully!'),
+  )
 })

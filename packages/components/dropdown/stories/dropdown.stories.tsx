@@ -2,10 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
 import { Avatar } from '@consolelabs/avatar'
 import {
-  IconCoinbaseWallet,
-  IconClose,
-  IconSolidDot,
-  IconArrowDown,
+  CoinbaseWallet,
+  CloseLine,
+  SolidDotSolid,
+  ArrowDownLine,
 } from '@consolelabs/icons'
 import {
   DropdownMenu,
@@ -39,7 +39,7 @@ type Story = StoryObj<typeof DropdownMenu>
 const MenuItems: (args: any) => DropdownItemProps[] = () => [
   {
     children: 'Billing',
-    leftIcon: <IconCoinbaseWallet />,
+    leftIcon: <CoinbaseWallet />,
     disabled: true,
   },
   {
@@ -77,7 +77,7 @@ export const Default: Story = {
           </button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuLabel leftIcon={<IconClose />}>
+          <DropdownMenuLabel leftIcon={<CloseLine />}>
             My Account
           </DropdownMenuLabel>
           <DropdownMenuGroup>
@@ -104,7 +104,7 @@ export const Default: Story = {
                           children: 'Console Labs',
                           subtitle: (
                             <span className="flex gap-1 items-center">
-                              Lvl 450 <IconSolidDot /> 145 Boosts
+                              Lvl 450 <SolidDotSolid /> 145 Boosts
                             </span>
                           ),
                           leftIcon: <Avatar src="https://mochi.gg/logo.png" />,
@@ -115,7 +115,7 @@ export const Default: Story = {
                           children: 'Techie Story',
                           subtitle: (
                             <span className="flex gap-1 items-center">
-                              Lvl 450 <IconSolidDot /> 145 Boosts
+                              Lvl 450 <SolidDotSolid /> 145 Boosts
                             </span>
                           ),
                           leftIcon: <Avatar src="https://mochi.gg/logo.png" />,
@@ -126,7 +126,7 @@ export const Default: Story = {
                           children: 'Dwarves, LLC',
                           subtitle: (
                             <span className="flex gap-1 items-center">
-                              Lvl 450 <IconSolidDot /> 145 Boosts
+                              Lvl 450 <SolidDotSolid /> 145 Boosts
                             </span>
                           ),
                           leftIcon: <Avatar src="https://mochi.gg/logo.png" />,
@@ -137,7 +137,7 @@ export const Default: Story = {
                           children: 'Superteam Vietnam',
                           subtitle: (
                             <span className="flex gap-1 items-center">
-                              Lvl 450 <IconSolidDot /> 145 Boosts
+                              Lvl 450 <SolidDotSolid /> 145 Boosts
                             </span>
                           ),
                           leftIcon: <Avatar src="https://mochi.gg/logo.png" />,
@@ -161,7 +161,7 @@ export const Default: Story = {
           <DropdownMenuSeparator />
           <DropdownMenuItem
             className="text-red-600"
-            leftIcon={<IconArrowDown className="text-red-600" />}
+            leftIcon={<ArrowDownLine className="text-red-600" />}
           >
             Logout
           </DropdownMenuItem>

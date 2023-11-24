@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { IconCheckCircled } from '@consolelabs/icons'
+import { CheckCircleOutlined } from '@consolelabs/icons'
 import {
   Modal,
   ModalContent,
@@ -68,7 +68,7 @@ export const WithConfirm: Story = {
         </ModalTrigger>
         <ModalContent className="space-y-2 text-center max-w-sm">
           <div className="mb-8 flex flex-col gap-5 items-center">
-            <IconCheckCircled className="text-4xl" />
+            <CheckCircleOutlined className="text-4xl" />
             <div>
               <ModalTitle className="mb-2">Network Confirmation</ModalTitle>
               <ModalDescription>

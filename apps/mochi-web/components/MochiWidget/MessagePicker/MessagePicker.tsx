@@ -6,7 +6,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@consolelabs/core'
-import { IconMagnifier } from '@consolelabs/icons'
+import { MagnifierLine } from '@consolelabs/icons'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { useState } from 'react'
 import { Message, MessageList } from './data'
@@ -86,7 +86,7 @@ export default function MessagePicker({ value, onChange }: MessagePickerProps) {
               className="w-full"
               placeholder="Search"
               startAdornment={
-                <IconMagnifier className="pl-2 w-5 h-5 text-gray-500" />
+                <MagnifierLine className="pl-2 w-5 h-5 text-gray-500" />
               }
               onChange={onMessageSearchChange}
             />

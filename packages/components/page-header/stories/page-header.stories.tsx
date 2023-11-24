@@ -8,7 +8,7 @@ import {
 } from '@consolelabs/select'
 import { Tooltip } from '@consolelabs/tooltip'
 import { useState } from 'react'
-import { IconCheck, IconThreeDots } from '@consolelabs/icons'
+import { CheckLine, ThreeDotsLine } from '@consolelabs/icons'
 import { IconButton } from '@consolelabs/icon-button'
 import { Button } from '@consolelabs/button'
 import clsx from 'clsx'
@@ -48,7 +48,7 @@ export function Default() {
             key={app.key}
             value={app.key}
             rightIcon={
-              <IconCheck
+              <CheckLine
                 className={clsx(
                   'w-4 h-4 ml-4',
                   app.key === selectedApp ? 'text-primary-700' : 'invisible',
@@ -96,7 +96,7 @@ export function Default() {
         description="Lorem ipsum dolor sit amet consectetur. Sed turpis eget sed nullam volutpat integer posuere."
         actions={[
           <IconButton variant="link" color="info">
-            <IconThreeDots className="text-2xl" />
+            <ThreeDotsLine className="text-2xl" />
           </IconButton>,
         ]}
       />

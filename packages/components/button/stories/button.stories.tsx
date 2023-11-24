@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { IconConnectWallets, IconSpinner } from '@consolelabs/icons'
+import { ConnectWallets, Spinner } from '@consolelabs/icons'
 import Button, { ButtonProps } from '../src/button'
 
 const buttonColorVariants: ButtonProps['color'][] = [
@@ -117,7 +117,7 @@ export function CustomLoadingIndicator() {
           key={size}
           size={size}
           loading
-          loadingIndicator={<IconSpinner className="animate-spin" />}
+          loadingIndicator={<Spinner className="animate-spin" />}
         >
           Connect Wallet
         </Button>
@@ -131,10 +131,10 @@ export function WithIcons() {
     <div className="flex items-center space-x-4">
       <Button>Connect Wallet</Button>
       <Button>
-        Connect Wallet <IconConnectWallets height={16} width={16} />
+        Connect Wallet <ConnectWallets height={16} width={16} />
       </Button>
       <Button>
-        <IconConnectWallets height={16} width={16} /> Connect Wallet
+        <ConnectWallets height={16} width={16} /> Connect Wallet
       </Button>
     </div>
   )

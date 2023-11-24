@@ -1,4 +1,4 @@
-import { IconCoding, IconSetting, IconUser } from '@consolelabs/icons'
+import { CodingSolid, SettingSolid, UserSolid } from '@consolelabs/icons'
 import { act, render } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { Tabs, TabList, TabTrigger, TabContent } from '../src/tabs'
@@ -9,15 +9,15 @@ describe('Tabs', () => {
       <Tabs defaultValue="account">
         <TabList className="flex justify-between py-1.5">
           <TabTrigger value="account">
-            <IconUser width={16} height={16} />
+            <UserSolid width={16} height={16} />
             Account
           </TabTrigger>
           <TabTrigger value="documents">
-            <IconCoding width={16} height={16} />
+            <CodingSolid width={16} height={16} />
             Documents
           </TabTrigger>
           <TabTrigger disabled value="settings">
-            <IconSetting width={16} height={16} />
+            <SettingSolid width={16} height={16} />
             Settings
           </TabTrigger>
         </TabList>

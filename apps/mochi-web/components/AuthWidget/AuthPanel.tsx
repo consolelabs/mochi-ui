@@ -12,14 +12,14 @@ import { AUTH_TELEGRAM_ID, MOCHI_PROFILE_API } from '~envs'
 import { useMochi, LoginWidget } from '@consolelabs/core'
 import { useAuthStore } from '~store'
 import {
-  IconDiscordColored,
-  IconTelegramColored,
-  IconX,
-  IconGithub,
-  IconGoogleColored,
-  IconSlackColored,
-  IconFacebookColored,
-  IconMail,
+  DiscordColored,
+  TelegramColored,
+  X,
+  Github,
+  GoogleColored,
+  SlackColored,
+  FacebookColored,
+  MailLine,
 } from '@consolelabs/icons'
 import qs from 'query-string'
 import clsx from 'clsx'
@@ -103,40 +103,40 @@ export const AuthPanel = (props: AuthPanelProps) => {
       [
         {
           name: 'Discord',
-          icon: <IconDiscordColored className="text-[#5865F2]" />,
+          icon: <DiscordColored className="text-[#5865F2]" />,
           href: discordAuthUrl,
         },
         {
           name: 'Telegram',
-          icon: <IconTelegramColored />,
+          icon: <TelegramColored />,
           onClick: onAuthTelegram,
         },
         {
           name: 'Twitter',
-          icon: <IconX />,
+          icon: <X />,
           href: twitterAuthUrl,
         },
         {
           name: 'Google',
-          icon: <IconGoogleColored />,
+          icon: <GoogleColored />,
           href: gmailAuthUrl,
         },
         {
           name: 'Facebook',
-          icon: <IconFacebookColored />,
+          icon: <FacebookColored />,
           href: facebookAuthUrl,
         },
         {
           name: 'Slack',
-          icon: <IconSlackColored />,
+          icon: <SlackColored />,
         },
         {
           name: 'Github',
-          icon: <IconGithub />,
+          icon: <Github />,
         },
         {
           name: 'Mail',
-          icon: <IconMail />,
+          icon: <MailLine />,
         },
       ] as Array<{
         name: string

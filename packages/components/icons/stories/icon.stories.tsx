@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import type { Meta } from '@storybook/react'
 import * as lines from '../../../icons/src/components/line'
+import * as outlined from '../../../icons/src/components/outlined'
 import * as pictograms from '../../../icons/src/components/pictogram'
 import * as socials from '../../../icons/src/components/social'
 import * as solids from '../../../icons/src/components/solid'
@@ -45,6 +46,7 @@ function Layout({ children }: { children: (p: RenderProps) => JSX.Element }) {
 export function AllIcons() {
   const allIcons = [
     ...Object.entries(lines),
+    ...Object.entries(outlined),
     ...Object.entries(pictograms),
     ...Object.entries(socials),
     ...Object.entries(solids),
@@ -90,6 +92,39 @@ export function LineIcons() {
         return (
           <>
             {Object.entries(lines)
+              .filter((i) => i[0].toLowerCase().includes(search))
+              .sort((a, b) => {
+                if (a[0] > b[0]) return 1
+                if (a[0] < b[0]) return -1
+                return 0
+              })
+              .map((e) => {
+                const [name, Icon] = e
+                return (
+                  <Tooltip
+                    arrow="top-center"
+                    content={name}
+                    key={name}
+                    theme="dark"
+                  >
+                    <Icon className="w-10 h-10 text-gray-700" />
+                  </Tooltip>
+                )
+              })}
+          </>
+        )
+      }}
+    </Layout>
+  )
+}
+
+export function OutlinedIcons() {
+  return (
+    <Layout>
+      {({ search }) => {
+        return (
+          <>
+            {Object.entries(outlined)
               .filter((i) => i[0].toLowerCase().includes(search))
               .sort((a, b) => {
                 if (a[0] > b[0]) return 1

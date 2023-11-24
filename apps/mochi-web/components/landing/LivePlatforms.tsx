@@ -1,7 +1,7 @@
 import {
-  IconDiscordColored,
-  IconMonitor,
-  IconTelegramColored,
+  DiscordColored,
+  MonitorLine,
+  TelegramColored,
 } from '@consolelabs/icons'
 import Link from 'next/link'
 import React from 'react'
@@ -31,7 +31,7 @@ export function LivePlatforms({
                 Web
               </span>
             ),
-            icon: <IconMonitor className="flex-shrink-0 w-4 h-4" />,
+            icon: <MonitorLine className="flex-shrink-0 w-4 h-4" />,
             href: '/',
           },
           {
@@ -41,9 +41,7 @@ export function LivePlatforms({
                 <span className="text-[15px] leading-[15px]">Discord</span>
               </div>
             ),
-            icon: (
-              <IconDiscordColored className="flex-shrink-0 -ml-1.5 w-6 h-6" />
-            ),
+            icon: <DiscordColored className="flex-shrink-0 -ml-1.5 w-6 h-6" />,
             href: DISCORD_LINK,
           },
           {
@@ -53,9 +51,7 @@ export function LivePlatforms({
                 <span className="text-[15px] leading-[15px]">Telegram</span>
               </div>
             ),
-            icon: (
-              <IconTelegramColored className="flex-shrink-0 -ml-1.5 w-6 h-6" />
-            ),
+            icon: <TelegramColored className="flex-shrink-0 -ml-1.5 w-6 h-6" />,
             href: TELEGRAM_LINK,
           },
         ].map(({ text, href, icon }, i) => (

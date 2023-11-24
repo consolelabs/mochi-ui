@@ -1,12 +1,12 @@
 import React from 'react'
 import {
-  IconChevronDown,
-  IconX,
-  IconDiscord,
-  IconTelegram,
-  IconDango,
-  IconWallet,
-  IconMochi,
+  ChevronDownLine,
+  X,
+  Discord,
+  Telegram,
+  Dango,
+  WalletSolid,
+  Mochi,
 } from '@consolelabs/icons'
 import { Variants, m } from 'framer-motion'
 import { useProfileStore } from '~store'
@@ -37,19 +37,19 @@ function Recipient({
   let Icon
   switch (platform) {
     case Platform.Discord:
-      Icon = IconDiscord
+      Icon = Discord
       break
     case Platform.Twitter:
-      Icon = IconX
+      Icon = X
       break
     case Platform.Telegram:
-      Icon = IconTelegram
+      Icon = Telegram
       break
     case Platform.Mochi:
-      Icon = IconDango
+      Icon = Dango
       break
     default:
-      Icon = IconWallet
+      Icon = WalletSolid
       break
   }
 
@@ -74,7 +74,7 @@ function TipPreview() {
         onClick={onToggle}
       >
         <span className="text-sm font-medium">Preview</span>
-        <IconChevronDown
+        <ChevronDownLine
           className={clsx(
             'transition justify-self-end self-center text-gray-400',
             {
@@ -117,12 +117,12 @@ function TipPreview() {
         <div className="flex gap-x-1 justify-end items-center">
           {wallet?.type === 'offchain' ? (
             <>
-              <IconMochi />
+              <Mochi />
               <span className="text-right">Mochi wallet</span>
             </>
           ) : (
             <>
-              <IconWallet />
+              <WalletSolid />
               <span className="text-right">{wallet?.title}</span>
             </>
           )}

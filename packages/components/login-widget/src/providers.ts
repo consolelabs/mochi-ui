@@ -3,24 +3,24 @@ import bs58 from 'bs58'
 import { useMochi } from '@consolelabs/mochi-store'
 import hexer from 'browser-string-hexer'
 import {
-  IconArgentWallet,
-  IconBackpackWallet,
-  IconCoin98Wallet,
-  IconCoinbaseWallet,
-  IconLedgerWallet,
-  IconMartianWallet,
-  IconMetamaskWallet,
-  IconOkxWallet,
-  IconPhantomWallet,
-  IconRabbyWallet,
-  IconRainbowWallet,
-  IconRoninWallet,
-  IconSafepalWallet,
-  IconSuietWallet,
-  IconTon,
-  IconTonKeeperWallet,
-  IconTrustWallet,
-  IconUniswapWallet,
+  ArgentWallet,
+  BackpackWallet,
+  Coin98Wallet,
+  CoinbaseWallet,
+  LedgerWallet,
+  MartianWallet,
+  MetamaskWallet,
+  OkxWallet,
+  PhantomWallet,
+  RabbyWallet,
+  RainbowWallet,
+  RoninWallet,
+  SafepalWallet,
+  SuietWallet,
+  Ton,
+  TonKeeperWallet,
+  TrustWallet,
+  UniswapWallet,
 } from '@consolelabs/icons'
 import type { WalletProps } from './wallet'
 
@@ -62,7 +62,7 @@ export default function getAvailableWallets() {
     EVM: [
       {
         name: 'MetaMask',
-        icon: IconMetamaskWallet,
+        icon: MetamaskWallet,
         isInstalled: !isSSR && Boolean(window.ethereum),
         connect: () =>
           window.ethereum
@@ -78,68 +78,68 @@ export default function getAvailableWallets() {
       },
       {
         name: 'Rabby',
-        icon: IconRabbyWallet,
+        icon: RabbyWallet,
         isInstalled: false,
         connect: () => Promise.resolve(),
       },
       {
         name: 'Rainbow',
-        icon: IconRainbowWallet,
+        icon: RainbowWallet,
         isInstalled: false,
         connect: () => Promise.resolve(),
       },
       {
         name: 'Uniswap',
-        icon: IconUniswapWallet,
+        icon: UniswapWallet,
         isInstalled: false,
         connect: () => Promise.resolve(),
       },
       {
         name: 'Coinbase',
-        icon: IconCoinbaseWallet,
+        icon: CoinbaseWallet,
         isInstalled: false,
         connect: () => Promise.resolve(),
       },
       {
         name: 'Okx',
-        icon: IconOkxWallet,
+        icon: OkxWallet,
         isInstalled: false,
         connect: () => Promise.resolve(),
       },
       {
         name: 'Coin98',
-        icon: IconCoin98Wallet,
+        icon: Coin98Wallet,
         isInstalled: false,
         connect: () => Promise.resolve(),
       },
       {
         name: 'Trustwallet',
-        icon: IconTrustWallet,
+        icon: TrustWallet,
         isInstalled: false,
         connect: () => Promise.resolve(),
       },
       {
         name: 'Argent',
-        icon: IconArgentWallet,
+        icon: ArgentWallet,
         isInstalled: false,
         connect: () => Promise.resolve(),
       },
       {
         name: 'Safepal',
-        icon: IconSafepalWallet,
+        icon: SafepalWallet,
         isInstalled: false,
         connect: () => Promise.resolve(),
       },
       {
         name: 'Phantom',
-        icon: IconPhantomWallet,
+        icon: PhantomWallet,
         isInstalled: !isSSR && Boolean(window.phantom),
         connect: () =>
           window.phantom.solana.connect().then(signSol(window.phantom.solana)),
       },
       {
         name: 'Ledger Live',
-        icon: IconLedgerWallet,
+        icon: LedgerWallet,
         isInstalled: false,
         connect: () => Promise.resolve(),
       },
@@ -147,7 +147,7 @@ export default function getAvailableWallets() {
     RON: [
       {
         name: 'Ronin',
-        icon: IconRoninWallet,
+        icon: RoninWallet,
         isInstalled: !isSSR && Boolean(window.ronin),
         connect: () =>
           window.ronin.provider
@@ -158,32 +158,32 @@ export default function getAvailableWallets() {
     SOL: [
       {
         name: 'Phantom',
-        icon: IconPhantomWallet,
+        icon: PhantomWallet,
         isInstalled: !isSSR && Boolean(window.phantom),
         connect: () =>
           window.phantom.solana.connect().then(signSol(window.phantom.solana)),
       },
       {
         name: 'Backpack',
-        icon: IconBackpackWallet,
+        icon: BackpackWallet,
         isInstalled: false,
         connect: () => Promise.resolve(),
       },
       {
         name: 'Okx',
-        icon: IconOkxWallet,
+        icon: OkxWallet,
         isInstalled: false,
         connect: () => Promise.resolve(),
       },
       {
         name: 'Coin98',
-        icon: IconCoin98Wallet,
+        icon: Coin98Wallet,
         isInstalled: false,
         connect: () => Promise.resolve(),
       },
       {
         name: 'Trustwallet',
-        icon: IconTrustWallet,
+        icon: TrustWallet,
         isInstalled: false,
         connect: () => Promise.resolve(),
       },
@@ -191,25 +191,25 @@ export default function getAvailableWallets() {
     SUI: [
       {
         name: 'Suiet',
-        icon: IconSuietWallet,
+        icon: SuietWallet,
         isInstalled: false,
         connect: () => Promise.resolve(),
       },
       {
         name: 'Okx',
-        icon: IconOkxWallet,
+        icon: OkxWallet,
         isInstalled: false,
         connect: () => Promise.resolve(),
       },
       {
         name: 'Coin98',
-        icon: IconCoin98Wallet,
+        icon: Coin98Wallet,
         isInstalled: false,
         connect: () => Promise.resolve(),
       },
       {
         name: 'Martian',
-        icon: IconMartianWallet,
+        icon: MartianWallet,
         isInstalled: false,
         connect: () => Promise.resolve(),
       },
@@ -217,25 +217,25 @@ export default function getAvailableWallets() {
     TON: [
       {
         name: 'TON',
-        icon: IconTon,
+        icon: Ton,
         isInstalled: false,
         connect: () => Promise.resolve(),
       },
       {
         name: 'Tonkeeper',
-        icon: IconTonKeeperWallet,
+        icon: TonKeeperWallet,
         isInstalled: false,
         connect: () => Promise.resolve(),
       },
       {
         name: 'Trustwallet',
-        icon: IconTrustWallet,
+        icon: TrustWallet,
         isInstalled: false,
         connect: () => Promise.resolve(),
       },
       {
         name: 'Safepal',
-        icon: IconSafepalWallet,
+        icon: SafepalWallet,
         isInstalled: false,
         connect: () => Promise.resolve(),
       },

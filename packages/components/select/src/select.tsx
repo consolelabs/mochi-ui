@@ -3,7 +3,7 @@ import { select } from '@consolelabs/theme'
 import { forwardRef } from 'react'
 import * as SelectPrimitive from '@radix-ui/react-select'
 import clsx from 'clsx'
-import { IconCheck, IconChevronDown } from '@consolelabs/icons'
+import { CheckLine, ChevronDownLine } from '@consolelabs/icons'
 import {
   type SelectProps,
   type SelectItemProps,
@@ -78,7 +78,7 @@ const SelectTrigger = forwardRef<SelectTriggerRef, SelectTriggerProps>(
                 className={select.iconWrapperCva({ isRightIcon: true })}
               >
                 {rightIcon ?? (
-                  <IconChevronDown className={select.iconChevron} />
+                  <ChevronDownLine className={select.iconChevron} />
                 )}
               </SelectPrimitive.Icon>
             )}
@@ -166,7 +166,7 @@ const SelectItem = forwardRef<SelectItemRef, SelectItemProps>((props, ref) => {
           <RightIconWrapper
             className={select.iconWrapperCva({ isRightIcon: true })}
           >
-            {rightIcon || <IconCheck />}
+            {rightIcon || <CheckLine />}
           </RightIconWrapper>
         ))}
     </SelectPrimitive.Item>

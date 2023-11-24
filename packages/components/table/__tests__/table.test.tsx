@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unstable-nested-components */
 import { render, screen } from '@testing-library/react'
-import { IconStar } from '@consolelabs/icons'
+import { StarSolid } from '@consolelabs/icons'
 import { Badge } from '@consolelabs/badge'
 import Table, { ColumnProps } from '../src/table'
 
@@ -44,7 +44,7 @@ describe('Table', () => {
           return (
             <Badge
               appearance="primary"
-              icon={<IconStar />}
+              icon={<StarSolid />}
               label={cell.getValue() as string}
             />
           )
@@ -89,7 +89,7 @@ describe('Table', () => {
           return (
             <Badge
               appearance="primary"
-              icon={<IconStar />}
+              icon={<StarSolid />}
               label={cell.getValue() as string}
             />
           )

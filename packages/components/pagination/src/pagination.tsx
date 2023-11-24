@@ -1,6 +1,6 @@
 import type { HtmlHTMLAttributes } from 'react'
 import { useState, useEffect } from 'react'
-import { IconChevronLeft, IconChevronRight } from '@consolelabs/icons'
+import { ChevronLeftLine, ChevronRightLine } from '@consolelabs/icons'
 import { pagination } from '@consolelabs/theme'
 
 const {
@@ -255,7 +255,7 @@ export default function Pagination({
           tabIndex={0}
           type="button"
         >
-          <IconChevronLeft className={paginationNavigationIconClsx()} />
+          <ChevronLeftLine className={paginationNavigationIconClsx()} />
         </button>
         {renderPagination()}
         <button
@@ -268,7 +268,7 @@ export default function Pagination({
           tabIndex={0}
           type="button"
         >
-          <IconChevronRight className={paginationNavigationIconClsx()} />
+          <ChevronRightLine className={paginationNavigationIconClsx()} />
         </button>
       </div>
     </div>

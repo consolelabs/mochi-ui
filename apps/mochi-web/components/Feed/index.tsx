@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
-import { IconArrowRight, IconArrowUp } from '@consolelabs/icons'
+import { ArrowRightLine, ArrowUpLine } from '@consolelabs/icons'
 import { AnimatePresence, m } from 'framer-motion'
 import { Button } from '@consolelabs/core'
 import clsx from 'clsx'
@@ -95,7 +95,7 @@ export default function Feed({ className = '' }: Props) {
           },
         )}
       >
-        <IconArrowUp className="w-4 h-4" />
+        <ArrowUpLine className="w-4 h-4" />
         {hasNewUpdate ? (
           <span className="text-sm">New update</span>
         ) : (
@@ -120,7 +120,7 @@ export default function Feed({ className = '' }: Props) {
         </span>
         <div className="hidden px-4">
           <Button variant="link">
-            View all <IconArrowRight />
+            View all <ArrowRightLine />
           </Button>
         </div>
       </div>

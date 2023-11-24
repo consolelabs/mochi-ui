@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import {
-  IconSolidDot,
-  IconClose,
-  IconArrowDown,
-  IconTwinkle,
-  IconPlus,
+  SolidDotSolid,
+  CloseLine,
+  ArrowDownLine,
+  TwinkleSolid,
+  PlusLine,
 } from '@consolelabs/icons'
 import Badge from '../src/badge'
 import type { BadgeProps } from '../src/badge'
@@ -15,24 +15,24 @@ const args: BadgeProps[] = [
   },
   {
     label: 'Label',
-    icon: <IconSolidDot />,
+    icon: <SolidDotSolid />,
   },
   {
     label: 'Label',
-    icon: <IconClose />,
+    icon: <CloseLine />,
     iconPosition: 'right',
   },
   {
     label: 'Label',
-    icon: <IconArrowDown />,
+    icon: <ArrowDownLine />,
     iconPosition: 'right',
   },
   {
     label: 'Label',
-    icon: <IconTwinkle />,
+    icon: <TwinkleSolid />,
   },
   {
-    icon: <IconPlus />,
+    icon: <PlusLine />,
   },
 ]
 
@@ -100,7 +100,7 @@ type Story = StoryObj<typeof Badge>
 export const Default: Story = {
   args: {
     label: 'Label',
-    icon: <IconPlus />,
+    icon: <PlusLine />,
   },
 }
 

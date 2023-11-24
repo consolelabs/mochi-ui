@@ -13,7 +13,7 @@ import {
   Button,
   IconButton,
 } from '@consolelabs/core'
-import { IconMenu, IconClose } from '@consolelabs/icons'
+import { MenuSolid, CloseLine } from '@consolelabs/icons'
 import { useCallback, useState } from 'react'
 import ProfileDropdown from '~cpn/profile-dropdrown'
 import { AuthPanel } from '~cpn/AuthWidget'
@@ -114,9 +114,9 @@ export const Header = () => {
               onClick={() => setOpenMobileNav((prev) => !prev)}
             >
               {openMobileNav ? (
-                <IconClose className="text-2xl text-neutral-800" />
+                <CloseLine className="text-2xl text-neutral-800" />
               ) : (
-                <IconMenu className="text-2xl text-neutral-800" />
+                <MenuSolid className="text-2xl text-neutral-800" />
               )}
             </IconButton>
             {openMobileNav && (

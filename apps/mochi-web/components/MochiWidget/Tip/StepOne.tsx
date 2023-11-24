@@ -4,7 +4,7 @@ import { useDisclosure } from '@dwarvesf/react-hooks'
 import { useAuthStore, useWalletStore } from '~store'
 import { useMemo } from 'react'
 import { Button, Popover, PopoverTrigger } from '@consolelabs/core'
-import { IconArrowRight, IconChevronDown } from '@consolelabs/icons'
+import { ArrowRightLine, ChevronDownLine } from '@consolelabs/icons'
 import { MAX_AMOUNT_PRECISION, formatTokenAmount } from '~utils/number'
 import { WalletPicker } from '../WalletPicker'
 import { Recipient } from '../Recipient'
@@ -107,7 +107,7 @@ export default function StepOne() {
           }
         >
           Continue
-          <IconArrowRight className="w-4 h-4" />
+          <ArrowRightLine className="w-4 h-4" />
         </Button>
       ) : (
         <Popover
@@ -117,7 +117,7 @@ export default function StepOne() {
           <PopoverTrigger asChild>
             <Button className="justify-center" size="lg" type="button">
               Connect options
-              <IconChevronDown
+              <ChevronDownLine
                 className={`w-5 h-5 text-white-pure transition ${
                   isOpenLoginPopup ? 'rotate-180' : ''
                 }`}
