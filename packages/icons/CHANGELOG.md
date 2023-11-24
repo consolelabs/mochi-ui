@@ -1,5 +1,13 @@
 # @consolelabs/icons
 
+## 0.2.1
+
+### Patch Changes
+
+- [#296](https://github.com/consolelabs/web-foundation/pull/296)
+  [`538fac5`](https://github.com/consolelabs/web-foundation/commit/538fac5b23861bfd01d02413746b80b89d8c50fd)
+  Thanks [@chinhld12](https://github.com/chinhld12)! - Update set of icons
+
 ## 0.2.0
 
 ### Minor Changes
