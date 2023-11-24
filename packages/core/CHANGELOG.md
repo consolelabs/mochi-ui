@@ -1,5 +1,108 @@
 # @consolelabs/core
 
+## 0.3.0
+
+### Minor Changes
+
+- [#281](https://github.com/consolelabs/web-foundation/pull/281)
+  [`35397e3`](https://github.com/consolelabs/web-foundation/commit/35397e3d3d7599009f9af862a89887ac0c6b34b3)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Update
+  tooltip semantic color
+
+- [#278](https://github.com/consolelabs/web-foundation/pull/278)
+  [`a504968`](https://github.com/consolelabs/web-foundation/commit/a50496823bdfb169b5a8c30c1849cdb07534de78)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Create PageHeader
+  component package
+
+- [#284](https://github.com/consolelabs/web-foundation/pull/284)
+  [`b305580`](https://github.com/consolelabs/web-foundation/commit/b30558023c82036f78b76a10a68985618b728948)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Update select
+  use semantic color
+
+- [#280](https://github.com/consolelabs/web-foundation/pull/280)
+  [`d849e4e`](https://github.com/consolelabs/web-foundation/commit/d849e4edc83bddeb990b34d1675674b06c4c16bb)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Update Icon
+  Button variants
+
+- [#273](https://github.com/consolelabs/web-foundation/pull/273)
+  [`39b8004`](https://github.com/consolelabs/web-foundation/commit/39b8004ab0b84cfa8b34bf416bee4f6722b294c2)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Remove
+  focus-visible outline on trigger
+
+- [#280](https://github.com/consolelabs/web-foundation/pull/280)
+  [`d849e4e`](https://github.com/consolelabs/web-foundation/commit/d849e4edc83bddeb990b34d1675674b06c4c16bb)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Reuse button
+  variants for icon button
+
+- [#272](https://github.com/consolelabs/web-foundation/pull/272)
+  [`74087fd`](https://github.com/consolelabs/web-foundation/commit/74087fd9f316956e25453e6a2df0595fdf715025)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Update toggle
+  button variants
+
+### Patch Changes
+
+- [#283](https://github.com/consolelabs/web-foundation/pull/283)
+  [`f088b6f`](https://github.com/consolelabs/web-foundation/commit/f088b6fc00801843fafde8f7fb3f5995ef491368)
+  Thanks [@trankhacvy](https://github.com/trankhacvy)! - Add button link variant
+
+- [#259](https://github.com/consolelabs/web-foundation/pull/259)
+  [`48b0612`](https://github.com/consolelabs/web-foundation/commit/48b061226a533c20ab4f87787576afd1fd6a96f1)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Use semantic tailwind
+  classes in login widget styling
+
+- [#290](https://github.com/consolelabs/web-foundation/pull/290)
+  [`c594e9a`](https://github.com/consolelabs/web-foundation/commit/c594e9a0117ba184f31dc55e7079f406838c43f2)
+  Thanks [@trankhacvy](https://github.com/trankhacvy)! - Update Typo variant
+  names
+
+- [#258](https://github.com/consolelabs/web-foundation/pull/258)
+  [`4157504`](https://github.com/consolelabs/web-foundation/commit/4157504d0c15310c559bbba45a2d2f4d0246fdde)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Use semantic tailwind
+  classes in popover component styling
+
+- Updated dependencies
+  [[`35397e3`](https://github.com/consolelabs/web-foundation/commit/35397e3d3d7599009f9af862a89887ac0c6b34b3),
+  [`a504968`](https://github.com/consolelabs/web-foundation/commit/a50496823bdfb169b5a8c30c1849cdb07534de78),
+  [`6abb483`](https://github.com/consolelabs/web-foundation/commit/6abb483a80940ab463add9b1daf5a0638bc7a3d2),
+  [`b305580`](https://github.com/consolelabs/web-foundation/commit/b30558023c82036f78b76a10a68985618b728948),
+  [`d849e4e`](https://github.com/consolelabs/web-foundation/commit/d849e4edc83bddeb990b34d1675674b06c4c16bb),
+  [`f088b6f`](https://github.com/consolelabs/web-foundation/commit/f088b6fc00801843fafde8f7fb3f5995ef491368),
+  [`39b8004`](https://github.com/consolelabs/web-foundation/commit/39b8004ab0b84cfa8b34bf416bee4f6722b294c2),
+  [`48b0612`](https://github.com/consolelabs/web-foundation/commit/48b061226a533c20ab4f87787576afd1fd6a96f1),
+  [`39b8004`](https://github.com/consolelabs/web-foundation/commit/39b8004ab0b84cfa8b34bf416bee4f6722b294c2),
+  [`17899ed`](https://github.com/consolelabs/web-foundation/commit/17899edf82cda80441450ef240569831e427f45b),
+  [`cd2a974`](https://github.com/consolelabs/web-foundation/commit/cd2a9743f24f08deb03bacdf29c3a7d5e2512ab5),
+  [`c594e9a`](https://github.com/consolelabs/web-foundation/commit/c594e9a0117ba184f31dc55e7079f406838c43f2),
+  [`4157504`](https://github.com/consolelabs/web-foundation/commit/4157504d0c15310c559bbba45a2d2f4d0246fdde),
+  [`d849e4e`](https://github.com/consolelabs/web-foundation/commit/d849e4edc83bddeb990b34d1675674b06c4c16bb),
+  [`74087fd`](https://github.com/consolelabs/web-foundation/commit/74087fd9f316956e25453e6a2df0595fdf715025)]:
+  - @consolelabs/tooltip@0.1.0
+  - @consolelabs/theme@0.4.0
+  - @consolelabs/page-header@0.1.0
+  - @consolelabs/icons@0.2.0
+  - @consolelabs/sidebar@0.0.14
+  - @consolelabs/select@0.1.0
+  - @consolelabs/icon-button@0.3.0
+  - @consolelabs/button@0.2.0
+  - @consolelabs/profile-badge@0.1.0
+  - @consolelabs/popover@0.2.0
+  - @consolelabs/modal@0.2.0
+  - @consolelabs/login-widget@0.1.2
+  - @consolelabs/typography@0.0.5
+  - @consolelabs/toggle-button@0.1.0
+  - @consolelabs/accordion@0.1.1
+  - @consolelabs/alert@0.1.1
+  - @consolelabs/avatar@0.0.12
+  - @consolelabs/badge@0.2.1
+  - @consolelabs/checkbox@0.1.1
+  - @consolelabs/dropdown@0.1.1
+  - @consolelabs/input@0.1.2
+  - @consolelabs/input-field@0.1.3
+  - @consolelabs/list@0.0.12
+  - @consolelabs/section-list@0.0.11
+  - @consolelabs/switch@0.0.10
+  - @consolelabs/table@0.1.7
+
 ## 0.2.0
 
 ### Minor Changes

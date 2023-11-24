@@ -1,6 +1,6 @@
 {
   "name": "@consolelabs/page-header",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [

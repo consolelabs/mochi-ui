@@ -1,5 +1,14 @@
 # @consolelabs/typography
 
+## 0.0.5
+
+### Patch Changes
+
+- [#290](https://github.com/consolelabs/web-foundation/pull/290)
+  [`c594e9a`](https://github.com/consolelabs/web-foundation/commit/c594e9a0117ba184f31dc55e7079f406838c43f2)
+  Thanks [@trankhacvy](https://github.com/trankhacvy)! - Update Typo variant
+  names
+
 ## 0.0.4
 
 ### Patch Changes

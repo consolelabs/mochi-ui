@@ -1,5 +1,14 @@
 # @consolelabs/toggle-button
 
+## 0.1.0
+
+### Minor Changes
+
+- [#272](https://github.com/consolelabs/web-foundation/pull/272)
+  [`74087fd`](https://github.com/consolelabs/web-foundation/commit/74087fd9f316956e25453e6a2df0595fdf715025)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Update toggle
+  button variants
+
 ## 0.0.8
 
 ### Patch Changes
