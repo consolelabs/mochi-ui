@@ -27,7 +27,7 @@ import {
 } from '~types/mochi-pay-schema'
 import Link from 'next/link'
 import { SOCIAL_LINKS } from '~constants'
-import { GET_PATHS } from '~constants/api'
+import { ROUTES } from '~constants/routes'
 
 const AppPageHeader = ({
   onClickCreateApp,
@@ -67,7 +67,7 @@ const AppPageHeader = ({
               All apps
             </DropdownMenuItem>
             {apps.map((app) => (
-              <Link key={app.id} href={GET_PATHS.APP_DETAIL(app.id)}>
+              <Link key={app.id} href={ROUTES.APP_DETAIL(app.id)}>
                 <DropdownMenuItem key={app.id}>{app.name}</DropdownMenuItem>
               </Link>
             ))}
