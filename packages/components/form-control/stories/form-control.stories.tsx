@@ -2,6 +2,8 @@ import { StoryObj, Meta } from '@storybook/react'
 import { Input } from '@consolelabs/input'
 import { UserSolid } from '@consolelabs/icons'
 import { FormControl } from '../src'
+import { FormLabel } from '../src/form-label'
+import { FormHelperText } from '../src/form-helper-text'
 
 const meta: Meta<typeof FormControl> = {
   title: 'Components/FormControl',
@@ -9,7 +11,15 @@ const meta: Meta<typeof FormControl> = {
   parameters: {
     layout: 'centered',
   },
-  argTypes: {},
+  tags: ['autodocs'],
+  argTypes: {
+    disabled: {
+      control: 'boolean',
+    },
+    error: {
+      control: 'boolean',
+    },
+  },
 }
 
 export default meta
@@ -17,16 +27,17 @@ export default meta
 type Story = StoryObj<typeof FormControl>
 
 export const Default: Story = {
-  render() {
+  render(props) {
     return (
-      <FormControl>
-        <label>This is label Text</label>
+      <FormControl {...props}>
+        <FormLabel>Username</FormLabel>
         <Input.Root>
           <Input.Slot>
             <UserSolid />
           </Input.Slot>
           <Input.InputField />
         </Input.Root>
+        <FormHelperText>This is helper text</FormHelperText>
       </FormControl>
     )
   },

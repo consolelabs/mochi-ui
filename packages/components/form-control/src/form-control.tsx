@@ -5,7 +5,15 @@ import { FormControlProps } from './type'
 
 export const FormControl = forwardRef<HTMLDivElement, FormControlProps>(
   (props: FormControlProps, ref) => {
-    const { className, children, required, disabled, error, id: _id } = props
+    const {
+      className,
+      children,
+      required,
+      disabled,
+      error,
+      id: _id,
+      ...restProps
+    } = props
     const internalId = useId()
     const id = _id ?? internalId
 
@@ -21,7 +29,11 @@ export const FormControl = forwardRef<HTMLDivElement, FormControlProps>(
     )
     return (
       <FormControlContext.Provider value={passValue}>
-        <div ref={ref} className={formControl.wrapper({ className })}>
+        <div
+          ref={ref}
+          className={formControl.wrapperClsx({ className })}
+          {...restProps}
+        >
           {children}
         </div>
       </FormControlContext.Provider>
