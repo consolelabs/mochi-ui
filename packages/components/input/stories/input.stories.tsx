@@ -38,7 +38,7 @@ export const Default: Story = {
 export function Size() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-      <Input.InputField placeholder="Default" />
+      <Input.InputField id="username" placeholder="Default" />
 
       <Input.InputField placeholder="Large size" size="lg" />
     </div>

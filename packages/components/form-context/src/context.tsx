@@ -1,9 +1,9 @@
 import { createContext, useContext } from 'react'
-import { FormControlProps } from './type'
 
-export type FormControlContextValue = Partial<
-  Pick<FormControlProps, 'required' | 'disabled' | 'error'>
-> & {
+export type FormControlContextValue = {
+  disabled?: boolean
+  error?: boolean
+  required?: boolean
   htmlFor?: string
   labelId?: string
 }

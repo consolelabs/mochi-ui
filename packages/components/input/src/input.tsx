@@ -1,9 +1,9 @@
 import { input, InputStylesProps } from '@consolelabs/theme'
 import React, { InputHTMLAttributes, useMemo } from 'react'
+import { FormControlContext } from '@consolelabs/form-context'
 import type * as Polymorphic from '@consolelabs/polymorphic'
 
 // root
-
 type InputContextValue = {
   size?: 'md' | 'lg'
   disabled?: boolean
@@ -73,7 +73,6 @@ export const InputRoot = React.forwardRef((props, ref) => {
 }) as PolymorphicInputRoot
 
 // input field
-
 type InputProps = Omit<InputStylesProps, 'size' | 'disabled' | 'error'> &
   Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> & {
     className?: string
@@ -84,7 +83,15 @@ type InputProps = Omit<InputStylesProps, 'size' | 'disabled' | 'error'> &
 
 export const InputInner = React.forwardRef<HTMLInputElement, InputProps>(
   (
-    { className, size = 'md', error = false, disabled = false, ...rest },
+    {
+      className,
+      size = 'md',
+      error: errorProp,
+      disabled: disabledProp,
+      id: idProp,
+      required: requiredProp,
+      ...rest
+    },
     ref,
   ) => {
     const { inputVariants } = input
@@ -92,23 +99,33 @@ export const InputInner = React.forwardRef<HTMLInputElement, InputProps>(
     const context = React.useContext(InputContext)
     const hasRoot = context !== undefined
 
+    const formControlContext = React.useContext(FormControlContext)
+
+    const disabled =
+      context?.disabled ?? disabledProp ?? formControlContext.disabled
+    const error = context?.error ?? errorProp ?? formControlContext.error
+    const id = idProp ?? formControlContext.htmlFor
+    const required = requiredProp ?? formControlContext.required
+
     const inputElement = (
       <>
         <input
           className={inputVariants({
             className,
             size: context?.size ?? size,
-            error: context?.error ?? error,
-            disabled: context?.disabled ?? disabled,
+            error,
+            disabled,
           })}
-          disabled={context?.disabled ?? disabled}
+          disabled={disabled}
+          required={required}
           ref={ref}
+          id={id}
           {...rest}
         />
         <div
           className={input.mask({
-            error: context?.error ?? error,
-            disabled: context?.disabled ?? disabled,
+            error,
+            disabled,
           })}
         />
       </>

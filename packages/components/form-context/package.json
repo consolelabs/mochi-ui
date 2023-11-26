@@ -1,6 +1,6 @@
 {
-  "name": "@consolelabs/form-control",
-  "version": "0.0.0",
+  "name": "@consolelabs/form-context",
+  "version": "0.0.1",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
@@ -25,19 +25,12 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@consolelabs/input": "workspace:*",
-    "@consolelabs/icons": "workspace:*",
     "clean-package": "^2.2.0",
     "eslint-config-custom": "workspace:*",
     "prettier": "^3.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tsconfig": "workspace:*"
-  },
-  "dependencies": {
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.0.0",
-    "@consolelabs/theme": "workspace:*"
   },
   "clean-package": "../../../clean-package.config.json"
 }
