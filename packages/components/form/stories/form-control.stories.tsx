@@ -7,6 +7,9 @@ import { UserSolid } from '@consolelabs/icons'
 import { FormControl } from '../src'
 import { FormLabel } from '../src/form-label'
 import { FormHelperText } from '../src/form-helper-text'
+import { FormErrorMessage } from '../src/form-error-message'
+
+const errorValues = ['max', 'min', 'required']
 
 const meta: Meta<typeof FormControl> = {
   title: 'Components/FormControl',
@@ -28,6 +31,13 @@ const meta: Meta<typeof FormControl> = {
       control: 'boolean',
       defaultValue: false,
     },
+    errorValue: {
+      control: 'select',
+      options: errorValues,
+    },
+    hideHelperTextOnError: {
+      control: 'boolean',
+    },
   },
 }
 
@@ -47,6 +57,11 @@ export const Default: Story = {
           <Input.InputField />
         </Input.Root>
         <FormHelperText>This is helper text</FormHelperText>
+        <FormErrorMessage value="required">
+          This field is required
+        </FormErrorMessage>
+        <FormErrorMessage value="min">At least 10 characters</FormErrorMessage>
+        <FormErrorMessage value="max">At most 50 characters</FormErrorMessage>
       </FormControl>
     )
   },
@@ -108,7 +123,7 @@ export const WithReactHookForm: Story = {
           control={control}
           rules={{ required: 'This field is required' }}
           render={({ field, fieldState }) => (
-            <FormControl error={!!fieldState.error}>
+            <FormControl error={!!fieldState.error} hideHelperTextOnError>
               <FormLabel>Username</FormLabel>
               <Input.Root>
                 <Input.Slot>
@@ -119,9 +134,8 @@ export const WithReactHookForm: Story = {
                   placeholder="Enter your username"
                 />
               </Input.Root>
-              {fieldState.error && (
-                <FormHelperText>{fieldState.error.message}</FormHelperText>
-              )}
+              <FormHelperText>Type in your username</FormHelperText>
+              <FormErrorMessage>{fieldState.error?.message}</FormErrorMessage>
             </FormControl>
           )}
         />
@@ -143,9 +157,8 @@ export const WithReactHookForm: Story = {
                   type="password"
                 />
               </Input.Root>
-              {fieldState.error && (
-                <FormHelperText>{fieldState.error.message}</FormHelperText>
-              )}
+              <FormHelperText>Type in your password</FormHelperText>
+              <FormErrorMessage>{fieldState.error?.message}</FormErrorMessage>
             </FormControl>
           )}
         />

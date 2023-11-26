@@ -1,6 +1,6 @@
 import { input, InputStylesProps } from '@consolelabs/theme'
 import React, { InputHTMLAttributes, useMemo } from 'react'
-import { FormControlContext } from '@consolelabs/form-context'
+import { FormControlContext, useFromControl } from '@consolelabs/form-context'
 import type * as Polymorphic from '@consolelabs/polymorphic'
 
 // root
@@ -8,6 +8,8 @@ type InputContextValue = {
   size?: 'md' | 'lg'
   disabled?: boolean
   error?: boolean
+  required?: boolean
+  id?: string
 }
 const InputContext = React.createContext<InputContextValue | undefined>(
   undefined,
@@ -25,19 +27,24 @@ export const InputRoot = React.forwardRef((props, ref) => {
     as: Component = 'div',
     children,
     size,
-    disabled,
-    error,
+    disabled: _disabled,
+    error: _error,
+    required: _required,
     className,
     ...rest
   } = props
 
+  const { disabled, required, error, htmlFor } = useFromControl()
+
   const contextValue = useMemo(
     () => ({
       size,
-      disabled,
-      error,
+      disabled: _disabled ?? disabled,
+      error: _error ?? error,
+      required: _required ?? required,
+      id: htmlFor,
     }),
-    [disabled, error, size],
+    [_disabled, _error, _required, disabled, error, htmlFor, required, size],
   )
 
   return (

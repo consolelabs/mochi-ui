@@ -10,13 +10,11 @@ type PolymorphicFormHelperText = Polymorphic.ForwardRefComponent<
 
 export const FormHelperText = forwardRef((props, ref) => {
   const { as: Component = 'span', className, ...rest } = props
-  const { error } = useFromControl()
+  const { error, hideHelperTextOnError } = useFromControl()
+
+  if (error && hideHelperTextOnError) return
 
   return (
-    <Component
-      className={formHelperText({ className, error })}
-      ref={ref}
-      {...props}
-    />
+    <Component className={formHelperText({ className })} ref={ref} {...rest} />
   )
 }) as PolymorphicFormHelperText

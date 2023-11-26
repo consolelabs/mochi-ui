@@ -17,6 +17,8 @@ export const FormControl = forwardRef((props, ref) => {
     required,
     disabled,
     error,
+    errorValue = '',
+    hideHelperTextOnError = false,
     id: idProp,
     ...restProps
   } = props
@@ -31,8 +33,10 @@ export const FormControl = forwardRef((props, ref) => {
       error,
       htmlFor: id,
       labelId: `${id}_label`,
+      errorValue,
+      hideHelperTextOnError,
     }),
-    [disabled, error, id, required],
+    [disabled, error, errorValue, hideHelperTextOnError, id, required],
   )
 
   return (
