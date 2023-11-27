@@ -97,7 +97,7 @@ const App: NextPageWithLayout = () => {
 
   const onCreateApp = (result: ViewFullApplicationResponse) => {
     refresh()
-    push(ROUTES.APPLICATION_DETAIL(result.data?.id || ''))
+    push(ROUTES.APPLICATION_DETAIL(result.data?.id))
   }
 
   return (
