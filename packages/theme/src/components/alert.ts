@@ -59,100 +59,105 @@ const alertCva = cva(['flex gap-x-2 rounded-lg p-3'], {
   },
 })
 
-const alertIconClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx('flex-shrink-0 w-5 h-5 text-current', className)
+const createTextCva = (base?: string) =>
+  cva(base, {
+    variants: {
+      variant: {
+        default: '',
+        outlined: '',
+      },
+      scheme: {
+        primary: '',
+        secondary: '',
+        success: '',
+        danger: '',
+        warning: '',
+        neutral: '',
+      },
+      size: {
+        sm: '',
+        base: '',
+      },
+    },
+    compoundVariants: [
+      {
+        variant: 'default',
+        scheme: 'primary',
+        className: 'text-primary-solid',
+      },
+      {
+        variant: 'default',
+        scheme: 'secondary',
+        className: 'text-secondary-solid',
+      },
+      {
+        variant: 'default',
+        scheme: 'danger',
+        className: 'text-danger-solid',
+      },
+      {
+        variant: 'default',
+        scheme: 'neutral',
+        className: 'text-neutral-solid',
+      },
+      {
+        variant: 'default',
+        scheme: 'warning',
+        className: 'text-warning-solid',
+      },
+      {
+        variant: 'default',
+        scheme: 'success',
+        className: 'text-success-solid',
+      },
+      {
+        variant: 'outlined',
+        scheme: 'primary',
+        className: 'text-primary-outline-fg',
+      },
+      {
+        variant: 'outlined',
+        scheme: 'secondary',
+        className: 'text-secondary-outline-fg',
+      },
+      {
+        variant: 'outlined',
+        scheme: 'danger',
+        className: 'text-danger-outline-fg',
+      },
+      {
+        variant: 'outlined',
+        scheme: 'neutral',
+        className: 'text-neutral-outline-fg',
+      },
+      {
+        variant: 'outlined',
+        scheme: 'warning',
+        className: 'text-warning-outline-fg',
+      },
+      {
+        variant: 'outlined',
+        scheme: 'success',
+        className: 'text-success-outline-fg',
+      },
+    ],
+    defaultVariants: {
+      scheme: 'primary',
+    },
+  })
+
+const alertIconCva = createTextCva('')
+
+const alertTitleCva = createTextCva('font-medium')
 
 const alertContentClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx('flex flex-col flex-1 text-current', className)
 
-const alertTitleCva = cva('', {
-  variants: {
-    variant: {
-      default: '',
-      outlined: '',
-    },
-    scheme: {
-      primary: '',
-      secondary: '',
-      success: '',
-      danger: '',
-      warning: '',
-      neutral: '',
-    },
-  },
-  compoundVariants: [
-    {
-      variant: 'default',
-      scheme: 'primary',
-      className: 'text-primary-solid',
-    },
-    {
-      variant: 'default',
-      scheme: 'secondary',
-      className: 'text-secondary-solid',
-    },
-    {
-      variant: 'default',
-      scheme: 'danger',
-      className: 'text-danger-solid',
-    },
-    {
-      variant: 'default',
-      scheme: 'neutral',
-      className: 'text-neutral-solid',
-    },
-    {
-      variant: 'default',
-      scheme: 'warning',
-      className: 'text-warning-solid',
-    },
-    {
-      variant: 'default',
-      scheme: 'success',
-      className: 'text-success-solid',
-    },
-    {
-      variant: 'outlined',
-      scheme: 'primary',
-      className: 'text-primary-outline-fg',
-    },
-    {
-      variant: 'outlined',
-      scheme: 'secondary',
-      className: 'text-secondary-outline-fg',
-    },
-    {
-      variant: 'outlined',
-      scheme: 'danger',
-      className: 'text-danger-outline-fg',
-    },
-    {
-      variant: 'outlined',
-      scheme: 'neutral',
-      className: 'text-neutral-outline-fg',
-    },
-    {
-      variant: 'outlined',
-      scheme: 'warning',
-      className: 'text-warning-outline-fg',
-    },
-    {
-      variant: 'outlined',
-      scheme: 'success',
-      className: 'text-success-outline-fg',
-    },
-  ],
-  defaultVariants: {
-    scheme: 'primary',
-  },
-})
-
 export const alert = {
   alertCva,
-  alertIconClsx,
+  alertIconCva,
   alertContentClsx,
   alertTitleCva,
 }
 
 export type AlertStylesProps = VariantProps<typeof alertCva>
-export type AlertTitleStylesProps = VariantProps<typeof alertTitleCva>

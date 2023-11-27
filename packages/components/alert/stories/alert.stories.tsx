@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import Alert, { AlertProps } from '../src/alert'
 import { AlertTitle } from '../src/alert-title'
+import { AlertIcon } from '../src'
 
 const schemes = [
   'primary',
@@ -41,6 +42,7 @@ export const Default: Story = {
   render(props) {
     return (
       <Alert {...props}>
+        <AlertIcon />
         <AlertTitle>
           Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
           cillum sint consectetur cupidatat.
@@ -56,6 +58,7 @@ export const Colors: Story = {
       <div className="flex flex-col gap-3">
         {schemes.map((s) => (
           <Alert scheme={s}>
+            <AlertIcon />
             <AlertTitle>
               Lorem ipsum dolor sit amet, qui minim labore adipisicing minim
               sint cillum sint consectetur cupidatat.
