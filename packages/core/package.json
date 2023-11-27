@@ -41,6 +41,7 @@
     "@consolelabs/input": "workspace:*",
     "@consolelabs/input-field": "workspace:*",
     "@consolelabs/layout": "workspace:*",
+    "@consolelabs/form": "workspace:*",
     "@consolelabs/list": "workspace:*",
     "@consolelabs/login-widget": "workspace:*",
     "@consolelabs/mochi-store": "workspace:*",

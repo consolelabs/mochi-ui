@@ -1,4 +1,4 @@
-import { Button, Input, Typography } from '@consolelabs/core'
+import { Button, TextFieldInput, Typography } from '@consolelabs/core'
 import {
   DtoCreateApplicationRequest,
   ViewFullApplicationResponse,
@@ -67,7 +67,7 @@ export default function NewAppForm({ id, onClose, onSuccess, onError }: Props) {
       >
         Name
       </Typography>
-      <Input.InputField
+      <TextFieldInput
         autoFocus
         error={!!errors.app_name?.message}
         {...register('app_name', { required: true })}
