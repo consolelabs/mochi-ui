@@ -116,12 +116,18 @@ importers:
       '@consolelabs/icons':
         specifier: workspace:*
         version: link:../../packages/icons
+      '@consolelabs/layout':
+        specifier: workspace:*
+        version: link:../../packages/components/layout
       '@consolelabs/mochi-rest':
         specifier: ^5.1.2
         version: 5.1.2
       '@consolelabs/mochi-ui':
         specifier: ^16.0.2
         version: 16.0.2(@consolelabs/mochi-rest@5.1.2)(ioredis@5.3.2)
+      '@consolelabs/page-content':
+        specifier: workspace:*
+        version: link:../../packages/components/page-content
       '@consolelabs/theme':
         specifier: workspace:*
         version: link:../../packages/theme
@@ -786,6 +792,52 @@ importers:
         specifier: workspace:*
         version: link:../../tsconfig
 
+  packages/components/layout:
+    dependencies:
+      '@consolelabs/sidebar':
+        specifier: workspace:*
+        version: link:../sidebar
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../../theme
+    devDependencies:
+      '@consolelabs/badge':
+        specifier: workspace:*
+        version: link:../badge
+      '@consolelabs/icons':
+        specifier: workspace:*
+        version: link:../../icons
+      '@consolelabs/page-content':
+        specifier: workspace:*
+        version: link:../page-content
+      '@consolelabs/page-header':
+        specifier: workspace:*
+        version: link:../page-header
+      '@consolelabs/typography':
+        specifier: workspace:*
+        version: link:../typography
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.1.0
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
   packages/components/list:
     dependencies:
       '@consolelabs/theme':
@@ -924,6 +976,37 @@ importers:
       clean-package:
         specifier: ^2.2.0
         version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.1.0
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
+  packages/components/page-content:
+    dependencies:
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../../theme
+    devDependencies:
+      '@consolelabs/typography':
+        specifier: workspace:*
+        version: link:../typography
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
       eslint-config-custom:
         specifier: workspace:*
         version: link:../../eslint-config-custom
@@ -1499,6 +1582,9 @@ importers:
       '@consolelabs/input-field':
         specifier: workspace:*
         version: link:../components/input-field
+      '@consolelabs/layout':
+        specifier: workspace:*
+        version: link:../components/layout
       '@consolelabs/list':
         specifier: workspace:*
         version: link:../components/list
@@ -1511,6 +1597,9 @@ importers:
       '@consolelabs/modal':
         specifier: workspace:*
         version: link:../components/modal
+      '@consolelabs/page-content':
+        specifier: workspace:*
+        version: link:../components/page-content
       '@consolelabs/page-header':
         specifier: workspace:*
         version: link:../components/page-header

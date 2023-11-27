@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import { useHasMounted } from '@dwarvesf/react-hooks'
 import { useAuthStore } from '~store'
 import Link from 'next/link'
@@ -16,6 +15,8 @@ import {
   TwinkleSolid,
 } from '@consolelabs/icons'
 import { Sidebar, Badge } from '@consolelabs/core'
+import { Layout } from '@consolelabs/layout'
+import { PageContent } from '@consolelabs/page-content'
 import { DISCORD_LINK } from '~envs'
 import { useRouter } from 'next/router'
 import { AuthPanel } from './AuthWidget'
@@ -41,13 +42,13 @@ export const getSidebarBadge = {
 
 export default function AuthenticatedLayout({
   children,
-  fullWidth = false,
+  pageHeader,
   footer,
   childSEO,
 }: {
   childSEO?: React.ReactNode
   children: React.ReactNode
-  fullWidth?: boolean
+  pageHeader?: React.ReactNode
   footer?: React.ReactNode
 }) {
   const { pathname } = useRouter()
@@ -57,97 +58,91 @@ export default function AuthenticatedLayout({
   if (!mounted) return <>{childSEO}</>
 
   return (
-    <div className="flex flex-col w-screen min-h-screen bg-white-pure">
-      <div className="relative z-10 flex flex-1">
-        {isLoadingSession ? null : isLoggedIn ? (
-          <>
-            <div
-              style={{ top: 64, height: 'calc(100vh - 64px)' }}
-              className="sticky left-0 z-10"
-            >
-              <Sidebar
-                Header={SidebarHeader}
-                headerItems={[
-                  {
-                    title: 'Profile',
-                    Icon: UserSolid,
-                    type: 'link',
-                    as: Link,
-                    href: '/profile',
-                  },
-                  { title: 'Servers', Icon: Discord },
-                  {
-                    title: 'App Store',
-                    Icon: GameSolid,
-                    badge: getSidebarBadge['SOON'],
-                    disabled: true,
-                  },
-                  { title: 'Settings', Icon: SettingSolid },
-                  { type: 'break' },
-                  {
-                    title: 'Developer',
-                    Icon: CodingSolid,
-                    type: 'link',
-                    as: Link,
-                    href: '/app',
-                    badge: getSidebarBadge['NEW'],
-                  },
-                  {
-                    title: 'Send gifts',
-                    Icon: SuperGroupSolid,
-                    badge: getSidebarBadge['SOON'],
-                    disabled: true,
-                  },
-                  { title: 'Invite Friends', Icon: AddUserSolid },
-                  {
-                    title: 'Feedback',
-                    Icon: StarSolid,
-                    badge: getSidebarBadge['SOON'],
-                    disabled: true,
-                  },
-                ]}
-                footerItems={[
-                  { title: 'Support', Icon: LifeBuoySolid },
-                  {
-                    title: 'Follow Us',
-                    Icon: X,
-                    type: 'link',
-                    href: 'https://twitter.com/mochi_gg_',
-                  },
-                  {
-                    title: 'Join Community',
-                    Icon: Discord,
-                    type: 'link',
-                    href: DISCORD_LINK,
-                  },
-                ]}
-                className="absolute"
-                isSelected={(item) =>
-                  !!item.href && pathname.startsWith(item.href)
-                }
-              />
-            </div>
-            <div
-              className={clsx(
-                'flex items-start gap-x-24 mx-auto flex-1 relative',
-                {
-                  'max-w-5xl my-10 px-4': !fullWidth,
-                },
-              )}
-            >
-              <div className="flex-1 h-full">
-                {childSEO}
-                {children}
+    <Layout className="w-screen min-h-screen bg-white-pure">
+      {!isLoadingSession && isLoggedIn ? (
+        <Layout className="flex-1">
+          <Sidebar
+            Header={SidebarHeader}
+            headerItems={[
+              {
+                title: 'Profile',
+                Icon: UserSolid,
+                type: 'link',
+                as: Link,
+                href: '/profile',
+              },
+              { title: 'Servers', Icon: Discord },
+              {
+                title: 'App Store',
+                Icon: GameSolid,
+                badge: getSidebarBadge['SOON'],
+                disabled: true,
+              },
+              { title: 'Settings', Icon: SettingSolid },
+              { type: 'break' },
+              {
+                title: 'Developer',
+                Icon: CodingSolid,
+                type: 'link',
+                as: Link,
+                href: '/app',
+                badge: getSidebarBadge['NEW'],
+              },
+              {
+                title: 'Send gifts',
+                Icon: SuperGroupSolid,
+                badge: getSidebarBadge['SOON'],
+                disabled: true,
+              },
+              { title: 'Invite Friends', Icon: AddUserSolid },
+              {
+                title: 'Feedback',
+                Icon: StarSolid,
+                badge: getSidebarBadge['SOON'],
+                disabled: true,
+              },
+            ]}
+            footerItems={[
+              { title: 'Support', Icon: LifeBuoySolid },
+              {
+                title: 'Follow Us',
+                Icon: X,
+                type: 'link',
+                href: 'https://twitter.com/mochi_gg_',
+              },
+              {
+                title: 'Join Community',
+                Icon: Discord,
+                type: 'link',
+                href: DISCORD_LINK,
+              },
+            ]}
+            className="!sticky !top-16 !h-[calc(100vh-64px)]"
+            isSelected={(item) => !!item.href && pathname.startsWith(item.href)}
+          />
+
+          <Layout className="flex-1">
+            {pageHeader}
+
+            <PageContent>
+              <div className="flex items-start gap-x-24 mx-auto flex-1 relative">
+                <div className="flex-1 h-full">
+                  {childSEO}
+                  {children}
+                </div>
               </div>
-            </div>
-          </>
-        ) : (
-          <div className="flex items-center justify-center flex-1 w-full bg-black/40">
-            <AuthPanel />
-          </div>
-        )}
-      </div>
+            </PageContent>
+          </Layout>
+        </Layout>
+      ) : null}
+
+      {!isLoadingSession && !isLoggedIn ? (
+        <div className="flex items-center justify-center flex-1 w-full bg-black/40">
+          <AuthPanel />
+        </div>
+      ) : null}
+
       {footer}
-    </div>
+    </Layout>
   )
 }

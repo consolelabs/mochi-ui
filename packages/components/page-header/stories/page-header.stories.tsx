@@ -18,9 +18,6 @@ const meta = {
   title: 'components/PageHeader',
   component: PageHeader,
   tags: ['autodocs'],
-  args: {
-    modal: true,
-  },
 }
 
 export default meta
@@ -68,7 +65,7 @@ export function Default() {
   ]
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
       <PageHeader
         title="Page Title"
         titleExtra="(2,951 members)"

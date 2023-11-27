@@ -1,16 +1,88 @@
+import {
+  Button,
+  PageHeader,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+  Typography,
+  Modal,
+  ModalContent,
+} from '@consolelabs/core'
+import { CheckLine, ChevronDownLine } from '@consolelabs/icons'
 import AuthLayout from '~components/auth-layout'
 import { NextPageWithLayout } from '~pages/_app'
-import { ReactElement } from 'react-markdown/lib/react-markdown'
 import { Statistics } from '~cpn/app/Statistics'
 import { AppListing } from '~cpn/app/AppListing'
 import { useProfileStore } from '~store'
 import { shallow } from 'zustand/shallow'
 import NewAppForm from '~cpn/app/NewAppForm'
-import { Modal, ModalContent } from '@consolelabs/core'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { useFetchApplicationList } from '~hooks/app/useFetchApplicationList'
 import { useRouter } from 'next/router'
-import { ViewFullApplicationResponse } from '~types/mochi-pay-schema'
+import {
+  ViewApplication,
+  ViewFullApplicationResponse,
+} from '~types/mochi-pay-schema'
+import Link from 'next/link'
+import { SOCIAL_LINKS } from '~constants'
+import { GET_PATHS } from '~constants/api'
+
+const AppPageHeader = ({
+  onClickCreateApp,
+  apps = [],
+}: {
+  onClickCreateApp: () => void
+  apps?: ViewApplication[]
+}) => {
+  return (
+    <PageHeader
+      title="Developer Portal"
+      description="Build secure and frictionless payments across Web2 and Web3
+      platforms with a single API call."
+      actions={[
+        <Button
+          variant="outline"
+          color="neutral"
+          className="!bg-neutral-0"
+          key="see-docs-button"
+          onClick={() => window.open(SOCIAL_LINKS.DOCS, '_blank')}
+        >
+          See docs
+        </Button>,
+        <DropdownMenu key="app-select">
+          <DropdownMenuTrigger className="">
+            <Button className="!bg-neutral-150">
+              <Typography level="p5">All apps</Typography>
+              <ChevronDownLine className="w-4 h-4 text-neutral-800" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem
+              rightIcon={
+                <CheckLine className="w-4 h-4 ml-4 text-primary-700" />
+              }
+            >
+              All apps
+            </DropdownMenuItem>
+            {apps.map((app) => (
+              <Link key={app.id} href={GET_PATHS.APP_DETAIL(app.id)}>
+                <DropdownMenuItem key={app.id}>{app.name}</DropdownMenuItem>
+              </Link>
+            ))}
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onClick={onClickCreateApp}>
+              <Typography level="h8" color="primary">
+                Create an app
+              </Typography>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>,
+      ]}
+    />
+  )
+}
 
 const App: NextPageWithLayout = () => {
   const { push } = useRouter()
@@ -29,24 +101,28 @@ const App: NextPageWithLayout = () => {
   }
 
   return (
-    <div>
-      <Statistics id={id} apps={apps} onOpenCreateAppModal={onOpen} />
-      <AppListing
-        apps={apps}
-        onOpenCreateAppModal={onOpen}
-        isLoading={isLoading || !id}
-      />
-      <Modal open={isOpen}>
-        <ModalContent className="w-full max-w-md">
-          <NewAppForm id={id} onClose={onClose} onSuccess={onCreateApp} />
-        </ModalContent>
-      </Modal>
-    </div>
+    <AuthLayout
+      pageHeader={<AppPageHeader apps={apps} onClickCreateApp={onOpen} />}
+    >
+      <div>
+        <Statistics id={id} onOpenCreateAppModal={onOpen} />
+        <AppListing
+          apps={apps}
+          onOpenCreateAppModal={onOpen}
+          isLoading={isLoading || !id}
+        />
+        <Modal open={isOpen}>
+          <ModalContent className="w-full max-w-md">
+            <NewAppForm id={id} onClose={onClose} onSuccess={onCreateApp} />
+          </ModalContent>
+        </Modal>
+      </div>
+    </AuthLayout>
   )
 }
 
-App.getLayout = function getLayout(page: ReactElement) {
-  return <AuthLayout>{page}</AuthLayout>
-}
+// App.getLayout = function getLayout(page: ReactElement) {
+//   return <AuthLayout pageHeader={<AppPageHeader />}>{page}</AuthLayout>
+// }
 
 export default App
