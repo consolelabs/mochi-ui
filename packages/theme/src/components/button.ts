@@ -6,7 +6,7 @@ const commonVariant = {
     solid: '',
     outline: 'shadow-button border',
     ghost: '',
-    link: 'p-0 rounded-md hover:underline',
+    link: 'bg-transparent',
   },
   color: {
     primary: '',
@@ -222,8 +222,8 @@ const commonCompoundVariants = [
     color: 'primary',
     className: [
       'text-primary-plain-fg',
+      'hover:text-primary-plain-hover-fg',
       'disabled:text-primary-plain-disable-fg',
-      'focus:shadow-small focus:shadow-primary-700/10',
     ],
   },
   {
@@ -231,8 +231,8 @@ const commonCompoundVariants = [
     color: 'secondary',
     className: [
       'text-secondary-plain-fg',
+      'hover:text-secondary-plain-hover-fg',
       'disabled:text-secondary-plain-disable-fg',
-      'focus:shadow-small focus:shadow-secondary-700/10',
     ],
   },
   {
@@ -240,8 +240,8 @@ const commonCompoundVariants = [
     color: 'success',
     className: [
       'text-success-plain-fg',
+      'hover:text-success-plain-hover-fg',
       'disabled:text-success-plain-disable-fg',
-      'focus:shadow-small focus:shadow-success-700/10',
     ],
   },
   {
@@ -249,8 +249,8 @@ const commonCompoundVariants = [
     color: 'danger',
     className: [
       'text-danger-plain-fg',
+      'hover:text-danger-plain-hover-fg',
       'disabled:text-danger-plain-disable-fg',
-      'focus:shadow-small focus:shadow-danger-700/10',
     ],
   },
   {
@@ -258,8 +258,8 @@ const commonCompoundVariants = [
     color: 'warning',
     className: [
       'text-warning-plain-fg',
+      'hover:text-warning-plain-hover-fg',
       'disabled:text-warning-plain-disable-fg',
-      'focus:shadow-small focus:shadow-warning-700/10',
     ],
   },
   {
@@ -267,8 +267,8 @@ const commonCompoundVariants = [
     color: 'neutral',
     className: [
       'text-neutral-plain-fg',
+      'hover:text-neutral-plain-hover-fg',
       'disabled:text-neutral-plain-disable-fg',
-      'focus:shadow-small focus:shadow-neutral-700/10',
     ],
   },
 ] as const
@@ -292,17 +292,17 @@ const buttonCva = cva(
     },
     compoundVariants: [
       {
-        variant: ['solid', 'outline', 'ghost'],
+        variant: ['solid', 'outline', 'ghost', 'link'],
         size: 'sm',
         className: 'px-4 h-[34px] rounded',
       },
       {
-        variant: ['solid', 'outline', 'ghost'],
+        variant: ['solid', 'outline', 'ghost', 'link'],
         size: 'md',
         className: 'px-4 h-10 rounded-lg',
       },
       {
-        variant: ['solid', 'outline', 'ghost'],
+        variant: ['solid', 'outline', 'ghost', 'link'],
         size: 'lg',
         className: 'px-6 h-12 rounded-lg',
       },

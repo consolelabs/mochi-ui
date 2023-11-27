@@ -24,6 +24,7 @@ export const semanticColors = {
         hover: commonColors.primary['100'],
         active: commonColors.primary['100'],
         'disable-fg': commonColors.primary['400'],
+        'hover-fg': commonColors.primary['800'],
       },
     },
     secondary: {
@@ -48,6 +49,7 @@ export const semanticColors = {
         hover: commonColors.secondary['100'],
         active: commonColors.secondary['100'],
         'disable-fg': commonColors.secondary['400'],
+        'hover-fg': commonColors.secondary['800'],
       },
     },
     success: {
@@ -72,6 +74,7 @@ export const semanticColors = {
         hover: commonColors.success['100'],
         active: commonColors.success['100'],
         'disable-fg': commonColors.success['400'],
+        'hover-fg': commonColors.success['800'],
       },
     },
     warning: {
@@ -96,6 +99,7 @@ export const semanticColors = {
         hover: commonColors.warning['100'],
         active: commonColors.warning['100'],
         'disable-fg': commonColors.warning['400'],
+        'hover-fg': commonColors.warning['800'],
       },
     },
     danger: {
@@ -120,6 +124,7 @@ export const semanticColors = {
         hover: commonColors.danger['100'],
         active: commonColors.danger['100'],
         'disable-fg': commonColors.danger['400'],
+        'hover-fg': commonColors.danger['800'],
       },
     },
     neutral: {
@@ -144,6 +149,7 @@ export const semanticColors = {
         hover: commonColors.neutral['100'],
         active: commonColors.neutral['100'],
         'disable-fg': commonColors.neutral['400'],
+        'hover-fg': commonColors.neutral['800'],
       },
     },
     text: {
