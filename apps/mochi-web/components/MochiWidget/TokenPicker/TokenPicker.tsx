@@ -1,16 +1,12 @@
+import { useDisclosure } from '@dwarvesf/react-hooks'
 import clsx from 'clsx'
 import Image from 'next/image'
 import { ChevronDownLine, MagnifierLine } from '@consolelabs/icons'
 import { useShallow } from 'zustand/react/shallow'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Tab } from '@headlessui/react'
-import {
-  InputField,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  Heading,
-} from '@consolelabs/core'
+import { Input, Heading } from '@consolelabs/core'
+import { BottomSheet } from '~cpn/BottomSheet'
 import { Balance, useWalletStore } from '~store'
 import { TokenList } from './TokenList'
 import { Moniker } from './type'
@@ -30,11 +26,11 @@ const TokenTabs = [
 ]
 
 interface TokenPickerProps {
-  authorized: boolean
-  unauthorizedContent?: React.ReactNode
   selectedAsset: Balance | Moniker | null
   balances?: Balance[]
   onSelect?: (item: Balance | Moniker | null) => void
+  authorized: boolean
+  unauthorizedContent: React.ReactNode
 }
 
 interface TokenButtonProps {
@@ -83,6 +79,8 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
   authorized,
   unauthorizedContent,
 }) => {
+  const inputRef = useRef<HTMLInputElement | null>(null)
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const isFetchingWallets = useWalletStore(useShallow((s) => s.isFetching))
   const [tokenBalances, setTokenBalances] = useState<Balance[]>(
     balances || [DEFAULT_BALANCE],
@@ -101,9 +99,21 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
       setIsOpenSelector(false)
       onSelect?.(asset)
       setTabIdx(0)
+      onClose()
     },
-    [onSelect],
+    [onClose, onSelect],
   )
+
+  function handleMonikerSelect(asset: Moniker) {
+    setIsOpenSelector(false)
+    onSelect?.(asset)
+    setTabIdx(1)
+    onClose()
+  }
+
+  function onSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setSearchTerm(e.target.value)
+  }
 
   useEffect(() => {
     if (!Array.isArray(balances)) return
@@ -118,25 +128,18 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
     }
   }, [balances, handleTokenSelect, selectedAsset])
 
-  function handleMonikerSelect(asset: Moniker) {
-    setIsOpenSelector(false)
-    onSelect?.(asset)
-    setTabIdx(1)
-  }
-
-  function onOpenChange(isOpen: boolean) {
-    // Reset on close
-    setIsOpenSelector(isOpen)
-    setSearchTerm('')
-  }
-
-  function onSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setSearchTerm(e.target.value)
-  }
+  useEffect(() => {
+    if (isOpen) {
+      // hack
+      setTimeout(() => {
+        inputRef.current?.focus({ preventScroll: true })
+      }, 0)
+    }
+  }, [isOpen])
 
   return (
-    <Popover open={isOpenSelector} onOpenChange={onOpenChange}>
-      <PopoverTrigger>
+    <>
+      <button type="button" onClick={onOpen} className="outline-none">
         <TokenButton
           isToken={isTokenSelected}
           name={
@@ -151,67 +154,70 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
           }
           isOpenSelector={isOpenSelector}
         />
-      </PopoverTrigger>
-      {authorized ? (
-        <PopoverContent
-          align="start"
-          avoidCollisions={false}
-          alignOffset={-8}
-          className="flex flex-col gap-y-2 items-center rounded-lg shadow-md w-[414px] h-fit bg-white-pure"
-        >
-          <InputField
-            className="w-full"
-            placeholder="Search"
-            startAdornment={
-              <div className="pl-2">
+      </button>
+
+      <BottomSheet
+        title={authorized ? 'Choose token' : ''}
+        isOpen={isOpen}
+        onClose={onClose}
+      >
+        {authorized ? (
+          <>
+            <Input.Root className="flex-shrink-0 mt-1">
+              <Input.Slot>
                 <MagnifierLine className="w-5 h-5 text-gray-500" />
-              </div>
-            }
-            onChange={onSearchChange}
-          />
-          <Tab.Group selectedIndex={tabIdx} onChange={setTabIdx}>
-            <Tab.List className="flex gap-6 w-full">
-              {TokenTabs.map((tab) => (
-                <Tab key={tab.key} className="focus-visible:outline-none">
-                  {({ selected }) => (
-                    <div className="flex justify-start py-2 w-full">
-                      <Heading
-                        as="h2"
-                        className={`text-sm ${
-                          selected ? 'text-[#343433]' : 'text-[#848281]'
-                        }`}
-                      >
-                        {tab.value}
-                      </Heading>
-                    </div>
-                  )}
-                </Tab>
-              ))}
-            </Tab.List>
-            <Tab.Panels className="w-full">
-              <Tab.Panel className="flex flex-col gap-2 h-full">
-                <TokenList
-                  loading={isFetchingWallets}
-                  data={filteredTokens}
-                  onSelect={handleTokenSelect}
-                />
-                <span className="text-xs text-[#ADACAA]">
-                  Only supported tokens are shown
-                </span>
-              </Tab.Panel>
-              <Tab.Panel className="flex flex-col gap-2 h-full">
-                <MonikerList
-                  balances={tokenBalances}
-                  searchTerm={searchTerm}
-                  onSelect={handleMonikerSelect}
-                />
-              </Tab.Panel>
-            </Tab.Panels>
-          </Tab.Group>
-        </PopoverContent>
-      ) : (
-        unauthorizedContent
-      )}
-    </Popover>
+              </Input.Slot>
+              <Input.InputField
+                ref={inputRef}
+                placeholder="Search"
+                value={searchTerm}
+                onChange={onSearchChange}
+              />
+            </Input.Root>
+            <Tab.Group selectedIndex={tabIdx} onChange={setTabIdx}>
+              <Tab.List className="flex gap-6 mt-2 w-full">
+                {TokenTabs.map((tab) => (
+                  <Tab key={tab.key} className="focus-visible:outline-none">
+                    {({ selected }) => (
+                      <div className="flex justify-start py-2 w-full">
+                        <Heading
+                          as="h2"
+                          className={`text-sm ${
+                            selected ? 'text-neutral-800' : 'text-neutral-600'
+                          }`}
+                        >
+                          {tab.value}
+                        </Heading>
+                      </div>
+                    )}
+                  </Tab>
+                ))}
+              </Tab.List>
+              <Tab.Panels className="w-full h-full min-h-0">
+                <Tab.Panel className="flex flex-col gap-2 h-full">
+                  <TokenList
+                    loading={isFetchingWallets}
+                    data={filteredTokens}
+                    onSelect={handleTokenSelect}
+                  />
+                  <span className="mt-auto text-xs text-neutral-500">
+                    Only supported tokens are shown
+                  </span>
+                </Tab.Panel>
+                <Tab.Panel className="flex flex-col gap-2 h-full">
+                  <MonikerList
+                    balances={tokenBalances}
+                    searchTerm={searchTerm}
+                    onSelect={handleMonikerSelect}
+                  />
+                </Tab.Panel>
+              </Tab.Panels>
+            </Tab.Group>{' '}
+          </>
+        ) : (
+          unauthorizedContent
+        )}
+      </BottomSheet>
+    </>
   )
 }

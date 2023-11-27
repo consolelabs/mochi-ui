@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import type { Variant } from './types'
 
 interface PanelContainerProps {
@@ -6,19 +6,23 @@ interface PanelContainerProps {
   children?: ReactNode
 }
 
-export const PanelContainer: React.FC<PanelContainerProps> = ({
-  variant,
-  children,
-}) => {
+export const PanelContainer = React.forwardRef<
+  HTMLDivElement,
+  PanelContainerProps
+>(({ variant, children }, ref) => {
   switch (variant) {
     case 'dropdown':
       return (
-        <div className="px-3 rounded-xl py-[22px] bg-white-pure">
+        <div ref={ref} className="px-3 rounded-xl py-[22px] bg-white-pure">
           {children}
         </div>
       )
     case 'modal':
     default:
-      return <div className="p-6 rounded-xl bg-white-pure">{children}</div>
+      return (
+        <div ref={ref} className="p-6 rounded-xl bg-white-pure">
+          {children}
+        </div>
+      )
   }
-}
+})

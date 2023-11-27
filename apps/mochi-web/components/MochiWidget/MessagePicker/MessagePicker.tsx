@@ -1,14 +1,8 @@
-import {
-  InputField,
-  Heading,
-  SectionList,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@consolelabs/core'
+import { BottomSheet } from '~cpn/BottomSheet'
+import { Input, Heading, SectionList } from '@consolelabs/core'
 import { MagnifierLine } from '@consolelabs/icons'
 import { useDisclosure } from '@dwarvesf/react-hooks'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Message, MessageList } from './data'
 import { sectionFormatter } from '../TokenPicker/utils'
 
@@ -36,13 +30,21 @@ interface MessagePickerProps {
 }
 
 export default function MessagePicker({ value, onChange }: MessagePickerProps) {
+  const inputRef = useRef<HTMLInputElement | null>(null)
   const [messageSearch, setMessageSearch] = useState('')
-  const { isOpen: isOpenMessage, onToggle: toggleMessagePopover } =
-    useDisclosure()
+  const { isOpen, onClose, onOpen } = useDisclosure()
 
   function onMessageSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     setMessageSearch(e.target.value)
   }
+
+  useEffect(() => {
+    if (isOpen) {
+      setTimeout(() => {
+        inputRef.current?.focus({ preventScroll: true })
+      }, 0)
+    }
+  }, [isOpen])
 
   return (
     <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-2">
@@ -64,7 +66,7 @@ export default function MessagePicker({ value, onChange }: MessagePickerProps) {
           return (
             <button
               key={message}
-              className="outline-none px-3 py-1 rounded-lg bg-white-pure font-medium text-sm text-[#343433]"
+              className="py-1 px-3 text-sm font-medium rounded-lg outline-none bg-white-pure text-neutral-800"
               type="button"
               onClick={() => onChange(message)}
             >
@@ -72,50 +74,50 @@ export default function MessagePicker({ value, onChange }: MessagePickerProps) {
             </button>
           )
         })}
-        <Popover open={isOpenMessage} onOpenChange={toggleMessagePopover}>
-          <PopoverTrigger className="py-1 px-3 text-sm font-medium bg-[#e5e4e3] rounded-lg">
-            More
-          </PopoverTrigger>
-          <PopoverContent
-            align="end"
-            alignOffset={-20}
-            className="flex flex-col gap-y-2 items-center rounded-lg shadow-md w-[414px] max-h-[500px] bg-white-pure"
-          >
-            <InputField
+        <button
+          type="button"
+          onClick={onOpen}
+          className="py-1 px-3 text-sm font-medium rounded-lg outline-none bg-neutral-300"
+        >
+          More
+        </button>
+        <BottomSheet isOpen={isOpen} onClose={onClose} title="Choose message">
+          <Input.Root className="flex-shrink-0 mt-2">
+            <Input.Slot>
+              <MagnifierLine className="w-5 h-5 text-gray-500" />
+            </Input.Slot>
+            <Input.InputField
+              ref={inputRef}
               value={messageSearch}
-              className="w-full"
               placeholder="Search"
-              startAdornment={
-                <MagnifierLine className="pl-2 w-5 h-5 text-gray-500" />
-              }
               onChange={onMessageSearchChange}
             />
-            <SectionList
-              sections={sectionFormatter(
-                MessageList.filter((m) =>
-                  m.content.toLowerCase().includes(messageSearch.toLowerCase()),
-                ),
-                'group',
-              )}
-              renderItem={(item) => (
-                <SectionItem
-                  key={`message-list-${item.id}`}
-                  item={item}
-                  onSelect={() => {
-                    onChange(item.content)
-                    toggleMessagePopover()
-                  }}
-                />
-              )}
-              renderSectionHeader={(section: any) => (
-                <label className="font-bold text-[0.625rem] uppercase text-[#ADACAA]">
-                  {section.title}
-                </label>
-              )}
-              rootClassName="w-full h-full"
-            />
-          </PopoverContent>
-        </Popover>
+          </Input.Root>
+          <SectionList
+            sections={sectionFormatter(
+              MessageList.filter((m) =>
+                m.content.toLowerCase().includes(messageSearch.toLowerCase()),
+              ),
+              'group',
+            )}
+            renderItem={(item) => (
+              <SectionItem
+                key={`message-list-${item.id}`}
+                item={item}
+                onSelect={() => {
+                  onChange(item.content)
+                  onClose()
+                }}
+              />
+            )}
+            renderSectionHeader={(section: any) => (
+              <label className="font-bold text-[0.625rem] uppercase text-[#ADACAA]">
+                {section.title}
+              </label>
+            )}
+            rootClassName="w-full h-full mt-2"
+          />
+        </BottomSheet>
       </div>
     </div>
   )
