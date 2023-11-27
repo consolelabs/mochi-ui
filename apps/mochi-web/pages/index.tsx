@@ -23,6 +23,7 @@ import Feed from '~cpn/Feed'
 import Link from 'next/link'
 import { useAuthStore } from '~store'
 import { useShallow } from 'zustand/react/shallow'
+import { ROUTES } from '~constants/routes'
 
 const currencies = [
   `<span class="banner-token ethereum-color">&#8203;${renderToString(
@@ -94,7 +95,7 @@ export default function Index() {
   return (
     <Layout>
       <SEO />
-      <div className="grid grid-cols-1 auto-rows-min gap-y-7 gap-x-20 py-8 px-4 m-auto w-full max-w-5xl lg:grid-rows-2 lg:p-8 lg:grid-cols-min">
+      <div className="grid w-full max-w-5xl grid-cols-1 px-4 py-8 m-auto auto-rows-min gap-y-7 gap-x-20 lg:grid-rows-2 lg:p-8 lg:grid-cols-min">
         <div className="flex flex-col lg:justify-end">
           <p className="text-[32px] leading-[38.4px] title-tracking md:text-[40px] md:leading-[48px]">
             Send{' '}
@@ -125,7 +126,7 @@ export default function Index() {
             maxWidth: 440,
             minWidth: 340,
           }}
-          className="flex relative justify-center mx-auto w-screen lg:col-start-2 lg:row-span-2"
+          className="relative flex justify-center w-screen mx-auto lg:col-start-2 lg:row-span-2"
         >
           <div className="absolute w-full">
             <MochiWidget />
@@ -245,7 +246,7 @@ export default function Index() {
             users.
           </span>
           <LivePlatforms className="mt-3" />
-          <Link href="/features" className="mt-1 md:hidden">
+          <Link href={ROUTES.FEATURES} className="mt-1 md:hidden">
             <Button
               className="justify-center w-full"
               size="lg"
@@ -257,13 +258,13 @@ export default function Index() {
             </Button>
           </Link>
         </div>
-        <div className="hidden gap-2 justify-center items-center md:flex">
-          <Link href="/profile">
+        <div className="items-center justify-center hidden gap-2 md:flex">
+          <Link href={ROUTES.MY_PROFILE}>
             <Button size="lg" className="!px-10">
               {isLoggedIn ? 'Profile' : 'Login'}
             </Button>
           </Link>
-          <Link href="/features">
+          <Link href={ROUTES.FEATURES}>
             <Button size="lg" color="neutral" variant="outline">
               View features
               <ArrowRightLine />

@@ -5,6 +5,7 @@ import { useShallow } from 'zustand/react/shallow'
 import { AnimatePresence, Transition, Variants, m } from 'framer-motion'
 import { useEffect } from 'react'
 import { useAuthStore } from '~store'
+import { ROUTES } from '~constants/routes'
 import StepOne from './StepOne'
 import StepTwo from './StepTwo'
 import { useTipWidget } from './store'
@@ -86,7 +87,7 @@ export default function Tip() {
               <Link
                 target="_blank"
                 className="underline"
-                href={`/tx/${tx?.external_id}`}
+                href={ROUTES.TX_RECEIPTS(tx?.external_id)}
               >
                 here is your receipt
               </Link>

@@ -20,7 +20,11 @@ import { AuthPanel } from '~cpn/AuthWidget'
 import { useResponsiveScreen } from '~hooks/useResponsiveScreen'
 import { MobileNav } from './MobileNav'
 
-const authenticatedRoute = ['/profile', '/app', '/server']
+const authenticatedRoute = [
+  ROUTES.MY_PROFILE,
+  ROUTES.APPLICATON_LIST,
+  '/server',
+]
 
 interface LoginPopoverProps {
   isLogging: boolean
@@ -83,10 +87,10 @@ export const Header = () => {
       )}
     >
       <button
-        className="flex gap-x-2 items-center text-left"
+        className="flex items-center text-left gap-x-2"
         onClick={onCloseMobileNav}
       >
-        <Link href={ROUTES.HOME} className="flex gap-x-2 items-center">
+        <Link href={ROUTES.HOME} className="flex items-center gap-x-2">
           <Image
             src={logo}
             alt="Logo"
@@ -99,7 +103,7 @@ export const Header = () => {
           </span>
         </Link>
         {isLoggedIn && authenticatedRoute.includes(pathname) && (
-          <Link href={ROUTES.PROFILE} className="text-base text-gray-500">
+          <Link href={ROUTES.MY_PROFILE} className="text-base text-gray-500">
             Dashboard
           </Link>
         )}
@@ -131,10 +135,10 @@ export const Header = () => {
             )}
           </>
         ) : (
-          <div className="flex flex-row order-1 gap-y-2 gap-x-6 self-center ml-auto md:order-2">
-            <div className="flex flex-wrap gap-5 items-stretch">
+          <div className="flex flex-row self-center order-1 ml-auto gap-y-2 gap-x-6 md:order-2">
+            <div className="flex flex-wrap items-stretch gap-5">
               <Link
-                href="/features"
+                href={ROUTES.FEATURES}
                 className="flex items-center text-sm font-semibold"
               >
                 Features

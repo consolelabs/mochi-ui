@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { ParsedUrlQuery } from 'querystring'
 import React from 'react'
 import { useAppWalletContext } from '~context/wallet-context'
+import { ROUTES } from '~constants/routes'
 import { Menu } from './Menu'
 import { MenuItem } from './Menu/Menu'
 
@@ -160,7 +161,7 @@ export default function Sidebar() {
                 id: 'logout',
                 icon: <Icon icon="majesticons:logout" className="w-5 h-5" />,
                 text: 'Logout',
-                url: '/profile',
+                url: ROUTES.MY_PROFILE,
                 onClick: () => disconnect(),
               },
             ],
