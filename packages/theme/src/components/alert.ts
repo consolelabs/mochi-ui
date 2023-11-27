@@ -145,9 +145,9 @@ const createTextCva = (
     },
   })
 
-const alertIconCva = createTextCva('text-sm absolute left-3 top-3')
+const alertIconCva = createTextCva('text-base absolute left-3 top-3')
 
-const alertIconCloseCva = createTextCva('text-sm absolute right-3 top-3')
+const alertIconCloseCva = createTextCva('text-base absolute right-3 top-3')
 
 const alertTitleCva = createTextCva('font-semibold tracking-tight', {
   sm: 'text-xs',
