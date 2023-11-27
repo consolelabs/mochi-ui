@@ -126,10 +126,10 @@ export const Header = () => {
       ) : null}
 
       {isMounted && !isMobile ? (
-        <div className="flex flex-row order-1 gap-y-2 gap-x-6 self-center ml-auto md:order-2">
-          <div className="flex flex-wrap gap-5 items-stretch">
+        <div className="flex flex-row self-center order-1 ml-auto gap-y-2 gap-x-6 md:order-2">
+          <div className="flex flex-wrap items-stretch gap-5">
             <Link
-              href="/features"
+              href={ROUTES.FEATURES}
               className="flex items-center text-sm font-semibold"
             >
               Features
