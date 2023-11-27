@@ -12,6 +12,7 @@ import {
 } from '@consolelabs/core'
 import { ThreeDotLine, ArrowUpLine } from '@consolelabs/icons'
 import { useClipboard } from '@dwarvesf/react-hooks'
+import clsx from 'clsx'
 import Link from 'next/link'
 import { SOCIAL_LINKS } from '~constants'
 import { GET_PATHS } from '~constants/api'
@@ -22,6 +23,7 @@ interface Props {
   apps?: ViewApplication[]
   onOpenCreateAppModal: () => void
   isLoading?: boolean
+  className?: string
 }
 
 const Name: ColumnProps<ViewApplication>['cell'] = (props) => (
@@ -79,14 +81,15 @@ export const AppListing = ({
   apps = [],
   onOpenCreateAppModal,
   isLoading,
+  className,
 }: Props) => {
   return (
-    <div className="mt-8">
+    <div className={clsx('mt-8', className)}>
       <Typography level="h7" color="textPrimary">
         My Applications
       </Typography>
       {apps?.length || isLoading ? (
-        <div>
+        <div className="max-w-full overflow-auto">
           <Table
             isLoading={isLoading}
             columns={[

@@ -121,12 +121,12 @@ export default function AuthenticatedLayout({
             isSelected={(item) => !!item.href && pathname.startsWith(item.href)}
           />
 
-          <Layout className="flex-1">
+          <Layout className="flex-1 max-w-[calc(100vw-72px)]">
             {pageHeader}
 
             <PageContent>
               <div className="flex items-start gap-x-24 mx-auto flex-1 relative">
-                <div className="flex-1 h-full">
+                <div className="flex-1 h-full max-w-full">
                   {childSEO}
                   {children}
                 </div>

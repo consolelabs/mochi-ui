@@ -104,25 +104,20 @@ const App: NextPageWithLayout = () => {
     <AuthLayout
       pageHeader={<AppPageHeader apps={apps} onClickCreateApp={onOpen} />}
     >
-      <div>
-        <Statistics id={id} onOpenCreateAppModal={onOpen} />
-        <AppListing
-          apps={apps}
-          onOpenCreateAppModal={onOpen}
-          isLoading={isLoading || !id}
-        />
-        <Modal open={isOpen}>
-          <ModalContent className="w-full max-w-md">
-            <NewAppForm id={id} onClose={onClose} onSuccess={onCreateApp} />
-          </ModalContent>
-        </Modal>
-      </div>
+      <Statistics id={id} onOpenCreateAppModal={onOpen} />
+      <AppListing
+        apps={apps}
+        onOpenCreateAppModal={onOpen}
+        isLoading={isLoading || !id}
+        className="max-w-full"
+      />
+      <Modal open={isOpen}>
+        <ModalContent className="w-full max-w-md">
+          <NewAppForm id={id} onClose={onClose} onSuccess={onCreateApp} />
+        </ModalContent>
+      </Modal>
     </AuthLayout>
   )
 }
-
-// App.getLayout = function getLayout(page: ReactElement) {
-//   return <AuthLayout pageHeader={<AppPageHeader />}>{page}</AuthLayout>
-// }
 
 export default App
