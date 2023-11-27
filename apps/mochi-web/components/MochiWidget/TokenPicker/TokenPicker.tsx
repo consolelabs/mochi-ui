@@ -5,7 +5,12 @@ import { ChevronDownLine, MagnifierLine } from '@consolelabs/icons'
 import { useShallow } from 'zustand/react/shallow'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Tab } from '@headlessui/react'
-import { Input, Heading } from '@consolelabs/core'
+import {
+  TextFieldInput,
+  TextFieldDecorator,
+  TextFieldRoot,
+  Heading,
+} from '@consolelabs/core'
 import { BottomSheet } from '~cpn/BottomSheet'
 import { Balance, useWalletStore } from '~store'
 import { TokenList } from './TokenList'
@@ -163,17 +168,17 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
       >
         {authorized ? (
           <>
-            <Input.Root className="flex-shrink-0 mt-1">
-              <Input.Slot>
+            <TextFieldRoot className="flex-shrink-0 mt-1">
+              <TextFieldDecorator>
                 <MagnifierLine className="w-5 h-5 text-gray-500" />
-              </Input.Slot>
-              <Input.InputField
+              </TextFieldDecorator>
+              <TextFieldInput
                 ref={inputRef}
                 placeholder="Search"
                 value={searchTerm}
                 onChange={onSearchChange}
               />
-            </Input.Root>
+            </TextFieldRoot>
             <Tab.Group selectedIndex={tabIdx} onChange={setTabIdx}>
               <Tab.List className="flex gap-6 mt-2 w-full">
                 {TokenTabs.map((tab) => (
