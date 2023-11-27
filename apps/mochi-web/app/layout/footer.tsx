@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import { SOCIAL_LINKS } from '~constants'
-import { logo } from '~utils/image'
 import { Icon } from '@iconify/react'
 import Link from 'next/link'
+import { Logo } from '@consolelabs/core'
 
 export const Footer = () => {
   const year = new Date().getFullYear()
@@ -10,15 +10,7 @@ export const Footer = () => {
     <footer className="mt-auto border-t border-[#ebeae9]">
       <div className="pt-16 pb-5 landing-block md:py-18 md:h-[300px]">
         <div className="flex flex-col gap-y-5 gap-x-8 sm:gap-x-12 md:flex-row">
-          <div className="w-9 h-9 rounded-full">
-            <Image
-              src={logo}
-              alt="Logo"
-              width={36}
-              height={36}
-              className="block rounded-full"
-            />
-          </div>
+          <Logo className="!h-9 !w-9" />
           <div className="flex flex-col gap-y-7 gap-x-12 mb-10 sm:gap-x-24 sm:mb-0 md:flex-row md:flex-wrap md:gap-y-0">
             <div className="space-y-2 text-[13px]">
               <div className="text-footer-title">Developers</div>
