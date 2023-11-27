@@ -15,7 +15,7 @@ import { useClipboard } from '@dwarvesf/react-hooks'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { SOCIAL_LINKS } from '~constants'
-import { GET_PATHS } from '~constants/api'
+import { ROUTES } from '~constants/routes'
 import { ViewApplication } from '~types/mochi-pay-schema'
 import { formatDate } from '~utils/time'
 
@@ -29,7 +29,7 @@ interface Props {
 const Name: ColumnProps<ViewApplication>['cell'] = (props) => (
   <div className="flex items-center space-x-3.5">
     <Avatar src={props.row.original.avatar || ''} />
-    <Link href={GET_PATHS.APP_DETAIL(props.row.original.id)}>
+    <Link href={ROUTES.APP_DETAIL(props.row.original.id)}>
       <Typography level="p5" className="font-bold">
         {props.row.original.name}
       </Typography>

@@ -3,7 +3,7 @@ import {
   DtoCreateApplicationRequest,
   ViewFullApplicationResponse,
 } from '~types/mochi-pay-schema'
-import { API } from '~constants/api'
+import { API, GET_PATHS } from '~constants/api'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -40,17 +40,22 @@ export default function NewAppForm({ id, onClose, onSuccess, onError }: Props) {
   const onCreateApp = (data: DtoCreateApplicationRequest) => {
     if (!id) return
     return API.MOCHI_PAY.post(
-      { ...data, app_name: data.app_name.trim(), metadata: {}, platforms: [] },
-      `/profiles/${id}/applications`,
+      {
+        ...data,
+        app_name: data.app_name.trim(),
+        metadata: {},
+        platforms: [],
+      },
+      GET_PATHS.CREATE_APPLICATION(id),
     )
-      .badRequest((e) => {
-        const err = JSON.parse(e.message)
-        alert(err.msg)
-        onError?.()
-      })
       .json((r) => {
         onClose()
         onSuccess?.(r)
+      })
+      .catch((e) => {
+        const err = JSON.parse(e.message)
+        alert(err.msg)
+        onError?.()
       })
   }
 
