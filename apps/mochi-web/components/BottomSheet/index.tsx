@@ -66,6 +66,7 @@ function BottomSheet({
             size="sm"
             type="button"
             onClick={_onClose}
+            className="!p-0"
           >
             Close
           </Button>
@@ -149,7 +150,7 @@ export default function BottomSheetProvider({
             scale: isOpen ? '100%' : '100%',
           }}
           transition={{ type: 'spring', bounce: 0, duration: 0.5 }}
-          className={clsx({
+          className={clsx('will-change-[opacity]', {
             'pointer-events-none overflow-hidden': isOpen,
             'pointer-events-auto': !isOpen,
           })}
@@ -164,7 +165,10 @@ export default function BottomSheetProvider({
           }}
           transition={{ type: 'spring', bounce: 0, duration: 0.5 }}
           ref={ref}
-          className="absolute left-1/2 w-full h-[75%] bottom-0 origin-bottom flex flex-col p-3 bg-white-pure rounded-t-lg"
+          className={clsx(
+            'will-change-transform',
+            'absolute left-1/2 w-full h-[75%] bottom-0 origin-bottom flex flex-col p-3 bg-white-pure rounded-t-lg',
+          )}
         />
       </div>
     </BottomSheetContextProvider>
