@@ -53,69 +53,59 @@ export const Statistics = ({ id, onOpenCreateAppModal }: Props) => {
   const { data: stats } = useFetchApplicationStats(id)
 
   return (
-    <>
-      <div className="flex flex-col gap-2 p-2 bg-neutral-150 rounded-2xl sm:flex-row">
-        <div className="w-full px-6 pb-8 space-y-2 sm:w-1/3 bg-neutral-0 rounded-xl">
-          <Image
-            width={204}
-            height={124}
-            alt=""
-            src="/assets/app-statistics.png"
-          />
-          <Typography level="h6" color="textPrimary">
-            Build an app
-          </Typography>
-          <Typography level="p5" color="textSecondary">
-            Create an app to get a live API key with access to multiple Mochi
-            products.
-          </Typography>
-          <Button size="sm" onClick={onOpenCreateAppModal}>
-            Create an app
-          </Button>
-        </div>
-        <div className="grid flex-1 grid-cols-2 gap-2 sm:grid-cols-3">
-          <DataBox
-            label="All time Users"
-            amount={stats?.users_in_total}
-            percentage={stats?.users_in_total_change?.last_month_percentage}
-          />
-          <DataBox
-            label="7 days Users"
-            amount={stats?.users_in_7d}
-            percentage={stats?.users_in_7d_change?.last_month_percentage}
-          />
-          <DataBox
-            label="All time Txs"
-            amount={stats?.txs_in_total}
-            percentage={stats?.txs_in_total_change?.last_month_percentage}
-          />
-          <DataBox
-            label="7 days Txs"
-            amount={stats?.txs_in_7d}
-            percentage={stats?.txs_in_7d_change?.last_month_percentage}
-          />
-          <DataBox
-            label="All time Revenue"
-            amount={stats?.revenue_in_total}
-            formatAmount={(amount) => `$${formatNumber(amount)}`}
-            percentage={stats?.revenue_in_total_change?.last_month_percentage}
-          />
-          <DataBox
-            label="7 days Revenue"
-            amount={stats?.revenue_in_7d}
-            formatAmount={(amount) => `$${formatNumber(amount)}`}
-            percentage={stats?.revenue_in_7d_change?.last_month_percentage}
-          />
-        </div>
+    <div className="flex flex-col gap-2 p-2 bg-neutral-150 rounded-2xl sm:flex-row">
+      <div className="w-full px-6 pb-8 space-y-2 sm:w-1/3 bg-neutral-0 rounded-xl">
+        <Image
+          width={204}
+          height={124}
+          alt=""
+          src="/assets/app-statistics.png"
+        />
+        <Typography level="h6" color="textPrimary">
+          Build an app
+        </Typography>
+        <Typography level="p5" color="textSecondary">
+          Create an app to get a live API key with access to multiple Mochi
+          products.
+        </Typography>
+        <Button size="sm" onClick={onOpenCreateAppModal}>
+          Create an app
+        </Button>
       </div>
       <div className="grid flex-1 grid-cols-2 gap-2 sm:grid-cols-3">
-        <DataBox label="All time Users" amount={3.298} percentage={0.4} />
-        <DataBox label="7 days Users" />
-        <DataBox label="All time Txs" />
-        <DataBox label="7 days Txs" amount={3.298} percentage={-0.06} />
-        <DataBox label="All time Revenue" />
-        <DataBox label="7 days Revenue" />
+        <DataBox
+          label="All time Users"
+          amount={stats?.users_in_total}
+          percentage={stats?.users_in_total_change?.last_month_percentage}
+        />
+        <DataBox
+          label="7 days Users"
+          amount={stats?.users_in_7d}
+          percentage={stats?.users_in_7d_change?.last_month_percentage}
+        />
+        <DataBox
+          label="All time Txs"
+          amount={stats?.txs_in_total}
+          percentage={stats?.txs_in_total_change?.last_month_percentage}
+        />
+        <DataBox
+          label="7 days Txs"
+          amount={stats?.txs_in_7d}
+          percentage={stats?.txs_in_7d_change?.last_month_percentage}
+        />
+        <DataBox
+          label="All time Revenue"
+          amount={stats?.revenue_in_total}
+          formatAmount={(amount) => `$${formatNumber(amount)}`}
+          percentage={stats?.revenue_in_total_change?.last_month_percentage}
+        />
+        <DataBox
+          label="7 days Revenue"
+          amount={stats?.revenue_in_7d}
+          formatAmount={(amount) => `$${formatNumber(amount)}`}
+          percentage={stats?.revenue_in_7d_change?.last_month_percentage}
+        />
       </div>
-    </>
+    </div>
   )
 }
