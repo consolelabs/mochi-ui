@@ -101,6 +101,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
 
   const handleTokenSelect = useCallback(
     (asset: Balance | null) => {
+      setSearchTerm('')
       setIsOpenSelector(false)
       onSelect?.(asset)
       setTabIdx(0)
@@ -110,6 +111,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
   )
 
   function handleMonikerSelect(asset: Moniker) {
+    setSearchTerm('')
     setIsOpenSelector(false)
     onSelect?.(asset)
     setTabIdx(1)
