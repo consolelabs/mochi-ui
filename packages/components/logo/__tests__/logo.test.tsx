@@ -27,7 +27,7 @@ describe('Logo', () => {
 
     expect(lightPathElements[lightPathElements.length - 1]).toHaveAttribute(
       'fill',
-      'white',
+      '#FFFFFF',
     )
   })
 
