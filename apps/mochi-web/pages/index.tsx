@@ -29,7 +29,7 @@ const currencies = [
   `<span class="banner-token ethereum-color">&#8203;${renderToString(
     <img
       src="https://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/256/Ethereum-ETH-icon.png"
-      className="object-contain w-10 h-12"
+      className="object-contain w-9 h-9 md:w-10 md:h-10"
       alt=""
     />,
   )}Ethereum</span>`,
@@ -37,19 +37,19 @@ const currencies = [
     <img
       src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/128px-Bitcoin.svg.png"
       alt=""
-      className="w-10 h-10"
+      className="w-9 h-9 md:w-10 md:h-10"
     />,
   )}Bitcoin</span>`,
   `<span class="banner-token solana-color">&#8203;${renderToString(
     <img
       src="https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png"
       alt=""
-      className="w-10 h-10"
+      className="w-9 h-9 md:w-10 md:h-10"
     />,
   )}Solana</span>`,
   `<span class="banner-token dogecoin-color">&#8203;${renderToString(
     <img
-      className="w-10 h-10"
+      className="w-9 h-9 md:w-10 md:h-10"
       src="https://upload.wikimedia.org/wikipedia/en/d/d0/Dogecoin_Logo.png"
       alt=""
     />,
@@ -95,16 +95,14 @@ export default function Index() {
   return (
     <Layout>
       <SEO />
-      <div className="grid w-full max-w-5xl grid-cols-1 px-4 py-8 m-auto auto-rows-min gap-y-7 gap-x-20 lg:grid-rows-2 lg:p-8 lg:grid-cols-min">
+      <div className="grid grid-cols-1 auto-rows-min gap-y-7 gap-x-20 py-8 px-4 m-auto w-full max-w-5xl lg:grid-rows-2 lg:p-8 lg:grid-cols-min">
         <div className="flex flex-col lg:justify-end">
           <p className="text-[32px] leading-[38.4px] title-tracking md:text-[40px] md:leading-[48px]">
             Send{' '}
             <span
               ref={currency}
-              className="inline-flex items-baseline font-medium"
-            >
-              <span>&#8203;</span>
-            </span>
+              className="font-medium text-[32px] leading-[38.4px] title-tracking md:text-[40px] md:leading-[48px]"
+            />
             <br />
             to anyone on
             <br />
@@ -122,11 +120,11 @@ export default function Index() {
 
         <div
           style={{
-            height: 680,
+            height: 670,
             maxWidth: 440,
             minWidth: 340,
           }}
-          className="relative flex justify-center w-screen mx-auto lg:col-start-2 lg:row-span-2"
+          className="flex relative justify-center mx-auto w-screen lg:col-start-2 lg:row-span-2"
         >
           <div className="absolute w-full">
             <MochiWidget />
@@ -258,7 +256,7 @@ export default function Index() {
             </Button>
           </Link>
         </div>
-        <div className="items-center justify-center hidden gap-2 md:flex">
+        <div className="hidden gap-2 justify-center items-center md:flex">
           <Link href={ROUTES.MY_PROFILE}>
             <Button size="lg" className="!px-10">
               {isLoggedIn ? 'Profile' : 'Login'}
