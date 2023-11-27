@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react'
 import Alert, { AlertProps } from '../src/alert'
 import { AlertTitle } from '../src/alert-title'
 import { AlertIcon } from '../src'
+import { AlertDescription } from '../src/alert-description'
+import { AlertCloseIcon } from '../src/alert-close'
 
 const schemes = [
   'primary',
@@ -32,6 +34,14 @@ const meta: Meta<typeof Alert> = {
       control: 'select',
       options: ['default', 'outlined'],
     },
+    size: {
+      control: 'select',
+      options: ['sm', 'md'],
+    },
+    status: {
+      control: 'select',
+      options: ['info', 'danger', 'success', 'warning'],
+    },
   },
 }
 
@@ -47,6 +57,11 @@ export const Default: Story = {
           Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
           cillum sint consectetur cupidatat.
         </AlertTitle>
+        <AlertDescription>
+          Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
+          cillum sint consectetur cupidatat.
+        </AlertDescription>
+        <AlertCloseIcon />
       </Alert>
     )
   },
@@ -59,10 +74,14 @@ export const Colors: Story = {
         {schemes.map((s) => (
           <Alert scheme={s}>
             <AlertIcon />
-            <AlertTitle>
+            <AlertTitle>Lorem ipsum</AlertTitle>
+            <AlertDescription>
               Lorem ipsum dolor sit amet, qui minim labore adipisicing minim
-              sint cillum sint consectetur cupidatat.
-            </AlertTitle>
+              sint cillum sint consectetur cupidatat. Lorem ipsum dolor sit
+              amet, qui minim labore adipisicing minim sint cillum sint
+              consectetur cupidatat.
+            </AlertDescription>
+            <AlertCloseIcon />
           </Alert>
         ))}
       </div>

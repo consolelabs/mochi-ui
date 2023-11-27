@@ -1,27 +1,20 @@
-import {
-  InfoCircleOutlined,
-  CheckCircleOutlined,
-  ExclamationTriangleOutlined,
-  CrossCircleOutlined,
-} from '@consolelabs/icons'
+import { InfoCircleOutlined, CheckCircleOutlined } from '@consolelabs/icons'
 import { SVGProps, forwardRef } from 'react'
 import { alert } from '@consolelabs/theme'
 import { useAlertContext } from './context'
 
 const icons = {
-  primary: InfoCircleOutlined,
-  secondary: InfoCircleOutlined,
-  neutral: InfoCircleOutlined,
+  info: InfoCircleOutlined,
   success: CheckCircleOutlined,
-  warning: ExclamationTriangleOutlined,
-  danger: CrossCircleOutlined,
-}
+  warning: InfoCircleOutlined,
+  danger: InfoCircleOutlined,
+} as const
 
 export const AlertIcon = forwardRef<SVGSVGElement, SVGProps<SVGSVGElement>>(
   (props, ref) => {
-    const { scheme, variant } = useAlertContext()
+    const { scheme, variant, status } = useAlertContext()
     const { className, ...restProps } = props
-    const Icon = icons[scheme ?? 'neutral']
+    const Icon = icons[status]
     return (
       <Icon
         className={alert.alertIconCva({ scheme, variant, className })}

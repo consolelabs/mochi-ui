@@ -4,7 +4,7 @@ import { AlertContext, AlertContextValue } from './context'
 
 const { alertCva } = alert
 
-type AlertProps = AlertContextValue & {
+type AlertProps = Partial<AlertContextValue> & {
   children: React.ReactNode
   className?: string
 }

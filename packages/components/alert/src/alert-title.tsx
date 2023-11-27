@@ -10,11 +10,11 @@ type PolymorphicAlertTitle = Polymorphic.ForwardRefComponent<
 
 export const AlertTitle = forwardRef((props, ref) => {
   const { as: Component = 'h3', className, ...restProps } = props
-  const { scheme, variant } = useAlertContext()
+  const { scheme, variant, size } = useAlertContext()
 
   return (
     <Component
-      className={alert.alertTitleCva({ scheme, variant, className })}
+      className={alert.alertTitleCva({ scheme, variant, size, className })}
       ref={ref}
       {...restProps}
     />

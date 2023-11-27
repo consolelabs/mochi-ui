@@ -1,7 +1,6 @@
 import { cva, VariantProps } from 'class-variance-authority'
-import clsx from 'clsx'
 
-const alertCva = cva(['flex gap-x-2 rounded-lg p-3'], {
+const alertCva = cva(['flex flex-col gap-y-1 px-9 rounded-lg py-2 relative'], {
   variants: {
     variant: {
       default: '',
@@ -59,7 +58,10 @@ const alertCva = cva(['flex gap-x-2 rounded-lg p-3'], {
   },
 })
 
-const createTextCva = (base?: string) =>
+const createTextCva = (
+  base?: string,
+  size: { sm: string; md: string } = { sm: '', md: '' },
+) =>
   cva(base, {
     variants: {
       variant: {
@@ -74,10 +76,7 @@ const createTextCva = (base?: string) =>
         warning: '',
         neutral: '',
       },
-      size: {
-        sm: '',
-        base: '',
-      },
+      size,
     },
     compoundVariants: [
       {
@@ -146,18 +145,26 @@ const createTextCva = (base?: string) =>
     },
   })
 
-const alertIconCva = createTextCva('')
+const alertIconCva = createTextCva('text-sm absolute left-3 top-3')
 
-const alertTitleCva = createTextCva('font-medium')
+const alertIconCloseCva = createTextCva('text-sm absolute right-3 top-3')
 
-const alertContentClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx('flex flex-col flex-1 text-current', className)
+const alertTitleCva = createTextCva('font-semibold tracking-tight', {
+  sm: 'text-xs',
+  md: 'text-sm',
+})
+
+const alertDescriptionCva = createTextCva('tracking-tight line-clamp-1', {
+  sm: 'text-xs',
+  md: 'text-sm',
+})
 
 export const alert = {
   alertCva,
   alertIconCva,
-  alertContentClsx,
   alertTitleCva,
+  alertDescriptionCva,
+  alertIconCloseCva,
 }
 
 export type AlertStylesProps = VariantProps<typeof alertCva>
