@@ -13,7 +13,7 @@ const root = cva(
   },
 )
 
-const inputVariants = cva(
+const textFieldVariants = cva(
   [
     'peer block flex-1 appearance-none outline-none bg-transparent relative z-[1] rounded shrink-0 py-2.5 caret-primary-outline-fg placeholder:text-text-secondary',
   ],
@@ -57,11 +57,11 @@ const mask = cva(
   },
 )
 
-export const input = {
-  inputVariants,
+export const textfield = {
+  textFieldVariants,
   root,
   slot,
   mask,
 }
 
-export type InputStylesProps = VariantProps<typeof inputVariants>
+export type TextFieldStylesProps = VariantProps<typeof textFieldVariants>

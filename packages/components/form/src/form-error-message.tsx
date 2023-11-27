@@ -5,14 +5,14 @@ import type * as Polymorphic from '@consolelabs/polymorphic'
 
 type PolymorphicFormErrorMessage = Polymorphic.ForwardRefComponent<
   'span',
-  HTMLAttributes<HTMLSpanElement> & { value?: string }
+  HTMLAttributes<HTMLSpanElement>
 >
 
 export const FormErrorMessage = forwardRef((props, ref) => {
-  const { as: Component = 'span', className, value = '' } = props
-  const { error, errorValue } = useFromControl()
+  const { as: Component = 'span', className } = props
+  const { error } = useFromControl()
 
-  if (!error || value !== errorValue) return null
+  if (!error) return
 
   return (
     <Component

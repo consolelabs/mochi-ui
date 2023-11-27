@@ -1,6 +1,10 @@
 import { StoryObj, Meta } from '@storybook/react'
 import { useForm, Controller } from 'react-hook-form'
-import { Input } from '@consolelabs/input'
+import {
+  TextFieldRoot,
+  TextFieldInput,
+  TextFieldDecorator,
+} from '@consolelabs/input'
 import { Button } from '@consolelabs/button'
 import { Checkbox } from '@consolelabs/checkbox'
 import { UserSolid } from '@consolelabs/icons'
@@ -50,18 +54,14 @@ export const Default: Story = {
     return (
       <FormControl {...props}>
         <FormLabel>Username</FormLabel>
-        <Input.Root>
-          <Input.Slot>
+        <TextFieldRoot>
+          <TextFieldDecorator>
             <UserSolid />
-          </Input.Slot>
-          <Input.InputField />
-        </Input.Root>
+          </TextFieldDecorator>
+          <TextFieldInput />
+        </TextFieldRoot>
         <FormHelperText>This is helper text</FormHelperText>
-        <FormErrorMessage value="required">
-          This field is required
-        </FormErrorMessage>
-        <FormErrorMessage value="min">At least 10 characters</FormErrorMessage>
-        <FormErrorMessage value="max">At most 50 characters</FormErrorMessage>
+        <FormErrorMessage>This field is required</FormErrorMessage>
       </FormControl>
     )
   },
@@ -80,15 +80,12 @@ export const FormSubmission: Story = {
       >
         <FormControl required>
           <FormLabel>Username</FormLabel>
-          <Input.Root>
-            <Input.Slot>
+          <TextFieldRoot>
+            <TextFieldRoot>
               <UserSolid />
-            </Input.Slot>
-            <Input.InputField
-              name="username"
-              placeholder="Enter your username"
-            />
-          </Input.Root>
+            </TextFieldRoot>
+            <TextFieldInput name="username" placeholder="Enter your username" />
+          </TextFieldRoot>
           <FormHelperText>This is helper text</FormHelperText>
         </FormControl>
 
@@ -125,15 +122,12 @@ export const WithReactHookForm: Story = {
           render={({ field, fieldState }) => (
             <FormControl error={!!fieldState.error} hideHelperTextOnError>
               <FormLabel>Username</FormLabel>
-              <Input.Root>
-                <Input.Slot>
+              <TextFieldRoot>
+                <TextFieldRoot>
                   <UserSolid />
-                </Input.Slot>
-                <Input.InputField
-                  {...field}
-                  placeholder="Enter your username"
-                />
-              </Input.Root>
+                </TextFieldRoot>
+                <TextFieldInput {...field} placeholder="Enter your username" />
+              </TextFieldRoot>
               <FormHelperText>Type in your username</FormHelperText>
               <FormErrorMessage>{fieldState.error?.message}</FormErrorMessage>
             </FormControl>
@@ -147,16 +141,16 @@ export const WithReactHookForm: Story = {
           render={({ field, fieldState }) => (
             <FormControl error={!!fieldState.error}>
               <FormLabel>Password</FormLabel>
-              <Input.Root>
-                <Input.Slot>
+              <TextFieldRoot>
+                <TextFieldRoot>
                   <UserSolid />
-                </Input.Slot>
-                <Input.InputField
+                </TextFieldRoot>
+                <TextFieldInput
                   {...field}
                   placeholder="Enter your password"
                   type="password"
                 />
-              </Input.Root>
+              </TextFieldRoot>
               <FormHelperText>Type in your password</FormHelperText>
               <FormErrorMessage>{fieldState.error?.message}</FormErrorMessage>
             </FormControl>

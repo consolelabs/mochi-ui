@@ -1,16 +1,18 @@
 import { DiscordColored, PasswordLockColored, Slack } from '@consolelabs/icons'
 import type { Meta, StoryObj } from '@storybook/react'
 import { Avatar } from '@consolelabs/avatar'
-import Input from '../src/input'
+import {
+  TextFieldRoot,
+  TextFieldInput,
+  TextFieldDecorator,
+} from '../src/textfield'
 
-const meta: Meta<typeof Input.InputField> = {
-  title: 'Components/Input',
-  component: Input.InputField,
+const meta: Meta<typeof TextFieldInput> = {
+  title: 'Components/TextField',
+  component: TextFieldInput,
   parameters: {
-    // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
     layout: 'centered',
   },
-  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],
   argTypes: {
     size: {
@@ -29,7 +31,7 @@ const meta: Meta<typeof Input.InputField> = {
 }
 
 export default meta
-type Story = StoryObj<typeof Input>
+type Story = StoryObj<typeof TextFieldInput>
 
 export const Default: Story = {
   args: {},
@@ -38,55 +40,55 @@ export const Default: Story = {
 export function Size() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-      <Input.InputField id="username" placeholder="Default" />
+      <TextFieldInput id="username" placeholder="Default" />
 
-      <Input.InputField placeholder="Large size" size="lg" />
+      <TextFieldInput placeholder="Large size" size="lg" />
     </div>
   )
 }
 
 export function Disabled() {
-  return <Input.InputField placeholder="Search the docs…" disabled />
+  return <TextFieldInput placeholder="Search the docs…" disabled />
 }
 
 export function Error() {
-  return <Input.InputField placeholder="Search the docs…" error />
+  return <TextFieldInput placeholder="Search the docs…" error />
 }
 
 export function Slot() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-      <Input.Root>
-        <Input.Slot>
+      <TextFieldRoot>
+        <TextFieldDecorator>
           <Avatar
             size="xs"
             smallSrc="https://cdn.discordapp.com/emojis/1093923016691421205.png?size=240&quality=lossless"
             src="https://mochi.gg/logo.png"
           />
-        </Input.Slot>
-        <Input.InputField placeholder="Search the docs…" />
-      </Input.Root>
+        </TextFieldDecorator>
+        <TextFieldInput placeholder="Search the docs…" />
+      </TextFieldRoot>
 
-      <Input.Root size="lg">
-        <Input.Slot>
+      <TextFieldRoot size="lg">
+        <TextFieldDecorator>
           <DiscordColored />
-        </Input.Slot>
-        <Input.InputField placeholder="Search the docs…" />
-      </Input.Root>
+        </TextFieldDecorator>
+        <TextFieldInput placeholder="Search the docs…" />
+      </TextFieldRoot>
 
-      <Input.Root disabled>
-        <Input.Slot>
+      <TextFieldRoot disabled>
+        <TextFieldDecorator>
           <Slack />
-        </Input.Slot>
-        <Input.InputField placeholder="Search the docs…" />
-      </Input.Root>
+        </TextFieldDecorator>
+        <TextFieldInput placeholder="Search the docs…" />
+      </TextFieldRoot>
 
-      <Input.Root error>
-        <Input.InputField placeholder="Search the docs…" />
-        <Input.Slot>
+      <TextFieldRoot error>
+        <TextFieldInput placeholder="Search the docs…" />
+        <TextFieldDecorator>
           <PasswordLockColored />
-        </Input.Slot>
-      </Input.Root>
+        </TextFieldDecorator>
+      </TextFieldRoot>
     </div>
   )
 }

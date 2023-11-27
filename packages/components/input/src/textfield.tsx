@@ -1,35 +1,36 @@
-import { input, InputStylesProps } from '@consolelabs/theme'
-import React, { InputHTMLAttributes, useMemo } from 'react'
+import { textfield, TextFieldStylesProps } from '@consolelabs/theme'
+import React, { InputHTMLAttributes, HTMLAttributes, useMemo } from 'react'
 import { FormControlContext, useFromControl } from '@consolelabs/form-context'
 import type * as Polymorphic from '@consolelabs/polymorphic'
 
 // root
-type InputContextValue = {
+type TextFieldContextValue = {
   size?: 'md' | 'lg'
   disabled?: boolean
   error?: boolean
   required?: boolean
   id?: string
 }
-const InputContext = React.createContext<InputContextValue | undefined>(
+
+const TextFieldContext = React.createContext<TextFieldContextValue | undefined>(
   undefined,
 )
 
-export type InputRootProps = InputContextValue
+type TextFieldRootProps = TextFieldContextValue
 
-type PolymorphicInputRoot = Polymorphic.ForwardRefComponent<
+type PolymorphicTextFieldRoot = Polymorphic.ForwardRefComponent<
   'div',
-  InputRootProps
+  TextFieldRootProps
 >
 
-export const InputRoot = React.forwardRef((props, ref) => {
+const TextFieldRoot = React.forwardRef((props, ref) => {
   const {
     as: Component = 'div',
     children,
     size,
-    disabled: _disabled,
-    error: _error,
-    required: _required,
+    disabled: disabledProp,
+    error: errorProp,
+    required: requiredProp,
     className,
     ...rest
   } = props
@@ -39,17 +40,26 @@ export const InputRoot = React.forwardRef((props, ref) => {
   const contextValue = useMemo(
     () => ({
       size,
-      disabled: _disabled ?? disabled,
-      error: _error ?? error,
-      required: _required ?? required,
+      disabled: disabledProp ?? disabled,
+      error: errorProp ?? error,
+      required: requiredProp ?? required,
       id: htmlFor,
     }),
-    [_disabled, _error, _required, disabled, error, htmlFor, required, size],
+    [
+      disabledProp,
+      errorProp,
+      requiredProp,
+      disabled,
+      error,
+      htmlFor,
+      required,
+      size,
+    ],
   )
 
   return (
     <Component
-      className={input.root({ className, error })}
+      className={textfield.root({ className, error })}
       ref={ref}
       onPointerDown={(event) => {
         const target = event.target as HTMLElement
@@ -72,15 +82,18 @@ export const InputRoot = React.forwardRef((props, ref) => {
       }}
       {...rest}
     >
-      <InputContext.Provider value={contextValue}>
+      <TextFieldContext.Provider value={contextValue}>
         {children}
-      </InputContext.Provider>
+      </TextFieldContext.Provider>
     </Component>
   )
-}) as PolymorphicInputRoot
+}) as PolymorphicTextFieldRoot
 
-// input field
-type InputProps = Omit<InputStylesProps, 'size' | 'disabled' | 'error'> &
+// TextField field
+type TextFieldInputProps = Omit<
+  TextFieldStylesProps,
+  'size' | 'disabled' | 'error'
+> &
   Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> & {
     className?: string
     size?: 'md' | 'lg'
@@ -88,7 +101,7 @@ type InputProps = Omit<InputStylesProps, 'size' | 'disabled' | 'error'> &
     error?: boolean
   }
 
-export const InputInner = React.forwardRef<HTMLInputElement, InputProps>(
+const TextFieldInput = React.forwardRef<HTMLInputElement, TextFieldInputProps>(
   (
     {
       className,
@@ -101,9 +114,7 @@ export const InputInner = React.forwardRef<HTMLInputElement, InputProps>(
     },
     ref,
   ) => {
-    const { inputVariants } = input
-
-    const context = React.useContext(InputContext)
+    const context = React.useContext(TextFieldContext)
     const hasRoot = context !== undefined
 
     const formControlContext = React.useContext(FormControlContext)
@@ -117,7 +128,7 @@ export const InputInner = React.forwardRef<HTMLInputElement, InputProps>(
     const inputElement = (
       <>
         <input
-          className={inputVariants({
+          className={textfield.textFieldVariants({
             className,
             size: context?.size ?? size,
             error,
@@ -130,7 +141,7 @@ export const InputInner = React.forwardRef<HTMLInputElement, InputProps>(
           {...rest}
         />
         <div
-          className={input.mask({
+          className={textfield.mask({
             error,
             disabled,
           })}
@@ -141,35 +152,32 @@ export const InputInner = React.forwardRef<HTMLInputElement, InputProps>(
     return hasRoot ? (
       inputElement
     ) : (
-      <InputRoot size={size} disabled={disabled} error={error}>
+      <TextFieldRoot size={size} disabled={disabled} error={error}>
         {inputElement}
-      </InputRoot>
+      </TextFieldRoot>
     )
   },
 )
 
 // slot
 
-type InputSlotElement = React.ElementRef<'div'>
+type TextFieldDecoratorElement = React.ElementRef<'div'>
+type TextFieldDecoratorProps = HTMLAttributes<HTMLDivElement>
 
-const InputSlot = React.forwardRef<InputSlotElement, any>(
-  (props, forwardedRef) => {
-    const { className, ...rest } = props
-    return (
-      <div {...rest} ref={forwardedRef} className={input.slot({ className })} />
-    )
-  },
-)
+const TextFieldDecorator = React.forwardRef<
+  TextFieldDecoratorElement,
+  TextFieldDecoratorProps
+>((props, forwardedRef) => {
+  const { className, ...rest } = props
+  return (
+    <div
+      {...rest}
+      ref={forwardedRef}
+      className={textfield.slot({ className })}
+    />
+  )
+})
 
-const Input = Object.assign(
-  {},
-  {
-    Root: InputRoot,
-    Slot: InputSlot,
-    InputField: InputInner,
-  },
-)
+export { TextFieldRoot, TextFieldInput, TextFieldDecorator }
 
-export default Input
-
-export { type InputProps }
+export type { TextFieldRootProps, TextFieldInputProps, TextFieldDecoratorProps }
