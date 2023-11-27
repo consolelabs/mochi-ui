@@ -6,6 +6,7 @@ import { Button } from '@consolelabs/core'
 import clsx from 'clsx'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { ROUTES } from '~constants/routes'
 import HeaderCell from './HeaderCell'
 import { useTipFeed } from './store'
 import Row from './Row'
@@ -113,7 +114,7 @@ export default function Feed({ className = '' }: Props) {
       />
       <div
         style={{ maxWidth: 1440 }}
-        className="flex justify-between items-center py-6 px-8 mx-auto w-screen"
+        className="flex items-center justify-between w-screen px-8 py-6 mx-auto"
       >
         <span className="px-4 text-sm leading-5 text-white-pure">
           Recent Transactions
@@ -137,10 +138,10 @@ export default function Feed({ className = '' }: Props) {
           /*   if (bottomSpace > showBotFadeLimit && isShowBotFade) hideBotFade() */
           /*   if (bottomSpace <= showBotFadeLimit && !isShowBotFade) showBotFade() */
           /* }} */
-          className="overflow-hidden h-screen max-h-full"
+          className="h-screen max-h-full overflow-hidden"
         >
           <div className="px-8 mx-auto" style={{ width: 1440 }}>
-            <div className="flex sticky top-0 z-10 flex-1 bg-feed-bg">
+            <div className="sticky top-0 z-10 flex flex-1 bg-feed-bg">
               {[
                 'issued by',
                 '',
@@ -173,7 +174,7 @@ export default function Feed({ className = '' }: Props) {
               />
             </div>
 
-            <div className="flex relative flex-col flex-1 min-h-0">
+            <div className="relative flex flex-col flex-1 min-h-0">
               <AnimatePresence>
                 {loading
                   ? Array(10)
@@ -192,8 +193,8 @@ export default function Feed({ className = '' }: Props) {
                           key={`feed-row-${tx.from}-${tx.to}-${tx.code}`}
                         >
                           <Link
-                            className="flex bg-transparent transition cursor-pointer hover:bg-feed-bg-hover"
-                            href={`/tx/${tx.code}`}
+                            className="flex transition bg-transparent cursor-pointer hover:bg-feed-bg-hover"
+                            href={ROUTES.TX_RECEIPTS(tx.code)}
                             target="_blank"
                           >
                             <Row tx={tx} colWidth={colWidth} />

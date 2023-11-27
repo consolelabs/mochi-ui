@@ -18,6 +18,7 @@ import {
   SuperGroupSolid,
   CodingSolid,
 } from '@consolelabs/icons'
+import { ROUTES } from '~constants/routes'
 
 export default function ProfileDropdown() {
   const { logout } = useAuthStore()
@@ -36,7 +37,7 @@ export default function ProfileDropdown() {
         )}
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <Link href="/profile">
+        <Link href={ROUTES.MY_PROFILE}>
           <DropdownMenuItem leftIcon={<UserSolid />}>Profile</DropdownMenuItem>
         </Link>
 

@@ -50,7 +50,10 @@ const Header = ({ onClose }: { onClose: () => void }) => {
   const { me } = useProfileStore()
   return (
     <button className="" onClick={onClose}>
-      <Link href={ROUTES.PROFILE} className="block relative w-full h-20 group">
+      <Link
+        href={ROUTES.MY_PROFILE}
+        className="relative block w-full h-20 group"
+      >
         <div className="absolute inset-0 bg-transparent">
           <img
             className="object-cover w-full h-full"
@@ -58,14 +61,14 @@ const Header = ({ onClose }: { onClose: () => void }) => {
             src="https://pbs.twimg.com/profile_banners/1168522102410010626/1684159976/300x100"
           />
         </div>
-        <div className="flex relative z-10 gap-4 items-center p-4 w-full h-full text-white">
+        <div className="relative z-10 flex items-center w-full h-full gap-4 p-4 text-white">
           <Avatar
             fallback={me?.profile_name}
             smallSrc={me?.platformIcon}
             src={me?.avatar as string}
           />
-          <div className="flex flex-1 items-center font-medium">
-            <span className="inline-block w-40 whitespace-nowrap truncate">
+          <div className="flex items-center flex-1 font-medium">
+            <span className="inline-block w-40 truncate whitespace-nowrap">
               {me?.profile_name}
             </span>
           </div>
@@ -167,7 +170,7 @@ export const MobileNav = (props: { onClose: () => void }) => {
         key={`mobile-nav-item-header-${item.label}`}
       >
         <Link
-          className="flex flex-1 gap-3 items-center"
+          className="flex items-center flex-1 gap-3"
           href={item.href ?? '/'}
         >
           {item.iconLeft && <span className="text-xl">{item.iconLeft}</span>}

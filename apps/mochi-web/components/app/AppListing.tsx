@@ -29,7 +29,7 @@ interface Props {
 const Name: ColumnProps<ViewApplication>['cell'] = (props) => (
   <div className="flex items-center space-x-3.5">
     <Avatar src={props.row.original.avatar || ''} />
-    <Link href={ROUTES.APP_DETAIL(props.row.original.id)}>
+    <Link href={ROUTES.APPLICATION_DETAIL(props.row.original.id)}>
       <Typography level="p5" className="font-bold">
         {props.row.original.name}
       </Typography>

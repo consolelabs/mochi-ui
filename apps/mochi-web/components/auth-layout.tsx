@@ -19,6 +19,7 @@ import { Layout } from '@consolelabs/layout'
 import { PageContent } from '@consolelabs/page-content'
 import { DISCORD_LINK } from '~envs'
 import { useRouter } from 'next/router'
+import { ROUTES } from '~constants/routes'
 import { AuthPanel } from './AuthWidget'
 
 const SidebarHeader = ({ expanded }: { expanded?: boolean }) => {
@@ -69,7 +70,7 @@ export default function AuthenticatedLayout({
                 Icon: UserSolid,
                 type: 'link',
                 as: Link,
-                href: '/profile',
+                href: ROUTES.MY_PROFILE,
               },
               { title: 'Servers', Icon: Discord },
               {
@@ -85,7 +86,7 @@ export default function AuthenticatedLayout({
                 Icon: CodingSolid,
                 type: 'link',
                 as: Link,
-                href: '/app',
+                href: ROUTES.APPLICATON_LIST,
                 badge: getSidebarBadge['NEW'],
               },
               {
@@ -125,7 +126,7 @@ export default function AuthenticatedLayout({
             {pageHeader}
 
             <PageContent>
-              <div className="flex items-start gap-x-24 mx-auto flex-1 relative">
+              <div className="relative flex items-start flex-1 mx-auto gap-x-24">
                 <div className="flex-1 h-full max-w-full">
                   {childSEO}
                   {children}
