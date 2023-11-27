@@ -1,49 +1,50 @@
-import type { SVGProps } from 'react'
-import {
-  InfoCircleOutlined,
-  CheckCircleOutlined,
-  CrossCircleOutlined,
-  ExclamationTriangleOutlined,
-} from '@consolelabs/icons'
-import { alert, AlertStylesProps } from '@consolelabs/theme'
+import { alert } from '@consolelabs/theme'
+import { useMemo } from 'react'
+import { AlertContext, AlertContextValue } from './context'
 
-const { alertCva, alertIconClsx, alertContentClsx, alertTitleClsx } = alert
+const { alertCva } = alert
 
-type Appearance = Exclude<AlertStylesProps['appearance'], null | undefined>
-
-const icons = {
-  primary: InfoCircleOutlined,
-  secondary: InfoCircleOutlined,
-  neutral: InfoCircleOutlined,
-  success: CheckCircleOutlined,
-  warning: ExclamationTriangleOutlined,
-  danger: CrossCircleOutlined,
-} satisfies Record<Appearance, (p: SVGProps<SVGSVGElement>) => JSX.Element>
-
-interface AlertProps extends AlertStylesProps {
+type AlertProps = AlertContextValue & {
   children: React.ReactNode
   className?: string
-  title?: string
 }
 
-export default function Alert({
-  title,
-  children,
-  className,
-  appearance: appearanceProp,
-  size,
-}: AlertProps) {
-  const appearance = appearanceProp ?? 'neutral'
-  const Icon = icons[appearance]
+export default function Alert(props: AlertProps) {
+  const {
+    status = 'info',
+    scheme: schemeProp,
+    variant = 'default',
+    size,
+    className,
+    ...restProps
+  } = props
+
+  const scheme =
+    schemeProp ??
+    ({
+      info: 'neutral',
+      success: 'success',
+      warning: 'warning',
+      danger: 'danger',
+    }[status] as NonNullable<AlertProps['scheme']>)
+
+  const contextValue = useMemo(
+    () => ({
+      status,
+      scheme,
+      variant,
+      size,
+    }),
+    [scheme, size, status, variant],
+  )
 
   return (
-    <div className={alertCva({ size, className, appearance })}>
-      <Icon className={alertIconClsx()} />
-      <div className={alertContentClsx()}>
-        <span className={alertTitleClsx()}>{title}</span>
-        {children}
-      </div>
-    </div>
+    <AlertContext.Provider value={contextValue}>
+      <div
+        className={alertCva({ scheme, size, variant, className })}
+        {...restProps}
+      />
+    </AlertContext.Provider>
   )
 }
 

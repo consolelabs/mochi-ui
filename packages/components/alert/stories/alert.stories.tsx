@@ -1,5 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import Alert, { AlertProps } from '../src/alert'
+import { AlertTitle } from '../src/alert-title'
+
+const schemes = [
+  'primary',
+  'secondary',
+  'warning',
+  'success',
+  'danger',
+  'neutral',
+] as NonNullable<AlertProps['scheme']>[]
 
 const meta: Meta<typeof Alert> = {
   title: 'Components/Alert',
@@ -9,57 +19,50 @@ const meta: Meta<typeof Alert> = {
   },
   tags: ['autodocs'],
   argTypes: {
-    title: {
-      type: 'string',
-      control: 'text',
-    },
     children: {
       type: 'string',
       control: 'text',
     },
-    appearance: {
+    scheme: {
       control: 'select',
-      options: [
-        'primary',
-        'secondary',
-        'warning',
-        'success',
-        'danger',
-        'neutral',
-      ],
+      options: schemes,
+    },
+    variant: {
+      control: 'select',
+      options: ['default', 'outlined'],
     },
   },
 }
-
-const appearanceVariants: AlertProps['appearance'][] = [
-  'primary',
-  'secondary',
-  'warning',
-  'success',
-  'danger',
-  'neutral',
-]
 
 export default meta
 type Story = StoryObj<typeof Alert>
 
 export const Default: Story = {
-  args: {
-    title: 'Alert title',
-    children:
-      'Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.',
+  render(props) {
+    return (
+      <Alert {...props}>
+        <AlertTitle>
+          Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
+          cillum sint consectetur cupidatat.
+        </AlertTitle>
+      </Alert>
+    )
   },
 }
 
 export const Colors: Story = {
-  render: () => (
-    <div className="flex gap-5 flex-col">
-      {appearanceVariants.map((appearance) => (
-        <Alert key={appearance} appearance={appearance} title="Alert title">
-          Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
-          cillum sint consectetur cupidatat.
-        </Alert>
-      ))}
-    </div>
-  ),
+  render() {
+    return (
+      <div className="flex flex-col gap-3">
+        {schemes.map((s) => (
+          <Alert scheme={s}>
+            <AlertTitle>
+              Lorem ipsum dolor sit amet, qui minim labore adipisicing minim
+              sint cillum sint consectetur cupidatat.
+            </AlertTitle>
+          </Alert>
+        ))}
+      </div>
+    )
+  },
 }
