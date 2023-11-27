@@ -1,8 +1,6 @@
 import { useHasMounted } from '@dwarvesf/react-hooks'
-import Image from 'next/image'
 import Link from 'next/link'
 import { useAuthStore, useProfileStore } from '~store'
-import { logo } from '~utils/image'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { ROUTES } from '~constants/routes'
@@ -12,6 +10,7 @@ import {
   PopoverContent,
   Button,
   IconButton,
+  LogoWithText,
 } from '@consolelabs/core'
 import { MenuSolid, CloseLine } from '@consolelabs/icons'
 import { useCallback, useState } from 'react'
@@ -90,67 +89,58 @@ export const Header = () => {
         className="flex items-center text-left gap-x-2"
         onClick={onCloseMobileNav}
       >
-        <Link href={ROUTES.HOME} className="flex items-center gap-x-2">
-          <Image
-            src={logo}
-            alt="Logo"
-            width={32}
-            height={32}
-            className="block rounded-full"
+        <Link href={ROUTES.HOME} className="flex gap-x-2 items-center">
+          <LogoWithText
+            logoProps={{ size: 'xs' }}
+            className="!gap-2"
+            textClassName="w-18 h-8"
           />
-          <span className="text-xl font-black uppercase text-foreground">
-            Mochi<span className="text-mochi">.</span>
-          </span>
         </Link>
-        {isLoggedIn && authenticatedRoute.includes(pathname) && (
-          <Link href={ROUTES.MY_PROFILE} className="text-base text-gray-500">
-            Dashboard
-          </Link>
-        )}
       </button>
-      {isMounted ? (
-        isMobile ? (
-          <>
-            <IconButton
-              size="lg"
-              variant="ghost"
-              className="bg-white-pure !p-2 rounded-none hover:border-none"
-              onClick={() => setOpenMobileNav((prev) => !prev)}
-            >
-              {openMobileNav ? (
-                <CloseLine className="text-2xl text-neutral-800" />
-              ) : (
-                <MenuSolid className="text-2xl text-neutral-800" />
-              )}
-            </IconButton>
-            {openMobileNav && (
-              <div
-                className={clsx(
-                  'fixed top-16 inset-0 bg-white-pure rounded-none flex flex-col',
-                  'overflow-y-scroll',
-                )}
-              >
-                <MobileNav onClose={onCloseMobileNav} />
-              </div>
-            )}
-          </>
-        ) : (
-          <div className="flex flex-row self-center order-1 ml-auto gap-y-2 gap-x-6 md:order-2">
-            <div className="flex flex-wrap items-stretch gap-5">
-              <Link
-                href={ROUTES.FEATURES}
-                className="flex items-center text-sm font-semibold"
-              >
-                Features
-              </Link>
-            </div>
-            {isLoggedIn && me ? (
-              <ProfileDropdown />
+
+      {isMounted && isMobile ? (
+        <>
+          <IconButton
+            size="lg"
+            variant="ghost"
+            className="bg-white-pure !p-2 rounded-none hover:border-none"
+            onClick={() => setOpenMobileNav((prev) => !prev)}
+          >
+            {openMobileNav ? (
+              <CloseLine className="text-2xl text-neutral-800" />
             ) : (
-              <LoginPopover isLogging={isLogging} />
+              <MenuSolid className="text-2xl text-neutral-800" />
             )}
+          </IconButton>
+          {openMobileNav && (
+            <div
+              className={clsx(
+                'fixed top-16 inset-0 bg-white-pure rounded-none flex flex-col',
+                'overflow-y-scroll',
+              )}
+            >
+              <MobileNav onClose={onCloseMobileNav} />
+            </div>
+          )}
+        </>
+      ) : null}
+
+      {isMounted && !isMobile ? (
+        <div className="flex flex-row order-1 gap-y-2 gap-x-6 self-center ml-auto md:order-2">
+          <div className="flex flex-wrap gap-5 items-stretch">
+            <Link
+              href="/features"
+              className="flex items-center text-sm font-semibold"
+            >
+              Features
+            </Link>
           </div>
-        )
+          {isLoggedIn && me ? (
+            <ProfileDropdown />
+          ) : (
+            <LoginPopover isLogging={isLogging} />
+          )}
+        </div>
       ) : null}
     </nav>
   )

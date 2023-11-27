@@ -16,8 +16,9 @@ export const Default = {
   render: () => {
     return (
       <div className="gap-4 flex">
-        <Logo size="xl" />
+        <Logo size="xs" />
         <Logo />
+        <Logo size="xl" />
       </div>
     )
   },
@@ -36,6 +37,18 @@ export const WithText = {
           <LogoWithText scheme="light" orientation="vertical" />
         </div>
       </div>
+    )
+  },
+}
+
+export const Customized = {
+  render: () => {
+    return (
+      <LogoWithText
+        logoProps={{ size: 'xs' }}
+        className="!gap-2"
+        textClassName="w-18 h-8"
+      />
     )
   },
 }

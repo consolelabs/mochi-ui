@@ -1698,6 +1698,9 @@ importers:
       '@consolelabs/login-widget':
         specifier: workspace:*
         version: link:../components/login-widget
+      '@consolelabs/logo':
+        specifier: workspace:*
+        version: link:../components/logo
       '@consolelabs/mochi-store':
         specifier: workspace:*
         version: link:../components/mochi-store

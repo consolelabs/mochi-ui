@@ -4,6 +4,7 @@ import clsx from 'clsx'
 const logoCva = cva(['flex-shrink-0 rounded-full overflow-hidden'], {
   variants: {
     size: {
+      xs: 'w-8 h-8',
       base: 'w-[75px] h-[75px]',
       xl: 'w-[144px] h-[144px]',
     },

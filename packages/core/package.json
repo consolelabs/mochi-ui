@@ -44,6 +44,7 @@
     "@consolelabs/form": "workspace:*",
     "@consolelabs/list": "workspace:*",
     "@consolelabs/login-widget": "workspace:*",
+    "@consolelabs/logo": "workspace:*",
     "@consolelabs/mochi-store": "workspace:*",
     "@consolelabs/page-content": "workspace:*",
     "@consolelabs/page-header": "workspace:*",
