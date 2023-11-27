@@ -3,18 +3,20 @@ import { clsx } from 'clsx'
 const pageHeaderWrapperClsx = ({
   className = '',
 }: { className?: string } = {}) =>
-  clsx('flex flex-col items-center gap-8 sm:flex-row', className)
+  clsx(
+    'flex flex-col items-center gap-8 sm:flex-row px-8 py-3 bg-background-surface',
+    className,
+  )
 
 const pageHeaderLeftClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx('flex gap-2 items-start', className)
 
 const pageHeaderTitleWrapperClsx = ({
   className = '',
-}: { className?: string } = {}) =>
-  clsx('flex items-center gap-2 mb-2', className)
+}: { className?: string } = {}) => clsx('flex items-center gap-2', className)
 
 const pageHeaderTitleClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx('text-[22px] font-semibold text-text-primary', className)
+  clsx('text-[22px] font-semibold text-text-primary py-1', className)
 
 const pageHeaderTitleExtraClsx = ({
   className = '',
