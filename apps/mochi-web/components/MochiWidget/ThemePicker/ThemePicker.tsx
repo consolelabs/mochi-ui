@@ -2,7 +2,12 @@ import Image from 'next/image'
 import useSWR from 'swr'
 import clsx from 'clsx'
 import { api } from '~constants/mochi'
-import { Heading, Input } from '@consolelabs/core'
+import {
+  Heading,
+  TextFieldRoot,
+  TextFieldInput,
+  TextFieldDecorator,
+} from '@consolelabs/core'
 import { CrossCircleOutlined, MagnifierLine } from '@consolelabs/icons'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { useDisclosure } from '@dwarvesf/react-hooks'
@@ -159,17 +164,17 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
           </span>
         </button>
         <BottomSheet title="Choose theme" isOpen={isOpen} onClose={onClose}>
-          <Input.Root className="flex-shrink-0 mt-2">
-            <Input.Slot>
+          <TextFieldRoot className="flex-shrink-0 mt-2">
+            <TextFieldDecorator>
               <MagnifierLine className="w-5 h-5 text-gray-500" />
-            </Input.Slot>
-            <Input.InputField
+            </TextFieldDecorator>
+            <TextFieldInput
               ref={inputRef}
               value={themeSearch}
               placeholder="Search"
               onChange={onThemeSearchChange}
             />
-          </Input.Root>
+          </TextFieldRoot>
           <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
             <Tab.List className="flex overflow-x-auto flex-shrink-0 gap-6 mt-2 w-full">
               {groupByTheme.map((tab) => (

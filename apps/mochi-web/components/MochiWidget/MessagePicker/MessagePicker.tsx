@@ -1,5 +1,11 @@
 import { BottomSheet } from '~cpn/BottomSheet'
-import { Input, Heading, SectionList } from '@consolelabs/core'
+import {
+  TextFieldRoot,
+  TextFieldInput,
+  TextFieldDecorator,
+  Heading,
+  SectionList,
+} from '@consolelabs/core'
 import { MagnifierLine } from '@consolelabs/icons'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { useEffect, useRef, useState } from 'react'
@@ -82,17 +88,17 @@ export default function MessagePicker({ value, onChange }: MessagePickerProps) {
           More
         </button>
         <BottomSheet isOpen={isOpen} onClose={onClose} title="Choose message">
-          <Input.Root className="flex-shrink-0 mt-2">
-            <Input.Slot>
+          <TextFieldRoot className="flex-shrink-0 mt-2">
+            <TextFieldDecorator>
               <MagnifierLine className="w-5 h-5 text-gray-500" />
-            </Input.Slot>
-            <Input.InputField
+            </TextFieldDecorator>
+            <TextFieldInput
               ref={inputRef}
               value={messageSearch}
               placeholder="Search"
               onChange={onMessageSearchChange}
             />
-          </Input.Root>
+          </TextFieldRoot>
           <SectionList
             sections={sectionFormatter(
               MessageList.filter((m) =>
