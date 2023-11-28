@@ -1015,6 +1015,31 @@ importers:
         specifier: workspace:*
         version: link:../../tsconfig
 
+  packages/components/logo:
+    dependencies:
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../../theme
+    devDependencies:
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.1.0
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
   packages/components/mochi-store:
     dependencies:
       zustand:
@@ -1673,6 +1698,9 @@ importers:
       '@consolelabs/login-widget':
         specifier: workspace:*
         version: link:../components/login-widget
+      '@consolelabs/logo':
+        specifier: workspace:*
+        version: link:../components/logo
       '@consolelabs/mochi-store':
         specifier: workspace:*
         version: link:../components/mochi-store
