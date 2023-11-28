@@ -61,7 +61,8 @@
     "@consolelabs/icon-button": "workspace:*",
     "@consolelabs/modal": "workspace:*",
     "@consolelabs/typography": "workspace:*",
-    "@consolelabs/table": "workspace:*"
+    "@consolelabs/table": "workspace:*",
+    "@consolelabs/label": "workspace:*"
   },
   "clean-package": "../../clean-package.config.json"
 }

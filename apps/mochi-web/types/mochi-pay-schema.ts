@@ -9,14 +9,12 @@
  * ---------------------------------------------------------------
  */
 
-export interface DtoAppDetailBaseRequest {
-  appId: number
-}
-
 export interface DtoCreateApplicationRequest {
   app_name: string
-  metadata: Record<string, any>
-  platforms: string[]
+  description?: string
+  external_links?: Record<string, string[]>
+  metadata?: Record<string, any>
+  platforms?: string[]
   service_fee?: number
 }
 
@@ -115,6 +113,10 @@ export interface DtoTransferV2Request {
   tos: ModelWallet[]
 }
 
+export interface DtoUpdateAppMemberBodyRequest {
+  role: 'admin' | 'member'
+}
+
 export interface DtoUpdateApplicationAvatarRequest {
   buffer?: number[]
   fileExt?: string
@@ -123,6 +125,8 @@ export interface DtoUpdateApplicationAvatarRequest {
 
 export interface DtoUpdateApplicationInfoRequest {
   app_name: string
+  description: string
+  external_links: Record<string, string[]>
   metadata: Record<string, any>
   platforms: string[]
 }
@@ -357,6 +361,8 @@ export interface ViewApplication {
   application_profile_id?: string
   avatar?: string
   created_at?: string
+  description?: string
+  external_links?: Record<string, string[]>
   id?: number
   metadata?: Record<string, any>
   name?: string
@@ -368,8 +374,44 @@ export interface ViewApplication {
   updated_at?: string
 }
 
-export interface ViewApplicationListResponse {
+export interface ViewApplicationListWithPaginationResponse {
   data?: ViewApplication[]
+  pagination?: ViewPaginationResponse
+}
+
+export interface ViewApplicationMember {
+  app_id?: number
+  created_at?: string
+  id?: number
+  profile_id?: string
+  profile_metadata?: Record<string, any>
+  role?: string
+  updated_at?: string
+}
+
+export interface ViewApplicationMemberListWithPaginationResponse {
+  data?: ViewApplicationMember[]
+  pagination?: ViewPaginationResponse
+}
+
+export interface ViewApplicationMemberResponse {
+  data?: ViewApplicationMember
+}
+
+export interface ViewApplicationRequestHistoryResponse {
+  data?: ViewApplicationRequestLog[]
+}
+
+export interface ViewApplicationRequestLog {
+  application_id?: number
+  created_at?: string
+  id?: string
+  request_metadata?: Record<string, any>
+  requester_profile_id?: string
+  response_metadata?: Record<string, any>
+  status?: string
+  status_code?: number
+  url?: string
 }
 
 export interface ViewApplicationResponse {
@@ -405,11 +447,22 @@ export interface ViewApplicationStatsResponse {
   data?: ViewApplicationStats
 }
 
+export interface ViewDataResponse {
+  data?: any
+}
+
+export interface ViewDataResponseWithPagination {
+  data?: any
+  pagination?: ViewPaginationResponse
+}
+
 export interface ViewFullApplication {
   active?: boolean
   application_profile_id?: string
   avatar?: string
   created_at?: string
+  description?: string
+  external_links?: Record<string, string[]>
   id?: number
   metadata?: Record<string, any>
   name?: string
@@ -424,6 +477,12 @@ export interface ViewFullApplication {
 
 export interface ViewFullApplicationResponse {
   data?: ViewFullApplication
+}
+
+export interface ViewPaginationResponse {
+  page?: number
+  size?: number
+  total?: number
 }
 
 export interface ViewSuccess {

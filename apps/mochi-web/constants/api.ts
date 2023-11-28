@@ -51,4 +51,8 @@ export const GET_PATHS = {
   CREATE_APPLICATION: (id: string) => `/profiles/${id}/applications`,
   GET_APPLICATION_LIST: (id: string) => `/profiles/${id}/applications`,
   GET_APPLICATION_STATS: (id: string) => `/profiles/${id}/applications/stats`,
+  GET_APPLICATION_DETAIL: (profileId: string, appId: string) =>
+    `/profiles/${profileId}/applications/${appId}`,
+  GET_APPLICATION_DETAIL_STATS: (profileId: string, appId: string) =>
+    `/profiles/${profileId}/applications/${appId}/stats`,
 }
