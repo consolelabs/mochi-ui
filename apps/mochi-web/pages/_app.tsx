@@ -19,7 +19,11 @@ const WalletProvider = dynamic(() =>
 )
 const Toaster = dynamic(() => import('sonner').then((m) => m.Toaster))
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({
+  subsets: ['latin'],
+  preload: true,
+  display: 'swap',
+})
 
 const TopProgressBar = dynamic(() => import('~app/layout/nprogress'), {
   ssr: false,
@@ -83,6 +87,7 @@ function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
       <style jsx global>{`
         html {
           font-family: ${inter.style.fontFamily};
+          font-style: ${inter.style.fontStyle};
         }
       `}</style>
       <Header />

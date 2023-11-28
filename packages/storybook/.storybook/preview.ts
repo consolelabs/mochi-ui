@@ -1,4 +1,4 @@
-import { RouterContext } from 'next/dist/shared/lib/router-context' // next 11.2
+import { RouterContext } from 'next/dist/shared/lib/router-context.shared-runtime'
 import './styles.css'
 
 export const parameters = {
