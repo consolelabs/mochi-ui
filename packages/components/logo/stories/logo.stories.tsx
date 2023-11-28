@@ -31,10 +31,8 @@ export const WithText = {
         <div className="gap-4 grid grid-cols-1 md:grid-cols-2 items-start">
           <LogoWithText />
           <LogoWithText orientation="vertical" />
-          <LogoWithText scheme="dark" />
-          <LogoWithText scheme="dark" orientation="vertical" />
-          <LogoWithText scheme="light" />
-          <LogoWithText scheme="light" orientation="vertical" />
+          <LogoWithText isDotMochiColor={false} />
+          <LogoWithText isDotMochiColor={false} orientation="vertical" />
         </div>
       </div>
     )

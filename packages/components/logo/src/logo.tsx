@@ -1,5 +1,5 @@
 import { logo } from '@consolelabs/theme'
-import { SVGLogo, SVGLogoText } from './svg-element'
+import { SVGLogo, SVGText } from './svg-element'
 
 type LogoProps = {
   className?: string
@@ -15,28 +15,28 @@ export const Logo = (props: LogoProps) => {
 }
 
 type LogoWithTextProps = {
-  scheme?: 'light' | 'dark' | 'mochi'
   className?: string
   textClassName?: string
   orientation?: 'horizontal' | 'vertical'
   logoProps?: LogoProps
+  isDotMochiColor?: boolean
 }
 
 export const LogoWithText = (props: LogoWithTextProps) => {
   const {
-    scheme = 'mochi',
     className,
     textClassName,
     orientation = 'horizontal',
     logoProps = {},
+    isDotMochiColor = true,
   } = props
 
   return (
     <div className={logoWithTextWrapperCva({ orientation, className })}>
       <Logo {...logoProps} />
-      <SVGLogoText
-        scheme={scheme}
+      <SVGText
         className={logoTextClsx({ className: textClassName })}
+        isDotMochiColor={isDotMochiColor}
       />
     </div>
   )

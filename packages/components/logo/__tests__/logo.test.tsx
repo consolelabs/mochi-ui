@@ -21,13 +21,13 @@ describe('Logo', () => {
     )
 
     const { container: lightContainer } = render(
-      <LogoWithText scheme="light" />,
+      <LogoWithText isDotMochiColor />,
     )
     const lightPathElements = lightContainer.getElementsByTagName('path')
 
     expect(lightPathElements[lightPathElements.length - 1]).toHaveAttribute(
       'fill',
-      '#FFFFFF',
+      '#E88B88',
     )
   })
 
