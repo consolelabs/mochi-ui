@@ -132,7 +132,8 @@ export const Recipient: React.FC<RecipientProps> = ({
     openRecipients()
   }
 
-  function onChainSearch() {
+  function onChainSearch(e: React.ChangeEvent<HTMLInputElement>) {
+    setSearchTerm(e.target.value)
     // TODO: handle search onchain recipients
   }
 

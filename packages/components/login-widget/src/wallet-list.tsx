@@ -1,4 +1,4 @@
-import { Fragment, SVGProps, useState } from 'react'
+import { Fragment, useMemo, useState } from 'react'
 import { Tabs, TabList, TabTrigger, TabContent } from '@consolelabs/tabs'
 import {
   DropdownMenu,
@@ -8,12 +8,9 @@ import {
 } from '@consolelabs/dropdown'
 import { ChevronDownLine } from '@consolelabs/icons'
 import { loginWidget } from '@consolelabs/theme'
-import getAvailableWallets from './providers'
-import Wallet from './wallet'
-
-const connectors = getAvailableWallets()
-const connectorNames =
-  (Object.keys(connectors) as (keyof typeof connectors)[]) || []
+import getProviders from './providers'
+import Wallet, { WalletProps } from './wallet'
+import { useLoginWidget } from './store'
 
 const {
   loginWalletListTabsClsx,
@@ -27,32 +24,17 @@ const {
   loginWalletListDropdownItemClsx,
 } = loginWidget
 
-export interface WalletProps {
-  icon: string | ((props: SVGProps<SVGSVGElement>) => JSX.Element)
-  name: string
-  active?: boolean
-  isInstalled: boolean
-  connect: (...params: any) => Promise<any>
-}
-
-export type OnSuccess = (data: {
-  signature: string
-  msg: string
-  addresses: string[]
-  platform: 'evm' | 'solana' | 'ronin' | 'sui'
-}) => void
-
 interface WalletListProps {
   onSelectWallet: (w: WalletProps) => void
-  onError: (e: string) => void
-  onSuccess?: OnSuccess
 }
 
-export const WalletList = ({
-  onSelectWallet,
-  onSuccess,
-  onError,
-}: WalletListProps) => {
+export default function WalletList({ onSelectWallet }: WalletListProps) {
+  const { isLoggedIn } = useLoginWidget()
+
+  const { connectors, connectorNames } = useMemo(() => {
+    return getProviders(!isLoggedIn)
+  }, [isLoggedIn])
+
   const [selectedConnector, setSelectedConnector] = useState(
     connectorNames[0] as keyof typeof connectors,
   )
@@ -114,15 +96,7 @@ export const WalletList = ({
             <Wallet
               {...wallet}
               key={wallet.name}
-              connect={() => {
-                onSelectWallet(wallet)
-                return wallet
-                  .connect()
-                  .then(onSuccess)
-                  .catch((e: { message?: string; cause?: string }) => {
-                    onError(e.message ?? e.cause ?? 'Something went wrong')
-                  })
-              }}
+              connect={async () => onSelectWallet(wallet)}
             />
           ))}
         </TabContent>

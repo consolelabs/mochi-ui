@@ -25,11 +25,7 @@ export const ConnectButton = React.forwardRef<
     case 'modal':
     default:
       return (
-        <Button
-          ref={ref}
-          className="flex gap-x-2 items-center justify-center h-[48px] px-6 py-3 bg-blue-700 !text-base text-white shadow-none rounded-lg"
-          {...rest}
-        >
+        <Button ref={ref} size="lg" {...rest}>
           <WalletSolid className="text-xl" />
           Connect Wallet
         </Button>

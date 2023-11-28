@@ -1,6 +1,5 @@
 /* istanbul ignore file */
 import bs58 from 'bs58'
-import { useMochi } from '@consolelabs/mochi-store'
 import hexer from 'browser-string-hexer'
 import {
   ArgentWallet,
@@ -22,13 +21,26 @@ import {
   TrustWallet,
   UniswapWallet,
 } from '@consolelabs/icons'
+// EIP6963
+import { createStore } from 'mipd'
 import type { WalletProps } from './wallet'
+import { useLoginWidget, type Provider } from './store'
+
+const eip6963store = typeof window === 'undefined' ? null : createStore()
 
 const msg = 'Please sign this message to prove that you own this wallet'
 const signEVM =
-  (p: any, platform = 'evm') =>
-  (accounts: string[]) =>
-    Promise.resolve(hexer(msg))
+  (p: Provider, isSign = true, platform = 'evm-chain') =>
+  async (accounts: string[]) => {
+    if (!isSign)
+      return {
+        addresses: accounts,
+        signature: '',
+        msg,
+        platform,
+        provider: p,
+      }
+    return Promise.resolve(hexer(msg))
       .then((c) =>
         p.request({ method: 'personal_sign', params: [c, accounts.at(0)] }),
       )
@@ -38,21 +50,35 @@ const signEVM =
           signature,
           msg,
           platform,
+          provider: p,
         }
       })
-const signSol = (p: any) => () =>
-  Promise.resolve(new TextEncoder().encode(msg))
-    .then((m) => p.signMessage(m))
-    .then(({ signature, publicKey: pb }) => {
+  }
+const signSol =
+  (p: Provider, isSign = true) =>
+  async ({ publicKey: pb }: any) => {
+    if (!isSign)
       return {
         addresses: [pb.toString()],
-        signature: bs58.encode(signature as Uint8Array),
+        signature: '',
         msg,
-        platform: 'solana',
+        platform: 'solana-chain',
+        provider: p,
       }
-    })
+    return Promise.resolve(new TextEncoder().encode(msg))
+      .then((m) => p.signMessage(m))
+      .then(({ signature, publicKey: pb }) => {
+        return {
+          addresses: [pb.toString()],
+          signature: bs58.encode(signature as Uint8Array),
+          msg,
+          platform: 'solana-chain',
+          provider: p,
+        }
+      })
+  }
 
-export default function getAvailableWallets() {
+export default function getProviders(isSign = true) {
   const isSSR = typeof window === 'undefined'
 
   const connectors: Record<
@@ -64,16 +90,13 @@ export default function getAvailableWallets() {
         name: 'MetaMask',
         icon: MetamaskWallet,
         isInstalled: !isSSR && Boolean(window.ethereum),
+        rdns: 'io.metamask',
         connect: () =>
           window.ethereum
             .request({
               method: 'eth_requestAccounts',
-              // params: [{ eth_accounts: {} }],
             })
-            // .then(() =>
-            //   window.ethereum.request({ method: 'eth_requestAccounts' }),
-            // )
-            .then(signEVM(window.ethereum))
+            .then(signEVM(window.ethereum, isSign))
             .catch(console.error),
       },
       {
@@ -81,12 +104,14 @@ export default function getAvailableWallets() {
         icon: RabbyWallet,
         isInstalled: false,
         connect: () => Promise.resolve(),
+        rdns: 'io.rabby',
       },
       {
         name: 'Rainbow',
         icon: RainbowWallet,
         isInstalled: false,
         connect: () => Promise.resolve(),
+        rdns: 'me.rainbow',
       },
       {
         name: 'Uniswap',
@@ -99,12 +124,14 @@ export default function getAvailableWallets() {
         icon: CoinbaseWallet,
         isInstalled: false,
         connect: () => Promise.resolve(),
+        rdns: 'com.coinbase.wallet',
       },
       {
         name: 'Okx',
         icon: OkxWallet,
         isInstalled: false,
         connect: () => Promise.resolve(),
+        rdns: 'com.okex.wallet',
       },
       {
         name: 'Coin98',
@@ -135,7 +162,10 @@ export default function getAvailableWallets() {
         icon: PhantomWallet,
         isInstalled: !isSSR && Boolean(window.phantom),
         connect: () =>
-          window.phantom.solana.connect().then(signSol(window.phantom.solana)),
+          window.phantom.solana
+            .connect()
+            .then(signSol(window.phantom.solana, isSign)),
+        rdns: 'app.phantom',
       },
       {
         name: 'Ledger Live',
@@ -152,7 +182,7 @@ export default function getAvailableWallets() {
         connect: () =>
           window.ronin.provider
             .request({ method: 'eth_requestAccounts' })
-            .then(signEVM(window.ronin.provider, 'ronin')),
+            .then(signEVM(window.ronin.provider, isSign, 'ronin-chain')),
       },
     ],
     SOL: [
@@ -161,7 +191,9 @@ export default function getAvailableWallets() {
         icon: PhantomWallet,
         isInstalled: !isSSR && Boolean(window.phantom),
         connect: () =>
-          window.phantom.solana.connect().then(signSol(window.phantom.solana)),
+          window.phantom.solana
+            .connect()
+            .then(signSol(window.phantom.solana, isSign)),
       },
       {
         name: 'Backpack',
@@ -242,22 +274,58 @@ export default function getAvailableWallets() {
     ],
   }
 
-  if (isSSR) return connectors
+  function isExtensionForChainInstalled(chain: string) {
+    const wallets = connectors[chain as keyof typeof connectors]
+    if (!wallets || !wallets.length) return false
 
-  if (window.ethereum) {
-    window.ethereum.on('accountsChanged', function handle(accounts: string[]) {
-      useMochi.getState().connect(accounts, 'evm-chain')
+    return wallets.some((w) => w.isInstalled)
+  }
+
+  const detectedEvmProviders = eip6963store?.getProviders() ?? []
+
+  for (const c of connectors.EVM) {
+    if (!c.rdns) continue
+    const provider = detectedEvmProviders.find((dp) => dp.info.rdns === c.rdns)
+    if (!provider) continue
+    c.isInstalled = true
+    c.connect = () =>
+      provider?.provider
+        .request({ method: 'eth_requestAccounts' })
+        .then(signEVM(provider.provider, isSign, 'evm-chain'))
+        .catch(console.error)
+    provider.provider.on('accountsChanged', (accounts) => {
+      useLoginWidget.getState().dispatch({
+        type: 'update_wallets',
+        payload: {
+          addresses: accounts,
+          chain: 'evm-chain',
+          provider: provider.provider,
+          isInstallChecker: isExtensionForChainInstalled,
+        },
+      })
     })
   }
 
-  if (window.ronin) {
-    window.ronin.provider.on(
-      'accountsChanged',
-      function handle(accounts: string[]) {
-        useMochi.getState().connect(accounts, 'ronin-chain')
-      },
-    )
-  }
+  // if (isSSR) return connectors
+  //
+  // if (window.ethereum) {
+  //   window.ethereum.on('accountsChanged', function handle(accounts: string[]) {
+  //     useMochi.getState().connect(accounts, 'evm-chain')
+  //   })
+  // }
+  //
+  // if (window.ronin) {
+  //   window.ronin.provider.on(
+  //     'accountsChanged',
+  //     function handle(accounts: string[]) {
+  //       useMochi.getState().connect(accounts, 'ronin-chain')
+  //     },
+  //   )
+  // }
 
-  return connectors
+  return {
+    connectors,
+    connectorNames: Object.keys(connectors) as (keyof typeof connectors)[],
+    isExtensionForChainInstalled,
+  }
 }

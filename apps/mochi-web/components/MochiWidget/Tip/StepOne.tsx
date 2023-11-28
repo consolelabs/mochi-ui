@@ -57,6 +57,9 @@ export default function StepOne() {
 
   const { isFetching: isFetchingWallets, wallets } = useWalletStore()
 
+  const canProceed =
+    !amountErrorMgs && (request.recipients?.length ?? 0) > 0 && !!request.amount
+
   return (
     <div className="flex flex-col flex-1 gap-y-3 h-full min-h-0">
       <ScrollArea.Viewport className="[&>div]:!block">
@@ -89,6 +92,7 @@ export default function StepOne() {
             wallet={wallet}
             onSelectAsset={setAsset}
             onAmountChanged={setAmount}
+            canProceed={canProceed}
           />
           <ErrorMessage>{amountErrorMgs}</ErrorMessage>
         </div>
@@ -98,11 +102,7 @@ export default function StepOne() {
           size="lg"
           onClick={() => setStep(2)}
           className="flex justify-center"
-          disabled={
-            !!amountErrorMgs ||
-            (request.recipients?.length ?? 0) <= 0 ||
-            !request.amount
-          }
+          disabled={!canProceed}
         >
           Continue
           <ArrowRightLine className="w-4 h-4" />

@@ -67,6 +67,8 @@ export default function Tip() {
     if ((error && !tx) || (!error && tx)) onOpen()
   }, [error, onOpen, tx])
 
+  const isOnchain = typeof tx === 'string'
+
   return (
     <div className="relative flex-1">
       <div
@@ -83,11 +85,11 @@ export default function Tip() {
         {!error ? (
           <>
             <span>
-              🎉 Transfer success,{' '}
+              🎉 {isOnchain ? 'Submit' : 'Transfer'} success,{' '}
               <Link
                 target="_blank"
                 className="underline"
-                href={ROUTES.TX_RECEIPTS(tx?.external_id)}
+                href={isOnchain ? tx : ROUTES.TX_RECEIPTS(tx?.external_id)}
               >
                 here is your receipt
               </Link>
@@ -101,7 +103,13 @@ export default function Tip() {
           </>
         ) : (
           <>
-            <span>😕 Something went wrong, please try again</span>
+            <span>
+              {typeof error === 'string' ? (
+                `Error: ${error}`
+              ) : (
+                <>😕 Something went wrong, please try again</>
+              )}
+            </span>
             <Timer
               className="w-5 h-5 text-red-500"
               start={isOpen}

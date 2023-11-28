@@ -1,1 +1,6 @@
-export { default as LoginWidget } from './login-widget'
+export {
+  LoginWidgetProvider,
+  LoginWidget,
+  useLoginWidget,
+  getLoginWidgetState,
+} from './login-widget'

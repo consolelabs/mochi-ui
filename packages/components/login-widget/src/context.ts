@@ -1,8 +1,7 @@
 /* istanbul ignore file */
-import { createContext, useContext } from 'react'
-import type { WalletProps } from './wallet'
+import { SVGProps, createContext, useContext } from 'react'
 
-export enum LoginState {
+export enum LoginStep {
   Idle,
   Connecting,
   Authenticating,
@@ -10,25 +9,31 @@ export enum LoginState {
   NotInstalled,
 }
 
-interface LoginWidgetContextType {
-  state: LoginState
-  setState: (state: LoginState) => void
-  wallet?: WalletProps
-  setWallet: (wallet?: WalletProps) => void
-  error?: string
-  setError: (error: string) => void
+export type InternalState = {
+  step: LoginStep
+  wallet: {
+    name: string
+    icon: (p: SVGProps<SVGSVGElement>) => JSX.Element
+    connect: () => Promise<any>
+  } | null
+  error: string | null
+  onSuccess: (t: string) => void
 }
 
-export const LoginWidgetContext = createContext<LoginWidgetContextType | null>(
-  null,
-)
+interface InternalLoginWidgetContextType {
+  state: InternalState
+  dispatch: (s: Partial<InternalState>) => void
+}
 
-export const useLoginWidgetContext = () => {
-  const loginWidgetContext = useContext(LoginWidgetContext)
+export const InternalLoginWidgetContext =
+  createContext<InternalLoginWidgetContextType | null>(null)
+
+export const useInternalLoginWidgetContext = () => {
+  const loginWidgetContext = useContext(InternalLoginWidgetContext)
 
   if (!loginWidgetContext) {
     throw new Error(
-      'useLoginWidgetContext has to be used within <LoginWidgetContext.Provider>',
+      'useInternalLoginWidgetContext has to be used within <LoginWidgetContext.Provider>',
     )
   }
 

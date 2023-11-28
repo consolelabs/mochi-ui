@@ -11,9 +11,12 @@ export type Moniker = {
   asset_balance: number
   token_amount: number
   token: {
+    address: string
     price: number
+    decimal: number
     symbol: string
     chain_id: string
+    native: boolean
   }
   disabled: boolean
 }

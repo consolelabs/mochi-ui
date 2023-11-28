@@ -4,6 +4,8 @@ import { immer } from 'zustand/middleware/immer'
 import { AuthPanel } from '~cpn/AuthWidget'
 import { api } from '~constants/mochi'
 import { Profile } from '@consolelabs/mochi-rest'
+import { getLoginWidgetState } from '@consolelabs/core'
+import { utils } from 'ethers'
 import { Balance, Wallet, useProfileStore } from '~store'
 import { Theme } from '../ThemePicker/ThemePicker'
 import { Moniker } from '../TokenPicker/type'
@@ -96,10 +98,57 @@ export const useTipWidget = create(
       }),
     isTransferring: false,
     execute: async () => {
-      const { request } = get()
-      const { me } = useProfileStore.getState()
-
       try {
+        const { wallet, request } = get()
+        const { me } = useProfileStore.getState()
+
+        if (wallet?.type === 'onchain') {
+          const { getProviderByAddress } = getLoginWidgetState()
+          const provider = getProviderByAddress(wallet.id)
+          const tokenChainId = request.asset?.token.chain_id
+          const providerChainId = await provider.request({
+            method: 'eth_chainId',
+          })
+          if (tokenChainId !== providerChainId) {
+            set({ error: 'mismatch chain' })
+            return
+          }
+          const isNative = request.asset?.token.native
+          const params: Record<string, any> = {
+            from: wallet.id,
+            to: request.recipients?.[0].id,
+            value: utils
+              .parseUnits(
+                String(request.amount ?? 0),
+                request.asset?.token.decimal,
+              )
+              .toString(),
+          }
+          if (!isNative) {
+            const iface = new utils.Interface([
+              'function transfer(address to, uint amount)',
+            ])
+
+            params.data = iface.encodeFunctionData('transfer', [
+              request.recipients?.[0].profile_name,
+              params.value,
+            ])
+            params.to = request.asset?.token.address
+
+            delete params.value
+          }
+
+          set({ isTransferring: true })
+          const tx = await provider.request({
+            method: 'eth_sendTransaction',
+            params: [params],
+          })
+
+          set({ tx })
+
+          return
+        }
+
         set({ isTransferring: true })
         await new Promise<void>((r) => {
           setTimeout(r, 1000)

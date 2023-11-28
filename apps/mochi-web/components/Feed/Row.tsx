@@ -84,6 +84,7 @@ export default function Row({ tx, colWidth }: { tx: Tx; colWidth: string[] }) {
   ].map((rowCell, i) =>
     React.cloneElement(rowCell, {
       width: colWidth[i],
+      key: `row-cell-${i}`,
     }),
   )
 }
