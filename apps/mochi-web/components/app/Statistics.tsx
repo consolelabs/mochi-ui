@@ -17,7 +17,7 @@ const DataBox = ({
   percentage?: number
 }) => (
   <div className="p-4 space-y-4 bg-neutral-0 rounded-xl">
-    <Typography level="h8" color="textPrimary">
+    <Typography level="h8" color="textPrimary" className="!font-medium">
       {label}
     </Typography>
     <Typography level="h5" color="textPrimary">

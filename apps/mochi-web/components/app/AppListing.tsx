@@ -124,7 +124,11 @@ export const AppListing = ({
               You don’t have any applications yet.
             </Typography>
             Please{' '}
-            <Button variant="link" onClick={onOpenCreateAppModal}>
+            <Button
+              variant="link"
+              className="!p-0 !h-auto"
+              onClick={onOpenCreateAppModal}
+            >
               Create an app
             </Button>{' '}
             to get started.
