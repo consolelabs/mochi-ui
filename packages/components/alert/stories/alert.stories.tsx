@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { UserSolid } from '@consolelabs/icons'
+import { Button } from '@consolelabs/button'
 import Alert, { AlertProps } from '../src/alert'
 import { AlertTitle } from '../src/alert-title'
 import { AlertIcon } from '../src'
@@ -121,6 +123,28 @@ export const Colors: Story = {
           </div>
         ))}
       </div>
+    )
+  },
+}
+
+export const Custom: Story = {
+  render() {
+    return (
+      <Alert scheme="neutral" variant="action">
+        <AlertTitle>Consololab UI Library</AlertTitle>
+        <AlertIcon asChild className="data-[scheme=secondary]:text-black">
+          <UserSolid />
+        </AlertIcon>
+        <AlertDescription>
+          Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
+          cillum sint consectetur cupidatat. Lorem ipsum dolor sit
+        </AlertDescription>
+        <AlertActionGroup>
+          <AlertConfirm asChild>
+            <Button>Confirm</Button>
+          </AlertConfirm>
+        </AlertActionGroup>
+      </Alert>
     )
   },
 }
