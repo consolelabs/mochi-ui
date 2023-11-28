@@ -61,7 +61,7 @@ export const Statistics = ({ id, onOpenCreateAppModal }: Props) => {
           alt=""
           src="/assets/app-statistics.png"
         />
-        <Typography level="h6" color="textPrimary">
+        <Typography level="h6" color="textPrimary" className="!font-medium">
           Build an app
         </Typography>
         <Typography level="p5" color="textSecondary">
