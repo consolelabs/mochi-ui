@@ -33,9 +33,11 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
+    "@consolelabs/button": "workspace:*",
     "@consolelabs/icons": "workspace:*",
-    "@consolelabs/theme": "workspace:*",
     "@consolelabs/polymorphic": "workspace:*",
+    "@consolelabs/theme": "workspace:*",
+    "@radix-ui/react-slot": "^1.0.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0"
   },

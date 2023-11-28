@@ -433,6 +433,9 @@ importers:
 
   packages/components/alert:
     dependencies:
+      '@consolelabs/button':
+        specifier: workspace:*
+        version: link:../button
       '@consolelabs/icons':
         specifier: workspace:*
         version: link:../../icons
@@ -442,6 +445,9 @@ importers:
       '@consolelabs/theme':
         specifier: workspace:*
         version: link:../../theme
+      '@radix-ui/react-slot':
+        specifier: ^1.0.2
+        version: 1.0.2(@types/react@18.2.28)(react@18.2.0)
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0

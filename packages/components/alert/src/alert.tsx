@@ -11,31 +11,20 @@ type AlertProps = Partial<AlertContextValue> & {
 
 export default function Alert(props: AlertProps) {
   const {
-    status = 'info',
-    scheme: schemeProp,
+    scheme = 'primary',
     variant = 'default',
-    size,
+    size = 'md',
     className,
     ...restProps
   } = props
 
-  const scheme =
-    schemeProp ??
-    ({
-      info: 'neutral',
-      success: 'success',
-      warning: 'warning',
-      danger: 'danger',
-    }[status] as NonNullable<AlertProps['scheme']>)
-
   const contextValue = useMemo(
     () => ({
-      status,
       scheme,
       variant,
       size,
     }),
-    [scheme, size, status, variant],
+    [scheme, size, variant],
   )
 
   return (

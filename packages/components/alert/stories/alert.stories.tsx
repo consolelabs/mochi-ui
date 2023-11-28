@@ -4,6 +4,9 @@ import { AlertTitle } from '../src/alert-title'
 import { AlertIcon } from '../src'
 import { AlertDescription } from '../src/alert-description'
 import { AlertCloseIcon } from '../src/alert-close'
+import { AlertActionGroup } from '../src/alert-action-group'
+import { AlertConfirm } from '../src/alert-confirm'
+import { AlertCancel } from '../src/alert-cancel'
 
 const schemes = [
   'primary',
@@ -13,6 +16,9 @@ const schemes = [
   'danger',
   'neutral',
 ] as NonNullable<AlertProps['scheme']>[]
+const variants = ['default', 'outlined', 'action'] as NonNullable<
+  AlertProps['variant'][]
+>
 
 const meta: Meta<typeof Alert> = {
   title: 'Components/Alert',
@@ -32,15 +38,11 @@ const meta: Meta<typeof Alert> = {
     },
     variant: {
       control: 'select',
-      options: ['default', 'outlined'],
+      options: variants,
     },
     size: {
       control: 'select',
       options: ['sm', 'md'],
-    },
-    status: {
-      control: 'select',
-      options: ['info', 'danger', 'success', 'warning'],
     },
   },
 }
@@ -53,10 +55,7 @@ export const Default: Story = {
     return (
       <Alert {...props}>
         <AlertIcon />
-        <AlertTitle>
-          Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
-          cillum sint consectetur cupidatat.
-        </AlertTitle>
+        <AlertTitle>labore adipisicing minim sint</AlertTitle>
         <AlertDescription>
           Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
           cillum sint consectetur cupidatat.
@@ -67,22 +66,59 @@ export const Default: Story = {
   },
 }
 
+export const Variants: Story = {
+  render() {
+    return (
+      <div className="flex flex-col gap-3">
+        {variants.map((v) => (
+          <Alert variant={v}>
+            <AlertIcon />
+            <AlertTitle>
+              amet, qui minim labore adipisicing minim sint cillum sint
+            </AlertTitle>
+            <AlertDescription>
+              amet, qui minim labore adipisicing minim sint cillum sint
+              consectetur cupidatat.
+            </AlertDescription>
+            {v === 'action' && (
+              <AlertActionGroup>
+                <AlertConfirm>Confirm</AlertConfirm>
+              </AlertActionGroup>
+            )}
+          </Alert>
+        ))}
+      </div>
+    )
+  },
+}
+
 export const Colors: Story = {
   render() {
     return (
       <div className="flex flex-col gap-3">
-        {schemes.map((s) => (
-          <Alert scheme={s}>
-            <AlertIcon />
-            <AlertTitle>Lorem ipsum</AlertTitle>
-            <AlertDescription>
-              Lorem ipsum dolor sit amet, qui minim labore adipisicing minim
-              sint cillum sint consectetur cupidatat. Lorem ipsum dolor sit
-              amet, qui minim labore adipisicing minim sint cillum sint
-              consectetur cupidatat.
-            </AlertDescription>
-            <AlertCloseIcon />
-          </Alert>
+        {variants.map((v) => (
+          <div className="flex flex-col gap-3">
+            <h3 className="uppercase semibold ">{v}</h3>
+            {schemes.map((s) => (
+              <Alert variant={v} scheme={s}>
+                <AlertIcon />
+                <AlertTitle>Lorem ipsum dolor sit amet</AlertTitle>
+                <AlertDescription>
+                  Lorem ipsum dolor sit amet, qui minim labore adipisicing minim
+                  sint cillum sint consectetur cupidatat. Lorem ipsum dolor sit
+                  amet, qui minim labore adipisicing minim sint cillum sint
+                  consectetur cupidatat.
+                </AlertDescription>
+                <AlertCloseIcon />
+                {v === 'action' && (
+                  <AlertActionGroup>
+                    <AlertCancel>Confirm</AlertCancel>
+                    <AlertConfirm>Confirm</AlertConfirm>
+                  </AlertActionGroup>
+                )}
+              </Alert>
+            ))}
+          </div>
         ))}
       </div>
     )
