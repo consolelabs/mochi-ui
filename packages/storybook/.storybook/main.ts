@@ -1,5 +1,4 @@
 import type { StorybookConfig } from '@storybook/nextjs'
-import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
 
 const storybookConfig: StorybookConfig = {
   framework: {
@@ -18,14 +17,6 @@ const storybookConfig: StorybookConfig = {
     '@storybook/addon-styling-webpack',
   ],
   webpackFinal: async (config) => {
-    if (config.resolve) {
-      config.resolve.plugins = [
-        ...(config.resolve.plugins || []),
-        new TsconfigPathsPlugin({
-          extensions: config.resolve.extensions,
-        }),
-      ]
-    }
     // Resolve mjs files from libs
     // Here we need the absolute paths to our other libs that the ui package depends on
     config.module?.rules?.push({
