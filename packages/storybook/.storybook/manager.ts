@@ -3,6 +3,7 @@ import { create } from '@storybook/theming'
 
 addons.setConfig({
   theme: create({
+    base: 'light',
     colorPrimary: '#8B54F7',
     colorSecondary: '#017AFF',
     textColor: '#343433',

@@ -56,7 +56,7 @@ const SVGText = (props: SVGTextProps) => {
       xmlns="http://www.w3.org/2000/svg"
       {...rest}
     >
-      <g clip-path="url(#clip0_438_2262)" className={logoSVGTextClsx()}>
+      <g clipPath="url(#clip0_438_2262)" className={logoSVGTextClsx()}>
         <path
           d="M0 34.0192V0.980777H8.00081L22.2354 23.4469H18.0141L31.856 0.980777H39.8568L39.955 34.0192H31.0215L30.9234 14.0546H32.445L22.0881 30.7626H17.7687L7.11729 14.0546H8.98251V34.0192H0Z"
           fill="currentColor"
