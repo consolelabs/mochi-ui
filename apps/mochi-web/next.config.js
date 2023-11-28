@@ -20,6 +20,11 @@ module.exports = {
         hostname: 'assets.coingecko.com',
         port: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'cryptologos.cc',
+        port: '',
+      },
     ],
   },
   transpilePackages: ['@consolelabs/icons'],

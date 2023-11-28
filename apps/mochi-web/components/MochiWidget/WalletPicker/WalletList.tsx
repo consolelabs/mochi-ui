@@ -14,7 +14,6 @@ export const WalletList = (props: Props) => {
 
   return (
     <List
-      listClassName="max-h-[400px]"
       rootClassName="w-full"
       loading={props.loading}
       data={data}

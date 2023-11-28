@@ -48,21 +48,22 @@ export const AuthPanel = React.forwardRef<HTMLDivElement, AuthPanelProps>(
 
     // auth platforms
     const { data: urls = [] } = useSWR('login-urls', async () => {
+      const urlLocation = window.location.href.split('#')[0]
       const [discord, facebook, twitter, gmail] = await Promise.all([
         api.profile.auth.byDiscord({
-          urlLocation: window.location.href,
+          urlLocation,
           platform: 'web',
         }),
         api.profile.auth.byFacebook({
-          urlLocation: window.location.href,
+          urlLocation,
           platform: 'web',
         }),
         api.profile.auth.byTwitter({
-          urlLocation: window.location.href,
+          urlLocation,
           platform: 'web',
         }),
         api.profile.auth.byGmail({
-          urlLocation: window.location.href,
+          urlLocation,
           platform: 'web',
         }),
       ])

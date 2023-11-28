@@ -14,6 +14,7 @@ import RowSkeleton from './RowSkeleton'
 
 /* const showTopFadeLimit = 35 as const */
 /* const showBotFadeLimit = -35 as const */
+
 const colWidth = [
   'w-[205px]', // from
   'w-min', // arrow icon
@@ -114,7 +115,7 @@ export default function Feed({ className = '' }: Props) {
       />
       <div
         style={{ maxWidth: 1440 }}
-        className="flex items-center justify-between w-screen px-8 py-6 mx-auto"
+        className="flex justify-between items-center py-6 px-8 mx-auto w-screen"
       >
         <span className="px-4 text-sm leading-5 text-white-pure">
           Recent Transactions
@@ -138,10 +139,10 @@ export default function Feed({ className = '' }: Props) {
           /*   if (bottomSpace > showBotFadeLimit && isShowBotFade) hideBotFade() */
           /*   if (bottomSpace <= showBotFadeLimit && !isShowBotFade) showBotFade() */
           /* }} */
-          className="h-screen max-h-full overflow-hidden"
+          className="overflow-hidden h-screen max-h-full"
         >
           <div className="px-8 mx-auto" style={{ width: 1440 }}>
-            <div className="sticky top-0 z-10 flex flex-1 bg-feed-bg">
+            <div className="flex sticky top-0 z-10 flex-1 bg-feed-bg">
               {[
                 'issued by',
                 '',
@@ -174,7 +175,7 @@ export default function Feed({ className = '' }: Props) {
               />
             </div>
 
-            <div className="relative flex flex-col flex-1 min-h-0">
+            <div className="flex relative flex-col flex-1 min-h-0">
               <AnimatePresence>
                 {loading
                   ? Array(10)
@@ -193,7 +194,7 @@ export default function Feed({ className = '' }: Props) {
                           key={`feed-row-${tx.from}-${tx.to}-${tx.code}`}
                         >
                           <Link
-                            className="flex transition bg-transparent cursor-pointer hover:bg-feed-bg-hover"
+                            className="flex bg-transparent transition cursor-pointer hover:bg-feed-bg-hover"
                             href={ROUTES.TX_RECEIPTS(tx.code)}
                             target="_blank"
                           >
