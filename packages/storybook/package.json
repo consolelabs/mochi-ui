@@ -9,8 +9,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "pnpm storybook dev -p 6006",
-    "rm:cache": "rimraf ./node_modules/.cache",
-    "build": "pnpm rm:cache && pnpm storybook build",
+    "build": "pnpm storybook build",
     "preview:storybook": "serve storybook-static -p 6006"
   },
   "devDependencies": {
