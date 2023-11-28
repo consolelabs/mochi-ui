@@ -1,11 +1,18 @@
 import { render } from '@testing-library/react'
 import Alert from '../src/alert'
+import { AlertTitle } from '../src'
+import { AlertDescription } from '../src/alert-description'
 
 describe('Alert', () => {
   it('renders the title and children', () => {
     const title = 'Test Alert'
     const message = 'This is a test alert'
-    const { getByText } = render(<Alert title={title}>{message}</Alert>)
+    const { getByText } = render(
+      <Alert>
+        <AlertTitle>{title}</AlertTitle>
+        <AlertDescription>{message}</AlertDescription>
+      </Alert>,
+    )
     const titleElement = getByText(title)
     const messageElement = getByText(message)
     expect(titleElement).toBeInTheDocument()
@@ -15,7 +22,12 @@ describe('Alert', () => {
   it('renders with the default appearance if none is provided', () => {
     const title = 'Test Alert'
     const message = 'This is a test alert'
-    const { container } = render(<Alert title={title}>{message}</Alert>)
+    const { container } = render(
+      <Alert scheme="neutral">
+        <AlertTitle>{title}</AlertTitle>
+        <AlertDescription>{message}</AlertDescription>
+      </Alert>,
+    )
     expect(container.firstChild).toHaveClass('bg-neutral-outline')
   })
 
@@ -23,8 +35,9 @@ describe('Alert', () => {
     const title = 'Test Alert'
     const message = 'This is a test alert'
     const { container } = render(
-      <Alert title={title} appearance="success">
-        {message}
+      <Alert scheme="success">
+        <AlertTitle>{title}</AlertTitle>
+        <AlertDescription>{message}</AlertDescription>
       </Alert>,
     )
     expect(container.firstChild).toHaveClass('bg-success-outline')
@@ -34,10 +47,11 @@ describe('Alert', () => {
     const title = 'Test Alert'
     const message = 'This is a test alert'
     const { container } = render(
-      <Alert title={title} size="md">
-        {message}
+      <Alert scheme="success">
+        <AlertTitle className="title">{title}</AlertTitle>
+        <AlertDescription>{message}</AlertDescription>
       </Alert>,
     )
-    expect(container.firstChild).toHaveClass('text-base')
+    expect(container.getElementsByClassName('title')[0]).toHaveClass('text-sm')
   })
 })
