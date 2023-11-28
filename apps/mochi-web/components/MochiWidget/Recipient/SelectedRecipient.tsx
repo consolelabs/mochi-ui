@@ -31,10 +31,10 @@ export const SelectedRecipient: React.FC<SelectedRecipientProps> = ({
           right: 0,
         }}
         variant="solid"
-        color="info"
+        color="neutral"
         onClick={() => onRemove?.(profile)}
       >
-        <CloseLine />
+        <CloseLine className="w-full h-full" />
       </IconButton>
       <PlatformIcon
         className="absolute bottom-0 left-0 w-4 h-4"

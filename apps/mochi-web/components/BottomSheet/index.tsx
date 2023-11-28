@@ -57,7 +57,7 @@ function BottomSheet({
   if (!elem || !isOpen) return null
 
   return createPortal(
-    <div className={clsx(className)}>
+    <div className={clsx('h-full flex flex-col', className)}>
       <div className="flex justify-between items-center mb-2">
         <div className="flex-1">
           <Button

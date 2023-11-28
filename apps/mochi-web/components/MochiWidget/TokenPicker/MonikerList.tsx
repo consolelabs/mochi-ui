@@ -59,7 +59,6 @@ export const MonikerList = (props: Props) => {
   return (
     <>
       <SectionList
-        listClassName="max-h-[350px]"
         sections={filteredMonikers}
         loading={isLoading}
         renderItem={(item) => (
@@ -71,7 +70,7 @@ export const MonikerList = (props: Props) => {
         )}
         renderLoader={() => <Skeleton />}
         renderSectionHeader={(section) => (
-          <label className="font-bold text-[0.625rem] uppercase text-[#ADACAA]">
+          <label className="font-bold uppercase text-[0.625rem] text-neutral-500">
             {section.title}
           </label>
         )}
@@ -79,7 +78,7 @@ export const MonikerList = (props: Props) => {
         rootClassName="w-full h-full"
       />
       {isUserHasUnusableMoniker ? (
-        <span className="text-xs text-[#ADACAA]">
+        <span className="text-xs text-neutral-500">
           Unusable monikers (equivalent token has 0 amount) are disabled
         </span>
       ) : null}
