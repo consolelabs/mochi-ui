@@ -1,0 +1,27 @@
+import React from "react";
+import { Meta, StoryObj } from "@storybook/react";
+import { {{ camelCase consoleTheme }} } from '@consolelabs/theme'
+
+import { {{capitalize componentName}}, {{capitalize componentName}}Props } from "../src";
+
+const meta: Meta<typeof {{capitalize componentName}}> = {
+  title: 'Components/{{capitalize componentName}}',
+  component: {{capitalize componentName}},
+  parameters: {
+    // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'centered',
+  },
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+}
+
+export default meta
+
+type Story = StoryObj<typeof {{capitalize componentName}}>
+
+const Template = (args: {{capitalize componentName}}Props) => <{{capitalize componentName}} {...args} />;
+
+export const Default = {
+  render: Template,
+  args: {}
+}

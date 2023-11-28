@@ -16,6 +16,7 @@ node_modules
 coverage
 .next
 build
+plopfile.js
 !.commitlintrc.cjs
 !jest.config.js
 !tsup.config.ts
