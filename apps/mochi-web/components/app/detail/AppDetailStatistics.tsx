@@ -1,10 +1,4 @@
-import {
-  Avatar,
-  Button,
-  IconButton,
-  Label,
-  Typography,
-} from '@consolelabs/core'
+import { Avatar, Button, IconButton, Typography } from '@consolelabs/core'
 import {
   EditLine,
   ArrowDownSquareSolid,
@@ -34,7 +28,13 @@ export const AppDetailStatistics = ({ profileId, appId, detail }: Props) => {
           <div className="flex-1">
             <div className="flex items-center justify-between mb-4 space-x-2">
               <div>
-                <Label>Display name</Label>
+                <Typography
+                  level="p7"
+                  color="textSecondary"
+                  className="font-bold uppercase"
+                >
+                  Display name
+                </Typography>
                 <Typography level="h8">{detail?.name || '-'}</Typography>
               </div>
               <IconButton
@@ -45,7 +45,13 @@ export const AppDetailStatistics = ({ profileId, appId, detail }: Props) => {
                 <EditLine className="w-4 h-4" />
               </IconButton>
             </div>
-            <Label>Discription</Label>
+            <Typography
+              level="p7"
+              color="textSecondary"
+              className="font-bold uppercase"
+            >
+              Discription
+            </Typography>
             <Typography level="p5">{detail?.description || '-'}</Typography>
           </div>
         </div>

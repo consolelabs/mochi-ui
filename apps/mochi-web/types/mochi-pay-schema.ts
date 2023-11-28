@@ -374,6 +374,11 @@ export interface ViewApplication {
   updated_at?: string
 }
 
+export interface ViewApplicationListWithPaginationResponse {
+  data?: ViewApplication[]
+  pagination?: ViewPaginationResponse
+}
+
 export interface ViewApplicationMember {
   app_id?: number
   created_at?: string
@@ -382,6 +387,11 @@ export interface ViewApplicationMember {
   profile_metadata?: Record<string, any>
   role?: string
   updated_at?: string
+}
+
+export interface ViewApplicationMemberListWithPaginationResponse {
+  data?: ViewApplicationMember[]
+  pagination?: ViewPaginationResponse
 }
 
 export interface ViewApplicationMemberResponse {
@@ -439,6 +449,11 @@ export interface ViewApplicationStatsResponse {
 
 export interface ViewDataResponse {
   data?: any
+}
+
+export interface ViewDataResponseWithPagination {
+  data?: any
+  pagination?: ViewPaginationResponse
 }
 
 export interface ViewFullApplication {
@@ -507,9 +522,4 @@ export interface ViewTransferV2TransactionData {
   type?: string
   updated_at?: string
   usd_amount?: number
-}
-
-export interface ViewDataResponseWithPagination {
-  data?: any
-  pagination?: ViewPaginationResponse
 }

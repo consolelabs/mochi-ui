@@ -34,7 +34,7 @@ export const StatisticsBox = ({
         className,
       )}
     >
-      <Typography level="h8" color="textPrimary">
+      <Typography level="p5" color="textPrimary" className="font-medium">
         {label}
       </Typography>
       <Typography level={size === 'md' ? 'h5' : 'h4'} color="textPrimary">
@@ -51,7 +51,11 @@ export const StatisticsBox = ({
             change > 0 ? 'text-success-500' : 'text-danger-500 rotate-180',
           )}
         />
-        <Typography level="h8" color={change > 0 ? 'success' : 'danger'}>
+        <Typography
+          level="p5"
+          color={change > 0 ? 'success' : 'danger'}
+          className="font-medium"
+        >
           {formatChange(change)}
         </Typography>
         <Typography level="p5" color="textSecondary">

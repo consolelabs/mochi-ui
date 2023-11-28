@@ -30,7 +30,9 @@ export const AppDetailPageHeader = ({ name = '' }: Props) => {
           color="neutral"
           className="!bg-neutral-0"
           key="see-docs-button"
-          onClick={() => window.open(SOCIAL_LINKS.DOCS, '_blank')}
+          as="a"
+          href={SOCIAL_LINKS.DOCS}
+          target="_blank"
         >
           See docs
         </Button>,
