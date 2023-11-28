@@ -81,9 +81,9 @@ export const FormSubmission: Story = {
         <FormControl required>
           <FormLabel>Username</FormLabel>
           <TextFieldRoot>
-            <TextFieldRoot>
+            <TextFieldDecorator>
               <UserSolid />
-            </TextFieldRoot>
+            </TextFieldDecorator>
             <TextFieldInput name="username" placeholder="Enter your username" />
           </TextFieldRoot>
           <FormHelperText>This is helper text</FormHelperText>
@@ -123,9 +123,9 @@ export const WithReactHookForm: Story = {
             <FormControl error={!!fieldState.error} hideHelperTextOnError>
               <FormLabel>Username</FormLabel>
               <TextFieldRoot>
-                <TextFieldRoot>
+                <TextFieldDecorator>
                   <UserSolid />
-                </TextFieldRoot>
+                </TextFieldDecorator>
                 <TextFieldInput {...field} placeholder="Enter your username" />
               </TextFieldRoot>
               <FormHelperText>Type in your username</FormHelperText>
@@ -142,9 +142,9 @@ export const WithReactHookForm: Story = {
             <FormControl error={!!fieldState.error}>
               <FormLabel>Password</FormLabel>
               <TextFieldRoot>
-                <TextFieldRoot>
+                <TextFieldDecorator>
                   <UserSolid />
-                </TextFieldRoot>
+                </TextFieldDecorator>
                 <TextFieldInput
                   {...field}
                   placeholder="Enter your password"
