@@ -6,6 +6,7 @@ import { useProfileStore } from '~store'
 import { shallow } from 'zustand/shallow'
 import { AppDetailPageHeader } from '~cpn/app/detail/AppDetailPageHeader'
 import { AppDetailStatistics } from '~cpn/app/detail/AppDetailStatistics'
+import { AppDetailIntegration } from '~cpn/app/detail/AppDetailIntegration'
 
 const App: NextPageWithLayout = () => {
   const { id: profileId } = useProfileStore(
@@ -21,12 +22,16 @@ const App: NextPageWithLayout = () => {
   const { data: detail } = useFetchApplicationDetail(profileId, appId)
 
   return (
-    <AuthLayout pageHeader={<AppDetailPageHeader name={detail?.name} />}>
+    <AuthLayout
+      className="bg-[#FCFCFC]"
+      pageHeader={<AppDetailPageHeader name={detail?.name} />}
+    >
       <AppDetailStatistics
         profileId={profileId}
         appId={appId}
         detail={detail}
       />
+      <AppDetailIntegration apiKey={detail?.public_key} />
     </AuthLayout>
   )
 }

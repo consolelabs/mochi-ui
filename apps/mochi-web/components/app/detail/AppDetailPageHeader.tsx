@@ -24,6 +24,7 @@ export const AppDetailPageHeader = ({ name = '' }: Props) => {
   return (
     <PageHeader
       title={name}
+      className="border-b-[0.5px] border-neutral-400"
       actions={[
         <Button
           variant="outline"
