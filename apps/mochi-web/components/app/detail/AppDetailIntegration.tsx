@@ -1,4 +1,10 @@
-import { Button, Tooltip, Typography } from '@consolelabs/core'
+import {
+  Button,
+  TextFieldInput,
+  TextFieldRoot,
+  Tooltip,
+  Typography,
+} from '@consolelabs/core'
 import { CopySolid, ThreeDotLoading } from '@consolelabs/icons'
 import { truncate } from '@dwarvesf/react-utils'
 import { useClipboard } from '@dwarvesf/react-hooks'
@@ -68,6 +74,17 @@ export const AppDetailIntegration = ({ apiKey = '' }: Props) => {
         </div>
         <CodeSnippet />
       </div>
+      <Typography
+        component="p"
+        level="p7"
+        color="textSecondary"
+        className="mt-4 mb-2 font-bold uppercase"
+      >
+        Webhook url
+      </Typography>
+      <TextFieldRoot className="bg-neutral-0">
+        <TextFieldInput placeholder="https://your-endpoint-url.com" />
+      </TextFieldRoot>
     </div>
   )
 }
