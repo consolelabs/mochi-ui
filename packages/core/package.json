@@ -62,7 +62,8 @@
     "@consolelabs/modal": "workspace:*",
     "@consolelabs/typography": "workspace:*",
     "@consolelabs/table": "workspace:*",
-    "@consolelabs/label": "workspace:*"
+    "@consolelabs/label": "workspace:*",
+    "@consolelabs/toast": "workspace:*"
   },
   "clean-package": "../../clean-package.config.json"
 }
