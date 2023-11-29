@@ -111,7 +111,10 @@ const App: NextPageWithLayout = () => {
         isLoading={isLoading || !id}
         className="max-w-full"
       />
-      <Modal open={isOpen}>
+      <Modal
+        open={isOpen}
+        onOpenChange={(open) => (open ? onOpen() : onClose())}
+      >
         <ModalContent className="w-full max-w-md">
           <NewAppForm id={id} onClose={onClose} onSuccess={onCreateApp} />
         </ModalContent>
