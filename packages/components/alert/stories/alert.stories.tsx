@@ -9,6 +9,7 @@ import { AlertCloseIcon } from '../src/alert-close'
 import { AlertActionGroup } from '../src/alert-action-group'
 import { AlertConfirm } from '../src/alert-confirm'
 import { AlertCancel } from '../src/alert-cancel'
+import { AlertLink } from '../src/alert-link'
 
 const schemes = [
   'primary',
@@ -62,6 +63,7 @@ export const Default: Story = {
           Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
           cillum sint consectetur cupidatat.
         </AlertDescription>
+        <AlertLink href="#">View More</AlertLink>
         <AlertCloseIcon />
       </Alert>
     )

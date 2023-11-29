@@ -177,26 +177,23 @@ const alertIconCloseCva = createTextCva('text-base absolute cursor-pointer', [
   },
 ])
 
-const alertTitleCva = createTextCva(
-  'alert-content font-semibold tracking-tight h-fit',
-  [
-    {
-      size: 'sm',
-      className: 'text-xs',
-    },
-    {
-      size: 'md',
-      className: 'text-sm',
-    },
-    {
-      variant: 'action',
-      className: 'shrink-0 max-w-full line-clamp-1',
-    },
-  ],
-)
+const alertTitleCva = createTextCva(' font-semibold tracking-tight h-fit', [
+  {
+    size: 'sm',
+    className: 'text-xs',
+  },
+  {
+    size: 'md',
+    className: 'text-sm',
+  },
+  {
+    variant: 'action',
+    className: 'shrink-0 max-w-full line-clamp-1',
+  },
+])
 
 const alertDescriptionCva = createTextCva(
-  'alert-content tracking-tight line-clamp-1 h-fit',
+  ' tracking-tight line-clamp-1 h-fit',
   [
     {
       size: 'sm',
@@ -212,6 +209,17 @@ const alertDescriptionCva = createTextCva(
     },
   ],
 )
+
+const alertLinkCva = createTextCva('cursor-pointer', [
+  {
+    size: 'sm',
+    className: 'text-[10px] font-bold',
+  },
+  {
+    size: 'md',
+    className: 'text-sm font-semibold',
+  },
+])
 
 const alertConfirmClsx = ({ className = '' }: { className?: string }) =>
   clsx('w-full', className)
@@ -234,6 +242,7 @@ export const alert = {
   alertActionGroup,
   alertConfirmClsx,
   alertCancelClsx,
+  alertLinkCva,
 }
 
 export type AlertStylesProps = VariantProps<typeof alertCva>
