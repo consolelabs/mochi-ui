@@ -1287,6 +1287,52 @@ importers:
         specifier: workspace:*
         version: link:../../tsconfig
 
+  packages/components/section-header:
+    dependencies:
+      '@consolelabs/icon-button':
+        specifier: workspace:*
+        version: link:../icon-button
+      '@consolelabs/icons':
+        specifier: workspace:*
+        version: link:../../icons
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../../theme
+      '@consolelabs/typography':
+        specifier: workspace:*
+        version: link:../typography
+    devDependencies:
+      '@consolelabs/button':
+        specifier: workspace:*
+        version: link:../button
+      '@consolelabs/select':
+        specifier: workspace:*
+        version: link:../select
+      '@consolelabs/tooltip':
+        specifier: workspace:*
+        version: link:../tooltip
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.1.0
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
   packages/components/section-list:
     dependencies:
       '@consolelabs/theme':
