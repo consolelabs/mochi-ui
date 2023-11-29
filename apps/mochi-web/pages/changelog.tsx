@@ -6,6 +6,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import remarkBreaks from 'remark-breaks'
 import { api } from '~constants/mochi'
+import { NativeImage } from '~cpn/NativeImage'
 
 type Page = {
   name: string
@@ -38,7 +39,7 @@ const Paragraph = ({ children }: { children: React.ReactNode }) => {
 
 const Image = (props: any) => {
   return (
-    <img
+    <NativeImage
       className="-mt-5 w-[70%] mx-auto rounded-lg"
       src={props.src}
       alt={props.alt || ''}

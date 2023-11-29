@@ -1,6 +1,6 @@
 import { Layout } from '~app/layout'
 import { SEO } from '~app/layout/seo'
-import Button from '~cpn/base/button/button'
+import { Button } from '~cpn/base/button/button'
 import { ArrowRightLine } from '@consolelabs/icons'
 import clsx from 'clsx'
 import { ROUTES } from '~constants/routes'

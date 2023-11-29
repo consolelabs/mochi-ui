@@ -33,9 +33,14 @@ function SectionItem({
 interface MessagePickerProps {
   value: string
   onChange: (msg: string) => void
+  sectionTitleHtmlFor?: string
 }
 
-export default function MessagePicker({ value, onChange }: MessagePickerProps) {
+export default function MessagePicker({
+  value,
+  onChange,
+  sectionTitleHtmlFor,
+}: MessagePickerProps) {
   const inputRef = useRef<HTMLInputElement | null>(null)
   const [messageSearch, setMessageSearch] = useState('')
   const { isOpen, onClose, onOpen } = useDisclosure()
@@ -117,7 +122,10 @@ export default function MessagePicker({ value, onChange }: MessagePickerProps) {
               />
             )}
             renderSectionHeader={(section: any) => (
-              <label className="font-bold text-[0.625rem] uppercase text-[#ADACAA]">
+              <label
+                htmlFor={sectionTitleHtmlFor}
+                className="font-bold text-[0.625rem] uppercase text-[#ADACAA]"
+              >
                 {section.title}
               </label>
             )}

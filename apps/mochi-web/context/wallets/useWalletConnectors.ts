@@ -258,15 +258,23 @@ export const useWalletConnectors = () => {
       onConnecting: (fn: () => void) => {
         if (!wallet.isSolana && !wallet.isSui && wallet.connector) {
           wallet.connector.on('message', ({ type }) => {
-            type === 'connecting' && fn()
+            if (type === 'connecting') {
+              fn()
+            }
           })
         }
       },
-      connecting: wallet.isSui
-        ? suiConnecting
-        : wallet.isSolana
-          ? solConnecting
-          : false,
+      connecting: (() => {
+        if (wallet.isSui) {
+          return suiConnecting
+        }
+
+        if (wallet.isSolana) {
+          return solConnecting
+        }
+
+        return false
+      })(),
       ready,
       recent,
       // showWalletConnectModal:

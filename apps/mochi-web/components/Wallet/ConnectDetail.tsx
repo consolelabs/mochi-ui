@@ -1,7 +1,8 @@
 import { useMemo } from 'react'
 import { WalletConnector } from 'context/wallets/useWalletConnectors'
-import Text from '~cpn/base/text'
+import { Text } from '~cpn/base/text'
 import { button } from '~cpn/base/button'
+import { NativeImage } from '~cpn/NativeImage'
 import { QRCode } from './QRCode'
 
 export type ConnectDetailProps = {
@@ -49,7 +50,7 @@ export const ConnectDetail = ({
           <div className="flex flex-col mx-auto w-full text-center max-w-[200px]">
             <div className="flex justify-center items-center">
               <div className="w-14 h-14 rounded-full lg:w-20 lg:h-20">
-                <img
+                <NativeImage
                   alt="Logo"
                   className="object-cover w-full"
                   src="/logo.png"
@@ -62,7 +63,7 @@ export const ConnectDetail = ({
                 }}
                 className="overflow-hidden p-3 w-14 h-14 rounded-full lg:w-20 lg:h-20"
               >
-                <img
+                <NativeImage
                   alt={wallet.name}
                   className="object-cover w-full rounded-md lg:rounded-none"
                   src={iconUrl}
@@ -105,11 +106,11 @@ export const ConnectDetail = ({
     reconnect,
   ])
 
-  const downloadExtendsionView = useMemo(() => {
+  const downloadExtensionView = useMemo(() => {
     return (
       <div className="flex flex-col justify-center items-center h-full">
         <div className="mb-6 w-20 h-20 rounded-full">
-          <img
+          <NativeImage
             alt={wallet.name}
             className="object-cover w-full"
             src={wallet.iconUrl}
@@ -140,12 +141,12 @@ export const ConnectDetail = ({
     }
 
     if (downloadUrls?.browserExtension) {
-      return downloadExtendsionView
+      return downloadExtensionView
     }
   }, [
     qrCodeView,
     connectingView,
-    downloadExtendsionView,
+    downloadExtensionView,
     qrCode,
     qrCodeUri,
     ready,

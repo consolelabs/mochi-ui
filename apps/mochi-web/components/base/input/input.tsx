@@ -52,7 +52,7 @@ type Props = VariantProps<typeof input> &
     allowClear?: boolean
   }
 
-const Input = forwardRef(
+export const Input = forwardRef(
   (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
     const {
       value = '',
@@ -123,7 +123,7 @@ const Input = forwardRef(
             )}
             onClick={(e) => {
               e.preventDefault()
-              onChange && onChange({ target: { value: '' } } as any)
+              onChange?.({ target: { value: '' } } as any)
             }}
           >
             <Icon className="w-4 h-4" icon="heroicons:x-mark" />
@@ -135,5 +135,3 @@ const Input = forwardRef(
     )
   },
 )
-
-export default Input

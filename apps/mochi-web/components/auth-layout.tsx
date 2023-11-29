@@ -18,10 +18,11 @@ import { DISCORD_LINK, TWITTER_LINK } from '~envs'
 import { useRouter } from 'next/router'
 import { ROUTES } from '~constants/routes'
 import { AuthPanel } from './AuthWidget'
+import { NativeImage } from './NativeImage'
 
 const SidebarHeader = ({ expanded }: { expanded?: boolean }) => {
   return expanded ? (
-    <img
+    <NativeImage
       alt="header"
       className="object-cover w-full h-20"
       src="https://pbs.twimg.com/profile_banners/1168522102410010626/1684159976/300x100"
@@ -53,7 +54,9 @@ export default function AuthenticatedLayout({
   const mounted = useHasMounted()
   const { isLoggedIn, isLoadingSession } = useAuthStore()
 
-  if (!mounted) return <>{childSEO}</>
+  if (!mounted) {
+    return childSEO
+  }
 
   return (
     <Layout className="w-screen min-h-screen bg-white-pure">

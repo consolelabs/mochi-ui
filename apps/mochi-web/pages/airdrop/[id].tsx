@@ -218,6 +218,44 @@ export default function Airdrop({
   const isWaiting = !ended && !valid && joined && countdown > 0
   const redirectingToPaylink = ended && valid
 
+  const getImgSrc = () => {
+    if (isWaiting) {
+      return '/assets/mochisan-meditate.png'
+    }
+    if (redirectingToPaylink) {
+      return '/assets/mochisan.png'
+    }
+    return '/assets/mochisan-stars.png'
+  }
+
+  const getContent = () => {
+    if (!ended && !valid) {
+      if (!joined) {
+        return 'Joining airdrop...'
+      }
+
+      return (
+        <div>
+          <div className="flex justify-center items-center text-3xl">
+            <Countdown countdown={countdown} />
+          </div>
+          <p className="text-sm font-normal">until airdrop ends</p>
+          <p className="mt-3">Patience is a virtue!</p>
+        </div>
+      )
+    }
+
+    if (ended && !valid) {
+      return "The airdrop ended but you wasn't on the list, better luck next time!"
+    }
+
+    if (ended && valid) {
+      return 'Congrats! Redirecting you to the Pay Link now...'
+    }
+
+    return null
+  }
+
   return (
     <Layout>
       <SEO
@@ -239,36 +277,10 @@ export default function Airdrop({
             'animate-float': isWaiting,
             'scale-x-[-1]': redirectingToPaylink,
           })}
-          src={
-            isWaiting
-              ? '/assets/mochisan-meditate.png'
-              : redirectingToPaylink
-                ? '/assets/mochisan.png'
-                : '/assets/mochisan-stars.png'
-          }
+          src={getImgSrc()}
           alt="mochisan with a lot of stars"
         />
-        <div className="mt-2">
-          {!ended && !valid ? (
-            !joined ? (
-              'Joining airdrop...'
-            ) : (
-              <div>
-                <div className="flex justify-center items-center text-3xl">
-                  <Countdown countdown={countdown} />
-                </div>
-                <p className="text-sm font-normal">until airdrop ends</p>
-                <p className="mt-3">Patience is a virtue!</p>
-              </div>
-            )
-          ) : ended && !valid ? (
-            "The airdrop ended but you wasn't on the list, better luck next time!"
-          ) : ended && valid ? (
-            'Congrats! Redirecting you to the Pay Link now...'
-          ) : (
-            ''
-          )}
-        </div>
+        <div className="mt-2">{getContent()}</div>
       </div>
     </Layout>
   )

@@ -1,5 +1,6 @@
 import { apple, avatar, socialIcons } from '~utils/image'
 import { Icon } from '@iconify/react'
+import { NativeImage } from '~cpn/NativeImage'
 import Left from './Left'
 import Right from './Right'
 
@@ -40,7 +41,7 @@ export default function Banner() {
             </div>
             <div>
               <span className="inline-flex items-center justify-center bg-[#F2F2F2] rounded-full w-[4.5rem] h-[4.5rem] p-2 mb-3">
-                <img
+                <NativeImage
                   src={avatar.src}
                   className="max-w-full max-h-full"
                   alt="avatar"
@@ -65,13 +66,13 @@ export default function Banner() {
                 />
               </button>
             </div>
-            <img
+            <NativeImage
               width={60}
               className="absolute top-0 left-0"
               src={socialIcons.src}
               alt="social icons"
             />
-            <img
+            <NativeImage
               width={30}
               className="absolute right-[1%] top-[8%]"
               src={apple.src}

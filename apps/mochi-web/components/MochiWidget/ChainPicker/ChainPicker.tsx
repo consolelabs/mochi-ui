@@ -6,6 +6,7 @@ import {
   PopoverTrigger,
   PopoverContent,
 } from '@consolelabs/core'
+import { NativeImage } from '~cpn/NativeImage'
 import clsx from 'clsx'
 import { ChainList } from './ChainList'
 import { Chains } from './data'
@@ -48,7 +49,7 @@ export const ChainPicker: React.FC<ChainPickerProps> = ({ className }) => {
         )}
       >
         <span className="text-base" role="img">
-          <img
+          <NativeImage
             alt={`${selectedChain.name} icon`}
             className="object-contain rounded-full w-[22px] h-[22px]"
             src={selectedChain.icon}

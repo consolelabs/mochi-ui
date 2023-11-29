@@ -64,7 +64,7 @@ type Props = VariantProps<typeof button> & {
   className?: string
 } & Omit<React.HTMLProps<HTMLButtonElement>, 'size'>
 
-export default function Button({
+export function Button({
   size,
   className,
   appearance,

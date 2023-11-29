@@ -1,10 +1,11 @@
-import Text from '~cpn/base/text'
+import Image from 'next/image'
+import { Text } from '~cpn/base/text'
 
 export const ConnectWalletIntro = () => {
   return (
     <div className="flex flex-col justify-center items-center h-full">
       <div className="mb-9 w-20 h-20">
-        <img
+        <Image
           width={80}
           height={80}
           alt="wallet intro"

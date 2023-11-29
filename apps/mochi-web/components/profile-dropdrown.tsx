@@ -41,13 +41,13 @@ export default function ProfileDropdown() {
           <DropdownMenuItem leftIcon={<UserSolid />}>Profile</DropdownMenuItem>
         </Link>
 
-        <Link href="#">
+        <Link href="#gift">
           <DropdownMenuItem leftIcon={<SuperGroupSolid />}>
             Gift Your Friends
           </DropdownMenuItem>
         </Link>
 
-        <Link href="#">
+        <Link href="#settings">
           <DropdownMenuItem leftIcon={<SettingSolid />}>
             Settings
           </DropdownMenuItem>
@@ -55,17 +55,17 @@ export default function ProfileDropdown() {
 
         <DropdownMenuSeparator />
 
-        <Link href="#">
+        <Link href="#my-server">
           <DropdownMenuItem leftIcon={<Discord />}>My Servers</DropdownMenuItem>
         </Link>
 
-        <Link href="#">
+        <Link href="#mochi">
           <DropdownMenuItem leftIcon={<Discord />}>
             Install Mochi
           </DropdownMenuItem>
         </Link>
 
-        <Link href="#">
+        <Link href="#friends">
           <DropdownMenuItem leftIcon={<AddUserSolid />}>
             Invite Friends
           </DropdownMenuItem>
@@ -73,13 +73,13 @@ export default function ProfileDropdown() {
 
         <DropdownMenuSeparator />
 
-        <Link href="#">
+        <Link href="#application">
           <DropdownMenuItem leftIcon={<CodingSolid />}>
             Create Application
           </DropdownMenuItem>
         </Link>
 
-        <Link href="#">
+        <Link href="#docs">
           <DropdownMenuItem leftIcon={<CodingSolid />}>
             Developer Docs
           </DropdownMenuItem>
@@ -87,11 +87,11 @@ export default function ProfileDropdown() {
 
         <DropdownMenuSeparator />
 
-        <Link href="#">
+        <Link href="#tos">
           <DropdownMenuItem>Terms & Policies</DropdownMenuItem>
         </Link>
 
-        <Link href="#">
+        <Link href="#privacy">
           <DropdownMenuItem>Privacy Policy</DropdownMenuItem>
         </Link>
 

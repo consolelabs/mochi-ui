@@ -1,7 +1,7 @@
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { Icon } from '@iconify/react'
 import React, { Fragment, useCallback, useEffect, useState } from 'react'
-import Button from '~cpn/base/button'
+import { Button } from '~cpn/base/button'
 import Modal from '~components/Modal'
 import { toast } from 'sonner'
 import ToastSuccess from '~components/Toast/ToastSuccess'
@@ -375,13 +375,19 @@ export default function PaymentButton({
   const emptyConfigEVM = !Object.keys(configEVM ?? {}).length
 
   useEffect(() => {
-    const payFn = isEVM
-      ? isNative
-        ? sendNativeEVM
-        : sendNonNativeEVM
-      : isNative
-        ? sendNativeSOL
-        : sendNonNativeSOL
+    const payFn = (() => {
+      if (isEVM) {
+        if (isNative) {
+          return sendNativeEVM
+        }
+        return sendNonNativeEVM
+      }
+
+      if (isNative) {
+        return sendNativeSOL
+      }
+      return sendNonNativeSOL
+    })()
     if (!payFn || (isEVM && !switchNetworkAsync)) {
       if ((isEVM && !emptyConfigSOL) || (!isEVM && !emptyConfigEVM)) {
         disconnect()
@@ -582,11 +588,15 @@ export default function PaymentButton({
               <span className="font-semibold">{payAmountFormatted}</span> to{' '}
               <span className="font-semibold break-all">
                 {truncate(
-                  isEVM
-                    ? isNative
-                      ? option.args?.request?.to ?? ''
-                      : option.args?.args[0] ?? ''
-                    : option.args?.recipientAddress?.toBase58() ?? '',
+                  (() => {
+                    if (isEVM) {
+                      if (isNative) {
+                        return option.args?.request?.to ?? ''
+                      }
+                      return option.args?.args[0] ?? ''
+                    }
+                    return option.args?.recipientAddress?.toBase58() ?? ''
+                  })(),
                   8,
                   true,
                   '.',

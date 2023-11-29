@@ -1,9 +1,10 @@
 import React from 'react'
 import Marquee from 'react-fast-marquee'
 import clsx from 'clsx'
+import { NativeImage } from './NativeImage'
 
 const Image = (props: any) => (
-  <img
+  <NativeImage
     {...props}
     className={clsx(
       props.className,

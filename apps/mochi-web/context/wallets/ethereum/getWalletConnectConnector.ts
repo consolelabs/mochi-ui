@@ -21,7 +21,7 @@ function createConnector(options: WalletConnectConnectorOptions) {
     options,
   ) as CustomWalletConnectConnector
 
-  connector.getURI = async function () {
+  connector.getURI = async function getProviderURI() {
     return new Promise<string>((r) => {
       this.getProvider().then((provider) => {
         r(provider.connector.uri)

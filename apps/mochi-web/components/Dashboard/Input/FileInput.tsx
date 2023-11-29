@@ -47,7 +47,7 @@ export const FileInput = forwardRef(
             className="flex absolute top-0 right-0 justify-center items-center mt-2.5 mr-3 w-5 h-5 rounded-full bg-dashboard-gray-6"
             onClick={(e) => {
               e.preventDefault()
-              onChange && onChange({ target: { files: undefined } } as any)
+              onChange?.({ target: { files: undefined } } as any)
             }}
           >
             <Icon className="w-4 h-4" icon="heroicons:x-mark" />

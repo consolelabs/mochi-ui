@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import Text from '~cpn/base/text'
+import { Text } from '~cpn/base/text'
 import { SEO } from '~app/layout/seo'
 import QRCodeButton from '~components/Pay/QRCodeButton'
 import CopyLinkButton from '~components/Pay/CopyLinkButton'
@@ -10,7 +10,7 @@ import { GetServerSideProps } from 'next'
 import { API } from '~constants/api'
 import { utils } from 'ethers'
 import clsx from 'clsx'
-import Button, { button } from '~cpn/base/button'
+import { button, Button } from '~cpn/base/button'
 import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import { isSSR, truncate } from '@dwarvesf/react-utils'
@@ -19,7 +19,7 @@ import { useDisclosure } from '@dwarvesf/react-hooks'
 import useSWR from 'swr'
 import Card from '~components/Pay/Card'
 import Link from 'next/link'
-import Avatar from '~cpn/base/avatar'
+import { Avatar } from '~cpn/base/avatar'
 import { useEffect } from 'react'
 import { PayRequest, usePayRequest } from '~store/pay-request'
 import { Platform, utils as mochiUtils } from '@consolelabs/mochi-ui'
@@ -221,7 +221,7 @@ export default function PayCode({
               <QRCodeButton
                 image={initialPayRequest?.profile?.avatar}
                 links={isSSR() ? [] : [window.location.href]}
-                user={initialPayRequest?.profile?.name}
+                // user={initialPayRequest?.profile?.name}
               />
               <CopyLinkButton link={isSSR() ? '' : window.location.href} />
               <ShareButton link={isSSR() ? '' : window.location.href} />

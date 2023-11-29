@@ -8,6 +8,7 @@ export type TemplateName =
   | 'achievement'
   | 'anniversary'
 
+// eslint-disable-next-line react/no-unused-prop-types
 export type TemplateProps = { img: string; phrase: string; title: string }
 
 export const templates: Record<TemplateName, TemplateProps> = {

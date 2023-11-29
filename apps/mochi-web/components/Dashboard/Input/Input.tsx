@@ -76,7 +76,7 @@ export const Input = forwardRef(
             className="flex absolute right-0 top-1/2 justify-center items-center mr-3 w-5 h-5 rounded-full -translate-y-1/2 bg-dashboard-gray-6"
             onClick={(e) => {
               e.preventDefault()
-              onChange && onChange({ target: { value: '' } } as any)
+              onChange?.({ target: { value: '' } } as any)
             }}
           >
             <Icon className="w-4 h-4" icon="heroicons:x-mark" />

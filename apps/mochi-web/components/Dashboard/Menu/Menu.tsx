@@ -21,6 +21,27 @@ type Props = {
 export const Menu = (props: Props) => {
   const { items, activeId, activeIdx = -1, onClick } = props
 
+  const renderItem = (item: MenuItem) => {
+    if (item.subItems) {
+      if (item.id === activeId) {
+        return (
+          <Icon
+            icon="octicon:chevron-down-16"
+            className="ml-auto text-foreground"
+          />
+        )
+      }
+      return (
+        <Icon
+          icon="octicon:chevron-left-16"
+          className="ml-auto text-foreground"
+        />
+      )
+    }
+
+    return null
+  }
+
   return (
     <div className="flex flex-col">
       {items.map((group, groupIdx) => {
@@ -68,19 +89,7 @@ export const Menu = (props: Props) => {
                       <span className="text-sm font-medium text-foreground">
                         {item.text}
                       </span>
-                      {item.subItems ? (
-                        item.id === activeId ? (
-                          <Icon
-                            icon="octicon:chevron-down-16"
-                            className="ml-auto text-foreground"
-                          />
-                        ) : (
-                          <Icon
-                            icon="octicon:chevron-left-16"
-                            className="ml-auto text-foreground"
-                          />
-                        )
-                      ) : null}
+                      {renderItem(item)}
                     </Link>
                     {item.subItems && item.id === activeId ? (
                       <div className="flex flex-col">

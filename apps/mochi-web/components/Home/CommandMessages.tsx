@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import { useEffect, useRef, useState } from 'react'
+import { NativeImage } from '~cpn/NativeImage'
 import { useIsVisible } from '~hooks/useIsVisible'
 
 const DATA = [
@@ -98,7 +99,7 @@ export default function CommandMessages() {
                 )}
                 key={item.sender + i}
               >
-                <img
+                <NativeImage
                   className="mr-2 w-6 h-6 sm:w-10 sm:h-10"
                   src={`/assets/tip/${item.sender}.png`}
                   alt="social icons"

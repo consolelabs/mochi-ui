@@ -6,12 +6,13 @@ import { shallow } from 'zustand/shallow'
 import { useProfileStore } from '~store'
 import { API, GET_PATHS } from '~constants/api'
 import useSWR from 'swr'
-import Alert from '~cpn/base/alert'
-import Avatar from '~cpn/base/avatar'
+import { Alert } from '~cpn/base/alert'
+import { Avatar } from '~cpn/base/avatar'
 import { logo } from '~utils/image'
 import Profile from '~components/profile'
 import { boringAvatar } from '~utils/string'
 import Link from 'next/link'
+import { NativeImage } from '~cpn/NativeImage'
 
 export type App = {
   id: string
@@ -80,7 +81,7 @@ const Home: NextPageWithLayout = () => {
                           size="parent"
                         />
                       ) : (
-                        <img
+                        <NativeImage
                           src={s.icon || boringAvatar(s.id)}
                           alt=""
                           className="w-full h-full rounded-full"

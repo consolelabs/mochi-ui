@@ -7,6 +7,7 @@ import { Stats } from '@consolelabs/mochi-rest'
 import { discordLogo, telegramLogo } from '~utils/image'
 import { Avatar } from '@consolelabs/core'
 import { Pagination } from './Dashboard/Pagination'
+import { NativeImage } from './NativeImage'
 
 const Box = ({
   children,
@@ -153,9 +154,9 @@ export default function Profile() {
             >
               <span className="text-sm">
                 You send the most{' '}
-                <img
+                <NativeImage
                   className="inline w-4 h-4"
-                  src={stats?.most_send.token.icon}
+                  src={stats?.most_send.token.icon || ''}
                   alt=""
                 />{' '}
                 <span className="font-medium">
@@ -180,9 +181,9 @@ export default function Profile() {
             >
               <span className="text-sm">
                 You receive the most{' '}
-                <img
+                <NativeImage
                   className="inline w-4 h-4"
-                  src={stats?.most_receive.token.icon}
+                  src={stats?.most_receive.token.icon || ''}
                   alt=""
                 />{' '}
                 <span className="font-medium">

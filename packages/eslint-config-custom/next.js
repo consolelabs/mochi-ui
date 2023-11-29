@@ -26,5 +26,8 @@ module.exports = {
     'react/display-name': 'off',
     '@typescript-eslint/no-throw-literal': 'off',
     '@next/next/no-html-link-for-pages': 'off',
+    'react/display-name': 'off',
+    'no-return-assign': 'off',
+    'react/jsx-no-bind': 'off',
   },
 }

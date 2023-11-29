@@ -28,11 +28,18 @@ const og = async (req: NextRequest) => {
   const ogData = searchParams.get('data') ?? '{}'
   const data = JSON.parse(decodeURIComponent(ogData))
   const unitCurrency = data.moniker ? data.moniker : data.symbol
-  const amount = !data.amount
-    ? '???'
-    : data.moniker
-      ? data.original_amount
-      : data.amount
+  function getAmount() {
+    if (!data.amount) {
+      return '???'
+    }
+
+    if (data.moniker) {
+      return data.original_amount
+    }
+
+    return data.amount
+  }
+  const amount = getAmount()
 
   data.amount = amount
   data.symbol = unitCurrency

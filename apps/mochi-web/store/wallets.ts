@@ -111,14 +111,14 @@ export const useWalletStore = create<State>((set) => ({
               type: 'onchain',
             })
           } else {
-            console.log(error.issues)
+            console.error(error.issues)
           }
         })
       }
 
       set({ isFetching: false, wallets })
     } catch (e) {
-      console.log(e)
+      console.error(e)
       set((s) => ({ ...s, isFetching: false }))
     }
   },

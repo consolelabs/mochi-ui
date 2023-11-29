@@ -1,6 +1,6 @@
 import { useDisclosure, useMedia } from '@dwarvesf/react-hooks'
 import { Icon } from '@iconify/react'
-import Button from '~cpn/base/button'
+import { Button } from '~cpn/base/button'
 import Modal from '~components/Modal'
 import { QRCode as QRCodeGenerator } from '~components/Wallet/QRCode'
 import { useEffect, useRef, useState } from 'react'
@@ -11,7 +11,6 @@ import VirtualList, { ScrollDirection } from 'react-tiny-virtual-list'
 type Props = {
   links: string[]
   image?: string
-  user?: string
   children?: React.ReactNode
 }
 

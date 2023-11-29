@@ -1,5 +1,5 @@
 import { useDisclosure } from '@dwarvesf/react-hooks'
-import Button from '~cpn/base/button'
+import { Button } from '~cpn/base/button'
 import Modal from '~components/Modal'
 import SocialButtons from './components/SocialButtons'
 

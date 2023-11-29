@@ -5,6 +5,7 @@ import { successStampIcon, failStampIcon, coinIcon } from '~utils/image'
 import { Avatar } from '@consolelabs/core'
 import clsx from 'clsx'
 import { truncate } from '@dwarvesf/react-utils'
+import { NativeImage } from '~cpn/NativeImage'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { HOME_URL } from '~envs'
 import DataList from './DataList'
@@ -170,7 +171,7 @@ export default function Receipt({ id, data: _data }: Props) {
                   <DataList.Item title="Status">
                     {data.data.success ? 'Success' : 'Failed'}
                   </DataList.Item>
-                  <img
+                  <NativeImage
                     src={
                       data.data.success
                         ? successStampIcon.src

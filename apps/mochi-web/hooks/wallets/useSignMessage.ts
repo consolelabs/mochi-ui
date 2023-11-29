@@ -100,6 +100,16 @@ export const useSignMessage = () => {
 
   return {
     isSigning,
-    signMsg: isSuiConnected ? signSui : isSolanaConnected ? signSOL : signEVM,
+    signMsg: (() => {
+      if (isSuiConnected) {
+        return signSui
+      }
+
+      if (isSolanaConnected) {
+        return signSOL
+      }
+
+      return signEVM
+    })(),
   }
 }

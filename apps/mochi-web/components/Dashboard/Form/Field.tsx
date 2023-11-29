@@ -22,6 +22,7 @@ type Props<T extends FieldValues> = {
   description?: React.ReactNode
   valueProps?: string
   labelProps?: JSX.IntrinsicElements['label']
+  htmlFor?: string
 } & Omit<Optional<ControllerProps<T>, 'name'>, 'render'>
 
 export default function Field<T extends FieldValues = FieldValues>({
@@ -32,13 +33,17 @@ export default function Field<T extends FieldValues = FieldValues>({
   name,
   valueProps,
   labelProps,
+  htmlFor,
   ...rest
 }: Props<T>) {
   return (
     <div className="flex flex-col gap-y-1">
       <div className="flex flex-col">
         {label && (
-          <label className={labelProps?.className ?? 'text-base font-medium'}>
+          <label
+            htmlFor={htmlFor}
+            className={labelProps?.className ?? 'text-base font-medium'}
+          >
             {label}
             {rest.rules?.required && (
               <span className="text-xs text-mochi-900"> *</span>
@@ -57,8 +62,9 @@ export default function Field<T extends FieldValues = FieldValues>({
           render={({ field, fieldState, ...renderRest }) => {
             return (
               <div className="flex flex-col">
-                {typeof children === 'function'
-                  ? children({
+                {(() => {
+                  if (typeof children === 'function') {
+                    return children({
                       field: {
                         ...field,
                         ...(fieldState.error ? { appearance: 'invalid' } : {}),
@@ -67,15 +73,20 @@ export default function Field<T extends FieldValues = FieldValues>({
                       fieldState,
                       ...renderRest,
                     })
-                  : React.isValidElement<any>(children)
-                    ? React.cloneElement(children, {
-                        ...children.props,
-                        ...field,
-                        ...fieldState,
-                        ...renderRest,
-                        ...(valueProps ? { [valueProps]: field.value } : {}),
-                      })
-                    : null}
+                  }
+
+                  if (React.isValidElement<any>(children)) {
+                    return React.cloneElement(children, {
+                      ...children.props,
+                      ...field,
+                      ...fieldState,
+                      ...renderRest,
+                      ...(valueProps ? { [valueProps]: field.value } : {}),
+                    })
+                  }
+
+                  return null
+                })()}
                 {fieldState.error && (
                   <span className="mt-1 text-xs text-mochi-500">
                     {fieldState.error.message}

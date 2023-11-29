@@ -120,7 +120,7 @@ async function transform(d: any): Promise<Tx> {
         to = newTo
       }
     } catch (e) {
-      console.log(e)
+      console.error(e)
     }
   }
 
@@ -215,11 +215,11 @@ export const useTipFeed = create<State>((set, get) => ({
     const ws = new WebSocket(
       'wss://api-preview.mochi-pay.console.so/ws/transactions',
     )
-    ws.onopen = function (e) {
-      console.log('feed connected', e)
+    ws.onopen = (e) => {
+      console.info('feed connected', e)
     }
 
-    ws.onmessage = async function (e) {
+    ws.onmessage = async (e) => {
       try {
         const payload = JSON.parse(e.data)
         const { event, data } = payload
@@ -230,12 +230,12 @@ export const useTipFeed = create<State>((set, get) => ({
       }
     }
 
-    ws.onclose = function () {
-      console.log('disconnect')
+    ws.onclose = () => {
+      console.info('disconnect')
     }
 
-    ws.onerror = function (e) {
-      console.log('error', e)
+    ws.onerror = (e) => {
+      console.error('error', e)
     }
 
     set((s) => ({ ...s, ws }))

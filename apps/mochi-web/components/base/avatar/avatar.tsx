@@ -2,6 +2,7 @@ import React from 'react'
 import { boringAvatar } from '~utils/string'
 import cc from 'clsx'
 import { cva, VariantProps } from 'class-variance-authority'
+import { NativeImage } from '~cpn/NativeImage'
 
 const style = cva([], {
   variants: {
@@ -27,7 +28,7 @@ type Props = VariantProps<typeof style> & {
   className?: string
 }
 
-export default function Avatar({
+export function Avatar({
   size,
   srcFallbackText,
   srcFallbackVariant = 'beam',
@@ -39,7 +40,7 @@ export default function Avatar({
 
   if (!cutoutSrc)
     return (
-      <img
+      <NativeImage
         src={src}
         alt=""
         onError={(e) => {

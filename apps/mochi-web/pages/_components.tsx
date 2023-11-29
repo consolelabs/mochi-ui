@@ -1,5 +1,6 @@
+/* eslint-disable */
 import { Icon } from '@iconify/react'
-import Button, { button } from '~cpn/base/button'
+import { Button, button } from '~cpn/base/button'
 import { label as labelStyles } from '~components/Dashboard/Form/styles'
 import { FileInput, Input } from '~components/Dashboard/Input'
 import { Menu } from '~components/Dashboard/Menu'
@@ -15,7 +16,7 @@ import { Table } from '~components/Dashboard/Table'
 import Field from '~components/Dashboard/Form/Field'
 import { useCallback, useMemo, useState } from 'react'
 import { UseSortByState } from 'react-table'
-import Avatar from '~cpn/base/avatar'
+import { Avatar } from '~cpn/base/avatar'
 
 export default function Default() {
   const mounted = useHasMounted()
