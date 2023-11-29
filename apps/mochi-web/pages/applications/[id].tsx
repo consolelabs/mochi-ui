@@ -22,10 +22,7 @@ const App: NextPageWithLayout = () => {
   const { data: detail } = useFetchApplicationDetail(profileId, appId)
 
   return (
-    <AuthLayout
-      className="bg-[#FCFCFC]"
-      pageHeader={<AppDetailPageHeader name={detail?.name} />}
-    >
+    <AuthLayout pageHeader={<AppDetailPageHeader name={detail?.name} />}>
       <AppDetailStatistics
         profileId={profileId}
         appId={appId}

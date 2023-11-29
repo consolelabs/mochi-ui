@@ -1,7 +1,6 @@
-import { Button, Tooltip, Typography } from '@consolelabs/core'
+import { Tooltip, Typography } from '@consolelabs/core'
 import { CopySolid } from '@consolelabs/icons'
-import { useClipboard, useDisclosure } from '@dwarvesf/react-hooks'
-import clsx from 'clsx'
+import { useClipboard } from '@dwarvesf/react-hooks'
 import Prism from 'prismjs'
 import 'prismjs/themes/prism-tomorrow.css'
 import { useEffect } from 'react'
@@ -15,7 +14,6 @@ interface Props {
 
 export const CodeSnippet = ({ code = defaultCode, language = 'js' }: Props) => {
   const { onCopy, hasCopied } = useClipboard(code)
-  const { isOpen, onToggle } = useDisclosure({ defaultIsOpen: false })
 
   useEffect(() => {
     Prism.highlightAll()
@@ -26,10 +24,10 @@ export const CodeSnippet = ({ code = defaultCode, language = 'js' }: Props) => {
       <div className="flex items-center justify-between px-4 py-2">
         <Typography
           level="p7"
-          className="font-bold text-neutral-0"
+          className="font-bold uppercase"
           color="textTertiary"
         >
-          CURL REQUEST
+          Curl request
         </Typography>
         <Tooltip
           content="Copied"
@@ -39,32 +37,10 @@ export const CodeSnippet = ({ code = defaultCode, language = 'js' }: Props) => {
           <CopySolid className="w-6 h-6 text-neutral-0" onClick={onCopy} />
         </Tooltip>
       </div>
-      <div
-        className={clsx(
-          'relative h-full rounded-lg',
-          isOpen ? '' : 'overflow-hidden',
-        )}
-      >
-        <pre
-          className={clsx(
-            '!bg-transparent !m-0 !pt-0 !px-4 !text-sm overflow-x-auto',
-            isOpen ? '!pb-12' : 'absolute !pb-0',
-          )}
-        >
+      <div className="relative h-full overflow-auto">
+        <pre className="!bg-transparent !m-0 !py-0 !text-sm absolute !px-4">
           <code className={`language-${language}`}>{code}</code>
         </pre>
-        <div
-          className={clsx(
-            'absolute flex items-center justify-center',
-            isOpen
-              ? 'bottom-4 left-1/2 -translate-x-1/2'
-              : 'inset-0 pb-2 w-full h-full bg-[linear-gradient(transparent,rgba(0,0,0,0.8))]',
-          )}
-        >
-          <Button color="neutral" size="sm" onClick={onToggle}>
-            {isOpen ? 'Show less' : 'Show more'}
-          </Button>
-        </div>
       </div>
     </div>
   )
