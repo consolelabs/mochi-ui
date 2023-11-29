@@ -5,7 +5,7 @@ import {
   Tooltip,
   Typography,
 } from '@consolelabs/core'
-import { CopySolid, ThreeDotLoading } from '@consolelabs/icons'
+import { ThreeDotLoading, CopyLine } from '@consolelabs/icons'
 import { truncate } from '@dwarvesf/react-utils'
 import { useClipboard } from '@dwarvesf/react-hooks'
 import { CodeSnippet } from './CodeSnippet'
@@ -41,7 +41,7 @@ export const AppDetailIntegration = ({ apiKey = '' }: Props) => {
                   arrow="top-center"
                   componentProps={{ root: { open: hasCopied || undefined } }}
                 >
-                  <CopySolid
+                  <CopyLine
                     className="w-4 h-4 text-primary-700"
                     onClick={onCopy}
                   />
