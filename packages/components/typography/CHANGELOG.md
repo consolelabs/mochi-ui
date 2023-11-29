@@ -1,5 +1,14 @@
 # @consolelabs/typography
 
+## 0.0.6
+
+### Patch Changes
+
+- [#322](https://github.com/consolelabs/web-foundation/pull/322)
+  [`f561e1d`](https://github.com/consolelabs/web-foundation/commit/f561e1deae07fa69ac54501152a844259376ede6)
+  Thanks [@trankhacvy](https://github.com/trankhacvy)! - Update Typography font
+  weight
+
 ## 0.0.5
 
 ### Patch Changes

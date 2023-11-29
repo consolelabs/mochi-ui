@@ -1,5 +1,46 @@
 # @consolelabs/theme
 
+## 0.5.0
+
+### Minor Changes
+
+- [#292](https://github.com/consolelabs/web-foundation/pull/292)
+  [`9786ce7`](https://github.com/consolelabs/web-foundation/commit/9786ce7ce0e2df4eecde1d527499ae59eebc48ab)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Add label
+  component
+
+- [#310](https://github.com/consolelabs/web-foundation/pull/310)
+  [`faaba77`](https://github.com/consolelabs/web-foundation/commit/faaba7753d764c4e8db25863632cb1038f2adcb9)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Create Logo component
+  package
+
+- [#287](https://github.com/consolelabs/web-foundation/pull/287)
+  [`1ba9b89`](https://github.com/consolelabs/web-foundation/commit/1ba9b89df277d237053bb3ed69be8bd3c13c25a8)
+  Thanks [@leduyhien152](https://github.com/leduyhien152)! - Update tooltip
+  props
+
+- [#300](https://github.com/consolelabs/web-foundation/pull/300)
+  [`b9ae92f`](https://github.com/consolelabs/web-foundation/commit/b9ae92f92b32dedac4903614e7c0947bd1118fb1)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Add Form
+  components
+
+- [#303](https://github.com/consolelabs/web-foundation/pull/303)
+  [`85da50f`](https://github.com/consolelabs/web-foundation/commit/85da50f1afa67d5d026dce281e522c8df57983ba)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Update style for button
+  link variant
+
+- [#288](https://github.com/consolelabs/web-foundation/pull/288)
+  [`995bf22`](https://github.com/consolelabs/web-foundation/commit/995bf22b2cc7d5576327910f48e5028ca59431cf)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Create Layout
+  component and refactor auth-layout
+
+### Patch Changes
+
+- [#322](https://github.com/consolelabs/web-foundation/pull/322)
+  [`f561e1d`](https://github.com/consolelabs/web-foundation/commit/f561e1deae07fa69ac54501152a844259376ede6)
+  Thanks [@trankhacvy](https://github.com/trankhacvy)! - Update Typography font
+  weight
+
 ## 0.4.0
 
 ### Minor Changes
