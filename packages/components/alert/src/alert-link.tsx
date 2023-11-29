@@ -13,15 +13,22 @@ type PolymorphicLink = Polymorphic.ForwardRefComponent<
 
 export const AlertLink = forwardRef((props, ref) => {
   const { as = 'a', className, asChild, ...restProps } = props
-  const { variant, scheme, size } = useAlertContext()
+  const { variant, scheme, responsive, size } = useAlertContext()
   const Component = asChild ? Slot : as
 
   return (
     <Component
       data-scheme={scheme}
       data-variant={variant}
+      data-responsive={responsive}
       data-size={size}
-      className={alert.alertLinkCva({ variant, scheme, size, className })}
+      className={alert.alertLinkCva({
+        variant,
+        scheme,
+        size,
+        responsive,
+        className,
+      })}
       ref={ref}
       {...restProps}
     />

@@ -47,6 +47,10 @@ const meta: Meta<typeof Alert> = {
       control: 'select',
       options: ['sm', 'md'],
     },
+    responsive: {
+      control: 'select',
+      options: ['auto', 'shrink', 'expand'],
+    },
   },
 }
 

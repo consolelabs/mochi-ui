@@ -1,19 +1,49 @@
 import { SVGProps, forwardRef } from 'react'
 import { alert } from '@consolelabs/theme'
 import { CloseLine } from '@consolelabs/icons'
+import { Slot } from '@radix-ui/react-slot'
 import { useAlertContext } from './context'
 
 export const AlertCloseIcon = forwardRef<
   SVGSVGElement,
-  SVGProps<SVGSVGElement>
+  SVGProps<SVGSVGElement> & {
+    asChild?: boolean
+  }
 >((props, ref) => {
-  const { scheme, variant } = useAlertContext()
-  const { className, ...restProps } = props
+  const { scheme, variant, size, responsive } = useAlertContext()
+  const { className, asChild, ...restProps } = props
+
+  if (asChild)
+    return (
+      <Slot
+        className={alert.alertIconCloseCva({
+          scheme,
+          variant,
+          size,
+          responsive,
+          className,
+        })}
+        data-scheme={scheme}
+        data-responsive={responsive}
+        data-size={size}
+        data-variant={variant}
+      />
+    )
 
   return (
     <CloseLine
-      className={alert.alertIconCloseCva({ scheme, variant, className })}
       ref={ref}
+      className={alert.alertIconCloseCva({
+        scheme,
+        variant,
+        size,
+        responsive,
+        className,
+      })}
+      data-scheme={scheme}
+      data-responsive={responsive}
+      data-size={size}
+      data-variant={variant}
       {...restProps}
     />
   )

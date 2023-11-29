@@ -14,6 +14,7 @@ export default function Alert(props: AlertProps) {
     scheme = 'primary',
     variant = 'default',
     size = 'md',
+    responsive = 'auto',
     className,
     ...restProps
   } = props
@@ -23,14 +24,15 @@ export default function Alert(props: AlertProps) {
       scheme,
       variant,
       size,
+      responsive,
     }),
-    [scheme, size, variant],
+    [scheme, responsive, size, variant],
   )
 
   return (
     <AlertContext.Provider value={contextValue}>
       <div
-        className={alertCva({ scheme, size, variant, className })}
+        className={alertCva({ scheme, size, variant, responsive, className })}
         {...restProps}
       />
     </AlertContext.Provider>

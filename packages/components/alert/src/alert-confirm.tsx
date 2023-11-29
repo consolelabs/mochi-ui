@@ -21,13 +21,13 @@ export const AlertConfirm = forwardRef((props, ref) => {
     children,
     ...restProps
   } = props
-  const { scheme, variant, size } = useAlertContext()
+  const { scheme, variant, responsive, size } = useAlertContext()
   if (asChild) {
     return (
       <Slot
-        // Allow user custom style
         data-size={size}
         data-scheme={scheme}
+        data-responsive={responsive}
         data-variant={variant}
         className={alert.alertConfirmClsx({ className })}
       >
@@ -39,6 +39,7 @@ export const AlertConfirm = forwardRef((props, ref) => {
     <Button
       data-size={size}
       data-scheme={scheme}
+      data-responsive={responsive}
       data-variant={variant}
       className={alert.alertConfirmClsx({ className })}
       variant={variantProp ?? 'solid'}

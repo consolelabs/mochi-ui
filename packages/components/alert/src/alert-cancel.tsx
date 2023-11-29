@@ -19,10 +19,9 @@ export const AlertCancel = forwardRef((props, ref) => {
     variant: variantProp,
     color: colorProp,
     children,
-    size,
     ...restProps
   } = props
-  const { scheme, variant } = useAlertContext()
+  const { scheme, variant, size, responsive } = useAlertContext()
   if (asChild) {
     return (
       <Slot
@@ -30,6 +29,7 @@ export const AlertCancel = forwardRef((props, ref) => {
         data-scheme={scheme}
         data-variant={variant}
         data-size={size}
+        data-responsive={responsive}
         className={alert.alertCancelClsx({ className })}
       >
         {children}
@@ -41,6 +41,7 @@ export const AlertCancel = forwardRef((props, ref) => {
       data-scheme={scheme}
       data-variant={variant}
       data-size={size}
+      data-responsive={responsive}
       className={alert.alertCancelClsx({ className })}
       variant={variantProp ?? 'link'}
       color={colorProp ?? 'neutral'}

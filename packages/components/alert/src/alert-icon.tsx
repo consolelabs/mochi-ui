@@ -14,15 +14,21 @@ export const AlertIcon = forwardRef<
   SVGSVGElement,
   SVGProps<SVGSVGElement> & { asChild?: boolean }
 >((props, ref) => {
-  const { scheme, variant, size } = useAlertContext()
+  const { scheme, variant, size, responsive } = useAlertContext()
   const { className, asChild, children, ...restProps } = props
   if (asChild)
     return (
       <Slot
-        className={alert.alertIconCva({ scheme, variant, className })}
-        data-scheme={scheme}
-        data-variant={variant}
+        className={alert.alertIconCva({
+          scheme,
+          variant,
+          responsive,
+          className,
+        })}
         data-size={size}
+        data-scheme={scheme}
+        data-responsive={responsive}
+        data-variant={variant}
       >
         {children}
       </Slot>
@@ -30,10 +36,11 @@ export const AlertIcon = forwardRef<
   const Icon = getIcons(scheme)
   return (
     <Icon
-      data-scheme={scheme}
-      data-variant={variant}
       data-size={size}
-      className={alert.alertIconCva({ scheme, variant, className })}
+      data-scheme={scheme}
+      data-responsive={responsive}
+      data-variant={variant}
+      className={alert.alertIconCva({ scheme, variant, responsive, className })}
       ref={ref}
       {...restProps}
     />
