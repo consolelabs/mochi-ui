@@ -1289,12 +1289,6 @@ importers:
 
   packages/components/section-header:
     dependencies:
-      '@consolelabs/icon-button':
-        specifier: workspace:*
-        version: link:../icon-button
-      '@consolelabs/icons':
-        specifier: workspace:*
-        version: link:../../icons
       '@consolelabs/theme':
         specifier: workspace:*
         version: link:../../theme
@@ -1305,6 +1299,12 @@ importers:
       '@consolelabs/button':
         specifier: workspace:*
         version: link:../button
+      '@consolelabs/icon-button':
+        specifier: workspace:*
+        version: link:../icon-button
+      '@consolelabs/icons':
+        specifier: workspace:*
+        version: link:../../icons
       '@consolelabs/select':
         specifier: workspace:*
         version: link:../select
