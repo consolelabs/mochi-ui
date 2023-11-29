@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "@consolelabs/button": "workspace:*",
+    "@consolelabs/icon-button": "workspace:*",
     "@consolelabs/icons": "workspace:*",
     "@consolelabs/polymorphic": "workspace:*",
     "@consolelabs/theme": "workspace:*",

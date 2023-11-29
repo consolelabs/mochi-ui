@@ -5,11 +5,11 @@ import { alert } from '@consolelabs/theme'
 import { Slot } from '@radix-ui/react-slot'
 import { useAlertContext } from './context'
 
+type AlertCancelButtonProps = ButtonProps & { asChild?: boolean }
+
 type PolymorphicButton = Polymorphic.ForwardRefComponent<
   'button',
-  ButtonProps & {
-    asChild?: boolean
-  }
+  AlertCancelButtonProps
 >
 
 export const AlertCancel = forwardRef((props, ref) => {

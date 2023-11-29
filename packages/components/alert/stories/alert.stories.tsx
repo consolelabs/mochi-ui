@@ -5,7 +5,7 @@ import Alert, { AlertProps } from '../src/alert'
 import { AlertTitle } from '../src/alert-title'
 import { AlertIcon } from '../src'
 import { AlertDescription } from '../src/alert-description'
-import { AlertCloseIcon } from '../src/alert-close'
+import { AlertCloseButton } from '../src/alert-close'
 import { AlertActionGroup } from '../src/alert-action-group'
 import { AlertConfirm } from '../src/alert-confirm'
 import { AlertCancel } from '../src/alert-cancel'
@@ -68,7 +68,7 @@ export const Default: Story = {
           cillum sint consectetur cupidatat.
         </AlertDescription>
         <AlertLink href="#">View More</AlertLink>
-        <AlertCloseIcon />
+        <AlertCloseButton />
       </Alert>
     )
   },
@@ -117,7 +117,7 @@ export const Colors: Story = {
                   amet, qui minim labore adipisicing minim sint cillum sint
                   consectetur cupidatat.
                 </AlertDescription>
-                <AlertCloseIcon />
+                <AlertCloseButton />
                 {v === 'action' && (
                   <AlertActionGroup>
                     <AlertCancel>Confirm</AlertCancel>

@@ -10,39 +10,46 @@ const getIcons = (scheme: NonNullable<AlertProps['scheme']>) => {
   return InfoCircleOutlined
 }
 
-export const AlertIcon = forwardRef<
-  SVGSVGElement,
-  SVGProps<SVGSVGElement> & { asChild?: boolean }
->((props, ref) => {
-  const { scheme, variant, size, responsive } = useAlertContext()
-  const { className, asChild, children, ...restProps } = props
-  if (asChild)
+type AlertIconProps = SVGProps<SVGSVGElement> & { asChild?: boolean }
+
+export const AlertIcon = forwardRef<SVGSVGElement, AlertIconProps>(
+  (props, ref) => {
+    const { scheme, variant, size, responsive } = useAlertContext()
+    const { className, asChild, children, ...restProps } = props
+    if (asChild)
+      return (
+        <Slot
+          className={alert.alertIconCva({
+            scheme,
+            variant,
+            responsive,
+            className,
+          })}
+          data-size={size}
+          data-scheme={scheme}
+          data-responsive={responsive}
+          data-variant={variant}
+        >
+          {children}
+        </Slot>
+      )
+    const Icon = getIcons(scheme)
     return (
-      <Slot
+      <Icon
+        {...(asChild ? { ref } : {})}
+        data-size={size}
+        data-scheme={scheme}
+        data-responsive={responsive}
+        data-variant={variant}
         className={alert.alertIconCva({
           scheme,
           variant,
           responsive,
           className,
         })}
-        data-size={size}
-        data-scheme={scheme}
-        data-responsive={responsive}
-        data-variant={variant}
-      >
-        {children}
-      </Slot>
+        ref={ref}
+        {...restProps}
+      />
     )
-  const Icon = getIcons(scheme)
-  return (
-    <Icon
-      data-size={size}
-      data-scheme={scheme}
-      data-responsive={responsive}
-      data-variant={variant}
-      className={alert.alertIconCva({ scheme, variant, responsive, className })}
-      ref={ref}
-      {...restProps}
-    />
-  )
-})
+  },
+)

@@ -1,15 +1,21 @@
-import { SVGProps, forwardRef } from 'react'
+import { forwardRef } from 'react'
 import { alert } from '@consolelabs/theme'
-import { CloseLine } from '@consolelabs/icons'
+import { CloseLgLine } from '@consolelabs/icons'
 import { Slot } from '@radix-ui/react-slot'
+import { IconButton, IconButtonProps } from '@consolelabs/icon-button'
+import type * as Polymorphic from '@consolelabs/polymorphic'
 import { useAlertContext } from './context'
 
-export const AlertCloseIcon = forwardRef<
-  SVGSVGElement,
-  SVGProps<SVGSVGElement> & {
-    asChild?: boolean
-  }
->((props, ref) => {
+type PolymorphicCloseButton = Polymorphic.ForwardRefComponent<
+  'button',
+  AlertCloseButtonProps
+>
+
+type AlertCloseButtonProps = IconButtonProps & {
+  asChild?: boolean
+}
+
+export const AlertCloseButton = forwardRef((props, ref) => {
   const { scheme, variant, size, responsive } = useAlertContext()
   const { className, asChild, ...restProps } = props
 
@@ -31,8 +37,12 @@ export const AlertCloseIcon = forwardRef<
     )
 
   return (
-    <CloseLine
+    <IconButton
       ref={ref}
+      {...restProps}
+      size="sm"
+      variant="link"
+      color={scheme}
       className={alert.alertIconCloseCva({
         scheme,
         variant,
@@ -44,7 +54,8 @@ export const AlertCloseIcon = forwardRef<
       data-responsive={responsive}
       data-size={size}
       data-variant={variant}
-      {...restProps}
-    />
+    >
+      <CloseLgLine />
+    </IconButton>
   )
-})
+}) as PolymorphicCloseButton
