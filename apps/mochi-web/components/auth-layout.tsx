@@ -5,19 +5,16 @@ import {
   LifeBuoySolid,
   X,
   Discord,
-  StarSolid,
   AddUserSolid,
   CodingSolid,
   SettingSolid,
-  GameSolid,
   UserSolid,
-  SuperGroupSolid,
   TwinkleSolid,
 } from '@consolelabs/icons'
 import { Sidebar, Badge } from '@consolelabs/core'
 import { Layout } from '@consolelabs/layout'
 import { PageContent } from '@consolelabs/page-content'
-import { DISCORD_LINK } from '~envs'
+import { DISCORD_LINK, TWITTER_LINK } from '~envs'
 import { useRouter } from 'next/router'
 import { ROUTES } from '~constants/routes'
 import { AuthPanel } from './AuthWidget'
@@ -73,14 +70,7 @@ export default function AuthenticatedLayout({
                 href: ROUTES.MY_PROFILE,
               },
               { title: 'Servers', Icon: Discord },
-              {
-                title: 'App Store',
-                Icon: GameSolid,
-                badge: getSidebarBadge['SOON'],
-                disabled: true,
-              },
               { title: 'Settings', Icon: SettingSolid },
-              { type: 'break' },
               {
                 title: 'Developer',
                 Icon: CodingSolid,
@@ -89,19 +79,7 @@ export default function AuthenticatedLayout({
                 href: ROUTES.APPLICATON_LIST,
                 badge: getSidebarBadge['NEW'],
               },
-              {
-                title: 'Send gifts',
-                Icon: SuperGroupSolid,
-                badge: getSidebarBadge['SOON'],
-                disabled: true,
-              },
               { title: 'Invite Friends', Icon: AddUserSolid },
-              {
-                title: 'Feedback',
-                Icon: StarSolid,
-                badge: getSidebarBadge['SOON'],
-                disabled: true,
-              },
             ]}
             footerItems={[
               { title: 'Support', Icon: LifeBuoySolid },
@@ -109,7 +87,7 @@ export default function AuthenticatedLayout({
                 title: 'Follow Us',
                 Icon: X,
                 type: 'link',
-                href: 'https://twitter.com/mochi_gg_',
+                href: TWITTER_LINK,
               },
               {
                 title: 'Join Community',
