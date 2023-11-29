@@ -1,6 +1,6 @@
 import { useClipboard } from '@dwarvesf/react-hooks'
 import { Icon } from '@iconify/react'
-import Button from '~cpn/base/button'
+import { Button } from '~cpn/base/button'
 
 export default function CopyLink({ link }: { link: string }) {
   const { hasCopied, onCopy } = useClipboard(link)

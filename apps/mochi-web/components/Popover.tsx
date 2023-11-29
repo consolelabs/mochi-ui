@@ -7,7 +7,6 @@ type Props = {
   triggerClassname?: string
   children: Parameters<typeof HeadlessPopover.Panel>[0]['children']
   panelClassname?: string
-  offset?: number
 }
 
 export const Popover = (props: Props) => {

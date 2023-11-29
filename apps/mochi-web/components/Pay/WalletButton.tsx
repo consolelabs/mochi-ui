@@ -22,7 +22,6 @@ export const WalletButton = ({
   type: string
   address: string
   image: string
-  symbol: string
   onClick?: (args?: any) => void
   disabled: boolean
 }) => {
@@ -62,34 +61,41 @@ export const WalletButton = ({
     showConnectModal(async ({ platform }) => {
       const isAddressEVM = platform === 'evm'
       _onClick?.(
-        isEVM
-          ? isNative
-            ? {
+        (() => {
+          if (isEVM) {
+            if (isNative) {
+              return {
                 request: { to: address, value: BigNumber.from(amount) },
                 isAddressEVM,
                 chainId,
               }
-            : {
-                address: tokenAddress as `0x${string}`,
-                abi: erc20ABI,
-                functionName: 'transfer',
-                args: [address, BigNumber.from(amount)],
-                enabled: type === 'evm',
-                chainId,
-                isAddressEVM,
-              }
-          : isNative
-            ? {
-                recipientAddress: new PublicKey(address),
-                amount: BigNumber.from(amount),
-                isAddressEVM,
-              }
-            : {
-                tokenMint: new PublicKey(tokenAddress),
-                recipientAddress: new PublicKey(address),
-                amount: BigNumber.from(amount),
-                isAddressEVM,
-              },
+            }
+            return {
+              address: tokenAddress as `0x${string}`,
+              abi: erc20ABI,
+              functionName: 'transfer',
+              args: [address, BigNumber.from(amount)],
+              enabled: type === 'evm',
+              chainId,
+              isAddressEVM,
+            }
+          }
+
+          if (isNative) {
+            return {
+              recipientAddress: new PublicKey(address),
+              amount: BigNumber.from(amount),
+              isAddressEVM,
+            }
+          }
+
+          return {
+            tokenMint: new PublicKey(tokenAddress),
+            recipientAddress: new PublicKey(address),
+            amount: BigNumber.from(amount),
+            isAddressEVM,
+          }
+        })(),
       )
     })
   }, [

@@ -27,7 +27,7 @@ const icons = {
   error: 'heroicons:x-circle',
 }
 
-export default function Alert({
+export function Alert({
   title,
   children,
   className,

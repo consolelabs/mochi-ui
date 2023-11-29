@@ -110,13 +110,14 @@ export const Table: <T extends object = {}>(props: Props<T>) => JSX.Element = (
                 {defaultCanSort && (
                   <Icon
                     className="w-4 h-4"
-                    icon={
-                      isSorted
-                        ? isSortedDesc
+                    icon={(() => {
+                      if (isSorted) {
+                        return isSortedDesc
                           ? 'fluent:arrow-sort-down-16-filled'
                           : 'fluent:arrow-sort-up-16-filled'
-                        : 'fluent:arrow-sort-16-filled'
-                    }
+                      }
+                      return 'fluent:arrow-sort-16-filled'
+                    })()}
                   />
                 )}
               </div>

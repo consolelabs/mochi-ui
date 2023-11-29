@@ -1,3 +1,4 @@
+/* eslint-disable import/no-duplicates */
 import enUS from 'date-fns/locale/en-US'
 import format from 'date-fns/format'
 import relative from 'date-fns/formatRelative'

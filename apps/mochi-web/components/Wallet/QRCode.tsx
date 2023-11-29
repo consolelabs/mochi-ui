@@ -1,3 +1,4 @@
+import { NativeImage } from '~cpn/NativeImage'
 import QRCodeUtil from 'qrcode'
 import React, { ReactElement, useMemo } from 'react'
 
@@ -31,7 +32,7 @@ type Props = {
   logoSize?: number
   qrSize?: number
   uri: string
-  onCopyQR?: (dataURI: string) => void
+  // onCopyQR?: (dataURI: string) => void
   caption?: string
 }
 
@@ -50,8 +51,15 @@ export const QRCode = React.forwardRef<HTMLDivElement, Props>(
     ref,
   ) => {
     const size = qrSize - LOGO_MARGIN * 2
-    const logoSize =
-      qrSize <= 200 ? _logoSize / 3 : qrSize <= 250 ? _logoSize / 2 : _logoSize
+    const logoSize = (() => {
+      if (qrSize <= 200) {
+        return _logoSize / 3
+      }
+      if (qrSize <= 250) {
+        return _logoSize / 2
+      }
+      return _logoSize
+    })()
 
     const dots = useMemo(() => {
       const dots: ReactElement[] = []
@@ -148,7 +156,7 @@ export const QRCode = React.forwardRef<HTMLDivElement, Props>(
             }}
             className="flex overflow-hidden absolute top-1/2 left-1/2 justify-center items-center rounded-lg -translate-x-1/2 -translate-y-1/2 aspect-square"
           >
-            <img
+            <NativeImage
               className="object-cover"
               height={logoSize}
               src={logoUrl}

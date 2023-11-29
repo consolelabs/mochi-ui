@@ -1,3 +1,4 @@
+import { NativeImage } from '~cpn/NativeImage'
 import Heading from './Heading'
 
 export default function ExpressYourSelf() {
@@ -10,7 +11,7 @@ export default function ExpressYourSelf() {
           subtitle="Adding a personal touch to your payments can make them more memorable
           and help you build stronger relationships."
         />
-        <img
+        <NativeImage
           src="/home/express-yourself.png"
           alt="Express yourself"
           className="w-full"

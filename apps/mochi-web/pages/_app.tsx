@@ -42,7 +42,6 @@ export function handleCancelRendering(e: any) {
 }
 
 function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
-  const disconnect = () => {}
   const { query, asPath, replace, isReady } = useRouter()
   const { isLoggedIn, login, removeToken, hideIsLogging } = useAuthStore(
     useShallow((s) => ({
@@ -72,7 +71,6 @@ function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
     const hash = parts[1]
     const path = parts[0]?.split('?')[0]
     if (hash && hash === 'logout') {
-      disconnect()
       removeToken()
       replace({ pathname: path }, undefined, {
         shallow: true,
@@ -80,7 +78,7 @@ function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
         .catch(handleCancelRendering)
         .finally(hideIsLogging)
     }
-  }, [asPath, disconnect, hideIsLogging, removeToken, replace])
+  }, [asPath, hideIsLogging, removeToken, replace])
 
   return (
     <>

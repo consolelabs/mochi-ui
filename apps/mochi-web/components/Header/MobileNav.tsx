@@ -14,6 +14,7 @@ import { useAuthStore, useProfileStore } from '~store'
 import { ROUTES } from '~constants/routes'
 import clsx from 'clsx'
 import useLockScreenScroll from '~hooks/useLockScreenScroll'
+import { NativeImage } from '~cpn/NativeImage'
 import { MobileNavAccordionItem } from './MobileNavAccordionItem'
 import { NavItem } from './type'
 
@@ -55,7 +56,7 @@ const Header = ({ onClose }: { onClose: () => void }) => {
         className="relative block w-full h-20 group"
       >
         <div className="absolute inset-0 bg-transparent">
-          <img
+          <NativeImage
             className="object-cover w-full h-full"
             alt="Header"
             src="https://pbs.twimg.com/profile_banners/1168522102410010626/1684159976/300x100"

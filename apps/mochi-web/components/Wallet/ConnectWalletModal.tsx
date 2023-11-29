@@ -10,7 +10,7 @@ import {
   useState,
 } from 'react'
 import { ConnectorAlreadyConnectedError } from 'wagmi'
-import Text from '~cpn/base/text'
+import { Text } from '~cpn/base/text'
 import { useAppWalletContext } from '~context/wallet-context'
 import {
   isMetaMask,
@@ -24,6 +24,7 @@ import { useAccount } from '~hooks/wallets/useAccount'
 import { useSignMessage } from '~hooks/wallets/useSignMessage'
 import { isAndroid, isMobile } from '~utils/isMobile'
 import { getWalletLoginSignMessage } from '~utils/string'
+import { NativeImage } from '~cpn/NativeImage'
 import { useAuthStore } from '~store'
 import { ConnectDetail } from './ConnectDetail'
 import { ConnectWalletIntro } from './ConnectWalletIntro'
@@ -278,11 +279,17 @@ export default function ConnectWalletModal({ isOpen, onClose }: Props) {
             signature,
             address,
             msg,
-            platform: isSuiConnected
-              ? 'sui'
-              : isEVMConnected
-                ? 'evm'
-                : 'solana',
+            platform: (() => {
+              if (isSuiConnected) {
+                return 'sui'
+              }
+
+              if (isEVMConnected) {
+                return 'evm'
+              }
+
+              return 'solana'
+            })(),
           }),
       )
       .catch(() => setSignError(true))
@@ -429,7 +436,7 @@ export default function ConnectWalletModal({ isOpen, onClose }: Props) {
                                     className="flex flex-col gap-y-1 gap-x-2 items-center p-2 rounded-md lg:flex-row lg:gap-y-0 hover:bg-dashboard-gray-3"
                                     key={`connect-wallet-connector-${c.id}`}
                                   >
-                                    <img
+                                    <NativeImage
                                       className="flex-shrink-0 w-12 rounded-xl lg:w-6 lg:rounded-none"
                                       src={c.iconUrl}
                                       alt=""

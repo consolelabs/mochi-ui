@@ -6,11 +6,12 @@ type Props = {
   label?: string
   checked?: boolean
   onChange?: (value: boolean) => void
+  tabIndex?: number
 }
 
 export const Switch = forwardRef(
   (props: Props, ref: ForwardedRef<HTMLButtonElement>) => {
-    const { label, checked = false, onChange } = props
+    const { label, checked = false, onChange, tabIndex } = props
 
     return (
       <div className="flex gap-2 items-center text-sm">
@@ -36,7 +37,16 @@ export const Switch = forwardRef(
             )}
           />
         </HS>
-        {label && <div onClick={() => onChange?.(!checked)}>{label}</div>}
+        {label && (
+          <div
+            onKeyDown={() => {}}
+            role="button"
+            tabIndex={tabIndex}
+            onClick={() => onChange?.(!checked)}
+          >
+            {label}
+          </div>
+        )}
       </div>
     )
   },

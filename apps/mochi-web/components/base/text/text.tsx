@@ -23,7 +23,7 @@ type Props = VariantProps<typeof text> & {
   className?: string
 } & Omit<React.HTMLProps<HTMLSpanElement>, 'size'>
 
-export default function Text({
+export function Text({
   className,
   appearance,
   size,

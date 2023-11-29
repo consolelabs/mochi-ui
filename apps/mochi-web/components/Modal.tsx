@@ -3,7 +3,6 @@ import { Fragment } from 'react'
 
 export type Props = {
   isOpen: boolean
-  onOpen?: () => void
   onClose: () => void
   children: React.ReactNode
 }

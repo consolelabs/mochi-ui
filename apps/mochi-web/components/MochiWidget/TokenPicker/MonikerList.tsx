@@ -13,6 +13,7 @@ interface Props {
   searchTerm: string
   onSelect?: (item: Moniker) => void
   balances: Balance[]
+  sectionHeaderHtmlFor?: string
 }
 
 function getFilterMonikerNameFunc(searchTerm: string) {
@@ -22,7 +23,7 @@ function getFilterMonikerNameFunc(searchTerm: string) {
 }
 
 export const MonikerList = (props: Props) => {
-  const { searchTerm, onSelect } = props
+  const { searchTerm, onSelect, sectionHeaderHtmlFor } = props
 
   const { data = [], isLoading } = useSWR<Moniker[], any, [string, Balance[]]>(
     ['moniker-list', props.balances],
@@ -70,7 +71,10 @@ export const MonikerList = (props: Props) => {
         )}
         renderLoader={() => <Skeleton />}
         renderSectionHeader={(section) => (
-          <label className="font-bold uppercase text-[0.625rem] text-neutral-500">
+          <label
+            htmlFor={sectionHeaderHtmlFor}
+            className="font-bold uppercase text-[0.625rem] text-neutral-500"
+          >
             {section.title}
           </label>
         )}

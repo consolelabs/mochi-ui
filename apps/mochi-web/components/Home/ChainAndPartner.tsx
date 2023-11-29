@@ -1,8 +1,10 @@
+import { NativeImage } from '~cpn/NativeImage'
+
 export default function ChainAndPartner() {
   return (
     <section className="mb-12 md:mb-24">
       <div className="container mx-auto max-w-5xl px-6">
-        <img
+        <NativeImage
           src="/chain-and-partner.png"
           alt="Express yourself"
           className="w-full"

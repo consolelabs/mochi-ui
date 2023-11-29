@@ -1,6 +1,6 @@
 import { utils } from 'ethers'
 import { useForm } from 'react-hook-form'
-import Button from '~cpn/base/button'
+import { Button } from '~cpn/base/button'
 import Field from '~components/Dashboard/Form/Field'
 import { Input } from '~components/Dashboard/Input'
 import { isSolAddress } from '~utils/sol'

@@ -57,6 +57,7 @@ export const PlatformPicker: React.FC<Props> = ({
   // TODO: Init selected platform. Maybe remove after data binding
   useEffect(() => {
     onSelect?.(Platforms[0])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   function handlePlatformSelect(platform: Platform) {

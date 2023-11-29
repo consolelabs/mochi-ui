@@ -1,5 +1,6 @@
 import { shallow } from 'zustand/shallow'
-import Avatar from '~cpn/base/avatar'
+import { NativeImage } from '~cpn/NativeImage'
+import { Avatar } from '~cpn/base/avatar'
 import { HOME_URL } from '~envs'
 import { usePayRequest } from '~store/pay-request'
 
@@ -18,7 +19,6 @@ export type Props = {
   tokenIcon: string
   status: string
   amount: string
-  decimal: number
   symbol: string
   native: boolean
   isOG?: boolean
@@ -83,7 +83,7 @@ export function CardUI({
             opacity: 0.2,
           }}
         />
-        <img
+        <NativeImage
           style={{
             transform: 'scaleX(-1)',
             display: 'flex',
@@ -148,7 +148,7 @@ export function CardUI({
             }}
           >
             {native ? (
-              <img
+              <NativeImage
                 style={{
                   position: 'absolute',
                   top: 0,
@@ -184,7 +184,15 @@ export function CardUI({
                 fontSize: 32,
               }}
             >
-              {!amount ? '???' : status === 'claimed' && isDone ? 0 : amount}
+              {(() => {
+                if (!amount) {
+                  return '???'
+                }
+                if (status === 'claimed' && isDone) {
+                  return 0
+                }
+                return amount
+              })()}
             </span>
             <span
               style={{

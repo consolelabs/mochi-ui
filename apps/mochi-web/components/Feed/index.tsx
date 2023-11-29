@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Link from 'next/link'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { ArrowRightLine, ArrowUpLine } from '@consolelabs/icons'

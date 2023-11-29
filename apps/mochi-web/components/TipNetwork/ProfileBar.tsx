@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 import { Icon } from '@iconify/react'
 import clsx from 'clsx'
 import { useState } from 'react'
@@ -50,16 +51,24 @@ export const ProfileBar = ({
         {listProfiles.map((profile, index) => (
           <li
             key={profile.id}
+            tabIndex={index}
             className={clsx(
               'flex justify-between text-sm cursor-pointer px-3 py-1',
-              selectedNode?.id === profile.id
-                ? 'bg-[#de219a]'
-                : selectedNode?.neighborIds?.has(profile.id as string)
-                  ? 'bg-[#4D3B51] hover:bg-[rgba(255,255,255,0.1)]'
-                  : 'hover:bg-[rgba(255,255,255,0.1)]',
+              (() => {
+                if (selectedNode?.id === profile.id) {
+                  return 'bg-[#de219a]'
+                }
+
+                if (selectedNode?.neighborIds?.has(profile.id as string)) {
+                  return 'bg-[#4D3B51] hover:bg-[rgba(255,255,255,0.1)]'
+                }
+
+                return 'hover:bg-[rgba(255,255,255,0.1)]'
+              })(),
             )}
             role="button"
             data-set={selectedNode?.neighborIds?.has(profile.id as string)}
+            onKeyDown={() => {}}
             onClick={() => {
               onSelectNode?.(
                 selectedNode?.id === profile.id

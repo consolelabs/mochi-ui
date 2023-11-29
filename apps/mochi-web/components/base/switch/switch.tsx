@@ -5,12 +5,13 @@ import { ForwardedRef, forwardRef } from 'react'
 type Props = {
   label?: string
   checked?: boolean
+  tabIndex?: number
   onChange?: (value: boolean) => void
 }
 
-const Switch = forwardRef(
+export const Switch = forwardRef(
   (props: Props, ref: ForwardedRef<HTMLButtonElement>) => {
-    const { label, checked = false, onChange } = props
+    const { label, checked = false, onChange, tabIndex } = props
 
     return (
       <div className="flex gap-2 items-center text-sm">
@@ -37,7 +38,13 @@ const Switch = forwardRef(
           />
         </HS>
         {label && (
-          <div className="cursor-default" onClick={() => onChange?.(!checked)}>
+          <div
+            className="cursor-default"
+            onKeyDown={() => {}}
+            role="button"
+            tabIndex={tabIndex}
+            onClick={() => onChange?.(!checked)}
+          >
             {label}
           </div>
         )}
@@ -45,5 +52,3 @@ const Switch = forwardRef(
     )
   },
 )
-
-export default Switch

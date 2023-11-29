@@ -15,7 +15,7 @@ type Props = {
   renderOption?: (option: Option, selectedOption: string) => JSX.Element
 }
 
-const RadioGroup = forwardRef(
+export const RadioGroup = forwardRef(
   (props: Props, ref: ForwardedRef<HTMLDivElement>) => {
     const { name, value = '', options, onChange, renderOption } = props
 
@@ -60,5 +60,3 @@ const RadioGroup = forwardRef(
     )
   },
 )
-
-export default RadioGroup

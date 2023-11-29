@@ -130,6 +130,77 @@ export const Select = forwardRef(
       }
     }, [query, options, customOptions])
 
+    const content = useMemo(() => {
+      if (filteredOptions.length > 0) {
+        return filteredOptions.map((option) => {
+          return (
+            <Combobox.Option
+              key={option.value}
+              value={option.value}
+              as={Fragment}
+            >
+              {({ active, selected }) => {
+                return (
+                  <li
+                    className={clsx(
+                      `flex items-center gap-x-1 px-3 py-2 cursor-pointer hover:bg-mochi-50 transition`,
+                      {
+                        'bg-mochi-50': active && !renderOption,
+                      },
+                    )}
+                  >
+                    {renderOption ? (
+                      renderOption(option)
+                    ) : (
+                      <>
+                        {selected ? (
+                          <Icon
+                            icon="heroicons:check-20-solid"
+                            className="w-4 h-4"
+                          />
+                        ) : (
+                          <div className="w-4 h-4" />
+                        )}{' '}
+                        {option.label}
+                      </>
+                    )}
+                  </li>
+                )
+              }}
+            </Combobox.Option>
+          )
+        })
+      }
+
+      if (searchable && query) {
+        return (
+          <Combobox.Option value={query} as={Fragment}>
+            {({ active }) => {
+              return (
+                <li
+                  className={`px-3 py-2 cursor-pointer hover:bg-mochi-50 transition ${
+                    active && 'bg-mochi-50'
+                  }`}
+                >
+                  No result, add{' '}
+                  <code className="py-0.5 px-2 rounded bg-dashboard-gray-6">
+                    {query}
+                  </code>{' '}
+                  as an option
+                </li>
+              )
+            }}
+          </Combobox.Option>
+        )
+      }
+
+      return (
+        <li className="px-3 py-2 cursor-pointer hover:bg-mochi-50 transition">
+          No result.
+        </li>
+      )
+    }, [filteredOptions, query, renderOption, searchable])
+
     return (
       <Combobox
         // @ts-ignore
@@ -173,7 +244,10 @@ export const Select = forwardRef(
                 <Icon className="w-4 h-4" icon="heroicons:chevron-down" />
                 {(Array.isArray(value) ? value.length > 0 : !!value) && (
                   <div
+                    onKeyDown={() => {}}
                     className="flex absolute top-0 right-0 justify-center items-center mt-2.5 mr-3 w-5 h-5 rounded-full bg-dashboard-gray-6"
+                    role="button"
+                    tabIndex={0}
                     onClick={(e) => {
                       e.preventDefault()
                       onChange(multiple ? [] : '')
@@ -193,68 +267,7 @@ export const Select = forwardRef(
                 leaveTo="opacity-0"
               >
                 <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white-pure py-1 text-sm shadow-lg focus:outline-none border border-black/10 z-10">
-                  {filteredOptions.length > 0 ? (
-                    filteredOptions.map((option) => {
-                      return (
-                        <Combobox.Option
-                          key={option.value}
-                          value={option.value}
-                          as={Fragment}
-                        >
-                          {({ active, selected }) => {
-                            return (
-                              <li
-                                className={clsx(
-                                  `flex items-center gap-x-1 px-3 py-2 cursor-pointer hover:bg-mochi-50 transition`,
-                                  {
-                                    'bg-mochi-50': active && !renderOption,
-                                  },
-                                )}
-                              >
-                                {renderOption ? (
-                                  renderOption(option)
-                                ) : (
-                                  <>
-                                    {selected ? (
-                                      <Icon
-                                        icon="heroicons:check-20-solid"
-                                        className="w-4 h-4"
-                                      />
-                                    ) : (
-                                      <div className="w-4 h-4" />
-                                    )}{' '}
-                                    {option.label}
-                                  </>
-                                )}
-                              </li>
-                            )
-                          }}
-                        </Combobox.Option>
-                      )
-                    })
-                  ) : searchable && query ? (
-                    <Combobox.Option value={query} as={Fragment}>
-                      {({ active }) => {
-                        return (
-                          <li
-                            className={`px-3 py-2 cursor-pointer hover:bg-mochi-50 transition ${
-                              active && 'bg-mochi-50'
-                            }`}
-                          >
-                            No result, add{' '}
-                            <code className="py-0.5 px-2 rounded bg-dashboard-gray-6">
-                              {query}
-                            </code>{' '}
-                            as an option
-                          </li>
-                        )
-                      }}
-                    </Combobox.Option>
-                  ) : (
-                    <li className="px-3 py-2 cursor-pointer hover:bg-mochi-50 transition">
-                      No result.
-                    </li>
-                  )}
+                  {content}
                 </Combobox.Options>
               </Transition>
             </>

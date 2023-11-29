@@ -1,7 +1,7 @@
 import { truncate } from '@dwarvesf/react-utils'
 import { ImageResponse } from '@vercel/og'
 import { NextRequest } from 'next/server'
-import Avatar from '~cpn/base/avatar'
+import { NativeImage } from '~cpn/NativeImage'
 import { HOME_URL } from '~envs'
 
 export const config = {
@@ -39,17 +39,43 @@ const og = async (req: NextRequest) => {
   const ogData = searchParams.get('data') ?? '{}'
   const data = JSON.parse(decodeURIComponent(ogData))
   const unitCurrency = data.moniker ? data.moniker : data.symbol
-  const amount = !data.amount
-    ? '???'
-    : data.moniker
-      ? data.original_amount
-      : data.amount
+
+  function getAmount() {
+    if (!data.amount) {
+      return '???'
+    }
+
+    if (data.moniker) {
+      return data.original_amount
+    }
+
+    return data.amount
+  }
+
+  const amount = getAmount()
 
   const regular = await regularFont
   const bold = await boldFont
   const extrabold = await extraboldFont
   const randomInt = Math.random()
   const randomGradientIdx = Math.floor(Math.random() * (gradients.length - 1))
+
+  function getImgSrc() {
+    let imgName = 'mochisan-spaceship'
+    if (randomInt <= 0.2) {
+      imgName = 'mochisan-money'
+    }
+
+    if (randomInt <= 0.5) {
+      imgName = 'mochisan-vault'
+    }
+
+    if (randomInt <= 0.7) {
+      imgName = 'mochisan-stars'
+    }
+
+    return `${HOME_URL}/assets/${imgName}.png`
+  }
 
   return new ImageResponse(
     (
@@ -94,7 +120,7 @@ const og = async (req: NextRequest) => {
                 opacity: 0.2,
               }}
             />
-            <img
+            <NativeImage
               style={{
                 transform: 'scaleX(-1)',
                 display: 'flex',
@@ -105,15 +131,7 @@ const og = async (req: NextRequest) => {
                 width: 180,
                 height: 180,
               }}
-              src={`${HOME_URL}/assets/${
-                randomInt <= 0.2
-                  ? 'mochisan-money'
-                  : randomInt <= 0.5
-                    ? 'mochisan-vault'
-                    : randomInt <= 0.7
-                      ? 'mochisan-stars'
-                      : 'mochisan-spaceship'
-              }.png`}
+              src={getImgSrc()}
               alt="mochisan"
             />
 
@@ -145,7 +163,7 @@ const og = async (req: NextRequest) => {
                 </ul>
               </div>
 
-              <img
+              <NativeImage
                 height={data.success ? 150 : 80}
                 src={`${HOME_URL}/assets/${
                   data.success ? 'success' : 'fail'
@@ -180,25 +198,17 @@ const og = async (req: NextRequest) => {
                       borderRadius: '100%',
                     }}
                   >
-                    {true ? (
-                      <img
-                        style={{
-                          position: 'absolute',
-                          top: 0,
-                          left: 0,
-                          width: 36,
-                          height: 36,
-                        }}
-                        src={data.tokenIcon}
-                        alt=""
-                      />
-                    ) : (
-                      <Avatar
-                        cutoutSrc={`${HOME_URL}/assets/coin.png`}
-                        src={data.tokenIcon}
-                        size="xs"
-                      />
-                    )}
+                    <NativeImage
+                      style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: 36,
+                        height: 36,
+                      }}
+                      src={data.tokenIcon}
+                      alt=""
+                    />
                   </div>
                   <div
                     style={{

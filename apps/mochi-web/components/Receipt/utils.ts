@@ -37,7 +37,8 @@ export async function transformData(rawData: any) {
 
   if (type === 'in') {
     ;[sender, receiver] = [receiver, sender]
-    avatar = rawData.other_profile.avatar
+    const rawAvatar = rawData.other_profile.avatar
+    avatar = rawAvatar
   }
 
   let platformIcon
