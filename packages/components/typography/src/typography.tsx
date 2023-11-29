@@ -43,6 +43,7 @@ export default function Typography({
   component: componentProp,
   color,
   noWrap,
+  fontWeight,
   className,
 }: TypographyProps) {
   const { typographyVariants } = typography
@@ -56,6 +57,7 @@ export default function Typography({
         level,
         color,
         noWrap,
+        fontWeight,
       })}
     >
       {children}
