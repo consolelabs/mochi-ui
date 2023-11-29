@@ -1,4 +1,3 @@
-import { Inter } from 'next/font/google'
 import '~styles/global.css'
 import dynamic from 'next/dynamic'
 import { StrictMode, useEffect } from 'react'
@@ -10,6 +9,7 @@ import '~styles/nprogress.css'
 import { useRouter } from 'next/router'
 import { useShallow } from 'zustand/react/shallow'
 import Script from 'next/script'
+import { interFont } from '~utils/next-font'
 import { LazyMotion, domAnimation } from 'framer-motion'
 import { useAuthStore } from '../store/auth'
 
@@ -18,12 +18,6 @@ const WalletProvider = dynamic(() =>
   import('~context/wallet-context').then((m) => m.WalletProvider),
 )
 const Toaster = dynamic(() => import('sonner').then((m) => m.Toaster))
-
-const inter = Inter({
-  subsets: ['latin'],
-  preload: true,
-  display: 'swap',
-})
 
 const TopProgressBar = dynamic(() => import('~app/layout/nprogress'), {
   ssr: false,
@@ -84,8 +78,7 @@ function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
     <>
       <style jsx global>{`
         html {
-          font-family: ${inter.style.fontFamily};
-          font-style: ${inter.style.fontStyle};
+          font-family: ${interFont.style.fontFamily};
         }
       `}</style>
       <Header />
