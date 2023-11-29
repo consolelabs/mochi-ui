@@ -45,6 +45,10 @@ const meta: Meta<typeof Typography> = {
         'textTertiary',
       ],
     },
+    fontWeight: {
+      control: 'select',
+      options: ['sm', 'md', 'lg', 'xl'],
+    },
     noWrap: {
       control: 'boolean',
     },
@@ -57,6 +61,7 @@ type Story = StoryObj<typeof Typography>
 export const Default: Story = {
   args: {
     children: 'Lorem ipsum',
+    className: 'text-primary-500',
   },
 }
 

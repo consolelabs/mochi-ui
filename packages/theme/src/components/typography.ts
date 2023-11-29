@@ -3,15 +3,15 @@ import { cva, VariantProps } from 'class-variance-authority'
 const typographyVariants = cva(['overflow-hidden'], {
   variants: {
     level: {
-      h1: 'text-7xl font-bold',
-      h2: 'text-5xl font-bold',
-      h3: 'text-4.5xl font-semibold',
-      h4: 'text-3.5xl font-semibold',
-      h5: 'text-2xl font-semibold',
-      h6: 'text-lg font-semibold',
-      h7: 'text-base font-semibold',
-      h8: 'text-sm font-semibold',
-      h9: 'text-sm font-semibold',
+      h1: 'text-7xl',
+      h2: 'text-5xl',
+      h3: 'text-4.5xl',
+      h4: 'text-3.5xl',
+      h5: 'text-2xl',
+      h6: 'text-lg',
+      h7: 'text-base',
+      h8: 'text-sm',
+      h9: 'text-sm',
       p1: 'text-3.5xl',
       p2: 'text-xl',
       p3: 'text-lg',
@@ -35,12 +35,36 @@ const typographyVariants = cva(['overflow-hidden'], {
     noWrap: {
       true: 'text-ellipsis whitespace-nowrap',
     },
+    fontWeight: {
+      sm: 'font-normal',
+      md: 'font-medium',
+      lg: 'font-semibold',
+      xl: 'font-bold',
+      unset: '',
+    },
   },
-
+  compoundVariants: [
+    {
+      level: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8', 'p1'],
+      fontWeight: ['unset'],
+      className: 'font-medium',
+    },
+    {
+      level: ['h9'],
+      fontWeight: ['unset'],
+      className: 'font-semibold',
+    },
+    {
+      level: ['p7'],
+      fontWeight: ['unset'],
+      className: 'font-bold',
+    },
+  ],
   defaultVariants: {
     level: 'p4',
     color: 'textPrimary',
     noWrap: false,
+    fontWeight: 'unset',
   },
 })
 

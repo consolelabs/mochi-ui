@@ -13,7 +13,7 @@ describe('Typography', () => {
       <Typography level="h1">Hello, world!</Typography>,
     )
     const element = container.firstChild
-    expect(element).toHaveClass('text-7xl font-bold')
+    expect(element).toHaveClass('text-7xl font-medium')
   })
 
   it('applies the correct color class', () => {
