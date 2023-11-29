@@ -17,6 +17,7 @@ import { PageContent } from '@consolelabs/page-content'
 import { DISCORD_LINK, TWITTER_LINK } from '~envs'
 import { useRouter } from 'next/router'
 import { ROUTES } from '~constants/routes'
+import clsx from 'clsx'
 import { AuthPanel } from './AuthWidget'
 import { NativeImage } from './NativeImage'
 
@@ -44,11 +45,13 @@ export default function AuthenticatedLayout({
   pageHeader,
   footer,
   childSEO,
+  className,
 }: {
   childSEO?: React.ReactNode
   children: React.ReactNode
   pageHeader?: React.ReactNode
   footer?: React.ReactNode
+  className?: string
 }) {
   const { pathname } = useRouter()
   const mounted = useHasMounted()
@@ -103,7 +106,9 @@ export default function AuthenticatedLayout({
             isSelected={(item) => !!item.href && pathname.startsWith(item.href)}
           />
 
-          <Layout className="flex-1 max-w-[calc(100vw-72px)]">
+          <Layout
+            className={clsx('flex-1 max-w-[calc(100vw-72px)]', className)}
+          >
             {pageHeader}
 
             <PageContent>
