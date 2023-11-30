@@ -1,8 +1,8 @@
-import React from "react";
-import { Meta, StoryObj } from "@storybook/react";
+import React from 'react'
+import { Meta, StoryObj } from '@storybook/react'
 import { {{ camelCase consoleTheme }} } from '@consolelabs/theme'
 
-import { {{capitalize componentName}}, {{capitalize componentName}}Props } from "../src";
+import { {{capitalize componentName}}, {{capitalize componentName}}Props } from '../src'
 
 const meta: Meta<typeof {{capitalize componentName}}> = {
   title: 'Components/{{capitalize componentName}}',
@@ -19,9 +19,9 @@ export default meta
 
 type Story = StoryObj<typeof {{capitalize componentName}}>
 
-const Template = (args: {{capitalize componentName}}Props) => <{{capitalize componentName}} {...args} />;
+const Template = (args: {{capitalize componentName}}Props) => <{{capitalize componentName}} {...args} />
 
-export const Default = {
+export const Default: Story = {
   render: Template,
-  args: {}
+  args: {},
 }
