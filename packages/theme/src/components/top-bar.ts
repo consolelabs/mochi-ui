@@ -33,7 +33,7 @@ const topBarNavMobileNavContainerClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
-    'fixed sm:hidden top-16 inset-0 bg-background-popup rounded-none flex flex-col overflow-y-scroll',
+    'fixed lg:hidden top-16 inset-0 bg-background-popup rounded-none flex flex-col overflow-y-scroll',
     className,
   )
 
@@ -43,8 +43,8 @@ const topBarNavContainerClsx = ({
   clsx(
     'sticky h-16 py-3 gap-6 w-screen max-w-full top-0 flex flex-shrink-0 justify-between items-center z-20 bg-background-surface',
     'pl-4 pr-3 gap-y-4', // mobile
-    'sm:px-8', // desktop
-    'sm:h-16 sm:flex-row', // tablet-desktop
+    'lg:px-8', // desktop
+    'lg:h-16 lg:flex-row', // tablet-desktop
     'border-b border-neutral-outline-border',
     className,
   )
@@ -56,13 +56,13 @@ const topBarDesktopNavClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
-    'hidden sm:flex flex-nowrap flex-row self-center ml-auto gap-y-2 gap-x-6',
+    'hidden lg:flex flex-nowrap flex-row self-center ml-auto gap-y-2 gap-x-6',
     className,
   )
 
 const topBarMobileNavClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx(
-    'flex sm:hidden flex-nowrap flex-row self-center ml-auto gap-y-2 gap-x-6',
+    'flex lg:hidden flex-nowrap flex-row self-center ml-auto gap-y-2 gap-x-6',
     className,
   )
 
