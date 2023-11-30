@@ -1,6 +1,5 @@
 import { render } from '@testing-library/react'
-import Alert from '../src/alert'
-import { AlertTitle } from '../src'
+import { Alert, AlertTitle } from '../src'
 import { AlertDescription } from '../src/alert-description'
 
 describe('Alert', () => {
