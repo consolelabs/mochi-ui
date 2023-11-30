@@ -1,50 +1,42 @@
-import type { SVGProps } from 'react'
-import {
-  InfoCircleOutlined,
-  CheckCircleOutlined,
-  CrossCircleOutlined,
-  ExclamationTriangleOutlined,
-} from '@consolelabs/icons'
-import { alert, AlertStylesProps } from '@consolelabs/theme'
+import { alert } from '@consolelabs/theme'
+import { useMemo } from 'react'
+import { AlertContext, AlertContextValue } from './context'
 
-const { alertCva, alertIconClsx, alertContentClsx, alertTitleClsx } = alert
+const { alertCva } = alert
 
-type Appearance = Exclude<AlertStylesProps['appearance'], null | undefined>
-
-const icons = {
-  primary: InfoCircleOutlined,
-  secondary: InfoCircleOutlined,
-  neutral: InfoCircleOutlined,
-  success: CheckCircleOutlined,
-  warning: ExclamationTriangleOutlined,
-  danger: CrossCircleOutlined,
-} satisfies Record<Appearance, (p: SVGProps<SVGSVGElement>) => JSX.Element>
-
-interface AlertProps extends AlertStylesProps {
+type AlertProps = Partial<AlertContextValue> & {
   children: React.ReactNode
   className?: string
-  title?: string
 }
 
-export default function Alert({
-  title,
-  children,
-  className,
-  appearance: appearanceProp,
-  size,
-}: AlertProps) {
-  const appearance = appearanceProp ?? 'neutral'
-  const Icon = icons[appearance]
+function Alert(props: AlertProps) {
+  const {
+    scheme = 'primary',
+    variant = 'default',
+    size = 'md',
+    responsive = 'auto',
+    className,
+    ...restProps
+  } = props
+
+  const contextValue = useMemo(
+    () => ({
+      scheme,
+      variant,
+      size,
+      responsive,
+    }),
+    [scheme, responsive, size, variant],
+  )
 
   return (
-    <div className={alertCva({ size, className, appearance })}>
-      <Icon className={alertIconClsx()} />
-      <div className={alertContentClsx()}>
-        <span className={alertTitleClsx()}>{title}</span>
-        {children}
-      </div>
-    </div>
+    <AlertContext.Provider value={contextValue}>
+      <div
+        className={alertCva({ scheme, size, variant, responsive, className })}
+        {...restProps}
+      />
+    </AlertContext.Provider>
   )
 }
 
-export { type AlertProps }
+export { type AlertProps, Alert }
