@@ -2,14 +2,18 @@ import { clsx } from 'clsx'
 
 const pageHeaderWrapperClsx = ({
   className = '',
-}: { className?: string } = {}) =>
+  hasBackButton = false,
+}: { className?: string; hasBackButton?: boolean } = {}) =>
   clsx(
-    'flex flex-col items-center gap-8 sm:flex-row px-8 py-3 bg-background-surface',
+    'flex flex-col border-b border-neutral-outline-active items-center gap-4 sm:gap-8 sm:flex-row px-4 py-4 sm:px-8 sm:py-3 bg-background-surface',
+    {
+      '!pl-4 sm:!pl-2': hasBackButton,
+    },
     className,
   )
 
 const pageHeaderLeftClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx('flex gap-2 items-start', className)
+  clsx('flex w-full gap-2 items-start flex-col sm:flex-row', className)
 
 const pageHeaderTitleWrapperClsx = ({
   className = '',
@@ -26,14 +30,14 @@ const pageHeaderActionsWrapperClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
-    'flex-1 flex justify-end w-full flex-wrap gap-2 min-w-max sm:w-auto',
+    'flex-1 flex justify-start sm:justify-end w-full flex-wrap gap-2 min-w-max sm:w-auto',
     className,
   )
 
 const pageHeaderBackButtonWrapperClsx = ({
   className = '',
 }: { className?: string } = {}) =>
-  clsx('!h-10 !w-10 !min-w-[40px] justify-center', className)
+  clsx('!h-10 !w-10 !min-w-[40px] justify-start sm:justify-center', className)
 
 const pageHeaderBackIconWrapperClsx = ({
   className = '',

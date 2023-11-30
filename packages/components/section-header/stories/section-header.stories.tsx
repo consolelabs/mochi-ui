@@ -12,11 +12,11 @@ import { CheckLine, ThreeDotsLine } from '@consolelabs/icons'
 import { IconButton } from '@consolelabs/icon-button'
 import { Button } from '@consolelabs/button'
 import clsx from 'clsx'
-import { PageHeader } from '../src'
+import { SectionHeader } from '../src'
 
 const meta = {
-  title: 'components/PageHeader',
-  component: PageHeader,
+  title: 'components/SectionHeader',
+  component: SectionHeader,
   tags: ['autodocs'],
 }
 
@@ -26,8 +26,11 @@ export function Default() {
   const [selectedApp, setSelectedApp] = useState('all')
 
   const actions = [
+    <Button variant="outline" color="neutral" className="!bg-neutral-0">
+      See docs
+    </Button>,
     <Select value={selectedApp} onChange={setSelectedApp}>
-      <SelectTrigger className="rounded bg-neutral-150 h-10">
+      <SelectTrigger className="rounded bg-neutral-150">
         <Tooltip content="Selected app" arrow="top-center" className="z-20">
           <SelectValue placeholder="All apps" />
         </Tooltip>
@@ -59,35 +62,23 @@ export function Default() {
         </button>
       </SelectContent>
     </Select>,
-    <Button variant="outline" color="neutral" className="!bg-neutral-0">
-      See docs
-    </Button>,
   ]
 
   return (
-    <div className="bg-neutral-outline flex flex-col gap-6 p-6">
-      <PageHeader
-        title="Page Title"
+    <div className="flex flex-col gap-6">
+      <SectionHeader
+        title="Section Title"
         description="Lorem ipsum dolor sit amet consectetur. Sed turpis eget sed nullam volutpat integer posuere."
       />
 
-      <PageHeader
-        title="Page Title"
-        description="Lorem ipsum dolor sit amet consectetur. Sed turpis eget sed nullam volutpat integer posuere."
-        actions={actions}
-      />
-
-      <PageHeader
-        title="Page Title"
-        titleExtra="(2,951 members)"
+      <SectionHeader
+        title="Section Title"
         description="Lorem ipsum dolor sit amet consectetur. Sed turpis eget sed nullam volutpat integer posuere."
         actions={actions}
       />
 
-      <PageHeader
-        onBack={() => alert('onBack')}
-        title="Page Title"
-        titleExtra="(2,951 members)"
+      <SectionHeader
+        title="Section Title"
         description="Lorem ipsum dolor sit amet consectetur. Sed turpis eget sed nullam volutpat integer posuere."
         actions={[
           <IconButton variant="link" color="info">

@@ -8,10 +8,12 @@ type PageHeaderProps = {
   title: ReactNode
   titleClassName?: string
   onBack?: () => void
-  titleExtra?: string
+  titleExtra?: ReactNode
   titleExtraClassName?: string
-  description?: string
+  description?: ReactNode
+  descriptionClassName?: string
   actions?: JSX.Element[]
+  actionsWrapperClassName?: string
   className?: string
 }
 
@@ -34,7 +36,9 @@ const PageHeader = (props: PageHeaderProps) => {
     titleExtra,
     titleExtraClassName,
     description,
+    descriptionClassName,
     actions = [],
+    actionsWrapperClassName,
     className,
     ...rest
   } = props
@@ -51,7 +55,13 @@ const PageHeader = (props: PageHeaderProps) => {
   )
 
   return (
-    <div className={pageHeaderWrapperClsx({ className })} {...rest}>
+    <div
+      className={pageHeaderWrapperClsx({
+        className,
+        hasBackButton: onBack !== undefined,
+      })}
+      {...rest}
+    >
       <div className={pageHeaderLeftClsx()}>
         {onBack ? backButton : null}
 
@@ -69,7 +79,7 @@ const PageHeader = (props: PageHeaderProps) => {
               title
             )}
 
-            {titleExtra ? (
+            {titleExtra && typeof titleExtra === 'string' ? (
               <Typography
                 level="p6"
                 color="textSecondary"
@@ -80,17 +90,28 @@ const PageHeader = (props: PageHeaderProps) => {
                 {titleExtra}
               </Typography>
             ) : null}
+            {titleExtra && typeof titleExtra !== 'string' ? titleExtra : null}
           </div>
-          {description ? (
-            <Typography level="p5" color="textSecondary">
+
+          {description && typeof description === 'string' ? (
+            <Typography
+              level="p5"
+              color="textSecondary"
+              className={descriptionClassName}
+            >
               {description}
             </Typography>
           ) : null}
+          {description && typeof description !== 'string' ? description : null}
         </div>
       </div>
 
       {actions.length ? (
-        <div className={pageHeaderActionsWrapperClsx()}>
+        <div
+          className={pageHeaderActionsWrapperClsx({
+            className: actionsWrapperClassName,
+          })}
+        >
           {actions.map((action, index) => (
             <Fragment key={index}>{action}</Fragment>
           ))}
