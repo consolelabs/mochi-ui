@@ -2,7 +2,7 @@ import { IconButton } from '@consolelabs/icon-button'
 import { CloseLine, MenuSolid } from '@consolelabs/icons'
 import { List } from '@consolelabs/list'
 import { topBar } from '@consolelabs/theme'
-import { ReactNode, useEffect, useState } from 'react'
+import { ReactNode, useState } from 'react'
 import { useLockScreenScroll } from '../hooks'
 import { MobileNavProps } from './type'
 
@@ -16,6 +16,12 @@ const {
   topBarNavToggleButtonIconClsx,
   topBarNavMobileNavContainerClsx,
 } = topBar
+
+const LockScrollWrapper = ({ children }: { children: ReactNode }) => {
+  useLockScreenScroll()
+
+  return <>{children}</>
+}
 
 export const MobileNav = (props: MobileNavProps) => {
   const { navItems, Header } = props
@@ -64,10 +70,4 @@ export const MobileNav = (props: MobileNavProps) => {
       )}
     </>
   )
-}
-
-const LockScrollWrapper = ({ children }: { children: ReactNode }) => {
-  useLockScreenScroll()
-
-  return <>{children}</>
 }
