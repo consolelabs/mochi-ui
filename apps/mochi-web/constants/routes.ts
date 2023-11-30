@@ -1,6 +1,9 @@
 export const ROUTES = {
   HOME: '/',
+  EXPLORE: '/explore',
   FEATURES: '/features',
+  API: '/application-interface',
+  ROADMAP: '/roadmap',
   TX_RECEIPTS: (id: string) => `/tx/${id}`,
   MY_PROFILE: '/profile',
   SERVER_LIST: '/servers',
