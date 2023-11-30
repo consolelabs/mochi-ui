@@ -79,7 +79,6 @@ export function Default() {
       />
 
       <PageHeader
-        backHref="#"
         title="Page Title"
         titleExtra="(2,951 members)"
         description="Lorem ipsum dolor sit amet consectetur. Sed turpis eget sed nullam volutpat integer posuere."

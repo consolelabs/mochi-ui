@@ -33,17 +33,6 @@ describe('Page Header', () => {
     expect(titleExtra?.innerHTML || '').toBe(titleExtraValue)
   })
 
-  it('applies the backHref correctly', () => {
-    const hrefValue = '/test'
-
-    const { container } = render(
-      <PageHeader backHref={hrefValue} title="Page Title" />,
-    )
-
-    const title = container.querySelector('a')
-    expect(title?.getAttribute('href')).toBe(hrefValue)
-  })
-
   it('applies the onBack function correctly', async () => {
     const mockFunction = jest.fn()
 

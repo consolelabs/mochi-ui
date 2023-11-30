@@ -7,7 +7,6 @@ import { Fragment, ReactNode } from 'react'
 type PageHeaderProps = {
   title: ReactNode
   titleClassName?: string
-  backHref?: string
   onBack?: () => void
   titleExtra?: string
   titleExtraClassName?: string
@@ -31,7 +30,6 @@ const PageHeader = (props: PageHeaderProps) => {
   const {
     title,
     titleClassName,
-    backHref,
     onBack,
     titleExtra,
     titleExtraClassName,
@@ -45,7 +43,7 @@ const PageHeader = (props: PageHeaderProps) => {
     <IconButton
       variant="link"
       color="info"
-      onClick={backHref ? undefined : onBack}
+      onClick={onBack}
       className={pageHeaderBackButtonWrapperClsx()}
     >
       <ChevronLeftLine className={pageHeaderBackIconWrapperClsx()} />
@@ -55,12 +53,7 @@ const PageHeader = (props: PageHeaderProps) => {
   return (
     <div className={pageHeaderWrapperClsx({ className })} {...rest}>
       <div className={pageHeaderLeftClsx()}>
-        {backHref ? (
-          <a href={backHref} className={pageHeaderBackButtonWrapperClsx()}>
-            {backButton}
-          </a>
-        ) : null}
-        {!backHref && onBack ? backButton : null}
+        {onBack ? backButton : null}
 
         <div>
           <div className={pageHeaderTitleWrapperClsx()}>
