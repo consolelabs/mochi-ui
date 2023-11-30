@@ -11,8 +11,28 @@ import {
   Button,
   IconButton,
   LogoWithText,
+  Typography,
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
 } from '@consolelabs/core'
-import { MenuSolid, CloseLine } from '@consolelabs/icons'
+import {
+  MenuSolid,
+  CloseLine,
+  DiscordColored,
+  TelegramColored,
+  SlackColored,
+  AppleColored,
+  ChromeColored,
+  TipSolid,
+  DollarBubbleCircleSolid,
+  LinkCircledSolid,
+  BellSolid,
+  MagnifierLine,
+} from '@consolelabs/icons'
+import { DISCORD_LINK, TELEGRAM_LINK } from '~envs'
 import { useCallback, useState } from 'react'
 import ProfileDropdown from '~cpn/profile-dropdrown'
 import { AuthPanel } from '~cpn/AuthWidget'
@@ -86,7 +106,7 @@ export const Header = () => {
       )}
     >
       <button
-        className="flex items-center text-left gap-x-2"
+        className="flex gap-x-2 items-center text-left"
         onClick={onCloseMobileNav}
       >
         <Link href={ROUTES.HOME} className="flex gap-x-2 items-center">
@@ -126,19 +146,219 @@ export const Header = () => {
       ) : null}
 
       {isMounted && !isMobile ? (
-        <div className="flex flex-row self-center order-1 ml-auto gap-y-2 gap-x-6 md:order-2">
-          <div className="flex flex-wrap items-stretch gap-5">
-            <Link
-              href={ROUTES.FEATURES}
-              className="flex items-center text-sm font-semibold"
-            >
-              Features
-            </Link>
-          </div>
+        <div className="flex flex-row order-1 gap-y-2 gap-x-6 self-center ml-auto md:order-2">
           {isLoggedIn && me ? (
-            <ProfileDropdown />
+            <>
+              <div className="flex gap-x-3 items-stretch">
+                <div className="flex gap-x-2 items-center w-[400px]">
+                  <MagnifierLine />
+                  <input
+                    className="flex-1 text-sm outline-none"
+                    placeholder="Search token, ID or address"
+                  />
+                  <div className="flex gap-x-1">
+                    <span
+                      style={{
+                        boxShadow: '0px 2px 0px 0px rgba(212, 211, 208, 1)',
+                      }}
+                      className="text-center leading-[1.1rem] rounded-sm font-mono w-4 h-4 bg-[#eeedec]"
+                    >
+                      ⌘
+                    </span>
+                    <span
+                      style={{
+                        boxShadow: '0px 2px 0px 0px rgba(212, 211, 208, 1)',
+                      }}
+                      className="text-[10px] text-center leading-[1.1rem] rounded-sm font-mono w-4 h-4 bg-[#eeedec]"
+                    >
+                      K
+                    </span>
+                  </div>
+                </div>
+                <div className="w-px h-2/3 my-auto ml-2 bg-[#eeedec]" />
+                <Button size="md">
+                  <TipSolid />
+                  Tip
+                </Button>
+                {[
+                  <DollarBubbleCircleSolid
+                    key="header-icon-button-1"
+                    className="w-full h-full text-neutral-800"
+                  />,
+                  <LinkCircledSolid
+                    key="header-icon-button-2"
+                    className="w-full h-full text-neutral-800"
+                  />,
+                  <BellSolid
+                    key="header-icon-button-3"
+                    className="w-full h-full text-neutral-800"
+                  />,
+                ].map((icon) => {
+                  return (
+                    <IconButton
+                      key={icon.key}
+                      color="info"
+                      variant="outline"
+                      className="!p-1 !w-8 !h-8 my-auto"
+                    >
+                      {icon}
+                    </IconButton>
+                  )
+                })}
+              </div>
+              <ProfileDropdown />
+            </>
           ) : (
-            <LoginPopover isLogging={isLogging} />
+            <>
+              <div className="flex gap-5 items-stretch">
+                <Link
+                  href={ROUTES.EXPLORE}
+                  className="flex items-center text-sm font-semibold"
+                >
+                  Explore
+                </Link>
+                <Link
+                  href={ROUTES.FEATURES}
+                  className="flex items-center text-sm font-semibold"
+                >
+                  Features
+                </Link>
+                <Link
+                  href={ROUTES.API}
+                  className="flex items-center text-sm font-semibold"
+                >
+                  API
+                </Link>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button type="button">
+                      <Typography level="p5" fontWeight="lg">
+                        Download
+                      </Typography>
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-white-pure">
+                    <DropdownMenuItem
+                      leftIcon={<DiscordColored />}
+                      onClick={() => window.open(DISCORD_LINK, '_blank')}
+                    >
+                      Discord
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      leftIcon={<TelegramColored />}
+                      onClick={() => window.open(TELEGRAM_LINK, '_blank')}
+                    >
+                      Telegram
+                    </DropdownMenuItem>
+                    <DropdownMenuLabel>Soon available on</DropdownMenuLabel>
+                    <DropdownMenuItem
+                      leftIcon={<ChromeColored className="opacity-50" />}
+                      disabled
+                    >
+                      Extension
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      leftIcon={<SlackColored className="opacity-50" />}
+                      disabled
+                    >
+                      Slack
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      leftIcon={<AppleColored className="opacity-50" />}
+                      disabled
+                    >
+                      iOS
+                    </DropdownMenuItem>
+                    {/* <SectionList */}
+                    {/*   rootClassName="px-1 w-[250px]" */}
+                    {/*   sections={[ */}
+                    {/*     { */}
+                    {/*       key: '', */}
+                    {/*       data: [ */}
+                    {/*         { */}
+                    {/*           href: DISCORD_LINK, */}
+                    {/*           icon: <DiscordColored className="w-5 h-5" />, */}
+                    {/*           text: 'Discord', */}
+                    {/*         }, */}
+                    {/*         { */}
+                    {/*           href: TELEGRAM_LINK, */}
+                    {/*           icon: <TelegramColored className="w-5 h-5" />, */}
+                    {/*           text: 'Telegram', */}
+                    {/*         }, */}
+                    {/*       ], */}
+                    {/*     }, */}
+                    {/*     { */}
+                    {/*       key: 'Soon available on', */}
+                    {/*       data: [ */}
+                    {/*         { */}
+                    {/*           href: '', */}
+                    {/*           icon: ( */}
+                    {/*             <ChromeColored className="w-5 h-5 opacity-50" /> */}
+                    {/*           ), */}
+                    {/*           text: 'Extension', */}
+                    {/*         }, */}
+                    {/*         { */}
+                    {/*           href: '', */}
+                    {/*           icon: ( */}
+                    {/*             <SlackColored className="w-5 h-5 opacity-50" /> */}
+                    {/*           ), */}
+                    {/*           text: 'Slack', */}
+                    {/*         }, */}
+                    {/*         { */}
+                    {/*           href: '', */}
+                    {/*           icon: ( */}
+                    {/*             <AppleColored className="w-5 h-5 opacity-50" /> */}
+                    {/*           ), */}
+                    {/*           text: 'iOS', */}
+                    {/*         }, */}
+                    {/*       ], */}
+                    {/*     }, */}
+                    {/*   ]} */}
+                    {/*   renderSectionHeader={({ key }) => ( */}
+                    {/*     <Typography */}
+                    {/*       level="p5" */}
+                    {/*       fontWeight="sm" */}
+                    {/*       color="textSecondary" */}
+                    {/*     > */}
+                    {/*       {key} */}
+                    {/*     </Typography> */}
+                    {/*   )} */}
+                    {/*   renderItem={(item: any) => ( */}
+                    {/*     <Button */}
+                    {/*       className="!w-full !flex !justify-start !pl-2" */}
+                    {/*       variant="ghost" */}
+                    {/*       disabled={!item.href} */}
+                    {/*       color="neutral" */}
+                    {/*     > */}
+                    {/*       <Link */}
+                    {/*         href={item.href} */}
+                    {/*         className="flex gap-x-2 items-center" */}
+                    {/*       > */}
+                    {/*         {item.icon} */}
+                    {/*         <Typography */}
+                    {/*           level="p4" */}
+                    {/*           className={clsx({ */}
+                    {/*             'opacity-50': !item.href, */}
+                    {/*           })} */}
+                    {/*           fontWeight="md" */}
+                    {/*         > */}
+                    {/*           {item.text} */}
+                    {/*         </Typography> */}
+                    {/*       </Link> */}
+                    {/*     </Button> */}
+                    {/*   )} */}
+                    {/* /> */}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+                <Link
+                  href={ROUTES.ROADMAP}
+                  className="flex items-center text-sm font-semibold"
+                >
+                  Roadmap
+                </Link>
+              </div>
+              <LoginPopover isLogging={isLogging} />
+            </>
           )}
         </div>
       ) : null}

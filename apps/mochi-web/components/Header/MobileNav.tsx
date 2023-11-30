@@ -1,10 +1,10 @@
 import {
   DiscordColored,
   TelegramColored,
-  MonitorLine,
   SlackColored,
   ChevronRightLine,
   AppleColored,
+  ChromeColored,
 } from '@consolelabs/icons'
 import { List, Button, Modal, ModalContent, Avatar } from '@consolelabs/core'
 import Link from 'next/link'
@@ -53,7 +53,7 @@ const Header = ({ onClose }: { onClose: () => void }) => {
     <button className="" onClick={onClose}>
       <Link
         href={ROUTES.MY_PROFILE}
-        className="relative block w-full h-20 group"
+        className="block relative w-full h-20 group"
       >
         <div className="absolute inset-0 bg-transparent">
           <NativeImage
@@ -62,14 +62,14 @@ const Header = ({ onClose }: { onClose: () => void }) => {
             src="https://pbs.twimg.com/profile_banners/1168522102410010626/1684159976/300x100"
           />
         </div>
-        <div className="relative z-10 flex items-center w-full h-full gap-4 p-4 text-white">
+        <div className="flex relative z-10 gap-4 items-center p-4 w-full h-full text-white">
           <Avatar
             fallback={me?.profile_name}
             smallSrc={me?.platformIcon}
             src={me?.avatar as string}
           />
-          <div className="flex items-center flex-1 font-medium">
-            <span className="inline-block w-40 truncate whitespace-nowrap">
+          <div className="flex flex-1 items-center font-medium">
+            <span className="inline-block w-40 whitespace-nowrap truncate">
               {me?.profile_name}
             </span>
           </div>
@@ -94,23 +94,18 @@ export const MobileNav = (props: { onClose: () => void }) => {
         href: '#',
       },
       {
-        label: 'Develops',
-        onClick: () => {},
+        label: 'API',
+        href: '#',
       },
       {
-        label: 'Apps',
+        label: 'Downloads',
         component: (
           <MobileNavAccordionItem
-            label="Apps"
+            label="Downloads"
             items={[
               {
                 title: '',
                 data: [
-                  {
-                    label: 'Web Dashboard',
-                    iconLeft: <MonitorLine />,
-                    href: '#',
-                  },
                   {
                     label: 'Discord',
                     iconLeft: <DiscordColored />,
@@ -127,7 +122,12 @@ export const MobileNav = (props: { onClose: () => void }) => {
                 title: 'Soon available on',
                 data: [
                   {
-                    label: <span className="text-neutral-500">Discord</span>,
+                    label: <span className="text-neutral-500">Extension</span>,
+                    iconLeft: <ChromeColored className="opacity-50" />,
+                    href: '#',
+                  },
+                  {
+                    label: <span className="text-neutral-500">Slack</span>,
                     iconLeft: <SlackColored className="opacity-50" />,
                     href: '#',
                   },
@@ -157,7 +157,7 @@ export const MobileNav = (props: { onClose: () => void }) => {
   const itemRenderer = (item: NavItem) => {
     if (item.component) return item.component
     const wrapperClassName =
-      'flex w-full text-left !text-base px-2 py-3 bg-white-pure !text-neutral-800 !font-normal hover:!text-black'
+      'flex w-full text-left !text-base !px-2 !py-3 bg-white-pure !text-neutral-800 !font-normal hover:!text-black'
 
     return (
       <Button
@@ -171,7 +171,7 @@ export const MobileNav = (props: { onClose: () => void }) => {
         key={`mobile-nav-item-header-${item.label}`}
       >
         <Link
-          className="flex items-center flex-1 gap-3"
+          className="flex flex-1 gap-3 items-center"
           href={item.href ?? '/'}
         >
           {item.iconLeft && <span className="text-xl">{item.iconLeft}</span>}
