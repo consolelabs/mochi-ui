@@ -2,7 +2,7 @@ import { cva, VariantProps } from 'class-variance-authority'
 
 const root = cva(
   [
-    'flex relative items-stretch cursor-text overflow-hidden focus-within:shadow-input-focused rounded gap-2 px-3.5',
+    'flex relative items-stretch cursor-text overflow-hidden focus-within:shadow-input-focused rounded gap-2 px-3.5 min-w-max',
   ],
   {
     variants: {
@@ -36,7 +36,7 @@ const textFieldVariants = cva(
   },
 )
 
-const slot = cva('relative z-[1] flex justify-center items-center')
+const slot = cva('relative z-[1] flex justify-center items-center shrink-0')
 
 const mask = cva(
   [

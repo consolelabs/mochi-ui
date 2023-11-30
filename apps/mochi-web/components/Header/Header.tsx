@@ -19,8 +19,8 @@ import {
   DropdownMenuLabel,
 } from '@consolelabs/core'
 import {
-  MenuSolid,
-  CloseLine,
+  // MenuSolid,
+  // CloseLine,
   DiscordColored,
   TelegramColored,
   SlackColored,
@@ -37,7 +37,7 @@ import { useCallback, useState } from 'react'
 import ProfileDropdown from '~cpn/profile-dropdrown'
 import { AuthPanel } from '~cpn/AuthWidget'
 import { useResponsiveScreen } from '~hooks/useResponsiveScreen'
-import { MobileNav } from './MobileNav'
+// import { MobileNav } from './MobileNav'
 
 const authenticatedRoute = [
   ROUTES.MY_PROFILE,
@@ -84,7 +84,7 @@ export const Header = () => {
   const { pathname } = useRouter()
   const { me } = useProfileStore()
   const { isLoggedIn, isLogging } = useAuthStore()
-  const [openMobileNav, setOpenMobileNav] = useState(false)
+  const [_openMobileNav, setOpenMobileNav] = useState(false)
   const { isMobile } = useResponsiveScreen()
   const isMounted = useHasMounted()
 
@@ -118,7 +118,7 @@ export const Header = () => {
         </Link>
       </button>
 
-      {isMounted && isMobile ? (
+      {/* {isMounted && isMobile ? (
         <>
           <IconButton
             size="lg"
@@ -143,7 +143,7 @@ export const Header = () => {
             </div>
           )}
         </>
-      ) : null}
+      ) : null} */}
 
       {isMounted && !isMobile ? (
         <div className="flex flex-row order-1 gap-y-2 gap-x-6 self-center ml-auto md:order-2">

@@ -1596,6 +1596,67 @@ importers:
         specifier: workspace:*
         version: link:../../tsconfig
 
+  packages/components/top-bar:
+    dependencies:
+      '@consolelabs/icon-button':
+        specifier: workspace:*
+        version: link:../icon-button
+      '@consolelabs/icons':
+        specifier: workspace:*
+        version: link:../../icons
+      '@consolelabs/list':
+        specifier: workspace:*
+        version: link:../list
+      '@consolelabs/theme':
+        specifier: workspace:*
+        version: link:../../theme
+      '@dwarvesf/react-hooks':
+        specifier: ^0.7.0
+        version: 0.7.0(react-dom@18.2.0)(react@18.2.0)
+    devDependencies:
+      '@consolelabs/accordion':
+        specifier: workspace:*
+        version: link:../accordion
+      '@consolelabs/button':
+        specifier: workspace:*
+        version: link:../button
+      '@consolelabs/dropdown':
+        specifier: workspace:*
+        version: link:../dropdown
+      '@consolelabs/input':
+        specifier: workspace:*
+        version: link:../input
+      '@consolelabs/logo':
+        specifier: workspace:*
+        version: link:../logo
+      '@consolelabs/section-list':
+        specifier: workspace:*
+        version: link:../section-list
+      '@consolelabs/typography':
+        specifier: workspace:*
+        version: link:../typography
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.1.0
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
   packages/components/typography:
     dependencies:
       class-variance-authority:
@@ -1728,6 +1789,9 @@ importers:
       '@consolelabs/tooltip':
         specifier: workspace:*
         version: link:../components/tooltip
+      '@consolelabs/top-bar':
+        specifier: workspace:*
+        version: link:../components/top-bar
       '@consolelabs/typography':
         specifier: workspace:*
         version: link:../components/typography
