@@ -1,5 +1,75 @@
 # @consolelabs/core
 
+## 0.4.0
+
+### Minor Changes
+
+- [#292](https://github.com/consolelabs/web-foundation/pull/292)
+  [`9786ce7`](https://github.com/consolelabs/web-foundation/commit/9786ce7ce0e2df4eecde1d527499ae59eebc48ab)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Add label
+  component
+
+- [#310](https://github.com/consolelabs/web-foundation/pull/310)
+  [`faaba77`](https://github.com/consolelabs/web-foundation/commit/faaba7753d764c4e8db25863632cb1038f2adcb9)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Create Logo component
+  package
+
+- [#300](https://github.com/consolelabs/web-foundation/pull/300)
+  [`b9ae92f`](https://github.com/consolelabs/web-foundation/commit/b9ae92f92b32dedac4903614e7c0947bd1118fb1)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Add Form
+  components
+
+- [#288](https://github.com/consolelabs/web-foundation/pull/288)
+  [`995bf22`](https://github.com/consolelabs/web-foundation/commit/995bf22b2cc7d5576327910f48e5028ca59431cf)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Create Layout
+  component and refactor auth-layout
+
+### Patch Changes
+
+- [#322](https://github.com/consolelabs/web-foundation/pull/322)
+  [`f561e1d`](https://github.com/consolelabs/web-foundation/commit/f561e1deae07fa69ac54501152a844259376ede6)
+  Thanks [@trankhacvy](https://github.com/trankhacvy)! - Update Typography font
+  weight
+
+- Updated dependencies
+  [[`9786ce7`](https://github.com/consolelabs/web-foundation/commit/9786ce7ce0e2df4eecde1d527499ae59eebc48ab),
+  [`faaba77`](https://github.com/consolelabs/web-foundation/commit/faaba7753d764c4e8db25863632cb1038f2adcb9),
+  [`1ba9b89`](https://github.com/consolelabs/web-foundation/commit/1ba9b89df277d237053bb3ed69be8bd3c13c25a8),
+  [`f561e1d`](https://github.com/consolelabs/web-foundation/commit/f561e1deae07fa69ac54501152a844259376ede6),
+  [`b9ae92f`](https://github.com/consolelabs/web-foundation/commit/b9ae92f92b32dedac4903614e7c0947bd1118fb1),
+  [`85da50f`](https://github.com/consolelabs/web-foundation/commit/85da50f1afa67d5d026dce281e522c8df57983ba),
+  [`995bf22`](https://github.com/consolelabs/web-foundation/commit/995bf22b2cc7d5576327910f48e5028ca59431cf)]:
+  - @consolelabs/label@0.1.0
+  - @consolelabs/theme@0.5.0
+  - @consolelabs/logo@0.1.0
+  - @consolelabs/tooltip@0.2.0
+  - @consolelabs/typography@0.0.6
+  - @consolelabs/input@0.2.0
+  - @consolelabs/form@0.1.0
+  - @consolelabs/button@0.3.0
+  - @consolelabs/icon-button@0.4.0
+  - @consolelabs/page-content@0.1.0
+  - @consolelabs/page-header@0.2.0
+  - @consolelabs/layout@0.1.0
+  - @consolelabs/accordion@0.1.3
+  - @consolelabs/alert@0.1.3
+  - @consolelabs/avatar@0.0.13
+  - @consolelabs/badge@0.2.2
+  - @consolelabs/checkbox@0.1.3
+  - @consolelabs/dropdown@0.1.3
+  - @consolelabs/input-field@0.1.4
+  - @consolelabs/list@0.0.13
+  - @consolelabs/login-widget@0.1.4
+  - @consolelabs/modal@0.2.2
+  - @consolelabs/popover@0.2.1
+  - @consolelabs/profile-badge@0.1.1
+  - @consolelabs/section-list@0.0.12
+  - @consolelabs/select@0.1.2
+  - @consolelabs/sidebar@0.0.16
+  - @consolelabs/switch@0.0.11
+  - @consolelabs/table@0.1.8
+  - @consolelabs/toggle-button@0.1.0
+
 ## 0.3.1
 
 ### Patch Changes
