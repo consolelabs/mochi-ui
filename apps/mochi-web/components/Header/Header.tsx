@@ -154,15 +154,31 @@ export const Header = () => {
     <Link
       href={ROUTES.FEATURES}
       className="flex items-center text-sm font-semibold"
-      key="desktop-nav-features"
+      key="mobile-nav-features"
     >
       <Button
         variant="link"
         color="neutral"
         className="flex w-full !justify-start !text-base !px-2 py-3 bg-background-surface !text-neutral-800 !font-normal hover:!text-black !h-max"
       >
-        <Typography level="p6" className="!text-base font-medium">
+        <Typography level="p6" className="!text-base">
           Features
+        </Typography>
+      </Button>
+    </Link>,
+    // eslint-disable-next-line jsx-a11y/anchor-is-valid
+    <Link
+      href="#"
+      className="flex items-center text-sm font-semibold"
+      key="mobile-nav-api"
+    >
+      <Button
+        variant="link"
+        color="neutral"
+        className="flex w-full !justify-start !text-base !px-2 py-3 bg-background-surface !text-neutral-800 !font-normal hover:!text-black !h-max"
+      >
+        <Typography level="p6" className="!text-base">
+          API
         </Typography>
       </Button>
     </Link>,
@@ -173,11 +189,6 @@ export const Header = () => {
         {
           title: '',
           data: [
-            {
-              label: 'Extension',
-              iconLeft: <ChromeColored />,
-              href: '#',
-            },
             {
               label: 'Discord',
               iconLeft: <DiscordColored />,
@@ -193,6 +204,11 @@ export const Header = () => {
         {
           title: 'Soon available on',
           data: [
+            {
+              label: <span className="text-neutral-500">Extension</span>,
+              iconLeft: <ChromeColored />,
+              href: '#',
+            },
             {
               label: <span className="text-neutral-500">Discord</span>,
               iconLeft: <SlackColored className="opacity-50" />,
@@ -241,7 +257,9 @@ export const Header = () => {
                 </span>
               </div>
             </div>
-            <div className="w-px h-2/3 my-auto ml-2 bg-[#eeedec]" />
+            <div className="w-px ml-2 py-1">
+              <div className="w-full h-full bg-[#eeedec]" />
+            </div>
             <Button size="md">
               <TipSolid />
               Tip
@@ -275,153 +293,155 @@ export const Header = () => {
           <ProfileDropdown key="desktop-profile-dropdown" />,
         ]
       : [
-          <div className="flex gap-5 items-stretch" key="desktop-actions">
-            <Link
-              href={ROUTES.EXPLORE}
-              className="flex items-center text-sm font-semibold"
-            >
-              Explore
-            </Link>
-            <Link
-              href={ROUTES.FEATURES}
-              className="flex items-center text-sm font-semibold"
-            >
-              Features
-            </Link>
-            <Link
-              href={ROUTES.API}
-              className="flex items-center text-sm font-semibold"
-            >
-              API
-            </Link>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button type="button">
-                  <Typography level="p5" fontWeight="lg">
-                    Download
-                  </Typography>
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-white-pure">
-                <DropdownMenuItem
-                  leftIcon={<DiscordColored />}
-                  onClick={() => window.open(DISCORD_LINK, '_blank')}
-                >
-                  Discord
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  leftIcon={<TelegramColored />}
-                  onClick={() => window.open(TELEGRAM_LINK, '_blank')}
-                >
-                  Telegram
-                </DropdownMenuItem>
-                <DropdownMenuLabel>Soon available on</DropdownMenuLabel>
-                <DropdownMenuItem
-                  leftIcon={<ChromeColored className="opacity-50" />}
-                  disabled
-                >
-                  Extension
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  leftIcon={<SlackColored className="opacity-50" />}
-                  disabled
-                >
-                  Slack
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  leftIcon={<AppleColored className="opacity-50" />}
-                  disabled
-                >
-                  iOS
-                </DropdownMenuItem>
-                {/* <SectionList */}
-                {/*   rootClassName="px-1 w-[250px]" */}
-                {/*   sections={[ */}
-                {/*     { */}
-                {/*       key: '', */}
-                {/*       data: [ */}
-                {/*         { */}
-                {/*           href: DISCORD_LINK, */}
-                {/*           icon: <DiscordColored className="w-5 h-5" />, */}
-                {/*           text: 'Discord', */}
-                {/*         }, */}
-                {/*         { */}
-                {/*           href: TELEGRAM_LINK, */}
-                {/*           icon: <TelegramColored className="w-5 h-5" />, */}
-                {/*           text: 'Telegram', */}
-                {/*         }, */}
-                {/*       ], */}
-                {/*     }, */}
-                {/*     { */}
-                {/*       key: 'Soon available on', */}
-                {/*       data: [ */}
-                {/*         { */}
-                {/*           href: '', */}
-                {/*           icon: ( */}
-                {/*             <ChromeColored className="w-5 h-5 opacity-50" /> */}
-                {/*           ), */}
-                {/*           text: 'Extension', */}
-                {/*         }, */}
-                {/*         { */}
-                {/*           href: '', */}
-                {/*           icon: ( */}
-                {/*             <SlackColored className="w-5 h-5 opacity-50" /> */}
-                {/*           ), */}
-                {/*           text: 'Slack', */}
-                {/*         }, */}
-                {/*         { */}
-                {/*           href: '', */}
-                {/*           icon: ( */}
-                {/*             <AppleColored className="w-5 h-5 opacity-50" /> */}
-                {/*           ), */}
-                {/*           text: 'iOS', */}
-                {/*         }, */}
-                {/*       ], */}
-                {/*     }, */}
-                {/*   ]} */}
-                {/*   renderSectionHeader={({ key }) => ( */}
-                {/*     <Typography */}
-                {/*       level="p5" */}
-                {/*       fontWeight="sm" */}
-                {/*       color="textSecondary" */}
-                {/*     > */}
-                {/*       {key} */}
-                {/*     </Typography> */}
-                {/*   )} */}
-                {/*   renderItem={(item: any) => ( */}
-                {/*     <Button */}
-                {/*       className="!w-full !flex !justify-start !pl-2" */}
-                {/*       variant="ghost" */}
-                {/*       disabled={!item.href} */}
-                {/*       color="neutral" */}
-                {/*     > */}
-                {/*       <Link */}
-                {/*         href={item.href} */}
-                {/*         className="flex gap-x-2 items-center" */}
-                {/*       > */}
-                {/*         {item.icon} */}
-                {/*         <Typography */}
-                {/*           level="p4" */}
-                {/*           className={clsx({ */}
-                {/*             'opacity-50': !item.href, */}
-                {/*           })} */}
-                {/*           fontWeight="md" */}
-                {/*         > */}
-                {/*           {item.text} */}
-                {/*         </Typography> */}
-                {/*       </Link> */}
-                {/*     </Button> */}
-                {/*   )} */}
-                {/* /> */}
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <Link
-              href={ROUTES.ROADMAP}
-              className="flex items-center text-sm font-semibold"
-            >
-              Roadmap
-            </Link>
-          </div>,
+          <Link
+            href={ROUTES.EXPLORE}
+            className="flex items-center text-sm font-semibold"
+            key="desktop-nav-explore"
+          >
+            Explore
+          </Link>,
+          <Link
+            href={ROUTES.FEATURES}
+            className="flex items-center text-sm font-semibold"
+            key="desktop-nav-features"
+          >
+            Features
+          </Link>,
+          <Link
+            href={ROUTES.API}
+            className="flex items-center text-sm font-semibold"
+            key="desktop-nav-api"
+          >
+            API
+          </Link>,
+          <DropdownMenu key="desktop-nav-dropdown">
+            <DropdownMenuTrigger asChild>
+              <button type="button">
+                <Typography level="p5" fontWeight="lg">
+                  Download
+                </Typography>
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="bg-white-pure">
+              <DropdownMenuItem
+                leftIcon={<DiscordColored />}
+                onClick={() => window.open(DISCORD_LINK, '_blank')}
+              >
+                Discord
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                leftIcon={<TelegramColored />}
+                onClick={() => window.open(TELEGRAM_LINK, '_blank')}
+              >
+                Telegram
+              </DropdownMenuItem>
+              <DropdownMenuLabel>Soon available on</DropdownMenuLabel>
+              <DropdownMenuItem
+                leftIcon={<ChromeColored className="opacity-50" />}
+                disabled
+              >
+                Extension
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                leftIcon={<SlackColored className="opacity-50" />}
+                disabled
+              >
+                Slack
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                leftIcon={<AppleColored className="opacity-50" />}
+                disabled
+              >
+                iOS
+              </DropdownMenuItem>
+              {/* <SectionList */}
+              {/*   rootClassName="px-1 w-[250px]" */}
+              {/*   sections={[ */}
+              {/*     { */}
+              {/*       key: '', */}
+              {/*       data: [ */}
+              {/*         { */}
+              {/*           href: DISCORD_LINK, */}
+              {/*           icon: <DiscordColored className="w-5 h-5" />, */}
+              {/*           text: 'Discord', */}
+              {/*         }, */}
+              {/*         { */}
+              {/*           href: TELEGRAM_LINK, */}
+              {/*           icon: <TelegramColored className="w-5 h-5" />, */}
+              {/*           text: 'Telegram', */}
+              {/*         }, */}
+              {/*       ], */}
+              {/*     }, */}
+              {/*     { */}
+              {/*       key: 'Soon available on', */}
+              {/*       data: [ */}
+              {/*         { */}
+              {/*           href: '', */}
+              {/*           icon: ( */}
+              {/*             <ChromeColored className="w-5 h-5 opacity-50" /> */}
+              {/*           ), */}
+              {/*           text: 'Extension', */}
+              {/*         }, */}
+              {/*         { */}
+              {/*           href: '', */}
+              {/*           icon: ( */}
+              {/*             <SlackColored className="w-5 h-5 opacity-50" /> */}
+              {/*           ), */}
+              {/*           text: 'Slack', */}
+              {/*         }, */}
+              {/*         { */}
+              {/*           href: '', */}
+              {/*           icon: ( */}
+              {/*             <AppleColored className="w-5 h-5 opacity-50" /> */}
+              {/*           ), */}
+              {/*           text: 'iOS', */}
+              {/*         }, */}
+              {/*       ], */}
+              {/*     }, */}
+              {/*   ]} */}
+              {/*   renderSectionHeader={({ key }) => ( */}
+              {/*     <Typography */}
+              {/*       level="p5" */}
+              {/*       fontWeight="sm" */}
+              {/*       color="textSecondary" */}
+              {/*     > */}
+              {/*       {key} */}
+              {/*     </Typography> */}
+              {/*   )} */}
+              {/*   renderItem={(item: any) => ( */}
+              {/*     <Button */}
+              {/*       className="!w-full !flex !justify-start !pl-2" */}
+              {/*       variant="ghost" */}
+              {/*       disabled={!item.href} */}
+              {/*       color="neutral" */}
+              {/*     > */}
+              {/*       <Link */}
+              {/*         href={item.href} */}
+              {/*         className="flex gap-x-2 items-center" */}
+              {/*       > */}
+              {/*         {item.icon} */}
+              {/*         <Typography */}
+              {/*           level="p4" */}
+              {/*           className={clsx({ */}
+              {/*             'opacity-50': !item.href, */}
+              {/*           })} */}
+              {/*           fontWeight="md" */}
+              {/*         > */}
+              {/*           {item.text} */}
+              {/*         </Typography> */}
+              {/*       </Link> */}
+              {/*     </Button> */}
+              {/*   )} */}
+              {/* /> */}
+            </DropdownMenuContent>
+          </DropdownMenu>,
+          <Link
+            href={ROUTES.ROADMAP}
+            className="flex items-center text-sm font-semibold"
+            key="desktop-nav-roadmap"
+          >
+            Roadmap
+          </Link>,
           <LoginPopover isLogging={isLogging} key="desktop-login-popover" />,
         ]),
   ]

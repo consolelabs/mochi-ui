@@ -33,7 +33,7 @@ const topBarNavMobileNavContainerClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
-    'fixed top-16 inset-0 bg-background-popup rounded-none flex flex-col overflow-y-scroll',
+    'fixed sm:hidden top-16 inset-0 bg-background-popup rounded-none flex flex-col overflow-y-scroll',
     className,
   )
 
