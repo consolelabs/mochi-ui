@@ -1,11 +1,11 @@
 import { render } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import { TopBar } from '../src'
+import { DesktopNav, TopBar } from '../src'
 
-describe('Page Header', () => {
+describe('Top Bar', () => {
   it('renders the title correctly', () => {
     const titleValue = 'Page Title'
-    const { getByText } = render(<TopBar title={titleValue} />)
+    const { getByText } = render(<TopBar leftSlot={titleValue} />)
     const title = getByText(titleValue)
 
     expect(title).toBeInTheDocument()
@@ -14,13 +14,16 @@ describe('Page Header', () => {
   it('renders the menu items correctly', () => {
     const { container } = render(
       <TopBar
-        title="Page Title"
-        desktopNavItems={[
-          // eslint-disable-next-line jsx-a11y/anchor-is-valid
-          <a href="#">API</a>,
-          <strong>API</strong>,
-          <strong>API</strong>,
-        ]}
+        leftSlot="Page Title"
+        rightSlot={
+          <DesktopNav
+            navItems={[
+              <a href="#">API</a>,
+              <strong>API</strong>,
+              <strong>API</strong>,
+            ]}
+          />
+        }
       />,
     )
     const anchors = container.getElementsByTagName('a')
