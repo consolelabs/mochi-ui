@@ -20,7 +20,7 @@ const {
 const LockScrollWrapper = ({ children }: { children: ReactNode }) => {
   useLockScreenScroll()
 
-  return <>{children}</>
+  return <div className={mobileNavWrapperClsx()}>{children}</div>
 }
 
 export const MobileNav = (props: MobileNavProps) => {
@@ -52,19 +52,17 @@ export const MobileNav = (props: MobileNavProps) => {
       {openMobileNav && (
         <div className={topBarNavMobileNavContainerClsx()}>
           <LockScrollWrapper>
-            <div className={mobileNavWrapperClsx()}>
-              {Header !== undefined ? (
-                <Header onClose={onCloseMobileNav} />
-              ) : null}
+            {Header !== undefined ? (
+              <Header onClose={onCloseMobileNav} />
+            ) : null}
 
-              <List
-                rootClassName={mobileNavListRootClsx()}
-                data={navItems}
-                renderItem={(elem) => elem}
-                listClassName={mobileNavListContentClsx()}
-                viewportClassName={mobileNavListViewportClsx()}
-              />
-            </div>
+            <List
+              rootClassName={mobileNavListRootClsx()}
+              data={navItems}
+              renderItem={(elem) => elem}
+              listClassName={mobileNavListContentClsx()}
+              viewportClassName={mobileNavListViewportClsx()}
+            />
           </LockScrollWrapper>
         </div>
       )}
