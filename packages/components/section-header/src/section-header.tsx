@@ -8,7 +8,7 @@ type SectionHeaderProps = {
   description?: ReactNode
   descriptionClassName?: string
   actions?: JSX.Element[]
-  actionsClassName?: string
+  actionsWrapperClassName?: string
   className?: string
 }
 
@@ -27,7 +27,7 @@ const SectionHeader = (props: SectionHeaderProps) => {
     description,
     descriptionClassName,
     actions = [],
-    actionsClassName,
+    actionsWrapperClassName,
     className,
     ...rest
   } = props
@@ -67,7 +67,7 @@ const SectionHeader = (props: SectionHeaderProps) => {
       {actions.length ? (
         <div
           className={sectionHeaderActionsWrapperClsx({
-            className: actionsClassName,
+            className: actionsWrapperClassName,
           })}
         >
           {actions.map((action, index) => (

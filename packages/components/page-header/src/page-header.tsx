@@ -13,7 +13,7 @@ type PageHeaderProps = {
   description?: ReactNode
   descriptionClassName?: string
   actions?: JSX.Element[]
-  actionsClassName?: string
+  actionsWrapperClassName?: string
   className?: string
 }
 
@@ -38,7 +38,7 @@ const PageHeader = (props: PageHeaderProps) => {
     description,
     descriptionClassName,
     actions = [],
-    actionsClassName,
+    actionsWrapperClassName,
     className,
     ...rest
   } = props
@@ -109,7 +109,7 @@ const PageHeader = (props: PageHeaderProps) => {
       {actions.length ? (
         <div
           className={pageHeaderActionsWrapperClsx({
-            className: actionsClassName,
+            className: actionsWrapperClassName,
           })}
         >
           {actions.map((action, index) => (
