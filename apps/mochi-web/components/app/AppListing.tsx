@@ -15,6 +15,7 @@ import { useClipboard } from '@dwarvesf/react-hooks'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { SOCIAL_LINKS } from '~constants'
+import { platforms } from '~constants/app'
 import { ROUTES } from '~constants/routes'
 import { ViewApplication } from '~types/mochi-pay-schema'
 import { formatDate } from '~utils/time'
@@ -101,7 +102,11 @@ export const AppListing = ({
               {
                 header: 'Platforms',
                 accessorKey: 'platforms',
-                accessorFn: (row) => row.platforms?.join(', ') || '',
+                accessorFn: (row) =>
+                  row.platforms
+                    ?.map((p) => platforms.find(({ key }) => key === p)?.label)
+                    .filter(Boolean)
+                    .join(', '),
               },
               {
                 header: 'Last Modified',
