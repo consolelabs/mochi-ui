@@ -69,7 +69,7 @@ export const WalletPicker: React.FC<Props> = ({
             {selectedWallet.title}
           </span>
           <span className={clsx('text-xs text-blue-500')}>
-            {selectedWallet.subtitle || <>&#8203;</>}
+            {selectedWallet.subtitle || <>Not connected</>}
           </span>
         </div>
         {authorized && (
