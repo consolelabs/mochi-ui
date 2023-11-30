@@ -41,7 +41,6 @@ import { useState } from 'react'
 import ProfileDropdown from '~cpn/profile-dropdrown'
 import { AuthPanel } from '~cpn/AuthWidget'
 import { MobileNavAccordionItem } from './MobileNavAccordionItem'
-// import { MobileNav } from './MobileNav'
 
 const authenticatedRoute = [
   ROUTES.MY_PROFILE,
