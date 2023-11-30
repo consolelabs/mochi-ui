@@ -438,8 +438,11 @@ export const Header = () => {
           >
             Roadmap
           </Link>,
-          <div className="w-px h-full -mx-2" key="desktop-nav-divider">
-            <div className="w-auto h-6 my-auto bg-[#eeedec]" />
+          <div
+            className="w-px h-full -mx-2 flex items-center"
+            key="desktop-nav-divider"
+          >
+            <div className="w-full h-6 bg-[#eeedec]" />
           </div>,
           <LoginPopover isLogging={isLogging} key="desktop-login-popover" />,
         ]),
