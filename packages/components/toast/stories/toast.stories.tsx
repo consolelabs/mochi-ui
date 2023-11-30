@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react'
-import { ToastProvider, ToastTitle } from '@radix-ui/react-toast'
-import { Toast, ToastViewPort } from '../src'
+import { Toast } from '../src'
+import { Toaster } from '../src/toaster'
+import { useToast } from '../src/hook/use-toast'
 
 const meta: Meta<typeof Toast> = {
   title: 'Components/toast',
@@ -8,6 +9,7 @@ const meta: Meta<typeof Toast> = {
   parameters: {
     layout: 'centered',
   },
+  tags: ['autodocs'],
   argTypes: {
     type: {
       control: 'select',
@@ -28,14 +30,23 @@ const meta: Meta<typeof Toast> = {
 export default meta
 
 export const Default: StoryObj<typeof Toast> = {
-  render(props) {
+  render: function Render() {
+    const { toast } = useToast()
     return (
-      <ToastProvider>
-        <Toast {...props}>
-          <ToastTitle>Loresum</ToastTitle>
-        </Toast>
-        <ToastViewPort />
-      </ToastProvider>
+      <div>
+        <Toaster />
+        <button
+          onClick={() =>
+            toast({
+              title: 'labore adipisicing minim sint',
+              description:
+                'Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.',
+            })
+          }
+        >
+          Toast
+        </button>
+      </div>
     )
   },
 }

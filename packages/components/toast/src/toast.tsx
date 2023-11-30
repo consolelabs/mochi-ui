@@ -1,5 +1,5 @@
 import * as ToastPrimitive from '@radix-ui/react-toast'
-import { forwardRef } from 'react'
+import { ReactElement, forwardRef } from 'react'
 import { toast } from '@consolelabs/theme'
 import {
   ToastActionProps,
@@ -10,6 +10,10 @@ import {
   ToastViewPortRef,
   ToastTitleProps,
   ToastTitleRef,
+  ToastDescriptionProps,
+  ToastDescriptionRef,
+  ToastCloseRef,
+  ToastCloseProps,
 } from './type'
 
 const ToastProvider = ToastPrimitive.Provider
@@ -41,4 +45,25 @@ const ToastTitle = forwardRef<ToastTitleRef, ToastTitleProps>((props, ref) => {
   return <ToastPrimitive.Title ref={ref} {...props} />
 })
 
-export { ToastProvider, ToastViewPort, Toast, ToastAction, ToastTitle }
+const ToastDescription = forwardRef<ToastDescriptionRef, ToastDescriptionProps>(
+  (props, ref) => {
+    return <ToastPrimitive.Description ref={ref} {...props} />
+  },
+)
+
+const ToastClose = forwardRef<ToastCloseRef, ToastCloseProps>((props, ref) => {
+  return <ToastPrimitive.Close ref={ref} {...props} />
+})
+
+type ToastActionElement = ReactElement<typeof ToastAction>
+
+export {
+  ToastProvider,
+  ToastViewPort,
+  Toast,
+  ToastAction,
+  ToastTitle,
+  ToastDescription,
+  ToastClose,
+  type ToastActionElement,
+}

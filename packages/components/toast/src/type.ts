@@ -22,3 +22,15 @@ export type ToastTitleRef = ElementRef<typeof ToastPrimitive.Title>
 export type ToastTitleProps = ComponentPropsWithoutRef<
   typeof ToastPrimitive.Title
 >
+
+export type ToastDescriptionRef = ElementRef<typeof ToastPrimitive.Description>
+
+export type ToastDescriptionProps = ComponentPropsWithoutRef<
+  typeof ToastPrimitive.Description
+>
+
+export type ToastCloseRef = ElementRef<typeof ToastPrimitive.Close>
+
+export type ToastCloseProps = ComponentPropsWithoutRef<
+  typeof ToastPrimitive.Close
+>
