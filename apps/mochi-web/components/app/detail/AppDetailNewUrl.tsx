@@ -15,11 +15,21 @@ import { LinkLine, PlusLine } from '@consolelabs/icons'
 import { Controller, useForm } from 'react-hook-form'
 import { urlPlatforms, urlRegex } from '~constants/app'
 import { UrlValue } from '~types/app'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
 
 export const getIcon = (key?: string) => {
   const Icon = urlPlatforms.find((item) => item.key === key)?.Icon || LinkLine
   return <Icon className="w-5 h-5" />
 }
+
+const schema = z.object({
+  platform: z.string().min(1, 'This field is required'),
+  url: z
+    .string()
+    .min(1, 'This field is required')
+    .regex(urlRegex, 'Invalid URL'),
+})
 
 interface Props {
   onAddNewUrl: (data: UrlValue) => void
@@ -36,6 +46,7 @@ export const AppDetailNewUrl = ({ onAddNewUrl }: Props) => {
       platform: '',
       url: '',
     },
+    resolver: zodResolver(schema),
   })
 
   const onSubmit = (data: UrlValue) => {
@@ -51,7 +62,6 @@ export const AppDetailNewUrl = ({ onAddNewUrl }: Props) => {
             <Controller
               name="platform"
               control={control}
-              rules={{ required: 'This field is required' }}
               render={({ field }) => (
                 <Select {...field}>
                   <SelectTrigger
@@ -78,13 +88,6 @@ export const AppDetailNewUrl = ({ onAddNewUrl }: Props) => {
           <Controller
             name="url"
             control={control}
-            rules={{
-              required: 'This field is required',
-              pattern: {
-                value: urlRegex,
-                message: 'Invalid URL',
-              },
-            }}
             render={({ field }) => (
               <TextFieldInput
                 {...field}

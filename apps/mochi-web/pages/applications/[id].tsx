@@ -15,9 +15,33 @@ import { useEffect } from 'react'
 import { Button } from '@consolelabs/core'
 import { AppDetailFormValues, UrlValue } from '~types/app'
 import { AppDetailPlatforms } from '~cpn/app/detail/AppDetailPlatforms'
-import { platforms } from '~constants/app'
+import { platforms, urlRegex } from '~constants/app'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
 
 const APP_DETAIL_FORM_ID = 'app-detail-form'
+
+const schema = z.object({
+  webhookUrl: z.string().regex(urlRegex, 'Invalid URL').or(z.literal('')),
+  platforms: z.object(
+    platforms.reduce(
+      (acc, { key }) => ({
+        ...acc,
+        [key]: z.boolean(),
+      }),
+      {},
+    ),
+  ),
+  urls: z
+    .object({
+      platform: z.string().min(1, 'This field is required'),
+      url: z
+        .string()
+        .min(1, 'This field is required')
+        .regex(urlRegex, 'Invalid URL'),
+    })
+    .array(),
+})
 
 const App: NextPageWithLayout = () => {
   const { id: profileId } = useProfileStore(
@@ -41,7 +65,9 @@ const App: NextPageWithLayout = () => {
     setValue,
     reset,
     formState: { errors, isDirty, isSubmitting },
-  } = useForm<AppDetailFormValues>()
+  } = useForm<AppDetailFormValues>({
+    resolver: zodResolver(schema),
+  })
 
   const onUpdateApp = (data: AppDetailFormValues) => {
     if (!profileId || !appId || !detail || !isDirty) return Promise.resolve()

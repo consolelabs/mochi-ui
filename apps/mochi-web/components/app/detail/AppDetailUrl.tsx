@@ -20,7 +20,7 @@ import {
   useFieldArray,
 } from 'react-hook-form'
 import { AppDetailFormValues, UrlValue } from '~types/app'
-import { urlPlatforms, urlRegex } from '~constants/app'
+import { urlPlatforms } from '~constants/app'
 import { AppDetailNewUrl, getIcon } from './AppDetailNewUrl'
 
 interface Props {
@@ -54,7 +54,6 @@ export const AppDetailUrl = ({ control, errors, onAddNewUrl }: Props) => {
                 <Controller
                   name={`urls.${index}.platform`}
                   control={control}
-                  rules={{ required: 'This field is required' }}
                   render={({ field }) => (
                     <Select {...field}>
                       <SelectTrigger
@@ -81,13 +80,6 @@ export const AppDetailUrl = ({ control, errors, onAddNewUrl }: Props) => {
               <Controller
                 name={`urls.${index}.url`}
                 control={control}
-                rules={{
-                  required: 'This field is required',
-                  pattern: {
-                    value: urlRegex,
-                    message: 'Invalid URL',
-                  },
-                }}
                 render={({ field }) => (
                   <TextFieldInput
                     {...field}

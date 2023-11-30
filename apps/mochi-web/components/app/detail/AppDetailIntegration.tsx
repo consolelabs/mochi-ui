@@ -13,7 +13,6 @@ import { truncate } from '@dwarvesf/react-utils'
 import { useClipboard } from '@dwarvesf/react-hooks'
 import { Control, Controller } from 'react-hook-form'
 import { AppDetailFormValues } from '~types/app'
-import { urlRegex } from '~constants/app'
 import { CodeSnippet } from './CodeSnippet'
 
 interface Props {
@@ -84,12 +83,6 @@ export const AppDetailIntegration = ({ apiKey = '', control }: Props) => {
       <Controller
         name="webhookUrl"
         control={control}
-        rules={{
-          pattern: {
-            value: urlRegex,
-            message: 'Invalid URL',
-          },
-        }}
         render={({ field, fieldState }) => (
           <FormControl error={!!fieldState.error} className="mt-4">
             <FormLabel>Webhook Url</FormLabel>
