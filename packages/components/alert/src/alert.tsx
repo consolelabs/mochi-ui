@@ -1,5 +1,5 @@
 import { alert } from '@mochi-ui/theme'
-import { useMemo } from 'react'
+import { useMemo, forwardRef } from 'react'
 import { AlertContext, AlertContextValue } from './context'
 
 const { alertCva } = alert
@@ -12,7 +12,7 @@ type AlertProps = Partial<AlertContextValue> & {
   paddingSize?: 'default' | 'large'
 }
 
-function Alert(props: AlertProps) {
+const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
   const {
     scheme = 'primary',
     size = 'md',
@@ -49,6 +49,6 @@ function Alert(props: AlertProps) {
       />
     </AlertContext.Provider>
   )
-}
+})
 
 export { type AlertProps, Alert }

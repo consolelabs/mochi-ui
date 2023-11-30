@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react'
+import { Button } from '@consolelabs/button'
 import { Toast } from '../src'
 import { useToast } from '../src/hook/use-toast'
 import { Toaster } from '../src/toaster'
@@ -33,19 +34,24 @@ export const Default: StoryObj<typeof Toast> = {
   render: function Render() {
     const { toast } = useToast()
     return (
-      <div>
+      <div className="w-[800px] min-h-[500px] max-h-[700px] overflow-y-auto flex items-center justify-center">
         <Toaster />
-        <button
+        <Button
           onClick={() =>
             toast({
-              title: 'labore adipisicing minim sint',
-              description:
-                'Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.',
+              variant: 'action',
+              title: {
+                children: 'labore adipisicing minim sint',
+              },
+              description: {
+                children:
+                  'Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.',
+              },
             })
           }
         >
           Toast
-        </button>
+        </Button>
       </div>
     )
   },

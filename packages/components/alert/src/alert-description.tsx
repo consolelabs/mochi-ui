@@ -4,7 +4,7 @@ import { alert } from '@mochi-ui/theme'
 import { Slot } from '@radix-ui/react-slot'
 import { useAlertContext } from './context'
 
-type AlertDescriptionProps = HTMLAttributes<HTMLSpanElement> & {
+type AlertDescriptionProps = HTMLAttributes<HTMLParagraphElement> & {
   asChild?: boolean
 }
 

@@ -1,16 +1,24 @@
 import * as React from 'react'
 
-import type { ToastActionElement } from '../toast'
-import type { ToastProps } from '../type'
+import type { ToastProps } from '../toast'
+import { ToastTitleProps } from '../toast-title'
+import { ToastDescriptionProps } from '../toast-description'
+import { ToastConfirmProps } from '../toast-confirm'
+import { ToastCancelButtonProps } from '../toast-cancel'
+import { ToastLinkProps } from '../toast-link'
+import { ToastIconProps } from '../toast-icon'
 
-const TOAST_LIMIT = 1
+const TOAST_LIMIT = 10
 const TOAST_REMOVE_DELAY = 1000000
 
-type ToasterToast = ToastProps & {
+type ToasterToast = Omit<ToastProps, 'title' | 'children'> & {
   id: string
-  title?: React.ReactNode
-  description?: React.ReactNode
-  action?: ToastActionElement
+  title?: ToastTitleProps
+  description?: ToastDescriptionProps
+  confirm?: ToastConfirmProps
+  cancel?: ToastCancelButtonProps
+  link?: ToastLinkProps
+  icon?: ToastIconProps
 }
 
 const actionTypes = {
@@ -89,7 +97,7 @@ export const reducer = (state: State, action: Action): State => {
     case 'DISMISS_TOAST': {
       const { toastId } = action
 
-      // ! Side effects ! - This could be extracted into a dismissToast() action,
+      // Shadcn:! Side effects ! - This could be extracted into a dismissToast() action,
       // but I'll keep it here for simplicity
       if (toastId) {
         addToRemoveQueue(toastId)
@@ -154,7 +162,7 @@ function toast({ ...props }: Toast) {
       ...props,
       id,
       open: true,
-      onOpenChange: (open) => {
+      onOpenChange: (open: boolean) => {
         if (!open) dismiss()
       },
     },

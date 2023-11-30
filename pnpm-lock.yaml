@@ -1666,12 +1666,6 @@ importers:
       '@consolelabs/alert':
         specifier: workspace:*
         version: link:../alert
-      '@consolelabs/button':
-        specifier: workspace:*
-        version: link:../button
-      '@consolelabs/icon-button':
-        specifier: workspace:*
-        version: link:../icon-button
       '@consolelabs/icons':
         specifier: workspace:*
         version: link:../../icons
@@ -1694,6 +1688,9 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
     devDependencies:
+      '@consolelabs/button':
+        specifier: workspace:*
+        version: link:../button
       clean-package:
         specifier: ^2.2.0
         version: 2.2.0

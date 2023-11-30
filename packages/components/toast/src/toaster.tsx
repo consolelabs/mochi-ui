@@ -1,32 +1,47 @@
-import {
-  ToastProvider,
-  ToastTitle,
-  Toast,
-  ToastDescription,
-  ToastClose,
-  ToastViewPort,
-} from './toast'
+import { ViewPortStyleProps } from '@consolelabs/theme'
+import { ToastViewPort, ToastProvider, Toast } from './toast'
+import { ToastTitle } from './toast-title'
+import { ToastClose } from './toast-close'
 import { useToast } from './hook/use-toast'
+import { ToastIcon } from './toast-icon'
+import { ToastDescription } from './toast-description'
+import { ToastActionGroup } from './toast-action-group'
+import { ToastConfirmButton } from './toast-confirm'
+import { ToastLink } from './toast-link'
 
-export const Toaster = () => {
+export const Toaster = (props: ViewPortStyleProps) => {
   const { toasts } = useToast()
+
   return (
     <ToastProvider>
-      {toasts.map(({ id, title, description, action, ...props }) => {
+      {toasts.map((props) => {
+        const {
+          id,
+          title,
+          description,
+          confirm,
+          cancel,
+          link,
+          icon,
+          ...restProps
+        } = props
         return (
-          <Toast key={id} {...props}>
-            <div className="grid gap-1">
-              {title && <ToastTitle>{title}</ToastTitle>}
-              {description && (
-                <ToastDescription>{description}</ToastDescription>
-              )}
-            </div>
-            {action}
+          <Toast key={id} {...restProps}>
+            <ToastIcon {...icon} />
+            {title && <ToastTitle {...title} />}
+            {description && <ToastDescription {...description} />}
+            {link && <ToastLink {...link} />}
+            {(confirm || cancel) && (
+              <ToastActionGroup>
+                {confirm && <ToastConfirmButton {...confirm} />}
+                {cancel && <ToastConfirmButton {...cancel} />}
+              </ToastActionGroup>
+            )}
             <ToastClose />
           </Toast>
         )
       })}
-      <ToastViewPort />
+      <ToastViewPort {...props} />
     </ToastProvider>
   )
 }
