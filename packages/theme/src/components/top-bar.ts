@@ -69,7 +69,7 @@ const topBarMobileNavClsx = ({ className = '' }: { className?: string } = {}) =>
 const topBarDesktopNavContainerClsx = ({
   className = '',
 }: { className?: string } = {}) =>
-  clsx('flex flex-nowrap items-center gap-4', className)
+  clsx('flex flex-nowrap items-center gap-6', className)
 
 const topBar = {
   topBarRightClsx,

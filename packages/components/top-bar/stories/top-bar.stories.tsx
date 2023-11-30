@@ -193,6 +193,9 @@ const desktopNavItems = [
       {downloadContent}
     </DropdownMenuContent>
   </DropdownMenu>,
+  <div className="w-px h-full py-2.5 -mx-2">
+    <div className="w-auto h-full bg-[#eeedec]" />
+  </div>,
   <Button color="primary" key="4">
     Login
   </Button>,

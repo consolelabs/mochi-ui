@@ -153,7 +153,7 @@ export const Header = () => {
   const mobileNavItems = [
     <Link
       href={ROUTES.FEATURES}
-      className="flex items-center text-sm font-semibold"
+      className="flex items-center text-sm"
       key="mobile-nav-features"
     >
       <Button
@@ -167,11 +167,7 @@ export const Header = () => {
       </Button>
     </Link>,
     // eslint-disable-next-line jsx-a11y/anchor-is-valid
-    <Link
-      href="#"
-      className="flex items-center text-sm font-semibold"
-      key="mobile-nav-api"
-    >
+    <Link href="#" className="flex items-center text-sm" key="mobile-nav-api">
       <Button
         variant="link"
         color="neutral"
@@ -257,7 +253,7 @@ export const Header = () => {
                 </span>
               </div>
             </div>
-            <div className="w-px ml-2 py-1">
+            <div className="w-px ml-2 py-1.5">
               <div className="w-full h-full bg-[#eeedec]" />
             </div>
             <Button size="md">
@@ -295,21 +291,21 @@ export const Header = () => {
       : [
           <Link
             href={ROUTES.EXPLORE}
-            className="flex items-center text-sm font-semibold"
+            className="flex items-center text-sm font-medium"
             key="desktop-nav-explore"
           >
             Explore
           </Link>,
           <Link
             href={ROUTES.FEATURES}
-            className="flex items-center text-sm font-semibold"
+            className="flex items-center text-sm font-medium"
             key="desktop-nav-features"
           >
             Features
           </Link>,
           <Link
             href={ROUTES.API}
-            className="flex items-center text-sm font-semibold"
+            className="flex items-center text-sm font-medium"
             key="desktop-nav-api"
           >
             API
@@ -317,7 +313,7 @@ export const Header = () => {
           <DropdownMenu key="desktop-nav-dropdown">
             <DropdownMenuTrigger asChild>
               <button type="button">
-                <Typography level="p5" fontWeight="lg">
+                <Typography level="p5" fontWeight="md">
                   Download
                 </Typography>
               </button>
@@ -437,7 +433,7 @@ export const Header = () => {
           </DropdownMenu>,
           <Link
             href={ROUTES.ROADMAP}
-            className="flex items-center text-sm font-semibold"
+            className="flex items-center text-sm font-medium"
             key="desktop-nav-roadmap"
           >
             Roadmap
