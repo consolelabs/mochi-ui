@@ -9,7 +9,7 @@ type AlertProps = Partial<AlertContextValue> & {
   className?: string
 }
 
-export default function Alert(props: AlertProps) {
+function Alert(props: AlertProps) {
   const {
     scheme = 'primary',
     variant = 'default',
@@ -39,4 +39,4 @@ export default function Alert(props: AlertProps) {
   )
 }
 
-export { type AlertProps }
+export { type AlertProps, Alert }

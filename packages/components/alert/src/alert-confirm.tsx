@@ -5,14 +5,16 @@ import { alert } from '@consolelabs/theme'
 import { Slot } from '@radix-ui/react-slot'
 import { useAlertContext } from './context'
 
-type PolymorphicButton = Polymorphic.ForwardRefComponent<
+type AlertConfirmProps = ButtonProps & {
+  asChild?: boolean
+}
+
+type PolymorphicAlertConfirmButton = Polymorphic.ForwardRefComponent<
   'button',
-  ButtonProps & {
-    asChild?: boolean
-  }
+  AlertConfirmProps
 >
 
-export const AlertConfirm = forwardRef((props, ref) => {
+const AlertConfirmButton = forwardRef((props, ref) => {
   const {
     asChild,
     className,
@@ -50,4 +52,10 @@ export const AlertConfirm = forwardRef((props, ref) => {
       {children}
     </Button>
   )
-}) as PolymorphicButton
+}) as PolymorphicAlertConfirmButton
+
+export {
+  type PolymorphicAlertConfirmButton,
+  type AlertConfirmProps,
+  AlertConfirmButton,
+}

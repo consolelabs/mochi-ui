@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { UserSolid } from '@consolelabs/icons'
 import { Button } from '@consolelabs/button'
-import Alert, { AlertProps } from '../src/alert'
+import { Alert, AlertProps } from '../src/alert'
 import { AlertTitle } from '../src/alert-title'
 import { AlertIcon } from '../src'
 import { AlertDescription } from '../src/alert-description'
 import { AlertCloseButton } from '../src/alert-close'
 import { AlertActionGroup } from '../src/alert-action-group'
-import { AlertConfirm } from '../src/alert-confirm'
-import { AlertCancel } from '../src/alert-cancel'
+import { AlertConfirmButton } from '../src/alert-confirm'
+import { AlertCancelButton } from '../src/alert-cancel'
 import { AlertLink } from '../src/alert-link'
 
 const schemes = [
@@ -90,7 +90,7 @@ export const Variants: Story = {
             </AlertDescription>
             {v === 'action' && (
               <AlertActionGroup>
-                <AlertConfirm>Confirm</AlertConfirm>
+                <AlertConfirmButton>Confirm</AlertConfirmButton>
               </AlertActionGroup>
             )}
           </Alert>
@@ -120,8 +120,8 @@ export const Colors: Story = {
                 <AlertCloseButton />
                 {v === 'action' && (
                   <AlertActionGroup>
-                    <AlertCancel>Confirm</AlertCancel>
-                    <AlertConfirm>Confirm</AlertConfirm>
+                    <AlertCancelButton>Confirm</AlertCancelButton>
+                    <AlertConfirmButton>Confirm</AlertConfirmButton>
                   </AlertActionGroup>
                 )}
               </Alert>
@@ -146,9 +146,9 @@ export const Custom: Story = {
           cillum sint consectetur cupidatat. Lorem ipsum dolor sit
         </AlertDescription>
         <AlertActionGroup>
-          <AlertConfirm asChild>
+          <AlertConfirmButton asChild>
             <Button>Confirm</Button>
-          </AlertConfirm>
+          </AlertConfirmButton>
         </AlertActionGroup>
       </Alert>
     )

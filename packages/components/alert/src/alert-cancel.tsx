@@ -1,18 +1,19 @@
-import { Button, ButtonProps } from '@consolelabs/button'
+import { Button } from '@consolelabs/button'
 import { forwardRef } from 'react'
-import type * as Polymorphic from '@consolelabs/polymorphic'
 import { alert } from '@consolelabs/theme'
 import { Slot } from '@radix-ui/react-slot'
+import * as Polymorphic from '@consolelabs/polymorphic'
 import { useAlertContext } from './context'
+import { AlertConfirmProps } from './alert-confirm'
 
-type AlertCancelButtonProps = ButtonProps & { asChild?: boolean }
+type AlertCancelProps = AlertConfirmProps
 
-type PolymorphicButton = Polymorphic.ForwardRefComponent<
+type PolymorphicAlertCancelButton = Polymorphic.ForwardRefComponent<
   'button',
-  AlertCancelButtonProps
+  AlertCancelProps
 >
 
-export const AlertCancel = forwardRef((props, ref) => {
+const AlertCancelButton = forwardRef((props, ref) => {
   const {
     asChild,
     className,
@@ -51,4 +52,6 @@ export const AlertCancel = forwardRef((props, ref) => {
       {children}
     </Button>
   )
-}) as PolymorphicButton
+}) as PolymorphicAlertCancelButton
+
+export { AlertCancelButton, type PolymorphicAlertCancelButton }

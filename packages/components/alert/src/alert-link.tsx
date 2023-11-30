@@ -4,14 +4,13 @@ import { alert } from '@consolelabs/theme'
 import { Slot } from '@radix-ui/react-slot'
 import { useAlertContext } from './context'
 
-type PolymorphicLink = Polymorphic.ForwardRefComponent<
-  'a',
-  {
-    asChild?: boolean
-  }
->
+type AlertLinkProps = {
+  asChild?: boolean
+}
 
-export const AlertLink = forwardRef((props, ref) => {
+type PolymorphicAlertLink = Polymorphic.ForwardRefComponent<'a', AlertLinkProps>
+
+const AlertLink = forwardRef((props, ref) => {
   const { as = 'a', className, asChild, ...restProps } = props
   const { variant, scheme, responsive, size } = useAlertContext()
   const Component = asChild ? Slot : as
@@ -33,4 +32,6 @@ export const AlertLink = forwardRef((props, ref) => {
       {...restProps}
     />
   )
-}) as PolymorphicLink
+}) as PolymorphicAlertLink
+
+export { AlertLink, type PolymorphicAlertLink, type AlertLinkProps }

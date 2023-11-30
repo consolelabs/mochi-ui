@@ -4,14 +4,16 @@ import { alert } from '@consolelabs/theme'
 import { Slot } from '@radix-ui/react-slot'
 import { useAlertContext } from './context'
 
+type AlertDescriptionProps = HTMLAttributes<HTMLSpanElement> & {
+  asChild?: boolean
+}
+
 type PolymorphicAlertDescription = Polymorphic.ForwardRefComponent<
   'p',
-  HTMLAttributes<HTMLSpanElement> & {
-    asChild?: boolean
-  }
+  AlertDescriptionProps
 >
 
-export const AlertDescription = forwardRef((props, ref) => {
+const AlertDescription = forwardRef((props, ref) => {
   const { as = 'p', asChild, className, ...restProps } = props
   const { variant, scheme, size, responsive } = useAlertContext()
 
@@ -35,3 +37,9 @@ export const AlertDescription = forwardRef((props, ref) => {
     />
   )
 }) as PolymorphicAlertDescription
+
+export {
+  AlertDescription,
+  type PolymorphicAlertDescription,
+  type AlertDescriptionProps,
+}

@@ -6,16 +6,16 @@ import { IconButton, IconButtonProps } from '@consolelabs/icon-button'
 import type * as Polymorphic from '@consolelabs/polymorphic'
 import { useAlertContext } from './context'
 
-type PolymorphicCloseButton = Polymorphic.ForwardRefComponent<
-  'button',
-  AlertCloseButtonProps
->
-
 type AlertCloseButtonProps = IconButtonProps & {
   asChild?: boolean
 }
 
-export const AlertCloseButton = forwardRef((props, ref) => {
+type PolymorphicAlertIconButton = Polymorphic.ForwardRefComponent<
+  'button',
+  AlertCloseButtonProps
+>
+
+const AlertCloseButton = forwardRef((props, ref) => {
   const { scheme, variant, size, responsive } = useAlertContext()
   const { className, asChild, ...restProps } = props
 
@@ -58,4 +58,10 @@ export const AlertCloseButton = forwardRef((props, ref) => {
       <CloseLgLine />
     </IconButton>
   )
-}) as PolymorphicCloseButton
+}) as PolymorphicAlertIconButton
+
+export {
+  type PolymorphicAlertIconButton,
+  type AlertCloseButtonProps,
+  AlertCloseButton,
+}
