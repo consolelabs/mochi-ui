@@ -24,7 +24,7 @@
     "@consolelabs/mochi-ui": "^16.0.2",
     "@consolelabs/page-content": "workspace:*",
     "@consolelabs/theme": "workspace:*",
-    "@dwarvesf/react-hooks": "^0.7.0",
+    "@dwarvesf/react-hooks": "^0.8.1",
     "@dwarvesf/react-utils": "^0.4.1",
     "@fnando/sparkline": "^0.3.10",
     "@headlessui-float/react": "^0.11.0",

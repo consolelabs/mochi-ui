@@ -165,7 +165,7 @@ export const semanticColors = {
       tooltip: commonColors.white, // slider tooltip
       backdrop: '#00000066',
     },
-    divider: commonColors.gray['400'],
+    divider: commonColors.gray['200'],
   },
   dark: {
     primary: {
@@ -306,6 +306,6 @@ export const semanticColors = {
       tooltip: commonColors.white, // slider tooltip
       backdrop: '#00000066',
     },
-    divider: commonColors.gray['400'],
+    divider: commonColors.gray['200'],
   },
 }
