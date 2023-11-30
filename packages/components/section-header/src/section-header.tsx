@@ -5,8 +5,10 @@ import { Fragment, ReactNode } from 'react'
 type SectionHeaderProps = {
   title: ReactNode
   titleClassName?: string
-  description?: string
+  description?: ReactNode
+  descriptionClassName?: string
   actions?: JSX.Element[]
+  actionsClassName?: string
   className?: string
 }
 
@@ -23,7 +25,9 @@ const SectionHeader = (props: SectionHeaderProps) => {
     title,
     titleClassName,
     description,
+    descriptionClassName,
     actions = [],
+    actionsClassName,
     className,
     ...rest
   } = props
@@ -49,7 +53,11 @@ const SectionHeader = (props: SectionHeaderProps) => {
           </div>
 
           {description ? (
-            <Typography level="p5" color="textSecondary">
+            <Typography
+              level="p5"
+              color="textSecondary"
+              className={descriptionClassName}
+            >
               {description}
             </Typography>
           ) : null}
@@ -57,7 +65,11 @@ const SectionHeader = (props: SectionHeaderProps) => {
       </div>
 
       {actions.length ? (
-        <div className={sectionHeaderActionsWrapperClsx()}>
+        <div
+          className={sectionHeaderActionsWrapperClsx({
+            className: actionsClassName,
+          })}
+        >
           {actions.map((action, index) => (
             <Fragment key={index}>{action}</Fragment>
           ))}

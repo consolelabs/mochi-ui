@@ -4,7 +4,7 @@ const sectionHeaderWrapperClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
-    'flex flex-col items-center gap-4 sm:gap-8 sm:flex-row px-8 py-3 bg-background-surface',
+    'flex flex-col items-center gap-4 sm:gap-8 sm:flex-row py-4 sm:py-2 bg-background-surface',
     className,
   )
 
@@ -15,7 +15,8 @@ const sectionHeaderLeftClsx = ({
 
 const sectionHeaderTitleWrapperClsx = ({
   className = '',
-}: { className?: string } = {}) => clsx('flex items-center gap-2', className)
+}: { className?: string } = {}) =>
+  clsx('flex w-full items-center gap-2', className)
 
 const sectionHeaderTitleClsx = ({
   className = '',

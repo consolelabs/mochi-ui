@@ -59,20 +59,15 @@ export function Default() {
         </button>
       </SelectContent>
     </Select>,
-    <Button
-      variant="outline"
-      color="neutral"
-      className="w-full sm:w-max !bg-neutral-0"
-    >
+    <Button variant="outline" color="neutral" className="!bg-neutral-0">
       See docs
     </Button>,
   ]
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+    <div className="bg-neutral-outline flex flex-col gap-6 p-6">
       <PageHeader
         title="Page Title"
-        titleExtra="(2,951 members)"
         description="Lorem ipsum dolor sit amet consectetur. Sed turpis eget sed nullam volutpat integer posuere."
       />
 

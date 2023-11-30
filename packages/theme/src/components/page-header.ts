@@ -2,14 +2,18 @@ import { clsx } from 'clsx'
 
 const pageHeaderWrapperClsx = ({
   className = '',
-}: { className?: string } = {}) =>
+  hasBackButton = false,
+}: { className?: string; hasBackButton?: boolean } = {}) =>
   clsx(
-    'flex flex-col items-center gap-4 sm:gap-8 sm:flex-row px-8 py-3 bg-background-surface',
+    'flex flex-col border-b border-neutral-outline-active items-center gap-4 sm:gap-8 sm:flex-row px-4 py-4 sm:px-8 sm:py-3 bg-background-surface',
+    {
+      '!pl-4 sm:!pl-2': hasBackButton,
+    },
     className,
   )
 
 const pageHeaderLeftClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx('flex gap-2 items-start flex-col sm:flex-row', className)
+  clsx('flex w-full gap-2 items-start flex-col sm:flex-row', className)
 
 const pageHeaderTitleWrapperClsx = ({
   className = '',
