@@ -48,6 +48,7 @@
     "@consolelabs/mochi-store": "workspace:*",
     "@consolelabs/page-content": "workspace:*",
     "@consolelabs/page-header": "workspace:*",
+    "@consolelabs/top-bar": "workspace:*",
     "@consolelabs/popover": "workspace:*",
     "@consolelabs/profile-badge": "workspace:*",
     "@consolelabs/section-list": "workspace:*",

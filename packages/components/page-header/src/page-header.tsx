@@ -2,12 +2,11 @@ import { ChevronLeftLine } from '@consolelabs/icons'
 import { Typography } from '@consolelabs/typography'
 import { IconButton } from '@consolelabs/icon-button'
 import { pageHeader } from '@consolelabs/theme'
-import { Fragment } from 'react'
+import { Fragment, ReactNode } from 'react'
 
 type PageHeaderProps = {
-  title: string
+  title: ReactNode
   titleClassName?: string
-  backHref?: string
   onBack?: () => void
   titleExtra?: string
   titleExtraClassName?: string
@@ -31,7 +30,6 @@ const PageHeader = (props: PageHeaderProps) => {
   const {
     title,
     titleClassName,
-    backHref,
     onBack,
     titleExtra,
     titleExtraClassName,
@@ -45,7 +43,7 @@ const PageHeader = (props: PageHeaderProps) => {
     <IconButton
       variant="link"
       color="info"
-      onClick={backHref ? undefined : onBack}
+      onClick={onBack}
       className={pageHeaderBackButtonWrapperClsx()}
     >
       <ChevronLeftLine className={pageHeaderBackIconWrapperClsx()} />
@@ -53,24 +51,23 @@ const PageHeader = (props: PageHeaderProps) => {
   )
 
   return (
-    <header className={pageHeaderWrapperClsx({ className })} {...rest}>
+    <div className={pageHeaderWrapperClsx({ className })} {...rest}>
       <div className={pageHeaderLeftClsx()}>
-        {backHref ? (
-          <a href={backHref} className={pageHeaderBackButtonWrapperClsx()}>
-            {backButton}
-          </a>
-        ) : null}
-        {!backHref && onBack ? backButton : null}
+        {onBack ? backButton : null}
 
         <div>
           <div className={pageHeaderTitleWrapperClsx()}>
-            <Typography
-              level="h5"
-              color="textPrimary"
-              className={pageHeaderTitleClsx({ className: titleClassName })}
-            >
-              {title}
-            </Typography>
+            {typeof title === 'string' ? (
+              <Typography
+                level="h5"
+                color="textPrimary"
+                className={pageHeaderTitleClsx({ className: titleClassName })}
+              >
+                {title}
+              </Typography>
+            ) : (
+              title
+            )}
 
             {titleExtra ? (
               <Typography
@@ -99,7 +96,7 @@ const PageHeader = (props: PageHeaderProps) => {
           ))}
         </div>
       ) : null}
-    </header>
+    </div>
   )
 }
 
