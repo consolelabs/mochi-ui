@@ -86,7 +86,7 @@ const AppPageHeader = ({
 
 const App: NextPageWithLayout = () => {
   const { push } = useRouter()
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure()
   const { id } = useProfileStore(
     (s) => ({
       id: s.me?.id,
@@ -111,10 +111,7 @@ const App: NextPageWithLayout = () => {
         isLoading={isLoading || !id}
         className="max-w-full"
       />
-      <Modal
-        open={isOpen}
-        onOpenChange={(open) => (open ? onOpen() : onClose())}
-      >
+      <Modal open={isOpen} onOpenChange={onOpenChange}>
         <ModalContent className="w-full max-w-md">
           <NewAppForm id={id} onClose={onClose} onSuccess={onCreateApp} />
         </ModalContent>
