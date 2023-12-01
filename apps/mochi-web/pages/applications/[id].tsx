@@ -15,14 +15,14 @@ import { useEffect } from 'react'
 import { Button } from '@consolelabs/core'
 import { AppDetailFormValues } from '~types/app'
 import { AppDetailPlatforms } from '~cpn/app/detail/AppDetailPlatforms'
-import { platforms, urlRegex } from '~constants/app'
+import { platforms } from '~constants/app'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
 const APP_DETAIL_FORM_ID = 'app-detail-form'
 
 const schema = z.object({
-  webhookUrl: z.string().regex(urlRegex, 'Invalid URL').or(z.literal('')),
+  webhookUrl: z.string().url('Invalid URL').or(z.literal('')),
   platforms: z.object(
     platforms.reduce(
       (acc, { key }) => ({
@@ -35,10 +35,7 @@ const schema = z.object({
   urls: z
     .object({
       platform: z.string().min(1, 'This field is required'),
-      url: z
-        .string()
-        .min(1, 'This field is required')
-        .regex(urlRegex, 'Invalid URL'),
+      url: z.string().min(1, 'This field is required').url('Invalid URL'),
     })
     .array(),
 })

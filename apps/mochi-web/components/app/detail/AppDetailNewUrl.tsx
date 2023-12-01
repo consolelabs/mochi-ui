@@ -13,7 +13,7 @@ import {
 } from '@consolelabs/core'
 import { LinkLine, PlusLine } from '@consolelabs/icons'
 import { Controller, useForm } from 'react-hook-form'
-import { urlPlatforms, urlRegex } from '~constants/app'
+import { urlPlatforms } from '~constants/app'
 import { UrlValue } from '~types/app'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -25,10 +25,7 @@ export const getIcon = (key?: string) => {
 
 const schema = z.object({
   platform: z.string().min(1, 'This field is required'),
-  url: z
-    .string()
-    .min(1, 'This field is required')
-    .regex(urlRegex, 'Invalid URL'),
+  url: z.string().min(1, 'This field is required').url('Invalid URL'),
 })
 
 interface Props {
