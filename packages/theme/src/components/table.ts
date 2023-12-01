@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 
 const tableWrapperClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx('p-2', className)
+  clsx('p-2 overflow-x-auto', className)
 
 const tableClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx('w-full border-collapse', className)

@@ -8,7 +8,7 @@ import {
 import type { ReactNode } from 'react'
 import { table } from '@consolelabs/theme'
 
-export type ColumnProps<T> = ColDef<T>
+export type ColumnProps<T> = ColDef<T> & { width?: number | string }
 
 export interface TableProps<T> {
   columns: ColumnProps<T>[]
@@ -43,9 +43,25 @@ export default function Table<T extends RowData>({
     getPaginationRowModel: getPaginationRowModel(),
   })
 
+  const hasCustomWidth = columns.some((col) => col.width)
+
   return (
     <div className={tableWrapperClsx({ className: wrapperClassName })}>
       <table className={tableClsx({ className })}>
+        {hasCustomWidth ? (
+          <colgroup>
+            {columns.map((col) => (
+              <col
+                style={{
+                  width:
+                    typeof col.width === 'string'
+                      ? col.width
+                      : `${col.width}px`,
+                }}
+              />
+            ))}
+          </colgroup>
+        ) : null}
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
