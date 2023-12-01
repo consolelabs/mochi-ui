@@ -8,6 +8,7 @@ import {
 import { AddUserSolid } from '@consolelabs/icons'
 import { useFetchApplicationDetailMembers } from '~hooks/app/useFetchApplicationDetailMembers'
 import { ViewApplicationMember } from '~types/mochi-pay-schema'
+import { capitalizeFirstLetter } from '~utils/string'
 import { formatDate } from '~utils/time'
 
 interface Props {
@@ -60,7 +61,7 @@ export const AppDetailMembers = ({ profileId, appId }: Props) => {
           {
             header: 'Role',
             accessorKey: 'role',
-            accessorFn: (row) => row.role?.toUpperCase(),
+            accessorFn: (row) => capitalizeFirstLetter(row.role || ''),
           },
         ]}
       />
