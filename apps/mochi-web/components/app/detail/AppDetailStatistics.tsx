@@ -50,7 +50,7 @@ export const AppDetailStatistics = ({ profileId, appId, detail }: Props) => {
               color="textSecondary"
               className="font-bold uppercase"
             >
-              Discription
+              Description
             </Typography>
             <Typography level="p5">{detail?.description || '-'}</Typography>
           </div>
