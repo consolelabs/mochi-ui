@@ -4,6 +4,7 @@ import Button, { ButtonProps } from '../src/button'
 
 const buttonColorVariants: ButtonProps['color'][] = [
   'primary',
+  'white',
   'secondary',
   'warning',
   'danger',

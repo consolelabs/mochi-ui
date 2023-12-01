@@ -52,6 +52,35 @@ export const semanticColors = {
         'hover-fg': commonColors.secondary['800'],
       },
     },
+    white: {
+      solid: {
+        DEFAULT: commonColors.gray['0'], // for background
+        fg: commonColors.gray['800'], // for foreground
+        hover: commonColors.gray['100'],
+        border: commonColors.gray['300'],
+        active: commonColors.gray['100'],
+        disable: commonColors.gray['0'],
+        focus: commonColors.gray['100'],
+        'disable-fg': commonColors.gray['400'],
+        shadow: commonColors.gray['1000'],
+      },
+      outline: {
+        DEFAULT: commonColors.gray['100'],
+        fg: commonColors.gray['800'],
+        border: commonColors.gray['300'],
+        hover: commonColors.gray['200'],
+        active: commonColors.gray['200'],
+        'disable-fg': commonColors.gray['400'],
+        shadow: commonColors.gray['1000'],
+      },
+      plain: {
+        fg: commonColors.gray['800'],
+        hover: commonColors.gray['100'],
+        active: commonColors.gray['100'],
+        'disable-fg': commonColors.gray['400'],
+        'hover-fg': commonColors.gray['900'],
+      },
+    },
     success: {
       solid: {
         DEFAULT: commonColors.success['700'], // for background

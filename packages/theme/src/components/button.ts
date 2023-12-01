@@ -15,6 +15,7 @@ const commonVariant = {
     warning: '',
     danger: '',
     neutral: '',
+    white: '',
   },
 } as const
 
@@ -39,6 +40,18 @@ const commonCompoundVariants = [
       'active:bg-secondary-solid-active',
       'disabled:bg-secondary-solid-disable',
       'focus:shadow-small focus:shadow-secondary-700/10',
+    ],
+  },
+  {
+    variant: 'solid',
+    color: 'white',
+    className: [
+      'bg-white-solid text-white-solid-fg',
+      'border border-white-solid-border',
+      'hover:bg-white-solid-hover',
+      'active:bg-white-solid-active',
+      'disabled:bg-white-solid-disable disabled:text-white-solid-disable-fg',
+      'focus:shadow-small focus:shadow-white-solid-shadow/5',
     ],
   },
   {
@@ -111,6 +124,18 @@ const commonCompoundVariants = [
   },
   {
     variant: 'outline',
+    color: 'white',
+    className: [
+      'bg-white-outline text-white-outline-fg',
+      'border-white-outline-border',
+      'hover:bg-white-outline-hover',
+      'active:bg-white-outline-active',
+      'disabled:text-white-outline-disable-fg',
+      'focus:shadow-small focus:shadow-white-outline-shadow/5',
+    ],
+  },
+  {
+    variant: 'outline',
     color: 'success',
     className: [
       'bg-success-outline text-success-outline-fg',
@@ -179,6 +204,16 @@ const commonCompoundVariants = [
   },
   {
     variant: 'ghost',
+    color: 'white',
+    className: [
+      'text-white-plain-fg bg-transparent',
+      'hover:bg-white-plain-hover',
+      'active:bg-white-plain-active',
+      'disabled:text-white-plain-disable-fg',
+    ],
+  },
+  {
+    variant: 'ghost',
     color: 'success',
     className: [
       'text-success-plain-fg bg-transparent',
@@ -233,6 +268,15 @@ const commonCompoundVariants = [
       'text-secondary-plain-fg',
       'hover:text-secondary-plain-hover-fg',
       'disabled:text-secondary-plain-disable-fg',
+    ],
+  },
+  {
+    variant: 'link',
+    color: 'white',
+    className: [
+      'text-white-plain-fg',
+      'hover:text-white-plain-hover-fg',
+      'disabled:text-white-plain-disable-fg',
     ],
   },
   {
