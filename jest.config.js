@@ -5,7 +5,7 @@ module.exports = {
     // 'apps/**/*.{ts,tsx}',
     'packages/**/*.{ts,tsx}',
     '!packages/**/*.stories.{ts,tsx}',
-    '!packages/{storybook,tsconfig,theme,eslint-config-custom,icons,ui}/**/*',
+    '!packages/{storybook,tsconfig,theme,eslint-config-custom,icons,core}/**/*',
   ],
   // TODO: update test cases and uncomment this
   // coverageThreshold: {
