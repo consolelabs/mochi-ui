@@ -27,7 +27,7 @@ export function Default() {
 
   const actions = [
     <Select value={selectedApp} onChange={setSelectedApp}>
-      <SelectTrigger className="rounded bg-neutral-150 h-10">
+      <SelectTrigger className="h-10 rounded bg-neutral-150">
         <Tooltip content="Selected app" arrow="top-center" className="z-20">
           <SelectValue placeholder="All apps" />
         </Tooltip>
@@ -59,13 +59,13 @@ export function Default() {
         </button>
       </SelectContent>
     </Select>,
-    <Button variant="outline" color="neutral" className="!bg-neutral-0">
+    <Button variant="outline" color="white">
       See docs
     </Button>,
   ]
 
   return (
-    <div className="bg-neutral-outline flex flex-col gap-6 p-6">
+    <div className="flex flex-col gap-6 p-6 bg-neutral-outline">
       <PageHeader
         title="Page Title"
         description="Lorem ipsum dolor sit amet consectetur. Sed turpis eget sed nullam volutpat integer posuere."

@@ -8,10 +8,13 @@ import { AppDetailPageHeader } from '~cpn/app/detail/AppDetailPageHeader'
 import { AppDetailStatistics } from '~cpn/app/detail/AppDetailStatistics'
 import { AppDetailIntegration } from '~cpn/app/detail/AppDetailIntegration'
 import { AppDetailUrl } from '~cpn/app/detail/AppDetailUrl'
-import { DtoUpdateApplicationInfoRequest } from '~types/mochi-pay-schema'
+import {
+  DtoUpdateApplicationInfoRequest,
+  ViewFullApplicationResponse,
+} from '~types/mochi-pay-schema'
 import { API, GET_PATHS } from '~constants/api'
 import { useForm } from 'react-hook-form'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from '@consolelabs/core'
 import { AppDetailFormValues } from '~types/app'
 import { AppDetailPlatforms } from '~cpn/app/detail/AppDetailPlatforms'
@@ -48,13 +51,17 @@ const App: NextPageWithLayout = () => {
     shallow,
   )
   const {
-    query: { id },
+    query: { id, secretKey: secretKeyQuery },
+    pathname,
+    replace,
   } = useRouter()
   const appId = id as string
   const { data: detail, mutate: refresh } = useFetchApplicationDetail(
     profileId,
     appId,
   )
+  const [secretKey, setSecretKey] = useState('')
+  const [isResettingSecretKey, setIsResettingSecretKey] = useState(false)
 
   const {
     handleSubmit,
@@ -99,6 +106,26 @@ const App: NextPageWithLayout = () => {
       })
   }
 
+  const onResetSecretKey = () => {
+    if (!profileId) return
+    setIsResettingSecretKey(true)
+    return API.MOCHI_PAY.put(
+      undefined,
+      GET_PATHS.RESET_APPLICATION_KEY(profileId, appId),
+    )
+      .json((r: ViewFullApplicationResponse) => {
+        refresh()
+        setSecretKey(r.data?.private_key || '')
+      })
+      .catch((e) => {
+        const err = JSON.parse(e.message)
+        alert(err.msg)
+      })
+      .finally(() => {
+        setIsResettingSecretKey(false)
+      })
+  }
+
   useEffect(() => {
     if (detail) {
       const { webhookUrl, ...externalLinks } = detail.external_links || {}
@@ -120,6 +147,13 @@ const App: NextPageWithLayout = () => {
     }
   }, [reset, detail])
 
+  useEffect(() => {
+    if (secretKeyQuery) {
+      setSecretKey(secretKeyQuery as string)
+      replace({ pathname, query: { id } }, undefined, { shallow: true })
+    }
+  }, [id, pathname, replace, secretKeyQuery])
+
   return (
     <AuthLayout pageHeader={<AppDetailPageHeader name={detail?.name} />}>
       {/* form can be nested structurally, just use the element's form attribute */}
@@ -129,7 +163,10 @@ const App: NextPageWithLayout = () => {
         appId={appId}
         detail={detail}
       />
-      <AppDetailIntegration apiKey={detail?.public_key} control={control} />
+      <AppDetailIntegration
+        apiKey={detail?.public_key}
+        {...{ control, secretKey, onResetSecretKey, isResettingSecretKey }}
+      />
       <AppDetailUrl {...{ control, errors }} />
       <AppDetailPlatforms {...{ control, setValue }} />
       {isDirty && (

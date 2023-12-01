@@ -44,8 +44,7 @@ const AppPageHeader = ({
       actions={[
         <Button
           variant="outline"
-          color="neutral"
-          className="!bg-neutral-0"
+          color="white"
           key="see-docs-button"
           onClick={() => window.open(SOCIAL_LINKS.DOCS, '_blank')}
         >
@@ -97,7 +96,12 @@ const App: NextPageWithLayout = () => {
 
   const onCreateApp = (result: ViewFullApplicationResponse) => {
     refresh()
-    push(ROUTES.APPLICATION_DETAIL(result.data?.id))
+    push({
+      pathname: ROUTES.APPLICATION_DETAIL(result.data?.id),
+      query: {
+        secretKey: result.data?.private_key,
+      },
+    })
   }
 
   return (

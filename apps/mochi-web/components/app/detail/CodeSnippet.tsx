@@ -38,7 +38,7 @@ export const CodeSnippet = ({ code = defaultCode, language = 'js' }: Props) => {
         </Tooltip>
       </div>
       <div className="relative h-full overflow-auto">
-        <pre className="!bg-transparent !m-0 !py-0 !text-sm absolute !px-4">
+        <pre className="!bg-transparent !m-0 !pt-0 !pb-2 !text-sm static sm:absolute !px-4">
           <code className={`language-${language}`}>{code}</code>
         </pre>
       </div>
