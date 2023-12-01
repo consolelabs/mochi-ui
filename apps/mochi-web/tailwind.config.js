@@ -4,9 +4,9 @@ import { consolelabs } from '@consolelabs/theme'
 module.exports = {
   content: [
     './**/*.{html,ts,tsx}',
-    './node_modules/@consolelabs/theme/dist/components/**/*.{js,jsx,ts,tsx}',
+    '!node_modules',
+    './node_modules/@consolelabs/theme/src/components/**/*.{ts,tsx}',
   ],
-  mode: 'jit',
   theme: {
     extend: {
       colors: {

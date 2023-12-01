@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks'
+import { renderHook } from '@testing-library/react'
 import { useMochi } from '../src/store'
 
 const token = 'token'
@@ -96,7 +96,7 @@ describe('useMochi', () => {
       ],
     }
     await result.current.login(user, token, addresses)
-    result.current.logout()
+    await result.current.logout()
     expect(result.current.user).toBeNull()
   })
 
