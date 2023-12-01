@@ -93,6 +93,7 @@ export const AppListing = ({
         <div className="max-w-full overflow-auto">
           <Table
             isLoading={isLoading}
+            className="min-w-[650px]"
             columns={[
               {
                 header: 'Name',
@@ -107,16 +108,19 @@ export const AppListing = ({
                     ?.map((p) => platforms.find(({ key }) => key === p)?.label)
                     .filter(Boolean)
                     .join(', '),
+                width: '230px',
               },
               {
                 header: 'Last Modified',
                 accessorKey: 'updated_at',
                 accessorFn: (row) => formatDate(row.updated_at || ''),
+                width: '140px',
               },
               {
                 header: '',
                 accessorKey: 'action',
                 cell: Actions,
+                width: '50px',
               },
             ]}
             data={apps}

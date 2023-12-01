@@ -43,8 +43,8 @@ export const AppDetailMembers = ({ profileId, appId }: Props) => {
         </Button>
       </div>
       <Table
-        wrapperClassName="!p-0 border rounded-lg border-neutral-200 shadow-input mt-4 overflow-hidden"
-        className="-mb-1"
+        wrapperClassName="!p-0 border rounded-lg border-divider shadow-input mt-4"
+        className="-mb-1 min-w-[600px]"
         data={members}
         isLoading={isLoading}
         columns={[
@@ -57,11 +57,13 @@ export const AppDetailMembers = ({ profileId, appId }: Props) => {
             header: 'Member since',
             accessorKey: 'created_at',
             accessorFn: (row) => formatDate(row.updated_at || ''),
+            width: 240,
           },
           {
             header: 'Role',
             accessorKey: 'role',
             accessorFn: (row) => capitalizeFirstLetter(row.role || ''),
+            width: 130,
           },
         ]}
       />
