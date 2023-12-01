@@ -13,7 +13,7 @@ import { API, GET_PATHS } from '~constants/api'
 import { useForm } from 'react-hook-form'
 import { useEffect } from 'react'
 import { Button } from '@consolelabs/core'
-import { AppDetailFormValues, UrlValue } from '~types/app'
+import { AppDetailFormValues } from '~types/app'
 import { AppDetailPlatforms } from '~cpn/app/detail/AppDetailPlatforms'
 import { platforms, urlRegex } from '~constants/app'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -102,36 +102,6 @@ const App: NextPageWithLayout = () => {
       })
   }
 
-  const onAddNewUrl = (data: UrlValue) => {
-    if (!profileId || !appId || !detail) return
-    const external_links = {
-      ...detail.external_links,
-      [data.platform]: [
-        ...(detail.external_links?.[data.platform] || []),
-        data.url,
-      ],
-    }
-    const body: Partial<DtoUpdateApplicationInfoRequest> = {
-      app_name: detail.name,
-      description: detail?.description,
-      metadata: detail?.metadata,
-      platforms: detail?.platforms,
-      external_links,
-    }
-    return API.MOCHI_PAY.put(
-      body,
-      GET_PATHS.UPDATE_APPLICATION_DETAIL(profileId, appId),
-    )
-      .json(() => {
-        refresh()
-        alert('Added successfully')
-      })
-      .catch((e) => {
-        const err = JSON.parse(e.message)
-        alert(err.msg)
-      })
-  }
-
   useEffect(() => {
     if (detail) {
       const { webhookUrl, ...externalLinks } = detail.external_links || {}
@@ -163,7 +133,7 @@ const App: NextPageWithLayout = () => {
         detail={detail}
       />
       <AppDetailIntegration apiKey={detail?.public_key} control={control} />
-      <AppDetailUrl {...{ control, errors, onAddNewUrl }} />
+      <AppDetailUrl {...{ control, errors }} />
       <AppDetailPlatforms {...{ control, setValue }} />
       {isDirty && (
         <div className="flex justify-center mt-8">

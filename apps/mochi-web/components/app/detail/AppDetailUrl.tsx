@@ -19,18 +19,17 @@ import {
   FieldErrors,
   useFieldArray,
 } from 'react-hook-form'
-import { AppDetailFormValues, UrlValue } from '~types/app'
+import { AppDetailFormValues } from '~types/app'
 import { urlPlatforms } from '~constants/app'
 import { AppDetailNewUrl, getIcon } from './AppDetailNewUrl'
 
 interface Props {
   control: Control<AppDetailFormValues>
   errors: FieldErrors<AppDetailFormValues>
-  onAddNewUrl: (data: UrlValue) => void
 }
 
-export const AppDetailUrl = ({ control, errors, onAddNewUrl }: Props) => {
-  const { fields, remove } = useFieldArray({
+export const AppDetailUrl = ({ control, errors }: Props) => {
+  const { fields, append, remove } = useFieldArray({
     control,
     name: 'urls',
   })
@@ -104,7 +103,7 @@ export const AppDetailUrl = ({ control, errors, onAddNewUrl }: Props) => {
             </FormErrorMessage>
           </FormControl>
         ))}
-        <AppDetailNewUrl onAddNewUrl={onAddNewUrl} />
+        <AppDetailNewUrl onAddNewUrl={(data) => append(data)} />
       </div>
     </div>
   )
