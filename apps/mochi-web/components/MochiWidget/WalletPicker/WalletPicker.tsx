@@ -64,11 +64,11 @@ export const WalletPicker: React.FC<Props> = ({
         className="flex gap-x-3 items-center py-2.5 px-4 text-left bg-blue-700 bg-opacity-10 rounded-lg outline-none"
       >
         <WalletChainIcon platform={selectedWallet.icon} />
-        <div className="flex flex-col flex-1 justify-between">
+        <div className="flex flex-col flex-1 justify-between min-w-0">
           <span className="text-sm font-medium text-blue-700">
             {selectedWallet.title}
           </span>
-          <span className={clsx('text-xs text-blue-500')}>
+          <span className="text-xs text-blue-500 whitespace-nowrap truncate">
             {selectedWallet.subtitle || <>Not connected</>}
           </span>
         </div>

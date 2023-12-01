@@ -59,7 +59,7 @@ export const MobileNavAccordionItem = (props: MobileNavAccordion) => {
       <AccordionItem value="1">
         <AccordionTrigger
           wrapperClassName="!px-2 !py-3"
-          className="text-base !text-neutral-900"
+          className="text-base !text-neutral-800 !font-normal"
         >
           {label}
         </AccordionTrigger>
