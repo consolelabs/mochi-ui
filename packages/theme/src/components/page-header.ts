@@ -5,7 +5,7 @@ const pageHeaderWrapperClsx = ({
   hasBackButton = false,
 }: { className?: string; hasBackButton?: boolean } = {}) =>
   clsx(
-    'flex flex-col border-b border-neutral-outline-active items-center gap-4 sm:gap-8 sm:flex-row px-4 py-4 sm:px-8 sm:py-3 bg-background-surface',
+    'flex flex-col border-b border-divider items-center gap-4 sm:gap-8 sm:flex-row px-4 py-4 sm:px-8 sm:py-3 bg-background-surface',
     {
       '!pl-4 sm:!pl-2': hasBackButton,
     },
