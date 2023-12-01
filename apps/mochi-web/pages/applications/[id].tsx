@@ -21,6 +21,7 @@ import { AppDetailPlatforms } from '~cpn/app/detail/AppDetailPlatforms'
 import { platforms } from '~constants/app'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import { AppDetailMembers } from '~cpn/app/detail/AppDetailMembers'
 
 const APP_DETAIL_FORM_ID = 'app-detail-form'
 
@@ -71,6 +72,7 @@ const App: NextPageWithLayout = () => {
     formState: { errors, isDirty, isSubmitting },
   } = useForm<AppDetailFormValues>({
     resolver: zodResolver(schema),
+    mode: 'all',
   })
 
   const onUpdateApp = (data: AppDetailFormValues) => {
@@ -169,6 +171,7 @@ const App: NextPageWithLayout = () => {
       />
       <AppDetailUrl {...{ control, errors }} />
       <AppDetailPlatforms {...{ control, setValue }} />
+      <AppDetailMembers {...{ profileId, appId }} />
       {isDirty && (
         <div className="flex justify-center mt-8">
           <Button

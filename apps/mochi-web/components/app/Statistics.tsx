@@ -37,33 +37,39 @@ export const Statistics = ({ id, onOpenCreateAppModal }: Props) => {
           label="All time Users"
           amount={stats?.users_in_total}
           change={stats?.users_in_total_change?.last_month_percentage}
+          className="sm:order-1"
         />
         <StatisticsBox
           label="7 days Users"
           amount={stats?.users_in_7d}
           change={stats?.users_in_7d_change?.last_month_percentage}
-        />
-        <StatisticsBox
-          label="All time Txs"
-          amount={stats?.txs_in_total}
-          change={stats?.txs_in_total_change?.last_month_percentage}
-        />
-        <StatisticsBox
-          label="7 days Txs"
-          amount={stats?.txs_in_7d}
-          change={stats?.txs_in_7d_change?.last_month_percentage}
+          className="sm:order-4"
         />
         <StatisticsBox
           label="All time Revenue"
           amount={stats?.revenue_in_total}
           formatAmount={(amount) => `$${formatNumber(amount)}`}
           change={stats?.revenue_in_total_change?.last_month_percentage}
+          className="sm:order-2"
         />
         <StatisticsBox
           label="7 days Revenue"
           amount={stats?.revenue_in_7d}
           formatAmount={(amount) => `$${formatNumber(amount)}`}
           change={stats?.revenue_in_7d_change?.last_month_percentage}
+          className="sm:order-5"
+        />
+        <StatisticsBox
+          label="All time Txs"
+          amount={stats?.txs_in_total}
+          change={stats?.txs_in_total_change?.last_month_percentage}
+          className="sm:order-3"
+        />
+        <StatisticsBox
+          label="7 days Txs"
+          amount={stats?.txs_in_7d}
+          change={stats?.txs_in_7d_change?.last_month_percentage}
+          className="sm:order-6"
         />
       </div>
     </div>

@@ -26,7 +26,7 @@ export const AppDetailStatistics = ({ profileId, appId, detail }: Props) => {
             <Avatar src={detail?.avatar || ''} size="xl" />
           </div>
           <div className="flex-1">
-            <div className="flex items-center justify-between mb-4 space-x-2">
+            <div className="flex justify-between mb-4 space-x-2 group">
               <div>
                 <Typography
                   level="p7"
@@ -40,19 +40,36 @@ export const AppDetailStatistics = ({ profileId, appId, detail }: Props) => {
               <IconButton
                 variant="outline"
                 color="info"
-                className="px-1 py-1 bg-white"
+                className="px-1 py-1 mt-2 transition-all opacity-0 group-hover:opacity-100 bg-background-body"
               >
                 <EditLine className="w-4 h-4" />
               </IconButton>
             </div>
-            <Typography
-              level="p7"
-              color="textSecondary"
-              className="font-bold uppercase"
-            >
-              Description
-            </Typography>
-            <Typography level="p5">{detail?.description || '-'}</Typography>
+            <div className="flex justify-between mb-4 space-x-2 group">
+              <div>
+                <Typography
+                  level="p7"
+                  color="textSecondary"
+                  className="font-bold uppercase"
+                >
+                  Description
+                </Typography>
+                {detail?.description ? (
+                  <Typography level="p5">{detail.description}</Typography>
+                ) : (
+                  <Typography level="p5" color="textSecondary">
+                    Provide a description for your app...
+                  </Typography>
+                )}
+              </div>
+              <IconButton
+                variant="outline"
+                color="info"
+                className="px-1 py-1 mt-2 transition-all opacity-0 group-hover:opacity-100 bg-background-body"
+              >
+                <EditLine className="w-4 h-4" />
+              </IconButton>
+            </div>
           </div>
         </div>
         <StatisticsBox
@@ -82,39 +99,39 @@ export const AppDetailStatistics = ({ profileId, appId, detail }: Props) => {
           label="All time Users"
           amount={stats?.users_in_total}
           change={stats?.users_in_total_change?.last_month_percentage}
-          className="border border-neutral-200 shadow-input"
+          className="border border-neutral-200 shadow-input sm:order-1"
         />
         <StatisticsBox
           label="7 days Users"
           amount={stats?.users_in_7d}
           change={stats?.users_in_7d_change?.last_month_percentage}
-          className="border border-neutral-200 shadow-input"
-        />
-        <StatisticsBox
-          label="All time Txs"
-          amount={stats?.txs_in_total}
-          change={stats?.txs_in_total_change?.last_month_percentage}
-          className="border border-neutral-200 shadow-input"
-        />
-        <StatisticsBox
-          label="7 days Txs"
-          amount={stats?.txs_in_7d}
-          change={stats?.txs_in_7d_change?.last_month_percentage}
-          className="border border-neutral-200 shadow-input"
+          className="border border-neutral-200 shadow-input sm:order-4"
         />
         <StatisticsBox
           label="All time Revenue"
           amount={stats?.revenue_in_total}
           formatAmount={(amount) => `$${formatNumber(amount)}`}
           change={stats?.revenue_in_total_change?.last_month_percentage}
-          className="border border-neutral-200 shadow-input"
+          className="border border-neutral-200 shadow-input sm:order-2"
         />
         <StatisticsBox
           label="7 days Revenue"
           amount={stats?.revenue_in_7d}
           formatAmount={(amount) => `$${formatNumber(amount)}`}
           change={stats?.revenue_in_7d_change?.last_month_percentage}
-          className="border border-neutral-200 shadow-input"
+          className="border border-neutral-200 shadow-input sm:order-5"
+        />
+        <StatisticsBox
+          label="All time Txs"
+          amount={stats?.txs_in_total}
+          change={stats?.txs_in_total_change?.last_month_percentage}
+          className="border border-neutral-200 shadow-input sm:order-3"
+        />
+        <StatisticsBox
+          label="7 days Txs"
+          amount={stats?.txs_in_7d}
+          change={stats?.txs_in_7d_change?.last_month_percentage}
+          className="border border-neutral-200 shadow-input sm:order-6"
         />
       </div>
     </div>

@@ -15,6 +15,8 @@ export interface TableProps<T> {
   data: T[]
   isLoading?: boolean
   loadingRows?: number
+  className?: string
+  wrapperClassName?: string
 }
 
 const {
@@ -31,6 +33,8 @@ export default function Table<T extends RowData>({
   columns,
   isLoading,
   loadingRows = 5,
+  className,
+  wrapperClassName,
 }: TableProps<T>) {
   const table = useReactTable({
     data,
@@ -40,8 +44,8 @@ export default function Table<T extends RowData>({
   })
 
   return (
-    <div className={tableWrapperClsx()}>
-      <table className={tableClsx()}>
+    <div className={tableWrapperClsx({ className: wrapperClassName })}>
+      <table className={tableClsx({ className })}>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
