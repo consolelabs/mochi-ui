@@ -53,8 +53,10 @@ export const WalletPicker: React.FC<Props> = ({
   useEffect(() => {
     if (!authorized) {
       setSelectedWallet(defaultState)
+      return
     }
-  }, [authorized])
+    onClose()
+  }, [authorized, onClose])
 
   return (
     <>

@@ -2,7 +2,8 @@ import clsx from 'clsx'
 
 const loginInnerStateClsx = () => ({
   connecting: {
-    container: 'flex flex-col items-center justify-center p-3 w-full',
+    container:
+      'flex flex-col items-center justify-center p-3 w-screen max-w-sm',
     imgWrapper: 'flex items-center mt-5',
     img: 'w-12 h-12 rounded-full',
     divider: 'w-16 border border-dashed border-primary-solid-focus relative',
@@ -38,7 +39,7 @@ const loginWidgetDialogOverlayClsx = ({
   className = '',
 }: {
   className?: string
-} = {}) => clsx('fixed z-40 w-screen h-screen bg-neutral-solid/40', className)
+} = {}) => clsx('fixed z-50 w-screen h-screen bg-neutral-solid/40', className)
 
 const loginWidgetDialogContentWrapperClsx = ({
   className = '',
@@ -58,9 +59,10 @@ const loginWallet = ({
   className?: string
 }) =>
   clsx(
-    'flex flex-col items-center justify-center h-20 gap-2 border rounded-lg border-neutral-outline-active hover:bg-neutral-outline-hover',
+    'flex flex-col items-center justify-center h-20 gap-2 border rounded-lg border-neutral-outline-active',
     {
-      'opacity-50 cursor-not-allowed': !isInstalled,
+      'hover:bg-neutral-outline-hover transition': isInstalled,
+      'opacity-25 cursor-not-allowed': !isInstalled,
     },
     className,
   )
@@ -73,7 +75,8 @@ const loginWalletNameClsx = ({ className = '' }: { className?: string } = {}) =>
 
 const loginWalletListTabsClsx = ({
   className = '',
-}: { className?: string } = {}) => clsx('w-full space-y-3', className)
+}: { className?: string } = {}) =>
+  clsx('max-w-sm w-screen space-y-3 h-[292px]', className)
 
 const loginWalletListTabListClsx = ({
   className = '',

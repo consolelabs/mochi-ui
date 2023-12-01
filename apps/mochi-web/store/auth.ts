@@ -1,5 +1,4 @@
 import { create } from 'zustand'
-import { useMochi } from '@consolelabs/core'
 import { API, apiLogin, apiLogout } from '~constants/api'
 
 const STORAGE_KEY = 'mochi.token'
@@ -31,7 +30,6 @@ export const useAuthStore = create<State>((set, get) => ({
     set({ token: null, isLoggedIn: false })
   },
   logout: () => {
-    useMochi.getState().logout()
     localStorage.removeItem(STORAGE_KEY)
     apiLogout()
     import('../constants/mochi').then(({ api }) => api.token(null))

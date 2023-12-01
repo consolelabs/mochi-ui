@@ -17,6 +17,9 @@ const Header = dynamic(() => import('~cpn/Header').then((m) => m.Header))
 const WalletProvider = dynamic(() =>
   import('~context/wallet-context').then((m) => m.WalletProvider),
 )
+const LoginWidgetProvider = dynamic(() =>
+  import('@consolelabs/core').then((m) => m.LoginWidgetProvider),
+)
 const Toaster = dynamic(() => import('sonner').then((m) => m.Toaster))
 
 const TopProgressBar = dynamic(() => import('~app/layout/nprogress'), {
@@ -101,7 +104,9 @@ export default function App(props: AppPropsWithLayout) {
       <Script async src="https://telegram.org/js/telegram-widget.js?22" />
       <WalletProvider>
         <LazyMotion strict features={domAnimation}>
-          <InnerApp {...props} />
+          <LoginWidgetProvider>
+            <InnerApp {...props} />
+          </LoginWidgetProvider>
         </LazyMotion>
       </WalletProvider>
     </StrictMode>

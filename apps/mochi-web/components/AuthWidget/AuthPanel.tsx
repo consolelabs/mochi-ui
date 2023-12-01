@@ -5,12 +5,13 @@ import React, {
   useCallback,
   useMemo,
   useState,
-  useEffect,
   Fragment,
 } from 'react'
 import { AUTH_TELEGRAM_ID, MOCHI_PROFILE_API } from '~envs'
-import { useMochi, LoginWidget } from '@consolelabs/core'
+import { Button, LoginWidget } from '@consolelabs/core'
 import { useAuthStore } from '~store'
+import { useDisclosure } from '@dwarvesf/react-hooks'
+import { AnimatePresence, Transition, Variants, m } from 'framer-motion'
 import {
   DiscordColored,
   TelegramColored,
@@ -20,6 +21,7 @@ import {
   SlackColored,
   FacebookColored,
   MailLine,
+  ArrowLeftLine,
 } from '@consolelabs/icons'
 import qs from 'query-string'
 import clsx from 'clsx'
@@ -33,18 +35,52 @@ interface AuthPanelProps {
   onOpenConnectWalletChange?: (open: boolean) => void
 }
 
+const variants: Variants = {
+  enter: (direction: number) => {
+    return {
+      position: 'relative',
+      x: direction > 0 ? '110%' : '-110%',
+      opacity: 0.2,
+      scale: 0.95,
+    }
+  },
+  center: {
+    x: 0,
+    opacity: 1,
+    scale: 1,
+  },
+  exit: (direction: number) => {
+    return {
+      position: 'absolute',
+      x: direction < 0 ? '110%' : '-110%',
+      opacity: 0.2,
+      scale: 0.95,
+    }
+  },
+}
+
+const transition: Transition = {
+  type: 'spring',
+  stiffness: 300,
+  damping: 30,
+}
+
+const commonProps = {
+  transition,
+  variants,
+  initial: 'enter',
+  animate: 'center',
+  exit: 'exit',
+}
+
 export const AuthPanel = React.forwardRef<HTMLDivElement, AuthPanelProps>(
   (props, ref) => {
-    const { variant = 'modal', onOpenConnectWalletChange } = props
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { variant = 'modal' } = props
+
+    const [state, setState] = useState({ step: 1, direction: 0 })
 
     const { login } = useAuthStore()
-    const { user } = useMochi()
-    const [isOpenWidget, setIsOpenWidget] = useState(false)
-
-    const onOpenLoginWidgetChange = (open: boolean) => {
-      setIsOpenWidget(open)
-      onOpenConnectWalletChange?.(open)
-    }
 
     // auth platforms
     const { data: urls = [] } = useSWR('login-urls', async () => {
@@ -155,52 +191,75 @@ export const AuthPanel = React.forwardRef<HTMLDivElement, AuthPanelProps>(
       ],
     )
 
-    useEffect(() => {
-      if (user?.token) {
-        login({ token: user.token })
-      }
-    }, [user?.token, login])
-
     return (
       <PanelContainer ref={ref} variant={variant}>
-        <PanelHeader variant={variant} />
-        <div className="flex flex-col gap-8 mt-8 text-center">
-          <div className="grid grid-cols-4 grid-rows-2 gap-4 mx-auto text-3xl w-fit">
-            {socialAuths.map((item) => {
-              const LinkWrapper = item.href ? 'a' : Fragment
-              const disabled = !item.onClick && !item.href
-              return (
-                <button
-                  type="button"
-                  key={item.name}
-                  className={clsx(
-                    'w-12 h-12 rounded-full border border-neutral-300 flex items-center justify-center',
-                    {
-                      'opacity-40': disabled,
-                      'hover:shadow-sm transition': !disabled,
-                    },
-                  )}
-                  onClick={item.onClick}
-                  disabled={disabled}
-                >
-                  <LinkWrapper {...(item.href && { href: item.href })}>
-                    {item.icon}
-                  </LinkWrapper>
-                </button>
-              )
-            })}
-          </div>
-          <p className="text-sm text-neutral-800">
-            Or connect with an extension wallet
-          </p>
-          <LoginWidget
-            open={isOpenWidget}
-            onOpenChange={onOpenLoginWidgetChange}
-            authUrl="https://api-preview.mochi-profile.console.so/api/v1/profiles/auth"
-            meUrl="https://api-preview.mochi-profile.console.so/api/v1/profiles/me"
-            trigger={<ConnectButton variant="modal" />}
-          />
-        </div>
+        <AnimatePresence initial={false} custom={state.direction}>
+          {state.step === 1 ? (
+            <m.div key={state.step} custom={state.direction} {...commonProps}>
+              <PanelHeader variant={variant} />
+              <div className="flex flex-col gap-8 mt-8 text-center">
+                <div className="grid grid-cols-4 grid-rows-2 gap-4 mx-auto text-3xl w-fit">
+                  {socialAuths.map((item) => {
+                    const LinkWrapper = item.href ? 'a' : Fragment
+                    const disabled = !item.onClick && !item.href
+                    return (
+                      <button
+                        type="button"
+                        key={item.name}
+                        className={clsx(
+                          'w-12 h-12 rounded-full border border-neutral-300 flex items-center justify-center',
+                          {
+                            'opacity-40': disabled,
+                            'hover:shadow-sm transition': !disabled,
+                          },
+                        )}
+                        onClick={item.onClick}
+                        disabled={disabled}
+                      >
+                        <LinkWrapper {...(item.href && { href: item.href })}>
+                          {item.icon}
+                        </LinkWrapper>
+                      </button>
+                    )
+                  })}
+                </div>
+                <p className="text-sm text-neutral-800">
+                  Or connect with an extension wallet
+                </p>
+                <ConnectButton
+                  onClick={() => setState({ step: 2, direction: 1 })}
+                  variant="modal"
+                />
+              </div>
+            </m.div>
+          ) : (
+            <m.div
+              key={state.step}
+              custom={state.direction}
+              {...commonProps}
+              className="flex flex-col gap-y-3 items-center"
+            >
+              <LoginWidget
+                isOpen={isOpen}
+                onOpenChange={(o) => (o ? onOpen() : onClose())}
+                onSuccess={(token) => {
+                  onClose()
+                  login({ token })
+                }}
+              />
+              <Button
+                type="button"
+                onClick={() => setState({ step: 1, direction: -1 })}
+                size="lg"
+                color="neutral"
+                variant="outline"
+              >
+                <ArrowLeftLine />
+                Back
+              </Button>
+            </m.div>
+          )}
+        </AnimatePresence>
       </PanelContainer>
     )
   },

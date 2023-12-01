@@ -67,7 +67,10 @@ export const useWalletStore = create<State>((set) => ({
           usd_amount: utils.formatUsdDigit(mochiWallet.usd_total),
           balances: mochiWallet.balances.map((b) => ({
             type: 'token',
-            token: b.token,
+            token: {
+              ...b.token,
+              chain_id: `0x${(+b.token.chain_id).toString(16)}`,
+            },
             asset_balance: parseInt(b.amount, 10) / 10 ** b.token.decimal,
             usd_balance:
               (parseInt(b.amount, 10) / 10 ** b.token.decimal) * b.token.price,
@@ -104,7 +107,10 @@ export const useWalletStore = create<State>((set) => ({
               usd_amount: utils.formatUsdDigit(data.latest_snapshot_bal),
               balances: data.balance.map((b) => ({
                 type: 'token',
-                token: b.token as Token,
+                token: {
+                  ...b.token,
+                  chain_id: `0x${b.chain_id.toString(16)}`,
+                } as Token,
                 asset_balance: b.asset_balance,
                 usd_balance: b.usd_balance,
               })),

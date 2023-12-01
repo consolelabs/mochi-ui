@@ -42,6 +42,12 @@ export const MonikerList = (props: Props) => {
         token_amount: d.value,
         disabled: !tokenIdsSet.has(d.moniker.token_id),
         token: {
+          // @ts-ignore
+          address: d.moniker.token.address,
+          // @ts-ignore
+          native: d.moniker.token.native,
+          // @ts-ignore
+          decimal: d.moniker.token.decimal,
           price: d.moniker.token.token_price,
           symbol: d.moniker.token.token_symbol,
           chain_id: d.moniker.token.chain_id,

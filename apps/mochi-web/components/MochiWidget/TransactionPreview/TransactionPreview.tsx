@@ -41,8 +41,10 @@ function Recipient({
 
   return (
     <div className="inline-flex gap-x-1 items-center">
-      {Icon && <Icon className="text-gray-400" />}
-      {stripEmoji(children)}
+      {Icon && <Icon className="text-gray-400 shrink-0" />}
+      <span className="whitespace-nowrap truncate max-w-[100px]">
+        {stripEmoji(children)}
+      </span>
     </div>
   )
 }

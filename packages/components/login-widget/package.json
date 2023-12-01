@@ -36,18 +36,18 @@
   "dependencies": {
     "@consolelabs/button": "workspace:*",
     "@consolelabs/dropdown": "workspace:*",
-    "@consolelabs/tabs": "workspace:*",
     "@consolelabs/heading": "workspace:*",
     "@consolelabs/icons": "workspace:*",
-    "@consolelabs/theme": "workspace:*",
     "@consolelabs/mochi-store": "workspace:*",
+    "@consolelabs/tabs": "workspace:*",
+    "@consolelabs/theme": "workspace:*",
     "@radix-ui/react-dialog": "^1.0.5",
     "@uidotdev/usehooks": "^2.4.0",
     "browser-string-hexer": "^1.0.0",
     "bs58": "^5.0.0",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.0.0",
-    "vaul": "^0.7.2"
+    "mipd": "^0.0.5",
+    "use-reducer-async": "^2.1.1",
+    "zustand": "^4.4.7"
   },
   "clean-package": "../../../clean-package.config.json"
 }

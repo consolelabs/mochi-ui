@@ -29,6 +29,7 @@ interface AmountInputProps {
   wallet: Wallet | null
   onSelectAsset?: (item: Balance | Moniker | null) => void
   onAmountChanged?: (amount: number) => void
+  canProceed: boolean
 }
 
 export const AmountInput: React.FC<AmountInputProps> = ({
@@ -37,8 +38,9 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   wallet,
   onSelectAsset,
   onAmountChanged,
+  canProceed,
 }) => {
-  const { request, setAmountUsd } = useTipWidget()
+  const { setStep, request, setAmountUsd } = useTipWidget()
   const [selectedAsset, setSelectedAsset] = useState<Balance | Moniker | null>(
     request.asset,
   )
@@ -120,6 +122,8 @@ export const AmountInput: React.FC<AmountInputProps> = ({
       // Accept only one dot(".")
       if (tipAmount.display.indexOf('.') !== -1 && event.key === '.') {
         event.preventDefault()
+      } else if (event.key === 'Enter' && canProceed) {
+        setStep(2)
       } else {
         // Accept the first dot(".")
         return

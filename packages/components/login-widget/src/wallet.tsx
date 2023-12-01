@@ -4,10 +4,11 @@ import { loginWidget } from '@consolelabs/theme'
 const { loginWallet, loginWalletIconClsx, loginWalletNameClsx } = loginWidget
 
 export interface WalletProps {
-  icon: string | ((props: SVGProps<SVGSVGElement>) => JSX.Element)
+  icon: (props: SVGProps<SVGSVGElement>) => JSX.Element
   name: string
   isInstalled: boolean
   connect: (...params: any) => Promise<any>
+  rdns?: string
 }
 
 export default function Wallet(props: WalletProps) {
@@ -22,7 +23,9 @@ export default function Wallet(props: WalletProps) {
       type="button"
     >
       <Icon width={24} height={24} className={loginWalletIconClsx()} />
-      <span className={loginWalletNameClsx()}>{props.name}</span>
+      <span aria-label={props.rdns} className={loginWalletNameClsx()}>
+        {props.name}
+      </span>
     </button>
   )
 }

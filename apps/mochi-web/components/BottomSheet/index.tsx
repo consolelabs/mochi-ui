@@ -101,7 +101,7 @@ export default function BottomSheetProvider({
     onOpen: delayOpen,
     onClose: delayClose,
   } = useDisclosure()
-  const ref = useRef<HTMLDivElement | null>(null)
+  const sheetRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     function listenForEsc(e: KeyboardEvent) {
@@ -127,14 +127,14 @@ export default function BottomSheetProvider({
         onOpen,
         onClose,
         isOpen: delayIsOpen,
-        elem: ref.current,
+        elem: sheetRef.current,
       }}
     >
       <div
         // capture to prevent it from going down children
         onClickCapture={(e) => {
           if (!isOpen) return
-          if (ref.current?.contains(e.target as HTMLElement)) return
+          if (e.target !== e.currentTarget) return
           onClose()
           e.stopPropagation()
         }}
@@ -158,13 +158,13 @@ export default function BottomSheetProvider({
           {children}
         </m.div>
         <m.div
+          ref={sheetRef}
           initial={false}
           animate={{
             x: '-50%',
             y: isOpen ? '0%' : '100%',
           }}
           transition={{ type: 'spring', bounce: 0, duration: 0.5 }}
-          ref={ref}
           className={clsx(
             'will-change-transform',
             'absolute left-1/2 w-full h-[75%] bottom-0 origin-bottom flex flex-col p-3 bg-white-pure rounded-t-lg',
