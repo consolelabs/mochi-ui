@@ -41,7 +41,7 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
-    "@dwarvesf/react-hooks": "^0.7.0",
+    "@dwarvesf/react-hooks": "^0.8.1",
     "@consolelabs/theme": "workspace:*",
     "@consolelabs/list": "workspace:*",
     "@consolelabs/icons": "workspace:*",
