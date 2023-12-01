@@ -59,4 +59,6 @@ export const GET_PATHS = {
     `/profiles/${profileId}/applications/${appId}`,
   RESET_APPLICATION_KEY: (profileId: string, appId: string) =>
     `/profiles/${profileId}/applications/${appId}/reset-key`,
+  GET_APPLICATION_DETAIL_MEMBERS: (profileId: string, appId: string) =>
+    `/profiles/${profileId}/applications/${appId}/members`,
 }

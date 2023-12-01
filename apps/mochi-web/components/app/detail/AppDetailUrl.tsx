@@ -84,6 +84,7 @@ export const AppDetailUrl = ({ control, errors }: Props) => {
                     {...field}
                     placeholder="https://"
                     className="text-sm"
+                    autoComplete="off"
                   />
                 )}
               />

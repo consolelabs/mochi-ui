@@ -90,6 +90,7 @@ export const AppDetailNewUrl = ({ onAddNewUrl }: Props) => {
                 {...field}
                 placeholder="https://"
                 className="text-sm"
+                autoComplete="off"
               />
             )}
           />
