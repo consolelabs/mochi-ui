@@ -35,6 +35,8 @@ jobs:
       - name: Prepare Environment
         uses: ./.github/actions/setup-env
         timeout-minutes: 10
+        with:
+          enable-turbo-cache: true
 
       - name: Creating .npmrc file
         run: |
