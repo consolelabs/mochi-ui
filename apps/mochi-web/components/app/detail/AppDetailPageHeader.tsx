@@ -27,8 +27,7 @@ export const AppDetailPageHeader = ({ name = '' }: Props) => {
       actions={[
         <Button
           variant="outline"
-          color="neutral"
-          className="!bg-neutral-0"
+          color="white"
           key="see-docs-button"
           as="a"
           href={SOCIAL_LINKS.DOCS}

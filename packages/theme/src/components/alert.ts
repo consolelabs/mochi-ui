@@ -231,23 +231,20 @@ const alertTitleCva = createTextCva(' font-semibold tracking-tight h-fit', [
   },
 ])
 
-const alertDescriptionCva = createTextCva(
-  ' tracking-tight line-clamp-1 h-fit',
-  [
-    {
-      size: 'sm',
-      className: 'text-xs',
-    },
-    {
-      size: 'md',
-      className: 'text-sm',
-    },
-    {
-      variant: 'action',
-      className: '',
-    },
-  ],
-)
+const alertDescriptionCva = createTextCva('tracking-tight h-fit', [
+  {
+    size: 'sm',
+    className: 'text-xs',
+  },
+  {
+    size: 'md',
+    className: 'text-sm',
+  },
+  {
+    variant: 'action',
+    className: '',
+  },
+])
 
 const alertLinkCva = createTextCva('cursor-pointer w-fit shrink-0', [
   {
