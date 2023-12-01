@@ -1,5 +1,8 @@
 import {
   Button,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
   TextFieldInput,
   TextFieldRoot,
   Tooltip,
@@ -8,13 +11,16 @@ import {
 import { ThreeDotLoading, CopyLine } from '@consolelabs/icons'
 import { truncate } from '@dwarvesf/react-utils'
 import { useClipboard } from '@dwarvesf/react-hooks'
+import { Control, Controller } from 'react-hook-form'
+import { AppDetailFormValues } from '~types/app'
 import { CodeSnippet } from './CodeSnippet'
 
 interface Props {
   apiKey?: string
+  control: Control<AppDetailFormValues>
 }
 
-export const AppDetailIntegration = ({ apiKey = '' }: Props) => {
+export const AppDetailIntegration = ({ apiKey = '', control }: Props) => {
   const { onCopy, hasCopied } = useClipboard(apiKey)
 
   return (
@@ -74,17 +80,22 @@ export const AppDetailIntegration = ({ apiKey = '' }: Props) => {
         </div>
         <CodeSnippet />
       </div>
-      <Typography
-        component="p"
-        level="p7"
-        color="textSecondary"
-        className="mt-4 mb-2 font-bold uppercase"
-      >
-        Webhook url
-      </Typography>
-      <TextFieldRoot className="bg-neutral-0">
-        <TextFieldInput placeholder="https://your-endpoint-url.com" />
-      </TextFieldRoot>
+      <Controller
+        name="webhookUrl"
+        control={control}
+        render={({ field, fieldState }) => (
+          <FormControl error={!!fieldState.error} className="mt-4">
+            <FormLabel>Webhook Url</FormLabel>
+            <TextFieldRoot>
+              <TextFieldInput
+                {...field}
+                placeholder="https://your-endpoint-url.com"
+              />
+            </TextFieldRoot>
+            <FormErrorMessage>{fieldState.error?.message}</FormErrorMessage>
+          </FormControl>
+        )}
+      />
     </div>
   )
 }
