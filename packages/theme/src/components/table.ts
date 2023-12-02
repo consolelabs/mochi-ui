@@ -6,6 +6,18 @@ const tableWrapperClsx = ({ className = '' }: { className?: string } = {}) =>
 const tableClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx('w-full border-collapse', className)
 
+const tableRowClsx = ({
+  clickable = false,
+  className = '',
+}: { className?: string; clickable?: boolean } = {}) =>
+  clsx(
+    {
+      'cursor-pointer transition duration-150 bg-transparent hover:bg-background-level2':
+        clickable,
+    },
+    className,
+  )
+
 const tableHeaderClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx(
     'py-3 px-4 text-xs font-semibold tracking-tight text-left uppercase border-0 border-b border-neutral-outline-active border-solid min-w-[48px] text-text-secondary',
@@ -34,6 +46,7 @@ const tableDataClsx = ({ className = '' }: { className?: string } = {}) =>
 const table = {
   tableWrapperClsx,
   tableClsx,
+  tableRowClsx,
   tableHeaderClsx,
   tableDataLoadingClsx,
   tableDataSkeletonClsx,

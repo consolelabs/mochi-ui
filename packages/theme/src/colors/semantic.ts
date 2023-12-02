@@ -189,6 +189,9 @@ export const semanticColors = {
     },
     background: {
       body: commonColors.white,
+      level1: commonColors.gray['50'],
+      level2: commonColors.gray['100'],
+      level3: commonColors.gray['150'],
       surface: commonColors.white, // card, sheet, drawer
       popup: commonColors.white, // dropdown, menu
       tooltip: commonColors.white, // slider tooltip
@@ -330,6 +333,9 @@ export const semanticColors = {
     },
     background: {
       body: commonColors.white,
+      level1: commonColors.gray['50'],
+      level2: commonColors.gray['100'],
+      level3: commonColors.gray['150'],
       surface: commonColors.white, // card, sheet, drawer
       popup: commonColors.white, // dropdown, menu
       tooltip: commonColors.white, // slider tooltip

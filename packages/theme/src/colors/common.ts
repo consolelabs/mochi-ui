@@ -1,5 +1,6 @@
 export const gray = {
   0: '#ffffff',
+  50: '#FCFCFC',
   100: '#faf9f7',
   150: '#f4f3f2',
   200: '#eeedec',

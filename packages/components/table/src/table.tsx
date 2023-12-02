@@ -17,6 +17,21 @@ export interface TableProps<T> {
   loadingRows?: number
   className?: string
   wrapperClassName?: string
+  onRow?: (
+    record: T,
+    rowIndex: number,
+  ) => {
+    onClick?: (event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
+    onDoubleClick?: (
+      event: React.MouseEvent<HTMLTableRowElement, MouseEvent>,
+    ) => void
+    onMouseEnter?: (
+      event: React.MouseEvent<HTMLTableRowElement, MouseEvent>,
+    ) => void
+    onMouseLeave?: (
+      event: React.MouseEvent<HTMLTableRowElement, MouseEvent>,
+    ) => void
+  }
 }
 
 const {
@@ -26,6 +41,7 @@ const {
   tableDataLoadingClsx,
   tableDataSkeletonClsx,
   tableDataClsx,
+  tableRowClsx,
 } = table
 
 export default function Table<T extends RowData>({
@@ -35,6 +51,7 @@ export default function Table<T extends RowData>({
   loadingRows = 5,
   className,
   wrapperClassName,
+  onRow,
 }: TableProps<T>) {
   const table = useReactTable({
     data,
@@ -99,8 +116,12 @@ export default function Table<T extends RowData>({
             : null}
 
           {!isLoading
-            ? table.getRowModel().rows.map((row) => (
-                <tr key={row.id}>
+            ? table.getRowModel().rows.map((row, rowIndex) => (
+                <tr
+                  key={row.id}
+                  className={tableRowClsx({ clickable: !!onRow })}
+                  {...(onRow ? onRow(row.original, rowIndex) : {})}
+                >
                   {row.getVisibleCells().map((cell) => (
                     <td className={tableDataClsx()} key={cell.id}>
                       {
