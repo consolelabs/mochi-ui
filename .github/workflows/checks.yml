@@ -19,6 +19,8 @@ jobs:
 
       - name: Install environment
         uses: ./.github/actions/setup-env
+        with:
+          enable-turbo-cache: true
 
       - name: Build packages
         run: pnpm build:packages
