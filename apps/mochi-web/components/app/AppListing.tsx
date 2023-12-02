@@ -13,7 +13,7 @@ import {
 import { ThreeDotLine, ArrowUpLine } from '@consolelabs/icons'
 import { useClipboard } from '@dwarvesf/react-hooks'
 import clsx from 'clsx'
-import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { SOCIAL_LINKS } from '~constants'
 import { platforms } from '~constants/app'
 import { ROUTES } from '~constants/routes'
@@ -30,11 +30,9 @@ interface Props {
 const Name: ColumnProps<ViewApplication>['cell'] = (props) => (
   <div className="flex items-center space-x-3.5">
     <Avatar src={props.row.original.avatar || ''} />
-    <Link href={ROUTES.APPLICATION_DETAIL(props.row.original.id)}>
-      <Typography level="p5" className="font-bold">
-        {props.row.original.name}
-      </Typography>
-    </Link>
+    <Typography level="p5" className="font-bold">
+      {props.row.original.name}
+    </Typography>
   </div>
 )
 
@@ -45,10 +43,20 @@ const Actions: ColumnProps<ViewApplication>['cell'] = (props) => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="flex items-center justify-center w-6 h-6 border rounded-full border-neutral-300">
+      <DropdownMenuTrigger
+        onClick={(e) => {
+          e.stopPropagation()
+        }}
+        className="flex items-center justify-center w-6 h-6 border rounded-full border-neutral-300"
+      >
         <ThreeDotLine width={15} height={15} />
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent
+        align="end"
+        onClick={(e) => {
+          e.stopPropagation()
+        }}
+      >
         <Tooltip
           arrow="top-center"
           content={
@@ -84,6 +92,8 @@ export const AppListing = ({
   isLoading,
   className,
 }: Props) => {
+  const { push } = useRouter()
+
   return (
     <div className={clsx('mt-8', className)}>
       <Typography level="h7" color="textPrimary">
@@ -92,6 +102,11 @@ export const AppListing = ({
       {apps?.length || isLoading ? (
         <div className="max-w-full overflow-auto">
           <Table
+            onRow={(record) => ({
+              onClick: () => {
+                push(ROUTES.APPLICATION_DETAIL(record.id))
+              },
+            })}
             isLoading={isLoading}
             className="min-w-[650px]"
             columns={[
