@@ -123,7 +123,7 @@ export default function AuthenticatedLayout({
       ) : null}
 
       {!isLoadingSession && !isLoggedIn ? (
-        <div className="flex items-center justify-center flex-1 w-full bg-black/40">
+        <div className="flex items-center justify-center flex-1 w-full !min-h-[calc(100vh-64px)] bg-black/40">
           <AuthPanel />
         </div>
       ) : null}
