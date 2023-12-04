@@ -12,6 +12,7 @@ const iconButtonCva = cva(
     'h-fit',
     'transition',
     'disabled:cursor-not-allowed',
+    'outline-none',
   ],
   {
     variants: {
