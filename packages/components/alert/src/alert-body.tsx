@@ -1,7 +1,7 @@
 import { ComponentPropsWithRef, forwardRef } from 'react'
-import type * as Polymorphic from '@consolelabs/polymorphic'
+import type * as Polymorphic from '@mochi-ui/polymorphic'
 import { Slot } from '@radix-ui/react-slot'
-import { alert } from '@consolelabs/theme'
+import { alert } from '@mochi-ui/theme'
 import { useAlertContext } from './context'
 
 type PolymorphicAlertBody = Polymorphic.ForwardRefComponent<

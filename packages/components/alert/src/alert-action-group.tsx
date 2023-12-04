@@ -1,10 +1,6 @@
-<<<<<<< HEAD
 import { alert } from '@mochi-ui/theme'
-import { HTMLAttributes, forwardRef } from 'react'
-=======
-import { alert } from '@consolelabs/theme'
 import { ComponentPropsWithRef, forwardRef } from 'react'
-import type * as Polymorphic from '@consolelabs/polymorphic'
+import type * as Polymorphic from '@mochi-ui/polymorphic'
 import { Slot } from '@radix-ui/react-slot'
 import { useAlertContext } from './context'
 
@@ -16,7 +12,7 @@ type PolymorphicAlertActionGroup = Polymorphic.ForwardRefComponent<
   }
 >
 
-type AlertBodyProps = ComponentPropsWithRef<PolymorphicAlertActionGroup>
+type AlertActionGroupProps = ComponentPropsWithRef<PolymorphicAlertActionGroup>
 
 const AlertActionGroup = forwardRef((props, ref) => {
   const {
@@ -30,7 +26,6 @@ const AlertActionGroup = forwardRef((props, ref) => {
 
   const Component = asChild ? Slot : as
   const layout = layoutProp ?? layoutContext
->>>>>>> e078960 (fix: update alert props)
 
   return (
     <Component
@@ -46,4 +41,4 @@ const AlertActionGroup = forwardRef((props, ref) => {
 AlertActionGroup.displayName = 'AlertActionGroup'
 
 export { AlertActionGroup }
-export type { AlertBodyProps, PolymorphicAlertActionGroup }
+export type { PolymorphicAlertActionGroup, AlertActionGroupProps }

@@ -1,4 +1,4 @@
-import { forwardRef } from 'react'
+import { ComponentPropsWithRef, forwardRef } from 'react'
 import type * as Polymorphic from '@mochi-ui/polymorphic'
 import { alert } from '@mochi-ui/theme'
 import { Slot } from '@radix-ui/react-slot'
