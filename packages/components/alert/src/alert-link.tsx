@@ -1,31 +1,32 @@
-import { forwardRef } from 'react'
+import { ComponentPropsWithRef, forwardRef } from 'react'
 import type * as Polymorphic from '@mochi-ui/polymorphic'
 import { alert } from '@mochi-ui/theme'
 import { Slot } from '@radix-ui/react-slot'
 import { useAlertContext } from './context'
 
-type AlertLinkProps = {
-  asChild?: boolean
-}
+type PolymorphicAlertLink = Polymorphic.ForwardRefComponent<
+  'a',
+  {
+    asChild?: boolean
+  }
+>
 
-type PolymorphicAlertLink = Polymorphic.ForwardRefComponent<'a', AlertLinkProps>
+type AlertLinkProps = ComponentPropsWithRef<PolymorphicAlertLink>
 
 const AlertLink = forwardRef((props, ref) => {
   const { as = 'a', className, asChild, ...restProps } = props
-  const { variant, scheme, responsive, size } = useAlertContext()
+  const { layout, scheme, size } = useAlertContext()
   const Component = asChild ? Slot : as
 
   return (
     <Component
       data-scheme={scheme}
-      data-variant={variant}
-      data-responsive={responsive}
+      data-layout={layout}
       data-size={size}
       className={alert.alertLinkCva({
-        variant,
         scheme,
         size,
-        responsive,
+        layout,
         className,
       })}
       ref={ref}
@@ -33,5 +34,6 @@ const AlertLink = forwardRef((props, ref) => {
     />
   )
 }) as PolymorphicAlertLink
+AlertLink.displayName = 'AlertLink'
 
 export { AlertLink, type PolymorphicAlertLink, type AlertLinkProps }

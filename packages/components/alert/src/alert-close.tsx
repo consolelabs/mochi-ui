@@ -1,4 +1,4 @@
-import { forwardRef } from 'react'
+import { ComponentPropsWithRef, forwardRef } from 'react'
 import { alert } from '@mochi-ui/theme'
 import { CloseLgLine } from '@mochi-ui/icons'
 import { Slot } from '@radix-ui/react-slot'
@@ -6,17 +6,17 @@ import { IconButton, IconButtonProps } from '@mochi-ui/icon-button'
 import type * as Polymorphic from '@mochi-ui/polymorphic'
 import { useAlertContext } from './context'
 
-type AlertCloseButtonProps = IconButtonProps & {
-  asChild?: boolean
-}
-
 type PolymorphicAlertIconButton = Polymorphic.ForwardRefComponent<
   'button',
-  AlertCloseButtonProps
+  IconButtonProps & {
+    asChild?: boolean
+  }
 >
 
+type AlertCloseButtonProps = ComponentPropsWithRef<PolymorphicAlertIconButton>
+
 const AlertCloseButton = forwardRef((props, ref) => {
-  const { scheme, variant, size, responsive } = useAlertContext()
+  const { scheme, layout, size } = useAlertContext()
   const { className, asChild, ...restProps } = props
 
   if (asChild)
@@ -24,15 +24,13 @@ const AlertCloseButton = forwardRef((props, ref) => {
       <Slot
         className={alert.alertIconCloseCva({
           scheme,
-          variant,
+          layout,
           size,
-          responsive,
           className,
         })}
         data-scheme={scheme}
-        data-responsive={responsive}
+        data-layout={layout}
         data-size={size}
-        data-variant={variant}
       />
     )
 
@@ -45,20 +43,19 @@ const AlertCloseButton = forwardRef((props, ref) => {
       color={scheme}
       className={alert.alertIconCloseCva({
         scheme,
-        variant,
+        layout,
         size,
-        responsive,
         className,
       })}
       data-scheme={scheme}
-      data-responsive={responsive}
+      data-layout={layout}
       data-size={size}
-      data-variant={variant}
     >
       <CloseLgLine />
     </IconButton>
   )
 }) as PolymorphicAlertIconButton
+AlertCloseButton.displayName = 'AlertCloseButton'
 
 export {
   type PolymorphicAlertIconButton,

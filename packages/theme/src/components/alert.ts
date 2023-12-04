@@ -1,17 +1,33 @@
 import { cva, VariantProps } from 'class-variance-authority'
 import clsx from 'clsx'
 
-const alertCva = cva(['flex rounded-lg relative'], {
+const alertBodyCva = cva('flex gap-1 h-fit flex-1', {
   variants: {
-    responsive: {
-      auto: '',
-      shrink: '',
-      expand: '',
+    layout: {
+      inline: 'flex-row items-center',
+      stack: 'flex-col items-start',
     },
-    variant: {
-      default: 'flex-col gap-y-1 px-9 py-2',
-      outlined: 'border shadow-lg flex-col gap-y-1 px-9 py-2',
-      action: ['border shadow-lg'],
+  },
+  defaultVariants: {
+    layout: 'stack',
+  },
+})
+
+const alertCva = cva(['flex rounded-lg relative gap-1'], {
+  variants: {
+    layout: {
+      inline: 'items-center flex-row',
+      stack: ['items-start flex-col'],
+    },
+    shadow: {
+      true: 'shadow-lg',
+    },
+    outline: {
+      true: 'border',
+    },
+    paddingSize: {
+      default: ['p-2'],
+      large: ['p-3'],
     },
     scheme: {
       primary: ['bg-primary-outline'],
@@ -28,208 +44,160 @@ const alertCva = cva(['flex rounded-lg relative'], {
   },
   compoundVariants: [
     {
-      variant: ['action'],
-      responsive: 'auto',
+      layout: 'inline',
+      paddingSize: 'default',
       className: [
-        'flex-col p-4 gap-y-1',
-        'sm:flex-row sm:gap-x-1 sm:pl-9 sm:pr-2 sm:items-center sm:py-2',
+        '[&:has(.alert-icon)]:pl-9',
+        '[&:not(:has(.alert-action-group)):has(.alert-icon-close)]:pr-9',
+        '[&:has(.alert-icon)>.alert-icon]:top-1/2',
+        '[&:has(.alert-icon)>.alert-icon]:-translate-y-1/2',
+        '[&:has(.alert-icon)>.alert-icon]:left-3',
+
+        '[&:has(.alert-action-group)>.alert-icon-close]:hidden',
+        '[&:has(.alert-icon)>.alert-icon-close]:top-1/2',
+        '[&:has(.alert-icon)>.alert-icon-close]:-translate-y-1/2',
+        '[&:has(.alert-icon)>.alert-icon-close]:right-3',
+        'px-3',
       ],
     },
     {
-      variant: ['action'],
-      responsive: 'expand',
-      className: ['flex-row gap-x-1 pl-9 pr-2 items-center py-2'],
+      layout: 'inline',
+      paddingSize: 'large',
+      className: [
+        '[&:has(.alert-icon)]:pl-10',
+        '[&:not(:has(.alert-action-group)):has(.alert-icon-close)]:pr-10',
+        '[&:has(.alert-icon)>.alert-icon]:top-1/2',
+        '[&:has(.alert-icon)>.alert-icon]:-translate-y-1/2',
+        '[&:has(.alert-icon)>.alert-icon]:left-4',
+
+        '[&:has(.alert-action-group)>.alert-icon-close]:hidden',
+        '[&:has(.alert-icon)>.alert-icon-close]:top-1/2',
+        '[&:has(.alert-icon)>.alert-icon-close]:-translate-y-1/2',
+        '[&:has(.alert-icon)>.alert-icon-close]:right-4',
+        'px-4',
+      ],
     },
     {
-      variant: ['action'],
-      responsive: 'shrink',
-      className: ['flex-col p-4 gap-y-1'],
+      layout: 'stack',
+      paddingSize: 'large',
+      className: [
+        '[&:not(:has(.alert-action-group)):has(.alert-icon)]:pl-10',
+        '[&:not(:has(.alert-action-group)):has(.alert-icon-close)]:pr-10',
+        '[&:has(.alert-action-group)>.alert-icon]:hidden',
+        '[&:has(.alert-action-group)>.alert-icon-close]:hidden',
+        '[&:has(.alert-icon)>.alert-icon]:top-4',
+        '[&:has(.alert-icon)>.alert-icon]:left-4',
+        '[&:has(.alert-icon)>.alert-icon-close]:top-4',
+        '[&:has(.alert-icon)>.alert-icon-close]:right-4',
+        'px-4',
+      ],
     },
     {
-      variant: ['outlined', 'action'],
+      layout: 'stack',
+      paddingSize: 'default',
+      className: [
+        '[&:not(:has(.alert-action-group)):has(.alert-icon)]:pl-9',
+        '[&:not(:has(.alert-action-group)):has(.alert-icon-close)]:pr-9',
+        '[&:has(.alert-action-group)>.alert-icon]:hidden',
+        '[&:has(.alert-action-group)>.alert-icon-close]:hidden',
+
+        '[&:has(.alert-icon)>.alert-icon]:top-3',
+        '[&:has(.alert-icon)>.alert-icon]:left-3',
+        '[&:has(.alert-icon)>.alert-icon-close]:top-3',
+        '[&:has(.alert-icon)>.alert-icon-close]:right-3',
+        'px-2',
+      ],
+    },
+    {
+      outline: true,
       scheme: 'primary',
       className: 'border-primary-outline-border',
     },
     {
-      variant: ['outlined', 'action'],
+      outline: true,
       scheme: 'secondary',
       className: 'border-secondary-outline-border',
     },
     {
-      variant: ['outlined', 'action'],
+      outline: true,
       scheme: 'neutral',
       className: 'border-neutral-outline-border',
     },
     {
-      variant: ['outlined', 'action'],
+      outline: true,
       scheme: 'danger',
       className: 'border-danger-outline-border',
     },
     {
-      variant: ['outlined', 'action'],
+      outline: true,
       scheme: 'success',
       className: 'border-success-outline-border',
     },
     {
-      variant: ['outlined', 'action'],
+      outline: true,
       scheme: 'warning',
       className: 'border-warning-outline-border',
     },
   ],
   defaultVariants: {
-    variant: 'default',
     scheme: 'primary',
     size: 'md',
+    layout: 'inline',
+    paddingSize: 'default',
   },
 })
 
 const createTextCva = (base?: string, compoundVariants: any[] = []) =>
   cva(base, {
     variants: {
-      responsive: {
-        auto: '',
-        shrink: '',
-        expand: '',
-      },
-      variant: {
-        default: '',
-        outlined: '',
-        action: '',
-      },
       scheme: {
-        primary: '',
-        secondary: '',
-        success: '',
-        danger: '',
-        warning: '',
-        neutral: '',
+        primary: 'text-primary-solid',
+        secondary: 'text-secondary-solid',
+        success: 'text-success-solid',
+        danger: 'text-danger-solid',
+        warning: 'text-warning-solid',
+        neutral: 'text-neutral-solid',
       },
       size: {
         sm: '',
         md: '',
       },
+      layout: {
+        inline: '',
+        stack: '',
+      },
     },
-    compoundVariants: [
-      {
-        variant: 'default',
-        scheme: 'primary',
-        className: 'text-primary-solid',
-      },
-      {
-        variant: 'default',
-        scheme: 'secondary',
-        className: 'text-secondary-solid',
-      },
-      {
-        variant: 'default',
-        scheme: 'danger',
-        className: 'text-danger-solid',
-      },
-      {
-        variant: 'default',
-        scheme: 'neutral',
-        className: 'text-neutral-solid',
-      },
-      {
-        variant: 'default',
-        scheme: 'warning',
-        className: 'text-warning-solid',
-      },
-      {
-        variant: 'default',
-        scheme: 'success',
-        className: 'text-success-solid',
-      },
-      {
-        variant: ['outlined', 'action'],
-        scheme: 'primary',
-        className: 'text-primary-outline-fg',
-      },
-      {
-        variant: ['outlined', 'action'],
-        scheme: 'secondary',
-        className: 'text-secondary-outline-fg',
-      },
-      {
-        variant: ['outlined', 'action'],
-        scheme: 'danger',
-        className: 'text-danger-outline-fg',
-      },
-      {
-        variant: ['outlined', 'action'],
-        scheme: 'neutral',
-        className: 'text-neutral-outline-fg',
-      },
-      {
-        variant: ['outlined', 'action'],
-        scheme: 'warning',
-        className: 'text-warning-outline-fg',
-      },
-      {
-        variant: ['outlined', 'action'],
-        scheme: 'success',
-        className: 'text-success-outline-fg',
-      },
-      ...compoundVariants,
-    ],
+    compoundVariants,
     defaultVariants: {
       scheme: 'primary',
       size: 'md',
-      variant: 'default',
+      layout: 'inline',
     },
   })
 
-const alertIconCva = createTextCva('text-base absolute', [
-  {
-    variant: 'action',
-    responsive: 'auto',
-    className: 'hidden sm:block',
-  },
-  {
-    variant: 'action',
-    responsive: 'shrink',
-    className: 'hidden',
-  },
-  {
-    variant: 'action',
-    responsive: 'expand',
-    className: 'block',
-  },
-  {
-    variant: 'action',
-    className: 'top-1/2 left-3 -translate-y-1/2',
-  },
-  {
-    variant: ['default', 'outlined'],
-    className: 'left-3 top-3 block',
-  },
-])
+const alertIconCva = createTextCva('alert-icon text-base shrink-0 absolute')
 
-const alertIconCloseCva = createTextCva('text-base absolute cursor-pointer', [
-  {
-    variant: 'action',
-    className: 'hidden',
-  },
-  {
-    variant: ['default', 'outlined'],
-    className: 'right-3 top-3',
-  },
-])
+const alertIconCloseCva = createTextCva(
+  'alert-icon-close text-base cursor-pointer shrink-0 absolute',
+)
 
-const alertTitleCva = createTextCva(' font-semibold tracking-tight h-fit', [
-  {
-    size: 'sm',
-    className: 'text-xs',
-  },
-  {
-    size: 'md',
-    className: 'text-sm',
-  },
-  {
-    variant: 'action',
-    className: 'shrink-0 max-w-full line-clamp-1',
-  },
-])
+const alertTitleCva = createTextCva(
+  ' font-semibold tracking-tight h-fit shrink-0',
+  [
+    {
+      size: 'sm',
+      className: 'text-xs',
+    },
+    {
+      size: 'md',
+      className: 'text-sm',
+    },
+    {
+      layout: 'inline',
+      className: 'line-clamp-1',
+    },
+  ],
+)
 
 const alertDescriptionCva = createTextCva('tracking-tight h-fit', [
   {
@@ -241,8 +209,8 @@ const alertDescriptionCva = createTextCva('tracking-tight h-fit', [
     className: 'text-sm',
   },
   {
-    variant: 'action',
-    className: '',
+    layout: 'inline',
+    className: 'line-clamp-1',
   },
 ])
 
@@ -257,43 +225,36 @@ const alertLinkCva = createTextCva('cursor-pointer w-fit shrink-0', [
   },
 ])
 
-const alertConfirmClsx = ({ className = '' }: { className?: string }) =>
-  clsx('w-full', className)
-
-const alertCancelClsx = ({
+const alertConfirmClsx = ({
   className = '',
-  responsive = 'auto',
+  layout = 'inline',
 }: {
   className?: string
-  responsive?: AlertStylesProps['responsive']
+  layout?: 'inline' | 'stack'
 }) =>
   clsx(
     'w-full',
     {
-      'bg-white sm:bg-inherit': responsive === 'auto',
-      'bg-white': responsive === 'shrink',
-      'bg-inherit': responsive === 'expand',
+      '': layout === 'inline',
     },
     className,
   )
 
-const alertActionGroup = ({
-  className = '',
-  responsive = 'auto',
-}: {
-  className?: string
-  responsive?: AlertStylesProps['responsive']
-}) =>
-  clsx(
-    'flex gap-3 shrink-0 items-center',
-    {
-      'sm:flex-row flex-col-reverse sm:ml-1 sm:mt-0 mt-3':
-        responsive === 'auto',
-      'flex-row ml-1 mt-0': responsive === 'expand',
-      'flex-col-reverse mt-3': responsive === 'shrink',
+const alertCancelClsx = ({ className = '' }: { className?: string }) =>
+  clsx('w-full bg-white', className)
+
+const alertActionGroupCva = cva(
+  ['alert-action-group flex gap-3 shrink-0 items-center'],
+  {
+    variants: {
+      layout: {
+        inline: 'w-fit flex-row mt-0',
+        stack: 'w-full flex-col-reverse mt-2',
+      },
     },
-    className,
-  )
+    defaultVariants: {},
+  },
+)
 
 export const alert = {
   alertCva,
@@ -301,10 +262,12 @@ export const alert = {
   alertTitleCva,
   alertDescriptionCva,
   alertIconCloseCva,
-  alertActionGroup,
+  alertActionGroupCva,
   alertConfirmClsx,
   alertCancelClsx,
   alertLinkCva,
+  alertBodyCva,
 }
 
 export type AlertStylesProps = VariantProps<typeof alertCva>
+export type AlertBodyStyleProps = VariantProps<typeof alertBodyCva>
