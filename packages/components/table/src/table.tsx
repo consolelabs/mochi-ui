@@ -4,8 +4,9 @@ import {
   getCoreRowModel,
   getPaginationRowModel,
   useReactTable,
+  Row,
 } from '@tanstack/react-table'
-import type { ReactNode } from 'react'
+import { Fragment, ReactNode } from 'react'
 import { table } from '@consolelabs/theme'
 
 export type ColumnProps<T> = ColDef<T> & { width?: number | string }
@@ -32,6 +33,8 @@ export interface TableProps<T> {
       event: React.MouseEvent<HTMLTableRowElement, MouseEvent>,
     ) => void
   }
+  renderSubComponent?: (record: T, rowIndex: number) => React.ReactNode
+  getRowCanExpand?: (row: Row<T>) => boolean
 }
 
 const {
@@ -52,12 +55,15 @@ export default function Table<T extends RowData>({
   className,
   wrapperClassName,
   onRow,
+  renderSubComponent,
+  getRowCanExpand,
 }: TableProps<T>) {
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    getRowCanExpand,
   })
 
   const hasCustomWidth = columns.some((col) => col.width)
@@ -117,22 +123,32 @@ export default function Table<T extends RowData>({
 
           {!isLoading
             ? table.getRowModel().rows.map((row, rowIndex) => (
-                <tr
-                  key={row.id}
-                  className={tableRowClsx({ clickable: !!onRow })}
-                  {...(onRow ? onRow(row.original, rowIndex) : {})}
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <td className={tableDataClsx()} key={cell.id}>
-                      {
-                        flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext(),
-                        ) as ReactNode
-                      }
-                    </td>
-                  ))}
-                </tr>
+                <Fragment key={row.id}>
+                  <tr
+                    className={tableRowClsx({ clickable: !!onRow })}
+                    {...(onRow ? onRow(row.original, rowIndex) : {})}
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <td className={tableDataClsx()} key={cell.id}>
+                        {
+                          flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext(),
+                          ) as ReactNode
+                        }
+                      </td>
+                    ))}
+                  </tr>
+
+                  {row.getIsExpanded() && renderSubComponent ? (
+                    <tr>
+                      {/* 2nd row is a custom 1 cell row */}
+                      <td colSpan={row.getVisibleCells().length}>
+                        {renderSubComponent(row.original, rowIndex)}
+                      </td>
+                    </tr>
+                  ) : null}
+                </Fragment>
               ))
             : null}
         </tbody>

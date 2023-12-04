@@ -1,9 +1,14 @@
 /* eslint-disable react-hooks/rules-of-hooks -- . */
 import type { Meta, StoryObj } from '@storybook/react'
 import { useCallback, useMemo, useRef, useState } from 'react'
-import { StarSolid } from '@consolelabs/icons'
+import {
+  StarSolid,
+  ChevronRightLine,
+  ChevronDownLine,
+} from '@consolelabs/icons'
 import { Badge } from '@consolelabs/badge'
 import { Pagination } from '@consolelabs/pagination'
+import { IconButton } from '@consolelabs/icon-button'
 import Table from '../src/table'
 
 const meta: Meta<typeof Table> = {
@@ -121,6 +126,116 @@ export const Default: Story = {
           ]}
           data={dataList[page - 1]}
           isLoading={loading}
+        />
+        <Pagination
+          initItemsPerPage={itemPerPage}
+          initalPage={page}
+          onItemPerPageChange={setItemPerPage}
+          onPageChange={onPageChange}
+          totalItems={data.length}
+          totalPages={Math.ceil(data.length / itemPerPage)}
+        />
+      </div>
+    )
+  },
+}
+
+export const RenderSubComponent: Story = {
+  render: () => {
+    const [itemPerPage, setItemPerPage] = useState(5)
+    const [page, setPage] = useState(1)
+    const [loading, setLoading] = useState(false)
+    const timeoutRef = useRef<number | NodeJS.Timeout>()
+
+    const dataList = useMemo(() => {
+      const chunkedArray = []
+      for (let i = 0; i < data.length; i += itemPerPage) {
+        chunkedArray.push(data.slice(i, i + itemPerPage))
+      }
+      return chunkedArray
+    }, [itemPerPage])
+
+    const onPageChange = useCallback((pg: number) => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+      setLoading(true)
+      timeoutRef.current = setTimeout(() => {
+        setPage(pg)
+        setLoading(false)
+      }, 500)
+    }, [])
+
+    return (
+      <div className="p-4 min-w-[48rem]">
+        <Table<(typeof data)[0]>
+          columns={[
+            {
+              id: 'expander',
+              header: () => null,
+              width: '56px',
+              cell: ({ row }) => {
+                if (row.getCanExpand()) {
+                  return (
+                    <IconButton
+                      onClick={row.getToggleExpandedHandler()}
+                      variant="link"
+                      color="white"
+                      size="lg"
+                    >
+                      {row.getIsExpanded() ? (
+                        <ChevronDownLine />
+                      ) : (
+                        <ChevronRightLine />
+                      )}
+                    </IconButton>
+                  )
+                }
+
+                return null
+              },
+            },
+            {
+              header: 'ID',
+              accessorKey: 'id',
+              cell(props) {
+                return (
+                  <span className="w-32">{props.getValue() as string}</span>
+                )
+              },
+            },
+            {
+              header: 'Name',
+              accessorKey: 'name',
+            },
+            {
+              header: 'Email',
+              accessorKey: 'email',
+            },
+            {
+              header: 'Role',
+              accessorKey: 'role',
+              cell: (cell) => {
+                return (
+                  <Badge
+                    appearance="primary"
+                    icon={<StarSolid />}
+                    label={cell.getValue() as string}
+                  />
+                )
+              },
+            },
+          ]}
+          getRowCanExpand={() => true}
+          data={dataList[page - 1]}
+          isLoading={loading}
+          renderSubComponent={(record) => (
+            <div className="bg-background-level2 overflow-x-auto p-5 pl-[65px]">
+              <pre className="max-w-[500px]">
+                {JSON.stringify(record, null, 2)}
+              </pre>
+            </div>
+          )}
         />
         <Pagination
           initItemsPerPage={itemPerPage}

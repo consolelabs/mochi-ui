@@ -27,6 +27,7 @@
   "devDependencies": {
     "@consolelabs/badge": "workspace:*",
     "@consolelabs/icons": "workspace:*",
+    "@consolelabs/icon-button": "workspace:*",
     "@consolelabs/pagination": "workspace:*",
     "clean-package": "^2.2.0",
     "eslint-config-custom": "workspace:*",
