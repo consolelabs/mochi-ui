@@ -62,7 +62,7 @@ export const Default: Story = {
     return (
       <Alert {...props}>
         <AlertIcon />
-        <AlertBody flex="column">
+        <AlertBody>
           <AlertTitle>labore adipisicing minim sint</AlertTitle>
           <AlertDescription>
             Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
