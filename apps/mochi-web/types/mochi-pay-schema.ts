@@ -11,11 +11,13 @@
 
 export interface DtoCreateApplicationRequest {
   app_name: string
+  /** OwnerProfileId string                 `json:"-"` */
   description?: string
   external_links?: Record<string, string[]>
   metadata?: Record<string, any>
   platforms?: string[]
   service_fee?: number
+  webhook?: string
 }
 
 export interface DtoDepositRequest {
@@ -113,7 +115,7 @@ export interface DtoTransferV2Request {
   tos: ModelWallet[]
 }
 
-export interface DtoUpdateAppMemberBodyRequest {
+export interface DtoUpdateAppMemberRequest {
   role: 'admin' | 'member'
 }
 
@@ -125,10 +127,11 @@ export interface DtoUpdateApplicationAvatarRequest {
 
 export interface DtoUpdateApplicationInfoRequest {
   app_name: string
-  description: string
+  description?: string
   external_links: Record<string, string[]>
   metadata: Record<string, any>
   platforms: string[]
+  webhook?: string
 }
 
 export interface DtoWithdrawRequest {
@@ -372,6 +375,7 @@ export interface ViewApplication {
   service_fee?: number
   slug?: string
   updated_at?: string
+  webhook?: string
 }
 
 export interface ViewApplicationListWithPaginationResponse {
@@ -447,6 +451,18 @@ export interface ViewApplicationStatsResponse {
   data?: ViewApplicationStats
 }
 
+export interface ViewApplicationWebhookLog {
+  request?: string
+  response?: string
+  status?: string
+  timestamp?: string
+  url?: string
+}
+
+export interface ViewApplicationWebhookLogsResponse {
+  data?: ViewApplicationWebhookLog[]
+}
+
 export interface ViewDataResponse {
   data?: any
 }
@@ -454,6 +470,10 @@ export interface ViewDataResponse {
 export interface ViewDataResponseWithPagination {
   data?: any
   pagination?: ViewPaginationResponse
+}
+
+export interface ViewDepositResponse {
+  data?: ModelDepositContractAssignment[]
 }
 
 export interface ViewFullApplication {
@@ -473,6 +493,7 @@ export interface ViewFullApplication {
   service_fee?: number
   slug?: string
   updated_at?: string
+  webhook?: string
 }
 
 export interface ViewFullApplicationResponse {
