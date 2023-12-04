@@ -1,4 +1,4 @@
-# @consolelabs/popover
+# @mochi-ui/popover
 
 Popover is a non-modal dialog that floats around its disclosure. It's commonly
 used for displaying additional rich content on top of something.
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/popover
+pnpm i @mochi-ui/popover
 
 # Using NPM
-npm i @consolelabs/popover
+npm i @mochi-ui/popover
 
 # Using Yarn
-yarn add @consolelabs/popover
+yarn add @mochi-ui/popover
 ```
 
 ## Contribution

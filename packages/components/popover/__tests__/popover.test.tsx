@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/react'
-import { CheckCircleOutlined } from '@consolelabs/icons'
+import { CheckCircleOutlined } from '@mochi-ui/icons'
 import { Popover, PopoverTrigger, PopoverContent } from '../src/popover'
 
 const Component = () => {

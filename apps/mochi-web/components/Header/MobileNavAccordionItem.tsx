@@ -6,7 +6,7 @@ import {
   AccordionTrigger,
   Button,
   SectionList,
-} from '@consolelabs/core'
+} from '@mochi-ui/core'
 import Link from 'next/link'
 import { Fragment } from 'react'
 import { NavItem } from './type'

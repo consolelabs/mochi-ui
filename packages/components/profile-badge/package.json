@@ -1,5 +1,5 @@
 {
-  "name": "@consolelabs/profile-badge",
+  "name": "@mochi-ui/profile-badge",
   "version": "0.1.2",
   "sideEffects": false,
   "main": "src/index.ts",
@@ -33,8 +33,8 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
-    "@consolelabs/avatar": "workspace:*",
-    "@consolelabs/theme": "workspace:*"
+    "@mochi-ui/avatar": "workspace:*",
+    "@mochi-ui/theme": "workspace:*"
   },
   "clean-package": "../../../clean-package.config.json"
 }

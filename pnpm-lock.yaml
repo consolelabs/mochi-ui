@@ -100,7 +100,7 @@ importers:
         version: 7.2.0(@swc/core@1.3.96)(ts-node@10.9.1)(typescript@5.2.2)
       turbo:
         specifier: latest
-        version: 1.10.15
+        version: 1.10.16
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
@@ -110,27 +110,12 @@ importers:
       '@bonfida/spl-name-service':
         specifier: ^0.1.67
         version: 0.1.67(@solana/buffer-layout@4.0.1)(@solana/spl-token@0.3.7)(@solana/web3.js@1.74.0)(bn.js@5.2.1)(borsh@0.7.0)
-      '@consolelabs/core':
-        specifier: workspace:*
-        version: link:../../packages/core
-      '@consolelabs/icons':
-        specifier: workspace:*
-        version: link:../../packages/icons
-      '@consolelabs/layout':
-        specifier: workspace:*
-        version: link:../../packages/components/layout
       '@consolelabs/mochi-rest':
         specifier: ^5.1.2
         version: 5.1.2
       '@consolelabs/mochi-ui':
         specifier: ^16.0.2
         version: 16.0.2(@consolelabs/mochi-rest@5.1.2)(ioredis@5.3.2)
-      '@consolelabs/page-content':
-        specifier: workspace:*
-        version: link:../../packages/components/page-content
-      '@consolelabs/theme':
-        specifier: workspace:*
-        version: link:../../packages/theme
       '@dwarvesf/react-hooks':
         specifier: ^0.8.1
         version: 0.8.1(react-dom@18.2.0)(react@18.2.0)
@@ -149,6 +134,21 @@ importers:
       '@hookform/resolvers':
         specifier: ^3.3.2
         version: 3.3.2(react-hook-form@7.43.5)
+      '@mochi-ui/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@mochi-ui/icons':
+        specifier: workspace:*
+        version: link:../../packages/icons
+      '@mochi-ui/layout':
+        specifier: workspace:*
+        version: link:../../packages/components/layout
+      '@mochi-ui/page-content':
+        specifier: workspace:*
+        version: link:../../packages/components/page-content
+      '@mochi-ui/theme':
+        specifier: workspace:*
+        version: link:../../packages/theme
       '@radix-ui/react-scroll-area':
         specifier: ^1.0.5
         version: 1.0.5(@types/react-dom@18.2.4)(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
@@ -298,7 +298,7 @@ importers:
         version: 3.22.4
       zustand:
         specifier: ^4.3.6
-        version: 4.4.7(@types/react@18.2.28)(immer@10.0.3)(react@18.2.0)
+        version: 4.4.5(@types/react@18.2.28)(immer@10.0.3)(react@18.2.0)
     devDependencies:
       '@iconify/react':
         specifier: ^4.1.0
@@ -369,10 +369,10 @@ importers:
 
   packages/components/accordion:
     dependencies:
-      '@consolelabs/icons':
+      '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
       '@radix-ui/react-accordion':
@@ -406,19 +406,19 @@ importers:
 
   packages/components/alert:
     dependencies:
-      '@consolelabs/button':
+      '@mochi-ui/button':
         specifier: workspace:*
         version: link:../button
-      '@consolelabs/icon-button':
+      '@mochi-ui/icon-button':
         specifier: workspace:*
         version: link:../icon-button
-      '@consolelabs/icons':
+      '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons
-      '@consolelabs/polymorphic':
+      '@mochi-ui/polymorphic':
         specifier: workspace:*
         version: link:../polymorphic
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
       '@radix-ui/react-slot':
@@ -452,7 +452,7 @@ importers:
 
   packages/components/avatar:
     dependencies:
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
       '@radix-ui/react-avatar':
@@ -486,7 +486,7 @@ importers:
 
   packages/components/badge:
     dependencies:
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
       class-variance-authority:
@@ -496,7 +496,7 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
     devDependencies:
-      '@consolelabs/icons':
+      '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons
       clean-package:
@@ -520,13 +520,13 @@ importers:
 
   packages/components/button:
     dependencies:
-      '@consolelabs/icons':
+      '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons
-      '@consolelabs/polymorphic':
+      '@mochi-ui/polymorphic':
         specifier: workspace:*
         version: link:../polymorphic
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
       class-variance-authority:
@@ -557,10 +557,10 @@ importers:
 
   packages/components/checkbox:
     dependencies:
-      '@consolelabs/icons':
+      '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
       '@radix-ui/react-checkbox':
@@ -591,10 +591,10 @@ importers:
 
   packages/components/dropdown:
     dependencies:
-      '@consolelabs/icons':
+      '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
       '@radix-ui/react-dropdown-menu':
@@ -607,7 +607,7 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
     devDependencies:
-      '@consolelabs/avatar':
+      '@mochi-ui/avatar':
         specifier: workspace:*
         version: link:../avatar
       clean-package:
@@ -631,16 +631,16 @@ importers:
 
   packages/components/form:
     dependencies:
-      '@consolelabs/form-context':
+      '@mochi-ui/form-context':
         specifier: workspace:*
         version: link:../form-context
-      '@consolelabs/label':
+      '@mochi-ui/label':
         specifier: workspace:*
         version: link:../label
-      '@consolelabs/polymorphic':
+      '@mochi-ui/polymorphic':
         specifier: workspace:*
         version: link:../polymorphic
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
       class-variance-authority:
@@ -650,16 +650,16 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
     devDependencies:
-      '@consolelabs/button':
+      '@mochi-ui/button':
         specifier: workspace:*
         version: link:../button
-      '@consolelabs/checkbox':
+      '@mochi-ui/checkbox':
         specifier: workspace:*
         version: link:../checkbox
-      '@consolelabs/icons':
+      '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons
-      '@consolelabs/input':
+      '@mochi-ui/input':
         specifier: workspace:*
         version: link:../input
       clean-package:
@@ -728,13 +728,13 @@ importers:
 
   packages/components/icon-button:
     dependencies:
-      '@consolelabs/icons':
+      '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons
-      '@consolelabs/polymorphic':
+      '@mochi-ui/polymorphic':
         specifier: workspace:*
         version: link:../polymorphic
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
       class-variance-authority:
@@ -762,23 +762,23 @@ importers:
 
   packages/components/input:
     dependencies:
-      '@consolelabs/form-context':
+      '@mochi-ui/form-context':
         specifier: workspace:*
         version: link:../form-context
-      '@consolelabs/polymorphic':
+      '@mochi-ui/polymorphic':
         specifier: workspace:*
         version: link:../polymorphic
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
     devDependencies:
-      '@consolelabs/avatar':
+      '@mochi-ui/avatar':
         specifier: workspace:*
         version: link:../avatar
-      '@consolelabs/icons':
+      '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons
       clean-package:
@@ -802,7 +802,7 @@ importers:
 
   packages/components/input-field:
     dependencies:
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
       class-variance-authority:
@@ -812,7 +812,7 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
     devDependencies:
-      '@consolelabs/icons':
+      '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons
       clean-package:
@@ -836,7 +836,7 @@ importers:
 
   packages/components/label:
     dependencies:
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
       '@radix-ui/react-label':
@@ -864,26 +864,26 @@ importers:
 
   packages/components/layout:
     dependencies:
-      '@consolelabs/sidebar':
+      '@mochi-ui/sidebar':
         specifier: workspace:*
         version: link:../sidebar
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
     devDependencies:
-      '@consolelabs/badge':
+      '@mochi-ui/badge':
         specifier: workspace:*
         version: link:../badge
-      '@consolelabs/icons':
+      '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons
-      '@consolelabs/page-content':
+      '@mochi-ui/page-content':
         specifier: workspace:*
         version: link:../page-content
-      '@consolelabs/page-header':
+      '@mochi-ui/page-header':
         specifier: workspace:*
         version: link:../page-header
-      '@consolelabs/typography':
+      '@mochi-ui/typography':
         specifier: workspace:*
         version: link:../typography
       clean-package:
@@ -910,7 +910,7 @@ importers:
 
   packages/components/list:
     dependencies:
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
       '@radix-ui/react-scroll-area':
@@ -920,7 +920,7 @@ importers:
         specifier: ^0.7.0
         version: 0.7.0
     devDependencies:
-      '@consolelabs/heading':
+      '@mochi-ui/heading':
         specifier: workspace:*
         version: link:../heading
       clean-package:
@@ -944,25 +944,25 @@ importers:
 
   packages/components/login-widget:
     dependencies:
-      '@consolelabs/button':
+      '@mochi-ui/button':
         specifier: workspace:*
         version: link:../button
-      '@consolelabs/dropdown':
+      '@mochi-ui/dropdown':
         specifier: workspace:*
         version: link:../dropdown
-      '@consolelabs/heading':
+      '@mochi-ui/heading':
         specifier: workspace:*
         version: link:../heading
-      '@consolelabs/icons':
+      '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons
-      '@consolelabs/mochi-store':
+      '@mochi-ui/mochi-store':
         specifier: workspace:*
         version: link:../mochi-store
-      '@consolelabs/tabs':
+      '@mochi-ui/tabs':
         specifier: workspace:*
         version: link:../tabs
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
       '@radix-ui/react-dialog':
@@ -1008,7 +1008,7 @@ importers:
 
   packages/components/logo:
     dependencies:
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
     devDependencies:
@@ -1035,7 +1035,7 @@ importers:
     dependencies:
       zustand:
         specifier: ^4.4.5
-        version: 4.4.7(@types/react@18.2.28)(immer@10.0.3)(react@18.2.0)
+        version: 4.4.5(@types/react@18.2.28)(immer@10.0.3)(react@18.2.0)
     devDependencies:
       clean-package:
         specifier: ^2.2.0
@@ -1058,10 +1058,10 @@ importers:
 
   packages/components/modal:
     dependencies:
-      '@consolelabs/icons':
+      '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
       '@radix-ui/react-dialog':
@@ -1089,11 +1089,11 @@ importers:
 
   packages/components/page-content:
     dependencies:
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
     devDependencies:
-      '@consolelabs/typography':
+      '@mochi-ui/typography':
         specifier: workspace:*
         version: link:../typography
       clean-package:
@@ -1120,26 +1120,26 @@ importers:
 
   packages/components/page-header:
     dependencies:
-      '@consolelabs/icon-button':
+      '@mochi-ui/icon-button':
         specifier: workspace:*
         version: link:../icon-button
-      '@consolelabs/icons':
+      '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
-      '@consolelabs/typography':
+      '@mochi-ui/typography':
         specifier: workspace:*
         version: link:../typography
     devDependencies:
-      '@consolelabs/button':
+      '@mochi-ui/button':
         specifier: workspace:*
         version: link:../button
-      '@consolelabs/select':
+      '@mochi-ui/select':
         specifier: workspace:*
         version: link:../select
-      '@consolelabs/tooltip':
+      '@mochi-ui/tooltip':
         specifier: workspace:*
         version: link:../tooltip
       clean-package:
@@ -1166,10 +1166,10 @@ importers:
 
   packages/components/pagination:
     dependencies:
-      '@consolelabs/icons':
+      '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
     devDependencies:
@@ -1215,7 +1215,7 @@ importers:
 
   packages/components/popover:
     dependencies:
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
       '@radix-ui/react-popover':
@@ -1228,13 +1228,13 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
     devDependencies:
-      '@consolelabs/avatar':
+      '@mochi-ui/avatar':
         specifier: workspace:*
         version: link:../avatar
-      '@consolelabs/button':
+      '@mochi-ui/button':
         specifier: workspace:*
         version: link:../button
-      '@consolelabs/icons':
+      '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons
       clean-package:
@@ -1258,10 +1258,10 @@ importers:
 
   packages/components/profile-badge:
     dependencies:
-      '@consolelabs/avatar':
+      '@mochi-ui/avatar':
         specifier: workspace:*
         version: link:../avatar
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
     devDependencies:
@@ -1286,26 +1286,26 @@ importers:
 
   packages/components/section-header:
     dependencies:
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
-      '@consolelabs/typography':
+      '@mochi-ui/typography':
         specifier: workspace:*
         version: link:../typography
     devDependencies:
-      '@consolelabs/button':
+      '@mochi-ui/button':
         specifier: workspace:*
         version: link:../button
-      '@consolelabs/icon-button':
+      '@mochi-ui/icon-button':
         specifier: workspace:*
         version: link:../icon-button
-      '@consolelabs/icons':
+      '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons
-      '@consolelabs/select':
+      '@mochi-ui/select':
         specifier: workspace:*
         version: link:../select
-      '@consolelabs/tooltip':
+      '@mochi-ui/tooltip':
         specifier: workspace:*
         version: link:../tooltip
       clean-package:
@@ -1332,7 +1332,7 @@ importers:
 
   packages/components/section-list:
     dependencies:
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
       '@radix-ui/react-scroll-area':
@@ -1342,7 +1342,7 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
     devDependencies:
-      '@consolelabs/heading':
+      '@mochi-ui/heading':
         specifier: workspace:*
         version: link:../heading
       clean-package:
@@ -1366,10 +1366,10 @@ importers:
 
   packages/components/select:
     dependencies:
-      '@consolelabs/icons':
+      '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
       '@radix-ui/react-select':
@@ -1403,7 +1403,7 @@ importers:
 
   packages/components/separator:
     dependencies:
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
       '@radix-ui/react-separator':
@@ -1434,16 +1434,16 @@ importers:
 
   packages/components/sidebar:
     dependencies:
-      '@consolelabs/accordion':
+      '@mochi-ui/accordion':
         specifier: workspace:*
         version: link:../accordion
-      '@consolelabs/icons':
+      '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
-      '@consolelabs/tooltip':
+      '@mochi-ui/tooltip':
         specifier: workspace:*
         version: link:../tooltip
       class-variance-authority:
@@ -1453,7 +1453,7 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
     devDependencies:
-      '@consolelabs/badge':
+      '@mochi-ui/badge':
         specifier: workspace:*
         version: link:../badge
       clean-package:
@@ -1477,7 +1477,7 @@ importers:
 
   packages/components/switch:
     dependencies:
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
       '@radix-ui/react-switch':
@@ -1511,23 +1511,23 @@ importers:
 
   packages/components/table:
     dependencies:
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
       '@tanstack/react-table':
         specifier: ^8.10.7
         version: 8.10.7(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
-      '@consolelabs/badge':
+      '@mochi-ui/badge':
         specifier: workspace:*
         version: link:../badge
-      '@consolelabs/icon-button':
+      '@mochi-ui/icon-button':
         specifier: workspace:*
         version: link:../icon-button
-      '@consolelabs/icons':
+      '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons
-      '@consolelabs/pagination':
+      '@mochi-ui/pagination':
         specifier: workspace:*
         version: link:../pagination
       clean-package:
@@ -1551,7 +1551,7 @@ importers:
 
   packages/components/tabs:
     dependencies:
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
       '@radix-ui/react-tabs':
@@ -1564,7 +1564,7 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
     devDependencies:
-      '@consolelabs/icons':
+      '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons
       clean-package:
@@ -1598,10 +1598,10 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
     devDependencies:
-      '@consolelabs/icons':
+      '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
       clean-package:
@@ -1625,7 +1625,7 @@ importers:
 
   packages/components/tooltip:
     dependencies:
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
       '@radix-ui/react-tooltip':
@@ -1656,41 +1656,41 @@ importers:
 
   packages/components/top-bar:
     dependencies:
-      '@consolelabs/icon-button':
-        specifier: workspace:*
-        version: link:../icon-button
-      '@consolelabs/icons':
-        specifier: workspace:*
-        version: link:../../icons
-      '@consolelabs/list':
-        specifier: workspace:*
-        version: link:../list
-      '@consolelabs/theme':
-        specifier: workspace:*
-        version: link:../../theme
       '@dwarvesf/react-hooks':
         specifier: ^0.8.1
         version: 0.8.1(react-dom@18.2.0)(react@18.2.0)
+      '@mochi-ui/icon-button':
+        specifier: workspace:*
+        version: link:../icon-button
+      '@mochi-ui/icons':
+        specifier: workspace:*
+        version: link:../../icons
+      '@mochi-ui/list':
+        specifier: workspace:*
+        version: link:../list
+      '@mochi-ui/theme':
+        specifier: workspace:*
+        version: link:../../theme
     devDependencies:
-      '@consolelabs/accordion':
+      '@mochi-ui/accordion':
         specifier: workspace:*
         version: link:../accordion
-      '@consolelabs/button':
+      '@mochi-ui/button':
         specifier: workspace:*
         version: link:../button
-      '@consolelabs/dropdown':
+      '@mochi-ui/dropdown':
         specifier: workspace:*
         version: link:../dropdown
-      '@consolelabs/input':
+      '@mochi-ui/input':
         specifier: workspace:*
         version: link:../input
-      '@consolelabs/logo':
+      '@mochi-ui/logo':
         specifier: workspace:*
         version: link:../logo
-      '@consolelabs/section-list':
+      '@mochi-ui/section-list':
         specifier: workspace:*
         version: link:../section-list
-      '@consolelabs/typography':
+      '@mochi-ui/typography':
         specifier: workspace:*
         version: link:../typography
       clean-package:
@@ -1724,10 +1724,10 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
     devDependencies:
-      '@consolelabs/icons':
+      '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
       clean-package:
@@ -1751,106 +1751,106 @@ importers:
 
   packages/core:
     dependencies:
-      '@consolelabs/accordion':
+      '@mochi-ui/accordion':
         specifier: workspace:*
         version: link:../components/accordion
-      '@consolelabs/alert':
+      '@mochi-ui/alert':
         specifier: workspace:*
         version: link:../components/alert
-      '@consolelabs/avatar':
+      '@mochi-ui/avatar':
         specifier: workspace:*
         version: link:../components/avatar
-      '@consolelabs/badge':
+      '@mochi-ui/badge':
         specifier: workspace:*
         version: link:../components/badge
-      '@consolelabs/button':
+      '@mochi-ui/button':
         specifier: workspace:*
         version: link:../components/button
-      '@consolelabs/checkbox':
+      '@mochi-ui/checkbox':
         specifier: workspace:*
         version: link:../components/checkbox
-      '@consolelabs/dropdown':
+      '@mochi-ui/dropdown':
         specifier: workspace:*
         version: link:../components/dropdown
-      '@consolelabs/form':
+      '@mochi-ui/form':
         specifier: workspace:*
         version: link:../components/form
-      '@consolelabs/heading':
+      '@mochi-ui/heading':
         specifier: workspace:*
         version: link:../components/heading
-      '@consolelabs/icon-button':
+      '@mochi-ui/icon-button':
         specifier: workspace:*
         version: link:../components/icon-button
-      '@consolelabs/icons':
+      '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../icons
-      '@consolelabs/input':
+      '@mochi-ui/input':
         specifier: workspace:*
         version: link:../components/input
-      '@consolelabs/input-field':
+      '@mochi-ui/input-field':
         specifier: workspace:*
         version: link:../components/input-field
-      '@consolelabs/label':
+      '@mochi-ui/label':
         specifier: workspace:*
         version: link:../components/label
-      '@consolelabs/layout':
+      '@mochi-ui/layout':
         specifier: workspace:*
         version: link:../components/layout
-      '@consolelabs/list':
+      '@mochi-ui/list':
         specifier: workspace:*
         version: link:../components/list
-      '@consolelabs/login-widget':
+      '@mochi-ui/login-widget':
         specifier: workspace:*
         version: link:../components/login-widget
-      '@consolelabs/logo':
+      '@mochi-ui/logo':
         specifier: workspace:*
         version: link:../components/logo
-      '@consolelabs/mochi-store':
+      '@mochi-ui/mochi-store':
         specifier: workspace:*
         version: link:../components/mochi-store
-      '@consolelabs/modal':
+      '@mochi-ui/modal':
         specifier: workspace:*
         version: link:../components/modal
-      '@consolelabs/page-content':
+      '@mochi-ui/page-content':
         specifier: workspace:*
         version: link:../components/page-content
-      '@consolelabs/page-header':
+      '@mochi-ui/page-header':
         specifier: workspace:*
         version: link:../components/page-header
-      '@consolelabs/popover':
+      '@mochi-ui/popover':
         specifier: workspace:*
         version: link:../components/popover
-      '@consolelabs/profile-badge':
+      '@mochi-ui/profile-badge':
         specifier: workspace:*
         version: link:../components/profile-badge
-      '@consolelabs/section-list':
+      '@mochi-ui/section-list':
         specifier: workspace:*
         version: link:../components/section-list
-      '@consolelabs/select':
+      '@mochi-ui/select':
         specifier: workspace:*
         version: link:../components/select
-      '@consolelabs/sidebar':
+      '@mochi-ui/sidebar':
         specifier: workspace:*
         version: link:../components/sidebar
-      '@consolelabs/switch':
+      '@mochi-ui/switch':
         specifier: workspace:*
         version: link:../components/switch
-      '@consolelabs/table':
+      '@mochi-ui/table':
         specifier: workspace:*
         version: link:../components/table
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../theme
-      '@consolelabs/toggle-button':
+      '@mochi-ui/toggle-button':
         specifier: workspace:*
         version: link:../components/toggle-button
-      '@consolelabs/tooltip':
+      '@mochi-ui/tooltip':
         specifier: workspace:*
         version: link:../components/tooltip
-      '@consolelabs/top-bar':
+      '@mochi-ui/top-bar':
         specifier: workspace:*
         version: link:../components/top-bar
-      '@consolelabs/typography':
+      '@mochi-ui/typography':
         specifier: workspace:*
         version: link:../components/typography
     devDependencies:
@@ -1974,7 +1974,7 @@ importers:
 
   packages/storybook:
     dependencies:
-      '@consolelabs/theme':
+      '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../theme
       next:
@@ -7529,7 +7529,7 @@ packages:
     resolution: {integrity: sha512-osvveYtyzdEVbt3OfwwXFr4P2iVBL5u1Q3q4ONBfDY/UpOuXmOlbgwc1xECEboY8wIays8Yt6onaWMUdUbfl0A==}
     dependencies:
       '@noble/curves': 1.1.0
-      '@noble/hashes': 1.3.1
+      '@noble/hashes': 1.3.2
       '@scure/base': 1.1.3
     dev: false
 
@@ -13260,7 +13260,7 @@ packages:
     dependencies:
       caniuse-lite: 1.0.30001565
       electron-to-chromium: 1.4.600
-      node-releases: 2.0.14
+      node-releases: 2.0.13
       update-browserslist-db: 1.0.13(browserslist@4.22.1)
 
   /bs58@4.0.1:
@@ -16756,6 +16756,7 @@ packages:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
+    requiresBuild: true
 
   /function-bind@1.1.2:
     resolution: {integrity: sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==}
@@ -20676,8 +20677,8 @@ packages:
       es6-promise: 3.3.1
     dev: true
 
-  /node-releases@2.0.14:
-    resolution: {integrity: sha512-y10wOWt8yZpqXmOgRo77WaHEmhYQYGNA6y421PKsKYWEK8aW+cqAphborZDhqfyKrbZEN92CN1X2KbafY2s7Yw==}
+  /node-releases@2.0.13:
+    resolution: {integrity: sha512-uYr7J37ae/ORWdZeQ1xxMJe3NtdmqMC/JZK+geofDrkLUApKRHPd18/TxtBOJ4A0/+uUIliorNrfYV6s1b02eQ==}
 
   /node-stream-zip@1.15.0:
     resolution: {integrity: sha512-LN4fydt9TqhZhThkZIVQnF9cwjU3qmUH9h78Mx/K7d3VvfRqqwthLwJEUOEL0QPZ0XQmNN7be5Ggit5+4dq3Bw==}
@@ -24641,64 +24642,64 @@ packages:
       safe-buffer: 5.2.1
     dev: false
 
-  /turbo-darwin-64@1.10.15:
-    resolution: {integrity: sha512-Sik5uogjkRTe1XVP9TC2GryEMOJCaKE2pM/O9uLn4koQDnWKGcLQv+mDU+H+9DXvKLnJnKCD18OVRkwK5tdpoA==}
+  /turbo-darwin-64@1.10.16:
+    resolution: {integrity: sha512-+Jk91FNcp9e9NCLYlvDDlp2HwEDp14F9N42IoW3dmHI5ZkGSXzalbhVcrx3DOox3QfiNUHxzWg4d7CnVNCuuMg==}
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-darwin-arm64@1.10.15:
-    resolution: {integrity: sha512-xwqyFDYUcl2xwXyGPmHkmgnNm4Cy0oNzMpMOBGRr5x64SErS7QQLR4VHb0ubiR+VAb8M+ECPklU6vD1Gm+wekg==}
+  /turbo-darwin-arm64@1.10.16:
+    resolution: {integrity: sha512-jqGpFZipIivkRp/i+jnL8npX0VssE6IAVNKtu573LXtssZdV/S+fRGYA16tI46xJGxSAivrZ/IcgZrV6Jk80bw==}
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-linux-64@1.10.15:
-    resolution: {integrity: sha512-dM07SiO3RMAJ09Z+uB2LNUSkPp3I1IMF8goH5eLj+d8Kkwoxd/+qbUZOj9RvInyxU/IhlnO9w3PGd3Hp14m/nA==}
+  /turbo-linux-64@1.10.16:
+    resolution: {integrity: sha512-PpqEZHwLoizQ6sTUvmImcRmACyRk9EWLXGlqceogPZsJ1jTRK3sfcF9fC2W56zkSIzuLEP07k5kl+ZxJd8JMcg==}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-linux-arm64@1.10.15:
-    resolution: {integrity: sha512-MkzKLkKYKyrz4lwfjNXH8aTny5+Hmiu4SFBZbx+5C0vOlyp6fV5jZANDBvLXWiDDL4DSEAuCEK/2cmN6FVH1ow==}
+  /turbo-linux-arm64@1.10.16:
+    resolution: {integrity: sha512-TMjFYz8to1QE0fKVXCIvG/4giyfnmqcQIwjdNfJvKjBxn22PpbjeuFuQ5kNXshUTRaTJihFbuuCcb5OYFNx4uw==}
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-windows-64@1.10.15:
-    resolution: {integrity: sha512-3TdVU+WEH9ThvQGwV3ieX/XHebtYNHv9HARHauPwmVj3kakoALkpGxLclkHFBLdLKkqDvmHmXtcsfs6cXXRHJg==}
+  /turbo-windows-64@1.10.16:
+    resolution: {integrity: sha512-+jsf68krs0N66FfC4/zZvioUap/Tq3sPFumnMV+EBo8jFdqs4yehd6+MxIwYTjSQLIcpH8KoNMB0gQYhJRLZzw==}
     cpu: [x64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-windows-arm64@1.10.15:
-    resolution: {integrity: sha512-l+7UOBCbfadvPMYsX08hyLD+UIoAkg6ojfH+E8aud3gcA1padpjCJTh9gMpm3QdMbKwZteT5uUM+wyi6Rbbyww==}
+  /turbo-windows-arm64@1.10.16:
+    resolution: {integrity: sha512-sKm3hcMM1bl0B3PLG4ifidicOGfoJmOEacM5JtgBkYM48ncMHjkHfFY7HrJHZHUnXM4l05RQTpLFoOl/uIo2HQ==}
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo@1.10.15:
-    resolution: {integrity: sha512-mKKkqsuDAQy1wCCIjCdG+jOCwUflhckDMSRoeBPcIL/CnCl7c5yRDFe7SyaXloUUkt4tUR0rvNIhVCcT7YeQpg==}
+  /turbo@1.10.16:
+    resolution: {integrity: sha512-2CEaK4FIuSZiP83iFa9GqMTQhroW2QryckVqUydmg4tx78baftTOS0O+oDAhvo9r9Nit4xUEtC1RAHoqs6ZEtg==}
     hasBin: true
     optionalDependencies:
-      turbo-darwin-64: 1.10.15
-      turbo-darwin-arm64: 1.10.15
-      turbo-linux-64: 1.10.15
-      turbo-linux-arm64: 1.10.15
-      turbo-windows-64: 1.10.15
-      turbo-windows-arm64: 1.10.15
+      turbo-darwin-64: 1.10.16
+      turbo-darwin-arm64: 1.10.16
+      turbo-linux-64: 1.10.16
+      turbo-linux-arm64: 1.10.16
+      turbo-windows-64: 1.10.16
+      turbo-windows-arm64: 1.10.16
     dev: true
 
   /tweetnacl@1.0.3:
@@ -26003,6 +26004,27 @@ packages:
 
   /zod@3.22.4:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
+    dev: false
+
+  /zustand@4.4.5(@types/react@18.2.28)(immer@10.0.3)(react@18.2.0):
+    resolution: {integrity: sha512-jgIrBBLKncQW74PA2Lclct3gwD4aPughwGE4FqlXrv3rDqQox7JCn8rwUiFK6ygJcbBAvfTf8fF+ICg7HLD2FQ==}
+    engines: {node: '>=12.7.0'}
+    peerDependencies:
+      '@types/react': '>=16.8'
+      immer: '>=9.0'
+      react: '>=16.8'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      immer:
+        optional: true
+      react:
+        optional: true
+    dependencies:
+      '@types/react': 18.2.28
+      immer: 10.0.3
+      react: 18.2.0
+      use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
 
   /zustand@4.4.7(@types/react@18.2.28)(immer@10.0.3)(react@18.2.0):

@@ -1,4 +1,4 @@
-# @consolelabs/logo
+# @mochi-ui/logo
 
 Logo component is used to display the logo and brand name of the application
 
@@ -11,13 +11,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/logo
+pnpm i @mochi-ui/logo
 
 # Using NPM
-npm i @consolelabs/logo
+npm i @mochi-ui/logo
 
 # Using Yarn
-yarn add @consolelabs/logo
+yarn add @mochi-ui/logo
 ```
 
 ## Contribution

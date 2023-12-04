@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Button } from '@consolelabs/core'
-import { CheckLine, LinkLine, PlusLine, ShareSolid } from '@consolelabs/icons'
+import { Button } from '@mochi-ui/core'
+import { CheckLine, LinkLine, PlusLine, ShareSolid } from '@mochi-ui/icons'
 import { useClipboard } from '@dwarvesf/react-hooks'
 import Link from 'next/link'
 

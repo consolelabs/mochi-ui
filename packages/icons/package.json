@@ -1,5 +1,5 @@
 {
-  "name": "@consolelabs/icons",
+  "name": "@mochi-ui/icons",
   "version": "0.3.0",
   "sideEffects": false,
   "main": "src/index.ts",

@@ -6,7 +6,7 @@ import {
   HeartColored,
   LinkColored,
   UserShieldColored,
-} from '@consolelabs/icons'
+} from '@mochi-ui/icons'
 import clsx from 'clsx'
 
 function Spotlight({

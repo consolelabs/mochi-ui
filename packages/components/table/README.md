@@ -1,4 +1,4 @@
-# @consolelabs/table
+# @mochi-ui/table
 
 Table component is used to display tabular data using rows and columns.
 
@@ -11,13 +11,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/table
+pnpm i @mochi-ui/table
 
 # Using NPM
-npm i @consolelabs/table
+npm i @mochi-ui/table
 
 # Using Yarn
-yarn add @consolelabs/table
+yarn add @mochi-ui/table
 ```
 
 ## Contribution

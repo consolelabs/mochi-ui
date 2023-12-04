@@ -1,4 +1,4 @@
-# @consolelabs/separator
+# @mochi-ui/separator
 
 Separator component creates a clear distinction or spacing between content
 sections or items.
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/separator
+pnpm i @mochi-ui/separator
 
 # Using NPM
-npm i @consolelabs/separator
+npm i @mochi-ui/separator
 
 # Using Yarn
-yarn add @consolelabs/separator
+yarn add @mochi-ui/separator
 ```
 
 ## Contribution

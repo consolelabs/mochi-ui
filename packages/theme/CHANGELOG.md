@@ -1,4 +1,4 @@
-# @consolelabs/theme
+# @mochi-ui/theme
 
 ## 0.6.0
 

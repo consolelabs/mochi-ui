@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react'
-import { AlertStylesProps } from '@consolelabs/theme'
+import { AlertStylesProps } from '@mochi-ui/theme'
 
 type AlertContextValue = {
   variant: NonNullable<AlertStylesProps['variant']>

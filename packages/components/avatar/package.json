@@ -1,5 +1,5 @@
 {
-  "name": "@consolelabs/avatar",
+  "name": "@mochi-ui/avatar",
   "version": "0.0.14",
   "sideEffects": false,
   "main": "src/index.ts",
@@ -33,7 +33,7 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
-    "@consolelabs/theme": "workspace:*",
+    "@mochi-ui/theme": "workspace:*",
     "@radix-ui/react-avatar": "^1.0.4",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0"

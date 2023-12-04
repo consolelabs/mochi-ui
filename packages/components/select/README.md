@@ -1,4 +1,4 @@
-# @consolelabs/select
+# @mochi-ui/select
 
 Select component displays a collapsible list of options and allows a user to
 select one of them.
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/select
+pnpm i @mochi-ui/select
 
 # Using NPM
-npm i @consolelabs/select
+npm i @mochi-ui/select
 
 # Using Yarn
-yarn add @consolelabs/select
+yarn add @mochi-ui/select
 ```
 
 ## Contribution

@@ -1,7 +1,7 @@
-import { Button, ButtonProps } from '@consolelabs/button'
+import { Button, ButtonProps } from '@mochi-ui/button'
 import { forwardRef } from 'react'
-import type * as Polymorphic from '@consolelabs/polymorphic'
-import { alert } from '@consolelabs/theme'
+import type * as Polymorphic from '@mochi-ui/polymorphic'
+import { alert } from '@mochi-ui/theme'
 import { Slot } from '@radix-ui/react-slot'
 import { useAlertContext } from './context'
 

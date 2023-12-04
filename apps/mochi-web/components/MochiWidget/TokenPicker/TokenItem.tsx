@@ -1,4 +1,4 @@
-import { Heading } from '@consolelabs/core'
+import { Heading } from '@mochi-ui/core'
 import { Balance } from '~store'
 import { utils } from '@consolelabs/mochi-ui'
 import Image from 'next/image'

@@ -1,8 +1,8 @@
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import clsx from 'clsx'
-import { Avatar, Heading } from '@consolelabs/core'
+import { Avatar, Heading } from '@mochi-ui/core'
 import { Profile } from '@consolelabs/mochi-rest'
-import { CheckLine, CloseLine } from '@consolelabs/icons'
+import { CheckLine, CloseLine } from '@mochi-ui/icons'
 import PlatformIcon from '../PlatformPicker/PlatformIcon'
 
 type CheckIconProps = {

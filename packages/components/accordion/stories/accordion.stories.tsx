@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { GameSolid, QuestsSolid } from '@consolelabs/icons'
+import { GameSolid, QuestsSolid } from '@mochi-ui/icons'
 import {
   Accordion,
   AccordionItem,

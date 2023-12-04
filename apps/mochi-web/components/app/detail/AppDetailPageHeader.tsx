@@ -7,13 +7,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
   Typography,
-} from '@consolelabs/core'
+} from '@mochi-ui/core'
 import {
   AddUserSolid,
   TrashBinSolid,
   ThreeDotsLine,
   KeySolid,
-} from '@consolelabs/icons'
+} from '@mochi-ui/icons'
 import { SOCIAL_LINKS } from '~constants'
 
 interface Props {

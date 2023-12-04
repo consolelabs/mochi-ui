@@ -1,4 +1,4 @@
-# @consolelabs/toggle-button
+# @mochi-ui/toggle-button
 
 Toggle Button Group component enables seamless toggling between states,
 supporting both multi-selection and single-selection configurations.
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/toggle-button
+pnpm i @mochi-ui/toggle-button
 
 # Using NPM
-npm i @consolelabs/toggle-button
+npm i @mochi-ui/toggle-button
 
 # Using Yarn
-yarn add @consolelabs/toggle-button
+yarn add @mochi-ui/toggle-button
 ```
 
 ## Contribution

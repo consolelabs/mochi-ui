@@ -1,9 +1,9 @@
 import { forwardRef } from 'react'
-import { alert } from '@consolelabs/theme'
-import { CloseLgLine } from '@consolelabs/icons'
+import { alert } from '@mochi-ui/theme'
+import { CloseLgLine } from '@mochi-ui/icons'
 import { Slot } from '@radix-ui/react-slot'
-import { IconButton, IconButtonProps } from '@consolelabs/icon-button'
-import type * as Polymorphic from '@consolelabs/polymorphic'
+import { IconButton, IconButtonProps } from '@mochi-ui/icon-button'
+import type * as Polymorphic from '@mochi-ui/polymorphic'
 import { useAlertContext } from './context'
 
 type AlertCloseButtonProps = IconButtonProps & {

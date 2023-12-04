@@ -1,11 +1,11 @@
 // eslint-disable-next-line import/no-import-module-exports
-import { consolelabs } from '@consolelabs/theme'
+import { mochiui } from '@mochi-ui/theme'
 
 module.exports = {
   content: [
     './**/*.{html,ts,tsx}',
     '!node_modules',
-    './node_modules/@consolelabs/theme/src/components/**/*.{ts,tsx}',
+    './node_modules/@mochi-ui/theme/src/components/**/*.{ts,tsx}',
   ],
   theme: {
     extend: {
@@ -146,5 +146,5 @@ module.exports = {
       },
     },
   },
-  plugins: [consolelabs()],
+  plugins: [mochiui()],
 }

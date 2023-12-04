@@ -10,7 +10,7 @@ import {
   TelegramColored,
   WalletSolid,
   X,
-} from '@consolelabs/icons'
+} from '@mochi-ui/icons'
 import { PlatformType } from './type'
 
 interface IconProps {

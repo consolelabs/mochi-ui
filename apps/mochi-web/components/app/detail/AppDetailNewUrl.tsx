@@ -10,8 +10,8 @@ import {
   TextFieldDecorator,
   TextFieldInput,
   TextFieldRoot,
-} from '@consolelabs/core'
-import { LinkLine, PlusLine } from '@consolelabs/icons'
+} from '@mochi-ui/core'
+import { LinkLine, PlusLine } from '@mochi-ui/icons'
 import { Controller, useForm } from 'react-hook-form'
 import { urlPlatforms } from '~constants/app'
 import { UrlValue } from '~types/app'

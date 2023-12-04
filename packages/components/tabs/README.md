@@ -1,4 +1,4 @@
-# @consolelabs/tabs
+# @mochi-ui/tabs
 
 Tabs component organizes content into multiple sections and allow users to
 navigate between them.
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/tabs
+pnpm i @mochi-ui/tabs
 
 # Using NPM
-npm i @consolelabs/tabs
+npm i @mochi-ui/tabs
 
 # Using Yarn
-yarn add @consolelabs/tabs
+yarn add @mochi-ui/tabs
 ```
 
 ## Contribution

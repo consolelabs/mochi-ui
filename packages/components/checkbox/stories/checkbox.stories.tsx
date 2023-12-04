@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react'
-import { CheckBoxStyleProps } from '@consolelabs/theme'
+import { CheckBoxStyleProps } from '@mochi-ui/theme'
 import { Checkbox, CheckboxProps } from '../src/checkbox'
 
 const meta: Meta<typeof Checkbox> = {

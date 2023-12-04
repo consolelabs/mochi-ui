@@ -5,12 +5,12 @@ import {
   SelectSeparator,
   SelectTrigger,
   SelectValue,
-} from '@consolelabs/select'
-import { Tooltip } from '@consolelabs/tooltip'
+} from '@mochi-ui/select'
+import { Tooltip } from '@mochi-ui/tooltip'
 import { useState } from 'react'
-import { CheckLine, ThreeDotsLine } from '@consolelabs/icons'
-import { IconButton } from '@consolelabs/icon-button'
-import { Button } from '@consolelabs/button'
+import { CheckLine, ThreeDotsLine } from '@mochi-ui/icons'
+import { IconButton } from '@mochi-ui/icon-button'
+import { Button } from '@mochi-ui/button'
 import clsx from 'clsx'
 import { SectionHeader } from '../src'
 

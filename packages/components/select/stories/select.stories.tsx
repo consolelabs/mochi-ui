@@ -10,7 +10,7 @@ import {
   Google,
   Discord,
   Telegram,
-} from '@consolelabs/icons'
+} from '@mochi-ui/icons'
 import {
   Select,
   SelectContent,

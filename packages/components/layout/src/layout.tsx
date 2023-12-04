@@ -1,4 +1,4 @@
-import { layout } from '@consolelabs/theme'
+import { layout } from '@mochi-ui/theme'
 import { forwardRef, HTMLAttributes } from 'react'
 import { useHasSidebar } from '../hooks'
 

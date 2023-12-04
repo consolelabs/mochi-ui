@@ -1,13 +1,13 @@
-import type { RowData, ColumnDef as ColDef } from '@tanstack/react-table'
+import { table } from '@mochi-ui/theme'
+import type { ColumnDef as ColDef, RowData } from '@tanstack/react-table'
 import {
+  Row,
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
   useReactTable,
-  Row,
 } from '@tanstack/react-table'
 import { Fragment, ReactNode } from 'react'
-import { table } from '@consolelabs/theme'
 
 export type ColumnProps<T> = ColDef<T> & { width?: number | string }
 

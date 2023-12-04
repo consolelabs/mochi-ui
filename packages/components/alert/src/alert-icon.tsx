@@ -1,6 +1,6 @@
-import { InfoCircleOutlined, CheckCircleOutlined } from '@consolelabs/icons'
+import { InfoCircleOutlined, CheckCircleOutlined } from '@mochi-ui/icons'
 import { SVGProps, forwardRef } from 'react'
-import { alert } from '@consolelabs/theme'
+import { alert } from '@mochi-ui/theme'
 import { Slot } from '@radix-ui/react-slot'
 import { useAlertContext } from './context'
 import { AlertProps } from './alert'

@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from 'react'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
-import { sectionList } from '@consolelabs/theme'
+import { sectionList } from '@mochi-ui/theme'
 
 type DefaultSection = Record<string, any>
 

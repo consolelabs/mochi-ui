@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
-import { ChevronDownLine } from '@consolelabs/icons'
+import { ChevronDownLine } from '@mochi-ui/icons'
 import { BottomSheet } from '~cpn/BottomSheet'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { PlatformList } from './PlatformList'

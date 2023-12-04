@@ -1,4 +1,4 @@
 auto-install-peers=true
 registry=https://registry.npmjs.org
-@consolelabs:registry=https://registry.npmjs.org
+@mochi-ui:registry=https://registry.npmjs.org
 //registry.npmjs.org/:_authToken=NPM_ACCESS_TOKEN

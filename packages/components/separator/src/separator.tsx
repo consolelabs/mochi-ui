@@ -1,7 +1,7 @@
 import * as SeparatorPrimitive from '@radix-ui/react-separator'
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 import clsx from 'clsx'
-import { separator as separatorClassName } from '@consolelabs/theme'
+import { separator as separatorClassName } from '@mochi-ui/theme'
 
 type SeparatorProps = ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>
 

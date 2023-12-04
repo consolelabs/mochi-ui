@@ -1,7 +1,7 @@
 import { forwardRef, useId, useMemo } from 'react'
-import { formControl } from '@consolelabs/theme'
-import { FormControlContext } from '@consolelabs/form-context'
-import type * as Polymorphic from '@consolelabs/polymorphic'
+import { formControl } from '@mochi-ui/theme'
+import { FormControlContext } from '@mochi-ui/form-context'
+import type * as Polymorphic from '@mochi-ui/polymorphic'
 import { FormControlProps } from './type'
 
 type PolymorphicFormControl = Polymorphic.ForwardRefComponent<

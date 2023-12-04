@@ -4,10 +4,10 @@ import {
   TextFieldRoot,
   TextFieldInput,
   TextFieldDecorator,
-} from '@consolelabs/input'
-import { Button } from '@consolelabs/button'
-import { Checkbox } from '@consolelabs/checkbox'
-import { UserSolid } from '@consolelabs/icons'
+} from '@mochi-ui/input'
+import { Button } from '@mochi-ui/button'
+import { Checkbox } from '@mochi-ui/checkbox'
+import { UserSolid } from '@mochi-ui/icons'
 import { FormControl } from '../src'
 import { FormLabel } from '../src/form-label'
 import { FormHelperText } from '../src/form-helper-text'

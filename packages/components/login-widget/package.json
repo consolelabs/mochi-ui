@@ -1,5 +1,5 @@
 {
-  "name": "@consolelabs/login-widget",
+  "name": "@mochi-ui/login-widget",
   "version": "0.1.5",
   "sideEffects": false,
   "main": "src/index.ts",
@@ -34,13 +34,13 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
-    "@consolelabs/button": "workspace:*",
-    "@consolelabs/dropdown": "workspace:*",
-    "@consolelabs/heading": "workspace:*",
-    "@consolelabs/icons": "workspace:*",
-    "@consolelabs/mochi-store": "workspace:*",
-    "@consolelabs/tabs": "workspace:*",
-    "@consolelabs/theme": "workspace:*",
+    "@mochi-ui/button": "workspace:*",
+    "@mochi-ui/dropdown": "workspace:*",
+    "@mochi-ui/heading": "workspace:*",
+    "@mochi-ui/icons": "workspace:*",
+    "@mochi-ui/mochi-store": "workspace:*",
+    "@mochi-ui/tabs": "workspace:*",
+    "@mochi-ui/theme": "workspace:*",
     "@radix-ui/react-dialog": "^1.0.5",
     "@uidotdev/usehooks": "^2.4.0",
     "browser-string-hexer": "^1.0.0",

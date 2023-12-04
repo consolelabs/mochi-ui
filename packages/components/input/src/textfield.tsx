@@ -1,7 +1,7 @@
-import { textfield, TextFieldStylesProps } from '@consolelabs/theme'
+import { textfield, TextFieldStylesProps } from '@mochi-ui/theme'
 import React, { InputHTMLAttributes, HTMLAttributes, useMemo } from 'react'
-import { FormControlContext, useFromControl } from '@consolelabs/form-context'
-import type * as Polymorphic from '@consolelabs/polymorphic'
+import { FormControlContext, useFromControl } from '@mochi-ui/form-context'
+import type * as Polymorphic from '@mochi-ui/polymorphic'
 
 // root
 type TextFieldContextValue = {

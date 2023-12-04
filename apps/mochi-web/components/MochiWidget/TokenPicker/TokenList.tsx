@@ -1,4 +1,4 @@
-import { List } from '@consolelabs/core'
+import { List } from '@mochi-ui/core'
 import { Balance } from '~store'
 import { TokenItem } from './TokenItem'
 import { EmptyList } from './EmptyList'

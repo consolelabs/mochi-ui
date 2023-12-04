@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react'
-import { Typography } from '@consolelabs/typography'
+import { Typography } from '@mochi-ui/typography'
 import { Layout } from '../src'
 
 describe('Layout', () => {

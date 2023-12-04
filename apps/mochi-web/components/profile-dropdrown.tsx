@@ -5,7 +5,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   ProfileBadge,
-} from '@consolelabs/core'
+} from '@mochi-ui/core'
 import { useAuthStore, useProfileStore } from '~store'
 import Link from 'next/link'
 import { truncateWallet } from '~utils/string'
@@ -17,7 +17,7 @@ import {
   LogoutSolid,
   SuperGroupSolid,
   CodingSolid,
-} from '@consolelabs/icons'
+} from '@mochi-ui/icons'
 import { ROUTES } from '~constants/routes'
 
 export default function ProfileDropdown() {

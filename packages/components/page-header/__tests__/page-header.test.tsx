@@ -1,6 +1,6 @@
 import userEvent from '@testing-library/user-event'
 import { render, waitFor } from '@testing-library/react'
-import { Button } from '@consolelabs/button'
+import { Button } from '@mochi-ui/button'
 import { PageHeader } from '../src'
 
 describe('Page Header', () => {

@@ -1,4 +1,4 @@
-# @consolelabs/heading
+# @mochi-ui/heading
 
 Represents heading within the application.
 
@@ -11,13 +11,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/heading
+pnpm i @mochi-ui/heading
 
 # Using NPM
-npm i @consolelabs/heading
+npm i @mochi-ui/heading
 
 # Using Yarn
-yarn add @consolelabs/heading
+yarn add @mochi-ui/heading
 ```
 
 ## Contribution

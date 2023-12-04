@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as ModalPrimitive from '@radix-ui/react-dialog'
-import { CloseLine } from '@consolelabs/icons'
-import { modal } from '@consolelabs/theme'
+import { CloseLine } from '@mochi-ui/icons'
+import { modal } from '@mochi-ui/theme'
 
 const {
   modalOverlayClsx,

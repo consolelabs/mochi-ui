@@ -1,4 +1,4 @@
-import { alert } from '@consolelabs/theme'
+import { alert } from '@mochi-ui/theme'
 import { HTMLAttributes, forwardRef } from 'react'
 
 export const AlertActionGroup = forwardRef<

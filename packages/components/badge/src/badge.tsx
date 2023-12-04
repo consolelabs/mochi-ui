@@ -1,4 +1,4 @@
-import { badge, BadgeStyleProps } from '@consolelabs/theme'
+import { badge, BadgeStyleProps } from '@mochi-ui/theme'
 
 const { badgeWrapperCva, badgeIconCva } = badge
 

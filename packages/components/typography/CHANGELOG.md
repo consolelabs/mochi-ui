@@ -1,4 +1,4 @@
-# @consolelabs/typography
+# @mochi-ui/typography
 
 ## 0.0.6
 

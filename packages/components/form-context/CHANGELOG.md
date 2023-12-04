@@ -1,4 +1,4 @@
-# @consolelabs/form-context
+# @mochi-ui/form-context
 
 ## 0.1.0
 

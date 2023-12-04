@@ -1,13 +1,13 @@
 import { Fragment, useMemo, useState } from 'react'
-import { Tabs, TabList, TabTrigger, TabContent } from '@consolelabs/tabs'
+import { Tabs, TabList, TabTrigger, TabContent } from '@mochi-ui/tabs'
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
-} from '@consolelabs/dropdown'
-import { ChevronDownLine } from '@consolelabs/icons'
-import { loginWidget } from '@consolelabs/theme'
+} from '@mochi-ui/dropdown'
+import { ChevronDownLine } from '@mochi-ui/icons'
+import { loginWidget } from '@mochi-ui/theme'
 import getProviders from './providers'
 import Wallet, { WalletProps } from './wallet'
 import { useLoginWidget } from './store'

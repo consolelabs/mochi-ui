@@ -1,4 +1,4 @@
-# @consolelabs/list
+# @mochi-ui/list
 
 List component structures and displays a collection of items in an organized
 format.
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/list
+pnpm i @mochi-ui/list
 
 # Using NPM
-npm i @consolelabs/list
+npm i @mochi-ui/list
 
 # Using Yarn
-yarn add @consolelabs/list
+yarn add @mochi-ui/list
 ```
 
 ## Contribution

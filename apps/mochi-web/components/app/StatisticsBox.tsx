@@ -1,5 +1,5 @@
-import { Typography } from '@consolelabs/core'
-import { ArrowUpLine } from '@consolelabs/icons'
+import { Typography } from '@mochi-ui/core'
+import { ArrowUpLine } from '@mochi-ui/icons'
 import clsx from 'clsx'
 import { formatNumber } from '~utils/number'
 

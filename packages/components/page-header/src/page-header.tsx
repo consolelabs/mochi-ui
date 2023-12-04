@@ -1,7 +1,7 @@
-import { ChevronLeftLine } from '@consolelabs/icons'
-import { Typography } from '@consolelabs/typography'
-import { IconButton } from '@consolelabs/icon-button'
-import { pageHeader } from '@consolelabs/theme'
+import { ChevronLeftLine } from '@mochi-ui/icons'
+import { Typography } from '@mochi-ui/typography'
+import { IconButton } from '@mochi-ui/icon-button'
+import { pageHeader } from '@mochi-ui/theme'
 import { Fragment, ReactNode } from 'react'
 
 type PageHeaderProps = {

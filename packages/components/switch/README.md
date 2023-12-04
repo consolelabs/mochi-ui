@@ -1,4 +1,4 @@
-# @consolelabs/switch
+# @mochi-ui/switch
 
 The Switch component is used as an alternative between checked and not checked
 states.
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/switch
+pnpm i @mochi-ui/switch
 
 # Using NPM
-npm i @consolelabs/switch
+npm i @mochi-ui/switch
 
 # Using Yarn
-yarn add @consolelabs/switch
+yarn add @mochi-ui/switch
 ```
 
 ## Contribution

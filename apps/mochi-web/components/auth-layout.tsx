@@ -10,10 +10,10 @@ import {
   SettingSolid,
   UserSolid,
   TwinkleSolid,
-} from '@consolelabs/icons'
-import { Sidebar, Badge } from '@consolelabs/core'
-import { Layout } from '@consolelabs/layout'
-import { PageContent } from '@consolelabs/page-content'
+} from '@mochi-ui/icons'
+import { Sidebar, Badge } from '@mochi-ui/core'
+import { Layout } from '@mochi-ui/layout'
+import { PageContent } from '@mochi-ui/page-content'
 import { DISCORD_LINK, TWITTER_LINK } from '~envs'
 import { useRouter } from 'next/router'
 import { ROUTES } from '~constants/routes'

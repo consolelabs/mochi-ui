@@ -1,5 +1,5 @@
 import { Combobox } from '@headlessui/react'
-import { List } from '@consolelabs/core'
+import { List } from '@mochi-ui/core'
 import { Profile } from '@consolelabs/mochi-rest'
 import { RecipientItem } from './RecipientItem'
 import { EmptyList } from './EmptyList'

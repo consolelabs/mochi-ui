@@ -1,5 +1,5 @@
 import type { SVGProps } from 'react'
-import { loginWidget } from '@consolelabs/theme'
+import { loginWidget } from '@mochi-ui/theme'
 
 const { loginWallet, loginWalletIconClsx, loginWalletNameClsx } = loginWidget
 

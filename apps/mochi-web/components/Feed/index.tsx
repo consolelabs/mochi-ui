@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Link from 'next/link'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
-import { ArrowRightLine, ArrowUpLine } from '@consolelabs/icons'
+import { ArrowRightLine, ArrowUpLine } from '@mochi-ui/icons'
 import { AnimatePresence, m } from 'framer-motion'
-import { Button } from '@consolelabs/core'
+import { Button } from '@mochi-ui/core'
 import clsx from 'clsx'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { useEffect, useMemo, useRef, useState } from 'react'

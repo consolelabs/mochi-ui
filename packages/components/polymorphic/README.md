@@ -1,4 +1,4 @@
-# @consolelabs/polymorphic
+# @mochi-ui/polymorphic
 
 This package enhances the type safety and flexibility of React components
 utilizing forward refs and polymorphism. It includes utility types such as Merge
@@ -10,13 +10,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/polymorphic
+pnpm i @mochi-ui/polymorphic
 
 # Using NPM
-npm i @consolelabs/polymorphic
+npm i @mochi-ui/polymorphic
 
 # Using Yarn
-yarn add @consolelabs/polymorphic
+yarn add @mochi-ui/polymorphic
 ```
 
 ## Contribution

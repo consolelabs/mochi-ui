@@ -1,9 +1,9 @@
 import type { ComponentPropsWithoutRef, ElementRef } from 'react'
-import { select } from '@consolelabs/theme'
+import { select } from '@mochi-ui/theme'
 import { forwardRef } from 'react'
 import * as SelectPrimitive from '@radix-ui/react-select'
 import clsx from 'clsx'
-import { CheckLine, ChevronDownLine } from '@consolelabs/icons'
+import { CheckLine, ChevronDownLine } from '@mochi-ui/icons'
 import {
   type SelectProps,
   type SelectItemProps,

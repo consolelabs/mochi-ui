@@ -48,7 +48,7 @@ function getPrompts(gen: string) {
   const outDirPrompt = {
     type: 'list',
     name: 'outDir',
-    message: `where should this ${gen} live?`,
+    message: `Where should this ${gen} live?`,
     default: defaultOutDirs[gen as keyof typeof defaultOutDirs],
     choices: workspaces,
     validate: (value?: string) => {
@@ -66,7 +66,7 @@ function getPrompts(gen: string) {
       {
         type: 'input',
         name: 'consoleTheme',
-        message: `Theme class object from @consolelabs/theme for import in this ${gen}:`,
+        message: `Theme class object from @mochi-ui/theme for import in this ${gen}:`,
         validate: (value?: string) => {
           if (!value) {
             return `Theme class object name is required`
@@ -85,7 +85,7 @@ function getAppendComponentToCore(): ActionType[] {
   return [
     {
       path: 'packages/core/src/index.ts',
-      template: "export * from '@consolelabs/{{componentName}}'",
+      template: "export * from '@mochi-ui/{{componentName}}'",
       pattern:
         /(\/\/ Plop adding component indicator - do not remove this line)/g,
       type: 'append',
@@ -96,7 +96,7 @@ function getAppendComponentToCore(): ActionType[] {
       type: 'append',
       path: './packages/core/package.json',
       // With space as intended for matching file format
-      template: `    "@consolelabs/{{componentName}}": "workspace:*",`,
+      template: `    "@mochi-ui/{{componentName}}": "workspace:*",`,
       // Add dependency right below dependencies
       pattern: '"dependencies": {',
       abortOnFail: true,

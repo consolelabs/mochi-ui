@@ -7,7 +7,7 @@ import {
   TelegramColored,
   WebSolid,
   X,
-} from '@consolelabs/icons'
+} from '@mochi-ui/icons'
 
 export const platforms = [
   {

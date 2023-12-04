@@ -1,14 +1,10 @@
 /* eslint-disable react-hooks/rules-of-hooks -- . */
 import type { Meta, StoryObj } from '@storybook/react'
 import { useCallback, useMemo, useRef, useState } from 'react'
-import {
-  StarSolid,
-  ChevronRightLine,
-  ChevronDownLine,
-} from '@consolelabs/icons'
-import { Badge } from '@consolelabs/badge'
-import { Pagination } from '@consolelabs/pagination'
-import { IconButton } from '@consolelabs/icon-button'
+import { StarSolid, ChevronRightLine, ChevronDownLine } from '@mochi-ui/icons'
+import { Badge } from '@mochi-ui/badge'
+import { Pagination } from '@mochi-ui/pagination'
+import { IconButton } from '@mochi-ui/icon-button'
 import Table from '../src/table'
 
 const meta: Meta<typeof Table> = {

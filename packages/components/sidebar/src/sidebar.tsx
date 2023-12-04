@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { SidebarArrowLine } from '@consolelabs/icons'
-import { sidebar } from '@consolelabs/theme'
+import { SidebarArrowLine } from '@mochi-ui/icons'
+import { sidebar } from '@mochi-ui/theme'
 import type { Item } from './sidebar-item'
 import type { Break } from './sidebar-item-list'
 import SidebarItemList from './sidebar-item-list'

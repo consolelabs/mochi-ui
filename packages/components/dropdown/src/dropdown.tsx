@@ -2,8 +2,8 @@ import * as React from 'react'
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
 import clsx from 'clsx'
 import type { ReactNode } from 'react'
-import { ChevronDownLine, CheckLine } from '@consolelabs/icons'
-import { dropdown } from '@consolelabs/theme'
+import { ChevronDownLine, CheckLine } from '@mochi-ui/icons'
+import { dropdown } from '@mochi-ui/theme'
 import type {
   DropdownContentRef,
   DropdownContentProps,

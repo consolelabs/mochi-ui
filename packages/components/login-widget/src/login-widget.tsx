@@ -4,9 +4,9 @@ import {
   CheckLine,
   CloseLine,
   ExclamationTriangleOutlined,
-} from '@consolelabs/icons'
-import { Button } from '@consolelabs/button'
-import { loginWidget } from '@consolelabs/theme'
+} from '@mochi-ui/icons'
+import { Button } from '@mochi-ui/button'
+import { loginWidget } from '@mochi-ui/theme'
 import {
   InternalLoginWidgetContext,
   useInternalLoginWidgetContext,

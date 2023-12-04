@@ -1,4 +1,4 @@
-# @consolelabs/checkbox
+# @mochi-ui/checkbox
 
 Checkbox component allows users to select multiple items from a list of
 individual items, or to mark one individual item as selected.
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/checkbox
+pnpm i @mochi-ui/checkbox
 
 # Using NPM
-npm i @consolelabs/checkbox
+npm i @mochi-ui/checkbox
 
 # Using Yarn
-yarn add @consolelabs/checkbox
+yarn add @mochi-ui/checkbox
 ```
 
 ## Contribution

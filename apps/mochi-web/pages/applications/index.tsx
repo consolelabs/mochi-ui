@@ -9,8 +9,8 @@ import {
   Typography,
   Modal,
   ModalContent,
-} from '@consolelabs/core'
-import { CheckLine, ChevronDownLine } from '@consolelabs/icons'
+} from '@mochi-ui/core'
+import { CheckLine, ChevronDownLine } from '@mochi-ui/icons'
 import AuthLayout from '~components/auth-layout'
 import { NextPageWithLayout } from '~pages/_app'
 import { Statistics } from '~cpn/app/Statistics'

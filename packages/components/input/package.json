@@ -1,5 +1,5 @@
 {
-  "name": "@consolelabs/input",
+  "name": "@mochi-ui/input",
   "version": "0.2.1",
   "sideEffects": false,
   "main": "src/index.ts",
@@ -25,8 +25,8 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@consolelabs/icons": "workspace:*",
-    "@consolelabs/avatar": "workspace:*",
+    "@mochi-ui/icons": "workspace:*",
+    "@mochi-ui/avatar": "workspace:*",
     "clean-package": "^2.2.0",
     "eslint-config-custom": "workspace:*",
     "prettier": "^3.0.3",
@@ -36,9 +36,9 @@
   },
   "dependencies": {
     "class-variance-authority": "^0.7.0",
-    "@consolelabs/form-context": "workspace:*",
-    "@consolelabs/polymorphic": "workspace:*",
-    "@consolelabs/theme": "workspace:*"
+    "@mochi-ui/form-context": "workspace:*",
+    "@mochi-ui/polymorphic": "workspace:*",
+    "@mochi-ui/theme": "workspace:*"
   },
   "clean-package": "../../../clean-package.config.json"
 }

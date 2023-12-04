@@ -1,4 +1,4 @@
-# @consolelabs/page-header
+# @mochi-ui/page-header
 
 Page Header component is designed to encapsulate essential details about the
 current page like page title and description. You can also integrate interactive
@@ -13,13 +13,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/page-header
+pnpm i @mochi-ui/page-header
 
 # Using NPM
-npm i @consolelabs/page-header
+npm i @mochi-ui/page-header
 
 # Using Yarn
-yarn add @consolelabs/page-header
+yarn add @mochi-ui/page-header
 ```
 
 ## Contribution

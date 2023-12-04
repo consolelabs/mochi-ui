@@ -1,4 +1,4 @@
-# @consolelabs/icon-button
+# @mochi-ui/icon-button
 
 Icon Button component is the button adorned with an easily recognizable icon.
 
@@ -11,13 +11,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/icon-button
+pnpm i @mochi-ui/icon-button
 
 # Using NPM
-npm i @consolelabs/icon-button
+npm i @mochi-ui/icon-button
 
 # Using Yarn
-yarn add @consolelabs/icon-button
+yarn add @mochi-ui/icon-button
 ```
 
 ## Contribution

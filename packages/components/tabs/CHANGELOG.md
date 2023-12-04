@@ -1,4 +1,4 @@
-# @consolelabs/tabs
+# @mochi-ui/tabs
 
 ## 0.1.4
 
@@ -17,7 +17,7 @@
   [`5b72602`](https://github.com/consolelabs/web-foundation/commit/5b7260263cc00afc1596ac96bff1d9c68d6a9b3b),
   [`39f17eb`](https://github.com/consolelabs/web-foundation/commit/39f17eb2cbc693a289330ffec4fa3bf146d363da),
   [`bbfbde4`](https://github.com/consolelabs/web-foundation/commit/bbfbde4f763cc7056fa57066b4d84a1ed47d81c8)]:
-  - @consolelabs/theme@0.6.0
+  - @mochi-ui/theme@0.6.0
 
 ## 0.1.3
 
@@ -31,7 +31,7 @@
   [`b9ae92f`](https://github.com/consolelabs/web-foundation/commit/b9ae92f92b32dedac4903614e7c0947bd1118fb1),
   [`85da50f`](https://github.com/consolelabs/web-foundation/commit/85da50f1afa67d5d026dce281e522c8df57983ba),
   [`995bf22`](https://github.com/consolelabs/web-foundation/commit/995bf22b2cc7d5576327910f48e5028ca59431cf)]:
-  - @consolelabs/theme@0.5.0
+  - @mochi-ui/theme@0.5.0
 
 ## 0.1.2
 
@@ -51,7 +51,7 @@
   [`4157504`](https://github.com/consolelabs/web-foundation/commit/4157504d0c15310c559bbba45a2d2f4d0246fdde),
   [`d849e4e`](https://github.com/consolelabs/web-foundation/commit/d849e4edc83bddeb990b34d1675674b06c4c16bb),
   [`74087fd`](https://github.com/consolelabs/web-foundation/commit/74087fd9f316956e25453e6a2df0595fdf715025)]:
-  - @consolelabs/theme@0.4.0
+  - @mochi-ui/theme@0.4.0
 
 ## 0.1.1
 
@@ -72,7 +72,7 @@
   [`55f990e`](https://github.com/consolelabs/web-foundation/commit/55f990e50c3a355f00729d2e9f568b1578e1c503),
   [`ff7f47b`](https://github.com/consolelabs/web-foundation/commit/ff7f47b4ff224bd17fea51455303aff56495ca10),
   [`f0e6e55`](https://github.com/consolelabs/web-foundation/commit/f0e6e55c7e2a0837b8d0885683f2aeb8d423f9c3)]:
-  - @consolelabs/theme@0.3.0
+  - @mochi-ui/theme@0.3.0
 
 ## 0.1.0
 
@@ -95,7 +95,7 @@
   [`3c299e2`](https://github.com/consolelabs/web-foundation/commit/3c299e2fb3860692fda39a52ee6677fd31c74bba),
   [`c5b5ca6`](https://github.com/consolelabs/web-foundation/commit/c5b5ca64f08c6a962314481f4d5049bd03ac6926),
   [`c7ff58e`](https://github.com/consolelabs/web-foundation/commit/c7ff58e1acf9073175c6ff82e47600c954036c67)]:
-  - @consolelabs/theme@0.2.0
+  - @mochi-ui/theme@0.2.0
 
 ## 0.0.5
 

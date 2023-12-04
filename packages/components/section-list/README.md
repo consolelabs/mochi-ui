@@ -1,4 +1,4 @@
-# @consolelabs/section-list
+# @mochi-ui/section-list
 
 Section List component structures and displays a collection of items,
 categorizing them by sections for a structured and organized presentation.
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/section-list
+pnpm i @mochi-ui/section-list
 
 # Using NPM
-npm i @consolelabs/section-list
+npm i @mochi-ui/section-list
 
 # Using Yarn
-yarn add @consolelabs/section-list
+yarn add @mochi-ui/section-list
 ```
 
 ## Contribution

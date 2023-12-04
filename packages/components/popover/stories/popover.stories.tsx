@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Avatar } from '@consolelabs/avatar'
-import { Button } from '@consolelabs/button'
-import { CheckCircleOutlined } from '@consolelabs/icons'
+import { Avatar } from '@mochi-ui/avatar'
+import { Button } from '@mochi-ui/button'
+import { CheckCircleOutlined } from '@mochi-ui/icons'
 import { Popover, PopoverContent, PopoverTrigger } from '../src/popover'
 
 const meta: Meta<typeof Popover> = {

@@ -1,4 +1,4 @@
-# @consolelabs/core
+# @mochi-ui/core
 
 The core package includes all essential components and elements required for
 developing React web applications using the Console Labs design system.
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/core
+pnpm i @mochi-ui/core
 
 # Using NPM
-npm i @consolelabs/core
+npm i @mochi-ui/core
 
 # Using Yarn
-yarn add @consolelabs/core
+yarn add @mochi-ui/core
 ```
 
 ## Contribution

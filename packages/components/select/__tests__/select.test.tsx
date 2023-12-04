@@ -7,7 +7,7 @@ import {
   Telegram,
   SlackColored,
   Slack,
-} from '@consolelabs/icons'
+} from '@mochi-ui/icons'
 import {
   Select,
   SelectContent,

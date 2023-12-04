@@ -1,6 +1,6 @@
 import * as RadixTabs from '@radix-ui/react-tabs'
 import React from 'react'
-import { tabs, TabTriggerStylesProps } from '@consolelabs/theme'
+import { tabs, TabTriggerStylesProps } from '@mochi-ui/theme'
 
 type TabsProps = typeof RadixTabs.Root
 type TabListProps = typeof RadixTabs.List

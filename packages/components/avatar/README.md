@@ -1,4 +1,4 @@
-# @consolelabs/avatar
+# @mochi-ui/avatar
 
 Avatar component is used to represent a user, and displays the profile picture,
 initials or fallback icon.
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/avatar
+pnpm i @mochi-ui/avatar
 
 # Using NPM
-npm i @consolelabs/avatar
+npm i @mochi-ui/avatar
 
 # Using Yarn
-yarn add @consolelabs/avatar
+yarn add @mochi-ui/avatar
 ```
 
 ## Contribution

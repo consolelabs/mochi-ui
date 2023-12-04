@@ -1,4 +1,4 @@
-# @consolelabs/mochi-store
+# @mochi-ui/mochi-store
 
 ## 0.0.2
 

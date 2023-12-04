@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-key */
-import { ArrowRightLine } from '@consolelabs/icons'
-import { Avatar, Badge } from '@consolelabs/core'
+import { ArrowRightLine } from '@mochi-ui/icons'
+import { Avatar, Badge } from '@mochi-ui/core'
 import React from 'react'
 import { Tx } from './store'
 import RowCell from './RowCell'

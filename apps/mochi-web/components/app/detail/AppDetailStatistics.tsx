@@ -1,9 +1,9 @@
-import { Avatar, Button, IconButton, Typography } from '@consolelabs/core'
+import { Avatar, Button, IconButton, Typography } from '@mochi-ui/core'
 import {
   EditLine,
   ArrowDownSquareSolid,
   ArrowUpSquareSolid,
-} from '@consolelabs/icons'
+} from '@mochi-ui/icons'
 import { ViewApplication } from '~types/mochi-pay-schema'
 import { formatNumber } from '~utils/number'
 import { useFetchApplicationDetailStats } from '~hooks/app/useFetchApplicationDetailStats'

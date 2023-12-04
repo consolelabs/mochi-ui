@@ -5,7 +5,7 @@ import { flattenThemeObject } from './util'
 
 const parsedColorsCache: Record<string, number[]> = {}
 
-export const consolelabs = () => {
+export const mochiui = () => {
   const themes = {
     light: {
       colors: semanticColors.light,

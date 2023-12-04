@@ -1,5 +1,5 @@
 {
-  "name": "@consolelabs/heading",
+  "name": "@mochi-ui/heading",
   "version": "0.0.5",
   "sideEffects": false,
   "main": "src/index.ts",

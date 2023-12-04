@@ -8,7 +8,7 @@ import React, {
   Fragment,
 } from 'react'
 import { AUTH_TELEGRAM_ID, MOCHI_PROFILE_API } from '~envs'
-import { Button, LoginWidget } from '@consolelabs/core'
+import { Button, LoginWidget } from '@mochi-ui/core'
 import { useAuthStore } from '~store'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { AnimatePresence, Transition, Variants, m } from 'framer-motion'
@@ -22,7 +22,7 @@ import {
   FacebookColored,
   MailLine,
   ArrowLeftLine,
-} from '@consolelabs/icons'
+} from '@mochi-ui/icons'
 import qs from 'query-string'
 import clsx from 'clsx'
 import { PanelHeader } from './PanelHeader'

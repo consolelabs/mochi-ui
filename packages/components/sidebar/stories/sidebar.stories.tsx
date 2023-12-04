@@ -1,4 +1,4 @@
-import { Badge } from '@consolelabs/badge'
+import { Badge } from '@mochi-ui/badge'
 import {
   AddUserSolid,
   CodingSolid,
@@ -11,7 +11,7 @@ import {
   TwinkleSolid,
   UserSolid,
   X,
-} from '@consolelabs/icons'
+} from '@mochi-ui/icons'
 import { useState } from 'react'
 import Sidebar from '../src/sidebar'
 

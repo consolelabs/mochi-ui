@@ -1,6 +1,6 @@
 import { render, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { CoinbaseWallet } from '@consolelabs/icons'
+import { CoinbaseWallet } from '@mochi-ui/icons'
 import {
   DropdownMenu,
   DropdownMenuTrigger,

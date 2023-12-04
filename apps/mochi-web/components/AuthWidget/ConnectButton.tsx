@@ -1,5 +1,5 @@
-import { Button } from '@consolelabs/core'
-import { WalletSolid } from '@consolelabs/icons'
+import { Button } from '@mochi-ui/core'
+import { WalletSolid } from '@mochi-ui/icons'
 import React, { MouseEventHandler } from 'react'
 import type { Variant } from './types'
 

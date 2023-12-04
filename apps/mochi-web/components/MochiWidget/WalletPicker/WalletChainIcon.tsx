@@ -1,5 +1,5 @@
 import React from 'react'
-import { Apt, Eth, Ron, Sol, Sui } from '@consolelabs/icons'
+import { Apt, Eth, Ron, Sol, Sui } from '@mochi-ui/icons'
 import { AddressChainType } from '@consolelabs/mochi-ui'
 import Image from 'next/image'
 

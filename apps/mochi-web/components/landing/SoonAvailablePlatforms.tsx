@@ -1,6 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
-import { Apple, SlackColored } from '@consolelabs/icons'
+import { Apple, SlackColored } from '@mochi-ui/icons'
 
 export function SoonAvailablePlatforms({
   className = '',

@@ -1,6 +1,6 @@
 import BottomSheetProvider from '~cpn/BottomSheet'
 import React, { useState } from 'react'
-import { PaperplaneCircleSolid } from '@consolelabs/icons'
+import { PaperplaneCircleSolid } from '@mochi-ui/icons'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import Tip from './Tip'
 

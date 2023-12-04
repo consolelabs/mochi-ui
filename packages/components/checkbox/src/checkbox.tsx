@@ -1,7 +1,7 @@
-import { CheckLine, MinusLine } from '@consolelabs/icons'
+import { CheckLine, MinusLine } from '@mochi-ui/icons'
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
-import { checkbox, CheckBoxStyleProps } from '@consolelabs/theme'
+import { checkbox, CheckBoxStyleProps } from '@mochi-ui/theme'
 
 type CheckboxPrimitiveProps = ComponentPropsWithoutRef<
   typeof CheckboxPrimitive.Root

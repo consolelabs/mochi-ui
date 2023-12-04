@@ -1,5 +1,5 @@
 {
-  "name": "@consolelabs/top-bar",
+  "name": "@mochi-ui/top-bar",
   "version": "0.1.0",
   "sideEffects": false,
   "main": "src/index.ts",
@@ -25,13 +25,13 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@consolelabs/logo": "workspace:*",
-    "@consolelabs/input": "workspace:*",
-    "@consolelabs/accordion": "workspace:*",
-    "@consolelabs/dropdown": "workspace:*",
-    "@consolelabs/button": "workspace:*",
-    "@consolelabs/section-list": "workspace:*",
-    "@consolelabs/typography": "workspace:*",
+    "@mochi-ui/logo": "workspace:*",
+    "@mochi-ui/input": "workspace:*",
+    "@mochi-ui/accordion": "workspace:*",
+    "@mochi-ui/dropdown": "workspace:*",
+    "@mochi-ui/button": "workspace:*",
+    "@mochi-ui/section-list": "workspace:*",
+    "@mochi-ui/typography": "workspace:*",
     "clsx": "^2.0.0",
     "clean-package": "^2.2.0",
     "eslint-config-custom": "workspace:*",
@@ -42,10 +42,10 @@
   },
   "dependencies": {
     "@dwarvesf/react-hooks": "^0.8.1",
-    "@consolelabs/theme": "workspace:*",
-    "@consolelabs/list": "workspace:*",
-    "@consolelabs/icons": "workspace:*",
-    "@consolelabs/icon-button": "workspace:*"
+    "@mochi-ui/theme": "workspace:*",
+    "@mochi-ui/list": "workspace:*",
+    "@mochi-ui/icons": "workspace:*",
+    "@mochi-ui/icon-button": "workspace:*"
   },
   "clean-package": "../../../clean-package.config.json"
 }

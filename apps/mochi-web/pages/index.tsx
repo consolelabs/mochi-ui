@@ -9,7 +9,7 @@ import { TabbedFeatures } from '~cpn/landing/TabbedFeatures'
 import { SupportedPlatforms } from '~cpn/landing/SupportedPlatforms'
 import { LivePlatforms } from '~cpn/landing/LivePlatforms'
 import { Divider } from '~cpn/landing/Divider'
-import { Button } from '@consolelabs/core'
+import { Button } from '@mochi-ui/core'
 import {
   ArrowRightLine,
   BlocksColored,
@@ -17,7 +17,7 @@ import {
   LayersColored,
   PasswordLockColored,
   WalletPasswordColored,
-} from '@consolelabs/icons'
+} from '@mochi-ui/icons'
 import { GridFeatures } from '~cpn/landing/GridFeatures'
 import Feed from '~cpn/Feed'
 import Link from 'next/link'

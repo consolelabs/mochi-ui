@@ -1,4 +1,4 @@
-# @consolelabs/theme
+# @mochi-ui/theme
 
 The theme package encompasses the TailwindCSS configuration, which includes
 elements such as `plugin`, `colors`, `spacing`, and various other design tokens.
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/theme
+pnpm i @mochi-ui/theme
 
 # Using NPM
-npm i @consolelabs/theme
+npm i @mochi-ui/theme
 
 # Using Yarn
-yarn add @consolelabs/theme
+yarn add @mochi-ui/theme
 ```
 
 ## Contribution

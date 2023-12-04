@@ -1,5 +1,5 @@
 {
-  "name": "@consolelabs/layout",
+  "name": "@mochi-ui/layout",
   "version": "0.1.1",
   "sideEffects": false,
   "main": "src/index.ts",
@@ -25,11 +25,11 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@consolelabs/page-content": "workspace:*",
-    "@consolelabs/page-header": "workspace:*",
-    "@consolelabs/badge": "workspace:*",
-    "@consolelabs/icons": "workspace:*",
-    "@consolelabs/typography": "workspace:*",
+    "@mochi-ui/page-content": "workspace:*",
+    "@mochi-ui/page-header": "workspace:*",
+    "@mochi-ui/badge": "workspace:*",
+    "@mochi-ui/icons": "workspace:*",
+    "@mochi-ui/typography": "workspace:*",
     "clsx": "^2.0.0",
     "clean-package": "^2.2.0",
     "eslint-config-custom": "workspace:*",
@@ -39,8 +39,8 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
-    "@consolelabs/theme": "workspace:*",
-    "@consolelabs/sidebar": "workspace:*"
+    "@mochi-ui/theme": "workspace:*",
+    "@mochi-ui/sidebar": "workspace:*"
   },
   "clean-package": "../../../clean-package.config.json"
 }

@@ -1,6 +1,6 @@
 import { HTMLAttributes, forwardRef } from 'react'
-import type * as Polymorphic from '@consolelabs/polymorphic'
-import { formHelperText } from '@consolelabs/theme'
+import type * as Polymorphic from '@mochi-ui/polymorphic'
+import { formHelperText } from '@mochi-ui/theme'
 
 type PolymorphicFormHelperText = Polymorphic.ForwardRefComponent<
   'span',

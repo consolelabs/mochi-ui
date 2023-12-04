@@ -1,4 +1,4 @@
-# @consolelabs/top-bar
+# @mochi-ui/top-bar
 
 Top Bar component provides a clean and organized space at the top of the page to
 showcase important information, such as page titles or navigation elements.
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/top-bar
+pnpm i @mochi-ui/top-bar
 
 # Using NPM
-npm i @consolelabs/top-bar
+npm i @mochi-ui/top-bar
 
 # Using Yarn
-yarn add @consolelabs/top-bar
+yarn add @mochi-ui/top-bar
 ```
 
 ## Contribution

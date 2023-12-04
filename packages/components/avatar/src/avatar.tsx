@@ -1,6 +1,6 @@
 import * as RadixAvatar from '@radix-ui/react-avatar'
 import { useId } from 'react'
-import { avatar, AvatarStylesProps } from '@consolelabs/theme'
+import { avatar, AvatarStylesProps } from '@mochi-ui/theme'
 import { boringAvatar } from './util'
 
 const { avatarCva } = avatar

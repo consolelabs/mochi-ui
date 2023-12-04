@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { utils } from '@consolelabs/mochi-ui'
-import { Heading } from '@consolelabs/core'
+import { Heading } from '@mochi-ui/core'
 import { Moniker } from './type'
 import { MonikerIcons } from './utils'
 

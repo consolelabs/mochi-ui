@@ -1,6 +1,6 @@
-import { IconButton, Avatar } from '@consolelabs/core'
+import { IconButton, Avatar } from '@mochi-ui/core'
 import { Profile } from '@consolelabs/mochi-rest'
-import { CloseLine } from '@consolelabs/icons'
+import { CloseLine } from '@mochi-ui/icons'
 import PlatformIcon from '../PlatformPicker/PlatformIcon'
 
 interface SelectedRecipientProps {

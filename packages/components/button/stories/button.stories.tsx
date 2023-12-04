@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { ConnectWallets, Spinner } from '@consolelabs/icons'
+import { ConnectWallets, Spinner } from '@mochi-ui/icons'
 import Button, { ButtonProps } from '../src/button'
 
 const buttonColorVariants: ButtonProps['color'][] = [

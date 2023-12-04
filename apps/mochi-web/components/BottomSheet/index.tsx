@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { createContext } from '@dwarvesf/react-utils'
 import { m } from 'framer-motion'
-import { Button } from '@consolelabs/core'
+import { Button } from '@mochi-ui/core'
 
 interface State {
   onClose: () => void

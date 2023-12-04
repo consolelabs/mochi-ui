@@ -1,8 +1,8 @@
 import * as AccordionPrimitive from '@radix-ui/react-accordion'
 import type { ElementRef, ComponentPropsWithoutRef, ReactNode } from 'react'
 import { forwardRef } from 'react'
-import { ChevronDownLine } from '@consolelabs/icons'
-import { accordion } from '@consolelabs/theme'
+import { ChevronDownLine } from '@mochi-ui/icons'
+import { accordion } from '@mochi-ui/theme'
 
 const {
   accordionRootClsx,

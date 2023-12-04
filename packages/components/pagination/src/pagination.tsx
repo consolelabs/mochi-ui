@@ -1,7 +1,7 @@
 import type { HtmlHTMLAttributes } from 'react'
 import { useState, useEffect } from 'react'
-import { ChevronLeftLine, ChevronRightLine } from '@consolelabs/icons'
-import { pagination } from '@consolelabs/theme'
+import { ChevronLeftLine, ChevronRightLine } from '@mochi-ui/icons'
+import { pagination } from '@mochi-ui/theme'
 
 const {
   paginationButtonClsx,

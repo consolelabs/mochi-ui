@@ -1,7 +1,7 @@
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import clsx from 'clsx'
 import Image from 'next/image'
-import { ChevronDownLine, MagnifierLine } from '@consolelabs/icons'
+import { ChevronDownLine, MagnifierLine } from '@mochi-ui/icons'
 import { useShallow } from 'zustand/react/shallow'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Tab } from '@headlessui/react'
@@ -10,7 +10,7 @@ import {
   TextFieldDecorator,
   TextFieldRoot,
   Heading,
-} from '@consolelabs/core'
+} from '@mochi-ui/core'
 import { BottomSheet } from '~cpn/BottomSheet'
 import { Balance, useWalletStore } from '~store'
 import { TokenList } from './TokenList'

@@ -1,4 +1,4 @@
-# @consolelabs/core
+# @mochi-ui/core
 
 ## 0.5.0
 
@@ -37,38 +37,38 @@
   [`39f17eb`](https://github.com/consolelabs/web-foundation/commit/39f17eb2cbc693a289330ffec4fa3bf146d363da),
   [`791e626`](https://github.com/consolelabs/web-foundation/commit/791e62699be86a4e60ab7a8f574a66031ffe4480),
   [`bbfbde4`](https://github.com/consolelabs/web-foundation/commit/bbfbde4f763cc7056fa57066b4d84a1ed47d81c8)]:
-  - @consolelabs/button@0.4.0
-  - @consolelabs/theme@0.6.0
-  - @consolelabs/table@0.2.0
-  - @consolelabs/icon-button@0.4.1
-  - @consolelabs/page-header@0.2.1
-  - @consolelabs/icons@0.3.0
-  - @consolelabs/label@0.1.1
-  - @consolelabs/top-bar@0.1.0
-  - @consolelabs/alert@1.0.0
-  - @consolelabs/form@0.1.1
-  - @consolelabs/login-widget@0.1.5
-  - @consolelabs/popover@0.2.2
-  - @consolelabs/accordion@0.1.4
-  - @consolelabs/avatar@0.0.14
-  - @consolelabs/badge@0.2.3
-  - @consolelabs/checkbox@0.1.4
-  - @consolelabs/dropdown@0.1.4
-  - @consolelabs/input@0.2.1
-  - @consolelabs/input-field@0.1.5
-  - @consolelabs/layout@0.1.1
-  - @consolelabs/list@0.0.14
-  - @consolelabs/logo@0.1.1
-  - @consolelabs/modal@0.2.3
-  - @consolelabs/page-content@0.1.1
-  - @consolelabs/profile-badge@0.1.2
-  - @consolelabs/section-list@0.0.13
-  - @consolelabs/select@0.1.3
-  - @consolelabs/sidebar@0.0.17
-  - @consolelabs/switch@0.0.12
-  - @consolelabs/toggle-button@0.1.0
-  - @consolelabs/tooltip@0.2.1
-  - @consolelabs/typography@0.0.6
+  - @mochi-ui/button@0.4.0
+  - @mochi-ui/theme@0.6.0
+  - @mochi-ui/table@0.2.0
+  - @mochi-ui/icon-button@0.4.1
+  - @mochi-ui/page-header@0.2.1
+  - @mochi-ui/icons@0.3.0
+  - @mochi-ui/label@0.1.1
+  - @mochi-ui/top-bar@0.1.0
+  - @mochi-ui/alert@1.0.0
+  - @mochi-ui/form@0.1.1
+  - @mochi-ui/login-widget@0.1.5
+  - @mochi-ui/popover@0.2.2
+  - @mochi-ui/accordion@0.1.4
+  - @mochi-ui/avatar@0.0.14
+  - @mochi-ui/badge@0.2.3
+  - @mochi-ui/checkbox@0.1.4
+  - @mochi-ui/dropdown@0.1.4
+  - @mochi-ui/input@0.2.1
+  - @mochi-ui/input-field@0.1.5
+  - @mochi-ui/layout@0.1.1
+  - @mochi-ui/list@0.0.14
+  - @mochi-ui/logo@0.1.1
+  - @mochi-ui/modal@0.2.3
+  - @mochi-ui/page-content@0.1.1
+  - @mochi-ui/profile-badge@0.1.2
+  - @mochi-ui/section-list@0.0.13
+  - @mochi-ui/select@0.1.3
+  - @mochi-ui/sidebar@0.0.17
+  - @mochi-ui/switch@0.0.12
+  - @mochi-ui/toggle-button@0.1.0
+  - @mochi-ui/tooltip@0.2.1
+  - @mochi-ui/typography@0.0.6
 
 ## 0.4.0
 
@@ -109,36 +109,36 @@
   [`b9ae92f`](https://github.com/consolelabs/web-foundation/commit/b9ae92f92b32dedac4903614e7c0947bd1118fb1),
   [`85da50f`](https://github.com/consolelabs/web-foundation/commit/85da50f1afa67d5d026dce281e522c8df57983ba),
   [`995bf22`](https://github.com/consolelabs/web-foundation/commit/995bf22b2cc7d5576327910f48e5028ca59431cf)]:
-  - @consolelabs/label@0.1.0
-  - @consolelabs/theme@0.5.0
-  - @consolelabs/logo@0.1.0
-  - @consolelabs/tooltip@0.2.0
-  - @consolelabs/typography@0.0.6
-  - @consolelabs/input@0.2.0
-  - @consolelabs/form@0.1.0
-  - @consolelabs/button@0.3.0
-  - @consolelabs/icon-button@0.4.0
-  - @consolelabs/page-content@0.1.0
-  - @consolelabs/page-header@0.2.0
-  - @consolelabs/layout@0.1.0
-  - @consolelabs/accordion@0.1.3
-  - @consolelabs/alert@0.1.3
-  - @consolelabs/avatar@0.0.13
-  - @consolelabs/badge@0.2.2
-  - @consolelabs/checkbox@0.1.3
-  - @consolelabs/dropdown@0.1.3
-  - @consolelabs/input-field@0.1.4
-  - @consolelabs/list@0.0.13
-  - @consolelabs/login-widget@0.1.4
-  - @consolelabs/modal@0.2.2
-  - @consolelabs/popover@0.2.1
-  - @consolelabs/profile-badge@0.1.1
-  - @consolelabs/section-list@0.0.12
-  - @consolelabs/select@0.1.2
-  - @consolelabs/sidebar@0.0.16
-  - @consolelabs/switch@0.0.11
-  - @consolelabs/table@0.1.8
-  - @consolelabs/toggle-button@0.1.0
+  - @mochi-ui/label@0.1.0
+  - @mochi-ui/theme@0.5.0
+  - @mochi-ui/logo@0.1.0
+  - @mochi-ui/tooltip@0.2.0
+  - @mochi-ui/typography@0.0.6
+  - @mochi-ui/input@0.2.0
+  - @mochi-ui/form@0.1.0
+  - @mochi-ui/button@0.3.0
+  - @mochi-ui/icon-button@0.4.0
+  - @mochi-ui/page-content@0.1.0
+  - @mochi-ui/page-header@0.2.0
+  - @mochi-ui/layout@0.1.0
+  - @mochi-ui/accordion@0.1.3
+  - @mochi-ui/alert@0.1.3
+  - @mochi-ui/avatar@0.0.13
+  - @mochi-ui/badge@0.2.2
+  - @mochi-ui/checkbox@0.1.3
+  - @mochi-ui/dropdown@0.1.3
+  - @mochi-ui/input-field@0.1.4
+  - @mochi-ui/list@0.0.13
+  - @mochi-ui/login-widget@0.1.4
+  - @mochi-ui/modal@0.2.2
+  - @mochi-ui/popover@0.2.1
+  - @mochi-ui/profile-badge@0.1.1
+  - @mochi-ui/section-list@0.0.12
+  - @mochi-ui/select@0.1.2
+  - @mochi-ui/sidebar@0.0.16
+  - @mochi-ui/switch@0.0.11
+  - @mochi-ui/table@0.1.8
+  - @mochi-ui/toggle-button@0.1.0
 
 ## 0.3.1
 
@@ -146,25 +146,25 @@
 
 - Updated dependencies
   [[`538fac5`](https://github.com/consolelabs/web-foundation/commit/538fac5b23861bfd01d02413746b80b89d8c50fd)]:
-  - @consolelabs/icons@0.2.1
-  - @consolelabs/accordion@0.1.2
-  - @consolelabs/alert@0.1.2
-  - @consolelabs/badge@0.2.1
-  - @consolelabs/button@0.2.1
-  - @consolelabs/checkbox@0.1.2
-  - @consolelabs/dropdown@0.1.2
-  - @consolelabs/icon-button@0.3.1
-  - @consolelabs/input@0.1.2
-  - @consolelabs/input-field@0.1.3
-  - @consolelabs/login-widget@0.1.3
-  - @consolelabs/modal@0.2.1
-  - @consolelabs/page-header@0.1.1
-  - @consolelabs/popover@0.2.0
-  - @consolelabs/select@0.1.1
-  - @consolelabs/sidebar@0.0.15
-  - @consolelabs/table@0.1.7
-  - @consolelabs/toggle-button@0.1.0
-  - @consolelabs/typography@0.0.5
+  - @mochi-ui/icons@0.2.1
+  - @mochi-ui/accordion@0.1.2
+  - @mochi-ui/alert@0.1.2
+  - @mochi-ui/badge@0.2.1
+  - @mochi-ui/button@0.2.1
+  - @mochi-ui/checkbox@0.1.2
+  - @mochi-ui/dropdown@0.1.2
+  - @mochi-ui/icon-button@0.3.1
+  - @mochi-ui/input@0.1.2
+  - @mochi-ui/input-field@0.1.3
+  - @mochi-ui/login-widget@0.1.3
+  - @mochi-ui/modal@0.2.1
+  - @mochi-ui/page-header@0.1.1
+  - @mochi-ui/popover@0.2.0
+  - @mochi-ui/select@0.1.1
+  - @mochi-ui/sidebar@0.0.15
+  - @mochi-ui/table@0.1.7
+  - @mochi-ui/toggle-button@0.1.0
+  - @mochi-ui/typography@0.0.5
 
 ## 0.3.0
 
@@ -242,32 +242,32 @@
   [`4157504`](https://github.com/consolelabs/web-foundation/commit/4157504d0c15310c559bbba45a2d2f4d0246fdde),
   [`d849e4e`](https://github.com/consolelabs/web-foundation/commit/d849e4edc83bddeb990b34d1675674b06c4c16bb),
   [`74087fd`](https://github.com/consolelabs/web-foundation/commit/74087fd9f316956e25453e6a2df0595fdf715025)]:
-  - @consolelabs/tooltip@0.1.0
-  - @consolelabs/theme@0.4.0
-  - @consolelabs/page-header@0.1.0
-  - @consolelabs/icons@0.2.0
-  - @consolelabs/sidebar@0.0.14
-  - @consolelabs/select@0.1.0
-  - @consolelabs/icon-button@0.3.0
-  - @consolelabs/button@0.2.0
-  - @consolelabs/profile-badge@0.1.0
-  - @consolelabs/popover@0.2.0
-  - @consolelabs/modal@0.2.0
-  - @consolelabs/login-widget@0.1.2
-  - @consolelabs/typography@0.0.5
-  - @consolelabs/toggle-button@0.1.0
-  - @consolelabs/accordion@0.1.1
-  - @consolelabs/alert@0.1.1
-  - @consolelabs/avatar@0.0.12
-  - @consolelabs/badge@0.2.1
-  - @consolelabs/checkbox@0.1.1
-  - @consolelabs/dropdown@0.1.1
-  - @consolelabs/input@0.1.2
-  - @consolelabs/input-field@0.1.3
-  - @consolelabs/list@0.0.12
-  - @consolelabs/section-list@0.0.11
-  - @consolelabs/switch@0.0.10
-  - @consolelabs/table@0.1.7
+  - @mochi-ui/tooltip@0.1.0
+  - @mochi-ui/theme@0.4.0
+  - @mochi-ui/page-header@0.1.0
+  - @mochi-ui/icons@0.2.0
+  - @mochi-ui/sidebar@0.0.14
+  - @mochi-ui/select@0.1.0
+  - @mochi-ui/icon-button@0.3.0
+  - @mochi-ui/button@0.2.0
+  - @mochi-ui/profile-badge@0.1.0
+  - @mochi-ui/popover@0.2.0
+  - @mochi-ui/modal@0.2.0
+  - @mochi-ui/login-widget@0.1.2
+  - @mochi-ui/typography@0.0.5
+  - @mochi-ui/toggle-button@0.1.0
+  - @mochi-ui/accordion@0.1.1
+  - @mochi-ui/alert@0.1.1
+  - @mochi-ui/avatar@0.0.12
+  - @mochi-ui/badge@0.2.1
+  - @mochi-ui/checkbox@0.1.1
+  - @mochi-ui/dropdown@0.1.1
+  - @mochi-ui/input@0.1.2
+  - @mochi-ui/input-field@0.1.3
+  - @mochi-ui/list@0.0.12
+  - @mochi-ui/section-list@0.0.11
+  - @mochi-ui/switch@0.0.10
+  - @mochi-ui/table@0.1.7
 
 ## 0.2.0
 
@@ -324,29 +324,29 @@
   [`55f990e`](https://github.com/consolelabs/web-foundation/commit/55f990e50c3a355f00729d2e9f568b1578e1c503),
   [`ff7f47b`](https://github.com/consolelabs/web-foundation/commit/ff7f47b4ff224bd17fea51455303aff56495ca10),
   [`f0e6e55`](https://github.com/consolelabs/web-foundation/commit/f0e6e55c7e2a0837b8d0885683f2aeb8d423f9c3)]:
-  - @consolelabs/accordion@0.1.0
-  - @consolelabs/badge@0.2.0
-  - @consolelabs/theme@0.3.0
-  - @consolelabs/alert@0.1.0
-  - @consolelabs/dropdown@0.1.0
-  - @consolelabs/switch@0.0.9
-  - @consolelabs/checkbox@0.1.0
-  - @consolelabs/sidebar@0.0.13
-  - @consolelabs/avatar@0.0.11
-  - @consolelabs/button@0.1.2
-  - @consolelabs/icon-button@0.2.2
-  - @consolelabs/input@0.1.1
-  - @consolelabs/input-field@0.1.2
-  - @consolelabs/list@0.0.11
-  - @consolelabs/login-widget@0.1.1
-  - @consolelabs/modal@0.1.6
-  - @consolelabs/popover@0.1.3
-  - @consolelabs/profile-badge@0.0.11
-  - @consolelabs/section-list@0.0.10
-  - @consolelabs/select@0.0.8
-  - @consolelabs/toggle-button@0.0.8
-  - @consolelabs/tooltip@0.0.10
-  - @consolelabs/typography@0.0.4
+  - @mochi-ui/accordion@0.1.0
+  - @mochi-ui/badge@0.2.0
+  - @mochi-ui/theme@0.3.0
+  - @mochi-ui/alert@0.1.0
+  - @mochi-ui/dropdown@0.1.0
+  - @mochi-ui/switch@0.0.9
+  - @mochi-ui/checkbox@0.1.0
+  - @mochi-ui/sidebar@0.0.13
+  - @mochi-ui/avatar@0.0.11
+  - @mochi-ui/button@0.1.2
+  - @mochi-ui/icon-button@0.2.2
+  - @mochi-ui/input@0.1.1
+  - @mochi-ui/input-field@0.1.2
+  - @mochi-ui/list@0.0.11
+  - @mochi-ui/login-widget@0.1.1
+  - @mochi-ui/modal@0.1.6
+  - @mochi-ui/popover@0.1.3
+  - @mochi-ui/profile-badge@0.0.11
+  - @mochi-ui/section-list@0.0.10
+  - @mochi-ui/select@0.0.8
+  - @mochi-ui/toggle-button@0.0.8
+  - @mochi-ui/tooltip@0.0.10
+  - @mochi-ui/typography@0.0.4
 
 ## 0.1.1
 
@@ -377,29 +377,29 @@
   [`3c299e2`](https://github.com/consolelabs/web-foundation/commit/3c299e2fb3860692fda39a52ee6677fd31c74bba),
   [`c5b5ca6`](https://github.com/consolelabs/web-foundation/commit/c5b5ca64f08c6a962314481f4d5049bd03ac6926),
   [`c7ff58e`](https://github.com/consolelabs/web-foundation/commit/c7ff58e1acf9073175c6ff82e47600c954036c67)]:
-  - @consolelabs/theme@0.2.0
-  - @consolelabs/input@0.1.0
-  - @consolelabs/login-widget@0.1.0
-  - @consolelabs/icons@0.1.0
-  - @consolelabs/section-list@0.0.9
-  - @consolelabs/sidebar@0.0.12
-  - @consolelabs/profile-badge@0.0.10
-  - @consolelabs/accordion@0.0.11
-  - @consolelabs/alert@0.0.11
-  - @consolelabs/avatar@0.0.10
-  - @consolelabs/badge@0.1.4
-  - @consolelabs/button@0.1.1
-  - @consolelabs/checkbox@0.0.9
-  - @consolelabs/dropdown@0.0.11
-  - @consolelabs/icon-button@0.2.1
-  - @consolelabs/input-field@0.1.1
-  - @consolelabs/list@0.0.10
-  - @consolelabs/modal@0.1.5
-  - @consolelabs/popover@0.1.2
-  - @consolelabs/select@0.0.7
-  - @consolelabs/switch@0.0.8
-  - @consolelabs/toggle-button@0.0.8
-  - @consolelabs/tooltip@0.0.9
+  - @mochi-ui/theme@0.2.0
+  - @mochi-ui/input@0.1.0
+  - @mochi-ui/login-widget@0.1.0
+  - @mochi-ui/icons@0.1.0
+  - @mochi-ui/section-list@0.0.9
+  - @mochi-ui/sidebar@0.0.12
+  - @mochi-ui/profile-badge@0.0.10
+  - @mochi-ui/accordion@0.0.11
+  - @mochi-ui/alert@0.0.11
+  - @mochi-ui/avatar@0.0.10
+  - @mochi-ui/badge@0.1.4
+  - @mochi-ui/button@0.1.1
+  - @mochi-ui/checkbox@0.0.9
+  - @mochi-ui/dropdown@0.0.11
+  - @mochi-ui/icon-button@0.2.1
+  - @mochi-ui/input-field@0.1.1
+  - @mochi-ui/list@0.0.10
+  - @mochi-ui/modal@0.1.5
+  - @mochi-ui/popover@0.1.2
+  - @mochi-ui/select@0.0.7
+  - @mochi-ui/switch@0.0.8
+  - @mochi-ui/toggle-button@0.0.8
+  - @mochi-ui/tooltip@0.0.9
 
 ## 0.1.0
 
@@ -433,28 +433,28 @@
   [`5314339`](https://github.com/consolelabs/web-foundation/commit/5314339ec855e26a48691158b134119d897dde50),
   [`1f7c4dc`](https://github.com/consolelabs/web-foundation/commit/1f7c4dc18cffeeef41cf8fb72d58ffae962cdec6),
   [`4ee58c7`](https://github.com/consolelabs/web-foundation/commit/4ee58c78e145eb7ee8c678290f0e4f4e5a5d4a01)]:
-  - @consolelabs/profile-badge@0.0.9
-  - @consolelabs/button@0.1.0
-  - @consolelabs/theme@0.1.0
-  - @consolelabs/input-field@0.1.0
-  - @consolelabs/icon-button@0.2.0
-  - @consolelabs/popover@0.1.1
-  - @consolelabs/accordion@0.0.10
-  - @consolelabs/alert@0.0.10
-  - @consolelabs/avatar@0.0.9
-  - @consolelabs/badge@0.1.3
-  - @consolelabs/checkbox@0.0.8
-  - @consolelabs/dropdown@0.0.10
-  - @consolelabs/input@0.0.6
-  - @consolelabs/list@0.0.9
-  - @consolelabs/login-widget@0.0.10
-  - @consolelabs/modal@0.1.4
-  - @consolelabs/section-list@0.0.8
-  - @consolelabs/select@0.0.6
-  - @consolelabs/sidebar@0.0.11
-  - @consolelabs/switch@0.0.7
-  - @consolelabs/toggle-button@0.0.8
-  - @consolelabs/tooltip@0.0.8
+  - @mochi-ui/profile-badge@0.0.9
+  - @mochi-ui/button@0.1.0
+  - @mochi-ui/theme@0.1.0
+  - @mochi-ui/input-field@0.1.0
+  - @mochi-ui/icon-button@0.2.0
+  - @mochi-ui/popover@0.1.1
+  - @mochi-ui/accordion@0.0.10
+  - @mochi-ui/alert@0.0.10
+  - @mochi-ui/avatar@0.0.9
+  - @mochi-ui/badge@0.1.3
+  - @mochi-ui/checkbox@0.0.8
+  - @mochi-ui/dropdown@0.0.10
+  - @mochi-ui/input@0.0.6
+  - @mochi-ui/list@0.0.9
+  - @mochi-ui/login-widget@0.0.10
+  - @mochi-ui/modal@0.1.4
+  - @mochi-ui/section-list@0.0.8
+  - @mochi-ui/select@0.0.6
+  - @mochi-ui/sidebar@0.0.11
+  - @mochi-ui/switch@0.0.7
+  - @mochi-ui/toggle-button@0.0.8
+  - @mochi-ui/tooltip@0.0.8
 
 ## 0.0.13
 
@@ -473,13 +473,13 @@
 - Updated dependencies
   [[`ae28441`](https://github.com/consolelabs/web-foundation/commit/ae28441d9e6673ea76971bbb5da5ea9354f7d444),
   [`eed0ae9`](https://github.com/consolelabs/web-foundation/commit/eed0ae93d658252973a9c98213f328a0528f0889)]:
-  - @consolelabs/toggle-button@0.0.8
-  - @consolelabs/heading@0.0.5
-  - @consolelabs/sidebar@0.0.10
-  - @consolelabs/popover@0.1.0
-  - @consolelabs/list@0.0.8
-  - @consolelabs/login-widget@0.0.9
-  - @consolelabs/section-list@0.0.7
+  - @mochi-ui/toggle-button@0.0.8
+  - @mochi-ui/heading@0.0.5
+  - @mochi-ui/sidebar@0.0.10
+  - @mochi-ui/popover@0.1.0
+  - @mochi-ui/list@0.0.8
+  - @mochi-ui/login-widget@0.0.9
+  - @mochi-ui/section-list@0.0.7
 
 ## 0.0.12
 
@@ -487,27 +487,27 @@
 
 - Updated dependencies
   [[`81a751a`](https://github.com/consolelabs/web-foundation/commit/81a751a81bc836cee24a6a0fb5cda09e00d74e49)]:
-  - @consolelabs/theme@0.0.6
-  - @consolelabs/accordion@0.0.9
-  - @consolelabs/alert@0.0.9
-  - @consolelabs/avatar@0.0.8
-  - @consolelabs/badge@0.1.2
-  - @consolelabs/button@0.0.12
-  - @consolelabs/checkbox@0.0.7
-  - @consolelabs/dropdown@0.0.9
-  - @consolelabs/icon-button@0.1.3
-  - @consolelabs/input@0.0.5
-  - @consolelabs/input-field@0.0.7
-  - @consolelabs/list@0.0.7
-  - @consolelabs/login-widget@0.0.8
-  - @consolelabs/modal@0.1.3
-  - @consolelabs/popover@0.0.8
-  - @consolelabs/profile-badge@0.0.8
-  - @consolelabs/section-list@0.0.7
-  - @consolelabs/sidebar@0.0.9
-  - @consolelabs/switch@0.0.6
-  - @consolelabs/toggle-button@0.0.7
-  - @consolelabs/tooltip@0.0.7
+  - @mochi-ui/theme@0.0.6
+  - @mochi-ui/accordion@0.0.9
+  - @mochi-ui/alert@0.0.9
+  - @mochi-ui/avatar@0.0.8
+  - @mochi-ui/badge@0.1.2
+  - @mochi-ui/button@0.0.12
+  - @mochi-ui/checkbox@0.0.7
+  - @mochi-ui/dropdown@0.0.9
+  - @mochi-ui/icon-button@0.1.3
+  - @mochi-ui/input@0.0.5
+  - @mochi-ui/input-field@0.0.7
+  - @mochi-ui/list@0.0.7
+  - @mochi-ui/login-widget@0.0.8
+  - @mochi-ui/modal@0.1.3
+  - @mochi-ui/popover@0.0.8
+  - @mochi-ui/profile-badge@0.0.8
+  - @mochi-ui/section-list@0.0.7
+  - @mochi-ui/sidebar@0.0.9
+  - @mochi-ui/switch@0.0.6
+  - @mochi-ui/toggle-button@0.0.7
+  - @mochi-ui/tooltip@0.0.7
 
 ## 0.0.11
 
@@ -519,8 +519,8 @@
 
 - Updated dependencies
   [[`74ed3cc`](https://github.com/consolelabs/websites/commit/74ed3cc21f683e63cdcb21615a3511f2e6c92a2c)]:
-  - @consolelabs/button@0.0.11
-  - @consolelabs/popover@0.0.7
+  - @mochi-ui/button@0.0.11
+  - @mochi-ui/popover@0.0.7
 
 ## 0.0.10
 
@@ -543,28 +543,28 @@
   [`8457341`](https://github.com/consolelabs/websites/commit/8457341631ae28bb9f9d226e3b9c287d81cc9685),
   [`12abe24`](https://github.com/consolelabs/websites/commit/12abe24297aa49f72cffc98fa6d9adfd33b77e9a),
   [`696a6f7`](https://github.com/consolelabs/websites/commit/696a6f73c9aaa59f0dbeb737d05f2789125a5b4b)]:
-  - @consolelabs/login-widget@0.0.7
-  - @consolelabs/theme@0.0.5
-  - @consolelabs/profile-badge@0.0.7
-  - @consolelabs/toggle-button@0.0.7
-  - @consolelabs/section-list@0.0.6
-  - @consolelabs/icon-button@0.1.2
-  - @consolelabs/input-field@0.0.6
-  - @consolelabs/accordion@0.0.8
-  - @consolelabs/checkbox@0.0.6
-  - @consolelabs/dropdown@0.0.8
-  - @consolelabs/heading@0.0.4
-  - @consolelabs/popover@0.0.7
-  - @consolelabs/sidebar@0.0.8
-  - @consolelabs/tooltip@0.0.6
-  - @consolelabs/avatar@0.0.7
-  - @consolelabs/button@0.0.10
-  - @consolelabs/switch@0.0.5
-  - @consolelabs/alert@0.0.8
-  - @consolelabs/badge@0.1.1
-  - @consolelabs/input@0.0.4
-  - @consolelabs/list@0.0.6
-  - @consolelabs/icons@0.0.4
+  - @mochi-ui/login-widget@0.0.7
+  - @mochi-ui/theme@0.0.5
+  - @mochi-ui/profile-badge@0.0.7
+  - @mochi-ui/toggle-button@0.0.7
+  - @mochi-ui/section-list@0.0.6
+  - @mochi-ui/icon-button@0.1.2
+  - @mochi-ui/input-field@0.0.6
+  - @mochi-ui/accordion@0.0.8
+  - @mochi-ui/checkbox@0.0.6
+  - @mochi-ui/dropdown@0.0.8
+  - @mochi-ui/heading@0.0.4
+  - @mochi-ui/popover@0.0.7
+  - @mochi-ui/sidebar@0.0.8
+  - @mochi-ui/tooltip@0.0.6
+  - @mochi-ui/avatar@0.0.7
+  - @mochi-ui/button@0.0.10
+  - @mochi-ui/switch@0.0.5
+  - @mochi-ui/alert@0.0.8
+  - @mochi-ui/badge@0.1.1
+  - @mochi-ui/input@0.0.4
+  - @mochi-ui/list@0.0.6
+  - @mochi-ui/icons@0.0.4
 
 ## 0.0.9
 
@@ -573,25 +573,25 @@
 - Updated dependencies
   [[`53ba02b`](https://github.com/consolelabs/websites/commit/53ba02b62105fb117a8916ac74ad3b65a8763038),
   [`df2f8aa`](https://github.com/consolelabs/websites/commit/df2f8aa51190efebef08f508c2f73a62b624ba06)]:
-  - @consolelabs/profile-badge@0.0.6
-  - @consolelabs/toggle-button@0.0.6
-  - @consolelabs/login-widget@0.0.6
-  - @consolelabs/section-list@0.0.5
-  - @consolelabs/input-field@0.0.5
-  - @consolelabs/mochi-store@0.0.2
-  - @consolelabs/accordion@0.0.7
-  - @consolelabs/checkbox@0.0.5
-  - @consolelabs/dropdown@0.0.7
-  - @consolelabs/heading@0.0.3
-  - @consolelabs/popover@0.0.6
-  - @consolelabs/sidebar@0.0.7
-  - @consolelabs/tooltip@0.0.5
-  - @consolelabs/avatar@0.0.6
-  - @consolelabs/button@0.0.9
-  - @consolelabs/alert@0.0.7
-  - @consolelabs/badge@0.1.0
-  - @consolelabs/input@0.0.3
-  - @consolelabs/list@0.0.5
+  - @mochi-ui/profile-badge@0.0.6
+  - @mochi-ui/toggle-button@0.0.6
+  - @mochi-ui/login-widget@0.0.6
+  - @mochi-ui/section-list@0.0.5
+  - @mochi-ui/input-field@0.0.5
+  - @mochi-ui/mochi-store@0.0.2
+  - @mochi-ui/accordion@0.0.7
+  - @mochi-ui/checkbox@0.0.5
+  - @mochi-ui/dropdown@0.0.7
+  - @mochi-ui/heading@0.0.3
+  - @mochi-ui/popover@0.0.6
+  - @mochi-ui/sidebar@0.0.7
+  - @mochi-ui/tooltip@0.0.5
+  - @mochi-ui/avatar@0.0.6
+  - @mochi-ui/button@0.0.9
+  - @mochi-ui/alert@0.0.7
+  - @mochi-ui/badge@0.1.0
+  - @mochi-ui/input@0.0.3
+  - @mochi-ui/list@0.0.5
 
 ## 0.0.8
 
@@ -599,8 +599,8 @@
 
 - Updated dependencies
   [[`d1b2ade`](https://github.com/consolelabs/websites/commit/d1b2ade819a9c45e22241f94535c0bd2f0b08a27)]:
-  - @consolelabs/toggle-button@0.0.5
-  - @consolelabs/switch@0.0.4
+  - @mochi-ui/toggle-button@0.0.5
+  - @mochi-ui/switch@0.0.4
 
 ## 0.0.7
 
@@ -614,26 +614,26 @@
 - Updated dependencies
   [[`b46a8eb`](https://github.com/consolelabs/websites/commit/b46a8eb5699a24f674d3d6179dc4b9df672623bb),
   [`1af15c8`](https://github.com/consolelabs/websites/commit/1af15c838aeeb0f4132722f4ca3ad3f38e6eb749)]:
-  - @consolelabs/profile-badge@0.0.5
-  - @consolelabs/toggle-button@0.0.4
-  - @consolelabs/section-list@0.0.4
-  - @consolelabs/input-field@0.0.4
-  - @consolelabs/accordion@0.0.6
-  - @consolelabs/checkbox@0.0.4
-  - @consolelabs/popover@0.0.5
-  - @consolelabs/sidebar@0.0.6
-  - @consolelabs/tooltip@0.0.4
-  - @consolelabs/avatar@0.0.5
-  - @consolelabs/button@0.0.8
-  - @consolelabs/switch@0.0.3
-  - @consolelabs/alert@0.0.6
-  - @consolelabs/input@0.0.2
-  - @consolelabs/list@0.0.4
-  - @consolelabs/theme@0.0.4
-  - @consolelabs/dropdown@0.0.6
-  - @consolelabs/heading@0.0.2
-  - @consolelabs/badge@0.0.6
-  - @consolelabs/login-widget@0.0.5
+  - @mochi-ui/profile-badge@0.0.5
+  - @mochi-ui/toggle-button@0.0.4
+  - @mochi-ui/section-list@0.0.4
+  - @mochi-ui/input-field@0.0.4
+  - @mochi-ui/accordion@0.0.6
+  - @mochi-ui/checkbox@0.0.4
+  - @mochi-ui/popover@0.0.5
+  - @mochi-ui/sidebar@0.0.6
+  - @mochi-ui/tooltip@0.0.4
+  - @mochi-ui/avatar@0.0.5
+  - @mochi-ui/button@0.0.8
+  - @mochi-ui/switch@0.0.3
+  - @mochi-ui/alert@0.0.6
+  - @mochi-ui/input@0.0.2
+  - @mochi-ui/list@0.0.4
+  - @mochi-ui/theme@0.0.4
+  - @mochi-ui/dropdown@0.0.6
+  - @mochi-ui/heading@0.0.2
+  - @mochi-ui/badge@0.0.6
+  - @mochi-ui/login-widget@0.0.5
 
 ## 0.0.6
 
@@ -645,19 +645,19 @@
 
 - Updated dependencies
   [[`1242eb9`](https://github.com/consolelabs/websites/commit/1242eb9215f4753ca6ca0edb8f424212f0508b2b)]:
-  - @consolelabs/checkbox@0.0.3
-  - @consolelabs/icons@0.0.3
-  - @consolelabs/accordion@0.0.5
-  - @consolelabs/alert@0.0.5
-  - @consolelabs/badge@0.0.5
-  - @consolelabs/button@0.0.7
-  - @consolelabs/dropdown@0.0.5
-  - @consolelabs/input@0.0.1
-  - @consolelabs/input-field@0.0.3
-  - @consolelabs/login-widget@0.0.4
-  - @consolelabs/popover@0.0.4
-  - @consolelabs/sidebar@0.0.5
-  - @consolelabs/toggle-button@0.0.3
+  - @mochi-ui/checkbox@0.0.3
+  - @mochi-ui/icons@0.0.3
+  - @mochi-ui/accordion@0.0.5
+  - @mochi-ui/alert@0.0.5
+  - @mochi-ui/badge@0.0.5
+  - @mochi-ui/button@0.0.7
+  - @mochi-ui/dropdown@0.0.5
+  - @mochi-ui/input@0.0.1
+  - @mochi-ui/input-field@0.0.3
+  - @mochi-ui/login-widget@0.0.4
+  - @mochi-ui/popover@0.0.4
+  - @mochi-ui/sidebar@0.0.5
+  - @mochi-ui/toggle-button@0.0.3
 
 ## 0.0.5
 
@@ -669,25 +669,25 @@
 
 - Updated dependencies
   [[`387a1d5`](https://github.com/consolelabs/websites/commit/387a1d538f34af652c3fd345f510ed0e142c581d)]:
-  - @consolelabs/checkbox@0.0.2
-  - @consolelabs/theme@0.0.3
-  - @consolelabs/accordion@0.0.4
-  - @consolelabs/alert@0.0.4
-  - @consolelabs/avatar@0.0.4
-  - @consolelabs/badge@0.0.4
-  - @consolelabs/button@0.0.6
-  - @consolelabs/dropdown@0.0.4
-  - @consolelabs/input@0.0.1
-  - @consolelabs/input-field@0.0.3
-  - @consolelabs/list@0.0.3
-  - @consolelabs/login-widget@0.0.3
-  - @consolelabs/popover@0.0.3
-  - @consolelabs/profile-badge@0.0.4
-  - @consolelabs/section-list@0.0.3
-  - @consolelabs/sidebar@0.0.4
-  - @consolelabs/switch@0.0.2
-  - @consolelabs/toggle-button@0.0.3
-  - @consolelabs/tooltip@0.0.3
+  - @mochi-ui/checkbox@0.0.2
+  - @mochi-ui/theme@0.0.3
+  - @mochi-ui/accordion@0.0.4
+  - @mochi-ui/alert@0.0.4
+  - @mochi-ui/avatar@0.0.4
+  - @mochi-ui/badge@0.0.4
+  - @mochi-ui/button@0.0.6
+  - @mochi-ui/dropdown@0.0.4
+  - @mochi-ui/input@0.0.1
+  - @mochi-ui/input-field@0.0.3
+  - @mochi-ui/list@0.0.3
+  - @mochi-ui/login-widget@0.0.3
+  - @mochi-ui/popover@0.0.3
+  - @mochi-ui/profile-badge@0.0.4
+  - @mochi-ui/section-list@0.0.3
+  - @mochi-ui/sidebar@0.0.4
+  - @mochi-ui/switch@0.0.2
+  - @mochi-ui/toggle-button@0.0.3
+  - @mochi-ui/tooltip@0.0.3
 
 ## 0.0.4
 
@@ -699,12 +699,12 @@
 
 - Updated dependencies
   [[`44e1596`](https://github.com/consolelabs/websites/commit/44e1596633b4d5532fe922eab5204ea8869607ff)]:
-  - @consolelabs/toggle-button@0.0.3
-  - @consolelabs/section-list@0.0.2
-  - @consolelabs/input-field@0.0.3
-  - @consolelabs/tooltip@0.0.2
-  - @consolelabs/button@0.0.5
-  - @consolelabs/sidebar@0.0.3
+  - @mochi-ui/toggle-button@0.0.3
+  - @mochi-ui/section-list@0.0.2
+  - @mochi-ui/input-field@0.0.3
+  - @mochi-ui/tooltip@0.0.2
+  - @mochi-ui/button@0.0.5
+  - @mochi-ui/sidebar@0.0.3
 
 ## 0.0.3
 
@@ -713,17 +713,17 @@
 - Updated dependencies
   [[`6ef97ce`](https://github.com/consolelabs/websites/commit/6ef97ce78f3f79512c8351ad957a10ae7c93871f),
   [`deb4075`](https://github.com/consolelabs/websites/commit/deb40753724f5da7f24d2203e5206cac6f08e8b0)]:
-  - @consolelabs/theme@0.0.2
-  - @consolelabs/dropdown@0.0.3
-  - @consolelabs/alert@0.0.3
-  - @consolelabs/badge@0.0.3
-  - @consolelabs/list@0.0.2
-  - @consolelabs/accordion@0.0.3
-  - @consolelabs/avatar@0.0.3
-  - @consolelabs/input@0.0.1
-  - @consolelabs/sidebar@0.0.2
-  - @consolelabs/popover@0.0.2
-  - @consolelabs/profile-badge@0.0.3
+  - @mochi-ui/theme@0.0.2
+  - @mochi-ui/dropdown@0.0.3
+  - @mochi-ui/alert@0.0.3
+  - @mochi-ui/badge@0.0.3
+  - @mochi-ui/list@0.0.2
+  - @mochi-ui/accordion@0.0.3
+  - @mochi-ui/avatar@0.0.3
+  - @mochi-ui/input@0.0.1
+  - @mochi-ui/sidebar@0.0.2
+  - @mochi-ui/popover@0.0.2
+  - @mochi-ui/profile-badge@0.0.3
 
 ## 0.0.2
 
@@ -731,14 +731,14 @@
 
 - Updated dependencies
   [[`77d5ff2`](https://github.com/consolelabs/websites/commit/77d5ff23c587c7667a2a3efdca7f627ef5422211)]:
-  - @consolelabs/icons@0.0.2
-  - @consolelabs/accordion@0.0.2
-  - @consolelabs/alert@0.0.2
-  - @consolelabs/avatar@0.0.2
-  - @consolelabs/badge@0.0.2
-  - @consolelabs/dropdown@0.0.2
-  - @consolelabs/input@0.0.1
-  - @consolelabs/login-widget@0.0.2
-  - @consolelabs/popover@0.0.2
-  - @consolelabs/sidebar@0.0.2
-  - @consolelabs/profile-badge@0.0.2
+  - @mochi-ui/icons@0.0.2
+  - @mochi-ui/accordion@0.0.2
+  - @mochi-ui/alert@0.0.2
+  - @mochi-ui/avatar@0.0.2
+  - @mochi-ui/badge@0.0.2
+  - @mochi-ui/dropdown@0.0.2
+  - @mochi-ui/input@0.0.1
+  - @mochi-ui/login-widget@0.0.2
+  - @mochi-ui/popover@0.0.2
+  - @mochi-ui/sidebar@0.0.2
+  - @mochi-ui/profile-badge@0.0.2

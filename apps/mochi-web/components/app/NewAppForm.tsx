@@ -1,4 +1,4 @@
-import { Button, TextFieldInput, Typography } from '@consolelabs/core'
+import { Button, TextFieldInput, Typography } from '@mochi-ui/core'
 import {
   DtoCreateApplicationRequest,
   ViewFullApplicationResponse,

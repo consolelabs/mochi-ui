@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { SOCIAL_LINKS } from '~constants'
 import { Icon } from '@iconify/react'
 import Link from 'next/link'
-import { Logo } from '@consolelabs/core'
+import { Logo } from '@mochi-ui/core'
 
 export const Footer = () => {
   const year = new Date().getFullYear()

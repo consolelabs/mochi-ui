@@ -1,4 +1,4 @@
-# @consolelabs/page-content
+# @mochi-ui/page-content
 
 Page Content component is designed to be utilized alongside the `Layout`
 component, ensuring a coherent and organized user interface
@@ -9,13 +9,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/page-content
+pnpm i @mochi-ui/page-content
 
 # Using NPM
-npm i @consolelabs/page-content
+npm i @mochi-ui/page-content
 
 # Using Yarn
-yarn add @consolelabs/page-content
+yarn add @mochi-ui/page-content
 ```
 
 ## Contribution
