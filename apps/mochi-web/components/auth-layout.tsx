@@ -199,7 +199,7 @@ export default function AuthenticatedLayout({
   const { variant } = useSidebarContext()
 
   if (!mounted) {
-    return <>{childSEO}</>
+    return childSEO as JSX.Element
   }
 
   const sideBarItems = {
