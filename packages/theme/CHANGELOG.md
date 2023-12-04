@@ -1,5 +1,19 @@
 # @mochi-ui/theme
 
+## 0.7.0
+
+### Minor Changes
+
+- [#350](https://github.com/consolelabs/web-foundation/pull/350)
+  [`255984f`](https://github.com/consolelabs/web-foundation/commit/255984f2d18b9cb17a249fa288d718efad0a0c1b)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Update Alert
+  props
+
+- [#353](https://github.com/consolelabs/web-foundation/pull/353)
+  [`ba288eb`](https://github.com/consolelabs/web-foundation/commit/ba288eb5a01a654072c5cef7cb41bb6066f00420)
+  Thanks [@leduyhien152](https://github.com/leduyhien152)! - Add table border
+  and expanded row style
+
 ## 0.6.0
 
 ### Minor Changes

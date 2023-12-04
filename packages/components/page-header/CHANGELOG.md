@@ -1,5 +1,16 @@
 # @mochi-ui/page-header
 
+## 0.2.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`255984f`](https://github.com/consolelabs/web-foundation/commit/255984f2d18b9cb17a249fa288d718efad0a0c1b),
+  [`ba288eb`](https://github.com/consolelabs/web-foundation/commit/ba288eb5a01a654072c5cef7cb41bb6066f00420)]:
+  - @mochi-ui/theme@0.7.0
+  - @mochi-ui/icon-button@0.4.2
+  - @mochi-ui/typography@0.0.6
+
 ## 0.2.1
 
 ### Patch Changes

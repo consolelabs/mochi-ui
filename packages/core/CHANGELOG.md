@@ -1,5 +1,51 @@
 # @mochi-ui/core
 
+## 0.6.0
+
+### Minor Changes
+
+- [#350](https://github.com/consolelabs/web-foundation/pull/350)
+  [`255984f`](https://github.com/consolelabs/web-foundation/commit/255984f2d18b9cb17a249fa288d718efad0a0c1b)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Update Alert
+  props
+
+### Patch Changes
+
+- Updated dependencies
+  [[`255984f`](https://github.com/consolelabs/web-foundation/commit/255984f2d18b9cb17a249fa288d718efad0a0c1b),
+  [`ba288eb`](https://github.com/consolelabs/web-foundation/commit/ba288eb5a01a654072c5cef7cb41bb6066f00420)]:
+  - @mochi-ui/alert@1.1.0
+  - @mochi-ui/theme@0.7.0
+  - @mochi-ui/table@0.3.0
+  - @mochi-ui/accordion@0.1.5
+  - @mochi-ui/avatar@0.0.15
+  - @mochi-ui/badge@0.2.4
+  - @mochi-ui/button@0.4.1
+  - @mochi-ui/checkbox@0.1.5
+  - @mochi-ui/dropdown@0.1.5
+  - @mochi-ui/form@0.1.2
+  - @mochi-ui/icon-button@0.4.2
+  - @mochi-ui/input@0.2.2
+  - @mochi-ui/input-field@0.1.6
+  - @mochi-ui/label@0.1.2
+  - @mochi-ui/layout@0.1.2
+  - @mochi-ui/list@0.0.15
+  - @mochi-ui/login-widget@0.1.6
+  - @mochi-ui/logo@0.1.2
+  - @mochi-ui/modal@0.2.4
+  - @mochi-ui/page-content@0.1.2
+  - @mochi-ui/page-header@0.2.2
+  - @mochi-ui/popover@0.2.3
+  - @mochi-ui/profile-badge@0.1.3
+  - @mochi-ui/section-list@0.0.14
+  - @mochi-ui/select@0.1.4
+  - @mochi-ui/sidebar@0.0.18
+  - @mochi-ui/switch@0.0.13
+  - @mochi-ui/toggle-button@0.1.0
+  - @mochi-ui/tooltip@0.2.2
+  - @mochi-ui/top-bar@0.1.1
+  - @mochi-ui/typography@0.0.6
+
 ## 0.5.0
 
 ### Minor Changes
