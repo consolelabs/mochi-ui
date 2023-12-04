@@ -12,6 +12,7 @@ import Script from 'next/script'
 import { interFont } from '~utils/next-font'
 import { LazyMotion, domAnimation } from 'framer-motion'
 import { useAuthStore } from '../store/auth'
+import { SidebarContextProvider } from '../context/app/sidebar'
 
 const Header = dynamic(() => import('~cpn/Header').then((m) => m.Header))
 const WalletProvider = dynamic(() =>
@@ -78,7 +79,7 @@ function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
   }, [asPath, hideIsLogging, removeToken, replace])
 
   return (
-    <>
+    <SidebarContextProvider initialSidebarStatus="main">
       <style jsx global>{`
         html {
           font-family: ${interFont.style.fontFamily};
@@ -86,7 +87,7 @@ function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
       `}</style>
       <Header />
       {getLayout(<Component {...pageProps} />)}
-    </>
+    </SidebarContextProvider>
   )
 }
 

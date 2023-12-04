@@ -15,6 +15,7 @@ export interface Item {
   type?: 'list' | 'button' | 'link'
   as?: React.ComponentType<any>
   href?: string
+  pattern?: RegExp
   children?: Item[]
   onClick?: MouseEventHandler
   badge?: ReactNode
