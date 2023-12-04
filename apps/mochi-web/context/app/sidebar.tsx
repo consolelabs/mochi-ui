@@ -10,17 +10,17 @@ import {
   useState,
 } from 'react'
 import { shallow } from 'zustand/shallow'
-import { APPLICATION_DETAIL_ROUTE_REGEX } from '../../constants/regex'
+import { ROUTES } from '../../constants/routes'
 import { useFetchApplicationDetail } from '../../hooks/app/useFetchApplicationDetail'
 import { useFetchApplicationList } from '../../hooks/app/useFetchApplicationList'
 import { useProfileStore } from '../../store'
 import { ViewApplication } from '../../types/mochi-pay-schema'
 
-export type SidebarVarient = 'main' | 'app-detail'
+export type SidebarVariant = 'main' | 'app-detail'
 
 type SidebarContextValue = {
-  variant: SidebarVarient
-  setVariant: Dispatch<SetStateAction<SidebarVarient>>
+  variant: SidebarVariant
+  setVariant: Dispatch<SetStateAction<SidebarVariant>>
   selectedApp?: ViewApplication
   isSelectedAppLoading?: boolean
   appList?: ViewApplication[]
@@ -30,13 +30,13 @@ type SidebarContextValue = {
 const SidebarContext = createContext<SidebarContextValue | undefined>(undefined)
 
 function SidebarContextProvider({
-  initialSidebarVariant,
+  initialSidebarVariant = 'main',
   children,
 }: {
-  initialSidebarVariant: SidebarVarient
+  initialSidebarVariant?: SidebarVariant
   children: ReactNode
 }) {
-  const [variant, setVariant] = useState<SidebarVarient>(initialSidebarVariant)
+  const [variant, setVariant] = useState<SidebarVariant>(initialSidebarVariant)
   const [selectedApp, setSelectedApplication] = useState<ViewApplication>()
   const router = useRouter()
 
@@ -56,25 +56,30 @@ function SidebarContextProvider({
   )
 
   useEffect(() => {
-    const currentVariant = variant
-    if (APPLICATION_DETAIL_ROUTE_REGEX.test(router.pathname)) {
+    console.log(router)
+    if (
+      [
+        ROUTES.APPLICATION_DETAIL.pathname,
+        ROUTES.APPLICATION_DETAIL_REVENUE.pathname,
+      ].includes(router.pathname)
+    ) {
       setVariant('app-detail')
+    } else {
+      setVariant('main')
     }
-
-    return () => {
-      setVariant(currentVariant)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.pathname])
 
   useEffect(() => {
-    if (APPLICATION_DETAIL_ROUTE_REGEX.test(router.pathname)) {
+    if (
+      [
+        ROUTES.APPLICATION_DETAIL.pathname,
+        ROUTES.APPLICATION_DETAIL_REVENUE.pathname,
+      ].includes(router.pathname)
+    ) {
       if (!isSelectedAppLoading && data) {
         setSelectedApplication(data)
       }
-    }
-
-    return () => {
+    } else {
       setSelectedApplication(undefined)
     }
   }, [router.pathname, router?.query?.id, isSelectedAppLoading, data])

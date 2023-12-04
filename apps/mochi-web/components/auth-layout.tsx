@@ -18,7 +18,7 @@ import {
   ThreeDotLoading,
   Spinner,
   CheckLine,
-} from '@consolelabs/icons'
+} from '@mochi-ui/icons'
 import {
   Sidebar,
   Badge,
@@ -29,9 +29,10 @@ import {
   Avatar,
   Typography,
   Button,
-} from '@consolelabs/core'
-import { Layout } from '@consolelabs/layout'
-import { PageContent } from '@consolelabs/page-content'
+  Item,
+} from '@mochi-ui/core'
+import { Layout } from '@mochi-ui/layout'
+import { PageContent } from '@mochi-ui/page-content'
 import { DISCORD_LINK, TWITTER_LINK } from '~envs'
 import { useRouter } from 'next/router'
 import { ROUTES } from '~constants/routes'
@@ -40,8 +41,8 @@ import { useState } from 'react'
 import { AuthPanel } from './AuthWidget'
 import { NativeImage } from './NativeImage'
 import { useSidebarContext } from '../context/app/sidebar'
-import { APPLICATION_DETAIL_ROUTE_REGEX } from '../constants/regex'
 import { ViewApplication } from '../types/mochi-pay-schema'
+import { matchUrl } from '../utils/url'
 
 const MainSidebarHeader = ({ expanded }: { expanded?: boolean }) => {
   return expanded ? (
@@ -69,7 +70,11 @@ const AppDropdownOption = ({
   const optionContent = (
     <div className="w-full flex justify-between items-center gap-3.5">
       <Avatar src={data?.avatar || ''} />
-      <Typography className="text-text-primary text-left !font-medium !text-sm flex-1 !tracking-normal">
+      <Typography
+        fontWeight="md"
+        level="p5"
+        className="text-text-primary text-left flex-1 !tracking-normal"
+      >
         {data?.name || ''}
       </Typography>
       {isSelected ? <CheckLine className="text-primary-solid" /> : null}
@@ -83,7 +88,7 @@ const AppDropdownOption = ({
       variant="ghost"
       className="w-full !justify-between !px-2.5 !py-2 !h-max"
       onClick={() => {
-        push(ROUTES.APPLICATION_DETAIL(String(data?.id) || ''))
+        push(ROUTES.APPLICATION_DETAIL.getPath(String(data?.id) || ''))
         onOptionSelect()
       }}
     >
@@ -127,7 +132,8 @@ const ApplicationDetailSidebarHeader = ({
                   <Avatar src={selectedApp?.avatar || ''} />
                   <Typography
                     fontWeight="lg"
-                    className="!text-neutral-solid-fg text-sm"
+                    level="p5"
+                    className="!text-neutral-solid-fg"
                   >
                     {selectedApp?.name || ''}
                   </Typography>
@@ -186,14 +192,75 @@ export default function AuthenticatedLayout({
   footer?: React.ReactNode
   className?: string
 }) {
-  const { pathname } = useRouter()
+  const { pathname, query } = useRouter()
   const mounted = useHasMounted()
   const { isLoggedIn, isLoadingSession } = useAuthStore()
 
   const { variant } = useSidebarContext()
 
   if (!mounted) {
-    return childSEO
+    return <>{childSEO}</>
+  }
+
+  const sideBarItems = {
+    main: {
+      Header: MainSidebarHeader,
+      headerItems: [
+        {
+          title: 'Profile',
+          Icon: UserSolid,
+          type: 'link',
+          as: Link,
+          href: ROUTES.MY_PROFILE,
+        },
+        { title: 'Servers', Icon: Discord },
+        { title: 'Settings', Icon: SettingSolid },
+        {
+          title: 'Developer',
+          Icon: CodingSolid,
+          type: 'link',
+          as: Link,
+          href: ROUTES.APPLICATON_LIST,
+          badge: getSidebarBadge['NEW'],
+        },
+        { title: 'Invite Friends', Icon: AddUserSolid },
+      ],
+      footerItems: [
+        { title: 'Support', Icon: LifeBuoySolid },
+        {
+          title: 'Follow Us',
+          Icon: X,
+          type: 'link',
+          href: TWITTER_LINK,
+        },
+        {
+          title: 'Join Community',
+          Icon: Discord,
+          type: 'link',
+          href: DISCORD_LINK,
+        },
+      ],
+    },
+    'app-detail': {
+      Header: ApplicationDetailSidebarHeader,
+      headerItems: [
+        {
+          title: 'Overview',
+          Icon: HomeSolid,
+          type: 'link',
+          as: Link,
+          href: ROUTES.APPLICATION_DETAIL.getPath(query?.id as string),
+        },
+        {
+          title: 'Revenue',
+          Icon: SafeBoxSolid,
+          type: 'link',
+          as: Link,
+          href: ROUTES.APPLICATION_DETAIL_REVENUE.getPath(query?.id as string),
+        },
+      ],
+      footerItems: [],
+    },
   }
 
   return (
@@ -201,66 +268,11 @@ export default function AuthenticatedLayout({
       {!isLoadingSession && isLoggedIn ? (
         <Layout className="flex-1">
           <Sidebar
-            Header={
-              variant === 'main'
-                ? MainSidebarHeader
-                : ApplicationDetailSidebarHeader
-            }
-            headerItems={
-              variant === 'main'
-                ? [
-                    {
-                      title: 'Profile',
-                      Icon: UserSolid,
-                      type: 'link',
-                      as: Link,
-                      href: ROUTES.MY_PROFILE,
-                    },
-                    { title: 'Servers', Icon: Discord },
-                    { title: 'Settings', Icon: SettingSolid },
-                    {
-                      title: 'Developer',
-                      Icon: CodingSolid,
-                      type: 'link',
-                      as: Link,
-                      href: ROUTES.APPLICATON_LIST,
-                      badge: getSidebarBadge['NEW'],
-                    },
-                    { title: 'Invite Friends', Icon: AddUserSolid },
-                  ]
-                : [
-                    {
-                      title: 'Overview',
-                      Icon: HomeSolid,
-                      pattern: APPLICATION_DETAIL_ROUTE_REGEX,
-                    },
-                    { title: 'Revenue', Icon: SafeBoxSolid },
-                  ]
-            }
-            footerItems={
-              variant === 'main'
-                ? [
-                    { title: 'Support', Icon: LifeBuoySolid },
-                    {
-                      title: 'Follow Us',
-                      Icon: X,
-                      type: 'link',
-                      href: TWITTER_LINK,
-                    },
-                    {
-                      title: 'Join Community',
-                      Icon: Discord,
-                      type: 'link',
-                      href: DISCORD_LINK,
-                    },
-                  ]
-                : []
-            }
+            Header={sideBarItems[variant].Header}
+            headerItems={sideBarItems[variant].headerItems as Item[]}
+            footerItems={sideBarItems[variant].footerItems as Item[]}
+            isSelected={(item) => !!item.href && matchUrl(item.href, pathname)}
             className="!sticky !top-16 !h-[calc(100vh-64px)]"
-            isSelected={(item) =>
-              (!!item.href && pathname.startsWith(item.href)) ||
-              (!!item.pattern && item.pattern.test(pathname))
-            }
           />
 
           <Layout

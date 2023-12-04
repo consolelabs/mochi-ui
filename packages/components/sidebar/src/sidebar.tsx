@@ -91,4 +91,4 @@ export default function Sidebar({
   )
 }
 
-export { type SidebarProps }
+export { type SidebarProps, Item, Break }
