@@ -75,9 +75,9 @@ export const AppDetailStatistics = ({ profileId, appId, detail }: Props) => {
         <StatisticsBox
           size="lg"
           label="Balance"
-          amount={2459}
+          amount={stats?.balance_in_total || 0}
           formatAmount={(amount) => `$${formatNumber(amount)}`}
-          change={150}
+          change={stats?.balance_in_total_change?.last_week || 0}
           formatChange={(change) => `$${formatNumber(change)}`}
           milestone="week"
           footer={
