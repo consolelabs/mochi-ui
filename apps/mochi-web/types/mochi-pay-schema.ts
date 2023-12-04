@@ -17,7 +17,7 @@ export interface DtoCreateApplicationRequest {
   metadata?: Record<string, any>
   platforms?: string[]
   service_fee?: number
-  webhook?: string
+  webhooks?: Record<string, string>
 }
 
 export interface DtoDepositRequest {
@@ -131,7 +131,7 @@ export interface DtoUpdateApplicationInfoRequest {
   external_links: Record<string, string[]>
   metadata: Record<string, any>
   platforms: string[]
-  webhook?: string
+  webhooks?: Record<string, string>
 }
 
 export interface DtoWithdrawRequest {
@@ -375,7 +375,7 @@ export interface ViewApplication {
   service_fee?: number
   slug?: string
   updated_at?: string
-  webhook?: string
+  webhooks?: Record<string, string>
 }
 
 export interface ViewApplicationListWithPaginationResponse {
@@ -423,6 +423,11 @@ export interface ViewApplicationResponse {
 }
 
 export interface ViewApplicationStats {
+  balance_in_7d?: number
+  balance_in_7d_change?: ViewApplicationStatsChange
+  /** balance */
+  balance_in_total?: number
+  balance_in_total_change?: ViewApplicationStatsChange
   revenue_in_7d?: number
   revenue_in_7d_change?: ViewApplicationStatsChange
   /** revenue */
@@ -493,7 +498,7 @@ export interface ViewFullApplication {
   service_fee?: number
   slug?: string
   updated_at?: string
-  webhook?: string
+  webhooks?: Record<string, string>
 }
 
 export interface ViewFullApplicationResponse {
