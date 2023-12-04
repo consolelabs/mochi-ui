@@ -169,7 +169,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
         onClose={onClose}
       >
         {authorized ? (
-          <>
+          <div className="flex flex-col flex-1 w-full min-h-0">
             <TextFieldRoot className="flex-shrink-0 mt-1">
               <TextFieldDecorator>
                 <MagnifierLine className="w-5 h-5 text-gray-500" />
@@ -200,7 +200,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
                   </Tab>
                 ))}
               </Tab.List>
-              <Tab.Panels className="w-full h-full min-h-0">
+              <Tab.Panels className="flex-1 w-full min-h-0">
                 <Tab.Panel className="flex flex-col gap-2 h-full">
                   <TokenList
                     loading={isFetchingWallets}
@@ -220,7 +220,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
                 </Tab.Panel>
               </Tab.Panels>
             </Tab.Group>{' '}
-          </>
+          </div>
         ) : (
           unauthorizedContent
         )}

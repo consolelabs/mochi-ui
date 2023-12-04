@@ -1,4 +1,6 @@
-import type { Action, LoginWidgetState, Wallet, Provider } from './store'
+import UI, { Platform } from '@consolelabs/mochi-ui'
+import type { Action, LoginWidgetState, Wallet } from './store'
+import { ChainProvider } from './providers/provider'
 
 export type SupportedChain =
   | 'evm-chain'
@@ -10,25 +12,21 @@ export type SupportedChain =
 function toWallet(
   address: string,
   chain: string,
-  provider: Provider[],
-  isInstallChecker: (chain: string) => boolean,
+  provider: ChainProvider[],
+  isInstallChecker?: (chain: string) => Promise<boolean>,
 ): Wallet {
-  const isInstalled = isInstallChecker(
-    chain.replace('-chain', '').toUpperCase(),
-  )
-
   const w: Wallet = {
     address,
     connectionStatus: 'disconnected',
     providers: [...provider],
   }
 
-  if (!isInstalled) {
-    w.connectionStatus = 'not_installed'
-    return w
-  }
+  isInstallChecker?.(
+    chain.replace('-chain', '').slice(0, 3).toUpperCase(),
+  ).then((isInstalled) => {
+    if (!isInstalled) w.connectionStatus = 'not_installed'
+  })
 
-  w.connectionStatus = 'connected'
   return w
 }
 
@@ -46,7 +44,6 @@ export default function reducer(
       const { addresses, chain, provider, isInstallChecker } = action.payload
 
       for (const wallet of state.wallets) {
-        if (wallet.providers.every((p) => p !== provider)) continue
         const isInList = addresses
           .map((a) => a.toLowerCase())
           .includes(wallet.address.toLowerCase())
@@ -60,11 +57,13 @@ export default function reducer(
           const updated = toWallet(
             wallet.address,
             chain,
-            [provider],
+            [...(provider ? [provider] : [])],
             isInstallChecker,
           )
           wallet.providers = updated.providers
-          wallet.connectionStatus = updated.connectionStatus
+          if (wallet.connectionStatus === 'disconnected') {
+            wallet.connectionStatus = 'connected'
+          }
           continue
         }
 
@@ -76,11 +75,20 @@ export default function reducer(
       }
     }
 
+    // trigger react re-render
+    case 'refresh': {
+      return {
+        wallets: [...state.wallets],
+      }
+    }
+
     // logout reset state
     case 'logout': {
       return {
         isLoggedIn: false,
         wallets: [],
+        profile: null,
+        token: '',
       }
     }
 
@@ -89,11 +97,12 @@ export default function reducer(
     case 'login': {
       if (state.isLoggedIn) return state
 
-      const { profile, addresses, chain, provider, isInstallChecker } =
+      const { profile, addresses, chain, provider, isInstallChecker, token } =
         action.payload
-      const onlyOnchainWallets = profile.associated_accounts.filter((aa: any) =>
-        aa.platform.toLowerCase().includes('-chain'),
-      )
+      const onlyOnchainWallets =
+        profile.associated_accounts?.filter((aa: any) =>
+          aa.platform.toLowerCase().includes('-chain'),
+        ) ?? []
 
       const newState = onlyOnchainWallets.map((w: any) => {
         const wallet =
@@ -107,20 +116,42 @@ export default function reducer(
           w.platform.startsWith(chain) &&
           w.platform.endsWith('-chain')
         ) {
-          return toWallet(
+          const updated = toWallet(
             w.platform_identifier,
             w.platform,
-            [provider],
+            [...(provider ? [provider] : [])],
             isInstallChecker,
           )
+          updated.connectionStatus = 'connected'
+          return updated
         }
 
         return wallet
       })
 
+      // handle convert profile
+      // resolve username
+      // fallback avatar if not found
+      const [p] = UI.render(Platform.Web, profile)
+
+      const avatar =
+        profile.avatar ||
+        `https://source.boringavatars.com/beam/120/${
+          p?.plain ?? ''
+        }?colors=665c52,74b3a7,a3ccaf,E6E1CF,CC5B14`
+
+      const newProfile = {
+        ...profile,
+        profile_name: (profile.profile_name || p?.plain) ?? '',
+        avatar,
+        platform: p?.platform ?? '',
+      }
+
       return {
         isLoggedIn: true,
         wallets: newState,
+        profile: newProfile,
+        token,
       }
     }
 

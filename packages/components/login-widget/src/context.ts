@@ -1,5 +1,6 @@
 /* istanbul ignore file */
-import { SVGProps, createContext, useContext } from 'react'
+import { createContext, useContext } from 'react'
+import { ChainProvider } from './providers/provider'
 
 export enum LoginStep {
   Idle,
@@ -11,13 +12,8 @@ export enum LoginStep {
 
 export type InternalState = {
   step: LoginStep
-  wallet: {
-    name: string
-    icon: (p: SVGProps<SVGSVGElement>) => JSX.Element
-    connect: () => Promise<any>
-  } | null
+  wallet: ChainProvider | null
   error: string | null
-  onSuccess: (t: string) => void
 }
 
 interface InternalLoginWidgetContextType {

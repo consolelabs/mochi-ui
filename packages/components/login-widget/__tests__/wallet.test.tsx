@@ -1,13 +1,14 @@
-import { fireEvent, render } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import Wallet from '../src/wallet'
+import { ProviderDisabled } from '../src/providers/disabled-provider'
 
 describe('Wallet', () => {
   const mockProps = {
-    icon: () => <div>Icon</div>,
-    isInstalled: true,
-    active: false,
+    provider: new ProviderDisabled()
+      .setIcon(() => <div>Icon</div>)
+      .setName('test')
+      .sync(),
     connect: jest.fn(),
-    name: 'mockWallet',
   }
 
   it('renders the component with the correct icon', () => {
@@ -16,13 +17,7 @@ describe('Wallet', () => {
   })
 
   it('disables the button when isInstalled is false', () => {
-    const { getByRole } = render(<Wallet {...mockProps} isInstalled={false} />)
-    expect(getByRole('button')).toBeDisabled()
-  })
-
-  it('calls the connect function when clicked', () => {
     const { getByRole } = render(<Wallet {...mockProps} />)
-    fireEvent.click(getByRole('button'))
-    expect(mockProps.connect).toHaveBeenCalled()
+    expect(getByRole('button')).toBeDisabled()
   })
 })

@@ -47,7 +47,6 @@
     "@mochi-ui/list": "workspace:*",
     "@mochi-ui/login-widget": "workspace:*",
     "@mochi-ui/logo": "workspace:*",
-    "@mochi-ui/mochi-store": "workspace:*",
     "@mochi-ui/page-content": "workspace:*",
     "@mochi-ui/page-header": "workspace:*",
     "@mochi-ui/top-bar": "workspace:*",

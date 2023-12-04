@@ -17,6 +17,9 @@ export type Moniker = {
     symbol: string
     chain_id: string
     native: boolean
+    chain: {
+      type: string
+    }
   }
   disabled: boolean
 }

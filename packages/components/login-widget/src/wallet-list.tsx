@@ -1,4 +1,4 @@
-import { Fragment, useMemo, useState } from 'react'
+import { Fragment, useState } from 'react'
 import { Tabs, TabList, TabTrigger, TabContent } from '@mochi-ui/tabs'
 import {
   DropdownMenu,
@@ -8,9 +8,9 @@ import {
 } from '@mochi-ui/dropdown'
 import { ChevronDownLine } from '@mochi-ui/icons'
 import { loginWidget } from '@mochi-ui/theme'
-import getProviders from './providers'
-import Wallet, { WalletProps } from './wallet'
-import { useLoginWidget } from './store'
+import Wallet from './wallet'
+import type { ConnectorName, Connectors } from './providers'
+import { ChainProvider } from './providers/provider'
 
 const {
   loginWalletListTabsClsx,
@@ -25,27 +25,35 @@ const {
 } = loginWidget
 
 interface WalletListProps {
-  onSelectWallet: (w: WalletProps) => void
+  onSelectWallet: (w: ChainProvider) => void
+  connectors: Connectors
+  chain?: string
 }
 
-export default function WalletList({ onSelectWallet }: WalletListProps) {
-  const { isLoggedIn } = useLoginWidget()
+const connectorNames: ConnectorName[] = ['EVM', 'SOL', 'RON', 'SUI', 'TON']
 
-  const { connectors, connectorNames } = useMemo(() => {
-    return getProviders(!isLoggedIn)
-  }, [isLoggedIn])
-
+export default function WalletList({
+  connectors,
+  onSelectWallet,
+  chain: _chain,
+}: WalletListProps) {
+  const chain = _chain?.slice(0, 3).toUpperCase()
   const [selectedConnector, setSelectedConnector] = useState(
-    connectorNames[0] as keyof typeof connectors,
+    chain ?? connectorNames[0],
   )
   const sortedConnectors = connectorNames
+    .filter((connector) => {
+      return !chain ? true : connector === chain
+    })
     .map((connector, index) => ({
       connector,
       index: index < 3 ? 4 - index : Number(connector === selectedConnector),
     }))
     .sort((a, b) => b.index - a.index)
     .map(({ connector }) => connector)
-  const selectedIndex = sortedConnectors.indexOf(selectedConnector)
+  const selectedIndex = sortedConnectors.indexOf(
+    selectedConnector as ConnectorName,
+  )
 
   return (
     <Tabs value={selectedConnector} className={loginWalletListTabsClsx()}>
@@ -67,24 +75,28 @@ export default function WalletList({ onSelectWallet }: WalletListProps) {
             )}
           </Fragment>
         ))}
-        <DropdownMenu>
-          <DropdownMenuTrigger className={loginWalletListDropdownTriggerClsx()}>
-            <ChevronDownLine width={20} height={20} />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            {sortedConnectors.slice(4).map((connector) => (
-              <DropdownMenuItem
-                key={connector}
-                wrapperClassName={loginWalletListDropdownItemWrapperClsx()}
-                onClick={() => setSelectedConnector(connector)}
-              >
-                <span className={loginWalletListDropdownItemClsx()}>
-                  {connector}
-                </span>
-              </DropdownMenuItem>
-            ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
+        {!chain && (
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              className={loginWalletListDropdownTriggerClsx()}
+            >
+              <ChevronDownLine width={20} height={20} />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              {sortedConnectors.slice(4).map((connector) => (
+                <DropdownMenuItem
+                  key={connector}
+                  wrapperClassName={loginWalletListDropdownItemWrapperClsx()}
+                  onClick={() => setSelectedConnector(connector)}
+                >
+                  <span className={loginWalletListDropdownItemClsx()}>
+                    {connector}
+                  </span>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )}
       </TabList>
       {connectorNames.map((value) => (
         <TabContent
@@ -92,11 +104,11 @@ export default function WalletList({ onSelectWallet }: WalletListProps) {
           value={value}
           className={loginWalletListTabContentClsx()}
         >
-          {connectors[value].map((wallet) => (
+          {connectors[value as ConnectorName].map((provider) => (
             <Wallet
-              {...wallet}
-              key={wallet.name}
-              connect={async () => onSelectWallet(wallet)}
+              key={provider.name}
+              provider={provider}
+              connect={() => onSelectWallet(provider)}
             />
           ))}
         </TabContent>

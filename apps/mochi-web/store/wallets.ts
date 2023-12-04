@@ -3,6 +3,7 @@ import { api } from '~constants/mochi'
 import type { Profile, Token } from '@consolelabs/mochi-rest'
 import UI, { AddressChainType, Platform, utils } from '@consolelabs/mochi-ui'
 import { truncate } from '@dwarvesf/react-utils'
+import { getLoginWidgetState } from '@mochi-ui/core'
 
 // Create map of payable platforms from AddressChainType
 const PaymentPlatforms: Map<string, string> = new Map(
@@ -122,7 +123,9 @@ export const useWalletStore = create<State>((set) => ({
         })
       }
 
-      set({ isFetching: false, wallets })
+      if (getLoginWidgetState().isLoggedIn) {
+        set({ isFetching: false, wallets })
+      }
     } catch (e) {
       console.error(e)
       set((s) => ({ ...s, isFetching: false }))

@@ -5,8 +5,8 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   ProfileBadge,
+  useLoginWidget,
 } from '@mochi-ui/core'
-import { useAuthStore, useProfileStore } from '~store'
 import Link from 'next/link'
 import { truncateWallet } from '~utils/string'
 import {
@@ -21,18 +21,16 @@ import {
 import { ROUTES } from '~constants/routes'
 
 export default function ProfileDropdown() {
-  const { logout } = useAuthStore()
-  const { me } = useProfileStore()
-  const { isLoggedIn } = useAuthStore()
+  const { isLoggedIn, logout, profile } = useLoginWidget()
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        {isLoggedIn && me && (
+        {isLoggedIn && profile && (
           <ProfileBadge
-            avatar={me?.avatar || '/logo.png'}
-            name={truncateWallet(me.profile_name) || 'unknown'}
-            platform={me.platformIcon || '/logo.png'}
+            avatar={profile?.avatar || '/logo.png'}
+            name={truncateWallet(profile.profile_name) || 'unknown'}
+            platform="/logo.png"
           />
         )}
       </DropdownMenuTrigger>

@@ -1,6 +1,4 @@
 import Link from 'next/link'
-import { useAuthStore, useProfileStore } from '~store'
-import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { ROUTES } from '~constants/routes'
 import {
@@ -22,6 +20,8 @@ import {
   Modal,
   ModalContent,
   Avatar,
+  useLoginWidget,
+  LoginWidget,
 } from '@mochi-ui/core'
 import {
   DiscordColored,
@@ -39,7 +39,6 @@ import {
 import { DISCORD_LINK, TELEGRAM_LINK } from '~envs'
 import { useState } from 'react'
 import ProfileDropdown from '~cpn/profile-dropdrown'
-import { AuthPanel } from '~cpn/AuthWidget'
 import { MobileNavAccordionItem } from './MobileNavAccordionItem'
 
 const authenticatedRoute = [
@@ -48,13 +47,8 @@ const authenticatedRoute = [
   '/server',
 ]
 
-interface LoginPopoverProps {
-  isLogging: boolean
-}
-
-const LoginPopover = (props: LoginPopoverProps) => {
-  const { isLogging } = props
-  const [forceHide, setForceHide] = useState(false)
+const LoginPopover = () => {
+  const { isLoggingIn } = useLoginWidget()
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -65,19 +59,13 @@ const LoginPopover = (props: LoginPopoverProps) => {
         // wrap Button by div to prevent event loss when use `asChild` props
       >
         <div>
-          <Button className="justify-center w-20" loading={isLogging}>
+          <Button className="justify-center w-20" loading={isLoggingIn}>
             Login
           </Button>
         </div>
       </PopoverTrigger>
-      <PopoverContent
-        className={clsx('!p-0', {
-          hidden: forceHide,
-        })}
-        sideOffset={10}
-        collisionPadding={20}
-      >
-        <AuthPanel onOpenConnectWalletChange={setForceHide} />
+      <PopoverContent sideOffset={10} collisionPadding={20}>
+        <LoginWidget raw />
       </PopoverContent>
     </Popover>
   )
@@ -85,8 +73,7 @@ const LoginPopover = (props: LoginPopoverProps) => {
 
 const MobileLoginPanel = () => {
   const [isOpenLoginPanel, setOpenLoginPanel] = useState(false)
-  const [hideLoginPanel, setHideLoginPanel] = useState(false)
-  const { isLogging } = useAuthStore()
+  const { isLoggingIn } = useLoginWidget()
 
   return (
     <Modal open={isOpenLoginPanel} onOpenChange={setOpenLoginPanel}>
@@ -94,26 +81,24 @@ const MobileLoginPanel = () => {
         className="justify-center w-full sm:hidden"
         size="lg"
         onClick={() => setOpenLoginPanel(true)}
-        loading={isLogging}
+        loading={isLoggingIn}
       >
         Login
       </Button>
       <ModalContent
-        className={clsx('w-full !p-0', { hidden: hideLoginPanel })}
+        className="w-full !p-0"
         style={{
           width: 'calc(100% - 32px)',
         }}
       >
-        <AuthPanel
-          onOpenConnectWalletChange={(open) => setHideLoginPanel(open)}
-        />
+        <LoginWidget />
       </ModalContent>
     </Modal>
   )
 }
 
 const MobileHeader = ({ onClose }: { onClose: () => void }) => {
-  const { me } = useProfileStore()
+  const { profile } = useLoginWidget()
   return (
     <button className="" onClick={onClose}>
       <Link
@@ -129,13 +114,13 @@ const MobileHeader = ({ onClose }: { onClose: () => void }) => {
         </div>
         <div className="flex relative z-10 gap-4 items-center p-4 w-full h-full text-white">
           <Avatar
-            fallback={me?.profile_name}
-            smallSrc={me?.platformIcon}
-            src={me?.avatar as string}
+            fallback={profile?.profile_name}
+            /* smallSrc={me?.platformIcon} */
+            src={profile?.avatar as string}
           />
           <div className="flex flex-1 items-center font-medium">
             <span className="inline-block w-40 whitespace-nowrap truncate">
-              {me?.profile_name}
+              {profile?.profile_name}
             </span>
           </div>
           <ChevronRightLine className="text-lg transition group-hover:translate-x-1" />
@@ -147,8 +132,7 @@ const MobileHeader = ({ onClose }: { onClose: () => void }) => {
 
 export const Header = () => {
   const { pathname } = useRouter()
-  const { me } = useProfileStore()
-  const { isLoggedIn, isLogging } = useAuthStore()
+  const { profile, isLoggedIn } = useLoginWidget()
 
   const mobileNavItems = [
     <Link
@@ -219,13 +203,13 @@ export const Header = () => {
         },
       ]}
     />,
-    ...(!(isLoggedIn && me)
+    ...(!(isLoggedIn && profile)
       ? [<MobileLoginPanel key="mobile-login-panel" />]
       : []),
   ]
 
   const desktopNavItems = [
-    ...(isLoggedIn && me
+    ...(isLoggedIn && profile
       ? [
           <div className="flex gap-x-3 items-stretch" key="desktop-nav-items">
             <div className="flex gap-x-2 items-center w-[400px]">
@@ -358,7 +342,7 @@ export const Header = () => {
           >
             <div className="w-full h-6 bg-[#eeedec]" />
           </div>,
-          <LoginPopover isLogging={isLogging} key="desktop-login-popover" />,
+          <LoginPopover key="desktop-login-popover" />,
         ]),
   ]
 
@@ -382,7 +366,7 @@ export const Header = () => {
         <>
           <MobileNav
             navItems={mobileNavItems}
-            Header={isLoggedIn && me ? MobileHeader : undefined}
+            Header={isLoggedIn && profile ? MobileHeader : undefined}
           />
           <DesktopNav navItems={desktopNavItems} />
         </>

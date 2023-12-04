@@ -1,4 +1,3 @@
-import * as Dialog from '@radix-ui/react-dialog'
 import React, { useCallback, useEffect, useMemo, useReducer } from 'react'
 import {
   CheckLine,
@@ -6,45 +5,40 @@ import {
   ExclamationTriangleOutlined,
 } from '@mochi-ui/icons'
 import { Button } from '@mochi-ui/button'
-import { loginWidget } from '@mochi-ui/theme'
+import { loginWidget, popover } from '@mochi-ui/theme'
+import qs from 'query-string'
+import { LazyMotion, domAnimation } from 'framer-motion'
 import {
   InternalLoginWidgetContext,
   useInternalLoginWidgetContext,
   LoginStep,
   InternalState,
 } from './context'
-import WalletList from './wallet-list'
 import fetchers from './fetchers'
 import {
   useLoginWidget,
   usePublicLoginWidget,
   getLoginWidgetState,
-  type Provider,
+  STORAGE_KEY,
 } from './store'
-import getProviders from './providers'
-
-const { isExtensionForChainInstalled } = getProviders()
+import LoginContent from './login-content'
 
 const {
   loginInnerStateClsx,
   /* loginWidgetTriggerClsx, */
-  loginWidgetDialogOverlayClsx,
-  loginWidgetDialogContentWrapperClsx,
+  /* loginWidgetDialogOverlayClsx, */
+  /* loginWidgetDialogContentWrapperClsx, */
 } = loginWidget
 
+// borrow popover's style
+const { popoverContentClsx } = popover
+
 interface LoginWidgetProps {
-  isOpen?: boolean
-  onOpenChange?: (o: boolean) => void
-  fullModal?: boolean
-  onSuccess: (t: string) => void
+  raw?: boolean
+  chain?: string
 }
 
-function LoginWidget({
-  isOpen,
-  fullModal = false,
-  onOpenChange,
-  onSuccess,
-}: LoginWidgetProps) {
+function LoginWidget({ raw = false, chain }: LoginWidgetProps) {
   const { state, dispatch } = useInternalLoginWidgetContext()
 
   const onReset = () => {
@@ -60,10 +54,6 @@ function LoginWidget({
       dispatch({ wallet: null, step: LoginStep.Idle, error: null })
     }
   }, [dispatch, state.step])
-
-  useEffect(() => {
-    dispatch({ onSuccess })
-  }, [dispatch, onSuccess])
 
   const Icon = state.wallet?.icon ?? ExclamationTriangleOutlined
   const innerClsx = loginInnerStateClsx().connecting
@@ -134,7 +124,10 @@ function LoginWidget({
           </>
         )}
         <div className={innerClsx.buttons}>
-          {isSuccess === -1 ? (
+          <Button variant="outline" color="neutral" size="lg" onClick={onReset}>
+            Back
+          </Button>
+          {isSuccess === -1 && (
             <Button
               variant="solid"
               color="primary"
@@ -146,15 +139,6 @@ function LoginWidget({
               }}
             >
               Try again
-            </Button>
-          ) : (
-            <Button
-              variant="outline"
-              color="neutral"
-              size="lg"
-              onClick={onReset}
-            >
-              Back
             </Button>
           )}
         </div>
@@ -193,34 +177,22 @@ function LoginWidget({
     )
   }
 
-  return (
-    <Dialog.Root
-      onOpenChange={(o) => {
-        if (!o) {
-          dispatch({ step: LoginStep.Idle })
-        }
-        onOpenChange?.(o)
-      }}
-      open={!fullModal ? state.step !== LoginStep.Idle : isOpen}
-    >
-      {!fullModal && <WalletList onSelectWallet={onSelectWallet} />}
-      <Dialog.Portal>
-        <Dialog.Overlay className={loginWidgetDialogOverlayClsx()} />
-        <Dialog.Content asChild>
-          <div
-            style={{ boxShadow: '0px 0px 20px 0px rgba(0, 0, 0, 0.18)' }}
-            className={loginWidgetDialogContentWrapperClsx()}
-          >
-            {fullModal && state.step === LoginStep.Idle ? (
-              <WalletList onSelectWallet={onSelectWallet} />
-            ) : (
-              content
-            )}
-          </div>
-        </Dialog.Content>
-      </Dialog.Portal>
-    </Dialog.Root>
-  )
+  if (raw) {
+    if (state.step === LoginStep.Idle)
+      return <LoginContent raw chain={chain} onSelectWallet={onSelectWallet} />
+
+    return content
+  }
+
+  // LoginContent = tab login social + tab login wallet
+  if (state.step === LoginStep.Idle)
+    return (
+      <div className={popoverContentClsx({})}>
+        <LoginContent chain={chain} onSelectWallet={onSelectWallet} />
+      </div>
+    )
+
+  return <div className={popoverContentClsx({})}>{content}</div>
 }
 
 interface LoginWidgetProviderProps {
@@ -229,7 +201,7 @@ interface LoginWidgetProviderProps {
 
 const LoginWidgetProvider = ({ children }: LoginWidgetProviderProps) => {
   // reducer for main state
-  const { dispatch } = useLoginWidget()
+  const { isLoggedIn, dispatch } = useLoginWidget()
 
   const [internal, setInternal] = useReducer<
     (s: InternalState, a: Partial<InternalState>) => InternalState,
@@ -245,7 +217,6 @@ const LoginWidgetProvider = ({ children }: LoginWidgetProviderProps) => {
       wallet: null,
       error: null,
       step: LoginStep.Idle,
-      onSuccess: () => {},
     },
     (s) => s,
   )
@@ -258,20 +229,15 @@ const LoginWidgetProvider = ({ children }: LoginWidgetProviderProps) => {
     async (data: {
       addresses: string[]
       signature: string
-      msg: string
       platform: string
-      provider: Provider
     }) => {
-      // neu nhu da login (khong co signature)
-      // thi vao flow connect
-      if (!data.signature) {
+      if (isLoggedIn) {
         dispatch({
           type: 'update_wallets',
           payload: {
             addresses: data.addresses,
             chain: data.platform,
-            provider: data.provider,
-            isInstallChecker: isExtensionForChainInstalled,
+            provider: value.state.wallet,
           },
         })
         setInternal({ step: LoginStep.Authenticated })
@@ -283,8 +249,6 @@ const LoginWidgetProvider = ({ children }: LoginWidgetProviderProps) => {
         setInternal({ error: "Couldn't login" })
         return
       }
-
-      internal.onSuccess(token)
 
       const profile = await fetchers.getOwnProfile(token)
       if (!profile) {
@@ -298,14 +262,14 @@ const LoginWidgetProvider = ({ children }: LoginWidgetProviderProps) => {
           profile,
           addresses: data.addresses,
           chain: data.platform,
-          provider: data.provider,
-          isInstallChecker: isExtensionForChainInstalled,
+          provider: value.state.wallet,
+          token,
         },
       })
 
       setInternal({ step: LoginStep.Authenticated })
     },
-    [dispatch, internal],
+    [dispatch, isLoggedIn, value.state.wallet],
   )
 
   // handler cho wallet onSelect
@@ -314,18 +278,58 @@ const LoginWidgetProvider = ({ children }: LoginWidgetProviderProps) => {
     internal.wallet
       // connect and sign message
       ?.connect()
-      .then(handleAfterConnect)
-      .catch((e: { message?: string; cause?: string }) => {
-        const error = e.message ?? e.cause ?? 'Something went wrong'
-        setInternal({ error })
+      .then((res) => {
+        if (!res) {
+          const error = 'Something went wrong'
+          setInternal({ error })
+          return
+        }
+        handleAfterConnect(res)
       })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [internal.wallet])
+  }, [internal.wallet, internal.error])
+
+  // handle login from url query `token`
+  useEffect(() => {
+    if (isLoggedIn) return
+    const { token: _token, ...rest } = qs.parse(window.location.search)
+    let token = _token
+    if (!token) {
+      token = localStorage.getItem(STORAGE_KEY)
+      if (!token) return
+    }
+    fetchers.getOwnProfile(token as string).then((profile) => {
+      const hasParams = Object.keys(rest).length > 0
+
+      window.history.replaceState(
+        '',
+        '',
+        `${window.location.href.replace(window.location.search, '')}${
+          hasParams ? `?${qs.stringify(rest)}` : ''
+        }`,
+      )
+
+      if (!profile) return
+
+      localStorage.setItem(STORAGE_KEY, token as string)
+      dispatch({
+        type: 'login',
+        payload: {
+          addresses: [],
+          chain: '',
+          profile,
+          token: token as string,
+        },
+      })
+    })
+  }, [dispatch, isLoggedIn])
 
   return (
-    <InternalLoginWidgetContext.Provider value={value}>
-      {children}
-    </InternalLoginWidgetContext.Provider>
+    <LazyMotion features={domAnimation}>
+      <InternalLoginWidgetContext.Provider value={value}>
+        {children}
+      </InternalLoginWidgetContext.Provider>
+    </LazyMotion>
   )
 }
 

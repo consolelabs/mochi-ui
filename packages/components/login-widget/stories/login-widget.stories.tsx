@@ -25,7 +25,7 @@ function Wrapper() {
 
   return (
     <div className="flex flex-col gap-y-2 items-center">
-      <LoginWidget onSuccess={() => {}} />
+      <LoginWidget />
       <code
         style={{ height: 500, width: 1000 }}
         className="overflow-auto p-2 text-sm bg-gray-50"

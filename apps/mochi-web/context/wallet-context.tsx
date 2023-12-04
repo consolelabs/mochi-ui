@@ -5,13 +5,13 @@ import React, {
   useMemo,
   useState,
 } from 'react'
+import { useLoginWidget } from '@mochi-ui/core'
 import { SolanaWalletProvider } from 'context/wallets/solana/SolanaWalletProvider'
 import { EVMWalletProvider } from 'context/wallets/ethereum/EVMWalletProvider'
 import { useNetwork } from 'wagmi'
 import { createContext } from '@dwarvesf/react-utils'
 import { useAccount } from '~hooks/wallets/useAccount'
 import { useDisclosure } from '@dwarvesf/react-hooks'
-import { useAuthStore } from '~store'
 import { Chain } from './wallets/Wallet'
 import { decorateChains } from './wallets/ethereum/chains'
 import { solanaChain } from './wallets/solana/chains'
@@ -106,7 +106,7 @@ export const AppWalletContextProvider = ({
     [_showConnectModal],
   )
 
-  const isLoggedIn = useAuthStore((s) => s.isLoggedIn)
+  const { isLoggedIn } = useLoginWidget()
 
   useEffect(() => {
     if (isLoggedIn) {

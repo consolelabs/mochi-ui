@@ -53,7 +53,7 @@ export default function MochiWidget() {
             maxWidth: 440,
             minWidth: 340,
           }}
-          className="flex overflow-hidden relative z-10 flex-col p-3 w-screen"
+          className="flex overflow-hidden relative z-10 flex-col p-3"
         >
           {/* <div className="flex items-center border-b border-[#e5e4e3] pb-2"> */}
           {/*   {tabs.map((t, i) => { */}

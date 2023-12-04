@@ -1,3 +1,12 @@
+import MochiAPI from '@consolelabs/mochi-rest'
+
+export const api = new MochiAPI({
+  log: false,
+  payUrl: 'https://api-preview.mochi-pay.console.so/api/v1',
+  profileUrl: 'https://api-preview.mochi-profile.console.so/api/v1',
+  baseUrl: 'https://api-preview.mochi.console.so/api/v1',
+})
+
 const authUrl =
   'https://api-preview.mochi-profile.console.so/api/v1/profiles/auth' as const
 const meUrl =
