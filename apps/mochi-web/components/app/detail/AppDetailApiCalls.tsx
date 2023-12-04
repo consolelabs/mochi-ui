@@ -5,8 +5,8 @@ import {
   IconButton,
   Table,
   Typography,
-} from '@consolelabs/core'
-import { ChevronRightLine } from '@consolelabs/icons'
+} from '@mochi-ui/core'
+import { ChevronRightLine } from '@mochi-ui/icons'
 import clsx from 'clsx'
 import { useFetchApplicationDetailWebhookLogs } from '~hooks/app/useFetchApplicationDetailWebhookLogs'
 import { ViewApplicationWebhookLog } from '~types/mochi-pay-schema'
