@@ -35,6 +35,7 @@ export interface TableProps<T> {
   }
   renderSubComponent?: (record: T, rowIndex: number) => React.ReactNode
   getRowCanExpand?: (row: Row<T>) => boolean
+  border?: boolean
 }
 
 const {
@@ -45,6 +46,7 @@ const {
   tableDataSkeletonClsx,
   tableDataClsx,
   tableRowClsx,
+  tablesExpandedDataClsx,
 } = table
 
 export default function Table<T extends RowData>({
@@ -57,6 +59,7 @@ export default function Table<T extends RowData>({
   onRow,
   renderSubComponent,
   getRowCanExpand,
+  border,
 }: TableProps<T>) {
   const table = useReactTable({
     data,
@@ -69,7 +72,7 @@ export default function Table<T extends RowData>({
   const hasCustomWidth = columns.some((col) => col.width)
 
   return (
-    <div className={tableWrapperClsx({ className: wrapperClassName })}>
+    <div className={tableWrapperClsx({ className: wrapperClassName, border })}>
       <table className={tableClsx({ className })}>
         {hasCustomWidth ? (
           <colgroup>
@@ -111,9 +114,12 @@ export default function Table<T extends RowData>({
                   new Array(table.getHeaderGroups()[0].headers.length).fill(0),
                 )
                 .map((headers, rowIdx) => (
-                  <tr key={rowIdx}>
+                  <tr key={rowIdx} className="group">
                     {headers.map((_: any, idx: number) => (
-                      <td className={tableDataLoadingClsx()} key={idx}>
+                      <td
+                        className={tableDataLoadingClsx({ border })}
+                        key={idx}
+                      >
                         <div className={tableDataSkeletonClsx()} />
                       </td>
                     ))}
@@ -129,7 +135,7 @@ export default function Table<T extends RowData>({
                     {...(onRow ? onRow(row.original, rowIndex) : {})}
                   >
                     {row.getVisibleCells().map((cell) => (
-                      <td className={tableDataClsx()} key={cell.id}>
+                      <td className={tableDataClsx({ border })} key={cell.id}>
                         {
                           flexRender(
                             cell.column.columnDef.cell,
@@ -141,9 +147,12 @@ export default function Table<T extends RowData>({
                   </tr>
 
                   {row.getIsExpanded() && renderSubComponent ? (
-                    <tr>
+                    <tr className="group">
                       {/* 2nd row is a custom 1 cell row */}
-                      <td colSpan={row.getVisibleCells().length}>
+                      <td
+                        colSpan={row.getVisibleCells().length}
+                        className={tablesExpandedDataClsx({ border })}
+                      >
                         {renderSubComponent(row.original, rowIndex)}
                       </td>
                     </tr>

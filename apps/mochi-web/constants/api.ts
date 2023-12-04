@@ -61,4 +61,6 @@ export const GET_PATHS = {
     `/profiles/${profileId}/applications/${appId}/reset-key`,
   GET_APPLICATION_DETAIL_MEMBERS: (profileId: string, appId: string) =>
     `/profiles/${profileId}/applications/${appId}/members`,
+  GET_APPLICATION_DETAIL_WEBHOOK_LOGS: (profileId: string, appId: string) =>
+    `/profiles/${profileId}/applications/${appId}/webhook-logs`,
 }

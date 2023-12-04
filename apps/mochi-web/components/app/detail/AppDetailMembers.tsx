@@ -27,7 +27,7 @@ export const AppDetailMembers = ({ profileId, appId }: Props) => {
 
   return (
     <div className="mt-8">
-      <div className="flex items-center justify-between py-2">
+      <div className="flex items-center justify-between py-2 mb-4">
         <Typography level="p4" className="font-medium">
           Members {members.length ? `(${members.length})` : ''}
         </Typography>
@@ -37,8 +37,8 @@ export const AppDetailMembers = ({ profileId, appId }: Props) => {
         </Button>
       </div>
       <Table
-        wrapperClassName="!p-0 border rounded-lg border-divider shadow-input mt-4"
-        className="-mb-1 min-w-[600px]"
+        border
+        className="min-w-[600px]"
         data={members}
         isLoading={isLoading}
         columns={[

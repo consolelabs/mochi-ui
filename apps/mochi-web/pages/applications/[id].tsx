@@ -22,6 +22,7 @@ import { platforms } from '~constants/app'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { AppDetailMembers } from '~cpn/app/detail/AppDetailMembers'
+import { AppDetailApiCalls } from '~cpn/app/detail/AppDetailApiCalls'
 
 const APP_DETAIL_FORM_ID = 'app-detail-form'
 
@@ -169,6 +170,7 @@ const App: NextPageWithLayout = () => {
         apiKey={detail?.public_key}
         {...{ control, secretKey, onResetSecretKey, isResettingSecretKey }}
       />
+      <AppDetailApiCalls {...{ profileId, appId }} />
       <AppDetailUrl {...{ control, errors }} />
       <AppDetailPlatforms {...{ control, setValue }} />
       <AppDetailMembers {...{ profileId, appId }} />
