@@ -135,9 +135,9 @@ const ApplicationDetailSidebarHeader = ({
                   </Typography>
                 </div>
                 {isOpen ? (
-                  <ChevronDownLine className="text-neutral-solid-fg" />
-                ) : (
                   <CloseLine className="text-neutral-solid-fg" />
+                ) : (
+                  <ChevronDownLine className="text-neutral-solid-fg" />
                 )}
               </DropdownMenuTrigger>
               <DropdownMenuContent className="mt-7 -ml-6 !min-w-[216px] flex flex-col items-center gap-1">

@@ -6,6 +6,7 @@ import {
   SetStateAction,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from 'react'
 import { shallow } from 'zustand/shallow'
@@ -63,7 +64,6 @@ function SidebarContextProvider({
     return () => {
       setVariant(currentVariant)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.pathname])
 
   useEffect(() => {
@@ -76,19 +76,30 @@ function SidebarContextProvider({
     return () => {
       setSelectedApplication(undefined)
     }
-  }, [router.pathname, router?.query?.id, isSelectedAppLoading])
+  }, [router.pathname, router?.query?.id, isSelectedAppLoading, data])
+
+  const contextValue = useMemo(
+    () => ({
+      variant,
+      setVariant,
+      selectedApp,
+      isSelectedAppLoading,
+      appList,
+      isAppListLoading,
+    }),
+    [
+      router.pathname,
+      router?.query?.id,
+      variant,
+      selectedApp,
+      isSelectedAppLoading,
+      appList,
+      isAppListLoading,
+    ],
+  )
 
   return (
-    <SidebarContext.Provider
-      value={{
-        variant,
-        setVariant,
-        selectedApp,
-        isSelectedAppLoading,
-        appList,
-        isAppListLoading,
-      }}
-    >
+    <SidebarContext.Provider value={contextValue}>
       {children}
     </SidebarContext.Provider>
   )
