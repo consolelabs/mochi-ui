@@ -59,9 +59,7 @@ export function Default() {
         </button>
       </SelectContent>
     </Select>,
-    <Button variant="outline" color="white">
-      See docs
-    </Button>,
+    <Button color="white">See docs</Button>,
   ]
 
   return (

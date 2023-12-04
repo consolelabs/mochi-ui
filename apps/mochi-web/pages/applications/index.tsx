@@ -43,7 +43,6 @@ const AppPageHeader = ({
       platforms with a single API call."
       actions={[
         <Button
-          variant="outline"
           color="white"
           key="see-docs-button"
           onClick={() => window.open(SOCIAL_LINKS.DOCS, '_blank')}

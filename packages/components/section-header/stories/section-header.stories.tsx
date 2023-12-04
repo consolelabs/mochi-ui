@@ -26,9 +26,7 @@ export function Default() {
   const [selectedApp, setSelectedApp] = useState('all')
 
   const actions = [
-    <Button variant="outline" color="white">
-      See docs
-    </Button>,
+    <Button color="white">See docs</Button>,
     <Select value={selectedApp} onChange={setSelectedApp}>
       <SelectTrigger className="rounded bg-neutral-150">
         <Tooltip content="Selected app" arrow="top-center" className="z-20">
