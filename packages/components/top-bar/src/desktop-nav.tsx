@@ -1,4 +1,4 @@
-import { topBar } from '@consolelabs/theme'
+import { topBar } from '@mochi-ui/theme'
 import { Fragment } from 'react'
 
 const { topBarDesktopNavClsx, topBarDesktopNavContainerClsx } = topBar

@@ -1,4 +1,4 @@
-# @consolelabs/mochi-store
+# @mochi-ui/mochi-store
 
 Mochi Store serves as a state manager implemented with
 [Zustand](https://docs.pmnd.rs/zustand/getting-started/introduction), offering
@@ -10,13 +10,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/mochi-store
+pnpm i @mochi-ui/mochi-store
 
 # Using NPM
-npm i @consolelabs/mochi-store
+npm i @mochi-ui/mochi-store
 
 # Using Yarn
-yarn add @consolelabs/mochi-store
+yarn add @mochi-ui/mochi-store
 ```
 
 ## Contribution

@@ -20,7 +20,7 @@ import {
   TonKeeperWallet,
   TrustWallet,
   UniswapWallet,
-} from '@consolelabs/icons'
+} from '@mochi-ui/icons'
 // EIP6963
 import { createStore } from 'mipd'
 import type { WalletProps } from './wallet'

@@ -1,4 +1,4 @@
-# @consolelabs/badge
+# @mochi-ui/badge
 
 Badge component is used as a small numerical value or status descriptor for UI
 elements.
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/badge
+pnpm i @mochi-ui/badge
 
 # Using NPM
-npm i @consolelabs/badge
+npm i @mochi-ui/badge
 
 # Using Yarn
-yarn add @consolelabs/badge
+yarn add @mochi-ui/badge
 ```
 
 ## Contribution

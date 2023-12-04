@@ -7,8 +7,8 @@ import {
   TextFieldRoot,
   TextFieldInput,
   TextFieldDecorator,
-} from '@consolelabs/core'
-import { CrossCircleOutlined, MagnifierLine } from '@consolelabs/icons'
+} from '@mochi-ui/core'
+import { CrossCircleOutlined, MagnifierLine } from '@mochi-ui/icons'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { Tab } from '@headlessui/react'

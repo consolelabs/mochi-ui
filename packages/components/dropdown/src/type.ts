@@ -1,10 +1,7 @@
 import type { VariantProps } from 'class-variance-authority'
 import type { ReactNode, ComponentPropsWithoutRef, ElementRef } from 'react'
 import type * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
-import {
-  dropdownContentStyleCva,
-  dropdownItemStyleCva,
-} from '@consolelabs/theme'
+import { dropdownContentStyleCva, dropdownItemStyleCva } from '@mochi-ui/theme'
 
 export type BaseDropDownItemStyle = VariantProps<typeof dropdownItemStyleCva>
 

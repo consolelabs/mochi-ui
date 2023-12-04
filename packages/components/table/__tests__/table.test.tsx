@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unstable-nested-components */
+import { Badge } from '@mochi-ui/badge'
+import { StarSolid } from '@mochi-ui/icons'
 import { render, screen } from '@testing-library/react'
-import { StarSolid } from '@consolelabs/icons'
-import { Badge } from '@consolelabs/badge'
 import Table, { ColumnProps } from '../src/table'
 
 const data = new Array(50)

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { CheckCircleOutlined } from '@consolelabs/icons'
+import { CheckCircleOutlined } from '@mochi-ui/icons'
 import {
   Modal,
   ModalContent,

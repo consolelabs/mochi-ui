@@ -1,5 +1,5 @@
 {
-  "name": "@consolelabs/separator",
+  "name": "@mochi-ui/separator",
   "version": "0.0.15",
   "sideEffects": false,
   "main": "src/index.ts",
@@ -33,7 +33,7 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
-    "@consolelabs/theme": "workspace:*",
+    "@mochi-ui/theme": "workspace:*",
     "@radix-ui/react-separator": "^1.0.3",
     "clsx": "^2.0.0"
   },

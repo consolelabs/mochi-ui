@@ -1,4 +1,4 @@
-import { Avatar } from '@consolelabs/core'
+import { Avatar } from '@mochi-ui/core'
 import Image from 'next/image'
 import { hpbd, appreciation, achievement, wedding } from '~utils/image'
 

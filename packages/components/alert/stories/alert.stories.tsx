@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { UserSolid } from '@consolelabs/icons'
-import { Button } from '@consolelabs/button'
+import { UserSolid } from '@mochi-ui/icons'
+import { Button } from '@mochi-ui/button'
 import { Alert, AlertProps } from '../src/alert'
 import { AlertTitle } from '../src/alert-title'
 import { AlertIcon } from '../src'

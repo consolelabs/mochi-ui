@@ -1,4 +1,4 @@
-import { pageContent } from '@consolelabs/theme'
+import { pageContent } from '@mochi-ui/theme'
 import { forwardRef, HTMLAttributes } from 'react'
 
 const { pageContentWrapperClsx, pageContentClsx } = pageContent

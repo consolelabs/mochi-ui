@@ -11,8 +11,8 @@ import {
   Popover,
   PopoverContent,
   PopoverAnchor,
-} from '@consolelabs/core'
-import { ProfileGuardSuccessLine, Spinner } from '@consolelabs/icons'
+} from '@mochi-ui/core'
+import { ProfileGuardSuccessLine, Spinner } from '@mochi-ui/icons'
 import { useDebounce, useDisclosure } from '@dwarvesf/react-hooks'
 import { ChainPicker } from '../ChainPicker'
 import { Platform } from '../PlatformPicker/type'

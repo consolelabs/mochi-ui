@@ -1,4 +1,4 @@
-# @consolelabs/button
+# @mochi-ui/button
 
 Button component allows users to perform actions and choose with a single tap.
 
@@ -11,13 +11,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/button
+pnpm i @mochi-ui/button
 
 # Using NPM
-npm i @consolelabs/button
+npm i @mochi-ui/button
 
 # Using Yarn
-yarn add @consolelabs/button
+yarn add @mochi-ui/button
 ```
 
 ## Contribution

@@ -1,4 +1,4 @@
-# @consolelabs/icons
+# @mochi-ui/icons
 
 A set of icons to use in Console Labs's design system
 
@@ -11,13 +11,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/icons
+pnpm i @mochi-ui/icons
 
 # Using NPM
-npm i @consolelabs/icons
+npm i @mochi-ui/icons
 
 # Using Yarn
-yarn add @consolelabs/icons
+yarn add @mochi-ui/icons
 ```
 
 ## Contribution

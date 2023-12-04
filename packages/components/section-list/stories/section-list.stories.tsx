@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Heading } from '@consolelabs/heading'
+import { Heading } from '@mochi-ui/heading'
 import SectionList from '../src/section-list'
 
 const meta: Meta<typeof SectionList> = {

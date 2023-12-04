@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from 'react'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
-import { list } from '@consolelabs/theme'
+import { list } from '@mochi-ui/theme'
 
 const {
   listWrapperClsx,

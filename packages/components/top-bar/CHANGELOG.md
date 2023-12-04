@@ -1,4 +1,4 @@
-# @consolelabs/top-bar
+# @mochi-ui/top-bar
 
 ## 0.1.0
 
@@ -25,7 +25,7 @@
   [`5b72602`](https://github.com/consolelabs/web-foundation/commit/5b7260263cc00afc1596ac96bff1d9c68d6a9b3b),
   [`39f17eb`](https://github.com/consolelabs/web-foundation/commit/39f17eb2cbc693a289330ffec4fa3bf146d363da),
   [`bbfbde4`](https://github.com/consolelabs/web-foundation/commit/bbfbde4f763cc7056fa57066b4d84a1ed47d81c8)]:
-  - @consolelabs/theme@0.6.0
-  - @consolelabs/icon-button@0.4.1
-  - @consolelabs/icons@0.3.0
-  - @consolelabs/list@0.0.14
+  - @mochi-ui/theme@0.6.0
+  - @mochi-ui/icon-button@0.4.1
+  - @mochi-ui/icons@0.3.0
+  - @mochi-ui/list@0.0.14

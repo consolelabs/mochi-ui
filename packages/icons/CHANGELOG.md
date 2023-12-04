@@ -1,4 +1,4 @@
-# @consolelabs/icons
+# @mochi-ui/icons
 
 ## 0.3.0
 

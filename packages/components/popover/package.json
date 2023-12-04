@@ -1,5 +1,5 @@
 {
-  "name": "@consolelabs/popover",
+  "name": "@mochi-ui/popover",
   "version": "0.2.2",
   "sideEffects": false,
   "main": "src/index.ts",
@@ -27,16 +27,16 @@
   "devDependencies": {
     "clean-package": "^2.2.0",
     "eslint-config-custom": "workspace:*",
-    "@consolelabs/icons": "workspace:*",
-    "@consolelabs/avatar": "workspace:*",
-    "@consolelabs/button": "workspace:*",
+    "@mochi-ui/icons": "workspace:*",
+    "@mochi-ui/avatar": "workspace:*",
+    "@mochi-ui/button": "workspace:*",
     "prettier": "^3.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tsconfig": "workspace:*"
   },
   "dependencies": {
-    "@consolelabs/theme": "workspace:*",
+    "@mochi-ui/theme": "workspace:*",
     "class-variance-authority": "^0.7.0",
     "@radix-ui/react-popover": "^1.0.7",
     "clsx": "^2.0.0"

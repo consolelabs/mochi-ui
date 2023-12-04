@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
-import { Avatar } from '@consolelabs/avatar'
-import { profileBadge } from '@consolelabs/theme'
+import { Avatar } from '@mochi-ui/avatar'
+import { profileBadge } from '@mochi-ui/theme'
 
 type ProfileBadgeProps = React.HTMLAttributes<HTMLButtonElement> & {
   avatar: string

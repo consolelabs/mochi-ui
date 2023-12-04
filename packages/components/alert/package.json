@@ -1,5 +1,5 @@
 {
-  "name": "@consolelabs/alert",
+  "name": "@mochi-ui/alert",
   "version": "1.0.0",
   "sideEffects": false,
   "main": "src/index.ts",
@@ -33,11 +33,11 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
-    "@consolelabs/button": "workspace:*",
-    "@consolelabs/icon-button": "workspace:*",
-    "@consolelabs/icons": "workspace:*",
-    "@consolelabs/polymorphic": "workspace:*",
-    "@consolelabs/theme": "workspace:*",
+    "@mochi-ui/button": "workspace:*",
+    "@mochi-ui/icon-button": "workspace:*",
+    "@mochi-ui/icons": "workspace:*",
+    "@mochi-ui/polymorphic": "workspace:*",
+    "@mochi-ui/theme": "workspace:*",
     "@radix-ui/react-slot": "^1.0.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0"

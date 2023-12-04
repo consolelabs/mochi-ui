@@ -1,4 +1,4 @@
-import { Button } from '@consolelabs/core'
+import { Button } from '@mochi-ui/core'
 import {
   ChangeEvent,
   KeyboardEvent,

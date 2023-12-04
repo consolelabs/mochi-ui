@@ -1,4 +1,4 @@
-# @consolelabs/dropdown
+# @mochi-ui/dropdown
 
 Dropdown component displays list of actions or options that a user can choose.
 
@@ -11,13 +11,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/dropdown
+pnpm i @mochi-ui/dropdown
 
 # Using NPM
-npm i @consolelabs/dropdown
+npm i @mochi-ui/dropdown
 
 # Using Yarn
-yarn add @consolelabs/dropdown
+yarn add @mochi-ui/dropdown
 ```
 
 ## Contribution

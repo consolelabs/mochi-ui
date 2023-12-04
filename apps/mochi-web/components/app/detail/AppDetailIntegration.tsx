@@ -10,8 +10,8 @@ import {
   TextFieldRoot,
   Tooltip,
   Typography,
-} from '@consolelabs/core'
-import { ThreeDotLoading, CopyLine } from '@consolelabs/icons'
+} from '@mochi-ui/core'
+import { ThreeDotLoading, CopyLine } from '@mochi-ui/icons'
 import { truncate } from '@dwarvesf/react-utils'
 import { useClipboard } from '@dwarvesf/react-hooks'
 import { Control, Controller } from 'react-hook-form'

@@ -1,4 +1,4 @@
-# @consolelabs/polymorphic
+# @mochi-ui/polymorphic
 
 ## 0.0.2
 

@@ -1,6 +1,6 @@
+import { switchButton, SwitchStylesProps } from '@mochi-ui/theme'
 import * as RadixSwitch from '@radix-ui/react-switch'
 import { forwardRef } from 'react'
-import { switchButton, SwitchStylesProps } from '@consolelabs/theme'
 
 type SwitchProps = React.ComponentPropsWithoutRef<typeof RadixSwitch.Root> &
   SwitchStylesProps

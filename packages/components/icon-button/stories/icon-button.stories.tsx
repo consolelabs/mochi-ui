@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { ArrowRightLine } from '@consolelabs/icons'
+import { ArrowRightLine } from '@mochi-ui/icons'
 import IconButton, { IconButtonProps } from '../src/icon-button'
 
 const colors: IconButtonProps['color'][] = [

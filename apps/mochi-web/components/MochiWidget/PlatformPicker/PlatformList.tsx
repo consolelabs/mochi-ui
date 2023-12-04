@@ -1,4 +1,4 @@
-import { List } from '@consolelabs/core'
+import { List } from '@mochi-ui/core'
 import { Platform } from './type'
 import { PlatformItem } from './PlatformItem'
 

@@ -1,4 +1,4 @@
-import { Heading } from '@consolelabs/heading'
+import { Heading } from '@mochi-ui/heading'
 import { render } from '@testing-library/react'
 import SectionList from '../src/section-list'
 

@@ -1,4 +1,4 @@
-# @consolelabs/typography
+# @mochi-ui/typography
 
 Typography component encompasses a range of elements designed to represent
 various text styles within an application
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/typography
+pnpm i @mochi-ui/typography
 
 # Using NPM
-npm i @consolelabs/typography
+npm i @mochi-ui/typography
 
 # Using Yarn
-yarn add @consolelabs/typography
+yarn add @mochi-ui/typography
 ```
 
 ## Contribution

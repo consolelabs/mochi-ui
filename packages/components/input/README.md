@@ -1,4 +1,4 @@
-# @consolelabs/input
+# @mochi-ui/input
 
 Input component allows users to enter text. It can be used to get user inputs in
 forms, search fields, and more.
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/input
+pnpm i @mochi-ui/input
 
 # Using NPM
-npm i @consolelabs/input
+npm i @mochi-ui/input
 
 # Using Yarn
-yarn add @consolelabs/input
+yarn add @mochi-ui/input
 ```
 
 ## Contribution

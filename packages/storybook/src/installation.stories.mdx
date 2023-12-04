@@ -21,7 +21,7 @@ importing all components from a single package.
 Execute the following command in your terminal to install Console Labs UI:
 
 ```sh
-pnpm add @consolelabs/core @consolelabs/theme
+pnpm add @mochi-ui/core @mochi-ui/theme
 ```
 
 **2. TailwindCSS setup**
@@ -33,15 +33,15 @@ add this code to your `tailwind.config.js`:
 
 ```js
 // tailwind.config.js
-import { consolelabs } from '@consolelabs/theme'
+import { mochiui } from '@mochi-ui/theme'
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     // ...
-    './node_modules/@consolelabs/theme/dist/components/**/*.{js,jsx,ts,tsx}',
+    './node_modules/@mochi-ui/theme/dist/components/**/*.{js,jsx,ts,tsx}',
   ],
-  plugins: [consolelabs()],
+  plugins: [mochiui()],
 }
 ```
 
@@ -52,7 +52,7 @@ following code. This step ensures that the package paths align correctly,
 allowing TailwindCSS to accurately interpret Tailwind class names:
 
 ```sh
-public-hoist-pattern[]=*@consolelabs/*
+public-hoist-pattern[]=*@mochi-ui/*
 ```
 
 Once you've updated the `.npmrc` file, execute pnpm install once more to
@@ -72,7 +72,7 @@ To install components individually, follow these steps:
 **1. Core Package Installation**
 
 ```sh
-pnpm add @consolelabs/theme
+pnpm add @mochi-ui/theme
 ```
 
 **2. Component Installation**
@@ -80,7 +80,7 @@ pnpm add @consolelabs/theme
 Install the desired component. For instance, to use the Button component, run:
 
 ```sh
-pnpm add @consolelabs/button
+pnpm add @mochi-ui/button
 ```
 
 **3. Tailwind CSS Configuration**
@@ -90,17 +90,17 @@ the styles of the components you are using. For the Button component, add:
 
 ```js
 // tailwind.config.js
-import { consolelabs } from '@consolelabs/theme'
+import { mochiui } from '@mochi-ui/theme'
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     // single component styles
-    './node_modules/@consolelabs/theme/dist/components/button.js',
+    './node_modules/@mochi-ui/theme/dist/components/button.js',
     // or you can use a glob pattern (multiple component styles)
-    './node_modules/@consolelabs/theme/dist/components/(button|snippet|code|input).js',
+    './node_modules/@mochi-ui/theme/dist/components/(button|snippet|code|input).js',
   ],
-  plugins: [consolelabs()],
+  plugins: [mochiui()],
 }
 ```
 
@@ -110,7 +110,7 @@ You can now use the installed component in your application:
 
 ```js
 import * as React from 'react'
-import { Button } from '@consolelabs/button'
+import { Button } from '@mochi-ui/button'
 
 function App() {
   return <Button>Press me</Button>
@@ -124,7 +124,7 @@ following code. This step ensures that the package paths align correctly,
 allowing TailwindCSS to accurately interpret Tailwind class names:
 
 ```sh
-public-hoist-pattern[]=*@consolelabs/*
+public-hoist-pattern[]=*@mochi-ui/*
 ```
 
 Once you've updated the `.npmrc` file, execute pnpm install once more to

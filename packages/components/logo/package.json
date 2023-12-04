@@ -1,5 +1,5 @@
 {
-  "name": "@consolelabs/logo",
+  "name": "@mochi-ui/logo",
   "version": "0.1.1",
   "sideEffects": false,
   "main": "src/index.ts",
@@ -33,7 +33,7 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
-    "@consolelabs/theme": "workspace:*"
+    "@mochi-ui/theme": "workspace:*"
   },
   "clean-package": "../../../clean-package.config.json"
 }

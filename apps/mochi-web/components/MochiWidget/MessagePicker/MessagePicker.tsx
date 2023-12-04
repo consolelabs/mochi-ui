@@ -5,8 +5,8 @@ import {
   TextFieldDecorator,
   Heading,
   SectionList,
-} from '@consolelabs/core'
-import { MagnifierLine } from '@consolelabs/icons'
+} from '@mochi-ui/core'
+import { MagnifierLine } from '@mochi-ui/icons'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { useEffect, useRef, useState } from 'react'
 import { Message, MessageList } from './data'

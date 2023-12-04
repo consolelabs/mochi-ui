@@ -4,7 +4,7 @@ import {
   toggleButton,
   ToggleButtonStylesProps,
   ToggleButtonGroupStylesProps,
-} from '@consolelabs/theme'
+} from '@mochi-ui/theme'
 
 type ToggleButtonGroupProps = React.ComponentPropsWithoutRef<
   typeof ToggleGroup.Root
@@ -49,8 +49,8 @@ const ToggleButton = React.forwardRef<
 ToggleButton.displayName = ToggleGroup.Item.displayName
 
 export {
-  ToggleButtonGroup,
   ToggleButton,
+  ToggleButtonGroup,
   type ToggleButtonGroupProps,
   type ToggleButtonProps,
 }

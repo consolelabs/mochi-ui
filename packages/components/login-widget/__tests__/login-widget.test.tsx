@@ -8,7 +8,7 @@ jest.mock('@uidotdev/usehooks', () => {
 })
 jest.mock('browser-string-hexer', () => (h: string) => h)
 
-jest.mock('@consolelabs/mochi-store', () => ({
+jest.mock('@mochi-ui/mochi-store', () => ({
   useMochi: () => ({
     user: null,
     login: jest.fn(),

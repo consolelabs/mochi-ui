@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
-import { Avatar } from '@consolelabs/avatar'
+import { Avatar } from '@mochi-ui/avatar'
 import {
   CoinbaseWallet,
   CloseLine,
   SolidDotSolid,
   ArrowDownLine,
-} from '@consolelabs/icons'
+} from '@mochi-ui/icons'
 import {
   DropdownMenu,
   DropdownMenuTrigger,

@@ -1,5 +1,5 @@
 import { Children } from 'react'
-import { Sidebar } from '@consolelabs/sidebar'
+import { Sidebar } from '@mochi-ui/sidebar'
 
 export function useHasSidebar(children?: React.ReactNode) {
   const childNodes = Children.toArray(children)

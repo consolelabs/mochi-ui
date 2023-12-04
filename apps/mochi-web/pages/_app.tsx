@@ -18,7 +18,7 @@ const WalletProvider = dynamic(() =>
   import('~context/wallet-context').then((m) => m.WalletProvider),
 )
 const LoginWidgetProvider = dynamic(() =>
-  import('@consolelabs/core').then((m) => m.LoginWidgetProvider),
+  import('@mochi-ui/core').then((m) => m.LoginWidgetProvider),
 )
 const Toaster = dynamic(() => import('sonner').then((m) => m.Toaster))
 

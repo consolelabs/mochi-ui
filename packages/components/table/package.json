@@ -1,5 +1,5 @@
 {
-  "name": "@consolelabs/table",
+  "name": "@mochi-ui/table",
   "version": "0.2.0",
   "sideEffects": false,
   "main": "src/index.ts",
@@ -25,10 +25,10 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@consolelabs/badge": "workspace:*",
-    "@consolelabs/icons": "workspace:*",
-    "@consolelabs/icon-button": "workspace:*",
-    "@consolelabs/pagination": "workspace:*",
+    "@mochi-ui/badge": "workspace:*",
+    "@mochi-ui/icons": "workspace:*",
+    "@mochi-ui/icon-button": "workspace:*",
+    "@mochi-ui/pagination": "workspace:*",
     "clean-package": "^2.2.0",
     "eslint-config-custom": "workspace:*",
     "prettier": "^3.0.3",
@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@tanstack/react-table": "^8.10.7",
-    "@consolelabs/theme": "workspace:*"
+    "@mochi-ui/theme": "workspace:*"
   },
   "clean-package": "../../../clean-package.config.json"
 }

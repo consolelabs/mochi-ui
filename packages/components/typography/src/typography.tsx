@@ -1,4 +1,4 @@
-import { typography, TypographyStyleProps } from '@consolelabs/theme'
+import { typography, TypographyStyleProps } from '@mochi-ui/theme'
 
 export type TypographyProps = TypographyStyleProps & {
   children?: React.ReactNode

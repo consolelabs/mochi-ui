@@ -1,5 +1,5 @@
+import { tooltip } from '@mochi-ui/theme'
 import * as RadixTooltip from '@radix-ui/react-tooltip'
-import { tooltip } from '@consolelabs/theme'
 
 const { tooltipClsx, tooltipArrowClxs, tooltipTriggerClsx } = tooltip
 

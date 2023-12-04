@@ -1,4 +1,4 @@
-# @consolelabs/badge
+# @mochi-ui/badge
 
 ## 0.2.3
 
@@ -17,7 +17,7 @@
   [`5b72602`](https://github.com/consolelabs/web-foundation/commit/5b7260263cc00afc1596ac96bff1d9c68d6a9b3b),
   [`39f17eb`](https://github.com/consolelabs/web-foundation/commit/39f17eb2cbc693a289330ffec4fa3bf146d363da),
   [`bbfbde4`](https://github.com/consolelabs/web-foundation/commit/bbfbde4f763cc7056fa57066b4d84a1ed47d81c8)]:
-  - @consolelabs/theme@0.6.0
+  - @mochi-ui/theme@0.6.0
 
 ## 0.2.2
 
@@ -31,7 +31,7 @@
   [`b9ae92f`](https://github.com/consolelabs/web-foundation/commit/b9ae92f92b32dedac4903614e7c0947bd1118fb1),
   [`85da50f`](https://github.com/consolelabs/web-foundation/commit/85da50f1afa67d5d026dce281e522c8df57983ba),
   [`995bf22`](https://github.com/consolelabs/web-foundation/commit/995bf22b2cc7d5576327910f48e5028ca59431cf)]:
-  - @consolelabs/theme@0.5.0
+  - @mochi-ui/theme@0.5.0
 
 ## 0.2.1
 
@@ -51,7 +51,7 @@
   [`4157504`](https://github.com/consolelabs/web-foundation/commit/4157504d0c15310c559bbba45a2d2f4d0246fdde),
   [`d849e4e`](https://github.com/consolelabs/web-foundation/commit/d849e4edc83bddeb990b34d1675674b06c4c16bb),
   [`74087fd`](https://github.com/consolelabs/web-foundation/commit/74087fd9f316956e25453e6a2df0595fdf715025)]:
-  - @consolelabs/theme@0.4.0
+  - @mochi-ui/theme@0.4.0
 
 ## 0.2.0
 
@@ -78,7 +78,7 @@
   [`55f990e`](https://github.com/consolelabs/web-foundation/commit/55f990e50c3a355f00729d2e9f568b1578e1c503),
   [`ff7f47b`](https://github.com/consolelabs/web-foundation/commit/ff7f47b4ff224bd17fea51455303aff56495ca10),
   [`f0e6e55`](https://github.com/consolelabs/web-foundation/commit/f0e6e55c7e2a0837b8d0885683f2aeb8d423f9c3)]:
-  - @consolelabs/theme@0.3.0
+  - @mochi-ui/theme@0.3.0
 
 ## 0.1.4
 
@@ -94,7 +94,7 @@
   [`3c299e2`](https://github.com/consolelabs/web-foundation/commit/3c299e2fb3860692fda39a52ee6677fd31c74bba),
   [`c5b5ca6`](https://github.com/consolelabs/web-foundation/commit/c5b5ca64f08c6a962314481f4d5049bd03ac6926),
   [`c7ff58e`](https://github.com/consolelabs/web-foundation/commit/c7ff58e1acf9073175c6ff82e47600c954036c67)]:
-  - @consolelabs/theme@0.2.0
+  - @mochi-ui/theme@0.2.0
 
 ## 0.1.3
 
@@ -102,7 +102,7 @@
 
 - Updated dependencies
   [[`42bba8e`](https://github.com/consolelabs/web-foundation/commit/42bba8e6f3937c9a1346cbd91e91ae9f36d35aa8)]:
-  - @consolelabs/theme@0.1.0
+  - @mochi-ui/theme@0.1.0
 
 ## 0.1.2
 
@@ -110,7 +110,7 @@
 
 - Updated dependencies
   [[`81a751a`](https://github.com/consolelabs/web-foundation/commit/81a751a81bc836cee24a6a0fb5cda09e00d74e49)]:
-  - @consolelabs/theme@0.0.6
+  - @mochi-ui/theme@0.0.6
 
 ## 0.1.1
 
@@ -125,8 +125,8 @@
   [[`8457341`](https://github.com/consolelabs/websites/commit/8457341631ae28bb9f9d226e3b9c287d81cc9685),
   [`4db69e4`](https://github.com/consolelabs/websites/commit/4db69e4b2bf4c537ecfa2a06268d68a60d4e2dd6),
   [`8457341`](https://github.com/consolelabs/websites/commit/8457341631ae28bb9f9d226e3b9c287d81cc9685)]:
-  - @consolelabs/theme@0.0.5
-  - @consolelabs/icons@0.0.4
+  - @mochi-ui/theme@0.0.5
+  - @mochi-ui/icons@0.0.4
 
 ## 0.1.0
 
@@ -151,7 +151,7 @@
 - Updated dependencies
   [[`b46a8eb`](https://github.com/consolelabs/websites/commit/b46a8eb5699a24f674d3d6179dc4b9df672623bb),
   [`1af15c8`](https://github.com/consolelabs/websites/commit/1af15c838aeeb0f4132722f4ca3ad3f38e6eb749)]:
-  - @consolelabs/theme@0.0.4
+  - @mochi-ui/theme@0.0.4
 
 ## 0.0.5
 
@@ -159,7 +159,7 @@
 
 - Updated dependencies
   [[`1242eb9`](https://github.com/consolelabs/websites/commit/1242eb9215f4753ca6ca0edb8f424212f0508b2b)]:
-  - @consolelabs/icons@0.0.3
+  - @mochi-ui/icons@0.0.3
 
 ## 0.0.4
 
@@ -167,7 +167,7 @@
 
 - Updated dependencies
   [[`387a1d5`](https://github.com/consolelabs/websites/commit/387a1d538f34af652c3fd345f510ed0e142c581d)]:
-  - @consolelabs/theme@0.0.3
+  - @mochi-ui/theme@0.0.3
 
 ## 0.0.3
 
@@ -180,7 +180,7 @@
 - Updated dependencies
   [[`6ef97ce`](https://github.com/consolelabs/websites/commit/6ef97ce78f3f79512c8351ad957a10ae7c93871f),
   [`deb4075`](https://github.com/consolelabs/websites/commit/deb40753724f5da7f24d2203e5206cac6f08e8b0)]:
-  - @consolelabs/theme@0.0.2
+  - @mochi-ui/theme@0.0.2
 
 ## 0.0.2
 
@@ -188,4 +188,4 @@
 
 - Updated dependencies
   [[`77d5ff2`](https://github.com/consolelabs/websites/commit/77d5ff23c587c7667a2a3efdca7f627ef5422211)]:
-  - @consolelabs/icons@0.0.2
+  - @mochi-ui/icons@0.0.2

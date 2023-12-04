@@ -1,5 +1,5 @@
 import { SVGProps } from 'react'
-import { logo } from '@consolelabs/theme'
+import { logo } from '@mochi-ui/theme'
 
 const { logoSVGTextClsx } = logo
 

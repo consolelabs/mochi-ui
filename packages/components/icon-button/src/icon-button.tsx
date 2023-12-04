@@ -1,6 +1,6 @@
-import { iconButton, IconButtonStylesProps } from '@consolelabs/theme'
+import { iconButton, IconButtonStylesProps } from '@mochi-ui/theme'
 import React from 'react'
-import type * as Polymorphic from '@consolelabs/polymorphic'
+import type * as Polymorphic from '@mochi-ui/polymorphic'
 
 const { iconButtonCva } = iconButton
 

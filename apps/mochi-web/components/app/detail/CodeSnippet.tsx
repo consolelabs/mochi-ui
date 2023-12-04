@@ -1,5 +1,5 @@
-import { Tooltip, Typography } from '@consolelabs/core'
-import { CopySolid } from '@consolelabs/icons'
+import { Tooltip, Typography } from '@mochi-ui/core'
+import { CopySolid } from '@mochi-ui/icons'
 import { useClipboard } from '@dwarvesf/react-hooks'
 import Prism from 'prismjs'
 import 'prismjs/themes/prism-tomorrow.css'

@@ -1,4 +1,4 @@
-# @consolelabs/page-header
+# @mochi-ui/page-header
 
 ## 0.2.1
 
@@ -33,10 +33,10 @@
   [`5b72602`](https://github.com/consolelabs/web-foundation/commit/5b7260263cc00afc1596ac96bff1d9c68d6a9b3b),
   [`39f17eb`](https://github.com/consolelabs/web-foundation/commit/39f17eb2cbc693a289330ffec4fa3bf146d363da),
   [`bbfbde4`](https://github.com/consolelabs/web-foundation/commit/bbfbde4f763cc7056fa57066b4d84a1ed47d81c8)]:
-  - @consolelabs/theme@0.6.0
-  - @consolelabs/icon-button@0.4.1
-  - @consolelabs/icons@0.3.0
-  - @consolelabs/typography@0.0.6
+  - @mochi-ui/theme@0.6.0
+  - @mochi-ui/icon-button@0.4.1
+  - @mochi-ui/icons@0.3.0
+  - @mochi-ui/typography@0.0.6
 
 ## 0.2.0
 
@@ -57,9 +57,9 @@
   [`b9ae92f`](https://github.com/consolelabs/web-foundation/commit/b9ae92f92b32dedac4903614e7c0947bd1118fb1),
   [`85da50f`](https://github.com/consolelabs/web-foundation/commit/85da50f1afa67d5d026dce281e522c8df57983ba),
   [`995bf22`](https://github.com/consolelabs/web-foundation/commit/995bf22b2cc7d5576327910f48e5028ca59431cf)]:
-  - @consolelabs/theme@0.5.0
-  - @consolelabs/typography@0.0.6
-  - @consolelabs/icon-button@0.4.0
+  - @mochi-ui/theme@0.5.0
+  - @mochi-ui/typography@0.0.6
+  - @mochi-ui/icon-button@0.4.0
 
 ## 0.1.1
 
@@ -67,9 +67,9 @@
 
 - Updated dependencies
   [[`538fac5`](https://github.com/consolelabs/web-foundation/commit/538fac5b23861bfd01d02413746b80b89d8c50fd)]:
-  - @consolelabs/icons@0.2.1
-  - @consolelabs/icon-button@0.3.1
-  - @consolelabs/typography@0.0.5
+  - @mochi-ui/icons@0.2.1
+  - @mochi-ui/icon-button@0.3.1
+  - @mochi-ui/typography@0.0.5
 
 ## 0.1.0
 
@@ -103,7 +103,7 @@
   [`4157504`](https://github.com/consolelabs/web-foundation/commit/4157504d0c15310c559bbba45a2d2f4d0246fdde),
   [`d849e4e`](https://github.com/consolelabs/web-foundation/commit/d849e4edc83bddeb990b34d1675674b06c4c16bb),
   [`74087fd`](https://github.com/consolelabs/web-foundation/commit/74087fd9f316956e25453e6a2df0595fdf715025)]:
-  - @consolelabs/theme@0.4.0
-  - @consolelabs/icons@0.2.0
-  - @consolelabs/icon-button@0.3.0
-  - @consolelabs/typography@0.0.5
+  - @mochi-ui/theme@0.4.0
+  - @mochi-ui/icons@0.2.0
+  - @mochi-ui/icon-button@0.3.0
+  - @mochi-ui/typography@0.0.5

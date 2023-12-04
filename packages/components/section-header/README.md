@@ -1,4 +1,4 @@
-# @consolelabs/section-header
+# @mochi-ui/section-header
 
 Section Header component is designed to encapsulate essential details unique to
 a section, such as title and description, and also interactive elements as well
@@ -13,13 +13,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/section-header
+pnpm i @mochi-ui/section-header
 
 # Using NPM
-npm i @consolelabs/section-header
+npm i @mochi-ui/section-header
 
 # Using Yarn
-yarn add @consolelabs/section-header
+yarn add @mochi-ui/section-header
 ```
 
 ## Contribution

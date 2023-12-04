@@ -1,4 +1,4 @@
-# @consolelabs/accordion
+# @mochi-ui/accordion
 
 Accordion component displays a list of high-level options that can
 expand/collapse to reveal more information.
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/accordion
+pnpm i @mochi-ui/accordion
 
 # Using NPM
-npm i @consolelabs/accordion
+npm i @mochi-ui/accordion
 
 # Using Yarn
-yarn add @consolelabs/accordion
+yarn add @mochi-ui/accordion
 ```
 
 ## Contribution

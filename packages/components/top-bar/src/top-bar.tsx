@@ -1,5 +1,5 @@
 import { useHasMounted } from '@dwarvesf/react-hooks'
-import { topBar } from '@consolelabs/theme'
+import { topBar } from '@mochi-ui/theme'
 import { TopBarProps } from './type'
 
 const { topBarNavContainerClsx, topBarRightClsx } = topBar

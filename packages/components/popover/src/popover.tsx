@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as PopoverPrimitive from '@radix-ui/react-popover'
-import { popover } from '@consolelabs/theme'
+import { popover } from '@mochi-ui/theme'
 
 const { popoverContentClsx } = popover
 

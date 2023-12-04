@@ -4,8 +4,8 @@ import {
   ModalContent,
   ModalTrigger,
   Typography,
-} from '@consolelabs/core'
-import { AlertTriangleLine } from '@consolelabs/icons'
+} from '@mochi-ui/core'
+import { AlertTriangleLine } from '@mochi-ui/icons'
 
 interface Props {
   trigger: React.ReactNode

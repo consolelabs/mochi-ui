@@ -1,6 +1,6 @@
-import { DiscordColored, PasswordLockColored, Slack } from '@consolelabs/icons'
+import { DiscordColored, PasswordLockColored, Slack } from '@mochi-ui/icons'
 import type { Meta, StoryObj } from '@storybook/react'
-import { Avatar } from '@consolelabs/avatar'
+import { Avatar } from '@mochi-ui/avatar'
 import {
   TextFieldRoot,
   TextFieldInput,

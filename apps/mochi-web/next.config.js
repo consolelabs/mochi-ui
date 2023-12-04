@@ -28,7 +28,7 @@ module.exports = withBundleAnalyzer({
       },
     ],
   },
-  transpilePackages: ['@consolelabs/icons'],
+  transpilePackages: ['@mochi-ui/icons'],
   async redirects() {
     const redirects = [
       {

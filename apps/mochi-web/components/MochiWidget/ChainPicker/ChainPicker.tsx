@@ -5,7 +5,7 @@ import {
   Popover,
   PopoverTrigger,
   PopoverContent,
-} from '@consolelabs/core'
+} from '@mochi-ui/core'
 import { NativeImage } from '~cpn/NativeImage'
 import clsx from 'clsx'
 import { ChainList } from './ChainList'

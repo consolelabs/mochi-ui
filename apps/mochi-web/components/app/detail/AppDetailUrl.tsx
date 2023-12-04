@@ -11,8 +11,8 @@ import {
   TextFieldInput,
   TextFieldRoot,
   Typography,
-} from '@consolelabs/core'
-import { PlusLine } from '@consolelabs/icons'
+} from '@mochi-ui/core'
+import { PlusLine } from '@mochi-ui/icons'
 import {
   Control,
   Controller,

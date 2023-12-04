@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Heading } from '@consolelabs/core'
+import { Heading } from '@mochi-ui/core'
 import { Chain } from './type'
 
 interface ItemProps {

@@ -1,8 +1,4 @@
-import {
-  DiscordColored,
-  MonitorLine,
-  TelegramColored,
-} from '@consolelabs/icons'
+import { DiscordColored, MonitorLine, TelegramColored } from '@mochi-ui/icons'
 import Link from 'next/link'
 import React from 'react'
 import clsx from 'clsx'

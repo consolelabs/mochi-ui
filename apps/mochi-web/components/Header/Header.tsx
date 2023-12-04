@@ -22,7 +22,7 @@ import {
   Modal,
   ModalContent,
   Avatar,
-} from '@consolelabs/core'
+} from '@mochi-ui/core'
 import {
   DiscordColored,
   TelegramColored,
@@ -35,7 +35,7 @@ import {
   BellSolid,
   MagnifierLine,
   ChevronRightLine,
-} from '@consolelabs/icons'
+} from '@mochi-ui/icons'
 import { DISCORD_LINK, TELEGRAM_LINK } from '~envs'
 import { useState } from 'react'
 import ProfileDropdown from '~cpn/profile-dropdrown'

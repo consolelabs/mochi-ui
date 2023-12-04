@@ -1,5 +1,5 @@
-import { sidebar } from '@consolelabs/theme'
-import { Tooltip } from '@consolelabs/tooltip'
+import { sidebar } from '@mochi-ui/theme'
+import { Tooltip } from '@mochi-ui/tooltip'
 import type { Item } from './sidebar-item'
 import SidebarItem from './sidebar-item'
 

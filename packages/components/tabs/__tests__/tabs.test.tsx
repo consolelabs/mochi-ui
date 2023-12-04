@@ -1,7 +1,7 @@
-import { CodingSolid, SettingSolid, UserSolid } from '@consolelabs/icons'
+import { CodingSolid, SettingSolid, UserSolid } from '@mochi-ui/icons'
 import { act, render } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { Tabs, TabList, TabTrigger, TabContent } from '../src/tabs'
+import { TabContent, TabList, TabTrigger, Tabs } from '../src/tabs'
 
 describe('Tabs', () => {
   it('renders tabs with icons and text', async () => {

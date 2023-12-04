@@ -1,8 +1,8 @@
-import { Button } from '@consolelabs/button'
+import { Button } from '@mochi-ui/button'
 import { forwardRef } from 'react'
-import { alert } from '@consolelabs/theme'
+import { alert } from '@mochi-ui/theme'
 import { Slot } from '@radix-ui/react-slot'
-import * as Polymorphic from '@consolelabs/polymorphic'
+import * as Polymorphic from '@mochi-ui/polymorphic'
 import { useAlertContext } from './context'
 import { AlertConfirmProps } from './alert-confirm'
 

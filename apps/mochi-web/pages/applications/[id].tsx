@@ -15,7 +15,7 @@ import {
 import { API, GET_PATHS } from '~constants/api'
 import { useForm } from 'react-hook-form'
 import { useEffect, useState } from 'react'
-import { Button } from '@consolelabs/core'
+import { Button } from '@mochi-ui/core'
 import { AppDetailFormValues } from '~types/app'
 import { AppDetailPlatforms } from '~cpn/app/detail/AppDetailPlatforms'
 import { platforms } from '~constants/app'

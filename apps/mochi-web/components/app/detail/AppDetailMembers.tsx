@@ -1,11 +1,5 @@
-import {
-  Avatar,
-  Button,
-  ColumnProps,
-  Table,
-  Typography,
-} from '@consolelabs/core'
-import { AddUserSolid } from '@consolelabs/icons'
+import { Avatar, Button, ColumnProps, Table, Typography } from '@mochi-ui/core'
+import { AddUserSolid } from '@mochi-ui/icons'
 import { useFetchApplicationDetailMembers } from '~hooks/app/useFetchApplicationDetailMembers'
 import { ViewApplicationMember } from '~types/mochi-pay-schema'
 import { capitalizeFirstLetter } from '~utils/string'

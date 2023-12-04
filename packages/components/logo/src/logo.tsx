@@ -1,4 +1,4 @@
-import { logo } from '@consolelabs/theme'
+import { logo } from '@mochi-ui/theme'
 import { SVGLogo, SVGText } from './svg-element'
 
 type LogoProps = {

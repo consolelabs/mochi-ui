@@ -4,27 +4,27 @@ import {
   SlackColored,
   AppleColored,
   ChromeColored,
-} from '@consolelabs/icons'
+} from '@mochi-ui/icons'
 import {
   TextFieldRoot,
   TextFieldDecorator,
   TextFieldInput,
-} from '@consolelabs/input'
-import { Button } from '@consolelabs/button'
-import { LogoWithText } from '@consolelabs/logo'
+} from '@mochi-ui/input'
+import { Button } from '@mochi-ui/button'
+import { LogoWithText } from '@mochi-ui/logo'
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
-} from '@consolelabs/dropdown'
-import { SectionList } from '@consolelabs/section-list'
-import { Typography } from '@consolelabs/typography'
+} from '@mochi-ui/dropdown'
+import { SectionList } from '@mochi-ui/section-list'
+import { Typography } from '@mochi-ui/typography'
 import {
   Accordion,
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
-} from '@consolelabs/accordion'
+} from '@mochi-ui/accordion'
 import { DesktopNav, MobileNav, MobileNavItem, TopBar } from '../src'
 
 const meta = {

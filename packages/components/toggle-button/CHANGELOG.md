@@ -1,4 +1,4 @@
-# @consolelabs/toggle-button
+# @mochi-ui/toggle-button
 
 ## 0.1.0
 

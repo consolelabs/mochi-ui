@@ -3,7 +3,7 @@ import Image from 'next/image'
 import clsx from 'clsx'
 import { Layout } from '~app/layout'
 import { SEO } from '~app/layout/seo'
-import { Button, IconButton, Tooltip } from '@consolelabs/core'
+import { Button, IconButton, Tooltip } from '@mochi-ui/core'
 import {
   Apt,
   Arb,
@@ -31,7 +31,7 @@ import {
   ZkSync,
   CopySolid,
   FarcasterColored,
-} from '@consolelabs/icons'
+} from '@mochi-ui/icons'
 import { HOME_URL } from '~envs'
 import { TabbedFeatures } from '~cpn/landing/TabbedFeatures'
 import { Divider } from '~cpn/landing/Divider'

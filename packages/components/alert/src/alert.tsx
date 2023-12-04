@@ -1,4 +1,4 @@
-import { alert } from '@consolelabs/theme'
+import { alert } from '@mochi-ui/theme'
 import { useMemo } from 'react'
 import { AlertContext, AlertContextValue } from './context'
 

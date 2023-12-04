@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react'
-import { Button } from '@consolelabs/button'
+import { Button } from '@mochi-ui/button'
 import { SectionHeader } from '../src'
 
 describe('Section Header', () => {

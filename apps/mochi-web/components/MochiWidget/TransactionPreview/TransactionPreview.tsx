@@ -6,7 +6,7 @@ import {
   Dango,
   WalletSolid,
   Mochi,
-} from '@consolelabs/icons'
+} from '@mochi-ui/icons'
 import { useProfileStore } from '~store'
 import UI, { Platform } from '@consolelabs/mochi-ui'
 import stripEmoji from 'emoji-strip'

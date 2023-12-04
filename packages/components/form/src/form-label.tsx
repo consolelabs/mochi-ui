@@ -1,6 +1,6 @@
 import { LabelHTMLAttributes, forwardRef } from 'react'
-import { Label } from '@consolelabs/label'
-import { useFromControl } from '@consolelabs/form-context'
+import { Label } from '@mochi-ui/label'
+import { useFromControl } from '@mochi-ui/form-context'
 
 export const FormLabel = forwardRef<
   HTMLLabelElement,

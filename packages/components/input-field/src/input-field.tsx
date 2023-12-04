@@ -1,4 +1,4 @@
-import { inputfield, InputWrapperStylesProps } from '@consolelabs/theme'
+import { inputfield, InputWrapperStylesProps } from '@mochi-ui/theme'
 import { HTMLAttributes } from 'react'
 import clsx from 'clsx'
 

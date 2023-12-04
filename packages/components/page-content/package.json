@@ -1,5 +1,5 @@
 {
-  "name": "@consolelabs/page-content",
+  "name": "@mochi-ui/page-content",
   "version": "0.1.1",
   "sideEffects": false,
   "main": "src/index.ts",
@@ -25,7 +25,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@consolelabs/typography": "workspace:*",
+    "@mochi-ui/typography": "workspace:*",
     "clsx": "^2.0.0",
     "clean-package": "^2.2.0",
     "eslint-config-custom": "workspace:*",
@@ -35,7 +35,7 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
-    "@consolelabs/theme": "workspace:*"
+    "@mochi-ui/theme": "workspace:*"
   },
   "clean-package": "../../../clean-package.config.json"
 }

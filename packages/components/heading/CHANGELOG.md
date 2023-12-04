@@ -1,4 +1,4 @@
-# @consolelabs/heading
+# @mochi-ui/heading
 
 ## 0.0.5
 

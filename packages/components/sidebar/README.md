@@ -1,4 +1,4 @@
-# @consolelabs/sidebar
+# @mochi-ui/sidebar
 
 Sidebar is a navigational component positioned on the side of a user interface,
 providing quick access to essential features, menus, or sections.
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/sidebar
+pnpm i @mochi-ui/sidebar
 
 # Using NPM
-npm i @consolelabs/sidebar
+npm i @mochi-ui/sidebar
 
 # Using Yarn
-yarn add @consolelabs/sidebar
+yarn add @mochi-ui/sidebar
 ```
 
 ## Contribution

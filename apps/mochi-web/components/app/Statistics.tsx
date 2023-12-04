@@ -1,4 +1,4 @@
-import { Button, Typography } from '@consolelabs/core'
+import { Button, Typography } from '@mochi-ui/core'
 import Image from 'next/image'
 import { formatNumber } from '~utils/number'
 import { useFetchApplicationStats } from '~hooks/app/useFetchApplicationStats'

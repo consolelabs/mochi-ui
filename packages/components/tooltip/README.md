@@ -1,4 +1,4 @@
-# @consolelabs/tooltip
+# @mochi-ui/tooltip
 
 Tooltip component displays a brief, informative message that appears when a user
 interacts with an element.
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/tooltip
+pnpm i @mochi-ui/tooltip
 
 # Using NPM
-npm i @consolelabs/tooltip
+npm i @mochi-ui/tooltip
 
 # Using Yarn
-yarn add @consolelabs/tooltip
+yarn add @mochi-ui/tooltip
 ```
 
 ## Contribution

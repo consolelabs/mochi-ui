@@ -1,4 +1,4 @@
-# @consolelabs/profile-badge
+# @mochi-ui/profile-badge
 
 Profile Badge displays user information, including their name, platform, and
 avatar.
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/profile-badge
+pnpm i @mochi-ui/profile-badge
 
 # Using NPM
-npm i @consolelabs/profile-badge
+npm i @mochi-ui/profile-badge
 
 # Using Yarn
-yarn add @consolelabs/profile-badge
+yarn add @mochi-ui/profile-badge
 ```
 
 ## Contribution

@@ -23,7 +23,7 @@ import {
   ZkSync,
   FarcasterColored,
   TelegramColored,
-} from '@consolelabs/icons'
+} from '@mochi-ui/icons'
 import clsx from 'clsx'
 
 const socials: [

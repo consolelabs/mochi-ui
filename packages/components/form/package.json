@@ -1,5 +1,5 @@
 {
-  "name": "@consolelabs/form",
+  "name": "@mochi-ui/form",
   "version": "0.1.1",
   "sideEffects": false,
   "main": "src/index.ts",
@@ -25,10 +25,10 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@consolelabs/button": "workspace:*",
-    "@consolelabs/checkbox": "workspace:*",
-    "@consolelabs/icons": "workspace:*",
-    "@consolelabs/input": "workspace:*",
+    "@mochi-ui/button": "workspace:*",
+    "@mochi-ui/checkbox": "workspace:*",
+    "@mochi-ui/icons": "workspace:*",
+    "@mochi-ui/input": "workspace:*",
     "clean-package": "^2.2.0",
     "eslint-config-custom": "workspace:*",
     "prettier": "^3.0.3",
@@ -38,10 +38,10 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
-    "@consolelabs/form-context": "workspace:*",
-    "@consolelabs/label": "workspace:*",
-    "@consolelabs/polymorphic": "workspace:*",
-    "@consolelabs/theme": "workspace:*",
+    "@mochi-ui/form-context": "workspace:*",
+    "@mochi-ui/label": "workspace:*",
+    "@mochi-ui/polymorphic": "workspace:*",
+    "@mochi-ui/theme": "workspace:*",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0"
   },

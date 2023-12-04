@@ -1,4 +1,4 @@
-import { Checkbox, Label, Typography } from '@consolelabs/core'
+import { Checkbox, Label, Typography } from '@mochi-ui/core'
 import { Control, Controller, UseFormSetValue } from 'react-hook-form'
 import { platforms } from '~constants/app'
 import { AppDetailFormValues } from '~types/app'

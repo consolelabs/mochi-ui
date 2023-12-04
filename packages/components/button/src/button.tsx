@@ -1,6 +1,6 @@
-import { button, ButtonStylesProps } from '@consolelabs/theme'
-import { ThreeDotLoading } from '@consolelabs/icons'
-import type * as Polymorphic from '@consolelabs/polymorphic'
+import { button, ButtonStylesProps } from '@mochi-ui/theme'
+import { ThreeDotLoading } from '@mochi-ui/icons'
+import type * as Polymorphic from '@mochi-ui/polymorphic'
 import React, { ReactNode } from 'react'
 
 const { buttonCva, buttonloadIndicatorCva, buttonLoadingIconClsx } = button

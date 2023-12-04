@@ -1,4 +1,4 @@
-# @consolelabs/pagination
+# @mochi-ui/pagination
 
 Pagination component allows you to display active page and navigate between
 multiple pages.
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/pagination
+pnpm i @mochi-ui/pagination
 
 # Using NPM
-npm i @consolelabs/pagination
+npm i @mochi-ui/pagination
 
 # Using Yarn
-yarn add @consolelabs/pagination
+yarn add @mochi-ui/pagination
 ```
 
 ## Contribution

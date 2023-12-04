@@ -1,4 +1,4 @@
-import { List } from '@consolelabs/core'
+import { List } from '@mochi-ui/core'
 import { Chain } from './type'
 import { ChainItem } from './ChainItem'
 import { EmptyList } from './EmptyList'

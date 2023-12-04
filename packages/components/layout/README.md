@@ -1,4 +1,4 @@
-# @consolelabs/layout
+# @mochi-ui/layout
 
 Layout component is used for handling the overall layout of a page.
 
@@ -8,13 +8,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/layout
+pnpm i @mochi-ui/layout
 
 # Using NPM
-npm i @consolelabs/layout
+npm i @mochi-ui/layout
 
 # Using Yarn
-yarn add @consolelabs/layout
+yarn add @mochi-ui/layout
 ```
 
 ## Contribution

@@ -1,4 +1,4 @@
-import { Heading } from '@consolelabs/core'
+import { Heading } from '@mochi-ui/core'
 import { Platform } from './type'
 import PlatformIcon from './PlatformIcon'
 

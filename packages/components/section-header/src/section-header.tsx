@@ -1,5 +1,5 @@
-import { Typography } from '@consolelabs/typography'
-import { sectionHeader } from '@consolelabs/theme'
+import { Typography } from '@mochi-ui/typography'
+import { sectionHeader } from '@mochi-ui/theme'
 import { Fragment, ReactNode } from 'react'
 
 type SectionHeaderProps = {

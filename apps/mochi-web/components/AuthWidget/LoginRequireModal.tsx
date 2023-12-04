@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Modal, ModalContent } from '@consolelabs/core'
+import { Modal, ModalContent } from '@mochi-ui/core'
 import { useAuthStore } from '~store'
 import clsx from 'clsx'
 import { AuthPanel } from './AuthPanel'

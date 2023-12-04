@@ -5,7 +5,7 @@ import {
   ArrowDownLine,
   TwinkleSolid,
   PlusLine,
-} from '@consolelabs/icons'
+} from '@mochi-ui/icons'
 import Badge from '../src/badge'
 import type { BadgeProps } from '../src/badge'
 

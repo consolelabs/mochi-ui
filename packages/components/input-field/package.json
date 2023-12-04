@@ -1,5 +1,5 @@
 {
-  "name": "@consolelabs/input-field",
+  "name": "@mochi-ui/input-field",
   "version": "0.1.5",
   "sideEffects": false,
   "main": "src/index.ts",
@@ -24,7 +24,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@consolelabs/icons": "workspace:*",
+    "@mochi-ui/icons": "workspace:*",
     "clean-package": "^2.2.0",
     "eslint-config-custom": "workspace:*",
     "prettier": "^3.0.3",
@@ -33,7 +33,7 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
-    "@consolelabs/theme": "workspace:*",
+    "@mochi-ui/theme": "workspace:*",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0"
   },

@@ -1,8 +1,8 @@
-import { Sidebar } from '@consolelabs/sidebar'
-import { PageContent } from '@consolelabs/page-content'
-import { PageHeader } from '@consolelabs/page-header'
-import { Badge } from '@consolelabs/badge'
-import { Typography } from '@consolelabs/typography'
+import { Sidebar } from '@mochi-ui/sidebar'
+import { PageContent } from '@mochi-ui/page-content'
+import { PageHeader } from '@mochi-ui/page-header'
+import { Badge } from '@mochi-ui/badge'
+import { Typography } from '@mochi-ui/typography'
 import {
   AddUserSolid,
   CodingSolid,
@@ -15,7 +15,7 @@ import {
   TwinkleSolid,
   UserSolid,
   X,
-} from '@consolelabs/icons'
+} from '@mochi-ui/icons'
 import { Layout } from '../src'
 
 const meta = {

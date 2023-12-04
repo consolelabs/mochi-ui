@@ -1,5 +1,5 @@
 {
-  "name": "@consolelabs/mochi-store",
+  "name": "@mochi-ui/mochi-store",
   "version": "0.0.2",
   "sideEffects": false,
   "main": "src/index.ts",

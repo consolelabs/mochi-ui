@@ -9,8 +9,8 @@ import {
   Table,
   Tooltip,
   Typography,
-} from '@consolelabs/core'
-import { ThreeDotLine, ArrowUpLine } from '@consolelabs/icons'
+} from '@mochi-ui/core'
+import { ThreeDotLine, ArrowUpLine } from '@mochi-ui/icons'
 import { useClipboard } from '@dwarvesf/react-hooks'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'

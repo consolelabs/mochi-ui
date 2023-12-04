@@ -1,4 +1,4 @@
-import { List } from '@consolelabs/core'
+import { List } from '@mochi-ui/core'
 import { Wallet } from '~store'
 import { WalletItem } from './WalletItem'
 import Skeleton from '../Tip/Skeleton'

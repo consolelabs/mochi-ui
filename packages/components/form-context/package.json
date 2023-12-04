@@ -1,5 +1,5 @@
 {
-  "name": "@consolelabs/form-context",
+  "name": "@mochi-ui/form-context",
   "version": "0.1.0",
   "sideEffects": false,
   "main": "src/index.ts",

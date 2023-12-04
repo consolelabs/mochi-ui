@@ -1,4 +1,4 @@
-# @consolelabs/input-field
+# @mochi-ui/input-field
 
 Input Field component allows users to enter text.
 
@@ -11,13 +11,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/input-field
+pnpm i @mochi-ui/input-field
 
 # Using NPM
-npm i @consolelabs/input-field
+npm i @mochi-ui/input-field
 
 # Using Yarn
-yarn add @consolelabs/input-field
+yarn add @mochi-ui/input-field
 ```
 
 ## Contribution

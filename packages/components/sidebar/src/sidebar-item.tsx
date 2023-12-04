@@ -5,8 +5,8 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@consolelabs/accordion'
-import { sidebar } from '@consolelabs/theme'
+} from '@mochi-ui/accordion'
+import { sidebar } from '@mochi-ui/theme'
 
 export interface Item {
   title: string
