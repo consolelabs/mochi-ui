@@ -10,6 +10,8 @@
     "type": "git",
     "directory": "packages/icons"
   },
+  "author": "@consolelabs",
+  "homepage": "https://ds.console.so",
   "license": "MIT",
   "scripts": {
     "build": "pnpm clean && tsup --dts && pnpm gen:clean-packages",
