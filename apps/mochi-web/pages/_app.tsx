@@ -79,7 +79,7 @@ function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
   }, [asPath, hideIsLogging, removeToken, replace])
 
   return (
-    <SidebarContextProvider initialSidebarStatus="main">
+    <SidebarContextProvider initialSidebarVariant="main">
       <style jsx global>{`
         html {
           font-family: ${interFont.style.fontFamily};

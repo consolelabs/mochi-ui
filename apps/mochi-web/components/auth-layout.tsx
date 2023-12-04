@@ -192,7 +192,7 @@ export default function AuthenticatedLayout({
   const mounted = useHasMounted()
   const { isLoggedIn, isLoadingSession } = useAuthStore()
 
-  const { status } = useSidebarContext()
+  const { variant } = useSidebarContext()
 
   if (!mounted) {
     return childSEO
@@ -204,12 +204,12 @@ export default function AuthenticatedLayout({
         <Layout className="flex-1">
           <Sidebar
             Header={
-              status === 'main'
+              variant === 'main'
                 ? MainSidebarHeader
                 : ApplicationDetailSidebarHeader
             }
             headerItems={
-              status === 'main'
+              variant === 'main'
                 ? [
                     {
                       title: 'Profile',
@@ -240,7 +240,7 @@ export default function AuthenticatedLayout({
                   ]
             }
             footerItems={
-              status === 'main'
+              variant === 'main'
                 ? [
                     { title: 'Support', Icon: LifeBuoySolid },
                     {

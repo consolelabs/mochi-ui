@@ -15,11 +15,11 @@ import { useFetchApplicationList } from '../../hooks/app/useFetchApplicationList
 import { useProfileStore } from '../../store'
 import { ViewApplication } from '../../types/mochi-pay-schema'
 
-export type SidebarStatus = 'main' | 'app-detail'
+export type SidebarVarient = 'main' | 'app-detail'
 
 type SidebarContextValue = {
-  status: SidebarStatus
-  setStatus: Dispatch<SetStateAction<SidebarStatus>>
+  variant: SidebarVarient
+  setVariant: Dispatch<SetStateAction<SidebarVarient>>
   selectedApp?: ViewApplication
   isSelectedAppLoading?: boolean
   appList?: ViewApplication[]
@@ -29,13 +29,13 @@ type SidebarContextValue = {
 const SidebarContext = createContext<SidebarContextValue | undefined>(undefined)
 
 function SidebarContextProvider({
-  initialSidebarStatus,
+  initialSidebarVariant,
   children,
 }: {
-  initialSidebarStatus: SidebarStatus
+  initialSidebarVariant: SidebarVarient
   children: ReactNode
 }) {
-  const [status, setStatus] = useState<SidebarStatus>(initialSidebarStatus)
+  const [variant, setVariant] = useState<SidebarVarient>(initialSidebarVariant)
   const [selectedApp, setSelectedApplication] = useState<ViewApplication>()
   const router = useRouter()
 
@@ -55,13 +55,13 @@ function SidebarContextProvider({
   )
 
   useEffect(() => {
-    const currentStatus = status
+    const currentVariant = variant
     if (APPLICATION_DETAIL_ROUTE_REGEX.test(router.pathname)) {
-      setStatus('app-detail')
+      setVariant('app-detail')
     }
 
     return () => {
-      setStatus(currentStatus)
+      setVariant(currentVariant)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.pathname])
@@ -81,8 +81,8 @@ function SidebarContextProvider({
   return (
     <SidebarContext.Provider
       value={{
-        status,
-        setStatus,
+        variant,
+        setVariant,
         selectedApp,
         isSelectedAppLoading,
         appList,
