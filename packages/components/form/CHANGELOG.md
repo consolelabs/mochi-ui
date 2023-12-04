@@ -1,5 +1,15 @@
 # @mochi-ui/form
 
+## 0.1.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`255984f`](https://github.com/consolelabs/web-foundation/commit/255984f2d18b9cb17a249fa288d718efad0a0c1b),
+  [`ba288eb`](https://github.com/consolelabs/web-foundation/commit/ba288eb5a01a654072c5cef7cb41bb6066f00420)]:
+  - @mochi-ui/theme@0.7.0
+  - @mochi-ui/label@0.1.2
+
 ## 0.1.1
 
 ### Patch Changes

@@ -1,5 +1,23 @@
 # @mochi-ui/alert
 
+## 1.1.0
+
+### Minor Changes
+
+- [#350](https://github.com/consolelabs/web-foundation/pull/350)
+  [`255984f`](https://github.com/consolelabs/web-foundation/commit/255984f2d18b9cb17a249fa288d718efad0a0c1b)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Update Alert
+  props
+
+### Patch Changes
+
+- Updated dependencies
+  [[`255984f`](https://github.com/consolelabs/web-foundation/commit/255984f2d18b9cb17a249fa288d718efad0a0c1b),
+  [`ba288eb`](https://github.com/consolelabs/web-foundation/commit/ba288eb5a01a654072c5cef7cb41bb6066f00420)]:
+  - @mochi-ui/theme@0.7.0
+  - @mochi-ui/button@0.4.1
+  - @mochi-ui/icon-button@0.4.2
+
 ## 1.0.0
 
 ### Major Changes

@@ -1,6 +1,6 @@
 {
   "name": "@mochi-ui/pagination",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
