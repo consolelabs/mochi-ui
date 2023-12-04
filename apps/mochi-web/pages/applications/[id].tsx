@@ -26,7 +26,7 @@ import { AppDetailMembers } from '~cpn/app/detail/AppDetailMembers'
 const APP_DETAIL_FORM_ID = 'app-detail-form'
 
 const schema = z.object({
-  webhookUrl: z.string().url('Invalid URL').or(z.literal('')),
+  webhook: z.string().url('Invalid URL').or(z.literal('')),
   platforms: z.object(
     platforms.reduce(
       (acc, { key }) => ({
@@ -81,6 +81,7 @@ const App: NextPageWithLayout = () => {
       app_name: detail.name,
       description: detail?.description,
       metadata: detail?.metadata,
+      webhook: data.webhook,
       platforms: Object.entries(data.platforms).flatMap(([key, value]) =>
         value ? key : [],
       ),
@@ -91,7 +92,7 @@ const App: NextPageWithLayout = () => {
           ...acc,
           [platform]: [...(acc[platform] || []), url],
         }),
-        { webhookUrl: data.webhookUrl ? [data.webhookUrl] : [] },
+        {},
       ),
     }
     return API.MOCHI_PAY.put(
@@ -130,8 +131,7 @@ const App: NextPageWithLayout = () => {
 
   useEffect(() => {
     if (detail) {
-      const { webhookUrl, ...externalLinks } = detail.external_links || {}
-      const defalutUrls = Object.entries(externalLinks).flatMap(
+      const defalutUrls = Object.entries(detail.external_links || {}).flatMap(
         ([platform, urls]) => urls.map((url) => ({ platform, url })),
       )
       const defalutPlatforms = platforms.reduce(
@@ -144,7 +144,7 @@ const App: NextPageWithLayout = () => {
       reset({
         urls: defalutUrls,
         platforms: defalutPlatforms,
-        webhookUrl: webhookUrl?.[0] || '',
+        webhook: detail.webhook,
       })
     }
   }, [reset, detail])

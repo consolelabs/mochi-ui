@@ -155,7 +155,7 @@ export const AppDetailIntegration = ({
         <CodeSnippet />
       </div>
       <Controller
-        name="webhookUrl"
+        name="webhook"
         control={control}
         render={({ field, fieldState }) => (
           <FormControl error={!!fieldState.error} className="mt-4">
