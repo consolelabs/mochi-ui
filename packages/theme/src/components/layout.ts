@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority'
 
-const layoutDirectionCva = cva('flex', {
+const layoutDirectionCva = cva('flex flex-nowrap', {
   variants: {
     hasSidebar: {
       true: 'flex-row',
