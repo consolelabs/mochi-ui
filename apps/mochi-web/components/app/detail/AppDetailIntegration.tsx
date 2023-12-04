@@ -17,6 +17,7 @@ import { useClipboard } from '@dwarvesf/react-hooks'
 import { Control, Controller } from 'react-hook-form'
 import { AppDetailFormValues } from '~types/app'
 import { CodeSnippet } from './CodeSnippet'
+import { ResetKeyModal } from './ResetKeyModal'
 
 interface Props {
   apiKey?: string
@@ -105,28 +106,34 @@ export const AppDetailIntegration = ({
                     Copy
                   </Button>
                 </Tooltip>
-                <Button
-                  variant="outline"
-                  color="white"
-                  onClick={onResetSecretKey}
-                  loading={isResettingSecretKey}
-                  disabled={isResettingSecretKey}
-                  className="min-w-[130px]"
-                >
-                  Generate new
-                </Button>
+                <ResetKeyModal
+                  onConfirm={onResetSecretKey}
+                  trigger={
+                    <Button
+                      color="white"
+                      loading={isResettingSecretKey}
+                      disabled={isResettingSecretKey}
+                      className="min-w-[130px]"
+                    >
+                      Generate new
+                    </Button>
+                  }
+                />
               </div>
             ) : (
-              <Button
-                variant="outline"
-                color="white"
-                onClick={onResetSecretKey}
-                loading={isResettingSecretKey}
-                disabled={isResettingSecretKey}
-                className="min-w-[75px]"
-              >
-                Reset
-              </Button>
+              <ResetKeyModal
+                onConfirm={onResetSecretKey}
+                trigger={
+                  <Button
+                    color="white"
+                    loading={isResettingSecretKey}
+                    disabled={isResettingSecretKey}
+                    className="min-w-[75px]"
+                  >
+                    Reset
+                  </Button>
+                }
+              />
             )}
           </div>
           {secretKey ? (

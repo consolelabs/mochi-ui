@@ -26,7 +26,6 @@ export const AppDetailPageHeader = ({ name = '' }: Props) => {
       title={name}
       actions={[
         <Button
-          variant="outline"
           color="white"
           key="see-docs-button"
           as="a"
