@@ -64,6 +64,7 @@ function SidebarContextProvider({
     return () => {
       setVariant(currentVariant)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.pathname])
 
   useEffect(() => {
@@ -87,15 +88,7 @@ function SidebarContextProvider({
       appList,
       isAppListLoading,
     }),
-    [
-      router.pathname,
-      router?.query?.id,
-      variant,
-      selectedApp,
-      isSelectedAppLoading,
-      appList,
-      isAppListLoading,
-    ],
+    [variant, selectedApp, isSelectedAppLoading, appList, isAppListLoading],
   )
 
   return (

@@ -102,8 +102,6 @@ const ApplicationDetailSidebarHeader = ({
   const { push, query } = useRouter()
   const [isOpen, setIsOpen] = useState(false)
 
-  console.log(selectedApp, isSelectedAppLoading)
-
   return expanded ? (
     <div className="relative w-[240px] h-20 bg-neutral-solid-active">
       <NativeImage
