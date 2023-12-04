@@ -304,11 +304,11 @@ export const Header = () => {
             Features
           </Link>,
           <Link
-            href={ROUTES.API}
+            href={ROUTES.DOCS}
             className="flex items-center text-sm font-medium"
             key="desktop-nav-api"
           >
-            API
+            Docs
           </Link>,
           <DropdownMenu key="desktop-nav-dropdown">
             <DropdownMenuTrigger asChild>
@@ -352,13 +352,6 @@ export const Header = () => {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>,
-          <Link
-            href={ROUTES.ROADMAP}
-            className="flex items-center text-sm font-medium"
-            key="desktop-nav-roadmap"
-          >
-            Roadmap
-          </Link>,
           <div
             className="flex items-center -mx-2 w-px h-full"
             key="desktop-nav-divider"
