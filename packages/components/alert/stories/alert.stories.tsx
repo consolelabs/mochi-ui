@@ -10,6 +10,7 @@ import { AlertActionGroup } from '../src/alert-action-group'
 import { AlertConfirmButton } from '../src/alert-confirm'
 import { AlertCancelButton } from '../src/alert-cancel'
 import { AlertLink } from '../src/alert-link'
+import { AlertBody } from '../src/alert-body'
 
 const schemes = [
   'primary',
@@ -19,9 +20,7 @@ const schemes = [
   'danger',
   'neutral',
 ] as NonNullable<AlertProps['scheme']>[]
-const variants = ['default', 'outlined', 'action'] as NonNullable<
-  AlertProps['variant'][]
->
+const layouts = ['inline', 'stack'] as NonNullable<AlertProps['layout'][]>
 
 const meta: Meta<typeof Alert> = {
   title: 'Components/Alert',
@@ -39,22 +38,23 @@ const meta: Meta<typeof Alert> = {
       control: 'select',
       options: schemes,
     },
-    variant: {
+    layout: {
       control: 'select',
-      options: variants,
+      options: layouts,
     },
     size: {
       control: 'select',
       options: ['sm', 'md'],
     },
-    responsive: {
+    paddingSize: {
       control: 'select',
-      options: ['auto', 'shrink', 'expand'],
+      options: ['large', 'default'],
     },
   },
 }
 
 export default meta
+
 type Story = StoryObj<typeof Alert>
 
 export const Default: Story = {
@@ -62,33 +62,38 @@ export const Default: Story = {
     return (
       <Alert {...props}>
         <AlertIcon />
-        <AlertTitle>labore adipisicing minim sint</AlertTitle>
-        <AlertDescription>
-          Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
-          cillum sint consectetur cupidatat.
-        </AlertDescription>
-        <AlertLink href="#">View More</AlertLink>
+        <AlertBody flex="column">
+          <AlertTitle>labore adipisicing minim sint</AlertTitle>
+          <AlertDescription>
+            Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
+            cillum sint consectetur cupidatat.
+          </AlertDescription>
+          <AlertLink href="#">View More</AlertLink>
+        </AlertBody>
         <AlertCloseButton />
       </Alert>
     )
   },
 }
 
-export const Variants: Story = {
+export const Layout: Story = {
   render() {
     return (
       <div className="flex flex-col gap-3">
-        {variants.map((v) => (
-          <Alert variant={v}>
+        {layouts.map((v) => (
+          <Alert layout={v}>
             <AlertIcon />
-            <AlertTitle>
-              amet, qui minim labore adipisicing minim sint cillum sint
-            </AlertTitle>
-            <AlertDescription>
-              amet, qui minim labore adipisicing minim sint cillum sint
-              consectetur cupidatat.
-            </AlertDescription>
-            {v === 'action' && (
+            <AlertBody>
+              <AlertTitle>
+                amet, qui minim labore adipisicing minim sint cillum sint
+              </AlertTitle>
+              <AlertDescription>
+                amet, qui minim labore adipisicing minim sint cillum sint
+                consectetur cupidatat.
+              </AlertDescription>
+            </AlertBody>
+            <AlertCloseButton />
+            {v === 'inline' && (
               <AlertActionGroup>
                 <AlertConfirmButton>Confirm</AlertConfirmButton>
               </AlertActionGroup>
@@ -104,26 +109,26 @@ export const Colors: Story = {
   render() {
     return (
       <div className="flex flex-col gap-3">
-        {variants.map((v) => (
+        {layouts.map((l) => (
           <div className="flex flex-col gap-3">
-            <h3 className="uppercase semibold ">{v}</h3>
+            <h3 className="uppercase semibold ">{l}</h3>
             {schemes.map((s) => (
-              <Alert variant={v} scheme={s}>
+              <Alert layout={l} scheme={s}>
                 <AlertIcon />
-                <AlertTitle>Lorem ipsum dolor sit amet</AlertTitle>
-                <AlertDescription>
-                  Lorem ipsum dolor sit amet, qui minim labore adipisicing minim
-                  sint cillum sint consectetur cupidatat. Lorem ipsum dolor sit
-                  amet, qui minim labore adipisicing minim sint cillum sint
-                  consectetur cupidatat.
-                </AlertDescription>
+                <AlertBody>
+                  <AlertTitle>Lorem ipsum dolor sit amet</AlertTitle>
+                  <AlertDescription>
+                    Lorem ipsum dolor sit amet, qui minim labore adipisicing
+                    minim sint cillum sint consectetur cupidatat. Lorem ipsum
+                    dolor sit amet, qui minim labore adipisicing minim sint
+                    cillum sint consectetur cupidatat.
+                  </AlertDescription>
+                </AlertBody>
+                <AlertActionGroup>
+                  <AlertCancelButton>Confirm</AlertCancelButton>
+                  <AlertConfirmButton>Confirm</AlertConfirmButton>
+                </AlertActionGroup>
                 <AlertCloseButton />
-                {v === 'action' && (
-                  <AlertActionGroup>
-                    <AlertCancelButton>Confirm</AlertCancelButton>
-                    <AlertConfirmButton>Confirm</AlertConfirmButton>
-                  </AlertActionGroup>
-                )}
               </Alert>
             ))}
           </div>
@@ -136,15 +141,17 @@ export const Colors: Story = {
 export const Custom: Story = {
   render() {
     return (
-      <Alert scheme="neutral" variant="action">
-        <AlertTitle>Consololab UI Library</AlertTitle>
+      <Alert scheme="neutral" layout="inline">
         <AlertIcon asChild className="data-[scheme=secondary]:text-black">
           <UserSolid />
         </AlertIcon>
-        <AlertDescription>
-          Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
-          cillum sint consectetur cupidatat. Lorem ipsum dolor sit
-        </AlertDescription>
+        <AlertBody>
+          <AlertTitle>Consololab UI Library</AlertTitle>
+          <AlertDescription>
+            Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
+            cillum sint consectetur cupidatat. Lorem ipsum dolor sit
+          </AlertDescription>
+        </AlertBody>
         <AlertActionGroup>
           <AlertConfirmButton asChild>
             <Button>Confirm</Button>

@@ -23,36 +23,30 @@ const AlertConfirmButton = forwardRef((props, ref) => {
     children,
     ...restProps
   } = props
-  const { scheme, variant, responsive, size } = useAlertContext()
-  if (asChild) {
-    return (
-      <Slot
-        data-size={size}
-        data-scheme={scheme}
-        data-responsive={responsive}
-        data-variant={variant}
-        className={alert.alertConfirmClsx({ className })}
-      >
-        {children}
-      </Slot>
-    )
-  }
+  const { scheme, layout, size } = useAlertContext()
+  const Component = asChild ? Slot : Button
+  const passProps = asChild
+    ? {}
+    : {
+        variant: variantProp ?? 'solid',
+        color: colorProp ?? scheme,
+        ...restProps,
+      }
+
   return (
-    <Button
+    <Component
       data-size={size}
       data-scheme={scheme}
-      data-responsive={responsive}
-      data-variant={variant}
+      data-layout={layout}
       className={alert.alertConfirmClsx({ className })}
-      variant={variantProp ?? 'solid'}
-      color={colorProp ?? scheme}
       ref={ref}
-      {...restProps}
+      {...passProps}
     >
       {children}
-    </Button>
+    </Component>
   )
 }) as PolymorphicAlertConfirmButton
+AlertConfirmButton.displayName = 'AlertConfirmButton'
 
 export {
   type PolymorphicAlertConfirmButton,

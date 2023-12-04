@@ -15,7 +15,7 @@ type PolymorphicAlertDescription = Polymorphic.ForwardRefComponent<
 
 const AlertDescription = forwardRef((props, ref) => {
   const { as = 'p', asChild, className, ...restProps } = props
-  const { variant, scheme, size, responsive } = useAlertContext()
+  const { layout, scheme, size } = useAlertContext()
 
   const Component = asChild ? Slot : as
 
@@ -23,20 +23,19 @@ const AlertDescription = forwardRef((props, ref) => {
     <Component
       ref={ref}
       className={alert.alertDescriptionCva({
-        variant,
         scheme,
         size,
-        responsive,
+        layout,
         className,
       })}
       data-size={size}
       data-scheme={scheme}
-      data-responsive={responsive}
-      data-variant={variant}
+      data-layout={layout}
       {...restProps}
     />
   )
 }) as PolymorphicAlertDescription
+AlertDescription.displayName = 'AlertDescription'
 
 export {
   AlertDescription,

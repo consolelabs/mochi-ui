@@ -13,41 +13,27 @@ const getIcons = (scheme: NonNullable<AlertProps['scheme']>) => {
 type AlertIconProps = SVGProps<SVGSVGElement> & { asChild?: boolean }
 
 const AlertIcon = forwardRef<SVGSVGElement, AlertIconProps>((props, ref) => {
-  const { scheme, variant, size, responsive } = useAlertContext()
+  const { scheme, layout, size } = useAlertContext()
   const { className, asChild, children, ...restProps } = props
-  if (asChild)
-    return (
-      <Slot
-        className={alert.alertIconCva({
-          scheme,
-          variant,
-          responsive,
-          className,
-        })}
-        data-size={size}
-        data-scheme={scheme}
-        data-responsive={responsive}
-        data-variant={variant}
-      >
-        {children}
-      </Slot>
-    )
+
   const Icon = getIcons(scheme)
+  const Component = asChild ? Slot : Icon
+  const passProps = asChild ? {} : { ref, ...restProps }
   return (
-    <Icon
+    <Component
       data-size={size}
       data-scheme={scheme}
-      data-responsive={responsive}
-      data-variant={variant}
+      data-layout={layout}
       className={alert.alertIconCva({
         scheme,
-        variant,
-        responsive,
+        layout,
+        size,
         className,
       })}
-      ref={ref}
-      {...restProps}
-    />
+      {...passProps}
+    >
+      {children}
+    </Component>
   )
 })
 

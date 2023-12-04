@@ -4,29 +4,27 @@ import { alert } from '@mochi-ui/theme'
 import { Slot } from '@radix-ui/react-slot'
 import { useAlertContext } from './context'
 
-type AlertTitleProps = { asChild?: boolean }
-
 type PolymorphicAlertTitle = Polymorphic.ForwardRefComponent<
   'h3',
-  AlertTitleProps
+  { asChild?: boolean }
 >
+
+type AlertTitleProps = ComponentPropsWithRef<PolymorphicAlertTitle>
 
 const AlertTitle = forwardRef((props, ref) => {
   const { as = 'h3', className, asChild, ...restProps } = props
-  const { scheme, variant, size, responsive } = useAlertContext()
+  const { scheme, layout, size } = useAlertContext()
 
   const Component = asChild ? Slot : as
   return (
     <Component
       data-scheme={scheme}
-      data-responsive={responsive}
-      data-variant={variant}
+      data-layout={layout}
       data-size={size}
       className={alert.alertTitleCva({
         scheme,
-        variant,
+        layout,
         size,
-        responsive,
         className,
       })}
       ref={ref}
@@ -34,5 +32,6 @@ const AlertTitle = forwardRef((props, ref) => {
     />
   )
 }) as PolymorphicAlertTitle
+AlertTitle.displayName = 'AlertTitle'
 
 export { AlertTitle, type PolymorphicAlertTitle, type AlertTitleProps }
