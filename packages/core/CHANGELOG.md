@@ -1,5 +1,75 @@
 # @consolelabs/core
 
+## 0.5.0
+
+### Minor Changes
+
+- [#319](https://github.com/consolelabs/web-foundation/pull/319)
+  [`f3de4cc`](https://github.com/consolelabs/web-foundation/commit/f3de4cc86987082f7c93c5edd74038f28931bad5)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Create Top Bar
+  component package
+
+- [#307](https://github.com/consolelabs/web-foundation/pull/307)
+  [`5b72602`](https://github.com/consolelabs/web-foundation/commit/5b7260263cc00afc1596ac96bff1d9c68d6a9b3b)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Support
+  composable alert components
+
+### Patch Changes
+
+- [#337](https://github.com/consolelabs/web-foundation/pull/337)
+  [`a781bc1`](https://github.com/consolelabs/web-foundation/commit/a781bc13af1922768449ea77c172cb4e844ddb06)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Add white variant for
+  button
+
+- Updated dependencies
+  [[`a781bc1`](https://github.com/consolelabs/web-foundation/commit/a781bc13af1922768449ea77c172cb4e844ddb06),
+  [`f95ad8f`](https://github.com/consolelabs/web-foundation/commit/f95ad8f4e15d8c69b3719bb9da3fb5871d2f6f8c),
+  [`9432de1`](https://github.com/consolelabs/web-foundation/commit/9432de13c9f7376dd373624afc7a50d029bb2fd3),
+  [`92131c1`](https://github.com/consolelabs/web-foundation/commit/92131c1bb68fe4adaad6dab71981ecf452e8bd0a),
+  [`41cc391`](https://github.com/consolelabs/web-foundation/commit/41cc391a829fd4fb185ad4e394a4f8204a8b6304),
+  [`8a03c7c`](https://github.com/consolelabs/web-foundation/commit/8a03c7cabe39868c42e7beca729209c1f209aea7),
+  [`d4a90b6`](https://github.com/consolelabs/web-foundation/commit/d4a90b6a1b631d523851b1d681546c9b2183cfa1),
+  [`831f7a2`](https://github.com/consolelabs/web-foundation/commit/831f7a29c72fd3d795068dab9633d88a144b0c94),
+  [`861643a`](https://github.com/consolelabs/web-foundation/commit/861643a6b17b934686ac448541501aadf43a0923),
+  [`34321c8`](https://github.com/consolelabs/web-foundation/commit/34321c827d55c5d3a57030d2d82212958b6c22a2),
+  [`f3de4cc`](https://github.com/consolelabs/web-foundation/commit/f3de4cc86987082f7c93c5edd74038f28931bad5),
+  [`5b72602`](https://github.com/consolelabs/web-foundation/commit/5b7260263cc00afc1596ac96bff1d9c68d6a9b3b),
+  [`39f17eb`](https://github.com/consolelabs/web-foundation/commit/39f17eb2cbc693a289330ffec4fa3bf146d363da),
+  [`791e626`](https://github.com/consolelabs/web-foundation/commit/791e62699be86a4e60ab7a8f574a66031ffe4480),
+  [`bbfbde4`](https://github.com/consolelabs/web-foundation/commit/bbfbde4f763cc7056fa57066b4d84a1ed47d81c8)]:
+  - @consolelabs/button@0.4.0
+  - @consolelabs/theme@0.6.0
+  - @consolelabs/table@0.2.0
+  - @consolelabs/icon-button@0.4.1
+  - @consolelabs/page-header@0.2.1
+  - @consolelabs/icons@0.3.0
+  - @consolelabs/label@0.1.1
+  - @consolelabs/top-bar@0.1.0
+  - @consolelabs/alert@1.0.0
+  - @consolelabs/form@0.1.1
+  - @consolelabs/login-widget@0.1.5
+  - @consolelabs/popover@0.2.2
+  - @consolelabs/accordion@0.1.4
+  - @consolelabs/avatar@0.0.14
+  - @consolelabs/badge@0.2.3
+  - @consolelabs/checkbox@0.1.4
+  - @consolelabs/dropdown@0.1.4
+  - @consolelabs/input@0.2.1
+  - @consolelabs/input-field@0.1.5
+  - @consolelabs/layout@0.1.1
+  - @consolelabs/list@0.0.14
+  - @consolelabs/logo@0.1.1
+  - @consolelabs/modal@0.2.3
+  - @consolelabs/page-content@0.1.1
+  - @consolelabs/profile-badge@0.1.2
+  - @consolelabs/section-list@0.0.13
+  - @consolelabs/select@0.1.3
+  - @consolelabs/sidebar@0.0.17
+  - @consolelabs/switch@0.0.12
+  - @consolelabs/toggle-button@0.1.0
+  - @consolelabs/tooltip@0.2.1
+  - @consolelabs/typography@0.0.6
+
 ## 0.4.0
 
 ### Minor Changes

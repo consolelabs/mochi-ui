@@ -1,6 +1,13 @@
-# @consolelabs/layout
+# @consolelabs/section-header
 
-## 0.1.1
+## 0.1.0
+
+### Minor Changes
+
+- [#325](https://github.com/consolelabs/web-foundation/pull/325)
+  [`34321c8`](https://github.com/consolelabs/web-foundation/commit/34321c827d55c5d3a57030d2d82212958b6c22a2)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Create section header
+  component
 
 ### Patch Changes
 
@@ -18,26 +25,4 @@
   [`39f17eb`](https://github.com/consolelabs/web-foundation/commit/39f17eb2cbc693a289330ffec4fa3bf146d363da),
   [`bbfbde4`](https://github.com/consolelabs/web-foundation/commit/bbfbde4f763cc7056fa57066b4d84a1ed47d81c8)]:
   - @consolelabs/theme@0.6.0
-  - @consolelabs/sidebar@0.0.17
-
-## 0.1.0
-
-### Minor Changes
-
-- [#288](https://github.com/consolelabs/web-foundation/pull/288)
-  [`995bf22`](https://github.com/consolelabs/web-foundation/commit/995bf22b2cc7d5576327910f48e5028ca59431cf)
-  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Create Layout
-  component and refactor auth-layout
-
-### Patch Changes
-
-- Updated dependencies
-  [[`9786ce7`](https://github.com/consolelabs/web-foundation/commit/9786ce7ce0e2df4eecde1d527499ae59eebc48ab),
-  [`faaba77`](https://github.com/consolelabs/web-foundation/commit/faaba7753d764c4e8db25863632cb1038f2adcb9),
-  [`1ba9b89`](https://github.com/consolelabs/web-foundation/commit/1ba9b89df277d237053bb3ed69be8bd3c13c25a8),
-  [`f561e1d`](https://github.com/consolelabs/web-foundation/commit/f561e1deae07fa69ac54501152a844259376ede6),
-  [`b9ae92f`](https://github.com/consolelabs/web-foundation/commit/b9ae92f92b32dedac4903614e7c0947bd1118fb1),
-  [`85da50f`](https://github.com/consolelabs/web-foundation/commit/85da50f1afa67d5d026dce281e522c8df57983ba),
-  [`995bf22`](https://github.com/consolelabs/web-foundation/commit/995bf22b2cc7d5576327910f48e5028ca59431cf)]:
-  - @consolelabs/theme@0.5.0
-  - @consolelabs/sidebar@0.0.16
+  - @consolelabs/typography@0.0.6

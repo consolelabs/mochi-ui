@@ -1,6 +1,6 @@
 {
   "name": "@consolelabs/profile-badge",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [

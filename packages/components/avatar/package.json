@@ -1,6 +1,6 @@
 {
   "name": "@consolelabs/avatar",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [

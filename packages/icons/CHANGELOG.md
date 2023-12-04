@@ -1,5 +1,18 @@
 # @consolelabs/icons
 
+## 0.3.0
+
+### Minor Changes
+
+- [#327](https://github.com/consolelabs/web-foundation/pull/327)
+  [`41cc391`](https://github.com/consolelabs/web-foundation/commit/41cc391a829fd4fb185ad4e394a4f8204a8b6304)
+  Thanks [@tuanddd](https://github.com/tuanddd)! - Add new icons
+
+- [#319](https://github.com/consolelabs/web-foundation/pull/319)
+  [`f3de4cc`](https://github.com/consolelabs/web-foundation/commit/f3de4cc86987082f7c93c5edd74038f28931bad5)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Create Top Bar
+  component package
+
 ## 0.2.1
 
 ### Patch Changes
