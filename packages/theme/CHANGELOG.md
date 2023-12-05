@@ -1,5 +1,14 @@
 # @mochi-ui/theme
 
+## 0.7.3
+
+### Patch Changes
+
+- [#368](https://github.com/consolelabs/mochi-ui/pull/368)
+  [`6fc99cd`](https://github.com/consolelabs/mochi-ui/commit/6fc99cd17cb503d9651c6c0d5d27d6789bc1efea)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Center avatar of
+  selected recipient
+
 ## 0.7.2
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @mochi-ui/page-header
 
+## 0.2.5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`6fc99cd`](https://github.com/consolelabs/mochi-ui/commit/6fc99cd17cb503d9651c6c0d5d27d6789bc1efea)]:
+  - @mochi-ui/theme@0.7.3
+  - @mochi-ui/icon-button@0.4.5
+  - @mochi-ui/typography@0.0.7
+
 ## 0.2.4
 
 ### Patch Changes
