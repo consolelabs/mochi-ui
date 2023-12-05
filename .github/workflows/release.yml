@@ -10,7 +10,6 @@ on:
   push:
     paths:
       - ".changeset/**"
-      - ".github/**"
       - "packages/**"
     branches:
       - main
@@ -22,9 +21,6 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    outputs:
-      published: ${{ steps.changesets.outputs.published }}
-      publishedPackages: ${{ toJson(steps.changesets.outputs.publishedPackages) }}
     steps:
       - name: Checkout branch
         uses: actions/checkout@v4
@@ -57,24 +53,22 @@ jobs:
           version: pnpm version-packages
           commit: 'release: [skip apps] bump npm package(s)'
           title: 'release: [skip apps] npm package(s)'
-
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Send Discord Msg
+        if: steps.changesets.outputs.published == 'true'
+        uses: './.github/actions/discord-notify'
+        with:
+          discord-webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          tags-info: ${{ steps.changesets.outputs.publishedPackages }}
+          repo: ${{ github.repository }}
+          server-url: ${{ github.server_url }}
+
       - name: Archive npm failure logs
         uses: actions/upload-artifact@v3
         if: failure()
         with:
           name: npm-logs
           path: ~/.npm/_logs
-  notify:
-    needs: [release]
-    if: needs.release.outputs.published == 'true'
-    name: Send Discord Notify
-    uses: ./.github/workflows/discord-release-notify.yml
-    secrets:
-      discord-webhook: ${{ secrets.DISCORD_WEBHOOK }}
-    with:
-      tags-info: ${{ needs.release.outputs.publishedPackages }}
-      repo: ${{ github.repository }}
-      server-url: ${{ github.server_url }}
