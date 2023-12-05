@@ -1,5 +1,13 @@
 # @mochi-ui/table
 
+## 0.3.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4a1303e`](https://github.com/consolelabs/web-foundation/commit/4a1303e6f540f27a6cd5ab26b7b6cf3997074d32)]:
+  - @mochi-ui/theme@0.7.2
+
 ## 0.3.1
 
 ### Patch Changes

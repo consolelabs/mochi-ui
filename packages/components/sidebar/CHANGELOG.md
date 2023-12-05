@@ -1,5 +1,21 @@
 # @mochi-ui/sidebar
 
+## 0.0.20
+
+### Patch Changes
+
+- [#349](https://github.com/consolelabs/web-foundation/pull/349)
+  [`4a1303e`](https://github.com/consolelabs/web-foundation/commit/4a1303e6f540f27a6cd5ab26b7b6cf3997074d32)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Render sidebar for
+  app detail view
+
+- Updated dependencies
+  [[`4a1303e`](https://github.com/consolelabs/web-foundation/commit/4a1303e6f540f27a6cd5ab26b7b6cf3997074d32)]:
+  - @mochi-ui/icons@0.3.2
+  - @mochi-ui/theme@0.7.2
+  - @mochi-ui/accordion@0.1.7
+  - @mochi-ui/tooltip@0.2.4
+
 ## 0.0.19
 
 ### Patch Changes

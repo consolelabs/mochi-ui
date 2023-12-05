@@ -1,6 +1,6 @@
 {
   "name": "@mochi-ui/accordion",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [

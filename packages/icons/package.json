@@ -1,6 +1,6 @@
 {
   "name": "@mochi-ui/icons",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
