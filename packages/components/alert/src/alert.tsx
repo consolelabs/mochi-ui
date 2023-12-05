@@ -36,6 +36,7 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
   return (
     <AlertContext.Provider value={contextValue}>
       <div
+        ref={ref}
         className={alertCva({
           scheme,
           size,
