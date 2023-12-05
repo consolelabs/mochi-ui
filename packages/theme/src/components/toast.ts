@@ -28,9 +28,9 @@ const toastViewPortCva = cva(
 
 type ViewPortStyleProps = VariantProps<typeof toastViewPortCva>
 
-const toast = {
+const toaster = {
   toastViewPortCva,
   toastClsx,
 }
 
-export { toast, type ViewPortStyleProps }
+export { toaster, type ViewPortStyleProps }

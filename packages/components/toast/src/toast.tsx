@@ -1,6 +1,6 @@
 import * as ToastPrimitive from '@radix-ui/react-toast'
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
-import { ViewPortStyleProps, toast } from '@mochi-ui/theme'
+import { ViewPortStyleProps, toaster } from '@mochi-ui/theme'
 import { Alert } from '@mochi-ui/alert'
 import type { AlertProps } from '@mochi-ui/alert'
 
@@ -23,7 +23,7 @@ const ToastViewPort = forwardRef<ToastViewPortRef, ToastViewPortProps>(
     const { className, direction, ...restProps } = props
     return (
       <ToastPrimitive.Viewport
-        className={toast.toastViewPortCva({ className, direction })}
+        className={toaster.toastViewPortCva({ className, direction })}
         ref={ref}
         {...restProps}
       />
@@ -46,7 +46,7 @@ const Toast = forwardRef<ToastRef, ToastProps>((props, ref) => {
       asChild
       ref={ref}
       {...restProps}
-      className={toast.toastClsx({ className })}
+      className={toaster.toastClsx({ className })}
     >
       <Alert {...alertProps} />
     </ToastPrimitive.Root>
