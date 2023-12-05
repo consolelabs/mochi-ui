@@ -7,9 +7,9 @@ addons.setConfig({
     colorPrimary: '#8B54F7',
     colorSecondary: '#017AFF',
     textColor: '#343433',
-    brandImage: './logo-full.svg',
-    brandTitle: 'Console Labs',
-    brandUrl: 'https://www.console.so/',
+    brandImage: './logo-black.png',
+    brandTitle: 'Mochi UI',
+    brandUrl: 'https://www.mochiui.com/',
     brandTarget: '_self',
     appBg: '#F0F7FF',
 
