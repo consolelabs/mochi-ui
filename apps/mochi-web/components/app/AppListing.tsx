@@ -104,7 +104,7 @@ export const AppListing = ({
           <Table
             onRow={(record) => ({
               onClick: () => {
-                push(ROUTES.APPLICATION_DETAIL(record.id))
+                push(ROUTES.APPLICATION_DETAIL.getPath(record.id))
               },
             })}
             isLoading={isLoading}

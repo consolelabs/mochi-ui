@@ -8,7 +8,14 @@ export const ROUTES = {
   SERVER_LIST: '/servers',
   SERVER_DETAIL: (id: string) => `/servers/${id}`,
   SERVER_SETTINGS: (id: string) => `/servers/${id}/manage/settings`,
+  APPLICATION_DETAIL_REVENUE: {
+    getPath: (id: string) => `/applications/${id}/revenue`,
+    pathname: '/applications/[id]/revenue',
+  },
   APPLICATON_LIST: '/applications',
-  APPLICATION_DETAIL: (id?: string | number) => `/applications/${id}`,
+  APPLICATION_DETAIL: {
+    getPath: (id?: string | number) => `/applications/${id}`,
+    pathname: '/applications/[id]',
+  },
   SETTINGS: '/settings',
 }

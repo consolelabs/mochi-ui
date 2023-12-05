@@ -65,7 +65,10 @@ const AppPageHeader = ({
               All apps
             </DropdownMenuItem>
             {apps.map((app) => (
-              <Link key={app.id} href={ROUTES.APPLICATION_DETAIL(app.id)}>
+              <Link
+                key={app.id}
+                href={ROUTES.APPLICATION_DETAIL.getPath(app.id)}
+              >
                 <DropdownMenuItem key={app.id}>{app.name}</DropdownMenuItem>
               </Link>
             ))}
@@ -96,7 +99,7 @@ const App: NextPageWithLayout = () => {
   const onCreateApp = (result: ViewFullApplicationResponse) => {
     refresh()
     push({
-      pathname: ROUTES.APPLICATION_DETAIL(result.data?.id),
+      pathname: ROUTES.APPLICATION_DETAIL.getPath(result.data?.id),
       query: {
         secretKey: result.data?.private_key,
       },

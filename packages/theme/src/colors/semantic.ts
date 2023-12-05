@@ -186,6 +186,7 @@ export const semanticColors = {
       secondary: commonColors.gray['500'],
       tertiary: commonColors.gray['300'],
       icon: commonColors.gray['800'],
+      contrast: commonColors.white,
     },
     background: {
       body: commonColors.white,
@@ -330,6 +331,7 @@ export const semanticColors = {
       secondary: commonColors.gray['500'],
       tertiary: commonColors.gray['300'],
       icon: commonColors.gray['800'],
+      contrast: commonColors.white,
     },
     background: {
       body: commonColors.white,
