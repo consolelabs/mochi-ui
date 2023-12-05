@@ -4,8 +4,8 @@ import {
   ComponentPropsWithoutRef,
   forwardRef,
 } from 'react'
-import * as Polymorphic from '@consolelabs/polymorphic'
-import { AlertCancelButton, AlertCancelProps } from '@consolelabs/alert'
+import * as Polymorphic from '@mochi-ui/polymorphic'
+import { AlertCancelButton, AlertCancelProps } from '@mochi-ui/alert'
 
 type PolymorphicToastCancelButton = Polymorphic.ForwardRefComponent<
   'button',

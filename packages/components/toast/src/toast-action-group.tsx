@@ -1,4 +1,4 @@
-import { AlertActionGroup, AlertActionGroupProps } from '@consolelabs/alert'
+import { AlertActionGroup, AlertActionGroupProps } from '@mochi-ui/alert'
 
 const ToastActionGroup = AlertActionGroup
 
