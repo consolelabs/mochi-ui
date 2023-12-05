@@ -124,7 +124,7 @@ const ApplicationDetailSidebarHeader = ({
               color="info"
               onClick={() => push(ROUTES.APPLICATON_LIST)}
             >
-              <ChevronLeftLine className="text-2xl shrink-0 text-neutral-solid-fg" />
+              <ChevronLeftLine className="text-2xl shrink-0 text-text-contrast" />
             </IconButton>
 
             <DropdownMenu open={isOpen} onOpenChange={() => setIsOpen(!isOpen)}>
@@ -136,9 +136,9 @@ const ApplicationDetailSidebarHeader = ({
                   </Typography>
                 </div>
                 {isOpen ? (
-                  <CloseLine className="text-neutral-solid-fg" />
+                  <CloseLine className="text-text-contrast" />
                 ) : (
-                  <ChevronDownLine className="text-neutral-solid-fg" />
+                  <ChevronDownLine className="text-text-contrast" />
                 )}
               </DropdownMenuTrigger>
               <DropdownMenuContent className="mt-7 -ml-6 !min-w-[216px] max-h-[320px] overflow-auto">
@@ -162,7 +162,7 @@ const ApplicationDetailSidebarHeader = ({
             </DropdownMenu>
           </div>
         ) : (
-          <ThreeDotLoading className="text-neutral-solid-fg text-3xl" />
+          <ThreeDotLoading className="text-text-contrast text-3xl" />
         )}
       </div>
     </div>
