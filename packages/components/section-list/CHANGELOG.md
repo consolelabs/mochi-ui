@@ -1,5 +1,13 @@
 # @mochi-ui/section-list
 
+## 0.0.17
+
+### Patch Changes
+
+- Updated dependencies
+  [[`6fc99cd`](https://github.com/consolelabs/mochi-ui/commit/6fc99cd17cb503d9651c6c0d5d27d6789bc1efea)]:
+  - @mochi-ui/theme@0.7.3
+
 ## 0.0.16
 
 ### Patch Changes
