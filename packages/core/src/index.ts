@@ -1,4 +1,5 @@
 // Plop adding component indicator - do not remove this line
+export * from '@mochi-ui/footer'
 export * from '@mochi-ui/accordion'
 export * from '@mochi-ui/alert'
 export * from '@mochi-ui/avatar'
@@ -32,3 +33,4 @@ export * from '@mochi-ui/typography'
 export * from '@mochi-ui/table'
 export * from '@mochi-ui/form'
 export * from '@mochi-ui/label'
+export * from '@mochi-ui/footer'
