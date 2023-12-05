@@ -35,6 +35,8 @@ jobs:
       - name: Prepare Environment
         uses: ./.github/actions/setup-env
         timeout-minutes: 10
+        with:
+          enable-turbo-cache: true
 
       - name: Creating .npmrc file
         run: |
@@ -58,6 +60,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Archive npm failure logs
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: npm-logs
+          path: ~/.npm/_logs
   notify:
     needs: [release]
     if: needs.release.outputs.published == 'true'
