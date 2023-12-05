@@ -4,16 +4,16 @@
 
 ### Patch Changes
 
-- [#360](https://github.com/consolelabs/web-foundation/pull/360)
-  [`a935b6d`](https://github.com/consolelabs/web-foundation/commit/a935b6d9f9189fb7ea2d2b2dd771ff0df73598f4)
+- [#360](https://github.com/consolelabs/mochi-ui/pull/360)
+  [`a935b6d`](https://github.com/consolelabs/mochi-ui/commit/a935b6d9f9189fb7ea2d2b2dd771ff0df73598f4)
   Thanks [@zlatanpham](https://github.com/zlatanpham)! - Release packages
 
 ## 0.1.0
 
 ### Minor Changes
 
-- [#272](https://github.com/consolelabs/web-foundation/pull/272)
-  [`74087fd`](https://github.com/consolelabs/web-foundation/commit/74087fd9f316956e25453e6a2df0595fdf715025)
+- [#272](https://github.com/consolelabs/mochi-ui/pull/272)
+  [`74087fd`](https://github.com/consolelabs/mochi-ui/commit/74087fd9f316956e25453e6a2df0595fdf715025)
   Thanks [@tonible14012002](https://github.com/tonible14012002)! - Update toggle
   button variants
 
@@ -21,8 +21,8 @@
 
 ### Patch Changes
 
-- [#218](https://github.com/consolelabs/web-foundation/pull/218)
-  [`ae28441`](https://github.com/consolelabs/web-foundation/commit/ae28441d9e6673ea76971bbb5da5ea9354f7d444)
+- [#218](https://github.com/consolelabs/mochi-ui/pull/218)
+  [`ae28441`](https://github.com/consolelabs/mochi-ui/commit/ae28441d9e6673ea76971bbb5da5ea9354f7d444)
   Thanks [@zlatanpham](https://github.com/zlatanpham)! - Fix document path
 
 ## 0.0.7

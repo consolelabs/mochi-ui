@@ -4,16 +4,16 @@
 
 ### Patch Changes
 
-- [#360](https://github.com/consolelabs/web-foundation/pull/360)
-  [`a935b6d`](https://github.com/consolelabs/web-foundation/commit/a935b6d9f9189fb7ea2d2b2dd771ff0df73598f4)
+- [#360](https://github.com/consolelabs/mochi-ui/pull/360)
+  [`a935b6d`](https://github.com/consolelabs/mochi-ui/commit/a935b6d9f9189fb7ea2d2b2dd771ff0df73598f4)
   Thanks [@zlatanpham](https://github.com/zlatanpham)! - Release packages
 
 ## 0.0.6
 
 ### Patch Changes
 
-- [#322](https://github.com/consolelabs/web-foundation/pull/322)
-  [`f561e1d`](https://github.com/consolelabs/web-foundation/commit/f561e1deae07fa69ac54501152a844259376ede6)
+- [#322](https://github.com/consolelabs/mochi-ui/pull/322)
+  [`f561e1d`](https://github.com/consolelabs/mochi-ui/commit/f561e1deae07fa69ac54501152a844259376ede6)
   Thanks [@trankhacvy](https://github.com/trankhacvy)! - Update Typography font
   weight
 
@@ -21,8 +21,8 @@
 
 ### Patch Changes
 
-- [#290](https://github.com/consolelabs/web-foundation/pull/290)
-  [`c594e9a`](https://github.com/consolelabs/web-foundation/commit/c594e9a0117ba184f31dc55e7079f406838c43f2)
+- [#290](https://github.com/consolelabs/mochi-ui/pull/290)
+  [`c594e9a`](https://github.com/consolelabs/mochi-ui/commit/c594e9a0117ba184f31dc55e7079f406838c43f2)
   Thanks [@trankhacvy](https://github.com/trankhacvy)! - Update Typo variant
   names
 
@@ -30,8 +30,8 @@
 
 ### Patch Changes
 
-- [#256](https://github.com/consolelabs/web-foundation/pull/256)
-  [`c1a37a5`](https://github.com/consolelabs/web-foundation/commit/c1a37a55baa86eb71173f91ca194318771052a16)
+- [#256](https://github.com/consolelabs/mochi-ui/pull/256)
+  [`c1a37a5`](https://github.com/consolelabs/mochi-ui/commit/c1a37a55baa86eb71173f91ca194318771052a16)
   Thanks [@trankhacvy](https://github.com/trankhacvy)! - Update Typography
 
 ## 0.0.3
