@@ -26,7 +26,7 @@ interface FooterProps {
   social: FooterSocial[]
 }
 
-const Footer = forwardRef<HTMLDivElement, FooterProps>(
+const Footer = forwardRef<HTMLElement, FooterProps>(
   ({ className, logo, copyrightText, nav, social }, ref) => {
     return (
       <footer ref={ref} className={footer.footerClsx({ className })}>

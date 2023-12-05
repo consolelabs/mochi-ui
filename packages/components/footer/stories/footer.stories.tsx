@@ -1,6 +1,6 @@
 import React from 'react'
 import { Meta, StoryObj } from '@storybook/react'
-import { Logo } from '@mochi-ui/Logo'
+import { Logo } from '@mochi-ui/logo'
 import { X, Discord, Telegram, Consolelabs } from '@mochi-ui/icons'
 
 import { Footer, FooterProps } from '../src'
@@ -9,10 +9,8 @@ const meta: Meta<typeof Footer> = {
   title: 'Layout/Footer',
   component: Footer,
   parameters: {
-    // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
     layout: 'centered',
   },
-  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],
 }
 
