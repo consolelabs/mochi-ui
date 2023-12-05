@@ -10,7 +10,7 @@ to craft visually appealing and accessible web applications.
 
 - For contribution details, see our
   [Contribution Guidelines](./CONTRIBUTING.md).
-- Explore our [UI Documentation](https://ds.console.so/) for design system
+- Explore our [UI Documentation](https://ds.mochiui.com/) for design system
   insights.
 
 ## Community

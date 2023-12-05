@@ -4,7 +4,7 @@ Popover is a non-modal dialog that floats around its disclosure. It's commonly
 used for displaying additional rich content on top of something.
 
 For further details, visit our
-[Popover Documentation](https://ds.console.so/?path=/docs/components-popover--docs).
+[Popover Documentation](https://ds.mochiui.com/?path=/docs/components-popover--docs).
 
 ## Installation
 

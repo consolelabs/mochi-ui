@@ -5,7 +5,7 @@ current page like page title and description. You can also integrate interactive
 elements, such as buttons and selects, directly into the header.
 
 For further details, visit our
-[Page Header Documentation](https://ds.console.so/?path=/docs/components-pageheader--docs).
+[Page Header Documentation](https://ds.mochiui.com/?path=/docs/components-pageheader--docs).
 
 ## Installation
 

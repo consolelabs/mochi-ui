@@ -4,7 +4,7 @@ Accordion component displays a list of high-level options that can
 expand/collapse to reveal more information.
 
 For further details, visit our
-[Accordion Documentation](https://ds.console.so/?path=/docs/components-accordion--docs).
+[Accordion Documentation](https://ds.mochiui.com/?path=/docs/components-accordion--docs).
 
 ## Installation
 

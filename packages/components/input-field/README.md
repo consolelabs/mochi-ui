@@ -3,7 +3,7 @@
 Input Field component allows users to enter text.
 
 For further details, visit our
-[Input Field Documentation](https://ds.console.so/?path=/docs/components-inputfield--docs).
+[Input Field Documentation](https://ds.mochiui.com/?path=/docs/components-inputfield--docs).
 
 ## Installation
 

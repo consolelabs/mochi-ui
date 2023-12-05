@@ -4,7 +4,7 @@ The theme package encompasses the TailwindCSS configuration, which includes
 elements such as `plugin`, `colors`, `spacing`, and various other design tokens.
 
 For further details, visit our
-[Installation Documentation](https://ds.console.so/?path=/docs/introduction-installation--docs).
+[Installation Documentation](https://ds.mochiui.com/?path=/docs/introduction-installation--docs).
 
 ## Installation
 

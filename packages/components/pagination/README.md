@@ -4,7 +4,7 @@ Pagination component allows you to display active page and navigate between
 multiple pages.
 
 For further details, visit our
-[Pagination Documentation](https://ds.console.so/?path=/docs/components-pagination--docs).
+[Pagination Documentation](https://ds.mochiui.com/?path=/docs/components-pagination--docs).
 
 ## Installation
 

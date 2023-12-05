@@ -3,7 +3,7 @@
 Table component is used to display tabular data using rows and columns.
 
 For further details, visit our
-[Table Documentation](https://ds.console.so/?path=/docs/components-table--docs).
+[Table Documentation](https://ds.mochiui.com/?path=/docs/components-table--docs).
 
 ## Installation
 

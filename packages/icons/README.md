@@ -3,7 +3,7 @@
 A set of icons to use in Console Labs's design system
 
 For further details, visit our
-[Icons Documentation](https://ds.console.so/?path=/docs/icons-list--docs).
+[Icons Documentation](https://ds.mochiui.com/?path=/docs/icons-list--docs).
 
 ## Installation
 

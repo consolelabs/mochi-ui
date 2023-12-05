@@ -4,7 +4,7 @@ Top Bar component provides a clean and organized space at the top of the page to
 showcase important information, such as page titles or navigation elements.
 
 For further details, visit our
-[Top Bar Documentation](https://ds.console.so/?path=/docs/components-topbar--docs).
+[Top Bar Documentation](https://ds.mochiui.com/?path=/docs/components-topbar--docs).
 
 ## Installation
 

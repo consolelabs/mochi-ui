@@ -4,7 +4,7 @@ Modal component displays a dialog with a custom content that requires attention
 or provides additional information.
 
 For further details, visit our
-[Modal Documentation](https://ds.console.so/?path=/docs/components-modal--docs).
+[Modal Documentation](https://ds.mochiui.com/?path=/docs/components-modal--docs).
 
 ## Installation
 

@@ -4,7 +4,7 @@ Select component displays a collapsible list of options and allows a user to
 select one of them.
 
 For further details, visit our
-[Select Documentation](https://ds.console.so/?path=/docs/components-select--docs).
+[Select Documentation](https://ds.mochiui.com/?path=/docs/components-select--docs).
 
 ## Installation
 
