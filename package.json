@@ -1,7 +1,7 @@
 {
-  "name": "@mochi-ui/websites",
+  "name": "mochi-ui",
   "private": false,
-  "description": "Mochi UI Websites",
+  "description": "Beautiful and accessible React UI library for building web3 applications",
   "author": "@consolelabs",
   "license": "ISC",
   "publishConfig": {

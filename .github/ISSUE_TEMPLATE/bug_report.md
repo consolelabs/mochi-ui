@@ -10,7 +10,7 @@ assignees: ''
 <!-- You don't need to answer these questions in the issue. -->
 
 <!-- Have you searched for your issues? Other developers may already have the answer for you. -->
-<!-- https://github.com/consolelabs/web-foundation/issues -->
+<!-- https://github.com/consolelabs/mochi-ui/issues -->
 
 ## Version
 

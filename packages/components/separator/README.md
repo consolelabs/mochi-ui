@@ -4,7 +4,7 @@ Separator component creates a clear distinction or spacing between content
 sections or items.
 
 For further details, visit our
-[Separator Documentation](https://ds.console.so/?path=/docs/components-separator--docs).
+[Separator Documentation](https://ds.mochiui.com/?path=/docs/components-separator--docs).
 
 ## Installation
 

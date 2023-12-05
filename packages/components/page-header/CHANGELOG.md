@@ -5,7 +5,7 @@
 ### Patch Changes
 
 - Updated dependencies
-  [[`4a1303e`](https://github.com/consolelabs/web-foundation/commit/4a1303e6f540f27a6cd5ab26b7b6cf3997074d32)]:
+  [[`4a1303e`](https://github.com/consolelabs/mochi-ui/commit/4a1303e6f540f27a6cd5ab26b7b6cf3997074d32)]:
   - @mochi-ui/icons@0.3.2
   - @mochi-ui/theme@0.7.2
   - @mochi-ui/icon-button@0.4.4
@@ -15,12 +15,12 @@
 
 ### Patch Changes
 
-- [#360](https://github.com/consolelabs/web-foundation/pull/360)
-  [`a935b6d`](https://github.com/consolelabs/web-foundation/commit/a935b6d9f9189fb7ea2d2b2dd771ff0df73598f4)
+- [#360](https://github.com/consolelabs/mochi-ui/pull/360)
+  [`a935b6d`](https://github.com/consolelabs/mochi-ui/commit/a935b6d9f9189fb7ea2d2b2dd771ff0df73598f4)
   Thanks [@zlatanpham](https://github.com/zlatanpham)! - Release packages
 
 - Updated dependencies
-  [[`a935b6d`](https://github.com/consolelabs/web-foundation/commit/a935b6d9f9189fb7ea2d2b2dd771ff0df73598f4)]:
+  [[`a935b6d`](https://github.com/consolelabs/mochi-ui/commit/a935b6d9f9189fb7ea2d2b2dd771ff0df73598f4)]:
   - @mochi-ui/icon-button@0.4.3
   - @mochi-ui/typography@0.0.7
   - @mochi-ui/icons@0.3.1
@@ -31,8 +31,8 @@
 ### Patch Changes
 
 - Updated dependencies
-  [[`255984f`](https://github.com/consolelabs/web-foundation/commit/255984f2d18b9cb17a249fa288d718efad0a0c1b),
-  [`ba288eb`](https://github.com/consolelabs/web-foundation/commit/ba288eb5a01a654072c5cef7cb41bb6066f00420)]:
+  [[`255984f`](https://github.com/consolelabs/mochi-ui/commit/255984f2d18b9cb17a249fa288d718efad0a0c1b),
+  [`ba288eb`](https://github.com/consolelabs/mochi-ui/commit/ba288eb5a01a654072c5cef7cb41bb6066f00420)]:
   - @mochi-ui/theme@0.7.0
   - @mochi-ui/icon-button@0.4.2
   - @mochi-ui/typography@0.0.6
@@ -41,35 +41,35 @@
 
 ### Patch Changes
 
-- [#341](https://github.com/consolelabs/web-foundation/pull/341)
-  [`92131c1`](https://github.com/consolelabs/web-foundation/commit/92131c1bb68fe4adaad6dab71981ecf452e8bd0a)
+- [#341](https://github.com/consolelabs/mochi-ui/pull/341)
+  [`92131c1`](https://github.com/consolelabs/mochi-ui/commit/92131c1bb68fe4adaad6dab71981ecf452e8bd0a)
   Thanks [@zlatanpham](https://github.com/zlatanpham)! - Fix incorrect border
   bottom color page header
 
-- [#325](https://github.com/consolelabs/web-foundation/pull/325)
-  [`34321c8`](https://github.com/consolelabs/web-foundation/commit/34321c827d55c5d3a57030d2d82212958b6c22a2)
+- [#325](https://github.com/consolelabs/mochi-ui/pull/325)
+  [`34321c8`](https://github.com/consolelabs/mochi-ui/commit/34321c827d55c5d3a57030d2d82212958b6c22a2)
   Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Create section header
   component
 
-- [#319](https://github.com/consolelabs/web-foundation/pull/319)
-  [`f3de4cc`](https://github.com/consolelabs/web-foundation/commit/f3de4cc86987082f7c93c5edd74038f28931bad5)
+- [#319](https://github.com/consolelabs/mochi-ui/pull/319)
+  [`f3de4cc`](https://github.com/consolelabs/mochi-ui/commit/f3de4cc86987082f7c93c5edd74038f28931bad5)
   Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Create Top Bar
   component package
 
 - Updated dependencies
-  [[`a781bc1`](https://github.com/consolelabs/web-foundation/commit/a781bc13af1922768449ea77c172cb4e844ddb06),
-  [`f95ad8f`](https://github.com/consolelabs/web-foundation/commit/f95ad8f4e15d8c69b3719bb9da3fb5871d2f6f8c),
-  [`9432de1`](https://github.com/consolelabs/web-foundation/commit/9432de13c9f7376dd373624afc7a50d029bb2fd3),
-  [`92131c1`](https://github.com/consolelabs/web-foundation/commit/92131c1bb68fe4adaad6dab71981ecf452e8bd0a),
-  [`41cc391`](https://github.com/consolelabs/web-foundation/commit/41cc391a829fd4fb185ad4e394a4f8204a8b6304),
-  [`8a03c7c`](https://github.com/consolelabs/web-foundation/commit/8a03c7cabe39868c42e7beca729209c1f209aea7),
-  [`d4a90b6`](https://github.com/consolelabs/web-foundation/commit/d4a90b6a1b631d523851b1d681546c9b2183cfa1),
-  [`831f7a2`](https://github.com/consolelabs/web-foundation/commit/831f7a29c72fd3d795068dab9633d88a144b0c94),
-  [`34321c8`](https://github.com/consolelabs/web-foundation/commit/34321c827d55c5d3a57030d2d82212958b6c22a2),
-  [`f3de4cc`](https://github.com/consolelabs/web-foundation/commit/f3de4cc86987082f7c93c5edd74038f28931bad5),
-  [`5b72602`](https://github.com/consolelabs/web-foundation/commit/5b7260263cc00afc1596ac96bff1d9c68d6a9b3b),
-  [`39f17eb`](https://github.com/consolelabs/web-foundation/commit/39f17eb2cbc693a289330ffec4fa3bf146d363da),
-  [`bbfbde4`](https://github.com/consolelabs/web-foundation/commit/bbfbde4f763cc7056fa57066b4d84a1ed47d81c8)]:
+  [[`a781bc1`](https://github.com/consolelabs/mochi-ui/commit/a781bc13af1922768449ea77c172cb4e844ddb06),
+  [`f95ad8f`](https://github.com/consolelabs/mochi-ui/commit/f95ad8f4e15d8c69b3719bb9da3fb5871d2f6f8c),
+  [`9432de1`](https://github.com/consolelabs/mochi-ui/commit/9432de13c9f7376dd373624afc7a50d029bb2fd3),
+  [`92131c1`](https://github.com/consolelabs/mochi-ui/commit/92131c1bb68fe4adaad6dab71981ecf452e8bd0a),
+  [`41cc391`](https://github.com/consolelabs/mochi-ui/commit/41cc391a829fd4fb185ad4e394a4f8204a8b6304),
+  [`8a03c7c`](https://github.com/consolelabs/mochi-ui/commit/8a03c7cabe39868c42e7beca729209c1f209aea7),
+  [`d4a90b6`](https://github.com/consolelabs/mochi-ui/commit/d4a90b6a1b631d523851b1d681546c9b2183cfa1),
+  [`831f7a2`](https://github.com/consolelabs/mochi-ui/commit/831f7a29c72fd3d795068dab9633d88a144b0c94),
+  [`34321c8`](https://github.com/consolelabs/mochi-ui/commit/34321c827d55c5d3a57030d2d82212958b6c22a2),
+  [`f3de4cc`](https://github.com/consolelabs/mochi-ui/commit/f3de4cc86987082f7c93c5edd74038f28931bad5),
+  [`5b72602`](https://github.com/consolelabs/mochi-ui/commit/5b7260263cc00afc1596ac96bff1d9c68d6a9b3b),
+  [`39f17eb`](https://github.com/consolelabs/mochi-ui/commit/39f17eb2cbc693a289330ffec4fa3bf146d363da),
+  [`bbfbde4`](https://github.com/consolelabs/mochi-ui/commit/bbfbde4f763cc7056fa57066b4d84a1ed47d81c8)]:
   - @mochi-ui/theme@0.6.0
   - @mochi-ui/icon-button@0.4.1
   - @mochi-ui/icons@0.3.0
@@ -79,21 +79,21 @@
 
 ### Minor Changes
 
-- [#288](https://github.com/consolelabs/web-foundation/pull/288)
-  [`995bf22`](https://github.com/consolelabs/web-foundation/commit/995bf22b2cc7d5576327910f48e5028ca59431cf)
+- [#288](https://github.com/consolelabs/mochi-ui/pull/288)
+  [`995bf22`](https://github.com/consolelabs/mochi-ui/commit/995bf22b2cc7d5576327910f48e5028ca59431cf)
   Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Create Layout
   component and refactor auth-layout
 
 ### Patch Changes
 
 - Updated dependencies
-  [[`9786ce7`](https://github.com/consolelabs/web-foundation/commit/9786ce7ce0e2df4eecde1d527499ae59eebc48ab),
-  [`faaba77`](https://github.com/consolelabs/web-foundation/commit/faaba7753d764c4e8db25863632cb1038f2adcb9),
-  [`1ba9b89`](https://github.com/consolelabs/web-foundation/commit/1ba9b89df277d237053bb3ed69be8bd3c13c25a8),
-  [`f561e1d`](https://github.com/consolelabs/web-foundation/commit/f561e1deae07fa69ac54501152a844259376ede6),
-  [`b9ae92f`](https://github.com/consolelabs/web-foundation/commit/b9ae92f92b32dedac4903614e7c0947bd1118fb1),
-  [`85da50f`](https://github.com/consolelabs/web-foundation/commit/85da50f1afa67d5d026dce281e522c8df57983ba),
-  [`995bf22`](https://github.com/consolelabs/web-foundation/commit/995bf22b2cc7d5576327910f48e5028ca59431cf)]:
+  [[`9786ce7`](https://github.com/consolelabs/mochi-ui/commit/9786ce7ce0e2df4eecde1d527499ae59eebc48ab),
+  [`faaba77`](https://github.com/consolelabs/mochi-ui/commit/faaba7753d764c4e8db25863632cb1038f2adcb9),
+  [`1ba9b89`](https://github.com/consolelabs/mochi-ui/commit/1ba9b89df277d237053bb3ed69be8bd3c13c25a8),
+  [`f561e1d`](https://github.com/consolelabs/mochi-ui/commit/f561e1deae07fa69ac54501152a844259376ede6),
+  [`b9ae92f`](https://github.com/consolelabs/mochi-ui/commit/b9ae92f92b32dedac4903614e7c0947bd1118fb1),
+  [`85da50f`](https://github.com/consolelabs/mochi-ui/commit/85da50f1afa67d5d026dce281e522c8df57983ba),
+  [`995bf22`](https://github.com/consolelabs/mochi-ui/commit/995bf22b2cc7d5576327910f48e5028ca59431cf)]:
   - @mochi-ui/theme@0.5.0
   - @mochi-ui/typography@0.0.6
   - @mochi-ui/icon-button@0.4.0
@@ -103,7 +103,7 @@
 ### Patch Changes
 
 - Updated dependencies
-  [[`538fac5`](https://github.com/consolelabs/web-foundation/commit/538fac5b23861bfd01d02413746b80b89d8c50fd)]:
+  [[`538fac5`](https://github.com/consolelabs/mochi-ui/commit/538fac5b23861bfd01d02413746b80b89d8c50fd)]:
   - @mochi-ui/icons@0.2.1
   - @mochi-ui/icon-button@0.3.1
   - @mochi-ui/typography@0.0.5
@@ -112,34 +112,34 @@
 
 ### Minor Changes
 
-- [#278](https://github.com/consolelabs/web-foundation/pull/278)
-  [`a504968`](https://github.com/consolelabs/web-foundation/commit/a50496823bdfb169b5a8c30c1849cdb07534de78)
+- [#278](https://github.com/consolelabs/mochi-ui/pull/278)
+  [`a504968`](https://github.com/consolelabs/mochi-ui/commit/a50496823bdfb169b5a8c30c1849cdb07534de78)
   Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Create PageHeader
   component package
 
 ### Patch Changes
 
-- [#290](https://github.com/consolelabs/web-foundation/pull/290)
-  [`c594e9a`](https://github.com/consolelabs/web-foundation/commit/c594e9a0117ba184f31dc55e7079f406838c43f2)
+- [#290](https://github.com/consolelabs/mochi-ui/pull/290)
+  [`c594e9a`](https://github.com/consolelabs/mochi-ui/commit/c594e9a0117ba184f31dc55e7079f406838c43f2)
   Thanks [@trankhacvy](https://github.com/trankhacvy)! - Update Typo variant
   names
 
 - Updated dependencies
-  [[`35397e3`](https://github.com/consolelabs/web-foundation/commit/35397e3d3d7599009f9af862a89887ac0c6b34b3),
-  [`a504968`](https://github.com/consolelabs/web-foundation/commit/a50496823bdfb169b5a8c30c1849cdb07534de78),
-  [`6abb483`](https://github.com/consolelabs/web-foundation/commit/6abb483a80940ab463add9b1daf5a0638bc7a3d2),
-  [`b305580`](https://github.com/consolelabs/web-foundation/commit/b30558023c82036f78b76a10a68985618b728948),
-  [`d849e4e`](https://github.com/consolelabs/web-foundation/commit/d849e4edc83bddeb990b34d1675674b06c4c16bb),
-  [`f088b6f`](https://github.com/consolelabs/web-foundation/commit/f088b6fc00801843fafde8f7fb3f5995ef491368),
-  [`39b8004`](https://github.com/consolelabs/web-foundation/commit/39b8004ab0b84cfa8b34bf416bee4f6722b294c2),
-  [`48b0612`](https://github.com/consolelabs/web-foundation/commit/48b061226a533c20ab4f87787576afd1fd6a96f1),
-  [`39b8004`](https://github.com/consolelabs/web-foundation/commit/39b8004ab0b84cfa8b34bf416bee4f6722b294c2),
-  [`17899ed`](https://github.com/consolelabs/web-foundation/commit/17899edf82cda80441450ef240569831e427f45b),
-  [`cd2a974`](https://github.com/consolelabs/web-foundation/commit/cd2a9743f24f08deb03bacdf29c3a7d5e2512ab5),
-  [`c594e9a`](https://github.com/consolelabs/web-foundation/commit/c594e9a0117ba184f31dc55e7079f406838c43f2),
-  [`4157504`](https://github.com/consolelabs/web-foundation/commit/4157504d0c15310c559bbba45a2d2f4d0246fdde),
-  [`d849e4e`](https://github.com/consolelabs/web-foundation/commit/d849e4edc83bddeb990b34d1675674b06c4c16bb),
-  [`74087fd`](https://github.com/consolelabs/web-foundation/commit/74087fd9f316956e25453e6a2df0595fdf715025)]:
+  [[`35397e3`](https://github.com/consolelabs/mochi-ui/commit/35397e3d3d7599009f9af862a89887ac0c6b34b3),
+  [`a504968`](https://github.com/consolelabs/mochi-ui/commit/a50496823bdfb169b5a8c30c1849cdb07534de78),
+  [`6abb483`](https://github.com/consolelabs/mochi-ui/commit/6abb483a80940ab463add9b1daf5a0638bc7a3d2),
+  [`b305580`](https://github.com/consolelabs/mochi-ui/commit/b30558023c82036f78b76a10a68985618b728948),
+  [`d849e4e`](https://github.com/consolelabs/mochi-ui/commit/d849e4edc83bddeb990b34d1675674b06c4c16bb),
+  [`f088b6f`](https://github.com/consolelabs/mochi-ui/commit/f088b6fc00801843fafde8f7fb3f5995ef491368),
+  [`39b8004`](https://github.com/consolelabs/mochi-ui/commit/39b8004ab0b84cfa8b34bf416bee4f6722b294c2),
+  [`48b0612`](https://github.com/consolelabs/mochi-ui/commit/48b061226a533c20ab4f87787576afd1fd6a96f1),
+  [`39b8004`](https://github.com/consolelabs/mochi-ui/commit/39b8004ab0b84cfa8b34bf416bee4f6722b294c2),
+  [`17899ed`](https://github.com/consolelabs/mochi-ui/commit/17899edf82cda80441450ef240569831e427f45b),
+  [`cd2a974`](https://github.com/consolelabs/mochi-ui/commit/cd2a9743f24f08deb03bacdf29c3a7d5e2512ab5),
+  [`c594e9a`](https://github.com/consolelabs/mochi-ui/commit/c594e9a0117ba184f31dc55e7079f406838c43f2),
+  [`4157504`](https://github.com/consolelabs/mochi-ui/commit/4157504d0c15310c559bbba45a2d2f4d0246fdde),
+  [`d849e4e`](https://github.com/consolelabs/mochi-ui/commit/d849e4edc83bddeb990b34d1675674b06c4c16bb),
+  [`74087fd`](https://github.com/consolelabs/mochi-ui/commit/74087fd9f316956e25453e6a2df0595fdf715025)]:
   - @mochi-ui/theme@0.4.0
   - @mochi-ui/icons@0.2.0
   - @mochi-ui/icon-button@0.3.0

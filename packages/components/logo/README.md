@@ -3,7 +3,7 @@
 Logo component is used to display the logo and brand name of the application
 
 For further details, visit our
-[Logo Documentation](https://ds.console.so/?path=/docs/components-logo--docs).
+[Logo Documentation](https://ds.mochiui.com/?path=/docs/components-logo--docs).
 
 ## Installation
 

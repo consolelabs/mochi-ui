@@ -3,7 +3,7 @@
 Icon Button component is the button adorned with an easily recognizable icon.
 
 For further details, visit our
-[Icon Button Documentation](https://ds.console.so/?path=/docs/components-iconbutton--docs).
+[Icon Button Documentation](https://ds.mochiui.com/?path=/docs/components-iconbutton--docs).
 
 ## Installation
 

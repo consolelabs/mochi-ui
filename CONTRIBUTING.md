@@ -16,7 +16,7 @@ project on your local machine:
 2. **Clone Your Fork**: Clone your fork to your local machine for development.
 
 ```sh
-git clone https://github.com/<your_github_username>/web-foundation.git
+git clone https://github.com/<your_github_username>/mochi-ui.git
 cd web-foundation
 ```
 

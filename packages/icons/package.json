@@ -11,7 +11,7 @@
     "directory": "packages/icons"
   },
   "author": "@consolelabs",
-  "homepage": "https://ds.console.so",
+  "homepage": "https://ds.mochiui.com",
   "license": "MIT",
   "scripts": {
     "build": "pnpm clean && tsup --dts && pnpm gen:clean-packages",

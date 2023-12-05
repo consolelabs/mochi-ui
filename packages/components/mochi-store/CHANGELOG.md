@@ -4,8 +4,8 @@
 
 ### Patch Changes
 
-- [#360](https://github.com/consolelabs/web-foundation/pull/360)
-  [`a935b6d`](https://github.com/consolelabs/web-foundation/commit/a935b6d9f9189fb7ea2d2b2dd771ff0df73598f4)
+- [#360](https://github.com/consolelabs/mochi-ui/pull/360)
+  [`a935b6d`](https://github.com/consolelabs/mochi-ui/commit/a935b6d9f9189fb7ea2d2b2dd771ff0df73598f4)
   Thanks [@zlatanpham](https://github.com/zlatanpham)! - Release packages
 
 ## 0.0.2

@@ -5,7 +5,7 @@ a section, such as title and description, and also interactive elements as well
 (buttons, selects, etc.).
 
 For further details, visit our
-[Section Header Documentation](https://ds.console.so/?path=/docs/components-sectionheader--docs).
+[Section Header Documentation](https://ds.mochiui.com/?path=/docs/components-sectionheader--docs).
 
 ## Installation
 
