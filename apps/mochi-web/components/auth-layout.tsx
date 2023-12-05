@@ -73,11 +73,12 @@ const AppDropdownOption = ({
       <Typography
         fontWeight="md"
         level="p5"
-        className="text-text-primary text-left flex-1 !tracking-normal"
+        color="textPrimary"
+        className="text-left flex-1 !tracking-normal"
       >
         {data?.name || ''}
       </Typography>
-      {isSelected ? <CheckLine className="text-primary-solid" /> : null}
+      {isSelected ? <CheckLine className="text-primary-plain-fg" /> : null}
     </div>
   )
 
@@ -130,11 +131,7 @@ const ApplicationDetailSidebarHeader = ({
               <DropdownMenuTrigger className="flex-1 flex items-center justify-between gap-4 pr-6">
                 <div className="flex-1 flex items-center gap-3">
                   <Avatar src={selectedApp?.avatar || ''} />
-                  <Typography
-                    fontWeight="lg"
-                    level="p5"
-                    className="!text-neutral-solid-fg"
-                  >
+                  <Typography fontWeight="lg" level="p5" color="textContrast">
                     {selectedApp?.name || ''}
                   </Typography>
                 </div>
@@ -144,21 +141,23 @@ const ApplicationDetailSidebarHeader = ({
                   <ChevronDownLine className="text-neutral-solid-fg" />
                 )}
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="mt-7 -ml-6 !min-w-[216px] flex flex-col items-center gap-1">
-                {!isAppListLoading && appList !== undefined ? (
-                  appList.map((app) => (
-                    <AppDropdownOption
-                      data={app}
-                      key={app.id}
-                      isSelected={
-                        !!query?.id && (query.id as string) === String(app.id)
-                      }
-                      onOptionSelect={() => setIsOpen(false)}
-                    />
-                  ))
-                ) : (
-                  <Spinner className="text-2xl shrink-0 text-text-primary" />
-                )}
+              <DropdownMenuContent className="mt-7 -ml-6 !min-w-[216px] max-h-[320px] overflow-auto">
+                <div className="w-full flex flex-col items-center gap-1">
+                  {!isAppListLoading && appList !== undefined ? (
+                    appList.map((app) => (
+                      <AppDropdownOption
+                        data={app}
+                        key={app.id}
+                        isSelected={
+                          !!query?.id && (query.id as string) === String(app.id)
+                        }
+                        onOptionSelect={() => setIsOpen(false)}
+                      />
+                    ))
+                  ) : (
+                    <Spinner className="text-2xl shrink-0 text-text-primary" />
+                  )}
+                </div>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
