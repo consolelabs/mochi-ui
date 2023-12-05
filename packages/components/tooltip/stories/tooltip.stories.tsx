@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import Tooltip, { ARROW_OPTIONS } from '../src/tooltip'
 
 const meta: Meta<typeof Tooltip> = {
-  title: 'Components/Tooltip',
+  title: 'Overlay/Tooltip',
   component: Tooltip,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout

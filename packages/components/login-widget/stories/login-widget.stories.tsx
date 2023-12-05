@@ -6,7 +6,7 @@ import {
 } from '../src/login-widget'
 
 const meta: Meta<typeof LoginWidget> = {
-  title: 'Components/LoginWidget',
+  title: 'Web3/LoginWidget',
   component: LoginWidget,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout

@@ -1,7 +1,7 @@
 import { Tabs, TabList, TabTrigger, TabContent } from '../src/tabs'
 
 export default {
-  title: 'components/Tabs',
+  title: 'Disclosure/Tabs',
   tags: ['autodocs'],
 }
 

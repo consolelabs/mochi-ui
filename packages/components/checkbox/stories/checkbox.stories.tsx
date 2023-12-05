@@ -3,7 +3,7 @@ import { CheckBoxStyleProps } from '@mochi-ui/theme'
 import { Checkbox, CheckboxProps } from '../src/checkbox'
 
 const meta: Meta<typeof Checkbox> = {
-  title: 'Components/Checkbox',
+  title: 'Form/Checkbox',
   component: Checkbox,
   parameters: {
     layout: 'centered',

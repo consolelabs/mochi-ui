@@ -19,7 +19,7 @@ const variants: IconButtonProps['variant'][] = [
 ]
 
 const meta: Meta<typeof IconButton> = {
-  title: 'components/IconButton',
+  title: 'Form/IconButton',
   component: IconButton,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout

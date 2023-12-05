@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import Switch, { SwitchProps } from '../src/Switch'
 
 const meta: Meta<typeof Switch> = {
-  title: 'Components/Switch',
+  title: 'Form/Switch',
   component: Switch,
   parameters: {
     layout: 'centered',

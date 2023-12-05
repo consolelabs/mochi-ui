@@ -23,7 +23,7 @@ const schemes = [
 const layouts = ['inline', 'stack'] as NonNullable<AlertProps['layout'][]>
 
 const meta: Meta<typeof Alert> = {
-  title: 'Components/Alert',
+  title: 'Feedback/Alert',
   component: Alert,
   parameters: {
     layout: 'centered',

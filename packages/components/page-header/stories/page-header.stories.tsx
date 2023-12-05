@@ -15,7 +15,7 @@ import clsx from 'clsx'
 import { PageHeader } from '../src'
 
 const meta = {
-  title: 'components/PageHeader',
+  title: 'Layout/PageHeader',
   component: PageHeader,
   tags: ['autodocs'],
 }

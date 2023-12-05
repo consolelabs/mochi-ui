@@ -5,7 +5,7 @@ import { CheckCircleOutlined } from '@mochi-ui/icons'
 import { Popover, PopoverContent, PopoverTrigger } from '../src/popover'
 
 const meta: Meta<typeof Popover> = {
-  title: 'Components/Popover',
+  title: 'Overlay/Popover',
   component: Popover,
   tags: ['autodocs'],
   args: {

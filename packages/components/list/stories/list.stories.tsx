@@ -3,7 +3,7 @@ import { Heading } from '@mochi-ui/heading'
 import List from '../src/list'
 
 const meta: Meta<typeof List> = {
-  title: 'Components/List',
+  title: 'Data display/List',
   component: List,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
