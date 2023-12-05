@@ -10,6 +10,7 @@ on:
   push:
     paths:
       - ".changeset/**"
+      - ".github/**"
       - "packages/**"
     branches:
       - main

@@ -8,15 +8,15 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Install Pnpm v8.6.10
+    - name: Install Pnpm v8.11.0
       uses: pnpm/action-setup@v2
       with:
-        version: 8.6.10
+        version: 8.11.0
 
-    - name: Setup Node.js 18
-      uses: actions/setup-node@v3
+    - name: Setup Node.js 20
+      uses: actions/setup-node@v4
       with:
-        node-version: 18
+        node-version: 20
         cache: 'pnpm'
 
     - name: Set up timezone OS to Ho_Chi_Minh timezone
