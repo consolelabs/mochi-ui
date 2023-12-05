@@ -1,7 +1,7 @@
 # @mochi-ui/core
 
 The core package includes all essential components and elements required for
-developing React web applications using the Console Labs design system.
+developing React web applications using the Mochi design system.
 
 For further details, visit our
 [Setup Documentation](https://ds.mochiui.com/?path=/docs/introduction-installation--docs).
