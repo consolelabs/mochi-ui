@@ -248,10 +248,9 @@ const alertCancelClsx = ({
   layout?: 'inline' | 'stack'
 }) =>
   clsx(
-    'bg-white',
     {
-      'wit-fit': layout === 'inline',
-      'w-full': layout === 'stack',
+      'wit-fit bg-inherit': layout === 'inline',
+      'w-full bg-white': layout === 'stack',
     },
     className,
   )
@@ -261,8 +260,8 @@ const alertActionGroupCva = cva(
   {
     variants: {
       layout: {
-        inline: 'w-fit flex-row mt-0',
-        stack: 'w-full flex-col-reverse mt-2',
+        inline: 'w-fit flex-row-reverse mt-0',
+        stack: 'w-full flex-col mt-2',
       },
     },
     defaultVariants: {},

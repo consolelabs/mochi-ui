@@ -26,6 +26,7 @@ export const Toaster = (props: ViewPortStyleProps) => {
           link,
           icon,
           paddingSize: paddingSizeProp,
+          shadow = true,
           layout,
           ...restProps
         } = props
@@ -39,6 +40,7 @@ export const Toaster = (props: ViewPortStyleProps) => {
             {...restProps}
             paddingSize={paddingSize}
             layout={layout}
+            shadow={shadow}
           >
             <ToastIcon {...icon} />
             <ToastBody>
