@@ -1,5 +1,23 @@
 # @mochi-ui/login-widget
 
+## 0.1.7
+
+### Patch Changes
+
+- [#360](https://github.com/consolelabs/web-foundation/pull/360)
+  [`a935b6d`](https://github.com/consolelabs/web-foundation/commit/a935b6d9f9189fb7ea2d2b2dd771ff0df73598f4)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Release packages
+
+- Updated dependencies
+  [[`a935b6d`](https://github.com/consolelabs/web-foundation/commit/a935b6d9f9189fb7ea2d2b2dd771ff0df73598f4)]:
+  - @mochi-ui/button@0.4.2
+  - @mochi-ui/dropdown@0.1.6
+  - @mochi-ui/heading@0.0.6
+  - @mochi-ui/mochi-store@0.0.3
+  - @mochi-ui/tabs@0.1.6
+  - @mochi-ui/icons@0.3.1
+  - @mochi-ui/theme@0.7.1
+
 ## 0.1.6
 
 ### Patch Changes

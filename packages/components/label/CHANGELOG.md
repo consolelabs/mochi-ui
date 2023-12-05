@@ -1,5 +1,17 @@
 # @mochi-ui/label
 
+## 0.1.3
+
+### Patch Changes
+
+- [#360](https://github.com/consolelabs/web-foundation/pull/360)
+  [`a935b6d`](https://github.com/consolelabs/web-foundation/commit/a935b6d9f9189fb7ea2d2b2dd771ff0df73598f4)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Release packages
+
+- Updated dependencies
+  [[`a935b6d`](https://github.com/consolelabs/web-foundation/commit/a935b6d9f9189fb7ea2d2b2dd771ff0df73598f4)]:
+  - @mochi-ui/theme@0.7.1
+
 ## 0.1.2
 
 ### Patch Changes
