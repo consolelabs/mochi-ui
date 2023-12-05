@@ -15,7 +15,7 @@ import clsx from 'clsx'
 import { SectionHeader } from '../src'
 
 const meta = {
-  title: 'components/SectionHeader',
+  title: 'Layout/SectionHeader',
   component: SectionHeader,
   tags: ['autodocs'],
 }

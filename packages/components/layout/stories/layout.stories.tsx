@@ -19,7 +19,7 @@ import {
 import { Layout } from '../src'
 
 const meta = {
-  title: 'components/Layout',
+  title: 'Layout/Layout',
   component: Layout,
   tags: ['autodocs'],
 }

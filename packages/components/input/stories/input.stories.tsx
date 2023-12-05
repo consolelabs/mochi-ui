@@ -8,7 +8,7 @@ import {
 } from '../src/textfield'
 
 const meta: Meta<typeof TextFieldInput> = {
-  title: 'Components/TextField',
+  title: 'Form/TextField',
   component: TextFieldInput,
   parameters: {
     layout: 'centered',

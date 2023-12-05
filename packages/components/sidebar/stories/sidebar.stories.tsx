@@ -16,7 +16,7 @@ import { useState } from 'react'
 import Sidebar from '../src/sidebar'
 
 export default {
-  title: 'Components/Sidebar',
+  title: 'Layout/Sidebar',
 }
 
 function Header() {

@@ -28,7 +28,7 @@ import {
 import { DesktopNav, MobileNav, MobileNavItem, TopBar } from '../src'
 
 const meta = {
-  title: 'components/TopBar',
+  title: 'Layout/TopBar',
   component: TopBar,
   tags: ['autodocs'],
   layout: 'fullscreen',

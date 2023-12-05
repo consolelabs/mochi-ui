@@ -8,7 +8,7 @@ import { IconButton } from '@mochi-ui/icon-button'
 import Table from '../src/table'
 
 const meta: Meta<typeof Table> = {
-  title: 'components/Table',
+  title: 'Data display/Table',
   component: Table,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout

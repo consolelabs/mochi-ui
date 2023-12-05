@@ -2,7 +2,7 @@ import type { Meta } from '@storybook/react'
 import { Logo, LogoWithText } from '../src'
 
 const meta: Meta = {
-  title: 'Components/Logo',
+  title: 'Media & Icons/Logo',
   component: Logo,
   parameters: {
     layout: 'centered',

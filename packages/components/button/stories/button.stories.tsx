@@ -22,7 +22,7 @@ const buttonVariants: ButtonProps['variant'][] = [
 const buttonSizes: ButtonProps['size'][] = ['sm', 'md', 'lg']
 
 const meta: Meta<typeof Button> = {
-  title: 'Components/Button',
+  title: 'Form/Button',
   component: Button,
   parameters: {
     layout: 'centered',

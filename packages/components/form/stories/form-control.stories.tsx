@@ -16,7 +16,7 @@ import { FormErrorMessage } from '../src/form-error-message'
 const errorValues = ['max', 'min', 'required']
 
 const meta: Meta<typeof FormControl> = {
-  title: 'Components/FormControl',
+  title: 'Form/FormControl',
   component: FormControl,
   parameters: {
     layout: 'centered',
