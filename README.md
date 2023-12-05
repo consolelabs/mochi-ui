@@ -2,9 +2,10 @@
 
 ## Introduction
 
-Welcome to the central hub for Console Labs' web3 applications and design system
-packages. Our team and the broader community collaboratively use these resources
-to craft visually appealing and accessible web applications.
+Mochi UI is a beautifully designed and accessible React UI library, specifically
+tailored for building innovative web3 applications. This comprehensive
+collection of reusable and composable React components is crafted to accelerate
+the development of cutting-edge web interfaces.
 
 ## Documentation
 

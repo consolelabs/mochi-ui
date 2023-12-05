@@ -1,5 +1,5 @@
-Welcome to Web Foundation by Console Labs' team! 🌟 Your interest and enthusiasm
-mean a lot to us. This repository, like many open-source projects, thrives on
+Welcome to Mochi UI by Console Labs' team! 🌟 Your interest and enthusiasm mean
+a lot to us. This repository, like many open-source projects, thrives on
 collaboration and we're excited to have you on board.
 
 Whether you're fixing bugs, proposing new features, or enhancing documentation,
@@ -8,8 +8,8 @@ contribute to the repository.
 
 ## Setting Up the Project
 
-To begin contributing to Web Foundation, follow these steps to set up the
-project on your local machine:
+To begin contributing to Mochi UI, follow these steps to set up the project on
+your local machine:
 
 1. **Fork the Repository**: Start by forking the repository. Click the
    <kbd>Fork</kbd> button at the top right of this page.
@@ -29,8 +29,9 @@ cd web-foundation
 
 ## Development Process
 
-Web Foundation operates on a monorepo structure, containing both UI packages and
-applications. Each component and application is treated as an independent unit.
+Mochi UI operates on a monorepo structure, containing both UI packages and
+applications (Mochi web app & Mochi UI landing page). Each component and
+application is treated as an independent unit.
 
 ### Packages Development
 
@@ -102,8 +103,8 @@ All bug fixes or feature additions must be accompanied by appropriate tests.
 
 ## License
 
-By contributing to the Web Foundation GitHub repository, you agree to license
-your contribution under our project's license.
+By contributing to the Mochi UI GitHub repository, you agree to license your
+contribution under our project's license.
 
 Your participation and contributions are what make the project exciting and
 evolving. We look forward to your creative and innovative input!
