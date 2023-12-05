@@ -5,7 +5,7 @@ import { useToast } from '../src/hook/use-toast/use-toast'
 import { Toaster } from '../src/toaster'
 
 const meta: Meta<typeof Toast> = {
-  title: 'Components/toast',
+  title: 'Components/Toast',
   component: Toast,
   parameters: {
     layout: 'centered',
