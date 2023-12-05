@@ -1666,9 +1666,6 @@ importers:
       '@mochi-ui/alert':
         specifier: workspace:*
         version: link:../alert
-      '@mochi-ui/icons':
-        specifier: workspace:*
-        version: link:../../icons
       '@mochi-ui/polymorphic':
         specifier: workspace:*
         version: link:../polymorphic

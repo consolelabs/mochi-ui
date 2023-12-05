@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @mochi-ui/alert
+pnpm i @mochi-ui/toast
 
 # Using NPM
-npm i @mochi-ui/alert
+npm i @mochi-ui/toast
 
 # Using Yarn
-yarn add @mochi-ui/alert
+yarn add @mochi-ui/toast
 ```
 
 ## Contribution
