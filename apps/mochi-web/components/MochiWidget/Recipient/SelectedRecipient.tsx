@@ -19,7 +19,7 @@ export const SelectedRecipient: React.FC<SelectedRecipientProps> = ({
   >
     <div className="relative w-full">
       <div className="overflow-hidden rounded-full border-white w-[56px] h-[56px] border-[2.5px]">
-        <Avatar src={profile.avatar || '/logo.png'} size="sm" />
+        <Avatar src={profile.avatar || '/logo.png'} size="cover" />
       </div>
       <IconButton
         style={{
