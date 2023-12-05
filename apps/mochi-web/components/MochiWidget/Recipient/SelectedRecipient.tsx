@@ -18,8 +18,8 @@ export const SelectedRecipient: React.FC<SelectedRecipientProps> = ({
     role="presentation"
   >
     <div className="relative w-full">
-      <div className="overflow-hidden rounded-full border-white w-[56px] h-[56px] border-[2.5px]">
-        <Avatar src={profile.avatar || '/logo.png'} size="sm" />
+      <div className="overflow-hidden rounded-full border-white w-[56px] h-[56px] border-[2.5px] flex justify-center items-center">
+        <Avatar src={profile.avatar || '/logo.png'} size="lg" />
       </div>
       <IconButton
         style={{

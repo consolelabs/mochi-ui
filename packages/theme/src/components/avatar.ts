@@ -1,6 +1,6 @@
 import { cva, VariantProps } from 'class-variance-authority'
 
-const avatarCva = cva(['block flex-shrink-0 rounded-full'], {
+const avatarCva = cva(['inline-block flex-shrink-0 rounded-full'], {
   variants: {
     size: {
       xs: 'w-4 h-4',
