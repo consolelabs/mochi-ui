@@ -35,7 +35,10 @@ function removePackagePublishConfig() {
   const newPackageData = JSON.parse(packageData)
   delete newPackageData.publishConfig
 
+  const distPackageJson = path.resolve('./dist/package.json')
+
   rimraf.sync(packagePath)
+  rimraf.sync(distPackageJson)
 
   // Rewrite file
   fs.writeFileSync(packagePath, JSON.stringify(newPackageData, null, 2), 'utf8')
