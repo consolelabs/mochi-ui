@@ -1,6 +1,11 @@
-# MochiUI
+<p align="center">
+  <a href="https://github.com/consolelabs/mochi-ui">
+    <img src="https://github.com/consolelabs/mochi-ui/assets/12707960/94788d57-5c95-428e-a374-8ec1a460851b" alt="Mochi logo" width="100" />
+  </a>
+</p>
 
-## Introduction
+<h1 align="center">MochiUI</h1>
+<br />
 
 Mochi UI is a beautifully designed and accessible React UI library, specifically
 tailored for building innovative web3 applications. This comprehensive
