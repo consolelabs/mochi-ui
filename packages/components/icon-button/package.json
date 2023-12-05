@@ -1,6 +1,6 @@
 {
   "name": "@mochi-ui/icon-button",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
