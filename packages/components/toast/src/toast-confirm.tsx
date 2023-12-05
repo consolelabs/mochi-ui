@@ -7,30 +7,26 @@ import {
 import {
   AlertConfirmProps,
   AlertConfirmButton,
-} from '@consolelabs/alert/src/alert-confirm'
-import * as Polymorphic from '@consolelabs/polymorphic'
+} from '@mochi-ui/alert/src/alert-confirm'
+import * as Polymorphic from '@mochi-ui/polymorphic'
 
-type PolymorphicAlertConfirmButton = Polymorphic.ForwardRefComponent<
+type PolymorphicToastConfirmButton = Polymorphic.ForwardRefComponent<
   'button',
   AlertConfirmProps & ComponentPropsWithoutRef<typeof ToastPrimitive.Action>
 >
 
 const ToastConfirmButton = forwardRef((props, ref) => {
-  const { asChild, children, className, as = 'button', ...restProps } = props
-  const alertCloseButtonProps = { asChild, children, className, as }
+  const { altText, ...restProps } = props
   return (
-    <ToastPrimitive.Action {...restProps}>
-      <AlertConfirmButton ref={ref} {...alertCloseButtonProps} />
+    <ToastPrimitive.Action altText={altText} asChild>
+      <AlertConfirmButton ref={ref} {...restProps} />
     </ToastPrimitive.Action>
   )
-}) as PolymorphicAlertConfirmButton
+}) as PolymorphicToastConfirmButton
 
 ToastConfirmButton.displayName = 'ToastConfirmButton'
 
-type ToastConfirmProps = ComponentPropsWithRef<PolymorphicAlertConfirmButton>
+type ToastConfirmProps = ComponentPropsWithRef<PolymorphicToastConfirmButton>
 
-export {
-  ToastConfirmButton,
-  type ToastConfirmProps,
-  type PolymorphicAlertConfirmButton,
-}
+export { ToastConfirmButton }
+export type { ToastConfirmProps, PolymorphicToastConfirmButton }

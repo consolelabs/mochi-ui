@@ -1,8 +1,8 @@
 import * as ToastPrimitive from '@radix-ui/react-toast'
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
-import { ViewPortStyleProps, toast } from '@consolelabs/theme'
-import { Alert } from '@consolelabs/alert'
-import type { AlertProps } from '@consolelabs/alert'
+import { ViewPortStyleProps, toast } from '@mochi-ui/theme'
+import { Alert } from '@mochi-ui/alert'
+import type { AlertProps } from '@mochi-ui/alert'
 
 type ToastViewPortProps = ComponentPropsWithoutRef<
   typeof ToastPrimitive.Viewport
@@ -20,10 +20,10 @@ const ToastProvider = ToastPrimitive.Provider
 
 const ToastViewPort = forwardRef<ToastViewPortRef, ToastViewPortProps>(
   (props, ref) => {
-    const { className, position, ...restProps } = props
+    const { className, direction, ...restProps } = props
     return (
       <ToastPrimitive.Viewport
-        className={toast.toastViewPortCva({ className, position })}
+        className={toast.toastViewPortCva({ className, direction })}
         ref={ref}
         {...restProps}
       />
@@ -34,25 +34,20 @@ const ToastViewPort = forwardRef<ToastViewPortRef, ToastViewPortProps>(
 ToastViewPort.displayName = ToastPrimitive.Viewport.displayName
 
 const Toast = forwardRef<ToastRef, ToastProps>((props, ref) => {
-  const {
-    className,
-    scheme,
-    variant,
-    size,
-    responsive,
-    children,
-    ...restProps
-  } = props
+  const { className, scheme, size, children, ...restProps } = props
   const alertProps: AlertProps = {
     className,
     scheme,
-    variant,
     size,
-    responsive,
     children,
   }
   return (
-    <ToastPrimitive.Root asChild ref={ref} {...restProps}>
+    <ToastPrimitive.Root
+      asChild
+      ref={ref}
+      {...restProps}
+      className={toast.toastClsx({ className })}
+    >
       <Alert {...alertProps} />
     </ToastPrimitive.Root>
   )

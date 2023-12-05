@@ -1,36 +1,27 @@
 import { VariantProps, cva } from 'class-variance-authority'
+import clsx from 'clsx'
+
+const toastClsx = ({ className = '' }: { className?: string }) =>
+  clsx('w-full', className)
 
 const toastViewPortCva = cva(
-  ['fixed', 'z-[100]', 'flex', 'gap-3', 'p-4', 'bg-transparent'],
+  [
+    'z-[100]',
+    'flex',
+    'gap-3',
+    'bg-transparent',
+    'w-full',
+    'pointer-events-none',
+  ],
   {
     variants: {
-      position: {
-        // NOTE: Auto -> bottom right for desktop, top for mobile
-        auto: [
-          // mobile
-          'top-0',
-          'w-full',
-          'left-0',
-          'flex-col-reverse',
-          'items-center',
-          // sm
-          'sm:left-auto',
-          'sm:bottom-0',
-          'sm:right-0',
-          'sm:top-auto',
-          'sm:flex-col',
-          'sm:max-w-[420px]',
-        ],
-        top: '',
-        down: '',
-        topLeft: '',
-        topRight: '',
-        bottomLeft: '',
-        bottomRight: '',
+      direction: {
+        up: ['flex-col-reverse', 'items-center'],
+        down: ['flex-col', 'items-center'],
       },
     },
     defaultVariants: {
-      position: 'auto',
+      direction: 'down',
     },
   },
 )
@@ -39,6 +30,7 @@ type ViewPortStyleProps = VariantProps<typeof toastViewPortCva>
 
 const toast = {
   toastViewPortCva,
+  toastClsx,
 }
 
 export { toast, type ViewPortStyleProps }

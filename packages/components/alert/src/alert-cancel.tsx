@@ -37,7 +37,7 @@ const AlertCancelButton = forwardRef((props, ref) => {
       data-scheme={scheme}
       data-layout={layout}
       data-size={size}
-      className={alert.alertCancelClsx({ className })}
+      className={alert.alertCancelClsx({ className, layout })}
       ref={ref}
       {...passProps}
     >

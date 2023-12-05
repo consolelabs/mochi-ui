@@ -7,29 +7,28 @@ import {
 import * as Polymorphic from '@consolelabs/polymorphic'
 import { AlertCancelButton, AlertCancelProps } from '@consolelabs/alert'
 
-type PolymorphicAlertCancelButton = Polymorphic.ForwardRefComponent<
+type PolymorphicToastCancelButton = Polymorphic.ForwardRefComponent<
   'button',
   AlertCancelProps & ComponentPropsWithoutRef<typeof ToastPrimitive.Action>
 >
 
 const ToastCancelButton = forwardRef((props, ref) => {
-  const { asChild, children, className, as = 'button', ...restProps } = props
-  const alertCloseButtonProps = { asChild, children, className, as }
+  const { altText, ...restProps } = props
 
   return (
-    <ToastPrimitive.Action {...restProps}>
-      <AlertCancelButton ref={ref} {...alertCloseButtonProps} />
+    <ToastPrimitive.Action asChild altText={altText}>
+      <AlertCancelButton ref={ref} {...restProps} />
     </ToastPrimitive.Action>
   )
-}) as PolymorphicAlertCancelButton
+}) as PolymorphicToastCancelButton
 
-ToastCancelButton.displayName = 'ToastCancel'
+ToastCancelButton.displayName = 'ToastCancelButton'
 
 type ToastCancelButtonProps =
-  ComponentPropsWithRef<PolymorphicAlertCancelButton>
+  ComponentPropsWithRef<PolymorphicToastCancelButton>
 
 export {
   ToastCancelButton,
-  type PolymorphicAlertCancelButton,
+  type PolymorphicToastCancelButton,
   type ToastCancelButtonProps,
 }

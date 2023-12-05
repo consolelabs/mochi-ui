@@ -1,5 +1,5 @@
 {
-  "name": "@consolelabs/toast",
+  "name": "@mochi-ui/toast",
   "version": "0.0.0",
   "sideEffects": false,
   "main": "src/index.ts",
@@ -31,13 +31,13 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tsconfig": "workspace:*",
-    "@consolelabs/button": "workspace:*"
+    "@mochi-ui/button": "workspace:*"
   },
   "dependencies": {
-    "@consolelabs/alert": "workspace:*",
-    "@consolelabs/icons": "workspace:*",
-    "@consolelabs/polymorphic": "workspace:*",
-    "@consolelabs/theme": "workspace:*",
+    "@mochi-ui/alert": "workspace:*",
+    "@mochi-ui/icons": "workspace:*",
+    "@mochi-ui/polymorphic": "workspace:*",
+    "@mochi-ui/theme": "workspace:*",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-toast": "^1.1.5",
     "class-variance-authority": "^0.7.0",

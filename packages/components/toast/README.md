@@ -1,4 +1,4 @@
-# @consolelabs/alert
+# @mochi-ui/alert
 
 Alert component efficiently communicates essential information, warnings or
 errors to users.
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @consolelabs/alert
+pnpm i @mochi-ui/alert
 
 # Using NPM
-npm i @consolelabs/alert
+npm i @mochi-ui/alert
 
 # Using Yarn
-yarn add @consolelabs/alert
+yarn add @mochi-ui/alert
 ```
 
 ## Contribution

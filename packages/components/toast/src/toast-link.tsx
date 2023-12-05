@@ -1,15 +1,14 @@
-import { ComponentPropsWithRef, forwardRef } from 'react'
-import type * as Polymorphic from '@consolelabs/polymorphic'
-import { AlertLink, AlertLinkProps } from '@consolelabs/alert'
+import {
+  AlertLink,
+  AlertLinkProps,
+  PolymorphicAlertLink,
+} from '@mochi-ui/alert'
 
-type PolymorphicToastLink = Polymorphic.ForwardRefComponent<'a', AlertLinkProps>
+type PolymorphicToastLink = PolymorphicAlertLink
+type ToastLinkProps = AlertLinkProps
 
-const ToastLink = forwardRef((props, ref) => {
-  return <AlertLink ref={ref} {...props} />
-}) as PolymorphicToastLink
-
+const ToastLink = AlertLink
 ToastLink.displayName = 'ToastConfirmButton'
 
-type ToastLinkProps = ComponentPropsWithRef<typeof ToastLink>
-
-export { ToastLink, type ToastLinkProps }
+export { ToastLink }
+export type { ToastLinkProps, PolymorphicToastLink }

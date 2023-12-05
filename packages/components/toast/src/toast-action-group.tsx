@@ -1,10 +1,10 @@
-import { AlertActionGroup } from '@consolelabs/alert'
-import { ComponentPropsWithoutRef } from 'react'
+import { AlertActionGroup, AlertActionGroupProps } from '@consolelabs/alert'
 
 const ToastActionGroup = AlertActionGroup
 
 ToastActionGroup.displayName = 'ToastActionGroup'
 
-type ToastActionGroupProps = ComponentPropsWithoutRef<typeof ToastActionGroup>
+type ToastActionGroupProps = AlertActionGroupProps
 
-export { type ToastActionGroupProps, ToastActionGroup }
+export { ToastActionGroup }
+export type { ToastActionGroupProps }

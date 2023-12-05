@@ -1,4 +1,4 @@
-import { AlertIcon } from '@consolelabs/alert'
+import { AlertIcon } from '@mochi-ui/alert'
 import { ComponentPropsWithRef } from 'react'
 
 const ToastIcon = AlertIcon

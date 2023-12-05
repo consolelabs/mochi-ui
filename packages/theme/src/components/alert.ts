@@ -13,7 +13,7 @@ const alertBodyCva = cva('flex gap-1 h-fit flex-1', {
   },
 })
 
-const alertCva = cva(['flex rounded-lg relative gap-1'], {
+const alertCva = cva(['flex rounded-lg relative gap-1 pointer-events-auto'], {
   variants: {
     layout: {
       inline: 'items-center flex-row',
@@ -182,7 +182,7 @@ const alertIconCloseCva = createTextCva(
 )
 
 const alertTitleCva = createTextCva(
-  ' font-semibold tracking-tight h-fit shrink-0',
+  'font-semibold tracking-tight h-fit min-w-0 w-fit',
   [
     {
       size: 'sm',
@@ -199,7 +199,7 @@ const alertTitleCva = createTextCva(
   ],
 )
 
-const alertDescriptionCva = createTextCva('tracking-tight h-fit', [
+const alertDescriptionCva = createTextCva('tracking-tight h-fit flex-1 ', [
   {
     size: 'sm',
     className: 'text-xs',
@@ -233,15 +233,28 @@ const alertConfirmClsx = ({
   layout?: 'inline' | 'stack'
 }) =>
   clsx(
-    'w-full',
     {
-      '': layout === 'inline',
+      'w-fit': layout === 'inline',
+      'w-full': layout === 'stack',
     },
     className,
   )
 
-const alertCancelClsx = ({ className = '' }: { className?: string }) =>
-  clsx('w-full bg-white', className)
+const alertCancelClsx = ({
+  className = '',
+  layout = 'inline',
+}: {
+  className?: string
+  layout?: 'inline' | 'stack'
+}) =>
+  clsx(
+    'bg-white',
+    {
+      'wit-fit': layout === 'inline',
+      'w-full': layout === 'stack',
+    },
+    className,
+  )
 
 const alertActionGroupCva = cva(
   ['alert-action-group flex gap-3 shrink-0 items-center'],
