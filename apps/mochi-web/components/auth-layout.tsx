@@ -263,7 +263,7 @@ export default function AuthenticatedLayout({
   }
 
   return (
-    <Layout className="w-screen bg-white-pure">
+    <Layout className="w-screen">
       {!isLoggingIn && isLoggedIn ? (
         <Layout className="flex-1">
           <Sidebar
@@ -271,12 +271,12 @@ export default function AuthenticatedLayout({
             headerItems={sideBarItems[variant].headerItems as Item[]}
             footerItems={sideBarItems[variant].footerItems as Item[]}
             isSelected={(item) => !!item.href && matchUrl(item.href, pathname)}
-            className="!sticky !top-16 !h-[calc(100vh-64px)]"
+            className="!sticky !top-14 !h-[calc(100vh-56px)]"
           />
 
           <Layout
             className={clsx(
-              'flex-1 max-w-[calc(100vw-72px)] h-[calc(100vh-64px)]',
+              'flex-1 max-w-[calc(100vw-72px)] h-[calc(100vh-56px)]',
               className,
             )}
           >

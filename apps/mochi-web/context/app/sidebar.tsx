@@ -56,7 +56,6 @@ function SidebarContextProvider({
   )
 
   useEffect(() => {
-    console.log(router)
     if (
       [
         ROUTES.APPLICATION_DETAIL.pathname,

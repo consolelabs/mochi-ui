@@ -54,7 +54,7 @@ const LoginPopover = () => {
   return (
     <Popover onOpenChange={setIsOpen} open={isOpen}>
       <PopoverTrigger
-        className="text-left"
+        className="text-left flex justify-center"
         asChild
         // wrap Button by div to prevent event loss when use `asChild` props
       >
