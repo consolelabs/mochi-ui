@@ -1,5 +1,13 @@
 # @mochi-ui/icons
 
+## 0.4.0
+
+### Minor Changes
+
+- [#380](https://github.com/consolelabs/mochi-ui/pull/380)
+  [`95dffa9`](https://github.com/consolelabs/mochi-ui/commit/95dffa9579bd4f5afb29be7a668ed06e98de3543)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Add footer component
+
 ## 0.3.2
 
 ### Patch Changes
