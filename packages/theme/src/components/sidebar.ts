@@ -77,6 +77,7 @@ const sidebarItemIconClsx = ({
   disabled?: boolean
 }) =>
   clsx(
+    'shrink-0',
     {
       'text-primary-plain-fg': selected,
       'text-text-primary': !selected && !disabled,
@@ -85,11 +86,17 @@ const sidebarItemIconClsx = ({
     className,
   )
 
+const sidebarItemInfoWrapperClsx = ({
+  className = '',
+}: {
+  className?: string
+} = {}) => clsx('flex gap-2 items-center flex-1', className)
+
 const sidebarItemTitleWrapperClsx = ({
   className = '',
 }: {
   className?: string
-} = {}) => clsx('flex gap-2 items-center', className)
+} = {}) => clsx('flex flex-col', className)
 
 const sidebarItemTitleClsx = ({
   className = '',
@@ -99,7 +106,7 @@ const sidebarItemTitleClsx = ({
   disabled?: boolean
 }) =>
   clsx(
-    'text-left text-sm font-medium tracking-tight line-clamp-1',
+    'text-left tracking-tight line-clamp-1',
     {
       'text-text-secondary': disabled,
       'text-text-primary ': !disabled,
@@ -139,7 +146,6 @@ const sidebarItemAccordionWrapperClsx = ({
       'rounded hover:bg-neutral-outline-hover': Boolean(expanded),
       '!p-0': !expanded,
       'p-2.5': expanded,
-      'bg-neutral-outline-active': selected,
     },
     className,
     customClassName,
@@ -153,7 +159,7 @@ const sidebarItemAccordionTriggerTitleClsx = ({
   expanded?: boolean
 }) =>
   clsx(
-    'flex-1 flex gap-2 items-center rounded',
+    'flex-1 flex gap-3.5 items-center rounded',
     {
       'hover:bg-neutral-outline-hover p-2.5': !expanded,
     },
@@ -186,10 +192,9 @@ const classNamePropClsx = ({
   selected?: boolean
 }) =>
   clsx(
-    'flex gap-2 items-center p-2.5 rounded w-full cursor-pointer hover:bg-neutral-outline-hover',
+    'flex gap-3.5 justify-between items-center p-2.5 rounded w-full cursor-pointer hover:bg-neutral-outline-hover',
     {
       'pointer-events-none': disabled,
-      'bg-neutral-outline-active': selected,
     },
     className,
     customClassName,
@@ -212,7 +217,15 @@ const sidebarItemListWrapperClsx = ({
 
 const sidebarItemListItemClsx = ({
   className = '',
-}: { className?: string } = {}) => clsx('h-10', className)
+  hasDescription = false,
+}: { className?: string; hasDescription?: boolean } = {}) =>
+  clsx(
+    'h-10',
+    {
+      'h-[52px]': hasDescription,
+    },
+    className,
+  )
 
 const sidebarItemListTooltipClsx = ({
   className = '',
@@ -232,6 +245,7 @@ const sidebar = {
   sidebarToggleArrowClsx,
 
   sidebarItemIconClsx,
+  sidebarItemInfoWrapperClsx,
   sidebarItemTitleWrapperClsx,
   sidebarItemTitleClsx,
   sidebarItemTitleBadgeClsx,

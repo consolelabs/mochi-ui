@@ -1,4 +1,5 @@
 import { Badge } from '@mochi-ui/badge'
+import { Button } from '@mochi-ui/button'
 import {
   AddUserSolid,
   CodingSolid,
@@ -47,6 +48,7 @@ export function Default() {
             type: 'link',
             badge: <Badge label="New" />,
             onClick: () => setSection('Profile'),
+            description: 'View Profile',
           },
           {
             title: 'Server Management',
@@ -64,6 +66,18 @@ export function Default() {
             title: 'App Store',
             Icon: GameSolid,
             onClick: () => setSection('App Store'),
+            action: (
+              <Button
+                variant="link"
+                className="!px-0"
+                onClick={(event) => {
+                  event.stopPropagation()
+                  alert('Action')
+                }}
+              >
+                Action
+              </Button>
+            ),
           },
           { title: 'Settings', Icon: SettingSolid },
           { type: 'break' },
@@ -80,7 +94,6 @@ export function Default() {
             ),
           },
           { title: 'Invite Friends', Icon: AddUserSolid },
-          { title: 'Feedback', Icon: StarSolid },
           {
             title: 'List',
             badge: (

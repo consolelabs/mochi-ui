@@ -25,6 +25,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@mochi-ui/button": "workspace:*",
     "clean-package": "^2.2.0",
     "@mochi-ui/badge": "workspace:*",
     "eslint-config-custom": "workspace:*",
@@ -38,6 +39,7 @@
     "@mochi-ui/icons": "workspace:*",
     "@mochi-ui/theme": "workspace:*",
     "@mochi-ui/tooltip": "workspace:*",
+    "@mochi-ui/typography": "workspace:*",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0"
   },

@@ -6,10 +6,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@mochi-ui/accordion'
+import { Typography } from '@mochi-ui/typography'
 import { sidebar } from '@mochi-ui/theme'
 
 export interface Item {
   title: string
+  description?: ReactNode
   Icon?: (props: any) => JSX.Element
   selected?: boolean
   type?: 'list' | 'button' | 'link'
@@ -18,6 +20,7 @@ export interface Item {
   children?: Item[]
   onClick?: MouseEventHandler
   badge?: ReactNode
+  action?: ReactNode
   disabled?: boolean
   className?: string
 }
@@ -31,6 +34,7 @@ interface SidebarItemProps {
 
 const {
   sidebarItemIconClsx,
+  sidebarItemInfoWrapperClsx,
   sidebarItemTitleWrapperClsx,
   sidebarItemTitleClsx,
   sidebarItemTitleBadgeClsx,
@@ -54,6 +58,8 @@ export default function SidebarItem({
     disabled,
     badge,
     title,
+    description,
+    action,
     Icon,
     href,
     as,
@@ -74,12 +80,29 @@ export default function SidebarItem({
         </div>
       )}
       {expanded ? (
-        <div className={sidebarItemTitleWrapperClsx()}>
-          <span className={sidebarItemTitleClsx({ disabled })}>{title}</span>
-          {Boolean(badge) && (
-            <span className={sidebarItemTitleBadgeClsx()}>{badge}</span>
-          )}
-        </div>
+        <>
+          <div className={sidebarItemInfoWrapperClsx()}>
+            <div className={sidebarItemTitleWrapperClsx()}>
+              <Typography
+                level="p5"
+                fontWeight="md"
+                className={sidebarItemTitleClsx({ disabled })}
+              >
+                {title}
+              </Typography>
+              {description ? (
+                <Typography level="p6" fontWeight="md" color="textSecondary">
+                  {description}
+                </Typography>
+              ) : null}
+            </div>
+            {Boolean(badge) && (
+              <span className={sidebarItemTitleBadgeClsx()}>{badge}</span>
+            )}
+          </div>
+
+          {type === 'list' ? null : action}
+        </>
       ) : null}
     </>
   )
