@@ -30,6 +30,7 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
+    "@mochi-ui/footer": "workspace:*",
     "@mochi-ui/accordion": "workspace:*",
     "@mochi-ui/alert": "workspace:*",
     "@mochi-ui/avatar": "workspace:*",

@@ -1,108 +1,49 @@
-import Image from 'next/image'
 import { SOCIAL_LINKS } from '~constants'
-import { Icon } from '@iconify/react'
+import { X, Discord, Telegram, Consolelabs } from '@mochi-ui/icons'
 import Link from 'next/link'
-import { Logo } from '@mochi-ui/core'
+import { Logo, Footer as FooterCore } from '@mochi-ui/core'
+import { ROUTES } from '~constants/routes'
 
 export const Footer = () => {
   const year = new Date().getFullYear()
   return (
-    <footer className="mt-auto border-t border-[#ebeae9]">
-      <div className="pt-16 pb-5 landing-block md:py-18 md:h-[300px]">
-        <div className="flex flex-col gap-y-5 gap-x-8 sm:gap-x-12 md:flex-row">
-          <Logo className="!h-9 !w-9" />
-          <div className="flex flex-col gap-y-7 gap-x-12 mb-10 sm:gap-x-24 sm:mb-0 md:flex-row md:flex-wrap md:gap-y-0">
-            <div className="space-y-2 text-[13px]">
-              <div className="text-footer-title">Developers</div>
-              <a
-                className="block text-footer-body"
-                target="blank"
-                href={SOCIAL_LINKS.DOCUMENT}
-              >
-                Documentation
-              </a>
-              <a
-                className="block text-footer-body"
-                target="blank"
-                href={SOCIAL_LINKS.GITHUB}
-              >
-                GitHub
-              </a>
-            </div>
-            <div className="space-y-2 text-[13px]">
-              <div className="text-footer-title">Resources</div>
-              <Link
-                className="block text-footer-body"
-                target="blank"
-                href="/changelog"
-              >
-                Changelog
-              </Link>
-            </div>
-            <div className="space-y-2 text-[13px]">
-              <div className="text-footer-title">Company</div>
-              <a
-                className="block text-footer-body"
-                target="_blank"
-                href={SOCIAL_LINKS.DISCORD}
-              >
-                Contact
-              </a>
-              <a
-                className="block text-footer-body"
-                target="_blank"
-                href={SOCIAL_LINKS.TWITTER}
-              >
-                Twitter
-              </a>
-            </div>
-          </div>
-          <div className="flex flex-col justify-center items-center mx-auto md:items-end md:mr-0 md:ml-auto">
-            <div className="mb-6 text-xs font-normal text-right text-footer-body">
-              Copyright © {year} Mochi, All rights reserved
-            </div>
-            <div className="flex gap-2 items-center">
-              <a
-                href={SOCIAL_LINKS.CONSOLE}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center w-8 h-8 p-[6px] border border-[#26272B1A] rounded-full overflow-hidden"
-              >
-                <Image
-                  width={64}
-                  height={64}
-                  alt=""
-                  src="/consolelabs-black.svg"
-                />
-              </a>
-              <a
-                href={SOCIAL_LINKS.TWITTER}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center w-8 h-8 p-[6px] border border-[#26272B1A] rounded-full overflow-hidden"
-              >
-                <Icon icon="mdi:twitter" className="text-black" />
-              </a>
-              <a
-                href={SOCIAL_LINKS.DISCORD}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center w-8 h-8 p-[6px] border border-[#26272B1A] rounded-full overflow-hidden"
-              >
-                <Icon icon="ic:baseline-discord" className="text-black" />
-              </a>
-              <a
-                href={SOCIAL_LINKS.TELEGRAM}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center w-8 h-8 p-[6px] border border-[#26272B1A] rounded-full overflow-hidden"
-              >
-                <Icon icon="simple-icons:telegram" className="text-black" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <FooterCore
+      copyrightText={`Copyright © ${year} Mochi, All rights reserved`}
+      logo={<Logo className="!h-9 !w-9" />}
+      nav={[
+        {
+          title: 'Developers',
+          links: [
+            {
+              href: SOCIAL_LINKS.DOCUMENT,
+              text: 'Documentation',
+              newTab: true,
+            },
+            { href: SOCIAL_LINKS.GITHUB, text: 'GitHub' },
+          ],
+        },
+        {
+          title: 'Resources',
+          links: [{ href: ROUTES.CHANGELOG, as: Link, text: 'Changelog' }],
+        },
+        {
+          title: 'Company',
+          links: [
+            { href: SOCIAL_LINKS.DISCORD, text: 'Contact' },
+            { href: SOCIAL_LINKS.TWITTER, newTab: true, text: 'Twitter' },
+          ],
+        },
+      ]}
+      social={[
+        {
+          href: SOCIAL_LINKS.CONSOLE,
+          Icon: Consolelabs,
+          title: 'Console Labs',
+        },
+        { href: SOCIAL_LINKS.TWITTER, Icon: X, title: 'X' },
+        { href: SOCIAL_LINKS.DISCORD, Icon: Discord, title: 'Discord' },
+        { href: SOCIAL_LINKS.TELEGRAM, Icon: Telegram, title: 'Telegram' },
+      ]}
+    />
   )
 }
