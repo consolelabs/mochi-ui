@@ -44,11 +44,12 @@ export const WalletPicker: React.FC<Props> = ({
   )
 
   useEffect(() => {
+    if (!authorized) return
     const mochiWallet = data[0]
     if (mochiWallet?.type === 'offchain') {
       handleWalletSelect(mochiWallet)
     }
-  }, [data, handleWalletSelect])
+  }, [authorized, data, handleWalletSelect])
 
   useEffect(() => {
     if (!authorized) {

@@ -9,7 +9,7 @@ import { TabbedFeatures } from '~cpn/landing/TabbedFeatures'
 import { SupportedPlatforms } from '~cpn/landing/SupportedPlatforms'
 import { LivePlatforms } from '~cpn/landing/LivePlatforms'
 import { Divider } from '~cpn/landing/Divider'
-import { Button } from '@mochi-ui/core'
+import { Button, useLoginWidget } from '@mochi-ui/core'
 import {
   ArrowRightLine,
   BlocksColored,
@@ -21,8 +21,6 @@ import {
 import { GridFeatures } from '~cpn/landing/GridFeatures'
 import Feed from '~cpn/Feed'
 import Link from 'next/link'
-import { useAuthStore } from '~store'
-import { useShallow } from 'zustand/react/shallow'
 import { ROUTES } from '~constants/routes'
 import { NativeImage } from '~cpn/NativeImage'
 
@@ -64,7 +62,7 @@ const platforms = [
 ]
 
 export default function Index() {
-  const isLoggedIn = useAuthStore(useShallow((s) => s.isLoggedIn))
+  const { isLoggedIn } = useLoginWidget()
   const currency = useRef<HTMLSpanElement>(null)
   const platform = useRef<HTMLSpanElement>(null)
 
@@ -74,7 +72,7 @@ export default function Index() {
       strings: currencies,
       typeSpeed: 90,
       backSpeed: 50,
-      backDelay: 1000,
+      backDelay: 10000,
       loop: true,
     })
 
@@ -96,7 +94,7 @@ export default function Index() {
   return (
     <Layout>
       <SEO />
-      <div className="grid grid-cols-1 auto-rows-min gap-y-7 gap-x-20 py-8 px-4 m-auto w-full max-w-5xl lg:grid-rows-2 lg:p-8 lg:grid-cols-min">
+      <div className="grid grid-cols-1 auto-rows-min gap-y-7 gap-x-20 py-8 px-4 m-auto w-full max-w-5xl lg:grid-cols-2 lg:grid-rows-2 lg:p-8">
         <div className="flex flex-col lg:justify-end">
           <p className="text-[32px] leading-[38.4px] title-tracking md:text-[40px] md:leading-[48px]">
             Send{' '}
@@ -125,11 +123,9 @@ export default function Index() {
             maxWidth: 440,
             minWidth: 340,
           }}
-          className="flex relative justify-center mx-auto w-screen lg:col-start-2 lg:row-span-2"
+          className="flex relative justify-center -mx-4 sm:mx-auto lg:col-start-2 lg:row-span-2"
         >
-          <div className="absolute w-full">
-            <MochiWidget />
-          </div>
+          <MochiWidget />
         </div>
 
         <div className="flex flex-col mt-5 lg:mt-2">

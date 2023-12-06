@@ -1,10 +1,9 @@
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import clsx from 'clsx'
 import Link from 'next/link'
-import { useShallow } from 'zustand/react/shallow'
 import { AnimatePresence, Transition, Variants, m } from 'framer-motion'
+import { useLoginWidget } from '@mochi-ui/core'
 import { useEffect } from 'react'
-import { useAuthStore } from '~store'
 import { ROUTES } from '~constants/routes'
 import StepOne from './StepOne'
 import StepTwo from './StepTwo'
@@ -52,7 +51,7 @@ const commonProps = {
 }
 
 export default function Tip() {
-  const isLoggedIn = useAuthStore(useShallow((s) => s.isLoggedIn))
+  const { isLoggedIn } = useLoginWidget()
   const { step, error, tx, direction, reset } = useTipWidget()
 
   const { isOpen, onOpen, onClose } = useDisclosure()

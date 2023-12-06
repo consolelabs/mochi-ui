@@ -1,6 +1,9 @@
+import { BottomSheet } from '~cpn/BottomSheet'
+import { useDisclosure } from '@dwarvesf/react-hooks'
+import { useCallback, useEffect, useMemo } from 'react'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { MAX_AMOUNT_PRECISION, formatTokenAmount } from '~utils/number'
-import { Button } from '@mochi-ui/core'
+import { Button, LoginWidget, useLoginWidget } from '@mochi-ui/core'
 import { CheckLine, ChevronLeftLine, Spinner } from '@mochi-ui/icons'
 import { useTipWidget } from './store'
 import MessagePicker from '../MessagePicker/MessagePicker'
@@ -16,8 +19,86 @@ export default function StepTwo() {
     updateRequestTheme,
     updateRequestMessage,
     request,
+    wallet,
     amountUsd,
   } = useTipWidget()
+
+  const { wallets, isAddressConnected, getProviderByAddress } = useLoginWidget()
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const incorrectParams = useMemo(() => {
+    const params: Record<string, any> = {
+      chainType: null,
+      chainIdHex: null,
+      address: null,
+    }
+    if (wallet?.type === 'offchain') return params
+
+    const provider = getProviderByAddress(wallet?.id ?? '')
+    if (!provider && wallet?.id) {
+      params.address = wallet.id
+      params.chainType = request.asset?.token.chain?.type
+      return params
+    }
+
+    if (wallet?.id && !isAddressConnected(wallet.id)) {
+      params.address = wallet.id
+      return params
+    }
+
+    if (provider?.chainId !== request.asset?.token.chain_id) {
+      params.chainIdHex = request.asset?.token.chain_id
+    }
+
+    return params
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    isOpen,
+    request.asset?.token.chain?.type,
+    request.asset?.token.chain_id,
+    wallet?.id,
+    wallet?.type,
+    wallets,
+  ])
+
+  const allGood =
+    !incorrectParams.chainType &&
+    !incorrectParams.chainIdHex &&
+    !incorrectParams.address
+
+  const handleIncorrectParams = useCallback(async () => {
+    const provider = getProviderByAddress(wallet?.id ?? '')
+
+    if (
+      incorrectParams.chainIdHex &&
+      provider &&
+      provider.chainId !== incorrectParams.chainIdHex
+    ) {
+      await provider.provider
+        .request({
+          method: 'wallet_switchEthereumChain',
+          params: [{ chainId: incorrectParams.chainIdHex }],
+        })
+        .then(() => onClose())
+        .catch(() => void 0)
+      return
+    }
+
+    onOpen()
+  }, [
+    getProviderByAddress,
+    incorrectParams.chainIdHex,
+    onClose,
+    onOpen,
+    wallet?.id,
+  ])
+
+  useEffect(() => {
+    if (!wallet?.id) return
+    const provider = getProviderByAddress(wallet.id)
+    if (provider) onClose()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [wallets])
 
   return (
     <div className="flex flex-col flex-1 gap-y-3 h-full min-h-0">
@@ -67,7 +148,7 @@ export default function StepTwo() {
       </ScrollArea.Viewport>
       <Button
         type="button"
-        onClick={execute}
+        onClick={allGood ? execute : handleIncorrectParams}
         className="flex justify-center mt-auto"
         size="lg"
         disabled={isTransferring}
@@ -75,6 +156,9 @@ export default function StepTwo() {
         {isTransferring ? <>&#8203;</> : 'Send'}
         {isTransferring ? <Spinner /> : <CheckLine />}
       </Button>
+      <BottomSheet isOpen={isOpen} onClose={onClose} title="Connect wallet">
+        <LoginWidget raw chain={incorrectParams.chainType} />
+      </BottomSheet>
     </div>
   )
 }

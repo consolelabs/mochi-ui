@@ -164,72 +164,77 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
           </span>
         </button>
         <BottomSheet title="Choose theme" isOpen={isOpen} onClose={onClose}>
-          <TextFieldRoot className="flex-shrink-0 mt-2">
-            <TextFieldDecorator>
-              <MagnifierLine className="w-5 h-5 text-gray-500" />
-            </TextFieldDecorator>
-            <TextFieldInput
-              ref={inputRef}
-              value={themeSearch}
-              placeholder="Search"
-              onChange={onThemeSearchChange}
-            />
-          </TextFieldRoot>
-          <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
-            <Tab.List className="flex overflow-x-auto flex-shrink-0 gap-6 mt-2 w-full">
-              {groupByTheme.map((tab) => (
-                <Tab
-                  key={`theme-tab-${tab.title}`}
-                  className="focus-visible:outline-none"
-                >
-                  {({ selected }) => (
-                    <Heading
-                      as="h2"
-                      className={`py-2 whitespace-nowrap text-sm ${
-                        selected ? 'text-[#343433]' : 'text-[#848281]'
-                      }`}
-                    >
-                      {tab.title}
-                    </Heading>
-                  )}
-                </Tab>
-              ))}
-            </Tab.List>
-            <Tab.Panels className="overflow-y-auto w-full">
-              {groupByTheme.map((t) => {
-                return (
-                  <Tab.Panel
-                    key={`theme-panel-${t.title}`}
-                    className="grid grid-cols-2 auto-rows-fr gap-4"
+          <div className="flex flex-col w-full min-h-0">
+            <TextFieldRoot className="flex-shrink-0 mt-2">
+              <TextFieldDecorator>
+                <MagnifierLine className="w-5 h-5 text-gray-500" />
+              </TextFieldDecorator>
+              <TextFieldInput
+                ref={inputRef}
+                value={themeSearch}
+                placeholder="Search"
+                onChange={onThemeSearchChange}
+              />
+            </TextFieldRoot>
+            <Tab.Group
+              selectedIndex={selectedIndex}
+              onChange={setSelectedIndex}
+            >
+              <Tab.List className="flex overflow-x-auto flex-shrink-0 gap-6 mt-2 w-full">
+                {groupByTheme.map((tab) => (
+                  <Tab
+                    key={`theme-tab-${tab.title}`}
+                    className="focus-visible:outline-none"
                   >
-                    {t.data
-                      .filter((d) => !!d.src)
-                      .filter(getFilterThemeFunc(themeSearch))
-                      .map((d) => {
-                        return (
-                          <button
-                            type="button"
-                            key={`theme-image-${d.name}-${d.id}`}
-                            onClick={() => {
-                              onChange(d)
-                              onClose()
-                            }}
-                            className="relative h-full outline-none aspect-video"
-                          >
-                            <Image
-                              fill
-                              alt=""
-                              src={d.src}
-                              className="object-cover w-full h-full rounded-lg"
-                            />
-                          </button>
-                        )
-                      })}
-                  </Tab.Panel>
-                )
-              })}
-            </Tab.Panels>
-          </Tab.Group>
+                    {({ selected }) => (
+                      <Heading
+                        as="h2"
+                        className={`py-2 whitespace-nowrap text-sm ${
+                          selected ? 'text-[#343433]' : 'text-[#848281]'
+                        }`}
+                      >
+                        {tab.title}
+                      </Heading>
+                    )}
+                  </Tab>
+                ))}
+              </Tab.List>
+              <Tab.Panels className="overflow-y-auto w-full">
+                {groupByTheme.map((t) => {
+                  return (
+                    <Tab.Panel
+                      key={`theme-panel-${t.title}`}
+                      className="grid grid-cols-2 auto-rows-fr gap-4"
+                    >
+                      {t.data
+                        .filter((d) => !!d.src)
+                        .filter(getFilterThemeFunc(themeSearch))
+                        .map((d) => {
+                          return (
+                            <button
+                              type="button"
+                              key={`theme-image-${d.name}-${d.id}`}
+                              onClick={() => {
+                                onChange(d)
+                                onClose()
+                              }}
+                              className="relative h-full outline-none aspect-video"
+                            >
+                              <Image
+                                fill
+                                alt=""
+                                src={d.src}
+                                className="object-cover w-full h-full rounded-lg"
+                              />
+                            </button>
+                          )
+                        })}
+                    </Tab.Panel>
+                  )
+                })}
+              </Tab.Panels>
+            </Tab.Group>
+          </div>
         </BottomSheet>
       </div>
     </div>

@@ -2,8 +2,7 @@ import clsx from 'clsx'
 
 const loginInnerStateClsx = () => ({
   connecting: {
-    container:
-      'flex flex-col items-center justify-center p-3 w-screen max-w-sm',
+    container: 'flex flex-col items-center justify-center p-3 w-[400px]',
     imgWrapper: 'flex items-center mt-5',
     img: 'w-12 h-12 rounded-full',
     divider: 'w-16 border border-dashed border-primary-solid-focus relative',
@@ -47,7 +46,7 @@ const loginWidgetDialogContentWrapperClsx = ({
   className?: string
 } = {}) =>
   clsx(
-    'flex fixed top-1/2 w-full max-w-sm left-1/2 z-50 bg-background-popup rounded-2xl -translate-x-1/2 -translate-y-1/2 p-3',
+    'flex fixed top-1/2 w-full max-w-sm left-1/2 z-50 -translate-x-1/2 -translate-y-1/2',
     className,
   )
 
@@ -72,6 +71,11 @@ const loginWalletIconClsx = ({ className = '' }: { className?: string } = {}) =>
 
 const loginWalletNameClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx('text-sm font-medium text-text-secondary', className)
+
+const loginWalletListWrapperClsx = ({
+  className = '',
+}: { className?: string } = {}) =>
+  clsx('flex flex-col gap-y-3 items-center', className)
 
 const loginWalletListTabsClsx = ({
   className = '',
@@ -121,6 +125,19 @@ const loginWalletListDropdownItemClsx = ({
   className = '',
 }: { className?: string } = {}) => clsx('text-text-secondary', className)
 
+const loginContentClsx = ({ className = '' }: { className?: string } = {}) =>
+  clsx('overflow-hidden rounded-xl relative p-3 w-[400px]', className)
+
+const loginContentSocialGridWrapperClsx = ({
+  className = '',
+}: { className?: string } = {}) =>
+  clsx('flex flex-col gap-8 mt-8 text-center', className)
+
+const loginContentSocialGridClsx = ({
+  className = '',
+}: { className?: string } = {}) =>
+  clsx('grid grid-cols-4 grid-rows-2 gap-4 mx-auto text-3xl w-fit', className)
+
 const loginWidget = {
   loginInnerStateClsx,
   loginWidgetTriggerClsx,
@@ -138,6 +155,10 @@ const loginWidget = {
   loginWalletListDropdownTriggerClsx,
   loginWalletListDropdownItemWrapperClsx,
   loginWalletListDropdownItemClsx,
+  loginContentClsx,
+  loginContentSocialGridWrapperClsx,
+  loginContentSocialGridClsx,
+  loginWalletListWrapperClsx,
 }
 
 export { loginWidget }

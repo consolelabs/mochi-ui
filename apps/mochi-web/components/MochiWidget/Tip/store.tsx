@@ -1,12 +1,11 @@
 import { create } from 'zustand'
 import { API } from '~constants/api'
 import { immer } from 'zustand/middleware/immer'
-import { AuthPanel } from '~cpn/AuthWidget'
 import { api } from '~constants/mochi'
 import { Profile } from '@consolelabs/mochi-rest'
-import { getLoginWidgetState } from '@mochi-ui/core'
+import { LoginWidget, getLoginWidgetState } from '@mochi-ui/core'
 import { utils } from 'ethers'
-import { Balance, Wallet, useProfileStore } from '~store'
+import { Balance, Wallet } from '~store'
 import { Theme } from '../ThemePicker/ThemePicker'
 import { Moniker } from '../TokenPicker/type'
 import { isToken } from '../TokenPicker/utils'
@@ -52,7 +51,7 @@ export const useTipWidget = create(
   immer<TipWidgetState>((set, get) => ({
     wallet: null,
 
-    unauthorizedContent: <AuthPanel variant="modal" />,
+    unauthorizedContent: <LoginWidget raw />,
 
     request: {
       recipients: [],
@@ -100,51 +99,35 @@ export const useTipWidget = create(
     execute: async () => {
       try {
         const { wallet, request } = get()
-        const { me } = useProfileStore.getState()
+        const { profile } = getLoginWidgetState()
 
         if (wallet?.type === 'onchain') {
           const { getProviderByAddress } = getLoginWidgetState()
           const provider = getProviderByAddress(wallet.id)
+          if (!provider) return
           const tokenChainId = request.asset?.token.chain_id
-          const providerChainId = await provider.request({
-            method: 'eth_chainId',
-          })
-          if (tokenChainId !== providerChainId) {
+          if (tokenChainId !== provider.chainId) {
             set({ error: 'mismatch chain' })
             return
           }
-          const isNative = request.asset?.token.native
-          const params: Record<string, any> = {
+
+          set({ isTransferring: true })
+          const tx = await provider.transfer({
             from: wallet.id,
-            to: request.recipients?.[0].id,
-            value: utils
+            to: request.recipients?.[0].profile_name ?? '',
+            amount: utils
               .parseUnits(
                 String(request.amount ?? 0),
                 request.asset?.token.decimal,
               )
               .toString(),
-          }
-          if (!isNative) {
-            const iface = new utils.Interface([
-              'function transfer(address to, uint amount)',
-            ])
-
-            params.data = iface.encodeFunctionData('transfer', [
-              request.recipients?.[0].profile_name,
-              params.value,
-            ])
-            params.to = request.asset?.token.address
-
-            delete params.value
-          }
-
-          set({ isTransferring: true })
-          const tx = await provider.request({
-            method: 'eth_sendTransaction',
-            params: [params],
+            ...(request.asset?.token.native
+              ? {}
+              : { tokenAddress: request.asset?.token.address }),
           })
 
           set({ tx })
+          get().reset()
 
           return
         }
@@ -196,7 +179,7 @@ export const useTipWidget = create(
 
         const tx = await API.MOCHI.post(
           {
-            sender: me?.id,
+            sender: profile?.id,
             recipients,
             platform: 'web',
             transfer_type: 'transfer',
@@ -204,7 +187,10 @@ export const useTipWidget = create(
               ? amount
               : amount * (request.asset?.asset_balance ?? 0),
             token: request.asset?.token?.symbol,
-            chain_id: request.asset?.token?.chain_id,
+            chain_id: parseInt(
+              request.asset?.token?.chain_id ?? '',
+              16,
+            ).toString(),
             // optional
             ...(request?.theme?.id ? { theme_id: request.theme.id } : {}),
             ...(request?.message ? { message: request.message } : {}),
@@ -212,12 +198,12 @@ export const useTipWidget = create(
           '/tip/transfer-v2',
         ).json((r) => r.data)
         set({ tx })
+        get().reset()
       } catch (e) {
         console.error(e)
         set({ error: e })
       } finally {
         set({ isTransferring: false })
-        get().reset()
       }
     },
     updateSourceWallet: (wallet) => {

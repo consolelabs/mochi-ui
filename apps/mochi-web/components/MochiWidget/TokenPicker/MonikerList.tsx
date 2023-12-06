@@ -52,7 +52,7 @@ export const MonikerList = (props: Props) => {
           symbol: d.moniker.token.token_symbol,
           chain_id: d.moniker.token.chain_id,
         },
-      }))
+      })) as Moniker[]
     },
   )
 

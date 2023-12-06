@@ -1,30 +1,37 @@
-import type { SVGProps } from 'react'
 import { loginWidget } from '@mochi-ui/theme'
+import { useEffect, useState } from 'react'
+import { ChainProvider } from './providers/provider'
 
 const { loginWallet, loginWalletIconClsx, loginWalletNameClsx } = loginWidget
 
 export interface WalletProps {
-  icon: (props: SVGProps<SVGSVGElement>) => JSX.Element
-  name: string
-  isInstalled: boolean
-  connect: (...params: any) => Promise<any>
-  rdns?: string
+  provider: ChainProvider
+  connect: () => void
 }
 
-export default function Wallet(props: WalletProps) {
-  const Icon = props.icon
+export default function Wallet({ provider, connect }: WalletProps) {
+  const Icon = provider.icon
+  const [isInstalled, setIsInstalled] = useState(false)
+
+  useEffect(() => {
+    provider.isInstalled().then(setIsInstalled)
+  }, [provider])
+
   return (
     <button
       className={loginWallet({
-        isInstalled: props.isInstalled,
+        isInstalled,
       })}
-      disabled={!props.isInstalled}
-      onClick={() => void props.connect()}
+      disabled={!isInstalled}
+      onClick={connect}
       type="button"
     >
       <Icon width={24} height={24} className={loginWalletIconClsx()} />
-      <span aria-label={props.rdns} className={loginWalletNameClsx()}>
-        {props.name}
+      <span
+        aria-label={provider.id || provider.name}
+        className={loginWalletNameClsx()}
+      >
+        {provider.name}
       </span>
     </button>
   )

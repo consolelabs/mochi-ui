@@ -1,9 +1,8 @@
-import { useShallow } from 'zustand/react/shallow'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { useDisclosure } from '@dwarvesf/react-hooks'
-import { useAuthStore, useWalletStore } from '~store'
-import { useMemo } from 'react'
-import { Button } from '@mochi-ui/core'
+import { useWalletStore } from '~store'
+import { useEffect, useMemo } from 'react'
+import { Button, useLoginWidget } from '@mochi-ui/core'
 import { ArrowRightLine, ChevronDownLine } from '@mochi-ui/icons'
 import { MAX_AMOUNT_PRECISION, formatTokenAmount } from '~utils/number'
 import { BottomSheet } from '~cpn/BottomSheet'
@@ -30,7 +29,7 @@ export default function StepOne() {
     setAmount,
   } = useTipWidget()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const isLoggedIn = useAuthStore(useShallow((s) => s.isLoggedIn))
+  const { isLoggedIn, profile } = useLoginWidget()
   const amountErrorMgs = useMemo(() => {
     if (!request.amount) return ''
     if (isToken(request.asset)) {
@@ -55,10 +54,19 @@ export default function StepOne() {
     return ''
   }, [request.amount, request.asset, wallet?.balances])
 
-  const { isFetching: isFetchingWallets, wallets } = useWalletStore()
+  const {
+    isFetching: isFetchingWallets,
+    wallets,
+    setWallets,
+  } = useWalletStore()
 
   const canProceed =
     !amountErrorMgs && (request.recipients?.length ?? 0) > 0 && !!request.amount
+
+  useEffect(() => {
+    if (!isLoggedIn || !profile) return
+    setWallets(profile)
+  }, [isLoggedIn, profile, setWallets])
 
   return (
     <div className="flex flex-col flex-1 gap-y-3 h-full min-h-0">

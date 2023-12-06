@@ -1,5 +1,5 @@
+import { useState } from 'react'
 import { useHasMounted } from '@dwarvesf/react-hooks'
-import { useAuthStore } from '~store'
 import Link from 'next/link'
 import {
   LifeBuoySolid,
@@ -30,6 +30,8 @@ import {
   Typography,
   Button,
   Item,
+  useLoginWidget,
+  LoginWidget,
 } from '@mochi-ui/core'
 import { Layout } from '@mochi-ui/layout'
 import { PageContent } from '@mochi-ui/page-content'
@@ -37,8 +39,6 @@ import { DISCORD_LINK, TWITTER_LINK } from '~envs'
 import { useRouter } from 'next/router'
 import { ROUTES } from '~constants/routes'
 import clsx from 'clsx'
-import { useState } from 'react'
-import { AuthPanel } from './AuthWidget'
 import { NativeImage } from './NativeImage'
 import { useSidebarContext } from '../context/app/sidebar'
 import { ViewApplication } from '../types/mochi-pay-schema'
@@ -48,7 +48,7 @@ const MainSidebarHeader = ({ expanded }: { expanded?: boolean }) => {
   return expanded ? (
     <NativeImage
       alt="header"
-      className="object-cover w-[240px] h-20"
+      className="object-cover h-20 w-[240px]"
       src="https://pbs.twimg.com/profile_banners/1168522102410010626/1684159976/300x100"
     />
   ) : (
@@ -68,7 +68,7 @@ const AppDropdownOption = ({
   const { push } = useRouter()
 
   const optionContent = (
-    <div className="w-full flex justify-between items-center gap-3.5">
+    <div className="flex gap-3.5 justify-between items-center w-full">
       <Avatar src={data?.avatar || ''} />
       <Typography
         fontWeight="md"
@@ -109,16 +109,16 @@ const ApplicationDetailSidebarHeader = ({
   const [isOpen, setIsOpen] = useState(false)
 
   return expanded ? (
-    <div className="relative w-[240px] h-20 bg-neutral-solid-active">
+    <div className="relative h-20 w-[240px] bg-neutral-solid-active">
       <NativeImage
         alt="header"
-        className="object-cover w-full h-full absolute top-0 left-0 opacity-50"
+        className="object-cover absolute top-0 left-0 w-full h-full opacity-50"
         src="https://pbs.twimg.com/profile_banners/1168522102410010626/1684159976/300x100"
       />
 
-      <div className="absolute w-full h-full top-0 left-0 flex z-50 justify-center items-center">
+      <div className="flex absolute top-0 left-0 z-50 justify-center items-center w-full h-full">
         {!isSelectedAppLoading && selectedApp ? (
-          <div className="flex w-full items-center">
+          <div className="flex items-center w-full">
             <IconButton
               variant="link"
               color="info"
@@ -128,8 +128,8 @@ const ApplicationDetailSidebarHeader = ({
             </IconButton>
 
             <DropdownMenu open={isOpen} onOpenChange={() => setIsOpen(!isOpen)}>
-              <DropdownMenuTrigger className="flex-1 flex items-center justify-between gap-4 pr-6">
-                <div className="flex-1 flex items-center gap-3">
+              <DropdownMenuTrigger className="flex flex-1 gap-4 justify-between items-center pr-6">
+                <div className="flex flex-1 gap-3 items-center">
                   <Avatar src={selectedApp?.avatar || ''} />
                   <Typography fontWeight="lg" level="p5" color="textContrast">
                     {selectedApp?.name || ''}
@@ -142,7 +142,7 @@ const ApplicationDetailSidebarHeader = ({
                 )}
               </DropdownMenuTrigger>
               <DropdownMenuContent className="mt-7 -ml-6 !min-w-[216px] max-h-[320px] overflow-auto">
-                <div className="w-full flex flex-col items-center gap-1">
+                <div className="flex flex-col gap-1 items-center w-full">
                   {!isAppListLoading && appList !== undefined ? (
                     appList.map((app) => (
                       <AppDropdownOption
@@ -162,7 +162,7 @@ const ApplicationDetailSidebarHeader = ({
             </DropdownMenu>
           </div>
         ) : (
-          <ThreeDotLoading className="text-text-contrast text-3xl" />
+          <ThreeDotLoading className="text-3xl text-text-contrast" />
         )}
       </div>
     </div>
@@ -193,7 +193,7 @@ export default function AuthenticatedLayout({
 }) {
   const { pathname, query } = useRouter()
   const mounted = useHasMounted()
-  const { isLoggedIn, isLoadingSession } = useAuthStore()
+  const { isLoggedIn, isLoggingIn } = useLoginWidget()
 
   const { variant } = useSidebarContext()
 
@@ -264,7 +264,7 @@ export default function AuthenticatedLayout({
 
   return (
     <Layout className="w-screen bg-white-pure">
-      {!isLoadingSession && isLoggedIn ? (
+      {!isLoggingIn && isLoggedIn ? (
         <Layout className="flex-1">
           <Sidebar
             Header={sideBarItems[variant].Header}
@@ -290,9 +290,9 @@ export default function AuthenticatedLayout({
         </Layout>
       ) : null}
 
-      {!isLoadingSession && !isLoggedIn ? (
+      {!isLoggingIn && !isLoggedIn ? (
         <div className="flex items-center justify-center flex-1 w-full !min-h-[calc(100vh-64px)] bg-black/40">
-          <AuthPanel />
+          <LoginWidget />
         </div>
       ) : null}
 

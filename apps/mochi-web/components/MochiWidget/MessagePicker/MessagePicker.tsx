@@ -93,44 +93,46 @@ export default function MessagePicker({
           More
         </button>
         <BottomSheet isOpen={isOpen} onClose={onClose} title="Choose message">
-          <TextFieldRoot className="flex-shrink-0 mt-2">
-            <TextFieldDecorator>
-              <MagnifierLine className="w-5 h-5 text-gray-500" />
-            </TextFieldDecorator>
-            <TextFieldInput
-              ref={inputRef}
-              value={messageSearch}
-              placeholder="Search"
-              onChange={onMessageSearchChange}
-            />
-          </TextFieldRoot>
-          <SectionList
-            sections={sectionFormatter(
-              MessageList.filter((m) =>
-                m.content.toLowerCase().includes(messageSearch.toLowerCase()),
-              ),
-              'group',
-            )}
-            renderItem={(item) => (
-              <SectionItem
-                key={`message-list-${item.id}`}
-                item={item}
-                onSelect={() => {
-                  onChange(item.content)
-                  onClose()
-                }}
+          <div className="flex flex-col w-full min-h-0">
+            <TextFieldRoot className="flex-shrink-0 mt-2">
+              <TextFieldDecorator>
+                <MagnifierLine className="w-5 h-5 text-gray-500" />
+              </TextFieldDecorator>
+              <TextFieldInput
+                ref={inputRef}
+                value={messageSearch}
+                placeholder="Search"
+                onChange={onMessageSearchChange}
               />
-            )}
-            renderSectionHeader={(section: any) => (
-              <label
-                htmlFor={sectionTitleHtmlFor}
-                className="font-bold text-[0.625rem] uppercase text-[#ADACAA]"
-              >
-                {section.title}
-              </label>
-            )}
-            rootClassName="w-full h-full mt-2"
-          />
+            </TextFieldRoot>
+            <SectionList
+              sections={sectionFormatter(
+                MessageList.filter((m) =>
+                  m.content.toLowerCase().includes(messageSearch.toLowerCase()),
+                ),
+                'group',
+              )}
+              renderItem={(item) => (
+                <SectionItem
+                  key={`message-list-${item.id}`}
+                  item={item}
+                  onSelect={() => {
+                    onChange(item.content)
+                    onClose()
+                  }}
+                />
+              )}
+              renderSectionHeader={(section: any) => (
+                <label
+                  htmlFor={sectionTitleHtmlFor}
+                  className="font-bold text-[0.625rem] uppercase text-[#ADACAA]"
+                >
+                  {section.title}
+                </label>
+              )}
+              rootClassName="w-full h-full mt-2"
+            />
+          </div>
         </BottomSheet>
       </div>
     </div>
