@@ -1,6 +1,6 @@
 {
   "name": "@mochi-ui/input-field",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
