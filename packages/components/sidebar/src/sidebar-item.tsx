@@ -122,7 +122,6 @@ export default function SidebarItem({
               expanded,
               className,
               customClassName,
-              selected,
             })}
           >
             <div className={sidebarItemAccordionTriggerTitleClsx({ expanded })}>
