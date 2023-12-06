@@ -13,23 +13,14 @@ describe('Page Header', () => {
     expect(title?.innerHTML || '').toBe('Page Title')
   })
 
-  it('renders the title extra and description correctly', () => {
-    const descriptionValue =
-      'Lorem ipsum dolor sit amet consectetur. Sed turpis eget sed nullam volutpat integer posuere.'
+  it('renders the title extra correctly', () => {
     const titleExtraValue = '(2,951 members)'
 
     const { container } = render(
-      <PageHeader
-        title="Page Title"
-        titleExtra={titleExtraValue}
-        description={descriptionValue}
-      />,
+      <PageHeader title="Page Title" titleExtra={titleExtraValue} />,
     )
-
-    const description = container.querySelector('p')
     const titleExtra = container.querySelector('span')
 
-    expect(description?.innerHTML || '').toBe(descriptionValue)
     expect(titleExtra?.innerHTML || '').toBe(titleExtraValue)
   })
 

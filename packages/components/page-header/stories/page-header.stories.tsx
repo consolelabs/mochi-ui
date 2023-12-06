@@ -63,22 +63,14 @@ export function Default() {
   ]
 
   return (
-    <div className="flex flex-col gap-6 p-6 bg-neutral-outline">
-      <PageHeader
-        title="Page Title"
-        description="Lorem ipsum dolor sit amet consectetur. Sed turpis eget sed nullam volutpat integer posuere."
-      />
+    <div className="flex flex-col gap-6">
+      <PageHeader title="Page Title" />
 
-      <PageHeader
-        title="Page Title"
-        description="Lorem ipsum dolor sit amet consectetur. Sed turpis eget sed nullam volutpat integer posuere."
-        actions={actions}
-      />
+      <PageHeader title="Page Title" actions={actions} />
 
       <PageHeader
         title="Page Title"
         titleExtra="(2,951 members)"
-        description="Lorem ipsum dolor sit amet consectetur. Sed turpis eget sed nullam volutpat integer posuere."
         actions={actions}
       />
 
@@ -86,7 +78,6 @@ export function Default() {
         onBack={() => alert('onBack')}
         title="Page Title"
         titleExtra="(2,951 members)"
-        description="Lorem ipsum dolor sit amet consectetur. Sed turpis eget sed nullam volutpat integer posuere."
         actions={[
           <IconButton variant="link" color="info">
             <ThreeDotsLine className="text-2xl" />

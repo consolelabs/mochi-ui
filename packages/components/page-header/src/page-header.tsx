@@ -10,8 +10,6 @@ type PageHeaderProps = {
   onBack?: () => void
   titleExtra?: ReactNode
   titleExtraClassName?: string
-  description?: ReactNode
-  descriptionClassName?: string
   actions?: JSX.Element[]
   actionsWrapperClassName?: string
   className?: string
@@ -35,8 +33,6 @@ const PageHeader = (props: PageHeaderProps) => {
     onBack,
     titleExtra,
     titleExtraClassName,
-    description,
-    descriptionClassName,
     actions = [],
     actionsWrapperClassName,
     className,
@@ -92,17 +88,6 @@ const PageHeader = (props: PageHeaderProps) => {
             ) : null}
             {titleExtra && typeof titleExtra !== 'string' ? titleExtra : null}
           </div>
-
-          {description && typeof description === 'string' ? (
-            <Typography
-              level="p5"
-              color="textSecondary"
-              className={descriptionClassName}
-            >
-              {description}
-            </Typography>
-          ) : null}
-          {description && typeof description !== 'string' ? description : null}
         </div>
       </div>
 

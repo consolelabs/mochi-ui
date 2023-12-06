@@ -102,7 +102,6 @@ export function Default() {
           <PageHeader
             title="Page Title"
             titleExtra="(2,951 members)"
-            description="Lorem ipsum dolor sit amet consectetur. Sed turpis eget sed nullam volutpat integer posuere."
             className="border-b"
           />
           <PageContent containerClassName="bg-background-surface p-6 border rounded-md">

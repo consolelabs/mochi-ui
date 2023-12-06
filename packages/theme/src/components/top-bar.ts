@@ -33,7 +33,7 @@ const topBarNavMobileNavContainerClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
-    'fixed lg:hidden top-16 inset-0 bg-background-popup rounded-none flex flex-col overflow-y-scroll',
+    'fixed lg:hidden top-14 inset-0 bg-background-popup rounded-none flex flex-col overflow-y-scroll',
     className,
   )
 
@@ -41,10 +41,10 @@ const topBarNavContainerClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
-    'sticky h-16 py-3 gap-6 w-screen max-w-full top-0 flex flex-shrink-0 justify-between items-center z-20 bg-background-surface',
+    'sticky h-14 py-3 gap-6 w-screen max-w-full top-0 flex flex-shrink-0 justify-between items-center z-20 bg-background-surface',
     'pl-4 pr-3 gap-y-4', // mobile
     'lg:px-8', // desktop
-    'lg:h-16 lg:flex-row', // tablet-desktop
+    'lg:flex-row', // tablet-desktop
     'border-b border-neutral-outline-border',
     className,
   )

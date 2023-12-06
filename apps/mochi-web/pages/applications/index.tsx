@@ -39,8 +39,6 @@ const AppPageHeader = ({
   return (
     <PageHeader
       title="Developer Portal"
-      description="Build secure and frictionless payments across Web2 and Web3
-      platforms with a single API call."
       actions={[
         <Button
           color="white"
