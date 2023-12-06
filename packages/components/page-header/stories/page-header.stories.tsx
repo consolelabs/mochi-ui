@@ -63,7 +63,7 @@ export function Default() {
   ]
 
   return (
-    <div className="flex flex-col gap-6 p-6 bg-neutral-outline">
+    <div className="flex flex-col gap-6">
       <PageHeader title="Page Title" />
 
       <PageHeader title="Page Title" actions={actions} />
