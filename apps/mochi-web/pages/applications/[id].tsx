@@ -27,7 +27,7 @@ import { AppDetailApiCalls } from '~cpn/app/detail/AppDetailApiCalls'
 const APP_DETAIL_FORM_ID = 'app-detail-form'
 
 const schema = z.object({
-  webhook: z.string().url('Invalid URL').or(z.literal('')),
+  webhook: z.string().url('Invalid URL').optional().or(z.literal('')),
   platforms: z.object(
     platforms.reduce(
       (acc, { key }) => ({
@@ -43,6 +43,14 @@ const schema = z.object({
       url: z.string().min(1, 'This field is required').url('Invalid URL'),
     })
     .array(),
+  app_name: z
+    .string()
+    .min(6, 'Name must contain at least 6 characters')
+    .regex(
+      /^[a-zA-Z0-9 ]+$/,
+      'Name must contain only letters, numbers and spaces',
+    ),
+  description: z.string(),
 })
 
 const App: NextPageWithLayout = () => {
@@ -79,8 +87,8 @@ const App: NextPageWithLayout = () => {
   const onUpdateApp = (data: AppDetailFormValues) => {
     if (!profileId || !appId || !detail || !isDirty) return Promise.resolve()
     const body: Partial<DtoUpdateApplicationInfoRequest> = {
-      app_name: detail.name,
-      description: detail?.description,
+      app_name: data.app_name,
+      description: data.description,
       metadata: detail?.metadata,
       webhook: data.webhook,
       platforms: Object.entries(data.platforms).flatMap(([key, value]) =>
@@ -145,7 +153,9 @@ const App: NextPageWithLayout = () => {
       reset({
         urls: defalutUrls,
         platforms: defalutPlatforms,
-        webhook: detail.webhook,
+        webhook: detail.webhook || '',
+        app_name: detail.name,
+        description: detail.description || '',
       })
     }
   }, [reset, detail])
@@ -161,11 +171,7 @@ const App: NextPageWithLayout = () => {
     <AuthLayout pageHeader={<AppDetailPageHeader name={detail?.name} />}>
       {/* form can be nested structurally, just use the element's form attribute */}
       <form id={APP_DETAIL_FORM_ID} onSubmit={handleSubmit(onUpdateApp)} />
-      <AppDetailStatistics
-        profileId={profileId}
-        appId={appId}
-        detail={detail}
-      />
+      <AppDetailStatistics {...{ profileId, appId, detail, control }} />
       <AppDetailIntegration
         apiKey={detail?.public_key}
         {...{ control, secretKey, onResetSecretKey, isResettingSecretKey }}

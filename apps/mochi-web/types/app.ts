@@ -13,4 +13,6 @@ export interface AppDetailFormValues {
   urls: UrlValue[]
   platforms: PlatformValue
   webhook?: string
+  app_name: string
+  description?: string
 }
