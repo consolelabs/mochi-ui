@@ -13,7 +13,7 @@ const alertBodyCva = cva('flex gap-1 h-fit flex-1', {
   },
 })
 
-const alertCva = cva(['flex rounded-lg relative gap-1 pointer-events-auto'], {
+const alertCva = cva(['flex rounded-lg relative gap-1'], {
   variants: {
     layout: {
       inline: 'items-center flex-row',

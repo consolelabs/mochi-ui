@@ -1,6 +1,6 @@
 import { VariantProps, cva } from 'class-variance-authority'
 
-const toastCva = cva('w-fit', {
+const toastCva = cva('w-fit pointer-events-auto', {
   variants: {
     fullWidth: {
       true: 'w-full',
