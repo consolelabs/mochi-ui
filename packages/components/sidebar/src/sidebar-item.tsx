@@ -154,7 +154,6 @@ export default function SidebarItem({
     disabled,
     className,
     customClassName,
-    selected,
   })
 
   if (type === 'link' && href) {
