@@ -33,28 +33,30 @@ const Footer = forwardRef<HTMLElement, FooterProps>(
         <div className={footer.wrapperClsx}>
           <div className={footer.wrapperInnerClsx}>
             {logo}
-            <div className={footer.navClsx}>
-              {nav.map((block, index) => {
-                return (
-                  <div className={footer.navBlockClsx} key={index}>
-                    <h6 className={footer.navTitleClsx}>{block.title}</h6>
-                    {block.links.map(({ href, text, as, newTab }) => {
-                      const Component = as || 'a'
-                      return (
-                        <Component
-                          key={href}
-                          href={href}
-                          className={footer.navLinkClsx}
-                          target={newTab ? 'blank' : undefined}
-                        >
-                          {text}
-                        </Component>
-                      )
-                    })}
-                  </div>
-                )
-              })}
-            </div>
+            {nav.length ? (
+              <div className={footer.navClsx}>
+                {nav.map((block, index) => {
+                  return (
+                    <div className={footer.navBlockClsx} key={index}>
+                      <h6 className={footer.navTitleClsx}>{block.title}</h6>
+                      {block.links.map(({ href, text, as, newTab }) => {
+                        const Component = as || 'a'
+                        return (
+                          <Component
+                            key={href}
+                            href={href}
+                            className={footer.navLinkClsx}
+                            target={newTab ? 'blank' : undefined}
+                          >
+                            {text}
+                          </Component>
+                        )
+                      })}
+                    </div>
+                  )
+                })}
+              </div>
+            ) : null}
             <div className={footer.infoClsx}>
               <Typography
                 level="p5"
@@ -84,7 +86,5 @@ const Footer = forwardRef<HTMLElement, FooterProps>(
     )
   },
 )
-
-Footer.displayName = '@mochi-ui.Footer'
 
 export { Footer, type FooterProps }
