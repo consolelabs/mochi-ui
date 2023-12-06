@@ -31,6 +31,8 @@ const meta: Meta<typeof Toast> = {
 const texts = [
   'Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.',
   'Lorem ipsum dolor sit amet',
+  'Lorem ipsum dolor sit amet',
+  'Lorem ipsum dolor sit amet',
   'Lorem ipsum dolor sit amet, qui minim labore adipisicing',
 ]
 
@@ -41,12 +43,13 @@ export const Default: StoryObj<typeof Toast> = {
     const { toast } = useToast()
     return (
       <div className="w-[800px] min-h-[500px] max-h-[700px] overflow-y-auto flex items-center justify-center">
-        <div className="fixed top-0 right-0 max-w-[500px] mx-auto">
+        <div className="fixed top-3 right-3 max-w-[500px] pointer-events-none mx-auto">
           <Toaster />
         </div>
         <Button
           onClick={() => {
             toast({
+              duration: 3000,
               title: texts[Math.floor(Math.random() * 3)],
               description: texts[Math.floor(Math.random() * 3)],
               ...props,
@@ -66,50 +69,17 @@ export const StackToast: StoryObj<typeof Toast> = {
 
     return (
       <div className="w-[800px] min-h-[500px] max-h-[700px] overflow-y-auto flex items-center justify-center">
-        <div className="fixed top-0 w-[600px] m-auto">
-          <Toaster />
+        <div className="fixed top-3 right-3 max-w-[500px] pointer-events-none mx-auto">
+          <Toaster align="right" />
         </div>
         <Button
           onClick={() => {
             toast({
-              layout: 'stack',
+              duration: 3000,
               title: texts[Math.floor(Math.random() * 3)],
-              description: texts[Math.floor(Math.random() * 3)],
-              confirm: {
-                label: 'confirm',
-                altText: 'Confirm',
-              },
-              cancel: {
-                label: 'Cancel',
-                altText: 'Cancel',
-              },
-              duration: 10000,
+              description: texts[Math.floor(Math.random() * 5)],
             })
           }}
-        >
-          Toast
-        </Button>
-      </div>
-    )
-  },
-}
-
-export const InlineToast: StoryObj<typeof Toast> = {
-  render: function Render() {
-    const { toast } = useToast()
-    return (
-      <div className="w-[800px] min-h-[500px] max-h-[700px] overflow-y-auto flex items-center justify-center">
-        <div className="fixed w-full bottom-0 p-10 pointer-events-none">
-          <Toaster />
-        </div>
-        <Button
-          onClick={() =>
-            toast({
-              layout: 'inline',
-              title: texts[Math.floor(Math.random() * 3)],
-              description: texts[Math.floor(Math.random() * 3)],
-            })
-          }
         >
           Toast
         </Button>
@@ -132,107 +102,18 @@ export const Colors: StoryObj<typeof Toast> = {
     const { toast } = useToast()
     return (
       <div className="w-[800px] min-h-[500px] max-h-[700px] overflow-y-auto flex items-center justify-center">
-        <div className="fixed w-full bottom-0 p-10 pointer-events-none">
+        <div className="fixed top-3 right-3 max-w-[500px] pointer-events-none">
           <Toaster />
         </div>
         <Button
           onClick={() =>
             toast({
-              layout: 'inline',
-              title: texts[Math.floor(Math.random() * 3)],
-              description: texts[Math.floor(Math.random() * 3)],
+              duration: 3000,
+              title: texts[Math.floor(Math.random() * 5)],
+              description: texts[Math.floor(Math.random() * 5)],
               scheme: colors[Math.floor(Math.random() * 6)],
             })
           }
-        >
-          Toast
-        </Button>
-      </div>
-    )
-  },
-}
-
-export const Actions: StoryObj<typeof Toast> = {
-  render: function Render() {
-    const { toast } = useToast()
-    return (
-      <div className="w-[800px] min-h-[500px] max-h-[700px] overflow-y-auto flex items-center justify-center">
-        <div className="fixed w-full bottom-0 p-10 pointer-events-none">
-          <Toaster />
-        </div>
-        <Button
-          onClick={() =>
-            toast({
-              layout: 'inline',
-              title: texts[Math.floor(Math.random() * 3)],
-              description: texts[Math.floor(Math.random() * 3)],
-              scheme: colors[Math.floor(Math.random() * 6)],
-              confirm: {
-                label: 'Save changes',
-                altText: 'Save changes',
-              },
-              cancel: {
-                label: 'Reset',
-                altText: 'Reset',
-              },
-            })
-          }
-        >
-          Toast
-        </Button>
-      </div>
-    )
-  },
-}
-
-export const ActionWithResponse: StoryObj<typeof Toast> = {
-  render: function Render() {
-    const { toast } = useToast()
-    return (
-      <div className="w-[800px] min-h-[500px] max-h-[700px] overflow-y-auto flex items-center justify-center">
-        <div className="fixed w-full bottom-0 p-10 pointer-events-none">
-          <Toaster />
-        </div>
-        <Button
-          onClick={() => {
-            const { update, dismiss } = toast({
-              duration: Infinity,
-              layout: 'inline',
-              title: texts[Math.floor(Math.random() * 3)],
-              description: texts[Math.floor(Math.random() * 3)],
-              scheme: colors[Math.floor(Math.random() * 6)],
-              confirm: {
-                label: 'Save changes',
-                altText: 'Save changes',
-                onClick: (e) => {
-                  e.preventDefault()
-                  update({
-                    confirm: {
-                      label: '_',
-                      altText: '_',
-                      loading: true,
-                    },
-                  })
-                  setTimeout(() => {
-                    update({
-                      confirm: {
-                        label: 'Saved changes',
-                        altText: 'Saved changes',
-                        loading: false,
-                      },
-                    })
-                    setTimeout(() => {
-                      dismiss()
-                    }, 1000)
-                  }, 2000)
-                },
-              },
-              cancel: {
-                label: 'Reset',
-                altText: 'Reset',
-              },
-            })
-          }}
         >
           Toast
         </Button>

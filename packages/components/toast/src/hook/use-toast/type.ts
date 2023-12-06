@@ -1,8 +1,6 @@
 import { ToastIconProps } from '../../toast-icon'
 import { ACTION_TYPES } from './constants'
-import { ToastProps } from '../../toast'
-import { ToastConfirmProps } from '../../toast-confirm'
-import { ToastCancelButtonProps } from '../../toast-cancel'
+import { ToastProps } from '../../type'
 import { ToastLinkProps } from '../../toast-link'
 
 type Toast = Omit<ToasterToast, 'id'>
@@ -11,12 +9,6 @@ type ToasterToast = Omit<ToastProps, keyof HTMLLIElement> & {
   id: string
   title?: string
   description?: string
-  confirm?: {
-    label: string
-  } & Omit<ToastConfirmProps, 'children'>
-  cancel?: {
-    label: string
-  } & ToastCancelButtonProps
   link?: {
     label: string
   } & ToastLinkProps

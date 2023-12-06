@@ -1,35 +1,39 @@
 import { ViewPortStyleProps } from '@mochi-ui/theme'
+import { ToastProviderProps } from './type'
 import { ToastViewPort, ToastProvider, Toast } from './toast'
 import { ToastTitle } from './toast-title'
 import { ToastClose } from './toast-close'
 import { useToast } from './hook/use-toast/use-toast'
 import { ToastIcon } from './toast-icon'
 import { ToastDescription } from './toast-description'
-import { ToastActionGroup } from './toast-action-group'
-import { ToastConfirmButton } from './toast-confirm'
 import { ToastLink } from './toast-link'
 import { ToastBody } from './toast-body'
-import { ToastCancelButton } from './toast-cancel'
 
-export const Toaster = (props: ViewPortStyleProps) => {
+export type ToasterProps = ViewPortStyleProps &
+  ToastProviderProps & {
+    className?: string
+    toastClassName?: string
+    toastFit?: boolean
+  }
+
+export const Toaster = (props: ToasterProps) => {
   const { toasts } = useToast()
-
+  const { className, toastClassName, direction, align, ...restProps } = props
   return (
-    <ToastProvider>
-      {toasts.map((props) => {
+    <ToastProvider {...restProps}>
+      {toasts.map((toastProps) => {
         const {
           id,
           title,
           description,
-          confirm,
-          cancel,
           link,
           icon,
           paddingSize: paddingSizeProp,
-          shadow = true,
-          layout,
-          ...restProps
-        } = props
+          shadow = false,
+          layout = 'stack',
+          fullWidth = false,
+          ...restToastProps
+        } = toastProps
 
         const paddingSize =
           paddingSizeProp ?? (layout === 'stack' ? 'large' : 'default')
@@ -37,38 +41,30 @@ export const Toaster = (props: ViewPortStyleProps) => {
         return (
           <Toast
             key={id}
-            {...restProps}
+            {...restToastProps}
             paddingSize={paddingSize}
             layout={layout}
             shadow={shadow}
+            className={toastClassName}
+            fullWidth={fullWidth}
           >
             <ToastIcon {...icon} />
             <ToastBody>
               {title && <ToastTitle>{title}</ToastTitle>}
               {description && (
-                <ToastDescription>{description} </ToastDescription>
+                <ToastDescription>{description}</ToastDescription>
               )}
               {link && <ToastLink {...link} />}
             </ToastBody>
-            {(confirm || cancel) && (
-              <ToastActionGroup>
-                {confirm && (
-                  <ToastConfirmButton {...confirm}>
-                    {confirm.label}
-                  </ToastConfirmButton>
-                )}
-                {cancel && (
-                  <ToastCancelButton {...cancel}>
-                    {cancel.label}
-                  </ToastCancelButton>
-                )}
-              </ToastActionGroup>
-            )}
             <ToastClose />
           </Toast>
         )
       })}
-      <ToastViewPort {...props} />
+      <ToastViewPort
+        className={className}
+        direction={direction}
+        align={align}
+      />
     </ToastProvider>
   )
 }

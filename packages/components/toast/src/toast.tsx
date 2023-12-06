@@ -1,29 +1,23 @@
 import * as ToastPrimitive from '@radix-ui/react-toast'
-import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
-import { ViewPortStyleProps, toaster } from '@mochi-ui/theme'
+import { forwardRef } from 'react'
+import { toaster } from '@mochi-ui/theme'
 import { Alert } from '@mochi-ui/alert'
 import type { AlertProps } from '@mochi-ui/alert'
-
-type ToastViewPortProps = ComponentPropsWithoutRef<
-  typeof ToastPrimitive.Viewport
-> &
-  ViewPortStyleProps
-
-type ToastViewPortRef = ElementRef<typeof ToastPrimitive.Viewport>
-
-type ToastProps = ComponentPropsWithoutRef<typeof ToastPrimitive.Root> &
-  AlertProps
-
-type ToastRef = ElementRef<typeof ToastPrimitive.Root>
+import {
+  ToastProps,
+  ToastRef,
+  ToastViewPortProps,
+  ToastViewPortRef,
+} from './type'
 
 const ToastProvider = ToastPrimitive.Provider
 
 const ToastViewPort = forwardRef<ToastViewPortRef, ToastViewPortProps>(
   (props, ref) => {
-    const { className, direction, ...restProps } = props
+    const { className, direction, align, ...restProps } = props
     return (
       <ToastPrimitive.Viewport
-        className={toaster.toastViewPortCva({ className, direction })}
+        className={toaster.toastViewPortCva({ className, direction, align })}
         ref={ref}
         {...restProps}
       />
@@ -34,7 +28,7 @@ const ToastViewPort = forwardRef<ToastViewPortRef, ToastViewPortProps>(
 ToastViewPort.displayName = ToastPrimitive.Viewport.displayName
 
 const Toast = forwardRef<ToastRef, ToastProps>((props, ref) => {
-  const { className, scheme, size, children, ...restProps } = props
+  const { className, scheme, size, children, fullWidth, ...restProps } = props
   const alertProps: AlertProps = {
     className,
     scheme,
@@ -46,7 +40,7 @@ const Toast = forwardRef<ToastRef, ToastProps>((props, ref) => {
       asChild
       ref={ref}
       {...restProps}
-      className={toaster.toastClsx({ className })}
+      className={toaster.toastCva({ className, fullWidth })}
     >
       <Alert {...alertProps} />
     </ToastPrimitive.Root>
@@ -56,4 +50,3 @@ const Toast = forwardRef<ToastRef, ToastProps>((props, ref) => {
 ToastViewPort.displayName = ToastPrimitive.Root.displayName
 
 export { ToastProvider, ToastViewPort, Toast }
-export type { ToastViewPortProps, ToastViewPortRef, ToastProps, ToastRef }
