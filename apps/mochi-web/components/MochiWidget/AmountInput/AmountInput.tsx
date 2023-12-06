@@ -4,6 +4,7 @@ import {
   KeyboardEvent,
   useCallback,
   useEffect,
+  useRef,
   useState,
 } from 'react'
 import { Balance, Wallet } from '~store'
@@ -40,6 +41,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   onAmountChanged,
   canProceed,
 }) => {
+  const ref = useRef<HTMLInputElement | null>(null)
   const { setStep, request, setAmountUsd } = useTipWidget()
   const [selectedAsset, setSelectedAsset] = useState<Balance | Moniker | null>(
     request.asset,
@@ -179,6 +181,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
             value={tipAmount.display}
             onChange={handleAmountChanged}
             onBlur={onBlurInput}
+            ref={ref}
           />
           <span className="text-sm text-[#848281] text-right">
             &#8776; {tipAmountUSD} USD
@@ -186,6 +189,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
         </div>
         <div className="flex flex-1 justify-between items-center">
           <button
+            tabIndex={-1}
             type="button"
             onClick={() =>
               onBlurInput({
@@ -207,6 +211,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               color="neutral"
               style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('1')}
+              tabIndex={-1}
             >
               $1
             </Button>
@@ -216,6 +221,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               color="neutral"
               style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('2')}
+              tabIndex={-1}
             >
               $2
             </Button>
@@ -225,6 +231,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               color="neutral"
               style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('5')}
+              tabIndex={-1}
             >
               $5
             </Button>

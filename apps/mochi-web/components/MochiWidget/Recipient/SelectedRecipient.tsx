@@ -18,10 +18,11 @@ export const SelectedRecipient: React.FC<SelectedRecipientProps> = ({
     role="presentation"
   >
     <div className="relative w-full">
-      <div className="overflow-hidden rounded-full border-white w-[56px] h-[56px] border-[2.5px] flex justify-center items-center">
+      <div className="flex overflow-hidden justify-center items-center rounded-full border-white w-[56px] h-[56px] border-[2.5px]">
         <Avatar src={profile.avatar || '/logo.png'} size="lg" />
       </div>
       <IconButton
+        tabIndex={-1}
         style={{
           width: 15,
           height: 15,

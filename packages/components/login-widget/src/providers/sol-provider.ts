@@ -1,16 +1,10 @@
 /* eslint-disable @typescript-eslint/return-await */
 import bs58 from 'bs58'
 import dlv from 'dlv'
-import { SVGProps } from 'react'
 import { SystemProgram, PublicKey, Transaction } from '@solana/web3.js'
 import { msg, ChainProvider } from './provider'
 
 export class ProviderSOL extends ChainProvider {
-  public id = ''
-  public icon = null as unknown as (
-    props: SVGProps<SVGSVGElement>,
-  ) => JSX.Element
-  public name = ''
   public platform = 'solana-chain'
   public chainId = 'mainnet-beta'
 
@@ -40,10 +34,12 @@ export class ProviderSOL extends ChainProvider {
         }),
       )
 
+      // common func of all solana-providers
       if ('signAndSendTransaction' in this.provider) {
         return await this.provider.signAndSendTransaction(tx)
       }
 
+      // backpack wallet
       const signedTx = await this.provider.signTransaction(tx)
       return await this.provider.send(signedTx)
     } catch (e) {

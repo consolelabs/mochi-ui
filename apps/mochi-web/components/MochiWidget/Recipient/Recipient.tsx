@@ -5,7 +5,7 @@ import useSWR from 'swr'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { Combobox } from '@headlessui/react'
 import { Profile } from '@consolelabs/mochi-rest'
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import {
   InputField,
   Popover,
@@ -46,6 +46,7 @@ export const Recipient: React.FC<RecipientProps> = ({
   onUpdateRecipient,
   onRemoveRecipient,
 }) => {
+  const ref = useRef<HTMLInputElement | null>(null)
   const {
     isOpen: isOpenRecipients,
     onOpen: openRecipients,
@@ -202,6 +203,7 @@ export const Recipient: React.FC<RecipientProps> = ({
                   }
                 }}
                 autoComplete="off"
+                ref={ref}
               />
               <Spinner
                 width={18}

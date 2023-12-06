@@ -1,7 +1,6 @@
 import hexer from 'browser-string-hexer'
 import { createStore } from 'mipd'
 import { utils } from 'ethers'
-import { SVGProps } from 'react'
 import { msg, ChainProvider } from './provider'
 
 const eip6963Store = typeof window !== 'undefined' ? createStore() : null
@@ -11,13 +10,7 @@ const iface = new utils.Interface([
 ])
 
 export class ProviderEVM extends ChainProvider {
-  public id = ''
-  public icon = null as unknown as (
-    props: SVGProps<SVGSVGElement>,
-  ) => JSX.Element
-  public name = ''
   public platform = 'evm-chain'
-  public chainId = ''
 
   sync(get: any) {
     const provider = eip6963Store?.findProvider({ rdns: this.id })?.provider
@@ -54,6 +47,7 @@ export class ProviderEVM extends ChainProvider {
     try {
       const { from, to, tokenAddress } = input
 
+      // case custom token
       if (!tokenAddress) {
         const params = {
           from,
@@ -68,6 +62,7 @@ export class ProviderEVM extends ChainProvider {
         return tx
       }
 
+      // case native coin
       const params = {
         from,
         to: input.tokenAddress,

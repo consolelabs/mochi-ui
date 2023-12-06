@@ -72,6 +72,7 @@ export const PlatformPicker: React.FC<Props> = ({
         type="button"
         onClick={onOpen}
         className="flex gap-x-2 items-center py-1.5 px-3 rounded-lg outline-none bg-neutral-100"
+        tabIndex={-1}
       >
         <PlatformIcon
           platform={selectedPlatform.platform}

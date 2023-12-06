@@ -86,16 +86,41 @@ export const useWalletStore = create<State>((set) => ({
       )
       if (payableAccounts?.length) {
         // Fetch balances of associated accounts.
-        const balRequestors = payableAccounts.map((w) =>
-          api.base.users.getWalletAssets({
-            profileId: me.id,
-            address: w.platform_identifier,
-            chainType: PaymentPlatforms.get(w.platform) ?? '',
-          }),
-        )
+        const balRequestors = payableAccounts.map(async (w) => {
+          return {
+            id: w.id,
+            balance: await api.base.users.getWalletAssets({
+              profileId: me.id,
+              address: w.platform_identifier,
+              chainType: PaymentPlatforms.get(w.platform) ?? '',
+            }),
+          }
+        })
         const balances = await Promise.all(balRequestors)
-        payableAccounts.forEach((w, i) => {
-          const { ok, data, error } = balances[i]
+        payableAccounts.sort((a, b) => {
+          const balA = balances.find((bal) => bal.id === a.id)
+          const balB = balances.find((bal) => bal.id === b.id)
+
+          if (!balA || !balA.balance.ok) return 1
+          if (!balB || !balB.balance.ok) return -1
+          if (
+            balA.balance.data.latest_snapshot_bal <
+            balB.balance.data.latest_snapshot_bal
+          )
+            return 1
+          if (
+            balA.balance.data.latest_snapshot_bal >
+            balB.balance.data.latest_snapshot_bal
+          )
+            return -1
+          return 0
+        })
+        payableAccounts.forEach((w) => {
+          const balResult = balances.find((b) => b.id === w.id)
+          const { ok, data, error } = balResult?.balance ?? {
+            ok: false,
+            error: {},
+          }
           if (ok) {
             data.balance.sort((a, b) => {
               return (b.usd_balance ?? 0) - (a.usd_balance ?? 0)

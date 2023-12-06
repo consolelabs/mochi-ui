@@ -119,8 +119,7 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
               <button
                 type="button"
                 onClick={() => {
-                  onChange(t)
-                  onClose()
+                  onChange(isSelected ? null : t)
                 }}
               >
                 <Image

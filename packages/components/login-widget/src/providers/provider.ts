@@ -34,7 +34,7 @@ export abstract class ChainProvider<
     platform: string
   } | null>
   abstract isInstalled(): Promise<boolean>
-  abstract sync(store?: any): ChainProvider<TransferInput>
+  abstract sync(storeGetter?: any): ChainProvider<TransferInput>
 }
 
 export const msg = 'Please sign this message to prove wallet ownership' as const

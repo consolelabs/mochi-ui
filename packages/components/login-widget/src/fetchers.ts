@@ -1,4 +1,5 @@
 import MochiAPI from '@consolelabs/mochi-rest'
+import { msg } from './providers/provider'
 
 export const api = new MochiAPI({
   log: false,
@@ -20,7 +21,7 @@ async function getAccessToken(data: any) {
         method: 'POST',
         body: JSON.stringify({
           wallet_address: data.addresses.at(0),
-          message: data.msg,
+          message: msg,
           signature: data.signature,
           platform: data.platform.replace('-chain', ''),
         }),

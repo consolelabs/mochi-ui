@@ -61,10 +61,15 @@ function TipPreview() {
       const [p1, p2] = UI.render(Platform.Web, first, second)
       return (
         <>
-          <Recipient>{stripEmoji(p1?.plain ?? 'user')}</Recipient>
+          <Recipient platform={p1?.platform}>
+            {stripEmoji(p1?.plain ?? 'user')}
+          </Recipient>
           {second && (
             <>
-              ,<Recipient>{stripEmoji(p2?.plain ?? 'user')}</Recipient>
+              ,
+              <Recipient platform={p2?.platform}>
+                {stripEmoji(p2?.plain ?? 'user')}
+              </Recipient>
             </>
           )}
         </>
@@ -78,7 +83,9 @@ function TipPreview() {
 
     return (
       <>
-        <Recipient>{stripEmoji(p1?.plain ?? 'user')}</Recipient>
+        <Recipient platform={p1?.platform}>
+          {stripEmoji(p1?.plain ?? 'user')}
+        </Recipient>
         <span>
           , +{count} other{count > 1 ? 's' : ''}
         </span>
