@@ -1,10 +1,10 @@
 # @mochi-ui/footer
 
-The Footer component is used for ...
+The Footer component is used for display site information and navigation on the
+bottom of your site.
 
-> This is an internal utility, not intended for public usage.
-
-For further details, visit our [Footer Documentation](https://ds.mochiui.com/?path=/docs/components-footer--docs).
+For further details, visit our
+[Footer Documentation](https://ds.mochiui.com/?path=/docs/layout-footer--docs).
 
 ## Installation
 
