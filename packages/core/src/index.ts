@@ -1,4 +1,5 @@
 // Plop adding component indicator - do not remove this line
+export * from '@mochi-ui/content-editable'
 export * from '@mochi-ui/footer'
 export * from '@mochi-ui/accordion'
 export * from '@mochi-ui/alert'

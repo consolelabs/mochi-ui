@@ -1,4 +1,12 @@
-import { Avatar, Button, IconButton, Typography } from '@mochi-ui/core'
+import {
+  Avatar,
+  Button,
+  ContentEditable,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  IconButton,
+} from '@mochi-ui/core'
 import {
   EditLine,
   ArrowDownSquareSolid,
@@ -7,16 +15,26 @@ import {
 import { ViewApplication } from '~types/mochi-pay-schema'
 import { formatNumber } from '~utils/number'
 import { useFetchApplicationDetailStats } from '~hooks/app/useFetchApplicationDetailStats'
+import { Control, Controller } from 'react-hook-form'
+import { AppDetailFormValues } from '~types/app'
+import { useState } from 'react'
 import { StatisticsBox } from '../StatisticsBox'
 
 interface Props {
   profileId?: string
   appId?: string
   detail?: ViewApplication
+  control: Control<AppDetailFormValues>
 }
 
-export const AppDetailStatistics = ({ profileId, appId, detail }: Props) => {
+export const AppDetailStatistics = ({
+  profileId,
+  appId,
+  detail,
+  control,
+}: Props) => {
   const { data: stats } = useFetchApplicationDetailStats(profileId, appId)
+  const [editing, setEditing] = useState('')
 
   return (
     <div>
@@ -26,46 +44,75 @@ export const AppDetailStatistics = ({ profileId, appId, detail }: Props) => {
             <Avatar src={detail?.avatar || ''} size="xl" />
           </div>
           <div className="flex-1">
-            <div className="flex justify-between mb-4 space-x-2 group">
-              <div>
-                <Typography
-                  level="p7"
-                  color="textSecondary"
-                  className="font-bold uppercase"
-                >
-                  Display name
-                </Typography>
-                <Typography level="h8">{detail?.name || '-'}</Typography>
-              </div>
+            <div className="flex justify-between space-x-2 group">
+              <Controller
+                name="app_name"
+                control={control}
+                render={({ field, fieldState }) => (
+                  <FormControl
+                    error={!!fieldState.error}
+                    className="w-full gap-y-1"
+                  >
+                    <FormLabel>Display name</FormLabel>
+                    <ContentEditable
+                      {...field}
+                      className="text-sm font-medium"
+                      disabled={editing !== field.name}
+                      onBlur={() => setEditing('')}
+                      ref={(ref) => {
+                        if (ref && editing === field.name) {
+                          ref.focus()
+                        }
+                      }}
+                    />
+                    <FormErrorMessage>
+                      {fieldState.error?.message}
+                    </FormErrorMessage>
+                  </FormControl>
+                )}
+              />
               <IconButton
                 variant="outline"
                 color="info"
-                className="px-1 py-1 mt-2 transition-all opacity-0 group-hover:opacity-100 bg-background-body"
+                className="px-1 py-1 transition-all opacity-0 group-hover:opacity-100 bg-background-body"
+                onClick={() => setEditing('app_name')}
               >
                 <EditLine className="w-4 h-4" />
               </IconButton>
             </div>
-            <div className="flex justify-between mb-4 space-x-2 group">
-              <div>
-                <Typography
-                  level="p7"
-                  color="textSecondary"
-                  className="font-bold uppercase"
-                >
-                  Description
-                </Typography>
-                {detail?.description ? (
-                  <Typography level="p5">{detail.description}</Typography>
-                ) : (
-                  <Typography level="p5" color="textSecondary">
-                    Provide a description for your app...
-                  </Typography>
+            <div className="flex justify-between mt-4 space-x-2 group">
+              <Controller
+                name="description"
+                control={control}
+                render={({ field, fieldState }) => (
+                  <FormControl
+                    error={!!fieldState.error}
+                    className="w-full gap-y-1"
+                  >
+                    <FormLabel>Description</FormLabel>
+                    <ContentEditable
+                      {...field}
+                      className="text-sm font-medium"
+                      placeholder="Provide a description for your app..."
+                      disabled={editing !== field.name}
+                      onBlur={() => setEditing('')}
+                      ref={(ref) => {
+                        if (ref && editing === field.name) {
+                          ref.focus()
+                        }
+                      }}
+                    />
+                    <FormErrorMessage>
+                      {fieldState.error?.message}
+                    </FormErrorMessage>
+                  </FormControl>
                 )}
-              </div>
+              />
               <IconButton
                 variant="outline"
                 color="info"
-                className="px-1 py-1 mt-2 transition-all opacity-0 group-hover:opacity-100 bg-background-body"
+                className="px-1 py-1 transition-all opacity-0 group-hover:opacity-100 bg-background-body"
+                onClick={() => setEditing('description')}
               >
                 <EditLine className="w-4 h-4" />
               </IconButton>
