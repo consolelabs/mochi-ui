@@ -134,12 +134,10 @@ const sidebarItemAccordionWrapperClsx = ({
   className = '',
   expanded,
   customClassName,
-  selected,
 }: {
   className?: string
   expanded?: boolean
   customClassName?: string
-  selected?: boolean
 }) =>
   clsx(
     {
