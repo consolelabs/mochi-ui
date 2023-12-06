@@ -263,7 +263,7 @@ export default function AuthenticatedLayout({
   }
 
   return (
-    <Layout className="w-screen min-h-screen bg-white-pure">
+    <Layout className="w-screen bg-white-pure">
       {!isLoadingSession && isLoggedIn ? (
         <Layout className="flex-1">
           <Sidebar
@@ -275,24 +275,23 @@ export default function AuthenticatedLayout({
           />
 
           <Layout
-            className={clsx('flex-1 max-w-[calc(100vw-72px)]', className)}
+            className={clsx(
+              'flex-1 max-w-[calc(100vw-72px)] h-[calc(100vh-64px)]',
+              className,
+            )}
           >
             {pageHeader}
 
             <PageContent>
-              <div className="relative flex items-start flex-1 mx-auto gap-x-24">
-                <div className="flex-1 h-full max-w-full">
-                  {childSEO}
-                  {children}
-                </div>
-              </div>
+              {childSEO}
+              {children}
             </PageContent>
           </Layout>
         </Layout>
       ) : null}
 
       {!isLoadingSession && !isLoggedIn ? (
-        <div className="flex items-center justify-center flex-1 w-full bg-black/40">
+        <div className="flex items-center justify-center flex-1 w-full !min-h-[calc(100vh-64px)] bg-black/40">
           <AuthPanel />
         </div>
       ) : null}
