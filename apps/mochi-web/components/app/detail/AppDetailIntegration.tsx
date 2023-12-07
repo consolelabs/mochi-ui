@@ -137,7 +137,7 @@ export const AppDetailIntegration = ({
             )}
           </div>
           {secretKey ? (
-            <Alert scheme="warning" size="sm">
+            <Alert scheme="warning" size="sm" layout="stack">
               <AlertIcon />
               <AlertDescription>
                 Your secret key has been generated. To access the Mochi API, use

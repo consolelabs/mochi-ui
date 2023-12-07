@@ -18,9 +18,10 @@ import { SOCIAL_LINKS } from '~constants'
 
 interface Props {
   name?: string
+  onDeleteApp: () => void
 }
 
-export const AppDetailPageHeader = ({ name = '' }: Props) => {
+export const AppDetailPageHeader = ({ name = '', onDeleteApp }: Props) => {
   return (
     <PageHeader
       title={name}
@@ -49,6 +50,7 @@ export const AppDetailPageHeader = ({ name = '' }: Props) => {
             <DropdownMenuSeparator />
             <DropdownMenuItem
               leftIcon={<TrashBinSolid className="w-5 h-5 text-danger-700" />}
+              onClick={onDeleteApp}
             >
               <Typography level="h8" color="danger">
                 Delete app

@@ -63,4 +63,6 @@ export const GET_PATHS = {
     `/profiles/${profileId}/applications/${appId}/members`,
   GET_APPLICATION_DETAIL_WEBHOOK_LOGS: (profileId: string, appId: string) =>
     `/profiles/${profileId}/applications/${appId}/webhook-logs`,
+  DEACTIVE_APPLICATION: (profileId: string, appId: string) =>
+    `/profiles/${profileId}/applications/${appId}/deactivate`,
 }
