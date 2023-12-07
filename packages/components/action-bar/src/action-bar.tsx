@@ -1,7 +1,9 @@
-import { forwardRef } from 'react'
+import * as ModalPrimitive from '@radix-ui/react-dialog'
+import { ComponentPropsWithRef } from 'react'
 
-export const ActionBar = forwardRef<any, any>((props, ref) => (
-  <div ref={ref} {...props}>
-    Actionbar
-  </div>
-))
+const ActionBar = ModalPrimitive.Root
+
+type ActionBarProps = ComponentPropsWithRef<typeof ActionBar>
+
+export { ActionBar }
+export type { ActionBarProps }
