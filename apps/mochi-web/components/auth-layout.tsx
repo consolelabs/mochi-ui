@@ -131,7 +131,12 @@ const ApplicationDetailSidebarHeader = ({
               <DropdownMenuTrigger className="flex flex-1 gap-4 justify-between items-center pr-6">
                 <div className="flex flex-1 gap-3 items-center">
                   <Avatar src={selectedApp?.avatar || ''} />
-                  <Typography fontWeight="lg" level="p5" color="textContrast">
+                  <Typography
+                    fontWeight="lg"
+                    level="p5"
+                    color="textContrast"
+                    className="text-left max-w-[100px] truncate"
+                  >
                     {selectedApp?.name || ''}
                   </Typography>
                 </div>
