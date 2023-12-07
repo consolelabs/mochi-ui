@@ -11,13 +11,16 @@ import {
   EditLine,
   ArrowDownSquareSolid,
   ArrowUpSquareSolid,
+  ArrowUpLine,
+  ThreeDotLoading,
 } from '@mochi-ui/icons'
 import { ViewApplication } from '~types/mochi-pay-schema'
 import { formatNumber } from '~utils/number'
 import { useFetchApplicationDetailStats } from '~hooks/app/useFetchApplicationDetailStats'
 import { Control, Controller } from 'react-hook-form'
 import { AppDetailFormValues } from '~types/app'
-import { useState } from 'react'
+import { ChangeEvent, useState, useRef } from 'react'
+import { API, GET_PATHS } from '~constants/api'
 import { StatisticsBox } from '../StatisticsBox'
 
 interface Props {
@@ -25,6 +28,7 @@ interface Props {
   appId?: string
   detail?: ViewApplication
   control: Control<AppDetailFormValues>
+  refresh: () => void
 }
 
 export const AppDetailStatistics = ({
@@ -32,16 +36,67 @@ export const AppDetailStatistics = ({
   appId,
   detail,
   control,
+  refresh,
 }: Props) => {
   const { data: stats } = useFetchApplicationDetailStats(profileId, appId)
   const [editing, setEditing] = useState('')
+  const inputFile = useRef<HTMLInputElement>(null)
+  const [uploading, setUploading] = useState(false)
+
+  const onUploadAvatar = async (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault()
+    const file = e.target.files?.[0]
+    if (!file || !profileId || !appId) return
+    if (file.size > 1024 * 1024 * 1) {
+      alert('File size must be less than 1MB')
+      return
+    }
+    setUploading(true)
+    const formData = new FormData()
+    formData.append('image', file)
+    return API.MOCHI_PAY.url(
+      GET_PATHS.UPDATE_APPLICATION_AVATAR(profileId, appId),
+    )
+      .body(formData)
+      .put()
+      .json(() => {
+        refresh()
+      })
+      .catch((e) => {
+        const err = JSON.parse(e.message)
+        alert(err.msg)
+      })
+      .finally(() => {
+        setUploading(false)
+      })
+  }
 
   return (
     <div>
       <div className="grid grid-cols-1 gap-2 p-2 sm:grid-cols-2 bg-neutral-150 rounded-2xl">
         <div className="flex gap-8 p-6">
-          <div className="py-4">
-            <Avatar src={detail?.avatar || ''} size="xl" />
+          <div className="py-4 ">
+            <input
+              ref={inputFile}
+              type="file"
+              accept="image/jpeg, image/png"
+              className="hidden"
+              onChange={onUploadAvatar}
+            />
+            <button
+              className="relative flex rounded-full group"
+              disabled={uploading}
+              onClick={() => inputFile.current?.click()}
+            >
+              <Avatar src={detail?.avatar || ''} size="xl" />
+              {uploading ? (
+                <div className="absolute inset-0 flex items-center justify-center w-full h-full bg-white rounded-full bg-opacity-30">
+                  <ThreeDotLoading className="w-6 h-6" />
+                </div>
+              ) : (
+                <ArrowUpLine className="w-6 h-6 rounded-full bg-background-body p-0.5 absolute bottom-0 right-0 hidden group-hover:block" />
+              )}
+            </button>
           </div>
           <div className="flex-1">
             <div className="flex justify-between space-x-2 group">

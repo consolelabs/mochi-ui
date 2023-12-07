@@ -199,7 +199,9 @@ const App: NextPageWithLayout = () => {
     >
       {/* form can be nested structurally, just use the element's form attribute */}
       <form id={APP_DETAIL_FORM_ID} onSubmit={handleSubmit(onUpdateApp)} />
-      <AppDetailStatistics {...{ profileId, appId, detail, control }} />
+      <AppDetailStatistics
+        {...{ profileId, appId, detail, control, refresh }}
+      />
       <AppDetailIntegration
         apiKey={detail?.public_key}
         {...{ control, secretKey, onResetSecretKey, isResettingSecretKey }}
