@@ -4,19 +4,29 @@ import { ViewApplicationListWithPaginationResponse } from '~types/mochi-pay-sche
 
 export const SWR_KEY_FETCH_APPLICATION_LIST = 'SWR_KEY_FETCH_APPLICATION_LIST'
 
-export const useFetchApplicationList = (profileId?: string) => {
+interface QueryParams {
+  slug?: string
+  page?: number
+  size?: number
+}
+
+export const useFetchApplicationList = (
+  profileId?: string,
+  queryParams?: QueryParams,
+) => {
   const { data, ...rest } = useSWR<ViewApplicationListWithPaginationResponse>(
-    [SWR_KEY_FETCH_APPLICATION_LIST, profileId],
-    async ([_, id]: [any, string]) => {
-      if (!id) return []
-      return API.MOCHI_PAY.get(GET_PATHS.GET_APPLICATION_LIST(id)).json(
-        (r) => r ?? [],
-      )
+    [SWR_KEY_FETCH_APPLICATION_LIST, profileId, queryParams],
+    async ([_, id, queryParams]: [any, string, QueryParams]) => {
+      if (!id || !queryParams) return []
+      return API.MOCHI_PAY.query(queryParams)
+        .get(GET_PATHS.GET_APPLICATION_LIST(id))
+        .json((r) => r ?? [])
     },
   )
 
   return {
     data: data?.data,
+    pagination: data?.pagination,
     ...rest,
   }
 }

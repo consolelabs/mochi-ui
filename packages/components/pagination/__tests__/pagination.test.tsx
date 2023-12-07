@@ -28,14 +28,16 @@ describe('Pagination', () => {
 
   it('renders the correct number of pages when currentPage >= totalPages - 3', () => {
     const { getByText, queryAllByText, queryByText } = render(
-      <Pagination totalItems={660} initItemsPerPage={25} initalPage={30} />,
+      <Pagination totalItems={660} initItemsPerPage={25} initalPage={25} />,
     )
     const firstPageButton = getByText('1')
     expect(firstPageButton).toBeInTheDocument()
     const ellipsisButton = queryAllByText('...')
     expect(ellipsisButton.length).toBe(1)
     for (let i = 24; i <= 27; i++) {
-      const pageButton = getByText(i, { selector: 'span' })
+      const pageButton = getByText(i, {
+        selector: 'button:not([role]) span',
+      })
       expect(pageButton).toBeInTheDocument()
     }
 

@@ -6,6 +6,8 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  Pagination,
+  PaginationProps,
   Table,
   Tooltip,
   Typography,
@@ -37,6 +39,7 @@ interface Props {
   isLoading?: boolean
   className?: string
   refresh: () => void
+  paginationProps?: PaginationProps
 }
 
 const Name: ColumnProps<ViewApplication>['cell'] = (props) => (
@@ -108,6 +111,7 @@ export const AppListing = ({
   isLoading,
   className,
   refresh,
+  paginationProps,
 }: Props) => {
   const { push } = useRouter()
   const [selectedApp, setSelectedApp] = useState<SelectedApp | null>(null)
@@ -118,7 +122,7 @@ export const AppListing = ({
 
   return (
     <div className={clsx('mt-8', className)}>
-      <Typography level="h7" color="textPrimary">
+      <Typography level="p4" color="textPrimary" className="font-medium">
         My Applications
       </Typography>
       {apps?.length || isLoading ? (
@@ -163,6 +167,9 @@ export const AppListing = ({
             ]}
             data={apps}
           />
+          {!!paginationProps && (
+            <Pagination {...paginationProps} className="text-sm" />
+          )}
         </div>
       ) : (
         <div>

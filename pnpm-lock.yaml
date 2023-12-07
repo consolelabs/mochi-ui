@@ -1246,6 +1246,9 @@ importers:
       '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons
+      '@mochi-ui/select':
+        specifier: workspace:*
+        version: link:../select
       '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
@@ -1983,6 +1986,9 @@ importers:
       '@mochi-ui/page-header':
         specifier: workspace:*
         version: link:../components/page-header
+      '@mochi-ui/pagination':
+        specifier: workspace:*
+        version: link:../components/pagination
       '@mochi-ui/popover':
         specifier: workspace:*
         version: link:../components/popover

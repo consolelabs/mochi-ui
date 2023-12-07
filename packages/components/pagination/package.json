@@ -34,7 +34,8 @@
   },
   "dependencies": {
     "@mochi-ui/icons": "workspace:*",
-    "@mochi-ui/theme": "workspace:*"
+    "@mochi-ui/theme": "workspace:*",
+    "@mochi-ui/select": "workspace:*"
   },
   "clean-package": "../../../clean-package.config.json"
 }

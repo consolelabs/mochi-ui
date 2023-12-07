@@ -37,7 +37,7 @@ const paginationAmountPerPageSelectClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
-    'py-2 px-3 text-sm font-medium leading-tight rounded text-text-primary bg-neutral-plain-hover',
+    'py-2 px-3 text-sm !font-medium leading-tight rounded text-text-primary bg-neutral-plain-hover',
     className,
   )
 

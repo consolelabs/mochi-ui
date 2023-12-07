@@ -28,6 +28,7 @@ import {
 import Link from 'next/link'
 import { SOCIAL_LINKS } from '~constants'
 import { ROUTES } from '~constants/routes'
+import { useState } from 'react'
 
 const AppPageHeader = ({
   onClickCreateApp,
@@ -92,7 +93,14 @@ const App: NextPageWithLayout = () => {
     }),
     shallow,
   )
-  const { data: apps, mutate: refresh, isLoading } = useFetchApplicationList(id)
+  const [itemPerPage, setItemPerPage] = useState(25)
+  const [page, setPage] = useState(1)
+  const {
+    data: apps,
+    pagination,
+    mutate: refresh,
+    isLoading,
+  } = useFetchApplicationList(id, { page: page - 1, size: itemPerPage })
 
   const onCreateApp = (result: ViewFullApplicationResponse) => {
     refresh()
@@ -114,6 +122,13 @@ const App: NextPageWithLayout = () => {
         onOpenCreateAppModal={onOpen}
         isLoading={isLoading || !id}
         className="max-w-full"
+        paginationProps={{
+          totalItems: pagination?.total || 0,
+          initItemsPerPage: itemPerPage,
+          initalPage: page,
+          onItemPerPageChange: setItemPerPage,
+          onPageChange: setPage,
+        }}
       />
       <Modal open={isOpen} onOpenChange={onOpenChange}>
         <ModalContent className="w-full max-w-md">

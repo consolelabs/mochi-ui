@@ -66,7 +66,8 @@
     "@mochi-ui/typography": "workspace:*",
     "@mochi-ui/table": "workspace:*",
     "@mochi-ui/label": "workspace:*",
-    "@mochi-ui/toast": "workspace:*"
+    "@mochi-ui/toast": "workspace:*",
+    "@mochi-ui/pagination": "workspace:*"
   },
   "clean-package": "../../clean-package.config.json"
 }

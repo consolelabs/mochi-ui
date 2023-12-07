@@ -2,6 +2,13 @@ import type { HtmlHTMLAttributes } from 'react'
 import { useState, useEffect } from 'react'
 import { ChevronLeftLine, ChevronRightLine } from '@mochi-ui/icons'
 import { pagination } from '@mochi-ui/theme'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@mochi-ui/select'
 
 const {
   paginationButtonClsx,
@@ -218,29 +225,26 @@ export default function Pagination({
 
   return (
     <div className={paginationWrapperClsx({ className })}>
-      {/* TODO: replace with our select component */}
       <div className={paginationAmountPerPageWrapperClsx()}>
         <div>Showing</div>
-        <select
-          className={paginationAmountPerPageSelectClsx()}
-          onChange={(e) => setCurrentItemPerPage(Number(e.target.value))}
+        <Select
+          value={String(currentItemPerPage)}
+          onChange={(value) => {
+            setCurrentPage(1)
+            setCurrentItemPerPage(Number(value))
+          }}
         >
-          <option selected={currentItemPerPage === 5} value={5}>
-            5
-          </option>
-          <option selected={currentItemPerPage === 15} value={15}>
-            15
-          </option>
-          <option selected={currentItemPerPage === 25} value={25}>
-            25
-          </option>
-          <option selected={currentItemPerPage === 50} value={50}>
-            50
-          </option>
-          <option selected={currentItemPerPage === 100} value={100}>
-            100
-          </option>
-        </select>
+          <SelectTrigger className={paginationAmountPerPageSelectClsx()}>
+            <SelectValue placeholder="Select" />
+          </SelectTrigger>
+          <SelectContent>
+            {['5', '15', '25', '50', '100'].map((num) => (
+              <SelectItem key={num} value={num}>
+                {num}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
         <div>of {totalItems}</div>
       </div>
 
