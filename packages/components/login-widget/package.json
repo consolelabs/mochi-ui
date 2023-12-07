@@ -40,7 +40,6 @@
     "@mochi-ui/button": "workspace:*",
     "@mochi-ui/connect-wallet-widget": "workspace:*",
     "@mochi-ui/dropdown": "workspace:*",
-    "@mochi-ui/heading": "workspace:*",
     "@mochi-ui/icon-button": "workspace:^",
     "@mochi-ui/icons": "workspace:*",
     "@mochi-ui/tabs": "workspace:*",

@@ -1,4 +1,4 @@
-import { Heading } from '@mochi-ui/heading'
+import { Typography } from '@mochi-ui/typography'
 import { render } from '@testing-library/react'
 import SectionList from '../src/section-list'
 
@@ -55,9 +55,12 @@ function renderSectionHeader(
 ) {
   return (
     <div className="flex flex-row items-center w-full" key={index}>
-      <Heading as="h2" className="text-xs font-bold text-[#A19F9E] uppercase">
+      <Typography
+        level="h2"
+        className="text-xs font-bold text-[#A19F9E] uppercase"
+      >
         {section.title}
-      </Heading>
+      </Typography>
     </div>
   )
 }
@@ -70,9 +73,9 @@ function renderItem(item: (typeof eatNDrink)[number]) {
     >
       <span className="text-sm w-6 h-6">{item.icon}</span>
       <div className="flex flex-col flex-1">
-        <Heading as="h3" className="text-sm">
+        <Typography level="h3" className="text-sm">
           {item.message}
-        </Heading>
+        </Typography>
       </div>
     </li>
   )

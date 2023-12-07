@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "clean-package": "^2.2.0",
-    "@mochi-ui/heading": "workspace:*",
+    "@mochi-ui/typography": "workspace:*",
     "eslint-config-custom": "workspace:*",
     "prettier": "^3.0.3",
     "react": "^18.2.0",

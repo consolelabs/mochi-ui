@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Heading } from '@mochi-ui/heading'
+import { Typography } from '@mochi-ui/typography'
 import SectionList from '../src/section-list'
 
 const meta: Meta<typeof SectionList> = {
@@ -113,9 +113,9 @@ function renderItem(item: DataType) {
     >
       <span className="text-sm w-6 h-6">{item.icon}</span>
       <div className="flex flex-col flex-1">
-        <Heading as="h3" className="text-sm">
+        <Typography level="h3" className="text-sm">
           {item.message}
-        </Heading>
+        </Typography>
       </div>
     </li>
   )
@@ -124,9 +124,12 @@ function renderItem(item: DataType) {
 function renderSectionHeader(section: SectionType, index?: number) {
   return (
     <div className="flex flex-row items-center w-full" key={index}>
-      <Heading as="h2" className="text-xs font-bold text-[#A19F9E] uppercase">
+      <Typography
+        level="h3"
+        className="text-xs font-bold text-[#A19F9E] uppercase"
+      >
         {section.title}
-      </Heading>
+      </Typography>
     </div>
   )
 }
