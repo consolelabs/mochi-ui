@@ -9,7 +9,7 @@ import '~styles/nprogress.css'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
 import { interFont } from '~utils/next-font'
-import { useLoginWidget } from '@mochi-ui/core'
+import { Toaster, useLoginWidget } from '@mochi-ui/core'
 import { LazyMotion, domAnimation } from 'framer-motion'
 import { useAuthStore } from '../store/auth'
 import { SidebarContextProvider } from '../context/app/sidebar'
@@ -21,7 +21,6 @@ const WalletProvider = dynamic(() =>
 const LoginWidgetProvider = dynamic(() =>
   import('@mochi-ui/core').then((m) => m.LoginWidgetProvider),
 )
-const Toaster = dynamic(() => import('sonner').then((m) => m.Toaster))
 
 const TopProgressBar = dynamic(() => import('~app/layout/nprogress'), {
   ssr: false,
@@ -77,13 +76,9 @@ function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
 export default function App(props: AppPropsWithLayout) {
   return (
     <StrictMode>
-      <Toaster
-        position="top-right"
-        closeButton
-        toastOptions={{
-          className: 'w-full',
-        }}
-      />
+      <div className="fixed z-50 top-3 right-3">
+        <Toaster />
+      </div>
       <TopProgressBar />
       <Script async src="https://telegram.org/js/telegram-widget.js?22" />
       <WalletProvider>

@@ -1,9 +1,12 @@
 import { useClipboard } from '@dwarvesf/react-hooks'
 import { Icon } from '@iconify/react'
+import { useToast } from '@mochi-ui/core'
 import { Button } from '~cpn/base/button'
 
 export default function ShareButton({ link }: { link: string }) {
   const { onCopy } = useClipboard(link)
+  const { toast } = useToast()
+
   return (
     <Button
       type="button"
@@ -16,7 +19,9 @@ export default function ShareButton({ link }: { link: string }) {
         } else {
           // Copy link if can't share
           onCopy()
-          alert('Link Copied')
+          toast({
+            description: 'Link Copied',
+          })
         }
       }}
     >
