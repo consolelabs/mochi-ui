@@ -64,7 +64,11 @@ const LoginPopover = () => {
           </Button>
         </div>
       </PopoverTrigger>
-      <PopoverContent sideOffset={10} collisionPadding={20}>
+      <PopoverContent
+        className="bg-white-pure"
+        sideOffset={10}
+        collisionPadding={20}
+      >
         <LoginWidget raw />
       </PopoverContent>
     </Popover>

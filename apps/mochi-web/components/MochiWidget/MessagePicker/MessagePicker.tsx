@@ -20,8 +20,12 @@ function SectionItem({
   onSelect: () => void
 }) {
   return (
-    <li className="flex items-center w-full p-2 hover:bg-[#FAF9F7] rounded-lg space-x-2 cursor-pointer">
-      <button type="button" className="outline-none" onClick={onSelect}>
+    <li>
+      <button
+        type="button"
+        className="outline-none flex items-center w-full p-2 hover:bg-[#FAF9F7] rounded-lg space-x-2 cursor-pointer"
+        onClick={onSelect}
+      >
         <Heading as="h3" className="text-sm">
           {item.content}
         </Heading>
@@ -42,6 +46,7 @@ export default function MessagePicker({
   sectionTitleHtmlFor,
 }: MessagePickerProps) {
   const inputRef = useRef<HTMLInputElement | null>(null)
+  const outerInputRef = useRef<HTMLInputElement | null>(null)
   const [messageSearch, setMessageSearch] = useState('')
   const { isOpen, onClose, onOpen } = useDisclosure()
 
@@ -57,6 +62,12 @@ export default function MessagePicker({
     }
   }, [isOpen])
 
+  useEffect(() => {
+    setTimeout(() => {
+      outerInputRef.current?.focus({ preventScroll: true })
+    }, 0)
+  }, [])
+
   return (
     <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-2">
       <div className="flex gap-x-2 items-center py-5 px-4 rounded-lg bg-white-pure">
@@ -65,6 +76,7 @@ export default function MessagePicker({
           className="flex-1 h-full bg-transparent outline-none"
           placeholder="Enter message"
           onChange={(e) => onChange(e.target.value)}
+          ref={outerInputRef}
         />
       </div>
       <div className="flex flex-wrap gap-2">

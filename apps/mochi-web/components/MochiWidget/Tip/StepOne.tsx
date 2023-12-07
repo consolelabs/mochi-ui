@@ -66,7 +66,9 @@ export default function StepOne() {
   useEffect(() => {
     if (!isLoggedIn || !profile) return
     setWallets(profile)
-  }, [isLoggedIn, profile, setWallets])
+
+    onClose()
+  }, [isLoggedIn, onClose, profile, setWallets])
 
   return (
     <div className="flex flex-col flex-1 gap-y-3 h-full min-h-0">
@@ -116,21 +118,19 @@ export default function StepOne() {
           <ArrowRightLine className="w-4 h-4" />
         </Button>
       ) : (
-        <>
-          <Button
-            onClick={onOpen}
-            className="justify-center"
-            size="lg"
-            type="button"
-          >
-            Connect options
-            <ChevronDownLine className="w-5 h-5 text-white-pure" />
-          </Button>
-          <BottomSheet isOpen={isOpen} onClose={onClose}>
-            {unauthorizedContent}
-          </BottomSheet>
-        </>
+        <Button
+          onClick={onOpen}
+          className="justify-center"
+          size="lg"
+          type="button"
+        >
+          Connect options
+          <ChevronDownLine className="w-5 h-5 text-white-pure" />
+        </Button>
       )}
+      <BottomSheet isOpen={isOpen && !isLoggedIn} onClose={onClose}>
+        {unauthorizedContent}
+      </BottomSheet>
     </div>
   )
 }

@@ -45,7 +45,7 @@ function BottomSheet({
     } else {
       _onClose()
     }
-  }, [isOpen, _onOpen, _onClose])
+  }, [_onClose, _onOpen, isOpen])
 
   useEffect(() => {
     if (!_isOpen) {

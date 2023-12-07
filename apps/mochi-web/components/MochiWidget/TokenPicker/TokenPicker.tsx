@@ -146,7 +146,12 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
 
   return (
     <>
-      <button type="button" onClick={onOpen} className="outline-none">
+      <button
+        tabIndex={-1}
+        type="button"
+        onClick={onOpen}
+        className="outline-none"
+      >
         <TokenButton
           isToken={isTokenSelected}
           name={

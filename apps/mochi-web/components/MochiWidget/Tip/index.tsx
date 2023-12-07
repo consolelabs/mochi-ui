@@ -57,14 +57,18 @@ export default function Tip() {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   useEffect(() => {
-    if (!isLoggedIn) {
-      reset()
-    }
+    if (!isLoggedIn) reset()
   }, [isLoggedIn, reset])
 
   useEffect(() => {
-    if ((error && !tx) || (!error && tx)) onOpen()
-  }, [error, onOpen, tx])
+    if ((error && !tx) || (!error && tx)) {
+      onOpen()
+      return
+    }
+
+    onClose()
+    return onClose
+  }, [error, onClose, onOpen, tx])
 
   const isOnchain = typeof tx === 'string'
 
