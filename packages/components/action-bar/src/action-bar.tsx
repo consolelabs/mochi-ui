@@ -1,7 +1,7 @@
-import * as ModalPrimitive from '@radix-ui/react-dialog'
+import * as PopoverPrimitive from '@radix-ui/react-popover'
 import { ComponentPropsWithRef } from 'react'
 
-const ActionBar = ModalPrimitive.Root
+const ActionBar = PopoverPrimitive.Root
 
 type ActionBarProps = ComponentPropsWithRef<typeof ActionBar>
 

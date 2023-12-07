@@ -1,11 +1,21 @@
-import * as ModalPrimitive from '@radix-ui/react-dialog'
+import * as PopoverPrimitive from '@radix-ui/react-popover'
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 import { Alert } from '@mochi-ui/alert'
+import { actionBar } from '@mochi-ui/theme'
 
 type ActionBarContentProps = ComponentPropsWithoutRef<typeof Alert> &
-  ComponentPropsWithoutRef<typeof ModalPrimitive.Content>
+  Omit<
+    ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>,
+    | 'side'
+    | 'sideOffset'
+    | 'collisionBoundary'
+    | 'arrowPadding'
+    | 'collisionPadding'
+    | 'hideWhenDetached'
+    | 'sticky'
+  >
 
-export const ActionBarContent = forwardRef<
+const ActionBarContent = forwardRef<
   ElementRef<typeof Alert>,
   ActionBarContentProps
 >((props, ref) => {
@@ -16,6 +26,9 @@ export const ActionBarContent = forwardRef<
     outline,
     paddingSize,
     onInteractOutside,
+    layout,
+    size,
+    scheme,
     ...passProps
   } = props
 
@@ -25,21 +38,32 @@ export const ActionBarContent = forwardRef<
     outline,
     paddingSize,
     shadow,
+    layout,
+    size,
+    scheme,
   }
 
   return (
-    // <ModalPrimitive.Portal>
-    <ModalPrimitive.Content
-      asChild
-      {...passProps}
-      onInteractOutside={(e) => {
-        e.preventDefault()
-        // prevent closing modal when click outside
-        return onInteractOutside?.(e)
-      }}
-    >
-      <Alert {...alertProps} ref={ref} />
-    </ModalPrimitive.Content>
-    // </ModalPrimitive.Portal>
+    <PopoverPrimitive.Anchor className={actionBar.anchorCva()}>
+      <PopoverPrimitive.Content
+        side="top"
+        sideOffset={0}
+        align="center"
+        {...passProps}
+        onInteractOutside={(e) => {
+          e.preventDefault()
+          onInteractOutside?.(e)
+        }}
+      >
+        <Alert
+          {...alertProps}
+          ref={ref}
+          className={actionBar.contentCva({ className })}
+        />
+      </PopoverPrimitive.Content>
+    </PopoverPrimitive.Anchor>
   )
 })
+
+export { type ActionBarContentProps }
+export { ActionBarContent }
