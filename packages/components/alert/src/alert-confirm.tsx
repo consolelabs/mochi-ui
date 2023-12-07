@@ -38,7 +38,7 @@ const AlertConfirmButton = forwardRef((props, ref) => {
       data-size={size}
       data-scheme={scheme}
       data-layout={layout}
-      className={alert.alertConfirmClsx({ className })}
+      className={alert.alertConfirmClsx({ layout, className })}
       ref={ref}
       {...passProps}
     >

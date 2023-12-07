@@ -182,7 +182,7 @@ const alertIconCloseCva = createTextCva(
 )
 
 const alertTitleCva = createTextCva(
-  ' font-semibold tracking-tight h-fit shrink-0',
+  'font-semibold tracking-tight h-fit min-w-0 w-fit',
   [
     {
       size: 'sm',
@@ -199,7 +199,7 @@ const alertTitleCva = createTextCva(
   ],
 )
 
-const alertDescriptionCva = createTextCva('tracking-tight h-fit', [
+const alertDescriptionCva = createTextCva('tracking-tight h-fit flex-1 ', [
   {
     size: 'sm',
     className: 'text-xs',
@@ -233,23 +233,35 @@ const alertConfirmClsx = ({
   layout?: 'inline' | 'stack'
 }) =>
   clsx(
-    'w-full',
     {
-      '': layout === 'inline',
+      'w-fit': layout === 'inline',
+      'w-full': layout === 'stack',
     },
     className,
   )
 
-const alertCancelClsx = ({ className = '' }: { className?: string }) =>
-  clsx('w-full bg-white', className)
+const alertCancelClsx = ({
+  className = '',
+  layout = 'inline',
+}: {
+  className?: string
+  layout?: 'inline' | 'stack'
+}) =>
+  clsx(
+    {
+      'wit-fit bg-inherit': layout === 'inline',
+      'w-full bg-white': layout === 'stack',
+    },
+    className,
+  )
 
 const alertActionGroupCva = cva(
   ['alert-action-group flex gap-3 shrink-0 items-center'],
   {
     variants: {
       layout: {
-        inline: 'w-fit flex-row mt-0',
-        stack: 'w-full flex-col-reverse mt-2',
+        inline: 'w-fit flex-row-reverse mt-0',
+        stack: 'w-full flex-col mt-2',
       },
     },
     defaultVariants: {},
