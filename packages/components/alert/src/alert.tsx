@@ -16,7 +16,7 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
   const {
     scheme = 'primary',
     size = 'md',
-    layout = 'inline',
+    layout = 'auto',
     outline,
     paddingSize,
     shadow,

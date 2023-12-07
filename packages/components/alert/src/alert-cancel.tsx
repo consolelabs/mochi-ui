@@ -28,8 +28,8 @@ const AlertCancelButton = forwardRef((props, ref) => {
   const passProps = asChild
     ? {}
     : {
-        variant: variantProp ?? 'link',
-        color: colorProp ?? 'neutral',
+        variant: variantProp ?? layout === 'inline' ? 'ghost' : 'solid',
+        color: colorProp ?? 'white',
         ...restProps,
       }
   return (

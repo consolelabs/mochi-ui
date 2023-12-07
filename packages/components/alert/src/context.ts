@@ -3,12 +3,12 @@ import { AlertStylesProps } from '@mochi-ui/theme'
 
 type AlertContextValue = {
   size: 'md' | 'sm'
-  layout: 'inline' | 'stack'
+  layout: NonNullable<AlertStylesProps['layout']>
   scheme: NonNullable<AlertStylesProps['scheme']>
 }
 
 const AlertContext = createContext<AlertContextValue>({
-  layout: 'inline',
+  layout: 'auto',
   size: 'md',
   scheme: 'primary',
 })
