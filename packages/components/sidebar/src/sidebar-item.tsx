@@ -7,6 +7,7 @@ import {
   AccordionTrigger,
 } from '@mochi-ui/accordion'
 import { Typography } from '@mochi-ui/typography'
+import { Heading } from '@mochi-ui/heading'
 import { sidebar } from '@mochi-ui/theme'
 
 export interface Item {
@@ -83,13 +84,9 @@ export default function SidebarItem({
         <>
           <div className={sidebarItemInfoWrapperClsx()}>
             <div className={sidebarItemTitleWrapperClsx()}>
-              <Typography
-                level="p5"
-                fontWeight="md"
-                className={sidebarItemTitleClsx({ disabled })}
-              >
+              <Heading as="h3" className={sidebarItemTitleClsx({ disabled })}>
                 {title}
-              </Typography>
+              </Heading>
               {description ? (
                 <Typography level="p6" fontWeight="md" color="textSecondary">
                   {description}

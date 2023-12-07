@@ -40,6 +40,7 @@
     "@mochi-ui/theme": "workspace:*",
     "@mochi-ui/tooltip": "workspace:*",
     "@mochi-ui/typography": "workspace:*",
+    "@mochi-ui/heading": "workspace:*",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0"
   },

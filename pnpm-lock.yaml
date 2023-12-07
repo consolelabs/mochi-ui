@@ -1514,6 +1514,9 @@ importers:
       '@mochi-ui/accordion':
         specifier: workspace:*
         version: link:../accordion
+      '@mochi-ui/heading':
+        specifier: workspace:*
+        version: link:../heading
       '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons

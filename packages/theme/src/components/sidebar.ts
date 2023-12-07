@@ -106,7 +106,7 @@ const sidebarItemTitleClsx = ({
   disabled?: boolean
 }) =>
   clsx(
-    'text-left tracking-tight line-clamp-1',
+    'text-left text-sm font-medium tracking-tight line-clamp-1',
     {
       'text-text-secondary': disabled,
       'text-text-primary ': !disabled,
