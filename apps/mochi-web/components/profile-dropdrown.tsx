@@ -148,11 +148,11 @@ export default function ProfileDropdown() {
           </AccordionItem>
         </Accordion>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="flex flex-col !text-neutral-600 font-normal">
-          <Typography className="!text-inherit" level="p6">
+        <DropdownMenuItem className="flex flex-col">
+          <Typography level="p6" color="textSecondary" fontWeight="sm">
             Powered by Console Labs
           </Typography>
-          <Typography className="!text-inherit" level="p6">
+          <Typography level="p6" color="textSecondary" fontWeight="sm">
             Version 1.0.0
           </Typography>
         </DropdownMenuItem>
