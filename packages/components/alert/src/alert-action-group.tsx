@@ -1,4 +1,4 @@
-import { alert } from '@mochi-ui/theme'
+import { alert, alertActionGroupStyleProps } from '@mochi-ui/theme'
 import { ComponentPropsWithRef, forwardRef } from 'react'
 import type * as Polymorphic from '@mochi-ui/polymorphic'
 import { Slot } from '@radix-ui/react-slot'
@@ -8,8 +8,7 @@ type PolymorphicAlertActionGroup = Polymorphic.ForwardRefComponent<
   'div',
   {
     asChild?: boolean
-    layout?: 'inline' | 'stack'
-  }
+  } & alertActionGroupStyleProps
 >
 
 type AlertActionGroupProps = ComponentPropsWithRef<PolymorphicAlertActionGroup>

@@ -20,7 +20,9 @@ const schemes = [
   'danger',
   'neutral',
 ] as NonNullable<AlertProps['scheme']>[]
-const layouts = ['inline', 'stack'] as NonNullable<AlertProps['layout'][]>
+const layouts = ['inline', 'stack', 'auto'] as NonNullable<
+  AlertProps['layout'][]
+>
 
 const meta: Meta<typeof Alert> = {
   title: 'Feedback/Alert',

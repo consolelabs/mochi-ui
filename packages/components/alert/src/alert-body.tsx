@@ -1,15 +1,14 @@
 import { ComponentPropsWithRef, forwardRef } from 'react'
 import type * as Polymorphic from '@mochi-ui/polymorphic'
 import { Slot } from '@radix-ui/react-slot'
-import { alert } from '@mochi-ui/theme'
+import { AlertBodyStyleProps, alert } from '@mochi-ui/theme'
 import { useAlertContext } from './context'
 
 type PolymorphicAlertBody = Polymorphic.ForwardRefComponent<
   'div',
   {
     asChild?: boolean
-    layout?: 'stack' | 'inline'
-  }
+  } & AlertBodyStyleProps
 >
 
 type AlertBodyProps = ComponentPropsWithRef<PolymorphicAlertBody>
