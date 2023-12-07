@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react'
 import { Button } from '@mochi-ui/button'
+import { useState } from 'react'
 import { Toast, ToastProps } from '../src'
 import { useToast } from '../src/hook/use-toast/use-toast'
 import { Toaster } from '../src/toaster'
@@ -100,20 +101,22 @@ const colors = [
 export const Colors: StoryObj<typeof Toast> = {
   render: function Render() {
     const { toast } = useToast()
+    const [index, setIndex] = useState(0)
     return (
       <div className="w-[800px] min-h-[500px] max-h-[700px] overflow-y-auto flex items-center justify-center">
         <div className="fixed top-3 right-3 max-w-[500px] pointer-events-none">
           <Toaster />
         </div>
         <Button
-          onClick={() =>
+          onClick={() => {
+            setIndex((prev) => prev + 1)
             toast({
               duration: 3000,
               title: texts[Math.floor(Math.random() * 5)],
               description: texts[Math.floor(Math.random() * 5)],
-              scheme: colors[Math.floor(Math.random() * 6)],
+              scheme: colors[index % 6],
             })
-          }
+          }}
         >
           Toast
         </Button>

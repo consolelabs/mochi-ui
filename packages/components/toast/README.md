@@ -1,10 +1,10 @@
-# @mochi-ui/alert
+# @mochi-ui/toast
 
-Alert component efficiently communicates essential information, warnings or
+Toast component efficiently communicates essential information, warnings or
 errors to users.
 
 For further details, visit our
-[Alert Documentation](https://ds.console.so/?path=/docs/components-alert--docs).
+[Toast Documentation](https://ds.console.so/?path=/docs/feedback-toast--docs).
 
 ## Installation
 
