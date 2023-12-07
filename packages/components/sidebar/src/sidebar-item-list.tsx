@@ -45,7 +45,9 @@ export default function SidebarItemList({
                   <SidebarItem
                     key={item.title}
                     {...{ item, expanded }}
-                    className={sidebarItemListItemClsx()}
+                    className={sidebarItemListItemClsx({
+                      hasDescription: !!item?.description,
+                    })}
                     selected={isSelected?.(item)}
                   />
                 ) : (

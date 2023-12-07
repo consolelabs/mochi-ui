@@ -1523,6 +1523,9 @@ importers:
       '@mochi-ui/tooltip':
         specifier: workspace:*
         version: link:../tooltip
+      '@mochi-ui/typography':
+        specifier: workspace:*
+        version: link:../typography
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -1533,6 +1536,9 @@ importers:
       '@mochi-ui/badge':
         specifier: workspace:*
         version: link:../badge
+      '@mochi-ui/button':
+        specifier: workspace:*
+        version: link:../button
       clean-package:
         specifier: ^2.2.0
         version: 2.2.0
@@ -4289,6 +4295,7 @@ packages:
 
   /@emotion/memoize@0.7.4:
     resolution: {integrity: sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==}
+    requiresBuild: true
     dev: false
     optional: true
 
