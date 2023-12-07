@@ -32,6 +32,7 @@ import {
   Item,
   useLoginWidget,
   LoginWidget,
+  Heading,
 } from '@mochi-ui/core'
 import { Layout } from '@mochi-ui/layout'
 import { PageContent } from '@mochi-ui/page-content'
@@ -134,14 +135,12 @@ const ApplicationDetailSidebarHeader = ({
               <DropdownMenuTrigger className="flex flex-1 gap-4 justify-between items-center pr-6">
                 <div className="flex flex-1 gap-3 items-center">
                   <Avatar src={selectedApp?.avatar || ''} />
-                  <Typography
-                    fontWeight="lg"
-                    level="p5"
-                    color="textContrast"
-                    className="text-left max-w-[100px] truncate"
+                  <Heading
+                    as="h3"
+                    className="text-left text-sm font-semibold text-text-contrast max-w-[100px] truncate"
                   >
                     {selectedApp?.name || ''}
-                  </Typography>
+                  </Heading>
                 </div>
                 {isOpen ? (
                   <CloseLine className="text-text-contrast" />
