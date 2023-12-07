@@ -19,12 +19,24 @@ import { platforms } from '~constants/app'
 import { ROUTES } from '~constants/routes'
 import { ViewApplication } from '~types/mochi-pay-schema'
 import { formatDate } from '~utils/time'
+import { useState } from 'react'
+import { DeleteAppModal } from './DeleteAppModal'
+
+interface SelectedApp {
+  app: ViewApplication
+  action: 'delete' | 'invite'
+}
+
+interface ActionsColumnMeta {
+  setSelectedApp: (props: SelectedApp) => void
+}
 
 interface Props {
   apps?: ViewApplication[]
   onOpenCreateAppModal: () => void
   isLoading?: boolean
   className?: string
+  refresh: () => void
 }
 
 const Name: ColumnProps<ViewApplication>['cell'] = (props) => (
@@ -37,9 +49,10 @@ const Name: ColumnProps<ViewApplication>['cell'] = (props) => (
 )
 
 const Actions: ColumnProps<ViewApplication>['cell'] = (props) => {
-  const { hasCopied, onCopy } = useClipboard(
-    props.row.original.public_key || '',
-  )
+  const app = props.row.original
+  const { hasCopied, onCopy } = useClipboard(app.public_key || '')
+  const { setSelectedApp } =
+    (props.column.columnDef.meta as ActionsColumnMeta) || {}
 
   return (
     <DropdownMenu>
@@ -79,8 +92,11 @@ const Actions: ColumnProps<ViewApplication>['cell'] = (props) => {
           </DropdownMenuItem>
         </Tooltip>
         <DropdownMenuItem>Invite</DropdownMenuItem>
-        <DropdownMenuItem>Edit</DropdownMenuItem>
-        <DropdownMenuItem>Delete</DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() => setSelectedApp({ app, action: 'delete' })}
+        >
+          Delete
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )
@@ -91,8 +107,14 @@ export const AppListing = ({
   onOpenCreateAppModal,
   isLoading,
   className,
+  refresh,
 }: Props) => {
   const { push } = useRouter()
+  const [selectedApp, setSelectedApp] = useState<SelectedApp | null>(null)
+
+  const actionsColumnMeta: ActionsColumnMeta = {
+    setSelectedApp,
+  }
 
   return (
     <div className={clsx('mt-8', className)}>
@@ -135,6 +157,7 @@ export const AppListing = ({
                 header: '',
                 accessorKey: 'action',
                 cell: Actions,
+                meta: actionsColumnMeta,
                 width: '50px',
               },
             ]}
@@ -168,6 +191,12 @@ export const AppListing = ({
           </Button>
         </div>
       )}
+      <DeleteAppModal
+        app={selectedApp?.app}
+        open={!!selectedApp?.app && selectedApp.action === 'delete'}
+        onOpenChange={() => setSelectedApp(null)}
+        onSucess={refresh}
+      />
     </div>
   )
 }

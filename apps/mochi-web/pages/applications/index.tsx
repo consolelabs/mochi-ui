@@ -110,7 +110,7 @@ const App: NextPageWithLayout = () => {
     >
       <Statistics id={id} onOpenCreateAppModal={onOpen} />
       <AppListing
-        apps={apps}
+        {...{ apps, refresh }}
         onOpenCreateAppModal={onOpen}
         isLoading={isLoading || !id}
         className="max-w-full"

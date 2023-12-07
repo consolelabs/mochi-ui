@@ -23,6 +23,9 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { AppDetailMembers } from '~cpn/app/detail/AppDetailMembers'
 import { AppDetailApiCalls } from '~cpn/app/detail/AppDetailApiCalls'
+import { DeleteAppModal } from '~cpn/app/DeleteAppModal'
+import { ROUTES } from '~constants/routes'
+import { useDisclosure } from '@dwarvesf/react-hooks'
 
 const APP_DETAIL_FORM_ID = 'app-detail-form'
 
@@ -46,11 +49,24 @@ const schema = z.object({
   app_name: z
     .string()
     .min(6, 'Name must contain at least 6 characters')
+    .max(25, 'Name must be no longer than 25 characters')
     .regex(
       /^[a-zA-Z0-9 ]+$/,
       'Name must contain only letters, numbers and spaces',
     ),
-  description: z.string(),
+  description: z.string().refine(
+    (value) => {
+      const element = new DOMParser().parseFromString(
+        value,
+        'text/html',
+      ).documentElement
+      const text = element.textContent || element.innerText
+      return text.length <= 250
+    },
+    {
+      message: 'Description must be no longer than 250 characters',
+    },
+  ),
 })
 
 const App: NextPageWithLayout = () => {
@@ -64,6 +80,7 @@ const App: NextPageWithLayout = () => {
     query: { id, secretKey: secretKeyQuery },
     pathname,
     replace,
+    push,
   } = useRouter()
   const appId = id as string
   const { data: detail, mutate: refresh } = useFetchApplicationDetail(
@@ -72,6 +89,10 @@ const App: NextPageWithLayout = () => {
   )
   const [secretKey, setSecretKey] = useState('')
   const [isResettingSecretKey, setIsResettingSecretKey] = useState(false)
+  const {
+    isOpen: isOpenDeleteAppModal,
+    onOpenChange: onOpenChangeDeleteAppModal,
+  } = useDisclosure()
 
   const {
     handleSubmit,
@@ -168,7 +189,14 @@ const App: NextPageWithLayout = () => {
   }, [id, pathname, replace, secretKeyQuery])
 
   return (
-    <AuthLayout pageHeader={<AppDetailPageHeader name={detail?.name} />}>
+    <AuthLayout
+      pageHeader={
+        <AppDetailPageHeader
+          name={detail?.name}
+          onDeleteApp={() => onOpenChangeDeleteAppModal(true)}
+        />
+      }
+    >
       {/* form can be nested structurally, just use the element's form attribute */}
       <form id={APP_DETAIL_FORM_ID} onSubmit={handleSubmit(onUpdateApp)} />
       <AppDetailStatistics {...{ profileId, appId, detail, control }} />
@@ -191,6 +219,12 @@ const App: NextPageWithLayout = () => {
           </Button>
         </div>
       )}
+      <DeleteAppModal
+        app={detail}
+        open={isOpenDeleteAppModal}
+        onOpenChange={onOpenChangeDeleteAppModal}
+        onSucess={() => push(ROUTES.APPLICATON_LIST)}
+      />
     </AuthLayout>
   )
 }
