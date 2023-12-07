@@ -89,13 +89,6 @@ export default function StepOne() {
             loading={isFetchingWallets}
             onSelect={updateSourceWallet}
           />
-          <Recipient
-            authorized={isLoggedIn}
-            unauthorizedContent={unauthorizedContent}
-            selectedRecipients={request.recipients ?? []}
-            onUpdateRecipient={setRecipients}
-            onRemoveRecipient={removeRecipient}
-          />
           <AmountInput
             authorized={isLoggedIn}
             unauthorizedContent={unauthorizedContent}
@@ -103,6 +96,13 @@ export default function StepOne() {
             onSelectAsset={setAsset}
             onAmountChanged={setAmount}
             canProceed={canProceed}
+          />
+          <Recipient
+            authorized={isLoggedIn}
+            unauthorizedContent={unauthorizedContent}
+            selectedRecipients={request.recipients ?? []}
+            onUpdateRecipient={setRecipients}
+            onRemoveRecipient={removeRecipient}
           />
           <ErrorMessage>{amountErrorMgs}</ErrorMessage>
         </div>
@@ -128,7 +128,11 @@ export default function StepOne() {
           <ChevronDownLine className="w-5 h-5 text-white-pure" />
         </Button>
       )}
-      <BottomSheet isOpen={isOpen && !isLoggedIn} onClose={onClose}>
+      <BottomSheet
+        isOpen={isOpen && !isLoggedIn}
+        onClose={onClose}
+        dynamic={!isLoggedIn}
+      >
         {unauthorizedContent}
       </BottomSheet>
     </div>

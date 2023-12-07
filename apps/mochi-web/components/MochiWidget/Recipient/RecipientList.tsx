@@ -1,9 +1,10 @@
 import { Combobox } from '@headlessui/react'
-import { List } from '@mochi-ui/core'
+import { SectionList } from '@mochi-ui/core'
 import { Profile } from '@consolelabs/mochi-rest'
 import { RecipientItem } from './RecipientItem'
 import { EmptyList } from './EmptyList'
 import Skeleton from '../Tip/Skeleton'
+import { sectionFormatter } from '../TokenPicker/utils'
 
 interface Props {
   loading: boolean
@@ -30,12 +31,11 @@ const ProfilePlaceholder: Profile = {
 export const RecipientList = (props: Props) => {
   const { data, selectedRecipients = [] } = props
   return (
-    <List
-      listClassName="max-h-[350px]"
+    <SectionList
       loading={props.loading}
       rootClassName="w-full"
-      data={data}
-      ListEmpty={<EmptyList />}
+      sections={sectionFormatter(data, 'group')}
+      SectionEmpty={<EmptyList />}
       renderItem={(item) => (
         <Combobox.Option key={item.id} value={item}>
           {({ active }) => (
@@ -50,6 +50,14 @@ export const RecipientList = (props: Props) => {
             />
           )}
         </Combobox.Option>
+      )}
+      renderSectionHeader={(section) => (
+        <label
+          htmlFor="recipients"
+          className="font-bold uppercase text-[0.625rem] text-neutral-500"
+        >
+          {section.title}
+        </label>
       )}
       renderLoader={() => <Skeleton />}
     />

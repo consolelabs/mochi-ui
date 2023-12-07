@@ -172,6 +172,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
         title={authorized ? 'Choose token' : ''}
         isOpen={isOpen}
         onClose={onClose}
+        dynamic={!authorized}
       >
         {authorized ? (
           <div className="flex flex-col flex-1 w-full min-h-0">
