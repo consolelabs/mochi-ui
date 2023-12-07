@@ -57,7 +57,7 @@ export default function Avatar({
     <RadixAvatar.Root
       className={avatarCva({ size, className: 'overflow-hidden' })}
     >
-      <RadixAvatar.Image src={src} />
+      <RadixAvatar.Image src={src} className="h-full" />
       <RadixAvatar.Fallback>
         <img alt="fallback" src={fallbackUrl} />
       </RadixAvatar.Fallback>

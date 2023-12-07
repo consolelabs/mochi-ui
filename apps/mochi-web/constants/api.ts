@@ -65,4 +65,6 @@ export const GET_PATHS = {
     `/profiles/${profileId}/applications/${appId}/webhook-logs`,
   DEACTIVE_APPLICATION: (profileId: string, appId: string) =>
     `/profiles/${profileId}/applications/${appId}/deactivate`,
+  UPDATE_APPLICATION_AVATAR: (profileId: string, appId: string) =>
+    `/profiles/${profileId}/applications/${appId}/avatar`,
 }
