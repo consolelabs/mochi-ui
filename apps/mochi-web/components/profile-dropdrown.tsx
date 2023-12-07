@@ -6,22 +6,28 @@ import {
   DropdownMenuSeparator,
   ProfileBadge,
   useLoginWidget,
+  Switch,
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+  Typography,
 } from '@mochi-ui/core'
 import Link from 'next/link'
 import { truncateWallet } from '~utils/string'
 import {
   UserSolid,
-  Discord,
-  SettingSolid,
   AddUserSolid,
-  LogoutSolid,
-  SuperGroupSolid,
-  CodingSolid,
+  EyeShowSolid,
+  StarSolid,
+  HomeSolid,
+  ShieldDoneSolid,
+  ComputerPcLaptopSolid,
 } from '@mochi-ui/icons'
 import { ROUTES } from '~constants/routes'
 
 export default function ProfileDropdown() {
-  const { isLoggedIn, logout, profile } = useLoginWidget()
+  const { isLoggedIn, profile } = useLoginWidget()
 
   return (
     <DropdownMenu>
@@ -34,34 +40,43 @@ export default function ProfileDropdown() {
           />
         )}
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent
+        className="max-h-[645px] overflow-y-auto"
+        sideOffset={20}
+        collisionPadding={{
+          right: 32,
+          bottom: 32,
+        }}
+      >
         <Link href={ROUTES.MY_PROFILE}>
           <DropdownMenuItem leftIcon={<UserSolid />}>Profile</DropdownMenuItem>
         </Link>
 
-        <Link href="#gift">
-          <DropdownMenuItem leftIcon={<SuperGroupSolid />}>
-            Gift Your Friends
-          </DropdownMenuItem>
+        <Link href="#Overview">
+          <DropdownMenuItem hasPaddingLeft>Overview</DropdownMenuItem>
         </Link>
 
         <Link href="#settings">
-          <DropdownMenuItem leftIcon={<SettingSolid />}>
-            Settings
+          <DropdownMenuItem hasPaddingLeft>Settings</DropdownMenuItem>
+        </Link>
+
+        <Link href="#ViewOption">
+          <DropdownMenuItem leftIcon={<EyeShowSolid />}>
+            View Options
+          </DropdownMenuItem>
+        </Link>
+
+        <Link href="#Darkmode">
+          <DropdownMenuItem
+            hasPaddingLeft
+            rightExtra={<Switch />}
+            onClick={(e) => e.preventDefault()}
+          >
+            Dark Mode
           </DropdownMenuItem>
         </Link>
 
         <DropdownMenuSeparator />
-
-        <Link href="#my-server">
-          <DropdownMenuItem leftIcon={<Discord />}>My Servers</DropdownMenuItem>
-        </Link>
-
-        <Link href="#mochi">
-          <DropdownMenuItem leftIcon={<Discord />}>
-            Install Mochi
-          </DropdownMenuItem>
-        </Link>
 
         <Link href="#friends">
           <DropdownMenuItem leftIcon={<AddUserSolid />}>
@@ -69,35 +84,78 @@ export default function ProfileDropdown() {
           </DropdownMenuItem>
         </Link>
 
-        <DropdownMenuSeparator />
-
-        <Link href="#application">
-          <DropdownMenuItem leftIcon={<CodingSolid />}>
-            Create Application
-          </DropdownMenuItem>
+        <Link href="#Feedback">
+          <DropdownMenuItem leftIcon={<StarSolid />}>Feedback</DropdownMenuItem>
         </Link>
 
-        <Link href="#docs">
-          <DropdownMenuItem leftIcon={<CodingSolid />}>
-            Developer Docs
+        <Link href="#TermAndPolicy">
+          <DropdownMenuItem leftIcon={<ShieldDoneSolid />}>
+            Terms and Policies
           </DropdownMenuItem>
         </Link>
 
         <DropdownMenuSeparator />
 
-        <Link href="#tos">
-          <DropdownMenuItem>Terms & Policies</DropdownMenuItem>
-        </Link>
-
-        <Link href="#privacy">
-          <DropdownMenuItem>Privacy Policy</DropdownMenuItem>
-        </Link>
-
+        <Accordion type="multiple" className="!p-0 shadow-none">
+          <AccordionItem value="Home">
+            <AccordionTrigger
+              className="py-0.5"
+              leftIcon={
+                <div className="p-0.5">
+                  <HomeSolid />
+                </div>
+              }
+            >
+              Home
+            </AccordionTrigger>
+            <AccordionContent className="!p-0">
+              <Link href={ROUTES.EXPLORE}>
+                <DropdownMenuItem hasPaddingLeft>Explore</DropdownMenuItem>
+              </Link>
+              <Link href={ROUTES.FEATURES}>
+                <DropdownMenuItem hasPaddingLeft>Features</DropdownMenuItem>
+              </Link>
+              <Link href={ROUTES.DOCS}>
+                <DropdownMenuItem hasPaddingLeft>API</DropdownMenuItem>
+              </Link>
+              <Link href="#Roadmap">
+                <DropdownMenuItem hasPaddingLeft>Roadmap</DropdownMenuItem>
+              </Link>
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="Download">
+            <AccordionTrigger
+              className="py-0.5"
+              leftIcon={
+                <div className="p-0.5">
+                  <ComputerPcLaptopSolid />
+                </div>
+              }
+            >
+              Download
+            </AccordionTrigger>
+            <AccordionContent className="!p-0">
+              <Link href="#Explore">
+                <DropdownMenuItem hasPaddingLeft>Extension</DropdownMenuItem>
+              </Link>
+              <Link href="#Explore">
+                <DropdownMenuItem hasPaddingLeft>Discord</DropdownMenuItem>
+              </Link>
+              <Link href="#Explore">
+                <DropdownMenuItem hasPaddingLeft>Telegram</DropdownMenuItem>
+              </Link>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
         <DropdownMenuSeparator />
-
-        <Link href="/#logout" onClick={logout}>
-          <DropdownMenuItem leftIcon={<LogoutSolid />}>Logout</DropdownMenuItem>
-        </Link>
+        <DropdownMenuItem className="flex flex-col">
+          <Typography level="p6" color="textSecondary" fontWeight="sm">
+            Powered by Console Labs
+          </Typography>
+          <Typography level="p6" color="textSecondary" fontWeight="sm">
+            Version 1.0.0
+          </Typography>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )
