@@ -1,16 +1,18 @@
 import { useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import clsx from 'clsx'
-import { useDisclosure } from '@dwarvesf/react-hooks'
+import { useDisclosure, useOnClickOutside } from '@dwarvesf/react-hooks'
 import { createContext } from '@dwarvesf/react-utils'
 import { m } from 'framer-motion'
 import { Button } from '@mochi-ui/core'
+import { AnimateChangeInHeight } from '~cpn/AnimateHeightChange'
 
 interface State {
   onClose: () => void
   onOpen: () => void
   isOpen: boolean
   elem: HTMLDivElement | null
+  sheet: React.RefObject<HTMLDivElement>
 }
 
 const [BottomSheetContextProvider, useInternal] = createContext<State>({
@@ -23,6 +25,7 @@ interface BottomSheetProps {
   children: React.ReactNode
   title?: string
   className?: string
+  dynamic?: boolean
 }
 
 function BottomSheet({
@@ -31,33 +34,53 @@ function BottomSheet({
   onClose,
   title,
   className = '',
+  dynamic = false,
 }: BottomSheetProps) {
   const {
     elem,
     isOpen: _isOpen,
     onOpen: _onOpen,
     onClose: _onClose,
+    sheet,
   } = useInternal()
+
+  const {
+    isOpen: internalIsOpen,
+    onOpen: internalOpen,
+    onClose: internalClose,
+  } = useDisclosure()
 
   useEffect(() => {
     if (isOpen) {
       _onOpen()
+      internalOpen()
     } else {
       _onClose()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [_onClose, _onOpen, isOpen])
 
   useEffect(() => {
     if (!_isOpen) {
       _onClose()
       onClose()
+      internalClose()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [_isOpen, _onClose, onClose])
-
-  if (!elem || !isOpen) return null
+  if (!elem || !internalIsOpen) return null
 
   return createPortal(
-    <div className={clsx('h-full flex flex-col items-center', className)}>
+    <div
+      ref={sheet}
+      className={clsx(
+        'flex flex-col min-h-0 p-3 bg-white-pure rounded-t-lg',
+        className,
+        {
+          'h-[75%]': !dynamic,
+        },
+      )}
+    >
       <div className="flex justify-between items-center self-stretch mb-2">
         <div className="flex-1">
           <Button
@@ -80,7 +103,13 @@ function BottomSheet({
         )}
         <div className="flex-1" />
       </div>
-      {children}
+      {dynamic ? (
+        <AnimateChangeInHeight className="w-full min-h-0">
+          {children}
+        </AnimateChangeInHeight>
+      ) : (
+        children
+      )}
     </div>,
     elem,
   )
@@ -101,7 +130,9 @@ export default function BottomSheetProvider({
     onOpen: delayOpen,
     onClose: delayClose,
   } = useDisclosure()
+  const outerSheetRef = useRef<HTMLDivElement | null>(null)
   const sheetRef = useRef<HTMLDivElement | null>(null)
+  useOnClickOutside(sheetRef, onClose)
 
   useEffect(() => {
     function listenForEsc(e: KeyboardEvent) {
@@ -127,17 +158,11 @@ export default function BottomSheetProvider({
         onOpen,
         onClose,
         isOpen: delayIsOpen,
-        elem: sheetRef.current,
+        elem: outerSheetRef.current,
+        sheet: sheetRef,
       }}
     >
       <div
-        // capture to prevent it from going down children
-        onClickCapture={(e) => {
-          if (!isOpen) return
-          if (e.target !== e.currentTarget) return
-          onClose()
-          e.stopPropagation()
-        }}
         className={clsx('relative transition', className, {
           'bg-gray-700': isOpen,
           'bg-transparent': !isOpen,
@@ -158,7 +183,7 @@ export default function BottomSheetProvider({
           {children}
         </m.div>
         <m.div
-          ref={sheetRef}
+          ref={outerSheetRef}
           initial={false}
           animate={{
             x: '-50%',
@@ -167,7 +192,7 @@ export default function BottomSheetProvider({
           transition={{ type: 'spring', bounce: 0, duration: 0.5 }}
           className={clsx(
             'will-change-transform',
-            'absolute left-1/2 w-full h-[75%] bottom-0 origin-bottom flex flex-col p-3 bg-white-pure rounded-t-lg',
+            'absolute left-1/2 w-full bottom-0 min-h-0 h-full origin-bottom flex flex-col justify-end',
           )}
         />
       </div>

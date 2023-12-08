@@ -51,7 +51,11 @@ export const useTipWidget = create(
   immer<TipWidgetState>((set, get) => ({
     wallet: null,
 
-    unauthorizedContent: <LoginWidget raw />,
+    unauthorizedContent: (
+      <div className="flex justify-center">
+        <LoginWidget raw />
+      </div>
+    ),
 
     request: {
       recipients: [],

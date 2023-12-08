@@ -10,6 +10,16 @@ type CheckIconProps = {
   isSelected: boolean
 }
 
+export type ActionGroup = {
+  group?: 'action'
+  [k: string]: any
+}
+
+export type ResultGroup = {
+  group?: 'result'
+  create_new?: boolean
+}
+
 const CheckIcon: React.FC<CheckIconProps> = ({ isSelected, isHovering }) => {
   return (isSelected && !isHovering) || (!isSelected && isHovering) ? (
     <CheckLine className="p-1 w-6 h-6 text-primary-700" />
@@ -19,7 +29,7 @@ const CheckIcon: React.FC<CheckIconProps> = ({ isSelected, isHovering }) => {
 }
 
 interface ItemProps {
-  profile: Profile & { create_new?: boolean }
+  profile: Profile & (ResultGroup | ActionGroup)
   isSelected?: boolean
   active: boolean
 }
@@ -37,6 +47,21 @@ export const RecipientItem: React.FC<ItemProps> = ({
     onClose: setIsNotHovering,
   } = useDisclosure()
 
+  let right: React.ReactNode =
+    isSelected || isHovering || active ? (
+      <CheckIcon isSelected={isSelected} isHovering={isHovering || active} />
+    ) : (
+      <PlatformIcon
+        className="p-1 w-6 h-6 text-neutral-500"
+        platform={account?.platform ?? ''}
+        compact
+      />
+    )
+
+  if (profile.group !== 'result') {
+    right = null
+  }
+
   return (
     <div
       className={clsx(
@@ -49,21 +74,15 @@ export const RecipientItem: React.FC<ItemProps> = ({
       onMouseEnter={setIsHovering}
       onMouseLeave={setIsNotHovering}
     >
-      <Avatar src={avatar || '/logo.png'} size="sm" />
+      {profile.group === 'result' && (
+        <Avatar src={avatar || '/logo.png'} size="sm" />
+      )}
       <div className="flex flex-col flex-1">
         <Heading as="h3" className="text-sm font-medium">
           {account?.platform_metadata.username}
         </Heading>
       </div>
-      {isSelected || isHovering || active ? (
-        <CheckIcon isSelected={isSelected} isHovering={isHovering || active} />
-      ) : (
-        <PlatformIcon
-          className="p-1 w-6 h-6 text-neutral-500"
-          platform={account?.platform ?? ''}
-          compact
-        />
-      )}
+      {right}
     </div>
   )
 }

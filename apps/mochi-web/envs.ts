@@ -17,7 +17,8 @@ export const CONSOLE_LINK =
 export const README_LINK =
   (process.env.README_LINK as string) || 'https://mochi.readme.io'
 
-export const HOME_URL = process.env.NEXT_PUBLIC_HOME_URL || 'https://mochi.gg'
+export const HOME_URL =
+  process.env.NEXT_PUBLIC_HOME_URL || 'https://beta.mochi.gg'
 
 export const MOCHI_PROFILE_API = `${
   process.env.NEXT_PUBLIC_MOCHI_PROFILE_API_HOST || 'mochi-profile-api'

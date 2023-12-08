@@ -92,6 +92,7 @@ export const WalletPicker: React.FC<Props> = ({
         isOpen={isOpen}
         onClose={onClose}
         title={authorized ? 'Choose wallet' : ''}
+        dynamic={!authorized}
       >
         {authorized ? (
           <WalletList
