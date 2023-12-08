@@ -134,9 +134,7 @@ export default function MessagePicker({
                               onClose()
                             }}
                           >
-                            <Heading as="h3" className="text-sm">
-                              {item.content}
-                            </Heading>
+                            <Typography level="p5">{item.content}</Typography>
                           </button>
                         </li>
                       )
