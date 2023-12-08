@@ -86,3 +86,39 @@ export const Default: Story = {
     )
   },
 }
+
+export const CustomizePostition: Story = {
+  render(props) {
+    return (
+      <div className="relative w-[600px] h-[400px] border">
+        <div className="h-full w-full overflow-y-auto flex flex-col items-center p-4">
+          <ActionBar>
+            <ActionBarTrigger asChild>
+              <button>Trigger Actionbar</button>
+            </ActionBarTrigger>
+            <ActionBarContent
+              {...props}
+              anchorClassName="top-0"
+              side="bottom"
+              sideOffset={16}
+            >
+              <ActionBarIcon />
+              <ActionBarBody>
+                <ActionBarTitle>labore adipisicing minim sint</ActionBarTitle>
+                <ActionBarDescription>
+                  Lorem ipsum dolor sit amet, qui minim labore adipisicing minim
+                  sint cillum sint consectetur cupidatat.
+                </ActionBarDescription>
+              </ActionBarBody>
+              <ActionBarActionGroup>
+                <ActionBarCancelButton>Cancel</ActionBarCancelButton>
+                <ActionBarConfirmButton>Confirm</ActionBarConfirmButton>
+              </ActionBarActionGroup>
+            </ActionBarContent>
+          </ActionBar>
+          <div className="h-[1000px] shrink-0" />
+        </div>
+      </div>
+    )
+  },
+}

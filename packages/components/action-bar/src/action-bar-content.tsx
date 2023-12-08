@@ -7,13 +7,15 @@ type ActionBarContentProps = ComponentPropsWithoutRef<typeof Alert> &
   Omit<
     ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>,
     | 'side'
-    | 'sideOffset'
     | 'collisionBoundary'
     | 'arrowPadding'
     | 'collisionPadding'
     | 'hideWhenDetached'
     | 'sticky'
-  >
+  > & {
+    side?: 'top' | 'bottom'
+    anchorClassName?: string
+  }
 
 const ActionBarContent = forwardRef<
   ElementRef<typeof Alert>,
@@ -28,7 +30,10 @@ const ActionBarContent = forwardRef<
     onInteractOutside,
     layout,
     size,
+    side = 'top',
+    sideOffset,
     scheme,
+    anchorClassName,
     ...passProps
   } = props
 
@@ -44,10 +49,12 @@ const ActionBarContent = forwardRef<
   }
 
   return (
-    <PopoverPrimitive.Anchor className={actionBar.anchorCva()}>
+    <PopoverPrimitive.Anchor
+      className={actionBar.anchorCva({ className: anchorClassName })}
+    >
       <PopoverPrimitive.Content
-        side="top"
-        sideOffset={0}
+        side={side}
+        sideOffset={sideOffset}
         align="center"
         {...passProps}
         onInteractOutside={(e) => {
