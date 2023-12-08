@@ -1,5 +1,5 @@
 import MochiAPI from '@consolelabs/mochi-rest'
-import { msg } from './providers/provider'
+import { msg } from '@mochi-ui/connect-wallet-widget'
 
 export const api = new MochiAPI({
   log: false,

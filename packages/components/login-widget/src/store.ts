@@ -1,9 +1,8 @@
 import { create } from 'zustand'
 import { useShallow } from 'zustand/react/shallow'
 import type { Profile } from '@consolelabs/mochi-rest'
-import getProviders, { ConnectorName, Connectors } from './providers'
+import { ChainProvider } from '@mochi-ui/connect-wallet-widget'
 import reducer from './reducer'
-import { ChainProvider } from './providers/provider'
 
 export const STORAGE_KEY = 'mochi.token' as const
 
@@ -59,13 +58,11 @@ export type LoginWidgetState = {
   getProviderByAddress: (address: string) => ChainProvider | null
   isAddressConnected: (address: string) => boolean
 
-  connectors: Connectors
   dispatch: (action: Action) => void
 }
 
 export const useLoginWidget = create<LoginWidgetState>((set, get) => {
   return {
-    connectors: getProviders(get),
     isLoggedIn: false,
     isLoggingIn: false,
     profile: null,
@@ -90,21 +87,6 @@ export const useLoginWidget = create<LoginWidgetState>((set, get) => {
 
       if (action.type === 'login') {
         set({ isLoggingIn: true })
-      }
-
-      if (action.payload) {
-        action.payload.isInstallChecker = async function checker(
-          chain: string,
-        ) {
-          const wallets = state.connectors[chain as ConnectorName]
-          if (!wallets || !wallets.length) return false
-
-          const installStates = await Promise.all(
-            wallets.map((w) => w.isInstalled()),
-          )
-
-          return installStates.some(Boolean)
-        }
       }
 
       // combine action + current state = new state

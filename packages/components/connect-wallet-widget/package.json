@@ -1,16 +1,29 @@
 {
-  "name": "@mochi-ui/login-widget",
-  "version": "0.1.10",
-  "sideEffects": false,
+  "name": "@mochi-ui/connect-wallet-widget",
+  "version": "0.0.1",
+  "description": "Widget to connect wallets of various chains",
+  "keywords": [
+    "connect-wallet-widget"
+  ],
+  "author": "@consolelabs",
+  "homepage": "https://ds.mochiui.com",
+  "license": "MIT",
   "main": "src/index.ts",
+  "sideEffects": false,
   "files": [
-    "dist",
-    "provider.d.ts"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
   },
-  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/consolelabs/mochi-ui.git",
+    "directory": "packages/components/connect-wallet-widget"
+  },
+  "bugs": {
+    "url": "https://github.com/consolelabs/mochi-ui.git"
+  },
   "scripts": {
     "build": "tsup src --dts",
     "build:fast": "tsup src",
@@ -25,6 +38,21 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
+  "dependencies": {
+    "@mochi-ui/button": "workspace:*",
+    "@mochi-ui/dropdown": "workspace:*",
+    "@mochi-ui/icons": "workspace:*",
+    "@mochi-ui/tabs": "workspace:*",
+    "@mochi-ui/theme": "workspace:*",
+    "@solana/web3.js": "^1.74.0",
+    "browser-string-hexer": "^1.0.0",
+    "bs58": "^5.0.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "dlv": "^1.1.3",
+    "ethers": "^5.7.0",
+    "mipd": "^0.0.5"
+  },
   "devDependencies": {
     "@types/dlv": "^1.1.4",
     "clean-package": "^2.2.0",
@@ -33,31 +61,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tsconfig": "workspace:*"
-  },
-  "dependencies": {
-    "@consolelabs/mochi-rest": "^5.1.2",
-    "@consolelabs/mochi-ui": "^16.0.2",
-    "@mochi-ui/button": "workspace:*",
-    "@mochi-ui/connect-wallet-widget": "workspace:*",
-    "@mochi-ui/dropdown": "workspace:*",
-    "@mochi-ui/heading": "workspace:*",
-    "@mochi-ui/icon-button": "workspace:^",
-    "@mochi-ui/icons": "workspace:*",
-    "@mochi-ui/tabs": "workspace:*",
-    "@mochi-ui/theme": "workspace:*",
-    "@mochi-ui/typography": "workspace:^",
-    "@radix-ui/react-dialog": "^1.0.5",
-    "@solana/web3.js": "^1.74.0",
-    "@uidotdev/usehooks": "^2.4.0",
-    "browser-string-hexer": "^1.0.0",
-    "bs58": "^5.0.0",
-    "dlv": "^1.1.3",
-    "ethers": "^5.7.0",
-    "framer-motion": "^10.16.4",
-    "mipd": "^0.0.5",
-    "query-string": "^7.1.3",
-    "use-reducer-async": "^2.1.1",
-    "zustand": "^4.4.7"
   },
   "clean-package": "../../../clean-package.config.json"
 }
