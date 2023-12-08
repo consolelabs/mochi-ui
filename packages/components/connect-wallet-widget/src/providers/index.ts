@@ -20,52 +20,62 @@ import {
   UniswapWallet,
 } from '@mochi-ui/icons'
 import { ProviderEVM } from './evm-provider'
-import { ChainProvider } from './provider'
+import { ChainProvider, msg } from './provider'
 import { ProviderSOL } from './sol-provider'
 import { ProviderDisabled } from './disabled-provider'
 
 export type ConnectorName = 'EVM' | 'RON' | 'SOL' | 'SUI' | 'TON'
 export type Connectors = Record<ConnectorName, ChainProvider[]>
+export { ChainProvider, msg }
 
-export default function getProviders(store: any) {
+export default function getProviders(dispatch: any) {
   const connectors: Connectors = {
     EVM: [
       new ProviderEVM()
         .setId('io.metamask')
         .setName('MetaMask')
         .setIcon(MetamaskWallet)
-        .sync(store),
+        .sync(dispatch),
       new ProviderEVM()
         .setId('io.rabby')
         .setName('Rabby')
         .setIcon(RabbyWallet)
-        .sync(store),
+        .sync(dispatch),
       new ProviderEVM()
         .setId('me.rainbow')
         .setName('Rainbow')
         .setIcon(RainbowWallet)
-        .sync(store),
-      new ProviderEVM().setName('Uniswap').setIcon(UniswapWallet).sync(store),
+        .sync(dispatch),
+      new ProviderEVM()
+        .setName('Uniswap')
+        .setIcon(UniswapWallet)
+        .sync(dispatch),
       new ProviderEVM()
         .setId('com.coinbase.wallet')
         .setName('Coinbase')
         .setIcon(CoinbaseWallet)
-        .sync(store),
+        .sync(dispatch),
       new ProviderEVM()
         .setId('com.okex.wallet')
         .setName('Okx')
         .setIcon(OkxWallet)
-        .sync(store),
-      new ProviderEVM().setName('Coin98').setIcon(Coin98Wallet).sync(store),
-      new ProviderEVM().setName('Trustwallet').setIcon(TrustWallet).sync(store),
-      new ProviderEVM().setName('Argent').setIcon(ArgentWallet).sync(store),
-      new ProviderEVM().setName('Safepal').setIcon(SafepalWallet).sync(store),
+        .sync(dispatch),
+      new ProviderEVM().setName('Coin98').setIcon(Coin98Wallet).sync(dispatch),
+      new ProviderEVM()
+        .setName('Trustwallet')
+        .setIcon(TrustWallet)
+        .sync(dispatch),
+      new ProviderEVM().setName('Argent').setIcon(ArgentWallet).sync(dispatch),
+      new ProviderEVM()
+        .setName('Safepal')
+        .setIcon(SafepalWallet)
+        .sync(dispatch),
       new ProviderEVM()
         .setId('app.phantom')
         .setName('Phantom')
         .setIcon(PhantomWallet)
-        .sync(store),
-      new ProviderEVM().setName('Ledger').setIcon(LedgerWallet).sync(store),
+        .sync(dispatch),
+      new ProviderEVM().setName('Ledger').setIcon(LedgerWallet).sync(dispatch),
     ],
     RON: [
       // ronin chain operates in the same manner as evm
@@ -73,7 +83,7 @@ export default function getProviders(store: any) {
         .setId('com.roninchain.wallet')
         .setName('Ronin')
         .setIcon(RoninWallet)
-        .sync(store),
+        .sync(dispatch),
     ],
     SOL: [
       new ProviderSOL()
@@ -110,23 +120,6 @@ export default function getProviders(store: any) {
       new ProviderDisabled().setName('Safepal').setIcon(SafepalWallet).sync(),
     ],
   }
-
-  // if (isSSR) return connectors
-  //
-  // if (window.ethereum) {
-  //   window.ethereum.on('accountsChanged', function handle(accounts: string[]) {
-  //     useMochi.getState().connect(accounts, 'evm-chain')
-  //   })
-  // }
-  //
-  // if (window.ronin) {
-  //   window.ronin.provider.on(
-  //     'accountsChanged',
-  //     function handle(accounts: string[]) {
-  //       useMochi.getState().connect(accounts, 'ronin-chain')
-  //     },
-  //   )
-  // }
 
   return connectors
 }

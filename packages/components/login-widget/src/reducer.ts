@@ -1,6 +1,6 @@
 import UI, { Platform } from '@consolelabs/mochi-ui'
+import { ChainProvider } from '@mochi-ui/connect-wallet-widget'
 import type { Action, LoginWidgetState, Wallet } from './store'
-import { ChainProvider } from './providers/provider'
 
 export type SupportedChain =
   | 'evm-chain'

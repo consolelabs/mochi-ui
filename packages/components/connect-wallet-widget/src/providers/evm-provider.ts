@@ -1,3 +1,4 @@
+// @ts-ignore
 import hexer from 'browser-string-hexer'
 import { createStore } from 'mipd'
 import { utils } from 'ethers'
@@ -12,7 +13,7 @@ const iface = new utils.Interface([
 export class ProviderEVM extends ChainProvider {
   public platform = 'evm-chain'
 
-  sync(get: any) {
+  sync(dispatch: any) {
     const provider = eip6963Store?.findProvider({ rdns: this.id })?.provider
     if (provider && !this.provider) {
       this.provider = provider
@@ -23,7 +24,7 @@ export class ProviderEVM extends ChainProvider {
 
       // register event handler
       provider.on('accountsChanged', (accounts) => {
-        get().dispatch({
+        dispatch({
           type: 'update_wallets',
           payload: {
             addresses: accounts,
@@ -35,7 +36,7 @@ export class ProviderEVM extends ChainProvider {
 
       provider.on('chainChanged', (chainId) => {
         this.chainId = chainId
-        get().dispatch({
+        dispatch({
           type: 'refresh',
         })
       })
