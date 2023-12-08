@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { useState } from 'react'
 import { ActionBar } from '../src/action-bar'
 import { ActionBarTrigger } from '../src/action-bar-trigger'
 import {
@@ -58,10 +59,25 @@ type Story = StoryObj<typeof ActionBar>
 
 export const Default: Story = {
   render(props) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [open, setOpen] = useState(false)
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [loading, setLoading] = useState(false)
+    const handleSubmit = async () => {
+      setLoading(true)
+      await new Promise((r) => {
+        setTimeout(() => {
+          r(undefined)
+        }, 2000)
+      })
+      setLoading(false)
+      setOpen(false)
+    }
+
     return (
       <div className="relative w-[600px] h-[400px] border">
         <div className="h-full w-full overflow-y-auto flex flex-col items-center p-4">
-          <ActionBar>
+          <ActionBar open={open} onOpenChange={setOpen}>
             <ActionBarTrigger asChild>
               <button>Trigger Actionbar</button>
             </ActionBarTrigger>
@@ -76,7 +92,12 @@ export const Default: Story = {
               </ActionBarBody>
               <ActionBarActionGroup>
                 <ActionBarCancelButton>Cancel</ActionBarCancelButton>
-                <ActionBarConfirmButton>Confirm</ActionBarConfirmButton>
+                <ActionBarConfirmButton
+                  loading={loading}
+                  onClick={handleSubmit}
+                >
+                  Confirm
+                </ActionBarConfirmButton>
               </ActionBarActionGroup>
             </ActionBarContent>
           </ActionBar>
@@ -89,10 +110,24 @@ export const Default: Story = {
 
 export const CustomizePostition: Story = {
   render(props) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [open, setOpen] = useState(false)
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [loading, setLoading] = useState(false)
+    const handleSubmit = async () => {
+      setLoading(true)
+      await new Promise((r) => {
+        setTimeout(() => {
+          r(undefined)
+        }, 2000)
+      })
+      setLoading(false)
+      setOpen(false)
+    }
     return (
       <div className="relative w-[600px] h-[400px] border">
         <div className="h-full w-full overflow-y-auto flex flex-col items-center p-4">
-          <ActionBar>
+          <ActionBar open={open} onOpenChange={setOpen}>
             <ActionBarTrigger asChild>
               <button>Trigger Actionbar</button>
             </ActionBarTrigger>
@@ -112,7 +147,12 @@ export const CustomizePostition: Story = {
               </ActionBarBody>
               <ActionBarActionGroup>
                 <ActionBarCancelButton>Cancel</ActionBarCancelButton>
-                <ActionBarConfirmButton>Confirm</ActionBarConfirmButton>
+                <ActionBarConfirmButton
+                  loading={loading}
+                  onClick={handleSubmit}
+                >
+                  Confirm
+                </ActionBarConfirmButton>
               </ActionBarActionGroup>
             </ActionBarContent>
           </ActionBar>
