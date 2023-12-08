@@ -15,7 +15,17 @@ import {
 import { API, GET_PATHS } from '~constants/api'
 import { useForm } from 'react-hook-form'
 import { useEffect, useState } from 'react'
-import { Button, useToast } from '@mochi-ui/core'
+import {
+  ActionBar,
+  ActionBarActionGroup,
+  ActionBarBody,
+  ActionBarCancelButton,
+  ActionBarConfirmButton,
+  ActionBarContent,
+  ActionBarDescription,
+  ActionBarIcon,
+  useToast,
+} from '@mochi-ui/core'
 import { AppDetailFormValues } from '~types/app'
 import { AppDetailPlatforms } from '~cpn/app/detail/AppDetailPlatforms'
 import { platforms } from '~constants/app'
@@ -100,11 +110,12 @@ const App: NextPageWithLayout = () => {
     control,
     setValue,
     reset,
-    formState: { errors, isDirty, isSubmitting },
+    formState: { errors, isDirty, isSubmitting, dirtyFields },
   } = useForm<AppDetailFormValues>({
     resolver: zodResolver(schema),
     mode: 'all',
   })
+  const openActionBar = isDirty && Object.keys(dirtyFields).length > 0
 
   const onUpdateApp = (data: AppDetailFormValues) => {
     if (!profileId || !appId || !detail || !isDirty) return Promise.resolve()
@@ -132,10 +143,6 @@ const App: NextPageWithLayout = () => {
     )
       .json(() => {
         refresh()
-        toast({
-          description: 'Updated successfully',
-          scheme: 'success',
-        })
       })
       .catch((e) => {
         const err = JSON.parse(e.message)
@@ -220,17 +227,41 @@ const App: NextPageWithLayout = () => {
       <AppDetailUrl {...{ control, errors }} />
       <AppDetailPlatforms {...{ control, setValue }} />
       <AppDetailMembers {...{ profileId, appId }} />
-      {isDirty && (
-        <div className="flex justify-center mt-8">
-          <Button
-            disabled={isSubmitting || !!Object.keys(errors).length}
-            loading={isSubmitting}
-            form={APP_DETAIL_FORM_ID}
+      <div className="sticky bottom-0">
+        <ActionBar open={openActionBar}>
+          <ActionBarContent
+            scheme="success"
+            outline
+            shadow
+            onOpenAutoFocus={(e) => e.preventDefault()}
+            anchorClassName="left-0 right-0 -mb-8"
           >
-            Update
-          </Button>
-        </div>
-      )}
+            <ActionBarIcon />
+            <ActionBarBody>
+              <ActionBarDescription>
+                Do you want to save changes?
+              </ActionBarDescription>
+            </ActionBarBody>
+            <ActionBarActionGroup>
+              <ActionBarCancelButton
+                disabled={isSubmitting}
+                variant="link"
+                onClick={() => reset()}
+              >
+                Reset
+              </ActionBarCancelButton>
+              <ActionBarConfirmButton
+                loading={isSubmitting}
+                type="submit"
+                form={APP_DETAIL_FORM_ID}
+                className="min-w-[130px]"
+              >
+                Save changes
+              </ActionBarConfirmButton>
+            </ActionBarActionGroup>
+          </ActionBarContent>
+        </ActionBar>
+      </div>
       <DeleteAppModal
         app={detail}
         open={isOpenDeleteAppModal}
