@@ -53,6 +53,7 @@ const ActionBarContent = forwardRef<
       className={actionBar.anchorCva({ className: anchorClassName })}
     >
       <PopoverPrimitive.Content
+        asChild
         side={side}
         sideOffset={sideOffset}
         align="center"
