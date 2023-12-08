@@ -123,7 +123,7 @@ export default function Index() {
             maxWidth: 440,
             minWidth: 340,
           }}
-          className="flex relative justify-center -mx-4 sm:mx-auto lg:col-start-2 lg:row-span-2"
+          className="flex relative justify-center -mx-1.5 sm:mx-auto lg:col-start-2 lg:row-span-2"
         >
           <MochiWidget />
         </div>
