@@ -84,7 +84,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
     : tipAmount.value / ((request.asset?.token_amount ?? 0) * unitPrice)
 
   const tipAmountToken = utils.formatDigit({
-    value: valueToken,
+    value: valueToken.toFixed(MAX_AMOUNT_PRECISION),
     fractionDigits: 2,
     shorten: value >= 1,
     scientificFormat: true,
@@ -104,9 +104,10 @@ export const AmountInput: React.FC<AmountInputProps> = ({
 
   function handleQuickAmount(amount: string) {
     // Amount is USD -> convert to token amount
-    let value = Number(amount)
-    if (!isUsdMode) {
-      value /= unitPrice
+    let value = Number(amount) / unitPrice
+    if (isUsdMode) {
+      value *= unitPrice
+      value *= unitPrice
     }
     const formattedAmount = formatTokenAmount(
       value.toFixed(MAX_AMOUNT_PRECISION),
