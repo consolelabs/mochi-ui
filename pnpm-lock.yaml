@@ -2018,6 +2018,9 @@ importers:
       '@mochi-ui/accordion':
         specifier: workspace:*
         version: link:../components/accordion
+      '@mochi-ui/action-bar':
+        specifier: workspace:*
+        version: link:../components/action-bar
       '@mochi-ui/alert':
         specifier: workspace:*
         version: link:../components/alert
