@@ -6,6 +6,7 @@ import {
   FormErrorMessage,
   FormLabel,
   IconButton,
+  useToast,
 } from '@mochi-ui/core'
 import {
   EditLine,
@@ -38,6 +39,7 @@ export const AppDetailStatistics = ({
   control,
   refresh,
 }: Props) => {
+  const { toast } = useToast()
   const { data: stats } = useFetchApplicationDetailStats(profileId, appId)
   const [editing, setEditing] = useState('')
   const inputFile = useRef<HTMLInputElement>(null)
@@ -48,7 +50,10 @@ export const AppDetailStatistics = ({
     const file = e.target.files?.[0]
     if (!file || !profileId || !appId) return
     if (file.size > 1024 * 1024 * 1) {
-      alert('File size must be less than 1MB')
+      toast({
+        description: 'File size must be less than 1MB',
+        scheme: 'danger',
+      })
       return
     }
     setUploading(true)
@@ -64,7 +69,10 @@ export const AppDetailStatistics = ({
       })
       .catch((e) => {
         const err = JSON.parse(e.message)
-        alert(err.msg)
+        toast({
+          description: err.msg,
+          scheme: 'danger',
+        })
       })
       .finally(() => {
         setUploading(false)

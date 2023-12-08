@@ -12,6 +12,7 @@ import {
   TextFieldInput,
   TextFieldRoot,
   Typography,
+  useToast,
 } from '@mochi-ui/core'
 import { AlertCircleLine } from '@mochi-ui/icons'
 import { useEffect } from 'react'
@@ -65,6 +66,7 @@ export const DeleteAppModal = ({
     resolver: zodResolver(schema),
     mode: 'onChange',
   })
+  const { toast } = useToast()
   const { id, name } = app || {}
 
   useEffect(() => {
@@ -88,7 +90,10 @@ export const DeleteAppModal = ({
       })
       .catch((e) => {
         const err = JSON.parse(e.message)
-        alert(err.msg)
+        toast({
+          description: err.msg,
+          scheme: 'danger',
+        })
         onError?.()
       })
   }

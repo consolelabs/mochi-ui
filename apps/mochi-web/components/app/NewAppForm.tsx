@@ -1,4 +1,4 @@
-import { Button, TextFieldInput, Typography } from '@mochi-ui/core'
+import { Button, TextFieldInput, Typography, useToast } from '@mochi-ui/core'
 import {
   DtoCreateApplicationRequest,
   ViewFullApplicationResponse,
@@ -36,6 +36,7 @@ export default function NewAppForm({ id, onClose, onSuccess, onError }: Props) {
     },
     resolver: zodResolver(schema),
   })
+  const { toast } = useToast()
 
   const onCreateApp = (data: DtoCreateApplicationRequest) => {
     if (!id) return
@@ -54,7 +55,10 @@ export default function NewAppForm({ id, onClose, onSuccess, onError }: Props) {
       })
       .catch((e) => {
         const err = JSON.parse(e.message)
-        alert(err.msg)
+        toast({
+          description: err.msg,
+          scheme: 'danger',
+        })
         onError?.()
       })
   }

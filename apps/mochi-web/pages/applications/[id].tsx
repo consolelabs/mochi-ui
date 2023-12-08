@@ -15,7 +15,7 @@ import {
 import { API, GET_PATHS } from '~constants/api'
 import { useForm } from 'react-hook-form'
 import { useEffect, useState } from 'react'
-import { Button } from '@mochi-ui/core'
+import { Button, useToast } from '@mochi-ui/core'
 import { AppDetailFormValues } from '~types/app'
 import { AppDetailPlatforms } from '~cpn/app/detail/AppDetailPlatforms'
 import { platforms } from '~constants/app'
@@ -83,6 +83,7 @@ const App: NextPageWithLayout = () => {
     push,
   } = useRouter()
   const appId = id as string
+  const { toast } = useToast()
   const { data: detail, mutate: refresh } = useFetchApplicationDetail(
     profileId,
     appId,
@@ -131,11 +132,17 @@ const App: NextPageWithLayout = () => {
     )
       .json(() => {
         refresh()
-        alert('Updated successfully')
+        toast({
+          description: 'Updated successfully',
+          scheme: 'success',
+        })
       })
       .catch((e) => {
         const err = JSON.parse(e.message)
-        alert(err.msg)
+        toast({
+          description: err.msg,
+          scheme: 'danger',
+        })
       })
   }
 
@@ -152,7 +159,10 @@ const App: NextPageWithLayout = () => {
       })
       .catch((e) => {
         const err = JSON.parse(e.message)
-        alert(err.msg)
+        toast({
+          description: err.msg,
+          scheme: 'danger',
+        })
       })
       .finally(() => {
         setIsResettingSecretKey(false)
