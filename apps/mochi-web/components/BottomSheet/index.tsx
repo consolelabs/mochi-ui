@@ -189,6 +189,8 @@ export default function BottomSheetProvider({
             x: '-50%',
             y: isOpen ? '0%' : '100%',
           }}
+          // @ts-ignore
+          {...(isOpen ? {} : { inert: 'true' })}
           transition={{ type: 'spring', bounce: 0, duration: 0.5 }}
           className={clsx(
             'will-change-transform',

@@ -12,7 +12,7 @@ type CheckIconProps = {
 
 export type ActionGroup = {
   group?: 'action'
-  [k: string]: any
+  change_platform?: string
 }
 
 export type ResultGroup = {

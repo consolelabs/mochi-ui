@@ -84,8 +84,10 @@ export const Recipient: React.FC<RecipientProps> = ({
   const filteredRecipients = useMemo(() => {
     const result = recipients
       .map((r) => {
-        r.group = 'result'
-        return r
+        return {
+          ...r,
+          group: 'result',
+        }
       })
       .filter(getFilterRecipientFunc(debouncedSearchTerm))
     const exactResult = recipients.some(
