@@ -118,7 +118,6 @@ const ApplicationDetailSidebarHeader = ({
         className="object-cover absolute top-0 left-0 w-full h-full opacity-50"
         src="https://pbs.twimg.com/profile_banners/1168522102410010626/1684159976/300x100"
       />
-      asdfasdf
       <div className="flex absolute top-0 left-0 z-50 justify-center items-stretch w-full h-full">
         {!isSelectedAppLoading && selectedApp ? (
           <div className="flex items-center w-full">
