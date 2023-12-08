@@ -33,7 +33,7 @@ export default function StepOne() {
   const amountErrorMgs = useMemo(() => {
     if (!request.amount) return ''
     if (isToken(request.asset)) {
-      if (request.amount > (request.asset.asset_balance ?? 0))
+      if (request.amount > (request.asset?.asset_balance ?? 0))
         return notEnoughtBalMsg
     } else {
       const assetAmount =
