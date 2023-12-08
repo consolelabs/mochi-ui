@@ -1,4 +1,4 @@
-import { Heading } from '@mochi-ui/core'
+import { Typography } from '@mochi-ui/core'
 import { Balance } from '~store'
 import { utils } from '@consolelabs/mochi-ui'
 import Image from 'next/image'
@@ -23,9 +23,7 @@ export const TokenItem: React.FC<ItemProps> = ({ item, onSelect }) => {
         src={item.token.icon || '/logo.png'}
       />
       <div className="flex flex-col flex-1">
-        <Heading as="h3" className="text-sm font-medium">
-          {item.token?.symbol}
-        </Heading>
+        <Typography level="h8">{item.token?.symbol}</Typography>
         <span className="text-xs text-[#848281] font-medium">
           {utils.formatTokenDigit(item.asset_balance)}
         </span>

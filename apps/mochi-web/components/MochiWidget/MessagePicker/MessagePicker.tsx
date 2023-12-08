@@ -3,7 +3,7 @@ import {
   TextFieldRoot,
   TextFieldInput,
   TextFieldDecorator,
-  Heading,
+  Typography,
   SectionList,
 } from '@mochi-ui/core'
 import { Combobox } from '@headlessui/react'
