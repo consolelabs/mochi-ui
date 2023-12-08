@@ -20,6 +20,7 @@ export interface NavItem extends MobileNavItem {
 export interface MobileNavProps {
   navItems: JSX.Element[]
   Header?: ({ onClose }: { onClose: () => void }) => JSX.Element
+  toggleIconClassName?: string
 }
 
 export type TopBarProps = {

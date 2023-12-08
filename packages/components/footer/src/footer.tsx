@@ -39,11 +39,11 @@ const Footer = forwardRef<HTMLElement, FooterProps>(
                   return (
                     <div className={footer.navBlockClsx} key={index}>
                       <h6 className={footer.navTitleClsx}>{block.title}</h6>
-                      {block.links.map(({ href, text, as, newTab }) => {
+                      {block.links.map(({ href, text, as, newTab }, index) => {
                         const Component = as || 'a'
                         return (
                           <Component
-                            key={href}
+                            key={`${index} ${href}`}
                             href={href}
                             className={footer.navLinkClsx}
                             target={newTab ? 'blank' : undefined}
