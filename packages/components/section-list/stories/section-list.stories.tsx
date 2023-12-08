@@ -125,8 +125,10 @@ function renderSectionHeader(section: SectionType, index?: number) {
   return (
     <div className="flex flex-row items-center w-full" key={index}>
       <Typography
-        level="h3"
-        className="text-xs font-bold text-[#A19F9E] uppercase"
+        level="p6"
+        fontWeight="xl"
+        color="textSecondary"
+        className="uppercase"
       >
         {section.title}
       </Typography>
