@@ -1,6 +1,13 @@
-# @mochi-ui/content-editable
+# @mochi-ui/skeleton
 
-## 1.0.1
+## 1.0.0
+
+### Major Changes
+
+- [#395](https://github.com/consolelabs/mochi-ui/pull/395)
+  [`8959141`](https://github.com/consolelabs/mochi-ui/commit/8959141989bd59b6f47f28db134a50e3febd5e39)
+  Thanks [@leduyhien152](https://github.com/leduyhien152)! - Add Skeleton
+  component
 
 ### Patch Changes
 
@@ -15,20 +22,3 @@
   [`f317890`](https://github.com/consolelabs/mochi-ui/commit/f317890c6efefe067963d86f7fab276474524dc6)]:
   - @mochi-ui/theme@0.9.0
   - @mochi-ui/icons@0.5.0
-
-## 1.0.0
-
-### Major Changes
-
-- [#378](https://github.com/consolelabs/mochi-ui/pull/378)
-  [`1548536`](https://github.com/consolelabs/mochi-ui/commit/15485364adf0c6d481ebb305338db205c8e88cb4)
-  Thanks [@leduyhien152](https://github.com/leduyhien152)! - Add ContentEditable
-  component
-
-### Patch Changes
-
-- Updated dependencies
-  [[`95dffa9`](https://github.com/consolelabs/mochi-ui/commit/95dffa9579bd4f5afb29be7a668ed06e98de3543),
-  [`1548536`](https://github.com/consolelabs/mochi-ui/commit/15485364adf0c6d481ebb305338db205c8e88cb4)]:
-  - @mochi-ui/icons@0.4.0
-  - @mochi-ui/theme@0.8.0

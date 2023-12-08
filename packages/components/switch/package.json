@@ -1,6 +1,6 @@
 {
   "name": "@mochi-ui/switch",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
