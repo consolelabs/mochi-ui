@@ -1,5 +1,94 @@
 # @mochi-ui/core
 
+## 0.8.0
+
+### Minor Changes
+
+- [#335](https://github.com/consolelabs/mochi-ui/pull/335)
+  [`0ee1569`](https://github.com/consolelabs/mochi-ui/commit/0ee15691a9a34fe711187deb4f82d9bc74cb3fd5)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - create Toast
+  Component
+
+- [#394](https://github.com/consolelabs/mochi-ui/pull/394)
+  [`33b27f4`](https://github.com/consolelabs/mochi-ui/commit/33b27f430f257386f32049651fa1b7b2da376307)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Create
+  ActionBar component
+
+- [#395](https://github.com/consolelabs/mochi-ui/pull/395)
+  [`8959141`](https://github.com/consolelabs/mochi-ui/commit/8959141989bd59b6f47f28db134a50e3febd5e39)
+  Thanks [@leduyhien152](https://github.com/leduyhien152)! - Add Skeleton
+  component
+
+### Patch Changes
+
+- [#364](https://github.com/consolelabs/mochi-ui/pull/364)
+  [`592d13e`](https://github.com/consolelabs/mochi-ui/commit/592d13ec211adb48328c5579e9305dce7662468c)
+  Thanks [@tuanddd](https://github.com/tuanddd)! - Refactor LoginWidget
+
+- [#405](https://github.com/consolelabs/mochi-ui/pull/405)
+  [`b792187`](https://github.com/consolelabs/mochi-ui/commit/b7921878a236149fea0879e5414f5f0a9c0f65da)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Add tip colored icon
+  and fix footer
+
+- [#388](https://github.com/consolelabs/mochi-ui/pull/388)
+  [`56dae0b`](https://github.com/consolelabs/mochi-ui/commit/56dae0be051ec19abbc95cd0b7044bd19a783d37)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Update sidebar
+  component
+
+- [#392](https://github.com/consolelabs/mochi-ui/pull/392)
+  [`f317890`](https://github.com/consolelabs/mochi-ui/commit/f317890c6efefe067963d86f7fab276474524dc6)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Update alert
+  responsive
+
+- Updated dependencies
+  [[`2014b26`](https://github.com/consolelabs/mochi-ui/commit/2014b26a818f4775f72e81c643fccbddd1569113),
+  [`592d13e`](https://github.com/consolelabs/mochi-ui/commit/592d13ec211adb48328c5579e9305dce7662468c),
+  [`0ee1569`](https://github.com/consolelabs/mochi-ui/commit/0ee15691a9a34fe711187deb4f82d9bc74cb3fd5),
+  [`33b27f4`](https://github.com/consolelabs/mochi-ui/commit/33b27f430f257386f32049651fa1b7b2da376307),
+  [`b792187`](https://github.com/consolelabs/mochi-ui/commit/b7921878a236149fea0879e5414f5f0a9c0f65da),
+  [`56dae0b`](https://github.com/consolelabs/mochi-ui/commit/56dae0be051ec19abbc95cd0b7044bd19a783d37),
+  [`8959141`](https://github.com/consolelabs/mochi-ui/commit/8959141989bd59b6f47f28db134a50e3febd5e39),
+  [`da35268`](https://github.com/consolelabs/mochi-ui/commit/da35268740439f718e47070062e7717b1b4df95f),
+  [`f317890`](https://github.com/consolelabs/mochi-ui/commit/f317890c6efefe067963d86f7fab276474524dc6)]:
+  - @mochi-ui/page-header@0.2.7
+  - @mochi-ui/layout@0.1.7
+  - @mochi-ui/theme@0.9.0
+  - @mochi-ui/login-widget@0.1.11
+  - @mochi-ui/alert@1.2.0
+  - @mochi-ui/toast@0.1.0
+  - @mochi-ui/action-bar@0.1.0
+  - @mochi-ui/icons@0.5.0
+  - @mochi-ui/top-bar@0.1.6
+  - @mochi-ui/footer@0.1.1
+  - @mochi-ui/sidebar@0.1.0
+  - @mochi-ui/skeleton@1.0.0
+  - @mochi-ui/avatar@0.1.0
+  - @mochi-ui/accordion@0.1.10
+  - @mochi-ui/badge@0.2.9
+  - @mochi-ui/button@0.4.6
+  - @mochi-ui/checkbox@0.1.10
+  - @mochi-ui/connect-wallet-widget@0.0.2
+  - @mochi-ui/content-editable@1.0.1
+  - @mochi-ui/dropdown@0.1.10
+  - @mochi-ui/form@0.1.7
+  - @mochi-ui/icon-button@0.4.7
+  - @mochi-ui/input@0.2.7
+  - @mochi-ui/input-field@0.1.11
+  - @mochi-ui/label@0.1.7
+  - @mochi-ui/list@0.0.20
+  - @mochi-ui/logo@0.1.7
+  - @mochi-ui/modal@0.2.9
+  - @mochi-ui/page-content@0.1.7
+  - @mochi-ui/popover@0.2.8
+  - @mochi-ui/profile-badge@0.1.8
+  - @mochi-ui/section-list@0.0.19
+  - @mochi-ui/select@0.1.9
+  - @mochi-ui/switch@0.0.18
+  - @mochi-ui/table@0.3.5
+  - @mochi-ui/toggle-button@0.1.1
+  - @mochi-ui/tooltip@0.2.7
+  - @mochi-ui/typography@0.0.7
+
 ## 0.7.0
 
 ### Minor Changes

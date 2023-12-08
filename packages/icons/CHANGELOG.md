@@ -1,5 +1,14 @@
 # @mochi-ui/icons
 
+## 0.5.0
+
+### Minor Changes
+
+- [#405](https://github.com/consolelabs/mochi-ui/pull/405)
+  [`b792187`](https://github.com/consolelabs/mochi-ui/commit/b7921878a236149fea0879e5414f5f0a9c0f65da)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Add tip colored icon
+  and fix footer
+
 ## 0.4.0
 
 ### Minor Changes
