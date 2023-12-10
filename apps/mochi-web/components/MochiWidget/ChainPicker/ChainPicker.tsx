@@ -1,10 +1,12 @@
 import { useMemo, useState } from 'react'
 import { Icon } from '@iconify/react'
 import {
-  InputField,
   Popover,
   PopoverTrigger,
   PopoverContent,
+  TextFieldRoot,
+  TextFieldInput,
+  TextFieldDecorator,
 } from '@mochi-ui/core'
 import { NativeImage } from '~cpn/NativeImage'
 import clsx from 'clsx'
@@ -66,19 +68,15 @@ export const ChainPicker: React.FC<ChainPickerProps> = ({ className }) => {
         alignOffset={-16}
         className="flex flex-col gap-y-2 items-center w-[388px] h-[368px] bg-white-pure"
       >
-        <InputField
-          className="w-full"
-          placeholder="Search"
-          startAdornment={
-            <div className="pl-2">
-              <Icon icon="ion:search" className="w-5 h-5 text-gray-500" />
-            </div>
-          }
-          onChange={onSearchChange}
-        />
+        <TextFieldRoot className="w-full">
+          <TextFieldDecorator>
+            <Icon icon="ion:search" className="w-5 h-5 text-gray-500" />
+          </TextFieldDecorator>
+          <TextFieldInput onChange={onSearchChange} placeholder="Search" />
+        </TextFieldRoot>
         <ChainList data={filteredChains} onSelect={handleChainSelect} />
         <span className="w-full text-xs text-[#ADACAA]">
-          Only supported tokens are shown
+          Only supported tokens are shown asdas
         </span>
       </PopoverContent>
     </Popover>

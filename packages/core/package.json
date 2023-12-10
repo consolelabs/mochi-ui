@@ -43,7 +43,6 @@
     "@mochi-ui/heading": "workspace:*",
     "@mochi-ui/icons": "workspace:*",
     "@mochi-ui/input": "workspace:*",
-    "@mochi-ui/input-field": "workspace:*",
     "@mochi-ui/layout": "workspace:*",
     "@mochi-ui/form": "workspace:*",
     "@mochi-ui/list": "workspace:*",

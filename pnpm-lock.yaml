@@ -973,40 +973,6 @@ importers:
         specifier: workspace:*
         version: link:../../tsconfig
 
-  packages/components/input-field:
-    dependencies:
-      '@mochi-ui/theme':
-        specifier: workspace:*
-        version: link:../../theme
-      class-variance-authority:
-        specifier: ^0.7.0
-        version: 0.7.0
-      clsx:
-        specifier: ^2.0.0
-        version: 2.0.0
-    devDependencies:
-      '@mochi-ui/icons':
-        specifier: workspace:*
-        version: link:../../icons
-      clean-package:
-        specifier: ^2.2.0
-        version: 2.2.0
-      eslint-config-custom:
-        specifier: workspace:*
-        version: link:../../eslint-config-custom
-      prettier:
-        specifier: ^3.0.3
-        version: 3.1.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
-      tsconfig:
-        specifier: workspace:*
-        version: link:../../tsconfig
-
   packages/components/label:
     dependencies:
       '@mochi-ui/theme':
@@ -2063,9 +2029,6 @@ importers:
       '@mochi-ui/input':
         specifier: workspace:*
         version: link:../components/input
-      '@mochi-ui/input-field':
-        specifier: workspace:*
-        version: link:../components/input-field
       '@mochi-ui/label':
         specifier: workspace:*
         version: link:../components/label
@@ -4375,7 +4338,7 @@ packages:
     engines: {node: '>=12.0.0'}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': 6.x
-      '@typescript-eslint/parser': 6.x
+      '@typescript-eslint/parser': ^6.12.0
       babel-eslint: 10.x
       eslint: 8.x
       eslint-config-airbnb: 19.x
@@ -4439,6 +4402,7 @@ packages:
 
   /@emotion/memoize@0.7.4:
     resolution: {integrity: sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==}
+    requiresBuild: true
     dev: false
     optional: true
 
@@ -6299,6 +6263,7 @@ packages:
     dependencies:
       is-glob: 4.0.3
       micromatch: 4.0.5
+      napi-wasm: 1.1.0
     dev: false
     bundledDependencies:
       - napi-wasm
@@ -11475,7 +11440,7 @@ packages:
     resolution: {integrity: sha512-XOpZ3IyJUIV1b15M7HVOpgQxPPF7lGXgsfcEIu3yDxFPaf/xZKt7s9QO/pbk7vpWQyVulpJbu4E5LwpZiQo4kA==}
     engines: {node: ^16.0.0 || >=18.0.0}
     peerDependencies:
-      '@typescript-eslint/parser': ^6.0.0 || ^6.0.0-alpha
+      '@typescript-eslint/parser': ^6.12.0
       eslint: ^7.0.0 || ^8.0.0
       typescript: '*'
     peerDependenciesMeta:
@@ -15929,7 +15894,7 @@ packages:
     resolution: {integrity: sha512-GPxI5URre6dDpJ0CtcthSZVBAfI+Uw7un5OYNVxP2EYi3H81Jw701yFP7AU+/vCE7xBtFmjge7kfhhk4+RAiig==}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': ^5.13.0 || ^6.0.0
-      '@typescript-eslint/parser': ^5.0.0 || ^6.0.0
+      '@typescript-eslint/parser': ^6.12.0
       eslint: ^7.32.0 || ^8.2.0
       eslint-plugin-import: ^2.25.3
     dependencies:
@@ -20823,6 +20788,10 @@ packages:
 
   /napi-build-utils@1.0.2:
     resolution: {integrity: sha512-ONmRUqK7zj7DWX0D9ADe03wbwOBZxNAfF20PlGfCWQcD3+/MakShIHrMqx9YwPTfxDdF1zLeL+RGZiR9kGMLdg==}
+    dev: false
+
+  /napi-wasm@1.1.0:
+    resolution: {integrity: sha512-lHwIAJbmLSjF9VDRm9GoVOy9AGp3aIvkjv+Kvz9h16QR3uSVYH78PNQUnT2U4X53mhlnV2M7wrhibQ3GHicDmg==}
     dev: false
 
   /natural-compare@1.4.0:
