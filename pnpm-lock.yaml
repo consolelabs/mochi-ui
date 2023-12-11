@@ -1714,6 +1714,9 @@ importers:
       '@mochi-ui/pagination':
         specifier: workspace:*
         version: link:../pagination
+      '@mochi-ui/skeleton':
+        specifier: workspace:*
+        version: link:../skeleton
       clean-package:
         specifier: ^2.2.0
         version: 2.2.0

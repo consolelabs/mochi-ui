@@ -44,8 +44,7 @@ const tableDataLoadingClsx = ({
 
 const tableDataSkeletonClsx = ({
   className = '',
-}: { className?: string } = {}) =>
-  clsx('bg-neutral-outline-active animate-pulse h-[22px]', className)
+}: { className?: string } = {}) => clsx('w-full h-[22px] rounded-md', className)
 
 const tableDataClsx = ({
   className = '',

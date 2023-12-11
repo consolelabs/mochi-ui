@@ -25,6 +25,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@mochi-ui/skeleton": "workspace:*",
     "@mochi-ui/badge": "workspace:*",
     "@mochi-ui/icons": "workspace:*",
     "@mochi-ui/icon-button": "workspace:*",
