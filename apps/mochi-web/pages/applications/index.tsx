@@ -28,6 +28,7 @@ import {
 import Link from 'next/link'
 import { SOCIAL_LINKS } from '~constants'
 import { ROUTES } from '~constants/routes'
+import { SEO } from '~app/layout/seo'
 
 const AppPageHeader = ({
   onClickCreateApp,
@@ -105,22 +106,25 @@ const App: NextPageWithLayout = () => {
   }
 
   return (
-    <AuthLayout
-      pageHeader={<AppPageHeader apps={apps} onClickCreateApp={onOpen} />}
-    >
-      <Statistics id={id} onOpenCreateAppModal={onOpen} />
-      <AppListing
-        {...{ apps, refresh }}
-        onOpenCreateAppModal={onOpen}
-        isLoading={isLoading || !id}
-        className="max-w-full"
-      />
-      <Modal open={isOpen} onOpenChange={onOpenChange}>
-        <ModalContent className="w-full max-w-md">
-          <NewAppForm id={id} onClose={onClose} onSuccess={onCreateApp} />
-        </ModalContent>
-      </Modal>
-    </AuthLayout>
+    <>
+      <SEO title="Applications" />
+      <AuthLayout
+        pageHeader={<AppPageHeader apps={apps} onClickCreateApp={onOpen} />}
+      >
+        <Statistics id={id} onOpenCreateAppModal={onOpen} />
+        <AppListing
+          {...{ apps, refresh }}
+          onOpenCreateAppModal={onOpen}
+          isLoading={isLoading || !id}
+          className="max-w-full"
+        />
+        <Modal open={isOpen} onOpenChange={onOpenChange}>
+          <ModalContent className="w-full max-w-md">
+            <NewAppForm id={id} onClose={onClose} onSuccess={onCreateApp} />
+          </ModalContent>
+        </Modal>
+      </AuthLayout>
+    </>
   )
 }
 

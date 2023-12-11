@@ -36,6 +36,7 @@ import { AppDetailApiCalls } from '~cpn/app/detail/AppDetailApiCalls'
 import { DeleteAppModal } from '~cpn/app/DeleteAppModal'
 import { ROUTES } from '~constants/routes'
 import { useDisclosure } from '@dwarvesf/react-hooks'
+import { SEO } from '~app/layout/seo'
 
 const APP_DETAIL_FORM_ID = 'app-detail-form'
 
@@ -206,69 +207,72 @@ const App: NextPageWithLayout = () => {
   }, [id, pathname, replace, secretKeyQuery])
 
   return (
-    <AuthLayout
-      pageHeader={
-        <AppDetailPageHeader
-          name={detail?.name}
-          onDeleteApp={() => onOpenChangeDeleteAppModal(true)}
+    <>
+      <SEO title={detail?.name} />
+      <AuthLayout
+        pageHeader={
+          <AppDetailPageHeader
+            name={detail?.name}
+            onDeleteApp={() => onOpenChangeDeleteAppModal(true)}
+          />
+        }
+      >
+        {/* form can be nested structurally, just use the element's form attribute */}
+        <form id={APP_DETAIL_FORM_ID} onSubmit={handleSubmit(onUpdateApp)} />
+        <AppDetailStatistics
+          {...{ profileId, appId, detail, control, refresh }}
         />
-      }
-    >
-      {/* form can be nested structurally, just use the element's form attribute */}
-      <form id={APP_DETAIL_FORM_ID} onSubmit={handleSubmit(onUpdateApp)} />
-      <AppDetailStatistics
-        {...{ profileId, appId, detail, control, refresh }}
-      />
-      <AppDetailIntegration
-        apiKey={detail?.public_key}
-        {...{ control, secretKey, onResetSecretKey, isResettingSecretKey }}
-      />
-      <AppDetailApiCalls {...{ profileId, appId }} />
-      <AppDetailUrl {...{ control, errors }} />
-      <AppDetailPlatforms {...{ control, setValue }} />
-      <AppDetailMembers {...{ profileId, appId }} />
-      <div className="sticky bottom-0">
-        <ActionBar open={openActionBar}>
-          <ActionBarContent
-            scheme="success"
-            outline
-            shadow
-            onOpenAutoFocus={(e) => e.preventDefault()}
-            anchorClassName="left-0 right-0 -mb-8"
-          >
-            <ActionBarIcon />
-            <ActionBarBody>
-              <ActionBarDescription>
-                Do you want to save changes?
-              </ActionBarDescription>
-            </ActionBarBody>
-            <ActionBarActionGroup>
-              <ActionBarCancelButton
-                disabled={isSubmitting}
-                variant="link"
-                onClick={() => reset()}
-              >
-                Reset
-              </ActionBarCancelButton>
-              <ActionBarConfirmButton
-                loading={isSubmitting}
-                type="submit"
-                form={APP_DETAIL_FORM_ID}
-                className="min-w-[130px]"
-              >
-                Save changes
-              </ActionBarConfirmButton>
-            </ActionBarActionGroup>
-          </ActionBarContent>
-        </ActionBar>
-      </div>
-      <DeleteAppModal
-        app={detail}
-        open={isOpenDeleteAppModal}
-        onOpenChange={onOpenChangeDeleteAppModal}
-        onSucess={() => push(ROUTES.APPLICATON_LIST)}
-      />
-    </AuthLayout>
+        <AppDetailIntegration
+          apiKey={detail?.public_key}
+          {...{ control, secretKey, onResetSecretKey, isResettingSecretKey }}
+        />
+        <AppDetailApiCalls {...{ profileId, appId }} />
+        <AppDetailUrl {...{ control, errors }} />
+        <AppDetailPlatforms {...{ control, setValue }} />
+        <AppDetailMembers {...{ profileId, appId }} />
+        <div className="sticky bottom-0">
+          <ActionBar open={openActionBar}>
+            <ActionBarContent
+              scheme="success"
+              outline
+              shadow
+              onOpenAutoFocus={(e) => e.preventDefault()}
+              anchorClassName="left-0 right-0 -mb-8"
+            >
+              <ActionBarIcon />
+              <ActionBarBody>
+                <ActionBarDescription>
+                  Do you want to save changes?
+                </ActionBarDescription>
+              </ActionBarBody>
+              <ActionBarActionGroup>
+                <ActionBarCancelButton
+                  disabled={isSubmitting}
+                  variant="link"
+                  onClick={() => reset()}
+                >
+                  Reset
+                </ActionBarCancelButton>
+                <ActionBarConfirmButton
+                  loading={isSubmitting}
+                  type="submit"
+                  form={APP_DETAIL_FORM_ID}
+                  className="min-w-[130px]"
+                >
+                  Save changes
+                </ActionBarConfirmButton>
+              </ActionBarActionGroup>
+            </ActionBarContent>
+          </ActionBar>
+        </div>
+        <DeleteAppModal
+          app={detail}
+          open={isOpenDeleteAppModal}
+          onOpenChange={onOpenChangeDeleteAppModal}
+          onSucess={() => push(ROUTES.APPLICATON_LIST)}
+        />
+      </AuthLayout>
+    </>
   )
 }
 
