@@ -193,7 +193,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
                     {({ selected }) => (
                       <div className="flex justify-start py-2 w-full">
                         <h2
-                          className={`tex-sm ${
+                          className={`text-sm ${
                             selected
                               ? 'text-text-primary'
                               : 'text-text-secondary'
