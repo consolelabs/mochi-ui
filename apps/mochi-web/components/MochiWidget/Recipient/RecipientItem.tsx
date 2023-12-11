@@ -1,6 +1,6 @@
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import clsx from 'clsx'
-import { Avatar, Heading } from '@mochi-ui/core'
+import { Avatar } from '@mochi-ui/core'
 import { Profile } from '@consolelabs/mochi-rest'
 import { CheckLine, CloseLine } from '@mochi-ui/icons'
 import PlatformIcon from '../PlatformPicker/PlatformIcon'
@@ -78,9 +78,9 @@ export const RecipientItem: React.FC<ItemProps> = ({
         <Avatar src={avatar || '/logo.png'} size="sm" />
       )}
       <div className="flex flex-col flex-1">
-        <Heading as="h3" className="text-sm font-medium">
+        <h3 className="text-sm font-medium">
           {account?.platform_metadata.username}
-        </Heading>
+        </h3>
       </div>
       {right}
     </div>

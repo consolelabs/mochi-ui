@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { Heading } from '@mochi-ui/core'
 import { Chain } from './type'
 
 interface ItemProps {
@@ -21,9 +20,7 @@ export const ChainItem: React.FC<ItemProps> = ({ item, onSelect }) => (
         src={item.icon}
       />
       <div className="flex flex-col flex-1 items-start">
-        <Heading as="h3" className="text-sm">
-          {item.name}
-        </Heading>
+        <h3 className="text-sm">{item.name}</h3>
       </div>
     </button>
   </li>

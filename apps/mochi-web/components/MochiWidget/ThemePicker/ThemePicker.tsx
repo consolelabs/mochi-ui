@@ -3,7 +3,6 @@ import useSWR from 'swr'
 import clsx from 'clsx'
 import { api } from '~constants/mochi'
 import {
-  Heading,
   TextFieldRoot,
   TextFieldInput,
   TextFieldDecorator,
@@ -186,14 +185,14 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
                     className="focus-visible:outline-none"
                   >
                     {({ selected }) => (
-                      <Heading
-                        as="h2"
-                        className={`py-2 whitespace-nowrap text-sm ${
-                          selected ? 'text-[#343433]' : 'text-[#848281]'
+                      <h2
+                        className={`py-2 whitespace-nowrap text-sm
+                        ${
+                          selected ? 'text-text-primary' : 'text-text-secondary'
                         }`}
                       >
                         {tab.title}
-                      </Heading>
+                      </h2>
                     )}
                   </Tab>
                 ))}

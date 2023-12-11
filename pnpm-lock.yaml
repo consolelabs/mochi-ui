@@ -878,27 +878,6 @@ importers:
         specifier: workspace:*
         version: link:../../tsconfig
 
-  packages/components/heading:
-    devDependencies:
-      clean-package:
-        specifier: ^2.2.0
-        version: 2.2.0
-      eslint-config-custom:
-        specifier: workspace:*
-        version: link:../../eslint-config-custom
-      prettier:
-        specifier: ^3.0.3
-        version: 3.1.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
-      tsconfig:
-        specifier: workspace:*
-        version: link:../../tsconfig
-
   packages/components/icon-button:
     dependencies:
       '@mochi-ui/icons':
@@ -1059,9 +1038,6 @@ importers:
         specifier: ^0.7.0
         version: 0.7.0
     devDependencies:
-      '@mochi-ui/heading':
-        specifier: workspace:*
-        version: link:../heading
       clean-package:
         specifier: ^2.2.0
         version: 2.2.0
@@ -1098,9 +1074,6 @@ importers:
       '@mochi-ui/dropdown':
         specifier: workspace:*
         version: link:../dropdown
-      '@mochi-ui/heading':
-        specifier: workspace:*
-        version: link:../heading
       '@mochi-ui/icon-button':
         specifier: workspace:^
         version: link:../icon-button
@@ -1486,9 +1459,9 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
     devDependencies:
-      '@mochi-ui/heading':
+      '@mochi-ui/typography':
         specifier: workspace:*
-        version: link:../heading
+        version: link:../typography
       clean-package:
         specifier: ^2.2.0
         version: 2.2.0
@@ -2017,9 +1990,6 @@ importers:
       '@mochi-ui/form':
         specifier: workspace:*
         version: link:../components/form
-      '@mochi-ui/heading':
-        specifier: workspace:*
-        version: link:../components/heading
       '@mochi-ui/icon-button':
         specifier: workspace:*
         version: link:../components/icon-button

@@ -40,7 +40,6 @@
     "@mochi-ui/badge": "workspace:*",
     "@mochi-ui/button": "workspace:*",
     "@mochi-ui/dropdown": "workspace:*",
-    "@mochi-ui/heading": "workspace:*",
     "@mochi-ui/icons": "workspace:*",
     "@mochi-ui/input": "workspace:*",
     "@mochi-ui/layout": "workspace:*",

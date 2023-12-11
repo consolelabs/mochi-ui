@@ -1,6 +1,5 @@
 import clsx from 'clsx'
 import { utils } from '@consolelabs/mochi-ui'
-import { Heading } from '@mochi-ui/core'
 import { Moniker } from './type'
 import { MonikerIcons } from './utils'
 
@@ -31,9 +30,7 @@ export const MonikerItem: React.FC<ItemProps> = ({ item, onSelect }) => (
         <span className="text-sm">{MonikerIcons.get(item.name)}</span>
       </div>
       <div className="flex flex-col flex-1 items-start">
-        <Heading as="h3" className="text-sm">
-          {item.name}
-        </Heading>
+        <h3 className="text-sm">{item.name}</h3>
         <span className="text-xs text-[#848281]">
           {`${utils.formatTokenDigit(item.token_amount)} ${item.token.symbol}`}
         </span>

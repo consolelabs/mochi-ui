@@ -32,7 +32,6 @@ import {
   Item,
   useLoginWidget,
   LoginWidget,
-  Heading,
 } from '@mochi-ui/core'
 import { Layout } from '@mochi-ui/layout'
 import { PageContent } from '@mochi-ui/page-content'
@@ -119,7 +118,6 @@ const ApplicationDetailSidebarHeader = ({
         className="object-cover absolute top-0 left-0 w-full h-full opacity-50"
         src="https://pbs.twimg.com/profile_banners/1168522102410010626/1684159976/300x100"
       />
-
       <div className="flex absolute top-0 left-0 z-50 justify-center items-stretch w-full h-full">
         {!isSelectedAppLoading && selectedApp ? (
           <div className="flex items-center w-full">
@@ -135,12 +133,9 @@ const ApplicationDetailSidebarHeader = ({
               <DropdownMenuTrigger className="flex flex-1 gap-4 justify-between items-center pr-6">
                 <div className="flex flex-1 gap-3 items-center">
                   <Avatar src={selectedApp?.avatar || ''} />
-                  <Heading
-                    as="h3"
-                    className="text-left text-sm font-semibold text-text-contrast max-w-[100px] truncate"
-                  >
+                  <h3 className="text-left text-sm font-semibold text-text-contrast max-w-[100px] truncate">
                     {selectedApp?.name || ''}
-                  </Heading>
+                  </h3>
                 </div>
                 {isOpen ? (
                   <CloseLine className="text-text-contrast" />
