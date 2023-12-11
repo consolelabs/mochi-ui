@@ -8,7 +8,7 @@ import * as solids from '../../../icons/src/components/solid'
 import * as web3s from '../../../icons/src/components/web3'
 import * as wallets from '../../../icons/src/components/wallet'
 import { Tooltip } from '../../tooltip/src'
-import { InputField } from '../../input-field/src'
+import { TextFieldRoot, TextFieldInput } from '../../input'
 
 const meta: Meta = {
   title: 'Media & Icons/Icons',
@@ -31,11 +31,13 @@ function Layout({ children }: { children: (p: RenderProps) => JSX.Element }) {
 
   return (
     <div className="flex flex-col gap-y-10">
-      <InputField
-        value={search}
-        onChange={(e) => setSearch((e.target as HTMLInputElement).value)}
-        placeholder="Search icons..."
-      />
+      <TextFieldRoot>
+        <TextFieldInput
+          value={search}
+          onChange={(e) => setSearch((e.target as HTMLInputElement).value)}
+          placeholder="Search icons..."
+        />
+      </TextFieldRoot>
       <div className="grid grid-cols-7 gap-3 md:grid-cols-10 auto-row-auto">
         {children({ search })}
       </div>
