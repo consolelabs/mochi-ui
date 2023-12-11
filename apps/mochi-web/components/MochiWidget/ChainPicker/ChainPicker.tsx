@@ -76,7 +76,7 @@ export const ChainPicker: React.FC<ChainPickerProps> = ({ className }) => {
         </TextFieldRoot>
         <ChainList data={filteredChains} onSelect={handleChainSelect} />
         <span className="w-full text-xs text-[#ADACAA]">
-          Only supported tokens are shown asdas
+          Only supported tokens are shown
         </span>
       </PopoverContent>
     </Popover>
