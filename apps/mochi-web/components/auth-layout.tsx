@@ -133,14 +133,9 @@ const ApplicationDetailSidebarHeader = ({
               <DropdownMenuTrigger className="flex flex-1 gap-4 justify-between items-center pr-6">
                 <div className="flex flex-1 gap-3 items-center">
                   <Avatar src={selectedApp?.avatar || ''} />
-                  <Typography
-                    level="h9"
-                    fontWeight="lg"
-                    color="textContrast"
-                    className="text-left max-w-[100px] truncate"
-                  >
+                  <h3 className="text-left text-sm font-semibold text-text-contrast max-w-[100px] truncate">
                     {selectedApp?.name || ''}
-                  </Typography>
+                  </h3>
                 </div>
                 {isOpen ? (
                   <CloseLine className="text-text-contrast" />

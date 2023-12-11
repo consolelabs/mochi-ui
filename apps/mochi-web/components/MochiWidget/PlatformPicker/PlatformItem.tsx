@@ -1,4 +1,3 @@
-import { Typography } from '@mochi-ui/core'
 import { Platform } from './type'
 import PlatformIcon from './PlatformIcon'
 
@@ -16,9 +15,7 @@ export const PlatformItem: React.FC<ItemProps> = ({ item, onSelect }) => (
   >
     <PlatformIcon platform={item.platform} className="w-6 h-6" />
     <div className="flex flex-col flex-1">
-      <Typography level="h8" className="capitalize">
-        {item.platform}
-      </Typography>
+      <h3 className="capitalize text-sm font-medium">{item.platform}</h3>
     </div>
   </li>
 )

@@ -3,7 +3,6 @@ import {
   TextFieldRoot,
   TextFieldInput,
   TextFieldDecorator,
-  Typography,
   SectionList,
 } from '@mochi-ui/core'
 import { Combobox } from '@headlessui/react'
@@ -134,7 +133,7 @@ export default function MessagePicker({
                               onClose()
                             }}
                           >
-                            <Typography level="p5">{item.content}</Typography>
+                            <h3 className="text-sm">{item.content}</h3>
                           </button>
                         </li>
                       )

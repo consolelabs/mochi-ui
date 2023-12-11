@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { Typography } from '@mochi-ui/core'
 import { Chain } from './type'
 
 interface ItemProps {
@@ -21,9 +20,7 @@ export const ChainItem: React.FC<ItemProps> = ({ item, onSelect }) => (
         src={item.icon}
       />
       <div className="flex flex-col flex-1 items-start">
-        <Typography level="h6" fontWeight="unset">
-          {item.name}
-        </Typography>
+        <h3 className="text-sm">{item.name}</h3>
       </div>
     </button>
   </li>

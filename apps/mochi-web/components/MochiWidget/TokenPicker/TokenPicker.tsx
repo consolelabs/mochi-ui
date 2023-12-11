@@ -9,7 +9,6 @@ import {
   TextFieldInput,
   TextFieldDecorator,
   TextFieldRoot,
-  Typography,
 } from '@mochi-ui/core'
 import { BottomSheet } from '~cpn/BottomSheet'
 import { Balance, useWalletStore } from '~store'
@@ -193,12 +192,15 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
                   <Tab key={tab.key} className="focus-visible:outline-none">
                     {({ selected }) => (
                       <div className="flex justify-start py-2 w-full">
-                        <Typography
-                          level="p5"
-                          color={selected ? 'textPrimary' : 'textSecondary'}
+                        <h2
+                          className={`tex-sm ${
+                            selected
+                              ? 'text-text-primary'
+                              : 'text-text-secondary'
+                          }`}
                         >
                           {tab.value}
-                        </Typography>
+                        </h2>
                       </div>
                     )}
                   </Tab>
