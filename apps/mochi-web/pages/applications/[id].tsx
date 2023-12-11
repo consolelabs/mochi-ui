@@ -10,11 +10,13 @@ import { AppDetailIntegration } from '~cpn/app/detail/AppDetailIntegration'
 import { AppDetailUrl } from '~cpn/app/detail/AppDetailUrl'
 import {
   DtoUpdateApplicationInfoRequest,
+  ViewApplication,
+  ViewApplicationResponse,
   ViewFullApplicationResponse,
 } from '~types/mochi-pay-schema'
 import { API, GET_PATHS } from '~constants/api'
 import { useForm } from 'react-hook-form'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import {
   ActionBar,
   ActionBarActionGroup,
@@ -24,6 +26,8 @@ import {
   ActionBarContent,
   ActionBarDescription,
   ActionBarIcon,
+  PageHeader,
+  Skeleton,
   useToast,
 } from '@mochi-ui/core'
 import { AppDetailFormValues } from '~types/app'
@@ -37,6 +41,7 @@ import { DeleteAppModal } from '~cpn/app/DeleteAppModal'
 import { ROUTES } from '~constants/routes'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { SEO } from '~app/layout/seo'
+import { AppDetailSkeleton } from '~cpn/app/detail/AppDetailSkeleton'
 
 const APP_DETAIL_FORM_ID = 'app-detail-form'
 
@@ -95,10 +100,11 @@ const App: NextPageWithLayout = () => {
   } = useRouter()
   const appId = id as string
   const { toast } = useToast()
-  const { data: detail, mutate: refresh } = useFetchApplicationDetail(
-    profileId,
-    appId,
-  )
+  const {
+    data: detail,
+    mutate: refresh,
+    isLoading,
+  } = useFetchApplicationDetail(profileId, appId)
   const [secretKey, setSecretKey] = useState('')
   const [isResettingSecretKey, setIsResettingSecretKey] = useState(false)
   const {
@@ -117,6 +123,30 @@ const App: NextPageWithLayout = () => {
     mode: 'all',
   })
   const openActionBar = isDirty && Object.keys(dirtyFields).length > 0
+
+  const resetApp = useCallback(
+    (app?: ViewApplication) => {
+      if (!app) return
+      const defalutUrls = Object.entries(app.external_links || {}).flatMap(
+        ([platform, urls]) => urls.map((url) => ({ platform, url })),
+      )
+      const defalutPlatforms = platforms.reduce(
+        (acc, { key }) => ({
+          ...acc,
+          [key]: app.platforms?.includes(key) || false,
+        }),
+        {},
+      )
+      reset({
+        urls: defalutUrls,
+        platforms: defalutPlatforms,
+        webhook: app.webhook || '',
+        app_name: app.name,
+        description: app.description || '',
+      })
+    },
+    [reset],
+  )
 
   const onUpdateApp = (data: AppDetailFormValues) => {
     if (!profileId || !appId || !detail || !isDirty) return Promise.resolve()
@@ -142,8 +172,8 @@ const App: NextPageWithLayout = () => {
       body,
       GET_PATHS.UPDATE_APPLICATION_DETAIL(profileId, appId),
     )
-      .json(() => {
-        refresh()
+      .json((r: ViewApplicationResponse) => {
+        resetApp(r.data)
       })
       .catch((e) => {
         const err = JSON.parse(e.message)
@@ -178,26 +208,8 @@ const App: NextPageWithLayout = () => {
   }
 
   useEffect(() => {
-    if (detail) {
-      const defalutUrls = Object.entries(detail.external_links || {}).flatMap(
-        ([platform, urls]) => urls.map((url) => ({ platform, url })),
-      )
-      const defalutPlatforms = platforms.reduce(
-        (acc, { key }) => ({
-          ...acc,
-          [key]: detail.platforms?.includes(key) || false,
-        }),
-        {},
-      )
-      reset({
-        urls: defalutUrls,
-        platforms: defalutPlatforms,
-        webhook: detail.webhook || '',
-        app_name: detail.name,
-        description: detail.description || '',
-      })
-    }
-  }, [reset, detail])
+    resetApp(detail)
+  }, [detail, resetApp])
 
   useEffect(() => {
     if (secretKeyQuery) {
@@ -205,6 +217,30 @@ const App: NextPageWithLayout = () => {
       replace({ pathname, query: { id } }, undefined, { shallow: true })
     }
   }, [id, pathname, replace, secretKeyQuery])
+
+  if (isLoading || !detail) {
+    return (
+      <AuthLayout
+        pageHeader={
+          <PageHeader
+            title={<Skeleton className="h-10 rounded-lg w-60" />}
+            actions={[
+              <Skeleton
+                className="w-24 h-10 rounded-lg"
+                key="see-docs-button"
+              />,
+              <Skeleton
+                className="w-24 h-10 rounded-lg"
+                key="api-keys-button"
+              />,
+            ]}
+          />
+        }
+      >
+        <AppDetailSkeleton />
+      </AuthLayout>
+    )
+  }
 
   return (
     <>
