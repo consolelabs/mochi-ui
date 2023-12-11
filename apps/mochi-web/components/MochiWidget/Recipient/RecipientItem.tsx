@@ -10,13 +10,7 @@ type CheckIconProps = {
   isSelected: boolean
 }
 
-export type ActionGroup = {
-  group?: 'action'
-  change_platform?: string
-}
-
-export type ResultGroup = {
-  group?: 'result'
+export type FallbackGroup = {
   create_new?: boolean
 }
 
@@ -29,7 +23,7 @@ const CheckIcon: React.FC<CheckIconProps> = ({ isSelected, isHovering }) => {
 }
 
 interface ItemProps {
-  profile: Profile & (ResultGroup | ActionGroup)
+  profile: Profile & FallbackGroup
   isSelected?: boolean
   active: boolean
 }
@@ -47,7 +41,7 @@ export const RecipientItem: React.FC<ItemProps> = ({
     onClose: setIsNotHovering,
   } = useDisclosure()
 
-  let right: React.ReactNode =
+  const right: React.ReactNode =
     isSelected || isHovering || active ? (
       <CheckIcon isSelected={isSelected} isHovering={isHovering || active} />
     ) : (
@@ -57,10 +51,6 @@ export const RecipientItem: React.FC<ItemProps> = ({
         compact
       />
     )
-
-  if (profile.group !== 'result') {
-    right = null
-  }
 
   return (
     <div
@@ -74,9 +64,7 @@ export const RecipientItem: React.FC<ItemProps> = ({
       onMouseEnter={setIsHovering}
       onMouseLeave={setIsNotHovering}
     >
-      {profile.group === 'result' && (
-        <Avatar src={avatar || '/logo.png'} size="sm" />
-      )}
+      <Avatar src={avatar || '/logo.png'} size="sm" />
       <div className="flex flex-col flex-1">
         <h3 className="text-sm font-medium">
           {account?.platform_metadata.username}

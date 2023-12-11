@@ -84,9 +84,9 @@ export const AmountInput: React.FC<AmountInputProps> = ({
     : tipAmount.value / ((request.asset?.token_amount ?? 0) * unitPrice)
 
   const tipAmountToken = utils.formatDigit({
-    value: valueToken.toFixed(MAX_AMOUNT_PRECISION),
+    value: valueToken,
     fractionDigits: 2,
-    shorten: value >= 1,
+    shorten: valueToken >= 1,
     scientificFormat: true,
     takeExtraDecimal: 1,
   })
@@ -204,18 +204,23 @@ export const AmountInput: React.FC<AmountInputProps> = ({
       </div>
       <div className="flex flex-col gap-y-2 py-6 px-4 rounded-lg bg-white-pure">
         <div className="flex flex-1 justify-between items-center">
-          <input
-            className="w-[65%] outline-none text-2xl font-medium text-[#343433] appearance-none h-[34px]"
-            placeholder="0"
-            type="text"
-            min={0}
-            onKeyDown={handleKeyDown}
-            value={tipAmount.display}
-            onChange={handleAmountChanged}
-            onBlur={onBlurInput}
-            ref={ref}
-          />
-          <span className="text-sm text-right text-neutral-600">
+          <div className="flex gap-x-1.5 items-end">
+            {/* <span className="font-medium"> */}
+            {/*   {!isUsdMode ? selectedAsset?.token.symbol : 'USD'} */}
+            {/* </span> */}
+            <input
+              className="w-[70%] outline-none text-2xl font-medium text-neutral-800 appearance-none h-[34px]"
+              placeholder="0"
+              type="text"
+              min={0}
+              onKeyDown={handleKeyDown}
+              value={tipAmount.display}
+              onChange={handleAmountChanged}
+              onBlur={onBlurInput}
+              ref={ref}
+            />
+          </div>
+          <span className="text-sm text-right shrink-0 text-neutral-600">
             &#8776; {!isUsdMode ? tipAmountUSD : tipAmountToken}{' '}
             {!isUsdMode ? 'USD' : selectedAsset?.token.symbol}
           </span>

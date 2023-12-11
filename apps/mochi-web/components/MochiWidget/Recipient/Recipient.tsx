@@ -6,24 +6,35 @@ import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { Combobox } from '@headlessui/react'
 import { Profile } from '@consolelabs/mochi-rest'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { TextFieldInput, TextFieldRoot } from '@mochi-ui/core'
-import { ProfileGuardSuccessLine, Spinner } from '@mochi-ui/icons'
+import {
+  TextFieldDecorator,
+  TextFieldInput,
+  TextFieldRoot,
+} from '@mochi-ui/core'
+import {
+  DiscordColored,
+  TelegramColored,
+  ProfileGuardSuccessLine,
+  Spinner,
+  UserSolid,
+} from '@mochi-ui/icons'
 import { useDebounce, useDisclosure } from '@dwarvesf/react-hooks'
-import { BottomSheet } from '~cpn/BottomSheet'
-/* import { ChainPicker } from '../ChainPicker' */
+import BottomSheetProvider, { BottomSheet } from '~cpn/BottomSheet'
+import { ChainPicker } from '../ChainPicker'
 import { Platform } from '../PlatformPicker/type'
 import { RecipientList } from './RecipientList'
 import { PlatformPicker, Platforms } from '../PlatformPicker'
 import { SelectedRecipient } from './SelectedRecipient'
 import { MAX_RECIPIENTS } from '../Tip/store'
-import { ActionGroup, ResultGroup } from './RecipientItem'
+import { FallbackGroup } from './RecipientItem'
+import { ContactList } from './ContactList'
 
 const SEARCH_DEBOUNCE_TIME = 250
 
 interface RecipientProps {
   authorized: boolean
   unauthorizedContent: React.ReactNode
-  selectedRecipients?: Array<Profile & (ResultGroup | ActionGroup)>
+  selectedRecipients?: Array<Profile & FallbackGroup>
   onUpdateRecipient?: (item: Profile[]) => void
   onRemoveRecipient?: (item: Profile) => void
 }
@@ -43,11 +54,17 @@ export const Recipient: React.FC<RecipientProps> = ({
   onUpdateRecipient,
   onRemoveRecipient,
 }) => {
-  const ref = useRef<HTMLInputElement | null>(null)
+  const recipientRef = useRef<HTMLInputElement | null>(null)
+  const contactRef = useRef<HTMLInputElement | null>(null)
   const {
     isOpen: isOpenRecipients,
     onOpen: openRecipients,
     onClose: closeRecipients,
+  } = useDisclosure()
+  const {
+    isOpen: isOpenContacts,
+    onOpen: openContacts,
+    onClose: closeContacts,
   } = useDisclosure()
   const [searchTerm, setSearchTerm] = useState('')
   const debouncedSearchTerm = useDebounce(searchTerm, SEARCH_DEBOUNCE_TIME)
@@ -56,20 +73,22 @@ export const Recipient: React.FC<RecipientProps> = ({
   )
   const isOnChain = selectedPlatform?.platform === 'on-chain'
 
+  const [prefix, setPrefix] = useState<React.ReactNode>()
+
   const { data: recipients = [], isLoading } = useSWR<
-    Array<Profile & (ResultGroup | ActionGroup)>,
+    Array<Profile & FallbackGroup>,
     any,
     [string, boolean, boolean, string, string | undefined]
   >(
     [
       'recent-recipients',
       authorized,
-      isOpenRecipients,
+      isOpenRecipients || isOpenContacts,
       debouncedSearchTerm,
       selectedPlatform?.platform,
     ],
-    async ([_, isOpenRecipients, authorized, username, platform]) => {
-      if (!authorized || !isOpenRecipients) return []
+    async ([_, isOpen, authorized, username, platform]) => {
+      if (!authorized || !isOpen) return []
       const { data, ok } = await api.profile.users.search({
         username,
         platform,
@@ -125,103 +144,37 @@ export const Recipient: React.FC<RecipientProps> = ({
       })
     }
 
-    // show option to quickly switch platform
-    if (
-      debouncedSearchTerm &&
-      ['discord', 'dsc', 'telegram', 'tlg', 'x', 'git', 'mail'].some((prefix) =>
-        debouncedSearchTerm.startsWith(prefix),
-      )
-    ) {
-      const id = `suggestion-${debouncedSearchTerm}`
-      let platformSuggestion = {
-        text: '',
-        id: '',
-      }
-
-      if (
-        selectedPlatform.id !== '1' &&
-        ['discord', 'dsc'].some((prefix) =>
-          debouncedSearchTerm.startsWith(prefix),
-        )
-      )
-        platformSuggestion = {
-          text: 'Discord',
-          id: '1',
-        }
-      if (
-        selectedPlatform.id !== '2' &&
-        ['telegram', 'tlg'].some((prefix) =>
-          debouncedSearchTerm.startsWith(prefix),
-        )
-      )
-        platformSuggestion = {
-          text: 'Telegram',
-          id: '2',
-        }
-      if (
-        selectedPlatform.id !== '3' &&
-        ['mail'].some((prefix) => debouncedSearchTerm.startsWith(prefix))
-      )
-        platformSuggestion = {
-          text: 'Gmail',
-          id: '3',
-        }
-      if (
-        selectedPlatform.id !== '4' &&
-        ['x'].some((prefix) => debouncedSearchTerm.startsWith(prefix))
-      )
-        platformSuggestion = {
-          text: 'X',
-          id: '4',
-        }
-      if (
-        selectedPlatform.id !== '5' &&
-        ['git'].some((prefix) => debouncedSearchTerm.startsWith(prefix))
-      )
-        platformSuggestion = {
-          text: 'Github',
-          id: '5',
-        }
-
-      if (platformSuggestion.text) {
-        result.unshift({
-          id,
-          associated_accounts: [
-            {
-              pnl: '',
-              id,
-              platform_metadata: {
-                username: `Change platform to ${platformSuggestion.text}`,
-              },
-              platform_identifier: '',
-              platform: (selectedPlatform?.platform as any) ?? '',
-              created_at: '',
-              updated_at: '',
-              profile_id: '',
-              total_amount: '',
-            },
-          ],
-          profile_name: `Change platform to ${platformSuggestion.text}`,
-          application: null,
-          avatar: '',
-          type: 'user',
-          pnl: '',
-          group: 'action',
-          change_platform: platformSuggestion.id,
-        })
-      }
-    }
-
     return result
-  }, [
-    debouncedSearchTerm,
-    recipients,
-    selectedPlatform.id,
-    selectedPlatform?.platform,
-  ])
+  }, [debouncedSearchTerm, recipients, selectedPlatform?.platform])
 
   function onSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const val = e.target.value
+    if (['discord:', 'dsc:', 'disc:'].includes(val.toLowerCase())) {
+      setPrefix(
+        <>
+          <DiscordColored className="w-4 h-4" /> <span>Discord:</span>
+        </>,
+      )
+      setSearchTerm('')
+      setSelectedPlatform(Platforms[0])
+      return
+    }
+    if (['tg:', 'tlg:', 'tele:', 'telegram:'].includes(val.toLowerCase())) {
+      setPrefix(
+        <>
+          <TelegramColored className="w-4 h-4" /> <span>Telegram:</span>
+        </>,
+      )
+      setSearchTerm('')
+      setSelectedPlatform(Platforms[1])
+      return
+    }
     setSearchTerm(e.target.value)
+  }
+
+  function onKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key !== 'Backspace' || searchTerm) return
+    setPrefix('')
   }
 
   /* function onChainSearch(e: React.ChangeEvent<HTMLInputElement>) { */
@@ -233,12 +186,26 @@ export const Recipient: React.FC<RecipientProps> = ({
     if (isOpenRecipients) {
       // hack
       setTimeout(() => {
-        ref.current?.focus({ preventScroll: true })
+        recipientRef.current?.focus({ preventScroll: true })
       }, 0)
-      return
     }
-    setSearchTerm('')
   }, [isOpenRecipients])
+
+  useEffect(() => {
+    if (isOpenContacts) {
+      // hack
+      setTimeout(() => {
+        contactRef.current?.focus({ preventScroll: true })
+      }, 0)
+    }
+  }, [isOpenContacts])
+
+  useEffect(() => {
+    if (!isOpenContacts || !isOpenRecipients) {
+      setSearchTerm('')
+      setPrefix(null)
+    }
+  }, [isOpenContacts, isOpenRecipients])
 
   return (
     <Combobox
@@ -246,33 +213,36 @@ export const Recipient: React.FC<RecipientProps> = ({
       value={selectedRecipients ?? []}
       onChange={(recipients) => {
         setSearchTerm('')
-        const last = recipients[recipients.length - 1]
-        if (last.group === 'action') {
-          setSelectedPlatform(
-            Platforms.find((p) => p.id === last.change_platform) ??
-              Platforms[0],
-          )
-          return
-        }
         onUpdateRecipient?.(
           recipients.filter(
             (r, _idx, arr) => arr.filter((a) => a.id === r.id).length === 1,
           ),
         )
         closeRecipients()
+        closeContacts()
       }}
     >
       <div className="flex flex-col gap-y-3 p-2 rounded-xl bg bg-neutral-150">
         <div className="flex justify-between items-center px-4 h-[34px]">
-          <label
-            htmlFor="recipients"
-            className="text-sm font-semibold text-neutral-600"
+          <div className="flex gap-x-2 items-center">
+            <label
+              htmlFor="recipients"
+              className="text-sm font-medium text-neutral-600"
+            >
+              Recipients
+            </label>
+            <span className="text-sm text-neutral-600">
+              {selectedRecipients?.length ?? 0}/{MAX_RECIPIENTS}
+            </span>
+          </div>
+          <button
+            tabIndex={-1}
+            type="button"
+            onClick={openContacts}
+            className="flex justify-center items-center -mr-2 w-5 h-5 rounded-full outline-none bg-neutral-500 text-white-pure"
           >
-            Recipients
-          </label>
-          <span className="text-sm font-semibold text-neutral-600">
-            {selectedRecipients?.length ?? 0}/{MAX_RECIPIENTS}
-          </span>
+            <UserSolid />
+          </button>
         </div>
 
         <div
@@ -350,32 +320,77 @@ export const Recipient: React.FC<RecipientProps> = ({
         )}
       </div>
       <BottomSheet
+        isOpen={isOpenContacts}
+        onClose={closeContacts}
+        title="Contacts"
+        dynamic={!authorized}
+      >
+        {authorized ? (
+          <>
+            <TextFieldRoot className="flex-shrink-0 mt-2">
+              {prefix ? (
+                <TextFieldDecorator>
+                  <div className="flex gap-x-1 items-center py-0.5 px-2 -ml-2 text-sm bg-gray-200 rounded text-neutral-800">
+                    {prefix}
+                  </div>
+                </TextFieldDecorator>
+              ) : null}
+              <Combobox.Input
+                ref={contactRef}
+                as={TextFieldInput}
+                className="w-full text-sm overflow-none"
+                value={searchTerm}
+                onChange={onSearchChange}
+                onKeyDown={onKeyDown}
+                placeholder="Search"
+              />
+            </TextFieldRoot>
+            <Combobox.Options static className="flex mt-2 w-full min-h-0">
+              <ContactList
+                loading={isSearching}
+                data={filteredRecipients}
+                selectedRecipients={selectedRecipients}
+              />
+            </Combobox.Options>
+          </>
+        ) : (
+          unauthorizedContent
+        )}
+      </BottomSheet>
+      <BottomSheet
         isOpen={isOpenRecipients}
         onClose={closeRecipients}
         title="Select recipients"
         dynamic={!authorized}
       >
         {authorized ? (
-          <>
+          <BottomSheetProvider
+            nested
+            className="flex flex-col w-full h-full min-h-0"
+          >
             <TextFieldRoot className="flex-shrink-0 mt-2">
+              {selectedPlatform.platform === 'on-chain' ? (
+                <TextFieldDecorator>
+                  <ChainPicker className="-ml-2" />
+                </TextFieldDecorator>
+              ) : null}
+              {prefix ? (
+                <TextFieldDecorator>
+                  <div className="flex gap-x-1 items-center py-0.5 px-2 -ml-2 text-sm bg-gray-200 rounded text-neutral-800">
+                    {prefix}
+                  </div>
+                </TextFieldDecorator>
+              ) : null}
               <Combobox.Input
-                ref={ref}
+                ref={recipientRef}
                 as={TextFieldInput}
                 className="w-full text-sm overflow-none"
                 value={searchTerm}
                 onChange={onSearchChange}
+                onKeyDown={onKeyDown}
+                placeholder="Search"
               />
             </TextFieldRoot>
-            {/* {isOnChain && ( */}
-            {/*   <InputField */}
-            {/*     className="w-full text-sm" */}
-            {/*     inputWrapperClassName="rounded-lg" */}
-            {/*     autoFocus */}
-            {/*     placeholder="Search address" */}
-            {/*     startAdornment={<ChainPicker className="ml-3" />} */}
-            {/*     onChange={onChainSearch} */}
-            {/*   /> */}
-            {/* )} */}
             <Combobox.Options static className="flex mt-2 w-full min-h-0">
               <RecipientList
                 loading={isSearching}
@@ -383,7 +398,12 @@ export const Recipient: React.FC<RecipientProps> = ({
                 selectedRecipients={selectedRecipients}
               />
             </Combobox.Options>
-          </>
+            {selectedPlatform.platform !== 'on-chain' && (
+              <span className="mt-auto text-xs text-neutral-500">
+                Type dsc: or tg: to quickly switch platform
+              </span>
+            )}
+          </BottomSheetProvider>
         ) : (
           unauthorizedContent
         )}

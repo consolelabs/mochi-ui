@@ -10,11 +10,9 @@ import { WalletPicker } from '../WalletPicker'
 import { Recipient } from '../Recipient'
 import { AmountInput } from '../AmountInput'
 import { useTipWidget } from './store'
-import { ErrorMessage } from '../ErrorMessage/ErrorMessage'
 import { isToken } from '../TokenPicker/utils'
 
-const notEnoughtBalMsg =
-  'Insufficient balance. Please add more tokens and try again.'
+const notEnoughtBalMsg = 'Insufficient balance'
 
 export default function StepOne() {
   const {
@@ -104,7 +102,6 @@ export default function StepOne() {
             onUpdateRecipient={setRecipients}
             onRemoveRecipient={removeRecipient}
           />
-          <ErrorMessage>{amountErrorMgs}</ErrorMessage>
         </div>
       </ScrollArea.Viewport>
       {isLoggedIn ? (
@@ -114,8 +111,8 @@ export default function StepOne() {
           className="flex justify-center"
           disabled={!canProceed}
         >
-          Continue
-          <ArrowRightLine className="w-4 h-4" />
+          {amountErrorMgs || 'Continue'}
+          {canProceed && <ArrowRightLine className="w-4 h-4" />}
         </Button>
       ) : (
         <Button

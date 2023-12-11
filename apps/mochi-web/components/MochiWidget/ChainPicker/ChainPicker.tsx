@@ -1,84 +1,51 @@
-import { useMemo, useState } from 'react'
-import { Icon } from '@iconify/react'
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  TextFieldRoot,
-  TextFieldInput,
-  TextFieldDecorator,
-} from '@mochi-ui/core'
-import { NativeImage } from '~cpn/NativeImage'
+import { useState } from 'react'
+import { ChevronDownLine } from '@mochi-ui/icons'
+import { BottomSheet } from '~cpn/BottomSheet'
+import { useDisclosure } from '@dwarvesf/react-hooks'
 import clsx from 'clsx'
 import { ChainList } from './ChainList'
 import { Chains } from './data'
-import { Chain } from './type'
 
 type ChainPickerProps = {
   className?: string
 }
 
 export const ChainPicker: React.FC<ChainPickerProps> = ({ className }) => {
-  const [isOpenSelector, setIsOpenSelector] = useState(false)
-  const [selectedChain, setSelectedChain] = useState<Chain>(Chains[0])
-  const [searchTerm, setSearchTerm] = useState('')
-  const filteredChains = useMemo(() => {
-    return Chains.filter(
-      (chain) => chain.name?.toLowerCase().includes(searchTerm.toLowerCase()),
-    )
-  }, [searchTerm])
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [selectedChain, setSelectedChain] = useState(Chains[0])
 
-  function onOpenChange(isOpen: boolean) {
-    setIsOpenSelector(isOpen)
-    setSearchTerm('')
-  }
+  const Icon = selectedChain.icon
 
-  function handleChainSelect(chain: Chain) {
+  function handleChainSelect(chain: any) {
     setSelectedChain(chain)
-    setIsOpenSelector(false)
-  }
-
-  function onSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setSearchTerm(e.target.value)
+    onClose()
   }
 
   return (
-    <Popover open={isOpenSelector} onOpenChange={onOpenChange}>
-      <PopoverTrigger
+    <>
+      <button
+        onClick={onOpen}
+        type="button"
         className={clsx(
-          'flex gap-x-2 items-center py-1.5 px-1 rounded-md bg-[#F2F2F0]',
+          'outline-none flex gap-x-2 items-center py-1 px-1 rounded-md bg-[#F2F2F0]',
           className,
         )}
       >
-        <span className="text-base" role="img">
-          <NativeImage
-            alt={`${selectedChain.name} icon`}
-            className="object-contain rounded-full w-[22px] h-[22px]"
-            src={selectedChain.icon}
-          />
-        </span>
+        <Icon className="w-5 h-5" />
         <span className="text-sm font-medium">{selectedChain.name}</span>
-        <Icon
-          icon="majesticons:chevron-down-line"
-          className="w-4 h-4 text-[#ADACAA]"
-        />
-      </PopoverTrigger>
-      <PopoverContent
-        align="start"
-        alignOffset={-16}
-        className="flex flex-col gap-y-2 items-center w-[388px] h-[368px] bg-white-pure"
+        <ChevronDownLine className="w-4 h-4 text-[#ADACAA]" />
+      </button>
+      <BottomSheet
+        isOpen={isOpen}
+        onClose={onClose}
+        dynamic={false}
+        title="Networks"
       >
-        <TextFieldRoot className="w-full">
-          <TextFieldDecorator>
-            <Icon icon="ion:search" className="w-5 h-5 text-gray-500" />
-          </TextFieldDecorator>
-          <TextFieldInput onChange={onSearchChange} placeholder="Search" />
-        </TextFieldRoot>
-        <ChainList data={filteredChains} onSelect={handleChainSelect} />
-        <span className="w-full text-xs text-[#ADACAA]">
+        <ChainList data={Chains} onSelect={handleChainSelect} />
+        <span className="w-full text-xs text-neutral-500">
           Only supported tokens are shown
         </span>
-      </PopoverContent>
-    </Popover>
+      </BottomSheet>
+    </>
   )
 }
