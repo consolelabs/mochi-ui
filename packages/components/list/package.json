@@ -25,7 +25,6 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@mochi-ui/typography": "workspace:*",
     "clean-package": "^2.2.0",
     "eslint-config-custom": "workspace:*",
     "prettier": "^3.0.3",

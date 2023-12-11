@@ -113,7 +113,7 @@ function renderItem(item: DataType) {
     >
       <span className="text-sm w-6 h-6">{item.icon}</span>
       <div className="flex flex-col flex-1">
-        <Typography level="h3" className="text-sm">
+        <Typography level="h3" className="text-sm" fontWeight="sm">
           {item.message}
         </Typography>
       </div>

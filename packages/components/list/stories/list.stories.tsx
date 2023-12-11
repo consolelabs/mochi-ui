@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Typography } from '@mochi-ui/typography'
 import List from '../src/list'
 
 const meta: Meta<typeof List> = {
@@ -117,9 +116,7 @@ function renderItem(item: DataType) {
         src={item.icon}
       />
       <div className="flex flex-col flex-1">
-        <Typography level="h3" className="text-sm">
-          {item.name}
-        </Typography>
+        <h3 className="text-sm">{item.name}</h3>
         <span className="text-xs text-[#848281]">
           {item.balance.toLocaleString('en-US')}
         </span>
