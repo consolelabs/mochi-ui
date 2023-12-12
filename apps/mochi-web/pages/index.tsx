@@ -93,7 +93,7 @@ export default function Index() {
 
   return (
     <Layout>
-      <SEO />
+      <SEO title="Mochi.gg" />
       <div className="grid grid-cols-1 auto-rows-min gap-y-7 gap-x-20 py-8 px-4 m-auto w-full max-w-5xl lg:grid-cols-2 lg:grid-rows-2 lg:p-8">
         <div className="flex flex-col lg:justify-end">
           <p className="text-[32px] leading-[38.4px] title-tracking md:text-[40px] md:leading-[48px]">
