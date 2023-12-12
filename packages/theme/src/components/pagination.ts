@@ -26,12 +26,12 @@ const paginationEllipsisButtonClsx = ({
 const paginationWrapperClsx = ({
   className = '',
 }: { className?: string } = {}) =>
-  clsx('flex items-center justify-between w-full space-x-6', className)
+  clsx('flex items-center justify-between w-full sm:space-x-6', className)
 
 const paginationAmountPerPageWrapperClsx = ({
   className = '',
 }: { className?: string } = {}) =>
-  clsx('inline-flex justify-start items-center space-x-2', className)
+  clsx('hidden sm:inline-flex justify-start items-center space-x-2', className)
 
 const paginationAmountPerPageSelectClsx = ({
   className = '',
@@ -41,10 +41,18 @@ const paginationAmountPerPageSelectClsx = ({
     className,
   )
 
+const paginationPageNavigateButtonGroupClsx = ({
+  className = '',
+}: { className?: string } = {}) =>
+  clsx('hidden sm:flex justify-center items-center space-x-2', className)
+
 const paginationNavigationClsx = ({
   className = '',
 }: { className?: string } = {}) =>
-  clsx('inline-flex justify-center items-center space-x-2', className)
+  clsx(
+    'flex-1 flex justify-between sm:justify-center items-center space-x-2',
+    className,
+  )
 
 const paginationNavigationButtonClsx = ({
   className = '',
@@ -59,6 +67,11 @@ const paginationNavigationIconClsx = ({
 }: { className?: string } = {}) =>
   clsx('w-4 h-4 text-text-secondary', className)
 
+const paginationMobilePageNumerClsx = ({
+  className = '',
+}: { className?: string } = {}) =>
+  clsx('flex-1 sm:hidden flex items-center justify-center', className)
+
 const pagination = {
   paginationButtonClsx,
   paginationButtonLabelClsx,
@@ -69,6 +82,8 @@ const pagination = {
   paginationNavigationClsx,
   paginationNavigationButtonClsx,
   paginationNavigationIconClsx,
+  paginationPageNavigateButtonGroupClsx,
+  paginationMobilePageNumerClsx,
 }
 
 export { pagination }

@@ -257,7 +257,12 @@ export default function Pagination({
         >
           <ChevronLeftLine className={paginationNavigationIconClsx()} />
         </button>
-        {renderPagination()}
+        <div className={pagination.paginationPageNavigateButtonGroupClsx()}>
+          {renderPagination()}
+        </div>
+        <div className={pagination.paginationMobilePageNumerClsx()}>
+          Page {currentPage ?? 1} of {totalPages}
+        </div>
         <button
           aria-label="Next page"
           className={paginationNavigationButtonClsx()}
