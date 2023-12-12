@@ -12,6 +12,7 @@ import {
   AccordionItem,
   AccordionTrigger,
   Typography,
+  DropdownMenuLabel,
 } from '@mochi-ui/core'
 import Link from 'next/link'
 import { truncateWallet } from '~utils/string'
@@ -48,11 +49,9 @@ export default function ProfileDropdown() {
           bottom: 32,
         }}
       >
-        <Link href={ROUTES.MY_PROFILE}>
-          <DropdownMenuItem leftIcon={<UserSolid />}>Profile</DropdownMenuItem>
-        </Link>
+        <DropdownMenuLabel leftIcon={<UserSolid />}>Profile</DropdownMenuLabel>
 
-        <Link href="#Overview">
+        <Link href={ROUTES.MY_PROFILE}>
           <DropdownMenuItem hasPaddingLeft>Overview</DropdownMenuItem>
         </Link>
 
