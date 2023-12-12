@@ -1,4 +1,4 @@
-import { ChevronLeftLine } from '@mochi-ui/icons'
+import { BackLine } from '@mochi-ui/icons'
 import { Typography } from '@mochi-ui/typography'
 import { IconButton } from '@mochi-ui/icon-button'
 import { pageHeader } from '@mochi-ui/theme'
@@ -44,9 +44,10 @@ const PageHeader = (props: PageHeaderProps) => {
       variant="link"
       color="info"
       onClick={onBack}
+      label="Back"
       className={pageHeaderBackButtonWrapperClsx()}
     >
-      <ChevronLeftLine className={pageHeaderBackIconWrapperClsx()} />
+      <BackLine className={pageHeaderBackIconWrapperClsx()} />
     </IconButton>
   )
 

@@ -124,6 +124,7 @@ const ApplicationDetailSidebarHeader = ({
             <IconButton
               variant="link"
               color="info"
+              label="Back"
               onClick={() => push(ROUTES.APPLICATON_LIST)}
             >
               <ChevronLeftLine className="text-2xl shrink-0 text-text-contrast" />
@@ -164,7 +165,9 @@ const ApplicationDetailSidebarHeader = ({
             </DropdownMenu>
           </div>
         ) : (
-          <ThreeDotLoading className="text-3xl text-text-contrast" />
+          <div className="h-full flex items-center justify-center">
+            <ThreeDotLoading className="text-4xl text-text-contrast" />
+          </div>
         )}
       </div>
     </div>

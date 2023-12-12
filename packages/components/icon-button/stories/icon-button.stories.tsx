@@ -68,6 +68,7 @@ export const Colors: Story = {
           variants.map((variant) => (
             <div className="flex items-center justify-center w-full h-10">
               <IconButton
+                label=""
                 key={`${color}_${variant}`}
                 color={color}
                 variant={variant}
@@ -93,6 +94,7 @@ export const Disabled: Story = {
                 key={`${color}_${variant}`}
                 color={color}
                 variant={variant}
+                label=""
                 disabled
               >
                 <ArrowRightLine height={20} width={20} />

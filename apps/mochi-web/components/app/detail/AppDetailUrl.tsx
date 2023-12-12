@@ -92,6 +92,7 @@ export const AppDetailUrl = ({ control, errors }: Props) => {
                 <IconButton
                   variant="link"
                   type="button"
+                  label="Remove"
                   onClick={() => remove(index)}
                 >
                   <PlusLine className="w-6 h-6 rotate-45 text-danger-700" />

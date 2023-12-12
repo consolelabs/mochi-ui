@@ -35,6 +35,7 @@ export const MobileNav = (props: MobileNavProps) => {
     <>
       <div className={topBarMobileNavClsx()}>
         <IconButton
+          label={openMobileNav ? 'Close' : 'Open'}
           size="lg"
           variant="ghost"
           color="neutral"
@@ -43,12 +44,14 @@ export const MobileNav = (props: MobileNavProps) => {
         >
           {openMobileNav ? (
             <CloseLine
+              aria-hidden
               className={topBarNavToggleButtonIconClsx({
                 className: toggleIconClassName,
               })}
             />
           ) : (
             <MenuSolid
+              aria-hidden
               className={topBarNavToggleButtonIconClsx({
                 className: toggleIconClassName,
               })}

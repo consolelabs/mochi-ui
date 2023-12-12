@@ -174,15 +174,16 @@ export const RenderSubComponent: Story = {
                 if (row.getCanExpand()) {
                   return (
                     <IconButton
+                      label={row.getIsExpanded() ? 'Collapse' : 'Expand'}
                       onClick={row.getToggleExpandedHandler()}
                       variant="link"
                       color="white"
                       size="lg"
                     >
                       {row.getIsExpanded() ? (
-                        <ChevronDownLine />
+                        <ChevronDownLine aria-hidden />
                       ) : (
-                        <ChevronRightLine />
+                        <ChevronRightLine aria-hidden />
                       )}
                     </IconButton>
                   )

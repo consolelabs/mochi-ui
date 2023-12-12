@@ -267,6 +267,7 @@ export const Header = () => {
                   key={icon.key}
                   color="info"
                   variant="outline"
+                  label=""
                   className="!p-1 !w-8 !h-8 my-auto"
                 >
                   {icon}

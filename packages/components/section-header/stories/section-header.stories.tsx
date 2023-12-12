@@ -79,8 +79,8 @@ export function Default() {
         title="Section Title"
         description="Lorem ipsum dolor sit amet consectetur. Sed turpis eget sed nullam volutpat integer posuere."
         actions={[
-          <IconButton variant="link" color="info">
-            <ThreeDotsLine className="text-2xl" />
+          <IconButton label="Open menu" variant="link" color="info">
+            <ThreeDotsLine className="text-2xl" aria-hidden />
           </IconButton>,
         ]}
       />

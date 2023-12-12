@@ -33,6 +33,7 @@ export const SelectedRecipient: React.FC<SelectedRecipientProps> = ({
         }}
         variant="solid"
         color="neutral"
+        label="Remove"
         onClick={() => onRemove?.(profile)}
       >
         <CloseLine className="w-full h-full" />

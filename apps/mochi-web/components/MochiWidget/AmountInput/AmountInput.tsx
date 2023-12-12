@@ -198,7 +198,12 @@ export const AmountInput: React.FC<AmountInputProps> = ({
           onSelect={handleAssetChanged}
           balances={wallet?.balances}
         />
-        <IconButton variant="solid" color="white" onClick={toggleUsdMode}>
+        <IconButton
+          label="Toggle USD mode"
+          variant="solid"
+          color="white"
+          onClick={toggleUsdMode}
+        >
           <ArrowUpDownLine />
         </IconButton>
       </div>
