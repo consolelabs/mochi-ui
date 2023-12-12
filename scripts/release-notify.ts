@@ -20,7 +20,7 @@ function handleTags() {
   const tagsInfo: TagType[] = Array.from(JSON.parse(TAGS))
   const breakLine = '\n'
   const maximumDiscordContentThreshold = 3950
-  const footer = `*Released at ${releasedTime}*`
+  const footer = `Released at ${releasedTime}`
 
   const contentInfo = tagsInfo.map((tag) => {
     const name = tag.name
@@ -46,31 +46,34 @@ function handleTags() {
   })
   const data = contentInfo.reduce<string[]>((acc, item, idx) => {
     const nextAcc = [...acc]
-    const itemLength = item.length
     const currentItem = nextAcc.pop()
-    const isLastItem = idx === contentInfo.length - 1
-    const nextItem = currentItem ? `${currentItem}${breakLine}${item}` : item
-    const nextItemWithFooter = isLastItem
-      ? [nextItem, breakLine, footer].join('')
-      : nextItem
+
+    const appendedItem = currentItem
+      ? `${currentItem}${breakLine}${item}`
+      : item
+    const itemLength = item.length
 
     if (!currentItem) {
-      return [nextItemWithFooter]
+      return [appendedItem]
     }
 
     const nextLength = currentItem.length + itemLength
     if (nextLength > maximumDiscordContentThreshold) {
-      const currentItemWithFooter = [currentItem, breakLine, footer].join('')
-      return [...nextAcc, currentItemWithFooter, item]
+      return [...nextAcc, currentItem, item]
     }
 
-    return [...nextAcc, nextItemWithFooter]
+    return [...nextAcc, appendedItem]
   }, [])
   return data.map((d) => {
     return {
       title: 'New releases! 🚀🚀🚀',
       description: d,
       color: 1127128,
+      footer: {
+        text: footer,
+        icon_url:
+          'https://cdn.discordapp.com/emojis/1131862879319097394.gif?size=48&quality=lossless',
+      },
     }
   })
 }
@@ -114,7 +117,10 @@ async function main() {
   const totalMsgToSend = embeds.length
   console.log(`${totalMsgToSend} messages to send`)
 
-  await Promise.all(embeds.map((embed) => postWebhook(embed)))
+  // For correct order of sending the messages
+  for (const embed of embeds) {
+    await postWebhook(embed)
+  }
 
   console.log('Messages sent !')
 
