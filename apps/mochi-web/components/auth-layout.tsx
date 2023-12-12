@@ -8,7 +8,6 @@ import {
   AddUserSolid,
   CodingSolid,
   SettingSolid,
-  UserSolid,
   TwinkleSolid,
   SafeBoxSolid,
   HomeSolid,
@@ -18,6 +17,7 @@ import {
   ThreeDotLoading,
   Spinner,
   CheckLine,
+  CategorySolid,
 } from '@mochi-ui/icons'
 import {
   Sidebar,
@@ -115,10 +115,10 @@ const ApplicationDetailSidebarHeader = ({
     <div className="relative h-20 w-[240px] bg-neutral-solid-active">
       <NativeImage
         alt="header"
-        className="object-cover absolute top-0 left-0 w-full h-full opacity-50"
+        className="absolute top-0 left-0 object-cover w-full h-full opacity-50"
         src="https://pbs.twimg.com/profile_banners/1168522102410010626/1684159976/300x100"
       />
-      <div className="flex absolute top-0 left-0 z-50 justify-center items-stretch w-full h-full">
+      <div className="absolute top-0 left-0 z-50 flex items-stretch justify-center w-full h-full">
         {!isSelectedAppLoading && selectedApp ? (
           <div className="flex items-center w-full">
             <IconButton
@@ -130,8 +130,8 @@ const ApplicationDetailSidebarHeader = ({
             </IconButton>
 
             <DropdownMenu open={isOpen} onOpenChange={() => setIsOpen(!isOpen)}>
-              <DropdownMenuTrigger className="flex flex-1 gap-4 justify-between items-center pr-6">
-                <div className="flex flex-1 gap-3 items-center">
+              <DropdownMenuTrigger className="flex items-center justify-between flex-1 gap-4 pr-6">
+                <div className="flex items-center flex-1 gap-3">
                   <Avatar src={selectedApp?.avatar || ''} />
                   <h3 className="text-left text-sm font-semibold text-text-contrast max-w-[100px] truncate">
                     {selectedApp?.name || ''}
@@ -144,7 +144,7 @@ const ApplicationDetailSidebarHeader = ({
                 )}
               </DropdownMenuTrigger>
               <DropdownMenuContent className="mt-7 -ml-6 !min-w-[216px] max-h-[320px] overflow-auto">
-                <div className="flex flex-col gap-1 items-center w-full">
+                <div className="flex flex-col items-center w-full gap-1">
                   {!isAppListLoading && appList !== undefined ? (
                     appList.map((app) => (
                       <AppDropdownOption
@@ -208,8 +208,8 @@ export default function AuthenticatedLayout({
       Header: MainSidebarHeader,
       headerItems: [
         {
-          title: 'Profile',
-          Icon: UserSolid,
+          title: 'Overview',
+          Icon: CategorySolid,
           type: 'link',
           as: Link,
           href: ROUTES.MY_PROFILE,

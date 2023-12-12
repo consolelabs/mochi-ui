@@ -19,4 +19,5 @@ export const ROUTES = {
     pathname: '/applications/[id]',
   },
   SETTINGS: '/settings',
+  TRANSACTIONS: '/profile/transactions',
 }

@@ -1,9 +1,11 @@
-import type { ReactElement } from 'react'
-import AuthenticatedLayout from '~components/auth-layout'
+import AuthLayout from '~components/auth-layout'
+import { PayLinkSection } from '~cpn/Profile/PayLinkSection'
+import { PayMeSection } from '~cpn/Profile/PayMeSection'
+import { ProfileWidget } from '~cpn/Profile/ProfileWidget'
+import { TransactionSection } from '~cpn/Profile/TransactionSection'
 import { NextPageWithLayout } from '~pages/_app'
 import { SEO } from '~app/layout/seo'
 import { useLoginWidget } from '@mochi-ui/core'
-import Home from './home'
 
 const Profile: NextPageWithLayout = () => {
   // FIXME:
@@ -12,13 +14,18 @@ const Profile: NextPageWithLayout = () => {
   return (
     <>
       <SEO title={`${profile?.profile_name}'s profile`} />
-      <Home />
+      <AuthLayout className="bg-background-level1">
+        <div className="space-y-6">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <ProfileWidget />
+          </div>
+          <TransactionSection />
+          <PayMeSection />
+          <PayLinkSection />
+        </div>
+      </AuthLayout>
     </>
   )
-}
-
-Profile.getLayout = function getLayout(page: ReactElement) {
-  return <AuthenticatedLayout>{page}</AuthenticatedLayout>
 }
 
 export default Profile
