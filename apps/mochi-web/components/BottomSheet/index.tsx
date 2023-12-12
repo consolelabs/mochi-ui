@@ -74,7 +74,7 @@ function BottomSheet({
     <div
       ref={sheet}
       className={clsx(
-        'flex flex-col min-h-0 p-3 bg-white-pure rounded-t-lg',
+        'relative flex flex-col min-h-0 p-3 bg-white-pure rounded-t-lg',
         className,
         {
           'h-[75%]': !dynamic,
@@ -120,9 +120,11 @@ export { BottomSheet }
 export default function BottomSheetProvider({
   children,
   className = '',
+  nested = false,
 }: {
   children: React.ReactNode
   className?: string
+  nested?: boolean
 }) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const {
@@ -163,25 +165,38 @@ export default function BottomSheetProvider({
       }}
     >
       <div
-        className={clsx('relative transition', className, {
-          'bg-gray-700': isOpen,
-          'bg-transparent': !isOpen,
+        className={clsx('transition', className, {
+          relative: !nested,
         })}
       >
         <m.div
           initial={false}
           animate={{
-            opacity: isOpen ? '50%' : '100%',
-            scale: isOpen ? '100%' : '100%',
+            filter: !nested && isOpen ? 'brightness(50%)' : 'brightness(100%)',
+            scale: !nested && isOpen ? '100%' : '100%',
           }}
           transition={{ type: 'spring', bounce: 0, duration: 0.5 }}
-          className={clsx('will-change-[opacity]', {
-            'pointer-events-none overflow-hidden': isOpen,
-            'pointer-events-auto': !isOpen,
-          })}
+          className={clsx(
+            'will-change-transform bg-white-pure h-full flex flex-col',
+            {
+              '-mx-3 px-3': nested && isOpen,
+              'pointer-events-none overflow-hidden': isOpen,
+              'pointer-events-auto': !isOpen,
+            },
+          )}
         >
           {children}
         </m.div>
+        {nested && (
+          <m.div
+            initial={false}
+            animate={{
+              opacity: isOpen ? 100 : 0,
+            }}
+            style={{ backgroundColor: 'rgba(128, 128, 128, 0.5)' }}
+            className="absolute top-0 left-0 w-full h-full pointer-events-none"
+          />
+        )}
         <m.div
           ref={outerSheetRef}
           initial={false}
@@ -193,7 +208,7 @@ export default function BottomSheetProvider({
           {...(isOpen ? {} : { inert: 'true' })}
           transition={{ type: 'spring', bounce: 0, duration: 0.5 }}
           className={clsx(
-            'will-change-transform',
+            /* 'will-change-transform', */
             'absolute left-1/2 w-full bottom-0 min-h-0 h-full origin-bottom flex flex-col justify-end',
           )}
         />

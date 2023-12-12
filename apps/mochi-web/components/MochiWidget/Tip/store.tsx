@@ -45,6 +45,7 @@ interface TipWidgetState {
   tx: any
   error: any | null
   reset: () => void
+  hardReset: () => void
 }
 
 export const useTipWidget = create(
@@ -96,6 +97,22 @@ export const useTipWidget = create(
           asset: null,
           theme: null,
         }
+        s.wallet = null
+        s.isTransferring = false
+      }),
+    hardReset: () =>
+      set((s) => {
+        s.direction = -1
+        s.step = 1
+        s.request = {
+          recipients: [],
+          message: null,
+          amount: null,
+          asset: null,
+          theme: null,
+        }
+        s.tx = null
+        s.error = null
         s.wallet = null
         s.isTransferring = false
       }),

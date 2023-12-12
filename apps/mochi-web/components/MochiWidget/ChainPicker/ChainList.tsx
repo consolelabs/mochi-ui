@@ -1,11 +1,10 @@
 import { List } from '@mochi-ui/core'
-import { Chain } from './type'
 import { ChainItem } from './ChainItem'
 import { EmptyList } from './EmptyList'
 
 interface Props {
-  data: Chain[]
-  onSelect?: (item: Chain) => void
+  data: any[]
+  onSelect?: (item: any) => void
 }
 
 export const ChainList = (props: Props) => {

@@ -1,44 +1,34 @@
-import { Chain } from './type'
+import { Eth, Bnb, Ftm, Matic, Avalanche, Sol } from '@mochi-ui/icons'
 
-export const Chains: Chain[] = [
+export const Chains = [
   {
     id: 1,
     name: 'Ethereum',
-    icon: 'https://cryptologos.cc/logos/ethereum-eth-logo.png',
+    icon: Eth,
   },
   {
     id: 2,
     name: 'Binance',
-    icon: 'https://cryptologos.cc/logos/bnb-bnb-logo.png',
+    icon: Bnb,
   },
   {
     id: 3,
-    name: 'Tether',
-    icon: 'https://cryptologos.cc/logos/tether-usdt-logo.png',
+    name: 'Fantom',
+    icon: Ftm,
   },
   {
     id: 4,
-    name: 'Fantom',
-    icon: 'https://cryptologos.cc/logos/fantom-ftm-logo.png',
+    name: 'Polygon',
+    icon: Matic,
   },
   {
     id: 5,
-    name: 'Polygon',
-    icon: 'https://cryptologos.cc/logos/polygon-matic-logo.png',
+    name: 'Avalanche',
+    icon: Avalanche,
   },
   {
     id: 6,
-    name: 'Avalanche',
-    icon: 'https://cryptologos.cc/logos/avalanche-avax-logo.png',
-  },
-  {
-    id: 7,
     name: 'Solana',
-    icon: 'https://cryptologos.cc/logos/solana-sol-logo.png',
-  },
-  {
-    id: 8,
-    name: 'Chainlink',
-    icon: 'https://cryptologos.cc/logos/chainlink-link-logo.png',
+    icon: Sol,
   },
 ]

@@ -138,10 +138,17 @@ export default function StepTwo() {
 
           <TransactionPreview.Tip />
 
-          <MessagePicker
-            value={request.message ?? ''}
-            onChange={updateRequestMessage}
-          />
+          <div
+            onKeyUpCapture={(e) => {
+              if (e.key !== 'Enter' || isTransferring) return
+              execute()
+            }}
+          >
+            <MessagePicker
+              value={request.message ?? ''}
+              onChange={updateRequestMessage}
+            />
+          </div>
 
           <ThemePicker value={request.theme} onChange={updateRequestTheme} />
         </div>
