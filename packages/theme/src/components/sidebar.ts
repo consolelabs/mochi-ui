@@ -182,15 +182,21 @@ const classNamePropClsx = ({
   className = '',
   customClassName,
   disabled,
+  selected,
 }: {
   className?: string
   customClassName?: string
   disabled?: boolean
+  selected?: boolean
 }) =>
   clsx(
-    'flex gap-3.5 justify-between items-center p-2.5 rounded w-full cursor-pointer hover:bg-neutral-outline-hover',
+    'flex gap-3.5 justify-between items-center p-2.5 rounded w-full',
+    'outline-none bg-transparent',
     {
       'pointer-events-none': disabled,
+      'cursor-default': selected,
+      'hover:bg-background-level3 focus:bg-background-level3 cursor-pointer':
+        !selected,
     },
     className,
     customClassName,

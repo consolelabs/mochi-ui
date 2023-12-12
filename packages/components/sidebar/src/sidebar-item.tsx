@@ -70,15 +70,13 @@ export default function SidebarItem({
 
   const renderTitle = (
     <>
-      {Icon !== undefined && (
-        <div>
-          <Icon
-            className={sidebarItemIconClsx({ selected, disabled })}
-            height={22}
-            width={22}
-          />
-        </div>
-      )}
+      {Icon ? (
+        <Icon
+          className={sidebarItemIconClsx({ selected, disabled })}
+          height={20}
+          width={20}
+        />
+      ) : null}
       {expanded ? (
         <>
           <div className={sidebarItemInfoWrapperClsx()}>
@@ -153,6 +151,7 @@ export default function SidebarItem({
     disabled,
     className,
     customClassName,
+    selected,
   })
 
   if (type === 'link' && href) {
