@@ -40,7 +40,7 @@ const AccordionItem = forwardRef<
 >(({ className, ...props }, ref) => (
   <AccordionPrimitive.Item className={className} ref={ref} {...props} />
 ))
-AccordionItem.displayName = 'AccordionItem'
+AccordionItem.displayName = AccordionPrimitive.Item.displayName
 
 interface AccordionTriggerProps
   extends ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> {
