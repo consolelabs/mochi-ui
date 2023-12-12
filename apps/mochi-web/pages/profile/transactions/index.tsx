@@ -6,8 +6,10 @@ import {
   SelectTrigger,
   SelectValue,
   Table,
+  useLoginWidget,
 } from '@mochi-ui/core'
 import { useRouter } from 'next/router'
+import { SEO } from '~app/layout/seo'
 import AuthLayout from '~components/auth-layout'
 import { ROUTES } from '~constants/routes'
 import { platformFilters, typeFilters } from '~constants/transactions'
@@ -51,10 +53,15 @@ const AppPageHeader = () => {
 }
 
 const App: NextPageWithLayout = () => {
+  const { profile } = useLoginWidget()
+
   return (
-    <AuthLayout pageHeader={<AppPageHeader />}>
-      <Table columns={[]} data={[]} />
-    </AuthLayout>
+    <>
+      <SEO title={`${profile?.profile_name}'s transactions`} />
+      <AuthLayout pageHeader={<AppPageHeader />}>
+        <Table columns={[]} data={[]} />
+      </AuthLayout>
+    </>
   )
 }
 
