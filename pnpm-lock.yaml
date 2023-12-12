@@ -1668,6 +1668,9 @@ importers:
 
   packages/components/table:
     dependencies:
+      '@mochi-ui/skeleton':
+        specifier: workspace:*
+        version: link:../skeleton
       '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme

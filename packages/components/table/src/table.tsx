@@ -1,4 +1,5 @@
 import { table } from '@mochi-ui/theme'
+import { Skeleton } from '@mochi-ui/skeleton'
 import type { ColumnDef as ColDef, RowData } from '@tanstack/react-table'
 import {
   Row,
@@ -120,7 +121,7 @@ export default function Table<T extends RowData>({
                         className={tableDataLoadingClsx({ border })}
                         key={idx}
                       >
-                        <div className={tableDataSkeletonClsx()} />
+                        <Skeleton className={tableDataSkeletonClsx()} />
                       </td>
                     ))}
                   </tr>

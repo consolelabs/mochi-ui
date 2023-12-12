@@ -38,7 +38,8 @@
   },
   "dependencies": {
     "@tanstack/react-table": "^8.10.7",
-    "@mochi-ui/theme": "workspace:*"
+    "@mochi-ui/theme": "workspace:*",
+    "@mochi-ui/skeleton": "workspace:*"
   },
   "clean-package": "../../../clean-package.config.json"
 }
