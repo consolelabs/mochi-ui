@@ -1,4 +1,5 @@
 import {
+  Badge,
   PageHeader,
   Select,
   SelectContent,
@@ -6,6 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
   Table,
+  Typography,
   useLoginWidget,
 } from '@mochi-ui/core'
 import { useRouter } from 'next/router'
@@ -13,7 +15,17 @@ import { SEO } from '~app/layout/seo'
 import AuthLayout from '~components/auth-layout'
 import { ROUTES } from '~constants/routes'
 import { platformFilters, typeFilters } from '~constants/transactions'
+import { useFetchProfileTransaction } from '~hooks/app/useFetchProfileTransaction'
 import { NextPageWithLayout } from '~pages/_app'
+import { ModelProfileTransaction } from '~types/mochi-pay-schema'
+import { format } from 'date-fns'
+import { TransactionUsernameCell } from '~cpn/Transaction/TransactionUsernameCell'
+import {
+  ActionType,
+  formatTransactionAmount,
+  transformActionType,
+} from '~cpn/Transaction/utils'
+import { useMemo } from 'react'
 
 const AppPageHeader = () => {
   const { push } = useRouter()
@@ -52,14 +64,101 @@ const AppPageHeader = () => {
   )
 }
 
+const MAX_TRANSACTION_TO_DISPLAY = 30
+
 const App: NextPageWithLayout = () => {
   const { profile } = useLoginWidget()
+  const { transactions: _transactions, isLoading } = useFetchProfileTransaction(
+    profile?.id ?? '',
+    Boolean(profile?.id),
+  )
+  const transactions = useMemo(
+    () => _transactions?.slice(0, MAX_TRANSACTION_TO_DISPLAY),
+    [_transactions],
+  )
 
   return (
     <>
       <SEO title={`${profile?.profile_name}'s transactions`} />
       <AuthLayout pageHeader={<AppPageHeader />}>
-        <Table columns={[]} data={[]} />
+        <Table<ModelProfileTransaction>
+          columns={[
+            {
+              header: 'WEN',
+              // eslint-disable-next-line react/no-unstable-nested-components
+              cell: ({ row: { original: transaction } }) => {
+                return (
+                  <div>
+                    <Typography level="p5">
+                      {format(new Date(transaction.created_at ?? ''), 'Pp')}
+                    </Typography>
+                    <Typography
+                      level="p6"
+                      className="capitalize"
+                      color="textSecondary"
+                    >
+                      {transaction.source_platform}
+                    </Typography>
+                  </div>
+                )
+              },
+            },
+            {
+              header: 'USERNAME',
+              // eslint-disable-next-line react/no-unstable-nested-components
+              cell: ({ row: { original } }) => (
+                <TransactionUsernameCell {...original} />
+              ),
+            },
+            {
+              header: 'AMOUNT',
+              // eslint-disable-next-line react/no-unstable-nested-components
+              cell: ({ row: { original } }) => {
+                const { amount, token, type } = original
+                const isReceive = type === 'in'
+                return (
+                  <Typography
+                    level="p5"
+                    color={isReceive ? 'success' : 'textPrimary'}
+                  >
+                    {`${isReceive ? '+' : '-'} ${formatTransactionAmount(
+                      amount ?? '0',
+                      token?.decimal ?? 0,
+                    )} ${token?.symbol}`}
+                  </Typography>
+                )
+              },
+            },
+            {
+              header: 'TYPE',
+              // eslint-disable-next-line react/no-unstable-nested-components
+              cell: ({ row: { original } }) => (
+                <span className="capitalize">
+                  {transformActionType(original.action as ActionType)}
+                </span>
+              ),
+            },
+            {
+              header: 'STATUS',
+              cell: ({ row: { original } }) => {
+                return {
+                  success: (
+                    <Badge
+                      appearance="success"
+                      label="success"
+                      className="w-fit"
+                    />
+                  ),
+                  fail: (
+                    <Badge appearance="danger" label="fail" className="w-fit" />
+                  ),
+                }[original.status ?? 'success']
+              },
+            },
+          ]}
+          data={transactions ?? []}
+          isLoading={isLoading}
+        />
       </AuthLayout>
     </>
   )
