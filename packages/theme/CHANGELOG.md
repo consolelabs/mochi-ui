@@ -1,5 +1,24 @@
 # @mochi-ui/theme
 
+## 0.10.0
+
+### Minor Changes
+
+- [#413](https://github.com/consolelabs/mochi-ui/pull/413)
+  [`1fa43c9`](https://github.com/consolelabs/mochi-ui/commit/1fa43c984451e285df4dab91a4e99d3768e32448)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - update table
+  loading state using skeleton component
+
+- [#407](https://github.com/consolelabs/mochi-ui/pull/407)
+  [`8bc9e04`](https://github.com/consolelabs/mochi-ui/commit/8bc9e047b90bed1f1e0ff77305d77eb727f5a898)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Update
+  responsive pagination
+
+- [#406](https://github.com/consolelabs/mochi-ui/pull/406)
+  [`9bb0983`](https://github.com/consolelabs/mochi-ui/commit/9bb0983bb1376c82e993f5f44d8865cd54af6e98)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Remove input
+  field component
+
 ## 0.9.0
 
 ### Minor Changes
