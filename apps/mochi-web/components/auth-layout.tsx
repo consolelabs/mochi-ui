@@ -8,7 +8,6 @@ import {
   AddUserSolid,
   CodingSolid,
   SettingSolid,
-  UserSolid,
   TwinkleSolid,
   SafeBoxSolid,
   HomeSolid,
