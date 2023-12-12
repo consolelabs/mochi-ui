@@ -25,7 +25,6 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@mochi-ui/skeleton": "workspace:*",
     "@mochi-ui/badge": "workspace:*",
     "@mochi-ui/icons": "workspace:*",
     "@mochi-ui/icon-button": "workspace:*",
@@ -39,7 +38,8 @@
   },
   "dependencies": {
     "@tanstack/react-table": "^8.10.7",
-    "@mochi-ui/theme": "workspace:*"
+    "@mochi-ui/theme": "workspace:*",
+    "@mochi-ui/skeleton": "workspace:*"
   },
   "clean-package": "../../../clean-package.config.json"
 }
