@@ -1,6 +1,6 @@
 {
   "name": "@mochi-ui/skeleton",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Skeleton is a placeholder to show a loading state and the expected shape of a component.",
   "keywords": [
     "skeleton"

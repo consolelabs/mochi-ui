@@ -1,5 +1,67 @@
 # @mochi-ui/core
 
+## 0.9.0
+
+### Minor Changes
+
+- [#407](https://github.com/consolelabs/mochi-ui/pull/407)
+  [`8bc9e04`](https://github.com/consolelabs/mochi-ui/commit/8bc9e047b90bed1f1e0ff77305d77eb727f5a898)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Update
+  responsive pagination
+
+- [#406](https://github.com/consolelabs/mochi-ui/pull/406)
+  [`9bb0983`](https://github.com/consolelabs/mochi-ui/commit/9bb0983bb1376c82e993f5f44d8865cd54af6e98)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Remove input
+  field component
+
+- [#396](https://github.com/consolelabs/mochi-ui/pull/396)
+  [`34ba488`](https://github.com/consolelabs/mochi-ui/commit/34ba4885b5be3cd4e01b76f9323fe1cf4023106e)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Remove Heading
+  component
+
+### Patch Changes
+
+- Updated dependencies
+  [[`1fa43c9`](https://github.com/consolelabs/mochi-ui/commit/1fa43c984451e285df4dab91a4e99d3768e32448),
+  [`8bc9e04`](https://github.com/consolelabs/mochi-ui/commit/8bc9e047b90bed1f1e0ff77305d77eb727f5a898),
+  [`9bb0983`](https://github.com/consolelabs/mochi-ui/commit/9bb0983bb1376c82e993f5f44d8865cd54af6e98)]:
+  - @mochi-ui/table@0.4.0
+  - @mochi-ui/theme@0.10.0
+  - @mochi-ui/accordion@0.1.11
+  - @mochi-ui/action-bar@0.1.1
+  - @mochi-ui/alert@1.2.1
+  - @mochi-ui/avatar@0.1.1
+  - @mochi-ui/badge@0.2.10
+  - @mochi-ui/button@0.4.7
+  - @mochi-ui/checkbox@0.1.11
+  - @mochi-ui/connect-wallet-widget@0.0.3
+  - @mochi-ui/content-editable@1.0.2
+  - @mochi-ui/dropdown@0.1.11
+  - @mochi-ui/footer@0.1.2
+  - @mochi-ui/form@0.1.8
+  - @mochi-ui/icon-button@0.4.8
+  - @mochi-ui/input@0.2.8
+  - @mochi-ui/label@0.1.8
+  - @mochi-ui/layout@0.1.8
+  - @mochi-ui/list@0.0.21
+  - @mochi-ui/login-widget@0.1.12
+  - @mochi-ui/logo@0.1.8
+  - @mochi-ui/modal@0.2.10
+  - @mochi-ui/page-content@0.1.8
+  - @mochi-ui/page-header@0.2.8
+  - @mochi-ui/popover@0.2.9
+  - @mochi-ui/profile-badge@0.1.9
+  - @mochi-ui/section-list@0.0.20
+  - @mochi-ui/select@0.1.10
+  - @mochi-ui/sidebar@0.1.1
+  - @mochi-ui/skeleton@1.0.1
+  - @mochi-ui/switch@0.0.19
+  - @mochi-ui/toast@0.1.1
+  - @mochi-ui/toggle-button@0.1.1
+  - @mochi-ui/tooltip@0.2.8
+  - @mochi-ui/top-bar@0.1.7
+  - @mochi-ui/typography@0.0.7
+
 ## 0.8.0
 
 ### Minor Changes
