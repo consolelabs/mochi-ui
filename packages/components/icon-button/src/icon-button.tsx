@@ -4,7 +4,9 @@ import type * as Polymorphic from '@mochi-ui/polymorphic'
 
 const { iconButtonCva } = iconButton
 
-export type IconButtonProps = IconButtonStylesProps
+export type IconButtonProps = IconButtonStylesProps & {
+  label: string
+}
 
 type PolymorphicIconButton = Polymorphic.ForwardRefComponent<
   'button',
@@ -21,6 +23,7 @@ const IconButton = React.forwardRef(
       size,
       disabled = false,
       className,
+      label,
       ...rest
     },
     ref,
@@ -30,6 +33,7 @@ const IconButton = React.forwardRef(
         ref={ref}
         className={iconButtonCva({ className, variant, color, size })}
         disabled={disabled}
+        aria-label={label}
         {...rest}
       >
         {children}

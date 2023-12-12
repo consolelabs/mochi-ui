@@ -8,7 +8,7 @@ import { useAlertContext } from './context'
 
 type PolymorphicAlertCloseButton = Polymorphic.ForwardRefComponent<
   'button',
-  IconButtonProps & {
+  Omit<IconButtonProps, 'label'> & {
     asChild?: boolean
   }
 >
@@ -47,6 +47,7 @@ const AlertCloseButton = forwardRef((props, ref) => {
         size,
         className,
       })}
+      label="Close"
       data-scheme={scheme}
       data-layout={layout}
       data-size={size}

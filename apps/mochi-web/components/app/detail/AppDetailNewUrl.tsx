@@ -95,7 +95,7 @@ export const AppDetailNewUrl = ({ onAddNewUrl }: Props) => {
             )}
           />
           <TextFieldDecorator>
-            <IconButton variant="link">
+            <IconButton label="Add" variant="link">
               <PlusLine className="w-6 h-6" />
             </IconButton>
           </TextFieldDecorator>

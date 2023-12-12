@@ -124,6 +124,7 @@ export default function ConnectSocial({
             const disabled = !item.onClick
             return (
               <IconButton
+                label=""
                 type="button"
                 key={item.name}
                 onClick={() =>

@@ -13,7 +13,7 @@ const pageHeaderWrapperClsx = ({
   )
 
 const pageHeaderLeftClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx('flex w-full gap-2 items-start flex-col sm:flex-row', className)
+  clsx('flex w-full gap-1 items-start flex-col sm:flex-row', className)
 
 const pageHeaderTitleWrapperClsx = ({
   className = '',
@@ -41,7 +41,7 @@ const pageHeaderBackButtonWrapperClsx = ({
 
 const pageHeaderBackIconWrapperClsx = ({
   className = '',
-}: { className?: string } = {}) => clsx('text-3xl', className)
+}: { className?: string } = {}) => clsx('text-2xl', className)
 
 const pageHeader = {
   pageHeaderWrapperClsx,

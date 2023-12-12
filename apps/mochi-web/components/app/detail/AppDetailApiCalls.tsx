@@ -25,6 +25,7 @@ const Expander: ColumnProps<ViewApplicationWebhookLog>['cell'] = (props) =>
       variant="link"
       color="white"
       className="w-6 !h-6 flex justify-center items-center"
+      label={props.row.getIsExpanded() ? 'Collapse' : 'Expand'}
     >
       <ChevronRightLine
         className={clsx('w-4 h-4 transition-all', {

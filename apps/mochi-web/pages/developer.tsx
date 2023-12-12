@@ -251,8 +251,8 @@ function TryItOut() {
             <span className="text-xs uppercase text-white-pure">
               curl request
             </span>
-            <IconButton variant="ghost" size="sm">
-              <CopySolid className="w-5 h-5" />
+            <IconButton label="Copy" variant="ghost" size="sm">
+              <CopySolid className="w-5 h-5" aria-hidden />
             </IconButton>
           </div>
           <div className="h-full overflow-auto">

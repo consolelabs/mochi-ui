@@ -79,8 +79,8 @@ export function Default() {
         title="Page Title"
         titleExtra="(2,951 members)"
         actions={[
-          <IconButton variant="link" color="info">
-            <ThreeDotsLine className="text-2xl" />
+          <IconButton label="Open menu" variant="link" color="info">
+            <ThreeDotsLine className="text-2xl" aria-hidden />
           </IconButton>,
         ]}
       />
