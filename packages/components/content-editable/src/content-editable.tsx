@@ -6,6 +6,7 @@ import {
   useRef,
 } from 'react'
 import { contentEditable } from '@mochi-ui/theme'
+import { callAllHandlers } from '@dwarvesf/react-utils'
 
 const { contentEditableClsx } = contentEditable
 
@@ -49,6 +50,8 @@ interface ContentEditableProps extends DivProps {
   placeholder?: string
   className?: string
   disabled?: boolean
+  preventLineBreak?: boolean
+  preventHtml?: boolean
 }
 
 const ContentEditable = forwardRef<HTMLElement, ContentEditableProps>(
@@ -60,10 +63,13 @@ const ContentEditable = forwardRef<HTMLElement, ContentEditableProps>(
       className,
       disabled,
       children,
-      onBlur,
-      onKeyUp,
-      onKeyDown,
-      onChange,
+      onBlur: _onBlur,
+      onKeyUp: _onKeyUp,
+      onKeyDown: _onKeyDown,
+      onChange: _onChange,
+      onPaste: _onPaste,
+      preventLineBreak = false,
+      preventHtml = false,
       ...props
     },
     ref,
@@ -77,7 +83,7 @@ const ContentEditable = forwardRef<HTMLElement, ContentEditableProps>(
       if (!innerRef.current) return
 
       const html = innerRef.current.innerHTML
-      if (onChange && html !== lastHtml.current) {
+      if (_onChange && html !== lastHtml.current) {
         // Clone event with Object.assign to avoid
         // "Cannot assign to read only property 'target' of object"
         const evt = Object.assign({}, originalEvt, {
@@ -85,10 +91,48 @@ const ContentEditable = forwardRef<HTMLElement, ContentEditableProps>(
             value: html,
           },
         })
-        onChange(evt)
+        _onChange(evt)
       }
       lastHtml.current = html
     }
+
+    const onBlur = _onBlur || emitChange
+
+    const onKeyUp = _onKeyUp || emitChange
+
+    const onKeyDown = callAllHandlers(
+      _onKeyDown || emitChange,
+      (e) => {
+        if (!preventLineBreak) return
+        if (e.key === 'Enter') {
+          e.preventDefault()
+        }
+      },
+      (e) => {
+        if (!preventHtml) return
+        if (e.ctrlKey || e.metaKey) {
+          switch (e.key) {
+            case 'b':
+            case 'i':
+            case 'u':
+              e.preventDefault()
+              break
+            default:
+              break
+          }
+        }
+      },
+    )
+
+    const onPaste = callAllHandlers(_onPaste, (e) => {
+      if (!preventHtml) return
+      e.preventDefault()
+      const plainText = e.clipboardData.getData('text/plain')
+      const insertedText = preventLineBreak
+        ? plainText.replace(/(\r\n|\n|\r)/gm, '')
+        : plainText
+      document.execCommand('insertText', false, insertedText)
+    })
 
     useEffect(() => {
       if (!innerRef.current) return
@@ -105,9 +149,10 @@ const ContentEditable = forwardRef<HTMLElement, ContentEditableProps>(
         ...props,
         ref: innerRef,
         onInput: emitChange,
-        onBlur: onBlur || emitChange,
-        onKeyUp: onKeyUp || emitChange,
-        onKeyDown: onKeyDown || emitChange,
+        onBlur,
+        onKeyUp,
+        onKeyDown,
+        onPaste,
         contentEditable: !disabled,
         dangerouslySetInnerHTML: { __html: value },
         placeholder,

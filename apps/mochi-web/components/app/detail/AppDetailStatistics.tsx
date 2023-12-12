@@ -127,6 +127,8 @@ export const AppDetailStatistics = ({
                           ref.focus()
                         }
                       }}
+                      preventHtml
+                      preventLineBreak
                     />
                     <FormErrorMessage>
                       {fieldState.error?.message}
