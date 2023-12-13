@@ -1,5 +1,25 @@
 # @mochi-ui/icons
 
+## 0.6.0
+
+### Minor Changes
+
+- [#411](https://github.com/consolelabs/mochi-ui/pull/411)
+  [`dd3cbf6`](https://github.com/consolelabs/mochi-ui/commit/dd3cbf62d93409baa5a04995c1fbde16db6f5a68)
+  Thanks [@tuanddd](https://github.com/tuanddd)! - Add new avalanche icon
+
+### Patch Changes
+
+- [#419](https://github.com/consolelabs/mochi-ui/pull/419)
+  [`331c272`](https://github.com/consolelabs/mochi-ui/commit/331c2724d065f3928853029601572a9a4eb7c430)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Missing label in icon
+  button
+
+- [#416](https://github.com/consolelabs/mochi-ui/pull/416)
+  [`3ca7d98`](https://github.com/consolelabs/mochi-ui/commit/3ca7d98d86397300b3ee1fb890c7de34bae1a8a9)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Enhance sidebar hover
+  and focus
+
 ## 0.5.0
 
 ### Minor Changes

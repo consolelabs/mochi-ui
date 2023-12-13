@@ -1,5 +1,25 @@
 # @mochi-ui/sidebar
 
+## 0.1.2
+
+### Patch Changes
+
+- [#416](https://github.com/consolelabs/mochi-ui/pull/416)
+  [`3ca7d98`](https://github.com/consolelabs/mochi-ui/commit/3ca7d98d86397300b3ee1fb890c7de34bae1a8a9)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Enhance sidebar hover
+  and focus
+
+- Updated dependencies
+  [[`dd3cbf6`](https://github.com/consolelabs/mochi-ui/commit/dd3cbf62d93409baa5a04995c1fbde16db6f5a68),
+  [`331c272`](https://github.com/consolelabs/mochi-ui/commit/331c2724d065f3928853029601572a9a4eb7c430),
+  [`3ca7d98`](https://github.com/consolelabs/mochi-ui/commit/3ca7d98d86397300b3ee1fb890c7de34bae1a8a9),
+  [`d1293ba`](https://github.com/consolelabs/mochi-ui/commit/d1293babf5a17b32991348465c7fc5ff99d27919)]:
+  - @mochi-ui/icons@0.6.0
+  - @mochi-ui/theme@0.11.0
+  - @mochi-ui/accordion@0.1.12
+  - @mochi-ui/typography@0.0.7
+  - @mochi-ui/tooltip@0.2.9
+
 ## 0.1.1
 
 ### Patch Changes

@@ -1,5 +1,60 @@
 # @mochi-ui/core
 
+## 0.10.0
+
+### Minor Changes
+
+- [#422](https://github.com/consolelabs/mochi-ui/pull/422)
+  [`d1293ba`](https://github.com/consolelabs/mochi-ui/commit/d1293babf5a17b32991348465c7fc5ff99d27919)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Add Card component
+
+### Patch Changes
+
+- Updated dependencies
+  [[`dd3cbf6`](https://github.com/consolelabs/mochi-ui/commit/dd3cbf62d93409baa5a04995c1fbde16db6f5a68),
+  [`733a619`](https://github.com/consolelabs/mochi-ui/commit/733a6193af33dc0babe630c983af3b1d56dbb961),
+  [`331c272`](https://github.com/consolelabs/mochi-ui/commit/331c2724d065f3928853029601572a9a4eb7c430),
+  [`3ca7d98`](https://github.com/consolelabs/mochi-ui/commit/3ca7d98d86397300b3ee1fb890c7de34bae1a8a9),
+  [`d1293ba`](https://github.com/consolelabs/mochi-ui/commit/d1293babf5a17b32991348465c7fc5ff99d27919)]:
+  - @mochi-ui/icons@0.6.0
+  - @mochi-ui/content-editable@1.1.0
+  - @mochi-ui/login-widget@0.1.13
+  - @mochi-ui/icon-button@0.4.9
+  - @mochi-ui/page-header@0.2.9
+  - @mochi-ui/top-bar@0.1.8
+  - @mochi-ui/alert@1.2.2
+  - @mochi-ui/table@0.4.1
+  - @mochi-ui/theme@0.11.0
+  - @mochi-ui/sidebar@0.1.2
+  - @mochi-ui/card@0.1.0
+  - @mochi-ui/accordion@0.1.12
+  - @mochi-ui/badge@0.2.11
+  - @mochi-ui/button@0.4.8
+  - @mochi-ui/checkbox@0.1.12
+  - @mochi-ui/connect-wallet-widget@0.0.4
+  - @mochi-ui/dropdown@0.1.12
+  - @mochi-ui/footer@0.1.3
+  - @mochi-ui/form@0.1.9
+  - @mochi-ui/input@0.2.9
+  - @mochi-ui/layout@0.1.9
+  - @mochi-ui/modal@0.2.11
+  - @mochi-ui/popover@0.2.10
+  - @mochi-ui/select@0.1.11
+  - @mochi-ui/skeleton@1.0.2
+  - @mochi-ui/toggle-button@0.1.1
+  - @mochi-ui/typography@0.0.7
+  - @mochi-ui/action-bar@0.1.2
+  - @mochi-ui/toast@0.1.2
+  - @mochi-ui/avatar@0.1.2
+  - @mochi-ui/label@0.1.9
+  - @mochi-ui/list@0.0.22
+  - @mochi-ui/logo@0.1.9
+  - @mochi-ui/page-content@0.1.9
+  - @mochi-ui/profile-badge@0.1.10
+  - @mochi-ui/section-list@0.0.21
+  - @mochi-ui/switch@0.0.20
+  - @mochi-ui/tooltip@0.2.9
+
 ## 0.9.0
 
 ### Minor Changes

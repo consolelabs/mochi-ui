@@ -1,5 +1,21 @@
 # @mochi-ui/section-header
 
+## 0.1.8
+
+### Patch Changes
+
+- [#419](https://github.com/consolelabs/mochi-ui/pull/419)
+  [`331c272`](https://github.com/consolelabs/mochi-ui/commit/331c2724d065f3928853029601572a9a4eb7c430)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Missing label in icon
+  button
+
+- Updated dependencies
+  [[`331c272`](https://github.com/consolelabs/mochi-ui/commit/331c2724d065f3928853029601572a9a4eb7c430),
+  [`3ca7d98`](https://github.com/consolelabs/mochi-ui/commit/3ca7d98d86397300b3ee1fb890c7de34bae1a8a9),
+  [`d1293ba`](https://github.com/consolelabs/mochi-ui/commit/d1293babf5a17b32991348465c7fc5ff99d27919)]:
+  - @mochi-ui/theme@0.11.0
+  - @mochi-ui/typography@0.0.7
+
 ## 0.1.7
 
 ### Patch Changes
