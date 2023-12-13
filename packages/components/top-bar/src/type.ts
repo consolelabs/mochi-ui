@@ -20,13 +20,11 @@ export interface NavItem extends MobileNavItem {
 export interface MobileNavProps {
   navItems: JSX.Element[]
   Header?: ({ onClose }: { onClose: () => void }) => JSX.Element
+  toggleBtnClassName?: string
   toggleIconClassName?: string
 }
 
 export type TopBarProps = {
-  // desktopNavItems?: JSX.Element[]
-  // mobileNavItems?: JSX.Element[]
-  // MobileHeader?: ({ onClose }: { onClose: () => void }) => JSX.Element
   leftSlot?: ReactNode
   rightSlot?: ReactNode
   className?: string

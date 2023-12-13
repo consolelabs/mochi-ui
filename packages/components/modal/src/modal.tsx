@@ -48,12 +48,13 @@ type ModalContentProps = React.ComponentPropsWithoutRef<
   typeof ModalPrimitive.Content
 > & {
   showCloseBtn?: boolean
+  closeBtnClassName?: string
 }
 
 const ModalContent = React.forwardRef<
   React.ElementRef<typeof ModalPrimitive.Content>,
   ModalContentProps
->(({ className, children, showCloseBtn, ...props }, ref) => (
+>(({ className, children, showCloseBtn, closeBtnClassName, ...props }, ref) => (
   <ModalPortal>
     <ModalOverlay />
     <ModalPrimitive.Content
@@ -63,7 +64,9 @@ const ModalContent = React.forwardRef<
     >
       {children}
       {showCloseBtn ? (
-        <ModalClose className={modalCloseButtonClsx()}>
+        <ModalClose
+          className={modalCloseButtonClsx({ className: closeBtnClassName })}
+        >
           <CloseLine />
         </ModalClose>
       ) : null}
