@@ -159,6 +159,8 @@ export interface DtoUpdateApplicationInfoRequest {
   metadata: Record<string, any>
   platforms: string[]
   webhooks?: Record<string, string>
+  // FIXME:
+  webhook?: string
 }
 
 export interface DtoWithdrawRequest {
@@ -436,6 +438,8 @@ export interface ViewApplication {
   slug?: string
   updated_at?: string
   webhooks?: Record<string, string>
+  // FIXME:
+  webhook?: string
 }
 
 export interface ViewApplicationListWithPaginationResponse {
