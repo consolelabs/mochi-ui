@@ -30,6 +30,7 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
+    "@mochi-ui/card": "workspace:*",
     "@mochi-ui/skeleton": "workspace:*",
     "@mochi-ui/connect-wallet-widget": "workspace:*",
     "@mochi-ui/content-editable": "workspace:*",

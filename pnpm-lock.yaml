@@ -596,6 +596,43 @@ importers:
         specifier: workspace:*
         version: link:../../tsconfig
 
+  packages/components/card:
+    dependencies:
+      '@mochi-ui/polymorphic':
+        specifier: workspace:*
+        version: link:../polymorphic
+      '@mochi-ui/theme':
+        specifier: workspace:*
+        version: link:../../theme
+      class-variance-authority:
+        specifier: ^0.7.0
+        version: 0.7.0
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
+    devDependencies:
+      '@mochi-ui/typography':
+        specifier: workspace:*
+        version: link:../typography
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.1.0
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
   packages/components/checkbox:
     dependencies:
       '@mochi-ui/icons':
@@ -1978,6 +2015,9 @@ importers:
       '@mochi-ui/button':
         specifier: workspace:*
         version: link:../components/button
+      '@mochi-ui/card':
+        specifier: workspace:*
+        version: link:../components/card
       '@mochi-ui/checkbox':
         specifier: workspace:*
         version: link:../components/checkbox
