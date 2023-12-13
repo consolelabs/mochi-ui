@@ -48,12 +48,7 @@ export default function reducer(
           .map((a) => a.toLowerCase())
           .includes(wallet.address.toLowerCase())
 
-        if (
-          isInList &&
-          ['connected_different_chain', 'connected', 'disconnected'].includes(
-            wallet.connectionStatus,
-          )
-        ) {
+        if (isInList) {
           const updated = toWallet(
             wallet.address,
             chain,
@@ -67,7 +62,7 @@ export default function reducer(
           continue
         }
 
-        wallet.connectionStatus = 'disconnected'
+        // wallet.connectionStatus = 'disconnected'
       }
 
       return {

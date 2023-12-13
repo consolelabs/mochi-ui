@@ -46,7 +46,10 @@ export default function StepTwo() {
       return params
     }
 
-    if (provider?.chainId !== request.asset?.token.chain_id) {
+    if (
+      provider?.provider &&
+      provider?.chainId !== request.asset?.token.chain_id
+    ) {
       params.chainIdHex = request.asset?.token.chain_id
     }
 
@@ -72,10 +75,11 @@ export default function StepTwo() {
     if (
       incorrectParams.chainIdHex &&
       provider &&
+      provider.provider &&
       provider.chainId !== incorrectParams.chainIdHex
     ) {
       await provider.provider
-        .request({
+        ?.request({
           method: 'wallet_switchEthereumChain',
           params: [{ chainId: incorrectParams.chainIdHex }],
         })

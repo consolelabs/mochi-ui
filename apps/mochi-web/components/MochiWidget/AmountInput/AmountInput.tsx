@@ -79,9 +79,13 @@ export const AmountInput: React.FC<AmountInputProps> = ({
     takeExtraDecimal: 1,
   })
 
-  const valueToken = isToken(request.asset)
+  let valueToken = isToken(request.asset)
     ? tipAmount.value / unitPrice
     : tipAmount.value / ((request.asset?.token_amount ?? 0) * unitPrice)
+
+  if (Number.isNaN(valueToken)) {
+    valueToken = 0
+  }
 
   const tipAmountToken = utils.formatDigit({
     value: valueToken,

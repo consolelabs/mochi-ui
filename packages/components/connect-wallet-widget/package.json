@@ -45,12 +45,14 @@
     "@mochi-ui/tabs": "workspace:*",
     "@mochi-ui/theme": "workspace:*",
     "@solana/web3.js": "^1.74.0",
+    "@walletconnect/sign-client": "^2.10.6",
     "browser-string-hexer": "^1.0.0",
     "bs58": "^5.0.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "dlv": "^1.1.3",
     "ethers": "^5.7.0",
+    "is-mobile": "^4.0.0",
     "mipd": "^0.0.5"
   },
   "devDependencies": {

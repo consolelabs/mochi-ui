@@ -134,7 +134,13 @@ export default function BottomSheetProvider({
   } = useDisclosure()
   const outerSheetRef = useRef<HTMLDivElement | null>(null)
   const sheetRef = useRef<HTMLDivElement | null>(null)
-  useOnClickOutside(sheetRef, onClose)
+  useOnClickOutside(sheetRef, (e) => {
+    const isInsidePopover = (e.target as HTMLElement).closest(
+      '[data-radix-popper-content-wrapper]',
+    )
+    if (isInsidePopover) return
+    onClose()
+  })
 
   useEffect(() => {
     function listenForEsc(e: KeyboardEvent) {
@@ -180,8 +186,8 @@ export default function BottomSheetProvider({
             'will-change-transform bg-white-pure h-full flex flex-col',
             {
               '-mx-3 px-3': nested && isOpen,
-              'pointer-events-none overflow-hidden': isOpen,
-              'pointer-events-auto': !isOpen,
+              'pointer-events-none overflow-hidden': isOpen || delayIsOpen,
+              'pointer-events-auto': !isOpen && !delayIsOpen,
             },
           )}
         >

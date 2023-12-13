@@ -20,12 +20,12 @@ const loginWidgetDialogContentWrapperClsx = ({
   className?: string
 } = {}) =>
   clsx(
-    'flex fixed top-1/2 w-full max-w-sm left-1/2 z-50 -translate-x-1/2 -translate-y-1/2',
+    'flex fixed top-1/2 w-full left-1/2 z-50 -translate-x-1/2 -translate-y-1/2',
     className,
   )
 
 const loginContentClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx('overflow-hidden rounded-xl relative p-3 w-[400px]', className)
+  clsx('overflow-hidden rounded-lg relative max-w-[400px] w-full', className)
 
 const loginContentSocialGridWrapperClsx = ({
   className = '',
