@@ -37,8 +37,14 @@ import {
 import { useMemo } from 'react'
 import { utils } from '@consolelabs/mochi-ui'
 
-const AppPageHeader = () => {
+interface AppPageHeaderProps {
+  filterType: TransactionTypeFilterKey
+  filterPlatform: TransactionPlatformFilterKey
+}
+
+const AppPageHeader = (props: AppPageHeaderProps) => {
   const { push, query } = useRouter()
+  const { filterType, filterPlatform } = props
   const handlePlarformChange = (value: string) => {
     push(
       {
@@ -70,7 +76,11 @@ const AppPageHeader = () => {
       title="Transactions"
       onBack={() => push(ROUTES.MY_PROFILE)}
       actions={[
-        <Select key="filter-types" onChange={handleTypeChange}>
+        <Select
+          key="filter-types"
+          onChange={handleTypeChange}
+          value={filterType}
+        >
           <SelectTrigger className="border border-divider min-w-[130px] justify-between px-4">
             <SelectValue placeholder="All Types" />
           </SelectTrigger>
@@ -82,7 +92,11 @@ const AppPageHeader = () => {
             ))}
           </SelectContent>
         </Select>,
-        <Select key="filter-platforms" onChange={handlePlarformChange}>
+        <Select
+          key="filter-platforms"
+          onChange={handlePlarformChange}
+          value={filterPlatform}
+        >
           <SelectTrigger className="border border-divider min-w-[150px] justify-between px-4">
             <SelectValue placeholder="All Platforms" />
           </SelectTrigger>
@@ -144,7 +158,14 @@ const App: NextPageWithLayout = () => {
   return (
     <>
       <SEO title={`${profile?.profile_name}'s transactions`} />
-      <AuthLayout pageHeader={<AppPageHeader />}>
+      <AuthLayout
+        pageHeader={
+          <AppPageHeader
+            filterType={filterType}
+            filterPlatform={filterPlatform}
+          />
+        }
+      >
         <Table<ModelProfileTransaction>
           columns={[
             {
