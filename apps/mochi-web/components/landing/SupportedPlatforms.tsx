@@ -81,7 +81,7 @@ function Platform({
           })}
         />
         {comingSoon && (
-          <span className="absolute bottom-0 left-1/2 px-1 leading-3 rounded-full border -translate-x-1/2 translate-y-1/2 text-xxs bg-white-pure border-neutral-200">
+          <span className="absolute bottom-0 left-1/2 px-1 leading-3 rounded-full border -translate-x-1/2 translate-y-1/2 text-xxxs bg-white-pure border-neutral-200">
             soon
           </span>
         )}

@@ -2093,6 +2093,9 @@ importers:
       '@mochi-ui/table':
         specifier: workspace:*
         version: link:../components/table
+      '@mochi-ui/tabs':
+        specifier: workspace:*
+        version: link:../components/tabs
       '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../theme

@@ -9,6 +9,33 @@
  * ---------------------------------------------------------------
  */
 
+export interface DtoAppDepositInternalRequest {
+  amount: string
+  metadata?: Record<string, any>
+  platform?: string
+  token_id: string
+}
+
+export interface DtoAppDepositRequest {
+  platform: string
+  token: string
+}
+
+export interface DtoAppWithdrawInternalRequest {
+  amount: string
+  metadata?: Record<string, any>
+  platform?: string
+  token_id: string
+}
+
+export interface DtoAppWithdrawRequest {
+  address: string
+  amount: string
+  metadata?: Record<string, any>
+  platform?: string
+  token_id: string
+}
+
 export interface DtoCreateApplicationRequest {
   app_name: string
   /** OwnerProfileId string                 `json:"-"` */
@@ -265,6 +292,39 @@ export interface ModelPayRequest {
   usd_amount?: number
 }
 
+export interface ModelProfileTransaction {
+  action?: string
+  amount?: string
+  amount_each_profiles?: ModelAmountEachProfiles[]
+  chain_id?: string
+  created_at?: string
+  expired_at?: string
+  external_id?: string
+  from_profile?: MochiprofileMochiProfile
+  from_profile_id?: string
+  from_profile_source?: string
+  hashtags?: string[]
+  id?: string
+  internal_id?: number
+  metadata?: ModelProfileTransactionMetadata
+  onchain_tx_hash?: string
+  original_tx_id?: string
+  other_profile?: MochiprofileMochiProfile
+  other_profile_id?: string
+  other_profile_source?: string
+  other_profiles?: MochiprofileMochiProfile[]
+  settled_at?: string
+  source_platform?: string
+  status?: string
+  token?: ModelToken
+  token_id?: string
+  type?: string
+  updated_at?: string
+  usd_amount?: number
+}
+
+export type ModelProfileTransactionMetadata = Record<string, any>
+
 export interface ModelStatTx {
   amount?: string
   other_profile_id?: string
@@ -520,36 +580,5 @@ export interface ViewSuccess {
 }
 
 export interface ViewTransferV2Response {
-  data?: ViewTransferV2TransactionData[]
-}
-
-export interface ViewTransferV2TransactionData {
-  action?: string
-  amount?: string
-  amount_each_profiles?: ModelAmountEachProfiles[]
-  chain_id?: string
-  created_at?: string
-  expired_at?: string
-  external_id?: string
-  from_profile?: MochiprofileMochiProfile
-  from_profile_id?: string
-  from_profile_source?: string
-  hashtags?: string[]
-  id?: string
-  internal_id?: number
-  metadata?: Record<string, any>
-  onchain_tx_hash?: string
-  original_tx_id?: string
-  other_profile?: MochiprofileMochiProfile
-  other_profile_id?: string
-  other_profile_source?: string
-  other_profiles?: MochiprofileMochiProfile[]
-  settled_at?: string
-  source_platform?: string
-  status?: string
-  token?: ModelToken
-  token_id?: string
-  type?: string
-  updated_at?: string
-  usd_amount?: number
+  data?: ModelProfileTransaction[]
 }

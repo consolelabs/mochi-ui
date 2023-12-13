@@ -67,4 +67,7 @@ export const GET_PATHS = {
     `/profiles/${profileId}/applications/${appId}/deactivate`,
   UPDATE_APPLICATION_AVATAR: (profileId: string, appId: string) =>
     `/profiles/${profileId}/applications/${appId}/avatar`,
+  GET_BALANCES: (profileId: string) => `/mochi-wallet/${profileId}/balances`,
+  GET_PROFILE_GLOBAL_INFO: (profileId: string) =>
+    `/profiles/${profileId}/global-info`,
 }

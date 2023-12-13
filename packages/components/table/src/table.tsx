@@ -97,6 +97,7 @@ export default function Table<T extends RowData>({
                   className={tableHeaderClsx()}
                   colSpan={header.colSpan}
                   key={header.id}
+                  align={(header.column.columnDef.meta as any)?.align || 'left'}
                 >
                   {!header.isPlaceholder &&
                     (flexRender(
@@ -136,7 +137,13 @@ export default function Table<T extends RowData>({
                     {...(onRow ? onRow(row.original, rowIndex) : {})}
                   >
                     {row.getVisibleCells().map((cell) => (
-                      <td className={tableDataClsx({ border })} key={cell.id}>
+                      <td
+                        className={tableDataClsx({ border })}
+                        key={cell.id}
+                        align={
+                          (cell.column.columnDef.meta as any)?.align || 'left'
+                        }
+                      >
                         {
                           flexRender(
                             cell.column.columnDef.cell,

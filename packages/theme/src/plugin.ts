@@ -190,7 +190,8 @@ export const mochiui = () => {
             },
           },
           fontSize: {
-            xxs: '10px',
+            xxs: '11px',
+            xxxs: '10px',
             '3.5xl': '32px',
             '4.5xl': '40px',
           },

@@ -28,7 +28,7 @@ const tableRowClsx = ({
 
 const tableHeaderClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx(
-    'py-3 px-4 text-xs font-semibold tracking-tight text-left uppercase border-0 border-b border-neutral-outline-active border-solid min-w-[48px] text-text-secondary',
+    'py-3 px-4 text-xxs font-semibold tracking-tight text-left uppercase border-0 border-b border-neutral-outline-active border-solid min-w-[48px] text-text-secondary',
     className,
   )
 

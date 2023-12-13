@@ -10,73 +10,30 @@
  */
 
 import { Profile } from '@consolelabs/mochi-rest'
-
-export type BigFloat = object
-
-export interface DiscordgoUser {
-  /** User's banner color, encoded as an integer representation of hexadecimal color code */
-  accent_color?: number
-  /**
-   * The hash of the user's avatar. Use Session.UserAvatar
-   * to retrieve the avatar itself.
-   */
-  avatar?: string
-  /** The hash of the user's banner image. */
-  banner?: string
-  /** Whether the user is a bot. */
-  bot?: boolean
-  /** The discriminator of the user (4 numbers after name). */
-  discriminator?: string
-  /**
-   * The email of the user. This is only present when
-   * the application possesses the email scope for the user.
-   */
-  email?: string
-  /**
-   * The flags on a user's account.
-   * Only available when the request is authorized via a Bearer token.
-   */
-  flags?: number
-  /** The ID of the user. */
-  id?: string
-  /** The user's chosen language option. */
-  locale?: string
-  /** Whether the user has multi-factor authentication enabled. */
-  mfa_enabled?: boolean
-  /**
-   * The type of Nitro subscription on a user's account.
-   * Only available when the request is authorized via a Bearer token.
-   */
-  premium_type?: number
-  /**
-   * The public flags on a user's account.
-   * This is a combination of bit masks; the presence of a certain flag can
-   * be checked by performing a bitwise AND between this int and the flag.
-   */
-  public_flags?: number
-  /** Whether the user is an Official Discord System user (part of the urgent message system). */
-  system?: boolean
-  /**
-   * The token of the user. This is only present for
-   * the user represented by the current session.
-   */
-  token?: string
-  /** The user's username. */
-  username?: string
-  /** Whether the user's email is verified. */
-  verified?: boolean
-}
-
-export interface EntitiesLoginResponse {
-  access_token?: string
-  expires_at?: number
-}
-
 export interface ModelActivity {
   guild_default?: boolean
   id?: number
   name?: string
   xp?: number
+}
+
+export interface ModelAirdropCampaign {
+  created_at?: string
+  deadline_at?: string
+  detail?: string
+  id?: number
+  prev_airdrop_campaign_id?: number
+  profile_campaign_status?: string
+  reward_amount?: number
+  reward_token_symbol?: string
+  status?: string
+  title?: string
+  updated_at?: string
+}
+
+export interface ModelAirdropStatusCount {
+  count?: number
+  status?: string
 }
 
 export interface ModelChain {
@@ -85,19 +42,28 @@ export interface ModelChain {
   id?: number
   name?: string
   short_name?: string
+  type?: string
 }
 
 export interface ModelCoingeckoSupportedTokens {
+  current_price?: number
+  detail_platforms?: number[]
   id?: string
+  is_native?: boolean
+  is_not_supported?: boolean
+  is_popular?: boolean
+  most_popular?: boolean
   name?: string
   symbol?: string
 }
 
-export interface ModelCommonwealthDiscussionSubscription {
+export interface ModelCommandPermission {
+  code?: string
   created_at?: string
-  discord_thread_id?: string
-  discussion_id?: number
+  description?: string
+  discord_permission_flag?: string
   id?: number
+  need_dm?: boolean
   updated_at?: string
 }
 
@@ -157,9 +123,24 @@ export interface ModelDaoVoteOption {
   updated_at?: string
 }
 
+export interface ModelDiscordCMD {
+  application_id?: string
+  default_member_permissions?: number
+  description?: string
+  description_localizations?: string
+  guild_id?: string
+  id?: string
+  name?: string
+  name_localizations?: string
+  nsfw?: boolean
+  type?: number
+  version?: string
+}
+
 export interface ModelDiscordGuild {
   active?: boolean
   alias?: string
+  available_cmds?: ModelJSONNullString
   bot_scopes?: string[]
   created_at?: string
   global_xp?: boolean
@@ -167,35 +148,6 @@ export interface ModelDiscordGuild {
   log_channel?: string
   name?: string
   roles?: ModelGuildRole[]
-}
-
-export interface ModelDiscordGuildStat {
-  created_at?: string
-  guild_id?: string
-  id?: string
-  nr_of_animated_emojis?: number
-  nr_of_announcement_channels?: number
-  nr_of_bots?: number
-  nr_of_categories?: number
-  nr_of_channels?: number
-  nr_of_custom_stickers?: number
-  nr_of_emojis?: number
-  nr_of_members?: number
-  nr_of_roles?: number
-  nr_of_server_stickers?: number
-  nr_of_stage_channels?: number
-  nr_of_static_emojis?: number
-  nr_of_stickers?: number
-  nr_of_text_channels?: number
-  nr_of_users?: number
-  nr_of_voice_channels?: number
-}
-
-export interface ModelDiscordUserDevice {
-  created_at?: string
-  id?: string
-  ios_noti_token?: string
-  updated_at?: string
 }
 
 export interface ModelDiscordUserGMStreak {
@@ -208,42 +160,17 @@ export interface ModelDiscordUserGMStreak {
   updated_at?: string
 }
 
-export interface ModelDiscordUserTokenAlert {
-  created_at?: string
-  device?: ModelDiscordUserDevice
-  device_id?: string
-  discord_id?: string
-  id?: string
-  is_enable?: boolean
-  price_set?: number
-  symbol?: string
-  token_id?: string
-  trend?: string
-  updated_at?: string
-}
-
-export interface ModelDiscordUserUpvoteStreak {
-  created_at?: string
-  discord_id?: string
-  last_streak_date?: string
-  streak_count?: number
-  total_count?: number
-  updated_at?: string
-}
-
-export interface ModelEnvelop {
-  command?: string
-  created_at?: string
-  id?: number
-  updated_at?: string
-  user_id?: string
-}
-
 export interface ModelGuildConfigActivity {
   active?: boolean
   activity?: ModelActivity
   activity_id?: number
   guild_id?: string
+}
+
+export interface ModelGuildConfigAdminRole {
+  guild_id?: string
+  id?: number
+  role_id?: string
 }
 
 export interface ModelGuildConfigDaoProposal {
@@ -258,16 +185,6 @@ export interface ModelGuildConfigDaoProposal {
   required_amount?: string
   symbol?: string
   type?: string
-  updated_at?: string
-}
-
-export interface ModelGuildConfigDaoTracker {
-  channel_id?: string
-  created_at?: string
-  guild_id?: string
-  id?: string
-  source?: string
-  space?: string
   updated_at?: string
 }
 
@@ -295,52 +212,11 @@ export interface ModelGuildConfigGmGn {
   sticker?: string
 }
 
-export interface ModelGuildConfigInviteTracker {
-  channel_id?: string
-  guild_id?: string
-  id?: string
-  webhook_url?: ModelJSONNullString
-}
-
 export interface ModelGuildConfigLevelRole {
   guild_id?: string
   level?: number
   level_config?: ModelConfigXpLevel
   role_id?: string
-}
-
-export interface ModelGuildConfigLevelupMessage {
-  channel_id?: string
-  created_at?: string
-  guild_id?: string
-  id?: string
-  image_url?: string
-  message?: string
-  updated_at?: string
-}
-
-export interface ModelGuildConfigMixRole {
-  created_at?: string
-  guild_id?: string
-  id?: number
-  nft_requirement?: ModelMixRoleNFTRequirement
-  nft_requirement_id?: number
-  required_level?: number
-  role_id?: string
-  token_requirement?: ModelMixRoleTokenRequirement
-  token_requirement_id?: number
-  updated_at?: string
-}
-
-export interface ModelGuildConfigRepostReaction {
-  emoji?: string
-  emoji_start?: string
-  emoji_stop?: string
-  guild_id?: string
-  id?: string
-  quantity?: number
-  reaction_type?: string
-  repost_channel_id?: string
 }
 
 export interface ModelGuildConfigSalesTracker {
@@ -364,28 +240,6 @@ export interface ModelGuildConfigTokenRole {
   updated_at?: string
 }
 
-export interface ModelGuildConfigTwitterBlacklist {
-  created_at?: string
-  created_by?: string
-  guild_id?: string
-  twitter_id?: string
-  twitter_username?: string
-}
-
-export interface ModelGuildConfigTwitterFeed {
-  guild_id?: string
-  twitter_access_token?: string
-  twitter_access_token_secret?: string
-  twitter_consumer_key?: string
-  twitter_consumer_secret?: string
-}
-
-export interface ModelGuildConfigVoteChannel {
-  channel_id?: string
-  guild_id?: string
-  id?: string
-}
-
 export interface ModelGuildConfigWalletVerificationMessage {
   content?: string
   created_at?: string
@@ -401,15 +255,6 @@ export interface ModelGuildConfigWelcomeChannel {
   guild_id?: string
   id?: string
   welcome_message?: string
-}
-
-export interface ModelGuildConfigXPRole {
-  created_at?: string
-  guild_id?: string
-  id?: number
-  required_xp?: number
-  role_id?: string
-  updated_at?: string
 }
 
 export interface ModelGuildRole {
@@ -430,11 +275,14 @@ export interface ModelGuildUser {
 }
 
 export interface ModelGuildUserXP {
+  current_level_role?: ModelGuildConfigLevelRole
   guild?: ModelDiscordGuild
   guild_id?: string
   guild_rank?: number
   level?: number
+  next_level_role?: ModelGuildConfigLevelRole
   nr_of_actions?: number
+  profile_id?: string
   progress?: number
   total_xp?: number
   user?: ModelUser
@@ -445,24 +293,6 @@ export interface ModelJSONNullString {
   string?: string
   /** Valid is true if String is not NULL */
   valid?: boolean
-}
-
-export interface ModelMixRoleNFTRequirement {
-  created_at?: string
-  id?: number
-  nft_collection?: ModelNFTCollection
-  nft_collection_id?: string
-  required_amount?: number
-  updated_at?: string
-}
-
-export interface ModelMixRoleTokenRequirement {
-  created_at?: string
-  id?: number
-  required_amount?: number
-  token?: ModelToken
-  token_id?: number
-  updated_at?: string
 }
 
 export interface ModelMonikerConfig {
@@ -518,105 +348,73 @@ export interface ModelNewListedNFTCollection {
   symbol?: string
 }
 
-export interface ModelNftSoulbound {
-  collection_address?: string
-  created_at?: string
-  id?: number
-  total_soulbound?: number
-  trait_type?: string
-  updated_at?: string
-  value?: string
-}
-
-export interface ModelOffchainTipBotAssignContract {
-  chain_id?: string
-  contract?: ModelOffchainTipBotContract
-  contract_id?: string
-  created_at?: string
-  expired_time?: string
-  id?: string
-  token_id?: string
-  user_id?: string
-}
-
-export interface ModelOffchainTipBotChain {
-  chain_id?: number
-  chain_name?: string
-  contracts?: ModelOffchainTipBotContract[]
-  created_at?: string
-  currency?: string
-  explorer_url?: string
-  id?: string
-  is_evm?: boolean
-  rpc_url?: string
-  status?: number
-  support_deposit?: boolean
-  tokens?: ModelOffchainTipBotToken[]
-  updated_at?: string
-}
-
-export interface ModelOffchainTipBotContract {
-  chain?: ModelOffchainTipBotChain
-  chain_id?: string
-  contract_address?: string
-  created_at?: string
-  id?: string
-  sweeped_time?: string
-  updated_at?: string
-}
-
 export interface ModelOffchainTipBotToken {
+  address?: string
+  chain?: ModelChain
+  chain_id?: string
   coin_gecko_id?: string
   created_at?: string
+  decimal?: number
   icon?: string
   id?: string
+  is_native?: boolean
   service_fee?: number
   status?: number
   token_id?: string
   token_name?: string
+  token_price?: number
   token_symbol?: string
   updated_at?: string
 }
 
-export interface ModelOffchainTipBotTransferHistory {
-  action?: string
-  amount?: number
+export interface ModelProductBotCommand {
+  code?: string
   created_at?: string
-  fee_amount?: number
-  guild_id?: string
-  id?: string
-  log_id?: string
-  receiver_id?: string
-  sender_id?: string
-  service_fee?: number
-  status?: string
-  token?: string
-  tx_hash?: string
-  updated_at?: string
-}
-
-export interface ModelOnchainTipBotTransaction {
-  all?: boolean
-  amount?: number
-  channel_id?: string
-  claimed_at?: string
-  created_at?: string
-  duration?: number
-  each?: boolean
-  full_command?: string
-  guild_id?: string
+  description?: string
+  discord_alias?: string
+  discord_command?: string
   id?: number
-  image?: string
-  message?: string
-  recipient_address?: string
-  recipients?: string
-  sender?: string
-  /** (pending, claimed) */
-  string?: string
-  token_symbol?: string
-  transfer_type?: string
-  tx_hash?: string
+  scope?: number
+  telegram_alias?: string
+  telegram_command?: string
   updated_at?: string
+}
+
+export interface ModelProductChangelogView {
+  changelog_name?: string
+  created_at?: string
+  key?: string
+  metadata?: number[]
+  updated_at?: string
+}
+
+export interface ModelProductChangelogs {
+  content?: string
+  created_at?: string
+  file_name?: string
+  github_url?: string
+  is_expired?: boolean
+  product?: string
+  thumbnail_url?: string
+  title?: string
+  updated_at?: string
+}
+
+export interface ModelProductMetadataEmojis {
+  code?: string
+  discord_id?: string
+  id?: number
+  telegram_id?: string
+  twitter_id?: string
+}
+
+export interface ModelProfileAirdropCampaign {
+  airdrop_campaign?: ModelAirdropCampaign
+  airdrop_campaign_id?: number
+  id?: number
+  is_favorite?: boolean
+  profile_id?: string
+  status?: string
 }
 
 export interface ModelQuest {
@@ -631,7 +429,6 @@ export interface ModelQuest {
 export interface ModelQuestReward {
   id?: string
   pass_id?: string
-  quest?: ModelQuest
   quest_id?: string
   reward_amount?: number
   reward_type?: ModelQuestRewardType
@@ -671,24 +468,6 @@ export interface ModelQuestUserReward {
   user_id?: string
 }
 
-export interface ModelSaleBotMarketplace {
-  id?: number
-  name?: string
-  url?: string
-}
-
-export interface ModelSaleBotTwitterConfig {
-  address?: string
-  chain_id?: number
-  collection_name?: string
-  created_at?: string
-  id?: number
-  marketplace?: ModelSaleBotMarketplace
-  marketplace_id?: number
-  slug?: string
-  updated_at?: string
-}
-
 export interface ModelToken {
   address?: string
   chain?: ModelChain
@@ -703,59 +482,12 @@ export interface ModelToken {
   symbol?: string
 }
 
-export interface ModelTradeItem {
-  id?: string
-  is_from?: boolean
-  token_address?: string
-  token_ids?: string[]
-  trade_offer_id?: string
-}
-
-export interface ModelTradeOffer {
-  created_at?: string
-  have_items?: ModelTradeItem[]
-  id?: string
-  owner_address?: string
-  updated_at?: string
-  want_items?: ModelTradeItem[]
-}
-
-export interface ModelTwitterPostStreak {
-  created_at?: string
-  guild_id?: string
-  last_streak_date?: string
-  streak_count?: number
-  total_count?: number
-  twitter_handle?: string
-  twitter_id?: string
-  updated_at?: string
-}
-
-export interface ModelUpvoteStreakTier {
-  id?: number
-  streak_required?: number
-  vote_interval?: number
-  xp_per_interval?: number
-}
-
 export interface ModelUser {
   discriminator?: string
   guild_users?: ModelGuildUser[]
   id?: string
   nr_of_join?: number
   username?: string
-}
-
-export interface ModelUserEnvelopStreak {
-  total_envelop?: number
-  user_id?: string
-}
-
-export interface ModelUserFactionXpsMapping {
-  academy_xp?: number
-  imperial_xp?: number
-  merchant_xp?: number
-  rebellio_xp?: number
 }
 
 export interface ModelUserFeedback {
@@ -767,18 +499,17 @@ export interface ModelUserFeedback {
   feedback?: string
   id?: UuidNullUUID
   message_id?: string
+  profile_id?: string
   status?: string
-}
-
-export interface ModelUserTelegramDiscordAssociation {
-  discord_id?: string
-  telegram_username?: string
 }
 
 export interface ModelUserTokenSupportRequest {
   channel_id?: string
+  coin_gecko_id?: string
   created_at?: string
+  decimal?: number
   guild_id?: string
+  icon?: string
   id?: number
   message_id?: string
   status?: string
@@ -790,25 +521,50 @@ export interface ModelUserTokenSupportRequest {
   user_discord_id?: string
 }
 
-export interface ModelUserWallet {
-  address?: string
-  chain_type?: ModelJSONNullString
-  created_at?: string
-  guild_id?: string
-  /** preload user */
-  user?: ModelUser
-  user_discord_id?: string
+export interface ModelUserWalletWatchlist {
+  copying?: ModelUserWalletWatchlistItem[]
+  following?: ModelUserWalletWatchlistItem[]
+  tracking?: ModelUserWalletWatchlistItem[]
 }
 
 export interface ModelUserWalletWatchlistItem {
   address?: string
   alias?: string
+  chain_type?: string
   created_at?: string
   fetched_data?: boolean
   is_owner?: boolean
   net_worth?: number
+  profile_id?: string
   type?: string
-  user_id?: string
+}
+
+export interface ModelVault {
+  created_at?: string
+  discord_guild?: ModelDiscordGuild
+  guild_id?: string
+  id?: number
+  name?: string
+  solana_wallet_address?: string
+  threshold?: string
+  total_amount_evm?: string
+  total_amount_solana?: string
+  updated_at?: string
+  vault_treasurers?: ModelVaultTreasurer[]
+  wallet_address?: string
+  wallet_number?: number
+}
+
+export interface ModelVaultTreasurer {
+  created_at?: string
+  guild_id?: string
+  id?: number
+  role?: string
+  updated_at?: string
+  user_discord_id?: string
+  user_profile_id?: string
+  vault?: ModelVault
+  vault_id?: number
 }
 
 export interface RequestAddNftWatchlistRequest {
@@ -816,21 +572,12 @@ export interface RequestAddNftWatchlistRequest {
   collection_address?: string
   collection_symbol?: string
   guild_id?: string
-  user_id?: string
-}
-
-export interface RequestAddToTwitterBlackListRequest {
-  created_by?: string
-  guild_id?: string
-  twitter_id?: string
-  twitter_username?: string
 }
 
 export interface RequestAddToWatchlistRequest {
   coin_gecko_id?: string
   is_fiat?: boolean
   symbol?: string
-  user_id?: string
 }
 
 export interface RequestAddTokenPriceAlertRequest {
@@ -847,15 +594,9 @@ export interface RequestAddTokenPriceAlertRequest {
   value?: number
 }
 
-export interface RequestBalcklistChannelRepostConfigRequest {
-  channel_id?: string
-  guild_id?: string
-}
-
-export interface RequestClaimOnchainTransferRequest {
-  address?: string
-  claim_id?: number
-  user_id?: string
+export interface RequestAssignVerifiedRoleRequest {
+  guild_id: string
+  user_discord_id: string
 }
 
 export interface RequestClaimQuestsRewardsRequest {
@@ -879,45 +620,26 @@ export interface RequestConfigDefaultTokenRequest {
 export interface RequestConfigGroupNFTRoleRequest {
   collection_address?: string[]
   group_name?: string
-  guild_id?: string
+  guildID?: string
   number_of_tokens?: number
   role_id?: string
 }
 
 export interface RequestConfigLevelRoleRequest {
-  guild_id?: string
+  guildID: string
   level?: number
   role_id?: string
 }
 
-export interface RequestConfigRepostReactionStartStop {
-  emoji_start?: string
-  emoji_stop?: string
-  guild_id?: string
-  repost_channel_id?: string
-}
-
-export interface RequestConfigRepostRequest {
-  emoji?: string
-  guild_id?: string
-  quantity?: number
-  repost_channel_id?: string
-}
-
-export interface RequestConfigureInviteRequest {
-  guild_id?: string
-  log_channel?: string
-  webhook_url?: string
-}
-
-export interface RequestCreateAssignContract {
-  token_symbol?: string
-  user_id?: string
-}
-
-export interface RequestCreateCommonwealthDiscussionSubscription {
-  discord_thread_id: string
-  discussion_id: number
+export interface RequestCreateAirdropCampaignRequest {
+  deadline_at?: string
+  detail?: string
+  id?: number
+  prev_airdrop_campaign_id?: number
+  reward_amount?: number
+  reward_token_symbol?: string
+  status?: string
+  title?: string
 }
 
 export interface RequestCreateDaoProposalRequest {
@@ -936,40 +658,21 @@ export interface RequestCreateDaoVoteRequest {
 }
 
 export interface RequestCreateDefaultRoleRequest {
-  guild_id: string
-  role_id: string
+  guildID: string
+  role_id?: string
 }
 
-export interface RequestCreateEnvelop {
-  command: string
-  user_id: string
-}
-
-export interface RequestCreateGuildMixRole {
-  guild_id: string
-  nft_requirement?: RequestMixRoleNFTRequirement
-  required_level?: number
-  role_id: string
-  token_requirement?: RequestMixRoleTokenRequirement
-}
-
-export interface RequestCreateGuildRequest {
-  id?: string
-  name?: string
+export interface RequestCreateGuildAdminRoleRequest {
+  guildID?: string
+  role_ids?: string[]
 }
 
 export interface RequestCreateGuildTokenRole {
-  address: string
-  amount: number
-  chain: string
-  guild_id: string
-  role_id: string
-}
-
-export interface RequestCreateGuildXPRole {
-  guild_id: string
-  role_id: string
-  xp?: number
+  address?: string
+  amount?: number
+  chain?: string
+  guildID?: string
+  role_id?: string
 }
 
 export interface RequestCreateNFTCollectionRequest {
@@ -981,6 +684,17 @@ export interface RequestCreateNFTCollectionRequest {
   guild_id?: string
   message_id?: string
   priority_flag?: boolean
+}
+
+export interface RequestCreateProductChangelogsViewRequest {
+  changelog_name?: string
+  key?: string
+}
+
+export interface RequestCreateProfileAirdropCampaignRequest {
+  airdrop_campaign_id?: number
+  is_favorite?: boolean
+  status?: string
 }
 
 export interface RequestCreateProposalChannelConfig {
@@ -1006,18 +720,6 @@ export interface RequestCreateTipConfigNotify {
   token?: string
 }
 
-export interface RequestCreateTradeOfferRequest {
-  have_items?: RequestTradeOfferItem[]
-  owner_address: string
-  want_items?: RequestTradeOfferItem[]
-}
-
-export interface RequestCreateTwitterSaleConfigRequest {
-  address?: string
-  chain_id?: number
-  marketplace?: string
-}
-
 export interface RequestCreateUserRequest {
   guild_id?: string
   id?: string
@@ -1035,33 +737,13 @@ export interface RequestCreateUserTokenSupportRequest {
   user_discord_id: string
 }
 
-export interface RequestDeleteDiscordUserAlertRequest {
-  id?: string
-}
-
 export interface RequestDeleteGuildConfigDaoProposal {
   id?: string
-}
-
-export interface RequestDeleteGuildConfigDaoTracker {
-  id?: string
-}
-
-export interface RequestDeleteJoinLeaveChannelConfigRequest {
-  guild_id?: string
 }
 
 export interface RequestDeleteMonikerConfigRequest {
   guild_id: string
   moniker: string
-}
-
-export interface RequestDeleteUserDeviceRequest {
-  device_id?: string
-}
-
-export interface RequestDeleteVoteChannelConfigRequest {
-  guild_id?: string
 }
 
 export interface RequestDeleteWelcomeConfigRequest {
@@ -1076,14 +758,10 @@ export interface RequestEditMessageRepostRequest {
   repost_message_id?: string
 }
 
-export interface RequestGenerateVerificationRequest {
-  guild_id?: string
-  is_reverify?: boolean
-  user_discord_id?: string
-}
-
 export interface RequestGetTrackingWalletsRequest {
-  userID: string
+  address?: string
+  profileID?: string
+  withBalance?: boolean
 }
 
 export interface RequestGuildConfigDefaultNftTickerRequest {
@@ -1104,25 +782,6 @@ export interface RequestGuildIDRequest {
   guild_id?: string
 }
 
-export interface RequestLinkUserTelegramWithDiscordRequest {
-  discord_id: string
-  telegram_username: string
-}
-
-export interface RequestLoginRequest {
-  access_token?: string
-}
-
-export interface RequestMixRoleNFTRequirement {
-  amount: number
-  nft_id: string
-}
-
-export interface RequestMixRoleTokenRequirement {
-  amount: number
-  token_id: number
-}
-
 export interface RequestNewGuildConfigWalletVerificationMessageRequest {
   content?: string
   created_at?: string
@@ -1136,10 +795,9 @@ export interface RequestNewGuildConfigWalletVerificationMessageRequest {
 export interface RequestOffchainTransferRequest {
   all?: boolean
   amount?: number
+  chain_id?: string
   channel_id?: string
-  duration?: number
   each?: boolean
-  full_command?: string
   guild_id?: string
   image?: string
   message?: string
@@ -1150,18 +808,9 @@ export interface RequestOffchainTransferRequest {
   transfer_type?: string
 }
 
-export interface RequestOffchainWithdrawRequest {
-  all?: boolean
-  amount?: number
-  channel_id?: string
-  duration?: number
-  each?: boolean
-  full_command?: string
-  guild_id?: string
-  recipient?: string
-  recipient_address?: string
-  token?: string
-  transfer_type?: string
+export interface RequestOnboardingStartRequest {
+  platform: 'discord' | 'telegram'
+  profile_id: string
 }
 
 export interface RequestRoleReactionRequest {
@@ -1172,7 +821,7 @@ export interface RequestRoleReactionRequest {
 
 export interface RequestRoleReactionUpdateRequest {
   channel_id?: string
-  guild_id?: string
+  guildID?: string
   message_id?: string
   reaction?: string
   role_id?: string
@@ -1185,61 +834,56 @@ export interface RequestSendUserXPRequest {
   recipients?: string[]
 }
 
-export interface RequestSetUpvoteMessageCacheRequest {
-  channel_id?: string
-  guild_id?: string
-  message_id?: string
-  user_id?: string
+export interface RequestSwapRequest {
+  aggregator?: string
+  chainName: string
+  routeSummary?: any
+  swapData?: any
+  userDiscordId: string
 }
 
-export interface RequestSubmitOnchainTransferRequest {
-  all?: boolean
-  amount?: number
-  channel_id?: string
-  duration?: number
-  each?: boolean
-  full_command?: string
-  guild_id?: string
-  image?: string
-  message?: string
-  platform?: string
-  recipients?: string[]
-  sender?: string
-  token?: string
-  transfer_type?: string
+export interface RequestTrackFriendTechKeyRequest {
+  decrease_alert_at?: number
+  increase_alert_at?: number
+  key_address: string
+  profile_id: string
 }
 
 export interface RequestTrackWalletRequest {
   address: string
   alias?: string
+  chain_type: string
   channel_id?: string
   is_owner?: boolean
   message_id?: string
   type: string
-  user_id: string
 }
 
-export interface RequestTradeOfferItem {
-  token_address: string
-  token_ids: string[]
-}
-
-export interface RequestTwitterHashtag {
+export interface RequestTransferV2Request {
+  all?: boolean
+  amount: number
+  chain_id: string
+  channel_avatar?: string
   channel_id?: string
-  from_twitter?: string[]
+  channel_name?: string
+  channel_url?: string
+  each?: boolean
   guild_id?: string
-  hashtag?: string[]
-  rule_id?: string
-  twitter_username?: string[]
-  user_id?: string
+  message?: string
+  metadata?: Record<string, any>
+  moniker?: string
+  original_amount?: number
+  original_tx_id?: string
+  platform: 'discord' | 'telegram' | 'web'
+  recipients: string[]
+  sender: string
+  theme_id?: number
+  token: string
+  transfer_type: 'transfer' | 'airdrop'
 }
 
-export interface RequestTwitterPost {
-  content?: string
-  guild_id?: string
-  tweet_id?: string
-  twitter_handle?: string
-  twitter_id?: string
+export interface RequestUnlinkBinance {
+  discord_user_id?: string
 }
 
 export interface RequestUpdateDaoVoteRequest {
@@ -1247,8 +891,14 @@ export interface RequestUpdateDaoVoteRequest {
   user_id: string
 }
 
+export interface RequestUpdateFriendTechKeyTrackRequest {
+  decrease_alert_at?: number
+  increase_alert_at?: number
+}
+
 export interface RequestUpdateGuildRequest {
   active?: boolean
+  available_cmds?: ModelDiscordCMD[]
   global_xp?: boolean
   left_at?: string
   log_channel?: string
@@ -1258,6 +908,11 @@ export interface RequestUpdateQuestProgressRequest {
   action?: string
   guild_id?: string
   user_id?: string
+}
+
+export interface RequestUpdateTrackingInfoRequest {
+  /** Request body, only update the following fields */
+  alias?: string
 }
 
 export interface RequestUpdateUserFeedbackRequest {
@@ -1280,17 +935,6 @@ export interface RequestUpsertCustomTokenConfigRequest {
   symbol?: string
 }
 
-export interface RequestUpsertDiscordUserAlertRequest {
-  device_id?: string
-  discord_id?: string
-  id?: string
-  is_enable?: boolean
-  price_set?: number
-  symbol?: string
-  token_id?: string
-  trend?: string
-}
-
 export interface RequestUpsertGmConfigRequest {
   channel_id?: string
   emoji?: string
@@ -1299,31 +943,21 @@ export interface RequestUpsertGmConfigRequest {
   sticker?: string
 }
 
-export interface RequestUpsertGuildConfigDaoTracer {
-  channel_id?: string
+export interface RequestUpsertGuildConfigTipRangeRequest {
   guild_id?: string
-  snapshot_url?: string
+  max?: number
+  min?: number
 }
 
 export interface RequestUpsertGuildDefaultCurrencyRequest {
-  Symbol?: string
   guild_id?: string
-}
-
-export interface RequestUpsertGuildPruneExcludeRequest {
-  guild_id?: string
-  role_id?: string
+  symbol?: string
 }
 
 export interface RequestUpsertGuildTokenConfigRequest {
   active?: boolean
   guild_id?: string
   symbol?: string
-}
-
-export interface RequestUpsertJoinLeaveChannelConfigRequest {
-  channel_id?: string
-  guild_id?: string
 }
 
 export interface RequestUpsertMonikerConfigRequest {
@@ -1334,14 +968,10 @@ export interface RequestUpsertMonikerConfigRequest {
   token: string
 }
 
-export interface RequestUpsertUserDeviceRequest {
-  device_id?: string
-  ios_noti_token?: string
-}
-
-export interface RequestUpsertVoteChannelConfigRequest {
-  channel_id?: string
+export interface RequestUpsertUserTag {
   guild_id?: string
+  is_active?: boolean
+  user_id?: string
 }
 
 export interface RequestUpsertWelcomeConfigRequest {
@@ -1356,13 +986,8 @@ export interface RequestUserFeedbackRequest {
   discord_id?: string
   feedback?: string
   message_id?: string
+  profile_id?: string
   username?: string
-}
-
-export interface RequestVerifyWalletAddressRequest {
-  code?: string
-  signature?: string
-  wallet_address?: string
 }
 
 export interface RequestVoteOptionRequest {
@@ -1378,7 +1003,9 @@ export interface ResponseAddToWatchlistResponse {
 }
 
 export interface ResponseAddToWatchlistResponseData {
+  base_coin?: ResponseGetCoinResponse
   base_suggestions?: ModelCoingeckoSupportedTokens[]
+  target_coin?: ResponseGetCoinResponse
   target_suggestions?: ModelCoingeckoSupportedTokens[]
 }
 
@@ -1386,27 +1013,54 @@ export interface ResponseAddTokenPriceAlertResponse {
   data?: ResponseTokenPriceAlertResponseData
 }
 
-export interface ResponseAllTipBotTokensResponse {
-  data?: ModelOffchainTipBotToken[]
+export interface ResponseAirdropCampaignResponse {
+  data?: ModelAirdropCampaign
+}
+
+export interface ResponseAirdropCampaignStatResponse {
+  data?: ModelAirdropStatusCount[]
+}
+
+export interface ResponseAirdropCampaignsResponse {
+  data?: ModelAirdropCampaign[]
+}
+
+export interface ResponseAssetPlatformResponseData {
+  chain_identifier?: number
+  id?: string
+  name?: string
+  shortname?: string
+}
+
+export interface ResponseBinanceFutureAccountPositionResponse {
+  data?: ResponseBinanceFuturePositionInformation[]
+}
+
+export interface ResponseBinanceFuturePositionInfo {
+  entryPrice?: string
+  isAutoAddMargin?: string
+  isolatedMargin?: string
+  isolatedWallet?: string
+  leverage?: string
+  liquidationPrice?: string
+  marginType?: string
+  markPrice?: string
+  maxNotionalValue?: string
+  notional?: string
+  positionAmt?: string
+  positionSide?: string
+  symbol?: string
+  unRealizedProfit?: string
+  updateTime?: number
+}
+
+export interface ResponseBinanceFuturePositionInformation {
+  apiKey?: string
+  positions?: ResponseBinanceFuturePositionInfo[]
 }
 
 export interface ResponseChainGasTrackerResponseData {
   data?: ResponseGasTrackerResponse
-}
-
-export interface ResponseClaimOnchainTransfer {
-  amount?: number
-  amount_in_usd?: number
-  recipient_address?: string
-  recipient_id?: string
-  sender_id?: string
-  symbol?: string
-  tx_hash?: string
-  tx_url?: string
-}
-
-export interface ResponseClaimOnchainTransferResponse {
-  data?: ResponseClaimOnchainTransfer
 }
 
 export interface ResponseClaimQuestsRewardsResponse {
@@ -1417,8 +1071,18 @@ export interface ResponseClaimQuestsRewardsResponseData {
   rewards?: ModelQuestUserReward[]
 }
 
-export interface ResponseCoinDescription {
-  en?: string
+export interface ResponseCoin {
+  coin_id?: number
+  id?: string
+  large?: string
+  market_cap_rank?: number
+  name?: string
+  price_btc?: number
+  score?: number
+  slug?: string
+  small?: string
+  symbol?: string
+  thumb?: string
 }
 
 export interface ResponseCoinImage {
@@ -1433,13 +1097,22 @@ export interface ResponseCoinMarketItemData {
   image?: string
   is_default?: boolean
   is_pair?: boolean
+  market_cap?: number
+  market_cap_rank?: number
   name?: string
+  price_change_percentage_1h_in_currency?: number
   price_change_percentage_24h?: number
+  price_change_percentage_24h_in_currency?: number
   price_change_percentage_7d_in_currency?: number
   sparkline_in_7d?: {
     price?: number[]
   }
   symbol?: string
+}
+
+export interface ResponseCoinPlatformDetailData {
+  contract_address?: string
+  decimal_place?: number
 }
 
 export interface ResponseCoinPriceHistoryResponse {
@@ -1456,6 +1129,10 @@ export interface ResponseCollectionSuggestions {
   chain_id?: number
   name?: string
   symbol?: string
+}
+
+export interface ResponseCommandPermissions {
+  data?: ModelCommandPermission[]
 }
 
 export interface ResponseCompareTokenReponseData {
@@ -1491,67 +1168,28 @@ export interface ResponseConfigNotifyResponse {
   updated_at?: string
 }
 
-export interface ResponseConfigureInvitesResponse {
-  data?: string
-}
-
-export interface ResponseCreateCommonwealthDiscussionSubscription {
-  data?: ModelCommonwealthDiscussionSubscription
-}
-
 export interface ResponseCreateDaoProposalResponse {
   data?: ModelDaoProposal
-}
-
-export interface ResponseCreateEnvelop {
-  data?: ModelEnvelop
-}
-
-export interface ResponseCreateGuildMixRole {
-  data?: ModelGuildConfigMixRole
 }
 
 export interface ResponseCreateGuildTokenRole {
   data?: ModelGuildConfigTokenRole
 }
 
-export interface ResponseCreateGuildXPRole {
-  data?: ModelGuildConfigXPRole
-}
-
 export interface ResponseCreateNFTCollectionResponse {
   data?: ModelNFTCollection
+}
+
+export interface ResponseCreateProductChangelogsViewed {
+  data?: ModelProductChangelogView
 }
 
 export interface ResponseCreateProposalChannelConfigResponse {
   data?: ModelGuildConfigDaoProposal
 }
 
-export interface ResponseCreateTradeOfferResponse {
-  data?: ModelTradeOffer
-}
-
-export interface ResponseCreateTwitterSaleConfigResponse {
-  data?: ModelSaleBotTwitterConfig
-}
-
 export interface ResponseCreateUserTokenSupportRequest {
   data?: ModelUserTokenSupportRequest
-}
-
-export interface ResponseCurrentUserUpvoteStreakResponse {
-  data?: ResponseGetUserCurrentUpvoteStreakResponse
-}
-
-export interface ResponseDaoTrackerSpaceCountData {
-  count?: number
-  source?: string
-  space?: string
-}
-
-export interface ResponseDaoTrackerSpaceCountResponse {
-  data?: ResponseDaoTrackerSpaceCountData[]
-  metadata?: ResponsePaginationResponse
 }
 
 export interface ResponseDataFilterConfigByReaction {
@@ -1572,10 +1210,6 @@ export interface ResponseDataListRoleReactionResponse {
   total?: number
 }
 
-export interface ResponseDataMetric {
-  data?: ResponseMetric
-}
-
 export interface ResponseDefaultRole {
   guild_id?: string
   role_id?: string
@@ -1583,6 +1217,42 @@ export interface ResponseDefaultRole {
 
 export interface ResponseDefaultRoleResponse {
   data?: ResponseDefaultRole
+}
+
+export interface ResponseDexPair {
+  address?: string
+  base_token?: ResponseDexToken
+  chain_id?: string
+  created_at?: number
+  dex_id?: string
+  fdv?: number
+  holders?: ResponseDexTokenHolder[]
+  id?: string
+  liquidity_usd?: number
+  market_cap_usd?: number
+  name?: string
+  owner?: string
+  price?: number
+  price_percent_change_24h?: number
+  price_usd?: number
+  quote_token?: ResponseDexToken
+  txn_24h_buy?: number
+  txn_24h_sell?: number
+  url?: Record<string, string>
+  volume_usd_24h?: number
+}
+
+export interface ResponseDexToken {
+  address?: string
+  name?: string
+  symbol?: string
+}
+
+export interface ResponseDexTokenHolder {
+  address?: string
+  alias?: string
+  balance?: number
+  percent?: number
 }
 
 export interface ResponseDiscordGuildResponse {
@@ -1610,15 +1280,37 @@ export interface ResponseDiscordGuildRole {
   unicode_emoji?: string
 }
 
-export interface ResponseDiscordUserTokenAlertResponse {
-  data?: ModelDiscordUserTokenAlert[]
+export interface ResponseFindTokenByContractAddressResponse {
+  data?: ResponseToken
 }
 
-export interface ResponseExtraFee {
-  chargeFeeBy?: string
-  feeAmount?: string
-  feeReceiver?: string
-  isImBps?: boolean
+export interface ResponseFriendTechKey {
+  address?: string
+  createdAt?: string
+  holders?: number
+  id?: number
+  price?: number
+  priceChangePercentage?: number
+  profileChecked?: boolean
+  supply?: number
+  twitterPfpUrl?: string
+  twitterUsername?: string
+  updatedAt?: string
+}
+
+export interface ResponseFriendTechKeyWatchlistItemResponse {
+  created_at?: string
+  decrease_alert_at?: number
+  id?: number
+  increase_alert_at?: number
+  key_address?: string
+  metadata?: ResponseTrackedFriendTechKey
+  profile_id?: string
+  updated_at?: string
+}
+
+export interface ResponseFriendTechKeysResponse {
+  data?: ResponseFriendTechKey[]
 }
 
 export interface ResponseGasTrackerResponse {
@@ -1635,11 +1327,6 @@ export interface ResponseGasTrackerResponseData {
   data?: ResponseGasTrackerResponse[]
 }
 
-export interface ResponseGenerateVerificationResponse {
-  code?: string
-  status?: string
-}
-
 export interface ResponseGetAllDaoProposalVotes {
   proposal?: ResponseGetDaoProposalData
   votes?: ModelDaoVote[]
@@ -1649,37 +1336,42 @@ export interface ResponseGetAllDaoProposals {
   data?: ModelDaoProposal[]
 }
 
-export interface ResponseGetAllTwitterConfigResponse {
-  data?: ModelGuildConfigTwitterFeed[]
-  message?: string
-}
-
-export interface ResponseGetAllTwitterHashtagConfigResponse {
-  data?: ResponseTwitterHashtag[]
-}
-
-export interface ResponseGetAllUserSubmittedAdResponse {
-  data?: ResponseGetAllUserSubmittedAdResponse[]
-}
-
-export interface ResponseGetAssignedContract {
-  data?: ModelOffchainTipBotAssignContract
-}
-
 export interface ResponseGetCoinResponse {
+  asset_platform?: ResponseAssetPlatformResponseData
   asset_platform_id?: string
-  description?: ResponseCoinDescription
+  block_time_in_minutes?: number
+  categories?: string[]
+  coingecko_id?: string
+  coingecko_rank?: number
+  coingecko_score?: number
+  community_data?: any
+  contract_address?: string
+  description?: Record<string, string>
+  detail_platforms?: Record<string, ResponseCoinPlatformDetailData>
+  developer_data?: any
+  genesis_date?: any
+  hashing_algorithm?: any
   id?: string
   image?: ResponseCoinImage
+  links?: any
+  localization?: Record<string, string>
   market_cap_rank?: number
   market_data?: ResponseMarketData
   name?: string
+  platforms?: any
+  sentiment_votes_down_percentage?: number
+  sentiment_votes_up_percentage?: number
   symbol?: string
   tickers?: ResponseTickerData[]
+  watchlist_users?: number
 }
 
 export interface ResponseGetCoinResponseWrapper {
   data?: ResponseGetCoinResponse
+}
+
+export interface ResponseGetCoinsMarketDataResponse {
+  data?: ResponseCoinMarketItemData[]
 }
 
 export interface ResponseGetCollectionCountResponse {
@@ -1721,6 +1413,12 @@ export interface ResponseGetFiatHistoricalExchangeRatesResponse {
   to?: string
 }
 
+export interface ResponseGetGlobalProfileInfoResponse {
+  level?: number
+  rank?: number
+  roles?: string[]
+}
+
 export interface ResponseGetGmConfigResponse {
   data?: ModelGuildConfigGmGn
   message?: string
@@ -1754,18 +1452,10 @@ export interface ResponseGetGuildDefaultTickerResponse {
   data?: ModelGuildConfigDefaultTicker
 }
 
-export interface ResponseGetGuildLevelUpMessage {
-  data?: ModelGuildConfigLevelupMessage
-}
-
-export interface ResponseGetGuildPruneExcludeResponse {
-  data?: ResponseGuildPruneExcludeList
-  message?: string
-}
-
 export interface ResponseGetGuildResponse {
   active?: boolean
   alias?: string
+  available_cmds?: ModelDiscordCMD[]
   bot_scopes?: string[]
   global_xp?: boolean
   icon?: string
@@ -1794,17 +1484,8 @@ export interface ResponseGetHistoricalMarketChartResponse {
   data?: ResponseCoinPriceHistoryResponse
 }
 
-export interface ResponseGetInviteTrackerConfigResponse {
-  data?: ModelGuildConfigInviteTracker
-  message?: string
-}
-
-export interface ResponseGetInvitesLeaderboardResponse {
-  data?: ResponseUserInvitesAggregation[]
-}
-
-export interface ResponseGetInvitesResponse {
-  data?: string[]
+export interface ResponseGetInvestListResponse {
+  data?: ResponseInvestItem[]
 }
 
 export interface ResponseGetLevelRoleConfigsResponse {
@@ -1816,16 +1497,12 @@ export interface ResponseGetLevelRoleConfigsResponse {
   total?: number
 }
 
-export interface ResponseGetLinkedTelegramResponse {
-  data?: ModelUserTelegramDiscordAssociation
-}
-
 export interface ResponseGetListAllChainsResponse {
   data?: ModelChain[]
 }
 
-export interface ResponseGetMyInfoResponse {
-  data?: DiscordgoUser
+export interface ResponseGetListGuildDefaultTickerResponse {
+  data?: ModelGuildConfigDefaultTicker[]
 }
 
 export interface ResponseGetNFTActivityData {
@@ -1876,28 +1553,16 @@ export interface ResponseGetNftWatchlistResponse {
   data?: ResponseGetNftWatchlist[]
 }
 
-export interface ResponseGetOnchainTransfersResponse {
-  data?: ModelOnchainTipBotTransaction[]
-}
-
 export interface ResponseGetOneWalletResponse {
   data?: ModelUserWalletWatchlistItem
 }
 
-export interface ResponseGetRepostReactionConfigsResponse {
-  data?: ModelGuildConfigRepostReaction[]
-}
-
-export interface ResponseGetSaleTwitterConfigResponse {
-  data?: ModelSaleBotTwitterConfig[]
+export interface ResponseGetProductChangelogsViewed {
+  data?: ModelProductChangelogView[]
 }
 
 export interface ResponseGetSalesTrackerConfigResponse {
   data?: ModelGuildConfigSalesTracker[]
-}
-
-export interface ResponseGetSoulBoundNFTResponse {
-  data?: ModelNftSoulbound[]
 }
 
 export interface ResponseGetSuggestionNFTCollectionsResponse {
@@ -1916,79 +1581,54 @@ export interface ResponseGetSupportedTokensResponse {
   data?: ModelToken[]
 }
 
-export interface ResponseGetTrackingWalletsResponse {
-  data?: ModelUserWalletWatchlistItem[]
+export interface ResponseGetTopGainerLoser {
+  top_gainers?: ResponseGetTopGainerLoserCoin[]
+  top_losers?: ResponseGetTopGainerLoserCoin[]
 }
 
-export interface ResponseGetTradeOfferResponse {
-  data?: ModelTradeOffer
-}
-
-export interface ResponseGetTwitterBlackListResponse {
-  data?: ModelGuildConfigTwitterBlacklist[]
-}
-
-export interface ResponseGetTwitterHashtagConfigResponse {
-  data?: ResponseTwitterHashtag
-}
-
-export interface ResponseGetTwitterLeaderboardResponse {
-  data?: ResponseGetTwitterLeaderboardResponseData
-}
-
-export interface ResponseGetTwitterLeaderboardResponseData {
-  data?: ModelTwitterPostStreak[]
-  metadata?: ResponsePaginationResponse
-}
-
-export interface ResponseGetUpvoteTiersConfig {
-  data?: ModelUpvoteStreakTier[]
-  message?: string
-}
-
-export interface ResponseGetUserBalances {
-  balances?: number
-  balances_in_usd?: number
+export interface ResponseGetTopGainerLoserCoin {
   id?: string
+  image?: string
+  market_cap_rank?: number
   name?: string
-  rate_in_usd?: number
   symbol?: string
+  usd?: number
+  usd_14d_change?: number
+  usd_1h_change?: number
+  usd_1y_change?: number
+  usd_24h_change?: number
+  usd_24h_vol?: number
+  usd_30d_change?: number
+  usd_60d_change?: number
+  usd_7d_change?: number
 }
 
-export interface ResponseGetUserBalancesResponse {
-  data?: ResponseGetUserBalances[]
+export interface ResponseGetTrackingWalletsResponse {
+  data?: ModelUserWalletWatchlist
+}
+
+export interface ResponseGetTrendingSearch {
+  coins?: ResponseGetTrendingSearchCoin[]
+  /** this field coingecko return empty */
+  exchanges?: any
+}
+
+export interface ResponseGetTrendingSearchCoin {
+  item?: ResponseCoin
 }
 
 export interface ResponseGetUserCurrentGMStreakResponse {
   data?: ModelDiscordUserGMStreak
 }
 
-export interface ResponseGetUserCurrentUpvoteStreakResponse {
-  discord_id?: string
-  last_streak_time?: string
-  minutes_until_reset?: number
-  minutes_until_reset_discordbotlist?: number
-  minutes_until_reset_topgg?: number
-  streak_count?: number
-  total_count?: number
-}
-
-export interface ResponseGetUserEnvelopStreak {
-  data?: ModelUserEnvelopStreak
-}
-
 export interface ResponseGetUserProfileResponse {
-  about_me?: string
   current_level?: ModelConfigXpLevel
-  guild?: ModelDiscordGuild
   guild_rank?: number
   guild_xp?: number
   id?: string
   next_level?: ModelConfigXpLevel
   nr_of_actions?: number
   progress?: number
-  user_faction_xps?: ModelUserFactionXpsMapping
-  user_wallet?: ModelUserWallet
 }
 
 export interface ResponseGetUserQuestListResponse {
@@ -1999,34 +1639,16 @@ export interface ResponseGetUserResponse {
   data?: ResponseUser
 }
 
-export interface ResponseGetUserSubmittedAdResponse {
-  ad_channel_id?: string
-  creator_id?: string
-  description?: string
-  id?: number
-  image?: string
-  introduction?: string
-  is_podtown_ad?: boolean
-  name?: string
-  string?: string
+export interface ResponseGetVaultResponse {
+  data?: ModelVault
 }
 
-export interface ResponseGetUserUpvoteLeaderboardResponse {
-  data?: ModelDiscordUserUpvoteStreak[]
-  message?: string
-}
-
-export interface ResponseGetUserWalletByGuildIDAddressResponse {
-  data?: ModelUserWallet
+export interface ResponseGetVaultsResponse {
+  data?: ModelVault[]
 }
 
 export interface ResponseGetVote {
   data?: ModelDaoVote
-}
-
-export interface ResponseGetVoteChannelConfigResponse {
-  data?: ModelGuildConfigVoteChannel
-  message?: string
 }
 
 export interface ResponseGetWatchlistResponse {
@@ -2039,10 +1661,6 @@ export interface ResponseGetWelcomeChannelConfigResponse {
   message?: string
 }
 
-export interface ResponseGuildConfigDaoTrackerResponse {
-  data?: ModelGuildConfigDaoTracker[]
-}
-
 export interface ResponseGuildConfigDefaultCurrencyResponse {
   created_at?: string
   guild_id?: string
@@ -2050,21 +1668,12 @@ export interface ResponseGuildConfigDefaultCurrencyResponse {
   updated_at?: string
 }
 
-export interface ResponseGuildProposalUsageData {
+export interface ResponseGuildConfigTipRangeResponse {
+  created_at?: string
   guild_id?: string
-  guild_name?: string
-  is_active?: boolean
-  proposal_count?: number
-}
-
-export interface ResponseGuildProposalUsageResponse {
-  data?: ResponseGuildProposalUsageData[]
-  metadata?: ResponsePaginationResponse
-}
-
-export interface ResponseGuildPruneExcludeList {
-  guild_id?: string
-  roles?: string[]
+  max?: number
+  min?: number
+  updated_at?: string
 }
 
 export interface ResponseIndexerChain {
@@ -2217,24 +1826,41 @@ export interface ResponseIndexerToken {
   symbol?: string
 }
 
-export interface ResponseInvitesAggregationResponse {
-  data?: ResponseUserInvitesAggregation
+export interface ResponseInvestChain {
+  id?: number
+  logo?: string
+  name?: string
 }
 
-export interface ResponseKyberSwapRoutes {
-  code?: number
-  data?: ResponseRouteSummaryData
-  message?: string
+export interface ResponseInvestItem {
+  apy?: number
+  chain?: ResponseInvestChain
+  platforms?: ResponseInvestPlatforms[]
+  token?: ResponseInvestToken
+  tvl?: number
 }
 
-export interface ResponseLinkUserTelegramWithDiscordResponse {
-  data?: ResponseLinkUserTelegramWithDiscordResponseData
+export interface ResponseInvestPlatforms {
+  apy?: number
+  desc?: string
+  logo?: string
+  name?: string
+  reward_apy?: number
+  status?: ResponseInvestStatus
+  tvl?: number
+  type?: string
 }
 
-export interface ResponseLinkUserTelegramWithDiscordResponseData {
-  discord_id?: string
-  discord_username?: string
-  telegram_username?: string
+export interface ResponseInvestStatus {
+  detail?: string
+  value?: string
+}
+
+export interface ResponseInvestToken {
+  address?: string
+  decimals?: number
+  name?: string
+  symbol?: string
 }
 
 export interface ResponseListAllCustomTokenResponse {
@@ -2249,12 +1875,16 @@ export interface ResponseListConfigNotifyResponse {
   data?: ResponseConfigNotifyResponse[]
 }
 
-export interface ResponseListGuildGroupNFTRolesResponse {
-  data?: ResponseListGuildNFTRoleConfigsResponse[]
+export interface ResponseListEmojisResponse {
+  data?: ModelProductMetadataEmojis[]
 }
 
-export interface ResponseListGuildMixRoles {
-  data?: ModelGuildConfigMixRole[]
+export interface ResponseListGuildAdminRoles {
+  data?: ModelGuildConfigAdminRole[]
+}
+
+export interface ResponseListGuildGroupNFTRolesResponse {
+  data?: ResponseListGuildNFTRoleConfigsResponse[]
 }
 
 export interface ResponseListGuildNFTRoleConfigsResponse {
@@ -2270,10 +1900,7 @@ export interface ResponseListGuildNFTRoleConfigsResponse {
 
 export interface ResponseListGuildTokenRoles {
   data?: ModelGuildConfigTokenRole[]
-}
-
-export interface ResponseListGuildXPRoles {
-  data?: ModelGuildConfigXPRole[]
+  meta?: Record<string, any>
 }
 
 export interface ResponseListMyGuildsResponse {
@@ -2298,32 +1925,46 @@ export interface ResponseListTokenPriceAlertResponse {
   user_discord_id?: string
 }
 
-export interface ResponseLogoutResponse {
-  message?: string
-  status?: string
-}
-
 export interface ResponseMarketData {
+  ath?: Record<string, number>
+  ath_change_percentage?: Record<string, number>
+  ath_date?: any
+  atl?: Record<string, number>
+  circulating_supply?: number
   current_price?: Record<string, number>
+  fdv_to_tvl_ratio?: any
+  fully_diluted_valuation?: Record<string, number>
+  high_24h?: Record<string, number>
+  low_24h?: Record<string, number>
   market_cap?: Record<string, number>
+  market_cap_change_24h_in_currency?: Record<string, number>
+  market_cap_change_percentage_24h_in_currency?: Record<string, number>
+  market_cap_rank?: number
+  max_supply?: number
+  mcap_to_tvl_ratio?: any
+  price_change_24h?: number
+  price_change_24h_in_currency?: Record<string, number>
+  price_change_percentage_14d?: number
+  price_change_percentage_14d_in_currency?: Record<string, number>
+  price_change_percentage_1h?: number
   price_change_percentage_1h_in_currency?: Record<string, number>
+  price_change_percentage_1y?: number
+  price_change_percentage_1y_in_currency?: Record<string, number>
+  price_change_percentage_200d?: number
+  price_change_percentage_200d_in_currency?: Record<string, number>
+  price_change_percentage_24h?: number
   price_change_percentage_24h_in_currency?: Record<string, number>
+  price_change_percentage_30d?: number
+  price_change_percentage_30d_in_currency?: Record<string, number>
+  price_change_percentage_60d?: number
+  price_change_percentage_60d_in_currency?: Record<string, number>
+  price_change_percentage_7d?: number
   price_change_percentage_7d_in_currency?: Record<string, number>
-}
-
-export interface ResponseMetric {
-  nft_collections?: number
-  server_active_users?: number
-  server_command_usage?: number
-  server_token?: string[]
-  server_token_supported?: number
-  server_verified_wallets?: number
-  total_active_users?: number
-  total_command_usage?: number
-  total_servers?: number
-  total_token?: string[]
-  total_token_supported?: number
-  total_verified_wallets?: number
+  roi?: any
+  total_market_cap?: Record<string, number>
+  total_supply?: number
+  total_value_locked?: any
+  total_volume?: Record<string, number>
 }
 
 export interface ResponseMonikerConfigData {
@@ -2451,30 +2092,36 @@ export interface ResponseNftWatchlistSuggestResponse {
 }
 
 export interface ResponseOffchainTipBotTransferToken {
-  amount?: number
-  amount_in_usd?: number
-  recipient_id?: string
-  sender_id?: string
-  symbol?: string
+  amount_each?: number
+  id?: string
+  total_amount?: number
+  tx_id?: number
 }
 
 export interface ResponseOffchainTipBotTransferTokenResponse {
   data?: ResponseOffchainTipBotTransferToken[]
 }
 
-export interface ResponseOffchainTipBotWithdraw {
-  amount?: number
-  symbol?: string
-  to_address?: string
-  transaction_fee?: number
-  tx_hash?: string
-  tx_url?: string
-  user_discord_id?: string
-  withdraw_amount?: BigFloat
+export interface ResponseOnboardingStartData {
+  reward?: ResponseOnboardingStartReward
+  user_already_started?: boolean
 }
 
-export interface ResponseOffchainTipBotWithdrawResponse {
-  data?: ResponseOffchainTipBotWithdraw
+export interface ResponseOnboardingStartResponse {
+  data?: ResponseOnboardingStartData
+}
+
+export interface ResponseOnboardingStartReward {
+  amount?: string
+  token?: string
+}
+
+export interface ResponseOnchainInvestData {
+  tx_object?: ResponseTxObject
+}
+
+export interface ResponseOnchainInvestDataResponse {
+  data?: ResponseOnchainInvestData
 }
 
 export interface ResponsePaginationResponse {
@@ -2483,6 +2130,29 @@ export interface ResponsePaginationResponse {
   /** page size */
   size?: number
   total?: number
+}
+
+export interface ResponseProductBotCommand {
+  data?: ModelProductBotCommand[]
+}
+
+export interface ResponseProductChangelogs {
+  data?: ModelProductChangelogs[]
+}
+
+export interface ResponseProfileAirdropCampaignResponse {
+  data?: ModelProfileAirdropCampaign
+}
+
+export interface ResponseProfileAirdropCampaignsResponse {
+  data?: ModelProfileAirdropCampaign[]
+}
+
+export interface ResponseProfileApiKeyResponse {
+  api_key?: string
+  created_at?: string
+  profile_id?: string
+  updated_at?: string
 }
 
 export interface ResponseResponseDataMessage {
@@ -2527,59 +2197,51 @@ export interface ResponseRoleReactionResponse {
   role?: ResponseRole
 }
 
-export interface ResponseRouteElement {
-  amountOut?: string
-  exchange?: string
-  extra?: any
-  limitReturnAmount?: string
-  pool?: string
-  poolExtra?: any
-  poolLength?: number
-  poolType?: string
-  swapAmount?: string
-  tokenIn?: string
-  tokenOut?: string
-}
-
-export interface ResponseRouteSummary {
-  amountIn?: string
-  amountInUsd?: string
-  amountOut?: string
-  amountOutUsd?: string
-  extraFee?: ResponseExtraFee
-  gas?: string
-  gasPrice?: string
-  gasUsd?: string
-  route?: ResponseRouteElement[][]
-  tokenIn?: string
-  tokenInMarketPriceAvailable?: boolean
-  tokenOut?: string
-  tokenOutMarketPriceAvailable?: boolean
-}
-
-export interface ResponseRouteSummaryData {
-  routeSummary?: ResponseRouteSummary
-  routerAddress?: string
+export interface ResponseRouteToken {
+  address?: string
+  chain_id?: number
+  chain_name?: string
+  coingecko_id?: string
+  created_at?: string
+  decimals?: number
+  id?: number
+  logo_uri?: string
+  name?: string
+  symbol?: string
+  updated_at?: string
 }
 
 export interface ResponseSearchCoinResponse {
   data?: ModelCoingeckoSupportedTokens[]
 }
 
+export interface ResponseSearchDexPairResponse {
+  pairs?: ResponseDexPair[]
+}
+
 export interface ResponseSparkLineIn7D {
   price?: number[]
 }
 
-export interface ResponseSubmitOnchainTransfer {
-  amount?: number
-  amount_in_usd?: number
-  recipient_id?: string
-  sender_id?: string
-  symbol?: string
+export interface ResponseSwapRoute {
+  aggregator?: string
+  routeSummary?: any
+  routerAddress?: string
+  swapData?: any
+  tokenIn?: ResponseRouteToken
+  tokenOut?: ResponseRouteToken
 }
 
-export interface ResponseSubmitOnchainTransferResponse {
-  data?: ResponseSubmitOnchainTransfer[]
+export interface ResponseSwapRouteResponse {
+  chainName?: string
+  code?: number
+  data?: ResponseSwapRoute
+  message?: string
+  provider?: string
+}
+
+export interface ResponseSwapRouteResponseData {
+  data?: ResponseSwapRouteResponse
 }
 
 export interface ResponseTickerData {
@@ -2595,6 +2257,12 @@ export interface ResponseToggleActivityConfigResponse {
   message?: string
 }
 
+export interface ResponseToken {
+  decimal?: number
+  name?: string
+  symbol?: string
+}
+
 export interface ResponseTokenHolderStatus {
   data?: ResponseTokenHolderStatusData
 }
@@ -2605,6 +2273,27 @@ export interface ResponseTokenHolderStatusData {
   is_wallet_connected?: boolean
   user_holding_amount?: string
   vote_config?: ModelDaoProposalVoteOption
+}
+
+export interface ResponseTokenInfoKeyValue {
+  key?: string
+  value?: string
+}
+
+export interface ResponseTokenInfoResponse {
+  asset_platform?: ResponseAssetPlatformResponseData
+  coingecko_id?: string
+  communities?: ResponseTokenInfoKeyValue[]
+  contracts?: ResponseTokenInfoKeyValue[]
+  description_lines?: string[]
+  explorers?: ResponseTokenInfoKeyValue[]
+  id?: string
+  image?: ResponseCoinImage
+  market_data?: ResponseMarketData
+  name?: string
+  tags?: ResponseTokenInfoKeyValue[]
+  wallets?: ResponseTokenInfoKeyValue[]
+  websites?: ResponseTokenInfoKeyValue[]
 }
 
 export interface ResponseTokenPriceAlertResponseData {
@@ -2624,24 +2313,48 @@ export interface ResponseTopUser {
   metadata?: ResponsePaginationResponse
 }
 
-export interface ResponseTransactionsResponse {
-  data?: ModelOffchainTipBotTransferHistory[]
+export interface ResponseTrackFriendTechKeyResponse {
+  data?: ResponseFriendTechKeyWatchlistItemResponse
 }
 
-export interface ResponseTwitterHashtag {
-  channel_id?: string
+export interface ResponseTrackedFriendTechKey {
+  address?: string
   created_at?: string
-  from_twitter?: string[]
-  guild_id?: string
-  hashtag?: string[]
-  rule_id?: string
-  twitter_username?: string[]
+  holders?: number
+  id?: number
+  price?: number
+  price_change_percentage?: number
+  profile_checked?: boolean
+  supply?: number
+  twitter_pfp_url?: string
+  twitter_username?: string
   updated_at?: string
-  user_id?: string
 }
 
-export interface ResponseUpdateGuildTokenRole {
-  data?: ModelGuildConfigTokenRole
+export interface ResponseTransferTokenV2Data {
+  amount_each?: number
+  external_id?: string
+  id?: string
+  total_amount?: number
+  tx_id?: number
+}
+
+export interface ResponseTransferTokenV2Response {
+  data?: ResponseTransferTokenV2Data
+}
+
+export interface ResponseTxObject {
+  data?: string
+  from?: string
+  gas_limit?: string
+  gas_price?: string
+  nonce?: string
+  to?: string
+  value?: string
+}
+
+export interface ResponseUnlinkBinance {
+  message?: string
 }
 
 export interface ResponseUpdateUserFeedbackResponse {
@@ -2660,27 +2373,11 @@ export interface ResponseUser {
   username?: string
 }
 
-export interface ResponseUserDeviceResponse {
-  device_id?: string
-  ios_noti_token?: string
-}
-
 export interface ResponseUserFeedbackResponse {
   data?: ModelUserFeedback[]
   page?: number
   size?: number
   total?: number
-}
-
-export interface ResponseUserInvitesAggregation {
-  fake?: number
-  inviter_id?: string
-  left?: number
-  regular?: number
-}
-
-export interface ResponseUserTransactionResponse {
-  data?: ModelOffchainTipBotTransferHistory[]
 }
 
 export interface UtilPagination {
