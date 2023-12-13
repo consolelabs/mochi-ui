@@ -1,4 +1,12 @@
-export const typeFilters = [
+export type TransactionTypeFilterKey =
+  | 'all'
+  | 'tip'
+  | 'deposit'
+  | 'withdraw'
+  | 'payme'
+  | 'paylink'
+
+export const typeFilters: { key: TransactionTypeFilterKey; label: string }[] = [
   {
     key: 'all',
     label: 'All Types',
@@ -16,16 +24,29 @@ export const typeFilters = [
     label: 'Withdraw',
   },
   {
-    key: 'payMe',
+    key: 'payme',
     label: 'Pay Me',
   },
   {
-    key: 'payLink',
+    key: 'paylink',
     label: 'Pay Link',
   },
-]
+] as const
 
-export const platformFilters = [
+export type TransactionPlatformFilterKey =
+  | 'all'
+  | 'discord'
+  | 'telegram'
+  | 'twitter'
+  | 'email'
+  | 'github'
+  | 'reddit'
+  | 'onchain'
+
+export const platformFilters: {
+  key: TransactionPlatformFilterKey
+  label: string
+}[] = [
   {
     key: 'all',
     label: 'All Platforms',
@@ -55,7 +76,7 @@ export const platformFilters = [
     label: 'Reddit',
   },
   {
-    key: 'onChain',
+    key: 'onchain',
     label: 'On-chain',
   },
-]
+] as const

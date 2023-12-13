@@ -1,6 +1,12 @@
 import { OffchainTx } from '@consolelabs/mochi-rest'
 import { utils as mochiUtils } from '@consolelabs/mochi-ui'
 import { utils } from 'ethers'
+import {
+  TransactionPlatformFilterKey,
+  TransactionTypeFilterKey,
+  platformFilters,
+  typeFilters,
+} from '~constants/transactions'
 import { MochiprofileMochiProfile, ModelToken } from '~types/mochi-pay-schema'
 
 export type TransactionType = 'in' | 'out'
@@ -92,3 +98,32 @@ export const transformActionType = (action: string) =>
     deposit: 'deposit',
     withdraw: 'widthdraw',
   })[action]
+
+export const actionTypeFilter = (
+  action: string,
+  filterKey: TransactionTypeFilterKey,
+) =>
+  filterKey === 'all'
+    ? true
+    : {
+        transfer: 'tip',
+        deposit: 'deposit',
+        withdraw: 'widthdraw',
+        payme: 'payme',
+        paylink: 'paylink',
+        // FIXME?: no filter for
+        // vault_transfer: 'vault transfer',
+        // swap: 'swap',
+        // airdrop: 'airdrop',
+      }[action] === filterKey
+
+export const platformFilter = (
+  platform: string,
+  filterKey: TransactionPlatformFilterKey,
+) => (filterKey === 'all' ? true : platform === filterKey)
+
+export const isValidFilterType = (key: string) =>
+  typeFilters.find(({ key: validKey }) => validKey === key) !== undefined
+
+export const isValidFilterPlatform = (key: string) =>
+  platformFilters.find(({ key: validKey }) => validKey === key) !== undefined
