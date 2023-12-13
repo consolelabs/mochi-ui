@@ -14,6 +14,10 @@ export class ProviderDisabled extends ChainProvider {
     return null
   }
 
+  async connectMobile() {
+    return null
+  }
+
   async isInstalled() {
     return false
   }

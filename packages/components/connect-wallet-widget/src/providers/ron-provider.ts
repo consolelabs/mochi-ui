@@ -11,8 +11,9 @@ const iface = new utils.Interface([
   'function transfer(address to, uint amount)',
 ])
 
-export class ProviderEVM extends ChainProvider {
-  public platform = 'evm-chain'
+export class ProviderRON extends ChainProvider {
+  public platform = 'ronin-chain'
+  public chainId = '2020'
 
   sync(dispatch: any) {
     const provider = eip6963Store?.findProvider({ rdns: this.id })?.provider
@@ -97,7 +98,7 @@ export class ProviderEVM extends ChainProvider {
         params: [params],
       })
     } catch (e) {
-      console.error('evm-provider:transfer', e)
+      console.error('ron-provider:transfer', e)
       return null
     }
   }
@@ -125,7 +126,7 @@ export class ProviderEVM extends ChainProvider {
         platform: this.platform,
       }
     } catch (e) {
-      console.error('evm-provider:connect', e)
+      console.error('ron-provider:connect', e)
       return null
     }
   }
@@ -137,13 +138,11 @@ export class ProviderEVM extends ChainProvider {
 
       if (!this.signClient) throw new Error('Cannot init/find signClient')
 
-      const chainIds = ['1', '56', '42161', '137', '10', '8453']
-
       const { uri, approval } = await this.signClient.connect({
         requiredNamespaces: {
           eip155: {
             methods: ['eth_sendTransaction', 'personal_sign'],
-            chains: chainIds.map((cid) => `eip155:${(+cid).toString(10)}`),
+            chains: [`eip155:${this.chainId}`],
             events: ['chainChanged', 'accountsChanged'],
           },
         },
@@ -163,7 +162,7 @@ export class ProviderEVM extends ChainProvider {
 
       const sig = (await this.signClient.request({
         topic: this.session.topic,
-        chainId: 'eip155:1',
+        chainId: `eip155:${this.chainId}`,
         request: {
           method: 'personal_sign',
           params: [hexedMsg, accounts[0]],
@@ -176,7 +175,7 @@ export class ProviderEVM extends ChainProvider {
         platform: this.platform,
       }
     } catch (e) {
-      console.error('evm-provider:connectMobile', e)
+      console.error('ron-provider:connectMobile', e)
       return null
     }
   }

@@ -61,6 +61,7 @@ export default function LoginContent({
   raw?: boolean
   chain?: string
 }) {
+  const [isConnecting, setIsConnecting] = useState(false)
   const { isLoggedIn, dispatch } = useLoginWidget()
   const [state, setState] = useState({ step: chain ? 2 : 1, direction: 0 })
 
@@ -109,8 +110,12 @@ export default function LoginContent({
   )
 
   return (
-    <div className={!raw ? popoverContentClsx({}) : ''}>
-      <div className={loginContentClsx({ className: raw ? 'p-0' : 'p-4' })}>
+    <div
+      className={
+        !raw ? popoverContentClsx({}) : 'flex flex-col items-center w-full'
+      }
+    >
+      <div className={loginContentClsx({ className: raw ? 'p-0' : 'p-3' })}>
         <AnimatePresence initial={false} custom={state.direction}>
           {state.step === 1 ? (
             <m.div key={state.step} custom={state.direction} {...commonProps}>
@@ -127,8 +132,10 @@ export default function LoginContent({
                 chain={chain}
                 dispatch={dispatch}
                 onConnectSuccess={handleAfterConnect}
+                onStartConnect={() => setIsConnecting(true)}
+                onEndConnect={() => setIsConnecting(false)}
               />
-              {!chain && (
+              {!chain && !isConnecting && (
                 <Button
                   type="button"
                   onClick={() => setState({ step: 1, direction: -1 })}

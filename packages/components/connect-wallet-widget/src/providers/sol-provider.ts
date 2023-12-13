@@ -2,11 +2,12 @@
 import bs58 from 'bs58'
 import dlv from 'dlv'
 import { SystemProgram, PublicKey, Transaction } from '@solana/web3.js'
+import isMobile from 'is-mobile'
 import { msg, ChainProvider } from './provider'
 
 export class ProviderSOL extends ChainProvider {
   public platform = 'solana-chain'
-  public chainId = 'mainnet-beta'
+  public chainId = '5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp'
 
   sync() {
     if (typeof window !== 'undefined') {
@@ -43,6 +44,7 @@ export class ProviderSOL extends ChainProvider {
       const signedTx = await this.provider.signTransaction(tx)
       return await this.provider.send(signedTx)
     } catch (e) {
+      console.error('sol-provider:transfer', e)
       return null
     }
   }
@@ -50,6 +52,10 @@ export class ProviderSOL extends ChainProvider {
   async connect() {
     try {
       const hexedMsg = new TextEncoder().encode(msg)
+
+      if (isMobile()) {
+        return await this.connectMobile()
+      }
 
       const { signature, publicKey: pb } =
         await this.provider.signMessage(hexedMsg)
@@ -60,6 +66,59 @@ export class ProviderSOL extends ChainProvider {
         platform: this.platform,
       }
     } catch (e) {
+      console.error('sol-provider:connect', e)
+      return null
+    }
+  }
+
+  async connectMobile() {
+    try {
+      const hexedMsg = new TextEncoder().encode(msg)
+      await this.initSignClient()
+
+      if (!this.signClient) throw new Error('Cannot init/find signClient')
+
+      const { uri, approval } = await this.signClient.connect({
+        requiredNamespaces: {
+          solana: {
+            methods: ['solana_signTransaction', 'solana_signMessage'],
+            chains: [`solana:${this.chainId}`],
+            events: [],
+          },
+        },
+      })
+
+      if (!uri || !this.mobileProtocol)
+        throw new Error(`uri/mobile protocol not found - ${this.name}`)
+
+      const href = `${this.mobileProtocol}wc?uri=${encodeURIComponent(uri)}`
+      window.open(href, '_self', 'noreferrer noopener')
+
+      const session = await approval()
+      this.session = session
+      const accounts = session.namespaces.solana.accounts
+        .map((a) => a.split(':').pop() ?? '')
+        .filter(Boolean)
+
+      const { signature } = (await this.signClient.request({
+        topic: this.session.topic,
+        chainId: `solana:${this.chainId}`,
+        request: {
+          method: 'solana_signMessage',
+          params: {
+            message: new TextDecoder().decode(hexedMsg),
+            pubkey: accounts[0],
+          },
+        },
+      })) as { signature: string }
+
+      return {
+        addresses: accounts,
+        signature,
+        platform: this.platform,
+      }
+    } catch (e) {
+      console.error('sol-provider:connectMobile', e)
       return null
     }
   }

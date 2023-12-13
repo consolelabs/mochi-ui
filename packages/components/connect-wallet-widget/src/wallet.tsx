@@ -28,9 +28,9 @@ export default function Wallet({
   return (
     <button
       className={connectWallet({
-        isInstalled,
+        isInstalled: true,
       })}
-      disabled={!isInstalled}
+      /* disabled={!isInstalled} */
       onClick={connect}
       type="button"
     >
