@@ -10,11 +10,13 @@ import { AppDetailIntegration } from '~cpn/app/detail/AppDetailIntegration'
 import { AppDetailUrl } from '~cpn/app/detail/AppDetailUrl'
 import {
   DtoUpdateApplicationInfoRequest,
+  ViewApplication,
+  ViewApplicationResponse,
   ViewFullApplicationResponse,
 } from '~types/mochi-pay-schema'
 import { API, GET_PATHS } from '~constants/api'
 import { useForm } from 'react-hook-form'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import {
   ActionBar,
   ActionBarActionGroup,
@@ -118,13 +120,37 @@ const App: NextPageWithLayout = () => {
   })
   const openActionBar = isDirty && Object.keys(dirtyFields).length > 0
 
+  const resetApp = useCallback(
+    (app?: ViewApplication) => {
+      if (!app) return
+      const defalutUrls = Object.entries(app.external_links || {}).flatMap(
+        ([platform, urls]) => urls.map((url) => ({ platform, url })),
+      )
+      const defalutPlatforms = platforms.reduce(
+        (acc, { key }) => ({
+          ...acc,
+          [key]: app.platforms?.includes(key) || false,
+        }),
+        {},
+      )
+      reset({
+        urls: defalutUrls,
+        platforms: defalutPlatforms,
+        webhook: app.webhooks?.create_request || '',
+        app_name: app.name,
+        description: app.description || '',
+      })
+    },
+    [reset],
+  )
+
   const onUpdateApp = (data: AppDetailFormValues) => {
     if (!profileId || !appId || !detail || !isDirty) return Promise.resolve()
     const body: Partial<DtoUpdateApplicationInfoRequest> = {
       app_name: data.app_name,
       description: data.description,
       metadata: detail?.metadata,
-      webhook: data.webhook,
+      webhooks: { create_request: data.webhook || '' },
       platforms: Object.entries(data.platforms).flatMap(([key, value]) =>
         value ? key : [],
       ),
@@ -142,8 +168,8 @@ const App: NextPageWithLayout = () => {
       body,
       GET_PATHS.UPDATE_APPLICATION_DETAIL(profileId, appId),
     )
-      .json(() => {
-        refresh()
+      .json((r: ViewApplicationResponse) => {
+        resetApp(r.data)
       })
       .catch((e) => {
         const err = JSON.parse(e.message)
@@ -178,26 +204,8 @@ const App: NextPageWithLayout = () => {
   }
 
   useEffect(() => {
-    if (detail) {
-      const defalutUrls = Object.entries(detail.external_links || {}).flatMap(
-        ([platform, urls]) => urls.map((url) => ({ platform, url })),
-      )
-      const defalutPlatforms = platforms.reduce(
-        (acc, { key }) => ({
-          ...acc,
-          [key]: detail.platforms?.includes(key) || false,
-        }),
-        {},
-      )
-      reset({
-        urls: defalutUrls,
-        platforms: defalutPlatforms,
-        webhook: detail.webhook || '',
-        app_name: detail.name,
-        description: detail.description || '',
-      })
-    }
-  }, [reset, detail])
+    resetApp(detail)
+  }, [detail, resetApp])
 
   useEffect(() => {
     if (secretKeyQuery) {
