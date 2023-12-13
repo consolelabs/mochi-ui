@@ -31,7 +31,7 @@ export const typeFilters: { key: TransactionTypeFilterKey; label: string }[] = [
     key: 'paylink',
     label: 'Pay Link',
   },
-] as const
+]
 
 export type TransactionPlatformFilterKey =
   | 'all'
@@ -79,4 +79,4 @@ export const platformFilters: {
     key: 'onchain',
     label: 'On-chain',
   },
-] as const
+]
