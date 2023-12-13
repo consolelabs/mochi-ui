@@ -1,10 +1,19 @@
-import { Button, TextFieldInput, Typography, useToast } from '@mochi-ui/core'
+import {
+  Button,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  TextFieldInput,
+  TextFieldRoot,
+  Typography,
+  useToast,
+} from '@mochi-ui/core'
 import {
   DtoCreateApplicationRequest,
   ViewFullApplicationResponse,
 } from '~types/mochi-pay-schema'
 import { API, GET_PATHS } from '~constants/api'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
@@ -28,7 +37,7 @@ const schema = z.object({
 export default function NewAppForm({ id, onClose, onSuccess, onError }: Props) {
   const {
     handleSubmit,
-    register,
+    control,
     formState: { errors, isSubmitting },
   } = useForm<DtoCreateApplicationRequest>({
     defaultValues: {
@@ -68,24 +77,19 @@ export default function NewAppForm({ id, onClose, onSuccess, onError }: Props) {
       <Typography level="h6" color="textPrimary">
         Create an application
       </Typography>
-      <Typography
-        level="p6"
-        color="textSecondary"
-        component="p"
-        className="mt-5 mb-2 font-bold uppercase"
-      >
-        Name
-      </Typography>
-      <TextFieldInput
-        autoFocus
-        error={!!errors.app_name?.message}
-        {...register('app_name', { required: true })}
+      <Controller
+        name="app_name"
+        control={control}
+        render={({ field, fieldState }) => (
+          <FormControl error={!!fieldState.error} className="mt-5">
+            <FormLabel>Name</FormLabel>
+            <TextFieldRoot>
+              <TextFieldInput {...field} autoComplete="off" />
+            </TextFieldRoot>
+            <FormErrorMessage>{fieldState.error?.message}</FormErrorMessage>
+          </FormControl>
+        )}
       />
-      {!!errors.app_name?.message && (
-        <Typography level="p6" color="danger">
-          {errors.app_name?.message}
-        </Typography>
-      )}
       <div className="grid grid-cols-2 gap-3 mt-8">
         <Button
           variant="outline"
