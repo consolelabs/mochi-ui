@@ -1,6 +1,6 @@
 {
   "name": "@mochi-ui/checkbox",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [

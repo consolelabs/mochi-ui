@@ -1,6 +1,6 @@
 {
   "name": "@mochi-ui/list",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
