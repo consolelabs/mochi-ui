@@ -1,5 +1,6 @@
 import {
   Badge,
+  ColumnProps,
   PageHeader,
   Select,
   SelectContent,
@@ -155,6 +156,79 @@ const App: NextPageWithLayout = () => {
       .filter((t) => platformFilter(t.source_platform ?? '', filterPlatform))
   }, [filterPlatform, filterType, transactions])
 
+  const columns: ColumnProps<ModelProfileTransaction>[] = [
+    {
+      header: 'wen',
+      // eslint-disable-next-line react/no-unstable-nested-components
+      cell: ({ row: { original: transaction } }) => {
+        return (
+          <>
+            <Typography level="p5">
+              {format(new Date(transaction.created_at ?? ''), 'Pp')}
+            </Typography>
+            <Typography level="p6" className="capitalize" color="textSecondary">
+              {transaction.source_platform}
+            </Typography>
+          </>
+        )
+      },
+    },
+    {
+      header: 'username',
+      // eslint-disable-next-line react/no-unstable-nested-components
+      cell: ({ row: { original } }) => (
+        <TransactionUsernameCell {...original} />
+      ),
+    },
+    {
+      header: 'amount',
+      // eslint-disable-next-line react/no-unstable-nested-components
+      cell: ({ row: { original } }) => {
+        const { amount, token, type, usd_amount } = original
+        const isReceive = type === 'in'
+        return (
+          <div>
+            <Typography
+              level="p5"
+              color={isReceive ? 'success' : 'textPrimary'}
+            >
+              {`${isReceive ? '+' : '-'} ${formatTransactionAmount(
+                amount ?? '0',
+                token?.decimal ?? 0,
+              )} ${token?.symbol}`}
+            </Typography>
+            <Typography level="p6" color="textSecondary">
+              {utils.formatUsdDigit(usd_amount ?? 0)}
+            </Typography>
+          </div>
+        )
+      },
+    },
+    {
+      header: 'type',
+      // eslint-disable-next-line react/no-unstable-nested-components
+      cell: ({ row: { original } }) => (
+        <span className="capitalize">
+          {transformActionType(original.action as TransactionActionType)}
+        </span>
+      ),
+    },
+    {
+      header: 'status',
+      // eslint-disable-next-line react/no-unstable-nested-components
+      cell: ({ row: { original } }) => {
+        const { status } = original
+        return (
+          <Badge
+            appearance={status === 'success' ? 'success' : 'danger'}
+            label={status === 'success' ? 'success' : 'fail'}
+            className="capitalize w-fit"
+          />
+        )
+      },
+    },
+  ]
+
   return (
     <>
       <SEO title={`${profile?.profile_name}'s transactions`} />
@@ -168,86 +242,7 @@ const App: NextPageWithLayout = () => {
         }
       >
         <Table<ModelProfileTransaction>
-          columns={[
-            {
-              header: 'WEN',
-              // eslint-disable-next-line react/no-unstable-nested-components
-              cell: ({ row: { original: transaction } }) => {
-                return (
-                  <>
-                    <Typography level="p5">
-                      {format(new Date(transaction.created_at ?? ''), 'Pp')}
-                    </Typography>
-                    <Typography
-                      level="p6"
-                      className="capitalize"
-                      color="textSecondary"
-                    >
-                      {transaction.source_platform}
-                    </Typography>
-                  </>
-                )
-              },
-            },
-            {
-              header: 'USERNAME',
-              // eslint-disable-next-line react/no-unstable-nested-components
-              cell: ({ row: { original } }) => (
-                <TransactionUsernameCell {...original} />
-              ),
-            },
-            {
-              header: 'AMOUNT',
-              // eslint-disable-next-line react/no-unstable-nested-components
-              cell: ({ row: { original } }) => {
-                const { amount, token, type, usd_amount } = original
-                const isReceive = type === 'in'
-                return (
-                  <div>
-                    <Typography
-                      level="p5"
-                      color={isReceive ? 'success' : 'textPrimary'}
-                    >
-                      {`${isReceive ? '+' : '-'} ${formatTransactionAmount(
-                        amount ?? '0',
-                        token?.decimal ?? 0,
-                      )} ${token?.symbol}`}
-                    </Typography>
-                    <Typography level="p6" color="textSecondary">
-                      {utils.formatUsdDigit(usd_amount ?? 0)}
-                    </Typography>
-                  </div>
-                )
-              },
-            },
-            {
-              header: 'TYPE',
-              // eslint-disable-next-line react/no-unstable-nested-components
-              cell: ({ row: { original } }) => (
-                <span className="capitalize">
-                  {transformActionType(
-                    original.action as TransactionActionType,
-                  )}
-                </span>
-              ),
-            },
-            {
-              header: 'STATUS',
-              // eslint-disable-next-line react/no-unstable-nested-components
-              cell: ({ row: { original } }) => {
-                const { status } = original
-                const badgeProps = {
-                  appearance:
-                    status === 'success'
-                      ? 'success'
-                      : ('danger' as 'success' | 'danger'),
-                  label: status === 'success' ? 'success' : 'fail',
-                  className: 'capitalize w-fit',
-                }
-                return <Badge {...badgeProps} />
-              },
-            },
-          ]}
+          columns={columns}
           data={filteredTransactions ?? []}
           isLoading={isLoading}
         />
