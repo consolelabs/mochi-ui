@@ -67,7 +67,8 @@
     "@mochi-ui/table": "workspace:*",
     "@mochi-ui/label": "workspace:*",
     "@mochi-ui/toast": "workspace:*",
-    "@mochi-ui/action-bar": "workspace:*"
+    "@mochi-ui/action-bar": "workspace:*",
+    "@mochi-ui/tabs": "workspace:*"
   },
   "clean-package": "../../clean-package.config.json"
 }

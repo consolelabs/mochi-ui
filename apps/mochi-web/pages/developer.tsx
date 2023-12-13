@@ -194,7 +194,7 @@ function SupportedPlatforms() {
                       })}
                     />
                     {comingSoon && (
-                      <span className="absolute bottom-0 px-1 leading-3 -translate-x-1/2 border rounded-full left-1/2 text-xxs bg-white-pure border-neutral-200">
+                      <span className="absolute bottom-0 px-1 leading-3 -translate-x-1/2 border rounded-full left-1/2 text-xxxs bg-white-pure border-neutral-200">
                         soon
                       </span>
                     )}

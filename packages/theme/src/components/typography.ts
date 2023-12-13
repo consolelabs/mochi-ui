@@ -18,7 +18,7 @@ const typographyVariants = cva(['overflow-hidden'], {
       p4: 'text-base',
       p5: 'text-sm',
       p6: 'text-xs',
-      p7: 'text-xxs',
+      p7: 'text-xxxs',
       inherit: 'text-inherit',
     },
     color: {
