@@ -26,7 +26,7 @@ import { ModelProfileTransaction } from '~types/mochi-pay-schema'
 import { format } from 'date-fns'
 import { TransactionUsernameCell } from '~cpn/Transaction/TransactionUsernameCell'
 import {
-  ActionType,
+  TransactionActionType,
   actionTypeFilter,
   formatTransactionAmount,
   isValidFilterPlatform,
@@ -203,7 +203,9 @@ const App: NextPageWithLayout = () => {
               // eslint-disable-next-line react/no-unstable-nested-components
               cell: ({ row: { original } }) => (
                 <span className="capitalize">
-                  {transformActionType(original.action as ActionType)}
+                  {transformActionType(
+                    original.action as TransactionActionType,
+                  )}
                 </span>
               ),
             },

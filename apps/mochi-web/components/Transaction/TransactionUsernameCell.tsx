@@ -4,10 +4,9 @@ import { truncateWallet } from '~utils/string'
 import { ArrowDownLine, ArrowUpLine } from '@mochi-ui/icons'
 import clsx from 'clsx'
 import {
-  arrangeTransactionProfile,
   type TransactionType,
   createTransactionMesssage,
-  ActionType,
+  type TransactionActionType,
 } from './utils'
 
 export const TransactionUsernameCell = (props: ModelProfileTransaction) => {
@@ -20,12 +19,6 @@ export const TransactionUsernameCell = (props: ModelProfileTransaction) => {
     type,
     action,
   } = props
-
-  const { from, to } = arrangeTransactionProfile({
-    profile: from_profile,
-    otherProfile: other_profile,
-    type: type as TransactionType,
-  })
 
   return (
     <div className="flex gap-[14px] items-center">
@@ -50,11 +43,11 @@ export const TransactionUsernameCell = (props: ModelProfileTransaction) => {
         <Typography level="p5">
           {createTransactionMesssage({
             type: type as TransactionType | undefined,
-            action: action as ActionType | undefined,
+            action: action as TransactionActionType | undefined,
             token,
             amount,
-            from,
-            to,
+            profile: from_profile,
+            otherProfile: other_profile,
           })}
         </Typography>
         <Typography level="p6" color="textSecondary" fontWeight="sm">
