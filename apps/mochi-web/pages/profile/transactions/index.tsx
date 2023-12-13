@@ -16,8 +16,8 @@ import { SEO } from '~app/layout/seo'
 import AuthLayout from '~components/auth-layout'
 import { ROUTES } from '~constants/routes'
 import {
-  TransactionPlatformFilterKey,
-  TransactionTypeFilterKey,
+  TransactionActionType,
+  TransactionPlatform,
   platformFilters,
   typeFilters,
 } from '~constants/transactions'
@@ -27,50 +27,28 @@ import { ModelProfileTransaction } from '~types/mochi-pay-schema'
 import { format } from 'date-fns'
 import { TransactionUsernameCell } from '~cpn/Transaction/TransactionUsernameCell'
 import {
-  TransactionActionType,
-  actionTypeFilter,
   formatTransactionAmount,
-  isValidFilterPlatform,
-  isValidFilterType,
-  platformFilter,
+  ignoreOptionAll,
   transformActionType,
 } from '~cpn/Transaction/utils'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { utils } from '@consolelabs/mochi-ui'
 
 interface AppPageHeaderProps {
-  filterType: TransactionTypeFilterKey
-  filterPlatform: TransactionPlatformFilterKey
+  filterType: TransactionActionType | 'all'
+  filterPlatform: TransactionPlatform | 'all'
+  onFilterTypeChange: (_: TransactionActionType | 'all') => void
+  onFilterPlatformChange: (_: TransactionPlatform | 'all') => void
 }
 
 const AppPageHeader = (props: AppPageHeaderProps) => {
-  const { push, query } = useRouter()
-  const { filterType, filterPlatform } = props
-  const handlePlarformChange = (value: string) => {
-    push(
-      {
-        query: {
-          ...query,
-          platform: value,
-        },
-      },
-      undefined,
-      { shallow: true },
-    )
-  }
-
-  const handleTypeChange = (value: string) => {
-    push(
-      {
-        query: {
-          ...query,
-          type: value,
-        },
-      },
-      undefined,
-      { shallow: true },
-    )
-  }
+  const {
+    filterType,
+    filterPlatform,
+    onFilterPlatformChange,
+    onFilterTypeChange,
+  } = props
+  const { push } = useRouter()
 
   return (
     <PageHeader
@@ -79,7 +57,7 @@ const AppPageHeader = (props: AppPageHeaderProps) => {
       actions={[
         <Select
           key="filter-types"
-          onChange={handleTypeChange}
+          onChange={onFilterTypeChange}
           value={filterType}
         >
           <SelectTrigger className="border border-divider min-w-[130px] justify-between px-4">
@@ -87,7 +65,7 @@ const AppPageHeader = (props: AppPageHeaderProps) => {
           </SelectTrigger>
           <SelectContent align="end">
             {typeFilters.map((type) => (
-              <SelectItem key={type.key} value={type.key}>
+              <SelectItem key={type.value} value={type.value}>
                 {type.label}
               </SelectItem>
             ))}
@@ -95,7 +73,7 @@ const AppPageHeader = (props: AppPageHeaderProps) => {
         </Select>,
         <Select
           key="filter-platforms"
-          onChange={handlePlarformChange}
+          onChange={onFilterPlatformChange}
           value={filterPlatform}
         >
           <SelectTrigger className="border border-divider min-w-[150px] justify-between px-4">
@@ -103,7 +81,7 @@ const AppPageHeader = (props: AppPageHeaderProps) => {
           </SelectTrigger>
           <SelectContent align="end">
             {platformFilters.map((platform) => (
-              <SelectItem key={platform.key} value={platform.key}>
+              <SelectItem key={platform.value} value={platform.value}>
                 {platform.label}
               </SelectItem>
             ))}
@@ -118,43 +96,26 @@ const MAX_TRANSACTION_TO_DISPLAY = 30
 
 const App: NextPageWithLayout = () => {
   const { profile } = useLoginWidget()
-  const { query } = useRouter()
-  // const [ ] = useState()
+
+  const [filterPlatform, setFilterPlatform] = useState<
+    TransactionPlatform | 'all'
+  >('all')
+  const [filterType, setFilterType] = useState<TransactionActionType | 'all'>(
+    'all',
+  )
+
   const { transactions: _transactions, isLoading } = useFetchProfileTransaction(
     profile?.id ?? '',
     Boolean(profile?.id),
+    {
+      action: ignoreOptionAll(filterType),
+      platform: ignoreOptionAll(filterPlatform),
+    },
   )
   const transactions = useMemo(
     () => _transactions?.slice(0, MAX_TRANSACTION_TO_DISPLAY),
     [_transactions],
   )
-  const [filterType, filterPlatform] = useMemo(() => {
-    let validType = 'all'
-    let validPlatform = 'all'
-
-    if (typeof query.type === 'string') {
-      validType = isValidFilterType(
-        typeof query.type === 'string' ? query.type : '',
-      )
-        ? query.type
-        : validType
-    }
-    if (typeof query.platform === 'string') {
-      validPlatform = isValidFilterPlatform(query.platform)
-        ? query.platform
-        : validPlatform
-    }
-    return [validType, validPlatform] as [
-      TransactionTypeFilterKey,
-      TransactionPlatformFilterKey,
-    ]
-  }, [query.platform, query.type])
-
-  const filteredTransactions = useMemo(() => {
-    return transactions
-      ?.filter((t) => actionTypeFilter(t.action ?? '', filterType))
-      .filter((t) => platformFilter(t.source_platform ?? '', filterPlatform))
-  }, [filterPlatform, filterType, transactions])
 
   const columns: ColumnProps<ModelProfileTransaction>[] = [
     {
@@ -238,15 +199,17 @@ const App: NextPageWithLayout = () => {
           <AppPageHeader
             filterType={filterType}
             filterPlatform={filterPlatform}
+            onFilterPlatformChange={setFilterPlatform}
+            onFilterTypeChange={setFilterType}
           />
         }
       >
         <Table<ModelProfileTransaction>
           columns={columns}
-          data={filteredTransactions ?? []}
+          data={transactions ?? []}
           isLoading={isLoading}
         />
-        {(filteredTransactions?.length ?? 0) <= 0 && (
+        {!isLoading && (transactions?.length ?? 0) <= 0 && (
           <div className="h-64 w-full tracking-tight text-center flex items-center justify-center flex-col">
             <Typography level="h7">No transactions</Typography>
             <Typography level="p4" color="textSecondary">

@@ -1,26 +1,15 @@
 import UI, { Platform, utils as mochiUtils } from '@consolelabs/mochi-ui'
 import { utils } from 'ethers'
-import {
-  TransactionPlatformFilterKey,
-  TransactionTypeFilterKey,
-  platformFilters,
-  typeFilters,
-} from '~constants/transactions'
+import { TransactionActionType } from '~constants/transactions'
 import {
   MochiprofileMochiProfile,
   ModelProfileTransactionMetadata,
   ModelToken,
 } from '~types/mochi-pay-schema'
 
-export type TransactionActionType =
-  | 'transfer'
-  | 'vault_transfer'
-  | 'payme'
-  | 'swap'
-  | 'paylink'
-  | 'airdrop'
-  | 'deposit'
-  | 'withdraw'
+export const ignoreOptionAll = <T>(value: T | 'all') => {
+  return value === 'all' ? undefined : value
+}
 
 export const transformActionType = (action: TransactionActionType) =>
   ({
@@ -84,34 +73,12 @@ export const createTransactionMesssage = ({
   }[schemaType]
 }
 
-export const actionTypeFilter = (
-  action: string,
-  filterKey: TransactionTypeFilterKey,
-) =>
-  filterKey === 'all'
-    ? true
-    : {
-        transfer: 'tip',
-        deposit: 'deposit',
-        withdraw: 'widthdraw',
-        payme: 'payme',
-        paylink: 'paylink',
-        // FIXME?: no filter for
-        // vault_transfer: 'vault transfer',
-        // swap: 'swap',
-        // airdrop: 'airdrop',
-      }[action] === filterKey
+// NOTE: implement url param sync later
+// export const isValidFilterType = (key: string) =>
+//   typeFilters.find(({ key: validKey }) => validKey === key) !== undefined
 
-export const platformFilter = (
-  platform: string,
-  filterKey: TransactionPlatformFilterKey,
-) => (filterKey === 'all' ? true : platform === filterKey)
-
-export const isValidFilterType = (key: string) =>
-  typeFilters.find(({ key: validKey }) => validKey === key) !== undefined
-
-export const isValidFilterPlatform = (key: string) =>
-  platformFilters.find(({ key: validKey }) => validKey === key) !== undefined
+// export const isValidFilterPlatform = (key: string) =>
+//   platformFilters.find(({ key: validKey }) => validKey === key) !== undefined
 
 export function transformProfilePair(
   formProfile: any,

@@ -3,11 +3,8 @@ import { ModelProfileTransaction } from '~types/mochi-pay-schema'
 import { truncateWallet } from '~utils/string'
 import { ArrowDownLine, ArrowUpLine } from '@mochi-ui/icons'
 import clsx from 'clsx'
-import {
-  type TransactionType,
-  createTransactionMesssage,
-  type TransactionActionType,
-} from './utils'
+import { TransactionActionType } from '~constants/transactions'
+import { type TransactionType, createTransactionMesssage } from './utils'
 
 export const TransactionUsernameCell = (props: ModelProfileTransaction) => {
   const {
