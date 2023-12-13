@@ -159,6 +159,7 @@ const App: NextPageWithLayout = () => {
     <>
       <SEO title={`${profile?.profile_name}'s transactions`} />
       <AuthLayout
+        className="max-w-full"
         pageHeader={
           <AppPageHeader
             filterType={filterType}
@@ -250,6 +251,14 @@ const App: NextPageWithLayout = () => {
           data={filteredTransactions ?? []}
           isLoading={isLoading}
         />
+        {(filteredTransactions?.length ?? 0) <= 0 && (
+          <div className="h-64 w-full tracking-tight text-center flex items-center justify-center flex-col">
+            <Typography level="h7">No transactions</Typography>
+            <Typography level="p4" color="textSecondary">
+              You haven&apos;t made any transactions yet{' '}
+            </Typography>
+          </div>
+        )}
       </AuthLayout>
     </>
   )
