@@ -1,17 +1,12 @@
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import clsx from 'clsx'
 import { Avatar } from '@mochi-ui/core'
-import { Profile } from '@consolelabs/mochi-rest'
 import { CheckLine, CloseLine } from '@mochi-ui/icons'
 import PlatformIcon from '../PlatformPicker/PlatformIcon'
 
 type CheckIconProps = {
   isHovering: boolean
   isSelected: boolean
-}
-
-export type FallbackGroup = {
-  create_new?: boolean
 }
 
 const CheckIcon: React.FC<CheckIconProps> = ({ isSelected, isHovering }) => {
@@ -23,18 +18,20 @@ const CheckIcon: React.FC<CheckIconProps> = ({ isSelected, isHovering }) => {
 }
 
 interface ItemProps {
-  profile: Profile & FallbackGroup
+  avatar: string
+  profileName?: string
+  platform?: string
   isSelected?: boolean
   active: boolean
 }
 
 export const RecipientItem: React.FC<ItemProps> = ({
-  profile,
+  avatar,
+  profileName,
+  platform,
   isSelected = false,
   active,
 }) => {
-  const { avatar, associated_accounts } = profile
-  const account = associated_accounts?.[0]
   const {
     isOpen: isHovering,
     onOpen: setIsHovering,
@@ -47,7 +44,7 @@ export const RecipientItem: React.FC<ItemProps> = ({
     ) : (
       <PlatformIcon
         className="p-1 w-6 h-6 text-neutral-500"
-        platform={account?.platform ?? ''}
+        platform={platform ?? ''}
         compact
       />
     )
@@ -66,9 +63,7 @@ export const RecipientItem: React.FC<ItemProps> = ({
     >
       <Avatar src={avatar || '/logo.png'} size="sm" />
       <div className="flex flex-col flex-1">
-        <h3 className="text-sm font-medium">
-          {account?.platform_metadata.username}
-        </h3>
+        <h3 className="text-sm font-medium">{profileName}</h3>
       </div>
       {right}
     </div>

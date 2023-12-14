@@ -4,6 +4,7 @@ import {
   Github,
   Google,
   GoogleColored,
+  Mochi,
   Reddit,
   RedditColored,
   Telegram,
@@ -61,6 +62,9 @@ const PlatformIcon: React.FC<IconProps> = ({
     }
     case 'on-chain': {
       return <WalletSolid className={className} />
+    }
+    case 'mochi-profile': {
+      return <Mochi className={className} />
     }
     default: {
       return null

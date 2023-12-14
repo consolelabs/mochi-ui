@@ -5,6 +5,7 @@ import { create } from 'zustand'
 import { API } from '~constants/api'
 import { formatRelative } from '~utils/time'
 import { appLogo, webLogo, discordLogo, telegramLogo } from '~utils/image'
+import { MonitorLine } from '@mochi-ui/icons'
 
 const limit = 20 as const
 
@@ -13,7 +14,7 @@ export interface Tx {
   platformIcon?: string
   where: {
     text: string
-    avatar: string
+    avatar: string | ((...props: any[]) => JSX.Element)
   }
   from: string
   fromAvatar: string
@@ -93,7 +94,7 @@ async function transform(d: any): Promise<Tx> {
 
       if ([Platform.Web, 'web'].includes(d.source_platform)) {
         where.text = 'Web'
-        where.avatar = webLogo.src
+        where.avatar = MonitorLine as any
       }
 
       if ([Platform.App, 'app'].includes(d.source_platform)) {

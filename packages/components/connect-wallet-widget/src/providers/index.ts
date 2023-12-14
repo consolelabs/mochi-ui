@@ -1,10 +1,8 @@
 /* istanbul ignore file */
 import {
   ArgentWallet,
-  BackpackWallet,
   Coin98Wallet,
   CoinbaseWallet,
-  LedgerWallet,
   MartianWallet,
   MetamaskWallet,
   OkxWallet,
@@ -65,13 +63,21 @@ export default function getProviders(dispatch: any) {
         .setIcon(OkxWallet)
         .setMobileProtocol('okex://main/')
         .sync(dispatch),
-      new ProviderEVM().setName('Coin98').setIcon(Coin98Wallet).sync(dispatch),
+      new ProviderEVM()
+        .setName('Coin98')
+        .setIcon(Coin98Wallet)
+        .setMobileProtocol('coin98://')
+        .sync(dispatch),
       new ProviderEVM()
         .setName('Trustwallet')
         .setIcon(TrustWallet)
         .setMobileProtocol('trust://')
         .sync(dispatch),
-      new ProviderEVM().setName('Argent').setIcon(ArgentWallet).sync(dispatch),
+      new ProviderEVM()
+        .setName('Argent')
+        .setIcon(ArgentWallet)
+        .setMobileProtocol('argent://')
+        .sync(dispatch),
       new ProviderEVM()
         .setName('Safepal')
         .setIcon(SafepalWallet)
@@ -83,7 +89,6 @@ export default function getProviders(dispatch: any) {
         .setIcon(PhantomWallet)
         .setMobileProtocol('phantom://')
         .sync(dispatch),
-      new ProviderEVM().setName('Ledger').setIcon(LedgerWallet).sync(dispatch),
     ],
     RON: [
       // ronin chain operates in the same manner as evm
@@ -96,33 +101,25 @@ export default function getProviders(dispatch: any) {
     ],
     SOL: [
       new ProviderSOL()
-        .setId('phantom.solana')
-        .setName('Phantom')
-        .setIcon(PhantomWallet)
-        .setMobileProtocol('phantom://')
-        .sync(),
-      new ProviderSOL()
-        .setId('backpack')
-        .setName('Backpack')
-        .setIcon(BackpackWallet)
-        .setMobileProtocol('backpack://')
-        .sync(),
-      new ProviderSOL()
         .setId('com.okex.wallet')
         .setName('Okx')
         .setIcon(OkxWallet)
         .setMobileProtocol('okex://main/')
         .sync(),
-      new ProviderSOL().setName('Coin98').setIcon(Coin98Wallet).sync(),
+      new ProviderSOL()
+        .setName('Coin98')
+        .setIcon(Coin98Wallet)
+        .setMobileProtocol('coin98://')
+        .sync(),
       new ProviderSOL()
         .setName('Trustwallet')
         .setIcon(TrustWallet)
         .setMobileProtocol('trust://')
         .sync(),
       new ProviderSOL()
-        .setName('Safepal')
+        .setName('Spot')
         .setIcon(SafepalWallet)
-        .setMobileProtocol('safepalwallet://')
+        .setMobileProtocol('spot://')
         .sync(),
     ],
     SUI: [

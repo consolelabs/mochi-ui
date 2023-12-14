@@ -11,22 +11,6 @@ interface Props {
   selectedRecipients?: Profile[]
 }
 
-const ProfilePlaceholder: Profile = {
-  id: 'unknown',
-  avatar: '/logo.png',
-  associated_accounts: [
-    {
-      id: 'unknown',
-      // @ts-ignore
-      platform: '',
-      platform_identifier: '0x00000000000000000000000000000000000000000',
-      platform_metadata: {
-        username: 'unknown',
-      },
-    },
-  ],
-}
-
 export const RecipientList = (props: Props) => {
   const { data, selectedRecipients = [] } = props
   return (
@@ -40,7 +24,11 @@ export const RecipientList = (props: Props) => {
           {({ active }) => (
             <RecipientItem
               active={active}
-              profile={item || ProfilePlaceholder}
+              avatar={item.avatar}
+              platform={item.associated_accounts?.[0]?.platform}
+              profileName={
+                item.associated_accounts?.[0]?.platform_metadata.username
+              }
               isSelected={selectedRecipients.some(
                 (recipient) =>
                   recipient.associated_accounts?.[0].id ===
