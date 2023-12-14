@@ -18,6 +18,11 @@ export const ROUTES = {
     getPath: (id?: string | number) => `/applications/${id}`,
     pathname: '/applications/[id]',
   },
-  SETTINGS: '/settings',
+  SETTINGS: (tab?: 'general' | 'notification') => {
+    if (tab) {
+      return `/settings?tab=${tab}`
+    }
+    return '/settings'
+  },
   TRANSACTIONS: '/profile/transactions',
 }

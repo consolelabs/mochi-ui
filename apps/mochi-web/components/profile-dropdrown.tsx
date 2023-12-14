@@ -55,7 +55,7 @@ export default function ProfileDropdown() {
           <DropdownMenuItem hasPaddingLeft>Overview</DropdownMenuItem>
         </Link>
 
-        <Link href="#settings">
+        <Link href={ROUTES.SETTINGS()}>
           <DropdownMenuItem hasPaddingLeft>Settings</DropdownMenuItem>
         </Link>
 
