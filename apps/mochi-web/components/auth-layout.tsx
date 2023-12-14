@@ -218,7 +218,13 @@ export default function AuthenticatedLayout({
           href: ROUTES.MY_PROFILE,
         },
         { title: 'Servers', Icon: Discord },
-        { title: 'Settings', Icon: SettingSolid },
+        {
+          title: 'Settings',
+          type: 'link',
+          Icon: SettingSolid,
+          as: Link,
+          href: ROUTES.SETTINGS(),
+        },
         {
           title: 'Developer',
           Icon: CodingSolid,
