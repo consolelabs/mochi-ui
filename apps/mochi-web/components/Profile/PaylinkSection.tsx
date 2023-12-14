@@ -1,22 +1,25 @@
-import { Button, ColumnProps, Table, Typography } from '@mochi-ui/core'
+import { Badge, Button, ColumnProps, Table, Typography } from '@mochi-ui/core'
 import { format } from 'date-fns'
 import { useFetchPayRequests } from '~hooks/profile/useFetchPayRequests'
 import { useProfileStore } from '~store'
 import { ModelPayRequest } from '~types/mochi-pay-schema'
 import { Amount, PaylinkUrl } from './TableColumns'
 
-const Action: ColumnProps<ModelPayRequest>['cell'] = () => (
-  <Button color="success" size="sm">
-    Claim
-  </Button>
-)
+const Action: ColumnProps<ModelPayRequest>['cell'] = (props) =>
+  props.row.original.claim_tx ? (
+    <Badge appearance="black" label="Claimed" />
+  ) : (
+    <Button color="success" size="sm">
+      Claim
+    </Button>
+  )
 
 export const PaylinkSection = () => {
   const { me } = useProfileStore()
   const { data: requests = [] } = useFetchPayRequests({
     profile_id: me?.id,
     entity: 'sender',
-    type: 'payme',
+    type: 'paylink',
   })
 
   return (

@@ -1,6 +1,6 @@
 import AuthLayout from '~components/auth-layout'
 import { PaylinkSection } from '~cpn/Profile/PaylinkSection'
-import { PaymeSection } from '~cpn/Profile/PayMeSection'
+import { PaymeSection } from '~cpn/Profile/PaymeSection'
 import { ProfileWidget } from '~cpn/Profile/ProfileWidget'
 import { TransactionSection } from '~cpn/Profile/TransactionSection'
 import { NextPageWithLayout } from '~pages/_app'
