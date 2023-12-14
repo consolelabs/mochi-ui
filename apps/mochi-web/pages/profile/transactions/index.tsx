@@ -120,6 +120,7 @@ const App: NextPageWithLayout = () => {
   const columns: ColumnProps<ModelProfileTransaction>[] = [
     {
       header: 'wen',
+      width: 174,
       // eslint-disable-next-line react/no-unstable-nested-components
       cell: ({ row: { original: transaction } }) => {
         return (
@@ -136,6 +137,7 @@ const App: NextPageWithLayout = () => {
     },
     {
       header: 'username',
+      width: 412,
       // eslint-disable-next-line react/no-unstable-nested-components
       cell: ({ row: { original } }) => (
         <TransactionUsernameCell {...original} />
@@ -143,6 +145,7 @@ const App: NextPageWithLayout = () => {
     },
     {
       header: 'amount',
+      width: 150,
       // eslint-disable-next-line react/no-unstable-nested-components
       cell: ({ row: { original } }) => {
         const { amount, token, type, usd_amount } = original
@@ -167,6 +170,7 @@ const App: NextPageWithLayout = () => {
     },
     {
       header: 'type',
+      width: 120,
       // eslint-disable-next-line react/no-unstable-nested-components
       cell: ({ row: { original } }) => (
         <span className="capitalize">
@@ -176,6 +180,7 @@ const App: NextPageWithLayout = () => {
     },
     {
       header: 'status',
+      width: 100,
       // eslint-disable-next-line react/no-unstable-nested-components
       cell: ({ row: { original } }) => {
         const { status } = original
@@ -194,7 +199,6 @@ const App: NextPageWithLayout = () => {
     <>
       <SEO title={`${profile?.profile_name}'s transactions`} />
       <AuthLayout
-        className="max-w-full"
         pageHeader={
           <AppPageHeader
             filterType={filterType}
@@ -204,11 +208,14 @@ const App: NextPageWithLayout = () => {
           />
         }
       >
-        <Table<ModelProfileTransaction>
-          columns={columns}
-          data={transactions ?? []}
-          isLoading={isLoading}
-        />
+        <div className="max-w-full overflow-x-auto">
+          <Table<ModelProfileTransaction>
+            className="min-w-[600px]"
+            columns={columns}
+            data={transactions ?? []}
+            isLoading={isLoading}
+          />
+        </div>
         {!isLoading && (transactions?.length ?? 0) <= 0 && (
           <div className="h-64 w-full tracking-tight text-center flex items-center justify-center flex-col">
             <Typography level="h7">No transactions</Typography>
