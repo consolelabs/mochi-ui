@@ -1,11 +1,11 @@
+import { ArrowTopRightLine, CornerBottomLeftLine } from '@mochi-ui/icons'
 import Image from 'next/image'
 import useSWR from 'swr'
 import { API } from '~constants/api'
-import { successStampIcon, failStampIcon, coinIcon } from '~utils/image'
+import { coinIcon } from '~utils/image'
 import { Avatar } from '@mochi-ui/core'
 import clsx from 'clsx'
 import { truncate } from '@dwarvesf/react-utils'
-import { NativeImage } from '~cpn/NativeImage'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { HOME_URL } from '~envs'
 import DataList from './DataList'
@@ -55,7 +55,7 @@ export default function Receipt({ id, data: _data }: Props) {
             platformIcon={data.platformIcon}
             senderAvatar={data.senderAvatar}
           />
-          <div className="flex flex-col gap-y-12 py-3 px-6 pb-6 md:px-8">
+          <div className="flex flex-col gap-y-12 py-3 px-4 pb-6 md:px-6">
             <div className="flex relative flex-col items-center">
               {data.data.template ? null : (
                 <Avatar
@@ -67,8 +67,10 @@ export default function Receipt({ id, data: _data }: Props) {
               <div className="mt-2 text-sm">
                 <span className="font-medium">{data.data.from}</span>
                 <br />
-                <span className="text-xs font-light text-gray-500">
-                  {data.data.template ? data.data.template.phrase : 'sent'}
+                <span className="text-xs font-light text-neutral-500">
+                  {data.data.template
+                    ? data.data.template.phrase
+                    : data.data.action ?? 'sent'}
                 </span>
               </div>
               <div className="flex justify-center items-center mt-8 font-medium">
@@ -122,46 +124,62 @@ export default function Receipt({ id, data: _data }: Props) {
                 ) : null}
               </div>
             )}
-            <div className="relative -mx-6 text-gray-400">
-              <div className="flex relative flex-col gap-y-2 gap-x-4 py-4 font-mono">
-                <div className="absolute top-0 left-0 w-full h-full scale-x-125 receipt-dashed-box" />
+            <div className="relative text-neutral-600" id="receipt-body">
+              <div className="flex overflow-hidden relative flex-col gap-y-2 gap-x-4 py-4 font-mono">
+                <div className="absolute top-0 left-0 w-full h-full scale-x-105 receipt-dashed-box" />
                 <DataList>
-                  <DataList.Item title="From">{data.data.from}</DataList.Item>
-                  <DataList.Item
-                    title={Array.isArray(data.data.to) ? 'Recipients' : 'To'}
-                  >
+                  <DataList.Item title="Issued by">
+                    <span className="underline">{data.data.from}</span>
+                  </DataList.Item>
+                  <DataList.Item listMode title="Recipients">
                     {Array.isArray(data.data.to) ? (
-                      <div className="flex flex-col gap-y-2 items-end">
-                        {data.data.to.slice(0, 3).map((n: any) => (
-                          <span key={n} className="font-semibold text-current">
-                            {n}
-                          </span>
+                      <div className="flex flex-col gap-y-1 items-start mt-0.5 whitespace-nowrap">
+                        {data.data.to.map((n: any) => (
+                          <div
+                            key={n}
+                            className="flex gap-x-1 items-center text-current"
+                          >
+                            <CornerBottomLeftLine className="w-3 h-3 text-neutral-500" />
+                            <a href="TODO" className="underline">
+                              {n}
+                            </a>
+                            <ArrowTopRightLine className="w-4 h-4" />
+                            <span className="text-neutral-500">for</span>
+                            <Image
+                              width={12}
+                              height={12}
+                              src={data.data.tokenIcon || coinIcon.src}
+                              alt=""
+                              className="object-contain"
+                            />
+                            <span>
+                              {data.amountDisplay}
+                              {data.unitAmountSection && (
+                                <span className="ml-1 text-current">
+                                  {data.unitAmountSection}
+                                </span>
+                              )}
+                            </span>
+                          </div>
                         ))}
-                        {data.data.to.slice(3).length > 0 ? (
-                          <span className="text-current">
-                            ...and {data.data.to.slice(3).length} other
-                            {data.data.to.slice(3).length > 1 ? 's' : ''}
-                          </span>
-                        ) : null}
                       </div>
                     ) : (
-                      <span className="font-semibold text-current">
-                        {data.data.to}
-                      </span>
+                      <span className="text-current">{data.data.to}</span>
                     )}
                   </DataList.Item>
+                </DataList>
+              </div>
+              <div className="flex flex-col gap-y-2 gap-x-4 py-4 font-mono">
+                <DataList>
                   <DataList.Item title="Amount">
-                    <span className="font-normal text-current">
-                      {data.amountSection}
-                    </span>
+                    <span className="text-current">{data.amountSection}</span>
                     {data.unitAmountSection && (
-                      <span className="ml-1 font-normal text-current">
+                      <span className="ml-1 text-current">
                         {data.unitAmountSection}
                       </span>
                     )}
                   </DataList.Item>
-                </DataList>
-                <DataList>
+                  <div className="pt-5 w-full h-0" />
                   <DataList.Item title="Tx ID">
                     {data.data.external_id}
                   </DataList.Item>
@@ -171,24 +189,10 @@ export default function Receipt({ id, data: _data }: Props) {
                   <DataList.Item title="Status">
                     {data.data.success ? 'Success' : 'Failed'}
                   </DataList.Item>
-                  <NativeImage
-                    src={
-                      data.data.success
-                        ? successStampIcon.src
-                        : failStampIcon.src
-                    }
-                    className={clsx(
-                      'absolute right-0 top-1/2 flex-shrink-0 h-full opacity-30',
-                      {
-                        'scale-[2]': data.data.success,
-                        '': !data.data.success,
-                      },
-                    )}
-                    alt=""
-                  />
                 </DataList>
               </div>
-              <div className="flex justify-between px-2 mt-5 text-xs font-light">
+              <div className="flex overflow-hidden relative justify-between py-4 text-xs font-light">
+                <div className="absolute top-0 left-0 w-full h-full origin-top scale-x-105 scale-y-105 receipt-dashed-box" />
                 <span className="text-current">Mochi &copy; 2023</span>
                 <span className="text-current">{data.data.full_date}</span>
               </div>

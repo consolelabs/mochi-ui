@@ -6,6 +6,7 @@ import { truncate } from '@dwarvesf/react-utils'
 import Receipt from '~cpn/Receipt'
 import { transformData } from '~cpn/Receipt/utils'
 import { API } from '~constants/api'
+import { robotoFont } from '~utils/next-font'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {
@@ -51,6 +52,11 @@ interface Props {
 export default function Transfer({ data, ogData }: Props) {
   return (
     <Layout>
+      <style jsx global>{`
+        #receipt-body {
+          font-family: ${robotoFont.style.fontFamily};
+        }
+      `}</style>
       <SEO
         title={
           data.data.template

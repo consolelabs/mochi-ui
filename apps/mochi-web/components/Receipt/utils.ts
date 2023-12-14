@@ -89,6 +89,7 @@ export async function transformData(rawData: any) {
     original_amount: rawData.metadata.original_amount || '',
     template,
     success,
+    action: rawData.action,
   }
 
   const data = {

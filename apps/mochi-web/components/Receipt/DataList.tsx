@@ -1,19 +1,29 @@
 import React from 'react'
+import clsx from 'clsx'
 
 interface Props {
   children: React.ReactNode
+  listMode?: boolean
 }
 
-export default function DataList({ children }: Props) {
-  return <ul className="relative flex-1 px-2 space-y-2 text-xs">{children}</ul>
+export default function DataList({ children }: Omit<Props, 'listMode'>) {
+  return <ul className="relative flex-1 space-y-2 text-xs">{children}</ul>
 }
 
-DataList.Item = function Item({ title, children }: { title: string } & Props) {
+DataList.Item = function Item({
+  title,
+  listMode = false,
+  children,
+}: { title: string } & Props) {
   return (
-    <li className="flex gap-x-3 justify-between">
-      <span className="font-normal text-current">{title}</span>
+    <li
+      className={clsx('flex gap-x-3 justify-between font-thin', {
+        'items-start flex-col gap-y-2': listMode,
+      })}
+    >
+      <span className="text-current">{title}</span>
       {typeof children === 'string' ? (
-        <span className="font-semibold text-current">{children}</span>
+        <span className="text-current">{children}</span>
       ) : (
         children
       )}
