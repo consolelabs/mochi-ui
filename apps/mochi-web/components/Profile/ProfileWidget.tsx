@@ -15,10 +15,14 @@ import { ModelBalance } from '~types/mochi-pay-schema'
 import { utils as mochiUtils } from '@consolelabs/mochi-ui'
 import { utils } from 'ethers'
 import { useFetchProfileGlobalInfo } from '~hooks/profile/useFetchProfileGlobalInfo'
+import { TokenAvatar } from '~cpn/base/token-avatar'
 
 const Token: ColumnProps<ModelBalance>['cell'] = (props) => (
   <div className="flex items-center space-x-2">
-    <Avatar src={props.row.original.token?.icon || ''} size="sm" />
+    <TokenAvatar
+      src={props.row.original.token?.icon || ''}
+      name={props.row.original.token?.symbol || ''}
+    />
     <Typography level="p5">{props.row.original.token?.symbol}</Typography>
   </div>
 )
