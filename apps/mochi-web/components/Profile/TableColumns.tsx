@@ -1,12 +1,15 @@
 import { truncate } from '@dwarvesf/react-utils'
-import { Avatar, Button, ColumnProps, Typography } from '@mochi-ui/core'
+import { Button, ColumnProps, TokenAvatar, Typography } from '@mochi-ui/core'
 import { ModelPayRequest } from '~types/mochi-pay-schema'
 import { utils as mochiUtils } from '@consolelabs/mochi-ui'
 import { utils } from 'ethers'
 
 export const Amount: ColumnProps<ModelPayRequest>['cell'] = (props) => (
   <div className="flex items-center space-x-2">
-    <Avatar src={props.row.original.token?.icon || ''} size="sm" />
+    <TokenAvatar
+      src={props.row.original.token?.icon || ''}
+      name={props.row.original.token?.symbol || ''}
+    />
     <Typography level="p5">
       {mochiUtils.formatTokenDigit(
         utils.formatUnits(

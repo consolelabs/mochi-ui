@@ -15,6 +15,18 @@ const avatarCva = cva(['inline-block flex-shrink-0 rounded-full'], {
   },
 })
 
-export const avatar = { avatarCva }
+const tokenAvatarCva = cva(['inline-block flex-shrink-0 rounded-full'], {
+  variants: {
+    size: {
+      base: 'w-6 h-6',
+    },
+  },
+  defaultVariants: {
+    size: 'base',
+  },
+})
+
+export const avatar = { avatarCva, tokenAvatarCva }
 
 export type AvatarStylesProps = VariantProps<typeof avatarCva>
+export type TokenAvatarStylesProps = VariantProps<typeof tokenAvatarCva>
