@@ -120,7 +120,7 @@ const App: NextPageWithLayout = () => {
   const columns: ColumnProps<ModelProfileTransaction>[] = [
     {
       header: 'wen',
-      width: 174,
+      width: 180,
       // eslint-disable-next-line react/no-unstable-nested-components
       cell: ({ row: { original: transaction } }) => {
         return (
