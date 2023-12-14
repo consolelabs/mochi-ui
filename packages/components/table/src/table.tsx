@@ -37,6 +37,7 @@ export interface TableProps<T> {
   renderSubComponent?: (record: T, rowIndex: number) => React.ReactNode
   getRowCanExpand?: (row: Row<T>) => boolean
   border?: boolean
+  emptyContent?: React.ReactNode
 }
 
 const {
@@ -61,6 +62,7 @@ export default function Table<T extends RowData>({
   renderSubComponent,
   getRowCanExpand,
   border,
+  emptyContent,
 }: TableProps<T>) {
   const table = useReactTable({
     data,
@@ -168,6 +170,14 @@ export default function Table<T extends RowData>({
                 </Fragment>
               ))
             : null}
+
+          {!isLoading && !data.length && !!emptyContent && (
+            <tr className="group">
+              <td colSpan={table.getHeaderGroups()[0].headers.length}>
+                {emptyContent}
+              </td>
+            </tr>
+          )}
         </tbody>
         <tfoot>
           {table.getFooterGroups().map((footerGroup) => (

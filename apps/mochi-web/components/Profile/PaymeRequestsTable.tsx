@@ -1,4 +1,4 @@
-import { Button, ColumnProps, Table } from '@mochi-ui/core'
+import { Button, ColumnProps, Table, Typography } from '@mochi-ui/core'
 import { useFetchPayRequests } from '~hooks/profile/useFetchPayRequests'
 import { useProfileStore } from '~store'
 import { ModelPayRequest } from '~types/mochi-pay-schema'
@@ -10,7 +10,7 @@ const Action: ColumnProps<ModelPayRequest>['cell'] = () => (
 
 export const PaymeRequestsTable = () => {
   const { me } = useProfileStore()
-  const { data: requests = [] } = useFetchPayRequests({
+  const { data: requests = [], isLoading } = useFetchPayRequests({
     profile_id: me?.id,
     entity: 'sender',
     type: 'payme',
@@ -20,6 +20,7 @@ export const PaymeRequestsTable = () => {
     <Table
       border
       wrapperClassName="rounded-t-none border-t-0"
+      isLoading={isLoading || !me?.id}
       data={requests}
       columns={[
         {
@@ -50,6 +51,14 @@ export const PaymeRequestsTable = () => {
           cell: Action,
         },
       ]}
+      emptyContent={
+        <div className="flex flex-col items-center justify-center h-64 text-center">
+          <Typography level="h7">No requests</Typography>
+          <Typography level="p4" color="textSecondary">
+            You do not have any requests yet
+          </Typography>
+        </div>
+      }
     />
   )
 }
