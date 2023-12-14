@@ -191,6 +191,7 @@ export interface MochiprofileAssociatedAccounts {
 }
 
 export interface MochiprofileMochiProfile {
+  active_score?: number
   application?: MochiprofileApplication
   associated_accounts?: MochiprofileAssociatedAccounts[]
   avatar?: string
