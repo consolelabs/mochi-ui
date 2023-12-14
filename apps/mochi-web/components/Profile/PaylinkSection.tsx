@@ -16,7 +16,7 @@ const Action: ColumnProps<ModelPayRequest>['cell'] = (props) =>
 
 export const PaylinkSection = () => {
   const { me } = useProfileStore()
-  const { data: requests = [] } = useFetchPayRequests({
+  const { data: requests = [], isLoading } = useFetchPayRequests({
     profile_id: me?.id,
     entity: 'sender',
     type: 'paylink',
@@ -29,6 +29,7 @@ export const PaylinkSection = () => {
       </div>
       <Table
         border
+        isLoading={isLoading || !me?.id}
         data={requests}
         columns={[
           {
@@ -56,6 +57,14 @@ export const PaylinkSection = () => {
             cell: Action,
           },
         ]}
+        emptyContent={
+          <div className="flex flex-col items-center justify-center h-64 text-center">
+            <Typography level="h7">No requests</Typography>
+            <Typography level="p4" color="textSecondary">
+              You do not have any requests yet
+            </Typography>
+          </div>
+        }
       />
     </div>
   )
