@@ -1,61 +1,67 @@
-export const typeFilters = [
+export type TransactionActionType =
+  | 'transfer'
+  | 'vault_transfer'
+  | 'payme'
+  | 'swap'
+  | 'paylink'
+  | 'airdrop'
+  | 'deposit'
+  | 'withdraw'
+
+export const typeFilters: {
+  label: string
+  value: TransactionActionType | 'all'
+}[] = [
   {
-    key: 'all',
     label: 'All Types',
+    value: 'all',
   },
   {
-    key: 'tip',
     label: 'Tip',
+    value: 'transfer',
   },
   {
-    key: 'deposit',
     label: 'Deposit',
+    value: 'deposit',
   },
   {
-    key: 'withdraw',
     label: 'Withdraw',
+    value: 'withdraw',
   },
   {
-    key: 'payMe',
     label: 'Pay Me',
+    value: 'payme',
   },
   {
-    key: 'payLink',
     label: 'Pay Link',
+    value: 'paylink',
+  },
+  {
+    label: 'Vault',
+    value: 'vault_transfer',
   },
 ]
 
-export const platformFilters = [
+export type TransactionPlatform = 'discord' | 'web' | 'telegram'
+
+export const platformFilters: {
+  label: string
+  value: TransactionPlatform | 'all'
+}[] = [
   {
-    key: 'all',
     label: 'All Platforms',
+    value: 'all',
   },
   {
-    key: 'discord',
+    label: 'Web',
+    value: 'web',
+  },
+  {
     label: 'Discord',
+    value: 'discord',
   },
   {
-    key: 'telegram',
     label: 'Telegram',
-  },
-  {
-    key: 'twitter',
-    label: 'Twitter',
-  },
-  {
-    key: 'email',
-    label: 'Email',
-  },
-  {
-    key: 'github',
-    label: 'Github',
-  },
-  {
-    key: 'reddit',
-    label: 'Reddit',
-  },
-  {
-    key: 'onChain',
-    label: 'On-chain',
+    value: 'telegram',
   },
 ]
