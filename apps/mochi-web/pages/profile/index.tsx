@@ -1,6 +1,6 @@
 import AuthLayout from '~components/auth-layout'
-import { PayLinkSection } from '~cpn/Profile/PayLinkSection'
-import { PayMeSection } from '~cpn/Profile/PayMeSection'
+import { PaylinkSection } from '~cpn/Profile/PaylinkSection'
+import { PaymeSection } from '~cpn/Profile/PaymeSection'
 import { ProfileWidget } from '~cpn/Profile/ProfileWidget'
 import { TransactionSection } from '~cpn/Profile/TransactionSection'
 import { NextPageWithLayout } from '~pages/_app'
@@ -20,8 +20,8 @@ const Profile: NextPageWithLayout = () => {
             <ProfileWidget />
           </div>
           <TransactionSection />
-          <PayMeSection />
-          <PayLinkSection />
+          <PaymeSection />
+          <PaylinkSection />
         </div>
       </AuthLayout>
     </>
