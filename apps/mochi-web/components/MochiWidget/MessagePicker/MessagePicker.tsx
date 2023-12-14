@@ -9,7 +9,7 @@ import { Combobox } from '@headlessui/react'
 import clsx from 'clsx'
 import { MagnifierLine } from '@mochi-ui/icons'
 import { useDisclosure } from '@dwarvesf/react-hooks'
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { MessageList } from './data'
 import { sectionFormatter } from '../TokenPicker/utils'
 
@@ -24,28 +24,12 @@ export default function MessagePicker({
   onChange,
   sectionTitleHtmlFor,
 }: MessagePickerProps) {
-  const inputRef = useRef<HTMLInputElement | null>(null)
-  const outerInputRef = useRef<HTMLInputElement | null>(null)
   const [messageSearch, setMessageSearch] = useState('')
   const { isOpen, onClose, onOpen } = useDisclosure()
 
   function onMessageSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     setMessageSearch(e.target.value)
   }
-
-  useEffect(() => {
-    if (isOpen) {
-      setTimeout(() => {
-        inputRef.current?.focus({ preventScroll: true })
-      }, 0)
-    }
-  }, [isOpen])
-
-  useEffect(() => {
-    setTimeout(() => {
-      outerInputRef.current?.focus({ preventScroll: true })
-    }, 0)
-  }, [])
 
   return (
     <Combobox
@@ -63,7 +47,6 @@ export default function MessagePicker({
             className="flex-1 h-full bg-transparent outline-none"
             placeholder="Enter message"
             onChange={(e) => onChange(e.target.value)}
-            ref={outerInputRef}
           />
         </div>
         <div className="flex flex-wrap gap-2">
@@ -91,14 +74,18 @@ export default function MessagePicker({
           >
             More
           </button>
-          <BottomSheet isOpen={isOpen} onClose={onClose} title="Choose message">
+          <BottomSheet
+            isOpen={isOpen}
+            onClose={onClose}
+            title="Choose message"
+            focusNthChild={0}
+          >
             <TextFieldRoot className="flex-shrink-0 mt-2">
               <TextFieldDecorator>
                 <MagnifierLine className="w-5 h-5 text-gray-500" />
               </TextFieldDecorator>
               <Combobox.Input
                 as={TextFieldInput}
-                ref={inputRef}
                 value={messageSearch}
                 placeholder="Search"
                 onChange={onMessageSearchChange}

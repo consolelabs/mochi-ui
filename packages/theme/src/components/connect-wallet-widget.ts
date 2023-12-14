@@ -2,7 +2,8 @@ import clsx from 'clsx'
 
 const connectWalletState = () => ({
   connecting: {
-    container: 'flex flex-col items-center justify-center p-3 w-[400px]',
+    container:
+      'flex flex-col items-center justify-center p-3 max-w-[320px] w-screen',
     imgWrapper: 'flex items-center mt-5',
     img: 'w-12 h-12 rounded-full',
     divider: 'w-16 border border-dashed border-primary-solid-focus relative',
@@ -31,7 +32,8 @@ const connectWalletState = () => ({
 
 const connectWalletListTabsClsx = ({
   className = '',
-}: { className?: string } = {}) => clsx('space-y-3 h-[292px] w-full', className)
+}: { className?: string } = {}) =>
+  clsx('space-y-3 h-[292px] w-screen max-w-[320px]', className)
 
 const connectWalletListTabListClsx = ({
   className = '',
@@ -84,7 +86,7 @@ const connectWallet = ({
   className?: string
 }) =>
   clsx(
-    'flex flex-col items-center justify-center h-20 gap-2 border rounded-lg border-neutral-outline-active',
+    'flex flex-col items-center justify-center h-20 gap-2 px-1 border rounded-lg border-neutral-outline-active',
     {
       'hover:bg-neutral-outline-hover transition': isInstalled,
       'opacity-25 cursor-not-allowed': !isInstalled,
@@ -99,7 +101,7 @@ const connectWalletIconClsx = ({
 const connectWalletNameClsx = ({
   className = '',
 }: { className?: string } = {}) =>
-  clsx('text-sm font-medium text-text-secondary', className)
+  clsx('text-xs font-medium text-text-secondary', className)
 
 const connectWalletWidget = {
   connectWalletState,

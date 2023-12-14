@@ -55,10 +55,10 @@ const currencies = [
   )}Dogecoin</span>`,
 ]
 const platforms = [
+  '<span class="fb-color">Facebook</span>',
   '<span class="discord-color">Discord</span>',
   '<span class="telegram-color">Telegram</span>',
   '<span class="email-color">Email</span>',
-  '<span class="any-text-interface-color">any text interface</span>',
 ]
 
 export default function Index() {
@@ -103,8 +103,7 @@ export default function Index() {
               className="font-medium text-[32px] leading-[38.4px] title-tracking md:text-[40px] md:leading-[48px]"
             />
             <br />
-            to anyone on
-            <br />
+            to frens on{' '}
             <span>
               &#8203;
               <span ref={platform} className="font-medium" />

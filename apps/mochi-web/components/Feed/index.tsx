@@ -17,15 +17,15 @@ import RowSkeleton from './RowSkeleton'
 /* const showBotFadeLimit = -35 as const */
 
 const colWidth = [
-  'w-[205px]', // from
+  'w-[270px]', // from
   'w-min', // arrow icon
-  'w-[205px]', // to
+  'w-[270px]', // to
   /* 'w-[130px]', // method */
   'w-[205px]', // amount
   'w-[200px]', // channel
   'w-[110px]', // tx id
   'w-[170px]', // wen
-  'w-[230px]', // status
+  'w-[100px]', // status
   //
   /* 'w-2/12', // from */
   /* 'w-min', // arrow icon */

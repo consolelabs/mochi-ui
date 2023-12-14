@@ -152,9 +152,6 @@ export const useTipWidget = create(
         }
 
         set({ isTransferring: true })
-        await new Promise<void>((r) => {
-          setTimeout(r, 1000)
-        })
         const amount = request.amount ?? 0
         if (!amount) return
 

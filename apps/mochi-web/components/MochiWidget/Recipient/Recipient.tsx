@@ -5,7 +5,7 @@ import useSWR from 'swr'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { Combobox } from '@headlessui/react'
 import { Profile } from '@consolelabs/mochi-rest'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   TextFieldDecorator,
   TextFieldInput,
@@ -26,10 +26,13 @@ import { RecipientList } from './RecipientList'
 import { PlatformPicker, Platforms } from '../PlatformPicker'
 import { SelectedRecipient } from './SelectedRecipient'
 import { MAX_RECIPIENTS } from '../Tip/store'
-import { FallbackGroup } from './RecipientItem'
 import { ContactList } from './ContactList'
 
 const SEARCH_DEBOUNCE_TIME = 250
+
+type FallbackGroup = {
+  create_new?: boolean
+}
 
 interface RecipientProps {
   authorized: boolean
@@ -54,8 +57,6 @@ export const Recipient: React.FC<RecipientProps> = ({
   onUpdateRecipient,
   onRemoveRecipient,
 }) => {
-  const recipientRef = useRef<HTMLInputElement | null>(null)
-  const contactRef = useRef<HTMLInputElement | null>(null)
   const {
     isOpen: isOpenRecipients,
     onOpen: openRecipients,
@@ -183,24 +184,6 @@ export const Recipient: React.FC<RecipientProps> = ({
   /* } */
 
   useEffect(() => {
-    if (isOpenRecipients) {
-      // hack
-      setTimeout(() => {
-        recipientRef.current?.focus({ preventScroll: true })
-      }, 0)
-    }
-  }, [isOpenRecipients])
-
-  useEffect(() => {
-    if (isOpenContacts) {
-      // hack
-      setTimeout(() => {
-        contactRef.current?.focus({ preventScroll: true })
-      }, 0)
-    }
-  }, [isOpenContacts])
-
-  useEffect(() => {
     if (!isOpenContacts || !isOpenRecipients) {
       setSearchTerm('')
       setPrefix(null)
@@ -208,20 +191,7 @@ export const Recipient: React.FC<RecipientProps> = ({
   }, [isOpenContacts, isOpenRecipients])
 
   return (
-    <Combobox
-      multiple
-      value={selectedRecipients ?? []}
-      onChange={(recipients) => {
-        setSearchTerm('')
-        onUpdateRecipient?.(
-          recipients.filter(
-            (r, _idx, arr) => arr.filter((a) => a.id === r.id).length === 1,
-          ),
-        )
-        closeRecipients()
-        closeContacts()
-      }}
-    >
+    <>
       <div className="flex flex-col gap-y-3 p-2 rounded-xl bg bg-neutral-150">
         <div className="flex justify-between items-center px-4 h-[34px]">
           <div className="flex gap-x-2 items-center">
@@ -239,8 +209,12 @@ export const Recipient: React.FC<RecipientProps> = ({
             tabIndex={-1}
             type="button"
             onClick={openContacts}
-            className="flex justify-center items-center -mr-2 w-5 h-5 rounded-full outline-none bg-neutral-500 text-white-pure"
+            className="flex relative justify-center items-center -mr-2 w-5 h-5 rounded-full outline-none bg-neutral-500 text-white-pure"
           >
+            <input
+              readOnly
+              className="absolute top-0 left-0 w-full h-full bg-transparent border-0 cursor-pointer outline-none"
+            />
             <UserSolid />
           </button>
         </div>
@@ -262,6 +236,7 @@ export const Recipient: React.FC<RecipientProps> = ({
           <span className="pt-0.5 text-lg h-[34px] text-neutral-600">@</span>
           <input
             id="recipients"
+            readOnly
             className="flex-1 h-full bg-transparent outline-none min-w-[100px]"
             placeholder={isOnChain ? 'Enter address' : 'Enter username'}
             onFocus={() => openRecipients()}
@@ -320,13 +295,95 @@ export const Recipient: React.FC<RecipientProps> = ({
         )}
       </div>
       <BottomSheet
+        isOpen={isOpenRecipients}
+        onClose={closeRecipients}
+        title="Select recipients"
+        dynamic={!authorized}
+        focusNthChild={selectedPlatform.platform === 'on-chain' ? 1 : 0}
+      >
+        {authorized ? (
+          <Combobox
+            multiple
+            value={selectedRecipients ?? []}
+            onChange={(recipients) => {
+              setSearchTerm('')
+              onUpdateRecipient?.(
+                recipients.filter(
+                  (r, _idx, arr) =>
+                    arr.filter((a) => a.id === r.id).length === 1,
+                ),
+              )
+              closeRecipients()
+              closeContacts()
+            }}
+          >
+            <BottomSheetProvider
+              nested
+              className="flex flex-col w-full h-full min-h-0"
+            >
+              <TextFieldRoot className="flex-shrink-0 mt-2">
+                {selectedPlatform.platform === 'on-chain' ? (
+                  <TextFieldDecorator>
+                    <ChainPicker className="-ml-2" />
+                  </TextFieldDecorator>
+                ) : null}
+                {prefix ? (
+                  <TextFieldDecorator>
+                    <div className="flex gap-x-1 items-center py-0.5 px-2 -ml-2 text-sm bg-gray-200 rounded text-neutral-800">
+                      {prefix}
+                    </div>
+                  </TextFieldDecorator>
+                ) : null}
+                <Combobox.Input
+                  as={TextFieldInput}
+                  className="w-full text-sm overflow-none"
+                  value={searchTerm}
+                  onChange={onSearchChange}
+                  onKeyDown={onKeyDown}
+                  placeholder="Search"
+                />
+              </TextFieldRoot>
+              {selectedPlatform.platform !== 'on-chain' && (
+                <span className="mt-1 text-xs text-neutral-500">
+                  Type dsc: or tg: to quickly switch platform
+                </span>
+              )}
+              <Combobox.Options static className="flex mt-2 w-full min-h-0">
+                <RecipientList
+                  loading={isSearching}
+                  data={filteredRecipients}
+                  selectedRecipients={selectedRecipients}
+                />
+              </Combobox.Options>
+            </BottomSheetProvider>
+          </Combobox>
+        ) : (
+          unauthorizedContent
+        )}
+      </BottomSheet>
+      <BottomSheet
         isOpen={isOpenContacts}
         onClose={closeContacts}
         title="Contacts"
         dynamic={!authorized}
+        focusNthChild={0}
       >
         {authorized ? (
-          <>
+          <Combobox
+            multiple
+            value={selectedRecipients ?? []}
+            onChange={(recipients) => {
+              setSearchTerm('')
+              onUpdateRecipient?.(
+                recipients.filter(
+                  (r, _idx, arr) =>
+                    arr.filter((a) => a.id === r.id).length === 1,
+                ),
+              )
+              closeRecipients()
+              closeContacts()
+            }}
+          >
             <TextFieldRoot className="flex-shrink-0 mt-2">
               {prefix ? (
                 <TextFieldDecorator>
@@ -336,7 +393,6 @@ export const Recipient: React.FC<RecipientProps> = ({
                 </TextFieldDecorator>
               ) : null}
               <Combobox.Input
-                ref={contactRef}
                 as={TextFieldInput}
                 className="w-full text-sm overflow-none"
                 value={searchTerm}
@@ -352,62 +408,11 @@ export const Recipient: React.FC<RecipientProps> = ({
                 selectedRecipients={selectedRecipients}
               />
             </Combobox.Options>
-          </>
+          </Combobox>
         ) : (
           unauthorizedContent
         )}
       </BottomSheet>
-      <BottomSheet
-        isOpen={isOpenRecipients}
-        onClose={closeRecipients}
-        title="Select recipients"
-        dynamic={!authorized}
-      >
-        {authorized ? (
-          <BottomSheetProvider
-            nested
-            className="flex flex-col w-full h-full min-h-0"
-          >
-            <TextFieldRoot className="flex-shrink-0 mt-2">
-              {selectedPlatform.platform === 'on-chain' ? (
-                <TextFieldDecorator>
-                  <ChainPicker className="-ml-2" />
-                </TextFieldDecorator>
-              ) : null}
-              {prefix ? (
-                <TextFieldDecorator>
-                  <div className="flex gap-x-1 items-center py-0.5 px-2 -ml-2 text-sm bg-gray-200 rounded text-neutral-800">
-                    {prefix}
-                  </div>
-                </TextFieldDecorator>
-              ) : null}
-              <Combobox.Input
-                ref={recipientRef}
-                as={TextFieldInput}
-                className="w-full text-sm overflow-none"
-                value={searchTerm}
-                onChange={onSearchChange}
-                onKeyDown={onKeyDown}
-                placeholder="Search"
-              />
-            </TextFieldRoot>
-            <Combobox.Options static className="flex mt-2 w-full min-h-0">
-              <RecipientList
-                loading={isSearching}
-                data={filteredRecipients}
-                selectedRecipients={selectedRecipients}
-              />
-            </Combobox.Options>
-            {selectedPlatform.platform !== 'on-chain' && (
-              <span className="mt-auto text-xs text-neutral-500">
-                Type dsc: or tg: to quickly switch platform
-              </span>
-            )}
-          </BottomSheetProvider>
-        ) : (
-          unauthorizedContent
-        )}
-      </BottomSheet>
-    </Combobox>
+    </>
   )
 }

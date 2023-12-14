@@ -54,7 +54,15 @@ export default function Row({ tx, colWidth }: { tx: Tx; colWidth: string[] }) {
     <RowCell className="items-center" width="">
       <Badge
         className="max-w-full !bg-neutral-800 text-white-pure"
-        icon={<Avatar src={tx.where.avatar} size="xs" />}
+        icon={
+          typeof tx.where.avatar === 'string' ? (
+            <Avatar src={tx.where.avatar} size="xs" />
+          ) : (
+            <div className="flex justify-center items-center w-4 h-4 rounded-full text-neutral-800 bg-white-pure">
+              <tx.where.avatar />
+            </div>
+          )
+        }
         iconClassName="-ml-0.5"
         label={<span className="w-full truncate">{tx.where.text}</span>}
         appearance="black"

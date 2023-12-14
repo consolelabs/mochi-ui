@@ -8,7 +8,7 @@ import {
   TextFieldDecorator,
 } from '@mochi-ui/core'
 import { CrossCircleOutlined, MagnifierLine } from '@mochi-ui/icons'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { Tab } from '@headlessui/react'
 import { BottomSheet } from '~cpn/BottomSheet'
@@ -33,7 +33,6 @@ function getFilterThemeFunc(searchTerm: string) {
 }
 
 export default function ThemePicker({ value, onChange }: ThemePickerProps) {
-  const inputRef = useRef<HTMLInputElement | null>(null)
   const [selectedIndex, setSelectedIndex] = useState(0)
   const { data: themes = [] } = useSWR<Theme[]>(
     ['tip-widget-themes'],
@@ -79,14 +78,6 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
     )
     setSelectedIndex(firstGroupHasValueIdx)
   }, [groupByTheme, themeSearch])
-
-  useEffect(() => {
-    if (isOpen) {
-      setTimeout(() => {
-        inputRef.current?.focus({ preventScroll: true })
-      }, 0)
-    }
-  }, [isOpen])
 
   return (
     <div className="flex flex-col gap-y-1">
@@ -161,14 +152,18 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
             +More
           </span>
         </button>
-        <BottomSheet title="Choose theme" isOpen={isOpen} onClose={onClose}>
+        <BottomSheet
+          title="Choose theme"
+          isOpen={isOpen}
+          onClose={onClose}
+          focusNthChild={0}
+        >
           <div className="flex flex-col w-full min-h-0">
             <TextFieldRoot className="flex-shrink-0 mt-2">
               <TextFieldDecorator>
                 <MagnifierLine className="w-5 h-5 text-gray-500" />
               </TextFieldDecorator>
               <TextFieldInput
-                ref={inputRef}
                 value={themeSearch}
                 placeholder="Search"
                 onChange={onThemeSearchChange}

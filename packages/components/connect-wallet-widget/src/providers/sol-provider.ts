@@ -7,7 +7,7 @@ import { msg, ChainProvider } from './provider'
 
 export class ProviderSOL extends ChainProvider {
   public platform = 'solana-chain'
-  public chainId = '5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp'
+  public chainId = '4sGjMW1sUnHzSxGspuhpqLDx6wiyjNtZ'
 
   sync() {
     if (typeof window !== 'undefined') {
@@ -106,7 +106,7 @@ export class ProviderSOL extends ChainProvider {
         request: {
           method: 'solana_signMessage',
           params: {
-            message: new TextDecoder().decode(hexedMsg),
+            message: bs58.encode(hexedMsg),
             pubkey: accounts[0],
           },
         },

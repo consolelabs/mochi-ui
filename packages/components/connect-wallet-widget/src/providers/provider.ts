@@ -53,6 +53,18 @@ export abstract class ChainProvider<
         icons: ['https://beta.mochi.gg/logo.png'],
       },
     })
+
+    this.signClient.on('session_event', (...args) => {
+      console.log('session_event', args)
+    })
+
+    this.signClient.on('session_request', (...args) => {
+      console.log('session_request', args)
+    })
+
+    this.signClient.on('session_update', (...args) => {
+      console.log('session_update', args)
+    })
   }
 
   abstract transfer(args: TransferInput): Promise<string>

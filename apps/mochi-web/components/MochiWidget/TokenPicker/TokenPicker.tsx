@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import Image from 'next/image'
 import { ChevronDownLine, MagnifierLine } from '@mochi-ui/icons'
 import { useShallow } from 'zustand/react/shallow'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Tab } from '@headlessui/react'
 import {
   TextFieldInput,
@@ -83,7 +83,6 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
   authorized,
   unauthorizedContent,
 }) => {
-  const inputRef = useRef<HTMLInputElement | null>(null)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const isFetchingWallets = useWalletStore(useShallow((s) => s.isFetching))
   const [tokenBalances, setTokenBalances] = useState<Balance[]>(
@@ -134,23 +133,13 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
     }
   }, [balances, handleTokenSelect, selectedAsset])
 
-  useEffect(() => {
-    if (isOpen) {
-      // hack
-      setTimeout(() => {
-        inputRef.current?.focus({ preventScroll: true })
-      }, 0)
-    }
-  }, [isOpen])
-
   return (
     <>
-      <button
-        tabIndex={-1}
-        type="button"
-        onClick={onOpen}
-        className="outline-none"
-      >
+      <button tabIndex={-1} onClick={onOpen} className="relative outline-none">
+        <input
+          readOnly
+          className="absolute top-0 left-0 w-full h-full bg-transparent border-0 cursor-pointer outline-none"
+        />
         <TokenButton
           isToken={isTokenSelected}
           name={
@@ -172,6 +161,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
         isOpen={isOpen}
         onClose={onClose}
         dynamic={!authorized}
+        focusNthChild={0}
       >
         {authorized ? (
           <div className="flex flex-col flex-1 w-full min-h-0">
@@ -180,7 +170,6 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
                 <MagnifierLine className="w-5 h-5 text-gray-500" />
               </TextFieldDecorator>
               <TextFieldInput
-                ref={inputRef}
                 placeholder="Search"
                 value={searchTerm}
                 onChange={onSearchChange}
