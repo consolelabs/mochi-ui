@@ -87,7 +87,7 @@ export function transformProfilePair(
   metaData: ModelProfileTransactionMetadata,
 ) {
   let [from, to] = UI.render(Platform.Web, formProfile, otherProfile)
-  let [fromAvatar, toAvatar] = [formProfile.avatar, otherProfile.avatar]
+  let [fromAvatar, toAvatar] = [formProfile?.avatar, otherProfile?.avatar]
 
   if (type === 'in') {
     ;[from, to] = [to, from]
