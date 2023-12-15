@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as ModalPrimitive from '@radix-ui/react-dialog'
+import * as DialogPrimitive from '@radix-ui/react-dialog'
 import { CloseLine } from '@mochi-ui/icons'
 import { drawer } from '@mochi-ui/theme'
 import { styled } from '@stitches/react'
@@ -27,9 +27,9 @@ const DrawerRoot = ({ children, ...rest }: DrawerRootProps) => {
   const { open, onOpenChange } = useDrawerContext()
 
   return (
-    <ModalPrimitive.Root open={open} onOpenChange={onOpenChange} {...rest}>
+    <DialogPrimitive.Root open={open} onOpenChange={onOpenChange} {...rest}>
       {children}
-    </ModalPrimitive.Root>
+    </DialogPrimitive.Root>
   )
 }
 
@@ -46,27 +46,26 @@ const Drawer = (props: DrawerProps) => {
 
   const onOpenChange = (open: boolean) => {
     setIsOpen(open)
+    onOpenChangeProp?.(open)
   }
 
   return (
-    <DrawerContextProvider
-      value={{ open, onOpenChange: onOpenChangeProp ?? onOpenChange, anchor }}
-    >
+    <DrawerContextProvider value={{ open, onOpenChange, anchor }}>
       <DrawerRoot {...rest}>{children}</DrawerRoot>
     </DrawerContextProvider>
   )
 }
 
-const DrawerPortal = ModalPrimitive.Portal
+const DrawerPortal = DialogPrimitive.Portal
 
-const DrawerClose = ModalPrimitive.Close
+const DrawerClose = DialogPrimitive.Close
 
 const DrawerTrigger = React.forwardRef<
-  React.ElementRef<typeof ModalPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof ModalPrimitive.Trigger>
+  React.ElementRef<typeof DialogPrimitive.Trigger>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Trigger>
 >(({ className, ...props }, ref) => {
   return (
-    <ModalPrimitive.Trigger
+    <DialogPrimitive.Trigger
       ref={ref}
       className={drawerTriggerClsx({ className })}
       {...props}
@@ -75,24 +74,24 @@ const DrawerTrigger = React.forwardRef<
 })
 
 const DrawerOverlay = React.forwardRef<
-  React.ElementRef<typeof ModalPrimitive.Overlay>,
+  React.ElementRef<typeof DialogPrimitive.Overlay>,
   DrawerOverlayProps
 >(({ className, ...props }, ref) => (
-  <ModalPrimitive.Overlay
+  <DialogPrimitive.Overlay
     className={drawerOverlayClsx({ className })}
     ref={ref}
     {...props}
   />
 ))
-DrawerOverlay.displayName = ModalPrimitive.Overlay.displayName
+DrawerOverlay.displayName = DialogPrimitive.Overlay.displayName
 
 const DrawerContent = React.forwardRef<
-  React.ElementRef<typeof ModalPrimitive.Content>,
+  React.ElementRef<typeof DialogPrimitive.Content>,
   DrawerContentProps
 >(({ className, children, showCloseBtn, ...props }, ref) => {
   const { anchor } = useDrawerContext()
 
-  const StyledDrawerContent = styled(ModalPrimitive.Content, {
+  const StyledDrawerContent = styled(DialogPrimitive.Content, {
     '@media (prefers-reduced-motion: no-preference)': {
       animation: `${getTransitionByAnchor(anchor)} 350ms`,
     },
@@ -116,31 +115,31 @@ const DrawerContent = React.forwardRef<
     </DrawerPortal>
   )
 })
-DrawerContent.displayName = ModalPrimitive.Content.displayName
+DrawerContent.displayName = DialogPrimitive.Content.displayName
 
 const DrawerTitle = React.forwardRef<
-  React.ElementRef<typeof ModalPrimitive.Title>,
+  React.ElementRef<typeof DialogPrimitive.Title>,
   DrawerTitleProps
 >(({ className, ...props }, ref) => (
-  <ModalPrimitive.Title
+  <DialogPrimitive.Title
     className={drawerTitleClsx({ className })}
     ref={ref}
     {...props}
   />
 ))
-DrawerTitle.displayName = ModalPrimitive.Title.displayName
+DrawerTitle.displayName = DialogPrimitive.Title.displayName
 
 const DrawerDescription = React.forwardRef<
-  React.ElementRef<typeof ModalPrimitive.Description>,
+  React.ElementRef<typeof DialogPrimitive.Description>,
   DrawerDescriptionProps
 >(({ className, ...props }, ref) => (
-  <ModalPrimitive.Description
+  <DialogPrimitive.Description
     className={drawerDescriptionClsx({ className })}
     ref={ref}
     {...props}
   />
 ))
-DrawerDescription.displayName = ModalPrimitive.Description.displayName
+DrawerDescription.displayName = DialogPrimitive.Description.displayName
 
 export {
   Drawer,
