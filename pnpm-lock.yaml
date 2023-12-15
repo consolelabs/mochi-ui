@@ -777,6 +777,46 @@ importers:
         specifier: workspace:*
         version: link:../../tsconfig
 
+  packages/components/drawer:
+    dependencies:
+      '@dwarvesf/react-utils':
+        specifier: ^0.4.1
+        version: 0.4.1(react-dom@18.2.0)(react@18.2.0)
+      '@mochi-ui/icons':
+        specifier: workspace:*
+        version: link:../../icons
+      '@mochi-ui/theme':
+        specifier: workspace:*
+        version: link:../../theme
+      '@radix-ui/react-dialog':
+        specifier: ^1.0.5
+        version: 1.0.5(@types/react-dom@18.2.4)(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
+      '@stitches/react':
+        specifier: ^1.2.8
+        version: 1.2.8(react@18.2.0)
+    devDependencies:
+      '@mochi-ui/button':
+        specifier: workspace:*
+        version: link:../button
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.1.0
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
   packages/components/dropdown:
     dependencies:
       '@mochi-ui/icons':
@@ -9023,6 +9063,14 @@ packages:
       '@stablelib/keyagreement': 1.0.1
       '@stablelib/random': 1.0.2
       '@stablelib/wipe': 1.0.1
+    dev: false
+
+  /@stitches/react@1.2.8(react@18.2.0):
+    resolution: {integrity: sha512-9g9dWI4gsSVe8bNLlb+lMkBYsnIKCZTmvqvDG+Avnn69XfmHZKiaMrx7cgTaddq7aTPPmXiTsbFcUy0xgI4+wA==}
+    peerDependencies:
+      react: '>= 16.3.0'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /@storybook/addon-actions@7.6.4:
