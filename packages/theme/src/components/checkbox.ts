@@ -23,9 +23,10 @@ const wrapperCva = cva(['border bg-background-body'], {
       ],
       false: [
         'focus-visible:outline-none',
+        'border-text-secondary',
         'focus-visible:ring-4',
         'transition-shadow duration-100 ease-in',
-        'focus:ring-4 ',
+        'focus:ring-4',
       ],
     },
   },
