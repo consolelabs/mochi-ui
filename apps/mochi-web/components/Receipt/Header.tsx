@@ -37,7 +37,7 @@ export default function Header({
       />
       <Icon
         icon="solar:gift-linear"
-        className="relative mt-2 w-full h-32 text-gray-700 drop-shadow-2xl"
+        className="relative mt-3 w-full h-24 text-gray-700 drop-shadow-2xl"
       />
     </>
   )

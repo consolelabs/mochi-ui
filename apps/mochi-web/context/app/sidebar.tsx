@@ -13,7 +13,7 @@ import { shallow } from 'zustand/shallow'
 import { ROUTES } from '../../constants/routes'
 import { useFetchApplicationDetail } from '../../hooks/app/useFetchApplicationDetail'
 import { useFetchApplicationList } from '../../hooks/app/useFetchApplicationList'
-import { useProfileStore } from '../../store'
+import { useProfileStore } from '../../store/profile'
 import { ViewApplication } from '../../types/mochi-pay-schema'
 
 export type SidebarVariant = 'main' | 'app-detail'

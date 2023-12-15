@@ -1,16 +1,17 @@
-import { ArrowTopRightLine, CornerBottomLeftLine } from '@mochi-ui/icons'
+import Link from 'next/link'
+import { LinkLine, CornerBottomLeftLine } from '@mochi-ui/icons'
 import Image from 'next/image'
 import useSWR from 'swr'
 import { API } from '~constants/api'
 import { coinIcon } from '~utils/image'
-import { Avatar } from '@mochi-ui/core'
+import { Avatar, Typography } from '@mochi-ui/core'
 import clsx from 'clsx'
 import { truncate } from '@dwarvesf/react-utils'
 import { useDisclosure } from '@dwarvesf/react-hooks'
-import { HOME_URL } from '~envs'
-import DataList from './DataList'
+import DashLine from '~cpn/DashLine'
+import DataList from '../DataList'
 import Header from './Header'
-import Buttons from './Buttons'
+import ListUser from './ListUser'
 
 interface Props {
   id?: string
@@ -47,9 +48,9 @@ export default function Receipt({ id, data: _data }: Props) {
   if (isLoading || !data) return null
 
   return (
-    <div className="flex flex-col flex-1 gap-y-7 m-auto w-full max-w-md">
+    <div className="flex flex-col flex-1 gap-y-7 m-auto w-[448px]">
       <div className="px-4 font-sans drop-shadow-md">
-        <div className="flex overflow-hidden relative flex-col gap-y-6 w-full text-center bg-white rounded receipt">
+        <div className="flex overflow-hidden relative flex-col gap-y-6 w-full text-center rounded bg-white-pure jagged-bottom">
           <Header
             template={data.data.template}
             platformIcon={data.platformIcon}
@@ -65,7 +66,11 @@ export default function Receipt({ id, data: _data }: Props) {
                 />
               )}
               <div className="mt-2 text-sm">
-                <span className="font-medium">{data.data.from}</span>
+                <span className="font-medium">
+                  {Array.isArray(data.data.from)
+                    ? data.data.from[0].name
+                    : data.data.from}
+                </span>
                 <br />
                 <span className="text-xs font-light text-neutral-500">
                   {data.data.template
@@ -88,7 +93,7 @@ export default function Receipt({ id, data: _data }: Props) {
                     src={data.data.tokenIcon || coinIcon.src}
                     alt=""
                   />
-                  <div className="text-5xl">{data.amountDisplay}</div>
+                  <div className="text-5xl">{data.groupAmountDisplay}</div>
                   <div
                     className={clsx('flex mt-1', {
                       'items-center': data.isLongNumber,
@@ -101,8 +106,8 @@ export default function Receipt({ id, data: _data }: Props) {
               </div>
               <span className="text-xl">
                 {data.amountApproxMoniker}{' '}
-                {data.amountUsd.startsWith('<') ? '' : <>&asymp;</>}{' '}
-                {data.amountUsd}
+                {data.groupAmountUsdDisplay.startsWith('<') ? '' : <>&asymp;</>}{' '}
+                {data.groupAmountUsdDisplay}
               </span>
             </div>
             {data.message && (
@@ -125,64 +130,65 @@ export default function Receipt({ id, data: _data }: Props) {
               </div>
             )}
             <div className="relative text-neutral-600" id="receipt-body">
-              <div className="flex overflow-hidden relative flex-col gap-y-2 gap-x-4 py-4 font-mono">
-                <div className="absolute top-0 left-0 w-full h-full scale-x-105 receipt-dashed-box" />
+              <div className="flex flex-col gap-y-2 gap-x-4 pt-4 font-mono">
                 <DataList>
-                  <DataList.Item title="Issued by">
-                    <span className="underline">{data.data.from}</span>
-                  </DataList.Item>
-                  <DataList.Item listMode title="Recipients">
-                    {Array.isArray(data.data.to) ? (
-                      <div className="flex flex-col gap-y-1 items-start mt-0.5 whitespace-nowrap">
-                        {data.data.to.map((n: any) => (
-                          <div
-                            key={n}
-                            className="flex gap-x-1 items-center text-current"
-                          >
-                            <CornerBottomLeftLine className="w-3 h-3 text-neutral-500" />
-                            <a href="TODO" className="underline">
-                              {n}
-                            </a>
-                            <ArrowTopRightLine className="w-4 h-4" />
-                            <span className="text-neutral-500">for</span>
-                            <Image
-                              width={12}
-                              height={12}
-                              src={data.data.tokenIcon || coinIcon.src}
-                              alt=""
-                              className="object-contain"
-                            />
-                            <span>
-                              {data.amountDisplay}
-                              {data.unitAmountSection && (
-                                <span className="ml-1 text-current">
-                                  {data.unitAmountSection}
-                                </span>
-                              )}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <span className="text-current">{data.data.to}</span>
-                    )}
-                  </DataList.Item>
+                  <ListUser
+                    data={data.data.from}
+                    tokenIcon={data.data.tokenIcon}
+                    amountDisplay={data.amountDisplay}
+                    amountUsd={data.amountUsd}
+                    unitAmountSection={data.unitAmountSection}
+                    title="Issued by"
+                  />
+                  {Array.isArray(data.data.from) ? <DashLine /> : null}
+                  <ListUser
+                    data={data.data.to}
+                    tokenIcon={data.data.tokenIcon}
+                    amountDisplay={data.amountDisplay}
+                    amountUsd={data.amountUsd}
+                    unitAmountSection={data.unitAmountSection}
+                    title="Recipients"
+                  />
+                  {Array.isArray(data.data.to) ? <DashLine /> : null}
                 </DataList>
               </div>
-              <div className="flex flex-col gap-y-2 gap-x-4 py-4 font-mono">
+              <div className="flex flex-col gap-y-2 gap-x-4 py-2 font-mono">
                 <DataList>
                   <DataList.Item title="Amount">
-                    <span className="text-current">{data.amountSection}</span>
+                    <Typography
+                      level="p7"
+                      color="textSecondary"
+                      fontWeight="sm"
+                    >
+                      {data.groupAmountDisplay} {data.unitCurrency}
+                    </Typography>
                     {data.unitAmountSection && (
                       <span className="ml-1 text-current">
                         {data.unitAmountSection}
                       </span>
                     )}
                   </DataList.Item>
-                  <div className="pt-5 w-full h-0" />
-                  <DataList.Item title="Tx ID">
-                    {data.data.external_id}
-                  </DataList.Item>
+                  <div className="pt-3 w-full h-0" />
+                  {data.originalTxId ? (
+                    <DataList.Item title="Tx ID" right={data.data.external_id}>
+                      <div className="flex gap-x-2 self-stretch">
+                        <CornerBottomLeftLine className="text-neutral-500" />
+                        <DataList.Item title="Group Tx ID">
+                          <Link
+                            href={`/tx/${data.originalTxId}`}
+                            className="flex items-center underline text-xxxs decoration-from-font"
+                          >
+                            {data.originalTxId}
+                            <LinkLine />
+                          </Link>
+                        </DataList.Item>
+                      </div>
+                    </DataList.Item>
+                  ) : (
+                    <DataList.Item title="Tx ID">
+                      {data.data.external_id}
+                    </DataList.Item>
+                  )}
                   <DataList.Item title="Date">
                     {data.data.short_date}
                   </DataList.Item>
@@ -191,16 +197,19 @@ export default function Receipt({ id, data: _data }: Props) {
                   </DataList.Item>
                 </DataList>
               </div>
-              <div className="flex overflow-hidden relative justify-between py-4 text-xs font-light">
-                <div className="absolute top-0 left-0 w-full h-full origin-top scale-x-105 scale-y-105 receipt-dashed-box" />
-                <span className="text-current">Mochi &copy; 2023</span>
-                <span className="text-current">{data.data.full_date}</span>
+              <DashLine />
+              <div className="flex justify-between py-2 text-xs font-light">
+                <span className="text-neutral-500 text-xxxs">
+                  Mochi &copy; 2023
+                </span>
+                <span className="text-neutral-500 text-xxxs">
+                  {data.data.full_date}
+                </span>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <Buttons shareLink={`${HOME_URL}/tx/${data.data.external_id}`} />
     </div>
   )
 }

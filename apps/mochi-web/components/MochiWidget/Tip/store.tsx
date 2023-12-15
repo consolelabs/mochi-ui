@@ -127,7 +127,11 @@ export const useTipWidget = create(
           const provider = getProviderByAddress(wallet.id)
           if (!provider) return
           const tokenChainId = request.asset?.token.chain_id
-          if (tokenChainId !== provider.chainId && provider.provider) return
+          if (
+            !tokenChainId ||
+            (tokenChainId !== provider.chainId && provider.provider)
+          )
+            return
 
           set({ isTransferring: true })
           const tx = await provider.transfer({

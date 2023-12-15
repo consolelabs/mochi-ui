@@ -50,8 +50,12 @@ interface Props {
 }
 
 export default function Transfer({ data, ogData }: Props) {
+  const name = Array.isArray(data.data.from)
+    ? data.data.from[0].name
+    : data.data.from
+
   return (
-    <Layout>
+    <Layout noFooter className="bg-white lg:bg-white-pure">
       <style jsx global>{`
         #receipt-body {
           font-family: ${robotoFont.style.fontFamily};
@@ -61,12 +65,12 @@ export default function Transfer({ data, ogData }: Props) {
         title={
           data.data.template
             ? data.data.template.title
-            : `Tip from ${data.data.from} - Mochi`
+            : `Tip from ${name} - Mochi`
         }
         image={`${HOME_URL}/api/transfer-og?data=${encodeURIComponent(
           JSON.stringify(ogData),
         )}`}
-        description={`${data.data.from} paid ${
+        description={`${name} paid ${
           Array.isArray(data.data.to)
             ? `${data.data.to.length} people`
             : data.data.to
@@ -77,8 +81,15 @@ export default function Transfer({ data, ogData }: Props) {
         }`}
         url={`${HOME_URL}/transfer/${data.data.external_id}`}
       />
-      <div className="flex items-center p-10 my-auto">
-        <Receipt data={data} />
+      <div className="flex relative m-auto h-full lg:m-0">
+        <img
+          className="hidden lg:block object-cover object-[45%_center] sticky top-0 -mt-14 w-1/2 h-screen brightness-50"
+          src="/to-the-moon.png"
+          alt=""
+        />
+        <div className="my-auto lg:w-1/2">
+          <Receipt data={data} />
+        </div>
       </div>
     </Layout>
   )

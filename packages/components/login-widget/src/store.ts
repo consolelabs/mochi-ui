@@ -42,10 +42,7 @@ type Payload<E extends EventName> = Extract<Action, { type: E }>['payload']
 export type Wallet = {
   address: string
   connectionStatus: 'connected' | 'disconnected' | 'not_installed'
-  // provider = actual wallet extension
-  // one address can be used in multiple wallet extension
-  // that's why it's an array
-  providers: any[]
+  providers: ChainProvider[]
 }
 
 export type LoginWidgetState = {

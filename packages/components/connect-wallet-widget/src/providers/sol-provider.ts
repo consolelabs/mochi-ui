@@ -3,7 +3,7 @@ import bs58 from 'bs58'
 import dlv from 'dlv'
 import { SystemProgram, PublicKey, Transaction } from '@solana/web3.js'
 import isMobile from 'is-mobile'
-import { msg, ChainProvider } from './provider'
+import { msg, ChainProvider, TransferInput } from './provider'
 
 export class ProviderSOL extends ChainProvider {
   public platform = 'solana-chain'
@@ -17,7 +17,7 @@ export class ProviderSOL extends ChainProvider {
     return Object.assign(this)
   }
 
-  async transfer(input: any) {
+  async transfer(input: Omit<TransferInput, 'chainId'>) {
     try {
       const { from, to, amount, tokenAddress } = input
 

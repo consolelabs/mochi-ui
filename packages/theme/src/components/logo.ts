@@ -27,16 +27,12 @@ const logoWithTextWrapperCva = cva(['flex items-center gap-6'], {
 })
 
 const logoTextClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx('flex-shrink-0', className)
-
-const logoSVGTextClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx('text-text-primary', className)
+  clsx('text-text-primary flex-shrink-0', className)
 
 export const logo = {
   logoCva,
   logoWithTextWrapperCva,
   logoTextClsx,
-  logoSVGTextClsx,
 }
 
 export type LogoStylesProps = VariantProps<typeof logoCva>

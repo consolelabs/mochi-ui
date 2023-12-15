@@ -10,11 +10,14 @@
 
 body {
   @apply bg-white-pure;
-  overflow: hidden;
   position: relative;
   height: 100svh;
   letter-spacing: -0.2px;
   color: #474645;
+}
+
+#__next {
+  height: calc(100vh - 56px);
 }
 
 .banner-token {
@@ -52,16 +55,6 @@ body {
   letter-spacing: -2px;
 }
 
-#__next {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  /* right: -17px; */
-  overflow-y: scroll;
-  z-index: 0;
-}
-
 .twitter-tweet {
   margin-left: auto;
   margin-right: auto;
@@ -81,7 +74,7 @@ iframe[id^='telegram-login'] {
   display: none;
 }
 
-.receipt {
+.jagged-bottom {
   --mask: conic-gradient(
       from -45deg at bottom,
       #0000,
