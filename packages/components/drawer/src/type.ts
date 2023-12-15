@@ -3,9 +3,6 @@ import * as ModalPrimitive from '@radix-ui/react-dialog'
 export type DrawerAnchor = 'top' | 'left' | 'bottom' | 'right'
 
 export type DrawerProps = DrawerRootProps & {
-  open?: boolean
-  onOpenChange?: (open: boolean) => void
-  children?: React.ReactNode
   anchor?: DrawerAnchor
 }
 

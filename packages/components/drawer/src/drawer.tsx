@@ -24,33 +24,14 @@ const {
 } = drawer
 
 const DrawerRoot = ({ children, ...rest }: DrawerRootProps) => {
-  const { open, onOpenChange } = useDrawerContext()
-
-  return (
-    <DialogPrimitive.Root open={open} onOpenChange={onOpenChange} {...rest}>
-      {children}
-    </DialogPrimitive.Root>
-  )
+  return <DialogPrimitive.Root {...rest}>{children}</DialogPrimitive.Root>
 }
 
 const Drawer = (props: DrawerProps) => {
-  const {
-    open: openProp = false,
-    onOpenChange: onOpenChangeProp,
-    anchor = 'left',
-    children,
-    ...rest
-  } = props
-
-  const [open, setIsOpen] = React.useState(openProp)
-
-  const onOpenChange = (open: boolean) => {
-    setIsOpen(open)
-    onOpenChangeProp?.(open)
-  }
+  const { anchor = 'left', children, ...rest } = props
 
   return (
-    <DrawerContextProvider value={{ open, onOpenChange, anchor }}>
+    <DrawerContextProvider value={{ anchor }}>
       <DrawerRoot {...rest}>{children}</DrawerRoot>
     </DrawerContextProvider>
   )
