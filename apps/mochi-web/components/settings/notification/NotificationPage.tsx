@@ -17,6 +17,7 @@ import {
 } from '@mochi-ui/core'
 import { useForm, FormProvider, Controller } from 'react-hook-form'
 import { useFetchNotificationSettings } from '~hooks/settings/useFetchNotificationSettings'
+import clsx from 'clsx'
 
 interface NotificationFormValue {
   enableNotification: boolean
@@ -48,6 +49,7 @@ const LabelCheckboxGroup = (
 ) => {
   const { label, name, size = 'lg', ...restProps } = props
   const id = useId()
+
   return (
     <Controller<NotificationFormValue>
       name={name}
@@ -74,9 +76,12 @@ const LabelCheckboxGroup = (
 
 export function NotificationPage() {
   const form = useForm<NotificationFormValue>({ mode: 'all' })
-  const { handleSubmit, formState, reset } = form
+  const { handleSubmit, formState, reset, watch } = form
   const { isDirty } = formState
   const { notiSettings, isLoading, mutate } = useFetchNotificationSettings()
+
+  const enableNotification = watch('enableNotification')
+  const checkboxTabIndex = enableNotification ? undefined : -1
 
   const onSubmit = (data: any) => {
     alert(JSON.stringify(data))
@@ -119,49 +124,66 @@ export function NotificationPage() {
           />
         </div>
 
-        <div className="space-y-4">
+        <div
+          className={clsx('space-y-4', {
+            'opacity-25 pointer-events-none': !enableNotification,
+          })}
+        >
           <Typography level="p5" color="textSecondary">
             Select the event you want to receive notifications for
           </Typography>
           <SectionHeader title="Wallet Activity" className="border-b" />
           <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-32  max-w-3xl">
             <div className="flex flex-col">
-              <LabelCheckboxGroup label="Receive a tip" name="receiveTip" />
               <LabelCheckboxGroup
+                tabIndex={checkboxTabIndex}
+                label="Receive a tip"
+                name="receiveTip"
+              />
+              <LabelCheckboxGroup
+                tabIndex={checkboxTabIndex}
                 label="Receive airdrops"
                 name="receiveAirdrops"
               />
               <LabelCheckboxGroup
+                tabIndex={checkboxTabIndex}
                 label="Deposit completed"
                 name="depositCompleted"
               />
               <LabelCheckboxGroup
+                tabIndex={checkboxTabIndex}
                 label="Withdrawal completed"
                 name="withdrawalCompleted"
               />
               <LabelCheckboxGroup
+                tabIndex={checkboxTabIndex}
                 label="Wallet transactions"
                 name="walletTransactions"
               />
             </div>
             <div className="flex flex-col">
               <LabelCheckboxGroup
+                tabIndex={checkboxTabIndex}
                 label="Payment request completed"
                 name="paymentRequestCompleted"
               />
               <LabelCheckboxGroup
+                tabIndex={checkboxTabIndex}
                 label="Payment request expired"
                 name="paymentRequestExpired"
               />
               <LabelCheckboxGroup
+                tabIndex={checkboxTabIndex}
                 label="Pay link has expired"
                 name="paylinkExpired"
               />
               <LabelCheckboxGroup
+                tabIndex={checkboxTabIndex}
                 label="Pay link claimed by another"
                 name="paylinkClaimedByAnother"
               />
               <LabelCheckboxGroup
+                tabIndex={checkboxTabIndex}
                 label="Claim a pay link"
                 name="paylinkClaimed"
               />
@@ -175,6 +197,7 @@ export function NotificationPage() {
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-32  max-w-3xl">
               <LabelCheckboxGroup
+                tabIndex={checkboxTabIndex}
                 label="New Configuration"
                 name="newConfiguration"
               />
@@ -186,17 +209,27 @@ export function NotificationPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-32  max-w-3xl">
               <div className="flex flex-col">
                 <LabelCheckboxGroup
+                  tabIndex={checkboxTabIndex}
                   label="New Vault Transactions"
                   name="newVaultTransactions"
                 />
                 <LabelCheckboxGroup
+                  tabIndex={checkboxTabIndex}
                   label="Information Changed"
                   name="informationChanged"
                 />
               </div>
               <div className="flex flex-col">
-                <LabelCheckboxGroup label="New API call" name="newApiCall" />
-                <LabelCheckboxGroup label="New Member" name="newMember" />
+                <LabelCheckboxGroup
+                  tabIndex={checkboxTabIndex}
+                  label="New API call"
+                  name="newApiCall"
+                />
+                <LabelCheckboxGroup
+                  tabIndex={checkboxTabIndex}
+                  label="New Member"
+                  name="newMember"
+                />
               </div>
             </div>
           </div>
@@ -206,9 +239,21 @@ export function NotificationPage() {
               description="Select the platform you want to receive the notification"
             />
             <div className="grid grid-cols-1 sm:grid-cols-3">
-              <LabelCheckboxGroup label="Discord" name="discord" />
-              <LabelCheckboxGroup label="Telegram" name="telegram" />
-              <LabelCheckboxGroup label="Website" name="website" />
+              <LabelCheckboxGroup
+                tabIndex={checkboxTabIndex}
+                label="Discord"
+                name="discord"
+              />
+              <LabelCheckboxGroup
+                tabIndex={checkboxTabIndex}
+                label="Telegram"
+                name="telegram"
+              />
+              <LabelCheckboxGroup
+                tabIndex={checkboxTabIndex}
+                label="Website"
+                name="website"
+              />
             </div>
           </div>
         </div>
