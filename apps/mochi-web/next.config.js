@@ -26,6 +26,11 @@ module.exports = withBundleAnalyzer({
         hostname: 'cryptologos.cc',
         port: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'zapper.xyz',
+        port: '',
+      },
     ],
   },
   transpilePackages: ['@mochi-ui/icons'],
