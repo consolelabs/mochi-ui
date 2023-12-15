@@ -66,7 +66,7 @@ export default function MochiWidget({ wrapperClassName, className }: Props) {
             /* height: 570, */
             /* height: 640, */
             height: 670,
-            maxWidth: 440,
+            maxWidth: 480,
             minWidth: 340,
           }}
           className="relative z-10 flex flex-col p-3 overflow-hidden"
