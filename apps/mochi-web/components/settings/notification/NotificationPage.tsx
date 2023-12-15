@@ -206,7 +206,7 @@ export function NotificationPage() {
               description="Select the platform you want to receive the notification"
             />
             <div className="grid grid-cols-1 sm:grid-cols-3">
-              <LabelCheckboxGroup label="Discrod" name="discord" />
+              <LabelCheckboxGroup label="Discord" name="discord" />
               <LabelCheckboxGroup label="Telegram" name="telegram" />
               <LabelCheckboxGroup label="Website" name="website" />
             </div>
