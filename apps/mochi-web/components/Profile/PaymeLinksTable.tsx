@@ -3,6 +3,7 @@ import { format } from 'date-fns'
 import { useFetchPayRequests } from '~hooks/profile/useFetchPayRequests'
 import { useProfileStore } from '~store'
 import { ModelPayRequest } from '~types/mochi-pay-schema'
+import { truncate } from '@dwarvesf/react-utils'
 import { Amount, PaymeUrl } from './TableColumns'
 
 const Action: ColumnProps<ModelPayRequest>['cell'] = () => <Switch />
@@ -18,13 +19,15 @@ export const PaymeLinksTable = () => {
   return (
     <Table
       border
-      wrapperClassName="rounded-t-none border-t-0"
+      wrapperClassName="rounded-t-none border-t-0 max-w-full overflow-auto"
+      className="min-w-max"
       isLoading={isLoading || !me?.id}
       data={requests}
       columns={[
         {
           header: 'Request ID',
           accessorKey: 'code',
+          accessorFn: (row) => truncate(row.code || '', 6),
         },
         {
           header: 'Amount',

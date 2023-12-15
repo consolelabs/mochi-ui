@@ -44,7 +44,7 @@ export const PaylinkUrl: ColumnProps<ModelPayRequest>['cell'] = (props) => {
       as="a"
       href={`https://${link}`}
       target="_blank"
-      className="!font-normal"
+      className="!font-normal pl-0 pr-0"
     >
       {truncate(link, 21)}
     </Button>

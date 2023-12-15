@@ -9,7 +9,13 @@ const Action: ColumnProps<ModelPayRequest>['cell'] = (props) =>
   props.row.original.claim_tx ? (
     <Badge appearance="black" label="Claimed" />
   ) : (
-    <Button color="success" size="sm">
+    <Button
+      color="success"
+      size="sm"
+      as="a"
+      href={`https://mochi.gg/pay/${props.row.original.code}`}
+      target="_blank"
+    >
       Claim
     </Button>
   )
@@ -24,11 +30,13 @@ export const PaylinkSection = () => {
 
   return (
     <div className="space-y-2">
-      <div className="py-2">
-        <Typography level="h7">Pay Link</Typography>
-      </div>
+      <Typography level="h7" className="py-2">
+        Pay Link
+      </Typography>
       <Table
         border
+        wrapperClassName="max-w-full overflow-auto"
+        className="min-w-max"
         isLoading={isLoading || !me?.id}
         data={requests}
         columns={[
