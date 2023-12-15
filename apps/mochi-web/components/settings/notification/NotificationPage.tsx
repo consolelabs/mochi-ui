@@ -56,7 +56,7 @@ const LabelCheckboxGroup = (
           htmlFor={id}
           className="flex justify-between py-4 w-full sm:max-w-[240px]"
         >
-          <Typography level="p5" color="textSecondary">
+          <Typography level="p5" color="textPrimary">
             {label}
           </Typography>
           <Checkbox
@@ -215,14 +215,15 @@ export function NotificationPage() {
         <div className="sticky bottom-0 z-50">
           <ActionBar open={isDirty}>
             <ActionBarContent
-              anchorClassName="-mb-8 left-0 right-0"
+              scheme="success"
+              anchorClassName="left-0 right-0 -mb-8"
               shadow
               onOpenAutoFocus={(e) => e.preventDefault()}
             >
               <ActionBarIcon />
               <ActionBarBody>
                 <ActionBarTitle>
-                  Do you want to save these changes ?
+                  Do you want to save these changes?
                 </ActionBarTitle>
               </ActionBarBody>
               <ActionBarActionGroup>
