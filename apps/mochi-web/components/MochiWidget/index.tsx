@@ -2,11 +2,12 @@ import BottomSheetProvider from '~cpn/BottomSheet'
 import React, { useState } from 'react'
 import { PaperplaneCircleSolid } from '@mochi-ui/icons'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
+import clsx from 'clsx'
 import Tip from './Tip'
 
 /* function ComingSoon() { */
 /*   return ( */
-/*     <span className="flex flex-1 justify-center items-center m-4 text-neutral-500"> */
+/*     <span className="flex items-center justify-center flex-1 m-4 text-neutral-500"> */
 /*       Coming soon... */
 /*     </span> */
 /*   ) */
@@ -39,12 +40,27 @@ const tabs = [
   /* }, */
 ]
 
-export default function MochiWidget() {
+interface Props {
+  wrapperClassName?: string
+  className?: string
+}
+
+export default function MochiWidget({ wrapperClassName, className }: Props) {
   const [activeTab] = useState(tabs[0])
 
   return (
-    <BottomSheetProvider className="overflow-hidden rounded-2xl border shadow-xl border-neutral-300">
-      <div className="border shadow-xl rounded-[15px] bg-white-pure border-neutral-300">
+    <BottomSheetProvider
+      className={clsx(
+        'overflow-hidden rounded-2xl border shadow-xl border-neutral-300',
+        wrapperClassName,
+      )}
+    >
+      <div
+        className={clsx(
+          'border shadow-xl rounded-[15px] bg-white-pure border-neutral-300',
+          className,
+        )}
+      >
         <ScrollArea.Root
           style={{
             /* height: 570, */
@@ -53,7 +69,7 @@ export default function MochiWidget() {
             maxWidth: 440,
             minWidth: 340,
           }}
-          className="flex overflow-hidden relative z-10 flex-col p-3"
+          className="relative z-10 flex flex-col p-3 overflow-hidden"
         >
           {/* <div className="flex items-center border-b border-[#e5e4e3] pb-2"> */}
           {/*   {tabs.map((t, i) => { */}
@@ -81,7 +97,7 @@ export default function MochiWidget() {
           {/*   })} */}
           {/* </div> */}
 
-          <div className="flex flex-col flex-1 gap-y-2 min-h-0">
+          <div className="flex flex-col flex-1 min-h-0 gap-y-2">
             {activeTab.render()}
             <span className="text-xs text-[#adacaa] mx-auto">
               Powered by Console Labs
