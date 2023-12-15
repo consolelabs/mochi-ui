@@ -23,16 +23,12 @@ const {
   drawerTriggerClsx,
 } = drawer
 
-const DrawerRoot = ({ children, ...rest }: DrawerRootProps) => {
-  return <DialogPrimitive.Root {...rest}>{children}</DialogPrimitive.Root>
-}
-
 const Drawer = (props: DrawerProps) => {
   const { anchor = 'left', children, ...rest } = props
 
   return (
     <DrawerContextProvider value={{ anchor }}>
-      <DrawerRoot {...rest}>{children}</DrawerRoot>
+      <DialogPrimitive.Root {...rest}>{children}</DialogPrimitive.Root>
     </DrawerContextProvider>
   )
 }
