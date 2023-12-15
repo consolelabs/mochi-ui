@@ -250,7 +250,7 @@ const App: NextPageWithLayout = () => {
               <ActionBarIcon />
               <ActionBarBody>
                 <ActionBarDescription>
-                  Do you want to save changes?
+                  Do you want to save these changes?
                 </ActionBarDescription>
               </ActionBarBody>
               <ActionBarActionGroup>

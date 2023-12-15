@@ -4,7 +4,7 @@ const sectionHeaderWrapperClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
-    'flex flex-col items-center gap-4 sm:gap-8 sm:flex-row py-4 sm:py-2 bg-background-surface',
+    'flex flex-col sm:items-center gap-4 sm:gap-8 sm:flex-row py-4 sm:py-2',
     className,
   )
 
