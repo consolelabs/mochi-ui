@@ -110,3 +110,12 @@ iframe[id^='telegram-login'] {
 div[data-radix-popper-content-wrapper]:has(.tooltip) {
   z-index: 60 !important;
 }
+
+/*
+  This will hide the focus indicator if the element receives focus via the mouse,
+  but it will still show up on keyboard focus.
+*/
+.js-focus-visible :focus:not(.focus-visible) {
+  outline: none !important;
+  box-shadow: none !important;
+}

@@ -31,6 +31,11 @@ module.exports = withBundleAnalyzer({
         hostname: 'zapper.xyz',
         port: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'zapper.fi',
+        port: '',
+      },
     ],
   },
   transpilePackages: ['@mochi-ui/icons'],

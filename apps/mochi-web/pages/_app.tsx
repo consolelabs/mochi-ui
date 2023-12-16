@@ -74,6 +74,14 @@ function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
 }
 
 export default function App(props: AppPropsWithLayout) {
+  useEffect(() => {
+    async function loadExternalScript() {
+      await import('focus-visible')
+      console.log('load script success')
+    }
+
+    loadExternalScript()
+  }, [])
   return (
     <StrictMode>
       <div className="fixed z-50 top-3 right-3">
