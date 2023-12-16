@@ -11,3 +11,5 @@ interface Window {
 declare module 'browser-string-hexer' {
   export default function hexer(msg: string): string
 }
+
+declare module 'focus-visible' {}
