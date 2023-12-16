@@ -1,16 +1,12 @@
-import { ReactElement } from 'react'
 import { PageHeader } from '@mochi-ui/core'
-import AuthenticatedLayout from '../../../components/auth-layout'
+import { DashboardBody } from '~cpn/DashboardBody'
 
 const RevenuePage = () => {
-  return null
-}
-
-RevenuePage.getLayout = function getLayout(page: ReactElement) {
   return (
-    <AuthenticatedLayout pageHeader={<PageHeader title="Revenue" />}>
-      {page}
-    </AuthenticatedLayout>
+    <>
+      <PageHeader title="Revenue" />
+      <DashboardBody>TBD</DashboardBody>
+    </>
   )
 }
 

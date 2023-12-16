@@ -11,6 +11,7 @@ import Script from 'next/script'
 import { interFont } from '~utils/next-font'
 import { Toaster, useLoginWidget } from '@mochi-ui/core'
 import { LazyMotion, domAnimation } from 'framer-motion'
+import DashboardLayout from '~cpn/DashboardLayout'
 import { useAuthStore } from '../store/auth'
 import { SidebarContextProvider } from '../context/app/sidebar'
 
@@ -28,6 +29,7 @@ const TopProgressBar = dynamic(() => import('~app/layout/nprogress'), {
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
+  layoutType?: 'dashboard' | 'landing'
 }
 
 type AppPropsWithLayout = AppProps & {
@@ -42,7 +44,7 @@ function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
   const { asPath, replace } = useRouter()
   const { token, isLoggedIn } = useLoginWidget()
   const { login } = useAuthStore()
-  const getLayout = Component.getLayout ?? ((page) => page)
+  const layoutType = Component.layoutType ?? 'dashboard'
 
   useEffect(() => {
     const parts = asPath.split('#')
@@ -68,7 +70,13 @@ function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
         }
       `}</style>
       <Header />
-      {getLayout(<Component {...pageProps} />)}
+      {layoutType === 'landing' ? (
+        <Component {...pageProps} />
+      ) : (
+        <DashboardLayout>
+          <Component {...pageProps} />
+        </DashboardLayout>
+      )}
     </SidebarContextProvider>
   )
 }
@@ -77,7 +85,6 @@ export default function App(props: AppPropsWithLayout) {
   useEffect(() => {
     async function loadExternalScript() {
       await import('focus-visible')
-      console.log('load script success')
     }
 
     loadExternalScript()

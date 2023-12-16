@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useHasMounted } from '@dwarvesf/react-hooks'
 import Link from 'next/link'
 import {
   LifeBuoySolid,
@@ -34,7 +33,6 @@ import {
   LoginWidget,
 } from '@mochi-ui/core'
 import { Layout } from '@mochi-ui/layout'
-import { PageContent } from '@mochi-ui/page-content'
 import { DISCORD_LINK, TWITTER_LINK } from '~envs'
 import { useRouter } from 'next/router'
 import { ROUTES } from '~constants/routes'
@@ -183,28 +181,19 @@ export const getSidebarBadge = {
   FREE_TRIAL: <Badge label="Free trial" appearance="warning" />,
 } as const
 
-export default function AuthenticatedLayout({
-  children,
-  pageHeader,
-  footer,
-  childSEO,
-  className,
-}: {
-  childSEO?: React.ReactNode
+interface DashboardLayoutProps {
   children: React.ReactNode
-  pageHeader?: React.ReactNode
-  footer?: React.ReactNode
   className?: string
-}) {
+}
+
+export default function DashboardLayout({
+  children,
+  className,
+}: DashboardLayoutProps) {
   const { pathname, query } = useRouter()
-  const mounted = useHasMounted()
   const { isLoggedIn, isLoggingIn } = useLoginWidget()
 
   const { variant } = useSidebarContext()
-
-  if (!mounted) {
-    return childSEO as JSX.Element
-  }
 
   const sideBarItems = {
     main: {
@@ -291,12 +280,7 @@ export default function AuthenticatedLayout({
               className,
             )}
           >
-            {pageHeader}
-
-            <PageContent>
-              {childSEO}
-              {children}
-            </PageContent>
+            {children}
           </Layout>
         </Layout>
       ) : null}
@@ -306,8 +290,6 @@ export default function AuthenticatedLayout({
           <LoginWidget />
         </div>
       ) : null}
-
-      {footer}
     </Layout>
   )
 }

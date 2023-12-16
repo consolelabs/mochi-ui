@@ -269,3 +269,5 @@ export default function Index() {
     </Layout>
   )
 }
+
+Index.layoutType = 'landing'

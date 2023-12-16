@@ -122,3 +122,5 @@ export default function ConnectTelegram({
     </Layout>
   )
 }
+
+ConnectTelegram.layoutType = 'landing'

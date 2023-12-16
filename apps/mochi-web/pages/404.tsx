@@ -54,3 +54,5 @@ export default function NotFoundPage() {
     </Layout>
   )
 }
+
+NotFoundPage.layoutType = 'landing'

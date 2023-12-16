@@ -47,3 +47,5 @@ export default function Verify({
     </Layout>
   )
 }
+
+Verify.layoutType = 'landing'

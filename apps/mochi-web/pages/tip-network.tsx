@@ -169,3 +169,5 @@ export default function TipNetwork({ data }: TipNetworkProps) {
     </Layout>
   )
 }
+
+TipNetwork.layoutType = 'landing'

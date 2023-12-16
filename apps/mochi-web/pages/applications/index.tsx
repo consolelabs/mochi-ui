@@ -11,7 +11,6 @@ import {
   ModalContent,
 } from '@mochi-ui/core'
 import { CheckLine, ChevronDownLine } from '@mochi-ui/icons'
-import AuthLayout from '~components/auth-layout'
 import { NextPageWithLayout } from '~pages/_app'
 import { Statistics } from '~cpn/app/Statistics'
 import { AppListing } from '~cpn/app/AppListing'
@@ -29,6 +28,7 @@ import Link from 'next/link'
 import { SOCIAL_LINKS } from '~constants'
 import { ROUTES } from '~constants/routes'
 import { SEO } from '~app/layout/seo'
+import { DashboardBody } from '~cpn/DashboardBody'
 
 const AppPageHeader = ({
   onClickCreateApp,
@@ -108,9 +108,8 @@ const App: NextPageWithLayout = () => {
   return (
     <>
       <SEO title="Applications" />
-      <AuthLayout
-        pageHeader={<AppPageHeader apps={apps} onClickCreateApp={onOpen} />}
-      >
+      <AppPageHeader apps={apps} onClickCreateApp={onOpen} />
+      <DashboardBody>
         <Statistics id={id} onOpenCreateAppModal={onOpen} />
         <AppListing
           {...{ apps, refresh }}
@@ -123,7 +122,7 @@ const App: NextPageWithLayout = () => {
             <NewAppForm id={id} onClose={onClose} onSuccess={onCreateApp} />
           </ModalContent>
         </Modal>
-      </AuthLayout>
+      </DashboardBody>
     </>
   )
 }

@@ -372,3 +372,5 @@ export default function Developer() {
     </Layout>
   )
 }
+
+Developer.layoutType = 'landing'

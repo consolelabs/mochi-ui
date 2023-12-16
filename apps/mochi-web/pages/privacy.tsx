@@ -15,3 +15,5 @@ export default function PrivacyPolicy() {
     </Layout>
   )
 }
+
+PrivacyPolicy.layoutType = 'landing'
