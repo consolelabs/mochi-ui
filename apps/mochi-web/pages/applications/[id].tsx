@@ -217,14 +217,11 @@ const App: NextPageWithLayout = () => {
   return (
     <>
       <SEO title={detail?.name} />
-      <DashboardBody
-        pageHeader={
-          <AppDetailPageHeader
-            name={detail?.name}
-            onDeleteApp={() => onOpenChangeDeleteAppModal(true)}
-          />
-        }
-      >
+      <AppDetailPageHeader
+        name={detail?.name}
+        onDeleteApp={() => onOpenChangeDeleteAppModal(true)}
+      />
+      <DashboardBody>
         <form id={APP_DETAIL_FORM_ID} onSubmit={handleSubmit(onUpdateApp)} />
         <AppDetailStatistics
           {...{ profileId, appId, detail, control, refresh }}
