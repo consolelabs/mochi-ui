@@ -257,31 +257,31 @@ export function NotificationPage() {
             </div>
           </div>
         </div>
-        <div className="sticky bottom-0 z-50">
-          <ActionBar open={isDirty}>
-            <ActionBarContent
-              scheme="success"
-              anchorClassName="left-0 right-0 -mb-8"
-              shadow
-              onOpenAutoFocus={(e) => e.preventDefault()}
-            >
-              <ActionBarIcon />
-              <ActionBarBody>
-                <ActionBarTitle>
-                  Do you want to save these changes?
-                </ActionBarTitle>
-              </ActionBarBody>
-              <ActionBarActionGroup>
-                <ActionBarCancelButton onClick={resetSetting}>
-                  Reset
-                </ActionBarCancelButton>
-                <ActionBarConfirmButton onClick={handleSubmit(onSubmit)}>
-                  Save changes
-                </ActionBarConfirmButton>
-              </ActionBarActionGroup>
-            </ActionBarContent>
-          </ActionBar>
-        </div>
+      </div>
+      <div className="sticky bottom-0 z-50">
+        <ActionBar open={isDirty}>
+          <ActionBarContent
+            scheme="success"
+            anchorClassName="left-0 right-0 -mb-8"
+            shadow
+            onOpenAutoFocus={(e) => e.preventDefault()}
+          >
+            <ActionBarIcon />
+            <ActionBarBody>
+              <ActionBarTitle>
+                Do you want to save these changes?
+              </ActionBarTitle>
+            </ActionBarBody>
+            <ActionBarActionGroup>
+              <ActionBarCancelButton onClick={resetSetting}>
+                Reset
+              </ActionBarCancelButton>
+              <ActionBarConfirmButton onClick={handleSubmit(onSubmit)}>
+                Save changes
+              </ActionBarConfirmButton>
+            </ActionBarActionGroup>
+          </ActionBarContent>
+        </ActionBar>
       </div>
     </FormProvider>
   )

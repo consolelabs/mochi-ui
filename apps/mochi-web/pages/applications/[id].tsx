@@ -1,4 +1,3 @@
-import AuthLayout from '~components/auth-layout'
 import { NextPageWithLayout } from '~pages/_app'
 import { useRouter } from 'next/router'
 import { useFetchApplicationDetail } from '~hooks/app/useFetchApplicationDetail'
@@ -39,6 +38,7 @@ import { DeleteAppModal } from '~cpn/app/DeleteAppModal'
 import { ROUTES } from '~constants/routes'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { SEO } from '~app/layout/seo'
+import { DashboardBody } from '~cpn/DashboardBody'
 
 const APP_DETAIL_FORM_ID = 'app-detail-form'
 
@@ -217,15 +217,11 @@ const App: NextPageWithLayout = () => {
   return (
     <>
       <SEO title={detail?.name} />
-      <AuthLayout
-        pageHeader={
-          <AppDetailPageHeader
-            name={detail?.name}
-            onDeleteApp={() => onOpenChangeDeleteAppModal(true)}
-          />
-        }
-      >
-        {/* form can be nested structurally, just use the element's form attribute */}
+      <AppDetailPageHeader
+        name={detail?.name}
+        onDeleteApp={() => onOpenChangeDeleteAppModal(true)}
+      />
+      <DashboardBody>
         <form id={APP_DETAIL_FORM_ID} onSubmit={handleSubmit(onUpdateApp)} />
         <AppDetailStatistics
           {...{ profileId, appId, detail, control, refresh }}
@@ -279,7 +275,7 @@ const App: NextPageWithLayout = () => {
           onOpenChange={onOpenChangeDeleteAppModal}
           onSucess={() => push(ROUTES.APPLICATON_LIST)}
         />
-      </AuthLayout>
+      </DashboardBody>
     </>
   )
 }

@@ -93,3 +93,5 @@ export default function Changelog({ data }: Props) {
     </Layout>
   )
 }
+
+Changelog.layoutType = 'landing'

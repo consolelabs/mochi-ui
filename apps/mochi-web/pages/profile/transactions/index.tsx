@@ -13,7 +13,6 @@ import {
 } from '@mochi-ui/core'
 import { useRouter } from 'next/router'
 import { SEO } from '~app/layout/seo'
-import AuthLayout from '~components/auth-layout'
 import { ROUTES } from '~constants/routes'
 import {
   TransactionActionType,
@@ -33,6 +32,7 @@ import {
 } from '~cpn/Transaction/utils'
 import { useMemo, useState } from 'react'
 import { utils } from '@consolelabs/mochi-ui'
+import { DashboardBody } from '~cpn/DashboardBody'
 
 interface AppPageHeaderProps {
   filterType: TransactionActionType | 'all'
@@ -198,16 +198,13 @@ const App: NextPageWithLayout = () => {
   return (
     <>
       <SEO title={`${profile?.profile_name}'s transactions`} />
-      <AuthLayout
-        pageHeader={
-          <AppPageHeader
-            filterType={filterType}
-            filterPlatform={filterPlatform}
-            onFilterPlatformChange={setFilterPlatform}
-            onFilterTypeChange={setFilterType}
-          />
-        }
-      >
+      <AppPageHeader
+        filterType={filterType}
+        filterPlatform={filterPlatform}
+        onFilterPlatformChange={setFilterPlatform}
+        onFilterTypeChange={setFilterType}
+      />
+      <DashboardBody>
         <div className="max-w-full overflow-x-auto">
           <Table<ModelProfileTransaction>
             className="min-w-[600px]"
@@ -224,7 +221,7 @@ const App: NextPageWithLayout = () => {
             </Typography>
           </div>
         )}
-      </AuthLayout>
+      </DashboardBody>
     </>
   )
 }

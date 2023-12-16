@@ -1,7 +1,6 @@
 import { GetServerSideProps } from 'next'
-import type { ReactElement } from 'react'
-import AuthenticatedLayout from '~components/auth-layout'
 import { API, GET_PATHS } from '~constants/api'
+import { DashboardBody } from '~cpn/DashboardBody'
 import { NextPageWithLayout } from '~pages/_app'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
@@ -22,11 +21,11 @@ function Home({ id }: { id: string }) {
 }
 
 const Server: NextPageWithLayout<{ id: string }> = (props) => {
-  return <Home {...props} />
-}
-
-Server.getLayout = function getLayout(page: ReactElement) {
-  return <AuthenticatedLayout>{page}</AuthenticatedLayout>
+  return (
+    <DashboardBody>
+      <Home {...props} />
+    </DashboardBody>
+  )
 }
 
 export default Server

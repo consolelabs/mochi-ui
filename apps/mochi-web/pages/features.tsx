@@ -38,3 +38,5 @@ export default function Features() {
     </Layout>
   )
 }
+
+Features.layoutType = 'landing'
