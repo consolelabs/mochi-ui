@@ -2,9 +2,7 @@ import * as React from 'react'
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 import { CloseLine } from '@mochi-ui/icons'
 import { drawer } from '@mochi-ui/theme'
-import { styled } from '@stitches/react'
 import { DrawerContextProvider, useDrawerContext } from './context'
-import { getTransitionByAnchor } from './utils'
 import {
   DrawerProps,
   DrawerContentProps,
@@ -68,16 +66,10 @@ const DrawerContent = React.forwardRef<
 >(({ className, children, showCloseBtn, ...props }, ref) => {
   const { anchor } = useDrawerContext()
 
-  const StyledDrawerContent = styled(DialogPrimitive.Content, {
-    '@media (prefers-reduced-motion: no-preference)': {
-      animation: `${getTransitionByAnchor(anchor)} 350ms`,
-    },
-  })
-
   return (
     <DrawerPortal>
       <DrawerOverlay />
-      <StyledDrawerContent
+      <DialogPrimitive.Content
         className={drawerContentCva({ className, anchor })}
         ref={ref}
         {...props}
@@ -88,7 +80,7 @@ const DrawerContent = React.forwardRef<
             <CloseLine />
           </DrawerClose>
         ) : null}
-      </StyledDrawerContent>
+      </DialogPrimitive.Content>
     </DrawerPortal>
   )
 })

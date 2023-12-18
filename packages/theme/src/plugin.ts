@@ -213,6 +213,30 @@ export const mochiui = () => {
           width: {
             18: '4.5rem',
           },
+          keyframes: {
+            'slide-left': {
+              '0%': { transform: 'translate(-100%, 0)' },
+              '100%': { transform: 'translate(0, 0)' },
+            },
+            'slide-right': {
+              '0%': { transform: 'translate(100%, 0)' },
+              '100%': { transform: 'translate(0, 0)' },
+            },
+            'slide-top': {
+              '0%': { transform: 'translate(0, -100%)' },
+              '100%': { transform: 'translate(0, 0)' },
+            },
+            'slide-bottom': {
+              '0%': { transform: 'translate(0, 100%)' },
+              '100%': { transform: 'translate(0, 0)' },
+            },
+          },
+          animation: {
+            'slide-from-left': 'slide-left 0.3s ease-in-out',
+            'slide-from-right': 'slide-right 0.3s ease-in-out',
+            'slide-from-top': 'slide-top 0.3s ease-in-out',
+            'slide-from-bottom': 'slide-bottom 0.3s ease-in-out',
+          },
         },
       },
     },

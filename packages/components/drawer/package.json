@@ -37,8 +37,7 @@
     "@dwarvesf/react-utils": "^0.4.1",
     "@mochi-ui/icons": "workspace:*",
     "@mochi-ui/theme": "workspace:*",
-    "@radix-ui/react-dialog": "^1.0.5",
-    "@stitches/react": "^1.2.8"
+    "@radix-ui/react-dialog": "^1.0.5"
   },
   "clean-package": "../../../clean-package.config.json"
 }

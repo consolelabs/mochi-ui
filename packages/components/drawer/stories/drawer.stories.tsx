@@ -71,7 +71,7 @@ export const Default: Story = {
 export const Anchor: Story = {
   render() {
     return (
-      <div className="flex gap-2">
+      <div className="flex gap-2 flex-wrap">
         {['left', 'right', 'top', 'bottom'].map((anchor) => (
           <Drawer anchor={anchor as DrawerProps['anchor']} key={anchor}>
             <DrawerTrigger asChild>

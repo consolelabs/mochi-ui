@@ -9,10 +9,10 @@ const drawerContentCva = cva(
   {
     variants: {
       anchor: {
-        left: 'h-screen top-0 left-0',
-        right: 'h-screen top-0 right-0',
-        top: 'w-screen top-0 left-0',
-        bottom: 'w-screen bottom-0 left-0',
+        left: 'h-screen top-0 left-0 animate-slide-from-left',
+        right: 'h-screen top-0 right-0 animate-slide-from-right',
+        top: 'w-screen top-0 left-0 animate-slide-from-top',
+        bottom: 'w-screen bottom-0 left-0 animate-slide-from-bottom',
       },
     },
     defaultVariants: {
