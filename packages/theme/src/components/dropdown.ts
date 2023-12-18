@@ -81,7 +81,7 @@ export const dropdownContentStyleCva = cva(
         true: 'rounded-lg',
       },
       hasShadow: {
-        true: 'shadow-md [&:focus:not(.focus-visible)]:!shadow-md',
+        true: 'shadow-md',
       },
     },
     defaultVariants: {

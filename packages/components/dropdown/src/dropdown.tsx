@@ -190,6 +190,7 @@ const DropdownMenuContent = React.forwardRef<
 >(({ className, sideOffset = 4, hasShadow, isRounded, ...props }, ref) => (
   <DropdownMenuPrimitive.Portal>
     <DropdownMenuPrimitive.Content
+      tabIndex={undefined}
       className={dropdownContentStyleCva({ hasShadow, isRounded, className })}
       ref={ref}
       sideOffset={sideOffset}
