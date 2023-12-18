@@ -323,6 +323,7 @@ const DropdownMenuLabel = React.forwardRef<
         hasPaddingLeft,
         className: clsx(wrapperClassName),
       })}
+      data-disabled
       ref={ref}
       {...restProps}
     >
