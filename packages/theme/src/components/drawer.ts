@@ -5,7 +5,7 @@ const drawerOverlayClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx('fixed inset-0 z-50 bg-background-backdrop/40', className)
 
 const drawerContentCva = cva(
-  ['fixed z-50 bg-background-surface p-6 overflow-auto'],
+  ['fixed z-50 bg-background-surface overflow-auto'],
   {
     variants: {
       anchor: {

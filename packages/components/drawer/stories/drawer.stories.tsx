@@ -53,7 +53,7 @@ export const Default: Story = {
         </DrawerTrigger>
         <DrawerPortal>
           <DrawerOverlay />
-          <DrawerContent className="text-center w-[280px]" showCloseBtn>
+          <DrawerContent className="text-center w-[280px] p-6" showCloseBtn>
             <div className="flex flex-col gap-2 py-2">
               {content.map((c) => (
                 <Button
@@ -89,8 +89,8 @@ export const Anchor: Story = {
               <DrawerContent
                 className={
                   ['left', 'right'].includes(anchor)
-                    ? 'text-center w-[280px]'
-                    : 'text-center h-max'
+                    ? 'text-center w-[280px] p-6'
+                    : 'text-center h-max p-6'
                 }
                 showCloseBtn
               >
