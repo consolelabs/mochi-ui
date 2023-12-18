@@ -1,8 +1,8 @@
 import { Badge, Button, ColumnProps, Table, Typography } from '@mochi-ui/core'
-import { format } from 'date-fns'
 import { useFetchPayRequests } from '~hooks/profile/useFetchPayRequests'
 import { useProfileStore } from '~store'
 import { ModelPayRequest } from '~types/mochi-pay-schema'
+import { formatDate } from '~utils/time'
 import { Amount, PaylinkUrl } from './TableColumns'
 
 const Action: ColumnProps<ModelPayRequest>['cell'] = (props) =>
@@ -43,7 +43,11 @@ export const PaylinkSection = () => {
           {
             header: 'Wen',
             accessorKey: 'created_at',
-            accessorFn: (row) => format(new Date(row.created_at ?? ''), 'Pp'),
+            accessorFn: (row) =>
+              row.created_at
+                ? formatDate(row.created_at, 'dd/MM/yyyy hh:mma')
+                : null,
+            width: 180,
           },
           {
             header: 'Url',
@@ -63,6 +67,7 @@ export const PaylinkSection = () => {
             header: '',
             accessorKey: 'action',
             cell: Action,
+            meta: { align: 'right' },
           },
         ]}
         emptyContent={

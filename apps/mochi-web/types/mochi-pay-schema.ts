@@ -103,10 +103,6 @@ export interface DtoListPayLinkResponseData {
   data?: DtoListPayLinkResponse[]
 }
 
-export interface DtoListPayRequestsResponse {
-  data?: ModelPayRequest[]
-}
-
 export interface DtoTransactionGraph {
   edges?: DtoTransactionGraphEdges[]
   nodes?: DtoTransactionGraphNodes[]
@@ -216,6 +212,7 @@ export interface ModelBalance {
   token?: ModelToken
   token_id?: string
   updated_at?: string
+  usd_amount?: number
 }
 
 export interface ModelChain {
@@ -271,6 +268,7 @@ export interface ModelMochiWallet {
 }
 
 export interface ModelPayRequest {
+  active?: boolean
   amount?: string
   chain_type?: string
   claim_tx?: string
@@ -283,6 +281,7 @@ export interface ModelPayRequest {
   note?: string
   original_amount?: string
   profile_id?: string
+  profile_tx?: ModelProfileTransaction
   status?: string
   token?: ModelToken
   token_id?: string
@@ -307,11 +306,13 @@ export interface ModelProfileTransaction {
   internal_id?: number
   metadata?: ModelProfileTransactionMetadata
   onchain_tx_hash?: string
+  original_tx?: ModelProfileTransaction
   original_tx_id?: string
   other_profile?: MochiprofileMochiProfile
   other_profile_id?: string
   other_profile_source?: string
   other_profiles?: MochiprofileMochiProfile[]
+  other_txs?: ModelProfileTransaction[]
   settled_at?: string
   source_platform?: string
   status?: string
@@ -383,6 +384,7 @@ export interface ModelTransactionResponse {
   internal_id?: number
   metadata?: Record<string, any>
   onchain_tx_hash?: string
+  original_tx?: ModelProfileTransaction
   original_tx_id?: string
   other_profile?: MochiprofileMochiProfile
   other_profile_id?: string
@@ -390,6 +392,7 @@ export interface ModelTransactionResponse {
   other_profile_ids?: string[]
   other_profile_source?: string
   other_profiles?: MochiprofileMochiProfile[]
+  other_txs?: ModelProfileTransaction[]
   settled_at?: string
   source_platform?: string
   status?: string
@@ -564,6 +567,11 @@ export interface ViewFullApplication {
 
 export interface ViewFullApplicationResponse {
   data?: ViewFullApplication
+}
+
+export interface ViewListPayRequestsResponse {
+  data?: ModelPayRequest[]
+  pagination?: ViewPaginationResponse
 }
 
 export interface ViewPaginationResponse {

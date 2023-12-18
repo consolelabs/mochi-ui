@@ -72,4 +72,8 @@ export const GET_PATHS = {
   GET_PROFILE_GLOBAL_INFO: (profileId: string) =>
     `/profiles/${profileId}/global-info`,
   GET_PAY_REQUESTS: '/pay-requests',
+  ENABLE_PAYMENT_REQUEST: (profileId: string, code: string) =>
+    `/profile/${profileId}/pay-requests/${code}/enable`,
+  DISABLE_PAYMENT_REQUEST: (profileId: string, code: string) =>
+    `/profile/${profileId}/pay-requests/${code}/disable`,
 }
