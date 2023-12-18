@@ -1,21 +1,24 @@
 import clsx from 'clsx'
 import { cva } from 'class-variance-authority'
 
-const dropdownIconStyleCva = cva(['shrink-0 flex text-inherit'], {
-  variants: {
-    isLeftIconAvatar: {
-      true: 'w-9 h-9',
+const dropdownIconStyleCva = cva(
+  ['shrink-0 flex text-text-primary group-data-[disabled]:text-text-secondary'],
+  {
+    variants: {
+      isLeftIconAvatar: {
+        true: 'w-9 h-9 group-data-[disabled]:opacity-50',
+      },
+      isRightIcon: {
+        true: 'p-0 text-lg',
+        false: 'p-0.5 text-xl',
+      },
     },
-    isRightIcon: {
-      true: 'p-0 text-lg',
-      false: 'p-0.5 text-xl',
+    defaultVariants: {
+      isLeftIconAvatar: false,
+      isRightIcon: false,
     },
   },
-  defaultVariants: {
-    isLeftIconAvatar: false,
-    isRightIcon: false,
-  },
-})
+)
 
 const dropdownTriggerClsx = ({ className = '' }: { className?: string }) =>
   clsx('focus-visible:outline-none', className)
@@ -24,7 +27,7 @@ const dropdownChildItemClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
-    'flex-1 py-0.5 flex flex-col text-text-primary group-data-[disabled]:text-neutral-plain-disable-fg',
+    'flex-1 py-0.5 flex flex-col text-text-primary group-data-[disabled]:text-text-secondary',
     className,
   )
 
@@ -32,11 +35,7 @@ const dropdownChildItemSubtitleClsx = ({
   className = '',
 }: {
   className?: string
-} = {}) =>
-  clsx(
-    'text-text-secondary group-data-[disabled]:text-neutral-plain-disable-fg',
-    className,
-  )
+} = {}) => clsx('text-text-secondary', className)
 
 export const dropdownItemStyleCva = cva(
   [
