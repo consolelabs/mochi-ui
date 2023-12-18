@@ -77,3 +77,5 @@ export default function Transfer({ data, ogData }: Props) {
     </Layout>
   )
 }
+
+Transfer.layoutType = 'landing'
