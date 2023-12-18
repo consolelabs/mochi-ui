@@ -44,7 +44,9 @@ export const PaylinkSection = () => {
             header: 'Wen',
             accessorKey: 'created_at',
             accessorFn: (row) =>
-              formatDate(row.created_at ?? '', 'dd/MM/yyyy hh:mma'),
+              row.created_at
+                ? formatDate(row.created_at, 'dd/MM/yyyy hh:mma')
+                : null,
             width: 180,
           },
           {

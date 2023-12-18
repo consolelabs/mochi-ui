@@ -126,7 +126,9 @@ const App: NextPageWithLayout = () => {
         return (
           <>
             <Typography level="p5">
-              {formatDate(transaction.created_at ?? '', 'dd/MM/yyyy hh:mma')}
+              {transaction.created_at
+                ? formatDate(transaction.created_at, 'dd/MM/yyyy hh:mma')
+                : null}
             </Typography>
             <Typography level="p6" className="capitalize" color="textSecondary">
               {transaction.source_platform}
