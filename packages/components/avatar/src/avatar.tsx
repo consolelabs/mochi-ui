@@ -3,12 +3,13 @@ import { useId } from 'react'
 import { avatar, AvatarStylesProps } from '@mochi-ui/theme'
 import { boringAvatar } from './util'
 
-const { avatarCva } = avatar
+const { avatarCva, avatarImgClsx } = avatar
 
 interface AvatarProps extends AvatarStylesProps {
   src: string
   smallSrc?: string
   fallback?: string
+  className?: string
 }
 
 export default function Avatar({
@@ -16,6 +17,7 @@ export default function Avatar({
   src,
   smallSrc,
   fallback = '',
+  className,
 }: AvatarProps) {
   const id = useId()
   const fallbackUrl = boringAvatar(fallback)
@@ -54,10 +56,8 @@ export default function Avatar({
   }
 
   return (
-    <RadixAvatar.Root
-      className={avatarCva({ size, className: 'overflow-hidden' })}
-    >
-      <RadixAvatar.Image src={src} className="h-full" />
+    <RadixAvatar.Root className={avatarCva({ size, className })}>
+      <RadixAvatar.Image src={src} className={avatarImgClsx} />
       <RadixAvatar.Fallback>
         <img alt="fallback" src={fallbackUrl} />
       </RadixAvatar.Fallback>
