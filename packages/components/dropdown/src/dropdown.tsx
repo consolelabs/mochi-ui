@@ -187,17 +187,43 @@ DropdownMenuSubContent.displayName =
 const DropdownMenuContent = React.forwardRef<
   DropdownContentRef,
   DropdownContentProps
->(({ className, sideOffset = 4, hasShadow, isRounded, ...props }, ref) => (
-  <DropdownMenuPrimitive.Portal>
-    <DropdownMenuPrimitive.Content
-      tabIndex={undefined}
-      className={dropdownContentStyleCva({ hasShadow, isRounded, className })}
-      ref={ref}
-      sideOffset={sideOffset}
-      {...props}
-    />
-  </DropdownMenuPrimitive.Portal>
-))
+>(
+  (
+    {
+      className,
+      sideOffset = 4,
+      hasShadow,
+      isRounded,
+      asChild,
+      children,
+      ...props
+    },
+    ref,
+  ) => (
+    <DropdownMenuPrimitive.Portal>
+      <DropdownMenuPrimitive.Content
+        ref={ref}
+        sideOffset={sideOffset}
+        {...props}
+        asChild={asChild}
+      >
+        {asChild ? (
+          children
+        ) : (
+          <div
+            className={dropdownContentStyleCva({
+              hasShadow,
+              isRounded,
+              className,
+            })}
+          >
+            {children}
+          </div>
+        )}
+      </DropdownMenuPrimitive.Content>
+    </DropdownMenuPrimitive.Portal>
+  ),
+)
 DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName
 
 const DropdownMenuItem = React.forwardRef<DropdownItemRef, DropdownItemProps>(
