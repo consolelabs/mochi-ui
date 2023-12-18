@@ -23,7 +23,6 @@ import {
 import { useFetchProfileTransaction } from '~hooks/app/useFetchProfileTransaction'
 import { NextPageWithLayout } from '~pages/_app'
 import { ModelProfileTransaction } from '~types/mochi-pay-schema'
-import { format } from 'date-fns'
 import { TransactionUsernameCell } from '~cpn/Transaction/TransactionUsernameCell'
 import {
   formatTransactionAmount,
@@ -33,6 +32,7 @@ import {
 import { useMemo, useState } from 'react'
 import { utils } from '@consolelabs/mochi-ui'
 import { DashboardBody } from '~cpn/DashboardBody'
+import { formatDate } from '~utils/time'
 
 interface AppPageHeaderProps {
   filterType: TransactionActionType | 'all'
@@ -126,7 +126,7 @@ const App: NextPageWithLayout = () => {
         return (
           <>
             <Typography level="p5">
-              {format(new Date(transaction.created_at ?? ''), 'Pp')}
+              {formatDate(transaction.created_at ?? '', 'dd/MM/yyyy hh:mma')}
             </Typography>
             <Typography level="p6" className="capitalize" color="textSecondary">
               {transaction.source_platform}
@@ -214,7 +214,7 @@ const App: NextPageWithLayout = () => {
           />
         </div>
         {!isLoading && (transactions?.length ?? 0) <= 0 && (
-          <div className="h-64 w-full tracking-tight text-center flex items-center justify-center flex-col">
+          <div className="flex flex-col items-center justify-center w-full h-64 tracking-tight text-center">
             <Typography level="h7">No transactions</Typography>
             <Typography level="p4" color="textSecondary">
               You haven&apos;t made any transactions yet{' '}

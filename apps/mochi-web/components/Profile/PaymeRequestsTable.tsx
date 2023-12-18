@@ -2,23 +2,34 @@ import { Avatar, Button, ColumnProps, Table, Typography } from '@mochi-ui/core'
 import { useFetchPayRequests } from '~hooks/profile/useFetchPayRequests'
 import { useProfileStore } from '~store'
 import { ModelPayRequest } from '~types/mochi-pay-schema'
-import { truncate } from '@dwarvesf/react-utils'
+import { transformProfilePair } from '~cpn/Transaction/utils'
+import { getPlatform } from '~utils/platform'
 import { Amount, PaymeUrl } from './TableColumns'
 
-// FIXME: get data from API
-const Sender: ColumnProps<ModelPayRequest>['cell'] = () => (
-  <div className="flex items-center space-x-3.5">
-    <Avatar size="base" smallSrc="/logo.png" src="" />
-    <div>
-      <Typography level="h8">
-        {truncate('0xd23464565465464dx', 8, true)}
-      </Typography>
-      <Typography level="p6" color="textSecondary">
-        Telegram
-      </Typography>
+const Sender: ColumnProps<ModelPayRequest>['cell'] = (props) => {
+  const { from_profile, other_profile, type, metadata, source_platform } =
+    props.row.original.profile_tx || {}
+  const { to, toAvatar } = transformProfilePair(
+    from_profile,
+    other_profile,
+    type ?? '',
+    metadata ?? {},
+  )
+  const { icon: platformIcon, name: platformName } =
+    getPlatform(source_platform)
+
+  return (
+    <div className="flex items-center space-x-3.5">
+      <Avatar size="base" smallSrc={platformIcon} src={toAvatar} />
+      <div>
+        <Typography level="h8">{to}</Typography>
+        <Typography level="p6" color="textSecondary">
+          {platformName}
+        </Typography>
+      </div>
     </div>
-  </div>
-)
+  )
+}
 
 const Action: ColumnProps<ModelPayRequest>['cell'] = (props) => (
   <Button
@@ -50,7 +61,7 @@ export const PaymeRequestsTable = () => {
         {
           header: 'Request ID',
           accessorKey: 'code',
-          accessorFn: (row) => truncate(row.code || '', 6),
+          accessorFn: (row) => row.code?.slice(0, 5),
         },
         {
           header: 'Sender',
@@ -75,6 +86,7 @@ export const PaymeRequestsTable = () => {
           header: '',
           accessorKey: 'action',
           cell: Action,
+          meta: { align: 'right' },
         },
       ]}
       emptyContent={
