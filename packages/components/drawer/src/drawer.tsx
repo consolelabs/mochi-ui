@@ -67,21 +67,18 @@ const DrawerContent = React.forwardRef<
   const { anchor } = useDrawerContext()
 
   return (
-    <DrawerPortal>
-      <DrawerOverlay />
-      <DialogPrimitive.Content
-        className={drawerContentCva({ className, anchor })}
-        ref={ref}
-        {...props}
-      >
-        {children}
-        {showCloseBtn ? (
-          <DrawerClose className={drawerCloseButtonClsx()}>
-            <CloseLine />
-          </DrawerClose>
-        ) : null}
-      </DialogPrimitive.Content>
-    </DrawerPortal>
+    <DialogPrimitive.Content
+      className={drawerContentCva({ className, anchor })}
+      ref={ref}
+      {...props}
+    >
+      {children}
+      {showCloseBtn ? (
+        <DrawerClose className={drawerCloseButtonClsx()}>
+          <CloseLine />
+        </DrawerClose>
+      ) : null}
+    </DialogPrimitive.Content>
   )
 })
 DrawerContent.displayName = DialogPrimitive.Content.displayName

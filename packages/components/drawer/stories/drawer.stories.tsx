@@ -9,6 +9,8 @@ import { Button } from '@mochi-ui/button'
 import {
   Drawer,
   DrawerContent,
+  DrawerOverlay,
+  DrawerPortal,
   DrawerProps,
   DrawerTrigger,
 } from '../src/drawer'
@@ -49,20 +51,23 @@ export const Default: Story = {
         <DrawerTrigger asChild>
           <Button>Open drawer</Button>
         </DrawerTrigger>
-        <DrawerContent className="text-center w-[280px]" showCloseBtn>
-          <div className="flex flex-col gap-2 py-2">
-            {content.map((c) => (
-              <Button
-                key={c.label}
-                variant="ghost"
-                color="neutral"
-                className="w-full !justify-start"
-              >
-                {c.icon} {c.label}
-              </Button>
-            ))}
-          </div>
-        </DrawerContent>
+        <DrawerPortal>
+          <DrawerOverlay />
+          <DrawerContent className="text-center w-[280px]" showCloseBtn>
+            <div className="flex flex-col gap-2 py-2">
+              {content.map((c) => (
+                <Button
+                  key={c.label}
+                  variant="ghost"
+                  color="neutral"
+                  className="w-full !justify-start"
+                >
+                  {c.icon} {c.label}
+                </Button>
+              ))}
+            </div>
+          </DrawerContent>
+        </DrawerPortal>
       </Drawer>
     )
   },
@@ -79,27 +84,30 @@ export const Anchor: Story = {
                 {anchor}
               </Button>
             </DrawerTrigger>
-            <DrawerContent
-              className={
-                ['left', 'right'].includes(anchor)
-                  ? 'text-center w-[280px]'
-                  : 'text-center h-max'
-              }
-              showCloseBtn
-            >
-              <div className="flex flex-col gap-2 py-2">
-                {content.map((c) => (
-                  <Button
-                    key={c.label}
-                    variant="ghost"
-                    color="neutral"
-                    className="w-full !justify-start"
-                  >
-                    {c.icon} {c.label}
-                  </Button>
-                ))}
-              </div>
-            </DrawerContent>
+            <DrawerPortal>
+              <DrawerOverlay />
+              <DrawerContent
+                className={
+                  ['left', 'right'].includes(anchor)
+                    ? 'text-center w-[280px]'
+                    : 'text-center h-max'
+                }
+                showCloseBtn
+              >
+                <div className="flex flex-col gap-2 py-2">
+                  {content.map((c) => (
+                    <Button
+                      key={c.label}
+                      variant="ghost"
+                      color="neutral"
+                      className="w-full !justify-start"
+                    >
+                      {c.icon} {c.label}
+                    </Button>
+                  ))}
+                </div>
+              </DrawerContent>
+            </DrawerPortal>
           </Drawer>
         ))}
       </div>
