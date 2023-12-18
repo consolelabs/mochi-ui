@@ -59,11 +59,9 @@ export default function ProfileDropdown() {
           <DropdownMenuItem hasPaddingLeft>Settings</DropdownMenuItem>
         </Link>
 
-        <Link href="#ViewOption">
-          <DropdownMenuItem leftIcon={<EyeShowSolid />}>
-            View Options
-          </DropdownMenuItem>
-        </Link>
+        <DropdownMenuLabel leftIcon={<EyeShowSolid />}>
+          View Options
+        </DropdownMenuLabel>
 
         <Link href="#Darkmode">
           <DropdownMenuItem
