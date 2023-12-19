@@ -22,3 +22,5 @@ export const FormErrorMessage = forwardRef((props, ref) => {
     />
   )
 }) as PolymorphicFormErrorMessage
+
+FormErrorMessage.displayName = 'FormErrorMessage'

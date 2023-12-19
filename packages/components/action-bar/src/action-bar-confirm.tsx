@@ -12,5 +12,7 @@ const ActionBarConfirmButton = forwardRef((props, ref) => (
   <AlertConfirmButton {...props} ref={ref} />
 )) as PolymorphicActionBarConfirmButton
 
+ActionBarConfirmButton.displayName = 'ActionBarConfirmButton'
+
 export { ActionBarConfirmButton }
 export type { ActionBarConfirmButtonProps, PolymorphicActionBarConfirmButton }

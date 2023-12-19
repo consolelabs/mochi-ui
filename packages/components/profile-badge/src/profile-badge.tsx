@@ -31,5 +31,7 @@ export const ProfileBadge = forwardRef<HTMLButtonElement, ProfileBadgeProps>(
   ),
 )
 
+ProfileBadge.displayName = 'ProfileBadge'
+
 export default ProfileBadge
 export { type ProfileBadgeProps }

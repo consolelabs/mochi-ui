@@ -37,4 +37,6 @@ const AlertIcon = forwardRef<SVGSVGElement, AlertIconProps>((props, ref) => {
   )
 })
 
+AlertIcon.displayName = 'AlertIcon'
+
 export { type AlertIconProps, AlertIcon }

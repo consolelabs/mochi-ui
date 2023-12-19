@@ -89,6 +89,8 @@ const TextFieldRoot = React.forwardRef((props, ref) => {
   )
 }) as PolymorphicTextFieldRoot
 
+TextFieldRoot.displayName = 'TextFieldRoot'
+
 // TextField field
 type TextFieldInputProps = Omit<
   TextFieldStylesProps,
@@ -159,6 +161,8 @@ const TextFieldInput = React.forwardRef<HTMLInputElement, TextFieldInputProps>(
   },
 )
 
+TextFieldInput.displayName = 'TextFieldInput'
+
 // slot
 
 type TextFieldDecoratorElement = React.ElementRef<'div'>
@@ -177,6 +181,8 @@ const TextFieldDecorator = React.forwardRef<
     />
   )
 })
+
+TextFieldDecorator.displayName = 'TextFieldDecorator'
 
 export { TextFieldRoot, TextFieldInput, TextFieldDecorator }
 

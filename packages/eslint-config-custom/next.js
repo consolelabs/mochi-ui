@@ -23,7 +23,6 @@ module.exports = {
   },
   rules: {
     '@next/next/no-img-element': 'off',
-    'react/display-name': 'off',
     '@typescript-eslint/no-throw-literal': 'off',
     '@next/next/no-html-link-for-pages': 'off',
     'react/display-name': 'off',

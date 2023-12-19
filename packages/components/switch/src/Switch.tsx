@@ -18,5 +18,7 @@ const Switch = forwardRef<
   </RadixSwitch.Root>
 ))
 
+Switch.displayName = 'Switch'
+
 export default Switch
 export { type SwitchProps }

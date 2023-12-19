@@ -40,6 +40,7 @@ module.exports = {
     'prefer-arrow-callback': 'off',
     'import/export': 'off',
     'prettier/prettier': 'error',
+    'react/display-name': 'error',
   },
   overrides: [
     {

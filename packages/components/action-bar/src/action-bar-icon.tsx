@@ -8,5 +8,7 @@ const ActionBarIcon = forwardRef<
   ActionBarIconProps
 >((props, ref) => <AlertIcon {...props} ref={ref} />)
 
+ActionBarIcon.displayName = 'ActionBarIcon'
+
 export { ActionBarIcon }
 export type { ActionBarIconProps }

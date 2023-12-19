@@ -12,5 +12,7 @@ const ActionBarDescription = forwardRef((props, ref) => (
   <AlertDescription {...props} ref={ref} />
 )) as PolymorphicActionBarDescription
 
+ActionBarDescription.displayName = 'ActionBarDescription'
+
 export type { ActionBarDescriptionProps, PolymorphicActionBarDescription }
 export { ActionBarDescription }

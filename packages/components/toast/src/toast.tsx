@@ -47,6 +47,8 @@ const Toast = forwardRef<ToastRef, ToastProps>((props, ref) => {
   )
 })
 
+Toast.displayName = ToastPrimitive.Root.displayName
+
 ToastViewPort.displayName = ToastPrimitive.Root.displayName
 
 export { ToastProvider, ToastViewPort, Toast }

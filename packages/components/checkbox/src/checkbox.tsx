@@ -50,4 +50,7 @@ const Checkbox = forwardRef<
     </CheckboxPrimitive.Root>
   )
 })
+
+Checkbox.displayName = CheckboxPrimitive.Root.displayName
+
 export { Checkbox, type CheckedState, type CheckboxProps }

@@ -51,3 +51,5 @@ export const FormControl = forwardRef((props, ref) => {
     </FormControlContext.Provider>
   )
 }) as PolymorphicFormControl
+
+FormControl.displayName = 'FormControl'
