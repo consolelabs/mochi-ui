@@ -24,7 +24,7 @@ export default function Avatar({
 
   if (smallSrc) {
     return (
-      <div className={avatarCva({ size })}>
+      <div className={avatarCva({ size, className })}>
         <svg height="100%" role="none" viewBox="0 0 100 100" width="100%">
           <mask id={`circle-mask-${id}`}>
             <circle cx="50%" cy="50%" fill="white" r="50%" />
@@ -56,7 +56,9 @@ export default function Avatar({
   }
 
   return (
-    <RadixAvatar.Root className={avatarCva({ size, className })}>
+    <RadixAvatar.Root
+      className={avatarCva({ size, className: `${className} overflow-hidden` })}
+    >
       <RadixAvatar.Image src={src} className={avatarImgClsx} />
       <RadixAvatar.Fallback>
         <img alt="fallback" src={fallbackUrl} />
