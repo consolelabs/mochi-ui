@@ -5,5 +5,7 @@ const ActionBar = PopoverPrimitive.Root
 
 type ActionBarProps = ComponentPropsWithRef<typeof ActionBar>
 
+ActionBar.displayName = 'ActionBar'
+
 export { ActionBar }
 export type { ActionBarProps }

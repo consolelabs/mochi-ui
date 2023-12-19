@@ -17,4 +17,6 @@ const ToastTitle = forwardRef((props, ref) => {
   )
 }) as PolymorphicToastTitle
 
+ToastTitle.displayName = ToastPrimitive.Title.displayName
+
 export { ToastTitle, type ToastTitleProps, type PolymorphicToastTitle }

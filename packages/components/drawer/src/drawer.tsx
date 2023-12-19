@@ -48,6 +48,8 @@ const DrawerTrigger = React.forwardRef<
   )
 })
 
+DrawerTrigger.displayName = 'DrawerTrigger'
+
 const DrawerOverlay = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Overlay>,
   DrawerOverlayProps

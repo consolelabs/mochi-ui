@@ -13,5 +13,7 @@ const ActionBarActionGroup = forwardRef((props, ref) => (
   <AlertActionGroup ref={ref} {...props} />
 )) as PolymorphicActionBarActionGroup
 
+ActionBarActionGroup.displayName = 'ActionBarActionGroup'
+
 export { ActionBarActionGroup }
 export type { ActionBarActionGroupProps, PolymorphicActionBarActionGroup }

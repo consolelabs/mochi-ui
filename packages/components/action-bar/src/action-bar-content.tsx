@@ -73,5 +73,7 @@ const ActionBarContent = forwardRef<
   )
 })
 
+ActionBarContent.displayName = 'ActionBarContent'
+
 export { type ActionBarContentProps }
 export { ActionBarContent }

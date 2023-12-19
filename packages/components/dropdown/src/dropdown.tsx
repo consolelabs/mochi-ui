@@ -103,6 +103,8 @@ const DropdownMenuTrigger = React.forwardRef<
   />
 ))
 
+DropdownMenuTrigger.displayName = DropdownMenuPrimitive.Trigger.displayName
+
 const DropdownMenuGroup = DropdownMenuPrimitive.Group
 
 const DropdownMenuSub = DropdownMenuPrimitive.Sub

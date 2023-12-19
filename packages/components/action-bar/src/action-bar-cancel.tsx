@@ -15,5 +15,7 @@ const ActionBarCancelButton = forwardRef((props, ref) => (
   </PopoverPrimitive.Close>
 )) as PolymorphicActionBarCancelButton
 
+ActionBarCancelButton.displayName = 'ActionBarCancelButton'
+
 export { ActionBarCancelButton }
 export type { ActionBarCancelButtonProps, PolymorphicActionBarCancelButton }

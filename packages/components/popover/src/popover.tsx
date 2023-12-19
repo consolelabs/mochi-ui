@@ -24,6 +24,8 @@ const PopoverTrigger = React.forwardRef<
   />
 ))
 
+PopoverTrigger.displayName = PopoverPrimitive.Trigger.displayName
+
 type PopoverContentProps = React.ComponentPropsWithoutRef<
   typeof PopoverPrimitive.Content
 >

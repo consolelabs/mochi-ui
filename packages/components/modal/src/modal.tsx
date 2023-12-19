@@ -32,6 +32,8 @@ const ModalTrigger = React.forwardRef<
   />
 ))
 
+ModalTrigger.displayName = ModalPrimitive.Trigger.displayName
+
 const ModalOverlay = React.forwardRef<
   React.ElementRef<typeof ModalPrimitive.Overlay>,
   ModalOverlayProps

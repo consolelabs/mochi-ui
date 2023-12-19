@@ -42,4 +42,6 @@ const IconButton = React.forwardRef(
   },
 ) as PolymorphicIconButton
 
+IconButton.displayName = 'IconButton'
+
 export default IconButton

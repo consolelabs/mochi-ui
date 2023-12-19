@@ -87,4 +87,6 @@ const Footer = forwardRef<HTMLElement, FooterProps>(
   },
 )
 
+Footer.displayName = 'Footer'
+
 export { Footer, type FooterProps }

@@ -19,3 +19,5 @@ export const FormLabel = forwardRef<
     />
   )
 })
+
+FormLabel.displayName = 'FormLabel'

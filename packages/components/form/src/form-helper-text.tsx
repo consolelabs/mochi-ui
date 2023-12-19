@@ -14,3 +14,5 @@ export const FormHelperText = forwardRef((props, ref) => {
     <Component className={formHelperText({ className })} ref={ref} {...rest} />
   )
 }) as PolymorphicFormHelperText
+
+FormHelperText.displayName = 'FormHelperText'

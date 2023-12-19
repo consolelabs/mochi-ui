@@ -14,6 +14,7 @@
     "preview:storybook": "pnpm build && serve storybook-static -p 6006"
   },
   "devDependencies": {
+    "@storybook/addon-a11y": "^7.6.5",
     "@storybook/addon-actions": "^7.6.4",
     "@storybook/addon-essentials": "^7.6.4",
     "@storybook/addon-links": "^7.6.4",

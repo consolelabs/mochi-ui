@@ -24,4 +24,6 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>((props, ref) => {
   )
 })
 
+Layout.displayName = 'Layout'
+
 export { Layout, type LayoutProps }

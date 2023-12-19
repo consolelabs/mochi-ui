@@ -32,4 +32,6 @@ const PageContent = forwardRef<HTMLDivElement, PageContentProps>(
   },
 )
 
+PageContent.displayName = 'PageContent'
+
 export { PageContent, type PageContentProps }

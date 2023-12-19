@@ -6,4 +6,6 @@ const ActionBarTrigger = forwardRef<
   React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Trigger>
 >((props, ref) => <PopoverPrimitive.Trigger ref={ref} {...props} />)
 
+ActionBarTrigger.displayName = 'ActionBarTrigger'
+
 export { ActionBarTrigger }

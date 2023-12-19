@@ -19,6 +19,8 @@ const ToastClose = forwardRef((props, ref) => {
   )
 }) as PolymorphicToastIconButton
 
+ToastClose.displayName = ToastPrimitive.Close.displayName
+
 type ToastCloseProps = ComponentPropsWithRef<PolymorphicToastIconButton>
 
 export { ToastClose }
