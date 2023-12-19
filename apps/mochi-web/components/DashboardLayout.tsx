@@ -42,6 +42,7 @@ import { NativeImage } from './NativeImage'
 import { useSidebarContext } from '../context/app/sidebar'
 import { ViewApplication } from '../types/mochi-pay-schema'
 import { matchUrl } from '../utils/url'
+import { DashboardSkeleton } from './DashboardSkeleton'
 
 const MainSidebarHeader = ({ expanded }: { expanded?: boolean }) => {
   return expanded ? (
@@ -195,7 +196,7 @@ export default function DashboardLayout({
   className,
 }: DashboardLayoutProps) {
   const { pathname, query } = useRouter()
-  const { isLoggedIn, isLoggingIn } = useLoginWidget()
+  const { isLoggedIn, isLoggingIn, isLoadingProfile } = useLoginWidget()
 
   const { variant } = useSidebarContext()
 
@@ -266,9 +267,13 @@ export default function DashboardLayout({
     },
   }
 
+  if (isLoggingIn || isLoadingProfile) {
+    return <DashboardSkeleton />
+  }
+
   return (
     <Layout>
-      {!isLoggingIn && isLoggedIn ? (
+      {isLoggedIn ? (
         <Layout className="flex-1">
           <Sidebar
             Header={sideBarItems[variant].Header}
@@ -287,13 +292,11 @@ export default function DashboardLayout({
             {children}
           </Layout>
         </Layout>
-      ) : null}
-
-      {!isLoggingIn && !isLoggedIn ? (
+      ) : (
         <div className="flex items-center justify-center flex-1 w-full !min-h-[calc(100vh-56px)] bg-black/40">
           <LoginWidget />
         </div>
-      ) : null}
+      )}
     </Layout>
   )
 }
