@@ -24,7 +24,7 @@ const LockScrollWrapper = ({ children }: { children: ReactNode }) => {
 }
 
 export const MobileNav = (props: MobileNavProps) => {
-  const { navItems, Header, toggleIconClassName } = props
+  const { navItems, Header, toggleIconClassName, className } = props
   const [openMobileNav, setOpenMobileNav] = useState(false)
 
   const onCloseMobileNav = () => {
@@ -33,7 +33,7 @@ export const MobileNav = (props: MobileNavProps) => {
 
   return (
     <>
-      <div className={topBarMobileNavClsx()}>
+      <div className={topBarMobileNavClsx({ className })}>
         <IconButton
           label={openMobileNav ? 'Close' : 'Open'}
           size="lg"

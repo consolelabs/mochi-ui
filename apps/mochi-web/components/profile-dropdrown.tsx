@@ -27,20 +27,35 @@ import {
   ComputerPcLaptopSolid,
 } from '@mochi-ui/icons'
 import { ROUTES } from '~constants/routes'
+import { ReactNode } from 'react'
 
-export default function ProfileDropdown() {
+export default function ProfileDropdown({
+  children,
+  className,
+}: {
+  children?: ReactNode
+  className?: string
+}) {
   const { isLoggedIn, profile } = useLoginWidget()
+
+  let triggerRender = null
+  if (children) {
+    triggerRender = children
+  } else {
+    triggerRender =
+      isLoggedIn && profile ? (
+        <ProfileBadge
+          avatar={profile?.avatar || '/logo.png'}
+          name={truncateWallet(profile.profile_name) || 'unknown'}
+          platform="/logo.png"
+        />
+      ) : null
+  }
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        {isLoggedIn && profile && (
-          <ProfileBadge
-            avatar={profile?.avatar || '/logo.png'}
-            name={truncateWallet(profile.profile_name) || 'unknown'}
-            platform="/logo.png"
-          />
-        )}
+      <DropdownMenuTrigger className={className} asChild>
+        {triggerRender}
       </DropdownMenuTrigger>
       <DropdownMenuPortal>
         <DropdownMenuContent

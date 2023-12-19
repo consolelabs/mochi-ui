@@ -2076,6 +2076,9 @@ importers:
       '@mochi-ui/content-editable':
         specifier: workspace:*
         version: link:../components/content-editable
+      '@mochi-ui/drawer':
+        specifier: workspace:*
+        version: link:../components/drawer
       '@mochi-ui/dropdown':
         specifier: workspace:*
         version: link:../components/dropdown
