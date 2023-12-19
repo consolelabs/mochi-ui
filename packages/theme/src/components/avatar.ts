@@ -16,7 +16,21 @@ const avatarCva = cva(['inline-block flex-shrink-0 rounded-full'], {
 })
 
 const avatarImgClsx = 'h-full'
+const avatarStatus = cva('', {
+  variants: {
+    color: {
+      primary: 'bg-primary-500',
+      secondary: 'bg-secondary-500',
+      success: 'bg-success-500',
+      warning: 'bg-warning-500',
+      danger: 'bg-danger-500',
+      neutral: 'bg-neutral-500',
+    },
+  },
+})
+const avatarSmallImg =
+  'outline outline-white rounded-full overflow-hidden outline-[2px]'
 
-export const avatar = { avatarCva, avatarImgClsx }
+export const avatar = { avatarCva, avatarImgClsx, avatarSmallImg, avatarStatus }
 
 export type AvatarStylesProps = VariantProps<typeof avatarCva>
