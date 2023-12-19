@@ -76,100 +76,110 @@ export const Default: Story = {
             Open Dropdown
           </button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuLabel leftIcon={<CloseLine />}>
-            My Account
-          </DropdownMenuLabel>
-          <DropdownMenuGroup>
-            {MenuItems({ checked: selected, setSelected }).map(
-              (props, index) => (
-                <DropdownMenuItem {...props} key={index} />
-              ),
-            )}
-          </DropdownMenuGroup>
-          <DropdownMenuSeparator />
-          <DropdownMenuGroup>
-            <DropdownMenuItem>Team</DropdownMenuItem>
-            <DropdownMenuSub>
-              <DropdownMenuSubTrigger>Invite users</DropdownMenuSubTrigger>
-              <DropdownMenuPortal>
-                <DropdownMenuSubContent>
-                  <DropdownMenuRadioGroup
-                    value={radioSelected}
-                    onChange={(val) => setRadioSelected(val)}
-                  >
-                    {(
-                      [
-                        {
-                          children: 'Console Labs',
-                          subtitle: (
-                            <span className="flex gap-1 items-center">
-                              Lvl 450 <SolidDotSolid /> 145 Boosts
-                            </span>
-                          ),
-                          leftIcon: <Avatar src="https://mochi.gg/logo.png" />,
-                          isLeftIconAvatar: true,
-                          value: 'first',
-                        },
-                        {
-                          children: 'Techie Story',
-                          subtitle: (
-                            <span className="flex gap-1 items-center">
-                              Lvl 450 <SolidDotSolid /> 145 Boosts
-                            </span>
-                          ),
-                          leftIcon: <Avatar src="https://mochi.gg/logo.png" />,
-                          isLeftIconAvatar: true,
-                          value: 'second',
-                        },
-                        {
-                          children: 'Dwarves, LLC',
-                          subtitle: (
-                            <span className="flex gap-1 items-center">
-                              Lvl 450 <SolidDotSolid /> 145 Boosts
-                            </span>
-                          ),
-                          leftIcon: <Avatar src="https://mochi.gg/logo.png" />,
-                          isLeftIconAvatar: true,
-                          value: 'third',
-                        },
-                        {
-                          children: 'Superteam Vietnam',
-                          subtitle: (
-                            <span className="flex gap-1 items-center">
-                              Lvl 450 <SolidDotSolid /> 145 Boosts
-                            </span>
-                          ),
-                          leftIcon: <Avatar src="https://mochi.gg/logo.png" />,
-                          isLeftIconAvatar: true,
-                          value: 'forth',
-                        },
-                      ] as DropdownRadioItemProps[]
-                    ).map((props, index) => (
-                      <DropdownMenuRadioItem key={index} {...props} />
-                    ))}
-                  </DropdownMenuRadioGroup>
-                </DropdownMenuSubContent>
-              </DropdownMenuPortal>
-            </DropdownMenuSub>
-            <DropdownMenuItem>New Team</DropdownMenuItem>
-          </DropdownMenuGroup>
-          <DropdownMenuSeparator />
-          {['Github', 'Support', 'API'].map((key) => (
-            <DropdownMenuItem key={key}>{key}</DropdownMenuItem>
-          ))}
-          <DropdownMenuSeparator />
-          <DropdownMenuItem
-            className="text-red-600"
-            leftIcon={<ArrowDownLine className="text-red-600" />}
-          >
-            Logout
-          </DropdownMenuItem>
-          <DropdownMenuLabel className="text-sm font-normal text-neutral-600">
-            <p>Powered by Console Labs</p>
-            <p>Version 1.0.0</p>
-          </DropdownMenuLabel>
-        </DropdownMenuContent>
+        <DropdownMenuPortal>
+          <DropdownMenuContent>
+            <DropdownMenuLabel leftIcon={<CloseLine />}>
+              My Account
+            </DropdownMenuLabel>
+            <DropdownMenuGroup>
+              {MenuItems({ checked: selected, setSelected }).map(
+                (props, index) => (
+                  <DropdownMenuItem {...props} key={index} />
+                ),
+              )}
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem>Team</DropdownMenuItem>
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger>Invite users</DropdownMenuSubTrigger>
+                <DropdownMenuPortal>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuRadioGroup
+                      value={radioSelected}
+                      onChange={(val) => setRadioSelected(val)}
+                    >
+                      {(
+                        [
+                          {
+                            children: 'Console Labs',
+                            subtitle: (
+                              <span className="flex gap-1 items-center">
+                                Lvl 450 <SolidDotSolid /> 145 Boosts
+                              </span>
+                            ),
+                            leftIcon: (
+                              <Avatar src="https://mochi.gg/logo.png" />
+                            ),
+                            isLeftIconAvatar: true,
+                            value: 'first',
+                          },
+                          {
+                            children: 'Techie Story',
+                            subtitle: (
+                              <span className="flex gap-1 items-center">
+                                Lvl 450 <SolidDotSolid /> 145 Boosts
+                              </span>
+                            ),
+                            leftIcon: (
+                              <Avatar src="https://mochi.gg/logo.png" />
+                            ),
+                            isLeftIconAvatar: true,
+                            value: 'second',
+                          },
+                          {
+                            children: 'Dwarves, LLC',
+                            subtitle: (
+                              <span className="flex gap-1 items-center">
+                                Lvl 450 <SolidDotSolid /> 145 Boosts
+                              </span>
+                            ),
+                            leftIcon: (
+                              <Avatar src="https://mochi.gg/logo.png" />
+                            ),
+                            isLeftIconAvatar: true,
+                            value: 'third',
+                          },
+                          {
+                            children: 'Superteam Vietnam',
+                            subtitle: (
+                              <span className="flex gap-1 items-center">
+                                Lvl 450 <SolidDotSolid /> 145 Boosts
+                              </span>
+                            ),
+                            leftIcon: (
+                              <Avatar src="https://mochi.gg/logo.png" />
+                            ),
+                            isLeftIconAvatar: true,
+                            value: 'forth',
+                          },
+                        ] as DropdownRadioItemProps[]
+                      ).map((props, index) => (
+                        <DropdownMenuRadioItem key={index} {...props} />
+                      ))}
+                    </DropdownMenuRadioGroup>
+                  </DropdownMenuSubContent>
+                </DropdownMenuPortal>
+              </DropdownMenuSub>
+              <DropdownMenuItem>New Team</DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            {['Github', 'Support', 'API'].map((key) => (
+              <DropdownMenuItem key={key}>{key}</DropdownMenuItem>
+            ))}
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              className="text-red-600"
+              leftIcon={<ArrowDownLine className="text-red-600" />}
+            >
+              Logout
+            </DropdownMenuItem>
+            <DropdownMenuLabel className="text-sm font-normal text-neutral-600">
+              <p>Powered by Console Labs</p>
+              <p>Version 1.0.0</p>
+            </DropdownMenuLabel>
+          </DropdownMenuContent>
+        </DropdownMenuPortal>
       </DropdownMenu>
     )
   },

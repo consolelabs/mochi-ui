@@ -5,6 +5,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuPortal,
   DropdownMenuTrigger,
   Table,
   Tooltip,
@@ -64,40 +65,42 @@ const Actions: ColumnProps<ViewApplication>['cell'] = (props) => {
       >
         <ThreeDotLine width={15} height={15} />
       </DropdownMenuTrigger>
-      <DropdownMenuContent
-        align="end"
-        onClick={(e) => {
-          e.stopPropagation()
-        }}
-      >
-        <Tooltip
-          arrow="top-center"
-          content={
-            <Typography level="p6" className="font-semibold">
-              Copied to clipboard
-            </Typography>
-          }
-          componentProps={{
-            trigger: { className: 'w-full text-left' },
-            root: { open: hasCopied },
+      <DropdownMenuPortal>
+        <DropdownMenuContent
+          align="end"
+          onClick={(e) => {
+            e.stopPropagation()
           }}
         >
-          <DropdownMenuItem
-            onClick={(e) => {
-              e.preventDefault()
-              onCopy()
+          <Tooltip
+            arrow="top-center"
+            content={
+              <Typography level="p6" className="font-semibold">
+                Copied to clipboard
+              </Typography>
+            }
+            componentProps={{
+              trigger: { className: 'w-full text-left' },
+              root: { open: hasCopied },
             }}
           >
-            Copy API key
+            <DropdownMenuItem
+              onClick={(e) => {
+                e.preventDefault()
+                onCopy()
+              }}
+            >
+              Copy API key
+            </DropdownMenuItem>
+          </Tooltip>
+          <DropdownMenuItem>Invite</DropdownMenuItem>
+          <DropdownMenuItem
+            onClick={() => setSelectedApp({ app, action: 'delete' })}
+          >
+            Delete
           </DropdownMenuItem>
-        </Tooltip>
-        <DropdownMenuItem>Invite</DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={() => setSelectedApp({ app, action: 'delete' })}
-        >
-          Delete
-        </DropdownMenuItem>
-      </DropdownMenuContent>
+        </DropdownMenuContent>
+      </DropdownMenuPortal>
     </DropdownMenu>
   )
 }

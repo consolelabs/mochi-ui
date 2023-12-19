@@ -105,8 +105,6 @@ const DropdownMenuTrigger = React.forwardRef<
 
 const DropdownMenuGroup = DropdownMenuPrimitive.Group
 
-const DropdownMenuPortal = DropdownMenuPrimitive.Portal
-
 const DropdownMenuSub = DropdownMenuPrimitive.Sub
 
 const DropdownMenuRadioGroup = React.forwardRef<
@@ -184,6 +182,8 @@ const DropdownMenuSubContent = React.forwardRef<
 DropdownMenuSubContent.displayName =
   DropdownMenuPrimitive.SubContent.displayName
 
+const DropdownMenuPortal = DropdownMenuPrimitive.Portal
+
 const DropdownMenuContent = React.forwardRef<
   DropdownContentRef,
   DropdownContentProps
@@ -200,28 +200,26 @@ const DropdownMenuContent = React.forwardRef<
     },
     ref,
   ) => (
-    <DropdownMenuPrimitive.Portal>
-      <DropdownMenuPrimitive.Content
-        ref={ref}
-        sideOffset={sideOffset}
-        {...props}
-        asChild={asChild}
-      >
-        {asChild ? (
-          children
-        ) : (
-          <div
-            className={dropdownContentStyleCva({
-              hasShadow,
-              isRounded,
-              className,
-            })}
-          >
-            {children}
-          </div>
-        )}
-      </DropdownMenuPrimitive.Content>
-    </DropdownMenuPrimitive.Portal>
+    <DropdownMenuPrimitive.Content
+      ref={ref}
+      sideOffset={sideOffset}
+      {...props}
+      asChild={asChild}
+    >
+      {asChild ? (
+        children
+      ) : (
+        <div
+          className={dropdownContentStyleCva({
+            hasShadow,
+            isRounded,
+            className,
+          })}
+        >
+          {children}
+        </div>
+      )}
+    </DropdownMenuPrimitive.Content>
   ),
 )
 DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName
@@ -390,10 +388,10 @@ export {
   DropdownMenuContent,
   DropdownMenuSeparator,
   DropdownMenuGroup,
-  DropdownMenuPortal,
   DropdownMenuSub,
   DropdownMenuSubTrigger,
   DropdownMenuSubContent,
   DropdownMenuRadioItem,
   DropdownMenuRadioGroup,
+  DropdownMenuPortal,
 }

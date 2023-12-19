@@ -9,6 +9,7 @@ import {
   Typography,
   Modal,
   ModalContent,
+  DropdownMenuPortal,
 } from '@mochi-ui/core'
 import { CheckLine, ChevronDownLine } from '@mochi-ui/icons'
 import { NextPageWithLayout } from '~pages/_app'
@@ -55,29 +56,31 @@ const AppPageHeader = ({
               <ChevronDownLine className="w-4 h-4 text-neutral-800" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem
-              rightIcon={
-                <CheckLine className="w-4 h-4 ml-4 text-primary-700" />
-              }
-            >
-              All apps
-            </DropdownMenuItem>
-            {apps.map((app) => (
-              <Link
-                key={app.id}
-                href={ROUTES.APPLICATION_DETAIL.getPath(app.id)}
+          <DropdownMenuPortal>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem
+                rightIcon={
+                  <CheckLine className="w-4 h-4 ml-4 text-primary-700" />
+                }
               >
-                <DropdownMenuItem key={app.id}>{app.name}</DropdownMenuItem>
-              </Link>
-            ))}
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={onClickCreateApp}>
-              <Typography level="h8" color="primary">
-                Create an app
-              </Typography>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
+                All apps
+              </DropdownMenuItem>
+              {apps.map((app) => (
+                <Link
+                  key={app.id}
+                  href={ROUTES.APPLICATION_DETAIL.getPath(app.id)}
+                >
+                  <DropdownMenuItem key={app.id}>{app.name}</DropdownMenuItem>
+                </Link>
+              ))}
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={onClickCreateApp}>
+                <Typography level="h8" color="primary">
+                  Create an app
+                </Typography>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenuPortal>
         </DropdownMenu>,
       ]}
     />

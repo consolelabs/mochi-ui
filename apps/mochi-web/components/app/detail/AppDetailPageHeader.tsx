@@ -7,6 +7,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
   Typography,
+  DropdownMenuPortal,
 } from '@mochi-ui/core'
 import {
   AddUserSolid,
@@ -43,20 +44,22 @@ export const AppDetailPageHeader = ({ name = '', onDeleteApp }: Props) => {
           <DropdownMenuTrigger className="p-1.5">
             <ThreeDotsLine className="w-5 h-5" />
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem leftIcon={<AddUserSolid className="w-5 h-5" />}>
-              Invite member
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem
-              leftIcon={<TrashBinSolid className="w-5 h-5 text-danger-700" />}
-              onClick={onDeleteApp}
-            >
-              <Typography level="h8" color="danger">
-                Delete app
-              </Typography>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
+          <DropdownMenuPortal>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem leftIcon={<AddUserSolid className="w-5 h-5" />}>
+                Invite member
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                leftIcon={<TrashBinSolid className="w-5 h-5 text-danger-700" />}
+                onClick={onDeleteApp}
+              >
+                <Typography level="h8" color="danger">
+                  Delete app
+                </Typography>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenuPortal>
         </DropdownMenu>,
       ]}
     />
