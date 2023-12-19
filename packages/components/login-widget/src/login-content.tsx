@@ -1,17 +1,22 @@
 import { loginWidget, popover } from '@mochi-ui/theme'
 import { Button } from '@mochi-ui/button'
-import { ArrowLeftLine } from '@mochi-ui/icons'
+import { ArrowLeftLine, WalletSolid } from '@mochi-ui/icons'
 import { AnimatePresence, m, Transition, Variants } from 'framer-motion'
 import {
   ChainProvider,
   ConnectWalletWidget,
 } from '@mochi-ui/connect-wallet-widget'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import ConnectSocial from './connect-social'
 import { useLoginWidget } from './store'
 import fetchers from './fetchers'
 
-const { loginContentClsx, loginWalletListWrapperClsx } = loginWidget
+const {
+  loginContentClsx,
+  loginWalletListWrapperClsx,
+  loginSocialButtonChangePageClsx,
+  loginSocialClsx,
+} = loginWidget
 
 const variants: Variants = {
   enter: (direction: number) => {
@@ -65,6 +70,7 @@ export default function LoginContent({
   const { isLoggedIn, setIsLoggingIn, setIsLoadingProfile, dispatch } =
     useLoginWidget()
   const [state, setState] = useState({ step: chain ? 2 : 1, direction: 0 })
+  const [isInteractive, setIsInteractive] = useState(false)
 
   const handleAfterConnect = useCallback(
     async (
@@ -111,6 +117,12 @@ export default function LoginContent({
     [dispatch, isLoggedIn, setIsLoadingProfile, setIsLoggingIn],
   )
 
+  useEffect(() => {
+    if (state.step) {
+      setTimeout(() => setIsInteractive(true), 350)
+    }
+  }, [state.step])
+
   return (
     <div
       className={
@@ -120,8 +132,25 @@ export default function LoginContent({
       <div className={loginContentClsx({ className: raw ? 'p-0' : 'p-3' })}>
         <AnimatePresence initial={false} custom={state.direction}>
           {state.step === 1 ? (
-            <m.div key={state.step} custom={state.direction} {...commonProps}>
-              <ConnectSocial setState={setState} />
+            <m.div
+              key={state.step}
+              custom={state.direction}
+              {...commonProps}
+              className={loginSocialClsx({})}
+            >
+              <ConnectSocial />
+              <Button
+                size="lg"
+                disabled={!isInteractive}
+                onClick={() => {
+                  setIsInteractive(false)
+                  setState({ step: 2, direction: 1 })
+                }}
+                className={loginSocialButtonChangePageClsx({})}
+              >
+                <WalletSolid className="text-xl" />
+                Connect Wallet
+              </Button>
             </m.div>
           ) : (
             <m.div
@@ -140,7 +169,11 @@ export default function LoginContent({
               {!chain && !isConnecting && (
                 <Button
                   type="button"
-                  onClick={() => setState({ step: 1, direction: -1 })}
+                  disabled={!isInteractive}
+                  onClick={() => {
+                    setIsInteractive(false)
+                    setState({ step: 1, direction: -1 })
+                  }}
                   size="lg"
                   color="neutral"
                   variant="outline"

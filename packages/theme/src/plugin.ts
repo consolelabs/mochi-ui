@@ -237,6 +237,10 @@ export const mochiui = () => {
             'slide-from-top': 'slide-top 0.3s ease-in-out',
             'slide-from-bottom': 'slide-bottom 0.3s ease-in-out',
           },
+          screens: {
+            xxs: '375px',
+            xs: '425px',
+          },
         },
       },
     },

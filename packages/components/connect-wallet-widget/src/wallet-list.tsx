@@ -60,7 +60,7 @@ export default function WalletList({
   return (
     <Tabs value={selectedConnector} className={connectWalletListTabsClsx()}>
       <TabList className={connectWalletListTabListClsx()}>
-        {sortedConnectors.slice(0, 3).map((connector, index) => (
+        {sortedConnectors.slice(0, 4).map((connector, index) => (
           <Fragment key={connector}>
             <TabTrigger
               value={connector}
