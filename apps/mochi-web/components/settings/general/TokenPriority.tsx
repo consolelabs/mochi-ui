@@ -110,7 +110,7 @@ export const TokenPriority = ({ control, watch }: Props) => {
     )
 
   return (
-    <div className="flex flex-col space-y-2">
+    <div className="flex flex-col w-full max-w-md space-y-2">
       <FormLabel>Default token prioirty</FormLabel>
       {fields.map((each, index) => (
         <Controller
@@ -120,7 +120,7 @@ export const TokenPriority = ({ control, watch }: Props) => {
           render={({ field }) => {
             const token = tokenList.find((token) => token.id === field.value.id)
             return (
-              <div className="min-w-[400px] border border-divider w-fit rounded-md shadow-input h-10 flex items-center">
+              <div className="flex items-center h-10 border rounded-md border-divider shadow-input">
                 <IconButton
                   label="Move"
                   variant="ghost"
