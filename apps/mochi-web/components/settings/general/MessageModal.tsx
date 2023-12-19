@@ -21,16 +21,8 @@ import React, { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import { actionList } from '~constants/settings'
 import { Message } from './types'
-
-export const actionList = [
-  { key: 'tip', label: 'Tip' },
-  { key: 'payme', label: 'Pay me' },
-  { key: 'paylink', label: 'Pay link' },
-  { key: 'airdrop', label: 'Airdrop' },
-  { key: 'deposit', label: 'Deposit' },
-  { key: 'withdraw', label: 'Withdraw' },
-]
 
 const schema = z.object({
   action: z.string().min(1, 'This field is required'),

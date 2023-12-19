@@ -14,8 +14,9 @@ import {
   useFieldArray,
 } from 'react-hook-form'
 import clsx from 'clsx'
+import { actionList } from '~constants/settings'
 import { GeneralFormValue } from './types'
-import { MessageModal, actionList } from './MessageModal'
+import { MessageModal } from './MessageModal'
 
 interface Props {
   control: Control<GeneralFormValue>

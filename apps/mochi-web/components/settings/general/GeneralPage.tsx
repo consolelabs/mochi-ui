@@ -8,6 +8,7 @@ import { MoneySource } from './MoneySource'
 import { ReceiverPlatform } from './ReceiverPlatform'
 import { TokenPriority } from './TokenPriority'
 import { DefaultMessage } from './DefaultMessage'
+import { TransactionLimit } from './TransactionLimit'
 
 export const GeneralPage = () => {
   const form = useForm<GeneralFormValue>({
@@ -43,6 +44,7 @@ export const GeneralPage = () => {
 
           <TokenPriority {...{ control, watch }} />
           <DefaultMessage {...{ control, watch }} />
+          <TransactionLimit {...{ control, watch }} />
         </div>
       </FormProvider>
 
