@@ -34,7 +34,10 @@ const LoginWidgetProvider = ({ children }: LoginWidgetProviderProps) => {
     let token = _token
     if (!token) {
       token = localStorage.getItem(STORAGE_KEY)
-      if (!token) return
+      if (!token) {
+        setIsLoadingProfile(false)
+        return
+      }
     }
     setIsLoadingProfile(true)
     fetchers
