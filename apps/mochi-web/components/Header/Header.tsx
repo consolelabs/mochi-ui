@@ -38,11 +38,13 @@ import {
   BellSolid,
   MagnifierLine,
   ChevronRightLine,
+  WalletSolid,
 } from '@mochi-ui/icons'
 import { DISCORD_LINK, TELEGRAM_LINK } from '~envs'
 import { useState } from 'react'
 import ProfileDropdown from '~cpn/profile-dropdrown'
 import { MobileNavAccordionItem } from './MobileNavAccordionItem'
+import { DashboardMobileSidebar } from './DashboardMobileSidebar'
 
 const authenticatedRoute = [
   ROUTES.MY_PROFILE,
@@ -131,7 +133,7 @@ const MobileHeader = ({ onClose }: { onClose: () => void }) => {
             src={profile?.avatar as string}
           />
           <div className="flex flex-1 items-center font-medium">
-            <span className="inline-block w-40 whitespace-nowrap truncate">
+            <span className="inline-block w-max max-w-40 whitespace-nowrap truncate">
               {profile?.profile_name}
             </span>
           </div>
@@ -142,7 +144,11 @@ const MobileHeader = ({ onClose }: { onClose: () => void }) => {
   )
 }
 
-export const Header = () => {
+export const Header = ({
+  layoutType,
+}: {
+  layoutType?: 'dashboard' | 'landing'
+}) => {
   const { pathname } = useRouter()
   const { profile, isLoggedIn } = useLoginWidget()
 
@@ -223,8 +229,11 @@ export const Header = () => {
   const desktopNavItems = [
     ...(isLoggedIn && profile
       ? [
-          <div className="flex gap-x-3 items-stretch" key="desktop-nav-items">
-            <div className="flex gap-x-2 items-center w-[400px]">
+          <div
+            className="flex gap-x-0 lg:gap-x-3 items-stretch -mr-2 lg:mr-0"
+            key="desktop-nav-items"
+          >
+            <div className="hidden lg:flex gap-x-2 items-center w-[400px]">
               <MagnifierLine />
               <input
                 className="flex-1 text-sm outline-none"
@@ -249,10 +258,10 @@ export const Header = () => {
                 </span>
               </div>
             </div>
-            <div className="py-1.5 ml-2 w-px">
+            <div className="py-1.5 ml-2 w-px hidden lg:block">
               <div className="w-full h-full bg-[#eeedec]" />
             </div>
-            <Button size="md">
+            <Button size="md" className="hidden lg:flex">
               <TipSolid />
               Tip
             </Button>
@@ -276,14 +285,52 @@ export const Header = () => {
                   color="info"
                   variant="outline"
                   label=""
-                  className="!p-1 !w-8 !h-8 my-auto"
+                  className="!p-1 !w-8 !h-8 my-auto hidden lg:block"
                 >
                   {icon}
                 </IconButton>
               )
             })}
+            <IconButton
+              color="info"
+              variant="link"
+              label=""
+              className="!p-1 !w-10 !h-10 my-auto justify-center block lg:hidden"
+            >
+              <MagnifierLine className="text-2xl" />
+            </IconButton>
+            <IconButton
+              color="info"
+              variant="link"
+              label=""
+              className="!p-1 !w-10 !h-10 my-auto justify-center block lg:hidden"
+            >
+              <TipSolid className="text-2xl" />
+            </IconButton>
+            <IconButton
+              color="info"
+              variant="link"
+              label=""
+              className="!p-1 !w-10 !h-10 my-auto justify-center block lg:hidden"
+            >
+              <BellSolid className="text-2xl" />
+            </IconButton>
           </div>,
-          <ProfileDropdown key="desktop-profile-dropdown" />,
+          <ProfileDropdown
+            className="hidden lg:flex"
+            key="desktop-profile-dropdown-with-badge"
+          />,
+          <ProfileDropdown
+            className="flex lg:hidden"
+            key="desktop-profile-dropdown"
+          >
+            <Button variant="link" className="!px-0 relative">
+              <Avatar src={profile?.avatar || '/logo.png'} />
+              <div className="absolute -bottom-1 -right-1 p-0.5 rounded-full bg-background-surface">
+                <WalletSolid className="text-neutral-800 text-sm" />
+              </div>
+            </Button>
+          </ProfileDropdown>,
         ]
       : [
           <Link
@@ -371,21 +418,44 @@ export const Header = () => {
           : 'bg-dashboard-gray-1'
       }
       leftSlot={
-        <Link href={ROUTES.HOME} className="flex gap-x-2 items-center">
-          <LogoWithText
-            logoProps={{ size: 'xs' }}
-            className="!gap-2"
-            textClassName="w-18 h-8"
-          />
-        </Link>
+        layoutType === 'landing' || !isLoggedIn ? (
+          <Link href={ROUTES.HOME} className="gap-x-2 items-center">
+            <LogoWithText
+              logoProps={{ size: 'xs' }}
+              className="!gap-2"
+              textClassName="w-18 h-8"
+            />
+          </Link>
+        ) : (
+          <>
+            <Link
+              href={ROUTES.HOME}
+              className="gap-x-2 items-center hidden lg:flex"
+            >
+              <LogoWithText
+                logoProps={{ size: 'xs' }}
+                className="!gap-2"
+                textClassName="w-18 h-8"
+              />
+            </Link>
+            <DashboardMobileSidebar
+              triggerClassName="block lg:hidden"
+              contentClassName="!top-[56px]"
+            />
+          </>
+        )
       }
       rightSlot={
         <>
           <MobileNav
             navItems={mobileNavItems}
             Header={isLoggedIn && profile ? MobileHeader : undefined}
+            className={layoutType === 'dashboard' ? '!hidden' : ''}
           />
-          <DesktopNav navItems={desktopNavItems} />
+          <DesktopNav
+            navItems={desktopNavItems}
+            className={layoutType === 'dashboard' ? '!flex' : ''}
+          />
         </>
       }
     />

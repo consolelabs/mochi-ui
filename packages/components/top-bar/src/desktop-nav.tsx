@@ -1,15 +1,12 @@
 import { topBar } from '@mochi-ui/theme'
 import { Fragment } from 'react'
+import { DesktopNavProps } from './type'
 
 const { topBarDesktopNavClsx, topBarDesktopNavContainerClsx } = topBar
 
-interface DesktopNavProps {
-  navItems: JSX.Element[]
-}
-
-export const DesktopNav = ({ navItems }: DesktopNavProps) => {
+export const DesktopNav = ({ navItems, className }: DesktopNavProps) => {
   return (
-    <div className={topBarDesktopNavClsx()}>
+    <div className={topBarDesktopNavClsx({ className })}>
       {navItems.length ? (
         <div className={topBarDesktopNavContainerClsx()}>
           {navItems.map((item, index) => (

@@ -46,7 +46,9 @@ export type DropdownContentRef = ElementRef<
 export type DropdownContentProps = ComponentPropsWithoutRef<
   typeof DropdownMenuPrimitive.Content
 > &
-  BaseDropdownContentStyleProps
+  BaseDropdownContentStyleProps & {
+    wrapperClassName?: string
+  }
 
 export type DropdownSubContentRef = ElementRef<
   typeof DropdownMenuPrimitive.SubContent

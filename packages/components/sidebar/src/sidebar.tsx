@@ -15,6 +15,7 @@ interface SidebarProps {
   footerItems?: (Item | Break)[]
   className?: string
   isSelected?: (item: Item) => boolean
+  expanded?: boolean
 }
 
 const {
@@ -35,17 +36,20 @@ export default function Sidebar({
   className,
   isSelected,
   Header,
+  expanded: expandedProp,
 }: SidebarProps) {
-  const [expanded, setExpanded] = useState(false)
+  const [expanded, setExpanded] = useState(expandedProp ?? false)
 
   useEffect(() => {
     const onResize = () => {
-      setExpanded(window.innerWidth > 1000)
+      if (expandedProp === undefined) {
+        setExpanded(window.innerWidth > 1000)
+      }
     }
     onResize()
     window.addEventListener('resize', onResize)
     return () => window.removeEventListener('resize', onResize)
-  }, [])
+  }, [expandedProp])
 
   return (
     <div

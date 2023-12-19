@@ -1,6 +1,6 @@
 import '~styles/global.css'
 import dynamic from 'next/dynamic'
-import { StrictMode, useEffect } from 'react'
+import { FC, StrictMode, useEffect } from 'react'
 import type { ReactNode, ReactElement } from 'react'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
@@ -12,16 +12,19 @@ import { interFont } from '~utils/next-font'
 import { Toaster, useLoginWidget } from '@mochi-ui/core'
 import { LazyMotion, domAnimation } from 'framer-motion'
 import DashboardLayout from '~cpn/DashboardLayout'
+import { WalletProviderProps } from '~context/wallet-context'
 import { useAuthStore } from '../store/auth'
 import { SidebarContextProvider } from '../context/app/sidebar'
 
-const Header = dynamic(() => import('~cpn/Header').then((m) => m.Header))
+const Header = dynamic(() =>
+  import('~cpn/Header').then((m) => m.Header),
+) as FC<{ layoutType?: 'dashboard' | 'landing' }>
 const WalletProvider = dynamic(() =>
   import('~context/wallet-context').then((m) => m.WalletProvider),
-)
+) as FC<WalletProviderProps>
 const LoginWidgetProvider = dynamic(() =>
   import('@mochi-ui/core').then((m) => m.LoginWidgetProvider),
-)
+) as FC<{ children: ReactNode }>
 
 const TopProgressBar = dynamic(() => import('~app/layout/nprogress'), {
   ssr: false,
@@ -69,7 +72,7 @@ function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
           font-family: ${interFont.style.fontFamily};
         }
       `}</style>
-      <Header />
+      <Header layoutType={Component?.layoutType || 'dashboard'} />
       {layoutType === 'landing' ? (
         <Component {...pageProps} />
       ) : (

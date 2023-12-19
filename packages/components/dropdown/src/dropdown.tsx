@@ -193,6 +193,7 @@ const DropdownMenuContent = React.forwardRef<
   (
     {
       className,
+      wrapperClassName,
       sideOffset = 4,
       hasShadow,
       isRounded,
@@ -207,6 +208,7 @@ const DropdownMenuContent = React.forwardRef<
       sideOffset={sideOffset}
       {...props}
       asChild={asChild}
+      className={wrapperClassName}
     >
       {asChild ? (
         children
