@@ -63,4 +63,6 @@ const Button = React.forwardRef(
   },
 ) as PolymorphicButton
 
+Button.displayName = 'Button'
+
 export default Button
