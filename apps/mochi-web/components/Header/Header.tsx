@@ -307,12 +307,16 @@ export const Header = () => {
                 </Typography>
               </button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-white-pure">
+            <DropdownMenuContent
+              className="bg-white-pure"
+              sideOffset={20}
+              align="end"
+            >
               <DropdownMenuItem
                 leftIcon={<DiscordColored />}
                 onClick={() => window.open(DISCORD_LINK, '_blank')}
               >
-                Discord
+                Discord asdas
               </DropdownMenuItem>
               <DropdownMenuItem
                 leftIcon={<TelegramColored />}

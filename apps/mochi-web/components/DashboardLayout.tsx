@@ -31,6 +31,7 @@ import {
   Item,
   useLoginWidget,
   LoginWidget,
+  DropdownMenuPortal,
 } from '@mochi-ui/core'
 import { Layout } from '@mochi-ui/layout'
 import { DISCORD_LINK, TWITTER_LINK } from '~envs'
@@ -142,24 +143,27 @@ const ApplicationDetailSidebarHeader = ({
                   <ChevronDownLine className="text-text-contrast" />
                 )}
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="mt-7 -ml-6 !min-w-[216px] max-h-[320px] overflow-auto">
-                <div className="flex flex-col gap-1 items-center w-full">
-                  {!isAppListLoading && appList !== undefined ? (
-                    appList.map((app) => (
-                      <AppDropdownOption
-                        data={app}
-                        key={app.id}
-                        isSelected={
-                          !!query?.id && (query.id as string) === String(app.id)
-                        }
-                        onOptionSelect={() => setIsOpen(false)}
-                      />
-                    ))
-                  ) : (
-                    <Spinner className="text-2xl shrink-0 text-text-primary" />
-                  )}
-                </div>
-              </DropdownMenuContent>
+              <DropdownMenuPortal>
+                <DropdownMenuContent className="mt-7 -ml-6 !min-w-[216px] max-h-[320px] overflow-auto">
+                  <div className="flex flex-col gap-1 items-center w-full">
+                    {!isAppListLoading && appList !== undefined ? (
+                      appList.map((app) => (
+                        <AppDropdownOption
+                          data={app}
+                          key={app.id}
+                          isSelected={
+                            !!query?.id &&
+                            (query.id as string) === String(app.id)
+                          }
+                          onOptionSelect={() => setIsOpen(false)}
+                        />
+                      ))
+                    ) : (
+                      <Spinner className="text-2xl shrink-0 text-text-primary" />
+                    )}
+                  </div>
+                </DropdownMenuContent>
+              </DropdownMenuPortal>
             </DropdownMenu>
           </div>
         ) : (
