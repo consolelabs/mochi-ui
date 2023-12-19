@@ -51,6 +51,9 @@ export type Wallet = {
 export type LoginWidgetState = {
   isLoggedIn: boolean
   isLoggingIn: boolean
+  setIsLoggingIn: (b: boolean) => void
+  isLoadingProfile: boolean
+  setIsLoadingProfile: (b: boolean) => void
   wallets: Array<Wallet>
   profile: Profile | null
   token: string
@@ -64,7 +67,18 @@ export type LoginWidgetState = {
 export const useLoginWidget = create<LoginWidgetState>((set, get) => {
   return {
     isLoggedIn: false,
-    isLoggingIn: false,
+    isLoggingIn: true,
+    setIsLoggingIn: (isLoggingIn) => set({ isLoggingIn }),
+    isLoadingProfile: false,
+    setIsLoadingProfile: (isLoadingProfile) => {
+      const newState: Partial<LoginWidgetState> = {
+        isLoadingProfile,
+      }
+      if (!isLoadingProfile) {
+        newState.isLoggingIn = false
+      }
+      set(newState)
+    },
     profile: null,
     token: '',
     wallets: [],
@@ -85,18 +99,8 @@ export const useLoginWidget = create<LoginWidgetState>((set, get) => {
       // current state
       const state = get()
 
-      if (action.type === 'login') {
-        set({ isLoggingIn: true })
-      }
-
       // combine action + current state = new state
       const newState = reducer(action, state)
-
-      set({ isLoggingIn: false })
-
-      if (action.type === 'logout') {
-        localStorage.removeItem(STORAGE_KEY)
-      }
 
       // update state
       set(newState)
@@ -110,6 +114,7 @@ export const usePublicLoginWidget = () =>
       // state
       isLoggedIn: s.isLoggedIn,
       isLoggingIn: s.isLoggingIn,
+      isLoadingProfile: s.isLoadingProfile,
       wallets: s.wallets,
       profile: s.profile,
       token: s.token,
@@ -134,7 +139,10 @@ export const usePublicLoginWidget = () =>
           type: 'refresh',
           payload: null,
         }),
-      logout: () => s.dispatch({ type: 'logout', payload: null }),
+      logout: () => {
+        localStorage.removeItem(STORAGE_KEY)
+        s.dispatch({ type: 'logout', payload: null })
+      },
     })),
   )
 
@@ -160,6 +168,9 @@ export const getLoginWidgetState = () => {
         type: 'refresh',
         payload: null,
       }),
-    logout: () => dispatch({ type: 'logout', payload: null }),
+    logout: () => {
+      localStorage.removeItem(STORAGE_KEY)
+      dispatch({ type: 'logout', payload: null })
+    },
   }
 }

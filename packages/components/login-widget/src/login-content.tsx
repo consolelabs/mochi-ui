@@ -62,7 +62,8 @@ export default function LoginContent({
   chain?: string
 }) {
   const [isConnecting, setIsConnecting] = useState(false)
-  const { isLoggedIn, dispatch } = useLoginWidget()
+  const { isLoggedIn, setIsLoggingIn, setIsLoadingProfile, dispatch } =
+    useLoginWidget()
   const [state, setState] = useState({ step: chain ? 2 : 1, direction: 0 })
 
   const handleAfterConnect = useCallback(
@@ -83,15 +84,18 @@ export default function LoginContent({
             provider: wallet,
           },
         })
-        /* setInternal({ step: LoginStep.Authenticated }) */
         return
       }
-      /* setInternal({ step: LoginStep.Authenticating }) */
+
+      setIsLoggingIn(true)
       const token = await fetchers.getAccessToken(data)
       if (!token) return
+      setIsLoggingIn(false)
 
+      setIsLoadingProfile(true)
       const profile = await fetchers.getOwnProfile(token)
       if (!profile) return
+      setIsLoadingProfile(false)
 
       dispatch({
         type: 'login',
@@ -103,10 +107,8 @@ export default function LoginContent({
           token,
         },
       })
-
-      /* setInternal({ step: LoginStep.Authenticated }) */
     },
-    [dispatch, isLoggedIn],
+    [dispatch, isLoggedIn, setIsLoadingProfile, setIsLoggingIn],
   )
 
   return (
