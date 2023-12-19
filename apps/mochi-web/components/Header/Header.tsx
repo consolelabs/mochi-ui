@@ -24,6 +24,7 @@ import {
   LoginWidget,
   ModalPortal,
   ModalOverlay,
+  PopoverPortal,
 } from '@mochi-ui/core'
 import {
   DiscordColored,
@@ -66,13 +67,15 @@ const LoginPopover = () => {
           </Button>
         </div>
       </PopoverTrigger>
-      <PopoverContent
-        className="bg-white-pure"
-        sideOffset={10}
-        collisionPadding={20}
-      >
-        <LoginWidget raw />
-      </PopoverContent>
+      <PopoverPortal>
+        <PopoverContent
+          className="bg-white-pure"
+          sideOffset={10}
+          collisionPadding={20}
+        >
+          <LoginWidget raw />
+        </PopoverContent>
+      </PopoverPortal>
     </Popover>
   )
 }

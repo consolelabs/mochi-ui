@@ -11,6 +11,7 @@ type PopoverCloseProps = typeof PopoverPrimitive.Close
 const Popover = PopoverPrimitive.Root
 const PopoverClose = PopoverPrimitive.Close
 const PopoverAnchor = PopoverPrimitive.Anchor
+const PopoverPortal = PopoverPrimitive.Portal
 
 const PopoverTrigger = React.forwardRef<
   React.ElementRef<typeof PopoverPrimitive.Trigger>,
@@ -31,15 +32,13 @@ const PopoverContent = React.forwardRef<
   React.ElementRef<typeof PopoverPrimitive.Content>,
   PopoverContentProps
 >(({ className, align = 'center', sideOffset = 4, ...props }, ref) => (
-  <PopoverPrimitive.Portal>
-    <PopoverPrimitive.Content
-      align={align}
-      className={popoverContentClsx({ className })}
-      ref={ref}
-      sideOffset={sideOffset}
-      {...props}
-    />
-  </PopoverPrimitive.Portal>
+  <PopoverPrimitive.Content
+    align={align}
+    className={popoverContentClsx({ className })}
+    ref={ref}
+    sideOffset={sideOffset}
+    {...props}
+  />
 ))
 PopoverContent.displayName = PopoverPrimitive.Content.displayName
 
@@ -49,6 +48,7 @@ export {
   PopoverContent,
   PopoverClose,
   PopoverAnchor,
+  PopoverPortal,
   type PopoverContentProps,
   type PopoverProps,
   type PopoverTriggerProps,
