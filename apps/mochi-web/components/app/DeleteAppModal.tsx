@@ -9,6 +9,8 @@ import {
   FormLabel,
   Modal,
   ModalContent,
+  ModalOverlay,
+  ModalPortal,
   TextFieldInput,
   TextFieldRoot,
   Typography,
@@ -100,58 +102,61 @@ export const DeleteAppModal = ({
 
   return (
     <Modal {...{ open, onOpenChange }}>
-      <ModalContent className="w-full max-w-sm">
-        <form onSubmit={handleSubmit(onDeleteApp)}>
-          <div className="flex flex-col items-center">
-            <div className="flex items-center justify-center p-3 border-8 rounded-full w-fit bg-danger-outline-border border-danger-outline">
-              <AlertCircleLine className="w-6 h-6 text-danger-solid" />
+      <ModalPortal>
+        <ModalOverlay />
+        <ModalContent className="w-full max-w-sm">
+          <form onSubmit={handleSubmit(onDeleteApp)}>
+            <div className="flex flex-col items-center">
+              <div className="flex items-center justify-center p-3 border-8 rounded-full w-fit bg-danger-outline-border border-danger-outline">
+                <AlertCircleLine className="w-6 h-6 text-danger-solid" />
+              </div>
+              <Typography level="h6" className="mt-5">
+                Delete {name}
+              </Typography>
+              <Alert scheme="warning" size="sm" layout="stack" className="mt-2">
+                <AlertIcon />
+                <AlertDescription>
+                  {`If you delete this app, your remaining balance will be transferred to the owner's Mochi wallet.`}
+                </AlertDescription>
+              </Alert>
             </div>
-            <Typography level="h6" className="mt-5">
-              Delete {name}
-            </Typography>
-            <Alert scheme="warning" size="sm" layout="stack" className="mt-2">
-              <AlertIcon />
-              <AlertDescription>
-                {`If you delete this app, your remaining balance will be transferred to the owner's Mochi wallet.`}
-              </AlertDescription>
-            </Alert>
-          </div>
-          <Controller
-            name="appName"
-            control={control}
-            render={({ field, fieldState }) => (
-              <FormControl error={!!fieldState.error} className="mt-5">
-                <FormLabel>App name</FormLabel>
-                <TextFieldRoot>
-                  <TextFieldInput {...field} placeholder="<App name>" />
-                </TextFieldRoot>
-                <FormHelperText>
-                  To delete this app, please confirm the name.
-                </FormHelperText>
-              </FormControl>
-            )}
-          />
-          <div className="grid grid-cols-2 gap-3 mt-8">
-            <Button
-              size="lg"
-              color="white"
-              type="button"
-              onClick={() => onOpenChange(false)}
-            >
-              Cancel
-            </Button>
-            <Button
-              color="danger"
-              size="lg"
-              type="submit"
-              disabled={isSubmitting || !!Object.keys(errors).length}
-              loading={isSubmitting}
-            >
-              Delete
-            </Button>
-          </div>
-        </form>
-      </ModalContent>
+            <Controller
+              name="appName"
+              control={control}
+              render={({ field, fieldState }) => (
+                <FormControl error={!!fieldState.error} className="mt-5">
+                  <FormLabel>App name</FormLabel>
+                  <TextFieldRoot>
+                    <TextFieldInput {...field} placeholder="<App name>" />
+                  </TextFieldRoot>
+                  <FormHelperText>
+                    To delete this app, please confirm the name.
+                  </FormHelperText>
+                </FormControl>
+              )}
+            />
+            <div className="grid grid-cols-2 gap-3 mt-8">
+              <Button
+                size="lg"
+                color="white"
+                type="button"
+                onClick={() => onOpenChange(false)}
+              >
+                Cancel
+              </Button>
+              <Button
+                color="danger"
+                size="lg"
+                type="submit"
+                disabled={isSubmitting || !!Object.keys(errors).length}
+                loading={isSubmitting}
+              >
+                Delete
+              </Button>
+            </div>
+          </form>
+        </ModalContent>
+      </ModalPortal>
     </Modal>
   )
 }

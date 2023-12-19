@@ -22,6 +22,8 @@ import {
   Avatar,
   useLoginWidget,
   LoginWidget,
+  ModalPortal,
+  ModalOverlay,
 } from '@mochi-ui/core'
 import {
   DiscordColored,
@@ -89,14 +91,17 @@ const MobileLoginPanel = () => {
       >
         Login
       </Button>
-      <ModalContent
-        className="w-full !p-0"
-        style={{
-          width: 'calc(100% - 32px)',
-        }}
-      >
-        <LoginWidget />
-      </ModalContent>
+      <ModalPortal>
+        <ModalOverlay />
+        <ModalContent
+          className="w-full !p-0"
+          style={{
+            width: 'calc(100% - 32px)',
+          }}
+        >
+          <LoginWidget />
+        </ModalContent>
+      </ModalPortal>
     </Modal>
   )
 }
