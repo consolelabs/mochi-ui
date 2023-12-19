@@ -20,7 +20,7 @@ export default function Banner() {
           Pay your frens using crypto
         </h1>
         <div className="flex z-10 flex-col items-center mt-auto">
-          <div className="relative p-3 mx-auto text-center xs:p-5">
+          <div className="relative p-3 mx-auto text-center xxs:p-5">
             <div className="mb-3">
               <div className="max-w-[18rem] sm:max-w-[25rem] text-sm sm:text-lg text-white rounded-full p-5  overflow-hidden bg-gradient-to-b from-[#A7ACB5] to-[#BBB4BB] relative">
                 A secure, convenient, and borderless way to{' '}

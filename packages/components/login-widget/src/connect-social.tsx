@@ -1,4 +1,3 @@
-import { Button } from '@mochi-ui/button'
 import {
   DiscordColored,
   FacebookColored,
@@ -7,7 +6,6 @@ import {
   MailLine,
   SlackColored,
   TelegramColored,
-  WalletSolid,
   X,
 } from '@mochi-ui/icons'
 import { Typography } from '@mochi-ui/typography'
@@ -100,11 +98,7 @@ const socialAuths = [
   },
 ]
 
-export default function ConnectSocial({
-  setState,
-}: {
-  setState: (...args: any) => void
-}) {
+export default function ConnectSocial() {
   return (
     <>
       <Typography
@@ -144,10 +138,6 @@ export default function ConnectSocial({
         <Typography level="p5" color="neutral">
           Or connect with an extension wallet
         </Typography>
-        <Button size="lg" onClick={() => setState({ step: 2, direction: 1 })}>
-          <WalletSolid className="text-xl" />
-          Connect Wallet
-        </Button>
       </div>
     </>
   )

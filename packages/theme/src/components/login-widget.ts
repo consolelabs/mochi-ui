@@ -27,6 +27,13 @@ const loginWidgetDialogContentWrapperClsx = ({
 const loginContentClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx('overflow-hidden rounded-lg relative max-w-[400px] w-full', className)
 
+const loginSocialClsx = ({ className = '' }: { className?: string } = {}) =>
+  clsx('flex flex-col items-stretch', className)
+
+const loginSocialButtonChangePageClsx = ({
+  className = '',
+}: { className?: string } = {}) => clsx('mt-8', className)
+
 const loginContentSocialGridWrapperClsx = ({
   className = '',
 }: { className?: string } = {}) =>
@@ -50,6 +57,8 @@ const loginWidget = {
   loginContentSocialGridWrapperClsx,
   loginContentSocialGridClsx,
   loginWalletListWrapperClsx,
+  loginSocialButtonChangePageClsx,
+  loginSocialClsx,
 }
 
 export { loginWidget }

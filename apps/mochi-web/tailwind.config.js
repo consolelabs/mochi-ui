@@ -141,9 +141,6 @@ module.exports = {
         18: '4.5rem',
         30: '7.5rem',
       },
-      screens: {
-        xs: '375px',
-      },
     },
   },
   plugins: [mochiui()],
