@@ -25,7 +25,7 @@ interface LoginWidgetProviderProps {
 
 const LoginWidgetProvider = ({ children }: LoginWidgetProviderProps) => {
   // reducer for main state
-  const { isLoggedIn, dispatch } = useLoginWidget()
+  const { isLoggedIn, setIsLoadingProfile, dispatch } = useLoginWidget()
 
   // handle login from url query `token`
   useEffect(() => {
@@ -36,31 +36,35 @@ const LoginWidgetProvider = ({ children }: LoginWidgetProviderProps) => {
       token = localStorage.getItem(STORAGE_KEY)
       if (!token) return
     }
-    fetchers.getOwnProfile(token as string).then((profile) => {
-      const hasParams = Object.keys(rest).length > 0
+    setIsLoadingProfile(true)
+    fetchers
+      .getOwnProfile(token as string)
+      .then((profile) => {
+        const hasParams = Object.keys(rest).length > 0
 
-      window.history.replaceState(
-        '',
-        '',
-        `${window.location.href.replace(window.location.search, '')}${
-          hasParams ? `?${qs.stringify(rest)}` : ''
-        }`,
-      )
+        window.history.replaceState(
+          '',
+          '',
+          `${window.location.href.replace(window.location.search, '')}${
+            hasParams ? `?${qs.stringify(rest)}` : ''
+          }`,
+        )
 
-      if (!profile) return
+        if (!profile) return
 
-      localStorage.setItem(STORAGE_KEY, token as string)
-      dispatch({
-        type: 'login',
-        payload: {
-          addresses: [],
-          chain: '',
-          profile,
-          token: token as string,
-        },
+        localStorage.setItem(STORAGE_KEY, token as string)
+        dispatch({
+          type: 'login',
+          payload: {
+            addresses: [],
+            chain: '',
+            profile,
+            token: token as string,
+          },
+        })
       })
-    })
-  }, [dispatch, isLoggedIn])
+      .finally(() => setIsLoadingProfile(false))
+  }, [dispatch, isLoggedIn, setIsLoadingProfile])
 
   return <LazyMotion features={domAnimation}>{children}</LazyMotion>
 }

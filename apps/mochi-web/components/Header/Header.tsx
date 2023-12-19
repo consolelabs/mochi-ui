@@ -48,7 +48,7 @@ const authenticatedRoute = [
 ]
 
 const LoginPopover = () => {
-  const { isLoggingIn } = useLoginWidget()
+  const { isLoadingProfile } = useLoginWidget()
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -59,7 +59,7 @@ const LoginPopover = () => {
         // wrap Button by div to prevent event loss when use `asChild` props
       >
         <div>
-          <Button className="justify-center w-20" loading={isLoggingIn}>
+          <Button className="justify-center w-20" loading={isLoadingProfile}>
             Login
           </Button>
         </div>
@@ -77,7 +77,7 @@ const LoginPopover = () => {
 
 const MobileLoginPanel = () => {
   const [isOpenLoginPanel, setOpenLoginPanel] = useState(false)
-  const { isLoggingIn } = useLoginWidget()
+  const { isLoadingProfile } = useLoginWidget()
 
   return (
     <Modal open={isOpenLoginPanel} onOpenChange={setOpenLoginPanel}>
@@ -85,7 +85,7 @@ const MobileLoginPanel = () => {
         className="justify-center w-full sm:hidden"
         size="lg"
         onClick={() => setOpenLoginPanel(true)}
-        loading={isLoggingIn}
+        loading={isLoadingProfile}
       >
         Login
       </Button>
