@@ -3,7 +3,7 @@ import { Card, PageContent, Skeleton } from '@mochi-ui/core'
 export const DashboardSkeleton = () => {
   return (
     <div className="flex flex-row h-[calc(100vh-56px)]">
-      <aside className="space-y-5 h-full w-64 border-r border-divider sm:block hidden">
+      <aside className="space-y-5 h-full w-60 border-r border-divider sm:block hidden">
         <Skeleton className="w-full h-20" />
         <div className="space-y-3 p-4">
           <Skeleton className="w-full h-4 rounded-lg" />
