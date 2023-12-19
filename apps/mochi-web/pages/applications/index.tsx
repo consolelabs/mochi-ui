@@ -10,6 +10,8 @@ import {
   Modal,
   ModalContent,
   DropdownMenuPortal,
+  ModalPortal,
+  ModalOverlay,
 } from '@mochi-ui/core'
 import { CheckLine, ChevronDownLine } from '@mochi-ui/icons'
 import { NextPageWithLayout } from '~pages/_app'
@@ -121,9 +123,12 @@ const App: NextPageWithLayout = () => {
           className="max-w-full"
         />
         <Modal open={isOpen} onOpenChange={onOpenChange}>
-          <ModalContent className="w-full max-w-md">
-            <NewAppForm id={id} onClose={onClose} onSuccess={onCreateApp} />
-          </ModalContent>
+          <ModalPortal>
+            <ModalOverlay />
+            <ModalContent className="w-full max-w-md">
+              <NewAppForm id={id} onClose={onClose} onSuccess={onCreateApp} />
+            </ModalContent>
+          </ModalPortal>
         </Modal>
       </DashboardBody>
     </>

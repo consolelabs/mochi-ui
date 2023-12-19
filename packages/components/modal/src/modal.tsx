@@ -54,21 +54,18 @@ const ModalContent = React.forwardRef<
   React.ElementRef<typeof ModalPrimitive.Content>,
   ModalContentProps
 >(({ className, children, showCloseBtn, ...props }, ref) => (
-  <ModalPortal>
-    <ModalOverlay />
-    <ModalPrimitive.Content
-      className={modalContentClsx({ className })}
-      ref={ref}
-      {...props}
-    >
-      {children}
-      {showCloseBtn ? (
-        <ModalClose className={modalCloseButtonClsx()}>
-          <CloseLine />
-        </ModalClose>
-      ) : null}
-    </ModalPrimitive.Content>
-  </ModalPortal>
+  <ModalPrimitive.Content
+    className={modalContentClsx({ className })}
+    ref={ref}
+    {...props}
+  >
+    {children}
+    {showCloseBtn ? (
+      <ModalClose className={modalCloseButtonClsx()}>
+        <CloseLine />
+      </ModalClose>
+    ) : null}
+  </ModalPrimitive.Content>
 ))
 ModalContent.displayName = ModalPrimitive.Content.displayName
 
