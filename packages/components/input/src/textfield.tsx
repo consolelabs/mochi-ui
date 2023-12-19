@@ -68,7 +68,8 @@ const TextFieldRoot = React.forwardRef((props, ref) => {
         const input = (event?.currentTarget as HTMLElement)?.querySelector(
           'input',
         ) as HTMLInputElement | null
-        if (!input) return
+        // input type number does not support selection
+        if (!input || input.type === 'number') return
 
         const position = input.compareDocumentPosition(target)
         const targetIsBeforeInput =
