@@ -25,7 +25,10 @@ const loginWidgetDialogContentWrapperClsx = ({
   )
 
 const loginContentClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx('overflow-hidden rounded-lg relative max-w-[400px] w-full', className)
+  clsx(
+    'overflow-hidden rounded-lg relative max-w-[400px] w-full xs:w-screen',
+    className,
+  )
 
 const loginSocialClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx('flex flex-col items-stretch', className)
