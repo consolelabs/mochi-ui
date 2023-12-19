@@ -97,12 +97,12 @@ const MobileLoginPanel = () => {
       <ModalPortal>
         <ModalOverlay />
         <ModalContent
-          className="w-full !p-0"
+          className="p-5 w-full xs:w-auto"
           style={{
-            width: 'calc(100% - 32px)',
+            maxWidth: 'calc(100% - 32px)',
           }}
         >
-          <LoginWidget />
+          <LoginWidget raw />
         </ModalContent>
       </ModalPortal>
     </Modal>

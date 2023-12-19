@@ -2,8 +2,7 @@ import clsx from 'clsx'
 
 const connectWalletState = () => ({
   connecting: {
-    container:
-      'flex flex-col items-center justify-center p-3 max-w-[320px] xxs:max-w-none xxs:w-full',
+    container: 'flex flex-col items-center justify-center p-3 w-full',
     imgWrapper: 'flex items-center mt-5',
     img: 'w-12 h-12 rounded-full',
     divider: 'w-16 border border-dashed border-primary-solid-focus relative',
@@ -32,8 +31,7 @@ const connectWalletState = () => ({
 
 const connectWalletListTabsClsx = ({
   className = '',
-}: { className?: string } = {}) =>
-  clsx('space-y-3 h-[292px] max-w-[320px] xxs:max-w-none xxs:w-full', className)
+}: { className?: string } = {}) => clsx('space-y-3 h-[292px] w-full', className)
 
 const connectWalletListTabListClsx = ({
   className = '',
