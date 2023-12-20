@@ -1,3 +1,5 @@
+import { apiLogout } from '~constants/api'
+import { api } from '~constants/mochi'
 import { Button, Separator, Typography, useLoginWidget } from '@mochi-ui/core'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -79,6 +81,8 @@ export const GeneralPage = () => {
           color="danger"
           onClick={() => {
             replace(ROUTES.HOME)
+            apiLogout()
+            api.token(null)
             setTimeout(() => {
               logout()
             }, 500)

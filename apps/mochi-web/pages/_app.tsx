@@ -6,12 +6,12 @@ import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import 'nprogress/nprogress.css'
 import '~styles/nprogress.css'
-import { useRouter } from 'next/router'
 import Script from 'next/script'
 import { interFont } from '~utils/next-font'
-import { Toaster } from '@mochi-ui/core'
+import { Toaster, useLoginWidget } from '@mochi-ui/core'
 import { LazyMotion, domAnimation } from 'framer-motion'
 import { WalletProviderProps } from '~context/wallet-context'
+import { apiLogin } from '~constants/api'
 
 const SidebarContextProvider = dynamic(() =>
   import('../context/app/sidebar').then((m) => m.SidebarContextProvider),
@@ -47,19 +47,14 @@ export function handleCancelRendering(e: any) {
 }
 
 function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
-  const { asPath, replace } = useRouter()
+  const { isLoggedIn, token } = useLoginWidget()
   const layoutType = Component.layoutType ?? 'dashboard'
 
   useEffect(() => {
-    const parts = asPath.split('#')
-    const hash = parts[1]
-    const path = parts[0]?.split('?')[0]
-    if (hash && hash === 'logout') {
-      replace({ pathname: path }, undefined, {
-        shallow: true,
-      }).catch(handleCancelRendering)
-    }
-  }, [asPath, replace])
+    if (!isLoggedIn || !token) return
+    apiLogin(token)
+    import('../constants/mochi').then((mochi) => mochi.api.token(token))
+  }, [isLoggedIn, token])
 
   return (
     <SidebarContextProvider>
