@@ -98,6 +98,10 @@ export const useWalletStore = create<State>((set) => ({
         })
         const balances = await Promise.all(balRequestors)
         payableAccounts.sort((a, b) => {
+          // prioritize sol
+          if (a.platform === 'solana-chain') return -1
+          if (b.platform === 'solana-chain') return 1
+
           const balA = balances.find((bal) => bal.id === a.id)
           const balB = balances.find((bal) => bal.id === b.id)
 
@@ -123,6 +127,10 @@ export const useWalletStore = create<State>((set) => ({
           }
           if (ok) {
             data.balance.sort((a, b) => {
+              // prioritize sol
+              if (a.token.chain_id === '999') return -1
+              if (b.token.chain_id === '999') return 1
+
               return (b.usd_balance ?? 0) - (a.usd_balance ?? 0)
             })
             wallets.push({
