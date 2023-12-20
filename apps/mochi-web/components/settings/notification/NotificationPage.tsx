@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useId } from 'react'
+import React, { useEffect, useId } from 'react'
 import {
   ActionBar,
   ActionBarActionGroup,
@@ -8,65 +8,67 @@ import {
   ActionBarContent,
   ActionBarIcon,
   ActionBarTitle,
-  Checkbox,
-  CheckboxProps,
   SectionHeader,
   Skeleton,
   Switch,
+  SwitchProps,
   Typography,
+  toast,
+  useLoginWidget,
 } from '@mochi-ui/core'
 import { useForm, FormProvider, Controller } from 'react-hook-form'
 import { useFetchNotificationSettings } from '~hooks/settings/useFetchNotificationSettings'
 import clsx from 'clsx'
+import { API, GET_PATHS } from '~constants/api'
+import {
+  RequestUpdateNotificationSettingPayloadRequest,
+  ResponseUserNotificationSettingResponse,
+} from '~types/mochi-schema'
+import {
+  NotificationFlags,
+  NotificationPlatform,
+  NotificationWalletFlags,
+} from './type'
 
-interface NotificationFormValue {
-  enableNotification: boolean
-  receiveTip: boolean
-  receiveAirdrops: boolean
-  depositCompleted: boolean
-  withdrawalCompleted: boolean
-  walletTransactions: boolean
-  paymentRequestExpired: boolean
-  paymentRequestCompleted: boolean
-  paylinkExpired: boolean
-  paylinkClaimedByAnother: boolean
-  paylinkClaimed: boolean
-  newConfiguration: boolean
-  newVaultTransactions: boolean
-  informationChanged: boolean
-  newApiCall: boolean
-  newMember: boolean
-  discord: boolean
-  telegram: boolean
-  website: boolean
-}
+type NotificationFormValue = NotificationFlags & {
+  enable?: boolean
+} & Record<NotificationPlatform, boolean>
 
-const LabelCheckboxGroup = (
-  props: Omit<CheckboxProps, 'name'> & {
+const NotificationSwitcherField = (
+  props: Omit<SwitchProps, 'name'> & {
     label: string
+    description?: string
     name: keyof NotificationFormValue
   },
 ) => {
-  const { label, name, size = 'lg', ...restProps } = props
+  const { label, name, description, className, ...restProps } = props
   const id = useId()
-
   return (
     <Controller<NotificationFormValue>
       name={name}
-      render={({ field: { value, ...restFields } }) => (
+      render={({ field: { value, onChange, ...restFields } }) => (
+        // eslint-disable-next-line jsx-a11y/label-has-associated-control
         <label
           htmlFor={id}
-          className="flex justify-between py-4 w-full sm:max-w-[240px]"
+          className={clsx('block cursor-pointer select-none', className)}
         >
-          <Typography level="p5" color="textPrimary">
-            {label}
-          </Typography>
-          <Checkbox
-            size={size}
-            {...restProps}
-            {...restFields}
-            checked={value}
-            id={id}
+          <SectionHeader
+            title={label}
+            className="!py-3"
+            titleClassName={clsx('!text-sm font-normal', {
+              '!py-0': !description,
+            })}
+            description={description}
+            actions={[
+              <Switch
+                id={id}
+                key="switch"
+                {...restFields}
+                {...restProps}
+                checked={value}
+                onCheckedChange={onChange}
+              />,
+            ]}
           />
         </label>
       )}
@@ -75,182 +77,239 @@ const LabelCheckboxGroup = (
 }
 
 export function NotificationPage() {
-  const form = useForm<NotificationFormValue>({ mode: 'all' })
-  const { handleSubmit, formState, reset, watch } = form
+  const form = useForm<NotificationFormValue>({
+    mode: 'all',
+  })
+  const { profile } = useLoginWidget()
+  const { handleSubmit, watch, reset, formState } = form
   const { isDirty } = formState
-  const { notiSettings, isLoading, mutate } = useFetchNotificationSettings()
+  const { settings, isLoading, mutate } = useFetchNotificationSettings(
+    profile?.id,
+  )
 
-  const enableNotification = watch('enableNotification')
-  const checkboxTabIndex = enableNotification ? undefined : -1
+  const enableNotification = watch('enable')
+  const switchTabIndex = enableNotification ? undefined : -1
 
-  const onSubmit = (data: any) => {
-    alert(JSON.stringify(data))
+  const onSubmit = async (data: NotificationFormValue) => {
+    const { enable, discord, telegram, website, ...restData } = data
+    const platformObj: Record<string, boolean> = {
+      discord,
+      telegram,
+      website,
+    }
+    const platforms = Object.keys(platformObj).filter((p: any) =>
+      Boolean(platformObj[p]),
+    )
+    const body: RequestUpdateNotificationSettingPayloadRequest = {
+      enable: enable ?? false,
+      platforms,
+      flag: restData,
+    }
+    try {
+      const { data: newSettings }: ResponseUserNotificationSettingResponse =
+        await API.MOCHI.put(
+          body,
+          GET_PATHS.UPDATE_PROFILE_SETTING_NOTIFICATION(profile?.id as string),
+        ).json((r) => r)
+      const flags = newSettings?.flags as NotificationWalletFlags | undefined
+      const platforms = newSettings?.platforms as
+        | NotificationPlatform[]
+        | undefined
+      reset({
+        enable: newSettings?.enable,
+        discord: platforms?.includes('discord'),
+        telegram: platforms?.includes('telegram'),
+        website: platforms?.includes('website'),
+        ...flags,
+      })
+    } catch (e) {
+      toast({
+        scheme: 'danger',
+        title: 'Some thing wrong',
+        description: 'Error during update notification settings',
+      })
+    }
     mutate()
   }
 
-  const resetSetting = useCallback(() => {
-    reset(notiSettings)
-  }, [notiSettings, reset])
-
   useEffect(() => {
     if (isLoading) return
-    resetSetting()
-  }, [isLoading, notiSettings, resetSetting])
+    const flags = settings?.flags as NotificationWalletFlags | undefined
+    const platforms = settings?.platforms as NotificationPlatform[] | undefined
+    reset({
+      enable: settings?.enable,
+      discord: platforms?.includes('discord'),
+      telegram: platforms?.includes('telegram'),
+      website: platforms?.includes('website'),
+      ...flags,
+    })
+  }, [isLoading, reset, settings])
 
   if (isLoading) return <Skeleton />
 
   return (
     <FormProvider {...form}>
-      <div className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
-        <Typography level="h6">Notify Event</Typography>
-
-        <div className="sm:max-w-[300px]">
-          <SectionHeader
-            title="Notification"
-            description=""
-            actions={[
-              <Controller<NotificationFormValue>
-                key="switch"
-                name="enableNotification"
-                render={({ field: { value, onChange, ...restFields } }) => (
-                  <Switch
-                    {...restFields}
-                    checked={value}
-                    onCheckedChange={onChange}
-                  />
-                )}
-              />,
-            ]}
+      <div className="sm:max-w-[600px] divide-y">
+        <div>
+          <Typography level="h6">Notify Event</Typography>
+          <Controller<NotificationFormValue>
+            name="enable"
+            render={({ field: { value, onChange, ...restFields } }) => (
+              // eslint-disable-next-line jsx-a11y/label-has-associated-control
+              <label
+                htmlFor="enable"
+                className="block cursor-pointer select-none"
+              >
+                <SectionHeader
+                  title="Notification"
+                  className="!py-4"
+                  titleClassName="!text-base font-normal"
+                  description="Select the event you want to receive notifications for"
+                  actions={[
+                    <Switch
+                      id="enable"
+                      key="switch"
+                      {...restFields}
+                      checked={value}
+                      onCheckedChange={onChange}
+                    />,
+                  ]}
+                />
+              </label>
+            )}
           />
         </div>
-
         <div
-          className={clsx('space-y-4', {
-            'opacity-25 pointer-events-none': !enableNotification,
+          className={clsx('divide-y transition', {
+            'opacity-30': !enableNotification,
           })}
+          onSubmit={handleSubmit(onSubmit)}
         >
-          <Typography level="p5" color="textSecondary">
-            Select the event you want to receive notifications for
-          </Typography>
-          <SectionHeader title="Wallet Activity" className="border-b" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-32  max-w-3xl">
-            <div className="flex flex-col">
-              <LabelCheckboxGroup
-                tabIndex={checkboxTabIndex}
+          <div>
+            <Typography className="py-4" level="h6">
+              Wallet Activity
+            </Typography>
+            <div className="divide-y">
+              <NotificationSwitcherField
+                className="-mt-3"
+                tabIndex={switchTabIndex}
+                name="disable_all"
+                label="Disable all notification wallets"
+                description="Your existing notification wallet activity settings will be preserved."
+              />
+              <NotificationSwitcherField
+                tabIndex={switchTabIndex}
                 label="Receive a tip"
-                name="receiveTip"
+                name="receive_tip_success"
               />
-              <LabelCheckboxGroup
-                tabIndex={checkboxTabIndex}
-                label="Receive airdrops"
-                name="receiveAirdrops"
-              />
-              <LabelCheckboxGroup
-                tabIndex={checkboxTabIndex}
-                label="Deposit completed"
-                name="depositCompleted"
-              />
-              <LabelCheckboxGroup
-                tabIndex={checkboxTabIndex}
-                label="Withdrawal completed"
-                name="withdrawalCompleted"
-              />
-              <LabelCheckboxGroup
-                tabIndex={checkboxTabIndex}
-                label="Wallet transactions"
-                name="walletTransactions"
-              />
-            </div>
-            <div className="flex flex-col">
-              <LabelCheckboxGroup
-                tabIndex={checkboxTabIndex}
+              <NotificationSwitcherField
+                tabIndex={switchTabIndex}
                 label="Payment request completed"
-                name="paymentRequestCompleted"
+                name="receive_payme_success"
               />
-              <LabelCheckboxGroup
-                tabIndex={checkboxTabIndex}
+              <NotificationSwitcherField
+                tabIndex={switchTabIndex}
+                label="Receive airdrops"
+                name="receive_airdrop_success"
+              />
+              <NotificationSwitcherField
+                tabIndex={switchTabIndex}
                 label="Payment request expired"
-                name="paymentRequestExpired"
+                name="*_payme_expired"
               />
-              <LabelCheckboxGroup
-                tabIndex={checkboxTabIndex}
+              <NotificationSwitcherField
+                tabIndex={switchTabIndex}
+                label="Deposit completed"
+                name="receive_deposit_success"
+              />
+              <NotificationSwitcherField
+                tabIndex={switchTabIndex}
                 label="Pay link has expired"
-                name="paylinkExpired"
+                name="*_paylink_expired"
               />
-              <LabelCheckboxGroup
-                tabIndex={checkboxTabIndex}
+              <NotificationSwitcherField
+                tabIndex={switchTabIndex}
+                label="Withdrawal completed"
+                name="send_withdraw_success"
+              />
+              <NotificationSwitcherField
+                tabIndex={switchTabIndex}
                 label="Pay link claimed by another"
-                name="paylinkClaimedByAnother"
+                name="send_paylink_success"
               />
-              <LabelCheckboxGroup
-                tabIndex={checkboxTabIndex}
+              <NotificationSwitcherField
+                tabIndex={switchTabIndex}
                 label="Claim a pay link"
-                name="paylinkClaimed"
+                name="receive_paylink_success"
+              />
+              {/* FIXME: not support yet */}
+              {/* <NotificationSwitcherField
+              tabIndex={switchTabIndex}
+              label="Wallet transactions"
+              name="walletTransactions"
+            /> */}
+            </div>
+          </div>
+          <div>
+            <Typography className="py-4" level="h6">
+              Wallet Activity
+            </Typography>
+            <NotificationSwitcherField
+              className="-mt-3"
+              tabIndex={switchTabIndex}
+              label="New Configuration"
+              description="Change in communities's configuration"
+              name="new_configuration"
+            />
+          </div>
+          <div>
+            <Typography className="py-4" level="h6">
+              Apps Activity
+            </Typography>
+            <div className="divide-y">
+              <NotificationSwitcherField
+                className="-mt-3"
+                tabIndex={switchTabIndex}
+                label="New Vault Transactions"
+                name="new_vault_tx"
+              />
+              <NotificationSwitcherField
+                tabIndex={switchTabIndex}
+                label="Information Changed"
+                name="info_updated"
+              />
+              <NotificationSwitcherField
+                tabIndex={switchTabIndex}
+                label="New API call"
+                name="new_api_call"
+              />
+              <NotificationSwitcherField
+                tabIndex={switchTabIndex}
+                label="New Member"
+                name="new_member"
               />
             </div>
           </div>
-
-          <div className="space-y-4">
-            <SectionHeader
-              title="Communities Activities"
-              className="border-b"
-            />
-            <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-32  max-w-3xl">
-              <LabelCheckboxGroup
-                tabIndex={checkboxTabIndex}
-                label="New Configuration"
-                name="newConfiguration"
-              />
-            </div>
-          </div>
-
-          <div className="space-y-4">
-            <SectionHeader title="Apps Activity" className="border-b" />
-            <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-32  max-w-3xl">
-              <div className="flex flex-col">
-                <LabelCheckboxGroup
-                  tabIndex={checkboxTabIndex}
-                  label="New Vault Transactions"
-                  name="newVaultTransactions"
-                />
-                <LabelCheckboxGroup
-                  tabIndex={checkboxTabIndex}
-                  label="Information Changed"
-                  name="informationChanged"
-                />
-              </div>
-              <div className="flex flex-col">
-                <LabelCheckboxGroup
-                  tabIndex={checkboxTabIndex}
-                  label="New API call"
-                  name="newApiCall"
-                />
-                <LabelCheckboxGroup
-                  tabIndex={checkboxTabIndex}
-                  label="New Member"
-                  name="newMember"
-                />
-              </div>
-            </div>
-          </div>
-          <div className="space-y-0">
-            <SectionHeader
-              title="Platform Notification"
-              description="Select the platform you want to receive the notification"
-            />
-            <div className="grid grid-cols-1 sm:grid-cols-3">
-              <LabelCheckboxGroup
-                tabIndex={checkboxTabIndex}
+          <div>
+            <Typography className="py-4" level="h6">
+              Platform Notification
+            </Typography>
+            <Typography level="p5" color="textSecondary" className="-mt-2 pb-2">
+              Select the platform you want to receive the notification
+            </Typography>
+            <div className="divide-y">
+              <NotificationSwitcherField
+                tabIndex={switchTabIndex}
                 label="Discord"
                 name="discord"
               />
-              <LabelCheckboxGroup
-                tabIndex={checkboxTabIndex}
+              <NotificationSwitcherField
+                tabIndex={switchTabIndex}
                 label="Telegram"
                 name="telegram"
               />
-              <LabelCheckboxGroup
-                tabIndex={checkboxTabIndex}
+              <NotificationSwitcherField
+                tabIndex={switchTabIndex}
                 label="Website"
                 name="website"
               />
@@ -273,7 +332,11 @@ export function NotificationPage() {
               </ActionBarTitle>
             </ActionBarBody>
             <ActionBarActionGroup>
-              <ActionBarCancelButton onClick={resetSetting}>
+              <ActionBarCancelButton
+                onClick={() => {
+                  reset()
+                }}
+              >
                 Reset
               </ActionBarCancelButton>
               <ActionBarConfirmButton onClick={handleSubmit(onSubmit)}>

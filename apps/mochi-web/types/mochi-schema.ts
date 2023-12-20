@@ -9,7 +9,6 @@
  * ---------------------------------------------------------------
  */
 
-import { Profile } from '@consolelabs/mochi-rest'
 export interface ModelActivity {
   guild_default?: boolean
   id?: number
@@ -34,6 +33,12 @@ export interface ModelAirdropCampaign {
 export interface ModelAirdropStatusCount {
   count?: number
   status?: string
+}
+
+export interface ModelBasePrivacySetting {
+  custom_settings?: ModelPrivacyCustomSetting[]
+  general_platform_group?: string
+  general_target_group?: string
 }
 
 export interface ModelChain {
@@ -121,6 +126,11 @@ export interface ModelDaoVoteOption {
   id?: number
   type?: string
   updated_at?: string
+}
+
+export interface ModelDefaultMessageSetting {
+  action?: string
+  message?: string
 }
 
 export interface ModelDiscordCMD {
@@ -295,6 +305,11 @@ export interface ModelJSONNullString {
   valid?: boolean
 }
 
+export interface ModelMoneySource {
+  platform?: string
+  platform_identifier?: string
+}
+
 export interface ModelMonikerConfig {
   amount?: number
   created_at?: string
@@ -348,6 +363,13 @@ export interface ModelNewListedNFTCollection {
   symbol?: string
 }
 
+export interface ModelNotificationFlag {
+  description?: string
+  group?: string
+  id?: number
+  key?: string
+}
+
 export interface ModelOffchainTipBotToken {
   address?: string
   chain?: ModelChain
@@ -365,6 +387,25 @@ export interface ModelOffchainTipBotToken {
   token_price?: number
   token_symbol?: string
   updated_at?: string
+}
+
+export interface ModelPayToken {
+  address?: string
+  chain?: ModelChain
+  chain_id?: string
+  coin_gecko_id?: string
+  decimal?: number
+  icon?: string
+  id?: string
+  name?: string
+  native?: boolean
+  price?: number
+  symbol?: string
+}
+
+export interface ModelPrivacyCustomSetting {
+  platform?: string
+  target_group?: string
 }
 
 export interface ModelProductBotCommand {
@@ -468,6 +509,8 @@ export interface ModelQuestUserReward {
   user_id?: string
 }
 
+export type ModelSettingFlags = Record<string, boolean>
+
 export interface ModelToken {
   address?: string
   chain?: ModelChain
@@ -480,6 +523,14 @@ export interface ModelToken {
   is_native?: boolean
   name?: string
   symbol?: string
+}
+
+export interface ModelTxLimitSetting {
+  action?: string
+  max?: number
+  min?: number
+  token?: ModelPayToken
+  token_id?: string
 }
 
 export interface ModelUser {
@@ -501,6 +552,35 @@ export interface ModelUserFeedback {
   message_id?: string
   profile_id?: string
   status?: string
+}
+
+export interface ModelUserNotificationSetting {
+  enable?: boolean
+  flags?: ModelSettingFlags
+  notification_settings?: ModelNotificationFlag[]
+  platforms?: string[]
+  profile_id?: string
+}
+
+export interface ModelUserPaymentSetting {
+  default_message_enable?: boolean
+  default_message_settings?: ModelDefaultMessageSetting[]
+  default_money_source?: ModelMoneySource
+  default_receiver_platform?: string
+  default_token?: ModelPayToken
+  default_token_id?: string
+  prioritized_token?: ModelPayToken[]
+  prioritized_token_ids?: string[]
+  profileId?: string
+  tx_limit_enable?: boolean
+  tx_limit_settings?: ModelTxLimitSetting[]
+}
+
+export interface ModelUserPrivacySetting {
+  profile_id?: string
+  social_accounts?: ModelBasePrivacySetting
+  tx?: ModelBasePrivacySetting
+  wallets?: ModelBasePrivacySetting
 }
 
 export interface ModelUserTokenSupportRequest {
@@ -597,6 +677,12 @@ export interface RequestAddTokenPriceAlertRequest {
 export interface RequestAssignVerifiedRoleRequest {
   guild_id: string
   user_discord_id: string
+}
+
+export interface RequestBasePrivacySetting {
+  custom_settings?: RequestPrivacyCustomSetting[]
+  general_platform_group?: string
+  general_target_group?: string
 }
 
 export interface RequestClaimQuestsRewardsRequest {
@@ -737,6 +823,11 @@ export interface RequestCreateUserTokenSupportRequest {
   user_discord_id: string
 }
 
+export interface RequestDefaultMessageSetting {
+  action: string
+  message: string
+}
+
 export interface RequestDeleteGuildConfigDaoProposal {
   id?: string
 }
@@ -782,6 +873,11 @@ export interface RequestGuildIDRequest {
   guild_id?: string
 }
 
+export interface RequestMoneySource {
+  platform: string
+  platform_identifier: string
+}
+
 export interface RequestNewGuildConfigWalletVerificationMessageRequest {
   content?: string
   created_at?: string
@@ -811,6 +907,28 @@ export interface RequestOffchainTransferRequest {
 export interface RequestOnboardingStartRequest {
   platform: 'discord' | 'telegram'
   profile_id: string
+}
+
+export interface RequestPaymentSetting {
+  default_message_enable: boolean
+  default_message_settings: RequestDefaultMessageSetting[]
+  default_money_source: RequestMoneySource
+  default_receiver_platform: string
+  default_token: string
+  token_priorities: string[]
+  tx_limit_enable: boolean
+  tx_limit_settings: RequestTxLimitSetting[]
+}
+
+export interface RequestPrivacyCustomSetting {
+  platform?: string
+  target_group?: string
+}
+
+export interface RequestPrivacySetting {
+  social_accounts?: RequestBasePrivacySetting
+  tx?: RequestBasePrivacySetting
+  wallets?: RequestBasePrivacySetting
 }
 
 export interface RequestRoleReactionRequest {
@@ -882,6 +1000,12 @@ export interface RequestTransferV2Request {
   transfer_type: 'transfer' | 'airdrop'
 }
 
+export interface RequestTxLimitSetting {
+  action: string
+  max?: number
+  min?: number
+}
+
 export interface RequestUnlinkBinance {
   discord_user_id?: string
 }
@@ -896,12 +1020,23 @@ export interface RequestUpdateFriendTechKeyTrackRequest {
   increase_alert_at?: number
 }
 
+export interface RequestUpdateGeneralSettingsPayloadRequest {
+  payment: RequestPaymentSetting
+  privacy: RequestPrivacySetting
+}
+
 export interface RequestUpdateGuildRequest {
   active?: boolean
   available_cmds?: ModelDiscordCMD[]
   global_xp?: boolean
   left_at?: string
   log_channel?: string
+}
+
+export interface RequestUpdateNotificationSettingPayloadRequest {
+  enable: boolean
+  flag: Record<string, boolean>
+  platforms: string[]
 }
 
 export interface RequestUpdateQuestProgressRequest {
@@ -1325,6 +1460,11 @@ export interface ResponseGasTrackerResponse {
 
 export interface ResponseGasTrackerResponseData {
   data?: ResponseGasTrackerResponse[]
+}
+
+export interface ResponseGeneralSettingData {
+  payment?: ModelUserPaymentSetting
+  privacy?: ModelUserPrivacySetting
 }
 
 export interface ResponseGetAllDaoProposalVotes {
@@ -2380,6 +2520,14 @@ export interface ResponseUserFeedbackResponse {
   total?: number
 }
 
+export interface ResponseUserGeneralSettingResponse {
+  data?: ResponseGeneralSettingData
+}
+
+export interface ResponseUserNotificationSettingResponse {
+  data?: ModelUserNotificationSetting
+}
+
 export interface UtilPagination {
   page?: number
   size?: number
@@ -2390,25 +2538,4 @@ export interface UuidNullUUID {
   uuid?: string
   /** Valid is true if UUID is not NULL */
   valid?: boolean
-}
-
-export interface TransactionNode {
-  profile_id: string
-  total_volume: number
-  spend_volume: number
-  receive_volume: number
-  profile: Profile
-}
-
-export interface TransactionEdge {
-  from_profile_id: string
-  to_profile_id: string
-  total_volume: number
-  spend: number
-  receive: number
-}
-
-export interface TransactionGraphData {
-  nodes: TransactionNode[]
-  edges: TransactionEdge[]
 }

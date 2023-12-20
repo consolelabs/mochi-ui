@@ -9,10 +9,30 @@
  * ---------------------------------------------------------------
  */
 
+export interface DtoAssociateTonWalletRequest {
+  code: string
+  ton_proof: DtoTonProof
+}
+
 export interface DtoAuthBlockchainAccountRequest {
   message: string
   signature: string
   wallet_address: string
+}
+
+export interface DtoAuthTonRequest {
+  /** User TON address */
+  address: string
+  /** domain name of the signing operation */
+  domain: DtoTonProofDomain
+  /** 64-byte payload */
+  payload: string
+  /** 64-byte signature of the payload */
+  signature: string
+  /** 64-bit unix epoch time of the signing operation (seconds) */
+  timestamp: number
+  /** User wallet state init retrieve from wallet info when connecting */
+  wallet_state_init: string
 }
 
 export interface DtoConnectBlockchainAccountRequest {
@@ -22,12 +42,30 @@ export interface DtoConnectBlockchainAccountRequest {
   wallet_address: string
 }
 
-export interface DtoDeactivateApplicationRequest {
-  appId: number
-}
-
 export interface DtoMarkReadActivitiesRequest {
   ids: number[]
+}
+
+export interface DtoTonProof {
+  /** User TON address */
+  address: string
+  /** domain name of the signing operation */
+  domain: DtoTonProofDomain
+  /** 64-byte payload */
+  payload: string
+  /** 64-byte signature of the payload */
+  signature: string
+  /** 64-bit unix epoch time of the signing operation (seconds) */
+  timestamp: number
+  /** User wallet state init retrieve from wallet info when connecting */
+  wallet_state_init: string
+}
+
+export interface DtoTonProofDomain {
+  /** AppDomain Length */
+  length_bytes: number
+  /** app domain name (as url part, without encoding) */
+  value: string
 }
 
 export interface DtoUpdateAccountMetadataRequest {
@@ -35,29 +73,11 @@ export interface DtoUpdateAccountMetadataRequest {
   platformIdentifier: string
 }
 
-export interface DtoUpdateApplicationAvatarRequest {
-  buffer?: number[]
-  fileExt?: string
-  image: MultipartFileHeader
-}
-
-export interface DtoUpdateApplicationRequest {
-  appId: number
-}
-
 export interface DtoUpdateProfileInfoRequest {
   active_score?: number
   avatar?: string
   profile_name?: string
 }
-
-export interface MultipartFileHeader {
-  filename?: string
-  header?: TextprotoMIMEHeader
-  size?: number
-}
-
-export type TextprotoMIMEHeader = Record<string, string[]>
 
 export interface TypesetStateChange {
   key?: string
@@ -80,29 +100,6 @@ export interface ViewActivityResponse {
 export interface ViewActivityResponseData {
   data?: ViewActivityResponse[]
   pagination?: ViewMetadataResponse
-}
-
-export interface ViewAppValidationResponse {
-  data?: ViewAppValidationResponseData
-}
-
-export interface ViewAppValidationResponseData {
-  app_id?: number
-  app_name?: string
-  owner_profile_id?: string
-  valid?: boolean
-}
-
-export interface ViewApplication {
-  active?: boolean
-  application_profile_id?: string
-  avatar?: string
-  id?: number
-  name?: string
-  owner_profile_id?: string
-  public_key?: string
-  service_fee?: number
-  slug?: string
 }
 
 export interface ViewAssociateDexResponse {
@@ -186,7 +183,7 @@ export interface ViewPaginationResponse {
 
 export interface ViewProfile {
   active_score?: number
-  application?: ViewApplication
+  application_id?: number
   associated_account_pendings?: ViewAssociatedAccountPending[]
   associated_accounts?: ViewAssociatedAccount[]
   avatar?: string
@@ -196,6 +193,18 @@ export interface ViewProfile {
   profile_name?: string
   type?: string
   updated_at?: string
+}
+
+export interface ViewProfileResponse {
+  data?: ViewProfile
+}
+
+export interface ViewTonProofPayload {
+  payload?: string
+}
+
+export interface ViewTonProofPayloadResponse {
+  data?: ViewTonProofPayload
 }
 
 export interface ViewUnlinkDexResponse {
