@@ -53,7 +53,7 @@ export default function ProfileDropdown({
   }
 
   return (
-    <DropdownMenu modal={false}>
+    <DropdownMenu>
       <DropdownMenuTrigger className={className} asChild>
         {triggerRender}
       </DropdownMenuTrigger>
