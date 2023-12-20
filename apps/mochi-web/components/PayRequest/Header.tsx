@@ -1,13 +1,13 @@
 import { useClipboard } from '@dwarvesf/react-hooks'
 import { isSSR } from '@dwarvesf/react-utils'
-import { Typography } from '@mochi-ui/core'
+import { Tooltip, Typography } from '@mochi-ui/core'
 import { CheckLine, LinkLine } from '@mochi-ui/icons'
 import clsx from 'clsx'
 import Image from 'next/image'
 import { SVGProps } from 'react'
 
 type Props = {
-  color: 'blue' | 'gray'
+  color: 'blue' | 'gray' | 'green'
   title: string
   url: string
   Icon: (props: SVGProps<SVGSVGElement>) => JSX.Element
@@ -25,6 +25,7 @@ export default function Header({ color, Icon, url, title }: Props) {
         {
           'bg-primary-700': color === 'blue',
           'bg-neutral-800': color === 'gray',
+          'bg-green-700': color === 'green',
         },
       )}
     >
@@ -35,13 +36,15 @@ export default function Header({ color, Icon, url, title }: Props) {
           {title}
         </Typography>
       </div>
-      <button onClick={onCopy} type="button" className="outline-none">
-        {hasCopied ? (
-          <CheckLine className="relative w-4 h-4 text-white-pure" />
-        ) : (
-          <LinkLine className="relative w-4 h-4 text-white-pure" />
-        )}
-      </button>
+      <Tooltip content={hasCopied ? 'Copied!' : 'Copy link'}>
+        <button onClick={onCopy} type="button" className="outline-none">
+          {hasCopied ? (
+            <CheckLine className="relative w-4 h-4 text-white-pure" />
+          ) : (
+            <LinkLine className="relative w-4 h-4 text-white-pure" />
+          )}
+        </button>
+      </Tooltip>
     </div>
   )
 }

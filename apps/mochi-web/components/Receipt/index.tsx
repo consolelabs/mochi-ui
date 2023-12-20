@@ -1,10 +1,11 @@
+import { robotoFont } from '~utils/next-font'
 import Link from 'next/link'
 import { LinkLine, CornerBottomLeftLine } from '@mochi-ui/icons'
 import Image from 'next/image'
 import useSWR from 'swr'
 import { API } from '~constants/api'
 import { coinIcon } from '~utils/image'
-import { Avatar, Typography } from '@mochi-ui/core'
+import { Avatar, Badge, Typography } from '@mochi-ui/core'
 import clsx from 'clsx'
 import { truncate } from '@dwarvesf/react-utils'
 import { useDisclosure } from '@dwarvesf/react-hooks'
@@ -47,16 +48,24 @@ export default function Receipt({ id, data: _data }: Props) {
   if (data === null) return <span>404 tx</span>
   if (isLoading || !data) return null
 
+  const isSuccess = data.data.success
+
   return (
-    <div className="flex flex-col flex-1 gap-y-7 m-auto w-[448px]">
-      <div className="px-4 font-sans drop-shadow-md">
+    <div className="flex flex-col flex-1 gap-y-7 m-auto w-[300px]">
+      <style jsx global>{`
+        .receipt-body {
+          font-family: ${robotoFont.style.fontFamily};
+        }
+      `}</style>
+      <div className="font-sans drop-shadow-xl">
         <div className="flex overflow-hidden relative flex-col gap-y-6 w-full text-center rounded bg-white-pure jagged-bottom">
           <Header
             template={data.data.template}
             platformIcon={data.platformIcon}
             senderAvatar={data.senderAvatar}
+            code={data.data.external_id}
           />
-          <div className="flex flex-col gap-y-12 py-3 px-4 pb-6 md:px-6">
+          <div className="flex flex-col gap-y-12 py-3 px-4 pb-6 md:px-6 !text-neutral-600">
             <div className="flex relative flex-col items-center">
               {data.data.template ? null : (
                 <Avatar
@@ -72,7 +81,7 @@ export default function Receipt({ id, data: _data }: Props) {
                     : data.data.from}
                 </span>
                 <br />
-                <span className="text-xs font-light text-neutral-500">
+                <span className="text-xs font-light">
                   {data.data.template
                     ? data.data.template.phrase
                     : data.data.action ?? 'sent'}
@@ -129,8 +138,8 @@ export default function Receipt({ id, data: _data }: Props) {
                 ) : null}
               </div>
             )}
-            <div className="relative text-neutral-600" id="receipt-body">
-              <div className="flex flex-col gap-y-2 gap-x-4 pt-4 font-mono">
+            <div className="relative receipt-body !text-neutral-600">
+              <div className="flex flex-col gap-y-2 gap-x-4 pt-4 font-light">
                 <DataList>
                   <ListUser
                     data={data.data.from}
@@ -152,7 +161,7 @@ export default function Receipt({ id, data: _data }: Props) {
                   {Array.isArray(data.data.to) ? <DashLine /> : null}
                 </DataList>
               </div>
-              <div className="flex flex-col gap-y-2 gap-x-4 py-2 font-mono">
+              <div className="flex flex-col gap-y-2 gap-x-4 py-2">
                 <DataList>
                   <DataList.Item title="Amount">
                     <Typography
@@ -170,8 +179,15 @@ export default function Receipt({ id, data: _data }: Props) {
                   </DataList.Item>
                   <div className="pt-3 w-full h-0" />
                   {data.originalTxId ? (
-                    <DataList.Item title="Tx ID" right={data.data.external_id}>
-                      <div className="flex gap-x-2 self-stretch">
+                    <DataList.Item
+                      title="Tx ID"
+                      right={
+                        <span className="underline text-xxs text-neutral-500">
+                          {data.data.external_id.slice(0, 9)}
+                        </span>
+                      }
+                    >
+                      <div className="flex gap-x-2 self-stretch underline">
                         <CornerBottomLeftLine className="text-neutral-500" />
                         <DataList.Item title="Group Tx ID">
                           <Link
@@ -186,25 +202,47 @@ export default function Receipt({ id, data: _data }: Props) {
                     </DataList.Item>
                   ) : (
                     <DataList.Item title="Tx ID">
-                      {data.data.external_id}
+                      <Typography
+                        level="p7"
+                        color="textSecondary"
+                        fontWeight="sm"
+                        className="underline"
+                      >
+                        {data.data.external_id.slice(0, 9)}
+                      </Typography>
                     </DataList.Item>
                   )}
                   <DataList.Item title="Date">
                     {data.data.short_date}
                   </DataList.Item>
                   <DataList.Item title="Status">
-                    {data.data.success ? 'Success' : 'Failed'}
+                    {isSuccess ? (
+                      <Badge
+                        className={
+                          isSuccess
+                            ? '!bg-[#088752]/[.15] !text-[#34C77B]'
+                            : '!bg-[#E02D3C]/[.15] !text-[#EB5757]'
+                        }
+                        appearance={isSuccess ? 'success' : 'danger'}
+                        label={isSuccess ? 'Success' : 'Failed'}
+                      />
+                    ) : (
+                      <Typography
+                        level="p7"
+                        color="textSecondary"
+                        fontWeight="sm"
+                        className="capitalize"
+                      >
+                        {data.status}
+                      </Typography>
+                    )}
                   </DataList.Item>
                 </DataList>
               </div>
               <DashLine />
-              <div className="flex justify-between py-2 text-xs font-light">
-                <span className="text-neutral-500 text-xxxs">
-                  Mochi &copy; 2023
-                </span>
-                <span className="text-neutral-500 text-xxxs">
-                  {data.data.full_date}
-                </span>
+              <div className="flex justify-between py-2 text-xs font-light text-neutral-600">
+                <span className="text-xxxs">Mochi &copy; 2023</span>
+                <span className="text-xxxs">{data.data.full_date}</span>
               </div>
             </div>
           </div>

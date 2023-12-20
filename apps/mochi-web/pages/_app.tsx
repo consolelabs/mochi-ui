@@ -11,7 +11,6 @@ import { interFont } from '~utils/next-font'
 import { Toaster, useLoginWidget } from '@mochi-ui/core'
 import { LazyMotion, domAnimation } from 'framer-motion'
 import { WalletProviderProps } from '~context/wallet-context'
-import { apiLogin } from '~constants/api'
 import { useAuthStore } from '~store/auth'
 
 const SidebarContextProvider = dynamic(() =>
