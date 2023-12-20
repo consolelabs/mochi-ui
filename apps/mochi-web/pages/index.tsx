@@ -118,7 +118,6 @@ export default function Index() {
 
         <div
           style={{
-            height: 670,
             maxWidth: 440,
             minWidth: 340,
           }}

@@ -1,6 +1,4 @@
 import {
-  Badge,
-  ColumnProps,
   PageHeader,
   PageHeaderActions,
   PageHeaderBackButton,
@@ -10,8 +8,6 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-  Table,
-  Typography,
   useLoginWidget,
 } from '@mochi-ui/core'
 import Link from 'next/link'
@@ -23,19 +19,10 @@ import {
   platformFilters,
   typeFilters,
 } from '~constants/transactions'
-import { useFetchProfileTransaction } from '~hooks/app/useFetchProfileTransaction'
 import { NextPageWithLayout } from '~pages/_app'
-import { ModelProfileTransaction } from '~types/mochi-pay-schema'
-import { TransactionUsernameCell } from '~cpn/Transaction/TransactionUsernameCell'
-import {
-  formatTransactionAmount,
-  ignoreOptionAll,
-  transformActionType,
-} from '~cpn/Transaction/utils'
-import { useMemo, useState } from 'react'
-import { utils } from '@consolelabs/mochi-ui'
+import { useState } from 'react'
 import { DashboardBody } from '~cpn/DashboardBody'
-import { formatDate } from '~utils/time'
+import Transaction from '~cpn/Transaction'
 
 interface AppPageHeaderProps {
   filterType: TransactionActionType | 'all'
@@ -58,7 +45,7 @@ const AppPageHeader = (props: AppPageHeaderProps) => {
       <PageHeaderTitle>Transactions</PageHeaderTitle>
       <PageHeaderActions>
         <Select onChange={onFilterTypeChange} value={filterType}>
-          <SelectTrigger className="border border-divider min-w-[130px] justify-between px-4">
+          <SelectTrigger className="justify-between px-4 border border-divider min-w-[130px]">
             <SelectValue placeholder="All Types" />
           </SelectTrigger>
           <SelectContent align="end">
@@ -70,7 +57,7 @@ const AppPageHeader = (props: AppPageHeaderProps) => {
           </SelectContent>
         </Select>
         <Select onChange={onFilterPlatformChange} value={filterPlatform}>
-          <SelectTrigger className="border border-divider min-w-[150px] justify-between px-4">
+          <SelectTrigger className="justify-between px-4 border border-divider min-w-[150px]">
             <SelectValue placeholder="All Platforms" />
           </SelectTrigger>
           <SelectContent align="end">
@@ -86,8 +73,6 @@ const AppPageHeader = (props: AppPageHeaderProps) => {
   )
 }
 
-const MAX_TRANSACTION_TO_DISPLAY = 30
-
 const App: NextPageWithLayout = () => {
   const { profile } = useLoginWidget()
 
@@ -97,99 +82,6 @@ const App: NextPageWithLayout = () => {
   const [filterType, setFilterType] = useState<TransactionActionType | 'all'>(
     'all',
   )
-
-  const { transactions: _transactions, isLoading } = useFetchProfileTransaction(
-    profile?.id ?? '',
-    Boolean(profile?.id),
-    {
-      action: ignoreOptionAll(filterType),
-      platform: ignoreOptionAll(filterPlatform),
-    },
-  )
-  const transactions = useMemo(
-    () => _transactions?.slice(0, MAX_TRANSACTION_TO_DISPLAY),
-    [_transactions],
-  )
-
-  const columns: ColumnProps<ModelProfileTransaction>[] = [
-    {
-      header: 'wen',
-      width: 180,
-      // eslint-disable-next-line react/no-unstable-nested-components
-      cell: ({ row: { original: transaction } }) => {
-        return (
-          <>
-            <Typography level="p5">
-              {transaction.created_at
-                ? formatDate(transaction.created_at, 'dd/MM/yyyy hh:mma')
-                : null}
-            </Typography>
-            <Typography level="p6" className="capitalize" color="textSecondary">
-              {transaction.source_platform}
-            </Typography>
-          </>
-        )
-      },
-    },
-    {
-      header: 'username',
-      width: 412,
-      // eslint-disable-next-line react/no-unstable-nested-components
-      cell: ({ row: { original } }) => (
-        <TransactionUsernameCell {...original} />
-      ),
-    },
-    {
-      header: 'amount',
-      width: 150,
-      // eslint-disable-next-line react/no-unstable-nested-components
-      cell: ({ row: { original } }) => {
-        const { amount, token, type, usd_amount } = original
-        const isReceive = type === 'in'
-        return (
-          <div>
-            <Typography
-              level="p5"
-              color={isReceive ? 'success' : 'textPrimary'}
-            >
-              {`${isReceive ? '+' : '-'} ${formatTransactionAmount(
-                amount ?? '0',
-                token?.decimal ?? 0,
-              )} ${token?.symbol}`}
-            </Typography>
-            <Typography level="p6" color="textSecondary">
-              {utils.formatUsdDigit(usd_amount ?? 0)}
-            </Typography>
-          </div>
-        )
-      },
-    },
-    {
-      header: 'type',
-      width: 120,
-      // eslint-disable-next-line react/no-unstable-nested-components
-      cell: ({ row: { original } }) => (
-        <span className="capitalize">
-          {transformActionType(original.action as TransactionActionType)}
-        </span>
-      ),
-    },
-    {
-      header: 'status',
-      width: 100,
-      // eslint-disable-next-line react/no-unstable-nested-components
-      cell: ({ row: { original } }) => {
-        const { status } = original
-        return (
-          <Badge
-            appearance={status === 'success' ? 'success' : 'danger'}
-            label={status === 'success' ? 'success' : 'fail'}
-            className="capitalize w-fit"
-          />
-        )
-      },
-    },
-  ]
 
   return (
     <>
@@ -201,22 +93,7 @@ const App: NextPageWithLayout = () => {
         onFilterTypeChange={setFilterType}
       />
       <DashboardBody>
-        <div className="max-w-full overflow-x-auto">
-          <Table<ModelProfileTransaction>
-            className="min-w-[600px]"
-            columns={columns}
-            data={transactions ?? []}
-            isLoading={isLoading}
-          />
-        </div>
-        {!isLoading && (transactions?.length ?? 0) <= 0 && (
-          <div className="flex flex-col items-center justify-center w-full h-64 tracking-tight text-center">
-            <Typography level="h7">No transactions</Typography>
-            <Typography level="p4" color="textSecondary">
-              You haven&apos;t made any transactions yet{' '}
-            </Typography>
-          </div>
-        )}
+        <Transaction filterType={filterType} filterPlatform={filterPlatform} />
       </DashboardBody>
     </>
   )

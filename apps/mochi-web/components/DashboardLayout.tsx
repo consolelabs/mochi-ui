@@ -80,7 +80,12 @@ export default function DashboardLayout({
         { title: 'Invite Friends', Icon: AddUserSolid },
       ],
       footerItems: [
-        { title: 'Support', Icon: LifeBuoySolid },
+        {
+          title: 'Support',
+          type: 'link',
+          href: DISCORD_LINK,
+          Icon: LifeBuoySolid,
+        },
         {
           title: 'Follow Us',
           Icon: X,

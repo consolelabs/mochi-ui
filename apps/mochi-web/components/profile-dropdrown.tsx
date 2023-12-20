@@ -53,13 +53,13 @@ export default function ProfileDropdown({
   }
 
   return (
-    <DropdownMenu>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger className={className} asChild>
         {triggerRender}
       </DropdownMenuTrigger>
       <DropdownMenuPortal>
         <DropdownMenuContent
-          className="max-h-[645px] overflow-y-auto"
+          className="overflow-y-auto max-h-[645px]"
           sideOffset={20}
           collisionPadding={{
             right: 32,
