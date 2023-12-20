@@ -2,42 +2,42 @@ import { clsx } from 'clsx'
 
 const pageHeaderWrapperClsx = ({
   className = '',
-  hasBackButton = false,
-}: { className?: string; hasBackButton?: boolean } = {}) =>
+}: { className?: string } = {}) =>
   clsx(
-    'flex flex-col items-center gap-4 sm:gap-8 sm:flex-row px-4 py-4 sm:px-8 sm:py-3 bg-background-surface shrink-0',
-    {
-      '!pl-4 sm:!pl-2': hasBackButton,
-    },
+    'overflow-hidden flex flex-col items-start sm:items-center gap-2 sm:flex-row px-4 py-4 sm:px-8 sm:py-3 bg-background-surface shrink-0',
     className,
   )
 
-const pageHeaderLeftClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx('flex w-full gap-1 items-start flex-col sm:flex-row', className)
-
 const pageHeaderTitleWrapperClsx = ({
   className = '',
-}: { className?: string } = {}) => clsx('flex items-center gap-2', className)
+}: { className?: string } = {}) =>
+  clsx('flex shrink flex-wrap flex-1 items-center gap-2', className)
 
 const pageHeaderTitleClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx('text-[22px] font-semibold text-text-primary py-1', className)
+  clsx(
+    'text-[22px] font-semibold text-text-primary py-1 break-words',
+    className,
+  )
 
 const pageHeaderTitleExtraClsx = ({
   className = '',
-}: { className?: string } = {}) => clsx('!text-sm', className)
+}: { className?: string } = {}) => clsx('!text-sm truncate', className)
 
 const pageHeaderActionsWrapperClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
-    'flex-1 flex justify-start sm:justify-end w-full flex-wrap gap-2 min-w-max sm:w-auto',
+    'pt-2 sm:pt-0 flex justify-start sm:justify-end w-full flex-wrap gap-2 min-w-max sm:w-auto',
     className,
   )
 
 const pageHeaderBackButtonWrapperClsx = ({
   className = '',
 }: { className?: string } = {}) =>
-  clsx('!h-10 !w-10 !min-w-[40px] justify-start sm:justify-center', className)
+  clsx(
+    '!h-10 !w-10 !min-w-[40px] ml-0 sm:-ml-2 justify-start sm:justify-center',
+    className,
+  )
 
 const pageHeaderBackIconWrapperClsx = ({
   className = '',
@@ -45,7 +45,6 @@ const pageHeaderBackIconWrapperClsx = ({
 
 const pageHeader = {
   pageHeaderWrapperClsx,
-  pageHeaderLeftClsx,
   pageHeaderTitleWrapperClsx,
   pageHeaderTitleClsx,
   pageHeaderTitleExtraClsx,

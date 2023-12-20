@@ -8,6 +8,8 @@ import {
   DropdownMenuTrigger,
   Typography,
   DropdownMenuPortal,
+  PageHeaderTitle,
+  PageHeaderActions,
 } from '@mochi-ui/core'
 import {
   AddUserSolid,
@@ -24,23 +26,18 @@ interface Props {
 
 export const AppDetailPageHeader = ({ name = '', onDeleteApp }: Props) => {
   return (
-    <PageHeader
-      title={name}
-      actions={[
-        <Button
-          color="white"
-          key="see-docs-button"
-          as="a"
-          href={SOCIAL_LINKS.DOCS}
-          target="_blank"
-        >
+    <PageHeader>
+      <PageHeaderTitle>{name}</PageHeaderTitle>
+
+      <PageHeaderActions>
+        <Button color="white" as="a" href={SOCIAL_LINKS.DOCS} target="_blank">
           See docs
-        </Button>,
-        <Button variant="outline" key="api-keys-button">
+        </Button>
+        <Button variant="outline">
           <KeySolid className="w-4 h-4" />
           API Keys
-        </Button>,
-        <DropdownMenu key="app-select">
+        </Button>
+        <DropdownMenu>
           <DropdownMenuTrigger className="p-1.5">
             <ThreeDotsLine className="w-5 h-5" />
           </DropdownMenuTrigger>
@@ -60,8 +57,8 @@ export const AppDetailPageHeader = ({ name = '', onDeleteApp }: Props) => {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenuPortal>
-        </DropdownMenu>,
-      ]}
-    />
+        </DropdownMenu>
+      </PageHeaderActions>
+    </PageHeader>
   )
 }

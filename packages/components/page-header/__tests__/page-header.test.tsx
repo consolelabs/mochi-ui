@@ -1,12 +1,23 @@
 import userEvent from '@testing-library/user-event'
 import { render, waitFor } from '@testing-library/react'
 import { Button } from '@mochi-ui/button'
-import { PageHeader } from '../src'
+import {
+  PageHeader,
+  PageHeaderBackButton,
+  PageHeaderTitle,
+  PageHeaderTitleExtra,
+  PageHeaderActions,
+} from '../src'
 
 describe('Page Header', () => {
   it('renders the title correctly', () => {
     const { container } = render(
-      <PageHeader title="Page Title" titleExtra="(2,951 members)" />,
+      <PageHeader>
+        <PageHeaderTitle>
+          Page Title
+          <PageHeaderTitleExtra>(2,951 members)</PageHeaderTitleExtra>
+        </PageHeaderTitle>
+      </PageHeader>,
     )
 
     const title = container.querySelector('h5')
@@ -17,7 +28,12 @@ describe('Page Header', () => {
     const titleExtraValue = '(2,951 members)'
 
     const { container } = render(
-      <PageHeader title="Page Title" titleExtra={titleExtraValue} />,
+      <PageHeader>
+        <PageHeaderTitle>
+          Page Title
+          <PageHeaderTitleExtra>{titleExtraValue}</PageHeaderTitleExtra>
+        </PageHeaderTitle>
+      </PageHeader>,
     )
     const titleExtra = container.querySelector('span')
 
@@ -28,7 +44,10 @@ describe('Page Header', () => {
     const mockFunction = jest.fn()
 
     const { container } = render(
-      <PageHeader onBack={mockFunction} title="Page Title" />,
+      <PageHeader>
+        <PageHeaderBackButton onBack={mockFunction} />
+        <PageHeaderTitle>Page Title</PageHeaderTitle>
+      </PageHeader>,
     )
 
     const backButton = container.querySelector('button')
@@ -43,10 +62,12 @@ describe('Page Header', () => {
 
   it('renders the actions correctly', () => {
     const { container } = render(
-      <PageHeader
-        title="Page Title"
-        actions={[<Button>Button one</Button>, <Button>Button two</Button>]}
-      />,
+      <PageHeader>
+        <PageHeaderTitle>Page Title</PageHeaderTitle>
+        <PageHeaderActions>
+          <Button>Button one</Button> <Button>Button two</Button>
+        </PageHeaderActions>
+      </PageHeader>,
     )
 
     const buttons = container.querySelectorAll('button')

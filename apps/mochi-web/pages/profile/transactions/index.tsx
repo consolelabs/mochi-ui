@@ -2,6 +2,9 @@ import {
   Badge,
   ColumnProps,
   PageHeader,
+  PageHeaderActions,
+  PageHeaderBackButton,
+  PageHeaderTitle,
   Select,
   SelectContent,
   SelectItem,
@@ -51,15 +54,11 @@ const AppPageHeader = (props: AppPageHeaderProps) => {
   const { push } = useRouter()
 
   return (
-    <PageHeader
-      title="Transactions"
-      onBack={() => push(ROUTES.MY_PROFILE)}
-      actions={[
-        <Select
-          key="filter-types"
-          onChange={onFilterTypeChange}
-          value={filterType}
-        >
+    <PageHeader>
+      <PageHeaderBackButton onBack={() => push(ROUTES.MY_PROFILE)} />
+      <PageHeaderTitle>Transactions</PageHeaderTitle>
+      <PageHeaderActions>
+        <Select onChange={onFilterTypeChange} value={filterType}>
           <SelectTrigger className="border border-divider min-w-[130px] justify-between px-4">
             <SelectValue placeholder="All Types" />
           </SelectTrigger>
@@ -70,12 +69,8 @@ const AppPageHeader = (props: AppPageHeaderProps) => {
               </SelectItem>
             ))}
           </SelectContent>
-        </Select>,
-        <Select
-          key="filter-platforms"
-          onChange={onFilterPlatformChange}
-          value={filterPlatform}
-        >
+        </Select>
+        <Select onChange={onFilterPlatformChange} value={filterPlatform}>
           <SelectTrigger className="border border-divider min-w-[150px] justify-between px-4">
             <SelectValue placeholder="All Platforms" />
           </SelectTrigger>
@@ -86,9 +81,9 @@ const AppPageHeader = (props: AppPageHeaderProps) => {
               </SelectItem>
             ))}
           </SelectContent>
-        </Select>,
-      ]}
-    />
+        </Select>
+      </PageHeaderActions>
+    </PageHeader>
   )
 }
 
