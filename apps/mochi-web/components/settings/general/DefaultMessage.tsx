@@ -13,9 +13,9 @@ import {
   UseFormWatch,
   useFieldArray,
 } from 'react-hook-form'
-import clsx from 'clsx'
+import { actionList } from '~constants/settings'
 import { GeneralFormValue } from './types'
-import { MessageModal, actionList } from './MessageModal'
+import { MessageModal } from './MessageModal'
 
 interface Props {
   control: Control<GeneralFormValue>
@@ -45,19 +45,14 @@ export const DefaultMessage = ({ control, watch }: Props) => {
           )}
         />
       </div>
-      {fields.map((each, index) => (
+      {(enableDefaultMessage ? fields : []).map((each, index) => (
         <Controller
           key={each.id}
           name={`defaultMessage.${index}`}
           control={control}
           render={({ field }) => (
-            <div
-              className={clsx(
-                'flex items-center border rounded-md border-divider shadow-input',
-                { 'opacity-25 pointer-events-none': !enableDefaultMessage },
-              )}
-            >
-              <div className="flex-1 p-2 pl-10 overflow-hidden">
+            <div className="flex items-center border rounded-md border-divider shadow-input">
+              <div className="flex-1 px-4 py-2 overflow-hidden">
                 <Typography level="h8">
                   {
                     actionList.find(
@@ -73,12 +68,7 @@ export const DefaultMessage = ({ control, watch }: Props) => {
                 defaultValues={field.value}
                 onConfirm={(data) => update(index, data)}
                 trigger={
-                  <IconButton
-                    label="Edit"
-                    variant="ghost"
-                    color="white"
-                    disabled={!enableDefaultMessage}
-                  >
+                  <IconButton label="Edit" variant="ghost" color="white">
                     <EditLine className="w-5 h-5" />
                   </IconButton>
                 }
@@ -88,7 +78,6 @@ export const DefaultMessage = ({ control, watch }: Props) => {
                 variant="ghost"
                 color="white"
                 onClick={() => remove(index)}
-                disabled={!enableDefaultMessage}
               >
                 <TrashBinLine className="w-5 h-5 text-danger-solid" />
               </IconButton>
