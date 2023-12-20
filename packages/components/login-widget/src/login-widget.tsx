@@ -39,6 +39,7 @@ const LoginWidgetProvider = ({ children }: LoginWidgetProviderProps) => {
         return
       }
     }
+
     setIsLoadingProfile(true)
     fetchers
       .getOwnProfile(token as string)
@@ -67,7 +68,8 @@ const LoginWidgetProvider = ({ children }: LoginWidgetProviderProps) => {
         })
       })
       .finally(() => setIsLoadingProfile(false))
-  }, [dispatch, isLoggedIn, setIsLoadingProfile])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoggedIn])
 
   return <LazyMotion features={domAnimation}>{children}</LazyMotion>
 }
