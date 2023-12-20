@@ -149,10 +149,10 @@ describe('Sidebar', () => {
       await userEvent.click(toggleButton)
     })
     const content = getByTestId('sidebar-content')
-    expect(content).not.toHaveClass('w-fit')
+    expect(content).toHaveClass('w-18')
     await act(async () => {
       await userEvent.click(toggleButton)
     })
-    expect(content).toHaveClass('w-fit')
+    expect(content).toHaveClass('w-60')
   })
 })

@@ -38,7 +38,7 @@ export default function Sidebar({
   Header,
   expanded: expandedProp,
 }: SidebarProps) {
-  const [expanded, setExpanded] = useState(expandedProp ?? false)
+  const [expanded, setExpanded] = useState(expandedProp ?? true)
 
   useEffect(() => {
     const onResize = () => {
