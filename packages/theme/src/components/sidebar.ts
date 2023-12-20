@@ -3,12 +3,12 @@ import clsx from 'clsx'
 
 const sidebarCva = cva(
   [
-    'group bg-background-surface relative h-full border-r border-neutral-outline-active transition-all',
+    'group bg-background-surface relative h-full border-r border-neutral-outline-active transition-all flex-none',
   ],
   {
     variants: {
       expanded: {
-        true: 'w-fit min-w-64 max-w-xs',
+        true: 'w-60',
         false: 'w-18',
       },
     },
