@@ -2136,6 +2136,9 @@ importers:
       '@mochi-ui/select':
         specifier: workspace:*
         version: link:../components/select
+      '@mochi-ui/separator':
+        specifier: workspace:*
+        version: link:../components/separator
       '@mochi-ui/sidebar':
         specifier: workspace:*
         version: link:../components/sidebar

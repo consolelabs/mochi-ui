@@ -70,7 +70,8 @@
     "@mochi-ui/toast": "workspace:*",
     "@mochi-ui/action-bar": "workspace:*",
     "@mochi-ui/tabs": "workspace:*",
-    "@mochi-ui/section-header": "workspace:*"
+    "@mochi-ui/section-header": "workspace:*",
+    "@mochi-ui/separator": "workspace:*"
   },
   "clean-package": "../../clean-package.config.json"
 }
