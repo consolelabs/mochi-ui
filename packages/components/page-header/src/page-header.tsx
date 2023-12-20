@@ -21,12 +21,12 @@ const {
   pageHeaderBackIconWrapperClsx,
 } = pageHeader
 
-const PageHeaderBackButton = forwardRef(({ ...props }, ref) => {
+const PageHeaderBackButton = forwardRef(({ className, ...props }, ref) => {
   return (
     <IconButton
       variant="link"
       color="info"
-      className={pageHeaderBackButtonWrapperClsx()}
+      className={pageHeaderBackButtonWrapperClsx({ className })}
       ref={ref}
       {...props}
       label="Back"
