@@ -42,3 +42,6 @@ dist/
 storybook-static
 packages/icons/src/components/
 packages/icons/src/*.ts
+
+# ci
+.secrets
