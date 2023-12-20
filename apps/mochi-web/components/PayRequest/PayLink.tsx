@@ -16,9 +16,9 @@ export type Props = {
 export default function PayLink({ data }: Props) {
   return (
     <div className="flex flex-col gap-y-10 w-[300px]">
-      <div className="flex-1 drop-shadow-md">
+      <div className="flex-1 drop-shadow-xl">
         <style jsx global>{`
-          #receipt-body {
+          .receipt-body {
             font-family: ${robotoFont.style.fontFamily};
           }
         `}</style>

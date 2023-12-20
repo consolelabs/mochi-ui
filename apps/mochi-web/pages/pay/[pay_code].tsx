@@ -25,8 +25,6 @@ import { PayLink, PayMe } from '~cpn/PayRequest'
 /* import { useEffect } from 'react' */
 import { PayRequest } from '~cpn/PayRequest/type'
 import { Platform, utils as mochiUtils } from '@consolelabs/mochi-ui'
-import { Typography } from '@mochi-ui/core'
-import Link from 'next/link'
 import { UI } from '../../constants/mochi'
 
 /* const Toaster = dynamic(() => import('sonner').then((m) => m.Toaster)) */
@@ -146,32 +144,6 @@ export default function PayCode({ payRequest }: Props) {
             src="/pay-request-bg.png"
             alt=""
           />
-          <div className="flex absolute left-16 top-24 flex-col gap-y-2">
-            <Typography
-              level="h2"
-              color="textContrast"
-              className="!overflow-visible leading-[1.1]"
-            >
-              Pay your frens
-              <br />
-              using crypto
-            </Typography>
-            <Typography
-              level="p3"
-              color="textContrast"
-              className="leading-snug"
-            >
-              Thank you for using Mochi! To view all
-              <br />
-              transaction details,{' '}
-              <Link href="TODO" className="underline decoration-from-font">
-                log in
-              </Link>{' '}
-              to your
-              <br />
-              Mochi account.
-            </Typography>
-          </div>
         </div>
         <div className="flex justify-center items-center lg:w-1/2">
           <Comp data={payRequest} />

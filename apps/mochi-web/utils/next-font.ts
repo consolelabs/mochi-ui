@@ -3,6 +3,11 @@ import localFont from 'next/font/local'
 export const robotoFont = localFont({
   src: [
     {
+      path: '../assets/RobotoMono-Light.ttf',
+      weight: '300',
+      style: 'normal',
+    },
+    {
       path: '../assets/RobotoMono-Regular.ttf',
       weight: '400',
       style: 'normal',

@@ -28,14 +28,17 @@ export default function ListUser({
   return (
     <DataList.Item right={Array.isArray(data) && <>&#8203;</>} title={title}>
       {Array.isArray(data) ? (
-        <div className="flex flex-col gap-y-1 items-start whitespace-nowrap">
+        <div className="flex flex-col gap-y-1 items-start whitespace-nowrap !text-neutral-600">
           {data.map((n: any) => (
             <div
               key={n.name}
               className="flex gap-x-1 items-center text-current"
             >
               <CornerBottomLeftLine className="w-3 h-3 text-neutral-500" />
-              <Link href={n.url} className="underline text-xxxs">
+              <Link
+                href={n.url}
+                className="underline text-xxxs text-neutral-600"
+              >
                 {n.name}
               </Link>
               <ArrowTopRightLine className="w-4 h-4" />

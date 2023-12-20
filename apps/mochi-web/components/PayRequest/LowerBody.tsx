@@ -1,5 +1,5 @@
 import { truncate } from '@dwarvesf/react-utils'
-import { Typography } from '@mochi-ui/core'
+import { Badge, Typography } from '@mochi-ui/core'
 import DataList from '~cpn/DataList'
 import { LinkLine } from '@mochi-ui/icons'
 import DashLine from '~cpn/DashLine'
@@ -39,17 +39,38 @@ export default function LowerBody({ data }: Props) {
           </Typography>
         </DataList.Item>
         <div className="pt-3 w-full h-0" />
-        <DataList.Item title="Tx ID">{data.code.slice(0, 9)}</DataList.Item>
-        <DataList.Item title="Date">{data.date}</DataList.Item>
-        <DataList.Item title="Status">
+        <DataList.Item title="Tx ID">
           <Typography
             level="p7"
             color="textSecondary"
             fontWeight="sm"
-            className="capitalize"
+            className="underline"
           >
-            {data.claim_tx ? 'success' : data.status}
+            {data.code.slice(0, 9)}
           </Typography>
+        </DataList.Item>
+        <DataList.Item title="Date">{data.date}</DataList.Item>
+        <DataList.Item title="Status">
+          {data.claim_tx ? (
+            <Badge
+              className={
+                data.claim_tx
+                  ? '!bg-[#088752]/[.15] !text-[#34C77B]'
+                  : '!bg-[#E02D3C]/[.15] !text-[#EB5757]'
+              }
+              appearance={data.claim_tx ? 'success' : 'danger'}
+              label={data.claim_tx ? 'Success' : 'Failed'}
+            />
+          ) : (
+            <Typography
+              level="p7"
+              color="textSecondary"
+              fontWeight="sm"
+              className="capitalize"
+            >
+              {data.status}
+            </Typography>
+          )}
         </DataList.Item>
         {data.note && (
           <DataList.Item title="Message">
