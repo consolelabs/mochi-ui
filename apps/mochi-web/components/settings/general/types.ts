@@ -15,6 +15,17 @@ export interface TransactionLimit {
   maxAmount: string
 }
 
+export interface CustomSettings {
+  platform: string
+  target_group: string
+}
+
+export interface CustomPrivacy {
+  custom_settings: CustomSettings[]
+  general_platform_group: string
+  general_target_group: string
+}
+
 export interface GeneralFormValue {
   defaultMoneySource: string
   defaultReceiverPlatform: string
@@ -23,4 +34,7 @@ export interface GeneralFormValue {
   defaultMessage: Message[]
   enableTransactionLimit: boolean
   transactionLimit: TransactionLimit[]
+  transactionPrivacy: CustomPrivacy
+  socialAccountsPrivacy: CustomPrivacy
+  walletsPrivacy: CustomPrivacy
 }
