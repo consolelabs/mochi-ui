@@ -44,7 +44,8 @@ describe('Section Header', () => {
       <SectionHeader>
         <SectionHeaderTitle>Section Title</SectionHeaderTitle>
         <SectionHeaderActions>
-          <Button>Button one</Button> <Button>Button two</Button>
+          <Button>Button one</Button>
+          <Button>Button two</Button>
         </SectionHeaderActions>
       </SectionHeader>,
     )
