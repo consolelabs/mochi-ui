@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { RefObject, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import clsx from 'clsx'
 import { useDisclosure, useOnClickOutside } from '@dwarvesf/react-hooks'
@@ -12,7 +12,7 @@ interface State {
   onClose: () => void
   onOpen: () => void
   isOpen: boolean
-  elem: HTMLDivElement | null
+  elem: RefObject<HTMLDivElement | null>
 }
 
 const [BottomSheetContextProvider, useInternal] = createContext<State>({
@@ -78,9 +78,9 @@ function BottomSheet({
     if (!target) return
 
     target.focus({ preventScroll: true })
-  }, [isOpen])
+  }, [focusNthChild, isOpen])
 
-  if (!elem) return null
+  if (!elem.current) return null
 
   return createPortal(
     <m.div
@@ -138,7 +138,7 @@ function BottomSheet({
         )}
       </div>
     </m.div>,
-    elem,
+    elem.current,
   )
 }
 
@@ -185,7 +185,7 @@ export default function BottomSheetProvider({
         onOpen,
         onClose,
         isOpen,
-        elem: outerSheetRef.current,
+        elem: outerSheetRef,
       }}
     >
       <div

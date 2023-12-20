@@ -10,11 +10,14 @@
 
 body {
   @apply bg-white-pure;
-  overflow: hidden;
   position: relative;
   height: 100svh;
   letter-spacing: -0.2px;
   color: #474645;
+}
+
+#__next {
+  height: calc(100vh - 56px);
 }
 
 .banner-token {
@@ -52,15 +55,6 @@ body {
   letter-spacing: -2px;
 }
 
-#__next {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  /* right: -17px; */
-  overflow-y: scroll;
-}
-
 .twitter-tweet {
   margin-left: auto;
   margin-right: auto;
@@ -80,7 +74,7 @@ iframe[id^='telegram-login'] {
   display: none;
 }
 
-.receipt {
+.jagged-bottom {
   --mask: conic-gradient(
       from -45deg at bottom,
       #0000,
@@ -93,7 +87,7 @@ iframe[id^='telegram-login'] {
 }
 
 .receipt-dashed-box {
-  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23BEBEBEFF' stroke-width='3' stroke-dasharray='12%2c 12' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23B0B0B0FF' stroke-width='2' stroke-dasharray='1%2c5' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
 }
 
 #profile-list-sidebar {

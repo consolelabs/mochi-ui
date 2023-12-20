@@ -10,8 +10,13 @@ export async function transformData(rawData: any) {
     rawData.metadata?.template?.slug.toLowerCase() as TemplateName
   const template = templates[templateName] ?? null
 
-  const { type } = rawData
-  const isMultipleReceivers = Array.isArray(rawData.other_profiles)
+  const { type, action } = rawData
+  const isMultipleReceivers =
+    Array.isArray(rawData.other_profiles) && rawData.other_profiles.length > 1
+  const isMultipleSenders =
+    action !== 'airdrop' &&
+    Array.isArray(rawData.other_txs) &&
+    rawData.other_txs.length
   const success = rawData.status === 'success'
 
   let avatar = (rawData.from_profile.avatar || '') as string
@@ -69,10 +74,10 @@ export async function transformData(rawData: any) {
   })
 
   const ogDataOnly = {
-    from: sender?.plain ?? '',
+    from: (sender?.plain ?? '') as string | { name: string; url: string }[],
     native: rawData?.token.native,
     tokenIcon: image || `${HOME_URL}/assets/coin.png`,
-    to: receiver?.plain ?? ('' as string | string[]),
+    to: (receiver?.plain ?? '') as string | { name: string; url: string }[],
     symbol: rawData?.token.symbol,
     amount: mochiUtils.formatTokenDigit({
       value: utils.formatUnits(
@@ -89,6 +94,7 @@ export async function transformData(rawData: any) {
     original_amount: rawData.metadata.original_amount || '',
     template,
     success,
+    action,
   }
 
   const data = {
@@ -96,11 +102,30 @@ export async function transformData(rawData: any) {
     template,
   }
 
+  if (isMultipleSenders) {
+    data.from = [
+      { name: sender?.plain ?? '', url: `/tx/${data.external_id}` },
+      ...rawData.other_txs.map((tx: any) => {
+        const [profile] = UI.render(Platform.Web, tx.from_profile)
+        return {
+          name: profile?.plain ?? '',
+          url: `/tx/${tx.external_id}`,
+        }
+      }),
+    ]
+  }
+
   if (isMultipleReceivers) {
     data.to = rawData.other_profiles
       .map((p: any) => {
         const [profile] = UI.render(Platform.Web, p)
-        return profile?.plain ?? ''
+        return {
+          name: profile?.plain ?? '',
+          url: `/tx/${
+            rawData.other_txs.find((tx: any) => tx.other_profile_id === p.id)
+              ?.external_id ?? rawData.external_id
+          }`,
+        }
       })
       .filter(Boolean)
   }
@@ -126,9 +151,25 @@ export async function transformData(rawData: any) {
   const unitAmountSection = rawData.metadata.moniker
     ? `(${amountSymbol} ${rawData.token.symbol})`
     : null
-  const isLongNumber = amountDisplay.length >= 12
 
   const amountUsd = mochiUtils.formatUsdDigit(rawData.usd_amount)
+
+  // @ts-ignore
+  const groupAmountDisplay = mochiUtils.formatTokenDigit({
+    value: utils.formatUnits(
+      rawData.group_total_amount ?? 0,
+      rawData?.token.decimal ?? 0,
+    ),
+    scientificFormat: true,
+  })
+  // @ts-ignore
+  const groupAmountUsdDisplay = mochiUtils.formatUsdDigit(
+    rawData.group_total_usd,
+  )
+
+  const isLongNumber = groupAmountDisplay.length >= 12
+
+  const originalTxId = rawData.original_tx_id
 
   return {
     data,
@@ -143,5 +184,8 @@ export async function transformData(rawData: any) {
     isLongNumber,
     amountUsd,
     message: rawData.metadata?.message ?? '',
+    groupAmountDisplay,
+    groupAmountUsdDisplay,
+    originalTxId,
   }
 }

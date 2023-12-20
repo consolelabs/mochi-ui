@@ -144,7 +144,9 @@ export default function DashboardLayout({
         </Layout>
       ) : (
         <div className="flex items-center justify-center flex-1 w-full !min-h-[calc(100vh-56px)] bg-black/40">
-          <LoginWidget />
+          <div className="p-5 rounded-lg shadow-md bg-white-pure">
+            <LoginWidget raw />
+          </div>
         </div>
       )}
     </Layout>

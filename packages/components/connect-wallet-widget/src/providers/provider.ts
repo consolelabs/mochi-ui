@@ -2,15 +2,15 @@ import { SVGProps } from 'react'
 import { SignClient } from '@walletconnect/sign-client'
 import { wcProfjectId } from '../constants'
 
-export abstract class ChainProvider<
-  TransferInput = {
-    chainId?: string
-    from: string
-    to: string
-    amount: string
-    tokenAddress?: string
-  },
-> {
+export type TransferInput = {
+  chainId: string
+  from: string
+  to: string
+  amount: string
+  tokenAddress?: string
+}
+
+export abstract class ChainProvider<I = TransferInput> {
   public mobileProtocol: string = ''
   public provider: any
   public id: string = ''
@@ -67,7 +67,7 @@ export abstract class ChainProvider<
     })
   }
 
-  abstract transfer(args: TransferInput): Promise<string>
+  abstract transfer(args: I): Promise<string>
   abstract connect(): Promise<{
     addresses: string[]
     signature: string
@@ -79,7 +79,7 @@ export abstract class ChainProvider<
     platform: string
   } | null>
   abstract isInstalled(): Promise<boolean>
-  abstract sync(storeGetter?: any): ChainProvider<TransferInput>
+  abstract sync(storeGetter?: any): ChainProvider<I>
 }
 
 export const msg = 'Please sign this message to prove wallet ownership' as const

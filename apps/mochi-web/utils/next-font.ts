@@ -1,5 +1,19 @@
 import localFont from 'next/font/local'
 
+export const robotoFont = localFont({
+  src: [
+    {
+      path: '../assets/RobotoMono-Regular.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-robotomono',
+  preload: true,
+  fallback: ['Roboto', 'sans-serif', 'system-ui', 'arial'],
+  display: 'swap',
+})
+
 export const interFont = localFont({
   src: [
     {

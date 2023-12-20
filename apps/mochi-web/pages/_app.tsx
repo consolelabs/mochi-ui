@@ -9,13 +9,16 @@ import '~styles/nprogress.css'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
 import { interFont } from '~utils/next-font'
-import { Toaster, useLoginWidget } from '@mochi-ui/core'
+import { Toaster } from '@mochi-ui/core'
 import { LazyMotion, domAnimation } from 'framer-motion'
-import DashboardLayout from '~cpn/DashboardLayout'
 import { WalletProviderProps } from '~context/wallet-context'
-import { useAuthStore } from '../store/auth'
-import { SidebarContextProvider } from '../context/app/sidebar'
 
+const SidebarContextProvider = dynamic(() =>
+  import('../context/app/sidebar').then((m) => m.SidebarContextProvider),
+)
+const DashboardLayout = dynamic(() =>
+  import('~cpn/DashboardLayout').then((m) => m.default),
+)
 const Header = dynamic(() =>
   import('~cpn/Header').then((m) => m.Header),
 ) as FC<{ layoutType?: 'dashboard' | 'landing' }>
@@ -45,8 +48,6 @@ export function handleCancelRendering(e: any) {
 
 function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
   const { asPath, replace } = useRouter()
-  const { token, isLoggedIn } = useLoginWidget()
-  const { login } = useAuthStore()
   const layoutType = Component.layoutType ?? 'dashboard'
 
   useEffect(() => {
@@ -59,11 +60,6 @@ function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
       }).catch(handleCancelRendering)
     }
   }, [asPath, replace])
-
-  useEffect(() => {
-    if (!isLoggedIn || !token) return
-    login({ token })
-  }, [isLoggedIn, login, token])
 
   return (
     <SidebarContextProvider>
@@ -94,7 +90,7 @@ export default function App(props: AppPropsWithLayout) {
   }, [])
   return (
     <StrictMode>
-      <div className="fixed z-50 top-3 right-3">
+      <div className="fixed top-3 right-3 z-50">
         <Toaster />
       </div>
       <TopProgressBar />

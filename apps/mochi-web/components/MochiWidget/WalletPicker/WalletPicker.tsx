@@ -1,3 +1,4 @@
+import { Button } from '@mochi-ui/core'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { ChevronDownLine } from '@mochi-ui/icons'
 import clsx from 'clsx'
@@ -61,9 +62,10 @@ export const WalletPicker: React.FC<Props> = ({
 
   return (
     <>
-      <button
-        type="button"
-        onClick={onOpen}
+      <div
+        role="button"
+        tabIndex={-1}
+        onClickCapture={onOpen}
         className="flex gap-x-3 items-center py-2.5 px-4 text-left bg-blue-700 bg-opacity-10 rounded-lg outline-none"
       >
         <WalletChainIcon platform={selectedWallet.icon} />
@@ -75,7 +77,7 @@ export const WalletPicker: React.FC<Props> = ({
             {selectedWallet.subtitle || <>Not connected</>}
           </span>
         </div>
-        {authorized && (
+        {authorized ? (
           <>
             <span className="flex-shrink-0 text-sm font-medium text-blue-700">
               {selectedWallet.usd_amount}
@@ -86,8 +88,12 @@ export const WalletPicker: React.FC<Props> = ({
               })}
             />
           </>
+        ) : (
+          <Button type="button" size="sm">
+            Connect
+          </Button>
         )}
-      </button>
+      </div>
       <BottomSheet
         isOpen={isOpen}
         onClose={onClose}

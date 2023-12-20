@@ -3,7 +3,7 @@ import hexer from 'browser-string-hexer'
 import { createStore } from 'mipd'
 import { utils } from 'ethers'
 import isMobile from 'is-mobile'
-import { msg, ChainProvider } from './provider'
+import { msg, ChainProvider, TransferInput } from './provider'
 
 const eip6963Store = typeof window !== 'undefined' ? createStore() : null
 
@@ -45,23 +45,23 @@ export class ProviderEVM extends ChainProvider {
     return Object.assign(this)
   }
 
-  async transfer(input: any) {
-    if (!this.session || !this.signClient) return null
+  async transfer(input: TransferInput) {
+    if (isMobile() && (!this.session || !this.signClient)) return null
 
     try {
-      const { from, to, tokenAddress } = input
+      const { from, to, chainId, amount, tokenAddress } = input
 
-      // case custom token
+      // case native token
       if (!tokenAddress) {
         const params = {
           from,
           to,
-          value: (+input.amount).toString(16),
+          value: (+amount).toString(16),
         }
         if (isMobile() && this.session.topic && this.signClient) {
           return await this.signClient.request({
             topic: this.session.topic,
-            chainId: `eip155:${(+input.chainId).toString(10)}`,
+            chainId: `eip155:${(+chainId).toString(10)}`,
             request: {
               method: 'eth_sendTransaction',
               params: [params],
@@ -74,17 +74,17 @@ export class ProviderEVM extends ChainProvider {
         })
       }
 
-      // case native coin
+      // case custom coin
       const params = {
         from,
-        to: input.tokenAddress,
-        data: iface.encodeFunctionData('transfer', [to, input.amount]),
+        to: tokenAddress,
+        data: iface.encodeFunctionData('transfer', [to, amount]),
       }
 
       if (isMobile() && this.session.topic && this.signClient) {
         return await this.signClient.request({
           topic: this.session.topic,
-          chainId: `eip155:${(+input.chainId).toString(10)}`,
+          chainId: `eip155:${(+chainId).toString(10)}`,
           request: {
             method: 'eth_sendTransaction',
             params: [params],

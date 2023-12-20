@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ROUTES } from '~constants/routes'
@@ -40,6 +42,7 @@ import {
   ChevronRightLine,
   WalletSolid,
 } from '@mochi-ui/icons'
+import clsx from 'clsx'
 import { DISCORD_LINK, TELEGRAM_LINK } from '~envs'
 import { useState } from 'react'
 import ProfileDropdown from '~cpn/profile-dropdrown'
@@ -51,6 +54,8 @@ const authenticatedRoute = [
   ROUTES.APPLICATON_LIST,
   '/server',
 ]
+
+const txRoute = ['/tx', '/pay', '/receive']
 
 const LoginPopover = () => {
   const { isLoadingProfile } = useLoginWidget()
@@ -133,7 +138,7 @@ const MobileHeader = ({ onClose }: { onClose: () => void }) => {
             src={profile?.avatar as string}
           />
           <div className="flex flex-1 items-center font-medium">
-            <span className="inline-block w-max max-w-40 whitespace-nowrap truncate">
+            <span className="inline-block w-max whitespace-nowrap max-w-40 truncate">
               {profile?.profile_name}
             </span>
           </div>
@@ -230,10 +235,15 @@ export const Header = ({
     ...(isLoggedIn && profile
       ? [
           <div
-            className="flex gap-x-0 lg:gap-x-3 items-stretch -mr-2 lg:mr-0"
+            className="flex gap-x-0 items-stretch -mr-2 lg:gap-x-3 lg:mr-0"
             key="desktop-nav-items"
           >
-            <div className="hidden lg:flex gap-x-2 items-center w-[400px]">
+            <div
+              className={clsx('gap-x-2 items-center w-[400px]', {
+                hidden: txRoute.some((r) => pathname.includes(r)),
+                'hidden lg:flex': !txRoute.some((r) => pathname.includes(r)),
+              })}
+            >
               <MagnifierLine />
               <input
                 className="flex-1 text-sm outline-none"
@@ -258,7 +268,7 @@ export const Header = ({
                 </span>
               </div>
             </div>
-            <div className="py-1.5 ml-2 w-px hidden lg:block">
+            <div className="hidden py-1.5 ml-2 w-px lg:block">
               <div className="w-full h-full bg-[#eeedec]" />
             </div>
             <Button size="md" className="hidden lg:flex">
@@ -326,8 +336,8 @@ export const Header = ({
           >
             <Button variant="link" className="!px-0 relative">
               <Avatar src={profile?.avatar || '/logo.png'} />
-              <div className="absolute -bottom-1 -right-1 p-0.5 rounded-full bg-background-surface">
-                <WalletSolid className="text-neutral-800 text-sm" />
+              <div className="absolute -right-1 -bottom-1 p-0.5 rounded-full bg-background-surface">
+                <WalletSolid className="text-sm text-neutral-800" />
               </div>
             </Button>
           </ProfileDropdown>,
@@ -412,25 +422,31 @@ export const Header = ({
 
   return (
     <TopBar
-      className={
-        isLoggedIn || !authenticatedRoute.includes(pathname)
-          ? 'border-b border-b-dashboard-gray-6'
-          : 'bg-dashboard-gray-1'
-      }
+      className={clsx({
+        'border-b border-b-dashboard-gray-6':
+          isLoggedIn || !authenticatedRoute.includes(pathname),
+        'bg-dashboard-gray-1':
+          !isLoggedIn && authenticatedRoute.includes(pathname),
+        'lg:bg-transparent lg:!border-0': txRoute.some((r) =>
+          pathname.includes(r),
+        ),
+      })}
       leftSlot={
         layoutType === 'landing' || !isLoggedIn ? (
           <Link href={ROUTES.HOME} className="gap-x-2 items-center">
             <LogoWithText
               logoProps={{ size: 'xs' }}
               className="!gap-2"
-              textClassName="w-18 h-8"
+              textClassName={clsx('w-18 h-8', {
+                'lg:!text-white': txRoute.some((r) => pathname.includes(r)),
+              })}
             />
           </Link>
         ) : (
           <>
             <Link
               href={ROUTES.HOME}
-              className="gap-x-2 items-center hidden lg:flex"
+              className="hidden gap-x-2 items-center lg:flex"
             >
               <LogoWithText
                 logoProps={{ size: 'xs' }}
