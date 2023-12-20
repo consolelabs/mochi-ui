@@ -12,6 +12,7 @@ import { Toaster, useLoginWidget } from '@mochi-ui/core'
 import { LazyMotion, domAnimation } from 'framer-motion'
 import { WalletProviderProps } from '~context/wallet-context'
 import { apiLogin } from '~constants/api'
+import { useAuthStore } from '~store/auth'
 
 const SidebarContextProvider = dynamic(() =>
   import('../context/app/sidebar').then((m) => m.SidebarContextProvider),
@@ -47,14 +48,14 @@ export function handleCancelRendering(e: any) {
 }
 
 function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
+  const { login } = useAuthStore()
   const { isLoggedIn, token } = useLoginWidget()
   const layoutType = Component.layoutType ?? 'dashboard'
 
   useEffect(() => {
     if (!isLoggedIn || !token) return
-    apiLogin(token)
-    import('../constants/mochi').then((mochi) => mochi.api.token(token))
-  }, [isLoggedIn, token])
+    login({ token })
+  }, [isLoggedIn, login, token])
 
   return (
     <SidebarContextProvider>
