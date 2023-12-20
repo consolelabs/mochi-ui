@@ -9,12 +9,15 @@ import {
   ActionBarIcon,
   ActionBarTitle,
   SectionHeader,
+  SectionHeaderDescription,
+  SectionHeaderTitle,
   Skeleton,
   Switch,
   SwitchProps,
   Typography,
   toast,
   useLoginWidget,
+  SectionHeaderActions,
 } from '@mochi-ui/core'
 import { useForm, FormProvider, Controller } from 'react-hook-form'
 import { useFetchNotificationSettings } from '~hooks/settings/useFetchNotificationSettings'
@@ -52,14 +55,16 @@ const NotificationSwitcherField = (
           htmlFor={id}
           className={clsx('block cursor-pointer select-none', className)}
         >
-          <SectionHeader
-            title={label}
-            className="!py-3"
-            titleClassName={clsx('!text-sm font-normal', {
-              '!py-0': !description,
-            })}
-            description={description}
-            actions={[
+          <SectionHeader className="!py-3">
+            <SectionHeaderTitle
+              className={clsx('!text-sm font-normal', {
+                '!py-0': !description,
+              })}
+            >
+              {label}
+            </SectionHeaderTitle>
+            <SectionHeaderDescription>{description}</SectionHeaderDescription>
+            <SectionHeaderActions>
               <Switch
                 id={id}
                 key="switch"
@@ -67,9 +72,9 @@ const NotificationSwitcherField = (
                 {...restProps}
                 checked={value}
                 onCheckedChange={onChange}
-              />,
-            ]}
-          />
+              />
+            </SectionHeaderActions>
+          </SectionHeader>
         </label>
       )}
     />
@@ -160,21 +165,23 @@ export function NotificationPage() {
                 htmlFor="enable"
                 className="block cursor-pointer select-none"
               >
-                <SectionHeader
-                  title="Notification"
-                  className="!py-4"
-                  titleClassName="!text-base font-normal"
-                  description="Select the event you want to receive notifications for"
-                  actions={[
+                <SectionHeader className="!py-4">
+                  <SectionHeaderTitle className="!text-base font-normal">
+                    Notification
+                  </SectionHeaderTitle>
+                  <SectionHeaderDescription>
+                    Select the event you want to receive notifications for
+                  </SectionHeaderDescription>
+                  <SectionHeaderActions>
                     <Switch
                       id="enable"
                       key="switch"
                       {...restFields}
                       checked={value}
                       onCheckedChange={onChange}
-                    />,
-                  ]}
-                />
+                    />
+                  </SectionHeaderActions>
+                </SectionHeader>
               </label>
             )}
           />

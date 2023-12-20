@@ -1,82 +1,103 @@
+import { Children, Fragment } from 'react'
 import { Typography } from '@mochi-ui/typography'
 import { sectionHeader } from '@mochi-ui/theme'
-import { Fragment, ReactNode } from 'react'
-
-type SectionHeaderProps = {
-  title: ReactNode
-  titleClassName?: string
-  description?: ReactNode
-  descriptionClassName?: string
-  actions?: JSX.Element[]
-  actionsWrapperClassName?: string
-  className?: string
-}
+import {
+  SectionHeaderTitleProps,
+  SectionHeaderDescriptionProps,
+  SectionHeaderActionsProps,
+  SectionHeaderProps,
+} from './type'
 
 const {
   sectionHeaderWrapperClsx,
-  sectionHeaderLeftClsx,
   sectionHeaderTitleWrapperClsx,
   sectionHeaderTitleClsx,
   sectionHeaderActionsWrapperClsx,
 } = sectionHeader
 
-const SectionHeader = (props: SectionHeaderProps) => {
-  const {
-    title,
-    titleClassName,
-    description,
-    descriptionClassName,
-    actions = [],
-    actionsWrapperClassName,
-    className,
-    ...rest
-  } = props
+const SectionHeaderTitle = ({
+  children,
+  wrapperClassName,
+  className,
+}: SectionHeaderTitleProps) => {
+  const childNodes = Children.toArray(children)
+  const [title, ...restChild] = childNodes
 
   return (
-    <header className={sectionHeaderWrapperClsx({ className })} {...rest}>
-      <div className={sectionHeaderLeftClsx()}>
-        <div>
-          <div className={sectionHeaderTitleWrapperClsx()}>
-            {typeof title === 'string' ? (
-              <Typography
-                level="h6"
-                color="textPrimary"
-                className={sectionHeaderTitleClsx({
-                  className: titleClassName,
-                })}
-              >
-                {title}
-              </Typography>
-            ) : (
-              title
-            )}
-          </div>
-
-          {description ? (
-            <Typography
-              level="p5"
-              color="textSecondary"
-              className={descriptionClassName}
-            >
-              {description}
-            </Typography>
-          ) : null}
-        </div>
-      </div>
-
-      {actions.length ? (
-        <div
-          className={sectionHeaderActionsWrapperClsx({
-            className: actionsWrapperClassName,
+    <div
+      className={sectionHeaderTitleWrapperClsx({ className: wrapperClassName })}
+    >
+      {typeof title === 'string' ? (
+        <Typography
+          level="h6"
+          color="textPrimary"
+          className={sectionHeaderTitleClsx({
+            className,
           })}
         >
-          {actions.map((action, index) => (
-            <Fragment key={index}>{action}</Fragment>
-          ))}
-        </div>
-      ) : null}
-    </header>
+          {title}
+        </Typography>
+      ) : (
+        title
+      )}
+
+      {restChild.map((child, index) => (
+        <Fragment key={index}>{child}</Fragment>
+      ))}
+    </div>
   )
 }
 
-export { SectionHeader, type SectionHeaderProps }
+const SectionHeaderDescription = ({
+  children,
+  className,
+}: SectionHeaderDescriptionProps) => {
+  const childNodes = Children.toArray(children)
+  const [description, ...restChild] = childNodes
+
+  return (
+    <>
+      {description ? (
+        <Typography level="p5" color="textSecondary" className={className}>
+          {description}
+        </Typography>
+      ) : null}
+
+      {restChild.map((child, index) => (
+        <Fragment key={index}>{child}</Fragment>
+      ))}
+    </>
+  )
+}
+
+const SectionHeaderActions = ({
+  children,
+  className,
+}: SectionHeaderActionsProps) => {
+  return (
+    <div className={sectionHeaderActionsWrapperClsx({ className })}>
+      {children}
+    </div>
+  )
+}
+
+const SectionHeader = (props: SectionHeaderProps) => {
+  const { children, className, ...rest } = props
+
+  return (
+    <div className={sectionHeaderWrapperClsx({ className })} {...rest}>
+      {children}
+    </div>
+  )
+}
+
+export {
+  SectionHeader,
+  SectionHeaderTitle,
+  SectionHeaderDescription,
+  SectionHeaderActions,
+  type SectionHeaderProps,
+  type SectionHeaderTitleProps,
+  type SectionHeaderDescriptionProps,
+  type SectionHeaderActionsProps,
+}

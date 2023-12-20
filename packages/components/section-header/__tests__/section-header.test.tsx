@@ -1,10 +1,19 @@
 import { render } from '@testing-library/react'
 import { Button } from '@mochi-ui/button'
-import { SectionHeader } from '../src'
+import {
+  SectionHeader,
+  SectionHeaderActions,
+  SectionHeaderDescription,
+  SectionHeaderTitle,
+} from '../src'
 
 describe('Section Header', () => {
   it('renders the title correctly', () => {
-    const { container } = render(<SectionHeader title="Section Title" />)
+    const { container } = render(
+      <SectionHeader>
+        <SectionHeaderTitle>Section Title</SectionHeaderTitle>
+      </SectionHeader>,
+    )
 
     const title = container.querySelector('h6')
     expect(title?.innerHTML || '').toBe('Section Title')
@@ -15,7 +24,14 @@ describe('Section Header', () => {
       'Lorem ipsum dolor sit amet consectetur. Sed turpis eget sed nullam volutpat integer posuere.'
 
     const { container } = render(
-      <SectionHeader title="Section Title" description={descriptionValue} />,
+      <SectionHeader>
+        <SectionHeaderTitle>
+          Section Title
+          <SectionHeaderDescription>
+            {descriptionValue}
+          </SectionHeaderDescription>
+        </SectionHeaderTitle>
+      </SectionHeader>,
     )
 
     const description = container.querySelector('p')
@@ -25,10 +41,12 @@ describe('Section Header', () => {
 
   it('renders the actions correctly', () => {
     const { container } = render(
-      <SectionHeader
-        title="Section Title"
-        actions={[<Button>Button one</Button>, <Button>Button two</Button>]}
-      />,
+      <SectionHeader>
+        <SectionHeaderTitle>Section Title</SectionHeaderTitle>
+        <SectionHeaderActions>
+          <Button>Button one</Button> <Button>Button two</Button>
+        </SectionHeaderActions>
+      </SectionHeader>,
     )
 
     const buttons = container.querySelectorAll('button')
