@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import { Avatar } from '@mochi-ui/avatar'
+import { Avatar, AvatarSmallImage } from '@mochi-ui/avatar'
 import { profileBadge } from '@mochi-ui/theme'
 
 type ProfileBadgeProps = React.HTMLAttributes<HTMLButtonElement> & {
@@ -24,7 +24,9 @@ export const ProfileBadge = forwardRef<HTMLButtonElement, ProfileBadgeProps>(
       {...rest}
     >
       <div className={profileBadgeAvatarWrapperClsx()}>
-        <Avatar fallback={name} size="sm" smallSrc={platform} src={avatar} />
+        <Avatar fallback={name} size="sm" src={avatar}>
+          <AvatarSmallImage src={platform} />
+        </Avatar>
       </div>
       <span className={profileBadgeNameClsx()}>{name}</span>
     </button>

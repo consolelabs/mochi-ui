@@ -134,9 +134,10 @@ const MobileHeader = ({ onClose }: { onClose: () => void }) => {
         <div className="flex relative z-10 gap-4 items-center p-4 w-full h-full text-white">
           <Avatar
             fallback={profile?.profile_name}
-            /* smallSrc={me?.platformIcon} */
             src={profile?.avatar as string}
-          />
+          >
+            {/* <AvatarSmallImage src={me?.platformIcon} /> */}
+          </Avatar>
           <div className="flex flex-1 items-center font-medium">
             <span className="inline-block w-max whitespace-nowrap max-w-40 truncate">
               {profile?.profile_name}

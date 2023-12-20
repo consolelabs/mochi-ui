@@ -1,9 +1,21 @@
 import * as RadixAvatar from '@radix-ui/react-avatar'
-import { PropsWithChildren, useId } from 'react'
-import { avatar, AvatarStylesProps } from '@mochi-ui/theme'
-import { boringAvatar, getRelativePosition } from './util'
+import {
+  HTMLAttributes,
+  ImgHTMLAttributes,
+  PropsWithChildren,
+  ReactNode,
+  useId,
+} from 'react'
+import {
+  avatar,
+  AvatarStylesProps,
+  AvatarSmallImgStyleProps,
+  AvatarStatusStyleProps,
+} from '@mochi-ui/theme'
+import { boringAvatar } from './util'
 
-const { avatarCva, avatarImgClsx, avatarSmallImg, avatarStatus } = avatar
+const { avatarCva, avatarImgClsx, avatarSmallImgCva, avatarStatusWrapperCva } =
+  avatar
 
 type AvatarProps = PropsWithChildren<AvatarStylesProps> & {
   src: string
@@ -11,7 +23,7 @@ type AvatarProps = PropsWithChildren<AvatarStylesProps> & {
   className?: string
   onLoadingStatusChange?: RadixAvatar.AvatarImageProps['onLoadingStatusChange']
   delayMs?: RadixAvatar.AvatarFallbackProps['delayMs']
-}
+} & HTMLAttributes<HTMLDivElement>
 
 export default function Avatar({
   size,
@@ -21,30 +33,18 @@ export default function Avatar({
   delayMs,
   className,
   children,
+  ...props
 }: AvatarProps) {
-  const id = useId()
   const fallbackUrl = boringAvatar(fallback)
 
   return (
-    <RadixAvatar.Root className={avatarCva({ size, className })}>
+    <RadixAvatar.Root className={avatarCva({ size, className })} {...props}>
+      {children}
       <RadixAvatar.Image
         className={avatarImgClsx}
-        asChild
         onLoadingStatusChange={onLoadingStatusChange}
         src={src}
-      >
-        <div>
-          <svg height="100%" role="none" viewBox="0 0 100 100" width="100%">
-            <image
-              xlinkHref={src}
-              height="100%"
-              width="100%"
-              className="overflow-hidden"
-            />
-            {children}
-          </svg>
-        </div>
-      </RadixAvatar.Image>
+      ></RadixAvatar.Image>
       <RadixAvatar.Fallback delayMs={delayMs}>
         <img alt="fallback" src={fallbackUrl} />
       </RadixAvatar.Fallback>
@@ -52,45 +52,48 @@ export default function Avatar({
   )
 }
 
-export interface AvatarSmallImageProps {
+export type AvatarSmallImageProps = AvatarSmallImgStyleProps & {
   src?: string
-  position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left'
-}
+  className?: string
+} & ImgHTMLAttributes<HTMLImageElement>
 
 export const AvatarSmallImage = (props: AvatarSmallImageProps) => {
-  const { src, position = 'bottom-right' } = props
-  const [x, y] = getRelativePosition(position)
+  const { src, position = 'bottom-right', className, ...restProps } = props
   return (
-    <image
-      className={avatarSmallImg}
-      height="25%"
-      width="25%"
-      x={x}
-      y={y}
-      xlinkHref={src}
+    <img
+      className={avatarSmallImgCva({ position, className })}
+      src={src}
+      {...restProps}
     />
   )
 }
 
-export interface AvatarStatusProps {
-  position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left'
-  color?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'neutral'
+export type AvatarStatusProps = AvatarStatusStyleProps & {
   className?: string
-}
+  children?: ReactNode
+} & HTMLAttributes<HTMLDivElement>
 
 export const AvatarStatus = (props: AvatarStatusProps) => {
-  const { position = 'bottom-right', color = 'success', className } = props
-  const [x, y] = getRelativePosition(position)
+  const {
+    position = 'bottom-right',
+    color = 'success',
+    className,
+    children,
+    ...restProps
+  } = props
   return (
-    <svg
-      height="25%"
-      width="25%"
-      x={x}
-      y={y}
-      className={avatarStatus({ color, className })}
+    <div
+      className={avatarStatusWrapperCva({ color, className, position })}
+      {...restProps}
     >
-      <circle rx="50%" cx="50%" cy="50%" fill="red" />
-    </svg>
+      {Boolean(children) ? (
+        children
+      ) : (
+        <svg height="100%" width="100%">
+          <circle r="50%" cx="50%" cy="50%" fill="currentColor" />
+        </svg>
+      )}
+    </div>
   )
 }
 
