@@ -14,7 +14,7 @@ import {
   Typography,
   useLoginWidget,
 } from '@mochi-ui/core'
-import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { SEO } from '~app/layout/seo'
 import { ROUTES } from '~constants/routes'
 import {
@@ -51,11 +51,10 @@ const AppPageHeader = (props: AppPageHeaderProps) => {
     onFilterPlatformChange,
     onFilterTypeChange,
   } = props
-  const { push } = useRouter()
 
   return (
     <PageHeader>
-      <PageHeaderBackButton onBack={() => push(ROUTES.MY_PROFILE)} />
+      <PageHeaderBackButton as={Link} href={ROUTES.MY_PROFILE} />
       <PageHeaderTitle>Transactions</PageHeaderTitle>
       <PageHeaderActions>
         <Select onChange={onFilterTypeChange} value={filterType}>

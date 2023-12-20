@@ -106,7 +106,7 @@ export function Default() {
       </PageHeader>
 
       <PageHeader>
-        <PageHeaderBackButton onBack={() => alert('onBack')} />
+        <PageHeaderBackButton as="a" href="#" />
         <PageHeaderTitle>
           Mochi
           <PageHeaderTitleExtra>(2,951 members)</PageHeaderTitleExtra>

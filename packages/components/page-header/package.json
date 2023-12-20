@@ -40,7 +40,8 @@
     "@mochi-ui/icon-button": "workspace:*",
     "@mochi-ui/icons": "workspace:*",
     "@mochi-ui/theme": "workspace:*",
-    "@mochi-ui/typography": "workspace:*"
+    "@mochi-ui/typography": "workspace:*",
+    "@mochi-ui/polymorphic": "workspace:*"
   },
   "clean-package": "../../../clean-package.config.json"
 }

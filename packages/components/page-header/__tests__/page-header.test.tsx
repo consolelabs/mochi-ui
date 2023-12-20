@@ -40,12 +40,12 @@ describe('Page Header', () => {
     expect(titleExtra?.innerHTML || '').toBe(titleExtraValue)
   })
 
-  it('applies the onBack function correctly', async () => {
+  it('applies the onClick function correctly', async () => {
     const mockFunction = jest.fn()
 
     const { container } = render(
       <PageHeader>
-        <PageHeaderBackButton onBack={mockFunction} />
+        <PageHeaderBackButton onClick={mockFunction} />
         <PageHeaderTitle>Page Title</PageHeaderTitle>
       </PageHeader>,
     )

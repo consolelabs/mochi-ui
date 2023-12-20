@@ -2,9 +2,9 @@ import { BackLine } from '@mochi-ui/icons'
 import { Typography } from '@mochi-ui/typography'
 import { IconButton } from '@mochi-ui/icon-button'
 import { pageHeader } from '@mochi-ui/theme'
-import { Children, Fragment } from 'react'
+import { Children, Fragment, forwardRef } from 'react'
 import {
-  PageHeaderBackButtonProps,
+  PolymorphicPageHeaderBackButton,
   PageHeaderTitleProps,
   PageHeaderTitleExtraProps,
   PageHeaderActionsProps,
@@ -21,22 +21,22 @@ const {
   pageHeaderBackIconWrapperClsx,
 } = pageHeader
 
-const PageHeaderBackButton = ({
-  onBack,
-  className,
-}: PageHeaderBackButtonProps) => {
+const PageHeaderBackButton = forwardRef(({ ...props }, ref) => {
   return (
     <IconButton
       variant="link"
       color="info"
-      onClick={onBack}
+      className={pageHeaderBackButtonWrapperClsx()}
+      ref={ref}
+      {...props}
       label="Back"
-      className={pageHeaderBackButtonWrapperClsx({ className })}
     >
       <BackLine className={pageHeaderBackIconWrapperClsx()} />
     </IconButton>
   )
-}
+}) as PolymorphicPageHeaderBackButton
+
+PageHeaderBackButton.displayName = 'PageHeaderBackButton'
 
 const PageHeaderTitle = ({ children, className }: PageHeaderTitleProps) => {
   const childNodes = Children.toArray(children)
@@ -120,7 +120,7 @@ export {
   PageHeaderTitleExtra,
   PageHeaderActions,
   type PageHeaderProps,
-  type PageHeaderBackButtonProps,
+  type PolymorphicPageHeaderBackButton,
   type PageHeaderTitleProps,
   type PageHeaderTitleExtraProps,
   type PageHeaderActionsProps,
