@@ -4,7 +4,6 @@ import {
   ImgHTMLAttributes,
   PropsWithChildren,
   ReactNode,
-  useId,
 } from 'react'
 import {
   avatar,
@@ -44,7 +43,7 @@ export default function Avatar({
         className={avatarImgClsx}
         onLoadingStatusChange={onLoadingStatusChange}
         src={src}
-      ></RadixAvatar.Image>
+      />
       <RadixAvatar.Fallback delayMs={delayMs}>
         <img alt="fallback" src={fallbackUrl} />
       </RadixAvatar.Fallback>
@@ -58,11 +57,12 @@ export type AvatarSmallImageProps = AvatarSmallImgStyleProps & {
 } & ImgHTMLAttributes<HTMLImageElement>
 
 export const AvatarSmallImage = (props: AvatarSmallImageProps) => {
-  const { src, position = 'bottom-right', className, ...restProps } = props
+  const { src, position = 'bottom-right', className, alt, ...restProps } = props
   return (
     <img
       className={avatarSmallImgCva({ position, className })}
       src={src}
+      alt={alt}
       {...restProps}
     />
   )
@@ -86,9 +86,7 @@ export const AvatarStatus = (props: AvatarStatusProps) => {
       className={avatarStatusWrapperCva({ color, className, position })}
       {...restProps}
     >
-      {Boolean(children) ? (
-        children
-      ) : (
+      {children || (
         <svg height="100%" width="100%">
           <circle r="50%" cx="50%" cy="50%" fill="currentColor" />
         </svg>
