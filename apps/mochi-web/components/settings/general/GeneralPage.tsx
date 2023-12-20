@@ -7,6 +7,7 @@ import { GeneralFormValue } from './types'
 import { MoneySource } from './MoneySource'
 import { ReceiverPlatform } from './ReceiverPlatform'
 import { TokenPriority } from './TokenPriority'
+import { DefaultMessage } from './DefaultMessage'
 
 export const GeneralPage = () => {
   const form = useForm<GeneralFormValue>({
@@ -29,7 +30,8 @@ export const GeneralPage = () => {
   return (
     <>
       <FormProvider {...form}>
-        <div className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} />
+        <div className="space-y-4">
           <Typography level="p2" fontWeight="md">
             Payment setting
           </Typography>
@@ -40,6 +42,7 @@ export const GeneralPage = () => {
           </div>
 
           <TokenPriority {...{ control, watch }} />
+          <DefaultMessage {...{ control, watch }} />
         </div>
       </FormProvider>
 
