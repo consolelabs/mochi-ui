@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import Avatar, { AvatarSmallImage, AvatarStatus } from '../src/avatar'
 import { DiscordColored } from '@mochi-ui/icons'
+import Avatar, { AvatarSmallImage, AvatarStatus } from '../src/avatar'
 
 const meta: Meta<typeof Avatar> = {
   title: 'Media & Icons/Avatar',
@@ -61,7 +61,7 @@ export const Sizes: Story = {
     return (
       <div className="gap-3 flex">
         {(['xs', 'sm', 'base', 'lg', 'xl'] as const).map((size) => (
-          <Avatar size={size} src="https://mochi.gg/logo.png"></Avatar>
+          <Avatar size={size} src="https://mochi.gg/logo.png" />
         ))}
       </div>
     )

@@ -38,12 +38,12 @@ export default function Avatar({
 
   return (
     <RadixAvatar.Root className={avatarCva({ size, className })} {...props}>
-      {children}
       <RadixAvatar.Image
         className={avatarImgClsx}
         onLoadingStatusChange={onLoadingStatusChange}
         src={src}
       />
+      {children}
       <RadixAvatar.Fallback delayMs={delayMs}>
         <img alt="fallback" src={fallbackUrl} />
       </RadixAvatar.Fallback>
