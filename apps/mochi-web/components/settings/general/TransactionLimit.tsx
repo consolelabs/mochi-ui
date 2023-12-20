@@ -13,7 +13,6 @@ import {
   UseFormWatch,
   useFieldArray,
 } from 'react-hook-form'
-import clsx from 'clsx'
 import { actionList } from '~constants/settings'
 import { utils as mochiUtils } from '@consolelabs/mochi-ui'
 import { GeneralFormValue } from './types'
@@ -116,7 +115,7 @@ export const TransactionLimit = ({ control, watch }: Props) => {
           )}
         />
       </div>
-      {fields.map((each, index) => (
+      {(enableTransactionLimit ? fields : []).map((each, index) => (
         <Controller
           key={each.id}
           name={`transactionLimit.${index}`}
@@ -141,13 +140,8 @@ export const TransactionLimit = ({ control, watch }: Props) => {
               Number(field.value.maxAmount) * (maxToken?.price || 0)
             const maxUsdValue = mochiUtils.formatUsdDigit(maxUsd)
             return (
-              <div
-                className={clsx(
-                  'flex items-center border rounded-md border-divider shadow-input',
-                  { 'opacity-25 pointer-events-none': !enableTransactionLimit },
-                )}
-              >
-                <div className="flex-1 p-2 pl-10 overflow-hidden">
+              <div className="flex items-center border rounded-md border-divider shadow-input">
+                <div className="flex-1 px-4 py-2 overflow-hidden">
                   <Typography level="h8">
                     {
                       actionList.find(
@@ -157,12 +151,12 @@ export const TransactionLimit = ({ control, watch }: Props) => {
                   </Typography>
                   <div className="flex flex-wrap">
                     <Typography level="p5" className="mr-2">
-                      Minimun value: {minAmount} {minToken?.symbol} (&#8776;{' '}
+                      Minimum value: {minAmount} {minToken?.symbol} (&#8776;{' '}
                       {minUsdValue}),
                     </Typography>
                     <Typography level="p5">
-                      Maximun value: {maxAmount} {maxToken?.symbol} (&#8776;{' '}
-                      {maxUsdValue}),
+                      Maximum value: {maxAmount} {maxToken?.symbol} (&#8776;{' '}
+                      {maxUsdValue})
                     </Typography>
                   </div>
                 </div>
@@ -171,12 +165,7 @@ export const TransactionLimit = ({ control, watch }: Props) => {
                   defaultValues={field.value}
                   onConfirm={(data) => update(index, data)}
                   trigger={
-                    <IconButton
-                      label="Edit"
-                      variant="ghost"
-                      color="white"
-                      disabled={!enableTransactionLimit}
-                    >
+                    <IconButton label="Edit" variant="ghost" color="white">
                       <EditLine className="w-5 h-5" />
                     </IconButton>
                   }
@@ -186,7 +175,6 @@ export const TransactionLimit = ({ control, watch }: Props) => {
                   variant="ghost"
                   color="white"
                   onClick={() => remove(index)}
-                  disabled={!enableTransactionLimit}
                 >
                   <TrashBinLine className="w-5 h-5 text-danger-solid" />
                 </IconButton>

@@ -148,6 +148,7 @@ export const TransactionLimitModal = ({
                       autoComplete="off"
                       type="number"
                       min={0}
+                      step="any"
                     />
                     <TextFieldDecorator>
                       <Controller
@@ -207,6 +208,7 @@ export const TransactionLimitModal = ({
                       autoComplete="off"
                       type="number"
                       min={0}
+                      step="any"
                     />
                     <TextFieldDecorator>
                       <Controller
