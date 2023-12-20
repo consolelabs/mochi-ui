@@ -15,6 +15,7 @@ export type PolymorphicPageHeaderBackButton = Polymorphic.ForwardRefComponent<
 export type PageHeaderTitleProps = {
   children: ReactNode
   className?: string
+  wrapperClassName?: string
 }
 
 export type PageHeaderTitleExtraProps = {

@@ -38,13 +38,19 @@ const PageHeaderBackButton = forwardRef(({ className, ...props }, ref) => {
 
 PageHeaderBackButton.displayName = 'PageHeaderBackButton'
 
-const PageHeaderTitle = ({ children, className }: PageHeaderTitleProps) => {
+const PageHeaderTitle = ({
+  children,
+  className,
+  wrapperClassName,
+}: PageHeaderTitleProps) => {
   const childNodes = Children.toArray(children)
 
   const [title, ...restChild] = childNodes
 
   return (
-    <div className={pageHeaderTitleWrapperClsx()}>
+    <div
+      className={pageHeaderTitleWrapperClsx({ className: wrapperClassName })}
+    >
       {typeof title === 'string' ? (
         <Typography
           level="h5"
