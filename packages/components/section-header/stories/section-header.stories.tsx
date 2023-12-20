@@ -32,9 +32,11 @@ export function Default() {
 
   const actions = (
     <>
-      <Button color="white">See docs</Button>
+      <Button color="white" className="w-full sm:w-max">
+        See docs
+      </Button>
       <Select value={selectedApp} onChange={setSelectedApp}>
-        <SelectTrigger className="rounded bg-neutral-150">
+        <SelectTrigger className="rounded bg-neutral-150 shrink-0">
           <Tooltip content="Selected app" arrow="top-center" className="z-20">
             <SelectValue placeholder="All apps" />
           </Tooltip>
@@ -73,38 +75,33 @@ export function Default() {
     <div className="flex flex-col gap-6">
       <SectionHeader>
         <SectionHeaderTitle>
-          Section Title
+          Platform Notification
           <SectionHeaderDescription>
-            Lorem ipsum dolor sit amet consectetur. Sed turpis eget sed nullam
-            volutpat integer posuere.
+            Select the platform you want to receive the notification
           </SectionHeaderDescription>
         </SectionHeaderTitle>
       </SectionHeader>
 
       <SectionHeader>
         <SectionHeaderTitle>
-          Section Title
+          Apps Activity
           <SectionHeaderDescription>
             Lorem ipsum dolor sit amet consectetur. Sed turpis eget sed nullam
             volutpat integer posuere.
           </SectionHeaderDescription>
         </SectionHeaderTitle>
-        <SectionHeaderActions>{actions}</SectionHeaderActions>
+        <SectionHeaderActions className="flex-nowrap">
+          {actions}
+        </SectionHeaderActions>
       </SectionHeader>
 
       <SectionHeader>
-        <SectionHeaderTitle>
-          Section Title
-          <SectionHeaderDescription>
-            Lorem ipsum dolor sit amet consectetur. Sed turpis eget sed nullam
-            volutpat integer posuere.
-          </SectionHeaderDescription>
-        </SectionHeaderTitle>
-        <SectionHeaderActions>
+        <SectionHeaderTitle wrapperClassName="flex !flex-row items-center justify-between">
+          Communities Activities
           <IconButton label="Open menu" variant="link" color="info">
             <ThreeDotsLine className="text-2xl" aria-hidden />
           </IconButton>
-        </SectionHeaderActions>
+        </SectionHeaderTitle>
       </SectionHeader>
     </div>
   )
