@@ -47,7 +47,7 @@ const avatarStatusWrapperCva = cva(
   },
 )
 const avatarSmallImgCva = cva(
-  'rounded-full overflow-hidden w-2/5 h-2/5 object-cover absolute',
+  'rounded-full overflow-hidden w-2/5 h-2/5 object-cover absolute bg-white outline outline-[2px] outline-white',
   {
     variants: {
       position: {
