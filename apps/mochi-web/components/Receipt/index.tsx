@@ -51,7 +51,7 @@ export default function Receipt({ id, data: _data }: Props) {
   const isSuccess = data.data.success
 
   return (
-    <div className="flex flex-col flex-1 gap-y-7 m-auto w-[300px]">
+    <div className="flex flex-col flex-1 gap-y-7 m-auto w-[300px] max-w-[300px]">
       <style jsx global>{`
         .receipt-body {
           font-family: ${robotoFont.style.fontFamily};

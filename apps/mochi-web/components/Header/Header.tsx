@@ -55,8 +55,6 @@ const authenticatedRoute = [
   '/server',
 ]
 
-const txRoute = ['/tx', '/pay', '/receive']
-
 const LoginPopover = () => {
   const { isLoadingProfile } = useLoginWidget()
   const [isOpen, setIsOpen] = useState(false)
@@ -239,10 +237,7 @@ export const Header = ({
             key="desktop-nav-items"
           >
             <div
-              className={clsx('gap-x-2 items-center w-[400px]', {
-                hidden: txRoute.some((r) => pathname.includes(r)),
-                'hidden lg:flex': !txRoute.some((r) => pathname.includes(r)),
-              })}
+              className={clsx('hidden lg:flex gap-x-2 items-center w-[400px]')}
             >
               <MagnifierLine />
               <input
@@ -431,9 +426,6 @@ export const Header = ({
           isLoggedIn || !authenticatedRoute.includes(pathname),
         'bg-dashboard-gray-1':
           !isLoggedIn && authenticatedRoute.includes(pathname),
-        'lg:bg-transparent lg:!border-0': txRoute.some((r) =>
-          pathname.includes(r),
-        ),
       })}
       leftSlot={
         layoutType === 'landing' || !isLoggedIn ? (
@@ -441,9 +433,7 @@ export const Header = ({
             <LogoWithText
               logoProps={{ size: 'xs' }}
               className="!gap-2"
-              textClassName={clsx('w-18 h-8', {
-                'lg:!text-white': txRoute.some((r) => pathname.includes(r)),
-              })}
+              textClassName={clsx('w-18 h-8')}
             />
           </Link>
         ) : (
