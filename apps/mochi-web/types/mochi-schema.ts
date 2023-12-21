@@ -9,6 +9,8 @@
  * ---------------------------------------------------------------
  */
 
+import { Profile } from '@consolelabs/mochi-rest'
+
 export interface ModelActivity {
   guild_default?: boolean
   id?: number
@@ -2538,4 +2540,25 @@ export interface UuidNullUUID {
   uuid?: string
   /** Valid is true if UUID is not NULL */
   valid?: boolean
+}
+
+export interface TransactionNode {
+  profile_id: string
+  total_volume: number
+  spend_volume: number
+  receive_volume: number
+  profile: Profile
+}
+
+export interface TransactionEdge {
+  from_profile_id: string
+  to_profile_id: string
+  total_volume: number
+  spend: number
+  receive: number
+}
+
+export interface TransactionGraphData {
+  nodes: TransactionNode[]
+  edges: TransactionEdge[]
 }
