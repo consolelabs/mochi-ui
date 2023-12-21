@@ -155,7 +155,7 @@ export const Header = ({
 }: {
   layoutType?: 'dashboard' | 'landing'
 }) => {
-  const { pathname } = useRouter()
+  const { pathname, push } = useRouter()
   const { profile, isLoggedIn } = useLoginWidget()
 
   const mobileNavItems = [
@@ -272,7 +272,11 @@ export const Header = ({
             <div className="hidden py-1.5 ml-2 w-px lg:block">
               <div className="w-full h-full bg-[#eeedec]" />
             </div>
-            <Button size="md" className="hidden lg:flex">
+            <Button
+              onClick={() => push(ROUTES.MY_PROFILE)}
+              size="md"
+              className="hidden lg:flex"
+            >
               <TipSolid />
               Tip
             </Button>

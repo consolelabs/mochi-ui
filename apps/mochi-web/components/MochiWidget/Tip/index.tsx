@@ -84,7 +84,7 @@ export default function Tip() {
             'border-green-200 bg-green-50 text-green-700': !error,
             'border-red-200 bg-red-50 text-red-700': error,
             'scale-1 translate-y-0 shadow-xl': isOpen,
-            'shadow scale-[0.9] translate-y-[calc(-100%-16px)]': !isOpen,
+            'shadow scale-[0.9] translate-y-[calc(-100%-57px)]': !isOpen,
           },
         )}
       >

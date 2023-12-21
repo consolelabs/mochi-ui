@@ -43,19 +43,19 @@ const sidebarFooterVersionTextClsx = ({
   className?: string
 } = {}) => clsx('text-xs text-text-secondary tracking-tight p-2', className)
 
-const sidebarToggleButtonWrapperClsx = ({
-  className = '',
-}: { className?: string } = {}) =>
-  clsx(
-    'absolute top-0 hidden w-10 h-full -right-10 group-hover:block',
-    className,
-  )
-
 const sidebarToggleButtonClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
-    'items-center justify-center w-5 mt-4 bg-background-surface border rounded-r-lg border-neutral-outline-active h-11',
+    'absolute top-0 w-9 h-20 -right-9 opacity-0 hover:opacity-100',
+    className,
+  )
+
+const sidebarToggleButtonInnerClsx = ({
+  className = '',
+}: { className?: string } = {}) =>
+  clsx(
+    'flex items-center justify-center w-7 my-auto bg-background-surface border rounded-r-lg border-neutral-outline-active h-16',
     className,
   )
 
@@ -65,7 +65,7 @@ const sidebarToggleArrowClsx = ({
 }: {
   className?: string
   expanded?: boolean
-}) => clsx('text-text-primary', { 'rotate-180': expanded }, className)
+}) => clsx('text-text-primary mx-auto', { 'rotate-180': expanded }, className)
 
 const sidebarItemIconClsx = ({
   className = '',
@@ -242,7 +242,7 @@ const sidebar = {
   sidebarFooterItemsWrapperClsx,
   sidebarFooterVersionWrapperClsx,
   sidebarFooterVersionTextClsx,
-  sidebarToggleButtonWrapperClsx,
+  sidebarToggleButtonInnerClsx,
   sidebarToggleButtonClsx,
   sidebarToggleArrowClsx,
 
