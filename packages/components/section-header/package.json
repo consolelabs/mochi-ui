@@ -39,6 +39,7 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
+    "@dwarvesf/react-utils": "^0.4.1",
     "@mochi-ui/theme": "workspace:*",
     "@mochi-ui/typography": "workspace:*"
   },

@@ -6,6 +6,10 @@ import {
   SectionHeaderActionsProps,
   SectionHeaderProps,
 } from './type'
+import {
+  SectionHeaderContextProvider,
+  useSectionHeaderContext,
+} from './context'
 
 const {
   sectionHeaderWrapperClsx,
@@ -23,7 +27,9 @@ const SectionHeaderTitle = ({
 }: SectionHeaderTitleProps) => {
   return (
     <div
-      className={sectionHeaderTitleWrapperClsx({ className: wrapperClassName })}
+      className={sectionHeaderTitleWrapperClsx({
+        className: wrapperClassName,
+      })}
     >
       {typeof children === 'string' ? (
         <Typography
@@ -57,7 +63,9 @@ const SectionHeaderDescription = ({
         <Typography level="p5" color="textSecondary" className={className}>
           {children}
         </Typography>
-      ) : null}
+      ) : (
+        children
+      )}
     </div>
   )
 }
@@ -67,24 +75,36 @@ const SectionHeaderActions = ({
   className,
   wrapperClassName,
 }: SectionHeaderActionsProps) => {
+  const { wrapActionsOnMobile } = useSectionHeaderContext()
+
   return (
     <div
       className={sectionHeaderActionsWrapperClsx({
         className: wrapperClassName,
+        wrapActionsOnMobile,
       })}
     >
-      <div className={sectionHeaderActionsClsx({ className })}>{children}</div>
+      <div
+        className={sectionHeaderActionsClsx({ className, wrapActionsOnMobile })}
+      >
+        {children}
+      </div>
     </div>
   )
 }
 
 const SectionHeader = (props: SectionHeaderProps) => {
-  const { children, className, ...rest } = props
+  const { children, className, wrapActionsOnMobile = true, ...rest } = props
 
   return (
-    <div className={sectionHeaderWrapperClsx({ className })} {...rest}>
-      {children}
-    </div>
+    <SectionHeaderContextProvider value={{ wrapActionsOnMobile }}>
+      <div
+        className={sectionHeaderWrapperClsx({ className, wrapActionsOnMobile })}
+        {...rest}
+      >
+        {children}
+      </div>
+    </SectionHeaderContextProvider>
   )
 }
 

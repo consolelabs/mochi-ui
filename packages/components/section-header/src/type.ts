@@ -3,6 +3,7 @@ import { ReactNode } from 'react'
 export type SectionHeaderProps = {
   children: ReactNode
   className?: string
+  wrapActionsOnMobile?: boolean
 }
 
 export type SectionHeaderTitleProps = {

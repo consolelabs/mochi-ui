@@ -1495,6 +1495,9 @@ importers:
 
   packages/components/section-header:
     dependencies:
+      '@dwarvesf/react-utils':
+        specifier: ^0.4.1
+        version: 0.4.1(react-dom@18.2.0)(react@18.2.0)
       '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme

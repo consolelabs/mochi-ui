@@ -9,6 +9,7 @@ import {
   ActionBarIcon,
   ActionBarTitle,
   SectionHeader,
+  SectionHeaderActions,
   SectionHeaderDescription,
   SectionHeaderTitle,
   Skeleton,
@@ -17,7 +18,6 @@ import {
   Typography,
   toast,
   useLoginWidget,
-  SectionHeaderActions,
 } from '@mochi-ui/core'
 import { useForm, FormProvider, Controller } from 'react-hook-form'
 import { useFetchNotificationSettings } from '~hooks/settings/useFetchNotificationSettings'
@@ -165,7 +165,7 @@ export function NotificationPage() {
                 htmlFor="enable"
                 className="block cursor-pointer select-none"
               >
-                <SectionHeader className="!py-4">
+                <SectionHeader className="!py-4" wrapActionsOnMobile={false}>
                   <SectionHeaderTitle className="!text-base font-normal">
                     Notification
                   </SectionHeaderTitle>
