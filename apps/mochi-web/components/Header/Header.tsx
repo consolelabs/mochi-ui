@@ -45,6 +45,7 @@ import {
 import clsx from 'clsx'
 import { DISCORD_LINK, TELEGRAM_LINK } from '~envs'
 import { useState } from 'react'
+import events from '~constants/events'
 import ProfileDropdown from '~cpn/profile-dropdrown'
 import { MobileNavAccordionItem } from './MobileNavAccordionItem'
 import { DashboardMobileSidebar } from './DashboardMobileSidebar'
@@ -152,7 +153,7 @@ export const Header = ({
 }: {
   layoutType?: 'dashboard' | 'landing'
 }) => {
-  const { pathname, push } = useRouter()
+  const { pathname } = useRouter()
   const { profile, isLoggedIn } = useLoginWidget()
 
   const mobileNavItems = [
@@ -267,7 +268,9 @@ export const Header = ({
               <div className="w-full h-full bg-[#eeedec]" />
             </div>
             <Button
-              onClick={() => push(ROUTES.MY_PROFILE)}
+              onClick={() =>
+                window.dispatchEvent(new Event(events.TIP_WIDGET.FOCUS_AMOUNT))
+              }
               size="md"
               className="hidden lg:flex"
             >

@@ -15,6 +15,7 @@ import {
   formatTokenAmount,
 } from '~utils/number'
 import { ArrowUpDownLine } from '@mochi-ui/icons'
+import events from '~constants/events'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { TokenPicker } from '../TokenPicker'
 import { Moniker } from '../TokenPicker/type'
@@ -191,6 +192,17 @@ export const AmountInput: React.FC<AmountInputProps> = ({
       handleAssetChanged(bal)
     }
   }, [handleAssetChanged, wallet?.balances, wallet?.id])
+
+  useEffect(() => {
+    function focusInput() {
+      ref.current?.focus({ preventScroll: true })
+    }
+
+    window.addEventListener(events.TIP_WIDGET.FOCUS_AMOUNT, focusInput)
+
+    return () =>
+      window.removeEventListener(events.TIP_WIDGET.FOCUS_AMOUNT, focusInput)
+  }, [])
 
   return (
     <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-3">
