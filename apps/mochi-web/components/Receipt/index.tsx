@@ -5,7 +5,7 @@ import Image from 'next/image'
 import useSWR from 'swr'
 import { API } from '~constants/api'
 import { coinIcon } from '~utils/image'
-import { Avatar, Typography, Badge, AvatarSmallImage } from '@mochi-ui/core'
+import { Avatar, Badge, Typography } from '@mochi-ui/core'
 import clsx from 'clsx'
 import { truncate } from '@dwarvesf/react-utils'
 import { useDisclosure } from '@dwarvesf/react-hooks'
@@ -68,9 +68,11 @@ export default function Receipt({ id, data: _data }: Props) {
           <div className="flex flex-col gap-y-12 py-3 px-4 pb-6 md:px-6 !text-neutral-600">
             <div className="flex relative flex-col items-center">
               {data.data.template ? null : (
-                <Avatar size="xl" src={data.senderAvatar}>
-                  <AvatarSmallImage src={data.platformIcon} />
-                </Avatar>
+                <Avatar
+                  smallSrc={data.platformIcon}
+                  size="xl"
+                  src={data.senderAvatar}
+                />
               )}
               <div className="mt-2 text-sm">
                 <span className="font-medium">

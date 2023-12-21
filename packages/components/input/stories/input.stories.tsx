@@ -1,6 +1,6 @@
 import { DiscordColored, PasswordLockColored, Slack } from '@mochi-ui/icons'
 import type { Meta, StoryObj } from '@storybook/react'
-import { Avatar, AvatarSmallImage } from '@mochi-ui/avatar'
+import { Avatar } from '@mochi-ui/avatar'
 import {
   TextFieldRoot,
   TextFieldInput,
@@ -60,9 +60,11 @@ export function Slot() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
       <TextFieldRoot>
         <TextFieldDecorator>
-          <Avatar size="xs" src="https://mochi.gg/logo.png">
-            <AvatarSmallImage src="https://cdn.discordapp.com/emojis/1093923016691421205.png?size=240&quality=lossless" />
-          </Avatar>
+          <Avatar
+            size="xs"
+            smallSrc="https://cdn.discordapp.com/emojis/1093923016691421205.png?size=240&quality=lossless"
+            src="https://mochi.gg/logo.png"
+          />
         </TextFieldDecorator>
         <TextFieldInput placeholder="Search the docs…" />
       </TextFieldRoot>

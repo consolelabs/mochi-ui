@@ -20,7 +20,7 @@ export const TransactionUsernameCell = (props: ModelProfileTransaction) => {
   return (
     <div className="flex gap-[14px] items-center">
       <div className="relative h-10">
-        <Avatar src={from_profile?.avatar ?? ''} />
+        <Avatar src={from_profile?.avatar ?? ''} smallSrc="" />
         <div
           className={clsx(
             'absolute h-4 w-4',

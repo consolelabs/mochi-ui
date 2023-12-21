@@ -17,20 +17,19 @@ describe('ProfileBadge', () => {
 
   it('renders the platform icon', () => {
     const name = 'John Doe'
-    const avatar = 'https://mochi.gg/logo.png'
+    const avatar = 'https://example.com/avatar.png'
     const { container } = render(
       <ProfileBadge name={name} avatar={avatar} platform={platform} />,
     )
-    const images = container.querySelectorAll('img')
+    const images = container.querySelectorAll('image')
     expect(images.length).toBe(2)
 
     const [image1, image2] = Array.from(images)
-    expect(image1).toHaveAttribute('src', platform)
-    expect(image2).toHaveAttribute(
-      'src',
-      // fallback
-      'https://source.boringavatars.com/beam/120/John%20Doe?colors=665c52,74b3a7,a3ccaf,E6E1CF,CC5B14',
+    expect(image1).toHaveAttribute(
+      'xlink:href',
+      'https://example.com/avatar.png',
     )
+    expect(image2).toHaveAttribute('xlink:href', platform)
   })
 
   it('passes through additional props', () => {
