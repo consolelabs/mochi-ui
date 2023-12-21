@@ -36,7 +36,13 @@ export default function Header({ color, Icon, url, title }: Props) {
           {title}
         </Typography>
       </div>
-      <Tooltip content={hasCopied ? 'Copied!' : 'Copy link'}>
+      <Tooltip
+        componentProps={{
+          root: { open: hasCopied || undefined },
+          trigger: { asChild: true },
+        }}
+        content={hasCopied ? 'Copied!' : 'Copy link'}
+      >
         <button onClick={onCopy} type="button" className="outline-none">
           {hasCopied ? (
             <CheckLine className="relative w-4 h-4 text-white-pure" />

@@ -138,14 +138,12 @@ export default function PayCode({ payRequest }: Props) {
   return (
     <Layout noFooter className="bg-white lg:bg-white-pure">
       <div className="flex relative m-auto h-full lg:m-0">
-        <div className="hidden sticky top-0 -mt-14 w-1/2 h-screen lg:block">
-          <img
-            className="object-cover object-right absolute top-0 left-0 w-full h-full"
-            src="/pay-request-bg.png"
-            alt=""
-          />
-        </div>
-        <div className="flex justify-center items-center lg:w-1/2">
+        <img
+          className="hidden object-cover object-right w-1/2 h-full lg:block"
+          src="/pay-request-bg.png"
+          alt=""
+        />
+        <div className="flex justify-center items-center lg:w-1/2 h-[calc(100vh-56px)] overflow-auto p-10">
           <Comp data={payRequest} />
         </div>
       </div>

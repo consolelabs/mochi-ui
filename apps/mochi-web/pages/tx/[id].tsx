@@ -83,11 +83,11 @@ export default function Transfer({ data, ogData }: Props) {
       />
       <div className="flex relative m-auto h-full lg:m-0">
         <img
-          className="hidden lg:block object-cover object-[45%_center] sticky top-0 -mt-14 w-1/2 h-screen brightness-50"
+          className="hidden lg:block object-cover object-[45%_center] w-1/2 h-full brightness-50"
           src="/to-the-moon.png"
           alt=""
         />
-        <div className="my-auto lg:w-1/2">
+        <div className="p-10 h-[calc(100vh-56px)] lg:w-1/2 overflow-auto flex justify-center items-center">
           <Receipt data={data} />
         </div>
       </div>

@@ -28,7 +28,7 @@ export default function Avatar({
         <svg height="100%" role="none" viewBox="0 0 100 100" width="100%">
           <mask id={`circle-mask-${id}`}>
             <circle cx="50%" cy="50%" fill="white" r="50%" />
-            <circle cx="80%" cy="80%" fill="black" r="24%" />
+            <circle cx="80%" cy="80%" fill="black" r="20%" />
           </mask>
           <image
             height="100%"
@@ -44,11 +44,11 @@ export default function Avatar({
             className="overflow-hidden"
           />
           <image
-            height="40%"
-            width="40%"
-            x="60%"
+            height="33%"
+            width="33%"
+            x="63%"
             xlinkHref={smallSrc}
-            y="60%"
+            y="63%"
           />
         </svg>
       </div>
