@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import Avatar from '../src/avatar'
+import { DiscordColored } from '@mochi-ui/icons'
+import Avatar, { AvatarSmallImage, AvatarStatus } from '../src/avatar'
 
 const meta: Meta<typeof Avatar> = {
   title: 'Media & Icons/Avatar',
@@ -25,11 +26,21 @@ export const Default: Story = {
   render: () => {
     return (
       <div className="gap-3 flex">
-        <Avatar size="xs" src="https://mochi.gg/logo.png" />
-        <Avatar size="sm" src="https://mochi.gg/logo.png" />
         <Avatar src="https://mochi.gg/logo.png" />
-        <Avatar size="lg" src="https://mochi.gg/logo.png" />
-        <Avatar size="xl" src="https://mochi.gg/logo.png" />
+      </div>
+    )
+  },
+}
+
+export const SmallSrc: Story = {
+  render: () => {
+    return (
+      <div className="gap-3 flex">
+        {(['xs', 'sm', 'base', 'lg', 'xl'] as const).map((size) => (
+          <Avatar size={size} src="https://mochi.gg/logo.png">
+            <AvatarSmallImage src="https://cdn.discordapp.com/emojis/1093923016691421205.png?size=240&quality=lossless" />
+          </Avatar>
+        ))}
       </div>
     )
   },
@@ -39,40 +50,72 @@ export const Fallback: Story = {
   render: () => {
     return (
       <div className="gap-3 flex">
-        <Avatar size="lg" src="https://mochi.gg/notfound.png" />
+        <Avatar src="https://mochi.gg/notfound.png" />
       </div>
     )
   },
 }
 
-export const Cutout: Story = {
+export const Sizes: Story = {
   render: () => {
     return (
       <div className="gap-3 flex">
-        <Avatar
-          size="xs"
-          smallSrc="https://cdn.discordapp.com/emojis/1093923016691421205.png?size=240&quality=lossless"
-          src="https://mochi.gg/logo.png"
-        />
-        <Avatar
-          size="sm"
-          smallSrc="https://cdn.discordapp.com/emojis/1093923016691421205.png?size=240&quality=lossless"
-          src="https://mochi.gg/logo.png"
-        />
-        <Avatar
-          smallSrc="https://cdn.discordapp.com/emojis/1093923016691421205.png?size=240&quality=lossless"
-          src="https://mochi.gg/logo.png"
-        />
-        <Avatar
-          size="lg"
-          smallSrc="https://cdn.discordapp.com/emojis/1093923016691421205.png?size=240&quality=lossless"
-          src="https://mochi.gg/logo.png"
-        />
-        <Avatar
-          size="xl"
-          smallSrc="https://cdn.discordapp.com/emojis/1093923016691421205.png?size=240&quality=lossless"
-          src="https://mochi.gg/logo.png"
-        />
+        {(['xs', 'sm', 'base', 'lg', 'xl'] as const).map((size) => (
+          <Avatar size={size} src="https://mochi.gg/logo.png" />
+        ))}
+      </div>
+    )
+  },
+}
+
+export const Status: Story = {
+  render: () => {
+    return (
+      <div className="gap-3 flex">
+        {(
+          [
+            'primary',
+            'secondary',
+            'success',
+            'warning',
+            'danger',
+            'neutral',
+          ] as const
+        ).map((color) => (
+          <Avatar size="lg" src="https://mochi.gg/logo.png">
+            <AvatarStatus color={color} />
+          </Avatar>
+        ))}
+      </div>
+    )
+  },
+}
+
+export const StatusPosition: Story = {
+  render: () => {
+    return (
+      <div className="gap-3 flex">
+        {(
+          ['bottom-left', 'bottom-right', 'top-left', 'top-right'] as const
+        ).map((pos) => (
+          <Avatar size="lg" src="https://mochi.gg/logo.png">
+            <AvatarStatus position={pos} color="success" />
+          </Avatar>
+        ))}
+      </div>
+    )
+  },
+}
+
+export const CustomStatusIcon: Story = {
+  render: () => {
+    return (
+      <div>
+        <Avatar src="https://mochi.gg/logo.png">
+          <AvatarStatus position="bottom-right">
+            <DiscordColored />
+          </AvatarStatus>
+        </Avatar>
       </div>
     )
   },

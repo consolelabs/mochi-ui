@@ -1,4 +1,4 @@
-import { Typography, Avatar } from '@mochi-ui/core'
+import { Typography, Avatar, AvatarSmallImage } from '@mochi-ui/core'
 import clsx from 'clsx'
 import Image from 'next/image'
 import { coinIcon } from '~utils/image'
@@ -42,11 +42,9 @@ export default function UpperBody({
 
   return (
     <div className="flex flex-col items-center">
-      <Avatar
-        size="lg"
-        src={avatarUrl || '/logo.png'}
-        smallSrc={avatarPlatform}
-      />
+      <Avatar size="lg" src={avatarUrl || '/logo.png'}>
+        <AvatarSmallImage src={avatarPlatform} />
+      </Avatar>
       {/* TODO */}
       <Typography
         level="p6"

@@ -1,4 +1,4 @@
-import { Avatar } from '@mochi-ui/core'
+import { Avatar, AvatarSmallImage } from '@mochi-ui/core'
 import Image from 'next/image'
 import { hpbd, appreciation, achievement, wedding } from '~utils/image'
 
@@ -49,7 +49,9 @@ export default function Template({
         alt={title}
       />
       <div className="absolute bottom-0 left-1/2 p-1 rounded-full -translate-x-1/2 translate-y-1/2 bg-inherit">
-        <Avatar size="xl" src={avatar} smallSrc={platformIcon} />
+        <Avatar size="xl" src={avatar}>
+          <AvatarSmallImage src={platformIcon} />
+        </Avatar>
       </div>
     </div>
   )
