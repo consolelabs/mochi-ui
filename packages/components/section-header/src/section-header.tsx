@@ -59,7 +59,7 @@ const SectionHeaderDescription = ({
         className: wrapperClassName,
       })}
     >
-      {children ? (
+      {typeof children === 'string' ? (
         <Typography level="p5" color="textSecondary" className={className}>
           {children}
         </Typography>
