@@ -138,7 +138,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
       <button tabIndex={-1} onClick={onOpen} className="relative outline-none">
         <input
           readOnly
-          className="absolute top-0 left-0 w-full h-full bg-transparent border-0 cursor-pointer outline-none"
+          className="absolute top-0 left-0 w-full h-full bg-transparent border-0 outline-none cursor-pointer"
         />
         <TokenButton
           isToken={isTokenSelected}
@@ -176,11 +176,11 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
               />
             </TextFieldRoot>
             <Tab.Group selectedIndex={tabIdx} onChange={setTabIdx}>
-              <Tab.List className="flex gap-6 mt-2 w-full">
+              <Tab.List className="flex w-full gap-6 mt-2">
                 {TokenTabs.map((tab) => (
                   <Tab key={tab.key} className="focus-visible:outline-none">
                     {({ selected }) => (
-                      <div className="flex justify-start py-2 w-full">
+                      <div className="flex justify-start w-full py-2">
                         <h2
                           className={`text-sm ${
                             selected
@@ -196,7 +196,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
                 ))}
               </Tab.List>
               <Tab.Panels className="flex-1 w-full min-h-0">
-                <Tab.Panel className="flex flex-col gap-2 h-full">
+                <Tab.Panel className="flex flex-col h-full gap-2">
                   <TokenList
                     loading={isFetchingWallets}
                     data={filteredTokens}
@@ -206,7 +206,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
                     Only supported tokens are shown
                   </span>
                 </Tab.Panel>
-                <Tab.Panel className="flex flex-col gap-2 h-full">
+                <Tab.Panel className="flex flex-col h-full gap-2">
                   <MonikerList
                     balances={tokenBalances}
                     searchTerm={searchTerm}

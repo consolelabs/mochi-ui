@@ -194,7 +194,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
 
   return (
     <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-3">
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <TokenPicker
           authorized={authorized}
           unauthorizedContent={unauthorizedContent}
@@ -211,8 +211,8 @@ export const AmountInput: React.FC<AmountInputProps> = ({
           <ArrowUpDownLine />
         </IconButton>
       </div>
-      <div className="flex flex-col gap-y-2 py-6 px-4 rounded-lg bg-white-pure">
-        <div className="flex flex-1 justify-between items-center">
+      <div className="flex flex-col px-4 py-6 rounded-lg gap-y-2 bg-white-pure">
+        <div className="flex items-center justify-between flex-1">
           <div className="flex gap-x-1.5 items-end">
             {/* <span className="font-medium"> */}
             {/*   {!isUsdMode ? selectedAsset?.token.symbol : 'USD'} */}
@@ -234,7 +234,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
             {!isUsdMode ? 'USD' : selectedAsset?.token.symbol}
           </span>
         </div>
-        <div className="flex flex-1 justify-between items-center">
+        <div className="flex items-center justify-between flex-1">
           <button
             tabIndex={-1}
             type="button"
