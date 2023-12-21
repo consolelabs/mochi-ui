@@ -9,6 +9,9 @@ import {
   ActionBarIcon,
   ActionBarTitle,
   SectionHeader,
+  SectionHeaderActions,
+  SectionHeaderDescription,
+  SectionHeaderTitle,
   Skeleton,
   Switch,
   SwitchProps,
@@ -52,14 +55,21 @@ const NotificationSwitcherField = (
           htmlFor={id}
           className={clsx('block cursor-pointer select-none', className)}
         >
-          <SectionHeader
-            title={label}
-            className="!py-3"
-            titleClassName={clsx('!text-sm font-normal', {
-              '!py-0': !description,
-            })}
-            description={description}
-            actions={[
+          <SectionHeader className="!py-3" wrapActionsOnMobile={false}>
+            <SectionHeaderTitle
+              className={clsx(
+                '!col-span-2 !col-end-3 pr-14 !text-sm font-normal',
+                {
+                  '!py-0': !description,
+                },
+              )}
+            >
+              {label}
+            </SectionHeaderTitle>
+            <SectionHeaderDescription className="!col-span-2 !col-end-3 pr-14">
+              {description}
+            </SectionHeaderDescription>
+            <SectionHeaderActions>
               <Switch
                 id={id}
                 key="switch"
@@ -67,9 +77,9 @@ const NotificationSwitcherField = (
                 {...restProps}
                 checked={value}
                 onCheckedChange={onChange}
-              />,
-            ]}
-          />
+              />
+            </SectionHeaderActions>
+          </SectionHeader>
         </label>
       )}
     />
@@ -103,7 +113,7 @@ export function NotificationPage() {
     const body: RequestUpdateNotificationSettingPayloadRequest = {
       enable: enable ?? false,
       platforms,
-      flag: restData,
+      flag: restData as Record<string, boolean | any>,
     }
     try {
       const { data: newSettings }: ResponseUserNotificationSettingResponse =
@@ -160,21 +170,23 @@ export function NotificationPage() {
                 htmlFor="enable"
                 className="block cursor-pointer select-none"
               >
-                <SectionHeader
-                  title="Notification"
-                  className="!py-4"
-                  titleClassName="!text-base font-normal"
-                  description="Select the event you want to receive notifications for"
-                  actions={[
+                <SectionHeader className="!py-4" wrapActionsOnMobile={false}>
+                  <SectionHeaderTitle className="!col-span-2 !col-end-3 pr-14 !text-base font-normal">
+                    Notification
+                  </SectionHeaderTitle>
+                  <SectionHeaderDescription className="!col-span-2 !col-end-3 pr-14">
+                    Select the event you want to receive notifications for
+                  </SectionHeaderDescription>
+                  <SectionHeaderActions>
                     <Switch
                       id="enable"
                       key="switch"
                       {...restFields}
                       checked={value}
                       onCheckedChange={onChange}
-                    />,
-                  ]}
-                />
+                    />
+                  </SectionHeaderActions>
+                </SectionHeader>
               </label>
             )}
           />

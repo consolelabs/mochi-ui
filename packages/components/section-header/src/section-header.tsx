@@ -1,82 +1,94 @@
 import { Typography } from '@mochi-ui/typography'
 import { sectionHeader } from '@mochi-ui/theme'
-import { Fragment, ReactNode } from 'react'
-
-type SectionHeaderProps = {
-  title: ReactNode
-  titleClassName?: string
-  description?: ReactNode
-  descriptionClassName?: string
-  actions?: JSX.Element[]
-  actionsWrapperClassName?: string
-  className?: string
-}
+import {
+  SectionHeaderTitleProps,
+  SectionHeaderDescriptionProps,
+  SectionHeaderActionsProps,
+  SectionHeaderProps,
+} from './type'
+import {
+  SectionHeaderContextProvider,
+  useSectionHeaderContext,
+} from './context'
 
 const {
   sectionHeaderWrapperClsx,
-  sectionHeaderLeftClsx,
-  sectionHeaderTitleWrapperClsx,
+  sectionHeaderDescriptionClsx,
   sectionHeaderTitleClsx,
-  sectionHeaderActionsWrapperClsx,
+  sectionHeaderActionsClsx,
 } = sectionHeader
 
-const SectionHeader = (props: SectionHeaderProps) => {
-  const {
-    title,
-    titleClassName,
-    description,
-    descriptionClassName,
-    actions = [],
-    actionsWrapperClassName,
-    className,
-    ...rest
-  } = props
-
+const SectionHeaderTitle = ({
+  children,
+  className,
+}: SectionHeaderTitleProps) => {
   return (
-    <header className={sectionHeaderWrapperClsx({ className })} {...rest}>
-      <div className={sectionHeaderLeftClsx()}>
-        <div>
-          <div className={sectionHeaderTitleWrapperClsx()}>
-            {typeof title === 'string' ? (
-              <Typography
-                level="h6"
-                color="textPrimary"
-                className={sectionHeaderTitleClsx({
-                  className: titleClassName,
-                })}
-              >
-                {title}
-              </Typography>
-            ) : (
-              title
-            )}
-          </div>
-
-          {description ? (
-            <Typography
-              level="p5"
-              color="textSecondary"
-              className={descriptionClassName}
-            >
-              {description}
-            </Typography>
-          ) : null}
-        </div>
-      </div>
-
-      {actions.length ? (
-        <div
-          className={sectionHeaderActionsWrapperClsx({
-            className: actionsWrapperClassName,
-          })}
-        >
-          {actions.map((action, index) => (
-            <Fragment key={index}>{action}</Fragment>
-          ))}
-        </div>
-      ) : null}
-    </header>
+    <Typography
+      level="h6"
+      color="textPrimary"
+      className={sectionHeaderTitleClsx({
+        className,
+      })}
+    >
+      {children}
+    </Typography>
   )
 }
 
-export { SectionHeader, type SectionHeaderProps }
+const SectionHeaderDescription = ({
+  children,
+  className,
+}: SectionHeaderDescriptionProps) => {
+  return (
+    <Typography
+      level="p5"
+      color="textSecondary"
+      className={sectionHeaderDescriptionClsx({
+        className,
+      })}
+    >
+      {children}
+    </Typography>
+  )
+}
+
+const SectionHeaderActions = ({
+  children,
+  className,
+}: SectionHeaderActionsProps) => {
+  const { wrapActionsOnMobile } = useSectionHeaderContext()
+
+  return (
+    <div
+      className={sectionHeaderActionsClsx({ className, wrapActionsOnMobile })}
+    >
+      {children}
+    </div>
+  )
+}
+
+const SectionHeader = (props: SectionHeaderProps) => {
+  const { children, className, wrapActionsOnMobile = true, ...rest } = props
+
+  return (
+    <SectionHeaderContextProvider value={{ wrapActionsOnMobile }}>
+      <div
+        className={sectionHeaderWrapperClsx({ className, wrapActionsOnMobile })}
+        {...rest}
+      >
+        {children}
+      </div>
+    </SectionHeaderContextProvider>
+  )
+}
+
+export {
+  SectionHeader,
+  SectionHeaderTitle,
+  SectionHeaderDescription,
+  SectionHeaderActions,
+  type SectionHeaderProps,
+  type SectionHeaderTitleProps,
+  type SectionHeaderDescriptionProps,
+  type SectionHeaderActionsProps,
+}
