@@ -1,6 +1,5 @@
 import { cleanup, render } from '@testing-library/react'
-import Avatar, { AvatarSmallImage } from '../src/avatar'
-import { boringAvatar } from '../src/util'
+import Avatar from '../src/avatar'
 
 describe('Avatar', () => {
   afterEach(cleanup)
@@ -9,21 +8,22 @@ describe('Avatar', () => {
       <Avatar
         size="sm"
         src="https://ui-avatars.com/api/?name=John+Doe"
-        fallback="fallback"
-      >
-        <AvatarSmallImage src="https://ui-avatars.com/api/?name=Adam+Smith" />
-      </Avatar>,
+        smallSrc="https://ui-avatars.com/api/?name=Adam+Smith"
+      />,
     )
-    expect(container.querySelector('img')).toBeInTheDocument()
-    const images = container.querySelectorAll('img')
+    expect(container.querySelector('svg')).toBeInTheDocument()
+    const images = container.querySelectorAll('image')
     expect(images.length).toBe(2)
 
     const [image1, image2] = Array.from(images)
     expect(image1).toHaveAttribute(
-      'src',
+      'xlink:href',
+      'https://ui-avatars.com/api/?name=John+Doe',
+    )
+    expect(image2).toHaveAttribute(
+      'xlink:href',
       'https://ui-avatars.com/api/?name=Adam+Smith',
     )
-    expect(image2).toHaveAttribute('src', boringAvatar('fallback'))
   })
 
   it('renders correctly with fallback name', () => {

@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-key */
 import { ArrowRightLine } from '@mochi-ui/icons'
-import { Avatar, AvatarSmallImage, Badge } from '@mochi-ui/core'
+import { Avatar, Badge } from '@mochi-ui/core'
 import React from 'react'
 import { Tx } from './store'
 import RowCell from './RowCell'
@@ -8,9 +8,12 @@ import RowCell from './RowCell'
 export default function Row({ tx, colWidth }: { tx: Tx; colWidth: string[] }) {
   return [
     <RowCell className="flex gap-x-2 items-center" width="">
-      <Avatar src={tx.fromAvatar} fallback={tx.from} size="sm">
-        <AvatarSmallImage src={tx.platformIcon} />
-      </Avatar>
+      <Avatar
+        smallSrc={tx.platformIcon}
+        src={tx.fromAvatar}
+        fallback={tx.from}
+        size="sm"
+      />
       <div className="flex flex-col justify-between min-w-0">
         <span className="text-sm leading-5 break-words truncate text-white-pure">
           {tx.from}
@@ -23,9 +26,12 @@ export default function Row({ tx, colWidth }: { tx: Tx; colWidth: string[] }) {
       </div>
     </RowCell>,
     <RowCell className="flex gap-x-2 items-center" width="">
-      <Avatar src={tx.toAvatar} fallback={tx.to} size="sm">
-        <AvatarSmallImage src={tx.toPlatformIcon} />
-      </Avatar>
+      <Avatar
+        smallSrc={tx.toPlatformIcon}
+        src={tx.toAvatar}
+        fallback={tx.to}
+        size="sm"
+      />
       <div className="flex flex-col justify-between min-w-0">
         <span className="text-sm leading-5 break-words truncate text-white-pure">
           {tx.to}

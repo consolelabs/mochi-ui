@@ -1,11 +1,4 @@
-import {
-  Avatar,
-  AvatarSmallImage,
-  Button,
-  ColumnProps,
-  Table,
-  Typography,
-} from '@mochi-ui/core'
+import { Avatar, Button, ColumnProps, Table, Typography } from '@mochi-ui/core'
 import { useFetchPayRequests } from '~hooks/profile/useFetchPayRequests'
 import { useProfileStore } from '~store'
 import { ModelPayRequest } from '~types/mochi-pay-schema'
@@ -27,9 +20,7 @@ const Sender: ColumnProps<ModelPayRequest>['cell'] = (props) => {
 
   return (
     <div className="flex items-center space-x-3.5">
-      <Avatar size="base" src={toAvatar}>
-        <AvatarSmallImage src={platformIcon} />
-      </Avatar>
+      <Avatar size="base" smallSrc={platformIcon} src={toAvatar} />
       <div>
         <Typography level="h8">{to}</Typography>
         <Typography level="p6" color="textSecondary">

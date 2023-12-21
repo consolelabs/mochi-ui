@@ -5,7 +5,7 @@ import { Platform, utils as mochiUtils } from '@consolelabs/mochi-ui'
 import { Icon } from '@iconify/react'
 import { Stats } from '@consolelabs/mochi-rest'
 import { discordLogo, telegramLogo } from '~utils/image'
-import { Avatar, AvatarSmallImage } from '@mochi-ui/core'
+import { Avatar } from '@mochi-ui/core'
 import { Pagination } from './Dashboard/Pagination'
 import { NativeImage } from './NativeImage'
 
@@ -144,11 +144,11 @@ export default function Profile() {
             <Box
               icon={
                 stats?.most_send.profile.platformIcon ? (
-                  <Avatar src={stats.most_send.profile.avatar} size="sm">
-                    <AvatarSmallImage
-                      src={stats.most_send.profile.platformIcon}
-                    />
-                  </Avatar>
+                  <Avatar
+                    src={stats.most_send.profile.avatar}
+                    smallSrc={stats.most_send.profile.platformIcon}
+                    size="sm"
+                  />
                 ) : null
               }
             >
@@ -171,11 +171,11 @@ export default function Profile() {
             <Box
               icon={
                 stats?.most_receive.profile.platformIcon ? (
-                  <Avatar src={stats?.most_receive.profile.avatar} size="sm">
-                    <AvatarSmallImage
-                      src={stats.most_receive.profile.platformIcon}
-                    />
-                  </Avatar>
+                  <Avatar
+                    src={stats?.most_receive.profile.avatar}
+                    smallSrc={stats.most_receive.profile.platformIcon}
+                    size="sm"
+                  />
                 ) : null
               }
             >
