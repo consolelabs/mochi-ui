@@ -17,6 +17,7 @@ import {
   ProfileGuardSuccessLine,
   Spinner,
   UserSolid,
+  GoogleColored,
 } from '@mochi-ui/icons'
 import { useDebounce, useDisclosure } from '@dwarvesf/react-hooks'
 import BottomSheetProvider, { BottomSheet } from '~cpn/BottomSheet'
@@ -168,6 +169,16 @@ export const Recipient: React.FC<RecipientProps> = ({
       )
       setSearchTerm('')
       setSelectedPlatform(Platforms[1])
+      return
+    }
+    if (['email:', 'mail:', 'gmail:'].includes(val.toLowerCase())) {
+      setPrefix(
+        <>
+          <GoogleColored className="w-4 h-4" /> <span>Gmail:</span>
+        </>,
+      )
+      setSearchTerm('')
+      setSelectedPlatform(Platforms[2])
       return
     }
     setSearchTerm(e.target.value)
