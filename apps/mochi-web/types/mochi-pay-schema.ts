@@ -569,6 +569,10 @@ export interface ViewFullApplicationResponse {
   data?: ViewFullApplication
 }
 
+export interface ViewGetApplicationWalletsResponse {
+  data?: ModelInAppWallet[]
+}
+
 export interface ViewListPayRequestsResponse {
   data?: ModelPayRequest[]
   pagination?: ViewPaginationResponse

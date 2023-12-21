@@ -1,41 +1,19 @@
 import useSWR from 'swr'
+import { API, GET_PATHS } from '~constants/api'
+import { ResponseUserNotificationSettingResponse } from '~types/mochi-schema'
 
 export const NOTIFICATION_SETTING_KEY = 'NOTIFICATION_SETTING_KEY'
 
-export const useFetchNotificationSettings = () => {
-  const { data, ...rest } = useSWR(
-    [NOTIFICATION_SETTING_KEY],
-    () =>
-      new Promise<any>((r) => {
-        setTimeout(() => {
-          r({
-            data: {
-              enableNotification: false,
-              receiveTip: false,
-              receiveAirdrops: false,
-              depositCompleted: false,
-              withdrawalCompleted: false,
-              walletTransactions: false,
-              paymentRequestExpired: false,
-              paymentRequestCompleted: false,
-              paylinkExpired: false,
-              paylinkClaimedByAnother: false,
-              paylinkClaimed: false,
-              newConfiguration: false,
-              newVaultTransactions: false,
-              informationChanged: false,
-              newApiCall: false,
-              newMember: false,
-              discord: false,
-              telegram: false,
-              website: false,
-            },
-          })
-        }, 1000)
-      }),
+export const useFetchNotificationSettings = (id?: string) => {
+  const { data, ...rest } = useSWR<ResponseUserNotificationSettingResponse>(
+    id ? [NOTIFICATION_SETTING_KEY, id] : null,
+    async () =>
+      API.MOCHI.get(GET_PATHS.PROFILE_SETTING_NOTIFICATION(id as string)).json(
+        (r) => r,
+      ),
   )
   return {
-    notiSettings: data?.data,
+    settings: data?.data,
     ...rest,
   }
 }
