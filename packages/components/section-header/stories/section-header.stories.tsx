@@ -74,29 +74,25 @@ export function Default() {
   return (
     <div className="flex flex-col gap-6">
       <SectionHeader>
-        <SectionHeaderTitle>
-          Platform Notification
-          <SectionHeaderDescription>
-            Select the platform you want to receive the notification
-          </SectionHeaderDescription>
-        </SectionHeaderTitle>
+        <SectionHeaderTitle>Platform Notification</SectionHeaderTitle>
+        <SectionHeaderDescription>
+          Select the platform you want to receive the notification
+        </SectionHeaderDescription>
       </SectionHeader>
 
       <SectionHeader>
-        <SectionHeaderTitle>
-          Apps Activity
-          <SectionHeaderDescription>
-            Lorem ipsum dolor sit amet consectetur. Sed turpis eget sed nullam
-            volutpat integer posuere.
-          </SectionHeaderDescription>
-        </SectionHeaderTitle>
+        <SectionHeaderTitle>Apps Activity</SectionHeaderTitle>
+        <SectionHeaderDescription>
+          Lorem ipsum dolor sit amet consectetur. Sed turpis eget sed nullam
+          volutpat integer posuere.
+        </SectionHeaderDescription>
         <SectionHeaderActions className="flex-nowrap">
           {actions}
         </SectionHeaderActions>
       </SectionHeader>
 
       <SectionHeader>
-        <SectionHeaderTitle wrapperClassName="flex !flex-row items-center justify-between">
+        <SectionHeaderTitle wrapperClassName="flex !flex-row items-center justify-between !col-span-2 !col-end-3">
           Communities Activities
           <IconButton label="Open menu" variant="link" color="info">
             <ThreeDotsLine className="text-2xl" aria-hidden />

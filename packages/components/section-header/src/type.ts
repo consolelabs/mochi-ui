@@ -14,9 +14,11 @@ export type SectionHeaderTitleProps = {
 export type SectionHeaderDescriptionProps = {
   children: ReactNode
   className?: string
+  wrapperClassName?: string
 }
 
 export type SectionHeaderActionsProps = {
   children: ReactNode
   className?: string
+  wrapperClassName?: string
 }

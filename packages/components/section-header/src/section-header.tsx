@@ -1,4 +1,3 @@
-import { Children, Fragment } from 'react'
 import { Typography } from '@mochi-ui/typography'
 import { sectionHeader } from '@mochi-ui/theme'
 import {
@@ -11,8 +10,10 @@ import {
 const {
   sectionHeaderWrapperClsx,
   sectionHeaderTitleWrapperClsx,
+  sectionHeaderDescriptionWrapperClsx,
   sectionHeaderTitleClsx,
   sectionHeaderActionsWrapperClsx,
+  sectionHeaderActionsClsx,
 } = sectionHeader
 
 const SectionHeaderTitle = ({
@@ -20,14 +21,11 @@ const SectionHeaderTitle = ({
   wrapperClassName,
   className,
 }: SectionHeaderTitleProps) => {
-  const childNodes = Children.toArray(children)
-  const [title, ...restChild] = childNodes
-
   return (
     <div
       className={sectionHeaderTitleWrapperClsx({ className: wrapperClassName })}
     >
-      {typeof title === 'string' ? (
+      {typeof children === 'string' ? (
         <Typography
           level="h6"
           color="textPrimary"
@@ -35,15 +33,11 @@ const SectionHeaderTitle = ({
             className,
           })}
         >
-          {title}
+          {children}
         </Typography>
       ) : (
-        title
+        children
       )}
-
-      {restChild.map((child, index) => (
-        <Fragment key={index}>{child}</Fragment>
-      ))}
     </div>
   )
 }
@@ -51,32 +45,35 @@ const SectionHeaderTitle = ({
 const SectionHeaderDescription = ({
   children,
   className,
+  wrapperClassName,
 }: SectionHeaderDescriptionProps) => {
-  const childNodes = Children.toArray(children)
-  const [description, ...restChild] = childNodes
-
   return (
-    <>
-      {description ? (
+    <div
+      className={sectionHeaderDescriptionWrapperClsx({
+        className: wrapperClassName,
+      })}
+    >
+      {children ? (
         <Typography level="p5" color="textSecondary" className={className}>
-          {description}
+          {children}
         </Typography>
       ) : null}
-
-      {restChild.map((child, index) => (
-        <Fragment key={index}>{child}</Fragment>
-      ))}
-    </>
+    </div>
   )
 }
 
 const SectionHeaderActions = ({
   children,
   className,
+  wrapperClassName,
 }: SectionHeaderActionsProps) => {
   return (
-    <div className={sectionHeaderActionsWrapperClsx({ className })}>
-      {children}
+    <div
+      className={sectionHeaderActionsWrapperClsx({
+        className: wrapperClassName,
+      })}
+    >
+      <div className={sectionHeaderActionsClsx({ className })}>{children}</div>
     </div>
   )
 }
