@@ -2,13 +2,19 @@ import { cva, VariantProps } from 'class-variance-authority'
 
 const group = 'space-y-1'
 
-const iconChevron = cva(['text-sm'], {
+const iconChevron = cva([], {
   variants: {
     color: {
       primary: ['!text-primary-outline-fg'],
     },
+    appearance: {
+      form: ['text-base'],
+      button: ['text-sm'],
+    },
   },
-  defaultVariants: {},
+  defaultVariants: {
+    appearance: 'button',
+  },
 })
 
 const content = 'relative z-50 w-fit'
@@ -31,13 +37,17 @@ const itemCva = cva(
   [
     'flex gap-2 items-center',
     'transition duration-100',
-    'text-sm rounded-lg',
+    'text-sm',
     'focus-visible:outline-none',
   ],
   {
     variants: {
       disabled: {
-        true: ['pointer-events-none', 'text-text-secondary'],
+        true: [
+          'pointer-events-none',
+          'text-text-secondary',
+          'cursor-not-allowed',
+        ],
         false: ['text-text-primary'],
       },
       isTrigger: {
@@ -47,11 +57,10 @@ const itemCva = cva(
           'hover:outline-none focus:outline-none',
           'cursor-pointer',
           'p-2',
+          'rounded-lg',
         ],
         true: [
-          'px-3 py-1.5',
-          'font-semibold',
-          'border border-transparent hover:border-primary-solid-focus',
+          'border hover:border-primary-solid-focus',
           'focus:ring focus:ring-primary-outline-active',
           'hover:outline-none focus:outline-none',
         ],
@@ -65,12 +74,42 @@ const itemCva = cva(
       hasPadding: {
         false: ['!p-1 !rounded-md'],
       },
+      isFilled: {
+        true: [],
+        false: [],
+      },
+      appearance: {
+        form: [
+          'px-3.5 py-2.5',
+          'rounded-md',
+          'border-neutral-outline-border',
+          'shadow-sm',
+          'justify-between',
+        ],
+        button: [
+          'px-3 py-1.5',
+          'rounded-lg',
+          'border-transparent',
+          'font-semibold',
+        ],
+      },
     },
+    compoundVariants: [
+      {
+        appearance: 'form',
+        disabled: true,
+        className: ['bg-background-level2'],
+      },
+      {
+        appearance: 'form',
+        isFilled: false,
+        className: ['text-text-secondary'],
+      },
+    ],
     defaultVariants: {
       disabled: false,
       isTrigger: false,
       isError: false,
-      hasPadding: true,
     },
   },
 )

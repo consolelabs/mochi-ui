@@ -350,3 +350,63 @@ export const Error: StoryObj = {
     )
   },
 }
+
+export const FormAppearance: StoryObj = {
+  render() {
+    return (
+      <div className="w-[340px] flex flex-col items-stretch gap-4">
+        <Select>
+          <SelectTrigger appearance="form">
+            <SelectValue placeholder="Select" />
+          </SelectTrigger>
+          <SelectContent className="min-w-[200px]">
+            {items.map(({ key, label, value }) => (
+              <SelectItem key={key} value={value}>
+                {label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        <Select>
+          <SelectTrigger appearance="form" disabled>
+            <SelectValue placeholder="Select" />
+          </SelectTrigger>
+          <SelectContent className="min-w-[200px]">
+            {items.map(({ key, label, value }) => (
+              <SelectItem key={key} value={value}>
+                {label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        <Select>
+          <SelectTrigger appearance="form" isError>
+            <SelectValue placeholder="Select" />
+          </SelectTrigger>
+          <SelectContent className="min-w-[200px]">
+            {items.map(({ key, label, value }) => (
+              <SelectItem key={key} value={value}>
+                {label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        <Select defaultValue="1">
+          <SelectTrigger appearance="form">
+            <SelectValue placeholder="Select" />
+          </SelectTrigger>
+          <SelectContent className="min-w-[200px]">
+            {items.map(({ key, label, value }) => (
+              <SelectItem key={key} value={value}>
+                {label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+    )
+  },
+}

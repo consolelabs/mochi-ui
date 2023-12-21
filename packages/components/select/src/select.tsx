@@ -1,4 +1,4 @@
-import type { ComponentPropsWithoutRef, ElementRef } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, useState } from 'react'
 import { select } from '@mochi-ui/theme'
 import { forwardRef } from 'react'
 import * as SelectPrimitive from '@radix-ui/react-select'
@@ -13,12 +13,26 @@ import {
   type SelectGroupRef,
   SelectGroupProps,
 } from './type'
+import { SelectContextProvider, useSelectContext } from './context'
 
 function Select(props: SelectProps) {
-  const { onChange } = props
+  const { onChange, defaultValue, value } = props
+  const [isFilled, setIsFilled] = useState(!!defaultValue || !!value)
   return (
     // Root has no ref
-    <SelectPrimitive.Root onValueChange={onChange} {...props} />
+    <SelectContextProvider value={{ isFilled }}>
+      <SelectPrimitive.Root
+        onValueChange={(value) => {
+          onChange?.(value)
+          if (!isFilled) {
+            setIsFilled(true)
+          }
+        }}
+        {...props}
+        defaultValue={defaultValue}
+        value={value}
+      />
+    </SelectContextProvider>
   )
 }
 Select.displayName = SelectPrimitive.Root.displayName
@@ -50,9 +64,12 @@ const SelectTrigger = forwardRef<SelectTriggerRef, SelectTriggerProps>(
       leftIcon,
       isError,
       color,
-      hasPadding,
+      hasPadding = true,
+      appearance = 'button',
       ...restProps
     } = props
+    const { isFilled } = useSelectContext()
+
     return (
       <SelectPrimitive.Trigger
         asChild={asChild}
@@ -63,6 +80,8 @@ const SelectTrigger = forwardRef<SelectTriggerRef, SelectTriggerProps>(
           isError,
           color,
           hasPadding,
+          appearance,
+          isFilled,
         })}
         disabled={disabled}
         ref={ref}
@@ -87,6 +106,7 @@ const SelectTrigger = forwardRef<SelectTriggerRef, SelectTriggerProps>(
                   <ChevronDownLine
                     className={select.iconChevron({
                       color,
+                      appearance,
                     })}
                   />
                 )}
