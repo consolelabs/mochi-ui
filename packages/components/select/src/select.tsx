@@ -1,6 +1,10 @@
-import { ComponentPropsWithoutRef, ElementRef, useState } from 'react'
+import {
+  ComponentPropsWithoutRef,
+  ElementRef,
+  useState,
+  forwardRef,
+} from 'react'
 import { select } from '@mochi-ui/theme'
-import { forwardRef } from 'react'
 import * as SelectPrimitive from '@radix-ui/react-select'
 import clsx from 'clsx'
 import { CheckLine, ChevronDownLine } from '@mochi-ui/icons'
