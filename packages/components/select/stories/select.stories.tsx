@@ -104,6 +104,74 @@ export const Default: StoryObj = {
   },
 }
 
+export const TriggerColor: StoryObj = {
+  render() {
+    return (
+      <div className="flex gap-4">
+        <Select>
+          <SelectTrigger>
+            <SelectValue placeholder="Select" />
+          </SelectTrigger>
+          <SelectContent className="min-w-[200px]">
+            {items.map(({ key, label, value }) => (
+              <SelectItem key={key} value={value}>
+                {label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        <Select>
+          <SelectTrigger color="primary">
+            <SelectValue placeholder="Select" />
+          </SelectTrigger>
+          <SelectContent className="min-w-[200px]">
+            {items.map(({ key, label, value }) => (
+              <SelectItem key={key} value={value}>
+                {label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+    )
+  },
+}
+
+export const TriggerPadding: StoryObj = {
+  render() {
+    return (
+      <div className="flex gap-4 items-center">
+        <Select>
+          <SelectTrigger color="primary">
+            <SelectValue placeholder="Select" />
+          </SelectTrigger>
+          <SelectContent className="min-w-[200px]">
+            {items.map(({ key, label, value }) => (
+              <SelectItem key={key} value={value}>
+                {label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        <Select>
+          <SelectTrigger color="primary" hasPadding={false}>
+            <SelectValue placeholder="Select" />
+          </SelectTrigger>
+          <SelectContent className="min-w-[200px]">
+            {items.map(({ key, label, value }) => (
+              <SelectItem key={key} value={value}>
+                {label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+    )
+  },
+}
+
 export const WithCustomTriggerLabel: StoryObj = {
   render() {
     /* eslint-disable react-hooks/rules-of-hooks -- for demonstration */
@@ -255,6 +323,25 @@ export const Disabled: StoryObj = {
               value={value}
               disabled
             >
+              {label}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    )
+  },
+}
+
+export const Error: StoryObj = {
+  render() {
+    return (
+      <Select>
+        <SelectTrigger isError>
+          <SelectValue placeholder="Select" />
+        </SelectTrigger>
+        <SelectContent className="min-w-[200px]">
+          {items.map(({ key, label, value }) => (
+            <SelectItem key={key} value={value}>
               {label}
             </SelectItem>
           ))}

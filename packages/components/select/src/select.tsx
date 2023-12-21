@@ -48,6 +48,9 @@ const SelectTrigger = forwardRef<SelectTriggerRef, SelectTriggerProps>(
       hideRightIcon,
       rightIcon,
       leftIcon,
+      isError,
+      color,
+      hasPadding,
       ...restProps
     } = props
     return (
@@ -57,6 +60,9 @@ const SelectTrigger = forwardRef<SelectTriggerRef, SelectTriggerProps>(
           isTrigger: true,
           disabled,
           className,
+          isError,
+          color,
+          hasPadding,
         })}
         disabled={disabled}
         ref={ref}
@@ -78,7 +84,11 @@ const SelectTrigger = forwardRef<SelectTriggerRef, SelectTriggerProps>(
                 className={select.iconWrapperCva({ isRightIcon: true })}
               >
                 {rightIcon ?? (
-                  <ChevronDownLine className={select.iconChevron} />
+                  <ChevronDownLine
+                    className={select.iconChevron({
+                      color,
+                    })}
+                  />
                 )}
               </SelectPrimitive.Icon>
             )}

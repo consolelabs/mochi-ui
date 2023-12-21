@@ -2,7 +2,14 @@ import { cva, VariantProps } from 'class-variance-authority'
 
 const group = 'space-y-1'
 
-const iconChevron = 'text-sm'
+const iconChevron = cva(['text-sm'], {
+  variants: {
+    color: {
+      primary: ['!text-primary-outline-fg'],
+    },
+  },
+  defaultVariants: {},
+})
 
 const content = 'relative z-50 w-fit'
 
@@ -24,7 +31,7 @@ const itemCva = cva(
   [
     'flex gap-2 items-center',
     'transition duration-100',
-    'text-sm rounded-md',
+    'text-sm rounded-lg',
     'focus-visible:outline-none',
   ],
   {
@@ -35,18 +42,35 @@ const itemCva = cva(
       },
       isTrigger: {
         false: [
-          'font-medium ',
-          'hover:bg-neutral-plain-hover',
+          'font-medium',
+          'hover:bg-neutral-plain-hover focus:bg-neutral-plain-hover',
           'hover:outline-none focus:outline-none',
           'cursor-pointer',
-          'p-2 ',
+          'p-2',
         ],
-        true: ['px-2 py-1.5', 'font-semibold', 'shadow-sm'],
+        true: [
+          'px-3 py-1.5',
+          'font-semibold',
+          'border border-transparent hover:border-primary-solid-focus',
+          'focus:ring focus:ring-primary-outline-active',
+          'hover:outline-none focus:outline-none',
+        ],
+      },
+      isError: {
+        true: ['!border-danger-outline-border', 'focus:!ring-0'],
+      },
+      color: {
+        primary: ['bg-primary-outline'],
+      },
+      hasPadding: {
+        false: ['!p-1 !rounded-md'],
       },
     },
     defaultVariants: {
       disabled: false,
       isTrigger: false,
+      isError: false,
+      hasPadding: true,
     },
   },
 )
