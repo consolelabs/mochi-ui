@@ -25,12 +25,8 @@ describe('Section Header', () => {
 
     const { container } = render(
       <SectionHeader>
-        <SectionHeaderTitle>
-          Section Title
-          <SectionHeaderDescription>
-            {descriptionValue}
-          </SectionHeaderDescription>
-        </SectionHeaderTitle>
+        <SectionHeaderTitle>Section Title</SectionHeaderTitle>
+        <SectionHeaderDescription>{descriptionValue}</SectionHeaderDescription>
       </SectionHeader>,
     )
 
