@@ -36,6 +36,7 @@ const TopProgressBar = dynamic(() => import('~app/layout/nprogress'), {
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
   layoutType?: 'dashboard' | 'landing'
+  renderType?: 'ssr' | 'csr'
 }
 
 type AppPropsWithLayout = AppProps & {
@@ -75,7 +76,7 @@ function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
   )
 }
 
-export default function App(props: AppPropsWithLayout) {
+const InnerAppTwo = (props: AppPropsWithLayout) => {
   useEffect(() => {
     async function loadExternalScript() {
       await import('focus-visible')
@@ -99,4 +100,14 @@ export default function App(props: AppPropsWithLayout) {
       </WalletProvider>
     </StrictMode>
   )
+}
+
+export default function App(props: AppPropsWithLayout) {
+  const { Component, pageProps } = props
+
+  if (Component.renderType === 'ssr') {
+    return <Component {...pageProps} />
+  }
+
+  return <InnerAppTwo {...props} />
 }
