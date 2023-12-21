@@ -5,10 +5,10 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   try {
-    const response = await fetch('https://beta.mochi.gg/tx/e39b334f7d0c')
+    const response = await fetch(`${process.env.VERCEL_URL}/tx/e39b334f7d0c`)
     if (response.ok) {
       // Request was successful
-      res.status(200).json({ success: true, url: process.env.VERCEL_URL })
+      res.status(200).json({ success: true })
     } else {
       // Request failed
       res.status(500).json({ success: false })
