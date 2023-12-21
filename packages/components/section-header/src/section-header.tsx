@@ -13,82 +13,56 @@ import {
 
 const {
   sectionHeaderWrapperClsx,
-  sectionHeaderTitleWrapperClsx,
-  sectionHeaderDescriptionWrapperClsx,
+  sectionHeaderDescriptionClsx,
   sectionHeaderTitleClsx,
-  sectionHeaderActionsWrapperClsx,
   sectionHeaderActionsClsx,
 } = sectionHeader
 
 const SectionHeaderTitle = ({
   children,
-  wrapperClassName,
   className,
 }: SectionHeaderTitleProps) => {
   return (
-    <div
-      className={sectionHeaderTitleWrapperClsx({
-        className: wrapperClassName,
+    <Typography
+      level="h6"
+      color="textPrimary"
+      className={sectionHeaderTitleClsx({
+        className,
       })}
     >
-      {typeof children === 'string' ? (
-        <Typography
-          level="h6"
-          color="textPrimary"
-          className={sectionHeaderTitleClsx({
-            className,
-          })}
-        >
-          {children}
-        </Typography>
-      ) : (
-        children
-      )}
-    </div>
+      {children}
+    </Typography>
   )
 }
 
 const SectionHeaderDescription = ({
   children,
   className,
-  wrapperClassName,
 }: SectionHeaderDescriptionProps) => {
   return (
-    <div
-      className={sectionHeaderDescriptionWrapperClsx({
-        className: wrapperClassName,
+    <Typography
+      level="p5"
+      color="textSecondary"
+      className={sectionHeaderDescriptionClsx({
+        className,
       })}
     >
-      {typeof children === 'string' ? (
-        <Typography level="p5" color="textSecondary" className={className}>
-          {children}
-        </Typography>
-      ) : (
-        children
-      )}
-    </div>
+      {children}
+    </Typography>
   )
 }
 
 const SectionHeaderActions = ({
   children,
   className,
-  wrapperClassName,
 }: SectionHeaderActionsProps) => {
   const { wrapActionsOnMobile } = useSectionHeaderContext()
 
   return (
     <div
-      className={sectionHeaderActionsWrapperClsx({
-        className: wrapperClassName,
-        wrapActionsOnMobile,
-      })}
+      className={sectionHeaderActionsClsx({ className, wrapActionsOnMobile })}
     >
-      <div
-        className={sectionHeaderActionsClsx({ className, wrapActionsOnMobile })}
-      >
-        {children}
-      </div>
+      {children}
     </div>
   )
 }

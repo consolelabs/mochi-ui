@@ -36,7 +36,7 @@ export function Default() {
         See docs
       </Button>
       <Select value={selectedApp} onChange={setSelectedApp}>
-        <SelectTrigger className="rounded bg-neutral-150 shrink-0">
+        <SelectTrigger className="rounded bg-neutral-150 shrink-0 h-10">
           <Tooltip content="Selected app" arrow="top-center" className="z-20">
             <SelectValue placeholder="All apps" />
           </Tooltip>
@@ -92,7 +92,7 @@ export function Default() {
       </SectionHeader>
 
       <SectionHeader wrapActionsOnMobile={false}>
-        <SectionHeaderTitle wrapperClassName="flex !flex-row items-center justify-between">
+        <SectionHeaderTitle className="flex !flex-row items-center justify-between">
           Communities Activities
         </SectionHeaderTitle>
         <SectionHeaderActions>

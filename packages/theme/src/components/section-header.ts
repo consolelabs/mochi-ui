@@ -13,15 +13,7 @@ const sectionHeaderWrapperClsx = ({
     className,
   )
 
-const sectionHeaderTitleWrapperClsx = ({
-  className = '',
-}: { className?: string } = {}) =>
-  clsx(
-    'col-span-1 row-span-1 col-start-1 col-end-2 row-start-1 row-end-2',
-    className,
-  )
-
-const sectionHeaderDescriptionWrapperClsx = ({
+const sectionHeaderDescriptionClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
@@ -32,21 +24,8 @@ const sectionHeaderDescriptionWrapperClsx = ({
 const sectionHeaderTitleClsx = ({
   className = '',
 }: { className?: string } = {}) =>
-  clsx('!text-base font-medium text-text-primary', className)
-
-const sectionHeaderActionsWrapperClsx = ({
-  className = '',
-  wrapActionsOnMobile = true,
-}: { className?: string; wrapActionsOnMobile?: boolean } = {}) =>
   clsx(
-    'col-span-1',
-    'sm:row-span-2 sm:col-start-2 sm:col-end-3 sm:row-start-1 sm:row-end-3',
-    {
-      'row-span-1 col-start-1 col-end-2 row-start-3 row-end-4':
-        wrapActionsOnMobile,
-      'row-span-2 col-start-2 col-end-3 row-start-1 row-end-3':
-        !wrapActionsOnMobile,
-    },
+    'col-span-1 row-span-1 col-start-1 col-end-2 row-start-1 row-end-2 !text-base font-medium text-text-primary',
     className,
   )
 
@@ -55,20 +34,22 @@ const sectionHeaderActionsClsx = ({
   wrapActionsOnMobile = true,
 }: { className?: string; wrapActionsOnMobile?: boolean } = {}) =>
   clsx(
-    'flex sm:pt-0 sm:justify-end w-full flex-wrap gap-2 min-w-max sm:w-auto',
+    'col-span-1',
+    'sm:row-span-2 sm:col-start-2 sm:col-end-3 sm:row-start-1 sm:row-end-3',
+    'flex items-start sm:pt-0 sm:justify-end w-full flex-wrap gap-2 min-w-max sm:w-auto',
     {
-      'pt-2 justify-start': wrapActionsOnMobile,
-      'pt-0 justify-end': !wrapActionsOnMobile,
+      'row-span-1 col-start-1 col-end-2 row-start-3 row-end-4 pt-2 justify-start':
+        wrapActionsOnMobile,
+      'row-span-2 col-start-2 col-end-3 row-start-1 row-end-3 pt-0 justify-end':
+        !wrapActionsOnMobile,
     },
     className,
   )
 
 const sectionHeader = {
   sectionHeaderWrapperClsx,
-  sectionHeaderTitleWrapperClsx,
-  sectionHeaderDescriptionWrapperClsx,
+  sectionHeaderDescriptionClsx,
   sectionHeaderTitleClsx,
-  sectionHeaderActionsWrapperClsx,
   sectionHeaderActionsClsx,
 }
 
