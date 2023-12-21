@@ -55,7 +55,7 @@ const NotificationSwitcherField = (
           htmlFor={id}
           className={clsx('block cursor-pointer select-none', className)}
         >
-          <SectionHeader className="!py-3">
+          <SectionHeader className="!py-3" wrapActionsOnMobile={false}>
             <SectionHeaderTitle
               className={clsx('!text-sm font-normal', {
                 '!py-0': !description,
@@ -108,7 +108,7 @@ export function NotificationPage() {
     const body: RequestUpdateNotificationSettingPayloadRequest = {
       enable: enable ?? false,
       platforms,
-      flag: restData,
+      flag: restData as Record<string, boolean | any>,
     }
     try {
       const { data: newSettings }: ResponseUserNotificationSettingResponse =

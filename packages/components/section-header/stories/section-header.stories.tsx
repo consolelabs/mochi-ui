@@ -95,10 +95,6 @@ export function Default() {
         <SectionHeaderTitle wrapperClassName="flex !flex-row items-center justify-between">
           Communities Activities
         </SectionHeaderTitle>
-        <SectionHeaderDescription>
-          Lorem ipsum dolor sit amet consectetur. Sed turpis eget sed nullam
-          volutpat integer posuere.
-        </SectionHeaderDescription>
         <SectionHeaderActions>
           <IconButton label="Open menu" variant="link" color="info">
             <ThreeDotsLine className="text-2xl" aria-hidden />
