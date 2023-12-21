@@ -1,10 +1,13 @@
-import { PageHeader } from '@mochi-ui/core'
+import { PageHeader, PageHeaderTitle } from '@mochi-ui/core'
 import { DashboardBody } from '~cpn/DashboardBody'
 
 const RevenuePage = () => {
   return (
     <>
-      <PageHeader title="Revenue" />
+      <PageHeader>
+        <PageHeaderTitle>Revenue</PageHeaderTitle>
+      </PageHeader>
+
       <DashboardBody>TBD</DashboardBody>
     </>
   )

@@ -12,7 +12,13 @@ import { CheckLine, ThreeDotsLine } from '@mochi-ui/icons'
 import { IconButton } from '@mochi-ui/icon-button'
 import { Button } from '@mochi-ui/button'
 import clsx from 'clsx'
-import { PageHeader } from '../src'
+import {
+  PageHeader,
+  PageHeaderBackButton,
+  PageHeaderTitle,
+  PageHeaderTitleExtra,
+  PageHeaderActions,
+} from '../src'
 
 const meta = {
   title: 'Layout/PageHeader',
@@ -25,65 +31,100 @@ export default meta
 export function Default() {
   const [selectedApp, setSelectedApp] = useState('all')
 
-  const actions = [
-    <Select value={selectedApp} onChange={setSelectedApp}>
-      <SelectTrigger className="h-10 rounded bg-neutral-150">
-        <Tooltip content="Selected app" arrow="top-center" className="z-20">
-          <SelectValue placeholder="All apps" />
-        </Tooltip>
-      </SelectTrigger>
-      <SelectContent>
-        {[
-          { key: 'all', name: 'All apps' },
-          { key: '1', name: 'App name 1' },
-          { key: '2', name: 'App name 2' },
-        ].map((app) => (
-          <SelectItem
-            key={app.key}
-            value={app.key}
-            rightIcon={
-              <CheckLine
-                className={clsx(
-                  'w-4 h-4 ml-4',
-                  app.key === selectedApp ? 'text-primary-700' : 'invisible',
-                )}
-              />
-            }
-          >
-            {app.name}
-          </SelectItem>
-        ))}
-        <SelectSeparator />
-        <button className="px-2 text-sm font-medium tracking-tight text-primary-700">
-          Create an app
-        </button>
-      </SelectContent>
-    </Select>,
-    <Button color="white">See docs</Button>,
-  ]
+  const actions = (
+    <>
+      <Button color="white" className="min-w-xs w-full sm:w-max">
+        See docs
+      </Button>
+      <Select value={selectedApp} onChange={setSelectedApp}>
+        <SelectTrigger className="h-10 rounded bg-neutral-150 shrink-0">
+          <Tooltip content="Selected app" arrow="top-center" className="z-20">
+            <SelectValue placeholder="All apps" />
+          </Tooltip>
+        </SelectTrigger>
+        <SelectContent>
+          {[
+            { key: 'all', name: 'All apps' },
+            { key: '1', name: 'App name 1' },
+            { key: '2', name: 'App name 2' },
+          ].map((app) => (
+            <SelectItem
+              key={app.key}
+              value={app.key}
+              rightIcon={
+                <CheckLine
+                  className={clsx(
+                    'w-4 h-4 ml-4',
+                    app.key === selectedApp ? 'text-primary-700' : 'invisible',
+                  )}
+                />
+              }
+            >
+              {app.name}
+            </SelectItem>
+          ))}
+          <SelectSeparator />
+          <button className="px-2 text-sm font-medium tracking-tight text-primary-700">
+            Create an app
+          </button>
+        </SelectContent>
+      </Select>
+    </>
+  )
 
   return (
     <div className="flex flex-col gap-6">
-      <PageHeader title="Page Title" />
+      <PageHeader>
+        <PageHeaderTitle>Settings</PageHeaderTitle>
+      </PageHeader>
 
-      <PageHeader title="Page Title" actions={actions} />
+      <PageHeader>
+        <PageHeaderTitle>Developer Portal</PageHeaderTitle>
+        <PageHeaderActions className="!flex-nowrap">
+          {actions}
+        </PageHeaderActions>
+      </PageHeader>
 
-      <PageHeader
-        title="Page Title"
-        titleExtra="(2,951 members)"
-        actions={actions}
-      />
-
-      <PageHeader
-        onBack={() => alert('onBack')}
-        title="Page Title"
-        titleExtra="(2,951 members)"
-        actions={[
-          <IconButton label="Open menu" variant="link" color="info">
+      <PageHeader>
+        <PageHeaderTitle>
+          Channel
+          <PageHeaderTitleExtra>(2,951 members)</PageHeaderTitleExtra>
+        </PageHeaderTitle>
+        <PageHeaderActions className="!flex-nowrap">
+          <Button color="white" className="min-w-xs w-full sm:w-max">
+            Invite
+          </Button>
+          <IconButton
+            label="Open menu"
+            variant="ghost"
+            color="info"
+            className="shrink-0 !h-10 !w-10"
+          >
             <ThreeDotsLine className="text-2xl" aria-hidden />
-          </IconButton>,
-        ]}
-      />
+          </IconButton>
+        </PageHeaderActions>
+      </PageHeader>
+
+      <PageHeader>
+        <PageHeaderBackButton as="a" href="#" />
+        <PageHeaderTitle>
+          Mochi
+          <PageHeaderTitleExtra>(2,951 members)</PageHeaderTitleExtra>
+        </PageHeaderTitle>
+        <PageHeaderActions className="!flex-nowrap">
+          <Button color="white" className="min-w-xs w-full sm:w-max">
+            Invite
+          </Button>
+          <IconButton
+            label="Open menu"
+            variant="ghost"
+            color="info"
+            className="shrink-0 !h-10 !w-10"
+          >
+            <ThreeDotsLine className="text-2xl" aria-hidden />
+          </IconButton>
+        </PageHeaderActions>
+      </PageHeader>
     </div>
   )
 }

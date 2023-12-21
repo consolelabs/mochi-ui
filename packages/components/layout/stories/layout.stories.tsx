@@ -1,6 +1,10 @@
 import { Sidebar } from '@mochi-ui/sidebar'
 import { PageContent } from '@mochi-ui/page-content'
-import { PageHeader } from '@mochi-ui/page-header'
+import {
+  PageHeader,
+  PageHeaderTitle,
+  PageHeaderTitleExtra,
+} from '@mochi-ui/page-header'
 import { Badge } from '@mochi-ui/badge'
 import { Typography } from '@mochi-ui/typography'
 import {
@@ -99,11 +103,13 @@ export function Default() {
         />
 
         <Layout className="flex-1 bg-neutral-outline/50">
-          <PageHeader
-            title="Page Title"
-            titleExtra="(2,951 members)"
-            className="border-b"
-          />
+          <PageHeader className="border-b">
+            <PageHeaderTitle>
+              Page Title
+              <PageHeaderTitleExtra>(2,951 members)</PageHeaderTitleExtra>
+            </PageHeaderTitle>
+          </PageHeader>
+
           <PageContent containerClassName="bg-background-surface p-6 border rounded-md">
             <Typography level="p4">Content</Typography>
           </PageContent>

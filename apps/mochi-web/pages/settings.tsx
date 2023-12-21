@@ -1,5 +1,6 @@
 import {
   PageHeader,
+  PageHeaderTitle,
   Tabs,
   TabList,
   TabTrigger,
@@ -24,7 +25,10 @@ const SettingsPage = () => {
 
   return (
     <>
-      <PageHeader title="Settings" />
+      <PageHeader>
+        <PageHeaderTitle>Settings</PageHeaderTitle>
+      </PageHeader>
+
       <Tabs
         className="grow overflow-hidden flex-col flex"
         defaultValue={defaultTabValue}

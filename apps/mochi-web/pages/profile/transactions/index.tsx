@@ -2,6 +2,9 @@ import {
   Badge,
   ColumnProps,
   PageHeader,
+  PageHeaderActions,
+  PageHeaderBackButton,
+  PageHeaderTitle,
   Select,
   SelectContent,
   SelectItem,
@@ -11,7 +14,7 @@ import {
   Typography,
   useLoginWidget,
 } from '@mochi-ui/core'
-import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { SEO } from '~app/layout/seo'
 import { ROUTES } from '~constants/routes'
 import {
@@ -48,18 +51,13 @@ const AppPageHeader = (props: AppPageHeaderProps) => {
     onFilterPlatformChange,
     onFilterTypeChange,
   } = props
-  const { push } = useRouter()
 
   return (
-    <PageHeader
-      title="Transactions"
-      onBack={() => push(ROUTES.MY_PROFILE)}
-      actions={[
-        <Select
-          key="filter-types"
-          onChange={onFilterTypeChange}
-          value={filterType}
-        >
+    <PageHeader>
+      <PageHeaderBackButton as={Link} href={ROUTES.MY_PROFILE} />
+      <PageHeaderTitle>Transactions</PageHeaderTitle>
+      <PageHeaderActions>
+        <Select onChange={onFilterTypeChange} value={filterType}>
           <SelectTrigger className="border border-divider min-w-[130px] justify-between px-4">
             <SelectValue placeholder="All Types" />
           </SelectTrigger>
@@ -70,12 +68,8 @@ const AppPageHeader = (props: AppPageHeaderProps) => {
               </SelectItem>
             ))}
           </SelectContent>
-        </Select>,
-        <Select
-          key="filter-platforms"
-          onChange={onFilterPlatformChange}
-          value={filterPlatform}
-        >
+        </Select>
+        <Select onChange={onFilterPlatformChange} value={filterPlatform}>
           <SelectTrigger className="border border-divider min-w-[150px] justify-between px-4">
             <SelectValue placeholder="All Platforms" />
           </SelectTrigger>
@@ -86,9 +80,9 @@ const AppPageHeader = (props: AppPageHeaderProps) => {
               </SelectItem>
             ))}
           </SelectContent>
-        </Select>,
-      ]}
-    />
+        </Select>
+      </PageHeaderActions>
+    </PageHeader>
   )
 }
 

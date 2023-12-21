@@ -12,6 +12,8 @@ import {
   DropdownMenuPortal,
   ModalPortal,
   ModalOverlay,
+  PageHeaderTitle,
+  PageHeaderActions,
 } from '@mochi-ui/core'
 import { CheckLine, ChevronDownLine } from '@mochi-ui/icons'
 import { NextPageWithLayout } from '~pages/_app'
@@ -41,17 +43,17 @@ const AppPageHeader = ({
   apps?: ViewApplication[]
 }) => {
   return (
-    <PageHeader
-      title="Developer Portal"
-      actions={[
+    <PageHeader>
+      <PageHeaderTitle>Developer Portal</PageHeaderTitle>
+
+      <PageHeaderActions>
         <Button
           color="white"
-          key="see-docs-button"
           onClick={() => window.open(SOCIAL_LINKS.DOCS, '_blank')}
         >
           See docs
-        </Button>,
-        <DropdownMenu key="app-select">
+        </Button>
+        <DropdownMenu>
           <DropdownMenuTrigger className="">
             <Button className="!bg-neutral-150">
               <Typography level="p5">All apps</Typography>
@@ -83,9 +85,9 @@ const AppPageHeader = ({
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenuPortal>
-        </DropdownMenu>,
-      ]}
-    />
+        </DropdownMenu>
+      </PageHeaderActions>
+    </PageHeader>
   )
 }
 

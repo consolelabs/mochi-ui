@@ -1332,6 +1332,9 @@ importers:
       '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons
+      '@mochi-ui/polymorphic':
+        specifier: workspace:*
+        version: link:../polymorphic
       '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
