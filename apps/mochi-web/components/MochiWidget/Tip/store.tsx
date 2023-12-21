@@ -188,6 +188,16 @@ export const useTipWidget = create(
                     `Cannot resolve telegram ${acc.platform_metadata.username}`,
                   )
                 }
+                case 'email': {
+                  const { ok, data } = await api.profile.email.getByEmail({
+                    email: acc.platform_metadata.username ?? '',
+                    noFetchAmount: true,
+                  })
+                  if (ok) return data.id
+                  throw new Error(
+                    `Cannot resolve email ${acc.platform_metadata.username}`,
+                  )
+                }
                 default:
                   throw new Error(
                     `Cannot resolve profile ${r.profile_name} on ${acc.platform}`,
