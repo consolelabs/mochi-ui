@@ -5,7 +5,7 @@ const sectionHeaderWrapperClsx = ({
   wrapActionsOnMobile = true,
 }: { className?: string; wrapActionsOnMobile?: boolean } = {}) =>
   clsx(
-    'grid sm:grid-cols-2 gap-x-4 sm:gap-x-8 py-4 sm:py-2',
+    'grid sm:grid-cols-2 gap-x-2 sm:gap-x-4 py-4 sm:py-2',
     {
       'grid-cols-1': wrapActionsOnMobile,
       'grid-cols-2': !wrapActionsOnMobile,

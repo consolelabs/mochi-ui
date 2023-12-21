@@ -57,13 +57,16 @@ const NotificationSwitcherField = (
         >
           <SectionHeader className="!py-3" wrapActionsOnMobile={false}>
             <SectionHeaderTitle
+              wrapperClassName="!col-span-2 !col-end-3 pr-14"
               className={clsx('!text-sm font-normal', {
                 '!py-0': !description,
               })}
             >
               {label}
             </SectionHeaderTitle>
-            <SectionHeaderDescription>{description}</SectionHeaderDescription>
+            <SectionHeaderDescription wrapperClassName="!col-span-2 !col-end-3 pr-14">
+              {description}
+            </SectionHeaderDescription>
             <SectionHeaderActions>
               <Switch
                 id={id}
@@ -166,10 +169,13 @@ export function NotificationPage() {
                 className="block cursor-pointer select-none"
               >
                 <SectionHeader className="!py-4" wrapActionsOnMobile={false}>
-                  <SectionHeaderTitle className="!text-base font-normal">
+                  <SectionHeaderTitle
+                    wrapperClassName="!col-span-2 !col-end-3 pr-14"
+                    className="!text-base font-normal"
+                  >
                     Notification
                   </SectionHeaderTitle>
-                  <SectionHeaderDescription>
+                  <SectionHeaderDescription wrapperClassName="!col-span-2 !col-end-3 pr-14">
                     Select the event you want to receive notifications for
                   </SectionHeaderDescription>
                   <SectionHeaderActions>
