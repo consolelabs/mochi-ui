@@ -63,6 +63,7 @@ const itemCva = cva(
           'border hover:border-primary-solid',
           'focus:ring focus:ring-primary-outline-active',
           'hover:outline-none focus:outline-none',
+          'shadow-sm',
         ],
       },
       isError: {
@@ -83,7 +84,6 @@ const itemCva = cva(
           'px-3.5 py-2.5',
           'rounded-md',
           'border-neutral-outline-border',
-          'shadow-sm',
           'justify-between',
         ],
         button: [
