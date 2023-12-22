@@ -37,6 +37,7 @@ export type SelectTriggerProps = ComponentPropsWithoutRef<
   isError?: boolean
   color?: 'primary'
   hasPadding?: boolean
+  loading?: boolean
 }
 export type SelectGroupRef = ElementRef<typeof SelectPrimitive.Group>
 export type SelectGroupProps = ComponentPropsWithoutRef<

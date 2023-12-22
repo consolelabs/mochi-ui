@@ -395,7 +395,7 @@ export const FormAppearance: StoryObj = {
         </Select>
 
         <Select defaultValue="1">
-          <SelectTrigger appearance="form">
+          <SelectTrigger appearance="form" loading>
             <SelectValue placeholder="Select" />
           </SelectTrigger>
           <SelectContent className="min-w-[200px]">

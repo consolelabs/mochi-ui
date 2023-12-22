@@ -7,7 +7,7 @@ import {
 import { select } from '@mochi-ui/theme'
 import * as SelectPrimitive from '@radix-ui/react-select'
 import clsx from 'clsx'
-import { CheckLine, ChevronDownLine } from '@mochi-ui/icons'
+import { CheckLine, ChevronDownLine, SpinnerLine } from '@mochi-ui/icons'
 import {
   type SelectProps,
   type SelectItemProps,
@@ -32,9 +32,9 @@ function Select(props: SelectProps) {
             setIsFilled(true)
           }
         }}
-        {...props}
         defaultValue={defaultValue}
         value={value}
+        {...props}
       />
     </SelectContextProvider>
   )
@@ -70,9 +70,35 @@ const SelectTrigger = forwardRef<SelectTriggerRef, SelectTriggerProps>(
       color,
       hasPadding = true,
       appearance = 'button',
+      loading = false,
       ...restProps
     } = props
     const { isFilled } = useSelectContext()
+
+    let rightIconRender = null
+    if (loading) {
+      rightIconRender = (
+        <SpinnerLine
+          className={select.iconChevron({
+            color,
+            appearance,
+          })}
+        />
+      )
+    } else {
+      if (rightIcon) {
+        rightIconRender = rightIcon
+      } else {
+        rightIconRender = (
+          <ChevronDownLine
+            className={select.iconChevron({
+              color,
+              appearance,
+            })}
+          />
+        )
+      }
+    }
 
     return (
       <SelectPrimitive.Trigger
@@ -87,7 +113,7 @@ const SelectTrigger = forwardRef<SelectTriggerRef, SelectTriggerProps>(
           appearance,
           isFilled,
         })}
-        disabled={disabled}
+        disabled={disabled || loading}
         ref={ref}
         {...restProps}
       >
@@ -106,14 +132,7 @@ const SelectTrigger = forwardRef<SelectTriggerRef, SelectTriggerProps>(
                 asChild
                 className={select.iconWrapperCva({ isRightIcon: true })}
               >
-                {rightIcon ?? (
-                  <ChevronDownLine
-                    className={select.iconChevron({
-                      color,
-                      appearance,
-                    })}
-                  />
-                )}
+                {rightIconRender}
               </SelectPrimitive.Icon>
             )}
           </>

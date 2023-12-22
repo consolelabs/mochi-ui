@@ -60,13 +60,13 @@ const itemCva = cva(
           'rounded-lg',
         ],
         true: [
-          'border hover:border-primary-solid-focus',
+          'border hover:border-primary-solid',
           'focus:ring focus:ring-primary-outline-active',
           'hover:outline-none focus:outline-none',
         ],
       },
       isError: {
-        true: ['!border-danger-outline-border', 'focus:!ring-0'],
+        true: ['!border-danger-outline-fg', 'focus:!ring-0'],
       },
       color: {
         primary: ['bg-primary-outline'],
