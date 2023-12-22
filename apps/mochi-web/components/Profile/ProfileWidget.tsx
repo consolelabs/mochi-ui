@@ -3,37 +3,60 @@ import {
   Badge,
   Button,
   Card,
-  ColumnProps,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
   IconButton,
-  Table,
+  TabList,
+  TabTrigger,
+  Tabs,
   Typography,
 } from '@mochi-ui/core'
-import { Bag, SettingsLine, UnionSolid } from '@mochi-ui/icons'
-import { useFetchBalances } from '~hooks/profile/useFetchBalances'
-import { useProfileStore } from '~store'
-import { ModelBalance } from '~types/mochi-pay-schema'
-import { utils as mochiUtils } from '@consolelabs/mochi-ui'
-import { utils } from 'ethers'
+import { ChevronDownLine, SettingsLine, UnionSolid } from '@mochi-ui/icons'
+import { useProfileStore, useWalletStore } from '~store'
 import { useFetchProfileGlobalInfo } from '~hooks/profile/useFetchProfileGlobalInfo'
-import { TokenAvatar } from '~cpn/base/token-avatar'
-
-const Token: ColumnProps<ModelBalance>['cell'] = (props) => (
-  <div className="flex items-center space-x-2">
-    <TokenAvatar
-      src={props.row.original.token?.icon || ''}
-      name={props.row.original.token?.symbol || ''}
-    />
-    <Typography level="p5">{props.row.original.token?.symbol}</Typography>
-  </div>
-)
+import { BalanceWithSource, TokenTableList } from '~cpn/base/token-table-list'
+import { Fragment, useState } from 'react'
+import clsx from 'clsx'
 
 export const ProfileWidget = () => {
   const { me } = useProfileStore()
   const { data: globalInfo } = useFetchProfileGlobalInfo(me?.id)
-  const { data: balances = [], isLoading: fetchingBalances } = useFetchBalances(
-    me?.id,
+  const { wallets, isFetching } = useWalletStore()
+  const [_selectedChain, setSelectedChain] = useState('')
+
+  const balances: BalanceWithSource[] = wallets.flatMap((w) =>
+    w.balances.map((b) => ({
+      ...b,
+      source: {
+        id: w.id,
+        title: w.title,
+      },
+    })),
   )
-  const isLoading = !me?.id || fetchingBalances
+  const chains = balances.reduce<{ [chain: string]: BalanceWithSource[] }>(
+    (prev, curr) => {
+      const key =
+        curr.token?.chain?.symbol ||
+        curr.token?.chain?.short_name?.toUpperCase() ||
+        'ALL'
+      return {
+        ...prev,
+        [key]: [...(prev[key] || []), curr],
+      }
+    },
+    { ALL: balances },
+  )
+  const sortedChains = Object.keys(chains)
+    .map((chain, index) => ({
+      chain,
+      index: index < 3 ? 4 - index : Number(chain === _selectedChain),
+    }))
+    .sort((a, b) => b.index - a.index)
+    .map(({ chain }) => chain)
+  const selectedChain = _selectedChain || sortedChains[0]
+  const selectedIndex = sortedChains.indexOf(selectedChain)
 
   return (
     <Card className="pb-5 space-y-4 shadow-input">
@@ -104,50 +127,51 @@ export const ProfileWidget = () => {
         <Button variant="outline">Deposit</Button>
         <Button variant="outline">Withdraw</Button>
       </div>
-      <div className="overflow-y-auto h-96">
-        {!isLoading && !balances.length ? (
-          <div className="flex flex-col items-center justify-center h-full">
-            <Bag className="w-14 h-14 text-neutral-500" />
-            <Typography level="h7" color="textSecondary">
-              No assets
-            </Typography>
-          </div>
-        ) : (
-          <Table
-            isLoading={isLoading}
-            data={balances}
-            columns={[
-              {
-                header: 'Token',
-                accessorKey: 'token',
-                cell: Token,
-                width: '40%',
-              },
-              {
-                header: 'Price',
-                accessorKey: 'token.price',
-                accessorFn: (row) =>
-                  mochiUtils.formatUsdDigit({
-                    value: row.token?.price || 0,
-                  }),
-                width: '25%',
-              },
-              {
-                header: 'Balance',
-                accessorKey: 'amount',
-                accessorFn: (row) =>
-                  mochiUtils.formatTokenDigit(
-                    utils.formatUnits(row.amount || 0, row.token?.decimal),
-                  ),
-                width: '35%',
-                meta: {
-                  align: 'right',
-                },
-              },
-            ]}
-          />
-        )}
-      </div>
+      <Tabs value={selectedChain}>
+        <TabList className="flex rounded-lg bg-neutral-outline-active p-0.5 items-center">
+          {sortedChains.slice(0, 4).map((chain, index) => (
+            <Fragment key={chain}>
+              <TabTrigger
+                value={chain}
+                wrapperClassName="pl-0 pr-0"
+                className={clsx('rounded-md', {
+                  'bg-background-popup': chain === selectedChain,
+                })}
+                onClick={() => setSelectedChain(chain)}
+              >
+                {chain}
+              </TabTrigger>
+              {selectedIndex !== index && selectedIndex !== index + 1 && (
+                <div className="h-3 border-r border-neutral-solid-focus" />
+              )}
+            </Fragment>
+          ))}
+          {sortedChains.length > 4 && (
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center justify-center rounded-md hover:bg-background-popup text-text-secondary w-7 h-7">
+                <ChevronDownLine width={20} height={20} />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                {sortedChains.slice(4).map((chain) => (
+                  <DropdownMenuItem
+                    key={chain}
+                    wrapperClassName="py-0.5"
+                    onClick={() => setSelectedChain(chain)}
+                  >
+                    {chain}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
+        </TabList>
+      </Tabs>
+      <TokenTableList
+        wrapperClassName="overflow-y-auto h-96"
+        className={!chains[selectedChain].length ? 'h-full' : ''}
+        isLoading={isFetching || !wallets.length}
+        data={chains[selectedChain]}
+      />
       <div className="text-center">
         <Typography level="p6" color="textSecondary">
           Powered by Console Labs

@@ -5,7 +5,6 @@ import {
   Row,
   flexRender,
   getCoreRowModel,
-  getPaginationRowModel,
   useReactTable,
 } from '@tanstack/react-table'
 import { Fragment, ReactNode } from 'react'
@@ -68,7 +67,6 @@ export default function Table<T extends RowData>({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
     getRowCanExpand,
   })
 
