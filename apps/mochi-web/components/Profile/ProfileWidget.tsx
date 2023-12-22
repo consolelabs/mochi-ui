@@ -13,6 +13,7 @@ import {
   Tabs,
   Typography,
 } from '@mochi-ui/core'
+import { utils } from '@consolelabs/mochi-ui'
 import { ChevronDownLine, SettingsLine, UnionSolid } from '@mochi-ui/icons'
 import { useProfileStore, useWalletStore } from '~store'
 import { useFetchProfileGlobalInfo } from '~hooks/profile/useFetchProfileGlobalInfo'
@@ -22,9 +23,10 @@ import clsx from 'clsx'
 
 export const ProfileWidget = () => {
   const { me } = useProfileStore()
-  const { data: globalInfo } = useFetchProfileGlobalInfo(me?.id)
+  const { data } = useFetchProfileGlobalInfo(me?.id)
   const { wallets, isFetching } = useWalletStore()
   const [_selectedChain, setSelectedChain] = useState('')
+  const { info, pnl, total } = data
 
   const balances: BalanceWithSource[] = wallets.flatMap((w) =>
     w.balances.map((b) => ({
@@ -53,7 +55,9 @@ export const ProfileWidget = () => {
       chain,
       index: index < 3 ? 4 - index : Number(chain === _selectedChain),
     }))
-    .sort((a, b) => b.index - a.index)
+    .sort((a, b) => {
+      return b.index - a.index
+    })
     .map(({ chain }) => chain)
   const selectedChain = _selectedChain || sortedChains[0]
   const selectedIndex = sortedChains.indexOf(selectedChain)
@@ -67,7 +71,7 @@ export const ProfileWidget = () => {
             {me?.profile_name}
           </Typography>
           <div className="flex flex-wrap gap-1">
-            {globalInfo?.roles?.map((role) => (
+            {info?.roles?.map((role) => (
               <Badge
                 key={role}
                 label={
@@ -80,17 +84,13 @@ export const ProfileWidget = () => {
             <Badge
               appearance="white"
               label={
-                <Typography level="h8">
-                  Lvl. {globalInfo?.level || 0}
-                </Typography>
+                <Typography level="h8">Lvl. {info?.level || 0}</Typography>
               }
             />
             <Badge
               appearance="white"
               label={
-                <Typography level="h8">
-                  Rank #{globalInfo?.rank || 0}
-                </Typography>
+                <Typography level="h8">Rank #{info?.rank || 0}</Typography>
               }
             />
           </div>
@@ -118,8 +118,23 @@ export const ProfileWidget = () => {
         <Typography level="p5" color="textSecondary">
           Total Value
         </Typography>
-        <Typography level="h5" fontWeight="lg">
-          $24,562,456
+        <Typography
+          level="h5"
+          fontWeight="lg"
+          className="flex gap-x-2 items-end"
+        >
+          {utils.formatUsdDigit(total)}
+          <Typography
+            level="p3"
+            fontWeight="md"
+            className={clsx({
+              '!text-green-600': !pnl.startsWith('-'),
+              '!text-red-600': pnl.startsWith('-'),
+            })}
+          >
+            {pnl.startsWith('-') ? '' : '+'}
+            {utils.formatPercentDigit(pnl)}
+          </Typography>
         </Typography>
       </div>
       <div className="grid grid-cols-3 gap-2">

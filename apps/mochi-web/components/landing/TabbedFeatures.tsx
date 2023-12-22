@@ -21,7 +21,7 @@ export function TabbedFeatures({ title, data, className }: Props) {
         title
       )}
       <div className="flex gap-x-5">
-        <ul className="flex flex-col flex-1">
+        <ul className="flex flex-col flex-1 gap-y-2">
           {data.map((d, i) => {
             return (
               <React.Fragment key={d.id}>
