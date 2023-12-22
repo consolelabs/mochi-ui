@@ -51,11 +51,13 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           tags: ${{ steps.meta.outputs.tags }}
           build-args: |
-            NEXT_PUBLIC_MOCHI_PROFILE_API_HOST="${{ secrets.NEXT_PUBLIC_MOCHI_PROFILE_API_HOST }}"
-            NEXT_PUBLIC_MOCHI_API_HOST="${{ secrets.NEXT_PUBLIC_MOCHI_PROFILE_API_HOST }}"
-            NEXT_PUBLIC_MOCHI_PAY_API_HOST="${{ secrets.NEXT_PUBLIC_MOCHI_PROFILE_API_HOST }}"
+            NEXT_PUBLIC_MOCHI_PROFILE_API_HOST=${{ secrets.NEXT_PUBLIC_MOCHI_PROFILE_API_HOST }}
+            NEXT_PUBLIC_MOCHI_API_HOST=${{ secrets.NEXT_PUBLIC_MOCHI_PROFILE_API_HOST }}
+            NEXT_PUBLIC_MOCHI_PAY_API_HOST=${{ secrets.NEXT_PUBLIC_MOCHI_PROFILE_API_HOST }}
 
       # Setup kustomize
       # - name: Setup kustomize
