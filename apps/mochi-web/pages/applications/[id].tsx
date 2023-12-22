@@ -222,7 +222,7 @@ const App: NextPageWithLayout = () => {
 
   return (
     <>
-      <SEO title={detail?.name} />
+      <SEO title={detail?.name} tailTitle />
       <AppDetailPageHeader
         name={detail?.name}
         onDeleteApp={() => onOpenChangeDeleteAppModal(true)}

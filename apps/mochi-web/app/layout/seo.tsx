@@ -18,7 +18,7 @@ export const CONFIG = {
 
 export const SEO = ({
   title = CONFIG.title,
-  tailTitle = true,
+  tailTitle = false,
   description = CONFIG.description,
   url = HOME_URL,
   image,
