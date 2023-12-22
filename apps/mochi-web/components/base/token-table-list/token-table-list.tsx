@@ -2,28 +2,12 @@ import { ColumnProps, Table, TableProps, Typography } from '@mochi-ui/core'
 import { utils as mochiUtils } from '@consolelabs/mochi-ui'
 import { TokenAvatar } from '~cpn/base/token-avatar'
 import { Bag, WalletSolid } from '@mochi-ui/icons'
+import { Balance } from '~store'
 
-export interface BalanceWithSource {
-  amount?: string
-  usd_amount?: number
-  token?: {
-    id?: string
-    symbol?: string
-    icon?: string
-    price?: number
-    decimal?: number
-    chain?: {
-      symbol?: string
-      icon?: string
-    }
-  }
+export interface BalanceWithSource extends Balance {
   source: {
     id?: string
-    icon?: string
     title?: string
-    subtitle?: string
-    usd_amount?: string
-    type?: 'offchain' | 'onchain'
   }
 }
 
@@ -35,12 +19,16 @@ const Token: ColumnProps<BalanceWithSource>['cell'] = (props) => (
       src={props.row.original.token?.icon || ''}
       name={props.row.original.token?.symbol || ''}
       chainSrc={props.row.original.token?.chain?.icon || ''}
-      chainName={props.row.original.token?.chain?.symbol || ''}
+      chainName={
+        props.row.original.token?.chain?.symbol ||
+        props.row.original.token?.chain?.short_name ||
+        ''
+      }
     />
     <div>
       <div className="flex space-x-1">
         <Typography level="h8">
-          {mochiUtils.formatTokenDigit(props.row.original.amount || 0)}
+          {mochiUtils.formatTokenDigit(props.row.original.asset_balance || 0)}
         </Typography>
         <Typography level="h8" color="textSecondary">
           {props.row.original.token?.symbol}
@@ -90,7 +78,7 @@ export const TokenTableList = (props: Props) => {
         {
           header: 'USD Value',
           accessorKey: 'usd_amount',
-          accessorFn: (row) => mochiUtils.formatUsdDigit(row.usd_amount || 0),
+          accessorFn: (row) => mochiUtils.formatUsdDigit(row.usd_balance || 0),
           width: '30%',
           meta: {
             align: 'right',

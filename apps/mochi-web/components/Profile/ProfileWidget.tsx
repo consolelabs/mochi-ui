@@ -26,32 +26,27 @@ export const ProfileWidget = () => {
   const { wallets, isFetching } = useWalletStore()
   const [_selectedChain, setSelectedChain] = useState('')
 
-  const balances: BalanceWithSource[] = [
-    ...wallets.flatMap((w) =>
-      w.balances.map((b) => ({
-        id: b.token.id,
-        amount: String(b.asset_balance),
-        usd_amount: b.usd_balance,
-        token: {
-          ...b.token,
-          chain: {
-            symbol:
-              b.token.chain?.symbol || b.token.chain?.short_name?.toUpperCase(),
-            icon: b.token.chain?.icon,
-          },
-        },
-        source: w,
-      })),
-    ),
-  ]
+  const balances: BalanceWithSource[] = wallets.flatMap((w) =>
+    w.balances.map((b) => ({
+      ...b,
+      source: {
+        id: w.id,
+        title: w.title,
+      },
+    })),
+  )
+
   const chains = balances.reduce<{ [chain: string]: BalanceWithSource[] }>(
-    (prev, curr) => ({
-      ...prev,
-      [String(curr.token?.chain?.symbol)]: [
-        ...(prev[String(curr.token?.chain?.symbol)] || []),
-        curr,
-      ],
-    }),
+    (prev, curr) => {
+      const key =
+        curr.token?.chain?.symbol ||
+        curr.token?.chain?.short_name?.toUpperCase() ||
+        'ALL'
+      return {
+        ...prev,
+        [key]: [...(prev[key] || []), curr],
+      }
+    },
     { ALL: balances },
   )
   const sortedChains = Object.keys(chains)
