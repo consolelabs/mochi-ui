@@ -149,7 +149,7 @@ export const ProfileWidget = () => {
             })}
           >
             {pnl.startsWith('-') ? '' : '+'}
-            {utils.formatPercentDigit(pnl)}
+            {utils.formatPercentDigit(Number.isNaN(Number(pnl)) ? 0 : pnl)}
           </Typography>
         </Typography>
       </div>
