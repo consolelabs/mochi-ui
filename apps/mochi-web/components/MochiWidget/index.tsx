@@ -56,7 +56,7 @@ export default function MochiWidget({ wrapperClassName, className }: Props) {
   return (
     <BottomSheetProvider
       className={clsx(
-        'overflow-hidden rounded-2xl border shadow-xl border-neutral-300',
+        'w-full overflow-hidden rounded-2xl border shadow-xl border-neutral-300',
         wrapperClassName,
       )}
     >
@@ -93,8 +93,6 @@ export default function MochiWidget({ wrapperClassName, className }: Props) {
         </div>
         <ScrollArea.Root
           style={{
-            /* height: 570, */
-            /* height: 640, */
             height: 670,
             maxWidth: 480,
             minWidth: 340,

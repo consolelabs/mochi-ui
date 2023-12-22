@@ -93,7 +93,7 @@ export default function Index() {
 
   return (
     <Layout>
-      <SEO title="Mochi.gg" />
+      <SEO title="Mochi" tailTitle={false} />
       <div className="grid grid-cols-1 auto-rows-min gap-y-7 gap-x-20 py-8 px-4 m-auto w-full max-w-5xl lg:grid-cols-2 lg:grid-rows-2 lg:p-8">
         <div className="flex flex-col lg:justify-end">
           <p className="text-[32px] leading-[38.4px] title-tracking md:text-[40px] md:leading-[48px]">
@@ -116,13 +116,7 @@ export default function Index() {
           </span>
         </div>
 
-        <div
-          style={{
-            maxWidth: 440,
-            minWidth: 340,
-          }}
-          className="flex relative justify-center mx-auto -mx-1.5 w-full lg:col-start-2 lg:row-span-2 lg:mx-0"
-        >
+        <div className="flex relative justify-center mx-auto -mx-1.5 w-full lg:col-start-2 lg:row-span-2 lg:mx-0">
           <MochiWidget />
         </div>
 
