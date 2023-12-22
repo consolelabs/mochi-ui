@@ -69,7 +69,7 @@ export const createTransactionMesssage = ({
   return {
     received: `Received ${formatedAmount} ${token?.symbol} from ${from}`,
     tip: `Tip ${to} ${formatedAmount} ${token?.symbol}`,
-    withdraw: `Withdrawed - ${formatedAmount} {token.symbol}`,
+    withdraw: `Withdrawed - ${formatedAmount} ${token?.symbol}`,
   }[schemaType]
 }
 

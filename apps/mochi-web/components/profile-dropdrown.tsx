@@ -59,7 +59,7 @@ export default function ProfileDropdown({
       </DropdownMenuTrigger>
       <DropdownMenuPortal>
         <DropdownMenuContent
-          className="overflow-y-auto max-h-[645px]"
+          className="overflow-y-auto max-h-[calc(100dvh-100px)]"
           sideOffset={20}
           collisionPadding={{
             right: 32,
