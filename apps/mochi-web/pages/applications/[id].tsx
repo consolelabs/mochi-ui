@@ -39,6 +39,7 @@ import { ROUTES } from '~constants/routes'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { SEO } from '~app/layout/seo'
 import { DashboardBody } from '~cpn/DashboardBody'
+import { AppDetailSkeleton } from '~cpn/app/detail/AppDetailSkeleton'
 
 const APP_DETAIL_FORM_ID = 'app-detail-form'
 
@@ -97,10 +98,11 @@ const App: NextPageWithLayout = () => {
   } = useRouter()
   const appId = id as string
   const { toast } = useToast()
-  const { data: detail, mutate: refresh } = useFetchApplicationDetail(
-    profileId,
-    appId,
-  )
+  const {
+    data: detail,
+    mutate: refresh,
+    isLoading,
+  } = useFetchApplicationDetail(profileId, appId)
   const [secretKey, setSecretKey] = useState('')
   const [isResettingSecretKey, setIsResettingSecretKey] = useState(false)
   const {
@@ -213,6 +215,10 @@ const App: NextPageWithLayout = () => {
       replace({ pathname, query: { id } }, undefined, { shallow: true })
     }
   }, [id, pathname, replace, secretKeyQuery])
+
+  if (!detail || isLoading) {
+    return <AppDetailSkeleton />
+  }
 
   return (
     <>
