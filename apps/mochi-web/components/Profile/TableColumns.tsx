@@ -3,7 +3,7 @@ import { Button, ColumnProps, Typography } from '@mochi-ui/core'
 import { ModelPayRequest } from '~types/mochi-pay-schema'
 import { utils as mochiUtils } from '@consolelabs/mochi-ui'
 import { utils } from 'ethers'
-import { TokenAvatar } from '~cpn/base/token-avatar'
+import { TokenAvatar } from '~cpn/TokenAvatar'
 
 export const Amount: ColumnProps<ModelPayRequest>['cell'] = (props) => (
   <div className="flex items-center space-x-2">

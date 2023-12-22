@@ -1,4 +1,3 @@
-import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { useWalletStore } from '~store'
 import { useEffect, useMemo } from 'react'
@@ -70,40 +69,38 @@ export default function StepOne() {
 
   return (
     <div className="flex flex-col flex-1 gap-y-3 h-full min-h-0">
-      <ScrollArea.Viewport className="[&>div]:!block">
-        <div className="flex flex-col gap-y-2 h-full">
-          <div className="flex flex-col gap-y-2.5 items-center pb-3">
-            <p className="text-xl text-[#343433] font-medium">Send a tip</p>
-            <span className="text-[#848281] text-xs text-center">
-              Celebrate someone&apos;s birthday or achievement
-              <br />
-              by sending them money
-            </span>
-          </div>
-          <WalletPicker
-            authorized={isLoggedIn}
-            unauthorizedContent={unauthorizedContent}
-            data={wallets}
-            loading={isFetchingWallets}
-            onSelect={updateSourceWallet}
-          />
-          <AmountInput
-            authorized={isLoggedIn}
-            unauthorizedContent={unauthorizedContent}
-            wallet={wallet}
-            onSelectAsset={setAsset}
-            onAmountChanged={setAmount}
-            canProceed={canProceed}
-          />
-          <Recipient
-            authorized={isLoggedIn}
-            unauthorizedContent={unauthorizedContent}
-            selectedRecipients={request.recipients ?? []}
-            onUpdateRecipient={setRecipients}
-            onRemoveRecipient={removeRecipient}
-          />
+      <div className="flex flex-col gap-y-2 h-full">
+        <div className="flex flex-col gap-y-2.5 items-center pb-3">
+          <p className="text-xl text-[#343433] font-medium">Send a tip</p>
+          <span className="text-[#848281] text-xs text-center">
+            Celebrate someone&apos;s birthday or achievement
+            <br />
+            by sending them money
+          </span>
         </div>
-      </ScrollArea.Viewport>
+        {/* <WalletPicker */}
+        {/*   authorized={isLoggedIn} */}
+        {/*   unauthorizedContent={unauthorizedContent} */}
+        {/*   data={wallets} */}
+        {/*   loading={isFetchingWallets} */}
+        {/*   onSelect={updateSourceWallet} */}
+        {/* /> */}
+        <AmountInput
+          authorized={isLoggedIn}
+          unauthorizedContent={unauthorizedContent}
+          wallet={wallet}
+          onSelectAsset={setAsset}
+          onAmountChanged={setAmount}
+          canProceed={canProceed}
+        />
+        <Recipient
+          authorized={isLoggedIn}
+          unauthorizedContent={unauthorizedContent}
+          selectedRecipients={request.recipients ?? []}
+          onUpdateRecipient={setRecipients}
+          onRemoveRecipient={removeRecipient}
+        />
+      </div>
       {isLoggedIn ? (
         <Button
           size="lg"

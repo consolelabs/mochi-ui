@@ -24,7 +24,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { actionList } from '~constants/settings'
 import { ModelToken } from '~types/mochi-pay-schema'
-import { TokenAvatar } from '~cpn/base/token-avatar'
+import { TokenAvatar } from '~cpn/TokenAvatar'
 import { TransactionLimit } from './types'
 
 const schema = z
@@ -110,7 +110,7 @@ export const TransactionLimitModal = ({
               name="action"
               control={control}
               render={({ field, fieldState }) => (
-                <FormControl error={!!fieldState.error} className="w-full mt-8">
+                <FormControl error={!!fieldState.error} className="mt-8 w-full">
                   <FormLabel>Action</FormLabel>
                   <Select {...field}>
                     <SelectTrigger className="justify-between h-10 border border-divider">
@@ -138,7 +138,7 @@ export const TransactionLimitModal = ({
                   error={
                     !!errors.minAmount?.message || !!errors.minToken?.message
                   }
-                  className="w-full mt-4"
+                  className="mt-4 w-full"
                 >
                   <FormLabel>Minimun value</FormLabel>
                   <TextFieldRoot className="pr-0">
@@ -157,7 +157,7 @@ export const TransactionLimitModal = ({
                         render={({ field, fieldState }) => (
                           <FormControl error={!!fieldState.error}>
                             <Select {...field}>
-                              <SelectTrigger className="justify-between h-10 min-w-[140px] border-l border-divider">
+                              <SelectTrigger className="justify-between h-10 border-l min-w-[140px] border-divider">
                                 <SelectValue placeholder="Choose token" />
                               </SelectTrigger>
                               <SelectContent>
@@ -198,7 +198,7 @@ export const TransactionLimitModal = ({
                   error={
                     !!errors.maxAmount?.message || !!errors.maxToken?.message
                   }
-                  className="w-full mt-4"
+                  className="mt-4 w-full"
                 >
                   <FormLabel>Maximun value</FormLabel>
                   <TextFieldRoot className="pr-0">
@@ -217,7 +217,7 @@ export const TransactionLimitModal = ({
                         render={({ field, fieldState }) => (
                           <FormControl error={!!fieldState.error}>
                             <Select {...field}>
-                              <SelectTrigger className="justify-between h-10 min-w-[140px] border-l border-divider">
+                              <SelectTrigger className="justify-between h-10 border-l min-w-[140px] border-divider">
                                 <SelectValue placeholder="Choose token" />
                               </SelectTrigger>
                               <SelectContent>
@@ -250,7 +250,7 @@ export const TransactionLimitModal = ({
                 </FormControl>
               )}
             />
-            <div className="grid w-full grid-cols-2 gap-3 mt-8">
+            <div className="grid grid-cols-2 gap-3 mt-8 w-full">
               <ModalTrigger asChild>
                 <Button color="white">Cancel</Button>
               </ModalTrigger>

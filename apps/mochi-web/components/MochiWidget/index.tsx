@@ -6,7 +6,6 @@ import {
   LinkCircledSolid,
   PaperplaneCircleSolid,
 } from '@mochi-ui/icons'
-import * as ScrollArea from '@radix-ui/react-scroll-area'
 import clsx from 'clsx'
 import Tip from './Tip'
 
@@ -91,9 +90,8 @@ export default function MochiWidget({ wrapperClassName, className }: Props) {
             )
           })}
         </div>
-        <ScrollArea.Root
+        <div
           style={{
-            height: 670,
             maxWidth: 480,
             minWidth: 340,
           }}
@@ -105,10 +103,7 @@ export default function MochiWidget({ wrapperClassName, className }: Props) {
               Powered by Console Labs
             </span>
           </div>
-          <ScrollArea.Scrollbar orientation="vertical">
-            <ScrollArea.Thumb />
-          </ScrollArea.Scrollbar>
-        </ScrollArea.Root>
+        </div>
       </div>
     </BottomSheetProvider>
   )

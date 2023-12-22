@@ -1,7 +1,6 @@
 import { BottomSheet } from '~cpn/BottomSheet'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { useCallback, useEffect, useMemo } from 'react'
-import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { MAX_AMOUNT_PRECISION, formatTokenAmount } from '~utils/number'
 import { Button, LoginWidget, useLoginWidget } from '@mochi-ui/core'
 import { CheckLine, ChevronLeftLine, Spinner } from '@mochi-ui/icons'
@@ -106,57 +105,55 @@ export default function StepTwo() {
 
   return (
     <div className="flex flex-col flex-1 gap-y-3 h-full min-h-0">
-      <ScrollArea.Viewport className="flex-1 [&>div]:!h-full [&>div]:!block">
-        <div className="flex flex-col justify-between h-full">
-          <button
-            onClick={() => setStep(1)}
-            className="self-start mt-3 outline-none"
-          >
-            <ChevronLeftLine className="w-5 h-5" />
-          </button>
-          <span className="mx-auto text-base text-neutral-800">You send</span>
-          <p className="mx-auto text-3xl font-medium leading-5 text-black">
-            {formatTokenAmount(request.amount ?? 0).display}{' '}
-            {isToken(request.asset)
-              ? request.asset?.token?.symbol
-              : request.asset?.name}
-          </p>
-          <div className="flex flex-col">
-            {!isToken(request.asset) && (
-              <span className="text-sm text-[#7a7e85] mx-auto">
-                &#8776;{' '}
-                {
-                  formatTokenAmount(
-                    (
-                      (request.amount ?? 0) * (request.asset?.token_amount ?? 0)
-                    ).toFixed(MAX_AMOUNT_PRECISION),
-                  ).display
-                }{' '}
-                {request.asset?.token.symbol}
-              </span>
-            )}
+      <div className="flex flex-col justify-between h-full">
+        <button
+          onClick={() => setStep(1)}
+          className="self-start mt-3 outline-none"
+        >
+          <ChevronLeftLine className="w-5 h-5" />
+        </button>
+        <span className="mx-auto text-base text-neutral-800">You send</span>
+        <p className="mx-auto text-3xl font-medium leading-5 text-black">
+          {formatTokenAmount(request.amount ?? 0).display}{' '}
+          {isToken(request.asset)
+            ? request.asset?.token?.symbol
+            : request.asset?.name}
+        </p>
+        <div className="flex flex-col">
+          {!isToken(request.asset) && (
             <span className="text-sm text-[#7a7e85] mx-auto">
-              &#8776; {amountUsd} USD
+              &#8776;{' '}
+              {
+                formatTokenAmount(
+                  (
+                    (request.amount ?? 0) * (request.asset?.token_amount ?? 0)
+                  ).toFixed(MAX_AMOUNT_PRECISION),
+                ).display
+              }{' '}
+              {request.asset?.token.symbol}
             </span>
-          </div>
-
-          <TransactionPreview.Tip />
-
-          <div
-            onKeyUpCapture={(e) => {
-              if (e.key !== 'Enter' || isTransferring) return
-              execute()
-            }}
-          >
-            <MessagePicker
-              value={request.message ?? ''}
-              onChange={updateRequestMessage}
-            />
-          </div>
-
-          <ThemePicker value={request.theme} onChange={updateRequestTheme} />
+          )}
+          <span className="text-sm text-[#7a7e85] mx-auto">
+            &#8776; {amountUsd} USD
+          </span>
         </div>
-      </ScrollArea.Viewport>
+
+        <TransactionPreview.Tip />
+
+        <div
+          onKeyUpCapture={(e) => {
+            if (e.key !== 'Enter' || isTransferring) return
+            execute()
+          }}
+        >
+          <MessagePicker
+            value={request.message ?? ''}
+            onChange={updateRequestMessage}
+          />
+        </div>
+
+        <ThemePicker value={request.theme} onChange={updateRequestTheme} />
+      </div>
       <Button
         type="button"
         onClick={allGood ? execute : handleIncorrectParams}

@@ -16,7 +16,7 @@ import {
 import { ChevronDownLine, SettingsLine, UnionSolid } from '@mochi-ui/icons'
 import { useProfileStore, useWalletStore } from '~store'
 import { useFetchProfileGlobalInfo } from '~hooks/profile/useFetchProfileGlobalInfo'
-import { BalanceWithSource, TokenTableList } from '~cpn/base/token-table-list'
+import { BalanceWithSource, TokenTableList } from '~cpn/TokenTableList'
 import { Fragment, useState } from 'react'
 import clsx from 'clsx'
 
@@ -173,11 +173,6 @@ export const ProfileWidget = () => {
         data={chains[selectedChain]}
         hideLastBorder
       />
-      <div className="text-center">
-        <Typography level="p6" color="textSecondary">
-          Powered by Console Labs
-        </Typography>
-      </div>
     </Card>
   )
 }

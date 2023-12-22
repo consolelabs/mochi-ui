@@ -1,4 +1,4 @@
-import { Button, IconButton } from '@mochi-ui/core'
+import { Button, IconButton, Tooltip, Typography } from '@mochi-ui/core'
 import {
   ChangeEvent,
   KeyboardEvent,
@@ -114,6 +114,9 @@ export const AmountInput: React.FC<AmountInputProps> = ({
       value *= unitPrice
       value *= unitPrice
     }
+    if (!Number.isFinite(value)) {
+      value = 0
+    }
     const formattedAmount = formatTokenAmount(
       value.toFixed(MAX_AMOUNT_PRECISION),
     )
@@ -206,69 +209,16 @@ export const AmountInput: React.FC<AmountInputProps> = ({
 
   return (
     <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-3">
-      <div className="flex items-center justify-between">
-        <TokenPicker
-          authorized={authorized}
-          unauthorizedContent={unauthorizedContent}
-          selectedAsset={selectedAsset}
-          onSelect={handleAssetChanged}
-          balances={wallet?.balances}
-        />
-        <IconButton
-          label="Toggle USD mode"
-          variant="solid"
-          color="white"
-          onClick={toggleUsdMode}
+      <div className="flex justify-between items-center">
+        <Typography
+          level="p5"
+          color="textSecondary"
+          fontWeight="md"
+          className="ml-4"
         >
-          <ArrowUpDownLine />
-        </IconButton>
-      </div>
-      <div className="flex flex-col px-4 py-6 rounded-lg gap-y-2 bg-white-pure">
-        <div className="flex items-center justify-between flex-1">
-          <div className="flex gap-x-1.5 items-end">
-            {/* <span className="font-medium"> */}
-            {/*   {!isUsdMode ? selectedAsset?.token.symbol : 'USD'} */}
-            {/* </span> */}
-            <input
-              className="w-[70%] outline-none text-2xl font-medium text-neutral-800 appearance-none h-[34px]"
-              placeholder="0"
-              type="text"
-              min={0}
-              onKeyDown={handleKeyDown}
-              value={tipAmount.display}
-              onChange={handleAmountChanged}
-              onBlur={onBlurInput}
-              ref={ref}
-            />
-          </div>
-          <span className="text-sm text-right shrink-0 text-neutral-600">
-            &#8776; {!isUsdMode ? tipAmountUSD : tipAmountToken}{' '}
-            {!isUsdMode ? 'USD' : selectedAsset?.token.symbol}
-          </span>
-        </div>
-        <div className="flex items-center justify-between flex-1">
-          <button
-            tabIndex={-1}
-            type="button"
-            onClick={() => {
-              let value = isMonikerAsset
-                ? getBalanceByMoniker(selectedAsset, wallet).value
-                : selectedAsset?.asset_balance ?? 0
-
-              if (isUsdMode) {
-                value *= unitPrice
-              }
-
-              onBlurInput({
-                target: {
-                  value: String(value),
-                },
-              } as any)
-            }}
-            className="outline-none text-[#848281] text-[13px]"
-          >
-            Balance: {!isUsdMode ? balance : balanceUsd}
-          </button>
+          You send
+        </Typography>
+        <div className="flex gap-x-2 justify-end">
           <div className="flex gap-x-2">
             <Button
               size="sm"
@@ -300,6 +250,68 @@ export const AmountInput: React.FC<AmountInputProps> = ({
             >
               {!isUsdMode ? '$' : ''}5
             </Button>
+          </div>
+          <Tooltip
+            componentProps={{ trigger: { asChild: true } }}
+            content="Currency switcher"
+          >
+            <IconButton
+              label="Toggle USD mode"
+              variant="solid"
+              color="white"
+              onClick={toggleUsdMode}
+            >
+              <ArrowUpDownLine />
+            </IconButton>
+          </Tooltip>
+        </div>
+      </div>
+      <div className="flex flex-col p-4 rounded-lg bg-white-pure">
+        <div className="flex flex-1 justify-between items-center">
+          {/* <span className="font-medium"> */}
+          {/*   {!isUsdMode ? selectedAsset?.token.symbol : 'USD'} */}
+          {/* </span> */}
+          <input
+            className="w-[70%] outline-none text-[32px] font-medium text-neutral-800 appearance-none h-[34px] self-start"
+            placeholder="0"
+            type="text"
+            min={0}
+            onKeyDown={handleKeyDown}
+            value={tipAmount.display}
+            onChange={handleAmountChanged}
+            onBlur={onBlurInput}
+            ref={ref}
+          />
+          <div className="flex flex-col gap-y-4">
+            <TokenPicker
+              authorized={authorized}
+              unauthorizedContent={unauthorizedContent}
+              selectedAsset={selectedAsset}
+              onSelect={handleAssetChanged}
+              balances={wallet?.balances}
+            />
+            <button
+              tabIndex={-1}
+              type="button"
+              onClick={() => {
+                let value = isMonikerAsset
+                  ? getBalanceByMoniker(selectedAsset, wallet).value
+                  : selectedAsset?.asset_balance ?? 0
+
+                if (isUsdMode) {
+                  value *= unitPrice
+                }
+
+                onBlurInput({
+                  target: {
+                    value: String(value),
+                  },
+                } as any)
+              }}
+              className="outline-none text-[#848281] text-[13px]"
+            >
+              Balance: {!isUsdMode ? balance : balanceUsd}
+            </button>
           </div>
         </div>
       </div>
