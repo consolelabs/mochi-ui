@@ -198,7 +198,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
 
   useEffect(() => {
     function focusInput() {
-      ref.current?.focus({ preventScroll: true })
+      ref.current?.focus()
     }
 
     window.addEventListener(events.TIP_WIDGET.FOCUS_AMOUNT, focusInput)
@@ -227,6 +227,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('1')}
               tabIndex={-1}
+              className="text-primary-700"
             >
               {!isUsdMode ? '$' : ''}1
             </Button>
@@ -237,6 +238,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('2')}
               tabIndex={-1}
+              className="text-primary-700"
             >
               {!isUsdMode ? '$' : ''}2
             </Button>
@@ -247,6 +249,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('5')}
               tabIndex={-1}
+              className="text-primary-700"
             >
               {!isUsdMode ? '$' : ''}5
             </Button>
@@ -268,21 +271,24 @@ export const AmountInput: React.FC<AmountInputProps> = ({
       </div>
       <div className="flex flex-col p-4 rounded-lg bg-white-pure">
         <div className="flex flex-1 justify-between items-center">
-          {/* <span className="font-medium"> */}
-          {/*   {!isUsdMode ? selectedAsset?.token.symbol : 'USD'} */}
-          {/* </span> */}
-          <input
-            className="w-[70%] outline-none text-[32px] font-medium text-neutral-800 appearance-none h-[34px] self-start"
-            placeholder="0"
-            type="text"
-            min={0}
-            onKeyDown={handleKeyDown}
-            value={tipAmount.display}
-            onChange={handleAmountChanged}
-            onBlur={onBlurInput}
-            ref={ref}
-          />
-          <div className="flex flex-col gap-y-4">
+          <div className="flex flex-col flex-1 gap-y-4 items-start">
+            <input
+              className="w-[70%] outline-none text-[32px] font-medium text-neutral-800 appearance-none h-[34px] self-start"
+              placeholder="0"
+              type="text"
+              min={0}
+              onKeyDown={handleKeyDown}
+              value={tipAmount.display}
+              onChange={handleAmountChanged}
+              onBlur={onBlurInput}
+              ref={ref}
+            />
+            <span className="text-sm text-right shrink-0 text-neutral-600">
+              &#8776; {!isUsdMode ? tipAmountUSD : tipAmountToken}{' '}
+              {!isUsdMode ? 'USD' : selectedAsset?.token.symbol}
+            </span>
+          </div>
+          <div className="flex flex-col gap-y-4 shrink-0">
             <TokenPicker
               authorized={authorized}
               unauthorizedContent={unauthorizedContent}

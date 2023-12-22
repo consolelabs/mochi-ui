@@ -78,13 +78,13 @@ export default function StepOne() {
             by sending them money
           </span>
         </div>
-        {/* <WalletPicker */}
-        {/*   authorized={isLoggedIn} */}
-        {/*   unauthorizedContent={unauthorizedContent} */}
-        {/*   data={wallets} */}
-        {/*   loading={isFetchingWallets} */}
-        {/*   onSelect={updateSourceWallet} */}
-        {/* /> */}
+        <WalletPicker
+          authorized={isLoggedIn}
+          unauthorizedContent={unauthorizedContent}
+          data={wallets}
+          loading={isFetchingWallets}
+          onSelect={updateSourceWallet}
+        />
         <AmountInput
           authorized={isLoggedIn}
           unauthorizedContent={unauthorizedContent}
