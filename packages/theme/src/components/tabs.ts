@@ -19,7 +19,7 @@ const tabTriggerVariants = cva(
     compoundVariants: [
       {
         disabled: true,
-        className: 'text-text-tertiary cursor-not-allowed',
+        className: 'text-text-disabled cursor-not-allowed',
       },
       {
         disabled: false,

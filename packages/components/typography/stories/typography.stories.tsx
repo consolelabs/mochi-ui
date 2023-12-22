@@ -42,7 +42,7 @@ const meta: Meta<typeof Typography> = {
         'neutral',
         'textPrimary',
         'textSecondary',
-        'textTertiary',
+        'textDisabled',
       ],
     },
     fontWeight: {
@@ -106,7 +106,7 @@ const colorVariants: TypographyProps['color'][] = [
   'neutral',
   'textPrimary',
   'textSecondary',
-  'textTertiary',
+  'textDisabled',
 ]
 
 export const Colors: Story = {
