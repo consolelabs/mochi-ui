@@ -97,4 +97,4 @@ export default function Transfer({ data, ogData }: Props) {
 
 Transfer.layoutType = 'landing'
 
-export const runtime = 'edge'
+export const runtime = 'experimental-edge'
