@@ -19,6 +19,7 @@ env:
 jobs:
   setup-build-publish-deploy:
     name: Setup, Build, Publish, and Deploy
+    environment: Preview – websites-mochi
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -45,20 +46,17 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
-            type=sha
+            type=sha,prefix=,suffix=,format=long
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           build-args: |
-            NEXT_PUBLIC_ENV="develop"
             NEXT_PUBLIC_MOCHI_PROFILE_API_HOST="${{ secrets.NEXT_PUBLIC_MOCHI_PROFILE_API_HOST }}"
             NEXT_PUBLIC_MOCHI_API_HOST="${{ secrets.NEXT_PUBLIC_MOCHI_PROFILE_API_HOST }}"
             NEXT_PUBLIC_MOCHI_PAY_API_HOST="${{ secrets.NEXT_PUBLIC_MOCHI_PROFILE_API_HOST }}"
-            NEXT_PUBLIC_AUTH_TELEGRAM_ID="${{ secrets.NEXT_PUBLIC_AUTH_TELEGRAM_ID }}"
-            NEXT_PUBLIC_AUTH_TELEGRAM_USERNAME="mochi_preview_bot"
-            
+
       # Setup kustomize
       # - name: Setup kustomize
       #   run: |
