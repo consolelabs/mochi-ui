@@ -177,9 +177,11 @@ export const ProfileWidget = () => {
               >
                 {chain}
               </TabTrigger>
-              {selectedIndex !== index && selectedIndex !== index + 1 && (
-                <div className="h-3 border-r border-neutral-solid-focus" />
-              )}
+              {selectedIndex !== index &&
+                selectedIndex !== index + 1 &&
+                index < sortedChains.length - 1 && (
+                  <div className="h-3 border-r border-neutral-solid-focus" />
+                )}
             </Fragment>
           ))}
           {sortedChains.length > 4 && (
