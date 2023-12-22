@@ -141,6 +141,7 @@ export default function Transaction({
           columns={columns}
           data={transactions ?? []}
           isLoading={isLoading}
+          hideLastBorder
         />
       </div>
       {!isLoading && (transactions?.length ?? 0) <= 0 && (

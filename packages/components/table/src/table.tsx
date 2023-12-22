@@ -36,6 +36,7 @@ export interface TableProps<T> {
   renderSubComponent?: (record: T, rowIndex: number) => React.ReactNode
   getRowCanExpand?: (row: Row<T>) => boolean
   border?: boolean
+  hideLastBorder?: boolean
   emptyContent?: React.ReactNode
 }
 
@@ -61,6 +62,7 @@ export default function Table<T extends RowData>({
   renderSubComponent,
   getRowCanExpand,
   border,
+  hideLastBorder,
   emptyContent,
 }: TableProps<T>) {
   const table = useReactTable({
@@ -119,7 +121,10 @@ export default function Table<T extends RowData>({
                   <tr key={rowIdx} className="group">
                     {headers.map((_: any, idx: number) => (
                       <td
-                        className={tableDataLoadingClsx({ border })}
+                        className={tableDataLoadingClsx({
+                          hideLastBorder,
+                          border,
+                        })}
                         key={idx}
                       >
                         <Skeleton className={tableDataSkeletonClsx()} />
@@ -138,7 +143,7 @@ export default function Table<T extends RowData>({
                   >
                     {row.getVisibleCells().map((cell) => (
                       <td
-                        className={tableDataClsx({ border })}
+                        className={tableDataClsx({ hideLastBorder, border })}
                         key={cell.id}
                         align={
                           (cell.column.columnDef.meta as any)?.align || 'left'
@@ -159,7 +164,10 @@ export default function Table<T extends RowData>({
                       {/* 2nd row is a custom 1 cell row */}
                       <td
                         colSpan={row.getVisibleCells().length}
-                        className={tablesExpandedDataClsx({ border })}
+                        className={tablesExpandedDataClsx({
+                          hideLastBorder,
+                          border,
+                        })}
                       >
                         {renderSubComponent(row.original, rowIndex)}
                       </td>

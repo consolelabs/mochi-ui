@@ -5,7 +5,7 @@ const tableWrapperClsx = ({
   border,
 }: { className?: string; border?: boolean } = {}) =>
   clsx(
-    'overflow-x-auto',
+    'overflow-y-auto',
     border ? 'rounded-lg border border-divider shadow-input' : 'p-2',
     className,
   )
@@ -35,10 +35,11 @@ const tableHeaderClsx = ({ className = '' }: { className?: string } = {}) =>
 const tableDataLoadingClsx = ({
   className = '',
   border,
-}: { className?: string; border?: boolean } = {}) =>
+  hideLastBorder,
+}: { className?: string; border?: boolean; hideLastBorder?: boolean } = {}) =>
   clsx(
     'px-4 py-3 text-sm font-normal leading-tight border-0 border-b border-neutral-outline-active border-solid rounded text-text-primary',
-    { 'group-last:border-b-0': border },
+    { 'group-last:border-b-0': hideLastBorder || border },
     className,
   )
 
@@ -49,20 +50,22 @@ const tableDataSkeletonClsx = ({
 const tableDataClsx = ({
   className = '',
   border,
-}: { className?: string; border?: boolean } = {}) =>
+  hideLastBorder,
+}: { className?: string; border?: boolean; hideLastBorder?: boolean } = {}) =>
   clsx(
     'py-3 px-4 text-sm font-normal leading-tight border-0 border-b border-neutral-outline-active border-solid min-w-[48px] text-text-primary',
-    { 'group-last:border-b-0': border },
+    { 'group-last:border-b-0': hideLastBorder || border },
     className,
   )
 
 const tablesExpandedDataClsx = ({
   className = '',
   border,
-}: { className?: string; border?: boolean } = {}) =>
+  hideLastBorder,
+}: { className?: string; border?: boolean; hideLastBorder?: boolean } = {}) =>
   clsx(
     'border-0 border-b border-b-neutral-outline-active',
-    { 'group-last:border-b-0': border },
+    { 'group-last:border-b-0': hideLastBorder || border },
     className,
   )
 
