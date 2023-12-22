@@ -53,7 +53,7 @@ const itemCva = cva(
       isTrigger: {
         false: [
           'font-medium',
-          'hover:bg-neutral-plain-hover focus:bg-neutral-plain-hover',
+          'hover:bg-background-level2 focus:bg-background-level2',
           'hover:outline-none focus:outline-none',
           'cursor-pointer',
           'p-2',
