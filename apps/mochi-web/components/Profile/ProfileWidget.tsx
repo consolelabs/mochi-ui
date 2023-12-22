@@ -14,7 +14,13 @@ import {
   Typography,
 } from '@mochi-ui/core'
 import { utils } from '@consolelabs/mochi-ui'
-import { ChevronDownLine, SettingsLine, UnionSolid } from '@mochi-ui/icons'
+import {
+  ArrowDownSquareSolid,
+  ArrowUpSquareSolid,
+  ChevronDownLine,
+  SettingsLine,
+  UnionSolid,
+} from '@mochi-ui/icons'
 import { useProfileStore, useWalletStore } from '~store'
 import { useFetchProfileGlobalInfo } from '~hooks/profile/useFetchProfileGlobalInfo'
 import { BalanceWithSource, TokenTableList } from '~cpn/TokenTableList'
@@ -48,7 +54,17 @@ export const ProfileWidget = () => {
         [key]: [...(prev[key] || []), curr],
       }
     },
-    { ALL: balances },
+    {
+      ALL: balances,
+      MOCHI: wallets.flatMap((w) =>
+        w.id === 'mochi'
+          ? w.balances.map((b) => ({
+              ...b,
+              source: { id: w.id, title: w.title },
+            }))
+          : [],
+      ),
+    },
   )
   const sortedChains = Object.keys(chains)
     .map((chain, index) => ({
@@ -66,7 +82,7 @@ export const ProfileWidget = () => {
     <Card className="pb-5 space-y-4 shadow-input">
       <div className="flex space-x-4">
         <Avatar src={me?.avatar || ''} size="xl" />
-        <div className="overflow-hidden flex-1 mt-2 space-y-2">
+        <div className="flex-1 mt-2 space-y-2 overflow-hidden">
           <Typography level="p2" fontWeight="md" noWrap>
             {me?.profile_name}
           </Typography>
@@ -121,7 +137,7 @@ export const ProfileWidget = () => {
         <Typography
           level="h5"
           fontWeight="lg"
-          className="flex gap-x-2 items-end"
+          className="flex items-end gap-x-2"
         >
           {utils.formatUsdDigit(total)}
           <Typography
@@ -137,10 +153,15 @@ export const ProfileWidget = () => {
           </Typography>
         </Typography>
       </div>
-      <div className="grid grid-cols-3 gap-2">
-        <Button>Buy</Button>
-        <Button variant="outline">Deposit</Button>
-        <Button variant="outline">Withdraw</Button>
+      <div className="grid grid-cols-2 gap-2">
+        <Button variant="outline">
+          <ArrowUpSquareSolid className="w-4 h-4" />
+          Send
+        </Button>
+        <Button variant="outline">
+          <ArrowDownSquareSolid className="w-4 h-4" />
+          Receive
+        </Button>
       </div>
       <Tabs value={selectedChain}>
         <TabList className="flex items-center p-0.5 rounded-lg bg-neutral-outline-active">
@@ -163,7 +184,7 @@ export const ProfileWidget = () => {
           ))}
           {sortedChains.length > 4 && (
             <DropdownMenu>
-              <DropdownMenuTrigger className="flex justify-center items-center w-7 h-7 rounded-md text-text-secondary hover:bg-background-popup">
+              <DropdownMenuTrigger className="flex items-center justify-center rounded-md w-7 h-7 text-text-secondary hover:bg-background-popup">
                 <ChevronDownLine width={20} height={20} />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
