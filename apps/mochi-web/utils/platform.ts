@@ -29,6 +29,12 @@ export const getPlatform = (key?: string) => {
         name: 'App',
       }
     }
+    case Platform.EvmChain: {
+      return {
+        icon: '',
+        name: 'EVM',
+      }
+    }
     default:
       return {
         icon: '',

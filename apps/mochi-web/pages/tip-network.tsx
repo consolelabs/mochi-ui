@@ -6,7 +6,6 @@ import { HOME_URL } from '~envs'
 import { SEO } from '~app/layout/seo'
 import { API } from '~constants/api'
 import dynamic from 'next/dynamic'
-import { TransactionGraphData, TransactionEdge } from '~types/mochi-schema'
 import { GraphData, NodeObject } from 'react-force-graph-2d'
 import { useMemo, useState } from 'react'
 import { ProfileBar } from '~components/TipNetwork/ProfileBar'
@@ -18,6 +17,28 @@ import {
   TipNetworkData,
 } from '~types/tip-graph'
 import { useDisclosure } from '@dwarvesf/react-hooks'
+import { Profile } from '@consolelabs/mochi-rest'
+
+export interface TransactionNode {
+  profile_id: string
+  total_volume: number
+  spend_volume: number
+  receive_volume: number
+  profile: Profile
+}
+
+export interface TransactionEdge {
+  from_profile_id: string
+  to_profile_id: string
+  total_volume: number
+  spend: number
+  receive: number
+}
+
+export interface TransactionGraphData {
+  nodes: TransactionNode[]
+  edges: TransactionEdge[]
+}
 
 const TipNetworkGraph = dynamic(
   () =>
@@ -142,7 +163,7 @@ export default function TipNetwork({ data }: TipNetworkProps) {
         description="Tip network from server"
         url={`${HOME_URL}/tip-network/`}
       />
-      <div className="flex relative w-full h-full">
+      <div className="relative flex w-full h-full">
         <TipNetworkGraph
           graphData={graphData}
           selectedNode={selectedNode}

@@ -9,8 +9,6 @@
  * ---------------------------------------------------------------
  */
 
-import { Profile } from '@consolelabs/mochi-rest'
-
 export interface ModelActivity {
   guild_default?: boolean
   id?: number
@@ -368,7 +366,6 @@ export interface ModelNewListedNFTCollection {
 export interface ModelNotificationFlag {
   description?: string
   group?: string
-  id?: number
   key?: string
 }
 
@@ -531,8 +528,6 @@ export interface ModelTxLimitSetting {
   action?: string
   max?: number
   min?: number
-  token?: ModelPayToken
-  token_id?: string
 }
 
 export interface ModelUser {
@@ -573,7 +568,7 @@ export interface ModelUserPaymentSetting {
   default_token_id?: string
   prioritized_token?: ModelPayToken[]
   prioritized_token_ids?: string[]
-  profileId?: string
+  profile_id?: string
   tx_limit_enable?: boolean
   tx_limit_settings?: ModelTxLimitSetting[]
 }
@@ -1037,7 +1032,7 @@ export interface RequestUpdateGuildRequest {
 
 export interface RequestUpdateNotificationSettingPayloadRequest {
   enable: boolean
-  flag: Record<string, boolean>
+  flags: Record<string, boolean>
   platforms: string[]
 }
 
@@ -2540,25 +2535,4 @@ export interface UuidNullUUID {
   uuid?: string
   /** Valid is true if UUID is not NULL */
   valid?: boolean
-}
-
-export interface TransactionNode {
-  profile_id: string
-  total_volume: number
-  spend_volume: number
-  receive_volume: number
-  profile: Profile
-}
-
-export interface TransactionEdge {
-  from_profile_id: string
-  to_profile_id: string
-  total_volume: number
-  spend: number
-  receive: number
-}
-
-export interface TransactionGraphData {
-  nodes: TransactionNode[]
-  edges: TransactionEdge[]
 }

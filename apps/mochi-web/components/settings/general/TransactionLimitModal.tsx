@@ -23,66 +23,49 @@ import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { actionList } from '~constants/settings'
-import { ModelToken } from '~types/mochi-pay-schema'
-import { TokenAvatar } from '~cpn/TokenAvatar'
-import { TransactionLimit } from './types'
+import { ModelTxLimitSetting } from '~types/mochi-schema'
 
 const schema = z
   .object({
-    action: z.string().min(1, 'This field is required'),
-    minAmount: z
-      .string()
-      .min(1, 'Amount is required')
-      .refine((value) => !Number.isNaN(Number(value)), {
-        path: ['minAmount'],
-        message: 'Amount must be a number',
-      }),
-    minToken: z.string().min(1, 'Token is required'),
-    maxAmount: z
-      .string()
-      .min(1, 'Amount is required')
-      .refine((value) => !Number.isNaN(Number(value)), {
-        path: ['maxAmount'],
-        message: 'Amount must be a number',
-      }),
-    maxToken: z.string().min(1, 'Token is required'),
+    action: z
+      .string({ required_error: 'This field is required' })
+      .min(1, 'This field is required'),
+    min: z
+      .number({
+        required_error: 'Amount is required',
+        invalid_type_error: 'Amount must be a number',
+      })
+      .min(0, 'Amount must be greater than 0'),
+    max: z
+      .number({
+        required_error: 'Amount is required',
+        invalid_type_error: 'Amount must be a number',
+      })
+      .min(0, 'Amount must be greater than 0'),
   })
-  .refine((data) => Number(data.maxAmount) > Number(data.minAmount), {
-    path: ['maxAmount'],
+  .refine((data) => Number(data.max) > Number(data.min), {
+    path: ['max'],
     message: 'Max amount must be greater than min amount',
   })
 
 interface Props {
-  defaultValues?: TransactionLimit
-  onConfirm: (data: TransactionLimit) => void
+  defaultValues?: ModelTxLimitSetting
+  onConfirm: (data: ModelTxLimitSetting) => void
   trigger: React.ReactNode
-  tokenList: ModelToken[]
 }
 
 export const TransactionLimitModal = ({
-  defaultValues = {
-    action: '',
-    minAmount: '',
-    maxAmount: '',
-    minToken: '',
-    maxToken: '',
-  },
+  defaultValues = {},
   onConfirm,
   trigger,
-  tokenList,
 }: Props) => {
   const [open, setOpen] = useState(false)
-  const {
-    control,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<TransactionLimit>({
+  const { control, handleSubmit, reset } = useForm<ModelTxLimitSetting>({
     defaultValues,
     resolver: zodResolver(schema),
   })
 
-  const onSubmit = (data: TransactionLimit) => {
+  const onSubmit = (data: ModelTxLimitSetting) => {
     setOpen(false)
     onConfirm(data)
   }
@@ -110,7 +93,7 @@ export const TransactionLimitModal = ({
               name="action"
               control={control}
               render={({ field, fieldState }) => (
-                <FormControl error={!!fieldState.error} className="mt-8 w-full">
+                <FormControl error={!!fieldState.error} className="w-full mt-8">
                   <FormLabel>Action</FormLabel>
                   <Select {...field}>
                     <SelectTrigger className="justify-between h-10 border border-divider">
@@ -131,126 +114,60 @@ export const TransactionLimitModal = ({
               )}
             />
             <Controller
-              name="minAmount"
+              name="min"
               control={control}
-              render={({ field }) => (
-                <FormControl
-                  error={
-                    !!errors.minAmount?.message || !!errors.minToken?.message
-                  }
-                  className="mt-4 w-full"
-                >
+              render={({ field, fieldState: { error } }) => (
+                <FormControl error={!!error?.message} className="w-full mt-4">
                   <FormLabel>Minimun value</FormLabel>
-                  <TextFieldRoot className="pr-0">
+                  <TextFieldRoot>
                     <TextFieldInput
                       {...field}
                       placeholder="Enter amount"
                       autoComplete="off"
                       type="number"
-                      min={0}
                       step="any"
+                      onChange={(e) =>
+                        field.onChange(
+                          e.target.value ? Number(e.target.value) : '',
+                        )
+                      }
                     />
                     <TextFieldDecorator>
-                      <Controller
-                        name="minToken"
-                        control={control}
-                        render={({ field, fieldState }) => (
-                          <FormControl error={!!fieldState.error}>
-                            <Select {...field}>
-                              <SelectTrigger className="justify-between h-10 border-l min-w-[140px] border-divider">
-                                <SelectValue placeholder="Choose token" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                {tokenList.map((each) => (
-                                  <SelectItem
-                                    key={each.id}
-                                    value={String(each.id)}
-                                  >
-                                    <div className="flex items-center space-x-2">
-                                      <TokenAvatar
-                                        src={each.icon || ''}
-                                        name={each.symbol || ''}
-                                      />
-                                      <Typography level="p5">
-                                        {each.symbol}
-                                      </Typography>
-                                    </div>
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                          </FormControl>
-                        )}
-                      />
+                      <Typography level="p5">USD</Typography>
                     </TextFieldDecorator>
                   </TextFieldRoot>
-                  <FormErrorMessage>
-                    {errors.minAmount?.message || errors.minToken?.message}
-                  </FormErrorMessage>
+                  <FormErrorMessage>{error?.message}</FormErrorMessage>
                 </FormControl>
               )}
             />
             <Controller
-              name="maxAmount"
+              name="max"
               control={control}
-              render={({ field }) => (
-                <FormControl
-                  error={
-                    !!errors.maxAmount?.message || !!errors.maxToken?.message
-                  }
-                  className="mt-4 w-full"
-                >
+              render={({ field, fieldState: { error } }) => (
+                <FormControl error={!!error?.message} className="w-full mt-4">
                   <FormLabel>Maximun value</FormLabel>
-                  <TextFieldRoot className="pr-0">
+                  <TextFieldRoot>
                     <TextFieldInput
                       {...field}
                       placeholder="Enter amount"
                       autoComplete="off"
                       type="number"
-                      min={0}
                       step="any"
+                      onChange={(e) =>
+                        field.onChange(
+                          e.target.value ? Number(e.target.value) : '',
+                        )
+                      }
                     />
                     <TextFieldDecorator>
-                      <Controller
-                        name="maxToken"
-                        control={control}
-                        render={({ field, fieldState }) => (
-                          <FormControl error={!!fieldState.error}>
-                            <Select {...field}>
-                              <SelectTrigger className="justify-between h-10 border-l min-w-[140px] border-divider">
-                                <SelectValue placeholder="Choose token" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                {tokenList.map((each) => (
-                                  <SelectItem
-                                    key={each.id}
-                                    value={String(each.id)}
-                                  >
-                                    <div className="flex items-center space-x-2">
-                                      <TokenAvatar
-                                        src={each.icon || ''}
-                                        name={each.symbol || ''}
-                                      />
-                                      <Typography level="p5">
-                                        {each.symbol}
-                                      </Typography>
-                                    </div>
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                          </FormControl>
-                        )}
-                      />
+                      <Typography level="p5">USD</Typography>
                     </TextFieldDecorator>
                   </TextFieldRoot>
-                  <FormErrorMessage>
-                    {errors.maxAmount?.message || errors.maxToken?.message}
-                  </FormErrorMessage>
+                  <FormErrorMessage>{error?.message}</FormErrorMessage>
                 </FormControl>
               )}
             />
-            <div className="grid grid-cols-2 gap-3 mt-8 w-full">
+            <div className="grid w-full grid-cols-2 gap-3 mt-8">
               <ModalTrigger asChild>
                 <Button color="white">Cancel</Button>
               </ModalTrigger>

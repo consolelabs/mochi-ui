@@ -1,3 +1,4 @@
+import { truncate } from '@dwarvesf/react-utils'
 import {
   Button,
   FormControl,
@@ -9,31 +10,54 @@ import {
   SelectSeparator,
   SelectTrigger,
   SelectValue,
+  useLoginWidget,
 } from '@mochi-ui/core'
 import { PlusLine } from '@mochi-ui/icons'
-import { Control, Controller } from 'react-hook-form'
-import { GeneralFormValue } from './types'
+import { Controller, useFormContext } from 'react-hook-form'
+import { ResponseGeneralSettingData } from '~types/mochi-schema'
+import { getPlatform } from '~utils/platform'
 
-interface Props {
-  control: Control<GeneralFormValue>
-}
+export const MoneySource = () => {
+  const { profile } = useLoginWidget()
+  const { control, setValue } = useFormContext<ResponseGeneralSettingData>()
 
-export const MoneySource = ({ control }: Props) => {
   return (
     <Controller
-      name="defaultMoneySource"
+      name="payment.default_money_source.platform_identifier"
       control={control}
       render={({ field, fieldState }) => (
         <FormControl error={!!fieldState.error} className="min-w-[160px]">
           <FormLabel>Default money source</FormLabel>
-          <Select {...field}>
+          <Select
+            {...field}
+            onChange={(value) => {
+              setValue(
+                'payment.default_money_source',
+                {
+                  platform_identifier: value,
+                  platform:
+                    profile?.associated_accounts?.find(
+                      (each) => each.platform_identifier === value,
+                    )?.platform || 'mochi',
+                },
+                { shouldDirty: true },
+              )
+            }}
+          >
             <SelectTrigger className="justify-between h-10 border border-divider">
-              <SelectValue placeholder="Mochi wallet" />
+              <SelectValue />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="mochi">Mochi wallet</SelectItem>
-              <SelectItem value="evm">EVM | 0xfsf...few</SelectItem>
-              <SelectItem value="sol">SOL | 0xfsf...few</SelectItem>
+              {profile?.associated_accounts?.map((each) => (
+                <SelectItem
+                  key={each.platform_identifier}
+                  value={each.platform_identifier}
+                >
+                  {getPlatform(each.platform).name} |{' '}
+                  {truncate(each.platform_identifier, 10, true)}
+                </SelectItem>
+              ))}
               <SelectSeparator />
               <Button variant="ghost" className="w-full pl-2 pr-2 h-9">
                 <PlusLine className="w-4 h-4" />

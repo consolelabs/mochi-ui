@@ -22,7 +22,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { actionList } from '~constants/settings'
-import { Message } from './types'
+import { ModelDefaultMessageSetting } from '~types/mochi-schema'
 
 const schema = z.object({
   action: z.string().min(1, 'This field is required'),
@@ -30,8 +30,8 @@ const schema = z.object({
 })
 
 interface Props {
-  defaultValues?: Message
-  onConfirm: (data: Message) => void
+  defaultValues?: ModelDefaultMessageSetting
+  onConfirm: (data: ModelDefaultMessageSetting) => void
   trigger: React.ReactNode
 }
 
@@ -41,12 +41,12 @@ export const MessageModal = ({
   trigger,
 }: Props) => {
   const [open, setOpen] = useState(false)
-  const { control, handleSubmit, reset } = useForm<Message>({
+  const { control, handleSubmit, reset } = useForm<ModelDefaultMessageSetting>({
     defaultValues,
     resolver: zodResolver(schema),
   })
 
-  const onSubmit = (data: Message) => {
+  const onSubmit = (data: ModelDefaultMessageSetting) => {
     setOpen(false)
     onConfirm(data)
   }

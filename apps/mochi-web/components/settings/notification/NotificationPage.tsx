@@ -113,7 +113,7 @@ export function NotificationPage() {
     const body: RequestUpdateNotificationSettingPayloadRequest = {
       enable: enable ?? false,
       platforms,
-      flag: restData as Record<string, boolean | any>,
+      flags: restData as Record<string, boolean>,
     }
     try {
       const { data: newSettings }: ResponseUserNotificationSettingResponse =
@@ -306,7 +306,7 @@ export function NotificationPage() {
             <Typography className="py-4" level="h6">
               Platform Notification
             </Typography>
-            <Typography level="p5" color="textSecondary" className="-mt-2 pb-2">
+            <Typography level="p5" color="textSecondary" className="pb-2 -mt-2">
               Select the platform you want to receive the notification
             </Typography>
             <div className="divide-y">

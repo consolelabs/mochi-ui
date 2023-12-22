@@ -7,34 +7,25 @@ import {
 } from '@mochi-ui/core'
 import { EditLine, TrashBinLine } from '@mochi-ui/icons'
 import React from 'react'
-import {
-  Control,
-  Controller,
-  UseFormWatch,
-  useFieldArray,
-} from 'react-hook-form'
+import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import { actionList } from '~constants/settings'
-import { GeneralFormValue } from './types'
+import { ResponseGeneralSettingData } from '~types/mochi-schema'
 import { MessageModal } from './MessageModal'
 
-interface Props {
-  control: Control<GeneralFormValue>
-  watch: UseFormWatch<GeneralFormValue>
-}
-
-export const DefaultMessage = ({ control, watch }: Props) => {
+export const DefaultMessage = () => {
+  const { control, watch } = useFormContext<ResponseGeneralSettingData>()
   const { fields, append, remove, update } = useFieldArray({
     control,
-    name: 'defaultMessage',
+    name: 'payment.default_message_settings',
   })
-  const enableDefaultMessage = watch('enableDefaultMessage')
+  const enableDefaultMessage = watch('payment.default_message_enable')
 
   return (
     <div className="flex flex-col w-full max-w-md space-y-2">
       <div className="flex items-center justify-between">
         <FormLabel>Default message</FormLabel>
         <Controller
-          name="enableDefaultMessage"
+          name="payment.default_message_enable"
           control={control}
           render={({ field: { value, onChange, ...rest } }) => (
             <Switch
@@ -48,7 +39,7 @@ export const DefaultMessage = ({ control, watch }: Props) => {
       {(enableDefaultMessage ? fields : []).map((each, index) => (
         <Controller
           key={each.id}
-          name={`defaultMessage.${index}`}
+          name={`payment.default_message_settings.${index}`}
           control={control}
           render={({ field }) => (
             <div className="flex items-center border rounded-md border-divider shadow-input">
