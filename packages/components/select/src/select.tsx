@@ -85,19 +85,17 @@ const SelectTrigger = forwardRef<SelectTriggerRef, SelectTriggerProps>(
           })}
         />
       )
+    } else if (rightIcon) {
+      rightIconRender = rightIcon
     } else {
-      if (rightIcon) {
-        rightIconRender = rightIcon
-      } else {
-        rightIconRender = (
-          <ChevronDownLine
-            className={select.iconChevron({
-              color,
-              appearance,
-            })}
-          />
-        )
-      }
+      rightIconRender = (
+        <ChevronDownLine
+          className={select.iconChevron({
+            color,
+            appearance,
+          })}
+        />
+      )
     }
 
     return (
