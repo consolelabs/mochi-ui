@@ -39,6 +39,7 @@ const dropdownChildItemSubtitleClsx = ({
 
 export const dropdownItemStyleCva = cva(
   [
+    'cursor-pointer',
     'group p-2 text-sm font-medium',
     'flex items-center justify-between gap-3',
     'cursor-default',
