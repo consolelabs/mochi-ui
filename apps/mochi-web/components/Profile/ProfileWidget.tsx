@@ -62,7 +62,7 @@ export const ProfileWidget = () => {
     <Card className="pb-5 space-y-4 shadow-input">
       <div className="flex space-x-4">
         <Avatar src={me?.avatar || ''} size="xl" />
-        <div className="flex-1 mt-2 space-y-2 overflow-hidden">
+        <div className="overflow-hidden flex-1 mt-2 space-y-2">
           <Typography level="p2" fontWeight="md" noWrap>
             {me?.profile_name}
           </Typography>
@@ -128,7 +128,7 @@ export const ProfileWidget = () => {
         <Button variant="outline">Withdraw</Button>
       </div>
       <Tabs value={selectedChain}>
-        <TabList className="flex rounded-lg bg-neutral-outline-active p-0.5 items-center">
+        <TabList className="flex items-center p-0.5 rounded-lg bg-neutral-outline-active">
           {sortedChains.slice(0, 4).map((chain, index) => (
             <Fragment key={chain}>
               <TabTrigger
@@ -148,7 +148,7 @@ export const ProfileWidget = () => {
           ))}
           {sortedChains.length > 4 && (
             <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center justify-center rounded-md hover:bg-background-popup text-text-secondary w-7 h-7">
+              <DropdownMenuTrigger className="flex justify-center items-center w-7 h-7 rounded-md text-text-secondary hover:bg-background-popup">
                 <ChevronDownLine width={20} height={20} />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -171,6 +171,7 @@ export const ProfileWidget = () => {
         className={!chains[selectedChain].length ? 'h-full' : ''}
         isLoading={isFetching || !wallets.length}
         data={chains[selectedChain]}
+        hideLastBorder
       />
       <div className="text-center">
         <Typography level="p6" color="textSecondary">

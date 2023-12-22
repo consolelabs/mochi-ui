@@ -227,7 +227,7 @@ export const RenderSubComponent: Story = {
           data={dataList[page - 1]}
           isLoading={loading}
           renderSubComponent={(record) => (
-            <div className="bg-background-level2 overflow-x-auto p-5 pl-[65px]">
+            <div className="overflow-x-auto p-5 bg-background-level2 pl-[65px]">
               <pre className="max-w-[500px]">
                 {JSON.stringify(record, null, 2)}
               </pre>
