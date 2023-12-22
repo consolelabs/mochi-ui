@@ -30,7 +30,7 @@ const typographyVariants = cva(['overflow-hidden'], {
       neutral: 'text-neutral-plain-fg',
       textPrimary: 'text-text-primary',
       textSecondary: 'text-text-secondary',
-      textTertiary: 'text-text-tertiary',
+      textDisabled: 'text-text-disabled',
       textContrast: 'text-text-contrast',
     },
     noWrap: {

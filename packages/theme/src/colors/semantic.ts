@@ -183,7 +183,8 @@ export const semanticColors = {
     },
     text: {
       primary: commonColors.gray['800'],
-      secondary: commonColors.gray['500'],
+      secondary: commonColors.gray['600'],
+      disabled: commonColors.gray['500'],
       tertiary: commonColors.gray['300'],
       icon: commonColors.gray['800'],
       contrast: commonColors.white,
@@ -328,7 +329,8 @@ export const semanticColors = {
     },
     text: {
       primary: commonColors.gray['800'],
-      secondary: commonColors.gray['500'],
+      secondary: commonColors.gray['600'],
+      disabled: commonColors.gray['500'],
       tertiary: commonColors.gray['300'],
       icon: commonColors.gray['800'],
       contrast: commonColors.white,

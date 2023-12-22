@@ -25,7 +25,7 @@ export const CodeSnippet = ({ code = defaultCode, language = 'js' }: Props) => {
         <Typography
           level="p7"
           className="font-bold uppercase"
-          color="textTertiary"
+          color="textDisabled"
         >
           Curl request
         </Typography>
