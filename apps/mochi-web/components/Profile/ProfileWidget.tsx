@@ -14,29 +14,19 @@ import {
   Typography,
 } from '@mochi-ui/core'
 import { ChevronDownLine, SettingsLine, UnionSolid } from '@mochi-ui/icons'
-import { useFetchBalances } from '~hooks/profile/useFetchBalances'
 import { useProfileStore, useWalletStore } from '~store'
 import { useFetchProfileGlobalInfo } from '~hooks/profile/useFetchProfileGlobalInfo'
 import { BalanceWithSource, TokenTableList } from '~cpn/base/token-table-list'
 import { Fragment, useState } from 'react'
 import clsx from 'clsx'
-import { utils } from 'ethers'
 
 export const ProfileWidget = () => {
   const { me } = useProfileStore()
   const { data: globalInfo } = useFetchProfileGlobalInfo(me?.id)
-  const { data: mochiBalances = [], isLoading: fetchingBalances } =
-    useFetchBalances(me?.id)
-  const { wallets } = useWalletStore()
+  const { wallets, isFetching } = useWalletStore()
   const [_selectedChain, setSelectedChain] = useState('')
 
-  const isLoading = !me?.id || fetchingBalances
   const balances: BalanceWithSource[] = [
-    ...mochiBalances.map((b) => ({
-      ...b,
-      amount: utils.formatUnits(b.amount || 0, b.token?.decimal),
-      source: { id: 'mochi', title: 'Mochi' },
-    })),
     ...wallets.flatMap((w) =>
       w.balances.map((b) => ({
         id: b.token.id,
@@ -185,7 +175,7 @@ export const ProfileWidget = () => {
       <TokenTableList
         wrapperClassName="overflow-y-auto h-96"
         className={!chains[selectedChain].length ? 'h-full' : ''}
-        isLoading={isLoading}
+        isLoading={isFetching || !wallets.length}
         data={chains[selectedChain]}
       />
       <div className="text-center">
