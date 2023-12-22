@@ -38,7 +38,7 @@ export const TokenAvatar = ({
     (url) => {
       return fetch(url)
         .then((res) => res.json())
-        .then((res) => res?.data?.[0]?.emoji_url || '')
+        .then((res) => res?.data?.[0]?.emoji_url || '/logo.png')
         .catch(() => {})
     },
     {

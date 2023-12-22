@@ -35,7 +35,6 @@ export const ProfileWidget = () => {
       },
     })),
   )
-
   const chains = balances.reduce<{ [chain: string]: BalanceWithSource[] }>(
     (prev, curr) => {
       const key =
