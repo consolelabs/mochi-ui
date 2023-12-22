@@ -96,7 +96,7 @@ export const TransactionLimitModal = ({
                 <FormControl error={!!fieldState.error} className="w-full mt-8">
                   <FormLabel>Action</FormLabel>
                   <Select {...field}>
-                    <SelectTrigger className="justify-between h-10 border border-divider">
+                    <SelectTrigger className="justify-between h-10 !border-divider">
                       <SelectValue placeholder="Choose action" />
                     </SelectTrigger>
                     <SelectContent>
@@ -119,7 +119,7 @@ export const TransactionLimitModal = ({
               render={({ field, fieldState: { error } }) => (
                 <FormControl error={!!error?.message} className="w-full mt-4">
                   <FormLabel>Minimun value</FormLabel>
-                  <TextFieldRoot>
+                  <TextFieldRoot className="pr-0 !min-w-0 w-full">
                     <TextFieldInput
                       {...field}
                       placeholder="Enter amount"
@@ -131,6 +131,7 @@ export const TransactionLimitModal = ({
                           e.target.value ? Number(e.target.value) : '',
                         )
                       }
+                      className="w-1/2"
                     />
                     <TextFieldDecorator>
                       <Typography level="p5">USD</Typography>
@@ -146,7 +147,7 @@ export const TransactionLimitModal = ({
               render={({ field, fieldState: { error } }) => (
                 <FormControl error={!!error?.message} className="w-full mt-4">
                   <FormLabel>Maximun value</FormLabel>
-                  <TextFieldRoot>
+                  <TextFieldRoot className="pr-0 !min-w-0 w-full">
                     <TextFieldInput
                       {...field}
                       placeholder="Enter amount"
@@ -158,6 +159,7 @@ export const TransactionLimitModal = ({
                           e.target.value ? Number(e.target.value) : '',
                         )
                       }
+                      className="w-1/2"
                     />
                     <TextFieldDecorator>
                       <Typography level="p5">USD</Typography>

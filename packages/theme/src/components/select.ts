@@ -83,7 +83,7 @@ const itemCva = cva(
         form: [
           'px-3.5 py-2.5',
           'rounded-md',
-          'border-neutral-outline-border',
+          'border-divider',
           'justify-between',
         ],
         button: [

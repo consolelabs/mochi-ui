@@ -45,7 +45,7 @@ const AppPageHeader = (props: AppPageHeaderProps) => {
       <PageHeaderTitle>Transactions</PageHeaderTitle>
       <PageHeaderActions>
         <Select onChange={onFilterTypeChange} value={filterType}>
-          <SelectTrigger className="justify-between px-4 border border-divider min-w-[130px]">
+          <SelectTrigger className="justify-between px-4 !border-divider min-w-[130px]">
             <SelectValue placeholder="All Types" />
           </SelectTrigger>
           <SelectContent align="end">
@@ -57,7 +57,7 @@ const AppPageHeader = (props: AppPageHeaderProps) => {
           </SelectContent>
         </Select>
         <Select onChange={onFilterPlatformChange} value={filterPlatform}>
-          <SelectTrigger className="justify-between px-4 border border-divider min-w-[150px]">
+          <SelectTrigger className="justify-between px-4 !border-divider min-w-[150px]">
             <SelectValue placeholder="All Platforms" />
           </SelectTrigger>
           <SelectContent align="end">

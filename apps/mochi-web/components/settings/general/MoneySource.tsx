@@ -44,7 +44,7 @@ export const MoneySource = () => {
               )
             }}
           >
-            <SelectTrigger className="justify-between h-10 border border-divider">
+            <SelectTrigger className="justify-between h-10 !border-divider">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>

@@ -55,7 +55,7 @@ export const PrivacySetting = ({ name }: Props) => {
               className="flex-1 min-w-[200px]"
             >
               <Select {...field}>
-                <SelectTrigger className="justify-between h-10 border border-divider">
+                <SelectTrigger className="justify-between h-10 !border-divider">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -86,7 +86,7 @@ export const PrivacySetting = ({ name }: Props) => {
                   onPlatformGroupChange(value)
                 }}
               >
-                <SelectTrigger className="justify-between h-10 border border-divider">
+                <SelectTrigger className="justify-between h-10 !border-divider">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -115,7 +115,7 @@ export const PrivacySetting = ({ name }: Props) => {
                     className="flex-1 min-w-[200px]"
                   >
                     <Select {...field}>
-                      <SelectTrigger className="justify-between h-10 border border-divider">
+                      <SelectTrigger className="justify-between h-10 !border-divider">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
