@@ -13,7 +13,7 @@ const Profile: NextPageWithLayout = () => {
 
   return (
     <>
-      <SEO title={`${profile?.profile_name}'s profile`} />
+      <SEO title={`${profile?.profile_name}'s profile`} tailTitle />
       <DashboardBody className="bg-background-level1">
         <div className="space-y-6">
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">

@@ -64,7 +64,7 @@ const AppPageHeader = ({
             <DropdownMenuContent align="end">
               <DropdownMenuItem
                 rightIcon={
-                  <CheckLine className="w-4 h-4 ml-4 text-primary-700" />
+                  <CheckLine className="ml-4 w-4 h-4 text-primary-700" />
                 }
               >
                 All apps
@@ -114,7 +114,7 @@ const App: NextPageWithLayout = () => {
 
   return (
     <>
-      <SEO title="Applications" />
+      <SEO title="Applications" tailTitle />
       <AppPageHeader apps={apps} onClickCreateApp={onOpen} />
       <DashboardBody>
         <Statistics id={id} onOpenCreateAppModal={onOpen} />
