@@ -1,6 +1,6 @@
 import { ColumnProps, Table, TableProps, Typography } from '@mochi-ui/core'
 import { utils as mochiUtils } from '@consolelabs/mochi-ui'
-import { TokenAvatar } from '~cpn/base/token-avatar'
+import { TokenAvatar } from '~cpn/TokenAvatar'
 import { Bag, WalletSolid } from '@mochi-ui/icons'
 import { Balance } from '~store'
 
@@ -18,7 +18,7 @@ const Token: ColumnProps<BalanceWithSource>['cell'] = (props) => (
     <TokenAvatar
       src={props.row.original.token?.icon || ''}
       name={props.row.original.token?.symbol || ''}
-      chainSrc={props.row.original.token?.chain?.icon || ''}
+      smallSrc={props.row.original.token?.chain?.icon || ''}
       chainName={
         props.row.original.token?.chain?.symbol ||
         props.row.original.token?.chain?.short_name ||
@@ -40,7 +40,7 @@ const Token: ColumnProps<BalanceWithSource>['cell'] = (props) => (
         color="textSecondary"
         className="flex items-center"
       >
-        <WalletSolid className="w-3.5 h-3.5 mr-1" />
+        <WalletSolid className="mr-1 w-3.5 h-3.5" />
         {props.row.original.source.title}
       </Typography>
     </div>
@@ -52,7 +52,7 @@ export const TokenTableList = (props: Props) => {
     <Table
       {...props}
       emptyContent={
-        <div className="flex flex-col items-center justify-center h-full">
+        <div className="flex flex-col justify-center items-center h-full">
           <Bag className="w-14 h-14 text-neutral-500" />
           <Typography level="h7" color="textSecondary">
             No assets

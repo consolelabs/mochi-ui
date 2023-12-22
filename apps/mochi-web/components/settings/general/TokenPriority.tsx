@@ -17,7 +17,7 @@ import {
   UseFormWatch,
   useFieldArray,
 } from 'react-hook-form'
-import { TokenAvatar } from '~cpn/base/token-avatar'
+import { TokenAvatar } from '~cpn/TokenAvatar'
 import { GeneralFormValue } from './types'
 
 const tokenList = [
@@ -110,7 +110,7 @@ export const TokenPriority = ({ control, watch }: Props) => {
     )
 
   return (
-    <div className="flex flex-col w-full max-w-md space-y-2">
+    <div className="flex flex-col space-y-2 w-full max-w-md">
       <FormLabel>Default token prioirty</FormLabel>
       {fields.map((each, index) => (
         <Controller
@@ -120,7 +120,7 @@ export const TokenPriority = ({ control, watch }: Props) => {
           render={({ field }) => {
             const token = tokenList.find((token) => token.id === field.value.id)
             return (
-              <div className="flex items-center h-10 border rounded-md border-divider shadow-input">
+              <div className="flex items-center h-10 rounded-md border border-divider shadow-input">
                 <IconButton
                   label="Move"
                   variant="ghost"
@@ -151,7 +151,7 @@ export const TokenPriority = ({ control, watch }: Props) => {
       ))}
       <DropdownMenu onOpenChange={() => setTokenQuery('')}>
         <DropdownMenuTrigger asChild>
-          <Button color="white" className="pl-2 pr-2 w-fit">
+          <Button color="white" className="pr-2 pl-2 w-fit">
             Add a default token
             <ChevronDownLine />
           </Button>
