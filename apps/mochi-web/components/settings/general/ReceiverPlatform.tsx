@@ -8,17 +8,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@mochi-ui/core'
-import { Control, Controller } from 'react-hook-form'
-import { GeneralFormValue } from './types'
+import { Controller, useFormContext } from 'react-hook-form'
+import { ResponseGeneralSettingData } from '~types/mochi-schema'
 
-interface Props {
-  control: Control<GeneralFormValue>
-}
+export const ReceiverPlatform = () => {
+  const { control } = useFormContext<ResponseGeneralSettingData>()
 
-export const ReceiverPlatform = ({ control }: Props) => {
   return (
     <Controller
-      name="defaultReceiverPlatform"
+      name="payment.default_receiver_platform"
       control={control}
       render={({ field, fieldState }) => (
         <FormControl error={!!fieldState.error} className="min-w-[160px]">

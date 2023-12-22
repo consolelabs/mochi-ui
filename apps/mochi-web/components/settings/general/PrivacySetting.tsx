@@ -9,51 +9,45 @@ import {
   SelectValue,
   Typography,
 } from '@mochi-ui/core'
-import React, { useEffect } from 'react'
-import {
-  Control,
-  Controller,
-  UseFormWatch,
-  useFieldArray,
-} from 'react-hook-form'
+import React from 'react'
+import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import {
   platformGroupList,
   platformList,
   targetGroupList,
 } from '~constants/settings'
-import { GeneralFormValue } from './types'
+import { ResponseGeneralSettingData } from '~types/mochi-schema'
 
 interface Props {
-  name: 'transactionPrivacy' | 'socialAccountsPrivacy' | 'walletsPrivacy'
-  control: Control<GeneralFormValue>
-  watch: UseFormWatch<GeneralFormValue>
+  name: 'tx' | 'social_accounts' | 'wallets'
 }
 
-export const PrivacySetting = ({ name, control, watch }: Props) => {
-  const isCustom = watch(`${name}.general_platform_group`) === 'custom'
+export const PrivacySetting = ({ name }: Props) => {
+  const { control, watch } = useFormContext<ResponseGeneralSettingData>()
+  const isCustom = watch(`privacy.${name}.general_platform_group`) === 'custom'
   const { fields, replace } = useFieldArray({
     control,
-    name: `${name}.custom_settings`,
+    name: `privacy.${name}.custom_settings`,
   })
 
-  useEffect(() => {
-    if (!isCustom) {
+  const onPlatformGroupChange = (value: string) => {
+    if (value === 'all') {
       replace([])
-      return
+    } else {
+      replace(
+        platformList.map((each) => ({
+          target_group: targetGroupList[0].key,
+          platform: each.key,
+        })),
+      )
     }
-    replace(
-      platformList.map((each) => ({
-        target_group: targetGroupList[0].key,
-        platform: each.key,
-      })),
-    )
-  }, [isCustom, replace])
+  }
 
   return (
     <>
       <div className="flex flex-wrap items-center gap-2">
         <Controller
-          name={`${name}.general_target_group`}
+          name={`privacy.${name}.general_target_group`}
           control={control}
           render={({ field, fieldState }) => (
             <FormControl
@@ -78,14 +72,20 @@ export const PrivacySetting = ({ name, control, watch }: Props) => {
         />
         <Typography level="p5">on</Typography>
         <Controller
-          name={`${name}.general_platform_group`}
+          name={`privacy.${name}.general_platform_group`}
           control={control}
           render={({ field, fieldState }) => (
             <FormControl
               error={!!fieldState.error}
               className="flex-1 min-w-[215px]"
             >
-              <Select {...field}>
+              <Select
+                {...field}
+                onChange={(value) => {
+                  field.onChange(value)
+                  onPlatformGroupChange(value)
+                }}
+              >
                 <SelectTrigger className="justify-between h-10 border border-divider">
                   <SelectValue />
                 </SelectTrigger>
@@ -107,7 +107,7 @@ export const PrivacySetting = ({ name, control, watch }: Props) => {
           {fields.map((each, index) => (
             <div key={each.id} className="flex flex-wrap items-center gap-2">
               <Controller
-                name={`${name}.custom_settings.${index}.target_group`}
+                name={`privacy.${name}.custom_settings.${index}.target_group`}
                 control={control}
                 render={({ field, fieldState }) => (
                   <FormControl

@@ -80,4 +80,8 @@ export const GET_PATHS = {
     `/profile/${profileId}/pay-requests/${code}/enable`,
   DISABLE_PAYMENT_REQUEST: (profileId: string, code: string) =>
     `/profile/${profileId}/pay-requests/${code}/disable`,
+  GET_GENERAL_SETTINGS: (profileId: string) =>
+    `/profiles/${profileId}/settings/general`,
+  UPDATE_GENERAL_SETTINGS: (profileId: string) =>
+    `/profiles/${profileId}/settings/general`,
 }

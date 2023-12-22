@@ -1,12 +1,29 @@
-import { apiLogout } from '~constants/api'
+import { API, GET_PATHS, apiLogout } from '~constants/api'
 import { api } from '~constants/mochi'
-import { Button, Separator, Typography, useLoginWidget } from '@mochi-ui/core'
+import {
+  ActionBar,
+  ActionBarActionGroup,
+  ActionBarBody,
+  ActionBarCancelButton,
+  ActionBarConfirmButton,
+  ActionBarContent,
+  ActionBarDescription,
+  ActionBarIcon,
+  Button,
+  Separator,
+  Typography,
+  toast,
+  useLoginWidget,
+} from '@mochi-ui/core'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { ROUTES } from '~constants/routes'
-import { platformGroupList, targetGroupList } from '~constants/settings'
-import { GeneralFormValue } from './types'
+import { useFetchGeneralSettings } from '~hooks/settings/useFetchGeneralSettings'
+import {
+  ResponseGeneralSettingData,
+  ResponseUserGeneralSettingResponse,
+} from '~types/mochi-schema'
 import { MoneySource } from './MoneySource'
 import { ReceiverPlatform } from './ReceiverPlatform'
 import { TokenPriority } from './TokenPriority'
@@ -16,65 +33,93 @@ import { TransactionPrivacy } from './TransactionPrivacy'
 import { SocialAccountsPrivacy } from './SocialAccountsPrivacy'
 import { WalletsPrivacy } from './WalletsPrivacy'
 
+const SETTINGS_GENERAL_FORM_ID = 'settings-general-form'
+
 export const GeneralPage = () => {
-  const form = useForm<GeneralFormValue>({
+  const form = useForm<ResponseGeneralSettingData>({
     mode: 'all',
-    defaultValues: {
-      defaultMoneySource: 'mochi',
-      defaultReceiverPlatform: 'discord',
-      defaultTokenPriority: [{ id: '941f0fb1-00da-49dc-a538-5e81fc874cb4' }],
-      transactionPrivacy: {
-        general_target_group: targetGroupList[0].key,
-        general_platform_group: platformGroupList[0].key,
-        custom_settings: [],
-      },
-      socialAccountsPrivacy: {
-        general_target_group: targetGroupList[0].key,
-        general_platform_group: platformGroupList[0].key,
-        custom_settings: [],
-      },
-      walletsPrivacy: {
-        general_target_group: targetGroupList[0].key,
-        general_platform_group: platformGroupList[0].key,
-        custom_settings: [],
-      },
-    },
   })
-  const { handleSubmit, control, watch } = form
+  const {
+    handleSubmit,
+    reset,
+    formState: { isSubmitting, isDirty },
+  } = form
 
-  const { logout } = useLoginWidget()
+  const { profile, logout } = useLoginWidget()
   const { replace } = useRouter()
+  const { data: settings } = useFetchGeneralSettings(profile?.id)
 
-  const onSubmit = (data: any) => {
-    alert(JSON.stringify(data))
+  const resetData = useCallback(
+    (data?: ResponseGeneralSettingData) => {
+      if (!data) return
+      reset({
+        ...data,
+        payment: {
+          ...data.payment,
+          prioritized_token: data.payment?.prioritized_token_ids?.map((id) => ({
+            id,
+          })),
+        },
+      })
+    },
+    [reset],
+  )
+
+  const onUpdateSettings = (data: ResponseGeneralSettingData) => {
+    if (!profile?.id) return
+    const payload = {
+      payment: {
+        ...data.payment,
+        token_priorities:
+          data.payment?.prioritized_token?.map((each) => each.id) || [],
+      },
+      privacy: {
+        ...data.privacy,
+      },
+    }
+    return API.MOCHI.put(payload, GET_PATHS.UPDATE_GENERAL_SETTINGS(profile.id))
+      .json((r: ResponseUserGeneralSettingResponse) => {
+        resetData(r.data)
+      })
+      .catch((e) => {
+        const err = JSON.parse(e.message)
+        toast({
+          description: err.msg,
+          scheme: 'danger',
+        })
+      })
   }
 
+  useEffect(() => {
+    resetData(settings)
+  }, [resetData, settings])
+
   return (
-    <>
-      <FormProvider {...form}>
-        <form onSubmit={handleSubmit(onSubmit)} />
-        <div className="space-y-4">
-          <Typography level="h6">Payment setting</Typography>
+    <FormProvider {...form}>
+      <form
+        id={SETTINGS_GENERAL_FORM_ID}
+        onSubmit={handleSubmit(onUpdateSettings)}
+      />
+      <div className="space-y-4">
+        <Typography level="h6">Payment setting</Typography>
 
-          <div className="flex gap-4">
-            <MoneySource control={control} />
-            <ReceiverPlatform control={control} />
-          </div>
-
-          <TokenPriority {...{ control, watch }} />
-          <DefaultMessage {...{ control, watch }} />
-          <TransactionLimit {...{ control, watch }} />
-
-          <Separator className="w-full max-w-md" />
-
-          <Typography level="h6">Privacy</Typography>
-
-          <TransactionPrivacy {...{ control, watch }} />
-          <SocialAccountsPrivacy {...{ control, watch }} />
-          <WalletsPrivacy {...{ control, watch }} />
+        <div className="flex gap-4">
+          <MoneySource />
+          <ReceiverPlatform />
         </div>
-      </FormProvider>
 
+        <TokenPriority />
+        <DefaultMessage />
+        <TransactionLimit />
+
+        <Separator className="w-full max-w-md" />
+
+        <Typography level="h6">Privacy</Typography>
+
+        <TransactionPrivacy />
+        <SocialAccountsPrivacy />
+        <WalletsPrivacy />
+      </div>
       <div className="mt-8">
         <Button
           variant="outline"
@@ -91,6 +136,41 @@ export const GeneralPage = () => {
           Log out
         </Button>
       </div>
-    </>
+      <div className="sticky bottom-0">
+        <ActionBar open={isDirty}>
+          <ActionBarContent
+            scheme="success"
+            outline
+            shadow
+            onOpenAutoFocus={(e) => e.preventDefault()}
+            anchorClassName="left-0 right-0 -mb-8"
+          >
+            <ActionBarIcon />
+            <ActionBarBody>
+              <ActionBarDescription>
+                Do you want to save these changes?
+              </ActionBarDescription>
+            </ActionBarBody>
+            <ActionBarActionGroup>
+              <ActionBarCancelButton
+                disabled={isSubmitting}
+                variant="link"
+                onClick={() => reset()}
+              >
+                Reset
+              </ActionBarCancelButton>
+              <ActionBarConfirmButton
+                loading={isSubmitting}
+                type="submit"
+                form={SETTINGS_GENERAL_FORM_ID}
+                className="min-w-[130px]"
+              >
+                Save changes
+              </ActionBarConfirmButton>
+            </ActionBarActionGroup>
+          </ActionBarContent>
+        </ActionBar>
+      </div>
+    </FormProvider>
   )
 }
