@@ -17,19 +17,19 @@ import useSWR from 'swr'
 import { BalanceWithSource, TokenTableList } from '~cpn/TokenTableList'
 import { Balance, useWalletStore } from '~store'
 import { Moniker } from './type'
-import { MonikerList } from './MonikerList'
 import { MonikerIcons, isToken } from './utils'
 import { DEFAULT_BALANCE } from './default-data'
+import sortOrder from './sort-order.json'
 
 const TokenTabs = [
   {
     key: 1,
     value: 'Token',
   },
-  {
-    key: 2,
-    value: 'Moniker',
-  },
+  /* { */
+  /*   key: 2, */
+  /*   value: 'Moniker', */
+  /* }, */
 ]
 
 interface TokenPickerProps {
@@ -128,7 +128,15 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
 
   const balancesSorted = useMemo(() => {
     return balancesWithSource.sort((a, b) => {
-      return b.usd_balance - a.usd_balance
+      const indexA = sortOrder.findIndex((symbol) => symbol === a.token.symbol)
+      const indexB = sortOrder.findIndex((symbol) => symbol === b.token.symbol)
+
+      if (indexA === -1) return 1
+      if (indexB === -1) return -1
+
+      if (indexA > indexB) return 1
+      if (indexA < indexB) return -1
+      return 0
     })
   }, [balancesWithSource])
 
@@ -147,13 +155,13 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
     [onClose, onSelect],
   )
 
-  function handleMonikerSelect(asset: Moniker) {
-    setSearchTerm('')
-    setIsOpenSelector(false)
-    onSelect?.(asset)
-    setTabIdx(1)
-    onClose()
-  }
+  /* function handleMonikerSelect(asset: Moniker) { */
+  /*   setSearchTerm('') */
+  /*   setIsOpenSelector(false) */
+  /*   onSelect?.(asset) */
+  /*   setTabIdx(1) */
+  /*   onClose() */
+  /* } */
 
   function onSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     setSearchTerm(e.target.value)
@@ -245,13 +253,13 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
                     Only supported tokens are shown
                   </span>
                 </Tab.Panel>
-                <Tab.Panel className="flex flex-col gap-2 h-full">
-                  <MonikerList
-                    balances={balancesWithSource}
-                    searchTerm={searchTerm}
-                    onSelect={handleMonikerSelect}
-                  />
-                </Tab.Panel>
+                {/* <Tab.Panel className="flex flex-col gap-2 h-full"> */}
+                {/*   <MonikerList */}
+                {/*     balances={balancesWithSource} */}
+                {/*     searchTerm={searchTerm} */}
+                {/*     onSelect={handleMonikerSelect} */}
+                {/*   /> */}
+                {/* </Tab.Panel> */}
               </Tab.Panels>
             </Tab.Group>{' '}
           </div>

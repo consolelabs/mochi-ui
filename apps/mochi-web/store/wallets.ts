@@ -37,6 +37,7 @@ export type Wallet = {
   usd_amount: string
   balances: Balance[]
   type: 'offchain' | 'onchain'
+  chainSymbol: string
 }
 
 type State = {
@@ -77,6 +78,7 @@ export const useWalletStore = create<State>((set) => ({
               (parseInt(b.amount, 10) / 10 ** b.token.decimal) * b.token.price,
           })),
           type: 'offchain',
+          chainSymbol: 'MOCHI',
         })
       }
 
@@ -149,6 +151,7 @@ export const useWalletStore = create<State>((set) => ({
                 usd_balance: b.usd_balance,
               })),
               type: 'onchain',
+              chainSymbol: w.platform.slice(0, 3).toUpperCase(),
             })
           } else {
             console.error(error.issues)

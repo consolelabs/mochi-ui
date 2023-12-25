@@ -92,7 +92,7 @@ export default function MochiWidget({ wrapperClassName, className }: Props) {
         </div>
         <div
           style={{
-            height: 580,
+            height: 590,
             maxWidth: 480,
             minWidth: 340,
           }}
