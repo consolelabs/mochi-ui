@@ -1,4 +1,4 @@
-import React, { useEffect, useId } from 'react'
+import React, { useEffect, useId, useState } from 'react'
 import {
   ActionBar,
   ActionBarActionGroup,
@@ -93,9 +93,12 @@ export function NotificationPage() {
   const { profile } = useLoginWidget()
   const { handleSubmit, watch, reset, formState } = form
   const { isDirty } = formState
-  const { settings, isLoading, mutate } = useFetchNotificationSettings(
-    profile?.id,
-  )
+  const {
+    settings,
+    isLoading: isFirstLoading,
+    mutate,
+  } = useFetchNotificationSettings(profile?.id)
+  const [isUpdating, setIsUpdating] = useState(false)
 
   const enableNotification = watch('enable')
   const switchTabIndex = enableNotification ? undefined : -1
@@ -116,6 +119,7 @@ export function NotificationPage() {
       flags: restData as Record<string, boolean>,
     }
     try {
+      setIsUpdating(true)
       const { data: newSettings }: ResponseUserNotificationSettingResponse =
         await API.MOCHI.put(
           body,
@@ -132,18 +136,21 @@ export function NotificationPage() {
         website: platforms?.includes('website'),
         ...flags,
       })
+      await mutate()
     } catch (e) {
+      reset()
       toast({
         scheme: 'danger',
         title: 'Some thing wrong',
         description: 'Error during update notification settings',
       })
+    } finally {
+      setIsUpdating(false)
     }
-    mutate()
   }
 
   useEffect(() => {
-    if (isLoading) return
+    if (isFirstLoading) return
     const flags = settings?.flags as NotificationWalletFlags | undefined
     const platforms = settings?.platforms as NotificationPlatform[] | undefined
     reset({
@@ -153,9 +160,9 @@ export function NotificationPage() {
       website: platforms?.includes('website'),
       ...flags,
     })
-  }, [isLoading, reset, settings])
+  }, [isFirstLoading, reset, settings])
 
-  if (isLoading) return <Skeleton />
+  if (isFirstLoading) return <Skeleton />
 
   return (
     <FormProvider {...form}>
@@ -184,6 +191,7 @@ export function NotificationPage() {
                       {...restFields}
                       checked={value}
                       onCheckedChange={onChange}
+                      disabled={isFirstLoading || isUpdating}
                     />
                   </SectionHeaderActions>
                 </SectionHeader>
@@ -208,51 +216,61 @@ export function NotificationPage() {
                 name="disable_all"
                 label="Disable all notification wallets"
                 description="Your existing notification wallet activity settings will be preserved."
+                disabled={!enableNotification || isFirstLoading || isUpdating}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Receive a tip"
                 name="receive_tip_success"
+                disabled={!enableNotification || isFirstLoading || isUpdating}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Payment request completed"
                 name="receive_payme_success"
+                disabled={!enableNotification || isFirstLoading || isUpdating}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Receive airdrops"
                 name="receive_airdrop_success"
+                disabled={!enableNotification || isFirstLoading || isUpdating}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Payment request expired"
                 name="*_payme_expired"
+                disabled={!enableNotification || isFirstLoading || isUpdating}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Deposit completed"
                 name="receive_deposit_success"
+                disabled={!enableNotification || isFirstLoading || isUpdating}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Pay link has expired"
                 name="*_paylink_expired"
+                disabled={!enableNotification || isFirstLoading || isUpdating}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Withdrawal completed"
                 name="send_withdraw_success"
+                disabled={!enableNotification || isFirstLoading || isUpdating}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Pay link claimed by another"
                 name="send_paylink_success"
+                disabled={!enableNotification || isFirstLoading || isUpdating}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Claim a pay link"
                 name="receive_paylink_success"
+                disabled={!enableNotification || isFirstLoading || isUpdating}
               />
               {/* FIXME: not support yet */}
               {/* <NotificationSwitcherField
@@ -272,6 +290,7 @@ export function NotificationPage() {
               label="New Configuration"
               description="Change in communities's configuration"
               name="new_configuration"
+              disabled={!enableNotification || isFirstLoading || isUpdating}
             />
           </div>
           <div>
@@ -284,21 +303,25 @@ export function NotificationPage() {
                 tabIndex={switchTabIndex}
                 label="New Vault Transactions"
                 name="new_vault_tx"
+                disabled={!enableNotification || isFirstLoading || isUpdating}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Information Changed"
                 name="info_updated"
+                disabled={!enableNotification || isFirstLoading || isUpdating}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="New API call"
                 name="new_api_call"
+                disabled={!enableNotification || isFirstLoading || isUpdating}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="New Member"
                 name="new_member"
+                disabled={!enableNotification || isFirstLoading || isUpdating}
               />
             </div>
           </div>
@@ -314,23 +337,26 @@ export function NotificationPage() {
                 tabIndex={switchTabIndex}
                 label="Discord"
                 name="discord"
+                disabled={!enableNotification || isFirstLoading || isUpdating}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Telegram"
                 name="telegram"
+                disabled={!enableNotification || isFirstLoading || isUpdating}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Website"
                 name="website"
+                disabled={!enableNotification || isFirstLoading || isUpdating}
               />
             </div>
           </div>
         </div>
       </div>
       <div className="sticky bottom-0 z-50">
-        <ActionBar open={isDirty}>
+        <ActionBar open={isDirty || isUpdating}>
           <ActionBarContent
             scheme="success"
             anchorClassName="left-0 right-0 -mb-8"
@@ -351,7 +377,10 @@ export function NotificationPage() {
               >
                 Reset
               </ActionBarCancelButton>
-              <ActionBarConfirmButton onClick={handleSubmit(onSubmit)}>
+              <ActionBarConfirmButton
+                onClick={handleSubmit(onSubmit)}
+                loading={isUpdating || isFirstLoading}
+              >
                 Save changes
               </ActionBarConfirmButton>
             </ActionBarActionGroup>
