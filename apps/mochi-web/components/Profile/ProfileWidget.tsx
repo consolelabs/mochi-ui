@@ -179,7 +179,8 @@ export const ProfileWidget = () => {
               </TabTrigger>
               {selectedIndex !== index &&
                 selectedIndex !== index + 1 &&
-                index < sortedChains.length - 1 && (
+                index < sortedChains.length - 1 &&
+                index < 3 && (
                   <div className="h-3 border-r border-neutral-solid-focus" />
                 )}
             </Fragment>

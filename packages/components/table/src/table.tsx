@@ -100,7 +100,7 @@ export default function Table<T extends RowData>({
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
                 <th
-                  className={tableHeaderClsx({ headerSicky })}
+                  className={tableHeaderClsx({ headerSicky, size })}
                   colSpan={header.colSpan}
                   key={header.id}
                   align={(header.column.columnDef.meta as any)?.align || 'left'}
