@@ -1,4 +1,5 @@
 import { cva, VariantProps } from 'class-variance-authority'
+import clsx from 'clsx'
 
 const avatarCva = cva(['inline-block flex-shrink-0 rounded-full'], {
   variants: {
@@ -15,8 +16,73 @@ const avatarCva = cva(['inline-block flex-shrink-0 rounded-full'], {
   },
 })
 
+const avatarGroupWrapperCva = cva(['overflow-hidden'], {
+  variants: {
+    size: {
+      xs: 'w-10 h-10',
+      sm: 'w-12 h-12',
+      base: 'w-14 h-14',
+      lg: 'w-16 h-16',
+    },
+  },
+  defaultVariants: {
+    size: 'base',
+  },
+})
+
+const avatarGroupCva = cva(
+  ['relative overflow-hidden bg-background-level3 rounded-full w-14 h-14'],
+  {
+    variants: {
+      size: {
+        xs: 'scale-[calc(5/7)] -translate-x-2 -translate-y-2',
+        sm: 'scale-[calc(6/7)] -translate-x-1 -translate-y-1',
+        base: '',
+        lg: 'scale-[calc(8/7)] translate-x-1 translate-y-1',
+      },
+    },
+    defaultVariants: {
+      size: 'base',
+    },
+  },
+)
+
+const avatarGroupItemClsx = ({
+  className = '',
+  index = 0,
+}: { className?: string; index?: number } = {}) =>
+  clsx(
+    'absolute overflow-hidden',
+    {
+      'top-[5px] left-[5px] h-1/2 w-1/2': index === 0,
+      'bottom-2.5 right-1 h-2/5 w-2/5': index === 1,
+      'bottom-1 left-3 h-1/3 w-1/3': index === 2,
+      'top-2 right-2 h-1/4 w-1/4': index === 3,
+    },
+    className,
+  )
+
+const avatarGroupItemAvatarClsx = ({
+  className = '',
+  isExtraCell = false,
+}: { className?: string; isExtraCell?: boolean } = {}) =>
+  clsx(
+    'absolute !w-full !h-full object-contain top-0 rounded-full overflow-hidden flex justify-center items-center',
+    {
+      'text-text-contrast bg-primary-plain-fg text-[9px]': isExtraCell,
+    },
+    className,
+  )
+
 const avatarImgClsx = 'h-full'
 
-export const avatar = { avatarCva, avatarImgClsx }
+export const avatar = {
+  avatarCva,
+  avatarGroupWrapperCva,
+  avatarGroupCva,
+  avatarImgClsx,
+  avatarGroupItemClsx,
+  avatarGroupItemAvatarClsx,
+}
 
 export type AvatarStylesProps = VariantProps<typeof avatarCva>
