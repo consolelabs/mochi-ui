@@ -1,5 +1,13 @@
 # @mochi-ui/label
 
+## 0.1.11
+
+### Patch Changes
+
+- Updated dependencies
+  [[`95dd701`](https://github.com/consolelabs/mochi-ui/commit/95dd701502b2967b75b914bc8f65bfb5239149a7)]:
+  - @mochi-ui/theme@0.12.1
+
 ## 0.1.10
 
 ### Patch Changes

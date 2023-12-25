@@ -1,5 +1,14 @@
 # @mochi-ui/action-bar
 
+## 0.1.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`95dd701`](https://github.com/consolelabs/mochi-ui/commit/95dd701502b2967b75b914bc8f65bfb5239149a7)]:
+  - @mochi-ui/theme@0.12.1
+  - @mochi-ui/alert@1.2.4
+
 ## 0.1.3
 
 ### Patch Changes

@@ -1,5 +1,18 @@
 # @mochi-ui/pagination
 
+## 0.2.3
+
+### Patch Changes
+
+- [#500](https://github.com/consolelabs/mochi-ui/pull/500)
+  [`95dd701`](https://github.com/consolelabs/mochi-ui/commit/95dd701502b2967b75b914bc8f65bfb5239149a7)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Pagination wrong
+  alignment
+
+- Updated dependencies
+  [[`95dd701`](https://github.com/consolelabs/mochi-ui/commit/95dd701502b2967b75b914bc8f65bfb5239149a7)]:
+  - @mochi-ui/theme@0.12.1
+
 ## 0.2.2
 
 ### Patch Changes
