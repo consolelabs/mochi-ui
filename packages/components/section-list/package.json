@@ -1,6 +1,6 @@
 {
   "name": "@mochi-ui/section-list",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
