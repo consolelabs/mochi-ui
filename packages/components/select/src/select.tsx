@@ -124,7 +124,7 @@ const SelectTrigger = forwardRef<SelectTriggerRef, SelectTriggerProps>(
                 {leftIcon}
               </SelectPrimitive.Icon>
             ) : null}
-            {children}
+            <div className={select.value}>{children}</div>
             {hideRightIcon ? null : (
               <SelectPrimitive.Icon
                 asChild

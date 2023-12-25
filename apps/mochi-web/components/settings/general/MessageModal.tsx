@@ -77,7 +77,10 @@ export const MessageModal = ({
                 <FormControl error={!!fieldState.error} className="w-full mt-8">
                   <FormLabel>Action</FormLabel>
                   <Select {...field}>
-                    <SelectTrigger className="justify-between h-10 !border-divider">
+                    <SelectTrigger
+                      appearance="form"
+                      className="justify-between h-10"
+                    >
                       <SelectValue placeholder="Choose action" />
                     </SelectTrigger>
                     <SelectContent>

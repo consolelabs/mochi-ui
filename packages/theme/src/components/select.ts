@@ -33,12 +33,15 @@ const subTitleWrapper = 'text-text-secondary text-xs'
 
 const separator = 'block !my-3 w-full h-px bg-divider'
 
+const value = 'truncate'
+
 const itemCva = cva(
   [
     'flex gap-2 items-center',
     'transition duration-100',
     'text-sm',
     'focus-visible:outline-none',
+    'truncate',
   ],
   {
     variants: {
@@ -60,14 +63,13 @@ const itemCva = cva(
           'rounded-lg',
         ],
         true: [
-          'border hover:border-primary-solid',
-          'focus:ring focus:ring-primary-outline-active',
+          'border hover:border-primary-solid-focus focus:border-primary-solid-focus',
+          'focus:shadow-input-focused',
           'hover:outline-none focus:outline-none',
-          'shadow-sm',
         ],
       },
       isError: {
-        true: ['!border-danger-outline-fg', 'focus:!ring-0'],
+        true: ['!border-danger-solid-focus', 'focus:shadow-none'],
       },
       color: {
         primary: ['bg-primary-outline'],
@@ -80,17 +82,13 @@ const itemCva = cva(
         false: [],
       },
       appearance: {
-        form: [
-          'px-3.5 py-2.5',
-          'rounded-md',
-          'border-divider',
-          'justify-between',
-        ],
+        form: ['px-3.5 py-2.5', 'rounded', 'border-divider', 'justify-between'],
         button: [
           'px-3 py-1.5',
           'rounded-lg',
           'border-transparent',
           'font-semibold',
+          'shadow-sm',
         ],
       },
     },
@@ -131,6 +129,7 @@ export const select = {
   content,
   label,
   separator,
+  value,
   subTitleWrapper,
   viewport,
   viewportPoperMode,

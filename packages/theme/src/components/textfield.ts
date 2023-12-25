@@ -2,12 +2,13 @@ import { cva, VariantProps } from 'class-variance-authority'
 
 const root = cva(
   [
-    'flex relative items-stretch cursor-text overflow-hidden focus-within:shadow-input-focused rounded gap-2 px-3.5 min-w-max',
+    'flex relative items-stretch cursor-text overflow-hidden rounded gap-2 px-3.5 min-w-max',
   ],
   {
     variants: {
       error: {
         true: 'focus-within:shadow-none',
+        false: 'focus-within:shadow-input-focused',
       },
     },
   },
@@ -27,7 +28,7 @@ const textFieldVariants = cva(
         true: 'text-text-secondary cursor-not-allowed',
       },
       error: {
-        true: '!caret-danger-outline-fg',
+        true: '!caret-danger-solid-focus',
       },
     },
     defaultVariants: {
@@ -40,7 +41,7 @@ const slot = cva('relative z-[1] flex justify-center items-center shrink-0')
 
 const mask = cva(
   [
-    'absolute z-0 inset-0 rounded pointer-events-none border border-neutral-outline-border peer-focus:border-primary-outline-fg',
+    'absolute z-0 inset-0 rounded pointer-events-none border border-divider peer-focus:border-primary-solid-focus',
   ],
   {
     variants: {
@@ -48,7 +49,7 @@ const mask = cva(
         true: 'bg-neutral-outline cursor-not-allowed',
       },
       error: {
-        true: '!border-danger-outline-fg peer-focus:!border-danger-outline-fg',
+        true: '!border-danger-solid-focus peer-focus:!border-danger-solid-focus',
       },
     },
     defaultVariants: {

@@ -22,7 +22,7 @@ export const ReceiverPlatform = () => {
         <FormControl error={!!fieldState.error} className="min-w-[160px]">
           <FormLabel>Default receiver platform</FormLabel>
           <Select {...field}>
-            <SelectTrigger className="justify-between h-10 !border-divider">
+            <SelectTrigger appearance="form" className="justify-between h-10">
               <SelectValue placeholder="Discord" />
             </SelectTrigger>
             <SelectContent>
