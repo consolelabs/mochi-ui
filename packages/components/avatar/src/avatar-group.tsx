@@ -2,10 +2,9 @@ import {
   Children,
   cloneElement,
   DetailedReactHTMLElement,
-  Fragment,
   ReactNode,
 } from 'react'
-import { avatar, AvatarStylesProps } from '@mochi-ui/theme'
+import { avatar } from '@mochi-ui/theme'
 import Avatar, { AvatarProps } from './avatar'
 
 const {
