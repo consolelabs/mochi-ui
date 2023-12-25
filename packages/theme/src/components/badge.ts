@@ -2,7 +2,7 @@ import { cva, VariantProps } from 'class-variance-authority'
 
 const badgeWrapperCva = cva(
   [
-    'rounded-2xl py-0.5 text-xs font-medium',
+    'rounded-2xl py-0.5 text-xs font-medium whitespace-nowrap',
     'flex items-center justify-center leading-[18px]',
     'px-2 gap-1',
   ],
