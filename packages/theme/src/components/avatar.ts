@@ -74,7 +74,14 @@ const avatarGroupItemAvatarClsx = ({
     className,
   )
 
-const avatarImgClsx = 'h-full'
+const avatarImgClsx = ({ smallSrc = false }) =>
+  clsx('h-full animate-fade-in', {
+    'rounded-full': !smallSrc,
+  })
+
+const avatarFallbackCls = 'w-full h-full rounded-full'
+
+const avatarImgSvgCls = 'rounded-full overflow-hidden'
 
 export const avatar = {
   avatarCva,
@@ -83,6 +90,8 @@ export const avatar = {
   avatarImgClsx,
   avatarGroupItemClsx,
   avatarGroupItemAvatarClsx,
+  avatarFallbackCls,
+  avatarImgSvgCls,
 }
 
 export type AvatarStylesProps = VariantProps<typeof avatarCva>

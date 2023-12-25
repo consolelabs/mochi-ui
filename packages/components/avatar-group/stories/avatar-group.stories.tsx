@@ -28,7 +28,7 @@ export const Default: Story = {
       <div className="gap-3 flex">
         <Avatar size="xs" src="https://mochi.gg/logo.png" />
         <Avatar size="sm" src="https://mochi.gg/logo.png" />
-        <Avatar size="xl" src="https://mochi.gg/logo.png" />
+        <Avatar src="https://mochi.gg/logo.png" />
         <Avatar size="lg" src="https://mochi.gg/logo.png" />
         <Avatar size="xl" src="https://mochi.gg/logo.png" />
       </div>
