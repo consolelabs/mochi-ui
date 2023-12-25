@@ -1,4 +1,11 @@
-import { Avatar, Badge, ColumnProps, Pagination, Table } from '@mochi-ui/core'
+import {
+  Avatar,
+  Badge,
+  ColumnProps,
+  Pagination,
+  Table,
+  Typography,
+} from '@mochi-ui/core'
 import { ArrowRightLine } from '@mochi-ui/icons'
 import clsx from 'clsx'
 import { useMemo } from 'react'
@@ -26,13 +33,16 @@ export const TransactionTable = (props: TransactionTableProps) => {
                 fallback={tx.from.address}
               />
               <div className="flex flex-col gap-1">
-                <div className="text-sm leading-5 break-words truncate">
+                <Typography level="p5" className="break-words truncate">
                   {tx.from.address}
-                </div>
-                {tx.to.platform && (
-                  <div className="text-xs text-neutral-600 capitalize">
-                    {tx.to.platform}
-                  </div>
+                </Typography>
+                {tx.from.platform && (
+                  <Typography
+                    level="p6"
+                    className="!text-text-secondary capitalize"
+                  >
+                    {tx.from.platform}
+                  </Typography>
                 )}
               </div>
             </div>
@@ -45,7 +55,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
         // eslint-disable-next-line
         cell: () => {
           return (
-            <div className="p-1 w-5 h-5 rounded-full border border-blue-700 bg-primary-700/25 text-primary-700">
+            <div className="p-1 w-5 h-5 rounded-full border border-primary-solid bg-primary-solid/25 text-primary-solid">
               <ArrowRightLine className="w-full h-full scale-125" />
             </div>
           )
@@ -66,12 +76,17 @@ export const TransactionTable = (props: TransactionTableProps) => {
                 fallback={tx.to.address}
               />
               <div className="flex flex-col gap-1">
-                <div className="text-sm leading-5 break-words truncate">
+                <Typography level="p5" className="break-words truncate">
                   {tx.to.address}
-                </div>
-                <div className="text-xs text-neutral-600 capitalize">
-                  {tx.to.platform}
-                </div>
+                </Typography>
+                {tx.to.platform && (
+                  <Typography
+                    level="p6"
+                    className="!text-text-secondary capitalize"
+                  >
+                    {tx.to.platform}
+                  </Typography>
+                )}
               </div>
             </div>
           )
@@ -103,9 +118,9 @@ export const TransactionTable = (props: TransactionTableProps) => {
           return (
             <div className="flex items-center gap-2">
               <Avatar src={tx.token.icon} size="sm" />
-              <span className="text-sm font-normal leading-5">
+              <Typography level="p5">
                 {tx.amount} {tx.token.symbol}
-              </span>
+              </Typography>
             </div>
           )
         },
@@ -143,11 +158,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
         cell: (props) => {
           const tx = props.row.original
 
-          return (
-            <span className="text-sm font-normal leading-5">
-              {tx.code.slice(0, 9)}
-            </span>
-          )
+          return <Typography level="p5">{tx.code.slice(0, 9)}</Typography>
         },
       },
       {
@@ -157,9 +168,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
         cell: (props) => {
           const tx = props.row.original
 
-          return (
-            <span className="text-sm font-normal leading-5">{tx.date}</span>
-          )
+          return <Typography level="p5">{tx.date}</Typography>
         },
       },
       {
@@ -174,8 +183,8 @@ export const TransactionTable = (props: TransactionTableProps) => {
               className={clsx(
                 'inline-flex',
                 tx.isSuccess
-                  ? 'bg-success-100 text-success-700'
-                  : 'bg-danger-100 text-danger-700',
+                  ? 'bg-success-outline text-success-solid'
+                  : 'bg-danger-outline text-danger-solid',
               )}
               label={tx.isSuccess ? 'Success' : 'Failed'}
               appearance="white"

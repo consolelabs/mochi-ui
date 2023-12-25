@@ -1,5 +1,5 @@
 import { utils } from '@consolelabs/mochi-ui'
-import { Skeleton } from '@mochi-ui/core'
+import { Skeleton, Typography } from '@mochi-ui/core'
 import {
   DollarColored,
   HeartColored,
@@ -25,41 +25,41 @@ export const SummarySection = () => {
   const loading = isTransactionSummaryLoading || !transactionSummary
 
   return (
-    <div className="bg-neutral-100 p-3 lg:py-14 lg:px-30">
+    <div className="bg-background-level2 p-3 lg:py-14 lg:px-30">
       <div className="grid lg:grid-cols-12 gap-4">
-        <div className="col-span-12 bg-neutral-0 rounded-xl border border-neutral-200 p-6 flex flex-wrap items-center justify-between gap-4">
+        <div className="col-span-12 bg-background-body rounded-xl border border-divider p-6 flex flex-wrap items-center justify-between gap-4">
           <div className="flex flex-col gap-4 w-full lg:w-auto">
             <div className="flex flex-col-4">
               <div className="flex gap-3 items-center">
-                <div className="rounded-full bg-success-700 py-1 px-2 flex items-center gap-1.5 ">
-                  <div className="w-1.5 h-1.5 rounded-full bg-neutral-0 outline outline-2 outline-neutral-0/50 animate-pulse" />
-                  <div className="font-medium text-xs text-neutral-0 ">
+                <div className="rounded-full bg-success-solid py-1 px-2 flex items-center gap-1.5 ">
+                  <div className="w-1.5 h-1.5 rounded-full bg-white-solid outline outline-2 outline-white-solid/50 animate-pulse" />
+                  <Typography level="p6" className="text-white-solid">
                     Live
-                  </div>
+                  </Typography>
                 </div>
-                <div className="font-medium text-lg">Current Transactions</div>
+                <Typography level="h6">Current Transactions</Typography>
               </div>
             </div>
-            <div className="font-medium text-5xl text-neutral-900">
+            <Typography level="h2" className="text-text-primary">
               {loading ? (
                 <Skeleton className="w-64 h-14" />
               ) : (
                 formatNumber(transactionSummary.current_transactions)
               )}
-            </div>
+            </Typography>
             <div className="flex gap-2 items-center">
               {loading ? (
                 <Skeleton className="w-24 h-8" />
               ) : (
                 <>
-                  <div className="font-medium text-xl text-primary-700">
+                  <Typography level="h5" className="!text-primary-solid">
                     {formatNumber(
                       transactionSummary.transactions_per_second || 0,
                     )}
-                  </div>
-                  <div className="text-neutral-600">
+                  </Typography>
+                  <Typography className="text-text-secondary">
                     transactions per second
-                  </div>
+                  </Typography>
                 </>
               )}
             </div>
@@ -100,12 +100,12 @@ export const SummarySection = () => {
                 </div>
                 <div className="flex flex-col gap-1">
                   <div className="flex gap-2 items-center">
-                    <div className="w-2 h-2 rounded-full bg-danger-700" />
-                    <div className="text-sm">Failed</div>
+                    <div className="w-2 h-2 rounded-full bg-danger-solid" />
+                    <Typography level="p5">Failed</Typography>
                   </div>
                   <div className="flex gap-2 items-center">
-                    <div className="w-2 h-2 rounded-full bg-success-700" />
-                    <div className="text-sm">Success</div>
+                    <div className="w-2 h-2 rounded-full bg-success-solid" />
+                    <Typography level="p5">Success</Typography>
                   </div>
                 </div>
               </div>
@@ -147,19 +147,19 @@ export const SummarySection = () => {
         ).map(([Icon, title, value], index) => (
           <div
             key={index}
-            className="col-span-12 md:col-span-6 xl:col-span-3 p-8 bg-neutral-0 rounded-xl border border-neutral-200"
+            className="col-span-12 md:col-span-6 xl:col-span-3 p-8 bg-background-body rounded-xl border border-divider"
           >
             <div className="flex gap-8 items-center">
               <div className="flex-shrink-0">
                 <Icon width={40} height={40} />
               </div>
               <div className="flex flex-col gap-2">
-                <div className="font-medium text-sm text-neutral-600">
+                <Typography level="h8" className="!text-text-secondary">
                   {title}
-                </div>
-                <div className="font-medium text-3xl text-neutral-900">
+                </Typography>
+                <Typography level="h4">
                   {loading ? <Skeleton className="w-32 h-8" /> : value}
-                </div>
+                </Typography>
               </div>
             </div>
           </div>
