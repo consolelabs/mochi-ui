@@ -17,6 +17,7 @@ import {
 import { ArrowUpDownLine } from '@mochi-ui/icons'
 import events from '~constants/events'
 import { useDisclosure } from '@dwarvesf/react-hooks'
+import { BalanceWithSource } from '~cpn/TokenTableList'
 import { TokenPicker } from '../TokenPicker'
 import { Moniker } from '../TokenPicker/type'
 import { useTipWidget } from '../Tip/store'
@@ -31,7 +32,7 @@ interface AmountInputProps {
   authorized: boolean
   unauthorizedContent: React.ReactNode
   wallet: Wallet | null
-  onSelectAsset?: (item: Balance | Moniker | null) => void
+  onSelectAsset?: (item: BalanceWithSource | Moniker | null) => void
   onAmountChanged?: (amount: number) => void
   canProceed: boolean
 }
@@ -125,7 +126,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   }
 
   const handleAssetChanged = useCallback(
-    (asset: Balance | Moniker | null) => {
+    (asset: BalanceWithSource | Moniker | null) => {
       setSelectedAsset(asset)
       // only set to init if asset is null
       // otherwise user might be coming back from step 2
@@ -188,13 +189,6 @@ export const AmountInput: React.FC<AmountInputProps> = ({
       isUsdMode ? formattedAmount.value / unitPrice : formattedAmount.value,
     )
   }
-
-  useEffect(() => {
-    const bal = wallet?.balances[0]
-    if (bal) {
-      handleAssetChanged(bal)
-    }
-  }, [handleAssetChanged, wallet?.balances, wallet?.id])
 
   useEffect(() => {
     function focusInput() {
@@ -294,7 +288,6 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               unauthorizedContent={unauthorizedContent}
               selectedAsset={selectedAsset}
               onSelect={handleAssetChanged}
-              balances={wallet?.balances}
             />
             <button
               tabIndex={-1}

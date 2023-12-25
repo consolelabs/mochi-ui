@@ -5,7 +5,7 @@ import { api } from '~constants/mochi'
 import { Profile } from '@consolelabs/mochi-rest'
 import { LoginWidget, getLoginWidgetState } from '@mochi-ui/core'
 import { utils } from 'ethers'
-import { Balance, Wallet } from '~store'
+import { Balance, Wallet, useWalletStore } from '~store'
 import { Theme } from '../ThemePicker/ThemePicker'
 import { Moniker } from '../TokenPicker/type'
 import { isToken } from '../TokenPicker/utils'
@@ -33,7 +33,7 @@ interface TipWidgetState {
   request: Request
   updateRequestMessage: (message: string) => void
   updateRequestTheme: (theme: Theme | null) => void
-  updateSourceWallet: (s: Wallet) => void
+  updateSourceWallet: (id: string) => void
   setRecipients: (recipients: Profile[]) => void
   removeRecipient: (recipient: Profile) => void
   setAsset: (asset: Balance | Moniker | null) => void
@@ -236,41 +236,11 @@ export const useTipWidget = create(
         set({ isTransferring: false })
       }
     },
-    updateSourceWallet: (wallet) => {
-      const missingIconBalances = new Set(
-        wallet.balances
-          ?.filter((b) => !b.token?.icon)
-          .map((b) => b.token?.symbol ?? '') ?? [],
-      )
-      api.base.metadata
-        .getEmojis({
-          codes: Array.from(missingIconBalances),
-        })
-        .then(({ data, ok }) => {
-          if (ok) {
-            const icons = Object.fromEntries(
-              data.map((d) => [d.code, d.emoji_url]),
-            )
-            const withIcon = wallet.balances.map((b) => {
-              if (
-                b.token &&
-                !b.token.icon &&
-                b.token.symbol &&
-                icons[b.token.symbol]
-              ) {
-                return {
-                  ...b,
-                  token: {
-                    ...b.token,
-                    icon: icons[b.token.symbol],
-                  },
-                }
-              }
-              return b
-            })
-            set({ wallet: { ...wallet, balances: withIcon } })
-          }
-        })
+    updateSourceWallet: (walletId) => {
+      const { wallets } = useWalletStore.getState()
+      const wallet = wallets.find((w) => w.id === walletId)
+      if (!wallet) return
+      set({ wallet })
     },
     setRecipients: (recipients) => {
       const isMax = (recipients?.length ?? 0) >= MAX_RECIPIENTS
