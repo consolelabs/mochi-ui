@@ -28,6 +28,7 @@ import {
 } from '@mochi-ui/icons'
 import { ROUTES } from '~constants/routes'
 import { ReactNode } from 'react'
+import { DISCORD_INSTALL_BOT_LINK, TELEGRAM_LINK } from '~constants/resources'
 
 export default function ProfileDropdown({
   children,
@@ -114,7 +115,11 @@ export default function ProfileDropdown({
 
           <DropdownMenuSeparator />
 
-          <Accordion type="multiple" className="!p-0 shadow-none">
+          <Accordion
+            type="multiple"
+            className="!p-0 shadow-none"
+            defaultValue={['Download']}
+          >
             <AccordionItem value="Home">
               <AccordionTrigger
                 className="py-0.5"
@@ -156,10 +161,10 @@ export default function ProfileDropdown({
                 <Link href="#Explore">
                   <DropdownMenuItem hasPaddingLeft>Extension</DropdownMenuItem>
                 </Link>
-                <Link href="#Explore">
+                <Link target="_blank" href={DISCORD_INSTALL_BOT_LINK}>
                   <DropdownMenuItem hasPaddingLeft>Discord</DropdownMenuItem>
                 </Link>
-                <Link href="#Explore">
+                <Link target="_blank" href={TELEGRAM_LINK}>
                   <DropdownMenuItem hasPaddingLeft>Telegram</DropdownMenuItem>
                 </Link>
               </AccordionContent>
