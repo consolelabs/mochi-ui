@@ -26,10 +26,15 @@ const tableRowClsx = ({
     className,
   )
 
-const tableHeaderClsx = ({ className = '' }: { className?: string } = {}) =>
+const tableHeaderClsx = ({
+  className = '',
+  headerSicky,
+}: { className?: string; headerSicky?: boolean } = {}) =>
   clsx(
-    'sticky top-0 bg-background-surface after:absolute after:inset-0 after:h-full after:w-full after:border-b after:border-neutral-outline-active',
-    'py-2 px-2 text-xxs font-semibold tracking-tight uppercase min-w-[48px] text-text-secondary',
+    'py-2 px-4 text-xxs font-semibold tracking-tight uppercase min-w-[48px] text-text-secondary',
+    headerSicky
+      ? 'sticky top-0 bg-background-surface after:absolute after:inset-0 after:h-full after:w-full after:border-b after:border-neutral-outline-active'
+      : 'border-b border-neutral-outline-active',
     className,
   )
 
@@ -45,7 +50,7 @@ const tableDataLoadingClsx = ({
   size?: 'sm' | 'md'
 } = {}) =>
   clsx(
-    'px-2 text-sm font-normal leading-tight border-0 border-b border-neutral-outline-active border-solid rounded text-text-primary',
+    'px-4 text-sm font-normal leading-tight border-0 border-b border-neutral-outline-active border-solid rounded text-text-primary',
     { 'group-last:border-b-0': hideLastBorder || border },
     {
       'py-2 h-14': size === 'sm',
@@ -70,7 +75,7 @@ const tableDataClsx = ({
   size?: 'sm' | 'md'
 } = {}) =>
   clsx(
-    'py-3 px-2 text-sm font-normal leading-tight border-0 border-b border-neutral-outline-active border-solid min-w-[48px] text-text-primary',
+    'py-3 px-4 text-sm font-normal leading-tight border-0 border-b border-neutral-outline-active border-solid min-w-[48px] text-text-primary',
     { 'group-last:border-b-0': hideLastBorder || border },
     {
       'py-2 h-14': size === 'sm',
