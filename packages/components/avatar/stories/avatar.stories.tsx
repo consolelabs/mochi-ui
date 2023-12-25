@@ -86,10 +86,6 @@ export const Group: Story = {
         {['xs', 'sm', 'base', 'lg'].map((size) => (
           <div className="gap-3 flex flex-wrap" key={size}>
             <AvatarGroup size={size as AvatarGroupProps['size']}>
-              {Array(1).fill(<Avatar src="https://mochi.gg/logo.png" />)}
-            </AvatarGroup>
-
-            <AvatarGroup size={size as AvatarGroupProps['size']}>
               {Array(2).fill(<Avatar src="https://mochi.gg/logo.png" />)}
             </AvatarGroup>
 

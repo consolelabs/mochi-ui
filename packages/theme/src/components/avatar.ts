@@ -21,12 +21,12 @@ const avatarGroupWrapperCva = cva(['overflow-hidden'], {
     size: {
       xs: 'w-10 h-10',
       sm: 'w-12 h-12',
-      base: 'w-14 h-14',
+      md: 'w-14 h-14',
       lg: 'w-16 h-16',
     },
   },
   defaultVariants: {
-    size: 'base',
+    size: 'md',
   },
 })
 
@@ -37,12 +37,12 @@ const avatarGroupCva = cva(
       size: {
         xs: 'scale-[calc(5/7)] -translate-x-2 -translate-y-2',
         sm: 'scale-[calc(6/7)] -translate-x-1 -translate-y-1',
-        base: '',
+        md: '',
         lg: 'scale-[calc(8/7)] translate-x-1 translate-y-1',
       },
     },
     defaultVariants: {
-      size: 'base',
+      size: 'md',
     },
   },
 )

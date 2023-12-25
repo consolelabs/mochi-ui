@@ -16,15 +16,19 @@ const {
 
 export type AvatarGroupProps = {
   children: ReactNode
-  size?: 'xs' | 'sm' | 'base' | 'lg'
+  size?: 'xs' | 'sm' | 'md' | 'lg'
   className?: string
 }
 
 export default function AvatarGroup(props: AvatarGroupProps) {
-  const { children, size = 'base', className } = props
+  const { children, size = 'md', className } = props
   const avatarChild = Children.toArray(children).filter(
     (child) => (child as React.ReactElement<AvatarProps, any>).type === Avatar,
   )
+
+  if (avatarChild.length === 1) {
+    return avatarChild[0] as JSX.Element
+  }
 
   const hasMoreThanFour = avatarChild.length > 4
 
@@ -53,7 +57,7 @@ export default function AvatarGroup(props: AvatarGroupProps) {
         {hasMoreThanFour ? (
           <div className={avatarGroupItemClsx({ index: 1 })}>
             <div className={avatarGroupItemAvatarClsx({ isExtraCell: true })}>
-              +{avatarChild.length - 4}
+              +{avatarChild.length - 3}
             </div>
           </div>
         ) : null}
