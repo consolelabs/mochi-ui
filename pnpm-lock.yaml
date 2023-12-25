@@ -516,6 +516,9 @@ importers:
 
   packages/components/avatar:
     dependencies:
+      '@mochi-ui/skeleton':
+        specifier: 1.0.2
+        version: link:../skeleton
       '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme

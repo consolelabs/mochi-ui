@@ -16,6 +16,7 @@ const avatarCva = cva(['inline-block flex-shrink-0 rounded-full'], {
   },
 })
 
+<<<<<<< HEAD
 const avatarGroupWrapperCva = cva(['overflow-hidden'], {
   variants: {
     size: {
@@ -83,6 +84,21 @@ export const avatar = {
   avatarImgClsx,
   avatarGroupItemClsx,
   avatarGroupItemAvatarClsx,
+=======
+const avatarImgClsx = ({ smallSrc = false }) =>
+  clsx('h-full translate animate-fade-in', {
+    'rounded-full': !smallSrc,
+  })
+const avatarImgSvgCls = 'rounded-full overflow-hidden'
+
+const avatarFallbackCls = 'w-full h-full rounded-full'
+
+export const avatar = {
+  avatarCva,
+  avatarImgClsx,
+  avatarFallbackCls,
+  avatarImgSvgCls,
+>>>>>>> 619e4bd (feat: lazy load avatar using radix avatar)
 }
 
 export type AvatarStylesProps = VariantProps<typeof avatarCva>
