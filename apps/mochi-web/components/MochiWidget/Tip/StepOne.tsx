@@ -1,15 +1,16 @@
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { useWalletStore } from '~store'
-import { useEffect, useMemo } from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 import { Button, useLoginWidget } from '@mochi-ui/core'
 import { ArrowRightLine, ChevronDownLine } from '@mochi-ui/icons'
 import { MAX_AMOUNT_PRECISION, formatTokenAmount } from '~utils/number'
 import { BottomSheet } from '~cpn/BottomSheet'
-import { WalletPicker } from '../WalletPicker'
+import { BalanceWithSource } from '~cpn/TokenTableList'
 import { Recipient } from '../Recipient'
 import { AmountInput } from '../AmountInput'
 import { useTipWidget } from './store'
 import { isToken } from '../TokenPicker/utils'
+import { Moniker } from '../TokenPicker/type'
 
 const notEnoughtBalMsg = 'Insufficient balance'
 
@@ -51,14 +52,20 @@ export default function StepOne() {
     return ''
   }, [request.amount, request.asset, wallet?.balances])
 
-  const {
-    isFetching: isFetchingWallets,
-    wallets,
-    setWallets,
-  } = useWalletStore()
+  const { setWallets } = useWalletStore()
 
   const canProceed =
     !amountErrorMgs && (request.recipients?.length ?? 0) > 0 && !!request.amount
+
+  const onSelectAsset = useCallback(
+    (asset: BalanceWithSource | Moniker | null) => {
+      setAsset(asset)
+      if (asset?.type === 'token' && asset.source.id) {
+        updateSourceWallet(asset.source.id)
+      }
+    },
+    [setAsset, updateSourceWallet],
+  )
 
   useEffect(() => {
     if (!isLoggedIn || !profile) return
@@ -78,18 +85,18 @@ export default function StepOne() {
             by sending them money
           </span>
         </div>
-        <WalletPicker
-          authorized={isLoggedIn}
-          unauthorizedContent={unauthorizedContent}
-          data={wallets}
-          loading={isFetchingWallets}
-          onSelect={updateSourceWallet}
-        />
+        {/* <WalletPicker */}
+        {/*   authorized={isLoggedIn} */}
+        {/*   unauthorizedContent={unauthorizedContent} */}
+        {/*   data={wallets} */}
+        {/*   loading={isFetchingWallets} */}
+        {/*   onSelect={updateSourceWallet} */}
+        {/* /> */}
         <AmountInput
           authorized={isLoggedIn}
           unauthorizedContent={unauthorizedContent}
           wallet={wallet}
-          onSelectAsset={setAsset}
+          onSelectAsset={onSelectAsset}
           onAmountChanged={setAmount}
           canProceed={canProceed}
         />

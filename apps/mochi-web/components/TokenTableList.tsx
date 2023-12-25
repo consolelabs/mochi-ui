@@ -2,7 +2,7 @@ import { ColumnProps, Table, TableProps, Typography } from '@mochi-ui/core'
 import { utils as mochiUtils } from '@consolelabs/mochi-ui'
 import { TokenAvatar } from '~cpn/TokenAvatar'
 import { Bag, WalletSolid } from '@mochi-ui/icons'
-import { Balance } from '~store'
+import { Balance } from '~store/wallets'
 
 export interface BalanceWithSource extends Balance {
   source: {

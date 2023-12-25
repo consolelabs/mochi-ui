@@ -10,9 +10,12 @@ import {
   TextFieldDecorator,
   TextFieldRoot,
 } from '@mochi-ui/core'
+import { api } from '~constants/mochi'
+import { coinIcon } from '~utils/image'
 import { BottomSheet } from '~cpn/BottomSheet'
+import useSWR from 'swr'
+import { BalanceWithSource, TokenTableList } from '~cpn/TokenTableList'
 import { Balance, useWalletStore } from '~store'
-import { TokenList } from './TokenList'
 import { Moniker } from './type'
 import { MonikerList } from './MonikerList'
 import { MonikerIcons, isToken } from './utils'
@@ -31,8 +34,7 @@ const TokenTabs = [
 
 interface TokenPickerProps {
   selectedAsset: Balance | Moniker | null
-  balances?: Balance[]
-  onSelect?: (item: Balance | Moniker | null) => void
+  onSelect?: (item: BalanceWithSource | Moniker | null) => void
   authorized: boolean
   unauthorizedContent: React.ReactNode
 }
@@ -44,61 +46,98 @@ interface TokenButtonProps {
   isOpenSelector?: boolean
 }
 
-const TokenButton = (props: TokenButtonProps) => (
-  <div className="flex gap-x-2 items-center py-1.5 px-3 rounded-lg bg-primary-100">
-    {props.isToken ? (
-      <span className="text-base" role="img">
-        <Image
-          width={22}
-          height={22}
-          alt={`${props.name} icon`}
-          className="object-contain rounded-full"
-          src={props.icon || '/logo.png'}
-        />
-      </span>
-    ) : (
-      <span className="text-base w-[22px] h-[22px]" role="img">
-        {MonikerIcons.get(props.name ?? '')}
-      </span>
-    )}
-    <span className="text-sm font-medium">{props.name}</span>
-    <ChevronDownLine
-      className={clsx('transition w-4 h-4 text-primary-500', {
-        'rotate-180': props.isOpenSelector,
-      })}
-    />
-  </div>
-)
+const TokenButton = (props: TokenButtonProps) => {
+  const { data: icon = coinIcon.src } = useSWR(
+    [`/token-icon/${props.icon}`],
+    async () => {
+      if (!props.icon) return coinIcon.src
+      const { ok, data } = await api.base.metadata.getEmojis({
+        codes: [props.icon],
+      })
+      if (!ok) return coinIcon.src
+      return data[0].emoji_url || coinIcon.src
+    },
+  )
+
+  return (
+    <div className="flex gap-x-2 items-center py-1.5 px-3 rounded-lg bg-primary-100">
+      {props.isToken ? (
+        <span className="text-base" role="img">
+          <Image
+            width={22}
+            height={22}
+            alt={`${props.name} icon`}
+            className="object-contain rounded-full"
+            src={icon}
+          />
+        </span>
+      ) : (
+        <span className="text-base w-[22px] h-[22px]" role="img">
+          {MonikerIcons.get(props.name ?? '')}
+        </span>
+      )}
+      <span className="text-sm font-medium">{props.name}</span>
+      <ChevronDownLine
+        className={clsx('transition w-4 h-4 text-primary-500', {
+          'rotate-180': props.isOpenSelector,
+        })}
+      />
+    </div>
+  )
+}
 
 function getFilterTokenNameFunc(searchTerm: string) {
-  return function filterTokenName(bal: Balance) {
+  return function filterTokenName(bal: BalanceWithSource) {
     return bal.token?.name?.toLowerCase().includes(searchTerm.toLowerCase())
   }
 }
 
 export const TokenPicker: React.FC<TokenPickerProps> = ({
   selectedAsset,
-  balances,
   onSelect,
   authorized,
   unauthorizedContent,
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const isFetchingWallets = useWalletStore(useShallow((s) => s.isFetching))
-  const [tokenBalances, setTokenBalances] = useState<Balance[]>(
-    balances || [DEFAULT_BALANCE],
+  const { isFetchingWallets, wallets } = useWalletStore(
+    useShallow((s) => ({
+      isFetchingWallets: s.isFetching,
+      wallets: s.wallets,
+    })),
   )
   const [isOpenSelector, setIsOpenSelector] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
-  const filteredTokens = useMemo<Balance[]>(
-    () => tokenBalances.filter(getFilterTokenNameFunc(searchTerm)),
-    [searchTerm, tokenBalances],
-  )
+  /* const filteredTokens = useMemo<Balance[]>( */
+  /*   () => tokenBalances.filter(getFilterTokenNameFunc(searchTerm)), */
+  /*   [searchTerm, tokenBalances], */
+  /* ) */
   const isTokenSelected = isToken(selectedAsset)
   const [tabIdx, setTabIdx] = useState(isTokenSelected ? 0 : 1)
 
+  const balancesWithSource = useMemo(() => {
+    return wallets.flatMap((w) =>
+      w.balances.map((b) => ({
+        ...b,
+        source: {
+          id: w.id,
+          title: w.title,
+        },
+      })),
+    )
+  }, [wallets])
+
+  const balancesSorted = useMemo(() => {
+    return balancesWithSource.sort((a, b) => {
+      return b.usd_balance - a.usd_balance
+    })
+  }, [balancesWithSource])
+
+  const filteredTokens = useMemo(() => {
+    return balancesSorted.filter(getFilterTokenNameFunc(searchTerm))
+  }, [balancesSorted, searchTerm])
+
   const handleTokenSelect = useCallback(
-    (asset: Balance | null) => {
+    (asset: BalanceWithSource | null) => {
       setSearchTerm('')
       setIsOpenSelector(false)
       onSelect?.(asset)
@@ -121,17 +160,15 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
   }
 
   useEffect(() => {
-    if (!Array.isArray(balances)) return
-    if (balances.length) {
-      setTokenBalances(balances)
+    if (!Array.isArray(balancesSorted)) return
+    if (balancesSorted.length) {
       if (!selectedAsset) {
-        handleTokenSelect(balances[0])
+        handleTokenSelect(balancesSorted[0])
       }
     } else {
-      setTokenBalances([DEFAULT_BALANCE])
       handleTokenSelect(null)
     }
-  }, [balances, handleTokenSelect, selectedAsset])
+  }, [balancesSorted, handleTokenSelect, selectedAsset])
 
   return (
     <>
@@ -147,11 +184,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
               ? selectedAsset?.token?.symbol ?? DEFAULT_BALANCE.token.symbol
               : selectedAsset?.name
           }
-          icon={
-            isTokenSelected
-              ? selectedAsset?.token?.icon ?? DEFAULT_BALANCE.token?.icon
-              : selectedAsset?.name
-          }
+          icon={selectedAsset?.token.symbol ?? DEFAULT_BALANCE.token.symbol}
           isOpenSelector={isOpenSelector}
         />
       </button>
@@ -197,10 +230,16 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
               </Tab.List>
               <Tab.Panels className="flex-1 w-full min-h-0">
                 <Tab.Panel className="flex flex-col gap-2 h-full">
-                  <TokenList
-                    loading={isFetchingWallets}
+                  <TokenTableList
+                    wrapperClassName="overflow-y-auto h-96"
+                    isLoading={isFetchingWallets}
                     data={filteredTokens}
-                    onSelect={handleTokenSelect}
+                    hideLastBorder
+                    onRow={(record) => {
+                      return {
+                        onClick: () => handleTokenSelect(record),
+                      }
+                    }}
                   />
                   <span className="mt-auto text-xs text-neutral-500">
                     Only supported tokens are shown
@@ -208,7 +247,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
                 </Tab.Panel>
                 <Tab.Panel className="flex flex-col gap-2 h-full">
                   <MonikerList
-                    balances={tokenBalances}
+                    balances={balancesWithSource}
                     searchTerm={searchTerm}
                     onSelect={handleMonikerSelect}
                   />
