@@ -50,7 +50,7 @@ const paginationNavigationClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
-    'flex-1 flex justify-between sm:justify-center items-center space-x-2',
+    'flex-1 flex justify-center sm:justify-end items-center space-x-2',
     className,
   )
 
