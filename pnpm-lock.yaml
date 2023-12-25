@@ -531,6 +531,34 @@ importers:
         specifier: workspace:*
         version: link:../../tsconfig
 
+  packages/components/avatar-group:
+    dependencies:
+      '@mochi-ui/avatar':
+        specifier: workspace:*
+        version: link:../avatar
+      '@mochi-ui/theme':
+        specifier: workspace:*
+        version: link:../../theme
+    devDependencies:
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.1.0
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
   packages/components/badge:
     dependencies:
       '@mochi-ui/theme':
@@ -2064,6 +2092,9 @@ importers:
       '@mochi-ui/avatar':
         specifier: workspace:*
         version: link:../components/avatar
+      '@mochi-ui/avatar-group':
+        specifier: workspace:*
+        version: link:../components/avatar-group
       '@mochi-ui/badge':
         specifier: workspace:*
         version: link:../components/badge
@@ -4492,6 +4523,7 @@ packages:
 
   /@emotion/memoize@0.7.4:
     resolution: {integrity: sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==}
+    requiresBuild: true
     dev: false
     optional: true
 

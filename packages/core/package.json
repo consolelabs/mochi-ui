@@ -38,6 +38,7 @@
     "@mochi-ui/accordion": "workspace:*",
     "@mochi-ui/alert": "workspace:*",
     "@mochi-ui/avatar": "workspace:*",
+    "@mochi-ui/avatar-group": "workspace:*",
     "@mochi-ui/badge": "workspace:*",
     "@mochi-ui/button": "workspace:*",
     "@mochi-ui/drawer": "workspace:*",

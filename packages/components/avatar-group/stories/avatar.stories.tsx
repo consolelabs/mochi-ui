@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import Avatar from '../src/avatar'
-import AvatarGroup, { AvatarGroupProps } from '../src/avatar-group'
+import { Avatar } from '@mochi-ui/avatar'
+import { AvatarGroup, AvatarGroupProps } from '../src'
 
 const meta: Meta<typeof Avatar> = {
   title: 'Media & Icons/Avatar',

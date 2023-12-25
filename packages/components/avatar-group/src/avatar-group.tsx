@@ -5,7 +5,7 @@ import {
   ReactNode,
 } from 'react'
 import { avatar } from '@mochi-ui/theme'
-import Avatar, { AvatarProps } from './avatar'
+import { Avatar, AvatarProps } from '@mochi-ui/avatar'
 
 const {
   avatarGroupWrapperCva,
