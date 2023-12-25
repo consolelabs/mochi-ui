@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import Avatar from '../src/avatar'
+import { Avatar } from '@mochi-ui/avatar'
+import { AvatarGroup, AvatarGroupProps } from '../src'
 
 const meta: Meta<typeof Avatar> = {
   title: 'Media & Icons/Avatar',
@@ -77,3 +78,33 @@ export const Cutout: Story = {
     )
   },
 }
+
+export const Group: Story = {
+  render: () => {
+    return (
+      <div className="space-y-3">
+        {['xs', 'sm', 'base', 'lg'].map((size) => (
+          <div className="gap-3 flex flex-wrap" key={size}>
+            <AvatarGroup size={size as AvatarGroupProps['size']}>
+              {Array(2).fill(<Avatar src="https://mochi.gg/logo.png" />)}
+            </AvatarGroup>
+
+            <AvatarGroup size={size as AvatarGroupProps['size']}>
+              {Array(3).fill(<Avatar src="https://mochi.gg/logo.png" />)}
+            </AvatarGroup>
+
+            <AvatarGroup size={size as AvatarGroupProps['size']}>
+              {Array(4).fill(<Avatar src="https://mochi.gg/logo.png" />)}
+            </AvatarGroup>
+
+            <AvatarGroup size={size as AvatarGroupProps['size']}>
+              {Array(20).fill(<Avatar src="https://mochi.gg/logo.png" />)}
+            </AvatarGroup>
+          </div>
+        ))}
+      </div>
+    )
+  },
+}
+
+Group.name = 'Avatar Group'
