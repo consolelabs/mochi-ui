@@ -1,5 +1,20 @@
 # @mochi-ui/icons
 
+## 0.7.0
+
+### Minor Changes
+
+- [#446](https://github.com/consolelabs/mochi-ui/pull/446)
+  [`6296c30`](https://github.com/consolelabs/mochi-ui/commit/6296c30e98fdc658728c484eb1460cddec2aa13b)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - keep shadow
+  on dopdownContent when not focus
+
+### Patch Changes
+
+- [#429](https://github.com/consolelabs/mochi-ui/pull/429)
+  [`16fb183`](https://github.com/consolelabs/mochi-ui/commit/16fb183cd98a178bc1ac17bf404a76d30c88ed93)
+  Thanks [@tuanddd](https://github.com/tuanddd)! - Fix color
+
 ## 0.6.0
 
 ### Minor Changes
