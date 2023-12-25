@@ -1,0 +1,81 @@
+name: Build and Deploy to GKE Prod
+
+on:
+  workflow_dispatch:
+  release:
+    types: [released]
+      
+# Environment variables available to all jobs and steps in this workflow
+env:
+  REGISTRY_HOSTNAME: gcr.io
+  GKE_PROJECT: console-labs-prod
+  IMAGE: consolelabs/mochi-web
+  K8S_ENVIRONMENT: prod
+  SHA: ${{ github.sha }}
+
+jobs:
+  setup-build-publish-deploy:
+    name: Setup, Build, Publish, and Deploy
+    environment: Production – websites-mochi
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Login to GCR
+        uses: docker/login-action@v3
+        with:
+          registry: gcr.io
+          username: _json_key
+          password: ${{ secrets.GCP_CREDENTIALS }}
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          # list of Docker images to use as base name for tags
+          images: |
+            ${{ env.REGISTRY_HOSTNAME }}/${{ env.GKE_PROJECT }}/${{ env.IMAGE }}     
+          # generate Docker tags based on the following events/attributes
+          tags: |
+            type=ref,event=branch
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=sha,prefix=,suffix=,format=long
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          tags: ${{ steps.meta.outputs.tags }}
+          build-args: |
+            NEXT_PUBLIC_MOCHI_PROFILE_API_HOST=${{ secrets.NEXT_PUBLIC_MOCHI_PROFILE_API_HOST }}
+            NEXT_PUBLIC_MOCHI_API_HOST=${{ secrets.NEXT_PUBLIC_MOCHI_API_HOST }}
+            NEXT_PUBLIC_MOCHI_PAY_API_HOST=${{ secrets.NEXT_PUBLIC_MOCHI_PAY_API_HOST }}
+
+      # Setup kustomize
+      - uses: imranismail/setup-kustomize@v2
+        with:
+          kustomize-version: "5.1.1"
+          github-token: ${{ secrets.GH_PAT }}
+
+      # Update app version
+      - name: Checkout consolelabs/infrastructure
+        uses: actions/checkout@master
+        with:
+          repository: consolelabs/infrastructure
+          token: ${{ secrets.GH_PAT }}
+          path: ./infrastructure
+          ref: main
+      - name: Update app version
+        run: |
+          cd ./infrastructure/mochi-web/$K8S_ENVIRONMENT
+          git config user.name lmquang
+          git config user.email quanglm.ops@gmail.com
+          kustomize edit set image $REGISTRY_HOSTNAME/$GKE_PROJECT/$IMAGE=$REGISTRY_HOSTNAME/$GKE_PROJECT/$IMAGE:${SHA}
+          git commit -am "[skip ci] mochi-web ${K8S_ENVIRONMENT} image update"
+          git push origin main
+          

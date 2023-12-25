@@ -1,10 +1,11 @@
-name: Build and Deploy to GKE Dev
+name: Build and Deploy to GKE Preview
 
 on:
   workflow_dispatch:
   push:
     branches:
       - cicd
+      - preview
   release:
     types: [prereleased]
       
@@ -13,7 +14,7 @@ env:
   REGISTRY_HOSTNAME: gcr.io
   GKE_PROJECT: console-labs-prod
   IMAGE: consolelabs/mochi-web
-  K8S_ENVIRONMENT: dev
+  K8S_ENVIRONMENT: preview
   SHA: ${{ github.sha }}
 
 jobs:
@@ -60,24 +61,25 @@ jobs:
             NEXT_PUBLIC_MOCHI_PAY_API_HOST=${{ secrets.NEXT_PUBLIC_MOCHI_PAY_API_HOST }}
 
       # Setup kustomize
-      # - name: Setup kustomize
-      #   run: |
-      #     curl -o kustomize --location https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
-      #     chmod u+x ./kustomize
-      #     mv kustomize /tmp
-      # - name: Checkout consolelabs/infrastructure
-      #   uses: actions/checkout@master
-      #   with:
-      #     repository: consolelabs/infrastructure
-      #     token: ${{ secrets.GH_PAT }}
-      #     path: ./infrastructure
-      #     ref: main
-      # - name: Update discord version
-      #   run: |
-      #     cd ./infrastructure/tono-discord/$K8S_ENVIRONMENT
-      #     git config user.name jphuc96
-      #     git config user.email jphuc96@gmail.com
-      #     /tmp/kustomize edit set image $REGISTRY_HOSTNAME/$GKE_PROJECT/$IMAGE=$REGISTRY_HOSTNAME/$GKE_PROJECT/$IMAGE:${SHA}
-      #     git commit -am "[skip ci] tono-discord ${K8S_ENVIRONMENT} image update"
-      #     git push origin main
+      - uses: imranismail/setup-kustomize@v2
+        with:
+          kustomize-version: "5.1.1"
+          github-token: ${{ secrets.GH_PAT }}
+
+      # Update app version
+      - name: Checkout consolelabs/infrastructure
+        uses: actions/checkout@master
+        with:
+          repository: consolelabs/infrastructure
+          token: ${{ secrets.GH_PAT }}
+          path: ./infrastructure
+          ref: main
+      - name: Update app version
+        run: |
+          cd ./infrastructure/mochi-web/$K8S_ENVIRONMENT
+          git config user.name lmquang
+          git config user.email quanglm.ops@gmail.com
+          kustomize edit set image $REGISTRY_HOSTNAME/$GKE_PROJECT/$IMAGE=$REGISTRY_HOSTNAME/$GKE_PROJECT/$IMAGE:${SHA}
+          git commit -am "[skip ci] mochi-web ${K8S_ENVIRONMENT} image update"
+          git push origin main
           

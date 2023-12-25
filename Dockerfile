@@ -11,14 +11,8 @@ RUN npm install -g pnpm
 # Set the working directory
 WORKDIR /app
 
-# Copy the rest of your app's source code
+# Install the dependencies
 COPY . .
-# Copy package.json and package-lock.json, and pnpm-lock.yaml
-# COPY package*.json ./
-# COPY pnpm-lock.yaml ./
-# # Install the dependencies apps/mochi-web
-# COPY apps/mochi-web/package*.json ./apps/mochi-web/package*.json
-
 RUN pnpm install
 
 ARG NEXT_PUBLIC_MOCHI_PROFILE_API_HOST=NEXT_PUBLIC_MOCHI_PROFILE_API_HOST
@@ -26,16 +20,10 @@ ARG NEXT_PUBLIC_MOCHI_PAY_API_HOST=NEXT_PUBLIC_MOCHI_PAY_API_HOST
 ARG NEXT_PUBLIC_MOCHI_API_HOST=NEXT_PUBLIC_MOCHI_API_HOST
 ARG ADD_DISCORD_BOT_LINK=https://discord.com/api/oauth2/authorize?client_id=1062540132269432863&permissions=8&scope=bot%20applications.commands
 
-ENV CHANGELOG_FILTER_PROPERTY_NAME='Type'
-ENV CHANGELOG_FILTER_PROPERTY_VALUE='Public'
-ENV CHANGELOG_SORT_PROPERTY_NAME='Date'
 ENV NEXT_PUBLIC_MOCHI_PROFILE_API_HOST=$NEXT_PUBLIC_MOCHI_PROFILE_API_HOST
 ENV NEXT_PUBLIC_MOCHI_PAY_API_HOST=$NEXT_PUBLIC_MOCHI_PAY_API_HOST
 ENV NEXT_PUBLIC_MOCHI_API_HOST=$NEXT_PUBLIC_MOCHI_API_HOST
 ENV ADD_DISCORD_BOT_LINK=$ADD_DISCORD_BOT_LINK
-
-
-
 
 # Build the Next.js app
 RUN pnpm build:mochi-web
@@ -46,4 +34,4 @@ WORKDIR /app/apps/mochi-web
 EXPOSE 3000
 
 # Start the app
-CMD [ "next", "start" ]
+CMD [ "pnpm", "start" ]
