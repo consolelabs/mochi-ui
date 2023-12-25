@@ -32,4 +32,15 @@ export type TransactionTableProps = Omit<TableProps<Tx>, 'columns'> & {
   componentsProps?: {
     pagination?: false | PaginationProps
   }
+  columns?: {
+    from?: boolean
+    arrow?: boolean
+    to?: boolean
+    type?: boolean
+    amount?: boolean
+    where?: boolean
+    txId?: boolean
+    wen?: boolean
+    status?: boolean
+  }
 }

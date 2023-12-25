@@ -12,7 +12,12 @@ import { useMemo } from 'react'
 import { TransactionTableProps, Tx } from './types'
 
 export const TransactionTable = (props: TransactionTableProps) => {
-  const { className, componentsProps = {}, ...rest } = props
+  const {
+    className,
+    componentsProps = {},
+    columns: columnFlags = {},
+    ...rest
+  } = props
 
   const columns = useMemo(() => {
     const columns: ColumnProps<Tx>[] = []
@@ -20,6 +25,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
     columns.push(
       {
         header: 'issued by',
+        id: 'from',
         width: 270,
         // eslint-disable-next-line
         cell: (props) => {
@@ -63,6 +69,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       },
       {
         header: 'recipients',
+        id: 'to',
         width: 270,
         // eslint-disable-next-line
         cell: (props) => {
@@ -94,6 +101,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       },
       {
         header: 'type',
+        id: 'type',
         width: 200,
         // eslint-disable-next-line
         cell: (props) => {
@@ -110,6 +118,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       },
       {
         header: 'amount',
+        id: 'amount',
         width: 200,
         // eslint-disable-next-line
         cell: (props) => {
@@ -127,6 +136,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       },
       {
         header: 'where',
+        id: 'where',
         width: 200,
         // eslint-disable-next-line
         cell: (props) => {
@@ -153,6 +163,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       },
       {
         header: 'tx id',
+        id: 'txId',
         width: 110,
         // eslint-disable-next-line
         cell: (props) => {
@@ -162,7 +173,8 @@ export const TransactionTable = (props: TransactionTableProps) => {
         },
       },
       {
-        header: 'when',
+        header: 'wen',
+        id: 'wen',
         width: 170,
         // eslint-disable-next-line
         cell: (props) => {
@@ -173,6 +185,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       },
       {
         header: 'status',
+        id: 'status',
         width: 100,
         // eslint-disable-next-line
         cell: (props) => {
@@ -194,8 +207,10 @@ export const TransactionTable = (props: TransactionTableProps) => {
       },
     )
 
-    return columns
-  }, [])
+    return columns.filter(
+      (c) => columnFlags[c.id as keyof typeof columnFlags] !== false,
+    )
+  }, [columnFlags])
 
   return (
     <div className={clsx('', className)}>
