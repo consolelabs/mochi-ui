@@ -1,18 +1,9 @@
 import React, { useEffect, useId, useState } from 'react'
 import {
-  ActionBar,
-  ActionBarActionGroup,
-  ActionBarBody,
-  ActionBarCancelButton,
-  ActionBarConfirmButton,
-  ActionBarContent,
-  ActionBarIcon,
-  ActionBarTitle,
   SectionHeader,
   SectionHeaderActions,
   SectionHeaderDescription,
   SectionHeaderTitle,
-  Skeleton,
   Switch,
   SwitchProps,
   Typography,
@@ -27,6 +18,7 @@ import {
   RequestUpdateNotificationSettingPayloadRequest,
   ResponseUserNotificationSettingResponse,
 } from '~types/mochi-schema'
+import { SaveBar } from '~cpn/SaveBar'
 import {
   NotificationFlags,
   NotificationPlatform,
@@ -102,6 +94,7 @@ export function NotificationPage() {
 
   const enableNotification = watch('enable')
   const switchTabIndex = enableNotification ? undefined : -1
+  const isDisabledSwitch = !enableNotification || isFirstLoading || isUpdating
 
   const onSubmit = async (data: NotificationFormValue) => {
     const { enable, discord, telegram, website, ...restData } = data
@@ -162,8 +155,6 @@ export function NotificationPage() {
     })
   }, [isFirstLoading, reset, settings])
 
-  if (isFirstLoading) return <Skeleton />
-
   return (
     <FormProvider {...form}>
       <div className="sm:max-w-[600px] divide-y">
@@ -216,61 +207,61 @@ export function NotificationPage() {
                 name="disable_all"
                 label="Disable all notification wallets"
                 description="Your existing notification wallet activity settings will be preserved."
-                disabled={!enableNotification || isFirstLoading || isUpdating}
+                disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Receive a tip"
                 name="receive_tip_success"
-                disabled={!enableNotification || isFirstLoading || isUpdating}
+                disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Payment request completed"
                 name="receive_payme_success"
-                disabled={!enableNotification || isFirstLoading || isUpdating}
+                disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Receive airdrops"
                 name="receive_airdrop_success"
-                disabled={!enableNotification || isFirstLoading || isUpdating}
+                disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Payment request expired"
                 name="*_payme_expired"
-                disabled={!enableNotification || isFirstLoading || isUpdating}
+                disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Deposit completed"
                 name="receive_deposit_success"
-                disabled={!enableNotification || isFirstLoading || isUpdating}
+                disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Pay link has expired"
                 name="*_paylink_expired"
-                disabled={!enableNotification || isFirstLoading || isUpdating}
+                disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Withdrawal completed"
                 name="send_withdraw_success"
-                disabled={!enableNotification || isFirstLoading || isUpdating}
+                disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Pay link claimed by another"
                 name="send_paylink_success"
-                disabled={!enableNotification || isFirstLoading || isUpdating}
+                disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Claim a pay link"
                 name="receive_paylink_success"
-                disabled={!enableNotification || isFirstLoading || isUpdating}
+                disabled={isDisabledSwitch}
               />
               {/* FIXME: not support yet */}
               {/* <NotificationSwitcherField
@@ -290,7 +281,7 @@ export function NotificationPage() {
               label="New Configuration"
               description="Change in communities's configuration"
               name="new_configuration"
-              disabled={!enableNotification || isFirstLoading || isUpdating}
+              disabled={isDisabledSwitch}
             />
           </div>
           <div>
@@ -303,25 +294,25 @@ export function NotificationPage() {
                 tabIndex={switchTabIndex}
                 label="New Vault Transactions"
                 name="new_vault_tx"
-                disabled={!enableNotification || isFirstLoading || isUpdating}
+                disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Information Changed"
                 name="info_updated"
-                disabled={!enableNotification || isFirstLoading || isUpdating}
+                disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="New API call"
                 name="new_api_call"
-                disabled={!enableNotification || isFirstLoading || isUpdating}
+                disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="New Member"
                 name="new_member"
-                disabled={!enableNotification || isFirstLoading || isUpdating}
+                disabled={isDisabledSwitch}
               />
             </div>
           </div>
@@ -337,55 +328,31 @@ export function NotificationPage() {
                 tabIndex={switchTabIndex}
                 label="Discord"
                 name="discord"
-                disabled={!enableNotification || isFirstLoading || isUpdating}
+                disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Telegram"
                 name="telegram"
-                disabled={!enableNotification || isFirstLoading || isUpdating}
+                disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Website"
                 name="website"
-                disabled={!enableNotification || isFirstLoading || isUpdating}
+                disabled={isDisabledSwitch}
               />
             </div>
           </div>
         </div>
       </div>
       <div className="sticky bottom-0 z-50">
-        <ActionBar open={isDirty || isUpdating}>
-          <ActionBarContent
-            scheme="success"
-            anchorClassName="left-0 right-0 -mb-8"
-            shadow
-            onOpenAutoFocus={(e) => e.preventDefault()}
-          >
-            <ActionBarIcon />
-            <ActionBarBody>
-              <ActionBarTitle>
-                Do you want to save these changes?
-              </ActionBarTitle>
-            </ActionBarBody>
-            <ActionBarActionGroup>
-              <ActionBarCancelButton
-                onClick={() => {
-                  reset()
-                }}
-              >
-                Reset
-              </ActionBarCancelButton>
-              <ActionBarConfirmButton
-                onClick={handleSubmit(onSubmit)}
-                loading={isUpdating || isFirstLoading}
-              >
-                Save changes
-              </ActionBarConfirmButton>
-            </ActionBarActionGroup>
-          </ActionBarContent>
-        </ActionBar>
+        <SaveBar
+          open={isDirty || isUpdating}
+          isLoading={isUpdating || isFirstLoading}
+          onConfirm={handleSubmit(onSubmit)}
+          onCancel={() => reset()}
+        />
       </div>
     </FormProvider>
   )
