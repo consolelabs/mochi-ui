@@ -51,8 +51,9 @@ export const TokenTableList = (props: Props) => {
   return (
     <Table
       {...props}
+      headerSicky
       emptyContent={
-        <div className="flex flex-col justify-center items-center h-full">
+        <div className="flex flex-col items-center justify-center h-full">
           <Bag className="w-14 h-14 text-neutral-500" />
           <Typography level="h7" color="textSecondary">
             No assets
