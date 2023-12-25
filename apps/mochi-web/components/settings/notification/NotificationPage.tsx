@@ -80,6 +80,8 @@ const NotificationSwitcherField = (
   )
 }
 
+const Divider = () => <div className="w-full my-8 h-px bg-neutral-200" />
+
 export function NotificationPage() {
   const form = useForm<NotificationFormValue>({
     mode: 'all',
@@ -159,46 +161,45 @@ export function NotificationPage() {
 
   return (
     <FormProvider {...form}>
-      <div className="sm:max-w-[600px] divide-y">
-        <div>
-          <Typography level="h6">Notify Event</Typography>
-          <Controller<NotificationFormValue>
-            name="enable"
-            render={({ field: { value, onChange, ...restFields } }) => (
-              // eslint-disable-next-line jsx-a11y/label-has-associated-control
-              <label
-                htmlFor="enable"
-                className="block cursor-pointer select-none"
-              >
-                <SectionHeader className="!py-4" wrapActionsOnMobile={false}>
-                  <SectionHeaderTitle className="!col-span-2 !col-end-3 pr-14 !text-base font-normal">
-                    Notification
-                  </SectionHeaderTitle>
-                  <SectionHeaderDescription className="!col-span-2 !col-end-3 pr-14">
-                    Select the event you want to receive notifications for
-                  </SectionHeaderDescription>
-                  <SectionHeaderActions>
-                    <Switch
-                      id="enable"
-                      key="switch"
-                      {...restFields}
-                      checked={value}
-                      onCheckedChange={onChange}
-                      disabled={isFirstLoading || isUpdating}
-                    />
-                  </SectionHeaderActions>
-                </SectionHeader>
-              </label>
-            )}
-          />
-        </div>
+      <div className="sm:max-w-[600px]">
+        <Typography level="h6">Notify Event</Typography>
+        <Controller<NotificationFormValue>
+          name="enable"
+          render={({ field: { value, onChange, ...restFields } }) => (
+            // eslint-disable-next-line jsx-a11y/label-has-associated-control
+            <label
+              htmlFor="enable"
+              className="block cursor-pointer select-none -mb-4"
+            >
+              <SectionHeader className="!py-4" wrapActionsOnMobile={false}>
+                <SectionHeaderTitle className="!col-span-2 !col-end-3 pr-14 !text-base font-normal">
+                  Notification
+                </SectionHeaderTitle>
+                <SectionHeaderDescription className="!col-span-2 !col-end-3 pr-14">
+                  Select the event you want to receive notifications for
+                </SectionHeaderDescription>
+                <SectionHeaderActions>
+                  <Switch
+                    id="enable"
+                    key="switch"
+                    {...restFields}
+                    checked={value}
+                    onCheckedChange={onChange}
+                    disabled={isFirstLoading || isUpdating}
+                  />
+                </SectionHeaderActions>
+              </SectionHeader>
+            </label>
+          )}
+        />
+        <Divider />
         <div
-          className={clsx('divide-y transition', {
+          className={clsx('transitionw -mt-4', {
             'opacity-30': !enableNotification,
           })}
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div>
+          <div className="border-b">
             <Typography className="py-4" level="h6">
               Wallet Activity
             </Typography>
@@ -273,7 +274,7 @@ export function NotificationPage() {
             /> */}
             </div>
           </div>
-          <div>
+          <div className="mt-4 -mb-2">
             <Typography className="py-4" level="h6">
               Communities Activity
             </Typography>
@@ -286,7 +287,8 @@ export function NotificationPage() {
               disabled={isDisabledSwitch}
             />
           </div>
-          <div>
+          <Divider />
+          <div className="-mt-4 border-b">
             <Typography className="py-4" level="h6">
               Apps Activity
             </Typography>
@@ -322,7 +324,7 @@ export function NotificationPage() {
               />
             </div>
           </div>
-          <div>
+          <div className="mt-4">
             <Typography className="py-4" level="h6">
               Platform Notification
             </Typography>
