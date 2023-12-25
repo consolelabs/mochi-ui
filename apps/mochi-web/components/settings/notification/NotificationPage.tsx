@@ -58,9 +58,11 @@ const NotificationSwitcherField = (
             >
               {label}
             </SectionHeaderTitle>
-            <SectionHeaderDescription className="!col-span-2 !col-end-3 pr-14">
-              {description}
-            </SectionHeaderDescription>
+            {description && (
+              <SectionHeaderDescription className="!col-span-2 !col-end-3 pr-14">
+                {description}
+              </SectionHeaderDescription>
+            )}
             <SectionHeaderActions>
               <Switch
                 id={id}
@@ -273,7 +275,7 @@ export function NotificationPage() {
           </div>
           <div>
             <Typography className="py-4" level="h6">
-              Wallet Activity
+              Communities Activity
             </Typography>
             <NotificationSwitcherField
               className="-mt-3"
@@ -292,20 +294,23 @@ export function NotificationPage() {
               <NotificationSwitcherField
                 className="-mt-3"
                 tabIndex={switchTabIndex}
+                description="A new transaction of the vault is made."
                 label="New Vault Transactions"
                 name="new_vault_tx"
                 disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
-                label="Information Changed"
-                name="info_updated"
+                label="New API call"
+                name="new_api_call"
+                description="An API is called with the app keys."
                 disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
-                label="New API call"
-                name="new_api_call"
+                label="Information Changed"
+                name="info_updated"
+                description="App’s information is changed."
                 disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
@@ -313,6 +318,7 @@ export function NotificationPage() {
                 label="New Member"
                 name="new_member"
                 disabled={isDisabledSwitch}
+                description="A new member is added to the apps."
               />
             </div>
           </div>
