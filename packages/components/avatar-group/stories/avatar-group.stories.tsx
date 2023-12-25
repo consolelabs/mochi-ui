@@ -40,7 +40,7 @@ export const Fallback: Story = {
   render: () => {
     return (
       <div className="gap-3 flex">
-        <Avatar size="lg" src="https://mochi.gg/notfound.png" smallSrc="asd" />
+        <Avatar size="lg" src="https://mochi.gg/notfound.png" />
       </div>
     )
   },
