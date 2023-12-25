@@ -8,6 +8,7 @@ import {
 } from '@mochi-ui/core'
 import { useRouter } from 'next/router'
 import React from 'react'
+import { SEO } from '~app/layout/seo'
 import { ROUTES } from '~constants/routes'
 import { DashboardBody } from '~cpn/DashboardBody'
 import { GeneralPage } from '~cpn/settings/general/GeneralPage'
@@ -25,6 +26,8 @@ const SettingsPage = () => {
 
   return (
     <>
+      <SEO title="Settings" tailTitle />
+
       <PageHeader>
         <PageHeaderTitle>Settings</PageHeaderTitle>
       </PageHeader>
