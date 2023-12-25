@@ -19,7 +19,7 @@ const Profile: NextPageWithLayout = () => {
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
             <ProfileWidget />
             <MochiWidget
-              wrapperClassName="!shadow-input !border-divider h-max"
+              wrapperClassName="!shadow-input !border-divider h-full"
               className="!border-none !shadow-none my-auto"
             />
           </div>
