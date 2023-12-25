@@ -5,7 +5,10 @@ const group = 'space-y-1'
 const iconChevron = cva([], {
   variants: {
     color: {
-      primary: ['!text-primary-outline-fg'],
+      primary: ['!text-text-contrast'],
+      secondary: ['!text-primary-outline-fg'],
+      white: [''],
+      gray: [''],
     },
     appearance: {
       form: ['text-base'],
@@ -72,10 +75,13 @@ const itemCva = cva(
         true: ['!border-danger-solid-focus', 'focus:shadow-none'],
       },
       color: {
-        primary: ['bg-primary-outline'],
+        primary: ['bg-primary-solid', '!text-text-contrast'],
+        secondary: ['bg-primary-outline'],
+        white: ['bg-background-surface'],
+        gray: ['bg-background-level3'],
       },
       hasPadding: {
-        false: ['!p-1 !rounded-md'],
+        false: ['!p-1 !rounded'],
       },
       isFilled: {
         true: [],

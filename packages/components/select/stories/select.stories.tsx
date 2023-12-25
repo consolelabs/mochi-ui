@@ -21,6 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../src/select'
+import { SelectProps, SelectTriggerProps } from '../src'
 
 const meta: Meta<typeof Select> = {
   title: 'Form/Select',
@@ -108,31 +109,20 @@ export const TriggerColor: StoryObj = {
   render() {
     return (
       <div className="flex gap-4">
-        <Select>
-          <SelectTrigger>
-            <SelectValue placeholder="Select" />
-          </SelectTrigger>
-          <SelectContent className="min-w-[200px]">
-            {items.map(({ key, label, value }) => (
-              <SelectItem key={key} value={value}>
-                {label}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-
-        <Select>
-          <SelectTrigger color="primary">
-            <SelectValue placeholder="Select" />
-          </SelectTrigger>
-          <SelectContent className="min-w-[200px]">
-            {items.map(({ key, label, value }) => (
-              <SelectItem key={key} value={value}>
-                {label}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        {['white', 'primary', 'secondary', 'gray'].map((color) => (
+          <Select key={color}>
+            <SelectTrigger color={color as SelectTriggerProps['color']}>
+              <SelectValue placeholder="Select" />
+            </SelectTrigger>
+            <SelectContent className="min-w-[200px]">
+              {items.map(({ key, label, value }) => (
+                <SelectItem key={key} value={value}>
+                  {label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        ))}
       </div>
     )
   },
@@ -143,7 +133,7 @@ export const TriggerPadding: StoryObj = {
     return (
       <div className="flex gap-4 items-center">
         <Select>
-          <SelectTrigger color="primary">
+          <SelectTrigger color="secondary">
             <SelectValue placeholder="Select" />
           </SelectTrigger>
           <SelectContent className="min-w-[200px]">
@@ -156,7 +146,7 @@ export const TriggerPadding: StoryObj = {
         </Select>
 
         <Select>
-          <SelectTrigger color="primary" hasPadding={false}>
+          <SelectTrigger color="secondary" hasPadding={false}>
             <SelectValue placeholder="Select" />
           </SelectTrigger>
           <SelectContent className="min-w-[200px]">

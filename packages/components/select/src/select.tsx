@@ -67,7 +67,7 @@ const SelectTrigger = forwardRef<SelectTriggerRef, SelectTriggerProps>(
       rightIcon,
       leftIcon,
       isError,
-      color,
+      color = 'white',
       hasPadding = true,
       appearance = 'button',
       loading = false,

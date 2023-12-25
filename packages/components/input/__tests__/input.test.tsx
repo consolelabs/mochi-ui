@@ -29,7 +29,7 @@ describe('Input', () => {
   it('applies the error variant', () => {
     const { container } = render(<TextFieldInput error />)
     const input = container.querySelector('input')
-    expect(input).toHaveClass('!caret-danger-outline-fg')
+    expect(input).toHaveClass('!caret-danger-solid-focus')
   })
 
   it('passes through any other props', () => {

@@ -35,7 +35,7 @@ export type SelectTriggerProps = ComponentPropsWithoutRef<
   hideRightIcon?: boolean
   appearance?: SelectAppearance
   isError?: boolean
-  color?: 'primary'
+  color?: 'primary' | 'secondary' | 'white' | 'gray'
   hasPadding?: boolean
   loading?: boolean
 }
