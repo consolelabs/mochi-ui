@@ -1,18 +1,9 @@
-import React, { useEffect, useId } from 'react'
+import React, { useEffect, useId, useState } from 'react'
 import {
-  ActionBar,
-  ActionBarActionGroup,
-  ActionBarBody,
-  ActionBarCancelButton,
-  ActionBarConfirmButton,
-  ActionBarContent,
-  ActionBarIcon,
-  ActionBarTitle,
   SectionHeader,
   SectionHeaderActions,
   SectionHeaderDescription,
   SectionHeaderTitle,
-  Skeleton,
   Switch,
   SwitchProps,
   Typography,
@@ -27,6 +18,7 @@ import {
   RequestUpdateNotificationSettingPayloadRequest,
   ResponseUserNotificationSettingResponse,
 } from '~types/mochi-schema'
+import { SaveBar } from '~cpn/SaveBar'
 import {
   NotificationFlags,
   NotificationPlatform,
@@ -66,9 +58,11 @@ const NotificationSwitcherField = (
             >
               {label}
             </SectionHeaderTitle>
-            <SectionHeaderDescription className="!col-span-2 !col-end-3 pr-14">
-              {description}
-            </SectionHeaderDescription>
+            {description && (
+              <SectionHeaderDescription className="!col-span-2 !col-end-3 pr-14">
+                {description}
+              </SectionHeaderDescription>
+            )}
             <SectionHeaderActions>
               <Switch
                 id={id}
@@ -86,6 +80,8 @@ const NotificationSwitcherField = (
   )
 }
 
+const Divider = () => <div className="w-full my-8 h-px bg-neutral-200" />
+
 export function NotificationPage() {
   const form = useForm<NotificationFormValue>({
     mode: 'all',
@@ -93,12 +89,16 @@ export function NotificationPage() {
   const { profile } = useLoginWidget()
   const { handleSubmit, watch, reset, formState } = form
   const { isDirty } = formState
-  const { settings, isLoading, mutate } = useFetchNotificationSettings(
-    profile?.id,
-  )
+  const {
+    settings,
+    isLoading: isFirstLoading,
+    mutate,
+  } = useFetchNotificationSettings(profile?.id)
+  const [isUpdating, setIsUpdating] = useState(false)
 
   const enableNotification = watch('enable')
   const switchTabIndex = enableNotification ? undefined : -1
+  const isDisabledSwitch = !enableNotification || isFirstLoading || isUpdating
 
   const onSubmit = async (data: NotificationFormValue) => {
     const { enable, discord, telegram, website, ...restData } = data
@@ -116,6 +116,7 @@ export function NotificationPage() {
       flags: restData as Record<string, boolean>,
     }
     try {
+      setIsUpdating(true)
       const { data: newSettings }: ResponseUserNotificationSettingResponse =
         await API.MOCHI.put(
           body,
@@ -132,18 +133,21 @@ export function NotificationPage() {
         website: platforms?.includes('website'),
         ...flags,
       })
+      await mutate()
     } catch (e) {
+      reset()
       toast({
         scheme: 'danger',
         title: 'Some thing wrong',
         description: 'Error during update notification settings',
       })
+    } finally {
+      setIsUpdating(false)
     }
-    mutate()
   }
 
   useEffect(() => {
-    if (isLoading) return
+    if (isFirstLoading) return
     const flags = settings?.flags as NotificationWalletFlags | undefined
     const platforms = settings?.platforms as NotificationPlatform[] | undefined
     reset({
@@ -153,51 +157,49 @@ export function NotificationPage() {
       website: platforms?.includes('website'),
       ...flags,
     })
-  }, [isLoading, reset, settings])
-
-  if (isLoading) return <Skeleton />
+  }, [isFirstLoading, reset, settings])
 
   return (
     <FormProvider {...form}>
-      <div className="sm:max-w-[600px] divide-y">
-        <div>
-          <Typography level="h6">Notify Event</Typography>
-          <Controller<NotificationFormValue>
-            name="enable"
-            render={({ field: { value, onChange, ...restFields } }) => (
-              // eslint-disable-next-line jsx-a11y/label-has-associated-control
-              <label
-                htmlFor="enable"
-                className="block cursor-pointer select-none"
-              >
-                <SectionHeader className="!py-4" wrapActionsOnMobile={false}>
-                  <SectionHeaderTitle className="!col-span-2 !col-end-3 pr-14 !text-base font-normal">
-                    Notification
-                  </SectionHeaderTitle>
-                  <SectionHeaderDescription className="!col-span-2 !col-end-3 pr-14">
-                    Select the event you want to receive notifications for
-                  </SectionHeaderDescription>
-                  <SectionHeaderActions>
-                    <Switch
-                      id="enable"
-                      key="switch"
-                      {...restFields}
-                      checked={value}
-                      onCheckedChange={onChange}
-                    />
-                  </SectionHeaderActions>
-                </SectionHeader>
-              </label>
-            )}
-          />
-        </div>
+      <div className="sm:max-w-[600px]">
+        <Typography level="h6">Notify Event</Typography>
+        <Controller<NotificationFormValue>
+          name="enable"
+          render={({ field: { value, onChange, ...restFields } }) => (
+            // eslint-disable-next-line jsx-a11y/label-has-associated-control
+            <label
+              htmlFor="enable"
+              className="block cursor-pointer select-none -mb-4"
+            >
+              <SectionHeader className="!py-4" wrapActionsOnMobile={false}>
+                <SectionHeaderTitle className="!col-span-2 !col-end-3 pr-14 !text-base font-normal">
+                  Notification
+                </SectionHeaderTitle>
+                <SectionHeaderDescription className="!col-span-2 !col-end-3 pr-14">
+                  Select the event you want to receive notifications for
+                </SectionHeaderDescription>
+                <SectionHeaderActions>
+                  <Switch
+                    id="enable"
+                    key="switch"
+                    {...restFields}
+                    checked={value}
+                    onCheckedChange={onChange}
+                    disabled={isFirstLoading || isUpdating}
+                  />
+                </SectionHeaderActions>
+              </SectionHeader>
+            </label>
+          )}
+        />
+        <Divider />
         <div
-          className={clsx('divide-y transition', {
+          className={clsx('transitionw -mt-4', {
             'opacity-30': !enableNotification,
           })}
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div>
+          <div className="border-b">
             <Typography className="py-4" level="h6">
               Wallet Activity
             </Typography>
@@ -208,51 +210,61 @@ export function NotificationPage() {
                 name="disable_all"
                 label="Disable all notification wallets"
                 description="Your existing notification wallet activity settings will be preserved."
+                disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Receive a tip"
                 name="receive_tip_success"
+                disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Payment request completed"
                 name="receive_payme_success"
+                disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Receive airdrops"
                 name="receive_airdrop_success"
+                disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Payment request expired"
                 name="*_payme_expired"
+                disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Deposit completed"
                 name="receive_deposit_success"
+                disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Pay link has expired"
                 name="*_paylink_expired"
+                disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Withdrawal completed"
                 name="send_withdraw_success"
+                disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Pay link claimed by another"
                 name="send_paylink_success"
+                disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Claim a pay link"
                 name="receive_paylink_success"
+                disabled={isDisabledSwitch}
               />
               {/* FIXME: not support yet */}
               {/* <NotificationSwitcherField
@@ -262,9 +274,9 @@ export function NotificationPage() {
             /> */}
             </div>
           </div>
-          <div>
+          <div className="mt-4 -mb-2">
             <Typography className="py-4" level="h6">
-              Wallet Activity
+              Communities Activity
             </Typography>
             <NotificationSwitcherField
               className="-mt-3"
@@ -272,9 +284,11 @@ export function NotificationPage() {
               label="New Configuration"
               description="Change in communities's configuration"
               name="new_configuration"
+              disabled={isDisabledSwitch}
             />
           </div>
-          <div>
+          <Divider />
+          <div className="-mt-4 border-b">
             <Typography className="py-4" level="h6">
               Apps Activity
             </Typography>
@@ -282,27 +296,35 @@ export function NotificationPage() {
               <NotificationSwitcherField
                 className="-mt-3"
                 tabIndex={switchTabIndex}
+                description="A new transaction of the vault is made."
                 label="New Vault Transactions"
                 name="new_vault_tx"
-              />
-              <NotificationSwitcherField
-                tabIndex={switchTabIndex}
-                label="Information Changed"
-                name="info_updated"
+                disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="New API call"
                 name="new_api_call"
+                description="An API is called with the app keys."
+                disabled={isDisabledSwitch}
+              />
+              <NotificationSwitcherField
+                tabIndex={switchTabIndex}
+                label="Information Changed"
+                name="info_updated"
+                description="App’s information is changed."
+                disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="New Member"
                 name="new_member"
+                disabled={isDisabledSwitch}
+                description="A new member is added to the apps."
               />
             </div>
           </div>
-          <div>
+          <div className="mt-4">
             <Typography className="py-4" level="h6">
               Platform Notification
             </Typography>
@@ -314,49 +336,31 @@ export function NotificationPage() {
                 tabIndex={switchTabIndex}
                 label="Discord"
                 name="discord"
+                disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Telegram"
                 name="telegram"
+                disabled={isDisabledSwitch}
               />
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Website"
                 name="website"
+                disabled={isDisabledSwitch}
               />
             </div>
           </div>
         </div>
       </div>
       <div className="sticky bottom-0 z-50">
-        <ActionBar open={isDirty}>
-          <ActionBarContent
-            scheme="success"
-            anchorClassName="left-0 right-0 -mb-8"
-            shadow
-            onOpenAutoFocus={(e) => e.preventDefault()}
-          >
-            <ActionBarIcon />
-            <ActionBarBody>
-              <ActionBarTitle>
-                Do you want to save these changes?
-              </ActionBarTitle>
-            </ActionBarBody>
-            <ActionBarActionGroup>
-              <ActionBarCancelButton
-                onClick={() => {
-                  reset()
-                }}
-              >
-                Reset
-              </ActionBarCancelButton>
-              <ActionBarConfirmButton onClick={handleSubmit(onSubmit)}>
-                Save changes
-              </ActionBarConfirmButton>
-            </ActionBarActionGroup>
-          </ActionBarContent>
-        </ActionBar>
+        <SaveBar
+          open={isDirty || isUpdating}
+          isLoading={isUpdating || isFirstLoading}
+          onConfirm={handleSubmit(onSubmit)}
+          onCancel={() => reset()}
+        />
       </div>
     </FormProvider>
   )
