@@ -1,5 +1,14 @@
 # @mochi-ui/typography
 
+## 0.1.0
+
+### Minor Changes
+
+- [#489](https://github.com/consolelabs/mochi-ui/pull/489)
+  [`7b6f022`](https://github.com/consolelabs/mochi-ui/commit/7b6f022061fca7dcc150a753fefc1afdf5656123)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Remove textTertiary in
+  Typography
+
 ## 0.0.7
 
 ### Patch Changes

@@ -1,5 +1,139 @@
 # @mochi-ui/core
 
+## 0.11.0
+
+### Minor Changes
+
+- [#458](https://github.com/consolelabs/mochi-ui/pull/458)
+  [`be394cd`](https://github.com/consolelabs/mochi-ui/commit/be394cd1f656c8f8f5458cdf5599e30045a5e996)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Update api
+  popover
+
+- [#446](https://github.com/consolelabs/mochi-ui/pull/446)
+  [`6296c30`](https://github.com/consolelabs/mochi-ui/commit/6296c30e98fdc658728c484eb1460cddec2aa13b)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - keep shadow
+  on dopdownContent when not focus
+
+- [#442](https://github.com/consolelabs/mochi-ui/pull/442)
+  [`090a9e1`](https://github.com/consolelabs/mochi-ui/commit/090a9e19e1268fbdaf69855545e027ad5180abe3)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Create drawer
+  component
+
+- [#455](https://github.com/consolelabs/mochi-ui/pull/455)
+  [`a8db5fd`](https://github.com/consolelabs/mochi-ui/commit/a8db5fd0c501783d10036a6add92e11aed991490)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Update
+  dropdown api
+
+- [#454](https://github.com/consolelabs/mochi-ui/pull/454)
+  [`f497d9e`](https://github.com/consolelabs/mochi-ui/commit/f497d9eb65a156efba19c28051d40872dfeffa36)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - update modal
+  api
+
+- [#418](https://github.com/consolelabs/mochi-ui/pull/418)
+  [`5300972`](https://github.com/consolelabs/mochi-ui/commit/5300972eddd0edc9b8abc7914a11997e62f26772)
+  Thanks [@leduyhien152](https://github.com/leduyhien152)! - Fix Table style
+
+- [#465](https://github.com/consolelabs/mochi-ui/pull/465)
+  [`54365df`](https://github.com/consolelabs/mochi-ui/commit/54365df358560c6ac276e39c5118cef951e2e788)
+  Thanks [@leduyhien152](https://github.com/leduyhien152)! - Add Separator to
+  component package
+
+### Patch Changes
+
+- [#435](https://github.com/consolelabs/mochi-ui/pull/435)
+  [`734a087`](https://github.com/consolelabs/mochi-ui/commit/734a087d61585af13fabf6076c29172fd78ccf02)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Export section header
+
+- [#472](https://github.com/consolelabs/mochi-ui/pull/472)
+  [`fa7d14f`](https://github.com/consolelabs/mochi-ui/commit/fa7d14fc8b3e2794ffb6ce2c4ca2205cbd6acc70)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Make Section header
+  composable
+
+- [#496](https://github.com/consolelabs/mochi-ui/pull/496)
+  [`5205985`](https://github.com/consolelabs/mochi-ui/commit/5205985b3591c2feed314f2e5bd18d66bb6a86ee)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Export pagination
+
+- [#449](https://github.com/consolelabs/mochi-ui/pull/449)
+  [`c58d05b`](https://github.com/consolelabs/mochi-ui/commit/c58d05beb10aef433904eea51819a895302b3376)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Export drawer
+  component
+
+- [#467](https://github.com/consolelabs/mochi-ui/pull/467)
+  [`62b7ad9`](https://github.com/consolelabs/mochi-ui/commit/62b7ad939dc15e9f200a794c7fda9c929eaf6474)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Make Page header
+  composable
+
+- Updated dependencies
+  [[`be394cd`](https://github.com/consolelabs/mochi-ui/commit/be394cd1f656c8f8f5458cdf5599e30045a5e996),
+  [`6296c30`](https://github.com/consolelabs/mochi-ui/commit/6296c30e98fdc658728c484eb1460cddec2aa13b),
+  [`7b6f022`](https://github.com/consolelabs/mochi-ui/commit/7b6f022061fca7dcc150a753fefc1afdf5656123),
+  [`090a9e1`](https://github.com/consolelabs/mochi-ui/commit/090a9e19e1268fbdaf69855545e027ad5180abe3),
+  [`0b833b5`](https://github.com/consolelabs/mochi-ui/commit/0b833b5a7fea0424a9449969d4fc1dbda05516c2),
+  [`8a1cc57`](https://github.com/consolelabs/mochi-ui/commit/8a1cc575df7e15facc2be13905ceafcacd1b4c4d),
+  [`7b6f022`](https://github.com/consolelabs/mochi-ui/commit/7b6f022061fca7dcc150a753fefc1afdf5656123),
+  [`890d79b`](https://github.com/consolelabs/mochi-ui/commit/890d79bf69e5c02a75f7099b5c002f37c89b99f4),
+  [`e706e30`](https://github.com/consolelabs/mochi-ui/commit/e706e30c803949982f5e4e92092cdeb2ade91868),
+  [`a8db5fd`](https://github.com/consolelabs/mochi-ui/commit/a8db5fd0c501783d10036a6add92e11aed991490),
+  [`16fb183`](https://github.com/consolelabs/mochi-ui/commit/16fb183cd98a178bc1ac17bf404a76d30c88ed93),
+  [`f497d9e`](https://github.com/consolelabs/mochi-ui/commit/f497d9eb65a156efba19c28051d40872dfeffa36),
+  [`fa7d14f`](https://github.com/consolelabs/mochi-ui/commit/fa7d14fc8b3e2794ffb6ce2c4ca2205cbd6acc70),
+  [`94d8781`](https://github.com/consolelabs/mochi-ui/commit/94d87818e9416f8953b5a2d2d8aa040e0b9e99e9),
+  [`5300972`](https://github.com/consolelabs/mochi-ui/commit/5300972eddd0edc9b8abc7914a11997e62f26772),
+  [`603c006`](https://github.com/consolelabs/mochi-ui/commit/603c00622edcc6dc937db5d8f6c2c06c14ba7a94),
+  [`97ba024`](https://github.com/consolelabs/mochi-ui/commit/97ba0241b19a22f6f403baca253ea97b94bb349c),
+  [`7b6f022`](https://github.com/consolelabs/mochi-ui/commit/7b6f022061fca7dcc150a753fefc1afdf5656123),
+  [`5205985`](https://github.com/consolelabs/mochi-ui/commit/5205985b3591c2feed314f2e5bd18d66bb6a86ee),
+  [`aab1539`](https://github.com/consolelabs/mochi-ui/commit/aab15397ec56172bc45bcd291e7177b5988bb14d),
+  [`6cf0c7e`](https://github.com/consolelabs/mochi-ui/commit/6cf0c7ef3a5517709b1ed98e6348c94db5d53a7f),
+  [`c58d05b`](https://github.com/consolelabs/mochi-ui/commit/c58d05beb10aef433904eea51819a895302b3376),
+  [`62b7ad9`](https://github.com/consolelabs/mochi-ui/commit/62b7ad939dc15e9f200a794c7fda9c929eaf6474),
+  [`82fa478`](https://github.com/consolelabs/mochi-ui/commit/82fa47878f97d00ab2bcba8edc40e4634e80ba61),
+  [`2c88758`](https://github.com/consolelabs/mochi-ui/commit/2c887589f290cb9f2d1a62838adf8495907bb5bb),
+  [`ab3f92c`](https://github.com/consolelabs/mochi-ui/commit/ab3f92c0647b5056443f9f8dd5de51ef9d2d40f7)]:
+  - @mochi-ui/popover@0.3.0
+  - @mochi-ui/dropdown@0.2.0
+  - @mochi-ui/icons@0.7.0
+  - @mochi-ui/theme@0.12.0
+  - @mochi-ui/drawer@0.3.0
+  - @mochi-ui/input@0.3.0
+  - @mochi-ui/table@0.5.0
+  - @mochi-ui/tabs@0.2.0
+  - @mochi-ui/login-widget@0.2.0
+  - @mochi-ui/sidebar@0.1.3
+  - @mochi-ui/modal@0.3.0
+  - @mochi-ui/section-header@0.2.0
+  - @mochi-ui/avatar@0.1.3
+  - @mochi-ui/typography@0.1.0
+  - @mochi-ui/pagination@0.2.2
+  - @mochi-ui/checkbox@0.1.13
+  - @mochi-ui/top-bar@0.1.9
+  - @mochi-ui/page-header@0.3.0
+  - @mochi-ui/layout@0.1.10
+  - @mochi-ui/connect-wallet-widget@0.0.5
+  - @mochi-ui/accordion@0.1.13
+  - @mochi-ui/alert@1.2.3
+  - @mochi-ui/badge@0.2.12
+  - @mochi-ui/button@0.4.9
+  - @mochi-ui/content-editable@1.1.1
+  - @mochi-ui/footer@0.1.4
+  - @mochi-ui/form@0.1.10
+  - @mochi-ui/icon-button@0.4.10
+  - @mochi-ui/select@0.1.12
+  - @mochi-ui/skeleton@1.0.3
+  - @mochi-ui/toggle-button@0.1.1
+  - @mochi-ui/action-bar@0.1.3
+  - @mochi-ui/card@0.1.1
+  - @mochi-ui/label@0.1.10
+  - @mochi-ui/list@0.0.23
+  - @mochi-ui/logo@0.1.10
+  - @mochi-ui/page-content@0.1.10
+  - @mochi-ui/profile-badge@0.1.11
+  - @mochi-ui/section-list@0.0.22
+  - @mochi-ui/separator@0.0.24
+  - @mochi-ui/switch@0.0.21
+  - @mochi-ui/toast@0.1.3
+  - @mochi-ui/tooltip@0.2.10
+
 ## 0.10.0
 
 ### Minor Changes

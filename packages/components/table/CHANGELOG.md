@@ -1,5 +1,51 @@
 # @mochi-ui/table
 
+## 0.5.0
+
+### Minor Changes
+
+- [#482](https://github.com/consolelabs/mochi-ui/pull/482)
+  [`8a1cc57`](https://github.com/consolelabs/mochi-ui/commit/8a1cc575df7e15facc2be13905ceafcacd1b4c4d)
+  Thanks [@leduyhien152](https://github.com/leduyhien152)! - Remove default
+  table pagination
+
+- [#418](https://github.com/consolelabs/mochi-ui/pull/418)
+  [`5300972`](https://github.com/consolelabs/mochi-ui/commit/5300972eddd0edc9b8abc7914a11997e62f26772)
+  Thanks [@leduyhien152](https://github.com/leduyhien152)! - Fix Table style
+
+- [#431](https://github.com/consolelabs/mochi-ui/pull/431)
+  [`603c006`](https://github.com/consolelabs/mochi-ui/commit/603c00622edcc6dc937db5d8f6c2c06c14ba7a94)
+  Thanks [@leduyhien152](https://github.com/leduyhien152)! - Add empty content
+  to Table
+
+### Patch Changes
+
+- [#488](https://github.com/consolelabs/mochi-ui/pull/488)
+  [`94d8781`](https://github.com/consolelabs/mochi-ui/commit/94d87818e9416f8953b5a2d2d8aa040e0b9e99e9)
+  Thanks [@tuanddd](https://github.com/tuanddd)! - Add option to hide last row's
+  border
+
+- Updated dependencies
+  [[`6296c30`](https://github.com/consolelabs/mochi-ui/commit/6296c30e98fdc658728c484eb1460cddec2aa13b),
+  [`7b6f022`](https://github.com/consolelabs/mochi-ui/commit/7b6f022061fca7dcc150a753fefc1afdf5656123),
+  [`090a9e1`](https://github.com/consolelabs/mochi-ui/commit/090a9e19e1268fbdaf69855545e027ad5180abe3),
+  [`7b6f022`](https://github.com/consolelabs/mochi-ui/commit/7b6f022061fca7dcc150a753fefc1afdf5656123),
+  [`890d79b`](https://github.com/consolelabs/mochi-ui/commit/890d79bf69e5c02a75f7099b5c002f37c89b99f4),
+  [`e706e30`](https://github.com/consolelabs/mochi-ui/commit/e706e30c803949982f5e4e92092cdeb2ade91868),
+  [`fa7d14f`](https://github.com/consolelabs/mochi-ui/commit/fa7d14fc8b3e2794ffb6ce2c4ca2205cbd6acc70),
+  [`94d8781`](https://github.com/consolelabs/mochi-ui/commit/94d87818e9416f8953b5a2d2d8aa040e0b9e99e9),
+  [`5300972`](https://github.com/consolelabs/mochi-ui/commit/5300972eddd0edc9b8abc7914a11997e62f26772),
+  [`97ba024`](https://github.com/consolelabs/mochi-ui/commit/97ba0241b19a22f6f403baca253ea97b94bb349c),
+  [`7b6f022`](https://github.com/consolelabs/mochi-ui/commit/7b6f022061fca7dcc150a753fefc1afdf5656123),
+  [`aab1539`](https://github.com/consolelabs/mochi-ui/commit/aab15397ec56172bc45bcd291e7177b5988bb14d),
+  [`6cf0c7e`](https://github.com/consolelabs/mochi-ui/commit/6cf0c7ef3a5517709b1ed98e6348c94db5d53a7f),
+  [`c58d05b`](https://github.com/consolelabs/mochi-ui/commit/c58d05beb10aef433904eea51819a895302b3376),
+  [`62b7ad9`](https://github.com/consolelabs/mochi-ui/commit/62b7ad939dc15e9f200a794c7fda9c929eaf6474),
+  [`82fa478`](https://github.com/consolelabs/mochi-ui/commit/82fa47878f97d00ab2bcba8edc40e4634e80ba61),
+  [`2c88758`](https://github.com/consolelabs/mochi-ui/commit/2c887589f290cb9f2d1a62838adf8495907bb5bb)]:
+  - @mochi-ui/theme@0.12.0
+  - @mochi-ui/skeleton@1.0.3
+
 ## 0.4.1
 
 ### Patch Changes
