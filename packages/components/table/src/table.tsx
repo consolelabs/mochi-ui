@@ -38,6 +38,7 @@ export interface TableProps<T> {
   border?: boolean
   hideLastBorder?: boolean
   emptyContent?: React.ReactNode
+  size?: 'sm' | 'md'
 }
 
 const {
@@ -64,6 +65,7 @@ export default function Table<T extends RowData>({
   border,
   hideLastBorder,
   emptyContent,
+  size = 'md',
 }: TableProps<T>) {
   const table = useReactTable({
     data,
@@ -124,6 +126,7 @@ export default function Table<T extends RowData>({
                         className={tableDataLoadingClsx({
                           hideLastBorder,
                           border,
+                          size,
                         })}
                         key={idx}
                       >
@@ -143,7 +146,11 @@ export default function Table<T extends RowData>({
                   >
                     {row.getVisibleCells().map((cell) => (
                       <td
-                        className={tableDataClsx({ hideLastBorder, border })}
+                        className={tableDataClsx({
+                          hideLastBorder,
+                          border,
+                          size,
+                        })}
                         key={cell.id}
                         align={
                           (cell.column.columnDef.meta as any)?.align || 'left'

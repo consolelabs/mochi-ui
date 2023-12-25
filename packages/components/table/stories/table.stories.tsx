@@ -40,6 +40,13 @@ const meta: Meta<typeof Table> = {
         required: true,
       },
     },
+    size: {
+      options: ['sm', 'md'],
+      control: {
+        type: 'select',
+        defaultValue: 'md',
+      },
+    },
   },
 }
 
@@ -60,7 +67,7 @@ const data = new Array(50)
   }))
 
 export const Default: Story = {
-  render: () => {
+  render: (props) => {
     const [itemPerPage, setItemPerPage] = useState(5)
     const [page, setPage] = useState(1)
     const [loading, setLoading] = useState(false)
@@ -88,6 +95,7 @@ export const Default: Story = {
     return (
       <div className="p-4 min-w-[48rem]">
         <Table<(typeof data)[0]>
+          {...props}
           columns={[
             {
               header: 'ID',
