@@ -1,10 +1,7 @@
-import { SVGProps } from 'react'
-
 // TODO: replace it with Mochi Types
 export type Platform = {
   id: string
-  name: PlatformType
-  icon: (props: SVGProps<SVGSVGElement>) => JSX.Element
+  platform: PlatformType
 }
 
 export type PlatformType =

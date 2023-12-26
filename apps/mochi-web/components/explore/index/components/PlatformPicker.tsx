@@ -7,7 +7,6 @@ import {
 } from '@mochi-ui/core'
 import { WebSolid } from '@mochi-ui/icons'
 import { platformFilters } from '~constants/transactions'
-import { Platforms } from '~cpn/MochiWidget/PlatformPicker'
 
 export type PlatformPickerProps = {
   value: string
@@ -17,7 +16,9 @@ export type PlatformPickerProps = {
 export const PlatformPicker = (props: PlatformPickerProps) => {
   const { value, onChange } = props
 
-  const selectedPlatform = Platforms.find((platform) => platform.id === value)
+  const selectedPlatform = platformFilters.find(
+    (platform) => platform.value === value,
+  )
 
   return (
     <Select value={value} onChange={(v) => onChange(v === 'all' ? '' : v)}>

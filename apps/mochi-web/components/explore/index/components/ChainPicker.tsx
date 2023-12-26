@@ -7,7 +7,6 @@ import {
 } from '@mochi-ui/core'
 import { LinkLine } from '@mochi-ui/icons'
 import { networkFilters } from '~constants/transactions'
-import { Chains } from '~cpn/MochiWidget/ChainPicker/data'
 
 export type ChainPickerProps = {
   value: string
@@ -17,12 +16,23 @@ export type ChainPickerProps = {
 export const ChainPicker = (props: ChainPickerProps) => {
   const { value, onChange } = props
 
-  const selectedChain = Chains.find((chain) => chain.id === Number(value))
+  const selectedNetwork = networkFilters.find(
+    (network) => network.value === value,
+  )
 
   return (
     <Select value={value} onChange={(v) => onChange(v === 'all' ? '' : v)}>
       <SelectTrigger
-        leftIcon={selectedChain ? <selectedChain.icon /> : <LinkLine />}
+        leftIcon={
+          // eslint-disable-next-line
+          selectedNetwork ? (
+            selectedNetwork.icon ? (
+              <selectedNetwork.icon />
+            ) : undefined
+          ) : (
+            <LinkLine />
+          )
+        }
         className="border border-divider !font-normal"
       >
         <SelectValue placeholder="All Networks" />
