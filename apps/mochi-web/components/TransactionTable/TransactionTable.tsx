@@ -152,8 +152,8 @@ export const TransactionTable = (props: TransactionTableProps) => {
                     <tx.where.avatar />
                   </div>
                 )}
-                <span className="w-full truncate">{tx.where.text}</span>
               </BadgeIcon>
+              <span className="w-full truncate">{tx.where.text}</span>
             </Badge>
           )
         },
