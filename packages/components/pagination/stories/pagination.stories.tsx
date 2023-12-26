@@ -47,15 +47,15 @@ export const Default: Story = {
     const [itemPerPage, setItemPerPage] = useState(15)
 
     return (
-      <div className="min-w-[32rem] space-y-4">
+      <div className="md:min-w-[32rem] space-y-4">
         <Pagination totalItems={25} />
         <Pagination
           initItemsPerPage={itemPerPage}
           initalPage={currentPage}
           onItemPerPageChange={setItemPerPage}
           onPageChange={setCurrentPage}
-          totalItems={100}
-          totalPages={Math.ceil(100 / itemPerPage)}
+          totalItems={100000}
+          totalPages={Math.ceil(100000 / itemPerPage)}
         />
       </div>
     )
