@@ -40,6 +40,7 @@ export const TransactionSection = () => {
   return (
     <div className="px-6" ref={containerRef}>
       <TransactionTable
+        loadingRows={10}
         data={txnsCurrentPage}
         isLoading={isLoading}
         onRow={(tx) => {

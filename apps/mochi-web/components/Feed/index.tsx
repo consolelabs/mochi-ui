@@ -1,12 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useDisclosure } from '@dwarvesf/react-hooks'
-import { Button } from '@mochi-ui/core'
+import { Button, Typography } from '@mochi-ui/core'
 import { ArrowRightLine, ArrowUpLine } from '@mochi-ui/icons'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import clsx from 'clsx'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { ROUTES } from '~constants/routes'
 import { TransactionTable } from '~cpn/TransactionTable'
+import Link from 'next/link'
 import { useTipFeed } from './store'
 
 interface Props {
@@ -89,12 +90,10 @@ export default function Feed({ className = '' }: Props) {
         style={{ maxWidth: 1440 }}
         className="flex justify-between items-center pt-6 pb-4 px-8 mx-auto w-screen"
       >
-        <span className="px-4 text-sm leading-5">Recent Transactions</span>
-        <div className="hidden px-4">
-          <Button variant="link">
-            View all <ArrowRightLine />
-          </Button>
-        </div>
+        <Typography>Recent Transactions</Typography>
+        <Button as={Link} href={ROUTES.EXPLORE} variant="link" color="primary">
+          View all <ArrowRightLine />
+        </Button>
       </div>
       <ScrollArea.Root className="min-h-0">
         <ScrollArea.Viewport
