@@ -26,7 +26,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: 'issued by',
         id: 'from',
-        width: 270,
+        width: 210,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -58,6 +58,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: '',
         id: 'arrow',
+        width: 60,
         // eslint-disable-next-line
         cell: () => {
           return (
@@ -70,7 +71,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: 'recipients',
         id: 'to',
-        width: 270,
+        width: 200,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -102,7 +103,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: 'type',
         id: 'type',
-        width: 200,
+        width: 140,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -119,7 +120,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: 'amount',
         id: 'amount',
-        width: 200,
+        width: 210,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -137,7 +138,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: 'where',
         id: 'where',
-        width: 200,
+        width: 210,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -164,7 +165,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: 'tx id',
         id: 'txId',
-        width: 110,
+        width: 130,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -175,7 +176,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: 'wen',
         id: 'wen',
-        width: 170,
+        width: 180,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -213,13 +214,13 @@ export const TransactionTable = (props: TransactionTableProps) => {
   }, [columnFlags])
 
   return (
-    <div className={clsx('', className)}>
-      <Table {...rest} columns={columns} className="p-0" />
+    <>
+      <Table {...rest} columns={columns} className={clsx('p-0', className)} />
       {componentsProps.pagination && (
-        <div className="px-6 py-4 text-sm">
+        <div className="p-4 text-sm">
           <Pagination {...componentsProps.pagination} />
         </div>
       )}
-    </div>
+    </>
   )
 }
