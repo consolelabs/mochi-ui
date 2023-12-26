@@ -27,7 +27,8 @@ export const RecipientList = (props: Props) => {
               avatar={item.avatar}
               platform={item.associated_accounts?.[0]?.platform}
               profileName={
-                item.associated_accounts?.[0]?.platform_metadata.username
+                item.associated_accounts?.[0]?.platform_metadata.username ||
+                item.associated_accounts?.[0]?.platform_identifier
               }
               isSelected={selectedRecipients.some(
                 (recipient) =>

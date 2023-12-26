@@ -11,14 +11,7 @@ import {
   TextFieldInput,
   TextFieldRoot,
 } from '@mochi-ui/core'
-import {
-  DiscordColored,
-  TelegramColored,
-  ProfileGuardSuccessLine,
-  Spinner,
-  UserSolid,
-  GoogleColored,
-} from '@mochi-ui/icons'
+import { ProfileGuardSuccessLine, Spinner, UserSolid } from '@mochi-ui/icons'
 import { useDebounce, useDisclosure } from '@dwarvesf/react-hooks'
 import BottomSheetProvider, { BottomSheet } from '~cpn/BottomSheet'
 import { ChainPicker } from '../ChainPicker'
@@ -28,6 +21,14 @@ import { PlatformPicker, Platforms } from '../PlatformPicker'
 import { SelectedRecipient } from './SelectedRecipient'
 import { MAX_RECIPIENTS } from '../Tip/store'
 import { ContactList } from './ContactList'
+import {
+  isDiscord,
+  isEmail,
+  isGithub,
+  isReddit,
+  isTelegram,
+  isTwitter,
+} from './platform-detector'
 
 const SEARCH_DEBOUNCE_TIME = 250
 
@@ -41,14 +42,6 @@ interface RecipientProps {
   selectedRecipients?: Array<Profile & FallbackGroup>
   onUpdateRecipient?: (item: Profile[]) => void
   onRemoveRecipient?: (item: Profile) => void
-}
-
-function getFilterRecipientFunc(searchTerm: string) {
-  return function filterRecipient(item: Profile) {
-    return item.associated_accounts?.[0].platform_metadata?.username
-      ?.toLowerCase()
-      .includes(searchTerm.toLowerCase())
-  }
 }
 
 export const Recipient: React.FC<RecipientProps> = ({
@@ -103,18 +96,17 @@ export const Recipient: React.FC<RecipientProps> = ({
   const isSearching = isLoading
 
   const filteredRecipients = useMemo(() => {
-    const result = recipients
-      .map((r) => {
-        return {
-          ...r,
-          group: 'result',
-        }
-      })
-      .filter(getFilterRecipientFunc(debouncedSearchTerm))
+    const result = recipients.map((r) => {
+      return {
+        ...r,
+        group: 'result',
+      }
+    })
     const exactResult = recipients.some(
       (r) =>
         r.associated_accounts?.[0].platform_metadata.username ===
-        debouncedSearchTerm,
+          debouncedSearchTerm ||
+        r.associated_accounts?.[0].platform_identifier === debouncedSearchTerm,
     )
 
     // show fallback option
@@ -151,35 +143,21 @@ export const Recipient: React.FC<RecipientProps> = ({
 
   function onSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     const val = e.target.value
-    if (['discord:', 'dsc:', 'disc:'].includes(val.toLowerCase())) {
-      setPrefix(
-        <>
-          <DiscordColored className="w-4 h-4" /> <span>Discord:</span>
-        </>,
-      )
-      setSearchTerm('')
-      setSelectedPlatform(Platforms[0])
-      return
-    }
-    if (['tg:', 'tlg:', 'tele:', 'telegram:'].includes(val.toLowerCase())) {
-      setPrefix(
-        <>
-          <TelegramColored className="w-4 h-4" /> <span>Telegram:</span>
-        </>,
-      )
-      setSearchTerm('')
-      setSelectedPlatform(Platforms[1])
-      return
-    }
-    if (['email:', 'mail:', 'gmail:'].includes(val.toLowerCase())) {
-      setPrefix(
-        <>
-          <GoogleColored className="w-4 h-4" /> <span>Gmail:</span>
-        </>,
-      )
-      setSearchTerm('')
-      setSelectedPlatform(Platforms[2])
-      return
+    const platform = [
+      isDiscord(val),
+      isTelegram(val),
+      isEmail(val),
+      isTwitter(val),
+      isGithub(val),
+      isReddit(val),
+    ].find(Boolean)
+    if (platform) {
+      if (!platform.keepValue) {
+        setSearchTerm('')
+      }
+      setPrefix(platform.prefix)
+      setSelectedPlatform(platform.platform)
+      if (!platform.keepValue) return
     }
     setSearchTerm(e.target.value)
   }
@@ -223,6 +201,7 @@ export const Recipient: React.FC<RecipientProps> = ({
             className="flex relative justify-center items-center -mr-2 w-5 h-5 rounded-full outline-none bg-neutral-500 text-white-pure"
           >
             <input
+              tabIndex={-1}
               readOnly
               className="absolute top-0 left-0 w-full h-full bg-transparent border-0 cursor-pointer outline-none"
             />

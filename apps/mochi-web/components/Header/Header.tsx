@@ -153,7 +153,7 @@ export const Header = ({
 }: {
   layoutType?: 'dashboard' | 'landing'
 }) => {
-  const { pathname } = useRouter()
+  const { pathname, push } = useRouter()
   const { profile, isLoggedIn } = useLoginWidget()
 
   const mobileNavItems = [
@@ -268,9 +268,15 @@ export const Header = ({
               <div className="w-full h-full bg-[#eeedec]" />
             </div>
             <Button
-              onClick={() =>
+              onClick={async () => {
+                if (
+                  pathname !== ROUTES.HOME &&
+                  pathname !== ROUTES.MY_PROFILE
+                ) {
+                  await push('/profile')
+                }
                 window.dispatchEvent(new Event(events.TIP_WIDGET.FOCUS_AMOUNT))
-              }
+              }}
               size="md"
               className="hidden lg:flex"
             >

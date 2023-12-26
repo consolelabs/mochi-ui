@@ -1,5 +1,6 @@
 import BottomSheetProvider from '~cpn/BottomSheet'
-import React, { useState } from 'react'
+import React, { SVGProps, useState } from 'react'
+import { useDisclosure } from '@dwarvesf/react-hooks'
 import {
   DollarBubbleCircleSolid,
   /* GiftSolid, */
@@ -17,12 +18,17 @@ function ComingSoon() {
   )
 }
 
-const tabs = [
+const tabs: {
+  id: string
+  title: string
+  Icon: (props: SVGProps<SVGSVGElement>) => JSX.Element
+  render: (props: any) => JSX.Element
+}[] = [
   {
     id: 'tip',
     title: 'Tip',
     Icon: PaperplaneCircleSolid,
-    render: () => <Tip />,
+    render: (props) => <Tip {...props} />,
   },
   {
     id: 'payme',
@@ -50,22 +56,37 @@ interface Props {
 }
 
 export default function MochiWidget({ wrapperClassName, className }: Props) {
+  const {
+    isOpen,
+    onOpen: showTab,
+    onClose: hideTab,
+  } = useDisclosure({ defaultIsOpen: true })
   const [activeTab, setActiveTab] = useState(tabs[0])
 
   return (
     <BottomSheetProvider
       className={clsx(
-        'w-full overflow-hidden rounded-2xl border shadow-xl border-neutral-300',
+        'w-auto lg:w-full overflow-hidden rounded-2xl border shadow-xl border-neutral-300',
         wrapperClassName,
       )}
     >
       <div
         className={clsx(
-          'border shadow-xl rounded-[15px] bg-white-pure border-neutral-300',
+          'border shadow-xl rounded-[15px] bg-white-pure border-neutral-300 flex flex-col',
           className,
         )}
+        style={{
+          height: 630,
+          maxWidth: 480,
+          minWidth: 340,
+        }}
       >
-        <div className="flex items-center border-b border-[#e5e4e3] p-3">
+        <div
+          className={clsx('items-center p-3 border-b border-neutral-300', {
+            flex: isOpen,
+            hidden: !isOpen,
+          })}
+        >
           {tabs.map((t, i) => {
             return (
               <React.Fragment key={t.title}>
@@ -90,16 +111,9 @@ export default function MochiWidget({ wrapperClassName, className }: Props) {
             )
           })}
         </div>
-        <div
-          style={{
-            height: 590,
-            maxWidth: 480,
-            minWidth: 340,
-          }}
-          className="flex overflow-hidden relative z-10 flex-col p-3"
-        >
+        <div className="flex overflow-hidden relative z-10 flex-col flex-1 p-3 min-h-0">
           <div className="flex flex-col flex-1 gap-y-2 min-h-0">
-            {activeTab.render()}
+            {activeTab.render({ showTab, hideTab })}
             <span className="text-xs text-[#adacaa] mx-auto">
               Powered by Console Labs
             </span>

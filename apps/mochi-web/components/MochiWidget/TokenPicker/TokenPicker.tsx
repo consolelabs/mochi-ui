@@ -182,6 +182,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
     <>
       <button tabIndex={-1} onClick={onOpen} className="relative outline-none">
         <input
+          tabIndex={-1}
           readOnly
           className="absolute top-0 left-0 w-full h-full bg-transparent border-0 cursor-pointer outline-none"
         />

@@ -106,10 +106,7 @@ export default function StepTwo() {
   return (
     <div className="flex flex-col flex-1 gap-y-3 h-full min-h-0">
       <div className="flex flex-col justify-between h-full">
-        <button
-          onClick={() => setStep(1)}
-          className="self-start mt-3 outline-none"
-        >
+        <button onClick={() => setStep(1)} className="self-start outline-none">
           <ChevronLeftLine className="w-5 h-5" />
         </button>
         <span className="mx-auto text-base text-neutral-800">You send</span>
@@ -157,7 +154,7 @@ export default function StepTwo() {
       <Button
         type="button"
         onClick={allGood ? execute : handleIncorrectParams}
-        className="flex justify-center mt-auto"
+        className="flex justify-center mt-auto shrink-0"
         size="lg"
         disabled={isTransferring}
       >
