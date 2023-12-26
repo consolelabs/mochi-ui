@@ -1,5 +1,5 @@
 import { badge } from '@mochi-ui/theme'
-import { Children, ReactNode, useEffect, useState } from 'react'
+import { Children, ReactNode, useEffect, useMemo, useState } from 'react'
 import { BadgeContext, useBadgeContext } from './context'
 import { BadgeIconProps, BadgeProps } from './type'
 
@@ -39,8 +39,6 @@ function BadgeInner({
 
   const childArray = Children.toArray(children)
 
-  console.log(childArray.length, childArray)
-
   const hasIcon = (childArray || []).some(
     (child) =>
       (child as React.ReactElement<BadgeIconProps, any>).type === BadgeIcon,
@@ -61,7 +59,7 @@ function BadgeInner({
     if ((childArray || []).length === 1 && hasIcon) {
       setHasIconOnly?.(true)
     }
-  }, [])
+  }, [childArray, hasIcon, setHasIconOnly])
 
   return (
     <span
@@ -83,10 +81,18 @@ function Badge(props: BadgeProps) {
   const { isAvatarIcon = false, appearance, children, className } = props
   const [hasIconOnly, setHasIconOnly] = useState(false)
 
+  const contextValue = useMemo(
+    () => ({
+      isAvatarIcon,
+      appearance,
+      hasIconOnly,
+      setHasIconOnly,
+    }),
+    [isAvatarIcon, appearance, hasIconOnly, setHasIconOnly],
+  )
+
   return (
-    <BadgeContext.Provider
-      value={{ isAvatarIcon, appearance, hasIconOnly, setHasIconOnly }}
-    >
+    <BadgeContext.Provider value={contextValue}>
       <BadgeInner className={className}>{children}</BadgeInner>
     </BadgeContext.Provider>
   )
