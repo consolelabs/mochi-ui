@@ -7,7 +7,7 @@ import { Amount, PaylinkUrl } from './TableColumns'
 
 const Action: ColumnProps<ModelPayRequest>['cell'] = (props) =>
   props.row.original.claim_tx ? (
-    <Badge appearance="black" label="Claimed" />
+    <Badge appearance="black">Claimed</Badge>
   ) : (
     <Button
       color="success"

@@ -1,4 +1,4 @@
-import { Badge } from '@mochi-ui/badge'
+import { Badge, BadgeIcon } from '@mochi-ui/badge'
 import {
   AddUserSolid,
   CodingSolid,
@@ -43,18 +43,19 @@ function Component() {
             title: 'Profile',
             Icon: UserSolid,
             type: 'link',
-            badge: <Badge label="New" />,
+            badge: <Badge>New</Badge>,
             onClick: () => setSection('Profile'),
           },
           {
             title: 'Server Management',
             Icon: Discord,
             badge: (
-              <Badge
-                appearance="secondary"
-                icon={<TwinkleSolid />}
-                label="Featured"
-              />
+              <Badge appearance="secondary">
+                <BadgeIcon>
+                  <TwinkleSolid />
+                </BadgeIcon>
+                Featured
+              </Badge>
             ),
             onClick: () => setSection('Server Management'),
           },
@@ -70,11 +71,12 @@ function Component() {
             title: 'Gift your friend',
             Icon: SuperGroupSolid,
             badge: (
-              <Badge
-                appearance="secondary"
-                icon={<TwinkleSolid />}
-                label="Featured"
-              />
+              <Badge appearance="secondary">
+                <BadgeIcon>
+                  <TwinkleSolid />
+                </BadgeIcon>
+                Featured
+              </Badge>
             ),
           },
           { title: 'Invite Friends', Icon: AddUserSolid },
@@ -82,11 +84,12 @@ function Component() {
           {
             title: 'List',
             badge: (
-              <Badge
-                appearance="secondary"
-                icon={<TwinkleSolid />}
-                label="Featured"
-              />
+              <Badge appearance="secondary">
+                <BadgeIcon>
+                  <TwinkleSolid />
+                </BadgeIcon>
+                Featured
+              </Badge>
             ),
             Icon: StarSolid,
             type: 'list',

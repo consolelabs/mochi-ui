@@ -1,6 +1,7 @@
 import {
   Avatar,
   Badge,
+  BadgeIcon,
   ColumnProps,
   Pagination,
   Table,
@@ -109,11 +110,9 @@ export const TransactionTable = (props: TransactionTableProps) => {
           const tx = props.row.original
 
           return (
-            <Badge
-              className="inline-flex capitalize"
-              appearance="white"
-              label={tx.action}
-            />
+            <Badge className="inline-flex capitalize" appearance="white">
+              {tx.action}
+            </Badge>
           )
         },
       },
@@ -144,21 +143,18 @@ export const TransactionTable = (props: TransactionTableProps) => {
           const tx = props.row.original
 
           return (
-            <Badge
-              className="inline-flex !bg-neutral-150"
-              icon={
-                typeof tx.where.avatar === 'string' ? (
+            <Badge className="inline-flex !bg-neutral-150" appearance="white">
+              <BadgeIcon className="-ml-0.5">
+                {typeof tx.where.avatar === 'string' ? (
                   <Avatar src={tx.where.avatar} size="xs" />
                 ) : (
                   <div className="flex justify-center items-center w-4 h-4 rounded-full">
                     <tx.where.avatar />
                   </div>
-                )
-              }
-              iconClassName="-ml-0.5"
-              label={<span className="w-full truncate">{tx.where.text}</span>}
-              appearance="white"
-            />
+                )}
+                <span className="w-full truncate">{tx.where.text}</span>
+              </BadgeIcon>
+            </Badge>
           )
         },
       },
@@ -200,9 +196,10 @@ export const TransactionTable = (props: TransactionTableProps) => {
                   ? 'bg-success-outline text-success-solid'
                   : 'bg-danger-outline text-danger-solid',
               )}
-              label={tx.isSuccess ? 'Success' : 'Failed'}
               appearance="white"
-            />
+            >
+              {tx.isSuccess ? 'Success' : 'Failed'}
+            </Badge>
           )
         },
       },

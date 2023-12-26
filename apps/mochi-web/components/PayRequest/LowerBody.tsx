@@ -59,8 +59,9 @@ export default function LowerBody({ data }: Props) {
                   : '!bg-[#E02D3C]/[.15] !text-[#EB5757]'
               }
               appearance={data.claim_tx ? 'success' : 'danger'}
-              label={data.claim_tx ? 'Success' : 'Failed'}
-            />
+            >
+              {data.claim_tx ? 'Success' : 'Failed'}
+            </Badge>
           ) : (
             <Typography
               level="p7"

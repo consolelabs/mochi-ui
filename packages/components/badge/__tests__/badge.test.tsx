@@ -1,26 +1,44 @@
 import { render, screen } from '@testing-library/react'
-import Badge from '../src/badge'
+import { Badge, BadgeIcon } from '../src/badge'
 
 describe('Badge', () => {
   it('renders label only', () => {
-    render(<Badge label="Label" />)
+    render(<Badge>Label</Badge>)
     expect(screen.getByText('Label')).toBeInTheDocument()
   })
 
   it('renders icon only', () => {
-    render(<Badge icon={<span>Icon</span>} />)
+    render(
+      <Badge>
+        <BadgeIcon>
+          <span>Icon</span>
+        </BadgeIcon>
+      </Badge>,
+    )
     expect(screen.getByText('Icon')).toBeInTheDocument()
   })
 
   it('renders label and icon', () => {
-    render(<Badge icon={<span>Icon</span>} label="Label" />)
+    render(
+      <Badge>
+        <BadgeIcon>
+          <span>Icon</span>
+        </BadgeIcon>
+        Label
+      </Badge>,
+    )
     expect(screen.getByText('Label')).toBeInTheDocument()
     expect(screen.getByText('Icon')).toBeInTheDocument()
   })
 
   it('renders with custom class name', () => {
     render(
-      <Badge icon={<span>Icon</span>} label="Label" className="custom-class" />,
+      <Badge className="custom-class">
+        <BadgeIcon>
+          <span>Icon</span>
+        </BadgeIcon>
+        Label
+      </Badge>,
     )
     expect(screen.getByText('Label')).toHaveClass('custom-class')
   })
