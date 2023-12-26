@@ -6,7 +6,8 @@ import { transform } from '~cpn/TransactionTable/utils'
 export const DEFAULT_PAGE_SIZE = 15
 
 type Filters = {
-  platform: string
+  platform?: string
+  chainId?: string
 }
 
 interface State {
@@ -22,7 +23,7 @@ interface State {
   total?: number
 
   filters: Filters
-  setFilters: (filters: Filters) => void
+  setFilters: (partialFilters: Partial<Filters>) => void
 
   initWs: (override?: boolean) => void
   ws: WebSocket | null
@@ -53,6 +54,9 @@ export const useTransactionStore = create<State>((set, get) => ({
     return API.MOCHI_PAY.query({
       page: page - 1,
       size,
+      platforms: filters?.platform ? [filters.platform] : undefined,
+      // eslint-disable-next-line
+      chain_ids: filters?.chainId ? [parseInt(filters.chainId)] : undefined,
     })
       .get(`/transactions`)
       .json((r) => r)
@@ -100,12 +104,14 @@ export const useTransactionStore = create<State>((set, get) => ({
   filters: {
     platform: '',
   },
-  setFilters: (filters) => {
+  setFilters: (partialFilters) => {
     const { filters: _filters, size, fetchTxns } = get()
 
-    if (JSON.stringify(filters) !== JSON.stringify(_filters)) {
-      set((s) => ({ ...s, filters, page: 1, txns: [] }))
-      fetchTxns(filters, 1, size)
+    const finalFilters = { ..._filters, ...partialFilters }
+
+    if (JSON.stringify(finalFilters) !== JSON.stringify(_filters)) {
+      set((s) => ({ ...s, filters: finalFilters, page: 1, txns: [] }))
+      fetchTxns(finalFilters, 1, size)
     }
   },
 
