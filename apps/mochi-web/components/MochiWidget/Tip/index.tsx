@@ -50,7 +50,13 @@ const commonProps = {
   exit: 'exit',
 }
 
-export default function Tip() {
+export default function Tip({
+  showTab,
+  hideTab,
+}: {
+  showTab: () => void
+  hideTab: () => void
+}) {
   const { isLoggedIn } = useLoginWidget()
   const { step, error, tx, direction, reset, hardReset } = useTipWidget()
 
@@ -72,6 +78,14 @@ export default function Tip() {
   useEffect(() => {
     return hardReset
   }, [hardReset])
+
+  useEffect(() => {
+    if (step === 2) {
+      hideTab()
+    } else {
+      showTab()
+    }
+  }, [hideTab, showTab, step])
 
   const isOnchain = typeof tx === 'string'
 

@@ -35,8 +35,8 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
-    "@consolelabs/mochi-rest": "^5.1.2",
-    "@consolelabs/mochi-ui": "^16.0.2",
+    "@consolelabs/mochi-rest": "^5.1.9",
+    "@consolelabs/mochi-ui": "^17.0.3",
     "@mochi-ui/button": "workspace:*",
     "@mochi-ui/connect-wallet-widget": "workspace:*",
     "@mochi-ui/dropdown": "workspace:*",

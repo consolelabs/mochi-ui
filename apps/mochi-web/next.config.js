@@ -5,6 +5,7 @@
 module.exports = {
   experimental: {
     esmExternals: 'loose',
+    serverComponentsExternalPackages: ['pino'],
   },
   images: {
     remotePatterns: [

@@ -82,7 +82,7 @@ export const ProfileWidget = () => {
     <Card className="pb-5 space-y-4 shadow-input">
       <div className="flex space-x-4">
         <Avatar src={me?.avatar || ''} size="xl" />
-        <div className="flex-1 mt-2 space-y-2 overflow-hidden">
+        <div className="overflow-hidden flex-1 mt-2 space-y-2">
           <Typography level="p2" fontWeight="md" noWrap>
             {me?.profile_name}
           </Typography>
@@ -137,9 +137,13 @@ export const ProfileWidget = () => {
         <Typography
           level="h5"
           fontWeight="lg"
-          className="flex items-end gap-x-2"
+          className="flex gap-x-2 items-end"
         >
-          {utils.formatUsdDigit(total)}
+          $
+          {utils.formatDigit({
+            value: total,
+            fractionDigits: total >= 100 ? 0 : 2,
+          })}
           <Typography
             level="p3"
             fontWeight="md"
@@ -187,7 +191,7 @@ export const ProfileWidget = () => {
           ))}
           {sortedChains.length > 4 && (
             <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center justify-center rounded-md w-7 h-7 text-text-secondary hover:bg-background-popup">
+              <DropdownMenuTrigger className="flex justify-center items-center w-7 h-7 rounded-md text-text-secondary hover:bg-background-popup">
                 <ChevronDownLine width={20} height={20} />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
