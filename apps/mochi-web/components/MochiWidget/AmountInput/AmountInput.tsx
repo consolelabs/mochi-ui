@@ -264,10 +264,10 @@ export const AmountInput: React.FC<AmountInputProps> = ({
         </div>
       </div>
       <div className="flex flex-col p-4 rounded-lg bg-white-pure">
-        <div className="flex flex-1 justify-between items-center">
+        <div className="flex flex-1 gap-x-8 justify-between items-center">
           <div className="flex flex-col flex-1 gap-y-4 items-start">
             <input
-              className="w-[70%] outline-none text-[32px] font-medium text-neutral-800 appearance-none h-[34px] self-start"
+              className="self-start w-full font-medium appearance-none outline-none text-[32px] text-neutral-800 h-[34px]"
               placeholder="0"
               type="text"
               min={0}
@@ -282,7 +282,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               {!isUsdMode ? 'USD' : selectedAsset?.token.symbol}
             </span>
           </div>
-          <div className="flex flex-col gap-y-4 shrink-0">
+          <div className="flex flex-col gap-y-4 items-end shrink-0">
             <TokenPicker
               authorized={authorized}
               unauthorizedContent={unauthorizedContent}

@@ -19,7 +19,9 @@ export default meta
 type Story = StoryObj<typeof ConnectWalletWidget>
 
 const Template = (args: ConnectWalletWidgetProps) => (
-  <ConnectWalletWidget {...args} />
+  <div style={{ width: 400, padding: 12 }}>
+    <ConnectWalletWidget {...args} />
+  </div>
 )
 
 export const Default: Story = {

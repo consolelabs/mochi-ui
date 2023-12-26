@@ -3,10 +3,11 @@ import { useDisclosure } from '@dwarvesf/react-hooks'
 import { ChevronDownLine } from '@mochi-ui/icons'
 import clsx from 'clsx'
 import { BottomSheet } from '~cpn/BottomSheet'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Wallet } from '~store'
 import { WalletList } from './WalletList'
 import { WalletChainIcon } from './WalletChainIcon'
+import sortOrder from './sort-order.json'
 
 interface Props {
   authorized: boolean
@@ -24,6 +25,7 @@ const defaultState: Wallet = {
   subtitle: '',
   title: 'Mochi Wallet',
   icon: '',
+  chainSymbol: 'MOCHI',
 }
 
 export const WalletPicker: React.FC<Props> = ({
@@ -44,13 +46,27 @@ export const WalletPicker: React.FC<Props> = ({
     [onSelect],
   )
 
+  const sortedData = useMemo(() => {
+    return data.sort((a, b) => {
+      const indexA = sortOrder.findIndex((symbol) => symbol === a.chainSymbol)
+      const indexB = sortOrder.findIndex((symbol) => symbol === b.chainSymbol)
+
+      if (indexA === -1) return 1
+      if (indexB === -1) return -1
+
+      if (indexA > indexB) return 1
+      if (indexA < indexB) return -1
+      return 0
+    })
+  }, [data])
+
   useEffect(() => {
     if (!authorized) return
-    const mochiWallet = data[0]
-    if (mochiWallet?.type === 'offchain') {
-      handleWalletSelect(mochiWallet)
+    const firstWallet = sortedData[0]
+    if (firstWallet) {
+      handleWalletSelect(firstWallet)
     }
-  }, [authorized, data, handleWalletSelect])
+  }, [authorized, sortedData, handleWalletSelect])
 
   useEffect(() => {
     if (!authorized) {
@@ -103,7 +119,7 @@ export const WalletPicker: React.FC<Props> = ({
         {authorized ? (
           <WalletList
             loading={loading}
-            data={data}
+            data={sortedData}
             onSelect={(w) => {
               handleWalletSelect(w)
               onClose()

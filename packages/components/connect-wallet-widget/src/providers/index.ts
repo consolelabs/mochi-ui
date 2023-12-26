@@ -101,6 +101,12 @@ export default function getProviders(dispatch: any) {
     ],
     SOL: [
       new ProviderSOL()
+        .setId('phantom.solana')
+        .setName('Phantom')
+        .setIcon(PhantomWallet)
+        .setMobileProtocol('phantom://')
+        .sync(),
+      new ProviderSOL()
         .setId('com.okex.wallet')
         .setName('Okx')
         .setIcon(OkxWallet)

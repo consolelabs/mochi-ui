@@ -12,6 +12,9 @@ import Wallet from './wallet'
 import type { ConnectorName, Connectors } from './providers'
 import { ChainProvider } from './providers/provider'
 
+// sort
+const chainPriority = ['SOL', 'EVM', 'RON']
+
 const {
   connectWalletListTabsClsx,
   connectWalletListTabListClsx,
@@ -31,7 +34,18 @@ interface WalletListProps {
   hideDisabledWallets: boolean
 }
 
-const connectorNames: ConnectorName[] = ['EVM', 'SOL', 'RON', 'SUI', 'TON']
+const connectorNames = ['EVM', 'SOL', 'RON', 'SUI', 'TON'].sort(
+  (symbolA, symbolB) => {
+    const indexA = chainPriority.findIndex((cp) => cp === symbolA)
+    const indexB = chainPriority.findIndex((cp) => cp === symbolB)
+    if (indexA === -1) return 1
+    if (indexB === -1) return -1
+
+    if (indexA > indexB) return 1
+    if (indexA < indexB) return -1
+    return 0
+  },
+) as ConnectorName[]
 
 export default function WalletList({
   connectors,

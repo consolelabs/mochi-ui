@@ -82,15 +82,6 @@ const ConnectWalletWidget = forwardRef<
 
     useEffect(() => {
       if (state.error) return
-      /* state.wallet?.isInstalled().then((isInstalled) => { */
-      /*   if (!isInstalled) { */
-      /*     state.wallet?.getUri().then(({uri, approval}) => { */
-      /*       setState({ step: Step.QR, uri }) */
-      /*     }) */
-      /*     return */
-      /*   } */
-      /**/
-      /* }) */
       state.wallet
         // connect and sign message
         ?.connect()
@@ -121,44 +112,6 @@ const ConnectWalletWidget = forwardRef<
       : Number(state.step === Step.Authenticated)
 
     let content
-
-    /* if (state.step === Step.QR && state.uri && state.wallet) { */
-    /*   const Icon = state.wallet.icon */
-    /*   const logo = `data:image/svg+xml,${escape( */
-    /*     ReactServer.renderToStaticMarkup(<Icon />), */
-    /*   )}` */
-    /**/
-    /*   return ( */
-    /*     <div className={innerClsx.container}> */
-    /*       <div className={innerClsx.header}>Scan to connect</div> */
-    /*       <div className={innerClsx['qr-message']}> */
-    /*         Open {state.wallet?.name} on your mobile and scan */
-    /*       </div> */
-    /*       <div className={innerClsx['qr-container']}> */
-    /*         <QRCode */
-    /*           eyeRadius={5} */
-    /*           qrStyle="dots" */
-    /*           value={state.uri} */
-    /*           removeQrCodeBehindLogo */
-    /*           logoPadding={1} */
-    /*           logoImage={logo} */
-    /*           logoPaddingStyle="circle" */
-    /*         /> */
-    /*       </div> */
-    /*       <Button */
-    /*         variant="outline" */
-    /*         color="neutral" */
-    /*         size="lg" */
-    /*         onClick={() => */
-    /*           setState({ step: Step.Idle, wallet: null, error: null }) */
-    /*         } */
-    /*         className="mt-2" */
-    /*       > */
-    /*         Back */
-    /*       </Button> */
-    /*     </div> */
-    /*   ) */
-    /* } */
 
     if (
       state.step === Step.Connecting ||
