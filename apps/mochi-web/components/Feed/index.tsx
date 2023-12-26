@@ -88,10 +88,16 @@ export default function Feed({ className = '' }: Props) {
       />
       <div
         style={{ maxWidth: 1440 }}
-        className="flex justify-between items-center pt-6 pb-4 px-8 mx-auto w-screen"
+        className="flex justify-between items-center pt-6 pb-4 sm:px-8 px-4 mx-auto w-screen"
       >
         <Typography>Recent Transactions</Typography>
-        <Button as={Link} href={ROUTES.EXPLORE} variant="link" color="primary">
+        <Button
+          as={Link}
+          href={ROUTES.EXPLORE}
+          className="!pr-0"
+          variant="link"
+          color="primary"
+        >
           View all <ArrowRightLine />
         </Button>
       </div>
@@ -113,6 +119,7 @@ export default function Feed({ className = '' }: Props) {
           <div className="px-6 mx-auto" style={{ width: 1440 }}>
             <TransactionTable
               data={txns}
+              loadingRows={10}
               isLoading={loading}
               onRow={(tx) => {
                 return {
