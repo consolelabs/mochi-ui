@@ -4,6 +4,8 @@ import { TokenAvatar } from '~cpn/TokenAvatar'
 import { Bag, WalletSolid } from '@mochi-ui/icons'
 import { Balance } from '~store/wallets'
 
+const sortOrder = ['SOL']
+
 export interface BalanceWithSource extends Balance {
   source: {
     id?: string
@@ -51,9 +53,24 @@ export const TokenTableList = (props: Props) => {
   return (
     <Table
       {...props}
+      data={props.data.sort((a, b) => {
+        const indexA = sortOrder.findIndex(
+          (symbol) => symbol === a.token.symbol,
+        )
+        const indexB = sortOrder.findIndex(
+          (symbol) => symbol === b.token.symbol,
+        )
+
+        if (indexA === -1) return 1
+        if (indexB === -1) return -1
+
+        if (indexA > indexB) return 1
+        if (indexA < indexB) return -1
+        return 0
+      })}
       headerSicky
       emptyContent={
-        <div className="flex flex-col items-center justify-center h-full">
+        <div className="flex flex-col justify-center items-center h-full">
           <Bag className="w-14 h-14 text-neutral-500" />
           <Typography level="h7" color="textSecondary">
             No assets
