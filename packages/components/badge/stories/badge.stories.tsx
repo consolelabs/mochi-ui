@@ -6,16 +6,15 @@ import {
   TwinkleSolid,
   PlusLine,
 } from '@mochi-ui/icons'
-import Badge from '../src/badge'
-import type { BadgeProps } from '../src/badge'
+import { Badge, BadgeIcon, BadgeProps } from '../src/badge'
 
-const args: BadgeProps[] = [
+const args = [
   {
     label: 'Label',
   },
   {
-    label: 'Label',
     icon: <SolidDotSolid />,
+    label: 'Label',
   },
   {
     label: 'Label',
@@ -38,13 +37,19 @@ const args: BadgeProps[] = [
 
 const renderByAppearance = (appearance: BadgeProps['appearance']) => (
   <div className="flex gap-3">
-    {args.map((props, i) => (
-      <Badge
-        {...props}
-        appearance={appearance}
-        key={`badge-${appearance}-${i}`}
-      />
-    ))}
+    {args.map(({ icon, label, iconPosition = 'left' }, i) =>
+      iconPosition === 'left' ? (
+        <Badge appearance={appearance} key={`badge-${appearance}-${i}`}>
+          {icon ? <BadgeIcon>{icon}</BadgeIcon> : null}
+          {label}
+        </Badge>
+      ) : (
+        <Badge appearance={appearance} key={`badge-${appearance}-${i}`}>
+          {label}
+          {icon ? <BadgeIcon>{icon}</BadgeIcon> : null}
+        </Badge>
+      ),
+    )}
   </div>
 )
 
@@ -57,51 +62,20 @@ const meta: Meta<typeof Badge> = {
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],
-  argTypes: {
-    label: {
-      type: 'string',
-      control: 'text',
-    },
-    icon: {
-      control: 'select',
-      options: ['avatar', 'icon-arrow', 'icon-dot'],
-      //   mapping: {
-      //     avatar: <Avatar src="https://mochi.gg/logo.png" />,
-      //     'icon-dot': <IconSolidDot />,
-      //     'icon-arrow': <IconArrow />,
-      //   },
-    },
-    appearance: {
-      control: 'select',
-      options: [
-        'primary',
-        'secondary',
-        'success',
-        'danger',
-        'warning',
-        'black',
-        'white',
-      ],
-    },
-    iconPosition: {
-      control: 'select',
-      options: ['left', 'right'],
-    },
-    isAvatarIcon: {
-      control: 'select',
-      options: [true, false],
-    },
-  },
 }
 
 export default meta
 type Story = StoryObj<typeof Badge>
 
 export const Default: Story = {
-  args: {
-    label: 'Label',
-    icon: <PlusLine />,
-  },
+  render: () => (
+    <Badge>
+      <BadgeIcon>
+        <PlusLine />
+      </BadgeIcon>
+      Label
+    </Badge>
+  ),
 }
 
 export const Primary: Story = {
@@ -134,12 +108,10 @@ export const White: Story = {
 
 export const TruncateText: Story = {
   render: () => (
-    <Badge
-      label={
-        <span className="w-32 truncate">
-          The quick brown fox jumps over the lazy dog
-        </span>
-      }
-    />
+    <Badge>
+      <span className="w-32 truncate">
+        The quick brown fox jumps over the lazy dog
+      </span>
+    </Badge>
   ),
 }
