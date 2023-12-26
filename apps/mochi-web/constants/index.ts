@@ -43,6 +43,10 @@ export const PAGES = {
     path: '/privacy',
     title: 'Privacy Policty',
   },
+  EXPLORE: {
+    path: '/explore',
+    title: 'Explore',
+  },
 }
 
 export const SOCIAL_LINKS = {
