@@ -43,9 +43,7 @@ function PageButton({
       type="button"
       {...props}
     >
-      <span className={paginationButtonLabelClsx()}>
-        {formatNumber(children)}
-      </span>
+      <span className={paginationButtonLabelClsx()}>{children}</span>
     </button>
   )
 }
@@ -252,7 +250,7 @@ export default function Pagination({
             100
           </option>
         </select>
-        <div>of {formatNumber(totalItems)}</div>
+        <div>members of {formatNumber(totalItems)}</div>
       </div>
 
       <div className={paginationNavigationClsx()} aria-controls="content">
