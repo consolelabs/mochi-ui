@@ -5,7 +5,7 @@ const paginationButtonClsx = ({
   active,
 }: { className?: string; active?: boolean } = {}) =>
   clsx(
-    'w-6 h-6 py-1 px-2.5 rounded-full flex-col justify-center items-center inline-flex border-none cursor-pointer',
+    'min-w-[24px] h-6 py-1 px-2 rounded-full flex-col justify-center items-center inline-flex border-none cursor-pointer',
     {
       'hover:bg-neutral-plain-hover text-text-primary': !active,
       'bg-neutral-solid text-neutral-solid-fg': active,
@@ -56,9 +56,14 @@ const paginationNavigationClsx = ({
 
 const paginationNavigationButtonClsx = ({
   className = '',
-}: { className?: string } = {}) =>
+  disabled = false,
+}: { className?: string; disabled?: boolean } = {}) =>
   clsx(
-    'inline-flex gap-2 justify-center items-center py-1 px-1.5 w-8 h-8 rounded border-none cursor-pointer hover:bg-neutral-plain-hover',
+    'inline-flex gap-2 justify-center items-center py-1 px-1.5 w-8 h-8 rounded border-none',
+    {
+      'cursor-not-allowed': disabled,
+      'cursor-pointer hover:bg-neutral-plain-hover': !disabled,
+    },
     className,
   )
 

@@ -2,6 +2,7 @@ import type { HtmlHTMLAttributes } from 'react'
 import { useState, useEffect } from 'react'
 import { ChevronLeftLine, ChevronRightLine } from '@mochi-ui/icons'
 import { pagination } from '@mochi-ui/theme'
+import { formatNumber } from './utils'
 
 const {
   paginationButtonClsx,
@@ -31,11 +32,12 @@ function PageButton({
   ...props
 }: {
   active: boolean
-  children: number
+  children: number | string
 } & HtmlHTMLAttributes<HTMLButtonElement>) {
   return (
     <button
-      aria-label={`Page ${children}`}
+      aria-label={`Go to page ${children}`}
+      aria-current={active ? 'true' : 'false'}
       className={paginationButtonClsx({ active })}
       tabIndex={0}
       type="button"
@@ -108,6 +110,7 @@ export default function Pagination({
           className={paginationEllipsisButtonClsx()}
           key="ellipsis1"
           type="button"
+          aria-hidden="true"
         >
           ...
         </button>,
@@ -132,7 +135,7 @@ export default function Pagination({
             setCurrentPage(1)
           }}
         >
-          {1}
+          1
         </PageButton>,
       )
       pages.push(
@@ -140,6 +143,7 @@ export default function Pagination({
           className={paginationEllipsisButtonClsx()}
           key="ellipsis1"
           type="button"
+          aria-hidden="true"
         >
           ...
         </button>,
@@ -166,7 +170,7 @@ export default function Pagination({
             setCurrentPage(1)
           }}
         >
-          {1}
+          1
         </PageButton>,
       )
       pages.push(
@@ -174,6 +178,7 @@ export default function Pagination({
           className={paginationEllipsisButtonClsx()}
           key="ellipsis1"
           type="button"
+          aria-hidden="true"
         >
           ...
         </button>,
@@ -196,6 +201,7 @@ export default function Pagination({
           className={paginationEllipsisButtonClsx()}
           key="ellipsis2"
           type="button"
+          aria-hidden="true"
         >
           ...
         </button>,
@@ -217,7 +223,10 @@ export default function Pagination({
   }
 
   return (
-    <div className={paginationWrapperClsx({ className })}>
+    <div
+      className={paginationWrapperClsx({ className })}
+      aria-label="Pagination"
+    >
       {/* TODO: replace with our select component */}
       <div className={paginationAmountPerPageWrapperClsx()}>
         <div>Showing</div>
@@ -241,14 +250,17 @@ export default function Pagination({
             100
           </option>
         </select>
-        <div>of {totalItems}</div>
+        <div>members of {formatNumber(totalItems)}</div>
       </div>
 
-      <div className={paginationNavigationClsx()}>
+      <div className={paginationNavigationClsx()} aria-controls="content">
         <button
           aria-label="Previous page"
-          className={paginationNavigationButtonClsx()}
+          className={paginationNavigationButtonClsx({
+            disabled: currentPage === 1,
+          })}
           disabled={currentPage === 1}
+          aria-disabled={currentPage === 1 ? 'true' : 'false'}
           onClick={() => {
             setCurrentPage(currentPage - 1)
           }}
@@ -261,12 +273,15 @@ export default function Pagination({
           {renderPagination()}
         </div>
         <div className={pagination.paginationMobilePageNumerClsx()}>
-          Page {currentPage ?? 1} of {totalPages}
+          Page {formatNumber(currentPage) ?? 1} of {formatNumber(totalPages)}
         </div>
         <button
           aria-label="Next page"
-          className={paginationNavigationButtonClsx()}
+          className={paginationNavigationButtonClsx({
+            disabled: currentPage === totalPages,
+          })}
           disabled={currentPage === totalPages}
+          aria-disabled={currentPage === totalPages ? 'true' : 'false'}
           onClick={() => {
             setCurrentPage(currentPage + 1)
           }}
