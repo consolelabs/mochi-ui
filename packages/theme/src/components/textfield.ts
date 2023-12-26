@@ -41,7 +41,7 @@ const slot = cva('relative z-[1] flex justify-center items-center shrink-0')
 
 const mask = cva(
   [
-    'absolute z-0 inset-0 rounded pointer-events-none border border-divider peer-focus:border-primary-solid-focus',
+    'absolute z-0 inset-0 rounded pointer-events-none border border-divider peer-focus:border-primary-solid-focus peer-hover:border-primary-solid-focus',
   ],
   {
     variants: {
@@ -49,7 +49,7 @@ const mask = cva(
         true: 'bg-neutral-outline cursor-not-allowed',
       },
       error: {
-        true: '!border-danger-solid-focus peer-focus:!border-danger-solid-focus',
+        true: '!border-danger-solid-focus peer-focus:!border-danger-solid-focus peer-hover:!border-danger-solid-focus',
       },
     },
     defaultVariants: {

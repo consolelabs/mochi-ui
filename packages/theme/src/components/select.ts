@@ -49,11 +49,7 @@ const itemCva = cva(
   {
     variants: {
       disabled: {
-        true: [
-          'pointer-events-none',
-          'text-text-secondary',
-          'cursor-not-allowed',
-        ],
+        true: ['text-text-secondary', 'cursor-not-allowed'],
         false: ['text-text-primary'],
       },
       isTrigger: {
@@ -102,7 +98,7 @@ const itemCva = cva(
       {
         appearance: 'form',
         disabled: true,
-        className: ['bg-background-level2'],
+        className: ['!bg-background-level2'],
       },
       {
         appearance: 'form',
