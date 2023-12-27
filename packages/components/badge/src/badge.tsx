@@ -35,7 +35,11 @@ function BadgeInner({
   children: ReactNode
   className?: string
 }) {
-  const { setHasIconOnly, appearance, isAvatarIcon } = useBadgeContext()
+  const {
+    appearance = 'primary',
+    isAvatarIcon = false,
+    setHasIconOnly,
+  } = useBadgeContext()
 
   const childArray = Children.toArray(children)
 
@@ -78,7 +82,7 @@ function BadgeInner({
 }
 
 function Badge(props: BadgeProps) {
-  const { isAvatarIcon = false, appearance, children, className } = props
+  const { isAvatarIcon, appearance, children, className } = props
   const [hasIconOnly, setHasIconOnly] = useState(false)
 
   const contextValue = useMemo(
