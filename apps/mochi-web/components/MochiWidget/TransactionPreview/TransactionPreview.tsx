@@ -8,7 +8,7 @@ import {
   Mochi,
 } from '@mochi-ui/icons'
 import { useProfileStore } from '~store'
-import UI, { Platform } from '@consolelabs/mochi-ui'
+import UI, { Platform } from '@consolelabs/mochi-formatter'
 import stripEmoji from 'emoji-strip'
 import { useTipWidget } from '../Tip/store'
 

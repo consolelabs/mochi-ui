@@ -1,5 +1,5 @@
 import useSWR from 'swr'
-import { utils } from '@consolelabs/mochi-ui'
+import { utils } from '@consolelabs/mochi-formatter'
 import { API } from '~constants/api'
 import {
   DollarColored,

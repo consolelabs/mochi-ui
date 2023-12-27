@@ -24,7 +24,7 @@ import { utils } from 'ethers'
 import { PayLink, PayMe } from '~cpn/PayRequest'
 /* import { useEffect } from 'react' */
 import { PayRequest } from '~cpn/PayRequest/type'
-import { Platform, utils as mochiUtils } from '@consolelabs/mochi-ui'
+import { Platform, utils as mochiUtils } from '@consolelabs/mochi-formatter'
 import { UI } from '../../constants/mochi'
 
 /* const Toaster = dynamic(() => import('sonner').then((m) => m.Toaster)) */
@@ -137,13 +137,13 @@ export default function PayCode({ payRequest }: Props) {
 
   return (
     <Layout noFooter className="bg-white lg:bg-white-pure">
-      <div className="flex relative m-auto h-full lg:m-0">
+      <div className="flex relative m-auto h-[calc(100vh-56px)] lg:m-0">
         <img
           className="hidden object-cover object-right w-1/2 h-full lg:block"
           src="/pay-request-bg.png"
           alt=""
         />
-        <div className="flex justify-center items-center lg:w-1/2 h-[calc(100vh-56px)] overflow-auto p-10">
+        <div className="flex overflow-auto justify-center items-center p-10 h-full lg:w-1/2">
           <Comp data={payRequest} />
         </div>
       </div>

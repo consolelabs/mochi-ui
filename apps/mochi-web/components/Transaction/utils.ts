@@ -1,4 +1,4 @@
-import UI, { Platform, utils as mochiUtils } from '@consolelabs/mochi-ui'
+import UI, { Platform, utils as mochiUtils } from '@consolelabs/mochi-formatter'
 import { utils } from 'ethers'
 import { TransactionActionType } from '~constants/transactions'
 import {

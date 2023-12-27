@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { utils } from '@consolelabs/mochi-ui'
+import { utils } from '@consolelabs/mochi-formatter'
 import { Moniker } from './type'
 import { MonikerIcons } from './utils'
 

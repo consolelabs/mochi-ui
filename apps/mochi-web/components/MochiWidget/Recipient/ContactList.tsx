@@ -1,6 +1,6 @@
 import { Combobox } from '@headlessui/react'
 import { SectionList, useLoginWidget } from '@mochi-ui/core'
-import UI, { Platform } from '@consolelabs/mochi-ui'
+import UI, { Platform } from '@consolelabs/mochi-formatter'
 import { Profile } from '@consolelabs/mochi-rest'
 import useSWR from 'swr'
 import { API } from '~constants/api'

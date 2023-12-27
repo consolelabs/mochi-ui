@@ -1,5 +1,5 @@
 import { OffchainTx } from '@consolelabs/mochi-rest'
-import UI, { Platform, utils as mochiUtils } from '@consolelabs/mochi-ui'
+import UI, { Platform, utils as mochiUtils } from '@consolelabs/mochi-formatter'
 import { MonitorLine } from '@mochi-ui/icons'
 import { utils } from 'ethers'
 import { Tx } from '~cpn/TransactionTable'

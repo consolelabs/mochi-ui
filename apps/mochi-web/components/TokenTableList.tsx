@@ -1,5 +1,5 @@
 import { ColumnProps, Table, TableProps, Typography } from '@mochi-ui/core'
-import { utils as mochiUtils } from '@consolelabs/mochi-ui'
+import { utils as mochiUtils } from '@consolelabs/mochi-formatter'
 import { TokenAvatar } from '~cpn/TokenAvatar'
 import { Bag, WalletSolid } from '@mochi-ui/icons'
 import { Balance } from '~store/wallets'
@@ -60,7 +60,7 @@ export const TokenTableList = ({
 }: Props) => {
   return (
     <ScrollArea.Root className="overflow-hidden h-96">
-      <ScrollArea.Viewport className="relative w-full h-full">
+      <ScrollArea.Viewport className="relative w-full h-full [&>div]:h-full">
         <Table
           {...props}
           stickyHeader
@@ -80,10 +80,13 @@ export const TokenTableList = ({
             return 0
           })}
           size={size}
-          wrapperClassName={clsx('!overflow-y-visible', clsx(wrapperClassName))}
-          className={clsx('!static', { 'h-96': !data.length }, className)}
+          wrapperClassName={clsx(
+            '!overflow-y-visible h-full',
+            clsx(wrapperClassName),
+          )}
+          className={clsx('!static', { 'h-full': !data.length }, className)}
           emptyContent={
-            <div className="flex flex-col items-center justify-center h-full">
+            <div className="flex flex-col justify-center items-center h-full">
               <Bag className="w-14 h-14 text-neutral-500" />
               <Typography level="h7" color="textSecondary">
                 No assets
@@ -120,10 +123,10 @@ export const TokenTableList = ({
         />
       </ScrollArea.Viewport>
       <ScrollArea.Scrollbar
-        className="flex select-none touch-none p-0.5 bg-neutral-outline transition-colors w-2 hover:bg-neutral-outline-hover"
+        className="flex p-0.5 w-2 transition-colors select-none touch-none bg-neutral-outline hover:bg-neutral-outline-hover"
         orientation="vertical"
       >
-        <ScrollArea.Thumb className="flex-1 bg-neutral-solid rounded-lg relative before:content-[''] before:absolute before:w-full before:h-full before:min-w-[44px] before:min-h-[44px] before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2" />
+        <ScrollArea.Thumb className="relative flex-1 rounded-lg bg-neutral-solid before:content-[''] before:absolute before:w-full before:h-full before:min-w-[44px] before:min-h-[44px] before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2" />
       </ScrollArea.Scrollbar>
       <ScrollArea.Corner className="bg-neutral-outline-hover" />
     </ScrollArea.Root>

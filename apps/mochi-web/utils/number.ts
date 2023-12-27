@@ -1,4 +1,4 @@
-import { utils } from '@consolelabs/mochi-ui'
+import { utils } from '@consolelabs/mochi-formatter'
 
 export function formatNumber(number: number | string) {
   if (typeof number === 'string') {

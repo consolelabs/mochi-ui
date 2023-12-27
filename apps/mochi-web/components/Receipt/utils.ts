@@ -1,4 +1,4 @@
-import UI, { Platform, utils as mochiUtils } from '@consolelabs/mochi-ui'
+import UI, { Platform, utils as mochiUtils } from '@consolelabs/mochi-formatter'
 import { discordLogo, telegramLogo, xlogo } from '~utils/image'
 import { utils } from 'ethers'
 import { HOME_URL } from '~envs'

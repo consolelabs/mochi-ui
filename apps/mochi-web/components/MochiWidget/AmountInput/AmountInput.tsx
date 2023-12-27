@@ -8,7 +8,7 @@ import {
   useState,
 } from 'react'
 import { Wallet, useMochiWidget } from '~store'
-import { utils } from '@consolelabs/mochi-ui'
+import { utils } from '@consolelabs/mochi-formatter'
 import {
   MAX_AMOUNT_PRECISION,
   TokenAmount,
@@ -207,7 +207,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
 
   return (
     <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-3">
-      <div className="flex items-center justify-between">
+      <div className="flex justify-between items-center">
         <Typography
           level="p5"
           color="textSecondary"
@@ -216,7 +216,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
         >
           You send
         </Typography>
-        <div className="flex justify-end gap-x-2">
+        <div className="flex gap-x-2 justify-end">
           <div className="flex gap-x-2">
             <Button
               size="sm"
@@ -268,25 +268,32 @@ export const AmountInput: React.FC<AmountInputProps> = ({
         </div>
       </div>
       <div className="flex flex-col p-4 rounded-lg bg-white-pure">
-        <div className="flex items-center justify-between flex-1 gap-x-8">
-          <div className="flex flex-col items-start flex-1 gap-y-4">
-            <input
-              className="self-start w-full font-medium appearance-none outline-none text-[32px] text-neutral-800 h-[34px]"
-              placeholder="0"
-              type="text"
-              min={0}
-              onKeyDown={handleKeyDown}
-              value={tipAmount.display}
-              onChange={handleAmountChanged}
-              onBlur={onBlurInput}
-              ref={ref}
-            />
+        <div className="flex flex-1 gap-x-8 justify-between items-center">
+          <div className="flex flex-col flex-1 gap-y-4 items-start">
+            <div className="flex gap-x-1 items-start h-[34px]">
+              {isUsdMode && (
+                <div className="font-medium leading-[34px] text-[32px] text-neutral-800">
+                  $
+                </div>
+              )}
+              <input
+                className="self-start w-full h-full font-medium appearance-none outline-none text-[32px] text-neutral-800"
+                placeholder="0"
+                type="text"
+                min={0}
+                onKeyDown={handleKeyDown}
+                value={tipAmount.display}
+                onChange={handleAmountChanged}
+                onBlur={onBlurInput}
+                ref={ref}
+              />
+            </div>
             <span className="text-sm text-right shrink-0 text-neutral-600">
               &#8776; {!isUsdMode ? tipAmountUSD : tipAmountToken}{' '}
               {!isUsdMode ? 'USD' : selectedAsset?.token.symbol}
             </span>
           </div>
-          <div className="flex flex-col items-end gap-y-4 shrink-0">
+          <div className="flex flex-col gap-y-4 items-end shrink-0">
             <TokenPicker
               authorized={authorized}
               unauthorizedContent={unauthorizedContent}

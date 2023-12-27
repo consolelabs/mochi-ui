@@ -1,7 +1,11 @@
 import { create } from 'zustand'
 import { api } from '~constants/mochi'
 import type { Profile, Token } from '@consolelabs/mochi-rest'
-import UI, { AddressChainType, Platform, utils } from '@consolelabs/mochi-ui'
+import UI, {
+  AddressChainType,
+  Platform,
+  utils,
+} from '@consolelabs/mochi-formatter'
 import { truncate } from '@dwarvesf/react-utils'
 import { getLoginWidgetState } from '@mochi-ui/core'
 

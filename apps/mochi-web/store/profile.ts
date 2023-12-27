@@ -1,7 +1,7 @@
 import { Profile as MochiProfile } from '@consolelabs/mochi-rest'
 import { create } from 'zustand'
 import { api, UI } from '~constants/mochi'
-import { Platform } from '@consolelabs/mochi-ui'
+import { Platform } from '@consolelabs/mochi-formatter'
 import { boringAvatar } from '~utils/string'
 import { ModelInAppWallet } from '~types/mochi-pay-schema'
 import { useWalletStore } from './wallets'
@@ -27,7 +27,7 @@ const platformIcons: Record<string, string> = {
 export const useProfileStore = create<State>((set) => ({
   me: null,
   setMe: async (me: Profile) => {
-    const [p] = await UI.resolve(Platform.Web, me.id ?? '')
+    const [p] = await UI.formatProfile(Platform.Web, me.id ?? '')
     const { ok, data } = await api.pay.mochiWallet.getWallets(me.id ?? '')
     let wallets: ModelInAppWallet[] = []
     if (ok) {

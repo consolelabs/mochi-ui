@@ -4,7 +4,7 @@ export function useLockScreenScroll(): void {
   // useLaoutEffect callback return type is "() => void" type
   useLayoutEffect((): (() => void) => {
     // Get original body overflow
-    const wrapper = document?.getElementById('__next') as HTMLElement
+    const wrapper = document?.body as HTMLElement
     let originalStyle = ''
 
     if (wrapper) {

@@ -44,7 +44,8 @@ export const SelectedRecipient: React.FC<SelectedRecipientProps> = ({
       />
     </div>
     <span className="text-xs font-medium text-center w-[56px] truncate">
-      {profile.associated_accounts?.[0].platform_metadata.username}
+      {profile.associated_accounts?.[0].platform_metadata.username ||
+        profile.associated_accounts?.[0].platform_identifier}
     </span>
   </li>
 )
