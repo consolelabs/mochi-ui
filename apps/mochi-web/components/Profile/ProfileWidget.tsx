@@ -205,11 +205,6 @@ export const ProfileWidget = () => {
           onClick: () => setSelectedAsset(record),
         })}
       />
-      <div className="text-center">
-        <Typography level="p6" color="textSecondary">
-          Powered by Console Labs
-        </Typography>
-      </div>
     </Card>
   )
 }
