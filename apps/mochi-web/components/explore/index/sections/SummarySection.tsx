@@ -25,8 +25,11 @@ export const SummarySection = () => {
   const loading = isTransactionSummaryLoading || !transactionSummary
 
   return (
-    <div className="p-3 lg:py-14 bg-background-level2 lg:px-30">
-      <div className="grid gap-4 lg:grid-cols-12">
+    <div className="lg:py-14 bg-background-level2">
+      <div
+        className="grid gap-4 lg:grid-cols-12 p-6 mx-auto"
+        style={{ maxWidth: 1200 }}
+      >
         <div className="flex flex-wrap col-span-12 gap-4 justify-between items-center p-6 rounded-xl border bg-background-body border-divider">
           <div className="flex flex-col gap-4 w-full lg:w-auto">
             <div className="flex flex-col-4">
@@ -54,11 +57,11 @@ export const SummarySection = () => {
                 <>
                   <Typography level="h5" className="!text-primary-solid">
                     {formatNumber(
-                      transactionSummary.transactions_per_second || 0,
+                      Math.floor(transactionSummary.transactions_per_day) || 0,
                     )}
                   </Typography>
                   <Typography className="text-text-secondary">
-                    transactions per second
+                    transactions per day
                   </Typography>
                 </>
               )}
@@ -95,6 +98,7 @@ export const SummarySection = () => {
                       stroke="none"
                       startAngle={-270}
                       endAngle={90}
+                      innerRadius={36}
                     />
                   </PieChart>
                 </div>

@@ -5,6 +5,7 @@ import { API } from '~constants/api'
 export type TransactionSummary = {
   current_transactions: number
   transactions_per_second: number
+  transactions_per_day: number
   success_transactions: number
   fail_transactions: number
   total_volume: number

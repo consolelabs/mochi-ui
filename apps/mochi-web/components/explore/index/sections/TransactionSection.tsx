@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { ROUTES } from '~constants/routes'
 import { TransactionTable } from '~cpn/TransactionTable'
+import { ChainPicker, PlatformPicker } from '../components'
 import {
   DEFAULT_PAGE_SIZE,
   useTransactionStore,
@@ -15,6 +16,8 @@ export const TransactionSection = () => {
     total = 0,
     setPage,
     setSize,
+    filters,
+    setFilters,
     ws,
     initWs,
   } = useTransactionStore()
@@ -38,28 +41,40 @@ export const TransactionSection = () => {
   const isLoading = loading || !txnsCurrentPage
 
   return (
-    <div className="px-6" ref={containerRef}>
-      <TransactionTable
-        loadingRows={10}
-        data={txnsCurrentPage}
-        isLoading={isLoading}
-        onRow={(tx) => {
-          return {
-            onClick: () => {
-              window.open(ROUTES.TX_RECEIPTS(tx.code))
+    <div className="overflow-auto">
+      <div ref={containerRef} className="px-6 mx-auto" style={{ width: 1440 }}>
+        <div className="flex justify-end py-2 gap-4">
+          <ChainPicker
+            value={filters.chainId || ''}
+            onChange={(chainId) => setFilters({ chainId })}
+          />
+          <PlatformPicker
+            value={filters.platform || ''}
+            onChange={(platform) => setFilters({ platform })}
+          />
+        </div>
+        <TransactionTable
+          loadingRows={10}
+          data={txnsCurrentPage}
+          isLoading={isLoading}
+          onRow={(tx) => {
+            return {
+              onClick: () => {
+                window.open(ROUTES.TX_RECEIPTS(tx.code))
+              },
+            }
+          }}
+          componentsProps={{
+            pagination: {
+              initalPage: 1,
+              initItemsPerPage: DEFAULT_PAGE_SIZE,
+              totalItems: total,
+              onItemPerPageChange: setSize,
+              onPageChange: setPage,
             },
-          }
-        }}
-        componentsProps={{
-          pagination: {
-            initalPage: 1,
-            initItemsPerPage: DEFAULT_PAGE_SIZE,
-            totalItems: total,
-            onItemPerPageChange: setSize,
-            onPageChange: setPage,
-          },
-        }}
-      />
+          }}
+        />
+      </div>
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import { OffchainTx } from '@consolelabs/mochi-rest'
 import UI, { Platform, utils as mochiUtils } from '@consolelabs/mochi-formatter'
+import { truncate } from '@dwarvesf/react-utils'
 import { MonitorLine } from '@mochi-ui/icons'
 import { utils } from 'ethers'
 import { Tx } from '~cpn/TransactionTable'
@@ -23,7 +24,10 @@ const actionString: Record<OffchainTx['action'], string> = {
 
 export async function transform(d: any): Promise<Tx> {
   let [from, to] = UI.render(Platform.Web, d.from_profile, d.other_profile)
-  let [fromAvatar, toAvatar] = [d.from_profile.avatar, d.other_profile.avatar]
+  let [fromAvatar, toAvatar] = [
+    d.from_profile?.avatar || '',
+    d.other_profile?.avatar || '',
+  ]
 
   const fromPlatform = d.source_platform
   let fromPlatformIcon
@@ -129,6 +133,12 @@ export async function transform(d: any): Promise<Tx> {
 
   if (to?.platform === Platform.Mochi) {
     to.plain = '🍡 Mochi user'
+  }
+
+  if (to && d.action === 'withdraw') {
+    to.plain = truncate(d.other_profile_source, 8, true, '.')
+  } else if (from && d.action === 'deposit') {
+    from.plain = truncate(d.from_profile_source, 8, true, '.')
   }
 
   return {
