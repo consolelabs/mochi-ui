@@ -1,4 +1,4 @@
-import UI from '@consolelabs/mochi-ui'
+import UI from '@consolelabs/mochi-formatter'
 import MochiApi from '@consolelabs/mochi-rest'
 import { MOCHI_API, MOCHI_PAY_API, MOCHI_PROFILE_API } from '~envs'
 

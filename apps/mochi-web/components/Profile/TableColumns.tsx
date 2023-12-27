@@ -1,7 +1,7 @@
 import { truncate } from '@dwarvesf/react-utils'
 import { Button, ColumnProps, Typography } from '@mochi-ui/core'
 import { ModelPayRequest } from '~types/mochi-pay-schema'
-import { utils as mochiUtils } from '@consolelabs/mochi-ui'
+import { utils as mochiUtils } from '@consolelabs/mochi-formatter'
 import { utils } from 'ethers'
 import { TokenAvatar } from '~cpn/TokenAvatar'
 

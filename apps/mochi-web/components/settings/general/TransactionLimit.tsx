@@ -9,7 +9,7 @@ import { EditLine, TrashBinLine } from '@mochi-ui/icons'
 import React from 'react'
 import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import { actionList } from '~constants/settings'
-import { utils as mochiUtils } from '@consolelabs/mochi-ui'
+import { utils as mochiUtils } from '@consolelabs/mochi-formatter'
 import { ResponseGeneralSettingData } from '~types/mochi-schema'
 import { TransactionLimitModal } from './TransactionLimitModal'
 
@@ -22,8 +22,8 @@ export const TransactionLimit = () => {
   const enableTransactionLimit = watch('payment.tx_limit_enable')
 
   return (
-    <div className="flex flex-col w-full max-w-md space-y-2">
-      <div className="flex items-center justify-between">
+    <div className="flex flex-col space-y-2 w-full max-w-md">
+      <div className="flex justify-between items-center">
         <FormLabel>Set the limit for transaction</FormLabel>
         <Controller
           name="payment.tx_limit_enable"
@@ -43,8 +43,8 @@ export const TransactionLimit = () => {
           name={`payment.tx_limit_settings.${index}`}
           control={control}
           render={({ field }) => (
-            <div className="flex items-center border rounded-md border-divider shadow-input">
-              <div className="flex-1 px-4 py-2 overflow-hidden">
+            <div className="flex items-center rounded-md border border-divider shadow-input">
+              <div className="overflow-hidden flex-1 py-2 px-4">
                 <Typography level="h8">
                   {
                     actionList.find(

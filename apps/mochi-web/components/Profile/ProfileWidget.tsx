@@ -13,7 +13,7 @@ import {
   Tabs,
   Typography,
 } from '@mochi-ui/core'
-import { utils } from '@consolelabs/mochi-ui'
+import { utils } from '@consolelabs/mochi-formatter'
 import {
   ArrowDownSquareSolid,
   ArrowUpSquareSolid,
@@ -28,6 +28,8 @@ import { BalanceWithSource, TokenTableList } from '~cpn/TokenTableList'
 import { Fragment, useState } from 'react'
 import clsx from 'clsx'
 import { useShallow } from 'zustand/react/shallow'
+
+const sortOrder = ['ALL', 'SOL']
 
 export const ProfileWidget = () => {
   const { me } = useProfileStore()
@@ -85,7 +87,15 @@ export const ProfileWidget = () => {
       index: index < 3 ? 4 - index : Number(chain === _selectedChain),
     }))
     .sort((a, b) => {
-      return b.index - a.index
+      const indexA = sortOrder.findIndex((symbol) => symbol === a.chain)
+      const indexB = sortOrder.findIndex((symbol) => symbol === b.chain)
+
+      if (indexA === -1) return 1
+      if (indexB === -1) return -1
+
+      if (indexA > indexB) return 1
+      if (indexA < indexB) return -1
+      return 0
     })
     .map(({ chain }) => chain)
   const selectedChain = _selectedChain || sortedChains[0]
@@ -95,7 +105,7 @@ export const ProfileWidget = () => {
     <Card className="pb-3 space-y-4 shadow-input">
       <div className="flex items-center space-x-2">
         <Avatar src={me?.avatar || ''} size="lg" />
-        <div className="flex-1 space-y-1 overflow-hidden">
+        <div className="overflow-hidden flex-1 space-y-1">
           <Typography level="h6" noWrap>
             {me?.profile_name}
           </Typography>
@@ -111,7 +121,7 @@ export const ProfileWidget = () => {
               fractionDigits: total >= 100 ? 0 : 2,
             })}
           </Typography>
-          <div className="flex items-center justify-end">
+          <div className="flex justify-end items-center">
             {pnl.startsWith('-') ? (
               <ArrowDownLine className="w-4 h-4 text-danger-solid" />
             ) : (
@@ -120,14 +130,14 @@ export const ProfileWidget = () => {
             <Typography
               level="h8"
               color={pnl.startsWith('-') ? 'danger' : 'success'}
-              className="ml-1 mr-2"
+              className="mr-2 ml-1"
             >
               {utils.formatPercentDigit(Number.isNaN(Number(pnl)) ? 0 : pnl)}
             </Typography>
             <IconButton
               color="white"
               label="chart"
-              className="px-1 py-1"
+              className="py-1 px-1"
               disabled
             >
               <ChartSolid className="w-3 h-3" />
@@ -169,7 +179,7 @@ export const ProfileWidget = () => {
           ))}
           {sortedChains.length > 4 && (
             <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center justify-center rounded-md w-7 h-7 text-text-secondary hover:bg-background-popup">
+              <DropdownMenuTrigger className="flex justify-center items-center w-7 h-7 rounded-md text-text-secondary hover:bg-background-popup">
                 <ChevronDownLine width={20} height={20} />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">

@@ -1,4 +1,4 @@
-import { Platform } from '@consolelabs/mochi-ui'
+import { Platform } from '@consolelabs/mochi-formatter'
 import { appLogo, discordLogo, telegramLogo, webLogo } from './image'
 
 export const getPlatform = (key?: string) => {

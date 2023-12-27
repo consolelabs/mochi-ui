@@ -13,7 +13,7 @@ import {
 import { useFetchProfileTransaction } from '~hooks/app/useFetchProfileTransaction'
 import { ModelProfileTransaction } from '~types/mochi-pay-schema'
 import { formatDate } from '~utils/time'
-import { utils } from '@consolelabs/mochi-ui'
+import { utils } from '@consolelabs/mochi-formatter'
 import { TransactionUsernameCell } from './TransactionUsernameCell'
 import {
   formatTransactionAmount,

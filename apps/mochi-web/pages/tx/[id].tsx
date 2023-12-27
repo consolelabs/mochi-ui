@@ -81,13 +81,13 @@ export default function Transfer({ data, ogData }: Props) {
         }`}
         url={`${HOME_URL}/transfer/${data.data.external_id}`}
       />
-      <div className="flex relative m-auto h-full lg:m-0">
+      <div className="flex relative m-auto h-[calc(100vh-56px)] lg:m-0">
         <img
           className="hidden lg:block object-cover object-[45%_center] w-1/2 h-full brightness-50"
           src="/to-the-moon.png"
           alt=""
         />
-        <div className="p-10 h-[calc(100vh-56px)] lg:w-1/2 overflow-auto flex justify-center items-center">
+        <div className="flex overflow-auto justify-center items-center p-10 h-full lg:w-1/2">
           <Receipt data={data} />
         </div>
       </div>

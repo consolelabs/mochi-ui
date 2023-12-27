@@ -1,6 +1,6 @@
 import React from 'react'
 import { Apt, Eth, Ron, Sol, Sui } from '@mochi-ui/icons'
-import { AddressChainType } from '@consolelabs/mochi-ui'
+import { AddressChainType } from '@consolelabs/mochi-formatter'
 import Image from 'next/image'
 
 const MochiLogo = () => (

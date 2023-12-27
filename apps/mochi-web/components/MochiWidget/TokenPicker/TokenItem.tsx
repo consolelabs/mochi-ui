@@ -1,5 +1,5 @@
 import { Balance } from '~store'
-import { utils } from '@consolelabs/mochi-ui'
+import { utils } from '@consolelabs/mochi-formatter'
 import Image from 'next/image'
 
 interface ItemProps {

@@ -1,4 +1,4 @@
-import { utils } from '@consolelabs/mochi-ui'
+import { utils } from '@consolelabs/mochi-formatter'
 import { Skeleton, Typography } from '@mochi-ui/core'
 import {
   DollarColored,
@@ -25,14 +25,14 @@ export const SummarySection = () => {
   const loading = isTransactionSummaryLoading || !transactionSummary
 
   return (
-    <div className="bg-background-level2 p-3 lg:py-14 lg:px-30">
-      <div className="grid lg:grid-cols-12 gap-4">
-        <div className="col-span-12 bg-background-body rounded-xl border border-divider p-6 flex flex-wrap items-center justify-between gap-4">
+    <div className="p-3 lg:py-14 bg-background-level2 lg:px-30">
+      <div className="grid gap-4 lg:grid-cols-12">
+        <div className="flex flex-wrap col-span-12 gap-4 justify-between items-center p-6 rounded-xl border bg-background-body border-divider">
           <div className="flex flex-col gap-4 w-full lg:w-auto">
             <div className="flex flex-col-4">
               <div className="flex gap-3 items-center">
-                <div className="rounded-full bg-success-solid py-1 px-2 flex items-center gap-1.5 ">
-                  <div className="w-1.5 h-1.5 rounded-full bg-white-solid outline outline-2 outline-white-solid/50 animate-pulse" />
+                <div className="flex gap-1.5 items-center py-1 px-2 rounded-full bg-success-solid">
+                  <div className="w-1.5 h-1.5 rounded-full animate-pulse bg-white-solid outline outline-2 outline-white-solid/50" />
                   <Typography level="p6" className="text-white-solid">
                     Live
                   </Typography>
@@ -64,9 +64,9 @@ export const SummarySection = () => {
               )}
             </div>
           </div>
-          <div className="flex items-center justify-center gap-4 w-full lg:w-auto">
+          <div className="flex gap-4 justify-center items-center w-full lg:w-auto">
             {loading ? (
-              <Skeleton className="w-[150px] h-[150px] rounded-full" />
+              <Skeleton className="rounded-full w-[150px] h-[150px]" />
             ) : (
               <div className="flex gap-4 items-center">
                 <div className="-m-4">
@@ -147,7 +147,7 @@ export const SummarySection = () => {
         ).map(([Icon, title, value], index) => (
           <div
             key={index}
-            className="col-span-12 md:col-span-6 xl:col-span-3 p-8 bg-background-body rounded-xl border border-divider"
+            className="col-span-12 p-8 rounded-xl border md:col-span-6 xl:col-span-3 bg-background-body border-divider"
           >
             <div className="flex gap-8 items-center">
               <div className="flex-shrink-0">

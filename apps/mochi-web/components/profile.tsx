@@ -1,7 +1,7 @@
 import { useProfileStore } from '~store'
 import { api, UI } from '~constants/mochi'
 import useSWR from 'swr'
-import { Platform, utils as mochiUtils } from '@consolelabs/mochi-ui'
+import { Platform, utils as mochiUtils } from '@consolelabs/mochi-formatter'
 import { Icon } from '@iconify/react'
 import { Stats } from '@consolelabs/mochi-rest'
 import { discordLogo, telegramLogo } from '~utils/image'
@@ -37,7 +37,7 @@ export default function Profile() {
       most_receive: { profile?: any }
     }
 
-    const [from] = await UI.resolve(
+    const [from] = await UI.formatProfile(
       Platform.Web,
       data.most_send.other_profile_id,
     )
@@ -60,7 +60,7 @@ export default function Profile() {
 
     ////////////////////
 
-    const [to] = await UI.resolve(
+    const [to] = await UI.formatProfile(
       Platform.Web,
       data.most_receive.other_profile_id,
     )

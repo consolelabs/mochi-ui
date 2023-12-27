@@ -9,7 +9,7 @@ import dynamic from 'next/dynamic'
 import { GraphData, NodeObject } from 'react-force-graph-2d'
 import { useMemo, useState } from 'react'
 import { ProfileBar } from '~components/TipNetwork/ProfileBar'
-import UI, { Platform } from '@consolelabs/mochi-ui'
+import UI, { Platform } from '@consolelabs/mochi-formatter'
 import { SelectedProfile } from '~components/TipNetwork/SelectedProfile'
 import {
   ProfileNode,
@@ -163,7 +163,7 @@ export default function TipNetwork({ data }: TipNetworkProps) {
         description="Tip network from server"
         url={`${HOME_URL}/tip-network/`}
       />
-      <div className="relative flex w-full h-full">
+      <div className="flex relative w-full h-full">
         <TipNetworkGraph
           graphData={graphData}
           selectedNode={selectedNode}

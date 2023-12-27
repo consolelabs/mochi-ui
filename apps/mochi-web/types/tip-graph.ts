@@ -1,5 +1,5 @@
 import { Profile } from '@consolelabs/mochi-rest'
-import UI from '@consolelabs/mochi-ui'
+import UI from '@consolelabs/mochi-formatter'
 import { NodeObject } from 'react-force-graph-2d'
 
 export type ProfileNode = {
