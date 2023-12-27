@@ -63,7 +63,7 @@ export const TokenTableList = ({
       <ScrollArea.Viewport className="relative w-full h-full">
         <Table
           {...props}
-          headerSicky
+          stickyHeader
           data={data.sort((a, b) => {
             const indexA = sortOrder.findIndex(
               (symbol) => symbol === a.token.symbol,

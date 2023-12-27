@@ -28,12 +28,12 @@ const tableRowClsx = ({
 
 const tableHeaderClsx = ({
   className = '',
-  headerSicky,
+  stickyHeader,
   size,
-}: { className?: string; headerSicky?: boolean; size?: 'sm' | 'md' } = {}) =>
+}: { className?: string; stickyHeader?: boolean; size?: 'sm' | 'md' } = {}) =>
   clsx(
     'py-3 text-xxs font-semibold tracking-tight uppercase min-w-[48px] text-text-secondary',
-    headerSicky
+    stickyHeader
       ? 'sticky top-0 bg-background-surface after:absolute after:inset-0 after:h-full after:w-full after:border-b after:border-neutral-outline-active'
       : 'border-b border-neutral-outline-active',
     {

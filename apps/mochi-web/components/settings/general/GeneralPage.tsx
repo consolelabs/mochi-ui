@@ -1,14 +1,6 @@
 import { API, GET_PATHS, apiLogout } from '~constants/api'
 import { api } from '~constants/mochi'
 import {
-  ActionBar,
-  ActionBarActionGroup,
-  ActionBarBody,
-  ActionBarCancelButton,
-  ActionBarConfirmButton,
-  ActionBarContent,
-  ActionBarDescription,
-  ActionBarIcon,
   Button,
   Separator,
   Typography,
@@ -24,6 +16,7 @@ import {
   ResponseGeneralSettingData,
   ResponseUserGeneralSettingResponse,
 } from '~types/mochi-schema'
+import { SaveBar } from '~cpn/SaveBar'
 import { MoneySource } from './MoneySource'
 import { ReceiverPlatform } from './ReceiverPlatform'
 import { TokenPriority } from './TokenPriority'
@@ -136,41 +129,12 @@ export const GeneralPage = () => {
           Log out
         </Button>
       </div>
-      <div className="sticky bottom-0">
-        <ActionBar open={isDirty}>
-          <ActionBarContent
-            scheme="success"
-            outline
-            shadow
-            onOpenAutoFocus={(e) => e.preventDefault()}
-            anchorClassName="left-0 right-0 -mb-8"
-          >
-            <ActionBarIcon />
-            <ActionBarBody>
-              <ActionBarDescription>
-                Do you want to save these changes?
-              </ActionBarDescription>
-            </ActionBarBody>
-            <ActionBarActionGroup>
-              <ActionBarCancelButton
-                disabled={isSubmitting}
-                variant="link"
-                onClick={() => reset()}
-              >
-                Reset
-              </ActionBarCancelButton>
-              <ActionBarConfirmButton
-                loading={isSubmitting}
-                type="submit"
-                form={SETTINGS_GENERAL_FORM_ID}
-                className="min-w-[130px]"
-              >
-                Save changes
-              </ActionBarConfirmButton>
-            </ActionBarActionGroup>
-          </ActionBarContent>
-        </ActionBar>
-      </div>
+      <SaveBar
+        open={isDirty}
+        isLoading={isSubmitting}
+        onConfirm={handleSubmit(onUpdateSettings)}
+        onCancel={() => reset()}
+      />
     </FormProvider>
   )
 }
