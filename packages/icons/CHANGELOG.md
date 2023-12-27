@@ -1,5 +1,13 @@
 # @mochi-ui/icons
 
+## 0.7.1
+
+### Patch Changes
+
+- [#515](https://github.com/consolelabs/mochi-ui/pull/515)
+  [`e51a038`](https://github.com/consolelabs/mochi-ui/commit/e51a038bd451efdfb8779b560a397d3e414730e4)
+  Thanks [@tuanddd](https://github.com/tuanddd)! - Add new Base icon
+
 ## 0.7.0
 
 ### Minor Changes

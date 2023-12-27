@@ -1,6 +1,6 @@
 {
   "name": "@mochi-ui/table",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
