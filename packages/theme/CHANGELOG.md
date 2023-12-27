@@ -1,5 +1,38 @@
 # @mochi-ui/theme
 
+## 0.13.0
+
+### Minor Changes
+
+- [#510](https://github.com/consolelabs/mochi-ui/pull/510)
+  [`099e9c0`](https://github.com/consolelabs/mochi-ui/commit/099e9c008bd475d934f936be2e028027f97bd0cc)
+  Thanks [@leduyhien152](https://github.com/leduyhien152)! - Fix table style
+
+- [#526](https://github.com/consolelabs/mochi-ui/pull/526)
+  [`9f60dda`](https://github.com/consolelabs/mochi-ui/commit/9f60ddaabb2e657409dd69535164af6df5ff735b)
+  Thanks [@leduyhien152](https://github.com/leduyhien152)! - Fix page content
+  padding
+
+### Patch Changes
+
+- [#506](https://github.com/consolelabs/mochi-ui/pull/506)
+  [`f03721b`](https://github.com/consolelabs/mochi-ui/commit/f03721bbaabb18fa226eed468d35af5066693142)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Avoid linebreak on
+  badge component
+
+- [#499](https://github.com/consolelabs/mochi-ui/pull/499)
+  [`d7d28fb`](https://github.com/consolelabs/mochi-ui/commit/d7d28fb567e052d237fbb0c2d397def8463f89ae)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Create Avatar group
+  component
+
+- [#524](https://github.com/consolelabs/mochi-ui/pull/524)
+  [`7633382`](https://github.com/consolelabs/mochi-ui/commit/76333823ecc07c159546770cb6bcaa2d827fa19c)
+  Thanks [@chinhld12](https://github.com/chinhld12)! - Fix packages export
+
+- [#512](https://github.com/consolelabs/mochi-ui/pull/512)
+  [`6c83799`](https://github.com/consolelabs/mochi-ui/commit/6c83799d75df9fbd52098d47fb593e201bd6c3d3)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Fix pagination issues
+
 ## 0.12.1
 
 ### Patch Changes

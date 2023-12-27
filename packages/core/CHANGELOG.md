@@ -1,5 +1,81 @@
 # @mochi-ui/core
 
+## 0.12.0
+
+### Minor Changes
+
+- [#499](https://github.com/consolelabs/mochi-ui/pull/499)
+  [`d7d28fb`](https://github.com/consolelabs/mochi-ui/commit/d7d28fb567e052d237fbb0c2d397def8463f89ae)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Create Avatar group
+  component
+
+### Patch Changes
+
+- [#518](https://github.com/consolelabs/mochi-ui/pull/518)
+  [`c126fb7`](https://github.com/consolelabs/mochi-ui/commit/c126fb7522af93cab3d19c6ac9846d84524fe1aa)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Make Badge composable
+
+- [#524](https://github.com/consolelabs/mochi-ui/pull/524)
+  [`7633382`](https://github.com/consolelabs/mochi-ui/commit/76333823ecc07c159546770cb6bcaa2d827fa19c)
+  Thanks [@chinhld12](https://github.com/chinhld12)! - Fix packages export
+
+- [#512](https://github.com/consolelabs/mochi-ui/pull/512)
+  [`6c83799`](https://github.com/consolelabs/mochi-ui/commit/6c83799d75df9fbd52098d47fb593e201bd6c3d3)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Fix pagination issues
+
+- Updated dependencies
+  [[`e51a038`](https://github.com/consolelabs/mochi-ui/commit/e51a038bd451efdfb8779b560a397d3e414730e4),
+  [`099e9c0`](https://github.com/consolelabs/mochi-ui/commit/099e9c008bd475d934f936be2e028027f97bd0cc),
+  [`3656ce0`](https://github.com/consolelabs/mochi-ui/commit/3656ce0c2d969e789572a9295520d08586b1190e),
+  [`c126fb7`](https://github.com/consolelabs/mochi-ui/commit/c126fb7522af93cab3d19c6ac9846d84524fe1aa),
+  [`9f60dda`](https://github.com/consolelabs/mochi-ui/commit/9f60ddaabb2e657409dd69535164af6df5ff735b),
+  [`f03721b`](https://github.com/consolelabs/mochi-ui/commit/f03721bbaabb18fa226eed468d35af5066693142),
+  [`d7d28fb`](https://github.com/consolelabs/mochi-ui/commit/d7d28fb567e052d237fbb0c2d397def8463f89ae),
+  [`7633382`](https://github.com/consolelabs/mochi-ui/commit/76333823ecc07c159546770cb6bcaa2d827fa19c),
+  [`6c83799`](https://github.com/consolelabs/mochi-ui/commit/6c83799d75df9fbd52098d47fb593e201bd6c3d3)]:
+  - @mochi-ui/icons@0.7.1
+  - @mochi-ui/table@0.6.0
+  - @mochi-ui/theme@0.13.0
+  - @mochi-ui/pagination@0.2.4
+  - @mochi-ui/badge@0.3.0
+  - @mochi-ui/avatar-group@0.2.0
+  - @mochi-ui/avatar@0.1.5
+  - @mochi-ui/content-editable@1.1.3
+  - @mochi-ui/section-header@0.2.2
+  - @mochi-ui/top-bar@0.1.11
+  - @mochi-ui/drawer@0.3.2
+  - @mochi-ui/accordion@0.1.15
+  - @mochi-ui/alert@1.2.5
+  - @mochi-ui/button@0.4.11
+  - @mochi-ui/checkbox@0.1.15
+  - @mochi-ui/dropdown@0.2.2
+  - @mochi-ui/footer@0.1.6
+  - @mochi-ui/form@0.1.12
+  - @mochi-ui/icon-button@0.4.12
+  - @mochi-ui/input@0.3.2
+  - @mochi-ui/layout@0.1.12
+  - @mochi-ui/modal@0.3.2
+  - @mochi-ui/page-header@0.3.2
+  - @mochi-ui/popover@0.3.2
+  - @mochi-ui/select@0.1.14
+  - @mochi-ui/sidebar@0.1.5
+  - @mochi-ui/skeleton@1.0.5
+  - @mochi-ui/tabs@0.2.2
+  - @mochi-ui/toggle-button@0.1.1
+  - @mochi-ui/typography@0.1.0
+  - @mochi-ui/action-bar@0.1.5
+  - @mochi-ui/card@0.1.3
+  - @mochi-ui/label@0.1.12
+  - @mochi-ui/list@0.0.25
+  - @mochi-ui/logo@0.1.12
+  - @mochi-ui/page-content@0.1.12
+  - @mochi-ui/profile-badge@0.1.13
+  - @mochi-ui/section-list@0.0.24
+  - @mochi-ui/separator@0.0.26
+  - @mochi-ui/switch@0.0.23
+  - @mochi-ui/toast@0.1.5
+  - @mochi-ui/tooltip@0.2.12
+
 ## 0.11.1
 
 ### Patch Changes
