@@ -193,8 +193,8 @@ export const TransactionTable = (props: TransactionTableProps) => {
               className={clsx(
                 'inline-flex',
                 tx.isSuccess
-                  ? 'bg-success-outline text-success-solid'
-                  : 'bg-danger-outline text-danger-solid',
+                  ? '!bg-success-outline !text-success-solid'
+                  : '!bg-danger-outline !text-danger-solid',
               )}
               appearance="white"
             >
