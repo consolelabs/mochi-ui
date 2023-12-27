@@ -44,6 +44,7 @@ export default function Transaction({
     <>
       <div className="max-w-full overflow-x-auto">
         <TransactionTable
+          className="min-w-[1320px]"
           data={transactions || []}
           isLoading={isLoading}
           hideLastBorder
