@@ -5,9 +5,5 @@ export default defineConfig({
   splitting: false,
   target: 'es2019',
   format: ['cjs', 'esm'],
-  noExternal: [
-    '@solana/web3.js',
-    '@walletconnect/sign-client',
-    'browser-string-hexer',
-  ],
+  noExternal: ['@solana/web3.js', 'browser-string-hexer'],
 })
