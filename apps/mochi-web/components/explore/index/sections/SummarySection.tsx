@@ -57,11 +57,11 @@ export const SummarySection = () => {
                 <>
                   <Typography level="h5" className="!text-primary-solid">
                     {formatNumber(
-                      transactionSummary.transactions_per_second || 0,
+                      Math.floor(transactionSummary.transactions_per_day) || 0,
                     )}
                   </Typography>
                   <Typography className="text-text-secondary">
-                    transactions per second
+                    transactions per day
                   </Typography>
                 </>
               )}
