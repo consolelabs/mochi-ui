@@ -24,6 +24,7 @@ interface PaginationProps {
   className?: string
   onPageChange?: (page: number) => void
   onItemPerPageChange?: (page: number) => void
+  recordName?: string
 }
 
 function PageButton({
@@ -56,6 +57,7 @@ export default function Pagination({
   onPageChange,
   onItemPerPageChange,
   className,
+  recordName = 'members',
 }: PaginationProps) {
   const [currentPage, setCurrentPage] = useState(initalPage)
   const [currentItemPerPage, setCurrentItemPerPage] = useState(initItemsPerPage)
@@ -250,7 +252,9 @@ export default function Pagination({
             100
           </option>
         </select>
-        <div>members of {formatNumber(totalItems)}</div>
+        <div>
+          {recordName} of {formatNumber(totalItems)}
+        </div>
       </div>
 
       <div className={paginationNavigationClsx()} aria-controls="content">
