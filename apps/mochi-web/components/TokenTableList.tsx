@@ -59,7 +59,7 @@ export const TokenTableList = ({
   ...props
 }: Props) => {
   return (
-    <ScrollArea.Root className="overflow-hidden h-96">
+    <ScrollArea.Root className="overflow-hidden h-[420px]">
       <ScrollArea.Viewport className="relative w-full h-full [&>div]:h-full">
         <Table
           {...props}
