@@ -17,20 +17,33 @@ import { utils } from '@consolelabs/mochi-ui'
 import {
   ArrowDownSquareSolid,
   ArrowUpSquareSolid,
+  ArrowDownLine,
+  ArrowUpLine,
+  ChartSolid,
   ChevronDownLine,
-  SettingsLine,
-  UnionSolid,
 } from '@mochi-ui/icons'
-import { useProfileStore, useWalletStore } from '~store'
+import { useMochiWidget, useProfileStore, useWalletStore } from '~store'
 import { useFetchProfileGlobalInfo } from '~hooks/profile/useFetchProfileGlobalInfo'
 import { BalanceWithSource, TokenTableList } from '~cpn/TokenTableList'
 import { Fragment, useState } from 'react'
 import clsx from 'clsx'
+import { useShallow } from 'zustand/react/shallow'
 
 export const ProfileWidget = () => {
   const { me } = useProfileStore()
   const { data } = useFetchProfileGlobalInfo(me?.id)
-  const { wallets, isFetching } = useWalletStore()
+  const { isFetchingWallets, wallets } = useWalletStore(
+    useShallow((s) => ({
+      isFetchingWallets: s.isFetching,
+      wallets: s.wallets,
+    })),
+  )
+  const { setSelectedAsset } = useMochiWidget(
+    useShallow((s) => ({
+      selectedAsset: s.selectedAsset,
+      setSelectedAsset: s.setSelectedAsset,
+    })),
+  )
   const [_selectedChain, setSelectedChain] = useState('')
   const { info, pnl, total } = data
 
@@ -79,83 +92,44 @@ export const ProfileWidget = () => {
   const selectedIndex = sortedChains.indexOf(selectedChain)
 
   return (
-    <Card className="pb-5 space-y-4 shadow-input">
-      <div className="flex space-x-4">
-        <Avatar src={me?.avatar || ''} size="xl" />
-        <div className="overflow-hidden flex-1 mt-2 space-y-2">
-          <Typography level="p2" fontWeight="md" noWrap>
+    <Card className="pb-3 space-y-4 shadow-input">
+      <div className="flex items-center space-x-2">
+        <Avatar src={me?.avatar || ''} size="lg" />
+        <div className="flex-1 space-y-1 overflow-hidden">
+          <Typography level="h6" noWrap>
             {me?.profile_name}
           </Typography>
-          <div className="flex flex-wrap gap-1">
-            {info?.roles?.map((role) => (
-              <Badge
-                key={role}
-                label={
-                  <Typography level="h8" color="primary">
-                    {role}
-                  </Typography>
-                }
-              />
-            ))}
-            <Badge
-              appearance="white"
-              label={
-                <Typography level="h8">Lvl. {info?.level || 0}</Typography>
-              }
-            />
-            <Badge
-              appearance="white"
-              label={
-                <Typography level="h8">Rank #{info?.rank || 0}</Typography>
-              }
-            />
+          <Badge
+            appearance="white"
+            className="w-fit"
+            label={<Typography level="h8">Rank #{info?.rank || 0}</Typography>}
+          />
+        </div>
+        <div className="text-right">
+          <Typography level="h5">
+            {utils.formatDigit({
+              value: total,
+              fractionDigits: total >= 100 ? 0 : 2,
+            })}
+          </Typography>
+          <div className="flex items-center justify-end">
+            {pnl.startsWith('-') ? (
+              <ArrowDownLine className="w-4 h-4 text-danger-solid" />
+            ) : (
+              <ArrowUpLine className="w-4 h-4 text-success-solid" />
+            )}
+            <Typography
+              level="h8"
+              color={pnl.startsWith('-') ? 'danger' : 'success'}
+              className="ml-1 mr-2"
+            >
+              {utils.formatPercentDigit(Number.isNaN(Number(pnl)) ? 0 : pnl)}
+            </Typography>
+            <IconButton color="white" label="chart" className="px-1 py-1">
+              <ChartSolid className="w-3 h-3" />
+            </IconButton>
           </div>
         </div>
-        <div className="flex mt-2 space-x-2">
-          <IconButton
-            variant="link"
-            color="white"
-            className="p-1.5"
-            label="QR Code"
-          >
-            <UnionSolid className="w-5 h-5" />
-          </IconButton>
-          <IconButton
-            variant="link"
-            color="white"
-            className="p-1.5"
-            label="Setting"
-          >
-            <SettingsLine className="w-5 h-5" />
-          </IconButton>
-        </div>
-      </div>
-      <div>
-        <Typography level="p5" color="textSecondary">
-          Total Value
-        </Typography>
-        <Typography
-          level="h5"
-          fontWeight="lg"
-          className="flex gap-x-2 items-end"
-        >
-          $
-          {utils.formatDigit({
-            value: total,
-            fractionDigits: total >= 100 ? 0 : 2,
-          })}
-          <Typography
-            level="p3"
-            fontWeight="md"
-            className={clsx({
-              '!text-green-600': !pnl.startsWith('-'),
-              '!text-red-600': pnl.startsWith('-'),
-            })}
-          >
-            {pnl.startsWith('-') ? '' : '+'}
-            {utils.formatPercentDigit(Number.isNaN(Number(pnl)) ? 0 : pnl)}
-          </Typography>
-        </Typography>
       </div>
       <div className="grid grid-cols-2 gap-2">
         <Button variant="outline">
@@ -191,7 +165,7 @@ export const ProfileWidget = () => {
           ))}
           {sortedChains.length > 4 && (
             <DropdownMenu>
-              <DropdownMenuTrigger className="flex justify-center items-center w-7 h-7 rounded-md text-text-secondary hover:bg-background-popup">
+              <DropdownMenuTrigger className="flex items-center justify-center rounded-md w-7 h-7 text-text-secondary hover:bg-background-popup">
                 <ChevronDownLine width={20} height={20} />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -210,12 +184,18 @@ export const ProfileWidget = () => {
         </TabList>
       </Tabs>
       <TokenTableList
-        wrapperClassName="overflow-y-auto h-96"
-        className={!chains[selectedChain].length ? 'h-full' : ''}
-        isLoading={isFetching || !wallets.length}
+        isLoading={!wallets.length && isFetchingWallets}
         data={chains[selectedChain]}
         hideLastBorder
+        onRow={(record) => ({
+          onClick: () => setSelectedAsset(record),
+        })}
       />
+      <div className="text-center">
+        <Typography level="p6" color="textSecondary">
+          Powered by Console Labs
+        </Typography>
+      </div>
     </Card>
   )
 }

@@ -7,7 +7,7 @@ import {
   useRef,
   useState,
 } from 'react'
-import { Balance, Wallet } from '~store'
+import { Wallet, useMochiWidget } from '~store'
 import { utils } from '@consolelabs/mochi-ui'
 import {
   MAX_AMOUNT_PRECISION,
@@ -18,6 +18,7 @@ import { ArrowUpDownLine } from '@mochi-ui/icons'
 import events from '~constants/events'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { BalanceWithSource } from '~cpn/TokenTableList'
+import { useShallow } from 'zustand/react/shallow'
 import { TokenPicker } from '../TokenPicker'
 import { Moniker } from '../TokenPicker/type'
 import { useTipWidget } from '../Tip/store'
@@ -48,8 +49,11 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   const { isOpen: isUsdMode, onToggle: toggleUsdMode } = useDisclosure()
   const ref = useRef<HTMLInputElement | null>(null)
   const { setStep, request, setAmountUsd } = useTipWidget()
-  const [selectedAsset, setSelectedAsset] = useState<Balance | Moniker | null>(
-    request.asset,
+  const { selectedAsset, setSelectedAsset } = useMochiWidget(
+    useShallow((s) => ({
+      selectedAsset: s.selectedAsset,
+      setSelectedAsset: s.setSelectedAsset,
+    })),
   )
   const [tipAmount, setTipAmount] = useState<TokenAmount>(
     request.amount ? formatTokenAmount(request.amount) : INIT_AMOUNT,
@@ -106,7 +110,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
       setSelectedAsset(null)
       setTipAmount({ value: 0, display: '' })
     }
-  }, [authorized])
+  }, [authorized, setSelectedAsset])
 
   function handleQuickAmount(amount: string) {
     // Amount is USD -> convert to token amount
@@ -136,7 +140,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
       }
       onSelectAsset?.(asset)
     },
-    [onAmountChanged, onSelectAsset],
+    [onAmountChanged, onSelectAsset, setSelectedAsset],
   )
 
   function handleKeyDown(event: KeyboardEvent) {
@@ -203,7 +207,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
 
   return (
     <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-3">
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <Typography
           level="p5"
           color="textSecondary"
@@ -212,7 +216,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
         >
           You send
         </Typography>
-        <div className="flex gap-x-2 justify-end">
+        <div className="flex justify-end gap-x-2">
           <div className="flex gap-x-2">
             <Button
               size="sm"
@@ -264,8 +268,8 @@ export const AmountInput: React.FC<AmountInputProps> = ({
         </div>
       </div>
       <div className="flex flex-col p-4 rounded-lg bg-white-pure">
-        <div className="flex flex-1 gap-x-8 justify-between items-center">
-          <div className="flex flex-col flex-1 gap-y-4 items-start">
+        <div className="flex items-center justify-between flex-1 gap-x-8">
+          <div className="flex flex-col items-start flex-1 gap-y-4">
             <input
               className="self-start w-full font-medium appearance-none outline-none text-[32px] text-neutral-800 h-[34px]"
               placeholder="0"
@@ -282,7 +286,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               {!isUsdMode ? 'USD' : selectedAsset?.token.symbol}
             </span>
           </div>
-          <div className="flex flex-col gap-y-4 items-end shrink-0">
+          <div className="flex flex-col items-end gap-y-4 shrink-0">
             <TokenPicker
               authorized={authorized}
               unauthorizedContent={unauthorizedContent}

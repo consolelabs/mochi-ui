@@ -20,7 +20,7 @@ const Profile: NextPageWithLayout = () => {
             <ProfileWidget />
             <MochiWidget
               wrapperClassName="!shadow-input !border-divider h-full"
-              className="!border-none !shadow-none my-auto"
+              className="!border-none !shadow-none"
             />
           </div>
           <TransactionSection />

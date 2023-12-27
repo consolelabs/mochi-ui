@@ -3,6 +3,8 @@ import { utils as mochiUtils } from '@consolelabs/mochi-ui'
 import { TokenAvatar } from '~cpn/TokenAvatar'
 import { Bag, WalletSolid } from '@mochi-ui/icons'
 import { Balance } from '~store/wallets'
+import * as ScrollArea from '@radix-ui/react-scroll-area'
+import clsx from 'clsx'
 
 const sortOrder = ['SOL']
 
@@ -49,60 +51,81 @@ const Token: ColumnProps<BalanceWithSource>['cell'] = (props) => (
   </div>
 )
 
-export const TokenTableList = (props: Props) => {
+export const TokenTableList = ({
+  data,
+  wrapperClassName,
+  className,
+  size = 'sm',
+  ...props
+}: Props) => {
   return (
-    <Table
-      {...props}
-      data={props.data.sort((a, b) => {
-        const indexA = sortOrder.findIndex(
-          (symbol) => symbol === a.token.symbol,
-        )
-        const indexB = sortOrder.findIndex(
-          (symbol) => symbol === b.token.symbol,
-        )
+    <ScrollArea.Root className="overflow-hidden h-96">
+      <ScrollArea.Viewport className="relative w-full h-full">
+        <Table
+          {...props}
+          headerSicky
+          data={data.sort((a, b) => {
+            const indexA = sortOrder.findIndex(
+              (symbol) => symbol === a.token.symbol,
+            )
+            const indexB = sortOrder.findIndex(
+              (symbol) => symbol === b.token.symbol,
+            )
 
-        if (indexA === -1) return 1
-        if (indexB === -1) return -1
+            if (indexA === -1) return 1
+            if (indexB === -1) return -1
 
-        if (indexA > indexB) return 1
-        if (indexA < indexB) return -1
-        return 0
-      })}
-      headerSicky
-      emptyContent={
-        <div className="flex flex-col justify-center items-center h-full">
-          <Bag className="w-14 h-14 text-neutral-500" />
-          <Typography level="h7" color="textSecondary">
-            No assets
-          </Typography>
-        </div>
-      }
-      columns={[
-        {
-          header: 'Token',
-          accessorKey: 'token',
-          cell: Token,
-          width: '45%',
-        },
-        {
-          header: 'Price',
-          accessorKey: 'token.price',
-          accessorFn: (row) =>
-            mochiUtils.formatUsdPriceDigit({
-              value: row.token?.price || 0,
-            }),
-          width: '25%',
-        },
-        {
-          header: 'USD Value',
-          accessorKey: 'usd_amount',
-          accessorFn: (row) => mochiUtils.formatUsdDigit(row.usd_balance || 0),
-          width: '30%',
-          meta: {
-            align: 'right',
-          },
-        },
-      ]}
-    />
+            if (indexA > indexB) return 1
+            if (indexA < indexB) return -1
+            return 0
+          })}
+          size={size}
+          wrapperClassName={clsx('!overflow-y-visible', clsx(wrapperClassName))}
+          className={clsx('!static', { 'h-96': !data.length }, className)}
+          emptyContent={
+            <div className="flex flex-col items-center justify-center h-full">
+              <Bag className="w-14 h-14 text-neutral-500" />
+              <Typography level="h7" color="textSecondary">
+                No assets
+              </Typography>
+            </div>
+          }
+          columns={[
+            {
+              header: 'Token',
+              accessorKey: 'token',
+              cell: Token,
+              width: '45%',
+            },
+            {
+              header: 'Price',
+              accessorKey: 'token.price',
+              accessorFn: (row) =>
+                mochiUtils.formatUsdPriceDigit({
+                  value: row.token?.price || 0,
+                }),
+              width: '25%',
+            },
+            {
+              header: 'USD Value',
+              accessorKey: 'usd_amount',
+              accessorFn: (row) =>
+                mochiUtils.formatUsdDigit(row.usd_balance || 0),
+              width: '30%',
+              meta: {
+                align: 'right',
+              },
+            },
+          ]}
+        />
+      </ScrollArea.Viewport>
+      <ScrollArea.Scrollbar
+        className="flex select-none touch-none p-0.5 bg-neutral-outline transition-colors w-2 hover:bg-neutral-outline-hover"
+        orientation="vertical"
+      >
+        <ScrollArea.Thumb className="flex-1 bg-neutral-solid rounded-lg relative before:content-[''] before:absolute before:w-full before:h-full before:min-w-[44px] before:min-h-[44px] before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2" />
+      </ScrollArea.Scrollbar>
+      <ScrollArea.Corner className="bg-neutral-outline-hover" />
+    </ScrollArea.Root>
   )
 }
