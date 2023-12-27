@@ -107,6 +107,7 @@ export const ProfileWidget = () => {
         </div>
         <div className="text-right">
           <Typography level="h5">
+            $
             {utils.formatDigit({
               value: total,
               fractionDigits: total >= 100 ? 0 : 2,
@@ -125,7 +126,12 @@ export const ProfileWidget = () => {
             >
               {utils.formatPercentDigit(Number.isNaN(Number(pnl)) ? 0 : pnl)}
             </Typography>
-            <IconButton color="white" label="chart" className="px-1 py-1">
+            <IconButton
+              color="white"
+              label="chart"
+              className="px-1 py-1"
+              disabled
+            >
               <ChartSolid className="w-3 h-3" />
             </IconButton>
           </div>

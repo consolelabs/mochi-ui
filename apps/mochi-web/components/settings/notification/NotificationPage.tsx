@@ -80,7 +80,7 @@ const NotificationSwitcherField = (
   )
 }
 
-const Divider = () => <div className="w-full my-8 h-px bg-neutral-200" />
+const Divider = () => <div className="w-full h-px my-8 bg-neutral-200" />
 
 export function NotificationPage() {
   const form = useForm<NotificationFormValue>({
@@ -169,7 +169,7 @@ export function NotificationPage() {
             // eslint-disable-next-line jsx-a11y/label-has-associated-control
             <label
               htmlFor="enable"
-              className="block cursor-pointer select-none -mb-4"
+              className="block -mb-4 cursor-pointer select-none"
             >
               <SectionHeader className="!py-4" wrapActionsOnMobile={false}>
                 <SectionHeaderTitle className="!col-span-2 !col-end-3 pr-14 !text-base font-normal">
@@ -354,14 +354,12 @@ export function NotificationPage() {
           </div>
         </div>
       </div>
-      <div className="sticky bottom-0 z-50">
-        <SaveBar
-          open={isDirty || isUpdating}
-          isLoading={isUpdating || isFirstLoading}
-          onConfirm={handleSubmit(onSubmit)}
-          onCancel={() => reset()}
-        />
-      </div>
+      <SaveBar
+        open={isDirty || isUpdating}
+        isLoading={isUpdating || isFirstLoading}
+        onConfirm={handleSubmit(onSubmit)}
+        onCancel={() => reset()}
+      />
     </FormProvider>
   )
 }

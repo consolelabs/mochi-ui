@@ -16,17 +16,7 @@ import {
 import { API, GET_PATHS } from '~constants/api'
 import { useForm } from 'react-hook-form'
 import { useCallback, useEffect, useState } from 'react'
-import {
-  ActionBar,
-  ActionBarActionGroup,
-  ActionBarBody,
-  ActionBarCancelButton,
-  ActionBarConfirmButton,
-  ActionBarContent,
-  ActionBarDescription,
-  ActionBarIcon,
-  useToast,
-} from '@mochi-ui/core'
+import { useToast } from '@mochi-ui/core'
 import { AppDetailFormValues } from '~types/app'
 import { AppDetailPlatforms } from '~cpn/app/detail/AppDetailPlatforms'
 import { platforms } from '~constants/app'
@@ -40,6 +30,7 @@ import { useDisclosure } from '@dwarvesf/react-hooks'
 import { SEO } from '~app/layout/seo'
 import { DashboardBody } from '~cpn/DashboardBody'
 import { AppDetailSkeleton } from '~cpn/app/detail/AppDetailSkeleton'
+import { SaveBar } from '~cpn/SaveBar'
 
 const APP_DETAIL_FORM_ID = 'app-detail-form'
 
@@ -240,41 +231,12 @@ const App: NextPageWithLayout = () => {
         <AppDetailUrl {...{ control, errors }} />
         <AppDetailPlatforms {...{ control, setValue }} />
         <AppDetailMembers {...{ profileId, appId }} />
-        <div className="sticky bottom-0">
-          <ActionBar open={openActionBar}>
-            <ActionBarContent
-              scheme="success"
-              outline
-              shadow
-              onOpenAutoFocus={(e) => e.preventDefault()}
-              anchorClassName="left-0 right-0 -mb-8"
-            >
-              <ActionBarIcon />
-              <ActionBarBody>
-                <ActionBarDescription>
-                  Do you want to save these changes?
-                </ActionBarDescription>
-              </ActionBarBody>
-              <ActionBarActionGroup>
-                <ActionBarCancelButton
-                  disabled={isSubmitting}
-                  variant="link"
-                  onClick={() => reset()}
-                >
-                  Reset
-                </ActionBarCancelButton>
-                <ActionBarConfirmButton
-                  loading={isSubmitting}
-                  type="submit"
-                  form={APP_DETAIL_FORM_ID}
-                  className="min-w-[130px]"
-                >
-                  Save changes
-                </ActionBarConfirmButton>
-              </ActionBarActionGroup>
-            </ActionBarContent>
-          </ActionBar>
-        </div>
+        <SaveBar
+          open={openActionBar}
+          isLoading={isSubmitting}
+          onConfirm={handleSubmit(onUpdateApp)}
+          onCancel={() => reset()}
+        />
         <DeleteAppModal
           app={detail}
           open={isOpenDeleteAppModal}
