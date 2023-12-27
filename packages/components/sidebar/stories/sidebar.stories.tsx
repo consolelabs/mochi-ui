@@ -1,4 +1,4 @@
-import { Badge } from '@mochi-ui/badge'
+import { Badge, BadgeIcon } from '@mochi-ui/badge'
 import { Button } from '@mochi-ui/button'
 import {
   AddUserSolid,
@@ -46,7 +46,7 @@ export function Default() {
             title: 'Profile',
             Icon: UserSolid,
             type: 'link',
-            badge: <Badge label="New" />,
+            badge: <Badge>New</Badge>,
             onClick: () => setSection('Profile'),
             description: 'View Profile',
           },
@@ -54,11 +54,12 @@ export function Default() {
             title: 'Server Management',
             Icon: Discord,
             badge: (
-              <Badge
-                appearance="secondary"
-                icon={<TwinkleSolid />}
-                label="Featured"
-              />
+              <Badge appearance="secondary">
+                <BadgeIcon>
+                  <TwinkleSolid />
+                </BadgeIcon>
+                Featured
+              </Badge>
             ),
             onClick: () => setSection('Server Management'),
           },
@@ -86,22 +87,24 @@ export function Default() {
             title: 'Gift your friend',
             Icon: SuperGroupSolid,
             badge: (
-              <Badge
-                appearance="secondary"
-                icon={<TwinkleSolid />}
-                label="Featured"
-              />
+              <Badge appearance="secondary">
+                <BadgeIcon>
+                  <TwinkleSolid />
+                </BadgeIcon>
+                Featured
+              </Badge>
             ),
           },
           { title: 'Invite Friends', Icon: AddUserSolid },
           {
             title: 'List',
             badge: (
-              <Badge
-                appearance="secondary"
-                icon={<TwinkleSolid />}
-                label="Featured"
-              />
+              <Badge appearance="secondary">
+                <BadgeIcon>
+                  <TwinkleSolid />
+                </BadgeIcon>
+                Featured
+              </Badge>
             ),
             Icon: StarSolid,
             type: 'list',

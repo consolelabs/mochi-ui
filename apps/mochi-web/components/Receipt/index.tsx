@@ -224,8 +224,9 @@ export default function Receipt({ id, data: _data }: Props) {
                             : '!bg-[#E02D3C]/[.15] !text-[#EB5757]'
                         }
                         appearance={isSuccess ? 'success' : 'danger'}
-                        label={isSuccess ? 'Success' : 'Failed'}
-                      />
+                      >
+                        {isSuccess ? 'Success' : 'Failed'}
+                      </Badge>
                     ) : (
                       <Typography
                         level="p7"

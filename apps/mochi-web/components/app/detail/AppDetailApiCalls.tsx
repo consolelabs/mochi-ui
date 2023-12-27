@@ -51,8 +51,9 @@ const Status: ColumnProps<ViewApplicationWebhookLog>['cell'] = (props) => (
   <Badge
     className="w-fit"
     appearance={props.row.original.status === 'passed' ? 'success' : 'danger'}
-    label={capitalizeFirstLetter(props.row.original.status || '')}
-  />
+  >
+    {capitalizeFirstLetter(props.row.original.status || '')}
+  </Badge>
 )
 
 export const AppDetailApiCalls = ({ profileId, appId }: Props) => {

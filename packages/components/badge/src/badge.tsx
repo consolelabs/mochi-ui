@@ -1,64 +1,105 @@
-import { badge, BadgeStyleProps } from '@mochi-ui/theme'
+import { badge } from '@mochi-ui/theme'
+import { Children, ReactNode, useEffect, useMemo, useState } from 'react'
+import { BadgeContext, useBadgeContext } from './context'
+import { BadgeIconProps, BadgeProps } from './type'
 
 const { badgeWrapperCva, badgeIconCva } = badge
 
-export interface BadgeProps
-  extends Omit<BadgeStyleProps, 'hasIcon' | 'hasLabel'> {
-  icon?: JSX.Element
-  className?: string
-  iconClassName?: string
-  label?: React.ReactNode
-}
+function BadgeIcon(props: BadgeIconProps) {
+  const { children, className } = props
 
-export default function Badge(props: BadgeProps) {
   const {
-    icon,
-    iconPosition = 'left',
-    className,
-    iconClassName,
-    label,
-    appearance,
-    isAvatarIcon,
-  } = props
+    hasIconOnly = false,
+    isAvatarIcon = false,
+    appearance = 'primary',
+  } = useBadgeContext()
 
-  const renderIcon = icon ? (
+  return (
     <span
       className={badgeIconCva({
-        hasIconOnly: Boolean(icon) && !label,
+        hasIconOnly,
         appearance,
         isAvatarIcon,
-        className: iconClassName,
+        className,
       })}
     >
-      {icon}
+      {children}
     </span>
-  ) : null
+  )
+}
 
-  const content =
-    iconPosition === 'left' ? (
-      <>
-        {renderIcon}
-        {label}
-      </>
-    ) : (
-      <>
-        {label}
-        {renderIcon}
-      </>
-    )
+function BadgeInner({
+  children,
+  className,
+}: {
+  children: ReactNode
+  className?: string
+}) {
+  const {
+    appearance = 'primary',
+    isAvatarIcon = false,
+    setHasIconOnly,
+  } = useBadgeContext()
+
+  const childArray = Children.toArray(children)
+
+  const hasIcon = (childArray || []).some(
+    (child) =>
+      (child as React.ReactElement<BadgeIconProps, any>).type === BadgeIcon,
+  )
+
+  const iconPosition =
+    (childArray[0] as React.ReactElement<BadgeIconProps, any>).type ===
+    BadgeIcon
+      ? 'left'
+      : 'right'
+
+  const hasLabel = (childArray || []).some(
+    (child) =>
+      (child as React.ReactElement<BadgeIconProps, any>).type !== BadgeIcon,
+  )
+
+  useEffect(() => {
+    if ((childArray || []).length === 1 && hasIcon) {
+      setHasIconOnly?.(true)
+    }
+  }, [childArray, hasIcon, setHasIconOnly])
 
   return (
     <span
       className={badgeWrapperCva({
         className,
         appearance,
-        iconPosition,
         isAvatarIcon,
-        hasIcon: Boolean(icon),
-        hasLabel: Boolean(label),
+        hasIcon,
+        hasLabel,
+        iconPosition,
       })}
     >
-      {content}
+      {children}
     </span>
   )
 }
+
+function Badge(props: BadgeProps) {
+  const { isAvatarIcon, appearance, children, className } = props
+  const [hasIconOnly, setHasIconOnly] = useState(false)
+
+  const contextValue = useMemo(
+    () => ({
+      isAvatarIcon,
+      appearance,
+      hasIconOnly,
+      setHasIconOnly,
+    }),
+    [isAvatarIcon, appearance, hasIconOnly, setHasIconOnly],
+  )
+
+  return (
+    <BadgeContext.Provider value={contextValue}>
+      <BadgeInner className={className}>{children}</BadgeInner>
+    </BadgeContext.Provider>
+  )
+}
+
+export { Badge, BadgeIcon, type BadgeProps, type BadgeIconProps }

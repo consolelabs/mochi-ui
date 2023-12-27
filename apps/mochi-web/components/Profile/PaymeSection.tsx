@@ -43,11 +43,9 @@ export const PaymeSection = () => {
             >
               <Typography level="h9">{tab.label}</Typography>
               {tab.key === 'requests' && (
-                <Badge
-                  label={requests.length}
-                  appearance="danger"
-                  className="h-5"
-                />
+                <Badge appearance="danger" className="h-5">
+                  {requests.length}
+                </Badge>
               )}
             </TabTrigger>
           ))}

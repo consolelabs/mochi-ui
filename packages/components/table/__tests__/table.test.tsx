@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unstable-nested-components */
-import { Badge } from '@mochi-ui/badge'
+import { Badge, BadgeIcon } from '@mochi-ui/badge'
 import { StarSolid } from '@mochi-ui/icons'
 import { render, screen } from '@testing-library/react'
 import Table, { ColumnProps } from '../src/table'
@@ -42,11 +42,12 @@ describe('Table', () => {
         accessorKey: 'role',
         cell: (cell) => {
           return (
-            <Badge
-              appearance="primary"
-              icon={<StarSolid />}
-              label={cell.getValue() as string}
-            />
+            <Badge appearance="primary">
+              <BadgeIcon>
+                <StarSolid />
+              </BadgeIcon>
+              {cell.getValue() as string}
+            </Badge>
           )
         },
       },
@@ -87,11 +88,12 @@ describe('Table', () => {
         accessorKey: 'role',
         cell: (cell) => {
           return (
-            <Badge
-              appearance="primary"
-              icon={<StarSolid />}
-              label={cell.getValue() as string}
-            />
+            <Badge appearance="primary">
+              <BadgeIcon>
+                <StarSolid />
+              </BadgeIcon>
+              {cell.getValue() as string}
+            </Badge>
           )
         },
       },

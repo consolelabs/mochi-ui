@@ -2,7 +2,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useCallback, useMemo, useRef, useState } from 'react'
 import { StarSolid, ChevronRightLine, ChevronDownLine } from '@mochi-ui/icons'
-import { Badge } from '@mochi-ui/badge'
+import { Badge, BadgeIcon } from '@mochi-ui/badge'
 import { Pagination } from '@mochi-ui/pagination'
 import { IconButton } from '@mochi-ui/icon-button'
 import Table from '../src/table'
@@ -119,11 +119,12 @@ export const Default: Story = {
               accessorKey: 'role',
               cell: (cell) => {
                 return (
-                  <Badge
-                    appearance="primary"
-                    icon={<StarSolid />}
-                    label={cell.getValue() as string}
-                  />
+                  <Badge appearance="primary">
+                    <BadgeIcon>
+                      <StarSolid />
+                    </BadgeIcon>
+                    {cell.getValue() as string}
+                  </Badge>
                 )
               },
             },
@@ -222,11 +223,12 @@ export const RenderSubComponent: Story = {
               accessorKey: 'role',
               cell: (cell) => {
                 return (
-                  <Badge
-                    appearance="primary"
-                    icon={<StarSolid />}
-                    label={cell.getValue() as string}
-                  />
+                  <Badge appearance="primary">
+                    <BadgeIcon>
+                      <StarSolid />
+                    </BadgeIcon>
+                    {cell.getValue() as string}
+                  </Badge>
                 )
               },
             },

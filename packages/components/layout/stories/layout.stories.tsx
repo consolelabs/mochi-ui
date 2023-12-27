@@ -5,7 +5,7 @@ import {
   PageHeaderTitle,
   PageHeaderTitleExtra,
 } from '@mochi-ui/page-header'
-import { Badge } from '@mochi-ui/badge'
+import { Badge, BadgeIcon } from '@mochi-ui/badge'
 import { Typography } from '@mochi-ui/typography'
 import {
   AddUserSolid,
@@ -50,17 +50,18 @@ export function Default() {
               title: 'Profile',
               Icon: UserSolid,
               type: 'link',
-              badge: <Badge label="New" />,
+              badge: <Badge>New</Badge>,
             },
             {
               title: 'Server Management',
               Icon: Discord,
               badge: (
-                <Badge
-                  appearance="secondary"
-                  icon={<TwinkleSolid />}
-                  label="Featured"
-                />
+                <Badge appearance="secondary">
+                  <BadgeIcon>
+                    <TwinkleSolid />
+                  </BadgeIcon>
+                  Featured
+                </Badge>
               ),
             },
             {
@@ -74,11 +75,12 @@ export function Default() {
               title: 'Gift your friend',
               Icon: SuperGroupSolid,
               badge: (
-                <Badge
-                  appearance="secondary"
-                  icon={<TwinkleSolid />}
-                  label="Featured"
-                />
+                <Badge appearance="secondary">
+                  <BadgeIcon>
+                    <TwinkleSolid />
+                  </BadgeIcon>
+                  Featured
+                </Badge>
               ),
             },
             { title: 'Invite Friends', Icon: AddUserSolid },
@@ -86,11 +88,12 @@ export function Default() {
             {
               title: 'List',
               badge: (
-                <Badge
-                  appearance="secondary"
-                  icon={<TwinkleSolid />}
-                  label="Featured"
-                />
+                <Badge appearance="secondary">
+                  <BadgeIcon>
+                    <TwinkleSolid />
+                  </BadgeIcon>
+                  Featured
+                </Badge>
               ),
               Icon: StarSolid,
               type: 'list',

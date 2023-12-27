@@ -17,6 +17,7 @@ import {
   Item,
   useLoginWidget,
   LoginWidget,
+  BadgeIcon,
 } from '@mochi-ui/core'
 import { Layout } from '@mochi-ui/layout'
 import { DISCORD_LINK, TWITTER_LINK } from '~envs'
@@ -30,10 +31,17 @@ import { MainSidebarHeader } from './MainSidebarHeader'
 import { ApplicationDetailSidebarHeader } from './ApplicationDetailSidebarHeader'
 
 export const getSidebarBadge = {
-  NEW: <Badge icon={<TwinkleSolid />} label="New" appearance="success" />,
-  FEATURED: <Badge label="Featured" appearance="primary" />,
-  SOON: <Badge label="Soon" appearance="secondary" />,
-  FREE_TRIAL: <Badge label="Free trial" appearance="warning" />,
+  NEW: (
+    <Badge appearance="success">
+      <BadgeIcon>
+        <TwinkleSolid />
+      </BadgeIcon>
+      New
+    </Badge>
+  ),
+  FEATURED: <Badge appearance="primary">Featured</Badge>,
+  SOON: <Badge appearance="secondary">Soon</Badge>,
+  FREE_TRIAL: <Badge appearance="warning">Free trial</Badge>,
 } as const
 
 interface DashboardLayoutProps {

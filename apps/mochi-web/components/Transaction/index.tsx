@@ -125,9 +125,10 @@ export default function Transaction({
         return (
           <Badge
             appearance={status === 'success' ? 'success' : 'danger'}
-            label={status === 'success' ? 'success' : 'fail'}
             className="capitalize w-fit"
-          />
+          >
+            {status === 'success' ? 'success' : 'fail'}
+          </Badge>
         )
       },
     },
