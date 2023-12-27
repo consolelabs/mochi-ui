@@ -1,76 +1,12 @@
-import UI, { Platform, utils as mochiUtils } from '@consolelabs/mochi-formatter'
-import { utils } from 'ethers'
-import { TransactionActionType } from '~constants/transactions'
-import {
-  MochiprofileMochiProfile,
-  ModelProfileTransactionMetadata,
-  ModelToken,
-} from '~types/mochi-pay-schema'
+import UI, { Platform } from '@consolelabs/mochi-formatter'
+import { ModelProfileTransactionMetadata } from '~types/mochi-pay-schema'
 
 export const ignoreOptionAll = <T>(value: T | 'all') => {
   return value === 'all' ? undefined : value
 }
 
-export const transformActionType = (action: TransactionActionType) =>
-  ({
-    transfer: 'tip',
-    vault_transfer: 'vault transfer',
-    swap: 'swap',
-    payme: 'pay me',
-    paylink: 'pay link',
-    airdrop: 'airdrop',
-    deposit: 'deposit',
-    withdraw: 'widthdraw',
-  })[action]
-
-export type TransactionType = 'in' | 'out'
-
 export function isVault(source: string) {
   return source === 'mochi-vault'
-}
-
-export const formatTransactionAmount = (amount: string, decimal: number) =>
-  mochiUtils.formatTokenDigit(utils.formatUnits(amount, decimal))
-
-export const createTransactionMesssage = ({
-  type = 'in',
-  action,
-  token,
-  amount,
-  profile,
-  otherProfile,
-  metadata,
-}: {
-  type?: TransactionType
-  action?: TransactionActionType
-  profile?: MochiprofileMochiProfile
-  otherProfile?: MochiprofileMochiProfile
-  amount?: string
-  token?: ModelToken
-  metadata?: ModelProfileTransactionMetadata
-}) => {
-  const schemaType = (() => {
-    if (action === 'withdraw') return 'withdraw'
-    return type === 'in' ? 'received' : 'tip'
-  })()
-
-  const formatedAmount = formatTransactionAmount(
-    amount ?? '',
-    token?.decimal ?? 0,
-  )
-
-  const { from, to } = transformProfilePair(
-    profile,
-    otherProfile,
-    type,
-    metadata ?? {},
-  )
-
-  return {
-    received: `Received ${formatedAmount} ${token?.symbol} from ${from}`,
-    tip: `Tip ${to} ${formatedAmount} ${token?.symbol}`,
-    withdraw: `Withdrawed - ${formatedAmount} ${token?.symbol}`,
-  }[schemaType]
 }
 
 // NOTE: implement url param sync later
