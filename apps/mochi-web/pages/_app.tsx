@@ -8,10 +8,11 @@ import 'nprogress/nprogress.css'
 import '~styles/nprogress.css'
 import Script from 'next/script'
 import { interFont } from '~utils/next-font'
-import { Toaster, useLoginWidget } from '@mochi-ui/core'
+import { Toaster } from '@mochi-ui/core'
 import { LazyMotion, domAnimation } from 'framer-motion'
 import { WalletProviderProps } from '~context/wallet-context'
 import { useAuthStore } from '~store/auth'
+import { useLoginWidget } from '@mochi-web3/login-widget'
 
 const SidebarContextProvider = dynamic(() =>
   import('../context/app/sidebar').then((m) => m.SidebarContextProvider),
@@ -26,7 +27,7 @@ const WalletProvider = dynamic(() =>
   import('~context/wallet-context').then((m) => m.WalletProvider),
 ) as FC<WalletProviderProps>
 const LoginWidgetProvider = dynamic(() =>
-  import('@mochi-ui/core').then((m) => m.LoginWidgetProvider),
+  import('@mochi-web3/login-widget').then((m) => m.LoginWidgetProvider),
 ) as FC<{ children: ReactNode }>
 
 const TopProgressBar = dynamic(() => import('~app/layout/nprogress'), {

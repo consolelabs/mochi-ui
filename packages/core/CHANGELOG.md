@@ -16,7 +16,7 @@
   - @mochi-ui/button@0.4.10
   - @mochi-ui/card@0.1.2
   - @mochi-ui/checkbox@0.1.14
-  - @mochi-ui/connect-wallet-widget@0.0.6
+  - @mochi-web3/connect-wallet-widget@0.0.6
   - @mochi-ui/content-editable@1.1.2
   - @mochi-ui/drawer@0.3.1
   - @mochi-ui/dropdown@0.2.1
@@ -27,7 +27,7 @@
   - @mochi-ui/label@0.1.11
   - @mochi-ui/layout@0.1.11
   - @mochi-ui/list@0.0.24
-  - @mochi-ui/login-widget@0.2.1
+  - @mochi-web3/login-widget@0.2.1
   - @mochi-ui/logo@0.1.11
   - @mochi-ui/modal@0.3.1
   - @mochi-ui/page-content@0.1.11
@@ -147,7 +147,7 @@
   - @mochi-ui/input@0.3.0
   - @mochi-ui/table@0.5.0
   - @mochi-ui/tabs@0.2.0
-  - @mochi-ui/login-widget@0.2.0
+  - @mochi-web3/login-widget@0.2.0
   - @mochi-ui/sidebar@0.1.3
   - @mochi-ui/modal@0.3.0
   - @mochi-ui/section-header@0.2.0
@@ -158,7 +158,7 @@
   - @mochi-ui/top-bar@0.1.9
   - @mochi-ui/page-header@0.3.0
   - @mochi-ui/layout@0.1.10
-  - @mochi-ui/connect-wallet-widget@0.0.5
+  - @mochi-web3/connect-wallet-widget@0.0.5
   - @mochi-ui/accordion@0.1.13
   - @mochi-ui/alert@1.2.3
   - @mochi-ui/badge@0.2.12
@@ -201,7 +201,7 @@
   [`d1293ba`](https://github.com/consolelabs/mochi-ui/commit/d1293babf5a17b32991348465c7fc5ff99d27919)]:
   - @mochi-ui/icons@0.6.0
   - @mochi-ui/content-editable@1.1.0
-  - @mochi-ui/login-widget@0.1.13
+  - @mochi-web3/login-widget@0.1.13
   - @mochi-ui/icon-button@0.4.9
   - @mochi-ui/page-header@0.2.9
   - @mochi-ui/top-bar@0.1.8
@@ -214,7 +214,7 @@
   - @mochi-ui/badge@0.2.11
   - @mochi-ui/button@0.4.8
   - @mochi-ui/checkbox@0.1.12
-  - @mochi-ui/connect-wallet-widget@0.0.4
+  - @mochi-web3/connect-wallet-widget@0.0.4
   - @mochi-ui/dropdown@0.1.12
   - @mochi-ui/footer@0.1.3
   - @mochi-ui/form@0.1.9
@@ -272,7 +272,7 @@
   - @mochi-ui/badge@0.2.10
   - @mochi-ui/button@0.4.7
   - @mochi-ui/checkbox@0.1.11
-  - @mochi-ui/connect-wallet-widget@0.0.3
+  - @mochi-web3/connect-wallet-widget@0.0.3
   - @mochi-ui/content-editable@1.0.2
   - @mochi-ui/dropdown@0.1.11
   - @mochi-ui/footer@0.1.2
@@ -282,7 +282,7 @@
   - @mochi-ui/label@0.1.8
   - @mochi-ui/layout@0.1.8
   - @mochi-ui/list@0.0.21
-  - @mochi-ui/login-widget@0.1.12
+  - @mochi-web3/login-widget@0.1.12
   - @mochi-ui/logo@0.1.8
   - @mochi-ui/modal@0.2.10
   - @mochi-ui/page-content@0.1.8
@@ -353,7 +353,7 @@
   - @mochi-ui/page-header@0.2.7
   - @mochi-ui/layout@0.1.7
   - @mochi-ui/theme@0.9.0
-  - @mochi-ui/login-widget@0.1.11
+  - @mochi-web3/login-widget@0.1.11
   - @mochi-ui/alert@1.2.0
   - @mochi-ui/toast@0.1.0
   - @mochi-ui/action-bar@0.1.0
@@ -367,7 +367,7 @@
   - @mochi-ui/badge@0.2.9
   - @mochi-ui/button@0.4.6
   - @mochi-ui/checkbox@0.1.10
-  - @mochi-ui/connect-wallet-widget@0.0.2
+  - @mochi-web3/connect-wallet-widget@0.0.2
   - @mochi-ui/content-editable@1.0.1
   - @mochi-ui/dropdown@0.1.10
   - @mochi-ui/form@0.1.7
@@ -422,7 +422,7 @@
   - @mochi-ui/input@0.2.6
   - @mochi-ui/input-field@0.1.10
   - @mochi-ui/layout@0.1.6
-  - @mochi-ui/login-widget@0.1.10
+  - @mochi-web3/login-widget@0.1.10
   - @mochi-ui/modal@0.2.8
   - @mochi-ui/page-header@0.2.6
   - @mochi-ui/popover@0.2.7
@@ -463,7 +463,7 @@
   - @mochi-ui/label@0.1.5
   - @mochi-ui/layout@0.1.5
   - @mochi-ui/list@0.0.18
-  - @mochi-ui/login-widget@0.1.9
+  - @mochi-web3/login-widget@0.1.9
   - @mochi-ui/logo@0.1.5
   - @mochi-ui/modal@0.2.7
   - @mochi-ui/page-content@0.1.5
@@ -505,7 +505,7 @@
   - @mochi-ui/icon-button@0.4.4
   - @mochi-ui/input@0.2.4
   - @mochi-ui/input-field@0.1.8
-  - @mochi-ui/login-widget@0.1.8
+  - @mochi-web3/login-widget@0.1.8
   - @mochi-ui/modal@0.2.6
   - @mochi-ui/page-header@0.2.4
   - @mochi-ui/popover@0.2.5
@@ -549,7 +549,7 @@
   - @mochi-ui/label@0.1.3
   - @mochi-ui/layout@0.1.3
   - @mochi-ui/list@0.0.16
-  - @mochi-ui/login-widget@0.1.7
+  - @mochi-web3/login-widget@0.1.7
   - @mochi-ui/logo@0.1.3
   - @mochi-ui/mochi-store@0.0.3
   - @mochi-ui/modal@0.2.5
@@ -599,7 +599,7 @@
   - @mochi-ui/label@0.1.2
   - @mochi-ui/layout@0.1.2
   - @mochi-ui/list@0.0.15
-  - @mochi-ui/login-widget@0.1.6
+  - @mochi-web3/login-widget@0.1.6
   - @mochi-ui/logo@0.1.2
   - @mochi-ui/modal@0.2.4
   - @mochi-ui/page-content@0.1.2
@@ -662,7 +662,7 @@
   - @mochi-ui/top-bar@0.1.0
   - @mochi-ui/alert@1.0.0
   - @mochi-ui/form@0.1.1
-  - @mochi-ui/login-widget@0.1.5
+  - @mochi-web3/login-widget@0.1.5
   - @mochi-ui/popover@0.2.2
   - @mochi-ui/accordion@0.1.4
   - @mochi-ui/avatar@0.0.14
@@ -744,7 +744,7 @@
   - @mochi-ui/dropdown@0.1.3
   - @mochi-ui/input-field@0.1.4
   - @mochi-ui/list@0.0.13
-  - @mochi-ui/login-widget@0.1.4
+  - @mochi-web3/login-widget@0.1.4
   - @mochi-ui/modal@0.2.2
   - @mochi-ui/popover@0.2.1
   - @mochi-ui/profile-badge@0.1.1
@@ -771,7 +771,7 @@
   - @mochi-ui/icon-button@0.3.1
   - @mochi-ui/input@0.1.2
   - @mochi-ui/input-field@0.1.3
-  - @mochi-ui/login-widget@0.1.3
+  - @mochi-web3/login-widget@0.1.3
   - @mochi-ui/modal@0.2.1
   - @mochi-ui/page-header@0.1.1
   - @mochi-ui/popover@0.2.0
@@ -868,7 +868,7 @@
   - @mochi-ui/profile-badge@0.1.0
   - @mochi-ui/popover@0.2.0
   - @mochi-ui/modal@0.2.0
-  - @mochi-ui/login-widget@0.1.2
+  - @mochi-web3/login-widget@0.1.2
   - @mochi-ui/typography@0.0.5
   - @mochi-ui/toggle-button@0.1.0
   - @mochi-ui/accordion@0.1.1
@@ -953,7 +953,7 @@
   - @mochi-ui/input@0.1.1
   - @mochi-ui/input-field@0.1.2
   - @mochi-ui/list@0.0.11
-  - @mochi-ui/login-widget@0.1.1
+  - @mochi-web3/login-widget@0.1.1
   - @mochi-ui/modal@0.1.6
   - @mochi-ui/popover@0.1.3
   - @mochi-ui/profile-badge@0.0.11
@@ -994,7 +994,7 @@
   [`c7ff58e`](https://github.com/consolelabs/mochi-ui/commit/c7ff58e1acf9073175c6ff82e47600c954036c67)]:
   - @mochi-ui/theme@0.2.0
   - @mochi-ui/input@0.1.0
-  - @mochi-ui/login-widget@0.1.0
+  - @mochi-web3/login-widget@0.1.0
   - @mochi-ui/icons@0.1.0
   - @mochi-ui/section-list@0.0.9
   - @mochi-ui/sidebar@0.0.12
@@ -1062,7 +1062,7 @@
   - @mochi-ui/dropdown@0.0.10
   - @mochi-ui/input@0.0.6
   - @mochi-ui/list@0.0.9
-  - @mochi-ui/login-widget@0.0.10
+  - @mochi-web3/login-widget@0.0.10
   - @mochi-ui/modal@0.1.4
   - @mochi-ui/section-list@0.0.8
   - @mochi-ui/select@0.0.6
@@ -1093,7 +1093,7 @@
   - @mochi-ui/sidebar@0.0.10
   - @mochi-ui/popover@0.1.0
   - @mochi-ui/list@0.0.8
-  - @mochi-ui/login-widget@0.0.9
+  - @mochi-web3/login-widget@0.0.9
   - @mochi-ui/section-list@0.0.7
 
 ## 0.0.12
@@ -1114,7 +1114,7 @@
   - @mochi-ui/input@0.0.5
   - @mochi-ui/input-field@0.0.7
   - @mochi-ui/list@0.0.7
-  - @mochi-ui/login-widget@0.0.8
+  - @mochi-web3/login-widget@0.0.8
   - @mochi-ui/modal@0.1.3
   - @mochi-ui/popover@0.0.8
   - @mochi-ui/profile-badge@0.0.8
@@ -1158,7 +1158,7 @@
   [`8457341`](https://github.com/consolelabs/websites/commit/8457341631ae28bb9f9d226e3b9c287d81cc9685),
   [`12abe24`](https://github.com/consolelabs/websites/commit/12abe24297aa49f72cffc98fa6d9adfd33b77e9a),
   [`696a6f7`](https://github.com/consolelabs/websites/commit/696a6f73c9aaa59f0dbeb737d05f2789125a5b4b)]:
-  - @mochi-ui/login-widget@0.0.7
+  - @mochi-web3/login-widget@0.0.7
   - @mochi-ui/theme@0.0.5
   - @mochi-ui/profile-badge@0.0.7
   - @mochi-ui/toggle-button@0.0.7
@@ -1190,7 +1190,7 @@
   [`df2f8aa`](https://github.com/consolelabs/websites/commit/df2f8aa51190efebef08f508c2f73a62b624ba06)]:
   - @mochi-ui/profile-badge@0.0.6
   - @mochi-ui/toggle-button@0.0.6
-  - @mochi-ui/login-widget@0.0.6
+  - @mochi-web3/login-widget@0.0.6
   - @mochi-ui/section-list@0.0.5
   - @mochi-ui/input-field@0.0.5
   - @mochi-ui/mochi-store@0.0.2
@@ -1248,7 +1248,7 @@
   - @mochi-ui/dropdown@0.0.6
   - @mochi-ui/heading@0.0.2
   - @mochi-ui/badge@0.0.6
-  - @mochi-ui/login-widget@0.0.5
+  - @mochi-web3/login-widget@0.0.5
 
 ## 0.0.6
 
@@ -1269,7 +1269,7 @@
   - @mochi-ui/dropdown@0.0.5
   - @mochi-ui/input@0.0.1
   - @mochi-ui/input-field@0.0.3
-  - @mochi-ui/login-widget@0.0.4
+  - @mochi-web3/login-widget@0.0.4
   - @mochi-ui/popover@0.0.4
   - @mochi-ui/sidebar@0.0.5
   - @mochi-ui/toggle-button@0.0.3
@@ -1295,7 +1295,7 @@
   - @mochi-ui/input@0.0.1
   - @mochi-ui/input-field@0.0.3
   - @mochi-ui/list@0.0.3
-  - @mochi-ui/login-widget@0.0.3
+  - @mochi-web3/login-widget@0.0.3
   - @mochi-ui/popover@0.0.3
   - @mochi-ui/profile-badge@0.0.4
   - @mochi-ui/section-list@0.0.3
@@ -1353,7 +1353,7 @@
   - @mochi-ui/badge@0.0.2
   - @mochi-ui/dropdown@0.0.2
   - @mochi-ui/input@0.0.1
-  - @mochi-ui/login-widget@0.0.2
+  - @mochi-web3/login-widget@0.0.2
   - @mochi-ui/popover@0.0.2
   - @mochi-ui/sidebar@0.0.2
   - @mochi-ui/profile-badge@0.0.2

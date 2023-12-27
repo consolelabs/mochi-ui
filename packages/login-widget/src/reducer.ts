@@ -1,5 +1,5 @@
 import UI, { Platform } from '@consolelabs/mochi-ui'
-import { ChainProvider } from '@mochi-ui/connect-wallet-widget'
+import { ChainProvider } from '@mochi-web3/connect-wallet-widget'
 import type { Action, LoginWidgetState, Wallet } from './store'
 
 export type SupportedChain =

@@ -5,7 +5,6 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   ProfileBadge,
-  useLoginWidget,
   Switch,
   Accordion,
   AccordionContent,
@@ -15,6 +14,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuPortal,
 } from '@mochi-ui/core'
+import { useLoginWidget } from '@mochi-web3/login-widget'
 import Link from 'next/link'
 import { truncateWallet } from '~utils/string'
 import {

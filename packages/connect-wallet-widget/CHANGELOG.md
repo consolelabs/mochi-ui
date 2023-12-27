@@ -1,4 +1,4 @@
-# @mochi-ui/connect-wallet-widget
+# @mochi-web3/connect-wallet-widget
 
 ## 0.0.6
 

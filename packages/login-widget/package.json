@@ -1,10 +1,11 @@
 {
-  "name": "@mochi-ui/login-widget",
+  "name": "@mochi-web3/login-widget",
   "version": "0.2.1",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
     "dist",
+    "PROVIDERS.md",
     "provider.d.ts"
   ],
   "publishConfig": {
@@ -38,7 +39,7 @@
     "@consolelabs/mochi-rest": "^5.1.9",
     "@consolelabs/mochi-ui": "^17.0.3",
     "@mochi-ui/button": "workspace:*",
-    "@mochi-ui/connect-wallet-widget": "workspace:*",
+    "@mochi-web3/connect-wallet-widget": "workspace:*",
     "@mochi-ui/dropdown": "workspace:*",
     "@mochi-ui/icon-button": "workspace:^",
     "@mochi-ui/icons": "workspace:*",
@@ -46,7 +47,7 @@
     "@mochi-ui/theme": "workspace:*",
     "@mochi-ui/typography": "workspace:^",
     "@radix-ui/react-dialog": "^1.0.5",
-    "@solana/web3.js": "^1.74.0",
+    "@solana/web3.js": "1.74.0",
     "@uidotdev/usehooks": "^2.4.0",
     "browser-string-hexer": "^1.0.0",
     "bs58": "^5.0.0",
@@ -58,5 +59,5 @@
     "use-reducer-async": "^2.1.1",
     "zustand": "^4.4.7"
   },
-  "clean-package": "../../../clean-package.config.json"
+  "clean-package": "../../clean-package.config.json"
 }

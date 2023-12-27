@@ -1,15 +1,15 @@
-import { loginWidget, popover } from '@mochi-ui/theme'
 import { Button } from '@mochi-ui/button'
 import { ArrowLeftLine, WalletSolid } from '@mochi-ui/icons'
-import { AnimatePresence, m, Transition, Variants } from 'framer-motion'
+import { loginWidget, popover } from '@mochi-ui/theme'
 import {
   ChainProvider,
   ConnectWalletWidget,
-} from '@mochi-ui/connect-wallet-widget'
+} from '@mochi-web3/connect-wallet-widget'
+import { AnimatePresence, Transition, Variants, m } from 'framer-motion'
 import { useCallback, useEffect, useState } from 'react'
 import ConnectSocial from './connect-social'
-import { useLoginWidget } from './store'
 import fetchers from './fetchers'
+import { useLoginWidget } from './store'
 
 const {
   loginContentClsx,

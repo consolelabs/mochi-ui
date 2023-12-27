@@ -4,7 +4,6 @@ import {
   Avatar,
   Button,
   List,
-  LoginWidget,
   Modal,
   ModalContent,
   ModalOverlay,
@@ -14,9 +13,9 @@ import {
   PopoverPortal,
   PopoverTrigger,
   Typography,
-  useLoginWidget,
 } from '@mochi-ui/core'
 import { ChevronDownLine } from '@mochi-ui/icons'
+import { LoginWidget, useLoginWidget } from '@mochi-web3/login-widget'
 import { useEffect, useState } from 'react'
 import { api } from '~constants/mochi'
 

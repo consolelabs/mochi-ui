@@ -9,7 +9,8 @@ import { TabbedFeatures } from '~cpn/landing/TabbedFeatures'
 import { SupportedPlatforms } from '~cpn/landing/SupportedPlatforms'
 import { LivePlatforms } from '~cpn/landing/LivePlatforms'
 import { Divider } from '~cpn/landing/Divider'
-import { Button, useLoginWidget } from '@mochi-ui/core'
+import { Button } from '@mochi-ui/core'
+import { useLoginWidget } from '@mochi-web3/login-widget'
 import {
   ArrowRightLine,
   BlocksColored,

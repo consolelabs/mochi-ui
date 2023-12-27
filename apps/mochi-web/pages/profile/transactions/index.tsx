@@ -8,8 +8,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-  useLoginWidget,
 } from '@mochi-ui/core'
+import { useLoginWidget } from '@mochi-web3/login-widget'
 import Link from 'next/link'
 import { SEO } from '~app/layout/seo'
 import { ROUTES } from '~constants/routes'

@@ -32,7 +32,6 @@
   "dependencies": {
     "@mochi-ui/card": "workspace:*",
     "@mochi-ui/skeleton": "workspace:*",
-    "@mochi-ui/connect-wallet-widget": "workspace:*",
     "@mochi-ui/content-editable": "workspace:*",
     "@mochi-ui/footer": "workspace:*",
     "@mochi-ui/accordion": "workspace:*",
@@ -48,7 +47,6 @@
     "@mochi-ui/layout": "workspace:*",
     "@mochi-ui/form": "workspace:*",
     "@mochi-ui/list": "workspace:*",
-    "@mochi-ui/login-widget": "workspace:*",
     "@mochi-ui/logo": "workspace:*",
     "@mochi-ui/page-content": "workspace:*",
     "@mochi-ui/page-header": "workspace:*",

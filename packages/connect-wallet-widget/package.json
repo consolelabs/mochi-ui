@@ -1,5 +1,5 @@
 {
-  "name": "@mochi-ui/connect-wallet-widget",
+  "name": "@mochi-web3/connect-wallet-widget",
   "version": "0.0.6",
   "description": "Widget to connect wallets of various chains",
   "keywords": [
@@ -19,7 +19,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/consolelabs/mochi-ui.git",
-    "directory": "packages/components/connect-wallet-widget"
+    "directory": "packages/connect-wallet-widget"
   },
   "bugs": {
     "url": "https://github.com/consolelabs/mochi-ui.git"
@@ -44,7 +44,7 @@
     "@mochi-ui/icons": "workspace:*",
     "@mochi-ui/tabs": "workspace:*",
     "@mochi-ui/theme": "workspace:*",
-    "@solana/web3.js": "^1.74.0",
+    "@solana/web3.js": "1.74.0",
     "@walletconnect/sign-client": "^2.10.6",
     "browser-string-hexer": "^1.0.0",
     "bs58": "^5.0.0",
@@ -64,5 +64,5 @@
     "react-dom": "^18.2.0",
     "tsconfig": "workspace:*"
   },
-  "clean-package": "../../../clean-package.config.json"
+  "clean-package": "../../clean-package.config.json"
 }

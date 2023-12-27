@@ -1,4 +1,4 @@
-# @mochi-ui/connect-wallet-widget
+# @mochi-web3/connect-wallet-widget
 
 The ConnectWalletWidget component is used for ...
 
@@ -13,13 +13,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @mochi-ui/connect-wallet-widget
+pnpm i @mochi-web3/connect-wallet-widget
 
 # Using NPM
-npm i @mochi-ui/connect-wallet-widget
+npm i @mochi-web3/connect-wallet-widget
 
 # Using Yarn
-yarn add @mochi-ui/connect-wallet-widget
+yarn add @mochi-web3/connect-wallet-widget
 ```
 
 ## Contribution

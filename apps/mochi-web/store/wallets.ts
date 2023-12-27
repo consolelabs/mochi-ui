@@ -7,7 +7,7 @@ import UI, {
   utils,
 } from '@consolelabs/mochi-formatter'
 import { truncate } from '@dwarvesf/react-utils'
-import { getLoginWidgetState } from '@mochi-ui/core'
+import { getLoginWidgetState } from '@mochi-web3/login-widget'
 
 // Create map of payable platforms from AddressChainType
 const PaymentPlatforms: Map<string, string> = new Map(
