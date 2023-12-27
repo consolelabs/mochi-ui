@@ -218,7 +218,10 @@ export const TransactionTable = (props: TransactionTableProps) => {
       <Table {...rest} columns={columns} className={clsx('p-0', className)} />
       {componentsProps.pagination && (
         <div className="p-4 text-sm">
-          <Pagination {...componentsProps.pagination} />
+          <Pagination
+            recordName="transactions"
+            {...componentsProps.pagination}
+          />
         </div>
       )}
     </>
