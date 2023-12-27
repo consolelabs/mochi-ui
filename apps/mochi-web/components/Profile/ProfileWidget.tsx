@@ -132,7 +132,11 @@ export const ProfileWidget = () => {
               color={pnl.startsWith('-') ? 'danger' : 'success'}
               className="mr-2 ml-1"
             >
-              {utils.formatPercentDigit(Number.isNaN(Number(pnl)) ? 0 : pnl)}
+              {utils.formatPercentDigit(Number.isNaN(Number(pnl)) ? 0 : pnl)} (
+              {utils.formatUsdDigit(
+                Number.isNaN(Number(pnl)) ? 0 : (pnl * total) / 100,
+              )}
+              )
             </Typography>
             <IconButton
               color="white"
