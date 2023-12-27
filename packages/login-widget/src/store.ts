@@ -1,7 +1,7 @@
+import type { Profile } from '@consolelabs/mochi-rest'
+import { ChainProvider } from '@mochi-web3/connect-wallet-widget'
 import { create } from 'zustand'
 import { useShallow } from 'zustand/react/shallow'
-import type { Profile } from '@consolelabs/mochi-rest'
-import { ChainProvider } from '@mochi-ui/connect-wallet-widget'
 import reducer from './reducer'
 
 export const STORAGE_KEY = 'mochi.token' as const

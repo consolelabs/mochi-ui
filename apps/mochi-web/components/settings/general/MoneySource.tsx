@@ -10,8 +10,8 @@ import {
   SelectSeparator,
   SelectTrigger,
   SelectValue,
-  useLoginWidget,
 } from '@mochi-ui/core'
+import { useLoginWidget } from '@mochi-web3/login-widget'
 import { PlusLine } from '@mochi-ui/icons'
 import { Controller, useFormContext } from 'react-hook-form'
 import { ResponseGeneralSettingData } from '~types/mochi-schema'

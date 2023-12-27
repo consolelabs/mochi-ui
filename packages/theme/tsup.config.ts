@@ -5,4 +5,6 @@ export default defineConfig(() => ({
   splitting: false,
   target: 'es2019',
   format: ['cjs', 'esm'],
+  // Transform ESM Modules
+  noExternal: ['flat'],
 }))

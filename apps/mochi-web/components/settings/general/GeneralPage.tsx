@@ -1,12 +1,7 @@
 import { API, GET_PATHS, apiLogout } from '~constants/api'
 import { api } from '~constants/mochi'
-import {
-  Button,
-  Separator,
-  Typography,
-  toast,
-  useLoginWidget,
-} from '@mochi-ui/core'
+import { Button, Separator, Typography, toast } from '@mochi-ui/core'
+import { useLoginWidget } from '@mochi-web3/login-widget'
 import { useRouter } from 'next/router'
 import React, { useCallback, useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'

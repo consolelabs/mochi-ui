@@ -1,4 +1,4 @@
-# @mochi-ui/login-widget
+# @mochi-web3/login-widget
 
 ## 0.2.1
 
@@ -8,7 +8,7 @@
   [[`95dd701`](https://github.com/consolelabs/mochi-ui/commit/95dd701502b2967b75b914bc8f65bfb5239149a7)]:
   - @mochi-ui/theme@0.12.1
   - @mochi-ui/button@0.4.10
-  - @mochi-ui/connect-wallet-widget@0.0.6
+  - @mochi-web3/connect-wallet-widget@0.0.6
   - @mochi-ui/dropdown@0.2.1
   - @mochi-ui/icon-button@0.4.11
   - @mochi-ui/tabs@0.2.1
@@ -50,7 +50,7 @@
   - @mochi-ui/theme@0.12.0
   - @mochi-ui/tabs@0.2.0
   - @mochi-ui/typography@0.1.0
-  - @mochi-ui/connect-wallet-widget@0.0.5
+  - @mochi-web3/connect-wallet-widget@0.0.5
   - @mochi-ui/button@0.4.9
   - @mochi-ui/icon-button@0.4.10
 
@@ -72,7 +72,7 @@
   - @mochi-ui/icon-button@0.4.9
   - @mochi-ui/theme@0.11.0
   - @mochi-ui/button@0.4.8
-  - @mochi-ui/connect-wallet-widget@0.0.4
+  - @mochi-web3/connect-wallet-widget@0.0.4
   - @mochi-ui/dropdown@0.1.12
   - @mochi-ui/tabs@0.1.12
   - @mochi-ui/typography@0.0.7
@@ -87,7 +87,7 @@
   [`9bb0983`](https://github.com/consolelabs/mochi-ui/commit/9bb0983bb1376c82e993f5f44d8865cd54af6e98)]:
   - @mochi-ui/theme@0.10.0
   - @mochi-ui/button@0.4.7
-  - @mochi-ui/connect-wallet-widget@0.0.3
+  - @mochi-web3/connect-wallet-widget@0.0.3
   - @mochi-ui/dropdown@0.1.11
   - @mochi-ui/icon-button@0.4.8
   - @mochi-ui/tabs@0.1.11
@@ -113,7 +113,7 @@
   - @mochi-ui/theme@0.9.0
   - @mochi-ui/icons@0.5.0
   - @mochi-ui/button@0.4.6
-  - @mochi-ui/connect-wallet-widget@0.0.2
+  - @mochi-web3/connect-wallet-widget@0.0.2
   - @mochi-ui/dropdown@0.1.10
   - @mochi-ui/icon-button@0.4.7
   - @mochi-ui/tabs@0.1.10

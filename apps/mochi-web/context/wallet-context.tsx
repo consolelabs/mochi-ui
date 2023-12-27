@@ -5,7 +5,7 @@ import React, {
   useMemo,
   useState,
 } from 'react'
-import { useLoginWidget } from '@mochi-ui/core'
+import { useLoginWidget } from '@mochi-web3/login-widget'
 import { SolanaWalletProvider } from 'context/wallets/solana/SolanaWalletProvider'
 import { EVMWalletProvider } from 'context/wallets/ethereum/EVMWalletProvider'
 import { useNetwork } from 'wagmi'

@@ -22,8 +22,6 @@ import {
   Modal,
   ModalContent,
   Avatar,
-  useLoginWidget,
-  LoginWidget,
   ModalPortal,
   ModalOverlay,
   PopoverPortal,
@@ -46,6 +44,7 @@ import clsx from 'clsx'
 import { DISCORD_LINK, TELEGRAM_LINK } from '~envs'
 import { useState } from 'react'
 import events from '~constants/events'
+import { LoginWidget, useLoginWidget } from '@mochi-web3/login-widget'
 import ProfileDropdown from '~cpn/profile-dropdrown'
 import { MobileNavAccordionItem } from './MobileNavAccordionItem'
 import { DashboardMobileSidebar } from './DashboardMobileSidebar'

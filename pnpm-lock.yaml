@@ -6,6 +6,8 @@ settings:
 
 overrides:
   '@typescript-eslint/parser': ^6.12.0
+  pino: ^8.15.0
+  pino-pretty: ^10.2.0
 
 importers:
 
@@ -107,7 +109,7 @@ importers:
         version: 7.2.0(@swc/core@1.3.96)(ts-node@10.9.1)(typescript@5.2.2)
       turbo:
         specifier: latest
-        version: 1.11.1
+        version: 1.11.2
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
@@ -124,11 +126,11 @@ importers:
         specifier: ^5.1.9
         version: 5.1.9
       '@dwarvesf/react-hooks':
-        specifier: ^0.8.1
-        version: 0.8.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^0.8.2
+        version: 0.8.2(react-dom@18.2.0)(react@18.2.0)
       '@dwarvesf/react-utils':
-        specifier: ^0.4.1
-        version: 0.4.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^0.4.2
+        version: 0.4.2(react-dom@18.2.0)(react@18.2.0)
       '@fnando/sparkline':
         specifier: ^0.3.10
         version: 0.3.10
@@ -156,6 +158,12 @@ importers:
       '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../packages/theme
+      '@mochi-web3/connect-wallet-widget':
+        specifier: workspace:*
+        version: link:../../packages/connect-wallet-widget
+      '@mochi-web3/login-widget':
+        specifier: workspace:*
+        version: link:../../packages/login-widget
       '@radix-ui/react-scroll-area':
         specifier: ^1.0.5
         version: 1.0.5(@types/react-dom@18.2.4)(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
@@ -167,16 +175,16 @@ importers:
         version: 0.9.22(@solana/web3.js@1.74.0)
       '@solana/wallet-adapter-react':
         specifier: ^0.15.30
-        version: 0.15.30(@solana/web3.js@1.74.0)(bs58@4.0.1)(react-native@0.73.1)(react@18.2.0)
+        version: 0.15.35(@solana/web3.js@1.74.0)(bs58@4.0.1)(react-native@0.73.1)(react@18.2.0)
       '@solana/wallet-adapter-wallets':
         specifier: 0.19.15
         version: 0.19.15(@babel/runtime@7.23.6)(@solana/web3.js@1.74.0)(bs58@4.0.1)(react-dom@18.2.0)(react@18.2.0)
       '@solana/web3.js':
-        specifier: ^1.74.0
+        specifier: 1.74.0
         version: 1.74.0
       '@suiet/wallet-kit':
         specifier: ^0.2.19
-        version: 0.2.19(@mysten/sui.js@0.41.1)(@mysten/wallet-standard@0.7.1)(@types/react-dom@18.2.4)(@types/react@18.2.28)(react-dom@18.2.0)(react-native@0.73.1)(react@18.2.0)
+        version: 0.2.22(@mysten/sui.js@0.45.1)(@types/react-dom@18.2.4)(@types/react@18.2.28)(react-dom@18.2.0)(react-native@0.73.1)(react@18.2.0)
       '@types/prismjs':
         specifier: ^1.26.3
         version: 1.26.3
@@ -184,8 +192,8 @@ importers:
         specifier: ^0.5.0
         version: 0.5.0
       class-variance-authority:
-        specifier: ^0.4.0
-        version: 0.4.0(typescript@5.2.2)
+        specifier: ^0.7.0
+        version: 0.7.0
       clsx:
         specifier: ^1.2.1
         version: 1.2.1
@@ -704,81 +712,11 @@ importers:
         specifier: workspace:*
         version: link:../../tsconfig
 
-  packages/components/connect-wallet-widget:
-    dependencies:
-      '@mochi-ui/button':
-        specifier: workspace:*
-        version: link:../button
-      '@mochi-ui/dropdown':
-        specifier: workspace:*
-        version: link:../dropdown
-      '@mochi-ui/icons':
-        specifier: workspace:*
-        version: link:../../icons
-      '@mochi-ui/tabs':
-        specifier: workspace:*
-        version: link:../tabs
-      '@mochi-ui/theme':
-        specifier: workspace:*
-        version: link:../../theme
-      '@solana/web3.js':
-        specifier: ^1.74.0
-        version: 1.74.0
-      '@walletconnect/sign-client':
-        specifier: ^2.10.6
-        version: 2.10.6
-      browser-string-hexer:
-        specifier: ^1.0.0
-        version: 1.0.0
-      bs58:
-        specifier: ^5.0.0
-        version: 5.0.0
-      class-variance-authority:
-        specifier: ^0.7.0
-        version: 0.7.0
-      clsx:
-        specifier: ^2.0.0
-        version: 2.0.0
-      dlv:
-        specifier: ^1.1.3
-        version: 1.1.3
-      ethers:
-        specifier: ^5.7.0
-        version: 5.7.0
-      is-mobile:
-        specifier: ^4.0.0
-        version: 4.0.0
-      mipd:
-        specifier: ^0.0.5
-        version: 0.0.5(typescript@5.2.2)
-    devDependencies:
-      '@types/dlv':
-        specifier: ^1.1.4
-        version: 1.1.4
-      clean-package:
-        specifier: ^2.2.0
-        version: 2.2.0
-      eslint-config-custom:
-        specifier: workspace:*
-        version: link:../../eslint-config-custom
-      prettier:
-        specifier: ^3.0.3
-        version: 3.1.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
-      tsconfig:
-        specifier: workspace:*
-        version: link:../../tsconfig
-
   packages/components/content-editable:
     dependencies:
       '@dwarvesf/react-utils':
-        specifier: ^0.4.1
-        version: 0.4.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^0.4.2
+        version: 0.4.2(react-dom@18.2.0)(react@18.2.0)
       '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons
@@ -814,8 +752,8 @@ importers:
   packages/components/drawer:
     dependencies:
       '@dwarvesf/react-utils':
-        specifier: ^0.4.1
-        version: 0.4.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^0.4.2
+        version: 0.4.2(react-dom@18.2.0)(react@18.2.0)
       '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons
@@ -1177,97 +1115,6 @@ importers:
         specifier: workspace:*
         version: link:../../tsconfig
 
-  packages/components/login-widget:
-    dependencies:
-      '@consolelabs/mochi-rest':
-        specifier: ^5.1.9
-        version: 5.1.9
-      '@consolelabs/mochi-ui':
-        specifier: ^17.0.3
-        version: 17.0.3(@consolelabs/mochi-rest@5.1.9)(ioredis@5.3.2)
-      '@mochi-ui/button':
-        specifier: workspace:*
-        version: link:../button
-      '@mochi-ui/connect-wallet-widget':
-        specifier: workspace:*
-        version: link:../connect-wallet-widget
-      '@mochi-ui/dropdown':
-        specifier: workspace:*
-        version: link:../dropdown
-      '@mochi-ui/icon-button':
-        specifier: workspace:^
-        version: link:../icon-button
-      '@mochi-ui/icons':
-        specifier: workspace:*
-        version: link:../../icons
-      '@mochi-ui/tabs':
-        specifier: workspace:*
-        version: link:../tabs
-      '@mochi-ui/theme':
-        specifier: workspace:*
-        version: link:../../theme
-      '@mochi-ui/typography':
-        specifier: workspace:^
-        version: link:../typography
-      '@radix-ui/react-dialog':
-        specifier: ^1.0.5
-        version: 1.0.5(@types/react-dom@18.2.4)(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
-      '@solana/web3.js':
-        specifier: ^1.74.0
-        version: 1.74.0
-      '@uidotdev/usehooks':
-        specifier: ^2.4.0
-        version: 2.4.0(react-dom@18.2.0)(react@18.2.0)
-      browser-string-hexer:
-        specifier: ^1.0.0
-        version: 1.0.0
-      bs58:
-        specifier: ^5.0.0
-        version: 5.0.0
-      dlv:
-        specifier: ^1.1.3
-        version: 1.1.3
-      ethers:
-        specifier: ^5.7.0
-        version: 5.7.0
-      framer-motion:
-        specifier: ^10.16.4
-        version: 10.16.4(react-dom@18.2.0)(react@18.2.0)
-      mipd:
-        specifier: ^0.0.5
-        version: 0.0.5(typescript@5.2.2)
-      query-string:
-        specifier: ^7.1.3
-        version: 7.1.3
-      use-reducer-async:
-        specifier: ^2.1.1
-        version: 2.1.1(react@18.2.0)
-      zustand:
-        specifier: ^4.4.7
-        version: 4.4.7(@types/react@18.2.28)(immer@10.0.3)(react@18.2.0)
-    devDependencies:
-      '@types/dlv':
-        specifier: ^1.1.4
-        version: 1.1.4
-      clean-package:
-        specifier: ^2.2.0
-        version: 2.2.0
-      eslint-config-custom:
-        specifier: workspace:*
-        version: link:../../eslint-config-custom
-      prettier:
-        specifier: ^3.0.3
-        version: 3.1.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
-      tsconfig:
-        specifier: workspace:*
-        version: link:../../tsconfig
-
   packages/components/logo:
     dependencies:
       '@mochi-ui/theme':
@@ -1527,8 +1374,8 @@ importers:
   packages/components/section-header:
     dependencies:
       '@dwarvesf/react-utils':
-        specifier: ^0.4.1
-        version: 0.4.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^0.4.2
+        version: 0.4.2(react-dom@18.2.0)(react@18.2.0)
       '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
@@ -1989,8 +1836,8 @@ importers:
   packages/components/top-bar:
     dependencies:
       '@dwarvesf/react-hooks':
-        specifier: ^0.8.1
-        version: 0.8.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^0.8.2
+        version: 0.8.2(react-dom@18.2.0)(react@18.2.0)
       '@mochi-ui/icon-button':
         specifier: workspace:*
         version: link:../icon-button
@@ -2081,6 +1928,76 @@ importers:
         specifier: workspace:*
         version: link:../../tsconfig
 
+  packages/connect-wallet-widget:
+    dependencies:
+      '@mochi-ui/button':
+        specifier: workspace:*
+        version: link:../components/button
+      '@mochi-ui/dropdown':
+        specifier: workspace:*
+        version: link:../components/dropdown
+      '@mochi-ui/icons':
+        specifier: workspace:*
+        version: link:../icons
+      '@mochi-ui/tabs':
+        specifier: workspace:*
+        version: link:../components/tabs
+      '@mochi-ui/theme':
+        specifier: workspace:*
+        version: link:../theme
+      '@solana/web3.js':
+        specifier: 1.74.0
+        version: 1.74.0
+      '@walletconnect/sign-client':
+        specifier: ^2.10.6
+        version: 2.10.6
+      browser-string-hexer:
+        specifier: ^1.0.0
+        version: 1.0.0
+      bs58:
+        specifier: ^5.0.0
+        version: 5.0.0
+      class-variance-authority:
+        specifier: ^0.7.0
+        version: 0.7.0
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
+      dlv:
+        specifier: ^1.1.3
+        version: 1.1.3
+      ethers:
+        specifier: ^5.7.0
+        version: 5.7.0
+      is-mobile:
+        specifier: ^4.0.0
+        version: 4.0.0
+      mipd:
+        specifier: ^0.0.5
+        version: 0.0.5(typescript@5.2.2)
+    devDependencies:
+      '@types/dlv':
+        specifier: ^1.1.4
+        version: 1.1.4
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.1.0
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../tsconfig
+
   packages/core:
     dependencies:
       '@mochi-ui/accordion':
@@ -2110,9 +2027,6 @@ importers:
       '@mochi-ui/checkbox':
         specifier: workspace:*
         version: link:../components/checkbox
-      '@mochi-ui/connect-wallet-widget':
-        specifier: workspace:*
-        version: link:../components/connect-wallet-widget
       '@mochi-ui/content-editable':
         specifier: workspace:*
         version: link:../components/content-editable
@@ -2146,9 +2060,6 @@ importers:
       '@mochi-ui/list':
         specifier: workspace:*
         version: link:../components/list
-      '@mochi-ui/login-widget':
-        specifier: workspace:*
-        version: link:../components/login-widget
       '@mochi-ui/logo':
         specifier: workspace:*
         version: link:../components/logo
@@ -2333,6 +2244,97 @@ importers:
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
+
+  packages/login-widget:
+    dependencies:
+      '@consolelabs/mochi-rest':
+        specifier: ^5.1.9
+        version: 5.1.9
+      '@consolelabs/mochi-ui':
+        specifier: ^17.0.3
+        version: 17.0.3(@consolelabs/mochi-rest@5.1.9)(ioredis@5.3.2)
+      '@mochi-ui/button':
+        specifier: workspace:*
+        version: link:../components/button
+      '@mochi-ui/dropdown':
+        specifier: workspace:*
+        version: link:../components/dropdown
+      '@mochi-ui/icon-button':
+        specifier: workspace:^
+        version: link:../components/icon-button
+      '@mochi-ui/icons':
+        specifier: workspace:*
+        version: link:../icons
+      '@mochi-ui/tabs':
+        specifier: workspace:*
+        version: link:../components/tabs
+      '@mochi-ui/theme':
+        specifier: workspace:*
+        version: link:../theme
+      '@mochi-ui/typography':
+        specifier: workspace:^
+        version: link:../components/typography
+      '@mochi-web3/connect-wallet-widget':
+        specifier: workspace:*
+        version: link:../connect-wallet-widget
+      '@radix-ui/react-dialog':
+        specifier: ^1.0.5
+        version: 1.0.5(@types/react-dom@18.2.4)(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
+      '@solana/web3.js':
+        specifier: 1.74.0
+        version: 1.74.0
+      '@uidotdev/usehooks':
+        specifier: ^2.4.0
+        version: 2.4.0(react-dom@18.2.0)(react@18.2.0)
+      browser-string-hexer:
+        specifier: ^1.0.0
+        version: 1.0.0
+      bs58:
+        specifier: ^5.0.0
+        version: 5.0.0
+      dlv:
+        specifier: ^1.1.3
+        version: 1.1.3
+      ethers:
+        specifier: ^5.7.0
+        version: 5.7.0
+      framer-motion:
+        specifier: ^10.16.4
+        version: 10.16.4(react-dom@18.2.0)(react@18.2.0)
+      mipd:
+        specifier: ^0.0.5
+        version: 0.0.5(typescript@5.2.2)
+      query-string:
+        specifier: ^7.1.3
+        version: 7.1.3
+      use-reducer-async:
+        specifier: ^2.1.1
+        version: 2.1.1(react@18.2.0)
+      zustand:
+        specifier: ^4.4.7
+        version: 4.4.7(@types/react@18.2.28)(immer@10.0.3)(react@18.2.0)
+    devDependencies:
+      '@types/dlv':
+        specifier: ^1.1.4
+        version: 1.1.4
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.1.0
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../tsconfig
 
   packages/storybook:
     dependencies:
@@ -4428,9 +4430,9 @@ packages:
     resolution: {integrity: sha512-xreUcOFF8+IQKWOBUrDKJbIw2ftpRVybFlEPVrbSlOBCbreCWrQ5754Gt9cHIcuBDAzearCDiBqzsGQdNgPJiw==}
     engines: {node: '>=11'}
     dependencies:
-      '@coral-xyz/borsh': 0.28.0(@solana/web3.js@1.87.6)
+      '@coral-xyz/borsh': 0.28.0(@solana/web3.js@1.74.0)
       '@noble/hashes': 1.3.3
-      '@solana/web3.js': 1.87.6
+      '@solana/web3.js': 1.74.0
       base64-js: 1.5.1
       bn.js: 5.2.1
       bs58: 4.0.1
@@ -4447,6 +4449,17 @@ packages:
       - bufferutil
       - encoding
       - utf-8-validate
+    dev: false
+
+  /@coral-xyz/borsh@0.28.0(@solana/web3.js@1.74.0):
+    resolution: {integrity: sha512-/u1VTzw7XooK7rqeD7JLUSwOyRSesPUk0U37BV9zK0axJc1q0nRbKFGFLYCQ16OtdOJTTwGfGp11Lx9B45bRCQ==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@solana/web3.js': ^1.68.0
+    dependencies:
+      '@solana/web3.js': 1.74.0
+      bn.js: 5.2.1
+      buffer-layout: 1.2.2
     dev: false
 
   /@coral-xyz/borsh@0.28.0(@solana/web3.js@1.87.6):
@@ -4507,21 +4520,21 @@ packages:
       eslint-plugin-testing-library: 5.11.1(eslint@8.56.0)(typescript@5.3.3)
     dev: true
 
-  /@dwarvesf/react-hooks@0.8.1(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-DWJpNGpgMYSntUf2O0oMNIp+LV55GCYR2ZluYjd7acTEgnQcqgrzXGb4qbUcV7onUbwHvgibHPkawks8tLsW9g==}
+  /@dwarvesf/react-hooks@0.8.2(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-LiigWf4llW9W9pBzGDTyw9Sp7xlacLh299b7vrOpksi2D4QtQxNCVFlZeFBOBRo8jUawxwaqT6BQaa9TKSdyMQ==}
     peerDependencies:
       react: ^16.8.0
       react-dom: ^16.8.0
     dependencies:
-      '@dwarvesf/react-utils': 0.4.1(react-dom@18.2.0)(react@18.2.0)
+      '@dwarvesf/react-utils': 0.4.2(react-dom@18.2.0)(react@18.2.0)
       copy-to-clipboard: 3.3.3
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       tslib: 2.6.2
     dev: false
 
-  /@dwarvesf/react-utils@0.4.1(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-yoN7eAbX5d4bw1dWbjggHd9Sq9HZjfbDT7uzDANtNcLyqEvV/2N3o6XaUp/dQXDBcyfmo+b2u+Fsf2EBz37FtA==}
+  /@dwarvesf/react-utils@0.4.2(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-pUXyEpqiLwt918h9N2QAdI/M4QUc0mjfYAoOR2oW0o29xMeVjK0hXwKhjWQy5mCNWDQxBimSRf1ornz7LVioSg==}
     peerDependencies:
       react: ^16.8.0
       react-dom: ^16.8.0
@@ -4541,6 +4554,7 @@ packages:
 
   /@emotion/memoize@0.7.4:
     resolution: {integrity: sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==}
+    requiresBuild: true
     dev: false
     optional: true
 
@@ -5395,7 +5409,7 @@ packages:
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 18.15.5
+      '@types/node': 18.19.3
       chalk: 4.1.2
       jest-message-util: 29.7.0
       jest-util: 29.7.0
@@ -5523,7 +5537,7 @@ packages:
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
       '@jridgewell/trace-mapping': 0.3.20
-      '@types/node': 18.15.5
+      '@types/node': 18.19.3
       chalk: 4.1.2
       collect-v8-coverage: 1.0.2
       exit: 0.1.2
@@ -5620,7 +5634,7 @@ packages:
     dependencies:
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 18.15.5
+      '@types/node': 18.19.3
       '@types/yargs': 16.0.9
       chalk: 4.1.2
     dev: true
@@ -5965,17 +5979,17 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@mysten/bcs@0.7.3:
-    resolution: {integrity: sha512-fbusBfsyc2MpTACi72H5edWJ670T84va+qn9jSPpb5BzZ+pzUM1Q0ApPrF5OT+mB1o5Ng+mxPQpBCZQkfiV2TA==}
+  /@mysten/bcs@0.8.1:
+    resolution: {integrity: sha512-wSEdP7QEfGQdb34g+7R0f3OdRqrv88iIABfJVDVJ6IsGLYVILreh8dZfNpZNUUyzctiyhX7zB9e/lR5qkddFPA==}
     dependencies:
       bs58: 5.0.0
     dev: false
 
-  /@mysten/sui.js@0.41.1:
-    resolution: {integrity: sha512-qSFVqr6Z2LboHhiaP51kluZQaW2oCY4gOF8JBZOl/cB/tvOPoQvdvtfNqViDkTZcaJrYRk8gOCYjozvW4VGX0A==}
+  /@mysten/sui.js@0.45.1:
+    resolution: {integrity: sha512-B6RKfBAR1yr3EvHyQzXgkyOGOXE7jUbgblyitK/25CGp4Uba4VHEZ/N5DCbiuTJdt2k1H42sSXqIGfYqHN+6Cw==}
     engines: {node: '>=16'}
     dependencies:
-      '@mysten/bcs': 0.7.3
+      '@mysten/bcs': 0.8.1
       '@noble/curves': 1.3.0
       '@noble/hashes': 1.3.3
       '@open-rpc/client-js': 1.8.1
@@ -5991,10 +6005,10 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@mysten/wallet-standard@0.7.1:
-    resolution: {integrity: sha512-qnx5bKkHtmqDrBjjfnF30cVHfLWF7fTK3OV5H2Yn4L+GCn0pHugBYwwvN8/75RyS5fgoa9rXDW9RS04E7S542g==}
+  /@mysten/wallet-standard@0.8.7:
+    resolution: {integrity: sha512-kY/gc8WHeqcWPgnQ69l9jbyXSsnVJqddspX1rvLF5bZV1Ud7ZrVO1V+pL4LNTxeQq02EHz4n5DLOWGHDd3mrTg==}
     dependencies:
-      '@mysten/sui.js': 0.41.1
+      '@mysten/sui.js': 0.45.1
       '@wallet-standard/core': 1.0.3
     transitivePeerDependencies:
       - bufferutil
@@ -8074,7 +8088,7 @@ packages:
     resolution: {integrity: sha512-osvveYtyzdEVbt3OfwwXFr4P2iVBL5u1Q3q4ONBfDY/UpOuXmOlbgwc1xECEboY8wIays8Yt6onaWMUdUbfl0A==}
     dependencies:
       '@noble/curves': 1.1.0
-      '@noble/hashes': 1.3.1
+      '@noble/hashes': 1.3.3
       '@scure/base': 1.1.5
     dev: false
 
@@ -8082,7 +8096,7 @@ packages:
     resolution: {integrity: sha512-N1ZhksgwD3OBlwTv3R6KFEcPojl/W4ElJOeCZdi+vuI5QmTFwLq3OFf2zd2ROpKvxFdgZ6hUpb0dx9bVNEwYCA==}
     dependencies:
       '@noble/curves': 1.2.0
-      '@noble/hashes': 1.3.2
+      '@noble/hashes': 1.3.3
       '@scure/base': 1.1.5
     dev: false
 
@@ -8097,7 +8111,7 @@ packages:
   /@scure/bip39@1.2.1:
     resolution: {integrity: sha512-Z3/Fsz1yr904dduJD0NpiyRHhRYHdcnyh73FZWiV+/qhWi83wNJ3NWolYqCEN+ZWsUz2TWwajJggcRE9r1zUYg==}
     dependencies:
-      '@noble/hashes': 1.3.2
+      '@noble/hashes': 1.3.3
       '@scure/base': 1.1.5
     dev: false
 
@@ -8148,12 +8162,12 @@ packages:
     resolution: {integrity: sha512-+9jVqKhRSpsc591z5vX+X5Yyw+he/HCB4iQ/RYxw35CEPaY1gnsNE43nf9n9AaYjAQrTiI/mOwKUKdUs9vf7Xg==}
     dev: false
 
-  /@solana-mobile/mobile-wallet-adapter-protocol-web3js@0.9.9(@solana/web3.js@1.74.0)(react-native@0.73.1):
-    resolution: {integrity: sha512-JzlNjZ/Uog56iP/z8QtNrIOgQwmaoicpr9768s0QVF4xuvNbyWHOaDtsngzNneNTMfLSgd0tueboKUrkvto/Wg==}
+  /@solana-mobile/mobile-wallet-adapter-protocol-web3js@2.0.2(@solana/web3.js@1.74.0)(react-native@0.73.1):
+    resolution: {integrity: sha512-z1KKJb5v4thNvpncQlohfDpWLCmelEMRtJpmLjocSIUCuy88yLJZ0+LXvFMWP+cdCoakEctI2vH8XAUifxPFBg==}
     peerDependencies:
       '@solana/web3.js': ^1.58.0
     dependencies:
-      '@solana-mobile/mobile-wallet-adapter-protocol': 0.9.9(react-native@0.73.1)
+      '@solana-mobile/mobile-wallet-adapter-protocol': 2.0.1(react-native@0.73.1)
       '@solana/web3.js': 1.74.0
       bs58: 5.0.0
       js-base64: 3.7.5
@@ -8161,21 +8175,21 @@ packages:
       - react-native
     dev: false
 
-  /@solana-mobile/mobile-wallet-adapter-protocol@0.9.9(react-native@0.73.1):
-    resolution: {integrity: sha512-Jxd3O3txeUiAXLIo6YfWhTs7UTVMlnIgz/xgdYmf99TSE4IaUhWGEVC2/OcOA7eAA85y0/XItU5OhHhXSPva8g==}
+  /@solana-mobile/mobile-wallet-adapter-protocol@2.0.1(react-native@0.73.1):
+    resolution: {integrity: sha512-UddhYILR886o7q/ZcEBu+CCix9Ns1hNIidTQKkecbz4FeJoO5rARhRuPwFbYoaBlCKvjmg0CkWlVwW3bVu+qJQ==}
     peerDependencies:
       react-native: '>0.69'
     dependencies:
       react-native: 0.73.1(@babel/core@7.23.6)(@babel/preset-env@7.23.6)(react@18.2.0)
     dev: false
 
-  /@solana-mobile/wallet-adapter-mobile@0.9.9(@solana/web3.js@1.74.0)(react-native@0.73.1):
-    resolution: {integrity: sha512-nmxTEbKgkuI37zMpI3GWWn6DvAd/lgl6GF1lGbYSObXyZDun0bfCIQ8rBVEcvwZLyekp+i/nLW8JdSccN4i3zw==}
+  /@solana-mobile/wallet-adapter-mobile@2.0.1(@solana/web3.js@1.74.0)(react-native@0.73.1):
+    resolution: {integrity: sha512-QIM8nqVRmv8yEsTEfMbzWH7NoVVC6F417Z/tf6FpOVn1N6MqiZc5kvajsaRJKXrHzi5r5023SKErjg9LjZshXw==}
     peerDependencies:
       '@solana/web3.js': ^1.58.0
     dependencies:
       '@react-native-async-storage/async-storage': 1.21.0(react-native@0.73.1)
-      '@solana-mobile/mobile-wallet-adapter-protocol-web3js': 0.9.9(@solana/web3.js@1.74.0)(react-native@0.73.1)
+      '@solana-mobile/mobile-wallet-adapter-protocol-web3js': 2.0.2(@solana/web3.js@1.74.0)(react-native@0.73.1)
       '@solana/wallet-adapter-base': 0.9.22(@solana/web3.js@1.74.0)
       '@solana/web3.js': 1.74.0
       js-base64: 3.7.5
@@ -8576,16 +8590,16 @@ packages:
       '@solana/web3.js': 1.74.0
     dev: false
 
-  /@solana/wallet-adapter-react@0.15.30(@solana/web3.js@1.74.0)(bs58@4.0.1)(react-native@0.73.1)(react@18.2.0):
-    resolution: {integrity: sha512-62fg46AIia0udRlQLjMxHPa/cQUE2Neur/s74r96gakyPPEEFbbAcVPHMkEX7r0DPjl5lWj834beIbUXBwHjlw==}
+  /@solana/wallet-adapter-react@0.15.35(@solana/web3.js@1.74.0)(bs58@4.0.1)(react-native@0.73.1)(react@18.2.0):
+    resolution: {integrity: sha512-i4hc/gNLTYNLMEt2LS+4lrrc0QAwa5SU2PtYMnZ2A3rsoKF5m1bv1h6cjLj2KBry4/zRGEBoqkiMOC5zHkLnRQ==}
     engines: {node: '>=16'}
     peerDependencies:
-      '@solana/web3.js': ^1.58.0
+      '@solana/web3.js': ^1.77.3
       react: '*'
     dependencies:
-      '@solana-mobile/wallet-adapter-mobile': 0.9.9(@solana/web3.js@1.74.0)(react-native@0.73.1)
-      '@solana/wallet-adapter-base': 0.9.22(@solana/web3.js@1.74.0)
-      '@solana/wallet-standard-wallet-adapter-react': 1.1.1(@solana/wallet-adapter-base@0.9.22)(@solana/web3.js@1.74.0)(bs58@4.0.1)(react@18.2.0)
+      '@solana-mobile/wallet-adapter-mobile': 2.0.1(@solana/web3.js@1.74.0)(react-native@0.73.1)
+      '@solana/wallet-adapter-base': 0.9.23(@solana/web3.js@1.74.0)
+      '@solana/wallet-standard-wallet-adapter-react': 1.1.1(@solana/wallet-adapter-base@0.9.23)(@solana/web3.js@1.74.0)(bs58@4.0.1)(react@18.2.0)
       '@solana/web3.js': 1.74.0
       react: 18.2.0
     transitivePeerDependencies:
@@ -8931,14 +8945,14 @@ packages:
       bs58: 4.0.1
     dev: false
 
-  /@solana/wallet-standard-wallet-adapter-react@1.1.1(@solana/wallet-adapter-base@0.9.22)(@solana/web3.js@1.74.0)(bs58@4.0.1)(react@18.2.0):
+  /@solana/wallet-standard-wallet-adapter-react@1.1.1(@solana/wallet-adapter-base@0.9.23)(@solana/web3.js@1.74.0)(bs58@4.0.1)(react@18.2.0):
     resolution: {integrity: sha512-uioyIU6huyTVHu8eF/hgbW+IbeY4qzoJRCO1UddMl84l8Y1WGkSPCsGliAGc0NNMwHCBi+icP+DjhGc9JdwEMA==}
     engines: {node: '>=16'}
     peerDependencies:
       '@solana/wallet-adapter-base': '*'
       react: '*'
     dependencies:
-      '@solana/wallet-adapter-base': 0.9.22(@solana/web3.js@1.74.0)
+      '@solana/wallet-adapter-base': 0.9.23(@solana/web3.js@1.74.0)
       '@solana/wallet-standard-wallet-adapter-base': 1.1.1(@solana/web3.js@1.74.0)(bs58@4.0.1)
       '@wallet-standard/app': 1.0.1
       '@wallet-standard/base': 1.0.1
@@ -10056,42 +10070,51 @@ packages:
     resolution: {integrity: sha512-bprE8+K5V+DPX7q2e2K57ImqNBdfGHDIWaGI5xHxZoxbKOuQZn4wzPiUxOAHnsUr3w3xHrWXwN7gnG/iIuEMIg==}
     dev: false
 
-  /@suiet/wallet-kit@0.2.19(@mysten/sui.js@0.41.1)(@mysten/wallet-standard@0.7.1)(@types/react-dom@18.2.4)(@types/react@18.2.28)(react-dom@18.2.0)(react-native@0.73.1)(react@18.2.0):
-    resolution: {integrity: sha512-SeagEd4EtqH3qCGRn5+oKglenCVC9UzIwNSYOgJHmwhPhpmLsNP8IhNftwTAHZq55qaFCVbFP8m3Roo18nV6Bg==}
+  /@suiet/wallet-kit@0.2.22(@mysten/sui.js@0.45.1)(@types/react-dom@18.2.4)(@types/react@18.2.28)(react-dom@18.2.0)(react-native@0.73.1)(react@18.2.0):
+    resolution: {integrity: sha512-vJ+t3l95SwZ0VU8xwDCbccgSQzgtY/srON4IEKI2K4UUV/Epy+EhqXIo5XceH1gJGy4O3kM5kvIZj0SJsp+Owg==}
     peerDependencies:
-      '@mysten/sui.js': 0.41.1
-      '@mysten/wallet-standard': 0.7.1
+      '@mysten/sui.js': 0.45.1
+      react: '*'
+      react-dom: '*'
     dependencies:
-      '@mysten/sui.js': 0.41.1
-      '@mysten/wallet-standard': 0.7.1
+      '@mysten/sui.js': 0.45.1
+      '@mysten/wallet-standard': 0.8.7
       '@radix-ui/react-dialog': 1.0.5(@types/react-dom@18.2.4)(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
-      '@suiet/wallet-sdk': 0.2.17(@mysten/sui.js@0.41.1)(@mysten/wallet-standard@0.7.1)
+      '@suiet/wallet-sdk': 0.2.19(@mysten/sui.js@0.45.1)
       '@svgr/rollup': 6.5.1
       '@wallet-standard/core': 1.0.3
       buffer: 6.0.3
       classnames: 2.3.3
       lodash-es: 4.17.21
       mitt: 3.0.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
       react-query: 3.39.3(react-dom@18.2.0)(react-native@0.73.1)(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
       - '@types/react-dom'
-      - react
-      - react-dom
+      - bufferutil
+      - encoding
       - react-native
       - supports-color
+      - utf-8-validate
     dev: false
 
-  /@suiet/wallet-sdk@0.2.17(@mysten/sui.js@0.41.1)(@mysten/wallet-standard@0.7.1):
-    resolution: {integrity: sha512-PKEB2TceqgkNWMbco0Xx/h+5VrQ2ANAmAFDgilduuklk8Yk2zaJpkoiEygIS03Yjwea3G0Z1aOd/ne74Bt0BMg==}
+  /@suiet/wallet-sdk@0.2.19(@mysten/sui.js@0.45.1):
+    resolution: {integrity: sha512-i4iGdDkEuO5/TLDfWDj1fhJ3yttaGsEY6hQ/FwLwxrsuuTbjqlVDXqScURz/aGHbWlVfW5x+kcOiE44mGDSMsg==}
     peerDependencies:
-      '@mysten/sui.js': 0.41.1
-      '@mysten/wallet-standard': 0.7.1
+      '@mysten/sui.js': 0.45.1
     dependencies:
-      '@mysten/sui.js': 0.41.1
-      '@mysten/wallet-standard': 0.7.1
+      '@mysten/sui.js': 0.45.1
+      '@mysten/wallet-standard': 0.8.7
       '@noble/hashes': 1.3.3
+      buffer: 6.0.3
+      superstruct: 1.0.3
       tweetnacl: 1.0.3
+    transitivePeerDependencies:
+      - bufferutil
+      - encoding
+      - utf-8-validate
     dev: false
 
   /@svgr/babel-plugin-add-jsx-attribute@6.5.1(@babel/core@7.23.6):
@@ -11200,7 +11223,7 @@ packages:
   /@types/graceful-fs@4.1.9:
     resolution: {integrity: sha512-olP3sd1qOEe5dXTSaFvQG+02VdRXcdytWLAZsAq1PecU8uqQAhkrnbli7DagjtXKW/Bl7YJbUsa8MPcuc8LHEQ==}
     dependencies:
-      '@types/node': 18.15.5
+      '@types/node': 18.19.3
     dev: true
 
   /@types/hast@2.3.8:
@@ -11453,7 +11476,7 @@ packages:
   /@types/through@0.0.33:
     resolution: {integrity: sha512-HsJ+z3QuETzP3cswwtzt2vEIiHBk/dCcHGhbmG5X3ecnwFD/lPrMpliGXxSCg03L9AhrdwA4Oz/qfspkDW+xGQ==}
     dependencies:
-      '@types/node': 18.15.5
+      '@types/node': 18.19.3
     dev: true
 
   /@types/tough-cookie@4.0.5:
@@ -12137,7 +12160,7 @@ packages:
   /@walletconnect/logger@2.0.1:
     resolution: {integrity: sha512-SsTKdsgWm+oDTBeNE/zHxxr5eJfZmE9/5yp/Ku+zJtcTAjELb3DXueWkDXmE9h8uHIbJzIb5wj5lPdzyrjT6hQ==}
     dependencies:
-      pino: 7.11.0
+      pino: 8.17.2
       tslib: 1.14.1
     dev: false
 
@@ -12458,7 +12481,7 @@ packages:
   /@walletconnect/window-metadata@1.0.0:
     resolution: {integrity: sha512-9eFvmJxIKCC3YWOL97SgRkKhlyGXkrHwamfechmqszbypFspaSk+t2jQXAEU7YClHF6Qjw5eYOmy1//zFi9/GA==}
     dependencies:
-      '@walletconnect/window-getters': 1.0.0
+      '@walletconnect/window-getters': 1.0.1
     dev: false
 
   /@walletconnect/window-metadata@1.0.1:
@@ -14198,17 +14221,6 @@ packages:
     resolution: {integrity: sha512-0TNiGstbQmCFwt4akjjBg5pLRTSyj/PkWQ1ZoO2zntmg9yLqSRxwEa4iCfQLGjqhiqBfOJa7W/E8wfGrTDmlZQ==}
     dev: true
 
-  /class-variance-authority@0.4.0(typescript@5.2.2):
-    resolution: {integrity: sha512-74enNN8O9ZNieycac/y8FxqgyzZhZbxmCitAtAeUrLPlxjSd5zA7LfpprmxEcOmQBnaGs5hYhiSGnJ0mqrtBLQ==}
-    peerDependencies:
-      typescript: '>= 4.5.5 < 5'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      typescript: 5.2.2
-    dev: false
-
   /class-variance-authority@0.7.0:
     resolution: {integrity: sha512-jFI8IQw4hczaL4ALINxqLEXQbWcNjoSkloa4IaufXCJr6QawJyw7tuRysRsrE8w2p/4gGaxKIt/hX3qz/IbD1A==}
     dependencies:
@@ -15645,15 +15657,6 @@ packages:
       readable-stream: 2.3.8
       stream-shift: 1.0.1
     dev: true
-
-  /duplexify@4.1.2:
-    resolution: {integrity: sha512-fz3OjcNCHmRP12MJoZMPglx8m4rrFP8rovnk4vT8Fs+aonZoCwGg10dSsQsfP/E62eZcPTMSMP6686fu9Qlqtw==}
-    dependencies:
-      end-of-stream: 1.4.4
-      inherits: 2.0.4
-      readable-stream: 3.6.2
-      stream-shift: 1.0.1
-    dev: false
 
   /eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
@@ -17095,7 +17098,6 @@ packages:
   /flow-parser@0.225.1:
     resolution: {integrity: sha512-50fjR6zbLQcpq5IFNkheUSY/AFPxVeeLiBM5B3NQBSKId2G0cUuExOlDDOguxc49dl9lnh8hI1xcYlPJWNp4KQ==}
     engines: {node: '>=0.4.0'}
-    dev: true
 
   /focus-visible@5.2.0:
     resolution: {integrity: sha512-Rwix9pBtC1Nuy5wysTmKy+UjbDJpIfg8eHjw0rjZ1mX4GNLz1Bmd16uDpI3Gk1i70Fgcs8Csg2lPm8HULFg9DQ==}
@@ -18673,7 +18675,7 @@ packages:
       '@jest/expect': 29.7.0
       '@jest/test-result': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 18.15.5
+      '@types/node': 18.19.3
       chalk: 4.1.2
       co: 4.6.0
       dedent: 1.5.1
@@ -18821,7 +18823,7 @@ packages:
       '@jest/environment': 29.7.0
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 18.15.5
+      '@types/node': 18.19.3
       jest-mock: 29.7.0
       jest-util: 29.7.0
 
@@ -18835,7 +18837,7 @@ packages:
     dependencies:
       '@jest/types': 29.6.3
       '@types/graceful-fs': 4.1.9
-      '@types/node': 18.15.5
+      '@types/node': 18.19.3
       anymatch: 3.1.3
       fb-watchman: 2.0.2
       graceful-fs: 4.2.11
@@ -18939,7 +18941,7 @@ packages:
       '@jest/test-result': 29.7.0
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 18.15.5
+      '@types/node': 18.19.3
       chalk: 4.1.2
       emittery: 0.13.1
       graceful-fs: 4.2.11
@@ -18970,7 +18972,7 @@ packages:
       '@jest/test-result': 29.7.0
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 18.15.5
+      '@types/node': 18.19.3
       chalk: 4.1.2
       cjs-module-lexer: 1.2.3
       collect-v8-coverage: 1.0.2
@@ -19082,7 +19084,7 @@ packages:
     resolution: {integrity: sha512-eIz2msL/EzL9UFTFFx7jBTkeZfku0yUAyZZZmJ93H2TYEiroIx2PQjEXcwYtYl8zXCxb+PAmA2hLIt/6ZEkPHw==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
-      '@types/node': 18.15.5
+      '@types/node': 18.19.3
       jest-util: 29.7.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
@@ -19187,7 +19189,7 @@ packages:
       '@babel/register': 7.22.15(@babel/core@7.23.6)
       babel-core: 7.0.0-bridge.0(@babel/core@7.23.6)
       chalk: 4.1.2
-      flow-parser: 0.206.0
+      flow-parser: 0.225.1
       graceful-fs: 4.2.11
       micromatch: 4.0.5
       neo-async: 2.6.2
@@ -21354,8 +21356,9 @@ packages:
     resolution: {integrity: sha512-zuHHiGTYTA1sYJ/wZN+t5HKZaH23i4yI1HMwbuXm24Nid7Dv0KcuRlKoNKS9UNfAVSBlnGLcuQrnOKWOZoEGaw==}
     dev: true
 
-  /on-exit-leak-free@0.2.0:
-    resolution: {integrity: sha512-dqaz3u44QbRXQooZLTUKU41ZrzYrcvLISVgbrzbyCMxpmSLJvZ3ZamIJIZ29P6OhZIkNIQKosdeM6t1LYbA9hg==}
+  /on-exit-leak-free@2.1.2:
+    resolution: {integrity: sha512-0eJJY6hXLGf1udHwfNftBqH+g73EU4B504nZeKpz1sYRKafAghwxEJunB2O7rDZkL4PGfsMVnTXZ2EjibbqcsA==}
+    engines: {node: '>=14.0.0'}
     dev: false
 
   /on-finished@2.3.0:
@@ -21787,32 +21790,32 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
-  /pino-abstract-transport@0.5.0:
-    resolution: {integrity: sha512-+KAgmVeqXYbTtU2FScx1XS3kNyfZ5TrXY07V96QnUSFqo2gAqlvmaxH67Lj7SWazqsMabf+58ctdTcBgnOLUOQ==}
+  /pino-abstract-transport@1.1.0:
+    resolution: {integrity: sha512-lsleG3/2a/JIWUtf9Q5gUNErBqwIu1tUKTT3dUzaf5DySw9ra1wcqKjJjLX1VTY64Wk1eEOYsVGSaGfCK85ekA==}
     dependencies:
-      duplexify: 4.1.2
+      readable-stream: 4.5.1
       split2: 4.2.0
     dev: false
 
-  /pino-std-serializers@4.0.0:
-    resolution: {integrity: sha512-cK0pekc1Kjy5w9V2/n+8MkZwusa6EyyxfeQCB799CQRhRt/CqYKiWs5adeu8Shve2ZNffvfC/7J64A2PJo1W/Q==}
+  /pino-std-serializers@6.2.2:
+    resolution: {integrity: sha512-cHjPPsE+vhj/tnhCy/wiMh3M3z3h/j15zHQX+S9GkTBgqJuTuJzYJ4gUyACLhDaJ7kk9ba9iRDmbH2tJU03OiA==}
     dev: false
 
-  /pino@7.11.0:
-    resolution: {integrity: sha512-dMACeu63HtRLmCG8VKdy4cShCPKaYDR4youZqoSWLxl5Gu99HUw8bw75thbPv9Nip+H+QYX8o3ZJbTdVZZ2TVg==}
+  /pino@8.17.2:
+    resolution: {integrity: sha512-LA6qKgeDMLr2ux2y/YiUt47EfgQ+S9LznBWOJdN3q1dx2sv0ziDLUBeVpyVv17TEcGCBuWf0zNtg3M5m1NhhWQ==}
     hasBin: true
     dependencies:
       atomic-sleep: 1.0.0
       fast-redact: 3.3.0
-      on-exit-leak-free: 0.2.0
-      pino-abstract-transport: 0.5.0
-      pino-std-serializers: 4.0.0
-      process-warning: 1.0.0
+      on-exit-leak-free: 2.1.2
+      pino-abstract-transport: 1.1.0
+      pino-std-serializers: 6.2.2
+      process-warning: 3.0.0
       quick-format-unescaped: 4.0.4
-      real-require: 0.1.0
+      real-require: 0.2.0
       safe-stable-stringify: 2.4.3
-      sonic-boom: 2.8.0
-      thread-stream: 0.15.2
+      sonic-boom: 3.7.0
+      thread-stream: 2.4.1
     dev: false
 
   /pirates@4.0.6:
@@ -22217,8 +22220,8 @@ packages:
   /process-nextick-args@2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
 
-  /process-warning@1.0.0:
-    resolution: {integrity: sha512-du4wfLyj4yCZq1VupnVSZmRsPJsNuxoDQFdCFHLaYiEbFBD7QE0a+I4D7hOxrVnh78QE/YipFAj9lXHiXocV+Q==}
+  /process-warning@3.0.0:
+    resolution: {integrity: sha512-mqn0kFRl0EoqhnL0GQ0veqFHyIN1yig9RHh/InzORTUiZHFRAur+aMtRkELNwGs9aNwKS6tg/An4NYBPGwvtzQ==}
     dev: false
 
   /process@0.11.10:
@@ -22981,8 +22984,8 @@ packages:
     resolution: {integrity: sha512-k2d6ACCkiNYz222Fs/iNze30rRJ1iIicW7JuX/7/cozvih6YCkFZH+J6mAFDVgv0dRBaAyr4jDqC95R2y4IADg==}
     dev: false
 
-  /real-require@0.1.0:
-    resolution: {integrity: sha512-r/H9MzAWtrv8aSVjPCMFpDMl5q66GqtmmRkRjpHTsp4zBAa+snZyiQNlMONiUmEJcsnaw0wCauJ2GWODr/aFkg==}
+  /real-require@0.2.0:
+    resolution: {integrity: sha512-57frrGM/OCTLqLOAh0mhVA9VBMHd+9U7Zb2THMGdBUoZVOtGbJzjxsYGDJ3A9AYYCP4hn6y1TVbaOfzWtm5GFg==}
     engines: {node: '>= 12.13.0'}
     dev: false
 
@@ -23909,8 +23912,8 @@ packages:
       - supports-color
     dev: false
 
-  /sonic-boom@2.8.0:
-    resolution: {integrity: sha512-kuonw1YOYYNOve5iHdSahXPOK49GqwA+LZhI6Wz/l0rP57iKyXXIHaRagOBHAPmGwJC6od2Z9zgvZ5loSgMlVg==}
+  /sonic-boom@3.7.0:
+    resolution: {integrity: sha512-IudtNvSqA/ObjN97tfgNmOKyDOs4dNcg4cUUsHDebqsgb8wGBBwb31LIgShNO8fye0dFI52X1+tFoKKI6Rq1Gg==}
     dependencies:
       atomic-sleep: 1.0.0
     dev: false
@@ -24117,6 +24120,7 @@ packages:
 
   /stream-shift@1.0.1:
     resolution: {integrity: sha512-AiisoFqQ0vbGcZgQPY1cdP2I76glaVA/RauYR4G4thNFgkTqr90yXTo4LYX60Jl+sIlPNHHdGSwo01AvbKUSVQ==}
+    dev: true
 
   /stream-transform@2.1.3:
     resolution: {integrity: sha512-9GHUiM5hMiCi6Y03jD2ARC1ettBXkQBoQAe7nJsPknnI0ow10aXjTnew8QtYQmLjzn974BnmWEAJgCY6ZP1DeQ==}
@@ -24714,10 +24718,10 @@ packages:
       any-promise: 1.3.0
     dev: true
 
-  /thread-stream@0.15.2:
-    resolution: {integrity: sha512-UkEhKIg2pD+fjkHQKyJO3yoIvAP3N6RlNFt2dUhcS1FGvCD1cQa1M/PGknCLFIyZdtJOWQjejp7bdNqmN7zwdA==}
+  /thread-stream@2.4.1:
+    resolution: {integrity: sha512-d/Ex2iWd1whipbT681JmTINKw0ZwOUBZm7+Gjs64DHuX34mmw8vJL2bFAaNacaW72zYiTJxSHi5abUuOi5nsfg==}
     dependencies:
-      real-require: 0.1.0
+      real-require: 0.2.0
     dev: false
 
   /throat@5.0.0:
@@ -25059,64 +25063,64 @@ packages:
     dependencies:
       safe-buffer: 5.2.1
 
-  /turbo-darwin-64@1.11.1:
-    resolution: {integrity: sha512-JmwL8kcfxncDf2SZFioSa6dUvpMq/HbMcurh9mGm6BxWLQoB0d3fP/q3HizgCSbOE4ihScXoQ+c/C2xhl6Ngjg==}
+  /turbo-darwin-64@1.11.2:
+    resolution: {integrity: sha512-toFmRG/adriZY3hOps7nYCfqHAS+Ci6xqgX3fbo82kkLpC6OBzcXnleSwuPqjHVAaRNhVoB83L5njcE9Qwi2og==}
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-darwin-arm64@1.11.1:
-    resolution: {integrity: sha512-lIpT7nPkU0xmpkI8VOGQcgoQKmUATRMpRhTDclz6j/Px7Qtxjc+2PitKHKfR3aCnseoRMGkgMzPEJTPUwCpnlQ==}
+  /turbo-darwin-arm64@1.11.2:
+    resolution: {integrity: sha512-FCsEDZ8BUSFYEOSC3rrARQrj7x2VOrmVcfrMUIhexTxproRh4QyMxLfr6LALk4ymx6jbDCxWa6Szal8ckldFbA==}
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-linux-64@1.11.1:
-    resolution: {integrity: sha512-mHFSqMkgy3h/M8Ocj2oiOr6CqlCqB6coCPWVIAmraBk+SQywwsszgJ69GWBfm7lwwJvb3B1YN1wkZNe9ZZnBfg==}
+  /turbo-linux-64@1.11.2:
+    resolution: {integrity: sha512-Vzda/o/QyEske5CxLf0wcu7UUS+7zB90GgHZV4tyN+WZtoouTvbwuvZ3V6b5Wgd3OJ/JwWR0CXDK7Sf4VEMr7A==}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-linux-arm64@1.11.1:
-    resolution: {integrity: sha512-6ybojTkAkymo1Ig7kU3s2YQUUSRf3l2qatPZgw3v4OmFTSU2feCU1sHjAEqhHwEjV1KciDo1wRl1gjjyby4foQ==}
+  /turbo-linux-arm64@1.11.2:
+    resolution: {integrity: sha512-bRLwovQRz0yxDZrM4tQEAYV0fBHEaTzUF0JZ8RG1UmZt/CqtpnUrJpYb1VK8hj1z46z9YehARpYCwQ2K0qU4yw==}
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-windows-64@1.11.1:
-    resolution: {integrity: sha512-ytWy6+yEtBfv6nbgCKW6HsolgUFAC1PZGMPzbqRGnCm2eLVWhDuwO1Yk7uq4cvdrpXcXgOMcPEoJZxUCDbeJaQ==}
+  /turbo-windows-64@1.11.2:
+    resolution: {integrity: sha512-LgTWqkHAKgyVuLYcEPxZVGPInTjjeCnN5KQMdJ4uQZ+xMDROvMFS2rM93iQl4ieDJgidwHCxxCxaU9u8c3d/Kg==}
     cpu: [x64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-windows-arm64@1.11.1:
-    resolution: {integrity: sha512-O04DdJoRavOh/v9/MM5wWCEtOekO4aiLljNZc/fOh853sOhid61ZRSEYUmS9ecjmZ/OjKqedIfbkitaQ77c4xA==}
+  /turbo-windows-arm64@1.11.2:
+    resolution: {integrity: sha512-829aVBU7IX0c/B4G7g1VI8KniAGutHhIupkYMgF6xPkYVev2G3MYe6DMS/vsLt9GGM9ulDtdWxWrH5P2ngK8IQ==}
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo@1.11.1:
-    resolution: {integrity: sha512-pmIsyTcyBJ5iJIaTjJyCxAq7YquDqyRai6FW2q0mFAkwK3k0p36wJ5yH85U2Ue6esrTKzeSEKskP4/fa7dv4+A==}
+  /turbo@1.11.2:
+    resolution: {integrity: sha512-jPC7LVQJzebs5gWf8FmEvsvXGNyKbN+O9qpvv98xpNaM59aS0/Irhd0H0KbcqnXfsz7ETlzOC3R+xFWthC4Z8A==}
     hasBin: true
     optionalDependencies:
-      turbo-darwin-64: 1.11.1
-      turbo-darwin-arm64: 1.11.1
-      turbo-linux-64: 1.11.1
-      turbo-linux-arm64: 1.11.1
-      turbo-windows-64: 1.11.1
-      turbo-windows-arm64: 1.11.1
+      turbo-darwin-64: 1.11.2
+      turbo-darwin-arm64: 1.11.2
+      turbo-linux-64: 1.11.2
+      turbo-linux-arm64: 1.11.2
+      turbo-windows-64: 1.11.2
+      turbo-windows-arm64: 1.11.2
     dev: true
 
   /tweetnacl@1.0.3:

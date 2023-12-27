@@ -39,7 +39,7 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "@dwarvesf/react-utils": "^0.4.1",
+    "@dwarvesf/react-utils": "^0.4.2",
     "@mochi-ui/icons": "workspace:*",
     "@mochi-ui/theme": "workspace:*",
     "class-variance-authority": "^0.7.0",

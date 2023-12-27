@@ -1,4 +1,4 @@
-# @mochi-ui/login-widget
+# @mochi-web3/login-widget
 
 Login Widget component empowers users with access to the web3 application by
 offering diverse login options through various web3 wallets.
@@ -12,13 +12,13 @@ Feel free to use the package manager of your choice:
 
 ```sh
 # Using PNPM
-pnpm i @mochi-ui/login-widget
+pnpm i @mochi-web3/login-widget
 
 # Using NPM
-npm i @mochi-ui/login-widget
+npm i @mochi-web3/login-widget
 
 # Using Yarn
-yarn add @mochi-ui/login-widget
+yarn add @mochi-web3/login-widget
 ```
 
 ## Contribution

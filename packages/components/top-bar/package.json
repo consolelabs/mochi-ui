@@ -41,7 +41,7 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
-    "@dwarvesf/react-hooks": "^0.8.1",
+    "@dwarvesf/react-hooks": "^0.8.2",
     "@mochi-ui/theme": "workspace:*",
     "@mochi-ui/list": "workspace:*",
     "@mochi-ui/icons": "workspace:*",

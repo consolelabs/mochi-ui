@@ -11,19 +11,13 @@ import {
   HomeSolid,
   CategorySolid,
 } from '@mochi-ui/icons'
-import {
-  Sidebar,
-  Badge,
-  Item,
-  useLoginWidget,
-  LoginWidget,
-  BadgeIcon,
-} from '@mochi-ui/core'
+import { Sidebar, Badge, Item, BadgeIcon } from '@mochi-ui/core'
 import { Layout } from '@mochi-ui/layout'
 import { DISCORD_LINK, TWITTER_LINK } from '~envs'
 import { useRouter } from 'next/router'
 import { ROUTES } from '~constants/routes'
 import clsx from 'clsx'
+import { LoginWidget, useLoginWidget } from '@mochi-web3/login-widget'
 import { useSidebarContext } from '../context/app/sidebar'
 import { matchUrl } from '../utils/url'
 import { DashboardSkeleton } from './DashboardSkeleton'

@@ -8,8 +8,8 @@ import {
   SwitchProps,
   Typography,
   toast,
-  useLoginWidget,
 } from '@mochi-ui/core'
+import { useLoginWidget } from '@mochi-web3/login-widget'
 import { useForm, FormProvider, Controller } from 'react-hook-form'
 import { useFetchNotificationSettings } from '~hooks/settings/useFetchNotificationSettings'
 import clsx from 'clsx'

@@ -1,4 +1,5 @@
-import { Typography, useLoginWidget } from '@mochi-ui/core'
+import { Typography } from '@mochi-ui/core'
+import { useLoginWidget } from '@mochi-web3/login-widget'
 import { useMemo } from 'react'
 import {
   TransactionActionType,

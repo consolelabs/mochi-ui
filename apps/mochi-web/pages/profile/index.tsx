@@ -4,7 +4,7 @@ import { ProfileWidget } from '~cpn/Profile/ProfileWidget'
 import { TransactionSection } from '~cpn/Profile/TransactionSection'
 import { NextPageWithLayout } from '~pages/_app'
 import { SEO } from '~app/layout/seo'
-import { useLoginWidget } from '@mochi-ui/core'
+import { useLoginWidget } from '@mochi-web3/login-widget'
 import MochiWidget from '~cpn/MochiWidget'
 import { DashboardBody } from '~cpn/DashboardBody'
 
