@@ -10,16 +10,17 @@ import {
   TextFieldInput,
   Typography,
 } from '@mochi-ui/core'
-import { Bag, ChevronDownLine, MenuSolid, TrashBinLine } from '@mochi-ui/icons'
+import { Bag, ChevronDownLine, TrashBinLine } from '@mochi-ui/icons'
 import React from 'react'
 import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import { TokenAvatar } from '~cpn/TokenAvatar'
+import { DndItem, DndWrapper } from '~cpn/base/dnd'
 import { useWalletStore } from '~store'
 import { ResponseGeneralSettingData } from '~types/mochi-schema'
 
 export const TokenPriority = () => {
   const { control, watch } = useFormContext<ResponseGeneralSettingData>()
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append, remove, move } = useFieldArray({
     control,
     name: 'payment.prioritized_token',
   })
@@ -39,43 +40,52 @@ export const TokenPriority = () => {
   return (
     <div className="flex flex-col w-full max-w-md space-y-2">
       <FormLabel>Default token prioirty</FormLabel>
-      {fields.map((each, index) => (
-        <Controller
-          key={each.id}
-          name={`payment.prioritized_token.${index}`}
-          control={control}
-          render={({ field }) => {
-            const token = tokenList.find((t) => t.id === field.value.id)
-            return (
-              <div className="flex items-center h-10 border rounded-md border-divider shadow-input">
-                <IconButton
-                  label="Move"
-                  variant="ghost"
-                  color="white"
-                  className="cursor-grab active:cursor-grabbing"
-                >
-                  <MenuSolid className="w-5 h-5" />
-                </IconButton>
-                <TokenAvatar
-                  src={token?.icon || ''}
-                  name={token?.symbol || ''}
-                />
-                <Typography level="p5" className="flex-1 ml-2">
-                  {token?.symbol}
-                </Typography>
-                <IconButton
-                  label="Delete"
-                  variant="ghost"
-                  color="white"
-                  onClick={() => remove(index)}
-                >
-                  <TrashBinLine className="w-5 h-5 text-danger-solid" />
-                </IconButton>
-              </div>
-            )
-          }}
-        />
-      ))}
+      <DndWrapper
+        componentProps={{
+          context: {
+            onDragEnd: ({ source, destination }) => {
+              if (destination) {
+                move(source.index, destination.index)
+              }
+            },
+          },
+          droppable: {
+            droppableId: 'token-priority',
+          },
+        }}
+      >
+        {fields.map((each, index) => (
+          <DndItem key={each.id} draggableId={each.id} index={index}>
+            <Controller
+              key={each.id}
+              name={`payment.prioritized_token.${index}`}
+              control={control}
+              render={({ field }) => {
+                const token = tokenList.find((t) => t.id === field.value.id)
+                return (
+                  <>
+                    <TokenAvatar
+                      src={token?.icon || ''}
+                      name={token?.symbol || ''}
+                    />
+                    <Typography level="p5" className="flex-1 ml-2">
+                      {token?.symbol}
+                    </Typography>
+                    <IconButton
+                      label="Delete"
+                      variant="ghost"
+                      color="white"
+                      onClick={() => remove(index)}
+                    >
+                      <TrashBinLine className="w-5 h-5 text-danger-solid" />
+                    </IconButton>
+                  </>
+                )
+              }}
+            />
+          </DndItem>
+        ))}
+      </DndWrapper>
       <DropdownMenu onOpenChange={() => setTokenQuery('')}>
         <DropdownMenuTrigger asChild>
           <Button color="white" className="pl-2 pr-2 w-fit">
