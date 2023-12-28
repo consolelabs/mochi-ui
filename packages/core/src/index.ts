@@ -1,4 +1,5 @@
 // Plop adding component indicator - do not remove this line
+export * from '@mochi-ui/scroll-area'
 export * from '@mochi-ui/card'
 export * from '@mochi-ui/skeleton'
 export * from '@mochi-ui/content-editable'

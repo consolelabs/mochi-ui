@@ -1377,6 +1377,43 @@ importers:
         specifier: workspace:*
         version: link:../../tsconfig
 
+  packages/components/scroll-area:
+    dependencies:
+      '@mochi-ui/icons':
+        specifier: workspace:*
+        version: link:../../icons
+      '@mochi-ui/theme':
+        specifier: workspace:*
+        version: link:../../theme
+      '@radix-ui/react-scroll-area':
+        specifier: ^1.0.5
+        version: 1.0.5(@types/react-dom@18.2.4)(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
+      class-variance-authority:
+        specifier: ^0.7.0
+        version: 0.7.0
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
+    devDependencies:
+      clean-package:
+        specifier: ^2.2.0
+        version: 2.2.0
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../../eslint-config-custom
+      prettier:
+        specifier: ^3.0.3
+        version: 3.1.1
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+
   packages/components/section-header:
     dependencies:
       '@dwarvesf/react-utils':
@@ -2020,6 +2057,9 @@ importers:
       '@mochi-ui/profile-badge':
         specifier: workspace:*
         version: link:../components/profile-badge
+      '@mochi-ui/scroll-area':
+        specifier: workspace:*
+        version: link:../components/scroll-area
       '@mochi-ui/section-header':
         specifier: workspace:*
         version: link:../components/section-header
@@ -25318,54 +25358,85 @@ packages:
     dependencies:
       safe-buffer: 5.2.1
 
+<<<<<<< HEAD
   /turbo-darwin-64@1.11.1:
     resolution: {integrity: sha512-JmwL8kcfxncDf2SZFioSa6dUvpMq/HbMcurh9mGm6BxWLQoB0d3fP/q3HizgCSbOE4ihScXoQ+c/C2xhl6Ngjg==}
+=======
+  /turbo-darwin-64@1.10.15:
+    resolution: {integrity: sha512-Sik5uogjkRTe1XVP9TC2GryEMOJCaKE2pM/O9uLn4koQDnWKGcLQv+mDU+H+9DXvKLnJnKCD18OVRkwK5tdpoA==}
+>>>>>>> 2ea58546 (feat: scroll area component)
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
+<<<<<<< HEAD
   /turbo-darwin-arm64@1.11.1:
     resolution: {integrity: sha512-lIpT7nPkU0xmpkI8VOGQcgoQKmUATRMpRhTDclz6j/Px7Qtxjc+2PitKHKfR3aCnseoRMGkgMzPEJTPUwCpnlQ==}
+=======
+  /turbo-darwin-arm64@1.10.15:
+    resolution: {integrity: sha512-xwqyFDYUcl2xwXyGPmHkmgnNm4Cy0oNzMpMOBGRr5x64SErS7QQLR4VHb0ubiR+VAb8M+ECPklU6vD1Gm+wekg==}
+>>>>>>> 2ea58546 (feat: scroll area component)
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
+<<<<<<< HEAD
   /turbo-linux-64@1.11.1:
     resolution: {integrity: sha512-mHFSqMkgy3h/M8Ocj2oiOr6CqlCqB6coCPWVIAmraBk+SQywwsszgJ69GWBfm7lwwJvb3B1YN1wkZNe9ZZnBfg==}
+=======
+  /turbo-linux-64@1.10.15:
+    resolution: {integrity: sha512-dM07SiO3RMAJ09Z+uB2LNUSkPp3I1IMF8goH5eLj+d8Kkwoxd/+qbUZOj9RvInyxU/IhlnO9w3PGd3Hp14m/nA==}
+>>>>>>> 2ea58546 (feat: scroll area component)
     cpu: [x64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
+<<<<<<< HEAD
   /turbo-linux-arm64@1.11.1:
     resolution: {integrity: sha512-6ybojTkAkymo1Ig7kU3s2YQUUSRf3l2qatPZgw3v4OmFTSU2feCU1sHjAEqhHwEjV1KciDo1wRl1gjjyby4foQ==}
+=======
+  /turbo-linux-arm64@1.10.15:
+    resolution: {integrity: sha512-MkzKLkKYKyrz4lwfjNXH8aTny5+Hmiu4SFBZbx+5C0vOlyp6fV5jZANDBvLXWiDDL4DSEAuCEK/2cmN6FVH1ow==}
+>>>>>>> 2ea58546 (feat: scroll area component)
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
+<<<<<<< HEAD
   /turbo-windows-64@1.11.1:
     resolution: {integrity: sha512-ytWy6+yEtBfv6nbgCKW6HsolgUFAC1PZGMPzbqRGnCm2eLVWhDuwO1Yk7uq4cvdrpXcXgOMcPEoJZxUCDbeJaQ==}
+=======
+  /turbo-windows-64@1.10.15:
+    resolution: {integrity: sha512-3TdVU+WEH9ThvQGwV3ieX/XHebtYNHv9HARHauPwmVj3kakoALkpGxLclkHFBLdLKkqDvmHmXtcsfs6cXXRHJg==}
+>>>>>>> 2ea58546 (feat: scroll area component)
     cpu: [x64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
+<<<<<<< HEAD
   /turbo-windows-arm64@1.11.1:
     resolution: {integrity: sha512-O04DdJoRavOh/v9/MM5wWCEtOekO4aiLljNZc/fOh853sOhid61ZRSEYUmS9ecjmZ/OjKqedIfbkitaQ77c4xA==}
+=======
+  /turbo-windows-arm64@1.10.15:
+    resolution: {integrity: sha512-l+7UOBCbfadvPMYsX08hyLD+UIoAkg6ojfH+E8aud3gcA1padpjCJTh9gMpm3QdMbKwZteT5uUM+wyi6Rbbyww==}
+>>>>>>> 2ea58546 (feat: scroll area component)
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
+<<<<<<< HEAD
   /turbo@1.11.1:
     resolution: {integrity: sha512-pmIsyTcyBJ5iJIaTjJyCxAq7YquDqyRai6FW2q0mFAkwK3k0p36wJ5yH85U2Ue6esrTKzeSEKskP4/fa7dv4+A==}
     hasBin: true
@@ -25376,6 +25447,18 @@ packages:
       turbo-linux-arm64: 1.11.1
       turbo-windows-64: 1.11.1
       turbo-windows-arm64: 1.11.1
+=======
+  /turbo@1.10.15:
+    resolution: {integrity: sha512-mKKkqsuDAQy1wCCIjCdG+jOCwUflhckDMSRoeBPcIL/CnCl7c5yRDFe7SyaXloUUkt4tUR0rvNIhVCcT7YeQpg==}
+    hasBin: true
+    optionalDependencies:
+      turbo-darwin-64: 1.10.15
+      turbo-darwin-arm64: 1.10.15
+      turbo-linux-64: 1.10.15
+      turbo-linux-arm64: 1.10.15
+      turbo-windows-64: 1.10.15
+      turbo-windows-arm64: 1.10.15
+>>>>>>> 2ea58546 (feat: scroll area component)
     dev: true
 
   /tweetnacl@1.0.3:
