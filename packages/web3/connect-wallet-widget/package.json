@@ -19,7 +19,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/consolelabs/mochi-ui.git",
-    "directory": "packages/connect-wallet-widget"
+    "directory": "packages/web3/connect-wallet-widget"
   },
   "bugs": {
     "url": "https://github.com/consolelabs/mochi-ui.git"
@@ -64,5 +64,5 @@
     "react-dom": "^18.2.0",
     "tsconfig": "workspace:*"
   },
-  "clean-package": "../../clean-package.config.json"
+  "clean-package": "../../../clean-package.config.json"
 }

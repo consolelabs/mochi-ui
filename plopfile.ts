@@ -76,6 +76,13 @@ function getPrompts(gen: string) {
         },
       },
       outDirPrompt,
+      {
+        type: 'list',
+        name: 'isAppendCore',
+        message: `Is this ${gen} need appended to Core package?`,
+        default: 'true',
+        choices: ['false', 'true'],
+      },
     ]
   }
   return [...base, outDirPrompt]
@@ -105,7 +112,7 @@ function getAppendComponentToCore(): ActionType[] {
 }
 
 // Input workspaces for creating components/hooks/utils...
-const workspaces = ['components']
+const workspaces = ['components', 'web3']
 
 // Generator input must matching within root plop folders
 const generators = ['component']
@@ -113,6 +120,7 @@ const generators = ['component']
 const defaultOutDirs = {
   //
   component: 'components',
+  web3: 'web3',
 }
 
 module.exports = function main(plop: NodePlopAPI) {
@@ -134,7 +142,7 @@ module.exports = function main(plop: NodePlopAPI) {
           return actions
         }
 
-        const { description, outDir, consoleTheme } = answers
+        const { description, outDir, consoleTheme, isAppendCore } = answers
         const generatorName = answers[`${gen}Name`] ?? ''
 
         let data = {
@@ -148,7 +156,9 @@ module.exports = function main(plop: NodePlopAPI) {
             ...data,
             consoleTheme,
           }
-          actions = actions.concat(getAppendComponentToCore())
+          if (isAppendCore === 'true') {
+            actions = actions.concat(getAppendComponentToCore())
+          }
         }
 
         actions.push({

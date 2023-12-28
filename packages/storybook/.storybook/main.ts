@@ -3,12 +3,11 @@ import type { StorybookConfig } from '@storybook/nextjs'
 const storybookConfig: StorybookConfig = {
   framework: {
     name: '@storybook/nextjs',
-    options: {},
+    options: { builder: { useSWC: true } },
   },
   staticDirs: ['./assets'],
   stories: [
-    '../../**/stories/*.stories.@(js|jsx|ts|tsx|md|mdx)',
-    '../../components/**/stories/*.stories.@(js|jsx|ts|tsx|md|mdx)',
+    '../../(components|web3)/**/stories/*.stories.@(js|jsx|ts|tsx|md|mdx)',
     '../src/*.stories.@(js|jsx|ts|tsx|md|mdx)',
   ],
   addons: [
