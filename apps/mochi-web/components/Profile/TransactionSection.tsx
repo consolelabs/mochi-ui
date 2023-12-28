@@ -1,7 +1,7 @@
+import { Typography } from '@mochi-ui/core'
+import { ArrowRightLine, DocumentOneSolid } from '@mochi-ui/icons'
 import Link from 'next/link'
 import { ROUTES } from '~constants/routes'
-import { ArrowRightLine, DocumentOneSolid } from '@mochi-ui/icons'
-import { Typography } from '@mochi-ui/core'
 import Transaction from '~cpn/Transaction'
 
 export const TransactionSection = () => {

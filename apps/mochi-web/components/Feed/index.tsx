@@ -87,7 +87,7 @@ export default function Feed({ className = '' }: Props) {
         )}
       />
       <div
-        style={{ maxWidth: 1440 }}
+        style={{ maxWidth: 1500 }}
         className="flex justify-between items-center pt-6 pb-4 sm:px-8 px-4 mx-auto w-screen"
       >
         <Typography>Recent Transactions</Typography>
@@ -116,7 +116,7 @@ export default function Feed({ className = '' }: Props) {
           /* }} */
           className="overflow-hidden h-screen max-h-full"
         >
-          <div className="px-6 mx-auto" style={{ width: 1440 }}>
+          <div className="px-6 mx-auto" style={{ width: 1488 }}>
             <TransactionTable
               data={txns}
               loadingRows={10}
