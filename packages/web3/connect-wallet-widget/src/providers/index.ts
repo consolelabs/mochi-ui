@@ -1,6 +1,7 @@
 /* istanbul ignore file */
 import {
   ArgentWallet,
+  BackpackWallet,
   Coin98Wallet,
   CoinbaseWallet,
   MartianWallet,
@@ -89,6 +90,11 @@ export default function getProviders(dispatch: any) {
         .setIcon(PhantomWallet)
         .setMobileProtocol('phantom://')
         .sync(dispatch),
+      new ProviderEVM()
+        .setId('app.backpack')
+        .setName('Backpack')
+        .setIcon(BackpackWallet)
+        .sync(dispatch),
     ],
     RON: [
       // ronin chain operates in the same manner as evm
@@ -100,6 +106,11 @@ export default function getProviders(dispatch: any) {
         .sync(dispatch),
     ],
     SOL: [
+      new ProviderSOL()
+        .setId('backpack')
+        .setName('Backpack')
+        .setIcon(BackpackWallet)
+        .sync(),
       new ProviderSOL()
         .setId('phantom.solana')
         .setName('Phantom')

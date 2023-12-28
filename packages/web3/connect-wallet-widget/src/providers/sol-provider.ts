@@ -57,8 +57,16 @@ export class ProviderSOL extends ChainProvider {
         return await this.connectMobile()
       }
 
-      const { signature, publicKey: pb } =
-        await this.provider.signMessage(hexedMsg)
+      const signResult = await this.provider.signMessage(hexedMsg)
+      let signature
+      let pb
+      if (signResult instanceof Uint8Array) {
+        signature = signResult
+        pb = this.provider.publicKey
+      } else {
+        signature = signResult.signature
+        pb = signResult.publicKey
+      }
 
       return {
         addresses: [pb.toString()],
