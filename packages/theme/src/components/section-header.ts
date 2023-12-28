@@ -29,7 +29,7 @@ const sectionHeaderTitleClsx = ({
 }: { className?: string } = {}) =>
   clsx(
     'section-header-title',
-    'col-span-1 row-span-1 col-start-1 col-end-2 row-start-1 row-end-2',
+    'col-span-1 row-span-1 col-start-1 col-end-2 row-start-1',
     '!text-base font-medium text-text-primary',
     className,
   )
