@@ -1,10 +1,4 @@
-import {
-  DiscordColored,
-  TelegramColored,
-  SlackColored,
-  AppleColored,
-  ChromeColored,
-} from '@mochi-ui/icons'
+import { DiscordColored, TelegramColored, ChromeColored } from '@mochi-ui/icons'
 import {
   TextFieldRoot,
   TextFieldDecorator,
@@ -17,7 +11,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuContent,
 } from '@mochi-ui/dropdown'
-import { SectionList } from '@mochi-ui/section-list'
+import { List } from '@mochi-ui/list'
 import { Typography } from '@mochi-ui/typography'
 import {
   Accordion,
@@ -25,7 +19,7 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from '@mochi-ui/accordion'
-import { DesktopNav, MobileNav, MobileNavItem, TopBar } from '../src'
+import { DesktopNav, MobileNav, TopBar } from '../src'
 
 const meta = {
   title: 'Layout/TopBar',
@@ -37,85 +31,46 @@ const meta = {
 export default meta
 
 const downloadContent = (
-  <SectionList
-    sections={[
+  <List
+    data={[
       {
-        label: '',
-        data: [
-          {
-            label: 'Extension',
-            iconLeft: <ChromeColored />,
-            href: '#',
-          },
-          {
-            label: 'Discord',
-            iconLeft: <DiscordColored />,
-            href: '#',
-          },
-          {
-            label: 'Telegram',
-            iconLeft: <TelegramColored />,
-            href: '#',
-          },
-        ],
+        label: 'Extension',
+        iconLeft: <ChromeColored />,
+        href: '#',
       },
       {
-        label: 'Soon available on',
-        data: [
-          {
-            label: (
-              <span className="text-text-primary opacity-50">Discord</span>
-            ),
-            iconLeft: <SlackColored className="opacity-50" />,
-          },
-          {
-            label: <span className="text-text-primary opacity-50">iOS</span>,
-            iconLeft: <AppleColored className="opacity-50" />,
-          },
-        ],
+        label: 'Discord',
+        iconLeft: <DiscordColored />,
+        href: '#',
+      },
+      {
+        label: 'Telegram',
+        iconLeft: <TelegramColored />,
+        href: '#',
       },
     ]}
-    renderItem={(item: MobileNavItem, _, index) => {
-      if (item?.component) return item?.component
-
+    renderItem={(item, index) => {
       return (
         <Button
           variant="link"
           color="neutral"
           className="flex w-full !justify-start !text-base px-2 py-3 bg-background-surface !text-neutral-800 !font-normal hover:!text-black !h-max"
-          onClick={item?.onClick}
           key={index}
         >
-          {item?.href ? (
-            <a
-              className="flex focus:outline-none items-center flex-1 gap-3.5"
-              href={item?.href}
-            >
-              {item?.iconLeft && (
-                <span className="text-xl">{item?.iconLeft}</span>
-              )}
-              <Typography level="p6" className="!text-sm font-medium">
-                {item?.label}
-              </Typography>
-            </a>
-          ) : (
-            <div className="flex focus:outline-none items-center flex-1 gap-3.5">
-              {item?.iconLeft && (
-                <span className="text-xl">{item?.iconLeft}</span>
-              )}
-              <Typography level="p6" className="!text-sm font-medium">
-                {item?.label}
-              </Typography>
-            </div>
-          )}
+          <a
+            className="flex focus:outline-none items-center flex-1 gap-3.5"
+            href={item?.href}
+          >
+            {item?.iconLeft && (
+              <span className="text-xl">{item?.iconLeft}</span>
+            )}
+            <Typography level="p6" className="!text-sm font-medium">
+              {item?.label}
+            </Typography>
+          </a>
         </Button>
       )
     }}
-    renderSectionHeader={(section) =>
-      section?.label ? (
-        <h3 className="p-2 !text-sm text-neutral-600">{section.label}</h3>
-      ) : null
-    }
   />
 )
 

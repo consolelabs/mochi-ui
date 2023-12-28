@@ -5,10 +5,10 @@ import {
   AccordionItem,
   AccordionTrigger,
   Button,
-  SectionList,
 } from '@mochi-ui/core'
 import Link from 'next/link'
 import { Fragment } from 'react'
+import { SectionList } from '~cpn/base/section-list'
 import { NavItem } from './type'
 
 type MobileAccordionItem = SectionBase<NavItem>

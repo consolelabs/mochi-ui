@@ -3,8 +3,8 @@ import { utils as mochiUtils } from '@consolelabs/mochi-formatter'
 import { TokenAvatar } from '~cpn/TokenAvatar'
 import { Bag, WalletSolid } from '@mochi-ui/icons'
 import { Balance } from '~store/wallets'
-import * as ScrollArea from '@radix-ui/react-scroll-area'
 import clsx from 'clsx'
+import { ScrollArea } from '~cpn/base/scroll-area'
 
 const sortOrder = ['SOL']
 
@@ -59,76 +59,72 @@ export const TokenTableList = ({
   ...props
 }: Props) => {
   return (
-    <ScrollArea.Root className="overflow-hidden h-[420px]">
-      <ScrollArea.Viewport className="relative w-full h-full [&>div]:h-full">
-        <Table
-          {...props}
-          stickyHeader
-          data={data.sort((a, b) => {
-            const indexA = sortOrder.findIndex(
-              (symbol) => symbol === a.token.symbol,
-            )
-            const indexB = sortOrder.findIndex(
-              (symbol) => symbol === b.token.symbol,
-            )
+    <ScrollArea
+      componentProps={{
+        root: { className: 'h-[420px]' },
+        viewport: { className: 'relative [&>div]:h-full' },
+      }}
+    >
+      <Table
+        {...props}
+        stickyHeader
+        data={data.sort((a, b) => {
+          const indexA = sortOrder.findIndex(
+            (symbol) => symbol === a.token.symbol,
+          )
+          const indexB = sortOrder.findIndex(
+            (symbol) => symbol === b.token.symbol,
+          )
 
-            if (indexA === -1) return 1
-            if (indexB === -1) return -1
+          if (indexA === -1) return 1
+          if (indexB === -1) return -1
 
-            if (indexA > indexB) return 1
-            if (indexA < indexB) return -1
-            return 0
-          })}
-          size={size}
-          wrapperClassName={clsx(
-            '!overflow-y-visible h-full',
-            clsx(wrapperClassName),
-          )}
-          className={clsx('!static', { 'h-full': !data.length }, className)}
-          emptyContent={
-            <div className="flex flex-col justify-center items-center h-full">
-              <Bag className="w-14 h-14 text-neutral-500" />
-              <Typography level="h7" color="textSecondary">
-                No assets
-              </Typography>
-            </div>
-          }
-          columns={[
-            {
-              header: 'Token',
-              accessorKey: 'token',
-              cell: Token,
-              width: '45%',
+          if (indexA > indexB) return 1
+          if (indexA < indexB) return -1
+          return 0
+        })}
+        size={size}
+        wrapperClassName={clsx(
+          '!overflow-y-visible h-full',
+          clsx(wrapperClassName),
+        )}
+        className={clsx('!static', { 'h-full': !data.length }, className)}
+        emptyContent={
+          <div className="flex flex-col justify-center items-center h-full">
+            <Bag className="w-14 h-14 text-neutral-500" />
+            <Typography level="h7" color="textSecondary">
+              No assets
+            </Typography>
+          </div>
+        }
+        columns={[
+          {
+            header: 'Token',
+            accessorKey: 'token',
+            cell: Token,
+            width: '45%',
+          },
+          {
+            header: 'Price',
+            accessorKey: 'token.price',
+            accessorFn: (row) =>
+              mochiUtils.formatUsdPriceDigit({
+                value: row.token?.price || 0,
+              }),
+            width: '25%',
+          },
+          {
+            header: 'USD Value',
+            accessorKey: 'usd_amount',
+            accessorFn: (row) =>
+              mochiUtils.formatUsdDigit(row.usd_balance || 0),
+            width: '30%',
+            meta: {
+              align: 'right',
             },
-            {
-              header: 'Price',
-              accessorKey: 'token.price',
-              accessorFn: (row) =>
-                mochiUtils.formatUsdPriceDigit({
-                  value: row.token?.price || 0,
-                }),
-              width: '25%',
-            },
-            {
-              header: 'USD Value',
-              accessorKey: 'usd_amount',
-              accessorFn: (row) =>
-                mochiUtils.formatUsdDigit(row.usd_balance || 0),
-              width: '30%',
-              meta: {
-                align: 'right',
-              },
-            },
-          ]}
-        />
-      </ScrollArea.Viewport>
-      <ScrollArea.Scrollbar
-        className="flex p-0.5 w-2 transition-colors select-none touch-none bg-neutral-outline hover:bg-neutral-outline-hover"
-        orientation="vertical"
-      >
-        <ScrollArea.Thumb className="relative flex-1 rounded-lg bg-neutral-solid before:content-[''] before:absolute before:w-full before:h-full before:min-w-[44px] before:min-h-[44px] before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2" />
-      </ScrollArea.Scrollbar>
-      <ScrollArea.Corner className="bg-neutral-outline-hover" />
-    </ScrollArea.Root>
+          },
+        ]}
+      />
+    </ScrollArea>
   )
 }
