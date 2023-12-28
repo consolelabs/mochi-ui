@@ -6,6 +6,8 @@ const sectionHeaderWrapperClsx = ({
 }: { className?: string; wrapActionsOnMobile?: boolean } = {}) =>
   clsx(
     'grid sm:grid-cols-2 gap-x-2 sm:gap-x-4 py-4 sm:py-2',
+    '[&:has(.section-header-desc)>.section-header-title]:row-end-2',
+    '[&>.section-header-title]:row-end-3',
     {
       'grid-cols-1': wrapActionsOnMobile,
       'grid-cols-2': !wrapActionsOnMobile,
@@ -17,6 +19,7 @@ const sectionHeaderDescriptionClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
+    'section-header-desc',
     'col-span-1 row-span-1 col-start-1 col-end-2 row-start-2 row-end-3 pt-2',
     className,
   )
@@ -25,7 +28,9 @@ const sectionHeaderTitleClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
-    'col-span-1 row-span-1 col-start-1 col-end-2 row-start-1 row-end-2 !text-base font-medium text-text-primary',
+    'section-header-title',
+    'col-span-1 row-span-1 col-start-1 col-end-2 row-start-1 row-end-2',
+    '!text-base font-medium text-text-primary',
     className,
   )
 
