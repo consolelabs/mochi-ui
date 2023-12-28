@@ -1,5 +1,6 @@
 import { Typography } from '@mochi-ui/typography'
 import { sectionHeader } from '@mochi-ui/theme'
+import React, { Children } from 'react'
 import {
   SectionHeaderTitleProps,
   SectionHeaderDescriptionProps,
@@ -22,12 +23,14 @@ const SectionHeaderTitle = ({
   children,
   className,
 }: SectionHeaderTitleProps) => {
+  const { hasDescription } = useSectionHeaderContext()
   return (
     <Typography
       level="h6"
       color="textPrimary"
       className={sectionHeaderTitleClsx({
         className,
+        hasDescription,
       })}
     >
       {children}
@@ -70,10 +73,19 @@ const SectionHeaderActions = ({
 const SectionHeader = (props: SectionHeaderProps) => {
   const { children, className, wrapActionsOnMobile = true, ...rest } = props
 
+  const hasDescription = (Children.toArray(children) || []).some(
+    (c) => (c as React.ReactElement<any>).type === SectionHeaderDescription,
+  )
+
   return (
-    <SectionHeaderContextProvider value={{ wrapActionsOnMobile }}>
+    <SectionHeaderContextProvider
+      value={{ wrapActionsOnMobile, hasDescription }}
+    >
       <div
-        className={sectionHeaderWrapperClsx({ className, wrapActionsOnMobile })}
+        className={sectionHeaderWrapperClsx({
+          className,
+          wrapActionsOnMobile,
+        })}
         {...rest}
       >
         {children}
