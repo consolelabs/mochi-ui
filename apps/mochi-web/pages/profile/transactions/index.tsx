@@ -51,7 +51,11 @@ const AppPageHeader = (props: AppPageHeaderProps) => {
       <PageHeaderActions>
         <ChainPicker value={chainId} onChange={onChainIdChange} />
         <Select onChange={onFilterTypeChange} value={filterType}>
-          <SelectTrigger className="justify-between px-4 min-w-[130px]">
+          <SelectTrigger
+            appearance="form"
+            color="white"
+            className="justify-between px-4 min-w-[130px]"
+          >
             <SelectValue placeholder="All Types" />
           </SelectTrigger>
           <SelectContent align="end">
@@ -63,7 +67,11 @@ const AppPageHeader = (props: AppPageHeaderProps) => {
           </SelectContent>
         </Select>
         <Select onChange={onFilterPlatformChange} value={filterPlatform}>
-          <SelectTrigger className="justify-between px-4 min-w-[150px]">
+          <SelectTrigger
+            appearance="form"
+            color="white"
+            className="justify-between px-4 min-w-[150px]"
+          >
             <SelectValue placeholder="All Platforms" />
           </SelectTrigger>
           <SelectContent align="end">
