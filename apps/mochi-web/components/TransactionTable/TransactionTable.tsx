@@ -211,6 +211,8 @@ export const TransactionTable = (props: TransactionTableProps) => {
     )
   }, [columnFlags])
 
+  const isEmpty = !rest.isLoading && rest.data?.length === 0
+
   return (
     <>
       <ScrollArea.Root>
@@ -218,6 +220,19 @@ export const TransactionTable = (props: TransactionTableProps) => {
           <div style={{ minWidth: 1400 }} className={className}>
             <Table {...rest} columns={columns} className="p-0" />
           </div>
+          {isEmpty && (
+            <div
+              className={clsx(
+                'w-full h-[80vh] flex flex-col gap-1 items-center justify-center',
+                componentsProps.empty?.className,
+              )}
+            >
+              <Typography level="h7">No result found</Typography>
+              <Typography level="p5" color="textSecondary">
+                Try searching for something else.
+              </Typography>
+            </div>
+          )}
         </ScrollArea.Viewport>
         <ScrollArea.Scrollbar
           forceMount

@@ -13,6 +13,7 @@ export const TransactionSection = () => {
     txns,
     fetchTxns,
     page,
+    size,
     total = 0,
     setPage,
     setSize,
@@ -36,7 +37,7 @@ export const TransactionSection = () => {
   useEffect(() => {
     // Scroll top when page change
     containerRef.current?.scrollIntoView()
-  }, [page])
+  }, [size, page])
 
   const isLoading = loading || !txnsCurrentPage
 
@@ -70,6 +71,7 @@ export const TransactionSection = () => {
             totalItems: total,
             onItemPerPageChange: setSize,
             onPageChange: setPage,
+            className: 'px-2',
           },
         }}
         className="px-6"
