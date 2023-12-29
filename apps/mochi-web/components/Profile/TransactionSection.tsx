@@ -16,7 +16,11 @@ export const TransactionSection = () => {
             </Typography>
             <ArrowRightLine className="w-6 h-6" />
           </div>
-          <Transaction filterType="all" filterPlatform="all" showCount={4} />
+          <Transaction
+            filterType="all"
+            filterPlatform="all"
+            defaultPageSize={4}
+          />
         </div>
       </Link>
     </div>
