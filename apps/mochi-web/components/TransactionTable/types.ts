@@ -31,6 +31,9 @@ export interface Tx {
 export type TransactionTableProps = Omit<TableProps<Tx>, 'columns'> & {
   componentsProps?: {
     pagination?: false | PaginationProps
+    empty?: {
+      className?: string
+    }
   }
   columns?: {
     from?: boolean
