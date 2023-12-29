@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { Combobox } from '@headlessui/react'
 import { SectionList } from '@mochi-ui/core'
 import UI, { Platform } from '@consolelabs/mochi-formatter'
@@ -12,13 +13,14 @@ import { sectionFormatter } from '../TokenPicker/utils'
 
 interface Props {
   loading: boolean
-  data: Profile[]
+  recentRecipients: Profile[]
   selectedRecipients?: Profile[]
+  queryValue: string
 }
 
 export const ContactList = (props: Props) => {
   const { isLoggedIn, profile } = useLoginWidget()
-  const { data, selectedRecipients = [] } = props
+  const { recentRecipients, queryValue, selectedRecipients = [] } = props
   const { data: contacts = [], isLoading } = useSWR(
     ['contact-list', isLoggedIn, profile?.id],
     async ([_, isLoggedIn, profileId]) => {
@@ -31,14 +33,24 @@ export const ContactList = (props: Props) => {
     },
   )
 
+  const data = useMemo(() => {
+    return [
+      ...recentRecipients.map((rr) => ({ ...rr, group: 'recent' })),
+      ...contacts,
+    ].filter((i) => {
+      const [profile] = UI.render(Platform.Web, i)
+
+      return profile?.plain?.toLowerCase().includes(queryValue.toLowerCase())
+    })
+  }, [contacts, queryValue, recentRecipients])
+
   return (
     <SectionList
       loading={props.loading || isLoading}
-      rootClassName="w-full"
-      sections={sectionFormatter(
-        data.map((d) => ({ ...d, group: 'recent' })).concat(contacts),
-        'group',
-      )}
+      rootClassName="w-full h-full"
+      listClassName="h-full"
+      viewportClassName="[&>div]:h-full"
+      sections={sectionFormatter(data, 'group')}
       SectionEmpty={<EmptyList />}
       renderItem={(item) => {
         const [profile] = UI.render(Platform.Web, item)

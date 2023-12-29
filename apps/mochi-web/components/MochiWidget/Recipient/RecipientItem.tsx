@@ -61,7 +61,7 @@ export const RecipientItem: React.FC<ItemProps> = ({
       onMouseEnter={setIsHovering}
       onMouseLeave={setIsNotHovering}
     >
-      <Avatar src={avatar || '/logo.png'} size="sm" />
+      <Avatar src={avatar} fallback={profileName} size="sm" />
       <div className="flex flex-col flex-1">
         <h3 className="text-sm font-medium">{profileName}</h3>
       </div>

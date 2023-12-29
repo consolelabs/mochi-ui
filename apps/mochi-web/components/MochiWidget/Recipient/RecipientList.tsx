@@ -39,7 +39,7 @@ export const RecipientList = (props: Props) => {
           )}
         </Combobox.Option>
       )}
-      renderLoader={() => <Skeleton />}
+      renderLoader={() => <Skeleton height={44} avatarHeight={28} />}
     />
   )
 }

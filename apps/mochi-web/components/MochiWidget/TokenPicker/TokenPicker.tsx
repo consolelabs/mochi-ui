@@ -184,7 +184,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
         <input
           tabIndex={-1}
           readOnly
-          className="absolute top-0 left-0 w-full h-full bg-transparent border-0 outline-none cursor-pointer"
+          className="absolute top-0 left-0 w-full h-full bg-transparent border-0 cursor-pointer outline-none"
         />
         <TokenButton
           isToken={isTokenSelected}
@@ -218,11 +218,11 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
               />
             </TextFieldRoot>
             <Tab.Group selectedIndex={tabIdx} onChange={setTabIdx}>
-              <Tab.List className="flex w-full gap-6 mt-2">
+              <Tab.List className="flex gap-6 mt-2 w-full">
                 {TokenTabs.map((tab) => (
                   <Tab key={tab.key} className="focus-visible:outline-none">
                     {({ selected }) => (
-                      <div className="flex justify-start w-full py-2">
+                      <div className="flex justify-start py-2 w-full">
                         <h2
                           className={`text-sm ${
                             selected
@@ -238,7 +238,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
                 ))}
               </Tab.List>
               <Tab.Panels className="flex-1 w-full min-h-0">
-                <Tab.Panel className="flex flex-col h-full gap-2">
+                <Tab.Panel className="flex flex-col gap-2 h-full">
                   <TokenTableList
                     isLoading={isFetchingWallets}
                     data={filteredTokens}
@@ -253,7 +253,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
                     Only supported tokens are shown
                   </span>
                 </Tab.Panel>
-                {/* <Tab.Panel className="flex flex-col h-full gap-2"> */}
+                {/* <Tab.Panel className="flex flex-col gap-2 h-full"> */}
                 {/*   <MonikerList */}
                 {/*     balances={balancesWithSource} */}
                 {/*     searchTerm={searchTerm} */}
