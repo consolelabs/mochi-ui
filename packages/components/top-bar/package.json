@@ -30,7 +30,6 @@
     "@mochi-ui/accordion": "workspace:*",
     "@mochi-ui/dropdown": "workspace:*",
     "@mochi-ui/button": "workspace:*",
-    "@mochi-ui/section-list": "workspace:*",
     "@mochi-ui/typography": "workspace:*",
     "clsx": "^2.0.0",
     "clean-package": "^2.2.0",
