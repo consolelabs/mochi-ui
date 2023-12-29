@@ -44,11 +44,11 @@ export const TransactionSection = () => {
     <div ref={containerRef} className="mx-auto" style={{ maxWidth: 1488 }}>
       <div className="flex justify-end py-2 gap-4 px-6">
         <ChainPicker
-          value={filters.chainId || ''}
+          value={filters.chainId || 'all'}
           onChange={(chainId) => setFilters({ chainId })}
         />
         <PlatformPicker
-          value={filters.platform || ''}
+          value={filters.platform || 'all'}
           onChange={(platform) => setFilters({ platform })}
         />
       </div>

@@ -23,6 +23,8 @@ export const PlatformPicker = (props: PlatformPickerProps) => {
   return (
     <Select value={value} onChange={(v) => onChange(v === 'all' ? '' : v)}>
       <SelectTrigger
+        appearance="form"
+        color="white"
         leftIcon={selectedPlatform ? <selectedPlatform.icon /> : <WebSolid />}
         className="border border-divider !font-normal capitalize"
       >

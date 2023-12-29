@@ -141,10 +141,11 @@ export default function DashboardLayout({
           />
 
           <Layout
-            className={clsx(
-              'flex-1 w-screen lg:w-full h-[calc(100vh-56px)]',
-              className,
-            )}
+            className={
+              // TODO: (thanh) if not setting a fixed width here the content will go overflow
+              // I still cannot get why it's like that so leaving a todo for future investigation
+              clsx('flex-1 w-10 h-[calc(100vh-56px)]', className)
+            }
           >
             {children}
           </Layout>

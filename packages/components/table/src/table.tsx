@@ -83,8 +83,9 @@ export default function Table<T extends RowData>({
       <table className={tableClsx({ className })}>
         {hasCustomWidth ? (
           <colgroup>
-            {columns.map((col) => (
+            {columns.map((col, index) => (
               <col
+                key={index}
                 style={{
                   width:
                     typeof col.width === 'string'
