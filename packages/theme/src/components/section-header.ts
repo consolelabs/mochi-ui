@@ -3,7 +3,10 @@ import { clsx } from 'clsx'
 const sectionHeaderWrapperClsx = ({
   className = '',
   wrapActionsOnMobile = true,
-}: { className?: string; wrapActionsOnMobile?: boolean } = {}) =>
+}: {
+  className?: string
+  wrapActionsOnMobile?: boolean
+} = {}) =>
   clsx(
     'grid sm:grid-cols-2 gap-x-2 sm:gap-x-4 py-4 sm:py-2',
     {
@@ -23,9 +26,16 @@ const sectionHeaderDescriptionClsx = ({
 
 const sectionHeaderTitleClsx = ({
   className = '',
-}: { className?: string } = {}) =>
+  hasDescription = false,
+}: { className?: string; hasDescription?: boolean } = {}) =>
   clsx(
-    'col-span-1 row-span-1 col-start-1 col-end-2 row-start-1 row-end-2 !text-base font-medium text-text-primary',
+    'section-header-title',
+    'col-span-1 row-span-1 col-start-1 col-end-2 row-start-1',
+    '!text-base font-medium text-text-primary',
+    {
+      'row-end-2': hasDescription,
+      'row-end-3': !hasDescription,
+    },
     className,
   )
 
