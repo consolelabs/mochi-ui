@@ -1462,6 +1462,9 @@ importers:
 
   packages/components/select:
     dependencies:
+      '@dwarvesf/react-utils':
+        specifier: ^0.4.1
+        version: 0.4.1(react-dom@18.2.0)(react@18.2.0)
       '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons

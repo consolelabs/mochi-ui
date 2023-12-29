@@ -2,6 +2,8 @@
 import type { ComponentPropsWithoutRef, ElementRef, ReactNode } from 'react'
 import type * as SelectPrimitive from '@radix-ui/react-select'
 
+type SelectAppearance = 'button' | 'form'
+
 type ReplaceOnValueChangeByOnChange<T extends { onValueChange?: any }> = Omit<
   T,
   'onValueChange'
@@ -31,6 +33,11 @@ export type SelectTriggerProps = ComponentPropsWithoutRef<
   leftIcon?: ReactNode
   rightIcon?: ReactNode
   hideRightIcon?: boolean
+  appearance?: SelectAppearance
+  isError?: boolean
+  color?: 'primary' | 'secondary' | 'white' | 'gray'
+  hasPadding?: boolean
+  loading?: boolean
 }
 export type SelectGroupRef = ElementRef<typeof SelectPrimitive.Group>
 export type SelectGroupProps = ComponentPropsWithoutRef<

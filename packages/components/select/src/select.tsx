@@ -1,9 +1,13 @@
-import type { ComponentPropsWithoutRef, ElementRef } from 'react'
+import {
+  ComponentPropsWithoutRef,
+  ElementRef,
+  useState,
+  forwardRef,
+} from 'react'
 import { select } from '@mochi-ui/theme'
-import { forwardRef } from 'react'
 import * as SelectPrimitive from '@radix-ui/react-select'
 import clsx from 'clsx'
-import { CheckLine, ChevronDownLine } from '@mochi-ui/icons'
+import { CheckLine, ChevronDownLine, SpinnerLine } from '@mochi-ui/icons'
 import {
   type SelectProps,
   type SelectItemProps,
@@ -13,12 +17,26 @@ import {
   type SelectGroupRef,
   SelectGroupProps,
 } from './type'
+import { SelectContextProvider, useSelectContext } from './context'
 
 function Select(props: SelectProps) {
-  const { onChange } = props
+  const { onChange, defaultValue, value } = props
+  const [isFilled, setIsFilled] = useState(!!defaultValue || !!value)
   return (
     // Root has no ref
-    <SelectPrimitive.Root onValueChange={onChange} {...props} />
+    <SelectContextProvider value={{ isFilled }}>
+      <SelectPrimitive.Root
+        onValueChange={(value) => {
+          onChange?.(value)
+          if (!isFilled) {
+            setIsFilled(true)
+          }
+        }}
+        defaultValue={defaultValue}
+        value={value}
+        {...props}
+      />
+    </SelectContextProvider>
   )
 }
 Select.displayName = SelectPrimitive.Root.displayName
@@ -48,8 +66,38 @@ const SelectTrigger = forwardRef<SelectTriggerRef, SelectTriggerProps>(
       hideRightIcon,
       rightIcon,
       leftIcon,
+      isError,
+      color = 'white',
+      hasPadding = true,
+      appearance = 'button',
+      loading = false,
       ...restProps
     } = props
+    const { isFilled } = useSelectContext()
+
+    let rightIconRender = null
+    if (loading) {
+      rightIconRender = (
+        <SpinnerLine
+          className={select.iconChevron({
+            color,
+            appearance,
+          })}
+        />
+      )
+    } else if (rightIcon) {
+      rightIconRender = rightIcon
+    } else {
+      rightIconRender = (
+        <ChevronDownLine
+          className={select.iconChevron({
+            color,
+            appearance,
+          })}
+        />
+      )
+    }
+
     return (
       <SelectPrimitive.Trigger
         asChild={asChild}
@@ -57,8 +105,13 @@ const SelectTrigger = forwardRef<SelectTriggerRef, SelectTriggerProps>(
           isTrigger: true,
           disabled,
           className,
+          isError,
+          color,
+          hasPadding,
+          appearance,
+          isFilled,
         })}
-        disabled={disabled}
+        disabled={disabled || loading}
         ref={ref}
         {...restProps}
       >
@@ -71,15 +124,13 @@ const SelectTrigger = forwardRef<SelectTriggerRef, SelectTriggerProps>(
                 {leftIcon}
               </SelectPrimitive.Icon>
             ) : null}
-            {children}
+            <div className={select.value}>{children}</div>
             {hideRightIcon ? null : (
               <SelectPrimitive.Icon
                 asChild
                 className={select.iconWrapperCva({ isRightIcon: true })}
               >
-                {rightIcon ?? (
-                  <ChevronDownLine className={select.iconChevron} />
-                )}
+                {rightIconRender}
               </SelectPrimitive.Icon>
             )}
           </>

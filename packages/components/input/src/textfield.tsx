@@ -59,7 +59,7 @@ const TextFieldRoot = React.forwardRef((props, ref) => {
 
   return (
     <Component
-      className={textfield.root({ className, error })}
+      className={textfield.root({ className, error: contextValue.error })}
       ref={ref}
       onPointerDown={(event) => {
         const target = event.target as HTMLElement

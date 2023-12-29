@@ -21,6 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../src/select'
+import { SelectProps, SelectTriggerProps } from '../src'
 
 const meta: Meta<typeof Select> = {
   title: 'Form/Select',
@@ -100,6 +101,63 @@ export const Default: StoryObj = {
           ))}
         </SelectContent>
       </Select>
+    )
+  },
+}
+
+export const TriggerColor: StoryObj = {
+  render() {
+    return (
+      <div className="flex gap-4">
+        {['white', 'primary', 'secondary', 'gray'].map((color) => (
+          <Select key={color}>
+            <SelectTrigger color={color as SelectTriggerProps['color']}>
+              <SelectValue placeholder="Select" />
+            </SelectTrigger>
+            <SelectContent className="min-w-[200px]">
+              {items.map(({ key, label, value }) => (
+                <SelectItem key={key} value={value}>
+                  {label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        ))}
+      </div>
+    )
+  },
+}
+
+export const TriggerPadding: StoryObj = {
+  render() {
+    return (
+      <div className="flex gap-4 items-center">
+        <Select>
+          <SelectTrigger color="secondary">
+            <SelectValue placeholder="Select" />
+          </SelectTrigger>
+          <SelectContent className="min-w-[200px]">
+            {items.map(({ key, label, value }) => (
+              <SelectItem key={key} value={value}>
+                {label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        <Select>
+          <SelectTrigger color="secondary" hasPadding={false}>
+            <SelectValue placeholder="Select" />
+          </SelectTrigger>
+          <SelectContent className="min-w-[200px]">
+            {items.map(({ key, label, value }) => (
+              <SelectItem key={key} value={value}>
+                {label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
     )
   },
 }
@@ -260,6 +318,85 @@ export const Disabled: StoryObj = {
           ))}
         </SelectContent>
       </Select>
+    )
+  },
+}
+
+export const Error: StoryObj = {
+  render() {
+    return (
+      <Select>
+        <SelectTrigger isError>
+          <SelectValue placeholder="Select" />
+        </SelectTrigger>
+        <SelectContent className="min-w-[200px]">
+          {items.map(({ key, label, value }) => (
+            <SelectItem key={key} value={value}>
+              {label}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    )
+  },
+}
+
+export const FormAppearance: StoryObj = {
+  render() {
+    return (
+      <div className="w-[340px] flex flex-col items-stretch gap-4">
+        <Select>
+          <SelectTrigger appearance="form">
+            <SelectValue placeholder="Select" />
+          </SelectTrigger>
+          <SelectContent className="min-w-[200px]">
+            {items.map(({ key, label, value }) => (
+              <SelectItem key={key} value={value}>
+                {label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        <Select>
+          <SelectTrigger appearance="form" disabled>
+            <SelectValue placeholder="Select" />
+          </SelectTrigger>
+          <SelectContent className="min-w-[200px]">
+            {items.map(({ key, label, value }) => (
+              <SelectItem key={key} value={value}>
+                {label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        <Select>
+          <SelectTrigger appearance="form" isError>
+            <SelectValue placeholder="Select" />
+          </SelectTrigger>
+          <SelectContent className="min-w-[200px]">
+            {items.map(({ key, label, value }) => (
+              <SelectItem key={key} value={value}>
+                {label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        <Select defaultValue="1">
+          <SelectTrigger appearance="form" loading>
+            <SelectValue placeholder="Select" />
+          </SelectTrigger>
+          <SelectContent className="min-w-[200px]">
+            {items.map(({ key, label, value }) => (
+              <SelectItem key={key} value={value}>
+                {label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
     )
   },
 }

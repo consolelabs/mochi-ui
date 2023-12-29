@@ -96,7 +96,10 @@ export const TransactionLimitModal = ({
                 <FormControl error={!!fieldState.error} className="w-full mt-8">
                   <FormLabel>Action</FormLabel>
                   <Select {...field}>
-                    <SelectTrigger className="justify-between h-10 border border-divider">
+                    <SelectTrigger
+                      appearance="form"
+                      className="justify-between h-10"
+                    >
                       <SelectValue placeholder="Choose action" />
                     </SelectTrigger>
                     <SelectContent>
@@ -131,6 +134,7 @@ export const TransactionLimitModal = ({
                           e.target.value ? Number(e.target.value) : '',
                         )
                       }
+                      className="w-1/2"
                     />
                     <TextFieldDecorator>
                       <Typography level="p5">USD</Typography>
@@ -158,6 +162,7 @@ export const TransactionLimitModal = ({
                           e.target.value ? Number(e.target.value) : '',
                         )
                       }
+                      className="w-1/2"
                     />
                     <TextFieldDecorator>
                       <Typography level="p5">USD</Typography>

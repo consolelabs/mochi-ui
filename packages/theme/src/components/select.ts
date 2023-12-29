@@ -2,7 +2,23 @@ import { cva, VariantProps } from 'class-variance-authority'
 
 const group = 'space-y-1'
 
-const iconChevron = 'text-sm'
+const iconChevron = cva([], {
+  variants: {
+    color: {
+      primary: ['!text-text-contrast'],
+      secondary: ['!text-primary-outline-fg'],
+      white: [''],
+      gray: [''],
+    },
+    appearance: {
+      form: ['text-base'],
+      button: ['text-sm'],
+    },
+  },
+  defaultVariants: {
+    appearance: 'button',
+  },
+})
 
 const content = 'relative z-50 w-fit'
 
@@ -20,33 +36,80 @@ const subTitleWrapper = 'text-text-secondary text-xs'
 
 const separator = 'block !my-3 w-full h-px bg-divider'
 
+const value = 'truncate'
+
 const itemCva = cva(
   [
     'flex gap-2 items-center',
     'transition duration-100',
-    'text-sm rounded-md',
+    'text-sm',
     'focus-visible:outline-none',
+    'truncate',
   ],
   {
     variants: {
       disabled: {
-        true: ['pointer-events-none', 'text-text-secondary'],
+        true: ['text-text-secondary', 'cursor-not-allowed'],
         false: ['text-text-primary'],
       },
       isTrigger: {
         false: [
-          'font-medium ',
-          'hover:bg-neutral-plain-hover',
+          'font-medium',
+          'hover:bg-background-level2 focus:bg-background-level2',
           'hover:outline-none focus:outline-none',
           'cursor-pointer',
-          'p-2 ',
+          'p-2',
+          'rounded-lg',
         ],
-        true: ['px-2 py-1.5', 'font-semibold', 'shadow-sm'],
+        true: [
+          'border hover:border-primary-solid-focus focus:border-primary-solid-focus',
+          'focus:shadow-input-focused',
+          'hover:outline-none focus:outline-none',
+        ],
+      },
+      isError: {
+        true: ['!border-danger-solid-focus', 'focus:shadow-none'],
+      },
+      color: {
+        primary: ['bg-primary-solid', '!text-text-contrast'],
+        secondary: ['bg-primary-outline'],
+        white: ['bg-background-surface'],
+        gray: ['bg-background-level3'],
+      },
+      hasPadding: {
+        false: ['!p-1 !rounded'],
+      },
+      isFilled: {
+        true: [],
+        false: [],
+      },
+      appearance: {
+        form: ['px-3.5 py-2.5', 'rounded', 'border-divider', 'justify-between'],
+        button: [
+          'px-3 py-1.5',
+          'rounded-lg',
+          'border-transparent',
+          'font-semibold',
+          'shadow-sm',
+        ],
       },
     },
+    compoundVariants: [
+      {
+        appearance: 'form',
+        disabled: true,
+        className: ['!bg-background-level2'],
+      },
+      {
+        appearance: 'form',
+        isFilled: false,
+        className: ['text-text-secondary'],
+      },
+    ],
     defaultVariants: {
       disabled: false,
       isTrigger: false,
+      isError: false,
     },
   },
 )
@@ -68,6 +131,7 @@ export const select = {
   content,
   label,
   separator,
+  value,
   subTitleWrapper,
   viewport,
   viewportPoperMode,
