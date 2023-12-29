@@ -122,12 +122,14 @@ export const ProfileWidget = () => {
             })}
           </Typography>
           <div className="flex justify-end items-center">
-            <ValueChange trend={pnl.startsWith('-') ? 'down' : 'up'}>
+            <ValueChange
+              trend={pnl.startsWith('-') ? 'down' : 'up'}
+              className="mr-2"
+            >
               <ValueChangeIndicator />
               <Typography
                 level="h8"
                 color={pnl.startsWith('-') ? 'danger' : 'success'}
-                className="mr-2 ml-1"
               >
                 {utils.formatPercentDigit(Number.isNaN(Number(pnl)) ? 0 : pnl)}{' '}
                 (
