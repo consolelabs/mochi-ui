@@ -16,7 +16,7 @@ const Profile: NextPageWithLayout = () => {
       <SEO title={`${profile?.profile_name}'s profile`} tailTitle />
       <DashboardBody className="bg-background-level1">
         <div className="space-y-6">
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             <ProfileWidget />
             <MochiWidget
               wrapperClassName="!shadow-input !border-divider h-full"

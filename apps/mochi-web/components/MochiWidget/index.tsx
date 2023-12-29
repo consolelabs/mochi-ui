@@ -77,7 +77,6 @@ export default function MochiWidget({ wrapperClassName, className }: Props) {
         )}
         style={{
           height: 630,
-          maxWidth: 480,
           minWidth: 340,
         }}
       >
