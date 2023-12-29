@@ -25,7 +25,7 @@ const content = 'relative z-50 w-fit'
 const viewportPoperMode =
   'h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)] '
 
-const viewport = 'space-y-1 bg-background-popup p-3 rounded-lg  shadow-md'
+const viewport = 'space-y-1 bg-background-popup p-3 rounded-lg shadow-md'
 
 const label =
   'text-[10px] uppercase font-bold text-text-secondary tracking-tight leading-4'

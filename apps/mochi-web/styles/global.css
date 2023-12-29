@@ -102,9 +102,6 @@ iframe[id^='telegram-login'] {
   }
 }
 
-div[data-radix-popper-content-wrapper] {
-  z-index: 10 !important;
-}
 div[data-radix-popper-content-wrapper]:has(.tooltip) {
   z-index: 60 !important;
 }

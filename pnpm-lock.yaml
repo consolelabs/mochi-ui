@@ -1262,6 +1262,9 @@ importers:
       '@mochi-ui/icons':
         specifier: workspace:*
         version: link:../../icons
+      '@mochi-ui/select':
+        specifier: workspace:*
+        version: link:../select
       '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme

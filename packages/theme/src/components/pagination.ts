@@ -33,14 +33,6 @@ const paginationAmountPerPageWrapperClsx = ({
 }: { className?: string } = {}) =>
   clsx('hidden sm:inline-flex justify-start items-center space-x-2', className)
 
-const paginationAmountPerPageSelectClsx = ({
-  className = '',
-}: { className?: string } = {}) =>
-  clsx(
-    'py-2 px-3 text-sm font-medium leading-tight rounded text-text-primary bg-neutral-plain-hover',
-    className,
-  )
-
 const paginationPageNavigateButtonGroupClsx = ({
   className = '',
 }: { className?: string } = {}) =>
@@ -83,7 +75,6 @@ const pagination = {
   paginationEllipsisButtonClsx,
   paginationWrapperClsx,
   paginationAmountPerPageWrapperClsx,
-  paginationAmountPerPageSelectClsx,
   paginationNavigationClsx,
   paginationNavigationButtonClsx,
   paginationNavigationIconClsx,
