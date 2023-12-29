@@ -25,7 +25,8 @@ const scrollAreaThumbClsx = ({ className = '' }: { className?: string } = {}) =>
 
 const scrollAreaCornerClsx = ({
   className = '',
-}: { className?: string } = {}) => clsx('bg-neutral-outline-hover', className)
+}: { className?: string } = {}) =>
+  clsx('bg-neutral-outline-hover !bg-black', className)
 
 const scrollArea = {
   scrollAreaRootClsx,

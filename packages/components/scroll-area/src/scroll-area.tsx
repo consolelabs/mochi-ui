@@ -1,10 +1,10 @@
-import { PropsWithChildren, forwardRef } from 'react'
+import { ElementRef, forwardRef } from 'react'
 import { scrollArea } from '@mochi-ui/theme'
 import {
   Corner,
   Root,
   ScrollAreaCornerProps,
-  ScrollAreaProps as ScrollAreaRootProps,
+  ScrollAreaProps,
   ScrollAreaScrollbarProps,
   ScrollAreaThumbProps,
   ScrollAreaViewportProps,
@@ -21,89 +21,82 @@ const {
   scrollAreaCornerClsx,
 } = scrollArea
 
-interface ScrollAreaProps extends PropsWithChildren {
-  rootProps?: ScrollAreaRootProps
-  viewportProps?: ScrollAreaViewportProps
-  scrollbarProps?: ScrollAreaScrollbarProps
-  thumbProps?: ScrollAreaThumbProps
-  cornerProps?: ScrollAreaCornerProps
-  scrollbars?: 'vertical' | 'horizontal' | 'both'
-}
-
-const ScrollArea = forwardRef<HTMLDivElement, ScrollAreaProps>(
-  (
-    {
-      children,
-      rootProps,
-      viewportProps,
-      scrollbarProps,
-      thumbProps,
-      cornerProps,
-      scrollbars = 'both',
-    },
-    ref,
-  ) => {
-    return (
-      <Root
-        {...rootProps}
-        ref={ref}
-        className={scrollAreaRootClsx({
-          className: rootProps?.className,
-        })}
-      >
-        <Viewport
-          {...viewportProps}
-          className={scrollAreaViewportClsx({
-            className: viewportProps?.className,
-          })}
-        >
-          {children}
-        </Viewport>
-        {scrollbars !== 'horizontal' && (
-          <Scrollbar
-            {...scrollbarProps}
-            className={scrollAreaScrollbarClsx({
-              className: scrollbarProps?.className,
-              orientation: 'vertical',
-            })}
-            orientation="vertical"
-          >
-            <Thumb
-              {...thumbProps}
-              className={scrollAreaThumbClsx({
-                className: thumbProps?.className,
-              })}
-            />
-          </Scrollbar>
-        )}
-        {scrollbars !== 'vertical' && (
-          <Scrollbar
-            {...scrollbarProps}
-            className={scrollAreaScrollbarClsx({
-              className: scrollbarProps?.className,
-              orientation: 'horizontal',
-            })}
-            orientation="horizontal"
-          >
-            <Thumb
-              {...thumbProps}
-              className={scrollAreaThumbClsx({
-                className: thumbProps?.className,
-              })}
-            />
-          </Scrollbar>
-        )}
-        <Corner
-          {...cornerProps}
-          className={scrollAreaCornerClsx({
-            className: cornerProps?.className,
-          })}
-        />
-      </Root>
-    )
-  },
+const ScrollArea = forwardRef<ElementRef<typeof Root>, ScrollAreaProps>(
+  ({ className, ...props }, ref) => (
+    <Root
+      {...props}
+      ref={ref}
+      className={scrollAreaRootClsx({
+        className,
+      })}
+    />
+  ),
 )
 
 ScrollArea.displayName = 'ScrollArea'
 
-export { ScrollArea, type ScrollAreaProps }
+const ScrollAreaViewport = forwardRef<
+  ElementRef<typeof Viewport>,
+  ScrollAreaViewportProps
+>(({ className, ...props }, ref) => (
+  <Viewport
+    ref={ref}
+    className={scrollAreaViewportClsx({ className })}
+    {...props}
+  />
+))
+
+ScrollAreaViewport.displayName = 'ScrollAreaViewport'
+
+const ScrollAreaScrollbar = forwardRef<
+  ElementRef<typeof Scrollbar>,
+  ScrollAreaScrollbarProps
+>(({ className, ...props }, ref) => (
+  <Scrollbar
+    ref={ref}
+    className={scrollAreaScrollbarClsx({
+      className,
+      orientation: props.orientation,
+    })}
+    {...props}
+  />
+))
+
+ScrollAreaScrollbar.displayName = 'ScrollAreaScrollbar'
+
+const ScrollAreaThumb = forwardRef<
+  ElementRef<typeof Thumb>,
+  ScrollAreaThumbProps
+>(({ className, ...props }, ref) => (
+  <Thumb ref={ref} className={scrollAreaThumbClsx({ className })} {...props} />
+))
+
+ScrollAreaThumb.displayName = 'ScrollAreaThumb'
+
+const ScrollAreaCorner = forwardRef<
+  ElementRef<typeof Corner>,
+  ScrollAreaCornerProps
+>(({ className, ...prosp }, ref) => (
+  <Corner
+    ref={ref}
+    className={scrollAreaCornerClsx({ className })}
+    {...prosp}
+  />
+))
+
+ScrollAreaCorner.displayName = 'ScrollAreaCorner'
+
+export {
+  ScrollArea,
+  ScrollAreaViewport,
+  ScrollAreaCorner,
+  ScrollAreaThumb,
+  ScrollAreaScrollbar,
+}
+export type {
+  ScrollAreaProps,
+  ScrollAreaViewportProps,
+  ScrollAreaCornerProps,
+  ScrollAreaThumbProps,
+  ScrollAreaScrollbarProps,
+}
