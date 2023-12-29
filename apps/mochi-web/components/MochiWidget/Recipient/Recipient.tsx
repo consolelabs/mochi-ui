@@ -32,6 +32,9 @@ import {
 
 const SEARCH_DEBOUNCE_TIME = 250
 
+const QUESTION_MARK_AVATAR =
+  'https://media.discordapp.net/attachments/1055686478639923360/1190198846555435108/1cb240e408c0549e.png?ex=65a0ee0d&is=658e790d&hm=0d6b7905d27036e957fdeb8414254b792dfad2692cabd56ba3ed287978aa651c&=&format=webp&quality=lossless&width=320&height=320'
+
 type FallbackGroup = {
   create_new?: boolean
 }
@@ -62,6 +65,7 @@ export const Recipient: React.FC<RecipientProps> = ({
     onClose: closeContacts,
   } = useDisclosure()
   const [searchTerm, setSearchTerm] = useState('')
+  const [searchContactTerm, setSearchContactTerm] = useState('')
   const debouncedSearchTerm = useDebounce(searchTerm, SEARCH_DEBOUNCE_TIME)
   const [selectedPlatform, setSelectedPlatform] = useState<Platform>(
     Platforms[0],
@@ -89,19 +93,14 @@ export const Recipient: React.FC<RecipientProps> = ({
         platform,
       })
       if (!ok) return []
-      return data
+      return data.map((d) => ({ ...d, group: 'result' }))
     },
   )
 
   const isSearching = isLoading
+  const showSkeleton = searchTerm !== debouncedSearchTerm
 
   const filteredRecipients = useMemo(() => {
-    const result = recipients.map((r) => {
-      return {
-        ...r,
-        group: 'result',
-      }
-    })
     const exactResult = recipients.some(
       (r) =>
         r.associated_accounts?.[0].platform_metadata.username ===
@@ -113,32 +112,35 @@ export const Recipient: React.FC<RecipientProps> = ({
     if (!exactResult && debouncedSearchTerm) {
       const id = `${debouncedSearchTerm}-${selectedPlatform?.platform}`
       // if there are no exact result, we need to show an option for user to still select it
-      result.push({
-        id,
-        associated_accounts: [
-          {
-            pnl: '',
-            id,
-            platform_metadata: { username: debouncedSearchTerm },
-            platform_identifier: '',
-            platform: (selectedPlatform?.platform as any) ?? '',
-            created_at: '',
-            updated_at: '',
-            profile_id: '',
-            total_amount: '',
-          },
-        ],
-        profile_name: debouncedSearchTerm,
-        application: null,
-        avatar: '',
-        type: 'user',
-        pnl: '',
-        group: 'result',
-        create_new: true,
-      })
+      return [
+        {
+          id,
+          associated_accounts: [
+            {
+              pnl: '',
+              id,
+              platform_metadata: { username: debouncedSearchTerm },
+              platform_identifier: '',
+              platform: (selectedPlatform?.platform as any) ?? '',
+              created_at: '',
+              updated_at: '',
+              profile_id: '',
+              total_amount: '',
+            },
+          ],
+          profile_name: debouncedSearchTerm,
+          application: null,
+          avatar: QUESTION_MARK_AVATAR,
+          type: 'user',
+          pnl: '',
+          group: 'result',
+          create_new: true,
+        } as any,
+        ...recipients,
+      ]
     }
 
-    return result
+    return recipients
   }, [debouncedSearchTerm, recipients, selectedPlatform?.platform])
 
   function onSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -162,6 +164,10 @@ export const Recipient: React.FC<RecipientProps> = ({
     setSearchTerm(e.target.value)
   }
 
+  function onSearchContactChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setSearchContactTerm(e.target.value)
+  }
+
   function onKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key !== 'Backspace' || searchTerm) return
     setPrefix('')
@@ -173,11 +179,17 @@ export const Recipient: React.FC<RecipientProps> = ({
   /* } */
 
   useEffect(() => {
-    if (!isOpenContacts || !isOpenRecipients) {
+    if (!isOpenRecipients) {
       setSearchTerm('')
       setPrefix(null)
     }
-  }, [isOpenContacts, isOpenRecipients])
+  }, [isOpenRecipients])
+
+  useEffect(() => {
+    if (!isOpenContacts) {
+      setSearchContactTerm('')
+    }
+  }, [isOpenContacts])
 
   return (
     <>
@@ -249,7 +261,7 @@ export const Recipient: React.FC<RecipientProps> = ({
         </div>
         {selectedRecipients?.length ? (
           <ScrollArea.Root className="relative">
-            <div className="absolute top-0 left-0 z-10 -ml-2 w-10 h-full bg-gradient-to-r pointer-events-none from-neutral-150 from-20%" />
+            <div className="absolute top-0 left-0 z-10 -ml-2 w-8 h-full bg-gradient-to-r pointer-events-none from-neutral-150 from-20%" />
             <ScrollArea.Viewport className="relative">
               <div
                 style={{ height: 84 }}
@@ -267,7 +279,7 @@ export const Recipient: React.FC<RecipientProps> = ({
                 ))}
               </div>
             </ScrollArea.Viewport>
-            <div className="absolute top-0 right-0 z-10 -mr-2 w-10 h-full bg-gradient-to-l pointer-events-none from-neutral-150 from-20%" />
+            <div className="absolute top-0 right-0 z-10 -mr-2 w-8 h-full bg-gradient-to-l pointer-events-none from-neutral-150 from-20%" />
             <ScrollArea.Scrollbar orientation="horizontal">
               <ScrollArea.Thumb />
             </ScrollArea.Scrollbar>
@@ -340,7 +352,7 @@ export const Recipient: React.FC<RecipientProps> = ({
               )}
               <Combobox.Options static className="flex mt-2 w-full min-h-0">
                 <RecipientList
-                  loading={isSearching}
+                  loading={showSkeleton}
                   data={filteredRecipients}
                   selectedRecipients={selectedRecipients}
                 />
@@ -385,17 +397,20 @@ export const Recipient: React.FC<RecipientProps> = ({
               <Combobox.Input
                 as={TextFieldInput}
                 className="w-full text-sm overflow-none"
-                value={searchTerm}
-                onChange={onSearchChange}
-                onKeyDown={onKeyDown}
-                placeholder="Search"
+                value={searchContactTerm}
+                onChange={onSearchContactChange}
+                placeholder="Search contacts"
               />
             </TextFieldRoot>
-            <Combobox.Options static className="flex mt-2 w-full min-h-0">
+            <Combobox.Options
+              static
+              className="flex mt-2 w-full h-full min-h-0"
+            >
               <ContactList
                 loading={isSearching}
-                data={filteredRecipients}
+                recentRecipients={filteredRecipients}
                 selectedRecipients={selectedRecipients}
+                queryValue={searchContactTerm}
               />
             </Combobox.Options>
           </Combobox>

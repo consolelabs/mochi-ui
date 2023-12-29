@@ -110,7 +110,7 @@ export const ProfileWidget = () => {
             {me?.profile_name}
           </Typography>
           <Badge appearance="white" className="w-fit">
-            <Typography level="h8">Rank #{info?.rank || 0}</Typography>
+            <Typography level="p6">Rank #{info?.rank || 0}</Typography>
           </Badge>
         </div>
         <div className="text-right">

@@ -84,7 +84,6 @@ export async function transformData(rawData: any) {
         rawData?.amount ?? 0,
         rawData?.token.decimal ?? 0,
       ),
-      scientificFormat: true,
     }),
     usd_amount: mochiUtils.formatUsdDigit(rawData.usd_amount),
     short_date: '',
