@@ -12,13 +12,13 @@ import {
   TabTrigger,
   Tabs,
   Typography,
+  ValueChange,
+  ValueChangeIndicator,
 } from '@mochi-ui/core'
 import { utils } from '@consolelabs/mochi-formatter'
 import {
   ArrowDownSquareSolid,
   ArrowUpSquareSolid,
-  ArrowDownLine,
-  ArrowUpLine,
   ChartSolid,
   ChevronDownLine,
 } from '@mochi-ui/icons'
@@ -122,22 +122,21 @@ export const ProfileWidget = () => {
             })}
           </Typography>
           <div className="flex justify-end items-center">
-            {pnl.startsWith('-') ? (
-              <ArrowDownLine className="w-4 h-4 text-danger-solid" />
-            ) : (
-              <ArrowUpLine className="w-4 h-4 text-success-solid" />
-            )}
-            <Typography
-              level="h8"
-              color={pnl.startsWith('-') ? 'danger' : 'success'}
-              className="mr-2 ml-1"
-            >
-              {utils.formatPercentDigit(Number.isNaN(Number(pnl)) ? 0 : pnl)} (
-              {utils.formatUsdDigit(
-                Number.isNaN(Number(pnl)) ? 0 : (pnl * total) / 100,
-              )}
-              )
-            </Typography>
+            <ValueChange trend={pnl.startsWith('-') ? 'down' : 'up'}>
+              <ValueChangeIndicator />
+              <Typography
+                level="h8"
+                color={pnl.startsWith('-') ? 'danger' : 'success'}
+                className="mr-2 ml-1"
+              >
+                {utils.formatPercentDigit(Number.isNaN(Number(pnl)) ? 0 : pnl)}{' '}
+                (
+                {utils.formatUsdDigit(
+                  Number.isNaN(Number(pnl)) ? 0 : (pnl * total) / 100,
+                )}
+                )
+              </Typography>
+            </ValueChange>
             <IconButton
               color="white"
               label="chart"
