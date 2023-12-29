@@ -3,40 +3,40 @@ import Pagination from '../src/pagination'
 
 describe('Pagination', () => {
   it('renders the correct number of pages when totalPages <= 9', () => {
-    const { getByText } = render(
+    const { getAllByText } = render(
       <Pagination totalItems={24 * 9 + 6} initItemsPerPage={25} />,
     )
     for (let i = 1; i <= 9; i++) {
-      const pageButton = getByText(i, { selector: 'span' })
-      expect(pageButton).toBeInTheDocument()
+      const pageButton = getAllByText(i, { selector: 'span' })
+      expect(pageButton[0]).toBeInTheDocument()
     }
   })
 
   it('renders the correct number of pages when currentPage <= 4', () => {
-    const { getByText } = render(
+    const { getAllByText } = render(
       <Pagination totalItems={500} initItemsPerPage={10} initalPage={3} />,
     )
     for (let i = 1; i <= 5; i++) {
-      const pageButton = getByText(i, { selector: 'span' })
-      expect(pageButton).toBeInTheDocument()
+      const pageButton = getAllByText(i, { selector: 'span' })
+      expect(pageButton[0]).toBeInTheDocument()
     }
-    const ellipsisButton = getByText('...')
-    expect(ellipsisButton).toBeInTheDocument()
-    const lastPageButton = getByText('50', { selector: 'span' })
-    expect(lastPageButton).toBeInTheDocument()
+    const ellipsisButton = getAllByText('...')
+    expect(ellipsisButton[0]).toBeInTheDocument()
+    const lastPageButton = getAllByText('50', { selector: 'span' })
+    expect(lastPageButton[0]).toBeInTheDocument()
   })
 
   it('renders the correct number of pages when currentPage >= totalPages - 3', () => {
-    const { getByText, queryAllByText, queryByText } = render(
+    const { getAllByText, queryAllByText, queryByText } = render(
       <Pagination totalItems={660} initItemsPerPage={25} initalPage={30} />,
     )
-    const firstPageButton = getByText('1')
-    expect(firstPageButton).toBeInTheDocument()
+    const firstPageButton = getAllByText('1')
+    expect(firstPageButton[0]).toBeInTheDocument()
     const ellipsisButton = queryAllByText('...')
     expect(ellipsisButton.length).toBe(1)
     for (let i = 24; i <= 27; i++) {
-      const pageButton = getByText(i, { selector: 'span' })
-      expect(pageButton).toBeInTheDocument()
+      const pageButton = getAllByText(i, { selector: 'span' })
+      expect(pageButton[0]).toBeInTheDocument()
     }
 
     const notExistedPage = queryByText(30, { selector: 'span' })
@@ -45,15 +45,15 @@ describe('Pagination', () => {
 
   it('calls setCurrentPage when a page button is clicked', () => {
     const setCurrentPage = jest.fn()
-    const { getByText } = render(
+    const { getAllByText } = render(
       <Pagination
         totalItems={100}
         initalPage={5}
         onPageChange={setCurrentPage}
       />,
     )
-    const pageButton = getByText(3, { selector: 'span' })
-    fireEvent.click(pageButton)
+    const pageButton = getAllByText(3, { selector: 'span' })
+    fireEvent.click(pageButton[0])
     expect(setCurrentPage).toHaveBeenCalledWith(3)
   })
 })

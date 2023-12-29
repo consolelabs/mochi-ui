@@ -186,7 +186,7 @@ export const ProfileWidget = () => {
               <DropdownMenuTrigger className="flex justify-center items-center w-7 h-7 rounded-md text-text-secondary hover:bg-background-popup">
                 <ChevronDownLine width={20} height={20} />
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
+              <DropdownMenuContent align="end" wrapperClassName="z-50">
                 {sortedChains.slice(4).map((chain) => (
                   <DropdownMenuItem
                     key={chain}
