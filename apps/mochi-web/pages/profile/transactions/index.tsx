@@ -16,14 +16,13 @@ import { ROUTES } from '~constants/routes'
 import {
   TransactionActionType,
   TransactionPlatform,
-  platformFilters,
   typeFilters,
 } from '~constants/transactions'
 import { NextPageWithLayout } from '~pages/_app'
 import { useState } from 'react'
 import { DashboardBody } from '~cpn/DashboardBody'
 import Transaction from '~cpn/Transaction'
-import { ChainPicker } from '~cpn/explore/index/components'
+import { ChainPicker, PlatformPicker } from '~cpn/explore/index/components'
 
 interface AppPageHeaderProps {
   filterType: TransactionActionType | 'all'
@@ -66,22 +65,11 @@ const AppPageHeader = (props: AppPageHeaderProps) => {
             ))}
           </SelectContent>
         </Select>
-        <Select onChange={onFilterPlatformChange} value={filterPlatform}>
-          <SelectTrigger
-            appearance="form"
-            color="white"
-            className="justify-between px-4 min-w-[150px]"
-          >
-            <SelectValue placeholder="All Platforms" />
-          </SelectTrigger>
-          <SelectContent align="end">
-            {platformFilters.map((platform) => (
-              <SelectItem key={platform.value} value={platform.value}>
-                {platform.label}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        <PlatformPicker
+          // @ts-ignore
+          onChange={onFilterPlatformChange}
+          value={filterPlatform}
+        />
       </PageHeaderActions>
     </PageHeader>
   )
