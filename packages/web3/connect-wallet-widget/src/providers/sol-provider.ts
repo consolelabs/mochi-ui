@@ -3,7 +3,12 @@ import bs58 from 'bs58'
 import dlv from 'dlv'
 import { SystemProgram, PublicKey, Transaction } from '@solana/web3.js'
 import isMobile from 'is-mobile'
-import { msg, ChainProvider, TransferInput } from './provider'
+import {
+  msg,
+  ChainProvider,
+  TransferInput,
+  type ConnectResponse,
+} from './provider'
 
 export class ProviderSOL extends ChainProvider {
   public platform = 'solana-chain'
@@ -49,7 +54,7 @@ export class ProviderSOL extends ChainProvider {
     }
   }
 
-  async connect() {
+  async connect(): Promise<ConnectResponse> {
     try {
       const hexedMsg = new TextEncoder().encode(msg)
 
@@ -75,6 +80,16 @@ export class ProviderSOL extends ChainProvider {
       }
     } catch (e) {
       console.error('sol-provider:connect', e)
+
+      // sometimes the Backpack wallet throw error with this message so we gotta try again automatically
+      try {
+        if (JSON.parse((e as Error).message).message === 'Plugin Closed') {
+          return this.connect()
+        }
+      } catch (ee) {
+        console.error('sol-provider:connect', ee)
+        return null
+      }
       return null
     }
   }

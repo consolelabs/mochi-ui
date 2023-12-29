@@ -25,7 +25,7 @@ export class ProviderEVM extends ChainProvider {
 
       // register event handler
       provider.on('accountsChanged', (accounts) => {
-        dispatch({
+        dispatch?.({
           type: 'update_wallets',
           payload: {
             addresses: accounts,
@@ -37,7 +37,7 @@ export class ProviderEVM extends ChainProvider {
 
       provider.on('chainChanged', (chainId) => {
         this.chainId = chainId
-        dispatch({
+        dispatch?.({
           type: 'refresh',
         })
       })
