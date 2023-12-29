@@ -92,7 +92,7 @@ const App: NextPageWithLayout = () => {
         onFilterPlatformChange={setFilterPlatform}
         onFilterTypeChange={setFilterType}
       />
-      <DashboardBody containerClassName="max-w-6xl">
+      <DashboardBody containerClassName="max-w-[1488px]">
         <Transaction filterType={filterType} filterPlatform={filterPlatform} />
       </DashboardBody>
     </>
