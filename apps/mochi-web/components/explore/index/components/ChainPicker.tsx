@@ -23,6 +23,9 @@ export const ChainPicker = (props: ChainPickerProps) => {
   return (
     <Select value={value} onChange={(v) => onChange(v === 'all' ? '' : v)}>
       <SelectTrigger
+        appearance="form"
+        color="white"
+        hasPadding
         leftIcon={
           // eslint-disable-next-line
           selectedNetwork ? (

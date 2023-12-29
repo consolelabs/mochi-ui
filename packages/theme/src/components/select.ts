@@ -84,9 +84,9 @@ const itemCva = cva(
         false: [],
       },
       appearance: {
-        form: ['px-3.5 py-2.5', 'rounded', 'border-divider', 'justify-between'],
+        form: ['px-3.5 h-10', 'rounded', 'border-divider', 'justify-between'],
         button: [
-          'px-3 py-1.5',
+          'px-3 h-[34px]',
           'rounded-lg',
           'border-transparent',
           'font-semibold',
