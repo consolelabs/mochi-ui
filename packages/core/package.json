@@ -30,6 +30,7 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
+    "@mochi-ui/scroll-area": "workspace:*",
     "@mochi-ui/card": "workspace:*",
     "@mochi-ui/skeleton": "workspace:*",
     "@mochi-ui/content-editable": "workspace:*",
