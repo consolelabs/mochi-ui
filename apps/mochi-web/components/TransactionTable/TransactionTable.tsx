@@ -220,28 +220,30 @@ export const TransactionTable = (props: TransactionTableProps) => {
           <div style={{ minWidth: 1400 }} className={className}>
             <Table {...rest} columns={columns} className="p-0" />
           </div>
-          {isEmpty && (
-            <div
-              className={clsx(
-                'w-full h-[80vh] flex flex-col gap-1 items-center justify-center',
-                componentsProps.empty?.className,
-              )}
-            >
-              <Typography level="h7">No result found</Typography>
-              <Typography level="p5" color="textSecondary">
-                Try searching for something else.
-              </Typography>
-            </div>
-          )}
         </ScrollArea.Viewport>
-        <ScrollArea.Scrollbar
-          forceMount
-          orientation="horizontal"
-          className="flex select-none touch-none p-0.5 bg-neutral-outline transition-colors h-2 w-full hover:bg-neutral-outline-hover"
-        >
-          <ScrollArea.Thumb className="bg-neutral-solid rounded-lg relative before:content-[''] before:absolute before:w-full before:h-full before:min-w-[44px] before:min-h-[44px] before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2" />
-        </ScrollArea.Scrollbar>
+        {!isEmpty && (
+          <ScrollArea.Scrollbar
+            forceMount
+            orientation="horizontal"
+            className="flex select-none touch-none p-0.5 bg-neutral-outline transition-colors h-2 w-full hover:bg-neutral-outline-hover"
+          >
+            <ScrollArea.Thumb className="bg-neutral-solid rounded-lg relative before:content-[''] before:absolute before:w-full before:h-full before:min-w-[44px] before:min-h-[44px] before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2" />
+          </ScrollArea.Scrollbar>
+        )}
       </ScrollArea.Root>
+      {isEmpty && (
+        <div
+          className={clsx(
+            'w-full h-[80vh] flex flex-col gap-1 items-center justify-center',
+            componentsProps.empty?.className,
+          )}
+        >
+          <Typography level="h7">No result found</Typography>
+          <Typography level="p5" color="textSecondary">
+            Try searching for something else.
+          </Typography>
+        </div>
+      )}
       {componentsProps.pagination && (
         <div className="p-4 text-sm">
           <Pagination
