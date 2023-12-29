@@ -1,44 +1,44 @@
 import { Typography } from '@mochi-ui/core'
 import { useLoginWidget } from '@mochi-web3/login-widget'
-import { useMemo } from 'react'
+import { useState } from 'react'
 import {
   TransactionActionType,
   TransactionPlatform,
 } from '~constants/transactions'
 import { useFetchProfileTransaction } from '~hooks/app/useFetchProfileTransaction'
 import { TransactionTable } from '~cpn/TransactionTable'
+import { ROUTES } from '~constants/routes'
 import { ignoreOptionAll } from './utils'
 
 type Props = {
-  showCount?: number
   filterType: TransactionActionType | 'all'
   filterPlatform: TransactionPlatform | 'all'
+  chainId?: string
+  showPagination?: boolean
+  defaultPageSize?: number
 }
 
-const MAX_TRANSACTION_TO_DISPLAY = 30
-
 export default function Transaction({
-  showCount = MAX_TRANSACTION_TO_DISPLAY,
   filterPlatform,
   filterType,
+  chainId = '',
+  showPagination = false,
+  defaultPageSize = 15,
 }: Props) {
   const { profile } = useLoginWidget()
+  const [page, setPage] = useState(1)
+  const [size, setSize] = useState(defaultPageSize)
 
-  const { transactions: _transactions, isLoading } = useFetchProfileTransaction(
+  const { transactions, isLoading, pagination } = useFetchProfileTransaction(
     profile?.id ?? '',
     Boolean(profile?.id),
     {
       action: ignoreOptionAll(filterType),
       platform: ignoreOptionAll(filterPlatform),
+      chain_ids: chainId || undefined,
+      page,
+      size,
     },
-  )
-  const transactions = useMemo(
-    () =>
-      _transactions?.slice(
-        0,
-        Math.min(showCount, Math.max(showCount, MAX_TRANSACTION_TO_DISPLAY)),
-      ),
-    [_transactions, showCount],
   )
 
   return (
@@ -49,6 +49,24 @@ export default function Transaction({
           data={transactions || []}
           isLoading={isLoading}
           hideLastBorder
+          onRow={(tx) => {
+            return {
+              onClick: () => {
+                window.open(ROUTES.TX_RECEIPTS(tx.code))
+              },
+            }
+          }}
+          componentsProps={{
+            pagination: showPagination
+              ? {
+                  initalPage: page,
+                  initItemsPerPage: size,
+                  totalItems: pagination?.total || 0,
+                  onItemPerPageChange: setSize,
+                  onPageChange: setPage,
+                }
+              : undefined,
+          }}
         />
       </div>
       {!isLoading && (transactions?.length ?? 0) <= 0 && (
