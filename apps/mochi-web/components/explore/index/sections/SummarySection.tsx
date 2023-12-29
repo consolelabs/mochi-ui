@@ -25,10 +25,10 @@ export const SummarySection = () => {
   const loading = isTransactionSummaryLoading || !transactionSummary
 
   return (
-    <div className="lg:py-14 bg-background-level2">
+    <div className="lg:py-8 bg-background-level2">
       <div
         className="grid gap-4 lg:grid-cols-12 p-6 mx-auto"
-        style={{ maxWidth: 1200 }}
+        style={{ maxWidth: 1248 }}
       >
         <div className="flex flex-wrap col-span-12 gap-4 justify-between items-center p-6 rounded-xl border bg-background-body border-divider">
           <div className="flex flex-col gap-4 w-full lg:w-auto">
@@ -67,7 +67,7 @@ export const SummarySection = () => {
               )}
             </div>
           </div>
-          <div className="flex gap-4 justify-center items-center w-full lg:w-auto">
+          <div className="flex gap-4 lg:justify-center items-center w-full lg:w-auto">
             {loading ? (
               <Skeleton className="rounded-full w-[150px] h-[150px]" />
             ) : (
@@ -120,7 +120,7 @@ export const SummarySection = () => {
           [
             [
               HeartColored,
-              'tips given',
+              'Tips given',
               `${utils.formatDigit({
                 value: transactionSummary?.tips_given || 0,
                 shorten: true,
@@ -128,12 +128,12 @@ export const SummarySection = () => {
             ],
             [
               DollarColored,
-              'total volume',
+              'Total volume',
               `${utils.formatUsdDigit(transactionSummary?.total_volume || 0)}+`,
             ],
             [
               UserShieldColored,
-              'active users',
+              'Active users',
               `${utils.formatDigit({
                 value: transactionSummary?.active_users || 0,
                 shorten: true,
@@ -141,7 +141,7 @@ export const SummarySection = () => {
             ],
             [
               LinkColored,
-              'networks',
+              'Networks',
               `${utils.formatDigit({
                 value: transactionSummary?.total_networks || 0,
                 shorten: true,

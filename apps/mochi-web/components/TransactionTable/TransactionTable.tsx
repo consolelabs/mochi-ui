@@ -8,6 +8,7 @@ import {
   Typography,
 } from '@mochi-ui/core'
 import { ArrowRightLine } from '@mochi-ui/icons'
+import * as ScrollArea from '@radix-ui/react-scroll-area'
 import clsx from 'clsx'
 import { useMemo } from 'react'
 import { TransactionTableProps, Tx } from './types'
@@ -212,7 +213,20 @@ export const TransactionTable = (props: TransactionTableProps) => {
 
   return (
     <>
-      <Table {...rest} columns={columns} className={clsx('p-0', className)} />
+      <ScrollArea.Root>
+        <ScrollArea.Viewport>
+          <div style={{ minWidth: 1400 }} className={className}>
+            <Table {...rest} columns={columns} className="p-0" />
+          </div>
+        </ScrollArea.Viewport>
+        <ScrollArea.Scrollbar
+          forceMount
+          orientation="horizontal"
+          className="flex select-none touch-none p-0.5 bg-neutral-outline transition-colors h-2 w-full hover:bg-neutral-outline-hover"
+        >
+          <ScrollArea.Thumb className="bg-neutral-solid rounded-lg relative before:content-[''] before:absolute before:w-full before:h-full before:min-w-[44px] before:min-h-[44px] before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2" />
+        </ScrollArea.Scrollbar>
+      </ScrollArea.Root>
       {componentsProps.pagination && (
         <div className="p-4 text-sm">
           <Pagination

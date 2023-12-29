@@ -66,28 +66,28 @@ export default function Stats({ className = '' }: { className?: string }) {
         loading={isLoading}
         icon={<HeartColored className="flex-shrink-0 w-8 h-8" />}
         title={`${data?.tips_given ?? 1602}+`}
-        subtitle="tips given"
+        subtitle="Tips given"
       />
       <Divider />
       <Spotlight
         loading={isLoading}
         icon={<DollarColored className="flex-shrink-0 w-8 h-8" />}
         title={data ? utils.formatUsdDigit(data.total_volume) : '$271,023'}
-        subtitle="total volume"
+        subtitle="Total volume"
       />
       <Divider />
       <Spotlight
         loading={isLoading}
         icon={<UserShieldColored className="flex-shrink-0 w-8 h-8" />}
         title={`${data?.active_users ?? 1000}+`}
-        subtitle="active users"
+        subtitle="Active users"
       />
       <Divider />
       <Spotlight
         loading={isLoading}
         icon={<LinkColored className="flex-shrink-0 w-8 h-8" />}
         title={`${data?.total_networks ?? 145}+`}
-        subtitle="networks"
+        subtitle="Networks"
       />
     </div>
   )
