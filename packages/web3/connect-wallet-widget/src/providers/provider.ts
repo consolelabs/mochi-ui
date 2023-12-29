@@ -10,6 +10,12 @@ export type TransferInput = {
   tokenAddress?: string
 }
 
+export type ConnectResponse = {
+  addresses: string[]
+  signature: string
+  platform: string
+} | null
+
 export abstract class ChainProvider<I = TransferInput> {
   public mobileProtocol: string = ''
   public provider: any
@@ -68,16 +74,8 @@ export abstract class ChainProvider<I = TransferInput> {
   }
 
   abstract transfer(args: I): Promise<string>
-  abstract connect(): Promise<{
-    addresses: string[]
-    signature: string
-    platform: string
-  } | null>
-  abstract connectMobile(): Promise<{
-    addresses: string[]
-    signature: string
-    platform: string
-  } | null>
+  abstract connect(): Promise<ConnectResponse>
+  abstract connectMobile(): Promise<ConnectResponse>
   abstract isInstalled(): Promise<boolean>
   abstract sync(storeGetter?: any): ChainProvider<I>
 }
