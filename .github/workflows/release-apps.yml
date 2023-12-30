@@ -1,0 +1,97 @@
+name: Release Applications Packages
+permissions:
+  id-token: write
+  contents: write
+  packages: write
+  pull-requests: write
+  issues: read
+
+on:
+  push:
+    paths:
+      - "apps/**"
+    branches:
+      - main
+      - staging
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  get-apps:
+    name: Get Applications for releasing
+    runs-on: ubuntu-latest
+    if: ${{ !contains(github.event.head_commit.message, '[skip-apps]') }}
+    outputs:
+      apps: ${{ steps.apps.outputs.result }}
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          # see `fetch-depth` in README: https://github.com/actions/checkout#checkout-v4,
+          # we set to `0` so the referenced commits are available for the command below
+          fetch-depth: 0
+
+      - name: Prepare Environment
+        uses: ./.github/actions/setup-env
+        timeout-minutes: 10
+
+      - name: Get Applications
+        id: apps
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const getApps = require('./scripts/get-apps-changed.js')
+            return getApps()
+        env:
+          FROM_COMMIT: HEAD~1
+          TO_COMMIT: HEAD^
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    needs: [get-apps]
+    if: ${{ needs.get-apps.outputs.apps != null }}
+    strategy:
+      matrix:
+        relativeDir: ${{ fromJson(needs.get-apps.outputs.apps) }}
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v3
+        with:
+          # see `fetch-depth` in README: https://github.com/actions/checkout#checkout-v3,
+          # we set to `0` so the referenced commits are available for the command below
+          fetch-depth: 0
+
+      - name: Prepare Environment
+        uses: ./.github/actions/setup-env
+        timeout-minutes: 10
+
+      - name: Get Applications Name
+        id: app-name
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const packageInfo = require('./${{matrix.relativeDir}}/package.json')
+            return packageInfo.name
+      - name: Get is Prerelease
+        id: is-prerelease
+        uses: actions/github-script@v7
+        with:
+          script: |
+            return "${{ github.ref }}".replace('refs/heads/', '') !== 'main'
+
+      - name: Release Application
+        uses: google-github-actions/release-please-action@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          release-type: node
+          bump-minor-pre-major: true
+          bump-patch-for-minor-pre-major: true
+          package-name: ${{ fromJson(steps.app-name.outputs.result) }}
+          path: ${{ matrix.relativeDir }}
+          pull-request-title-pattern: "chore(${component}): release ${version}"
+          pull-request-header: "This PR was opened by the release GitHub action. When you're ready to do a release, you can merge this and the packages will be released to Github automatically."
+          include-v-in-tag: false
+          tag-separator: "@"
+          monorepo-tags: true
+          prerelease: ${{ fromJson(steps.is-prerelease.outputs.result) }}
