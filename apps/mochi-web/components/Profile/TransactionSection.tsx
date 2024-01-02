@@ -16,7 +16,7 @@ export const TransactionSection = () => {
           <ArrowRightLine className="w-6 h-6" />
         </Link>
       </div>
-      <Transaction filterType="all" filterPlatform="all" defaultPageSize={4} />
+      <Transaction filterType="all" filterPlatform="all" defaultPageSize={5} />
     </div>
   )
 }
