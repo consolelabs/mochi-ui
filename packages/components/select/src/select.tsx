@@ -3,6 +3,7 @@ import {
   ElementRef,
   useState,
   forwardRef,
+  useEffect,
 } from 'react'
 import { select } from '@mochi-ui/theme'
 import * as SelectPrimitive from '@radix-ui/react-select'
@@ -21,7 +22,15 @@ import { SelectContextProvider, useSelectContext } from './context'
 
 function Select(props: SelectProps) {
   const { onChange, defaultValue, value } = props
-  const [isFilled, setIsFilled] = useState(!!defaultValue || !!value)
+  const [isFilled, setIsFilled] = useState(false)
+
+  useEffect(() => {
+    if (!isFilled && (!!defaultValue || !!value)) {
+      setIsFilled(true)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultValue, value])
+
   return (
     // Root has no ref
     <SelectContextProvider value={{ isFilled }}>
