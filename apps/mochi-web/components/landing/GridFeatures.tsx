@@ -22,10 +22,10 @@ export function GridFeatures({ title, data, className }: Props) {
       ) : (
         title
       )}
-      <div className="flex flex-col gap-5 md:grid md:grid-cols-3 md:auto-rows-auto">
+      <div className="flex flex-col py-4 md:py-6 gap-9 md:gap-11 md:grid md:grid-cols-3 md:auto-rows-auto">
         {data.map((d) => {
           return (
-            <div key={d.id} className="flex flex-col p-4 md:p-6">
+            <div key={d.id} className="flex flex-col">
               <div className="flex flex-row gap-x-3 items-center md:flex-col md:items-start">
                 {d.icon}
                 <span className="text-lg font-medium md:mt-5 text-neutral-900 md:text-[22px]">

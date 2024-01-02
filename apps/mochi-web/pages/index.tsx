@@ -95,7 +95,7 @@ export default function Index() {
   return (
     <Layout>
       <SEO title="Mochi" />
-      <div className="grid grid-cols-1 auto-rows-min gap-y-7 gap-x-20 py-8 px-4 m-auto w-full max-w-5xl lg:grid-cols-2 lg:grid-rows-2 lg:p-8">
+      <div className="grid grid-cols-1 auto-rows-min gap-y-7 gap-x-32 py-8 xl:gap-x-60 max-w-7xl m-auto w-full lg:grid-cols-2 lg:grid-rows-2 landing-block">
         <div className="flex flex-col lg:justify-end">
           <p className="text-[32px] leading-[38.4px] title-tracking md:text-[40px] md:leading-[48px]">
             Send{' '}
@@ -117,8 +117,8 @@ export default function Index() {
           </span>
         </div>
 
-        <div className="flex relative justify-center mx-auto max-w-[480px] w-full lg:col-start-2 lg:row-span-2 lg:mx-0">
-          <MochiWidget />
+        <div className="flex relative justify-center mx-auto w-full lg:col-start-2 lg:row-span-2 lg:mx-0">
+          <MochiWidget wrapperClassName="max-w-[480px]" />
         </div>
 
         <div className="flex flex-col mt-5 lg:mt-2">
