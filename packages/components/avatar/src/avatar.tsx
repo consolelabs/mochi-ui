@@ -12,6 +12,7 @@ interface AvatarProps extends AvatarStylesProps {
   fallback?: string
   className?: string
   onLoadingStatusChange?: RadixAvatar.AvatarImageProps['onLoadingStatusChange']
+  isLoading?: boolean
 }
 
 export default function Avatar({
@@ -21,20 +22,23 @@ export default function Avatar({
   fallback = '',
   onLoadingStatusChange,
   className,
+  isLoading = false,
 }: AvatarProps) {
   const id = useId()
   const fallbackUrl = boringAvatar(fallback)
 
   const isCached = useMemo(() => {
     const image = new window.Image()
-    image.src = src || ''
+    if (typeof window === 'undefined') return true
+    image.src = src || fallbackUrl
     return image.complete
-  }, [src])
+  }, [src, fallbackUrl])
 
   return (
     <RadixAvatar.Root className={avatarCva({ size, className })}>
       <RadixAvatar.Image
-        src={src || fallbackUrl}
+        // NOTE:if loading => show loading
+        src={isLoading ? '' : src || fallbackUrl}
         className={avatarImgClsx({ smallSrc: Boolean(smallSrc), isCached })}
         asChild={!!smallSrc}
         onLoadingStatusChange={onLoadingStatusChange}
