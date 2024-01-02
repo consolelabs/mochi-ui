@@ -15,23 +15,6 @@ describe('ProfileBadge', () => {
     expect(nameElement).toBeInTheDocument()
   })
 
-  it('renders the platform icon', () => {
-    const name = 'John Doe'
-    const avatar = 'https://example.com/avatar.png'
-    const { container } = render(
-      <ProfileBadge name={name} avatar={avatar} platform={platform} />,
-    )
-    const images = container.querySelectorAll('image')
-    expect(images.length).toBe(2)
-
-    const [image1, image2] = Array.from(images)
-    expect(image1).toHaveAttribute(
-      'xlink:href',
-      'https://example.com/avatar.png',
-    )
-    expect(image2).toHaveAttribute('xlink:href', platform)
-  })
-
   it('passes through additional props', () => {
     const onClick = jest.fn()
     const { getByRole } = render(

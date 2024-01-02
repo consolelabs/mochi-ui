@@ -230,12 +230,17 @@ export const mochiui = () => {
               '0%': { transform: 'translate(0, 100%)', opacity: '0.5' },
               '100%': { transform: 'translate(0, 0)', opacity: '1' },
             },
+            'fade-in': {
+              '0%': { opacity: '0.3' },
+              '100%': { opacity: '1' },
+            },
           },
           animation: {
             'slide-from-left': 'slide-left 0.2s ease-in-out',
             'slide-from-right': 'slide-right 0.2s ease-in-out',
             'slide-from-top': 'slide-top 0.2s ease-in-out',
             'slide-from-bottom': 'slide-bottom 0.2s ease-in-out',
+            'fade-in': 'fade-in 0.5s ease-in-out',
           },
           screens: {
             xxs: '375px',

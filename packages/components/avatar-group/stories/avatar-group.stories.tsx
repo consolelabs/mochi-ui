@@ -106,5 +106,4 @@ export const Group: Story = {
     )
   },
 }
-
 Group.name = 'Avatar Group'
