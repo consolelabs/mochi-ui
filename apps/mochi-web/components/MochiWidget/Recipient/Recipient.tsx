@@ -2,11 +2,14 @@
 import clsx from 'clsx'
 import { api } from '~constants/mochi'
 import useSWR from 'swr'
-import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { Combobox } from '@headlessui/react'
 import { Profile } from '@consolelabs/mochi-rest'
 import { useEffect, useMemo, useState } from 'react'
 import {
+  ScrollArea,
+  ScrollAreaScrollbar,
+  ScrollAreaThumb,
+  ScrollAreaViewport,
   TextFieldDecorator,
   TextFieldInput,
   TextFieldRoot,
@@ -260,9 +263,9 @@ export const Recipient: React.FC<RecipientProps> = ({
           />
         </div>
         {selectedRecipients?.length ? (
-          <ScrollArea.Root className="relative">
+          <ScrollArea className="relative">
             <div className="absolute top-0 left-0 z-10 -ml-2 w-8 h-full bg-gradient-to-r pointer-events-none from-neutral-150 from-20%" />
-            <ScrollArea.Viewport className="relative">
+            <ScrollAreaViewport className="relative">
               <div
                 style={{ height: 84 }}
                 className="flex gap-x-7 px-5 pb-2 min-w-full"
@@ -278,12 +281,12 @@ export const Recipient: React.FC<RecipientProps> = ({
                   />
                 ))}
               </div>
-            </ScrollArea.Viewport>
+            </ScrollAreaViewport>
             <div className="absolute top-0 right-0 z-10 -mr-2 w-8 h-full bg-gradient-to-l pointer-events-none from-neutral-150 from-20%" />
-            <ScrollArea.Scrollbar orientation="horizontal">
-              <ScrollArea.Thumb />
-            </ScrollArea.Scrollbar>
-          </ScrollArea.Root>
+            <ScrollAreaScrollbar orientation="horizontal">
+              <ScrollAreaThumb />
+            </ScrollAreaScrollbar>
+          </ScrollArea>
         ) : (
           <div
             className="flex flex-col gap-y-2 justify-center items-center text-neutral-500"

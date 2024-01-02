@@ -1,8 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useDisclosure } from '@dwarvesf/react-hooks'
-import { Button, Typography } from '@mochi-ui/core'
+import {
+  Button,
+  ScrollArea,
+  ScrollAreaScrollbar,
+  ScrollAreaThumb,
+  ScrollAreaViewport,
+  Typography,
+} from '@mochi-ui/core'
 import { ArrowRightLine, ArrowUpLine } from '@mochi-ui/icons'
-import * as ScrollArea from '@radix-ui/react-scroll-area'
 import clsx from 'clsx'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { ROUTES } from '~constants/routes'
@@ -101,8 +107,8 @@ export default function Feed({ className = '' }: Props) {
           View all <ArrowRightLine />
         </Button>
       </div>
-      <ScrollArea.Root className="min-h-0">
-        <ScrollArea.Viewport
+      <ScrollArea className="min-h-0">
+        <ScrollAreaViewport
           ref={containerRef}
           /* onScroll={(e) => { */
           /*   const el = e.target as HTMLDivElement */
@@ -130,11 +136,11 @@ export default function Feed({ className = '' }: Props) {
               }}
             />
           </div>
-        </ScrollArea.Viewport>
-        <ScrollArea.Scrollbar orientation="horizontal">
-          <ScrollArea.Thumb />
-        </ScrollArea.Scrollbar>
-      </ScrollArea.Root>
+        </ScrollAreaViewport>
+        <ScrollAreaScrollbar orientation="horizontal">
+          <ScrollAreaThumb />
+        </ScrollAreaScrollbar>
+      </ScrollArea>
     </div>
   )
 }
