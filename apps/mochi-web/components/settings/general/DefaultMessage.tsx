@@ -1,10 +1,4 @@
-import {
-  Button,
-  FormLabel,
-  IconButton,
-  Switch,
-  Typography,
-} from '@mochi-ui/core'
+import { Button, IconButton, Switch, Typography } from '@mochi-ui/core'
 import { EditLine, TrashBinLine } from '@mochi-ui/icons'
 import React from 'react'
 import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
@@ -21,9 +15,9 @@ export const DefaultMessage = () => {
   const enableDefaultMessage = watch('payment.default_message_enable')
 
   return (
-    <div className="flex flex-col w-full max-w-md space-y-2">
+    <div className="flex flex-col w-full space-y-2">
       <div className="flex items-center justify-between">
-        <FormLabel>Default message</FormLabel>
+        <Typography level="p4">Default message</Typography>
         <Controller
           name="payment.default_message_enable"
           control={control}

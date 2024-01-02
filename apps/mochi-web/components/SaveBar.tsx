@@ -40,7 +40,7 @@ export const SaveBar = (props: SaveBarProps) => {
             <ActionBarConfirmButton
               onClick={onConfirm}
               loading={isLoading}
-              className="sm:w-32"
+              className="sm:w-32 min-w-[128px]"
             >
               Save changes
             </ActionBarConfirmButton>

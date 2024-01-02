@@ -14,15 +14,19 @@ import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import {
   platformGroupList,
   platformList,
-  targetGroupList,
+  targetGroupList as defaultTargetGroupList,
 } from '~constants/settings'
 import { ResponseGeneralSettingData } from '~types/mochi-schema'
 
 interface Props {
   name: 'tx' | 'social_accounts' | 'wallets'
+  targetGroupList?: typeof defaultTargetGroupList
 }
 
-export const PrivacySetting = ({ name }: Props) => {
+export const PrivacySetting = ({
+  name,
+  targetGroupList = defaultTargetGroupList,
+}: Props) => {
   const { control, watch } = useFormContext<ResponseGeneralSettingData>()
   const isCustom = watch(`privacy.${name}.general_platform_group`) === 'custom'
   const { fields, replace } = useFieldArray({

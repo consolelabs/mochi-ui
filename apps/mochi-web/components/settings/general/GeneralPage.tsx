@@ -44,6 +44,10 @@ export const GeneralPage = () => {
         ...data,
         payment: {
           ...data.payment,
+          default_money_source: data.payment?.default_money_source || {
+            platform: 'mochi',
+            platform_identifier: 'mochi',
+          },
           prioritized_token: data.payment?.prioritized_token_ids?.map((id) => ({
             id,
           })),
@@ -70,9 +74,9 @@ export const GeneralPage = () => {
         resetData(r.data)
       })
       .catch((e) => {
-        const err = JSON.parse(e.message)
+        const err = JSON.parse(e.message || '{}')
         toast({
-          description: err.msg,
+          description: err.msg || 'Something went wrong, please try again.',
           scheme: 'danger',
         })
       })
@@ -88,25 +92,25 @@ export const GeneralPage = () => {
         id={SETTINGS_GENERAL_FORM_ID}
         onSubmit={handleSubmit(onUpdateSettings)}
       />
-      <div className="space-y-4">
+      <div className="space-y-4 sm:max-w-[600px]">
         <Typography level="h6">Payment setting</Typography>
-
         <div className="flex gap-4">
           <MoneySource />
           <ReceiverPlatform />
         </div>
-
         <TokenPriority />
+        <Separator />
         <DefaultMessage />
+        <Separator />
         <TransactionLimit />
-
-        <Separator className="w-full max-w-md" />
+        <Separator className="!mb-8" />
 
         <Typography level="h6">Privacy</Typography>
-
         <TransactionPrivacy />
         <SocialAccountsPrivacy />
         <WalletsPrivacy />
+
+        <Separator className="!my-8" />
       </div>
       <div className="mt-8">
         <Button
