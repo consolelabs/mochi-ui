@@ -19,7 +19,7 @@ const actionString: Record<OffchainTx['action'], string> = {
   paylink: 'pay link',
   airdrop: 'airdrop',
   deposit: 'deposit',
-  withdraw: 'widthdraw',
+  withdraw: 'withdraw',
 }
 
 export async function transform(d: any): Promise<Tx> {

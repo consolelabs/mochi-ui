@@ -110,7 +110,7 @@ export const useTransactionStore = create<State>((set, get) => ({
     const finalFilters = { ..._filters, ...partialFilters }
 
     if (JSON.stringify(finalFilters) !== JSON.stringify(_filters)) {
-      set((s) => ({ ...s, filters: finalFilters, page: 1, txns: [] }))
+      set((s) => ({ ...s, filters: finalFilters, page: 1, txns: [], total: 0 }))
       fetchTxns(finalFilters, 1, size)
     }
   },
