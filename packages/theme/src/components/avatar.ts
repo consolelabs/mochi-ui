@@ -74,9 +74,10 @@ const avatarGroupItemAvatarClsx = ({
     className,
   )
 
-const avatarImgClsx = ({ smallSrc = false }) =>
-  clsx('h-full animate-fade-in', {
+const avatarImgClsx = ({ smallSrc = false, isCached = false }) =>
+  clsx('h-full', {
     'rounded-full': !smallSrc,
+    'animate-fade-in': !isCached,
   })
 
 const avatarFallbackCls = 'w-full h-full rounded-full'

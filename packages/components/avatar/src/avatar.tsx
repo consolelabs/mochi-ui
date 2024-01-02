@@ -1,5 +1,5 @@
 import * as RadixAvatar from '@radix-ui/react-avatar'
-import { useId } from 'react'
+import { useId, useMemo } from 'react'
 import { avatar, AvatarStylesProps } from '@mochi-ui/theme'
 import { Skeleton } from '@mochi-ui/skeleton'
 import { boringAvatar } from './util'
@@ -11,6 +11,7 @@ interface AvatarProps extends AvatarStylesProps {
   smallSrc?: string
   fallback?: string
   className?: string
+  onLoadingStatusChange?: RadixAvatar.AvatarImageProps['onLoadingStatusChange']
 }
 
 export default function Avatar({
@@ -18,17 +19,25 @@ export default function Avatar({
   src,
   smallSrc,
   fallback = '',
+  onLoadingStatusChange,
   className,
 }: AvatarProps) {
   const id = useId()
   const fallbackUrl = boringAvatar(fallback)
 
+  const isCached = useMemo(() => {
+    const image = new window.Image()
+    image.src = src || ''
+    return image.complete
+  }, [src])
+
   return (
     <RadixAvatar.Root className={avatarCva({ size, className })}>
       <RadixAvatar.Image
         src={src || fallbackUrl}
-        className={avatarImgClsx({ smallSrc: Boolean(smallSrc) })}
+        className={avatarImgClsx({ smallSrc: Boolean(smallSrc), isCached })}
         asChild={!!smallSrc}
+        onLoadingStatusChange={onLoadingStatusChange}
       >
         {smallSrc ? (
           <svg height="100%" role="none" viewBox="0 0 100 100" width="100%">
