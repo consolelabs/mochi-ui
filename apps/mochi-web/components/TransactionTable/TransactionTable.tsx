@@ -209,7 +209,8 @@ export const TransactionTable = (props: TransactionTableProps) => {
     return columns.filter(
       (c) => columnFlags[c.id as keyof typeof columnFlags] !== false,
     )
-  }, [columnFlags])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [JSON.stringify(columnFlags)])
 
   const isEmpty = !rest.isLoading && rest.data?.length === 0
 
