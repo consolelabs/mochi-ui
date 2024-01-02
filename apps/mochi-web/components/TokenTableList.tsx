@@ -1,9 +1,18 @@
-import { ColumnProps, Table, TableProps, Typography } from '@mochi-ui/core'
+import {
+  ColumnProps,
+  Table,
+  TableProps,
+  Typography,
+  ScrollArea,
+  ScrollAreaScrollbar,
+  ScrollAreaThumb,
+  ScrollAreaViewport,
+  ScrollAreaCorner,
+} from '@mochi-ui/core'
 import { utils as mochiUtils } from '@consolelabs/mochi-formatter'
 import { TokenAvatar } from '~cpn/TokenAvatar'
 import { Bag, WalletSolid } from '@mochi-ui/icons'
 import { Balance } from '~store/wallets'
-import * as ScrollArea from '@radix-ui/react-scroll-area'
 import clsx from 'clsx'
 
 const sortOrder = ['SOL']
@@ -59,8 +68,8 @@ export const TokenTableList = ({
   ...props
 }: Props) => {
   return (
-    <ScrollArea.Root className="overflow-hidden h-[420px]">
-      <ScrollArea.Viewport className="relative w-full h-full [&>div]:h-full">
+    <ScrollArea className="h-[420px]">
+      <ScrollAreaViewport>
         <Table
           {...props}
           stickyHeader
@@ -121,14 +130,11 @@ export const TokenTableList = ({
             },
           ]}
         />
-      </ScrollArea.Viewport>
-      <ScrollArea.Scrollbar
-        className="flex p-0.5 w-2 transition-colors select-none touch-none bg-neutral-outline hover:bg-neutral-outline-hover"
-        orientation="vertical"
-      >
-        <ScrollArea.Thumb className="relative flex-1 rounded-lg bg-neutral-solid before:content-[''] before:absolute before:w-full before:h-full before:min-w-[44px] before:min-h-[44px] before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2" />
-      </ScrollArea.Scrollbar>
-      <ScrollArea.Corner className="bg-neutral-outline-hover" />
-    </ScrollArea.Root>
+      </ScrollAreaViewport>
+      <ScrollAreaScrollbar orientation="vertical">
+        <ScrollAreaThumb />
+      </ScrollAreaScrollbar>
+      <ScrollAreaCorner className="bg-neutral-outline-hover" />
+    </ScrollArea>
   )
 }
