@@ -58,7 +58,7 @@ export default function Stats({ className = '' }: { className?: string }) {
   return (
     <div
       className={clsx(
-        'flex justify-between items-center my-5 mt-10 md:my-10 max-w-7xl mx-auto landing-block',
+        'flex justify-between items-center my-5 mt-10 md:my-10 landing-block',
         className,
       )}
     >
