@@ -1,6 +1,5 @@
-import { Typography } from '@mochi-ui/core'
 import { useLoginWidget } from '@mochi-web3/login-widget'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   TransactionActionType,
   TransactionPlatform,
@@ -28,6 +27,7 @@ export default function Transaction({
   const { profile } = useLoginWidget()
   const [page, setPage] = useState(1)
   const [size, setSize] = useState(defaultPageSize)
+  const [total, setTotal] = useState(0)
 
   const { transactions, isLoading, pagination } = useFetchProfileTransaction(
     profile?.id ?? '',
@@ -36,47 +36,44 @@ export default function Transaction({
       action: ignoreOptionAll(filterType),
       platform: ignoreOptionAll(filterPlatform),
       chain_ids: ignoreOptionAll(chainId),
-      page,
+      page: page - 1,
       size,
     },
   )
 
+  useEffect(() => {
+    if (pagination?.total) {
+      setTotal(pagination.total)
+    }
+  }, [pagination?.total])
+
   return (
-    <>
-      <div className="max-w-full overflow-x-auto overflow-y-hidden">
-        <TransactionTable
-          className="min-w-[1320px]"
-          data={transactions || []}
-          isLoading={isLoading}
-          hideLastBorder
-          onRow={(tx) => {
-            return {
-              onClick: () => {
-                window.open(ROUTES.TX_RECEIPTS(tx.code))
-              },
-            }
-          }}
-          componentsProps={{
-            pagination: showPagination
+    <div className="max-w-full overflow-x-auto overflow-y-hidden">
+      <TransactionTable
+        className="min-w-[1320px]"
+        data={transactions || []}
+        isLoading={isLoading}
+        hideLastBorder
+        onRow={(tx) => {
+          return {
+            onClick: () => {
+              window.open(ROUTES.TX_RECEIPTS(tx.code))
+            },
+          }
+        }}
+        componentsProps={{
+          pagination:
+            showPagination && total > 1
               ? {
                   initalPage: page,
                   initItemsPerPage: size,
-                  totalItems: pagination?.total || 0,
+                  totalItems: total,
                   onItemPerPageChange: setSize,
                   onPageChange: setPage,
                 }
               : undefined,
-          }}
-        />
-      </div>
-      {!isLoading && (transactions?.length ?? 0) <= 0 && (
-        <div className="flex flex-col items-center justify-center w-full h-64 tracking-tight text-center">
-          <Typography level="h7">No transactions</Typography>
-          <Typography level="p4" color="textSecondary">
-            You haven&apos;t made any transactions yet{' '}
-          </Typography>
-        </div>
-      )}
-    </>
+        }}
+      />
+    </div>
   )
 }
