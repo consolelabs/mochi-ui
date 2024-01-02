@@ -43,7 +43,7 @@ export default function Transaction({
 
   return (
     <>
-      <div className="max-w-full overflow-x-auto">
+      <div className="max-w-full overflow-x-auto overflow-y-hidden">
         <TransactionTable
           className="min-w-[1320px]"
           data={transactions || []}
