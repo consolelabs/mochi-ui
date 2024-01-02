@@ -37,7 +37,7 @@ export default function Avatar({
   return (
     <RadixAvatar.Root className={avatarCva({ size, className })}>
       <RadixAvatar.Image
-        // NOTE:if loading => show loading
+        // NOTE:if loading => show skeleton
         src={isLoading ? '' : src || fallbackUrl}
         className={avatarImgClsx({ smallSrc: Boolean(smallSrc), isCached })}
         asChild={!!smallSrc}
