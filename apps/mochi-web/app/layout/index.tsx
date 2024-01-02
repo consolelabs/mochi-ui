@@ -10,7 +10,7 @@ interface Props {
 export const Layout = (props: Props) => (
   <div
     className={clsx(
-      'flex flex-col h-full max-w-[100vw]',
+      'flex flex-col max-w-[100vw] h-[calc(100vh-56px)] overflow-y-auto',
       props.className ?? '',
     )}
   >
