@@ -84,7 +84,7 @@ const App: NextPageWithLayout = () => {
   const [filterType, setFilterType] = useState<TransactionActionType | 'all'>(
     'all',
   )
-  const [chainId, setChainId] = useState('')
+  const [chainId, setChainId] = useState('all')
 
   return (
     <>
