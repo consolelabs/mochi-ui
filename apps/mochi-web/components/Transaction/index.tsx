@@ -35,7 +35,7 @@ export default function Transaction({
     {
       action: ignoreOptionAll(filterType),
       platform: ignoreOptionAll(filterPlatform),
-      chain_ids: chainId || undefined,
+      chain_ids: ignoreOptionAll(chainId),
       page,
       size,
     },
