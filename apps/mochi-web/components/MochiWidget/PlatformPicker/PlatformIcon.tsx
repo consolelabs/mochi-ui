@@ -11,6 +11,7 @@ import {
   TelegramColored,
   WalletSolid,
   X,
+  FacebookColored,
 } from '@mochi-ui/icons'
 import { PlatformType } from './type'
 
@@ -49,6 +50,9 @@ const PlatformIcon: React.FC<IconProps> = ({
     }
     case 'x': {
       return <X className={className} />
+    }
+    case 'facebook': {
+      return <FacebookColored className={className} />
     }
     case 'github': {
       return <Github className={className} />

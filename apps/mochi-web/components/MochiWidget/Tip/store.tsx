@@ -94,7 +94,7 @@ export const useTipWidget = create(
           recipients: [],
           message: null,
           amount: null,
-          asset: null,
+          asset: s.request.asset,
           theme: null,
         }
         s.wallet = null
@@ -108,7 +108,7 @@ export const useTipWidget = create(
           recipients: [],
           message: null,
           amount: null,
-          asset: null,
+          asset: s.request.asset,
           theme: null,
         }
         s.tx = null

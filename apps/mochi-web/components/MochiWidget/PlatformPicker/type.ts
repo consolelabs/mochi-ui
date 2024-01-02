@@ -8,6 +8,7 @@ export type PlatformType =
   | 'discord'
   | 'github'
   | 'telegram'
+  | 'facebook'
   | 'x'
   | 'email'
   | 'on-chain'

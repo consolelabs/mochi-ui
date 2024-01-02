@@ -28,6 +28,7 @@ import {
   isReddit,
   isTelegram,
   isTwitter,
+  isFacebook,
 } from './platform-detector'
 
 const SEARCH_DEBOUNCE_TIME = 250
@@ -150,6 +151,7 @@ export const Recipient: React.FC<RecipientProps> = ({
       isTelegram(val),
       isEmail(val),
       isTwitter(val),
+      isFacebook(val),
       isGithub(val),
       isReddit(val),
     ].find(Boolean)
@@ -343,6 +345,7 @@ export const Recipient: React.FC<RecipientProps> = ({
                   onChange={onSearchChange}
                   onKeyDown={onKeyDown}
                   placeholder="Search"
+                  autoComplete="off"
                 />
               </TextFieldRoot>
               {selectedPlatform.platform !== 'on-chain' && (
@@ -375,7 +378,7 @@ export const Recipient: React.FC<RecipientProps> = ({
             multiple
             value={selectedRecipients ?? []}
             onChange={(recipients) => {
-              setSearchTerm('')
+              setSearchContactTerm('')
               onUpdateRecipient?.(
                 recipients.filter(
                   (r, _idx, arr) =>
@@ -400,6 +403,7 @@ export const Recipient: React.FC<RecipientProps> = ({
                 value={searchContactTerm}
                 onChange={onSearchContactChange}
                 placeholder="Search contacts"
+                autoComplete="off"
               />
             </TextFieldRoot>
             <Combobox.Options
