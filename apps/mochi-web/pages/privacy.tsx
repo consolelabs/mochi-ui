@@ -7,7 +7,7 @@ export default function PrivacyPolicy() {
     <Layout noFooter>
       <SEO title={PAGES.PRIVACY.title} tailTitle />
       <iframe
-        style={{ height: 'calc(100vh - 56px)' }}
+        style={{ height: 'calc(100dvh - 56px)' }}
         className="mx-auto w-full"
         title="privacy-policy-legal-iubenda"
         src="https://www.iubenda.com/privacy-policy/31936890/legal"

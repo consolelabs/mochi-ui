@@ -202,7 +202,7 @@ export default function BottomSheetProvider({
           }}
           transition={{ type: 'spring', bounce: 0, duration: 0.5 }}
           className={clsx(
-            'will-change-transform bg-white-pure h-full flex flex-col',
+            'will-change-transform overflow-auto bg-white-pure h-full flex flex-col',
             {
               '-mx-3 px-3': nested && isOpen,
               'pointer-events-none overflow-hidden': isOpen || delayIsOpen,
