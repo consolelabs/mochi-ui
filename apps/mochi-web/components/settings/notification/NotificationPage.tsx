@@ -49,12 +49,9 @@ const NotificationSwitcherField = (
         >
           <SectionHeader className="!py-4" wrapActionsOnMobile={false}>
             <SectionHeaderTitle
-              className={clsx(
-                '!col-span-2 !col-end-3 pr-14 !text-sm font-normal',
-                {
-                  '!py-0': !description,
-                },
-              )}
+              className={clsx('!col-span-2 !col-end-3 pr-14 font-normal', {
+                '!py-0': !description,
+              })}
             >
               {label}
             </SectionHeaderTitle>
@@ -172,7 +169,7 @@ export function NotificationPage() {
               className="block -mb-4 cursor-pointer select-none"
             >
               <SectionHeader className="!py-4" wrapActionsOnMobile={false}>
-                <SectionHeaderTitle className="!col-span-2 !col-end-3 pr-14 !text-base font-normal">
+                <SectionHeaderTitle className="!col-span-2 !col-end-3 pr-14 font-normal">
                   Notification
                 </SectionHeaderTitle>
                 <SectionHeaderDescription className="!col-span-2 !col-end-3 pr-14">

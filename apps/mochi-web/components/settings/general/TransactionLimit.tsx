@@ -1,10 +1,4 @@
-import {
-  Button,
-  FormLabel,
-  IconButton,
-  Switch,
-  Typography,
-} from '@mochi-ui/core'
+import { Button, IconButton, Switch, Typography } from '@mochi-ui/core'
 import { EditLine, TrashBinLine } from '@mochi-ui/icons'
 import React from 'react'
 import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
@@ -22,9 +16,9 @@ export const TransactionLimit = () => {
   const enableTransactionLimit = watch('payment.tx_limit_enable')
 
   return (
-    <div className="flex flex-col space-y-2 w-full max-w-md">
+    <div className="flex flex-col space-y-2 w-full">
       <div className="flex justify-between items-center">
-        <FormLabel>Set the limit for transaction</FormLabel>
+        <Typography level="p4">Set the limit for transaction</Typography>
         <Controller
           name="payment.tx_limit_enable"
           control={control}

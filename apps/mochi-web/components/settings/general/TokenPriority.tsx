@@ -4,7 +4,6 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-  FormLabel,
   IconButton,
   List,
   TextFieldInput,
@@ -38,8 +37,8 @@ export const TokenPriority = () => {
     )
 
   return (
-    <div className="flex flex-col w-full max-w-md space-y-2">
-      <FormLabel>Default token prioirty</FormLabel>
+    <div className="flex flex-col w-full space-y-2">
+      <Typography level="p4">Default token prioirty</Typography>
       <DndWrapper
         componentProps={{
           context: {
