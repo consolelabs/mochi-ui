@@ -29,7 +29,7 @@ const {
 
 interface PaginationProps {
   children: React.ReactNode
-  onPageChange?: (page?: number) => void
+  onPageChange?: (page: number) => void
   className?: string
 }
 
@@ -38,7 +38,7 @@ interface PaginationItemsPerPageProps {
   defaultValue?: number
   value?: number
   recordName?: string
-  onItemPerPageChange?: (page?: number) => void
+  onItemPerPageChange?: (page: number) => void
 }
 
 interface PaginationNavProps {

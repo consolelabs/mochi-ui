@@ -5,7 +5,8 @@ import {
   BadgeIcon,
   ColumnProps,
   Pagination,
-  PaginationProps,
+  PaginationItemsPerPage,
+  PaginationNav,
   ScrollArea,
   ScrollAreaScrollbar,
   ScrollAreaThumb,
@@ -229,8 +230,9 @@ export const TransactionTable = (props: TransactionTableProps) => {
               columns={columns}
               className="p-0"
               loadingRows={
-                (componentsProps.pagination as PaginationProps)
-                  ?.initItemsPerPage
+                componentsProps.pagination
+                  ? componentsProps.pagination?.initItemsPerPage
+                  : undefined
               }
             />
           </div>
@@ -258,9 +260,22 @@ export const TransactionTable = (props: TransactionTableProps) => {
         (componentsProps.pagination.totalItems || 0) > 0 && (
           <div className="p-4 text-sm">
             <Pagination
-              recordName="transactions"
-              {...componentsProps.pagination}
-            />
+              onPageChange={componentsProps.pagination.onPageChange}
+              className={componentsProps.pagination.className}
+            >
+              <PaginationItemsPerPage
+                defaultValue={componentsProps.pagination.initItemsPerPage}
+                onItemPerPageChange={
+                  componentsProps.pagination.onItemPerPageChange
+                }
+                recordName="transactions"
+              />
+              <PaginationNav
+                totalItems={componentsProps.pagination.totalItems}
+                currentPage={componentsProps.pagination.initalPage}
+                totalPages={componentsProps.pagination.totalPages}
+              />
+            </Pagination>
           </div>
         )}
     </>

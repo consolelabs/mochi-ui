@@ -3,7 +3,11 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { useCallback, useMemo, useRef, useState } from 'react'
 import { StarSolid, ChevronRightLine, ChevronDownLine } from '@mochi-ui/icons'
 import { Badge, BadgeIcon } from '@mochi-ui/badge'
-import { Pagination } from '@mochi-ui/pagination'
+import {
+  Pagination,
+  PaginationItemsPerPage,
+  PaginationNav,
+} from '@mochi-ui/pagination'
 import { IconButton } from '@mochi-ui/icon-button'
 import Table from '../src/table'
 
@@ -81,13 +85,13 @@ export const Default: Story = {
       return chunkedArray
     }, [itemPerPage])
 
-    const onPageChange = useCallback((pg: number) => {
+    const onPageChange = useCallback((pg?: number) => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current)
       }
       setLoading(true)
       timeoutRef.current = setTimeout(() => {
-        setPage(pg)
+        setPage(pg ?? 1)
         setLoading(false)
       }, 500)
     }, [])
@@ -132,14 +136,17 @@ export const Default: Story = {
           data={dataList[page - 1]}
           isLoading={loading}
         />
-        <Pagination
-          initItemsPerPage={itemPerPage}
-          initalPage={page}
-          onItemPerPageChange={setItemPerPage}
-          onPageChange={onPageChange}
-          totalItems={data.length}
-          totalPages={Math.ceil(data.length / itemPerPage)}
-        />
+        <Pagination onPageChange={onPageChange}>
+          <PaginationItemsPerPage
+            defaultValue={itemPerPage}
+            onItemPerPageChange={setItemPerPage}
+          />
+          <PaginationNav
+            currentPage={page}
+            totalItems={data.length}
+            totalPages={Math.ceil(data.length / itemPerPage)}
+          />
+        </Pagination>
       </div>
     )
   },
@@ -244,14 +251,17 @@ export const RenderSubComponent: Story = {
             </div>
           )}
         />
-        <Pagination
-          initItemsPerPage={itemPerPage}
-          initalPage={page}
-          onItemPerPageChange={setItemPerPage}
-          onPageChange={onPageChange}
-          totalItems={data.length}
-          totalPages={Math.ceil(data.length / itemPerPage)}
-        />
+        <Pagination onPageChange={onPageChange}>
+          <PaginationItemsPerPage
+            value={itemPerPage}
+            onItemPerPageChange={setItemPerPage}
+          />
+          <PaginationNav
+            currentPage={page}
+            totalItems={data.length}
+            totalPages={Math.ceil(data.length / itemPerPage)}
+          />
+        </Pagination>
       </div>
     )
   },
