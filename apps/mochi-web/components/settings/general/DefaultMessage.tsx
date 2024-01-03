@@ -4,10 +4,14 @@ import React from 'react'
 import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import { actionList } from '~constants/settings'
 import { ResponseGeneralSettingData } from '~types/mochi-schema'
+import { useDisclosure } from '@dwarvesf/react-hooks'
 import { MessageModal } from './MessageModal'
 
 export const DefaultMessage = () => {
-  const { control, watch } = useFormContext<ResponseGeneralSettingData>()
+  const { isOpen: isOpenMessageModal, onOpenChange: onOpenChangeMessageModal } =
+    useDisclosure()
+  const { control, watch, setValue } =
+    useFormContext<ResponseGeneralSettingData>()
   const { fields, append, remove, update } = useFieldArray({
     control,
     name: 'payment.default_message_settings',
@@ -25,7 +29,12 @@ export const DefaultMessage = () => {
             <Switch
               {...rest}
               checked={value}
-              onCheckedChange={(checked) => onChange(checked)}
+              onCheckedChange={(checked) => {
+                onChange(checked)
+                if (checked && !fields.length) {
+                  onOpenChangeMessageModal(true)
+                }
+              }}
             />
           )}
         />
@@ -57,12 +66,19 @@ export const DefaultMessage = () => {
                     <EditLine className="w-5 h-5" />
                   </IconButton>
                 }
+                open={isOpenMessageModal}
+                onOpenChange={onOpenChangeMessageModal}
               />
               <IconButton
                 label="Delete"
                 variant="ghost"
                 color="white"
-                onClick={() => remove(index)}
+                onClick={() => {
+                  remove(index)
+                  if (fields.length === 1) {
+                    setValue('payment.default_message_enable', false)
+                  }
+                }}
               >
                 <TrashBinLine className="w-5 h-5 text-danger-solid" />
               </IconButton>
@@ -72,12 +88,22 @@ export const DefaultMessage = () => {
       ))}
       {!!enableDefaultMessage && (
         <MessageModal
-          onConfirm={(data) => append(data)}
+          onConfirm={(data) => {
+            append(data)
+            onOpenChangeMessageModal(false)
+          }}
           trigger={
             <Button color="white" className="w-fit">
               Add a new default message
             </Button>
           }
+          open={isOpenMessageModal}
+          onOpenChange={(open) => {
+            onOpenChangeMessageModal(open)
+            if (!open && !fields.length) {
+              setValue('payment.default_message_enable', false)
+            }
+          }}
         />
       )}
     </div>

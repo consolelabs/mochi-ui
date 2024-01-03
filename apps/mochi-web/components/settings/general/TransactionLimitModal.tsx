@@ -18,7 +18,7 @@ import {
   TextFieldRoot,
   Typography,
 } from '@mochi-ui/core'
-import React, { useState } from 'react'
+import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -52,21 +52,23 @@ interface Props {
   defaultValues?: ModelTxLimitSetting
   onConfirm: (data: ModelTxLimitSetting) => void
   trigger: React.ReactNode
+  open: boolean
+  onOpenChange: (open: boolean) => void
 }
 
 export const TransactionLimitModal = ({
   defaultValues = {},
   onConfirm,
   trigger,
+  open,
+  onOpenChange,
 }: Props) => {
-  const [open, setOpen] = useState(false)
   const { control, handleSubmit, reset } = useForm<ModelTxLimitSetting>({
     defaultValues,
     resolver: zodResolver(schema),
   })
 
   const onSubmit = (data: ModelTxLimitSetting) => {
-    setOpen(false)
     onConfirm(data)
   }
 
@@ -74,7 +76,7 @@ export const TransactionLimitModal = ({
     <Modal
       open={open}
       onOpenChange={(open) => {
-        setOpen(open)
+        onOpenChange(open)
         reset(defaultValues)
       }}
     >
