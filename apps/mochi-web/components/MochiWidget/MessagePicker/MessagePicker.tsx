@@ -3,13 +3,13 @@ import {
   TextFieldRoot,
   TextFieldInput,
   TextFieldDecorator,
-  SectionList,
 } from '@mochi-ui/core'
 import { Combobox } from '@headlessui/react'
 import clsx from 'clsx'
 import { MagnifierLine } from '@mochi-ui/icons'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { useState } from 'react'
+import { SectionList } from '~cpn/base/section-list'
 import { MessageList } from './data'
 import { sectionFormatter } from '../TokenPicker/utils'
 

@@ -1,6 +1,12 @@
-import React, { useCallback, useRef } from 'react'
-import * as ScrollArea from '@radix-ui/react-scroll-area'
-import { sectionList } from '@mochi-ui/theme'
+import {
+  ScrollArea,
+  ScrollAreaCorner,
+  ScrollAreaScrollbar,
+  ScrollAreaThumb,
+  ScrollAreaViewport,
+} from '@mochi-ui/core'
+import clsx from 'clsx'
+import { useCallback, useRef } from 'react'
 
 type DefaultSection = Record<string, any>
 
@@ -9,18 +15,16 @@ interface SectionBase<Item> {
   key?: string | undefined
 }
 
-export type SectionListData<
-  Item,
-  Section = DefaultSection,
-> = SectionBase<Item> & Section
+type SectionListData<Item, Section = DefaultSection> = SectionBase<Item> &
+  Section
 
-export type SectionListRenderItem<Item, Section = DefaultSection> = (
+type SectionListRenderItem<Item, Section = DefaultSection> = (
   item: Item,
   section: SectionListData<Item, Section>,
   index?: number,
 ) => React.ReactNode
 
-export type SectionListRenderLoader = () => React.ReactNode
+type SectionListRenderLoader = () => React.ReactNode
 
 interface SectionListProps<Item, Section = DefaultSection> {
   rootClassName?: string
@@ -42,17 +46,7 @@ interface SectionListProps<Item, Section = DefaultSection> {
   loading?: boolean
 }
 
-const {
-  sectionListClsx,
-  sectionListViewportClsx,
-  sectionListContentWrapperClsx,
-  sectionListContentListClsx,
-  sectionListScrollbarClsx,
-  sectionListThumbClsx,
-  sectionListCornerClsx,
-} = sectionList
-
-export default function SectionList<
+export const SectionList = <
   Item = NonNullable<object> | string,
   Section = DefaultSection,
 >({
@@ -70,7 +64,7 @@ export default function SectionList<
   onEndReachedThreshold = 0,
   loading = false,
   renderLoader,
-}: SectionListProps<Item, Section>) {
+}: SectionListProps<Item, Section>) => {
   const endReachedFired = useRef(false)
 
   const handleScroll = useCallback<React.UIEventHandler<HTMLDivElement>>(
@@ -95,10 +89,7 @@ export default function SectionList<
   let content = sections.length
     ? sections.map((section, sectionIndex) => {
         return (
-          <ul
-            className={sectionListContentListClsx()}
-            key={(section.key || '') + sectionIndex}
-          >
+          <ul className="space-y-1" key={(section.key || '') + sectionIndex}>
             {renderSectionHeader(section, sectionIndex)}
             {section.data.map((item, itemIndex) =>
               renderItem(item, section, itemIndex),
@@ -113,34 +104,21 @@ export default function SectionList<
   }
 
   return (
-    <ScrollArea.Root
-      className={sectionListClsx({ className: rootClassName })}
-      style={rootStyle}
-    >
-      <ScrollArea.Viewport
-        className={sectionListViewportClsx({ className: viewportClassName })}
-        onScroll={handleScroll}
+    <ScrollArea className={rootClassName} style={rootStyle}>
+      <ScrollAreaViewport
+        className={viewportClassName}
         style={viewportStyle}
-        data-testid="section-list-viewport"
+        onScroll={handleScroll}
+        {...{ 'data-testid': 'section-list-viewport' }}
       >
-        <div
-          className={sectionListContentWrapperClsx({
-            className: listClassName,
-          })}
-          style={listStyle}
-        >
+        <div className={clsx('space-y-1', listClassName)} style={listStyle}>
           {content}
         </div>
-      </ScrollArea.Viewport>
-      <ScrollArea.Scrollbar
-        className={sectionListScrollbarClsx()}
-        orientation="vertical"
-      >
-        <ScrollArea.Thumb className={sectionListThumbClsx()} />
-      </ScrollArea.Scrollbar>
-      <ScrollArea.Corner className={sectionListCornerClsx()} />
-    </ScrollArea.Root>
+      </ScrollAreaViewport>
+      <ScrollAreaScrollbar>
+        <ScrollAreaThumb />
+      </ScrollAreaScrollbar>
+      <ScrollAreaCorner />
+    </ScrollArea>
   )
 }
-
-export { type SectionListProps }

@@ -54,7 +54,6 @@
     "@mochi-ui/top-bar": "workspace:*",
     "@mochi-ui/popover": "workspace:*",
     "@mochi-ui/profile-badge": "workspace:*",
-    "@mochi-ui/section-list": "workspace:*",
     "@mochi-ui/select": "workspace:*",
     "@mochi-ui/sidebar": "workspace:*",
     "@mochi-ui/switch": "workspace:*",
