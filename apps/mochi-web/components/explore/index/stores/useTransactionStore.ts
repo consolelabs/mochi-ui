@@ -89,12 +89,12 @@ export const useTransactionStore = create<State>((set, get) => ({
     }
   },
   setPage: async (page) => {
-    const { txns, size, page: _page, fetchTxns } = get()
+    const { txns, size, page: _page, filters, fetchTxns } = get()
 
     if (page !== _page) {
       // Fetch new page if not exists
       if (!txns[page - 1]) {
-        fetchTxns(undefined, page, size)
+        fetchTxns(filters, page, size)
       }
 
       set((s) => ({ ...s, page }))

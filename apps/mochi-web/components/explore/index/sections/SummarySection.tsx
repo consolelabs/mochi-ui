@@ -7,28 +7,9 @@ import {
   UserShieldColored,
 } from '@mochi-ui/icons'
 import { useEffect } from 'react'
-import { Pie, PieChart, Tooltip, TooltipProps } from 'recharts'
+import { Pie, PieChart } from 'recharts'
 import { formatNumber } from '~utils/number'
 import { useTransactionSummaryStore } from '../stores'
-
-const CustomTooltip = (props: TooltipProps<any, any>) => {
-  const { active, payload } = props
-
-  if (active && payload && payload.length) {
-    return (
-      <Typography
-        level="h5"
-        className="px-4 py-2 bg-background-body shadow rounded"
-      >
-        <span style={{ color: payload[0]?.payload.fill }}>
-          {Math.round((payload[0]?.payload.rate || 0) * 100)}%
-        </span>
-      </Typography>
-    )
-  }
-
-  return null
-}
 
 export const SummarySection = () => {
   const {
@@ -42,6 +23,12 @@ export const SummarySection = () => {
   }, []) // eslint-disable-line
 
   const loading = isTransactionSummaryLoading || !transactionSummary
+  const successRate = Math.round(
+    (transactionSummary
+      ? transactionSummary.success_transactions /
+        transactionSummary.current_transactions
+      : 0) * 100,
+  )
 
   return (
     <div className="lg:py-8 bg-background-level2">
@@ -91,6 +78,12 @@ export const SummarySection = () => {
               <Skeleton className="rounded-full w-[150px] h-[150px]" />
             ) : (
               <div className="flex gap-4 items-center">
+                <div className="flex flex-col items-center justify-center">
+                  <Typography level="h4" className="!text-success-solid">
+                    {successRate}%
+                  </Typography>
+                  <Typography level="p4">Successful</Typography>
+                </div>
                 <div className="-m-4">
                   <PieChart
                     width={180}
@@ -107,16 +100,10 @@ export const SummarySection = () => {
                         {
                           value: transactionSummary.success_transactions,
                           fill: '#088752',
-                          rate:
-                            transactionSummary.success_transactions /
-                            transactionSummary.current_transactions,
                         },
                         {
                           value: transactionSummary.fail_transactions,
                           fill: '#E02D3C',
-                          rate:
-                            transactionSummary.fail_transactions /
-                            transactionSummary.current_transactions,
                         },
                       ]}
                       dataKey="value"
@@ -125,7 +112,6 @@ export const SummarySection = () => {
                       endAngle={90}
                       innerRadius={36}
                     />
-                    <Tooltip content={<CustomTooltip />} />
                   </PieChart>
                 </div>
                 <div className="flex flex-col gap-1">

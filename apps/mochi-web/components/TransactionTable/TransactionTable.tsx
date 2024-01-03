@@ -1,16 +1,17 @@
+import { utils } from '@consolelabs/mochi-formatter'
 import {
   Avatar,
   Badge,
   BadgeIcon,
   ColumnProps,
   Pagination,
-  Table,
-  Typography,
+  PaginationProps,
   ScrollArea,
-  ScrollAreaViewport,
   ScrollAreaScrollbar,
   ScrollAreaThumb,
-  PaginationProps,
+  ScrollAreaViewport,
+  Table,
+  Typography,
 } from '@mochi-ui/core'
 import { ArrowRightLine } from '@mochi-ui/icons'
 import clsx from 'clsx'
@@ -46,7 +47,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
               />
               <div className="flex flex-col gap-1">
                 <Typography level="p5" className="break-words truncate">
-                  {tx.from.address}
+                  {utils.string.formatAddressUsername(tx.from.address)}
                 </Typography>
                 {tx.from.platform && (
                   <Typography
@@ -91,7 +92,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
               />
               <div className="flex flex-col gap-1">
                 <Typography level="p5" className="break-words truncate">
-                  {tx.to.address}
+                  {utils.string.formatAddressUsername(tx.to.address)}
                 </Typography>
                 {tx.to.platform && (
                   <Typography
