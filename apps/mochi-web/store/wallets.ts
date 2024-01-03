@@ -163,6 +163,28 @@ export const useWalletStore = create<State>((set) => ({
         })
       }
 
+      // preload wallet's balances emojis
+      const symbolsSet = new Set<string>()
+      for (const wallet of wallets) {
+        for (const bal of wallet.balances) {
+          symbolsSet.add(bal.token.symbol)
+        }
+      }
+
+      const { ok: okEmoji, data } = await api.base.metadata.getEmojis({
+        codes: Array.from(symbolsSet),
+      })
+      if (okEmoji) {
+        for (const wallet of wallets) {
+          for (const bal of wallet.balances) {
+            const emoji = data?.find((d) => d.code === bal.token.symbol)
+            if (emoji) {
+              bal.token.icon = emoji.emoji_url
+            }
+          }
+        }
+      }
+
       if (getLoginWidgetState().isLoggedIn) {
         set({ isFetching: false, wallets })
       }

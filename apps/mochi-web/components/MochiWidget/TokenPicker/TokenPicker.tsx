@@ -10,10 +10,7 @@ import {
   TextFieldDecorator,
   TextFieldRoot,
 } from '@mochi-ui/core'
-import { api } from '~constants/mochi'
-import { coinIcon } from '~utils/image'
 import { BottomSheet } from '~cpn/BottomSheet'
-import useSWR from 'swr'
 import { BalanceWithSource, TokenTableList } from '~cpn/TokenTableList'
 import { Balance, useWalletStore } from '~store'
 import { Moniker } from './type'
@@ -42,23 +39,11 @@ interface TokenPickerProps {
 interface TokenButtonProps {
   isToken?: boolean
   name?: string
-  icon?: string
+  icon: string
   isOpenSelector?: boolean
 }
 
 const TokenButton = (props: TokenButtonProps) => {
-  const { data: icon = coinIcon.src } = useSWR(
-    [`/token-icon/${props.icon}`],
-    async () => {
-      if (!props.icon) return coinIcon.src
-      const { ok, data } = await api.base.metadata.getEmojis({
-        codes: [props.icon],
-      })
-      if (!ok) return coinIcon.src
-      return data[0].emoji_url || coinIcon.src
-    },
-  )
-
   return (
     <div className="flex gap-x-2 items-center py-1.5 px-3 rounded-lg bg-primary-100">
       {props.isToken ? (
@@ -68,7 +53,7 @@ const TokenButton = (props: TokenButtonProps) => {
             height={22}
             alt={`${props.name} icon`}
             className="object-contain rounded-full"
-            src={icon}
+            src={props.icon}
           />
         </span>
       ) : (
@@ -193,7 +178,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
               ? selectedAsset?.token?.symbol ?? DEFAULT_BALANCE.token.symbol
               : selectedAsset?.name
           }
-          icon={selectedAsset?.token.symbol ?? DEFAULT_BALANCE.token.symbol}
+          icon={selectedAsset?.token.icon ?? DEFAULT_BALANCE.token.icon}
           isOpenSelector={isOpenSelector}
         />
       </button>

@@ -7,7 +7,7 @@ export default function Footer({ date }: { date: string }) {
       <DashLine />
       <div className="flex justify-between pt-3 text-xs font-light">
         <Typography level="p7" fontWeight="sm" color="textSecondary">
-          Mochi &copy; 2023
+          Mochi &copy; {new Date().getUTCFullYear()}
         </Typography>
         <Typography level="p7" fontWeight="sm" color="textSecondary">
           {date}

@@ -166,8 +166,7 @@ export default function Receipt({ id, data: _data }: Props) {
                   <DataList.Item title="Amount">
                     <Typography
                       level="p7"
-                      color="textSecondary"
-                      fontWeight="sm"
+                      className="!font-light !text-neutral-600"
                     >
                       {data.groupAmountDisplay} {data.unitCurrency}
                     </Typography>
@@ -182,17 +181,17 @@ export default function Receipt({ id, data: _data }: Props) {
                     <DataList.Item
                       title="Tx ID"
                       right={
-                        <span className="underline text-xxs text-neutral-500">
+                        <span className="underline text-xxs text-neutral-600">
                           {data.data.external_id.slice(0, 9)}
                         </span>
                       }
                     >
-                      <div className="flex gap-x-2 self-stretch underline">
-                        <CornerBottomLeftLine className="text-neutral-500" />
+                      <div className="flex gap-x-2 self-stretch">
+                        <CornerBottomLeftLine className="text-neutral-600" />
                         <DataList.Item title="Group Tx ID">
                           <Link
                             href={`/tx/${data.originalTxId}`}
-                            className="flex items-center underline text-xxxs decoration-from-font"
+                            className="flex items-center underline text-xxxs"
                           >
                             {data.originalTxId}
                             <LinkLine />
@@ -204,9 +203,7 @@ export default function Receipt({ id, data: _data }: Props) {
                     <DataList.Item title="Tx ID">
                       <Typography
                         level="p7"
-                        color="textSecondary"
-                        fontWeight="sm"
-                        className="underline"
+                        className="underline !text-neutral-600 !font-light"
                       >
                         {data.data.external_id.slice(0, 9)}
                       </Typography>
@@ -242,7 +239,9 @@ export default function Receipt({ id, data: _data }: Props) {
               </div>
               <DashLine />
               <div className="flex justify-between py-2 text-xs font-light text-neutral-600">
-                <span className="text-xxxs">Mochi &copy; 2023</span>
+                <span className="text-xxxs">
+                  Mochi &copy; {new Date().getUTCFullYear()}
+                </span>
                 <span className="text-xxxs">{data.data.full_date}</span>
               </div>
             </div>
