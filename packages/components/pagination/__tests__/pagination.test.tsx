@@ -23,7 +23,7 @@ describe('Pagination', () => {
     const { getAllByText } = render(
       <Pagination>
         <PaginationItemsPerPage defaultValue={10} />
-        <PaginationNav totalItems={500} initalPage={3} />
+        <PaginationNav totalItems={500} currentPage={3} />
       </Pagination>,
     )
     for (let i = 1; i <= 5; i++) {
@@ -40,7 +40,7 @@ describe('Pagination', () => {
     const { getAllByText, queryAllByText, queryByText } = render(
       <Pagination>
         <PaginationItemsPerPage defaultValue={25} />
-        <PaginationNav totalItems={660} initalPage={30} />
+        <PaginationNav totalItems={660} currentPage={30} />
       </Pagination>,
     )
     const firstPageButton = getAllByText('1')
@@ -61,7 +61,7 @@ describe('Pagination', () => {
     const { getAllByText } = render(
       <Pagination onPageChange={setCurrentPage}>
         <PaginationItemsPerPage />
-        <PaginationNav totalItems={100} initalPage={4} />
+        <PaginationNav totalItems={100} currentPage={4} />
       </Pagination>,
     )
     const pageButton = getAllByText(3, { selector: 'span' })
