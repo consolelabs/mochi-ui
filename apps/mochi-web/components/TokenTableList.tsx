@@ -131,7 +131,7 @@ export const TokenTableList = ({
           ]}
         />
       </ScrollAreaViewport>
-      <ScrollAreaScrollbar orientation="vertical">
+      <ScrollAreaScrollbar orientation="vertical" className="mt-10">
         <ScrollAreaThumb />
       </ScrollAreaScrollbar>
       <ScrollAreaCorner className="bg-neutral-outline-hover" />
