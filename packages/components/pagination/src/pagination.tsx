@@ -239,7 +239,10 @@ export default function Pagination({
         <div>Showing</div>
         <Select
           defaultValue={String(currentItemPerPage)}
-          onChange={(value) => setCurrentItemPerPage(Number(value))}
+          onChange={(value) => {
+            setCurrentPage(1)
+            setCurrentItemPerPage(Number(value))
+          }}
         >
           <SelectTrigger appearance="form" color="gray" className="h-9">
             <SelectValue />
