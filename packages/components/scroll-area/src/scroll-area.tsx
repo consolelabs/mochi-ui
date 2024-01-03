@@ -22,9 +22,10 @@ const {
 } = scrollArea
 
 const ScrollArea = forwardRef<ElementRef<typeof Root>, ScrollAreaProps>(
-  ({ className, ...props }, ref) => (
+  ({ className, type = 'scroll', ...props }, ref) => (
     <Root
       {...props}
+      type={type}
       ref={ref}
       className={scrollAreaRootClsx({
         className,
