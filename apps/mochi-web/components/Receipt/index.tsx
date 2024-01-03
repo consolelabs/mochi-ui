@@ -6,6 +6,7 @@ import useSWR from 'swr'
 import { API } from '~constants/api'
 import { coinIcon } from '~utils/image'
 import { Avatar, Badge, Typography } from '@mochi-ui/core'
+import { format } from 'date-fns'
 import clsx from 'clsx'
 import { truncate } from '@dwarvesf/react-utils'
 import { useDisclosure } from '@dwarvesf/react-hooks'
@@ -210,7 +211,7 @@ export default function Receipt({ id, data: _data }: Props) {
                     </DataList.Item>
                   )}
                   <DataList.Item title="Date">
-                    {data.data.short_date()}
+                    {format(new Date(data.data.short_date), 'MMM do, yyyy')}
                   </DataList.Item>
                   <DataList.Item title="Status">
                     {isSuccess ? (
@@ -242,7 +243,9 @@ export default function Receipt({ id, data: _data }: Props) {
                 <span className="text-xxxs">
                   Mochi &copy; {new Date().getUTCFullYear()}
                 </span>
-                <span className="text-xxxs">{data.data.full_date()}</span>
+                <span className="text-xxxs">
+                  {format(new Date(data.data.full_date), 'dd/MM/yyyy hh:mmaa')}
+                </span>
               </div>
             </div>
           </div>
