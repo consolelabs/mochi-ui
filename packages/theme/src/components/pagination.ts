@@ -16,7 +16,7 @@ const paginationButtonClsx = ({
 const paginationButtonLabelClsx = ({
   className = '',
 }: { className?: string } = {}) =>
-  clsx('text-sm font-medium leading-tight', className)
+  clsx('text-sm font-medium leading-tight select-none', className)
 
 const paginationEllipsisButtonClsx = ({
   className = '',

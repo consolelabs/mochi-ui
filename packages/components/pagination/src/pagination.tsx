@@ -1,5 +1,5 @@
 import type { HtmlHTMLAttributes } from 'react'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { ChevronLeftLine, ChevronRightLine } from '@mochi-ui/icons'
 import { pagination } from '@mochi-ui/theme'
 import {
@@ -10,6 +10,11 @@ import {
   SelectValue,
 } from '@mochi-ui/select'
 import { formatNumber } from './utils'
+import {
+  DEFAULT_ITEMS_PER_PAGE_OPTIONS,
+  PaginationContextProvider,
+  usePaginationContext,
+} from './context'
 
 const {
   paginationButtonClsx,
@@ -23,14 +28,23 @@ const {
 } = pagination
 
 interface PaginationProps {
-  initalPage?: number
-  totalPages?: number
-  totalItems: number
-  initItemsPerPage?: number
+  children: React.ReactNode
+  onPageChange?: (page?: number) => void
   className?: string
-  onPageChange?: (page: number) => void
-  onItemPerPageChange?: (page: number) => void
+}
+
+interface PaginationItemsPerPageProps {
+  options?: number[]
+  defaultValue?: number
+  value?: number
   recordName?: string
+  onItemPerPageChange?: (page?: number) => void
+}
+
+interface PaginationNavProps {
+  totalItems: number
+  currentPage?: number
+  totalPages?: number
 }
 
 function PageButton({
@@ -55,32 +69,103 @@ function PageButton({
   )
 }
 
-export default function Pagination({
-  initalPage = 1,
-  totalPages: initTotalPage = 1,
-  initItemsPerPage = 25,
-  totalItems,
-  onPageChange,
-  onItemPerPageChange,
-  className,
+function Pagination({ children, onPageChange, className }: PaginationProps) {
+  return (
+    <PaginationContextProvider onPageChange={onPageChange}>
+      <div
+        className={paginationWrapperClsx({ className })}
+        aria-label="Pagination"
+      >
+        {children}
+      </div>
+    </PaginationContextProvider>
+  )
+}
+
+function PaginationItemsPerPage({
+  options = DEFAULT_ITEMS_PER_PAGE_OPTIONS,
+  defaultValue,
+  value,
   recordName = 'members',
-}: PaginationProps) {
-  const [currentPage, setCurrentPage] = useState(initalPage)
-  const [currentItemPerPage, setCurrentItemPerPage] = useState(initItemsPerPage)
+  onItemPerPageChange,
+}: PaginationItemsPerPageProps) {
+  const {
+    totalItems,
+    itemsPerPage,
+    setItemsPerPage,
+    setCurrentPage,
+    onPageChange,
+  } = usePaginationContext()
 
   useEffect(() => {
-    if (onPageChange) {
-      onPageChange(currentPage)
-    }
-  }, [currentPage, onPageChange])
+    setItemsPerPage(
+      value ??
+        defaultValue ??
+        (options.length ? options[0] : DEFAULT_ITEMS_PER_PAGE_OPTIONS[0]),
+    )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [setItemsPerPage, value])
+
+  return (
+    <div className={paginationAmountPerPageWrapperClsx()}>
+      <div>Showing</div>
+      <Select
+        defaultValue={String(defaultValue)}
+        value={value !== undefined ? String(value) : String(itemsPerPage)}
+        onChange={(newValue) => {
+          if (value === undefined) {
+            setItemsPerPage(Number(newValue))
+          }
+          onItemPerPageChange?.(Number(newValue))
+          setCurrentPage(1)
+          onPageChange?.(1)
+        }}
+      >
+        <SelectTrigger appearance="form" color="gray" className="h-9">
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          {(options.length ? options : DEFAULT_ITEMS_PER_PAGE_OPTIONS).map(
+            (value) => (
+              <SelectItem key={value} value={String(value)}>
+                {value}
+              </SelectItem>
+            ),
+          )}
+        </SelectContent>
+      </Select>
+      <div>
+        {recordName} of {formatNumber(totalItems)}
+      </div>
+    </div>
+  )
+}
+
+function PaginationNav(props: PaginationNavProps) {
+  const {
+    itemsPerPage,
+    setTotalItems,
+    currentPage,
+    setCurrentPage,
+    onPageChange,
+  } = usePaginationContext()
 
   useEffect(() => {
-    if (onItemPerPageChange) {
-      onItemPerPageChange(currentItemPerPage)
-    }
-  }, [currentItemPerPage, onItemPerPageChange])
+    setCurrentPage(props?.currentPage ?? 1)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props?.currentPage, setCurrentPage])
 
-  const totalPages = Math.ceil(totalItems / currentItemPerPage) || initTotalPage
+  useEffect(() => {
+    setTotalItems(props?.totalItems)
+  }, [setTotalItems, props?.totalItems])
+
+  const internalSetCurrentPage = (page: number) => {
+    setCurrentPage(page)
+    onPageChange?.(page)
+  }
+
+  const totalPages =
+    props?.totalPages ?? Math.ceil(props.totalItems / itemsPerPage)
 
   const renderPagination = () => {
     const pages = []
@@ -92,7 +177,7 @@ export default function Pagination({
             active={i === currentPage}
             key={i}
             onClick={() => {
-              setCurrentPage(i)
+              internalSetCurrentPage(i)
             }}
           >
             {i}
@@ -106,7 +191,7 @@ export default function Pagination({
             active={i === currentPage}
             key={i}
             onClick={() => {
-              setCurrentPage(i)
+              internalSetCurrentPage(i)
             }}
           >
             {i}
@@ -128,7 +213,7 @@ export default function Pagination({
           active={totalPages === currentPage}
           key={totalPages}
           onClick={() => {
-            setCurrentPage(totalPages)
+            internalSetCurrentPage(totalPages)
           }}
         >
           {totalPages}
@@ -140,7 +225,7 @@ export default function Pagination({
           active={currentPage === 1}
           key={1}
           onClick={() => {
-            setCurrentPage(1)
+            internalSetCurrentPage(1)
           }}
         >
           1
@@ -162,7 +247,7 @@ export default function Pagination({
             active={i === currentPage}
             key={i}
             onClick={() => {
-              setCurrentPage(i)
+              internalSetCurrentPage(i)
             }}
           >
             {i}
@@ -175,7 +260,7 @@ export default function Pagination({
           active={currentPage === 1}
           key={1}
           onClick={() => {
-            setCurrentPage(1)
+            internalSetCurrentPage(1)
           }}
         >
           1
@@ -197,7 +282,7 @@ export default function Pagination({
             active={i === currentPage}
             key={i}
             onClick={() => {
-              setCurrentPage(i)
+              internalSetCurrentPage(i)
             }}
           >
             {i}
@@ -219,7 +304,7 @@ export default function Pagination({
           active={totalPages === currentPage}
           key={totalPages}
           onClick={() => {
-            setCurrentPage(totalPages)
+            internalSetCurrentPage(totalPages)
           }}
         >
           {totalPages}
@@ -231,75 +316,52 @@ export default function Pagination({
   }
 
   return (
-    <div
-      className={paginationWrapperClsx({ className })}
-      aria-label="Pagination"
-    >
-      <div className={paginationAmountPerPageWrapperClsx()}>
-        <div>Showing</div>
-        <Select
-          defaultValue={String(currentItemPerPage)}
-          onChange={(value) => {
-            setCurrentPage(1)
-            setCurrentItemPerPage(Number(value))
-          }}
-        >
-          <SelectTrigger appearance="form" color="gray" className="h-9">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            {[5, 15, 25, 50, 100].map((value) => (
-              <SelectItem key={value} value={String(value)}>
-                {value}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        <div>
-          {recordName} of {formatNumber(totalItems)}
-        </div>
+    <div className={paginationNavigationClsx()} aria-controls="content">
+      <button
+        aria-label="Previous page"
+        className={paginationNavigationButtonClsx({
+          disabled: currentPage === 1,
+        })}
+        disabled={currentPage === 1}
+        aria-disabled={currentPage === 1 ? 'true' : 'false'}
+        onClick={() => {
+          internalSetCurrentPage(currentPage - 1)
+        }}
+        tabIndex={0}
+        type="button"
+      >
+        <ChevronLeftLine className={paginationNavigationIconClsx()} />
+      </button>
+      <div className={pagination.paginationPageNavigateButtonGroupClsx()}>
+        {renderPagination()}
       </div>
-
-      <div className={paginationNavigationClsx()} aria-controls="content">
-        <button
-          aria-label="Previous page"
-          className={paginationNavigationButtonClsx({
-            disabled: currentPage === 1,
-          })}
-          disabled={currentPage === 1}
-          aria-disabled={currentPage === 1 ? 'true' : 'false'}
-          onClick={() => {
-            setCurrentPage(currentPage - 1)
-          }}
-          tabIndex={0}
-          type="button"
-        >
-          <ChevronLeftLine className={paginationNavigationIconClsx()} />
-        </button>
-        <div className={pagination.paginationPageNavigateButtonGroupClsx()}>
-          {renderPagination()}
-        </div>
-        <div className={pagination.paginationMobilePageNumerClsx()}>
-          Page {formatNumber(currentPage) ?? 1} of {formatNumber(totalPages)}
-        </div>
-        <button
-          aria-label="Next page"
-          className={paginationNavigationButtonClsx({
-            disabled: currentPage === totalPages,
-          })}
-          disabled={currentPage === totalPages}
-          aria-disabled={currentPage === totalPages ? 'true' : 'false'}
-          onClick={() => {
-            setCurrentPage(currentPage + 1)
-          }}
-          tabIndex={0}
-          type="button"
-        >
-          <ChevronRightLine className={paginationNavigationIconClsx()} />
-        </button>
+      <div className={pagination.paginationMobilePageNumerClsx()}>
+        Page {formatNumber(currentPage) ?? 1} of {formatNumber(totalPages)}
       </div>
+      <button
+        aria-label="Next page"
+        className={paginationNavigationButtonClsx({
+          disabled: currentPage === totalPages,
+        })}
+        disabled={currentPage === totalPages}
+        aria-disabled={currentPage === totalPages ? 'true' : 'false'}
+        onClick={() => {
+          internalSetCurrentPage(currentPage + 1)
+        }}
+        tabIndex={0}
+        type="button"
+      >
+        <ChevronRightLine className={paginationNavigationIconClsx()} />
+      </button>
     </div>
   )
 }
 
-export { type PaginationProps }
+export {
+  Pagination,
+  PaginationItemsPerPage,
+  PaginationNav,
+  type PaginationProps,
+  type PaginationItemsPerPageProps,
+  type PaginationNavProps,
+}

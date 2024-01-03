@@ -1,6 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
-import Pagination from '../src/pagination'
+import {
+  Pagination,
+  PaginationItemsPerPage,
+  PaginationNav,
+} from '../src/pagination'
 
 const meta: Meta<typeof Pagination> = {
   title: 'Data display/Pagination',
@@ -11,29 +15,6 @@ const meta: Meta<typeof Pagination> = {
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],
-  argTypes: {
-    totalPages: {
-      type: 'number',
-      defaultValue: 1,
-    },
-    initalPage: {
-      type: 'number',
-      defaultValue: 1,
-    },
-    initItemsPerPage: {
-      type: 'number',
-      defaultValue: 25,
-    },
-    className: {
-      type: 'string',
-    },
-    onPageChange: {
-      type: 'function',
-    },
-    onItemPerPageChange: {
-      type: 'function',
-    },
-  },
 }
 
 export default meta
@@ -42,21 +23,24 @@ type Story = StoryObj<typeof Pagination>
 export const Default: Story = {
   render: () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks -- we're in a component
-    const [currentPage, setCurrentPage] = useState(1)
+    const [currentPage, setCurrentPage] = useState<number | undefined>()
     // eslint-disable-next-line react-hooks/rules-of-hooks -- we're in a component
-    const [itemPerPage, setItemPerPage] = useState(15)
+    const [itemPerPage, setItemPerPage] = useState<number | undefined>(15)
 
     return (
       <div className="md:min-w-[32rem] space-y-4">
-        <Pagination totalItems={25} />
-        <Pagination
-          initItemsPerPage={itemPerPage}
-          initalPage={currentPage}
-          onItemPerPageChange={setItemPerPage}
-          onPageChange={setCurrentPage}
-          totalItems={100000}
-          totalPages={Math.ceil(100000 / itemPerPage)}
-        />
+        <Pagination>
+          <PaginationItemsPerPage />
+          <PaginationNav totalItems={50} />
+        </Pagination>
+
+        <Pagination onPageChange={setCurrentPage}>
+          <PaginationItemsPerPage
+            value={itemPerPage}
+            onItemPerPageChange={setItemPerPage}
+          />
+          <PaginationNav totalItems={100000} currentPage={currentPage} />
+        </Pagination>
       </div>
     )
   },
