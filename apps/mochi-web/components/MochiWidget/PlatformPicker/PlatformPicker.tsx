@@ -25,14 +25,18 @@ export const Platforms: Platform[] = [
   },
   {
     id: '5',
-    platform: 'github',
+    platform: 'facebook',
   },
   {
     id: '6',
-    platform: 'reddit',
+    platform: 'github',
   },
   {
     id: '7',
+    platform: 'reddit',
+  },
+  {
+    id: '8',
     platform: 'on-chain',
   },
 ]

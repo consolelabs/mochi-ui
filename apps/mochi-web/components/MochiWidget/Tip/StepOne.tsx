@@ -13,7 +13,7 @@ import { useTipWidget } from './store'
 import { isToken } from '../TokenPicker/utils'
 import { Moniker } from '../TokenPicker/type'
 
-const notEnoughtBalMsg = 'Insufficient balance'
+const notEnoughBalMsg = 'Insufficient balance'
 
 export default function StepOne() {
   const {
@@ -33,7 +33,7 @@ export default function StepOne() {
     if (!request.amount) return ''
     if (isToken(request.asset)) {
       if (request.amount > (request.asset?.asset_balance ?? 0))
-        return notEnoughtBalMsg
+        return notEnoughBalMsg
     } else {
       const assetAmount =
         wallet?.balances?.find(
@@ -48,7 +48,7 @@ export default function StepOne() {
             (assetAmount / monikerAmount).toFixed(MAX_AMOUNT_PRECISION),
           ).value
         : 0
-      if (request.amount > currentMonikerAmount) return notEnoughtBalMsg
+      if (request.amount > currentMonikerAmount) return notEnoughBalMsg
     }
     return ''
   }, [request.amount, request.asset, wallet?.balances])

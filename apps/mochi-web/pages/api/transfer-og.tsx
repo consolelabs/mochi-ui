@@ -1,7 +1,6 @@
 import { truncate } from '@dwarvesf/react-utils'
 import { ImageResponse } from '@vercel/og'
 import { NextRequest } from 'next/server'
-import { NativeImage } from '~cpn/NativeImage'
 import { HOME_URL } from '~envs'
 
 export const config = {
@@ -120,7 +119,7 @@ const og = async (req: NextRequest) => {
                 opacity: 0.2,
               }}
             />
-            <NativeImage
+            <img
               style={{
                 transform: 'scaleX(-1)',
                 display: 'flex',
@@ -128,8 +127,8 @@ const og = async (req: NextRequest) => {
                 bottom: 0,
                 left: 0,
                 opacity: 0.45,
-                width: 180,
                 height: 180,
+                width: 180,
               }}
               src={getImgSrc()}
               alt="mochisan"
@@ -163,7 +162,7 @@ const og = async (req: NextRequest) => {
                 </ul>
               </div>
 
-              <NativeImage
+              <img
                 height={data.success ? 150 : 80}
                 src={`${HOME_URL}/assets/${
                   data.success ? 'success' : 'fail'
@@ -198,7 +197,7 @@ const og = async (req: NextRequest) => {
                       borderRadius: '100%',
                     }}
                   >
-                    <NativeImage
+                    <img
                       style={{
                         position: 'absolute',
                         top: 0,

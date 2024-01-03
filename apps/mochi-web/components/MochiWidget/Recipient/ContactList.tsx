@@ -34,10 +34,21 @@ export const ContactList = (props: Props) => {
   )
 
   const data = useMemo(() => {
-    return [
-      ...recentRecipients.map((rr) => ({ ...rr, group: 'recent' })),
-      ...contacts,
-    ].filter((i) => {
+    let result = [...contacts]
+    if (queryValue) {
+      result.unshift(
+        ...recentRecipients
+          .filter((rr) => result.every((r) => r.id !== rr.id))
+          .map((r) => ({ ...r, group: 'recipient' })),
+      )
+    } else {
+      result = [
+        ...recentRecipients.map((rr) => ({ ...rr, group: 'recent' })),
+        ...result,
+      ]
+    }
+
+    return result.filter((i) => {
       const [profile] = UI.render(Platform.Web, i)
 
       return profile?.plain?.toLowerCase().includes(queryValue.toLowerCase())

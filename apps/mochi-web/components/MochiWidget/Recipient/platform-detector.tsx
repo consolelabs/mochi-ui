@@ -5,6 +5,7 @@ import {
   Reddit,
   TelegramColored,
   X,
+  FacebookColored,
 } from '@mochi-ui/icons'
 import { Platforms } from '../PlatformPicker'
 
@@ -85,6 +86,25 @@ export function isTwitter(value: string) {
   return null
 }
 
+export function isFacebook(value: string) {
+  if (
+    ['fb:', 'facebook:'].some((prefix) =>
+      value.toLowerCase().startsWith(prefix),
+    )
+  ) {
+    return {
+      prefix: (
+        <>
+          <FacebookColored className="w-4 h-4" /> <span>Facebook:</span>{' '}
+        </>
+      ),
+      platform: Platforms[4],
+      keepValue: false,
+    }
+  }
+  return null
+}
+
 export function isGithub(value: string) {
   if (
     ['git:', 'github:', 'gh:'].some((prefix) =>
@@ -97,7 +117,7 @@ export function isGithub(value: string) {
           <Github className="w-4 h-4" /> <span>Github:</span>{' '}
         </>
       ),
-      platform: Platforms[4],
+      platform: Platforms[5],
       keepValue: false,
     }
   }
@@ -116,7 +136,7 @@ export function isReddit(value: string) {
           <Reddit className="w-4 h-4" /> <span>Reddit:</span>{' '}
         </>
       ),
-      platform: Platforms[5],
+      platform: Platforms[6],
       keepValue: false,
     }
   }
