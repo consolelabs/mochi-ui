@@ -210,7 +210,7 @@ export default function Receipt({ id, data: _data }: Props) {
                     </DataList.Item>
                   )}
                   <DataList.Item title="Date">
-                    {data.data.short_date}
+                    {data.data.short_date()}
                   </DataList.Item>
                   <DataList.Item title="Status">
                     {isSuccess ? (
@@ -242,7 +242,7 @@ export default function Receipt({ id, data: _data }: Props) {
                 <span className="text-xxxs">
                   Mochi &copy; {new Date().getUTCFullYear()}
                 </span>
-                <span className="text-xxxs">{data.data.full_date}</span>
+                <span className="text-xxxs">{data.data.full_date()}</span>
               </div>
             </div>
           </div>
