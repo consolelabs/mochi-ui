@@ -72,7 +72,8 @@
     "@mochi-ui/tabs": "workspace:*",
     "@mochi-ui/section-header": "workspace:*",
     "@mochi-ui/separator": "workspace:*",
-    "@mochi-ui/pagination": "workspace:*"
+    "@mochi-ui/pagination": "workspace:*",
+    "@mochi-ui/value-change": "workspace:*"
   },
   "clean-package": "../../clean-package.config.json"
 }
