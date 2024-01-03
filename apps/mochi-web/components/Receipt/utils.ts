@@ -3,7 +3,6 @@ import { discordLogo, telegramLogo, xlogo } from '~utils/image'
 import { utils } from 'ethers'
 import { api } from '~constants/mochi'
 import { HOME_URL } from '~envs'
-import { format } from 'date-fns'
 import { templates, type TemplateName } from './Template'
 
 export async function transformData(rawData: any) {
@@ -77,8 +76,8 @@ export async function transformData(rawData: any) {
       ),
     }),
     usd_amount: mochiUtils.formatUsdDigit(rawData.usd_amount),
-    short_date: () => '',
-    full_date: () => '',
+    short_date: '',
+    full_date: '',
     external_id: rawData.external_id,
     moniker: rawData.metadata.moniker || '',
     original_amount: rawData.metadata.original_amount || '',
@@ -121,10 +120,8 @@ export async function transformData(rawData: any) {
   }
 
   if (rawData) {
-    data.short_date = () =>
-      format(new Date(rawData?.created_at), 'MMM do, yyyy')
-    data.full_date = () =>
-      format(new Date(rawData?.created_at), 'dd/MM/yyyy hh:mmaa')
+    data.short_date = rawData?.created_at
+    data.full_date = rawData?.created_at
   }
 
   const amountSymbol = data.amount
