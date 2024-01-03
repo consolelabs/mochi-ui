@@ -30,7 +30,7 @@ export default function ApiIntegration() {
           </div>
           <div className="relative py-8 px-8 leading-7 bg-black rounded-3xl">
             <span className="px-4 text-gray-500 uppercase">curl request</span>
-            <pre className="bg-black">
+            <pre className="bg-black overflow-auto">
               <code>
                 <span className="text-gray-400">{codeString}</span>
               </code>
