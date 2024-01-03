@@ -26,6 +26,7 @@ export interface Tx {
   amount: string
   date: string
   isSuccess?: boolean
+  isNew?: boolean
 }
 
 export type TransactionTableProps = Omit<TableProps<Tx>, 'columns'> & {

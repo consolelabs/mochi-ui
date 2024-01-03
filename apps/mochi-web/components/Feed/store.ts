@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { API } from '~constants/api'
 import { Tx } from '~cpn/TransactionTable'
 import { transform } from '~cpn/TransactionTable/utils'
+import { MOCHI_PAY_WSS } from '~envs'
 
 const limit = 20 as const
 
@@ -42,9 +43,7 @@ export const useTipFeed = create<State>((set, get) => ({
   ws: null,
   initWs: (override = false) => {
     if (!override && get().ws) return
-    const ws = new WebSocket(
-      'wss://api-preview.mochi-pay.console.so/ws/transactions',
-    )
+    const ws = new WebSocket(`${MOCHI_PAY_WSS}/ws/transactions`)
     ws.onopen = (e) => {
       console.info('feed connected', e)
     }

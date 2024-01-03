@@ -39,3 +39,7 @@ export const WALLET_LOGIN_SIGN_MESSAGE =
   process.env.NEXT_PUBLIC_WALLET_LOGIN_SIGN_MESSAGE || ''
 
 export const BETA_PAGE = process.env.NEXT_PUBLIC_BETA_PAGE
+
+export const MOCHI_PAY_WSS =
+  (process.env.NEXT_PUBLIC_MOCHI_PAY_WSS as string) ||
+  'wss://api-preview.mochi-pay.console.so'

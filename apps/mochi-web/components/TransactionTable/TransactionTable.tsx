@@ -233,6 +233,13 @@ export const TransactionTable = (props: TransactionTableProps) => {
                 (componentsProps.pagination as PaginationProps)
                   ?.initItemsPerPage
               }
+              rowClassName={(row) => {
+                if (row.isNew) {
+                  return 'animate-new-tx-fade-out'
+                }
+
+                return ''
+              }}
             />
           </div>
         </ScrollAreaViewport>
