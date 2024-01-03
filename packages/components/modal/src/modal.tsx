@@ -2,6 +2,9 @@ import * as React from 'react'
 import * as ModalPrimitive from '@radix-ui/react-dialog'
 import { CloseLine } from '@mochi-ui/icons'
 import { modal } from '@mochi-ui/theme'
+import { Transition, TransitionStatus } from 'react-transition-group'
+import { createContext } from '@dwarvesf/react-utils'
+import { useMergeRefs } from '@dwarvesf/react-hooks'
 
 const {
   modalOverlayClsx,
@@ -11,7 +14,50 @@ const {
   modalDescriptionClsx,
 } = modal
 
-const Modal = ModalPrimitive.Root
+interface State {
+  status: TransitionStatus
+  nodeRef: React.MutableRefObject<React.ElementRef<
+    typeof ModalPrimitive.Content
+  > | null>
+}
+
+const [ModalContextProvider, useModalContext] = createContext<State>({
+  name: 'ModalContext',
+})
+
+const Modal = ({
+  open,
+  modal,
+  onOpenChange,
+  ...props
+}: React.ComponentPropsWithoutRef<typeof ModalPrimitive.Root>) => {
+  const nodeRef = React.useRef<React.ElementRef<
+    typeof ModalPrimitive.Content
+  > | null>(null)
+  const [internalOpen, setInternalOpen] = React.useState(false)
+
+  return (
+    <Transition
+      nodeRef={nodeRef}
+      in={modal ? internalOpen : open}
+      timeout={{ exit: 200 }}
+    >
+      {(status) => (
+        <ModalContextProvider value={{ status, nodeRef }}>
+          <ModalPrimitive.Root
+            {...props}
+            modal={modal}
+            open={status !== 'exited'}
+            onOpenChange={(open) => {
+              setInternalOpen(open)
+              onOpenChange?.(open)
+            }}
+          />
+        </ModalContextProvider>
+      )}
+    </Transition>
+  )
+}
 
 const ModalPortal = ModalPrimitive.Portal
 
@@ -55,20 +101,25 @@ type ModalContentProps = React.ComponentPropsWithoutRef<
 const ModalContent = React.forwardRef<
   React.ElementRef<typeof ModalPrimitive.Content>,
   ModalContentProps
->(({ className, children, showCloseBtn, ...props }, ref) => (
-  <ModalPrimitive.Content
-    className={modalContentClsx({ className })}
-    ref={ref}
-    {...props}
-  >
-    {children}
-    {showCloseBtn ? (
-      <ModalClose className={modalCloseButtonClsx()}>
-        <CloseLine />
-      </ModalClose>
-    ) : null}
-  </ModalPrimitive.Content>
-))
+>(({ className, children, showCloseBtn, ...props }, ref) => {
+  const { status, nodeRef } = useModalContext()
+  const refs = useMergeRefs(nodeRef, ref)
+
+  return (
+    <ModalPrimitive.Content
+      className={modalContentClsx({ className, status })}
+      ref={refs}
+      {...props}
+    >
+      {children}
+      {showCloseBtn ? (
+        <ModalClose className={modalCloseButtonClsx()}>
+          <CloseLine />
+        </ModalClose>
+      ) : null}
+    </ModalPrimitive.Content>
+  )
+})
 ModalContent.displayName = ModalPrimitive.Content.displayName
 
 type ModalTitleProps = React.ComponentPropsWithoutRef<

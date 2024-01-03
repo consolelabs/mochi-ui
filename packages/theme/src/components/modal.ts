@@ -3,9 +3,19 @@ import clsx from 'clsx'
 const modalOverlayClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx('fixed inset-0 z-50 bg-background-backdrop/40', className)
 
-const modalContentClsx = ({ className = '' }: { className?: string } = {}) =>
+const modalContentClsx = ({
+  className = '',
+  status,
+}: {
+  className?: string
+  status?: 'entering' | 'entered' | 'exiting' | 'exited' | 'unmounted'
+} = {}) =>
   clsx(
     'fixed left-[50%] top-[50%] z-50 -translate-x-1/2 -translate-y-1/2 bg-background-surface p-6 shadow-lg duration-200 rounded-xl',
+    {
+      'opacity-0 scale-90': status === 'entering' || status === 'exiting',
+      'opacity-100': status === 'entered',
+    },
     className,
   )
 

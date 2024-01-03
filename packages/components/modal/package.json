@@ -25,6 +25,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@types/react-transition-group": "^4.4.10",
     "clean-package": "^2.2.0",
     "eslint-config-custom": "workspace:*",
     "prettier": "^3.0.3",
@@ -33,9 +34,12 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
+    "@dwarvesf/react-hooks": "^0.8.2",
+    "@dwarvesf/react-utils": "^0.4.2",
     "@mochi-ui/icons": "workspace:*",
     "@mochi-ui/theme": "workspace:*",
-    "@radix-ui/react-dialog": "^1.0.5"
+    "@radix-ui/react-dialog": "^1.0.5",
+    "react-transition-group": "^4.4.5"
   },
   "clean-package": "../../../clean-package.config.json"
 }
