@@ -5,10 +5,16 @@ import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import { actionList } from '~constants/settings'
 import { utils as mochiUtils } from '@consolelabs/mochi-formatter'
 import { ResponseGeneralSettingData } from '~types/mochi-schema'
+import { useDisclosure } from '@dwarvesf/react-hooks'
 import { TransactionLimitModal } from './TransactionLimitModal'
 
 export const TransactionLimit = () => {
-  const { control, watch } = useFormContext<ResponseGeneralSettingData>()
+  const {
+    isOpen: isOpenTransactionLimit,
+    onOpenChange: onOpenChangeTransactionLimit,
+  } = useDisclosure()
+  const { control, watch, setValue } =
+    useFormContext<ResponseGeneralSettingData>()
   const { fields, append, remove, update } = useFieldArray({
     control,
     name: 'payment.tx_limit_settings',
@@ -26,7 +32,12 @@ export const TransactionLimit = () => {
             <Switch
               {...rest}
               checked={value}
-              onCheckedChange={(checked) => onChange(checked)}
+              onCheckedChange={(checked) => {
+                onChange(checked)
+                if (checked && !fields.length) {
+                  onOpenChangeTransactionLimit(true)
+                }
+              }}
             />
           )}
         />
@@ -65,12 +76,19 @@ export const TransactionLimit = () => {
                     <EditLine className="w-5 h-5" />
                   </IconButton>
                 }
+                open={isOpenTransactionLimit}
+                onOpenChange={onOpenChangeTransactionLimit}
               />
               <IconButton
                 label="Delete"
                 variant="ghost"
                 color="white"
-                onClick={() => remove(index)}
+                onClick={() => {
+                  remove(index)
+                  if (fields.length === 1) {
+                    setValue('payment.tx_limit_enable', false)
+                  }
+                }}
               >
                 <TrashBinLine className="w-5 h-5 text-danger-solid" />
               </IconButton>
@@ -80,12 +98,22 @@ export const TransactionLimit = () => {
       ))}
       {!!enableTransactionLimit && (
         <TransactionLimitModal
-          onConfirm={(data) => append(data)}
+          onConfirm={(data) => {
+            append(data)
+            onOpenChangeTransactionLimit(false)
+          }}
           trigger={
             <Button color="white" className="w-fit">
               Add a new limit
             </Button>
           }
+          open={isOpenTransactionLimit}
+          onOpenChange={(open) => {
+            onOpenChangeTransactionLimit(open)
+            if (!open && !fields.length) {
+              setValue('payment.tx_limit_enable', false)
+            }
+          }}
         />
       )}
     </div>

@@ -17,7 +17,7 @@ import {
   TextFieldRoot,
   Typography,
 } from '@mochi-ui/core'
-import React, { useState } from 'react'
+import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -33,21 +33,23 @@ interface Props {
   defaultValues?: ModelDefaultMessageSetting
   onConfirm: (data: ModelDefaultMessageSetting) => void
   trigger: React.ReactNode
+  open: boolean
+  onOpenChange: (open: boolean) => void
 }
 
 export const MessageModal = ({
   defaultValues = { action: '', message: '' },
   onConfirm,
   trigger,
+  open,
+  onOpenChange,
 }: Props) => {
-  const [open, setOpen] = useState(false)
   const { control, handleSubmit, reset } = useForm<ModelDefaultMessageSetting>({
     defaultValues,
     resolver: zodResolver(schema),
   })
 
   const onSubmit = (data: ModelDefaultMessageSetting) => {
-    setOpen(false)
     onConfirm(data)
   }
 
@@ -55,7 +57,7 @@ export const MessageModal = ({
     <Modal
       open={open}
       onOpenChange={(open) => {
-        setOpen(open)
+        onOpenChange(open)
         reset(defaultValues)
       }}
     >

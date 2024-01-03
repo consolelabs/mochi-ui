@@ -54,7 +54,12 @@ export const TokenPriority = () => {
         }}
       >
         {fields.map((each, index) => (
-          <DndItem key={each.id} draggableId={each.id} index={index}>
+          <DndItem
+            key={each.id}
+            draggableId={each.id}
+            index={index}
+            className="py-2"
+          >
             <Controller
               key={each.id}
               name={`payment.prioritized_token.${index}`}
