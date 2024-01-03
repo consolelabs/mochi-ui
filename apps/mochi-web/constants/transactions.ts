@@ -3,6 +3,7 @@ import {
   Avalanche,
   Base,
   Bnb,
+  DesktopCodeSolid,
   DiscordColored,
   Eth,
   Ftm,
@@ -73,7 +74,7 @@ export const platformFilters: {
   {
     label: 'Web',
     value: 'web',
-    icon: WebSolid,
+    icon: DesktopCodeSolid,
   },
   {
     label: 'Discord',

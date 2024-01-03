@@ -1,6 +1,5 @@
-import { OffchainTx } from '@consolelabs/mochi-rest'
 import UI, { Platform, utils as mochiUtils } from '@consolelabs/mochi-formatter'
-import { truncate } from '@dwarvesf/react-utils'
+import { OffchainTx } from '@consolelabs/mochi-rest'
 import { MonitorLine } from '@mochi-ui/icons'
 import { utils } from 'ethers'
 import { Tx } from '~cpn/TransactionTable'
@@ -19,7 +18,7 @@ const actionString: Record<OffchainTx['action'], string> = {
   paylink: 'pay link',
   airdrop: 'airdrop',
   deposit: 'deposit',
-  withdraw: 'widthdraw',
+  withdraw: 'withdraw',
 }
 
 export async function transform(d: any): Promise<Tx> {
@@ -136,9 +135,9 @@ export async function transform(d: any): Promise<Tx> {
   }
 
   if (to && d.action === 'withdraw') {
-    to.plain = truncate(d.other_profile_source, 8, true, '.')
+    to.plain = d.other_profile_source
   } else if (from && d.action === 'deposit') {
-    from.plain = truncate(d.from_profile_source, 8, true, '.')
+    from.plain = d.from_profile_source
   }
 
   return {

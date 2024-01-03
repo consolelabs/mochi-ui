@@ -1,15 +1,17 @@
+import { utils } from '@consolelabs/mochi-formatter'
 import {
   Avatar,
   Badge,
   BadgeIcon,
   ColumnProps,
   Pagination,
-  Table,
-  Typography,
+  PaginationProps,
   ScrollArea,
-  ScrollAreaViewport,
   ScrollAreaScrollbar,
   ScrollAreaThumb,
+  ScrollAreaViewport,
+  Table,
+  Typography,
 } from '@mochi-ui/core'
 import { ArrowRightLine } from '@mochi-ui/icons'
 import clsx from 'clsx'
@@ -45,7 +47,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
               />
               <div className="flex flex-col gap-1">
                 <Typography level="p5" className="break-words truncate">
-                  {tx.from.address}
+                  {utils.string.formatAddressUsername(tx.from.address)}
                 </Typography>
                 {tx.from.platform && (
                   <Typography
@@ -90,7 +92,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
               />
               <div className="flex flex-col gap-1">
                 <Typography level="p5" className="break-words truncate">
-                  {tx.to.address}
+                  {utils.string.formatAddressUsername(tx.to.address)}
                 </Typography>
                 {tx.to.platform && (
                   <Typography
@@ -222,7 +224,15 @@ export const TransactionTable = (props: TransactionTableProps) => {
       <ScrollArea>
         <ScrollAreaViewport>
           <div style={{ minWidth: 1400 }} className={className}>
-            <Table {...rest} columns={columns} className="p-0" />
+            <Table
+              {...rest}
+              columns={columns}
+              className="p-0"
+              loadingRows={
+                (componentsProps.pagination as PaginationProps)
+                  ?.initItemsPerPage
+              }
+            />
           </div>
         </ScrollAreaViewport>
         {!isEmpty && (
@@ -244,14 +254,15 @@ export const TransactionTable = (props: TransactionTableProps) => {
           </Typography>
         </div>
       )}
-      {componentsProps.pagination && (
-        <div className="p-4 text-sm">
-          <Pagination
-            recordName="transactions"
-            {...componentsProps.pagination}
-          />
-        </div>
-      )}
+      {componentsProps.pagination &&
+        (componentsProps.pagination.totalItems || 0) > 0 && (
+          <div className="p-4 text-sm">
+            <Pagination
+              recordName="transactions"
+              {...componentsProps.pagination}
+            />
+          </div>
+        )}
     </>
   )
 }
