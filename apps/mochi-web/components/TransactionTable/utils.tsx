@@ -1,9 +1,10 @@
-import UI, { Platform, utils as mochiUtils } from '@consolelabs/mochi-formatter'
+import ReactDOMServer from 'react-dom/server'
 import { OffchainTx } from '@consolelabs/mochi-rest'
+import UI, { Platform, utils as mochiUtils } from '@consolelabs/mochi-formatter'
 import { MonitorLine } from '@mochi-ui/icons'
 import { utils } from 'ethers'
 import { Tx } from '~cpn/TransactionTable'
-import { appLogo, discordLogo, telegramLogo, webLogo } from '~utils/image'
+import { appLogo, discordLogo, telegramLogo } from '~utils/image'
 import { formatRelative } from '~utils/time'
 
 function isVault(source: string) {
@@ -41,7 +42,9 @@ export async function transform(d: any): Promise<Tx> {
     }
     case 'web':
     case Platform.Web: {
-      fromPlatformIcon = webLogo.src
+      fromPlatformIcon = `data:image/svg+xml,${escape(
+        ReactDOMServer.renderToStaticMarkup(<MonitorLine />),
+      )}`
       break
     }
     case 'app':
@@ -76,7 +79,7 @@ export async function transform(d: any): Promise<Tx> {
         where.avatar = MonitorLine as any
       }
 
-      if ([Platform.App, 'app'].includes(d.source_platform)) {
+      if ([Platform.App, 'app', 'application'].includes(d.source_platform)) {
         where.text = 'App'
         where.avatar = appLogo.src
       }

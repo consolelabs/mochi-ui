@@ -26,17 +26,23 @@ DataList.Item = function Item({
       })}
     >
       <div className="flex justify-between self-stretch">
-        <Typography level="p7" className="!font-light shrink-0">
+        <Typography
+          level="p7"
+          className="!font-light shrink-0 !text-neutral-600"
+        >
           {title}
         </Typography>
         {right ? (
-          <Typography level="p7" className="!font-light">
+          <Typography level="p7" className="!font-light !text-neutral-600">
             {right}
           </Typography>
         ) : null}
       </div>
       {typeof children === 'string' ? (
-        <Typography level="p7" className="!font-light shrink-0">
+        <Typography
+          level="p7"
+          className="!font-light shrink-0 !text-neutral-600"
+        >
           {children}
         </Typography>
       ) : (

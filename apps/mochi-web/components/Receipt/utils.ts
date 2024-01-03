@@ -1,6 +1,7 @@
 import UI, { Platform, utils as mochiUtils } from '@consolelabs/mochi-formatter'
 import { discordLogo, telegramLogo, xlogo } from '~utils/image'
 import { utils } from 'ethers'
+import { api } from '~constants/mochi'
 import { HOME_URL } from '~envs'
 import { format } from 'date-fns'
 import { templates, type TemplateName } from './Template'
@@ -23,16 +24,10 @@ export async function transformData(rawData: any) {
   let [sender, receiver] = UI.render(
     Platform.Web,
     rawData.from_profile_source === 'mochi-vault'
-      ? {
-          type: 'vault',
-          id: rawData.metadata.vault_request.vault_id.toString(),
-        }
+      ? rawData.metadata.vault
       : rawData.from_profile,
     rawData.other_profile_source === 'mochi-vault'
-      ? {
-          type: 'vault',
-          id: rawData.metadata.vault_request.vault_id.toString(),
-        }
+      ? rawData.metadata.vault
       : rawData.other_profile,
   )
 
@@ -46,7 +41,7 @@ export async function transformData(rawData: any) {
     avatar = rawAvatar
   }
 
-  let platformIcon
+  let platformIcon = null
   switch (sender?.platform) {
     case Platform.Discord: {
       platformIcon = discordLogo.src
@@ -64,14 +59,10 @@ export async function transformData(rawData: any) {
       break
   }
 
-  const { image } = await UI.components.amount({
-    on: Platform.Web,
-    amount: utils.formatUnits(
-      rawData?.amount ?? 0,
-      rawData?.token.decimal ?? 0,
-    ),
-    symbol: rawData.token.symbol,
+  const { data: emojiData } = await api.base.metadata.getEmojis({
+    codes: [rawData.token.symbol],
   })
+  const image = emojiData?.[0]?.emoji_url
 
   const ogDataOnly = {
     from: (sender?.plain ?? '') as string | { name: string; url: string }[],
@@ -93,7 +84,7 @@ export async function transformData(rawData: any) {
     original_amount: rawData.metadata.original_amount || '',
     template,
     success,
-    action,
+    action: action.replaceAll('_', ' '),
   }
 
   const data = {
