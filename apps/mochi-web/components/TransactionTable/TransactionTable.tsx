@@ -219,7 +219,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
 
   return (
     <>
-      <ScrollArea type="hover">
+      <ScrollArea>
         <ScrollAreaViewport>
           <div style={{ minWidth: 1400 }} className={className}>
             <Table {...rest} columns={columns} className="p-0" />
