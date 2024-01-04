@@ -7,22 +7,25 @@ import {
   TabContent,
 } from '@mochi-ui/core'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useState } from 'react'
 import { SEO } from '~app/layout/seo'
 import { ROUTES } from '~constants/routes'
 import { DashboardBody } from '~cpn/DashboardBody'
 import { GeneralPage } from '~cpn/settings/general/GeneralPage'
 import { NotificationPage } from '~cpn/settings/notification/NotificationPage'
+import { useUnsavedChanges } from '~store'
 
 const TAB_VALUES = ['general', 'notification']
 
 const SettingsPage = () => {
+  const { unsavedChanges, toggleWarning } = useUnsavedChanges()
   const {
     query: { tab },
     replace,
   } = useRouter()
   const defaultTabValue =
     typeof tab === 'string' && TAB_VALUES.includes(tab) ? tab : 'general'
+  const [tabValue, setTabValue] = useState(defaultTabValue)
 
   return (
     <>
@@ -34,8 +37,12 @@ const SettingsPage = () => {
 
       <Tabs
         className="grow overflow-hidden flex-col flex"
-        defaultValue={defaultTabValue}
-        onValueChange={(value: any) => {
+        value={tabValue}
+        onValueChange={(value) => {
+          if (unsavedChanges) {
+            return toggleWarning()
+          }
+          setTabValue(value)
           const tab = value as Parameters<typeof ROUTES.SETTINGS>[0]
           replace(ROUTES.SETTINGS(tab))
         }}
