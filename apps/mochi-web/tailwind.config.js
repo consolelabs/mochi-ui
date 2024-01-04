@@ -129,6 +129,20 @@ module.exports = {
             top: '-28px',
           },
         },
+        shake: {
+          '0%': {
+            transform: 'translateX(0rem)',
+          },
+          '25%': {
+            transform: 'translateX(-1rem)',
+          },
+          '75%': {
+            transform: 'translateX(1rem)',
+          },
+          '100%': {
+            transform: 'translateX(0rem)',
+          },
+        },
       },
       transitionTimingFunction: {
         rubber: 'cubic-bezier(0.68,-0.55,0.27,1.55)',
@@ -136,6 +150,7 @@ module.exports = {
       animation: {
         float: 'float 5s ease-in-out infinite',
         move: 'move 5s infinite 1s',
+        shake: 'shake .2s both',
       },
       spacing: {
         18: '4.5rem',
