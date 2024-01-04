@@ -73,6 +73,8 @@ export const TokenTableList = ({
         <Table
           {...props}
           stickyHeader
+          cellClassName={() => '!border-0 !h-10'}
+          rowClassName={() => 'rounded'}
           data={data.sort((a, b) => {
             const indexA = sortOrder.findIndex(
               (symbol) => symbol === a.token.symbol,

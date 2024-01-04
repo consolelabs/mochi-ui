@@ -155,10 +155,10 @@ const og = async (req: NextRequest) => {
                       {truncate(data.external_id, 5, true)}
                     </span>
                   </li>
-                  <li tw="flex justify-between">
-                    <span tw="font-normal text-current">Date</span>
-                    <span tw="ml-4 font-normal text-current">{data.date}</span>
-                  </li>
+                  {/* <li tw="flex justify-between"> */}
+                  {/*   <span tw="font-normal text-current">Date</span> */}
+                  {/*   <span tw="ml-4 font-normal text-current">{data.date}</span> */}
+                  {/* </li> */}
                 </ul>
               </div>
 

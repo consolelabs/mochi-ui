@@ -1,16 +1,15 @@
 import { robotoFont } from '~utils/next-font'
 import Link from 'next/link'
 import { LinkLine, CornerBottomLeftLine } from '@mochi-ui/icons'
-import Image from 'next/image'
 import useSWR from 'swr'
 import { API } from '~constants/api'
-import { coinIcon } from '~utils/image'
 import { Avatar, Badge, Typography } from '@mochi-ui/core'
 import { format } from 'date-fns'
-import clsx from 'clsx'
 import { truncate } from '@dwarvesf/react-utils'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import DashLine from '~cpn/DashLine'
+import { actionString } from '~cpn/TransactionTable/utils'
+import Amount from '~cpn/Amount'
 import DataList from '../DataList'
 import Header from './Header'
 import ListUser from './ListUser'
@@ -82,43 +81,20 @@ export default function Receipt({ id, data: _data }: Props) {
                     : data.data.from}
                 </span>
                 <br />
-                <span className="text-xs font-light">
+                <span className="text-xs font-light capitalize">
                   {data.data.template
                     ? data.data.template.phrase
-                    : data.data.action ?? 'sent'}
+                    : actionString[data.data.action] ?? 'sent'}
                 </span>
               </div>
-              <div className="flex justify-center items-center mt-8 font-medium">
-                <div
-                  className={clsx('flex', {
-                    'flex-col': data.isLongNumber,
-                    'items-center': data.isLongNumber,
-                    'items-baseline': !data.isLongNumber,
-                  })}
-                >
-                  <Image
-                    width={28}
-                    height={28}
-                    className="mr-1"
-                    src={data.data.tokenIcon || coinIcon.src}
-                    alt=""
-                  />
-                  <div className="text-5xl">{data.groupAmountDisplay}</div>
-                  <div
-                    className={clsx('flex mt-1', {
-                      'items-center': data.isLongNumber,
-                      'items-baseline ml-1': !data.isLongNumber,
-                    })}
-                  >
-                    <div className="text-4xl">{data.unitCurrency}</div>
-                  </div>
-                </div>
-              </div>
-              <span className="text-xl">
-                {data.amountApproxMoniker}{' '}
-                {data.groupAmountUsdDisplay.startsWith('<') ? '' : <>&asymp;</>}{' '}
-                {data.groupAmountUsdDisplay}
-              </span>
+              <Amount
+                value={data.groupAmountDisplay}
+                valueUsd={data.groupAmountUsdDisplay}
+                tokenIcon={data.data.tokenIcon}
+                unit={data.unitCurrency}
+                approxMoniker={data.amountApproxMoniker}
+                className="mt-8"
+              />
             </div>
             {data.message && (
               <div className="flex flex-col gap-y-3">

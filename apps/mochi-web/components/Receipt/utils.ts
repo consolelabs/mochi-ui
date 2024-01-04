@@ -83,7 +83,7 @@ export async function transformData(rawData: any) {
     original_amount: rawData.metadata.original_amount || '',
     template,
     success,
-    action: action.replaceAll('_', ' '),
+    action,
   }
 
   const data = {

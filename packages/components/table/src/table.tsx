@@ -19,6 +19,7 @@ export interface TableProps<T> {
   className?: string
   wrapperClassName?: string
   rowClassName?: (record: T, index: number) => string
+  cellClassName?: (record: T, rowIndex: number, colIndex: number) => string
   onRow?: (
     record: T,
     rowIndex: number,
@@ -69,6 +70,7 @@ export default function Table<T extends RowData>({
   emptyContent,
   size = 'md',
   rowClassName,
+  cellClassName,
   stickyHeader,
 }: TableProps<T>) {
   const table = useReactTable({
@@ -152,12 +154,17 @@ export default function Table<T extends RowData>({
                     })}
                     {...(onRow ? onRow(row.original, rowIndex) : {})}
                   >
-                    {row.getVisibleCells().map((cell) => (
+                    {row.getVisibleCells().map((cell, colIndex) => (
                       <td
                         className={tableDataClsx({
                           hideLastBorder,
                           border,
                           size,
+                          className: cellClassName?.(
+                            row.original,
+                            rowIndex,
+                            colIndex,
+                          ),
                         })}
                         key={cell.id}
                         align={

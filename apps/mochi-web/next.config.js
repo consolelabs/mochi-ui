@@ -16,6 +16,11 @@ module.exports = {
       },
       {
         protocol: 'https',
+        hostname: 'raw.githubusercontent.com',
+        port: '',
+      },
+      {
+        protocol: 'https',
         hostname: 'assets.coingecko.com',
         port: '',
       },

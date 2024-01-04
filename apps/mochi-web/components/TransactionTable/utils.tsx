@@ -11,7 +11,7 @@ function isVault(source: string) {
   return source === 'mochi-vault'
 }
 
-const actionString: Record<OffchainTx['action'], string> = {
+export const actionString: Record<any, string> = {
   transfer: 'tip',
   vault_transfer: 'vault transfer',
   swap: 'swap',
