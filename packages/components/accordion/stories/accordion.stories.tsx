@@ -51,7 +51,7 @@ export const Default: Story = {
         </AccordionItem>
         <AccordionItem value="4">
           <AccordionTrigger>Servers</AccordionTrigger>
-          <AccordionContent className="!py-0">
+          <AccordionContent>
             <div className="py-2">Server 0</div>
             <div className="py-2">Server 1</div>
             <div className="py-2">Server 2</div>

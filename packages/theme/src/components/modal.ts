@@ -1,11 +1,28 @@
 import clsx from 'clsx'
 
 const modalOverlayClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx('fixed inset-0 z-50 bg-background-backdrop/40', className)
+  clsx(
+    'fixed inset-0 z-50 bg-background-backdrop/40',
+    'data-[state=open]:animate-in',
+    'data-[state=open]:fade-in-0',
+    'data-[state=closed]:animate-out',
+    'data-[state=closed]:fade-out-0',
+    className,
+  )
 
 const modalContentClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx(
-    'fixed left-[50%] top-[50%] z-50 -translate-x-1/2 -translate-y-1/2 bg-background-surface p-6 shadow-lg duration-200 rounded-xl',
+    'fixed left-[50%] top-[50%] z-50 -translate-x-1/2 -translate-y-1/2 bg-background-surface p-6 shadow-lg rounded-xl',
+    'data-[state=open]:animate-in',
+    'data-[state=open]:slide-in-from-left-1/2',
+    'data-[state=open]:slide-in-from-top-1/2',
+    'data-[state=open]:fade-in-0',
+    'data-[state=open]:zoom-in-95',
+    'data-[state=closed]:animate-out',
+    'data-[state=closed]:slide-out-to-left-1/2',
+    'data-[state=closed]:slide-out-to-top-1/2',
+    'data-[state=closed]:zoom-out-95',
+    'data-[state=closed]:fade-out-0',
     className,
   )
 

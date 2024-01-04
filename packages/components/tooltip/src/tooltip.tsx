@@ -63,6 +63,7 @@ export default function Tooltip({
             align={align}
             className={tooltipClsx({ className })}
             side={side}
+            data-side={side}
             style={{
               boxShadow:
                 '0px 4px 6px -2px rgba(52, 52, 51, 0.03), 0px 12px 16px -4px rgba(52, 52, 51, 0.08)',

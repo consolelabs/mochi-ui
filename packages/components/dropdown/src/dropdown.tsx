@@ -31,6 +31,7 @@ const {
   dropdownItemStyleCva,
   dropdownMenuSubTriggerClsx,
   dropdownContentStyleCva,
+  dropdownContentWrapperClsx,
   dropdownMenuRadioIconClsx,
   dropdownMenuSeparatorClsx,
   dropdownTriggerClsx,
@@ -208,7 +209,7 @@ const DropdownMenuContent = React.forwardRef<
       sideOffset={sideOffset}
       {...props}
       asChild={asChild}
-      className={wrapperClassName}
+      className={dropdownContentWrapperClsx({ className: wrapperClassName })}
     >
       {asChild ? (
         children

@@ -38,7 +38,14 @@ const accordionContentWrapperClsx = ({
   className = '',
 }: {
   className?: string
-}) => clsx('text-sm', className)
+}) =>
+  clsx(
+    'text-sm',
+    'data-[state=open]:animate-accordion-open',
+    'data-[state=closed]:animate-accordion-close',
+    'overflow-hidden',
+    className,
+  )
 
 const accordionContentClsx = ({
   className = '',
@@ -48,7 +55,7 @@ const accordionContentClsx = ({
   hasPadding?: boolean
 }) =>
   clsx(
-    'py-2',
+    'py-2 h-fit',
     {
       'px-10': hasPadding,
       'px-2 ': !hasPadding,
