@@ -26,10 +26,10 @@ export const DndItem = ({ className, draggableId, index, children }: Props) => {
             label="Move"
             variant="ghost"
             color="white"
-            className="cursor-grab active:cursor-grabbing"
+            className="cursor-grab active:cursor-grabbing mx-1.5"
             {...provided.dragHandleProps}
           >
-            <MenuSolid className="w-5 h-5" />
+            <MenuSolid className="w-4 h-4" />
           </IconButton>
           {children}
         </div>
