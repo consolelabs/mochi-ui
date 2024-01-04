@@ -2,6 +2,7 @@ import * as RadixAvatar from '@radix-ui/react-avatar'
 import { useId, useMemo } from 'react'
 import { avatar, AvatarStylesProps } from '@mochi-ui/theme'
 import { Skeleton } from '@mochi-ui/skeleton'
+import { isSSR } from '@dwarvesf/react-utils'
 import { boringAvatar } from './util'
 
 const { avatarCva, avatarImgClsx, avatarFallbackCls, avatarImgSvgCls } = avatar
@@ -28,8 +29,8 @@ export default function Avatar({
   const fallbackUrl = boringAvatar(fallback)
 
   const isCached = useMemo(() => {
+    if (isSSR()) return true
     const image = new window.Image()
-    if (typeof window === 'undefined') return true
     image.src = src || fallbackUrl
     return image.complete
   }, [src, fallbackUrl])
