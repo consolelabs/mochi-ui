@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-import-module-exports
 import { mochiui } from '@mochi-ui/theme'
+import tailwindAnimate from 'tailwindcss-animate'
 
 module.exports = {
   content: [
@@ -143,5 +144,5 @@ module.exports = {
       },
     },
   },
-  plugins: [mochiui()],
+  plugins: [mochiui(), tailwindAnimate],
 }
