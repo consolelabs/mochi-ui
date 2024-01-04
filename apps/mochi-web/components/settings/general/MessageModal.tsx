@@ -21,8 +21,8 @@ import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { actionList } from '~constants/settings'
 import { ModelDefaultMessageSetting } from '~types/mochi-schema'
+import { useDisclosure } from '@dwarvesf/react-hooks'
 
 const schema = z.object({
   action: z.string().min(1, 'This field is required'),
@@ -30,20 +30,21 @@ const schema = z.object({
 })
 
 interface Props {
+  actionList: { key: string; label: string }[]
   defaultValues?: ModelDefaultMessageSetting
   onConfirm: (data: ModelDefaultMessageSetting) => void
   trigger: React.ReactNode
-  open: boolean
-  onOpenChange: (open: boolean) => void
+  onCancel?: () => void
 }
 
 export const MessageModal = ({
+  actionList,
   defaultValues = { action: '', message: '' },
   onConfirm,
   trigger,
-  open,
-  onOpenChange,
+  onCancel,
 }: Props) => {
+  const { isOpen, onOpenChange } = useDisclosure()
   const { control, handleSubmit, reset } = useForm<ModelDefaultMessageSetting>({
     defaultValues,
     resolver: zodResolver(schema),
@@ -51,14 +52,18 @@ export const MessageModal = ({
 
   const onSubmit = (data: ModelDefaultMessageSetting) => {
     onConfirm(data)
+    onOpenChange(false)
   }
 
   return (
     <Modal
-      open={open}
+      open={isOpen}
       onOpenChange={(open) => {
         onOpenChange(open)
         reset(defaultValues)
+        if (!open) {
+          onCancel?.()
+        }
       }}
     >
       <ModalTrigger asChild>{trigger}</ModalTrigger>

@@ -4,12 +4,11 @@ import React from 'react'
 import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import { actionList } from '~constants/settings'
 import { ResponseGeneralSettingData } from '~types/mochi-schema'
-import { useDisclosure } from '@dwarvesf/react-hooks'
 import { MessageModal } from './MessageModal'
 
+const excludedActionList = ['deposit', 'withdraw']
+
 export const DefaultMessage = () => {
-  const { isOpen: isOpenMessageModal, onOpenChange: onOpenChangeMessageModal } =
-    useDisclosure()
   const { control, watch, setValue } =
     useFormContext<ResponseGeneralSettingData>()
   const { fields, append, remove, update } = useFieldArray({
@@ -17,6 +16,9 @@ export const DefaultMessage = () => {
     name: 'payment.default_message_settings',
   })
   const enableDefaultMessage = watch('payment.default_message_enable')
+  const filteredActionList = actionList
+    .filter((each) => !excludedActionList.includes(each.key))
+    .filter((each) => !fields.some((field) => field.action === each.key))
 
   return (
     <div className="flex flex-col w-full space-y-2">
@@ -25,18 +27,28 @@ export const DefaultMessage = () => {
         <Controller
           name="payment.default_message_enable"
           control={control}
-          render={({ field: { value, onChange, ...rest } }) => (
-            <Switch
-              {...rest}
-              checked={value}
-              onCheckedChange={(checked) => {
-                onChange(checked)
-                if (checked && !fields.length) {
-                  onOpenChangeMessageModal(true)
+          render={({ field: { value, onChange, ...rest } }) =>
+            fields.length > 0 ? (
+              <Switch {...rest} checked={value} onCheckedChange={onChange} />
+            ) : (
+              <MessageModal
+                actionList={filteredActionList}
+                onConfirm={(data) => append(data)}
+                onCancel={() =>
+                  setValue('payment.default_message_enable', false)
                 }
-              }}
-            />
-          )}
+                trigger={
+                  <div>
+                    <Switch
+                      {...rest}
+                      checked={value}
+                      onCheckedChange={onChange}
+                    />
+                  </div>
+                }
+              />
+            )
+          }
         />
       </div>
       {(enableDefaultMessage ? fields : []).map((each, index) => (
@@ -59,6 +71,12 @@ export const DefaultMessage = () => {
                 </Typography>
               </div>
               <MessageModal
+                actionList={[
+                  ...filteredActionList,
+                  actionList.find(
+                    (action) => action.key === field.value.action,
+                  ) || { key: '', label: '' },
+                ]}
                 defaultValues={field.value}
                 onConfirm={(data) => update(index, data)}
                 trigger={
@@ -66,8 +84,6 @@ export const DefaultMessage = () => {
                     <EditLine className="w-4 h-4" />
                   </IconButton>
                 }
-                open={isOpenMessageModal}
-                onOpenChange={onOpenChangeMessageModal}
               />
               <IconButton
                 label="Delete"
@@ -86,24 +102,15 @@ export const DefaultMessage = () => {
           )}
         />
       ))}
-      {!!enableDefaultMessage && (
+      {!!enableDefaultMessage && !!filteredActionList.length && (
         <MessageModal
-          onConfirm={(data) => {
-            append(data)
-            onOpenChangeMessageModal(false)
-          }}
+          actionList={filteredActionList}
+          onConfirm={(data) => append(data)}
           trigger={
             <Button color="white" className="w-fit">
               Add a new default message
             </Button>
           }
-          open={isOpenMessageModal}
-          onOpenChange={(open) => {
-            onOpenChangeMessageModal(open)
-            if (!open && !fields.length) {
-              setValue('payment.default_message_enable', false)
-            }
-          }}
         />
       )}
     </div>
