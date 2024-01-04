@@ -28,8 +28,8 @@ export default function Avatar({
   const fallbackUrl = boringAvatar(fallback)
 
   const isCached = useMemo(() => {
-    const image = new window.Image()
     if (typeof window === 'undefined') return true
+    const image = new window.Image()
     image.src = src || fallbackUrl
     return image.complete
   }, [src, fallbackUrl])
