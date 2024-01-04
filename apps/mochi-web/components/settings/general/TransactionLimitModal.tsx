@@ -22,8 +22,8 @@ import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { actionList } from '~constants/settings'
 import { ModelTxLimitSetting } from '~types/mochi-schema'
+import { useDisclosure } from '@dwarvesf/react-hooks'
 
 const schema = z
   .object({
@@ -49,20 +49,21 @@ const schema = z
   })
 
 interface Props {
+  actionList: { key: string; label: string }[]
   defaultValues?: ModelTxLimitSetting
   onConfirm: (data: ModelTxLimitSetting) => void
   trigger: React.ReactNode
-  open: boolean
-  onOpenChange: (open: boolean) => void
+  onCancel?: () => void
 }
 
 export const TransactionLimitModal = ({
+  actionList,
   defaultValues = {},
   onConfirm,
   trigger,
-  open,
-  onOpenChange,
+  onCancel,
 }: Props) => {
+  const { isOpen, onOpenChange } = useDisclosure()
   const { control, handleSubmit, reset } = useForm<ModelTxLimitSetting>({
     defaultValues,
     resolver: zodResolver(schema),
@@ -70,14 +71,18 @@ export const TransactionLimitModal = ({
 
   const onSubmit = (data: ModelTxLimitSetting) => {
     onConfirm(data)
+    onOpenChange(false)
   }
 
   return (
     <Modal
-      open={open}
+      open={isOpen}
       onOpenChange={(open) => {
         onOpenChange(open)
         reset(defaultValues)
+        if (!open) {
+          onCancel?.()
+        }
       }}
     >
       <ModalTrigger asChild>{trigger}</ModalTrigger>

@@ -5,14 +5,11 @@ import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import { actionList } from '~constants/settings'
 import { utils as mochiUtils } from '@consolelabs/mochi-formatter'
 import { ResponseGeneralSettingData } from '~types/mochi-schema'
-import { useDisclosure } from '@dwarvesf/react-hooks'
 import { TransactionLimitModal } from './TransactionLimitModal'
 
+const excludedActionList = ['deposit']
+
 export const TransactionLimit = () => {
-  const {
-    isOpen: isOpenTransactionLimit,
-    onOpenChange: onOpenChangeTransactionLimit,
-  } = useDisclosure()
   const { control, watch, setValue } =
     useFormContext<ResponseGeneralSettingData>()
   const { fields, append, remove, update } = useFieldArray({
@@ -20,6 +17,9 @@ export const TransactionLimit = () => {
     name: 'payment.tx_limit_settings',
   })
   const enableTransactionLimit = watch('payment.tx_limit_enable')
+  const filteredActionList = actionList
+    .filter((each) => !excludedActionList.includes(each.key))
+    .filter((each) => !fields.some((field) => field.action === each.key))
 
   return (
     <div className="flex flex-col space-y-2 w-full">
@@ -28,18 +28,26 @@ export const TransactionLimit = () => {
         <Controller
           name="payment.tx_limit_enable"
           control={control}
-          render={({ field: { value, onChange, ...rest } }) => (
-            <Switch
-              {...rest}
-              checked={value}
-              onCheckedChange={(checked) => {
-                onChange(checked)
-                if (checked && !fields.length) {
-                  onOpenChangeTransactionLimit(true)
+          render={({ field: { value, onChange, ...rest } }) =>
+            fields.length > 0 ? (
+              <Switch {...rest} checked={value} onCheckedChange={onChange} />
+            ) : (
+              <TransactionLimitModal
+                actionList={filteredActionList}
+                onConfirm={(data) => append(data)}
+                onCancel={() => setValue('payment.tx_limit_enable', false)}
+                trigger={
+                  <div>
+                    <Switch
+                      {...rest}
+                      checked={value}
+                      onCheckedChange={onChange}
+                    />
+                  </div>
                 }
-              }}
-            />
-          )}
+              />
+            )
+          }
         />
       </div>
       {(enableTransactionLimit ? fields : []).map((each, index) => (
@@ -69,6 +77,12 @@ export const TransactionLimit = () => {
                 </div>
               </div>
               <TransactionLimitModal
+                actionList={[
+                  ...filteredActionList,
+                  actionList.find(
+                    (action) => action.key === field.value.action,
+                  ) || { key: '', label: '' },
+                ]}
                 defaultValues={field.value}
                 onConfirm={(data) => update(index, data)}
                 trigger={
@@ -76,8 +90,6 @@ export const TransactionLimit = () => {
                     <EditLine className="w-5 h-5" />
                   </IconButton>
                 }
-                open={isOpenTransactionLimit}
-                onOpenChange={onOpenChangeTransactionLimit}
               />
               <IconButton
                 label="Delete"
@@ -98,22 +110,13 @@ export const TransactionLimit = () => {
       ))}
       {!!enableTransactionLimit && (
         <TransactionLimitModal
-          onConfirm={(data) => {
-            append(data)
-            onOpenChangeTransactionLimit(false)
-          }}
+          actionList={filteredActionList}
+          onConfirm={(data) => append(data)}
           trigger={
             <Button color="white" className="w-fit">
               Add a new limit
             </Button>
           }
-          open={isOpenTransactionLimit}
-          onOpenChange={(open) => {
-            onOpenChangeTransactionLimit(open)
-            if (!open && !fields.length) {
-              setValue('payment.tx_limit_enable', false)
-            }
-          }}
         />
       )}
     </div>
