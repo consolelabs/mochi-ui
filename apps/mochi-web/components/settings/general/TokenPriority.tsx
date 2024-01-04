@@ -9,7 +9,7 @@ import {
   TextFieldInput,
   Typography,
 } from '@mochi-ui/core'
-import { Bag, ChevronDownLine, TrashBinLine } from '@mochi-ui/icons'
+import { Bag, ChevronDownLine, TrashBin2Line } from '@mochi-ui/icons'
 import React from 'react'
 import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import { TokenAvatar } from '~cpn/TokenAvatar'
@@ -68,20 +68,22 @@ export const TokenPriority = () => {
                 const token = tokenList.find((t) => t.id === field.value.id)
                 return (
                   <>
-                    <TokenAvatar
-                      src={token?.icon || ''}
-                      name={token?.symbol || ''}
-                    />
-                    <Typography level="p5" className="flex-1 ml-2">
-                      {token?.symbol}
-                    </Typography>
+                    <div className="flex flex-1 items-center space-x-3.5 px-4">
+                      <TokenAvatar
+                        src={token?.icon || ''}
+                        name={token?.symbol || ''}
+                      />
+                      <Typography level="p5" className="flex-1">
+                        {token?.symbol}
+                      </Typography>
+                    </div>
                     <IconButton
                       label="Delete"
-                      variant="ghost"
                       color="white"
+                      className="px-1.5 py-1.5 mx-4"
                       onClick={() => remove(index)}
                     >
-                      <TrashBinLine className="w-5 h-5 text-danger-solid" />
+                      <TrashBin2Line className="w-3 h-3" />
                     </IconButton>
                   </>
                 )
