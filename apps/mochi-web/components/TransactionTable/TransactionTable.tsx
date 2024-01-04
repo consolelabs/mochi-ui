@@ -16,6 +16,7 @@ import {
 import { ArrowRightLine } from '@mochi-ui/icons'
 import clsx from 'clsx'
 import { useMemo } from 'react'
+import Amount from '~cpn/Amount'
 import { TransactionTableProps, Tx } from './types'
 
 export const TransactionTable = (props: TransactionTableProps) => {
@@ -39,7 +40,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
           const tx = props.row.original
 
           return (
-            <div className="flex items-center gap-3">
+            <div className="flex gap-3 items-center">
               <Avatar
                 smallSrc={tx.from.platformIcon}
                 src={tx.from.avatar}
@@ -84,7 +85,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
           const tx = props.row.original
 
           return (
-            <div className="flex items-center gap-3">
+            <div className="flex gap-3 items-center">
               <Avatar
                 smallSrc={tx.to.platformIcon}
                 src={tx.to.avatar}
@@ -131,12 +132,12 @@ export const TransactionTable = (props: TransactionTableProps) => {
           const tx = props.row.original
 
           return (
-            <div className="flex items-center gap-2">
-              <Avatar src={tx.token.icon} size="sm" />
-              <Typography level="p5">
-                {tx.amount} {tx.token.symbol}
-              </Typography>
-            </div>
+            <Amount
+              size="sm"
+              value={tx.amount}
+              unit={tx.token.symbol}
+              tokenIcon={tx.token.icon}
+            />
           )
         },
       },

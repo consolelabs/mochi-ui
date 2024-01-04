@@ -1,10 +1,11 @@
 import { BottomSheet } from '~cpn/BottomSheet'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { useCallback, useEffect, useMemo } from 'react'
-import { MAX_AMOUNT_PRECISION, formatTokenAmount } from '~utils/number'
+import { formatTokenAmount } from '~utils/number'
 import { Button } from '@mochi-ui/core'
 import { LoginWidget, useLoginWidget } from '@mochi-web3/login-widget'
 import { CheckLine, ChevronLeftLine, Spinner } from '@mochi-ui/icons'
+import Amount from '~cpn/Amount'
 import { useTipWidget } from './store'
 import MessagePicker from '../MessagePicker/MessagePicker'
 import ThemePicker from '../ThemePicker/ThemePicker'
@@ -111,30 +112,34 @@ export default function StepTwo() {
           <ChevronLeftLine className="w-5 h-5" />
         </button>
         <span className="mx-auto text-base text-neutral-800">You send</span>
-        <p className="mx-auto text-3xl font-medium leading-5 text-black">
-          {formatTokenAmount(request.amount ?? 0).display}{' '}
-          {isToken(request.asset)
-            ? request.asset?.token?.symbol
-            : request.asset?.name}
-        </p>
-        <div className="flex flex-col">
-          {!isToken(request.asset) && (
-            <span className="text-sm text-[#7a7e85] mx-auto">
-              &#8776;{' '}
-              {
-                formatTokenAmount(
-                  (
-                    (request.amount ?? 0) * (request.asset?.token_amount ?? 0)
-                  ).toFixed(MAX_AMOUNT_PRECISION),
-                ).display
-              }{' '}
-              {request.asset?.token.symbol}
-            </span>
-          )}
-          <span className="text-sm text-[#7a7e85] mx-auto">
-            &#8776; {amountUsd} USD
-          </span>
-        </div>
+        <Amount
+          value={formatTokenAmount(request.amount ?? 0).display}
+          valueUsd={`${amountUsd} USD`}
+          unit={
+            isToken(request.asset)
+              ? request.asset?.token?.symbol ?? ''
+              : request.asset?.name ?? ''
+          }
+          tokenIcon={request.asset?.token.icon ?? ''}
+        />
+        {/* <div className="flex flex-col"> */}
+        {/*   {!isToken(request.asset) && ( */}
+        {/*     <span className="text-sm text-[#7a7e85] mx-auto"> */}
+        {/*       &#8776;{' '} */}
+        {/*       { */}
+        {/*         formatTokenAmount( */}
+        {/*           ( */}
+        {/*             (request.amount ?? 0) * (request.asset?.token_amount ?? 0) */}
+        {/*           ).toFixed(MAX_AMOUNT_PRECISION), */}
+        {/*         ).display */}
+        {/*       }{' '} */}
+        {/*       {request.asset?.token.symbol} */}
+        {/*     </span> */}
+        {/*   )} */}
+        {/*   <span className="text-sm text-[#7a7e85] mx-auto"> */}
+        {/*     &#8776; {amountUsd} USD */}
+        {/*   </span> */}
+        {/* </div> */}
 
         <TransactionPreview.Tip />
 

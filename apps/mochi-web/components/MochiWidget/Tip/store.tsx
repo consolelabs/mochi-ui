@@ -97,7 +97,6 @@ export const useTipWidget = create(
           asset: s.request.asset,
           theme: null,
         }
-        s.wallet = null
         s.isTransferring = false
       }),
     hardReset: () =>
@@ -113,7 +112,6 @@ export const useTipWidget = create(
         }
         s.tx = null
         s.error = null
-        s.wallet = null
         s.isTransferring = false
       }),
     isTransferring: false,
