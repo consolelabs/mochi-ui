@@ -1,18 +1,59 @@
 import plugin from 'tailwindcss/plugin.js'
 import Color from 'color'
+import get from 'lodash.get'
+import omit from 'lodash.omit'
+import forEach from 'lodash.foreach'
+import deepMerge from 'deepmerge'
 import { commonColors, semanticColors } from './colors'
 import { flattenThemeObject } from './util'
+import { ConfigTheme, MochiUIPluginConfig } from './types'
 
 const parsedColorsCache: Record<string, number[]> = {}
 
-export const mochiui = () => {
+export const isBaseTheme = (theme: string) =>
+  theme === 'light' || theme === 'dark'
+
+export const mochiui = (config: MochiUIPluginConfig) => {
+  const {
+    themes: themeObject = {},
+    defaultTheme = 'light',
+    defaultExtendTheme = 'light',
+    prefix = 'mochi',
+    addCommonColors = false,
+  } = config
+
+  const userLightColors = get(themeObject, 'light.colors', {})
+  const userDarkColors = get(themeObject, 'dark.colors', {})
+
+  // get other themes from the config different from light and dark
+  let otherThemes = omit(themeObject, ['light', 'dark']) || {}
+
+  forEach(otherThemes, ({ extend, colors }, themeName) => {
+    const baseTheme =
+      extend && isBaseTheme(extend) ? extend : defaultExtendTheme
+
+    if (colors && typeof colors === 'object') {
+      otherThemes[themeName].colors = deepMerge(
+        // @ts-ignore
+        semanticColors[baseTheme],
+        colors,
+      )
+    }
+  })
+
+  const light: ConfigTheme = {
+    // @ts-ignore
+    colors: deepMerge(semanticColors.light, userLightColors),
+  }
+
+  const dark = {
+    colors: deepMerge(semanticColors.dark, userDarkColors),
+  }
+
   const themes = {
-    light: {
-      colors: semanticColors.light,
-    },
-    dark: {
-      colors: semanticColors.dark,
-    },
+    light,
+    dark,
+    ...otherThemes,
   }
 
   const resolved: {
@@ -38,7 +79,7 @@ export const mochiui = () => {
     let cssSelector = `.${themeName},[data-theme="${themeName}"]`
 
     // use light as default theme
-    if (themeName === 'light') {
+    if (themeName === defaultTheme) {
       cssSelector = `:root,${cssSelector}`
     }
 
@@ -63,11 +104,12 @@ export const mochiui = () => {
         const parsedColor =
           parsedColorsCache[colorValue] ||
           Color(colorValue).hsl().round().array()
+
         parsedColorsCache[colorValue] = parsedColor
 
         const [h, s, l, defaultAlphaValue] = parsedColor
-        const colorVariable = `--tw-${colorName}`
-        const opacityVariable = `--tw-${colorName}-opacity`
+        const colorVariable = `--${prefix}-${colorName}`
+        const opacityVariable = `--${prefix}-${colorName}-opacity`
         // set the css variable in "@layer utilities"
         resolved.utilities[cssSelector]![colorVariable] = `${h} ${s}% ${l}%`
         // if an alpha value was provided in the color definition, store it in a css variable
@@ -139,83 +181,8 @@ export const mochiui = () => {
       theme: {
         extend: {
           colors: {
-            ...commonColors,
+            ...(addCommonColors ? commonColors : {}),
             ...resolved?.colors,
-            // keep these colors for backward-compatible
-            neutral: {
-              0: '#ffffff',
-              100: '#faf9f7',
-              150: '#f4f3f2',
-              200: '#eeedec',
-              300: '#e5e4e3',
-              400: '#d4d3d0',
-              500: '#adacaa',
-              600: '#848281',
-              700: '#4c4d4d',
-              800: '#343433',
-              900: '#1a1a19',
-              1000: '#000000',
-            },
-            primary: {
-              100: '#f0f7ff',
-              200: '#dcecfe',
-              300: '#beddfe',
-              400: '#91c5fd',
-              500: '#61abfa',
-              600: '#3d97f7',
-              700: '#017aff',
-              800: '#0068d6',
-              900: '#0054ad',
-              1000: '#004085',
-            },
-            secondary: {
-              100: '#f8f5ff',
-              200: '#efe7fe',
-              300: '#e4d7fe',
-              400: '#ccb4fd',
-              500: '#af89fa',
-              600: '#9e70fa',
-              700: '#8a54f7',
-              800: '#6d35de',
-              900: '#5221b5',
-              1000: '#451d95',
-            },
-            green: {
-              100: '#edfdf6',
-              200: '#d1fae9',
-              300: '#a5f3d2',
-              400: '#6ee7b5',
-              500: '#36d392',
-              600: '#0ea466',
-              700: '#088752',
-              800: '#037244',
-              900: '#06603a',
-              1000: '#064c2f',
-            },
-            yellow: {
-              100: '#fff8eb',
-              200: '#fff1d6',
-              300: '#fee2a9',
-              400: '#fdcf72',
-              500: '#fbbb3c',
-              600: '#db7712',
-              700: '#b25e09',
-              800: '#96530f',
-              900: '#7f460d',
-              1000: '#663a0f',
-            },
-            red: {
-              100: '#fef1f2',
-              200: '#fee1e3',
-              300: '#fec8cc',
-              400: '#fca6ad',
-              500: '#f8727d',
-              600: '#ef4352',
-              700: '#e02d3c',
-              800: '#ba2532',
-              900: '#081b25',
-              1000: '#86131d',
-            },
           },
           fontSize: {
             xxs: '11px',
