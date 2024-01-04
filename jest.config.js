@@ -26,7 +26,7 @@ module.exports = {
   modulePathIgnorePatterns: [
     // Add patterns to ignore
     '[/\\\\](dist|build|.next)[/\\\\].+\\.(js|jsx|d.ts)$',
-    '<rootDir>/packages/(icons|ui|theme|eslint-config-custom|tsconfig|storybook)/',
+    '<rootDir>/packages/(icons|ui|components|core|eslint-config-custom|tsconfig|storybook)/',
     '[/\\\\](packages|apps)[/\\\\].+\\.(config|stories).(js|ts|tsx)$',
   ],
   transform: {

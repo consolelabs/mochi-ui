@@ -74,4 +74,10 @@ export const parameters: Parameters = {
       ],
     },
   },
+  darkMode: {
+    darkClass: 'dark',
+    lightClass: 'light',
+    classTarget: 'html',
+    stylePreview: true,
+  },
 }

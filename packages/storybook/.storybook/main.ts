@@ -15,6 +15,7 @@ const storybookConfig: StorybookConfig = {
     '@storybook/addon-storysource',
     '@storybook/addon-styling-webpack',
     '@storybook/addon-a11y',
+    'storybook-dark-mode',
   ],
   webpackFinal: async (config) => {
     // Resolve mjs files from libs
