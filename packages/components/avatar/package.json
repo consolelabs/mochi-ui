@@ -33,8 +33,9 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
-    "@mochi-ui/theme": "workspace:*",
+    "@dwarvesf/react-utils": "^0.4.2",
     "@mochi-ui/skeleton": "1.0.2",
+    "@mochi-ui/theme": "workspace:*",
     "@radix-ui/react-avatar": "^1.0.4",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0"
