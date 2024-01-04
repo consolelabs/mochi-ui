@@ -72,6 +72,7 @@ const DrawerContent = React.forwardRef<
     <DialogPrimitive.Content
       className={drawerContentCva({ className, anchor })}
       ref={ref}
+      data-anchor={anchor}
       {...props}
     >
       {children}

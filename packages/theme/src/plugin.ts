@@ -234,6 +234,14 @@ export const mochiui = () => {
               '0%': { opacity: '0.3' },
               '100%': { opacity: '1' },
             },
+            'accordion-open': {
+              from: { height: '0' },
+              to: { height: 'var(--radix-accordion-content-height)' },
+            },
+            'accordion-close': {
+              from: { height: 'var(--radix-accordion-content-height)' },
+              to: { height: '0' },
+            },
           },
           animation: {
             'slide-from-left': 'slide-left 0.2s ease-in-out',
@@ -241,6 +249,8 @@ export const mochiui = () => {
             'slide-from-top': 'slide-top 0.2s ease-in-out',
             'slide-from-bottom': 'slide-bottom 0.2s ease-in-out',
             'fade-in': 'fade-in 0.5s ease-in-out',
+            'accordion-open': 'accordion-open 0.2s ease-out',
+            'accordion-close': 'accordion-close 0.2s ease-out',
           },
           screens: {
             xxs: '375px',

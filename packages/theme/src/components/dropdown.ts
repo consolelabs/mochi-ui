@@ -1,6 +1,21 @@
 import clsx from 'clsx'
 import { cva } from 'class-variance-authority'
 
+const contentAnimations = [
+  'data-[state=open]:animate-in',
+  'data-[state=open]:fade-in-0',
+  'data-[state=open]:zoom-in-95',
+
+  'data-[side=bottom]:slide-in-from-top-2',
+  'data-[side=left]:slide-in-from-right-2',
+  'data-[side=right]:slide-in-from-left-2',
+  'data-[side=top]:slide-in-from-bottom-2',
+
+  'data-[state=closed]:animate-out',
+  'data-[state=closed]:fade-out-0',
+  'data-[state=closed]:zoom-out-95',
+]
+
 const dropdownIconStyleCva = cva(
   ['shrink-0 flex text-text-primary group-data-[disabled]:text-text-secondary'],
   {
@@ -64,13 +79,14 @@ const dropdownMenuSubTriggerClsx = ({
   className?: string
 } = {}) => clsx('-rotate-90 text-text-secondary', className)
 
-export const dropdownContentStyleCva = cva(
+const dropdownContentStyleCva = cva(
   [
     'border border-neutral-outline-border z-50',
     'p-2',
     'bg-background-popup',
     'space-y-1',
     'min-w-[240px]',
+    ...contentAnimations,
   ],
   {
     variants: {
@@ -94,6 +110,10 @@ const dropdownMenuRadioIconClsx = ({
   className?: string
 } = {}) => clsx('text-text-icon', className)
 
+const dropdownContentWrapperClsx = ({
+  className = '',
+}: { className?: string } = {}) => clsx(...contentAnimations, className)
+
 const dropdownMenuSeparatorClsx = ({
   className = '',
 }: {
@@ -110,4 +130,5 @@ export const dropdown = {
   dropdownMenuRadioIconClsx,
   dropdownMenuSeparatorClsx,
   dropdownTriggerClsx,
+  dropdownContentWrapperClsx,
 }

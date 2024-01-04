@@ -2,10 +2,33 @@ import clsx from 'clsx'
 import { cva } from 'class-variance-authority'
 
 const drawerOverlayClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx('fixed inset-0 z-50 bg-background-backdrop/40', className)
+  clsx(
+    'fixed inset-0 z-50 bg-background-backdrop/40',
+    'data-[state=open]:animate-in',
+    'data-[state=open]:fade-in-0',
+    'data-[state=closed]:animate-out',
+    'data-[state=closed]:fade-out-0',
+    className,
+  )
 
 const drawerContentCva = cva(
-  ['fixed z-50 bg-background-surface overflow-auto'],
+  [
+    'fixed z-50 bg-background-surface overflow-auto',
+    'data-[state=open]:ease-out',
+    'data-[state=open]:animate-in',
+
+    'data-[state=open]:data-[anchor=left]:slide-in-from-left-full',
+    'data-[state=open]:data-[anchor=right]:slide-in-from-right-full',
+    'data-[state=open]:data-[anchor=top]:slide-in-from-top-full',
+    'data-[state=open]:data-[anchor=bottom]:slide-in-from-bottom-full',
+
+    'data-[state=closed]:ease-in',
+    'data-[state=closed]:animate-out',
+    'data-[state=closed]:data-[anchor=left]:slide-out-to-left-full',
+    'data-[state=closed]:data-[anchor=top]:slide-out-to-top-full',
+    'data-[state=closed]:data-[anchor=bottom]:slide-out-to-bottom-full',
+    'data-[state=closed]:data-[anchor=right]:slide-out-to-right-full',
+  ],
   {
     variants: {
       anchor: {
