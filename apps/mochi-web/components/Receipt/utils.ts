@@ -99,10 +99,10 @@ export async function transformData(rawData: any) {
   const image = emojiData?.[0]?.emoji_url
 
   const ogDataOnly = {
-    from: [{ name: sender?.plain ?? '', url: `/tx/${rawData.external_id}` }],
+    from: (sender?.plain ?? '') as any,
     native: rawData?.token.native,
     tokenIcon: image || `${HOME_URL}/assets/coin.png`,
-    to: [{ name: receiver?.plain ?? '', url: `/tx/${rawData.external_id}` }],
+    to: (receiver?.plain ?? '') as any,
     symbol: rawData?.token.symbol,
     amount: mochiUtils.formatTokenDigit({
       value: utils.formatUnits(
@@ -157,16 +157,18 @@ export async function transformData(rawData: any) {
 
   const originalTxId = rawData.original_tx_id
 
+  data.from = [
+    {
+      name: sender?.plain ?? '',
+      url: `/tx/${data.external_id}`,
+      tokenIcon: data.tokenIcon,
+      amountDisplay,
+      amountUsd,
+      unitAmountSection,
+    },
+  ]
   if (isMultipleSenders) {
-    data.from = [
-      {
-        name: sender?.plain ?? '',
-        url: `/tx/${data.external_id}`,
-        tokenIcon: data.tokenIcon,
-        amountDisplay,
-        amountUsd,
-        unitAmountSection,
-      },
+    data.from = data.from.concat([
       ...(await Promise.all(
         rawData.other_txs.map(async (tx: any) => {
           const [profile] = UI.render(Platform.Web, tx.from_profile)
@@ -186,9 +188,10 @@ export async function transformData(rawData: any) {
           }
         }),
       )),
-    ]
+    ])
   }
 
+  data.to = [{ name: receiver?.plain ?? '', url: `/tx/${rawData.external_id}` }]
   if (isMultipleReceivers) {
     data.to = rawData.other_profiles
       .map((p: any) => {

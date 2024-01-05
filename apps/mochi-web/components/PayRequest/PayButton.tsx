@@ -97,7 +97,6 @@ export default function PayButton({
                           onOpenModal()
                           return
                         }
-                        console.log(tokenAddress)
                         const provider = wallet.providers[0]
 
                         await provider.transfer({
