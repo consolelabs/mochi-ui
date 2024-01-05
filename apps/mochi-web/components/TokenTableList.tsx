@@ -8,12 +8,13 @@ import {
   ScrollAreaThumb,
   ScrollAreaViewport,
   ScrollAreaCorner,
+  Avatar,
 } from '@mochi-ui/core'
 import { utils as mochiUtils } from '@consolelabs/mochi-formatter'
-import { TokenAvatar } from '~cpn/TokenAvatar'
 import { Bag, WalletSolid } from '@mochi-ui/icons'
 import { Balance } from '~store/wallets'
 import clsx from 'clsx'
+import { coinIcon } from '~utils/image'
 
 const sortOrder = ['SOL']
 
@@ -28,15 +29,12 @@ interface Props extends Omit<TableProps<BalanceWithSource>, 'columns'> {}
 
 const Token: ColumnProps<BalanceWithSource>['cell'] = (props) => (
   <div className="flex items-center space-x-2">
-    <TokenAvatar
-      src={props.row.original.token?.icon || ''}
-      name={props.row.original.token?.symbol || ''}
-      smallSrc={props.row.original.token?.chain?.icon || ''}
-      chainName={
-        props.row.original.token?.chain?.symbol ||
-        props.row.original.token?.chain?.short_name ||
-        ''
-      }
+    <Avatar
+      src={props.row.original.token.icon}
+      smallSrc={props.row.original.token.chain?.icon ?? coinIcon.src}
+      fallback={coinIcon.src}
+      className="w-6 h-6"
+      size="base"
     />
     <div>
       <div className="flex space-x-1">

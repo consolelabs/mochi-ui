@@ -19,7 +19,11 @@ export interface TableProps<T> {
   className?: string
   wrapperClassName?: string
   rowClassName?: (record: T, index: number) => string
-  cellClassName?: (record: T, rowIndex: number, colIndex: number) => string
+  cellClassName?: (
+    record: T | null,
+    rowIndex: number,
+    colIndex: number,
+  ) => string
   onRow?: (
     record: T,
     rowIndex: number,
@@ -134,6 +138,7 @@ export default function Table<T extends RowData>({
                           hideLastBorder,
                           border,
                           size,
+                          className: cellClassName?.(null, rowIdx, idx),
                         })}
                         key={idx}
                       >

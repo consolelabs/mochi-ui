@@ -9,25 +9,21 @@ import DataList from '~cpn/DataList'
 import { coinIcon } from '~utils/image'
 
 type Props = {
-  data: string | { name: string; url: string }[]
-  tokenIcon: string
-  amountDisplay: string
-  amountUsd: string
-  unitAmountSection?: string
+  data: {
+    name: string
+    url: string
+    tokenIcon?: string
+    amountDisplay?: string
+    amountUsd?: string
+    unitAmountSection?: string
+  }[]
   title: string
 }
 
-export default function ListUser({
-  data,
-  tokenIcon,
-  amountDisplay,
-  amountUsd,
-  unitAmountSection,
-  title,
-}: Props) {
+export default function ListUser({ data, title }: Props) {
   return (
-    <DataList.Item right={Array.isArray(data) && <>&#8203;</>} title={title}>
-      {Array.isArray(data) ? (
+    <DataList.Item right={data.length > 1 && <>&#8203;</>} title={title}>
+      {data.length > 1 ? (
         <div className="flex flex-col gap-y-1 items-start whitespace-nowrap !text-neutral-600">
           {data.map((n: any) => (
             <div
@@ -46,14 +42,16 @@ export default function ListUser({
               <Image
                 width={12}
                 height={12}
-                src={tokenIcon || coinIcon.src}
+                src={n.tokenIcon || coinIcon.src}
                 alt=""
                 className="object-contain"
               />
               <span>
-                {amountDisplay} ({amountUsd})
-                {unitAmountSection && (
-                  <span className="ml-1 text-current">{unitAmountSection}</span>
+                {n.amountDisplay} ({n.amountUsd})
+                {n.unitAmountSection && (
+                  <span className="ml-1 text-current">
+                    {n.unitAmountSection}
+                  </span>
                 )}
               </span>
             </div>
@@ -61,10 +59,10 @@ export default function ListUser({
         </div>
       ) : (
         <Link
-          href="TODO"
+          href={data[0].url}
           className="flex gap-x-1 items-center text-current underline text-xxxs"
         >
-          {data}
+          {data[0].name}
           <LinkLine />
         </Link>
       )}

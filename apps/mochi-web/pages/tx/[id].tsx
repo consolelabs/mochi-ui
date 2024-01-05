@@ -50,9 +50,7 @@ interface Props {
 }
 
 export default function Transfer({ data, ogData }: Props) {
-  const name = Array.isArray(data.data.from)
-    ? data.data.from[0].name
-    : data.data.from
+  const name = data.data.from[0].name
 
   return (
     <Layout noFooter className="bg-white lg:bg-white-pure">
@@ -71,9 +69,9 @@ export default function Transfer({ data, ogData }: Props) {
           JSON.stringify(ogData),
         )}`}
         description={`${name} paid ${
-          Array.isArray(data.data.to)
+          data.data.to.length > 1
             ? `${data.data.to.length} people`
-            : data.data.to
+            : data.data.to[0].name
         } ${data.amountDisplay} ${data.unitCurrency}${
           data.message
             ? ` with message: "${truncate(data.message, 30, false)}"`

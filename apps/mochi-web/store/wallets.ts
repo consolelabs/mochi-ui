@@ -8,6 +8,7 @@ import UI, {
 } from '@consolelabs/mochi-formatter'
 import { truncate } from '@dwarvesf/react-utils'
 import { getLoginWidgetState } from '@mochi-web3/login-widget'
+import { coinIcon } from '~utils/image'
 
 // Create map of payable platforms from AddressChainType
 const PaymentPlatforms: Map<string, string> = new Map(
@@ -168,6 +169,10 @@ export const useWalletStore = create<State>((set) => ({
       for (const wallet of wallets) {
         for (const bal of wallet.balances) {
           symbolsSet.add(bal.token.symbol)
+          const chainSymbol = bal.token.symbol
+          if (chainSymbol) {
+            symbolsSet.add(chainSymbol)
+          }
         }
       }
 
@@ -177,10 +182,13 @@ export const useWalletStore = create<State>((set) => ({
       if (okEmoji) {
         for (const wallet of wallets) {
           for (const bal of wallet.balances) {
-            const emoji = data?.find((d) => d.code === bal.token.symbol)
-            if (emoji) {
-              bal.token.icon = emoji.emoji_url
-            }
+            const tokenEmoji = data?.find((d) => d.code === bal.token.symbol)
+            const chainEmoji = data?.find(
+              (d) => d.code === bal.token.chain?.symbol,
+            )
+            bal.token.icon = tokenEmoji?.emoji_url || coinIcon.src
+            if (bal.token.chain?.icon)
+              bal.token.chain.icon = chainEmoji?.emoji_url || coinIcon.src
           }
         }
       }
