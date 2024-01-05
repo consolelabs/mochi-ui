@@ -2,6 +2,8 @@
 import { mochiui, semanticColors } from '@mochi-ui/theme'
 import tailwindAnimate from 'tailwindcss-animate'
 
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   content: [
     './**/*.{html,ts,tsx}',
@@ -10,6 +12,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        mono: ['IBM Plex Mono', defaultTheme.fontFamily.mono],
+      },
       colors: {
         neutral: {
           0: '#ffffff',

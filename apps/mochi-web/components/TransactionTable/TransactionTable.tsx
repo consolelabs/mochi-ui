@@ -13,11 +13,16 @@ import {
   Table,
   Typography,
 } from '@mochi-ui/core'
-import { ArrowRightLine } from '@mochi-ui/icons'
 import clsx from 'clsx'
 import { useMemo } from 'react'
+import { transactionActionString } from '~constants/transactions'
 import Amount from '~cpn/Amount'
+import { TransactionAction } from './TransactionAction'
+import { TransactionRecipients } from './TransactionRecipients'
+import { TransactionStatusIcon } from './TransactionStatusIcon'
+import { TransactionTxGroup } from './TransactionTxGroup'
 import { TransactionTableProps, Tx } from './types'
+import { openTx } from './utils'
 
 export const TransactionTable = (props: TransactionTableProps) => {
   const {
@@ -31,6 +36,22 @@ export const TransactionTable = (props: TransactionTableProps) => {
     const columns: ColumnProps<Tx>[] = []
 
     columns.push(
+      {
+        header: 'tx id',
+        id: 'txId',
+        width: 130,
+        // eslint-disable-next-line
+        cell: (props) => {
+          const tx = props.row.original
+
+          return (
+            <div className="flex items-center gap-1.5">
+              <TransactionStatusIcon tx={tx} />
+              <TransactionTxGroup tx={tx} />
+            </div>
+          )
+        },
+      },
       {
         header: 'issued by',
         id: 'from',
@@ -64,15 +85,20 @@ export const TransactionTable = (props: TransactionTableProps) => {
         },
       },
       {
-        header: '',
-        id: 'arrow',
-        width: 60,
+        header: 'type',
+        id: 'type',
+        width: 140,
         // eslint-disable-next-line
-        cell: () => {
+        cell: (props) => {
+          const tx = props.row.original
+
           return (
-            <div className="p-1 w-5 h-5 rounded-full border border-primary-solid bg-primary-solid/25 text-primary-solid">
-              <ArrowRightLine className="w-full h-full scale-125" />
-            </div>
+            <Badge
+              className="inline-flex capitalize border border-primary-solid"
+              appearance="primary"
+            >
+              {transactionActionString[tx.action] ?? 'tip'}
+            </Badge>
           )
         },
       },
@@ -84,47 +110,11 @@ export const TransactionTable = (props: TransactionTableProps) => {
         cell: (props) => {
           const tx = props.row.original
 
-          return (
-            <div className="flex gap-3 items-center">
-              <Avatar
-                smallSrc={tx.to.platformIcon}
-                src={tx.to.avatar}
-                fallback={tx.to.address}
-              />
-              <div className="flex flex-col gap-1">
-                <Typography level="p5" className="break-words truncate">
-                  {utils.string.formatAddressUsername(tx.to.address)}
-                </Typography>
-                {tx.to.platform && (
-                  <Typography
-                    level="p6"
-                    className="!text-text-secondary capitalize"
-                  >
-                    {tx.to.platform}
-                  </Typography>
-                )}
-              </div>
-            </div>
-          )
+          return <TransactionRecipients tx={tx} />
         },
       },
       {
-        header: 'type',
-        id: 'type',
-        width: 140,
-        // eslint-disable-next-line
-        cell: (props) => {
-          const tx = props.row.original
-
-          return (
-            <Badge className="inline-flex capitalize" appearance="white">
-              {tx.action}
-            </Badge>
-          )
-        },
-      },
-      {
-        header: 'amount',
+        header: 'total value',
         id: 'amount',
         width: 210,
         // eslint-disable-next-line
@@ -135,6 +125,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
             <Amount
               size="sm"
               value={tx.amount}
+              valueUsd={tx.amountUsd}
               unit={tx.token.symbol}
               tokenIcon={tx.token.icon}
             />
@@ -166,17 +157,6 @@ export const TransactionTable = (props: TransactionTableProps) => {
         },
       },
       {
-        header: 'tx id',
-        id: 'txId',
-        width: 130,
-        // eslint-disable-next-line
-        cell: (props) => {
-          const tx = props.row.original
-
-          return <Typography level="p5">{tx.code.slice(0, 9)}</Typography>
-        },
-      },
-      {
         header: 'wen',
         id: 'wen',
         width: 180,
@@ -188,26 +168,14 @@ export const TransactionTable = (props: TransactionTableProps) => {
         },
       },
       {
-        header: 'status',
-        id: 'status',
+        header: '',
+        id: 'action',
         width: 100,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
 
-          return (
-            <Badge
-              className={clsx(
-                'inline-flex',
-                tx.isSuccess
-                  ? '!bg-success-outline !text-success-solid'
-                  : '!bg-danger-outline !text-danger-solid',
-              )}
-              appearance="white"
-            >
-              {tx.isSuccess ? 'Success' : 'Failed'}
-            </Badge>
-          )
+          return <TransactionAction tx={tx} />
         },
       },
     )
@@ -240,6 +208,11 @@ export const TransactionTable = (props: TransactionTableProps) => {
 
                 return ''
               }}
+              onRow={(tx) => ({
+                onClick: () => {
+                  openTx(tx)
+                },
+              })}
             />
           </div>
         </ScrollAreaViewport>

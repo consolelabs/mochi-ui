@@ -1,7 +1,14 @@
 import { PaginationProps, TableProps } from '@mochi-ui/core'
+import {
+  TransactionActionType,
+  TransactionStatus,
+} from '~constants/transactions'
 
 export interface Tx {
   code: string
+  paycode: string
+  siblingTxs: Tx[]
+  otherTxs: Tx[]
   where: {
     text: string
     avatar: string | ((...props: any[]) => JSX.Element)
@@ -22,10 +29,11 @@ export interface Tx {
     icon: string
     symbol: string
   }
-  action: string
+  action: TransactionActionType
   amount: string
+  amountUsd: string
   date: string
-  isSuccess?: boolean
+  status: TransactionStatus
   isNew?: boolean
 }
 

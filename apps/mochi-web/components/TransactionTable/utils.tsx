@@ -1,25 +1,14 @@
-import ReactDOMServer from 'react-dom/server'
-import { OffchainTx } from '@consolelabs/mochi-rest'
 import UI, { Platform, utils as mochiUtils } from '@consolelabs/mochi-formatter'
 import { MonitorLine } from '@mochi-ui/icons'
 import { utils } from 'ethers'
-import { Tx } from '~cpn/TransactionTable'
+import ReactDOMServer from 'react-dom/server'
+import { ROUTES } from '~constants/routes'
 import { appLogo, discordLogo, telegramLogo } from '~utils/image'
 import { formatRelative } from '~utils/time'
+import { Tx } from './types'
 
 function isVault(source: string) {
   return source === 'mochi-vault'
-}
-
-export const actionString: Record<any, string> = {
-  transfer: 'tip',
-  vault_transfer: 'vault transfer',
-  swap: 'swap',
-  payme: 'pay me',
-  paylink: 'pay link',
-  airdrop: 'airdrop',
-  deposit: 'deposit',
-  withdraw: 'withdraw',
 }
 
 export async function transform(d: any): Promise<Tx> {
@@ -127,8 +116,6 @@ export async function transform(d: any): Promise<Tx> {
       break
   }
 
-  const action = actionString[d.action as OffchainTx['action']] ?? 'tip'
-
   if (from?.platform === Platform.Mochi) {
     from.plain = '🍡 Mochi user'
   }
@@ -143,8 +130,16 @@ export async function transform(d: any): Promise<Tx> {
     from.plain = d.from_profile_source
   }
 
+  const paycode = ['payme', 'paylink'].includes(d.action) ? d.metadata.code : ''
+
+  const siblingTxs = await Promise.all((d.sibling_txs || []).map(transform))
+  const otherTxs = await Promise.all((d.other_txs || []).map(transform))
+
   return {
     code: d.external_id,
+    paycode,
+    siblingTxs,
+    otherTxs,
     from: {
       address: from?.plain ?? '?',
       avatar: fromAvatar,
@@ -159,14 +154,25 @@ export async function transform(d: any): Promise<Tx> {
     },
     where,
     token: {
-      icon: d.token.icon,
-      symbol: d.token.symbol,
+      icon: d.token?.icon,
+      symbol: d.token?.symbol,
     },
     amount: mochiUtils.formatTokenDigit(
-      utils.formatUnits(d.amount, d.token.decimal),
+      utils.formatUnits(d.amount, d.token?.decimal),
     ),
+    amountUsd: mochiUtils.formatUsdDigit(d.usd_amount),
     date: formatRelative(d.created_at),
-    isSuccess: d.status === 'success',
-    action,
+    status: d.status,
+    action: d.action,
+  }
+}
+
+export const openTx = (tx: Tx) => {
+  if (tx.action === 'payme') {
+    window.open(ROUTES.PAYME(tx.paycode))
+  } else if (tx.action === 'paylink') {
+    window.open(ROUTES.PAYLINK(tx.to.address, tx.paycode))
+  } else {
+    window.open(ROUTES.TX_RECEIPTS(tx.code))
   }
 }
