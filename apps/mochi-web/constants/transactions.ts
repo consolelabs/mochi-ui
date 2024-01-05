@@ -25,6 +25,24 @@ export type TransactionActionType =
   | 'deposit'
   | 'withdraw'
 
+export type TransactionStatus =
+  | 'submitted'
+  | 'failed'
+  | 'pending'
+  | 'success'
+  | 'expired'
+
+export const transactionActionString: Record<TransactionActionType, string> = {
+  transfer: 'Tip',
+  vault_transfer: 'Vault',
+  payme: 'Pay Me',
+  swap: 'Swap',
+  paylink: 'Pay Link',
+  airdrop: 'Airdrop',
+  deposit: 'Deposit',
+  withdraw: 'Withdraw',
+}
+
 export const typeFilters: {
   label: string
   value: TransactionActionType | 'all'

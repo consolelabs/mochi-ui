@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react'
-import { ROUTES } from '~constants/routes'
 import { TransactionTable } from '~cpn/TransactionTable'
 import { ChainPicker, PlatformPicker } from '../components'
 import {
@@ -57,13 +56,6 @@ export const TransactionSection = () => {
         loadingRows={10}
         data={txnsCurrentPage}
         isLoading={isLoading}
-        onRow={(tx) => {
-          return {
-            onClick: () => {
-              window.open(ROUTES.TX_RECEIPTS(tx.code))
-            },
-          }
-        }}
         componentsProps={{
           pagination: {
             initalPage: 1,

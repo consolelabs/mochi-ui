@@ -25,4 +25,7 @@ export const ROUTES = {
     return '/settings'
   },
   TRANSACTIONS: '/profile/transactions',
+  PAYME: (paycode: string) => `/pay/${paycode}`,
+  PAYLINK: (username: string, paycode: string) =>
+    `/${username}/receive/${paycode}`,
 }

@@ -1,15 +1,18 @@
-import { robotoFont } from '~utils/next-font'
+import { useDisclosure } from '@dwarvesf/react-hooks'
+import { truncate } from '@dwarvesf/react-utils'
+import { Avatar, Badge, Typography } from '@mochi-ui/core'
+import { CornerBottomLeftLine, LinkLine } from '@mochi-ui/icons'
+import { format } from 'date-fns'
 import Link from 'next/link'
-import { LinkLine, CornerBottomLeftLine } from '@mochi-ui/icons'
 import useSWR from 'swr'
 import { API } from '~constants/api'
-import { Avatar, Badge, Typography } from '@mochi-ui/core'
-import { format } from 'date-fns'
-import { truncate } from '@dwarvesf/react-utils'
-import { useDisclosure } from '@dwarvesf/react-hooks'
-import DashLine from '~cpn/DashLine'
-import { actionString } from '~cpn/TransactionTable/utils'
+import {
+  TransactionActionType,
+  transactionActionString,
+} from '~constants/transactions'
 import Amount from '~cpn/Amount'
+import DashLine from '~cpn/DashLine'
+import { robotoFont } from '~utils/next-font'
 import DataList from '../DataList'
 import Header from './Header'
 import ListUser from './ListUser'
@@ -80,7 +83,9 @@ export default function Receipt({ id, data: _data }: Props) {
                 <span className="text-xs font-light capitalize">
                   {data.data.template
                     ? data.data.template.phrase
-                    : actionString[data.data.action] ?? 'sent'}
+                    : transactionActionString[
+                        data.data.action as TransactionActionType
+                      ] ?? 'sent'}
                 </span>
               </div>
               <Amount

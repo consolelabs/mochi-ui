@@ -28,23 +28,19 @@ export default function Amount({
 
   return (
     <div
-      className={clsx('flex items-center', className, {
-        'flex-col': !!valueUsd || isMultipleTokens,
+      className={clsx('flex items-center font-medium w-full', className, {
+        'flex-col': isLongNumber || isMultipleTokens,
       })}
     >
-      <div className="flex justify-center items-center font-medium">
-        <div
-          className={clsx('flex items-center', {
-            'flex-col': isLongNumber,
-          })}
-        >
-          <Image
-            width={size === 'md' ? 28 : 24}
-            height={size === 'md' ? 28 : 24}
-            className="mr-1.5"
-            src={tokenIcon || coinIcon.src}
-            alt=""
-          />
+      <Image
+        width={size === 'md' ? 28 : 24}
+        height={size === 'md' ? 28 : 24}
+        className="mr-1.5"
+        src={tokenIcon || coinIcon.src}
+        alt=""
+      />
+      <div className="flex flex-col flex-1 gap-1">
+        <div className="flex">
           <Typography
             level={size === 'md' ? 'h4' : 'h9'}
             className="!leading-[1]"
@@ -67,23 +63,26 @@ export default function Amount({
             </Typography>
           </div>
         </div>
-      </div>
-      {(valueUsd || isMultipleTokens) && (
-        <>
-          {isMultipleTokens && (
+        {(valueUsd || isMultipleTokens) && (
+          <>
+            {isMultipleTokens && (
+              <Typography
+                level={size === 'md' ? 'p5' : 'p6'}
+                color="textSecondary"
+              >
+                and other tokens
+              </Typography>
+            )}
             <Typography
               level={size === 'md' ? 'p5' : 'p6'}
               color="textSecondary"
             >
-              and other tokens
+              {approxMoniker} {valueUsd?.startsWith('<') ? '' : <>&asymp;</>}{' '}
+              {valueUsd}
             </Typography>
-          )}
-          <Typography level={size === 'md' ? 'p5' : 'p6'} color="textSecondary">
-            {approxMoniker} {valueUsd?.startsWith('<') ? '' : <>&asymp;</>}{' '}
-            {valueUsd}
-          </Typography>
-        </>
-      )}
+          </>
+        )}
+      </div>
     </div>
   )
 }

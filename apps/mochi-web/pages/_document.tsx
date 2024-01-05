@@ -26,6 +26,10 @@ class MyDocument extends Document {
           />
           <link rel="manifest" href="/site.webmanifest" />
           <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#24292e" />
+          <link
+            href="https://fonts.googleapis.com/css?family=IBM Plex Mono&display=optional"
+            rel="stylesheet"
+          />
           <meta name="apple-mobile-web-app-title" content={CONFIG.title} />
           <meta name="application-name" content={CONFIG.title} />
           <script
