@@ -3,7 +3,6 @@ import {
   Avalanche,
   Base,
   Bnb,
-  DesktopCodeSolid,
   DiscordColored,
   Eth,
   Ftm,
@@ -11,6 +10,7 @@ import {
   Matic,
   Mnt,
   WebSolid,
+  ShapesSolid,
 } from '@mochi-ui/icons'
 import { SVGProps } from 'react'
 import Telegram from '~cpn/MochiWidget/PlatformPicker/icons/telegram-ic'
@@ -87,12 +87,12 @@ export const platformFilters: {
   {
     label: 'All Platforms',
     value: 'all',
-    icon: WebSolid,
+    icon: ShapesSolid,
   },
   {
     label: 'Web',
     value: 'web',
-    icon: DesktopCodeSolid,
+    icon: WebSolid,
   },
   {
     label: 'Discord',

@@ -159,7 +159,7 @@ export default function Receipt({ id, data: _data }: Props) {
                       }
                     >
                       <div className="flex gap-x-2 self-stretch">
-                        <CornerBottomLeftLine className="text-neutral-600" />
+                        <CornerBottomLeftLine className="text-neutral-600 shrink-0" />
                         <DataList.Item title="Group Tx ID">
                           <Link
                             href={`/tx/${data.originalTxId}`}
