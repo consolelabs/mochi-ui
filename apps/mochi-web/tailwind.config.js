@@ -159,7 +159,7 @@ module.exports = {
       animation: {
         float: 'float 5s ease-in-out infinite',
         move: 'move 5s infinite 1s',
-        shake: 'shake .2s both',
+        shake: 'shake .2s linear infinite',
         'new-tx-fade-out': 'new-tx-fade-out 3s ease-in-out forwards',
       },
       spacing: {

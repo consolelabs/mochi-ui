@@ -28,11 +28,34 @@ export const PrivacySetting = ({
   targetGroupList = defaultTargetGroupList,
 }: Props) => {
   const { control, watch } = useFormContext<ResponseGeneralSettingData>()
-  const isCustom = watch(`privacy.${name}.general_platform_group`) === 'custom'
-  const { fields } = useFieldArray({
+  const isCustomPlatformGroup =
+    watch(`privacy.${name}.general_platform_group`) === 'custom'
+  const { fields, replace } = useFieldArray({
     control,
     name: `privacy.${name}.custom_settings`,
   })
+
+  const customSettings = watch(`privacy.${name}.custom_settings`) || []
+  const customTargetGroups = new Set(
+    customSettings.map(({ target_group }) => target_group),
+  )
+  const isCustomTargetGroup =
+    isCustomPlatformGroup && customTargetGroups.size > 1
+
+  const onPlatformGroupChange = (value: string) => {
+    if (
+      value === 'custom' &&
+      (customSettings.length < platformList.length ||
+        customSettings.some((each) => !each.platform || !each.target_group))
+    ) {
+      replace(
+        platformList.map((each) => ({
+          target_group: targetGroupList[0].key,
+          platform: each.key,
+        })),
+      )
+    }
+  }
 
   return (
     <>
@@ -53,11 +76,15 @@ export const PrivacySetting = ({
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  {targetGroupList.map((each) => (
-                    <SelectItem key={each.key} value={each.key}>
-                      {each.label}
-                    </SelectItem>
-                  ))}
+                  {isCustomTargetGroup ? (
+                    <SelectItem value={field.value || ''}>Custom</SelectItem>
+                  ) : (
+                    targetGroupList.map((each) => (
+                      <SelectItem key={each.key} value={each.key}>
+                        {each.label}
+                      </SelectItem>
+                    ))
+                  )}
                 </SelectContent>
               </Select>
               <FormErrorMessage>{fieldState.error?.message}</FormErrorMessage>
@@ -73,7 +100,13 @@ export const PrivacySetting = ({
               error={!!fieldState.error}
               className="flex-1 min-w-[215px]"
             >
-              <Select {...field}>
+              <Select
+                {...field}
+                onChange={(value) => {
+                  field.onChange(value)
+                  onPlatformGroupChange(value)
+                }}
+              >
                 <SelectTrigger
                   appearance="form"
                   className="justify-between h-10"
@@ -93,7 +126,7 @@ export const PrivacySetting = ({
           )}
         />
       </div>
-      {isCustom && (
+      {isCustomPlatformGroup && (
         <Card className="space-y-2">
           {fields.map((each, index) => (
             <div key={each.id} className="flex flex-wrap items-center gap-2">

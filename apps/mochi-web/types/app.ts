@@ -6,7 +6,7 @@ export interface UrlValue {
 export interface PlatformValue {
   discord?: boolean
   telegram?: boolean
-  externalWebsite?: boolean
+  web?: boolean
 }
 
 export interface AppDetailFormValues {

@@ -21,7 +21,7 @@ export const platforms = [
     Icon: TelegramColored,
   },
   {
-    key: 'externalWebsite',
+    key: 'web',
     label: 'External Website',
     Icon: DesktopCodeSolid,
   },
