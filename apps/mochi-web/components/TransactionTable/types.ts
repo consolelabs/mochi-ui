@@ -1,4 +1,4 @@
-import { PaginationProps, TableProps } from '@mochi-ui/core'
+import { TableProps } from '@mochi-ui/core'
 
 export interface Tx {
   code: string
@@ -27,6 +27,17 @@ export interface Tx {
   date: string
   isSuccess?: boolean
   isNew?: boolean
+}
+
+interface PaginationProps {
+  initalPage?: number
+  totalPages?: number
+  totalItems: number
+  initItemsPerPage?: number
+  className?: string
+  onPageChange?: (page: number) => void
+  onItemPerPageChange?: (page: number) => void
+  recordName?: string
 }
 
 export type TransactionTableProps = Omit<TableProps<Tx>, 'columns'> & {
