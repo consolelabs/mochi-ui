@@ -28,14 +28,16 @@ export default function Amount({
 
   return (
     <div
-      className={clsx('flex items-center font-medium w-full', className, {
+      className={clsx('flex items-start font-medium text-left', className, {
         'flex-col': isLongNumber || isMultipleTokens,
       })}
     >
       <Image
         width={size === 'md' ? 28 : 24}
         height={size === 'md' ? 28 : 24}
-        className="mr-1.5"
+        className={clsx('mr-1.5', {
+          'my-1': size === 'md',
+        })}
         src={tokenIcon || coinIcon.src}
         alt=""
       />
