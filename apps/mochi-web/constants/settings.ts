@@ -32,3 +32,8 @@ export const platformList = [
     label: 'Website',
   },
 ]
+
+export const defaultMoneySource = {
+  platform: 'mochi',
+  platform_identifier: 'mochi-balance',
+}

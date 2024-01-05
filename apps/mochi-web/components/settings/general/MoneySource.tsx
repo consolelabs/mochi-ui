@@ -16,6 +16,7 @@ import { PlusLine } from '@mochi-ui/icons'
 import { Controller, useFormContext } from 'react-hook-form'
 import { ResponseGeneralSettingData } from '~types/mochi-schema'
 import { getPlatform } from '~utils/platform'
+import { defaultMoneySource } from '~constants/settings'
 
 export const MoneySource = () => {
   const { profile } = useLoginWidget()
@@ -38,7 +39,7 @@ export const MoneySource = () => {
                   platform:
                     profile?.associated_accounts?.find(
                       (each) => each.platform_identifier === value,
-                    )?.platform || 'mochi',
+                    )?.platform || defaultMoneySource.platform,
                 },
                 { shouldDirty: true },
               )
@@ -48,7 +49,9 @@ export const MoneySource = () => {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="mochi">Mochi wallet</SelectItem>
+              <SelectItem value={defaultMoneySource.platform_identifier}>
+                Mochi wallet
+              </SelectItem>
               {profile?.associated_accounts?.map((each) => (
                 <SelectItem
                   key={each.platform_identifier}
