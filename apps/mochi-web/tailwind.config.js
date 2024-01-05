@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-import-module-exports
-import { mochiui } from '@mochi-ui/theme'
+import { mochiui, semanticColors } from '@mochi-ui/theme'
 import tailwindAnimate from 'tailwindcss-animate'
 
 module.exports = {
@@ -144,6 +144,14 @@ module.exports = {
             transform: 'translateX(0rem)',
           },
         },
+        'new-tx-fade-out': {
+          '0%': {
+            backgroundColor: semanticColors.light.success.outline.DEFAULT,
+          },
+          '100%': {
+            backgroundColor: 'transparent',
+          },
+        },
       },
       transitionTimingFunction: {
         rubber: 'cubic-bezier(0.68,-0.55,0.27,1.55)',
@@ -152,6 +160,7 @@ module.exports = {
         float: 'float 5s ease-in-out infinite',
         move: 'move 5s infinite 1s',
         shake: 'shake .2s both',
+        'new-tx-fade-out': 'new-tx-fade-out 3s ease-in-out forwards',
       },
       spacing: {
         18: '4.5rem',

@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { API } from '~constants/api'
 import { Tx } from '~cpn/TransactionTable'
 import { transform } from '~cpn/TransactionTable/utils'
+import { MOCHI_PAY_WSS } from '~envs'
 
 export const DEFAULT_PAGE_SIZE = 15
 
@@ -39,7 +40,24 @@ export const useTransactionStore = create<State>((set, get) => ({
     const allTxns = txns.flat()
 
     // Push new tx
-    const newTxns = [tx, ...allTxns]
+    const newTxns = [
+      {
+        ...tx,
+        isNew: true,
+      },
+      ...allTxns,
+    ]
+
+    // Set a timeout to clear isNew status
+    // Should only care about the first page
+    setTimeout(() => {
+      const { txns } = get()
+
+      const newTxns = JSON.parse(JSON.stringify([...txns])) as Tx[][]
+      newTxns[0] = newTxns[0].map((t) => ({ ...t, isNew: false }))
+
+      set((s) => ({ ...s, txns }))
+    }, 3000)
 
     // Re-paginate for all pages
     const paginatedTxns: Tx[][] = []
@@ -118,14 +136,17 @@ export const useTransactionStore = create<State>((set, get) => ({
   ws: null,
   initWs: (override = false) => {
     if (!override && get().ws) return
-    const ws = new WebSocket(
-      'wss://api-preview.mochi-pay.console.so/ws/transactions',
-    )
+    const ws = new WebSocket(`${MOCHI_PAY_WSS}/ws/transactions`)
     ws.onopen = (e) => {
       console.info('feed connected', e)
     }
 
     ws.onmessage = async (e) => {
+      // If not on the first page, ignore
+      if (get().page !== 1) {
+        return
+      }
+
       try {
         const payload = JSON.parse(e.data)
         const { event, data } = payload
