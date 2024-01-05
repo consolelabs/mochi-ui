@@ -16,12 +16,14 @@ To integrate Mochi UI into your project, follow these steps:
 For a quick start, the global setup is recommended. This approach involves
 importing all components from a single package.
 
+It is recommended to install the package [Tailwindcss-animate](https://github.com/jamiebuilds/tailwindcss-animate), as the animations within the project are implemented using this plugin
+
 **1. Install packages**
 
 Execute the following command in your terminal to install Mochi UI:
 
 ```sh
-pnpm add @mochi-ui/core @mochi-ui/theme
+pnpm add @mochi-ui/core @mochi-ui/theme tailwindcss-animate
 ```
 
 **2. TailwindCSS setup**
@@ -34,6 +36,7 @@ add this code to your `tailwind.config.js`:
 ```js
 // tailwind.config.js
 import { mochiui } from '@mochi-ui/theme'
+import animate from 'tailwindcss-animate'
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -41,7 +44,7 @@ module.exports = {
     // ...
     './node_modules/@mochi-ui/theme/dist/components/**/*.{js,jsx,ts,tsx}',
   ],
-  plugins: [mochiui()],
+  plugins: [mochiui(), animate],
 }
 ```
 
@@ -70,9 +73,9 @@ it includes only the styles for the components in use.
 To install components individually, follow these steps:
 
 **1. Core Package Installation**
-
+[tailwindcss-animate](https://tailwindcss.com/docs/installation) is optional but highly recommended, as the project's animations are implemented using this package.
 ```sh
-pnpm add @mochi-ui/theme
+pnpm add @mochi-ui/theme tailwindcss-animate
 ```
 
 **2. Component Installation**
@@ -91,6 +94,7 @@ the styles of the components you are using. For the Button component, add:
 ```js
 // tailwind.config.js
 import { mochiui } from '@mochi-ui/theme'
+import animate from 'tailwindcss-animate'
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -100,7 +104,7 @@ module.exports = {
     // or you can use a glob pattern (multiple component styles)
     './node_modules/@mochi-ui/theme/dist/components/(button|snippet|code|input).js',
   ],
-  plugins: [mochiui()],
+  plugins: [mochiui(), animate],
 }
 ```
 
