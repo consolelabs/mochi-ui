@@ -1,16 +1,28 @@
 import { VariantProps, cva } from 'class-variance-authority'
 
-const toastCva = cva('w-fit pointer-events-auto', {
-  variants: {
-    fullWidth: {
-      true: 'w-full',
-      false: 'w-fit',
+const toastCva = cva(
+  [
+    'w-fit pointer-events-auto',
+    'data-[state=open]:animate-in',
+    'data-[state=open]:slide-in-from-right-full',
+    'data-[state=closed]:animate-out',
+    'data-[state=closed]:zoom-out-95',
+    'data-[state=closed]:fade-out-0',
+    'transition-all',
+    'duration-200',
+  ],
+  {
+    variants: {
+      fullWidth: {
+        true: 'w-full',
+        false: 'w-fit',
+      },
+    },
+    defaultVariants: {
+      fullWidth: false,
     },
   },
-  defaultVariants: {
-    fullWidth: false,
-  },
-})
+)
 
 const toastViewPortCva = cva(
   [
