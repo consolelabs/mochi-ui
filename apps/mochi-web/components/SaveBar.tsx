@@ -25,14 +25,13 @@ export const SaveBar = (props: SaveBarProps) => {
   const { scheme, warning } = useWarnIfUnsavedChanges(open)
 
   return (
-    <div className="sticky bottom-0 z-50">
+    <div className={clsx('sticky bottom-0 z-50', { 'animate-shake': warning })}>
       <ActionBar open={open} {...restProps}>
         <ActionBarContent
           scheme={scheme}
           anchorClassName="left-0 right-0 -mb-8"
           shadow
           onOpenAutoFocus={(e) => e.preventDefault()}
-          className={clsx({ 'animate-shake': warning })}
         >
           <ActionBarIcon />
           <ActionBarBody>

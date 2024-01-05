@@ -12,6 +12,7 @@ import {
   ResponseUserGeneralSettingResponse,
 } from '~types/mochi-schema'
 import { SaveBar } from '~cpn/SaveBar'
+import { defaultMoneySource } from '~constants/settings'
 import { MoneySource } from './MoneySource'
 import { ReceiverPlatform } from './ReceiverPlatform'
 import { TokenPriority } from './TokenPriority'
@@ -44,10 +45,8 @@ export const GeneralPage = () => {
         ...data,
         payment: {
           ...data.payment,
-          default_money_source: data.payment?.default_money_source || {
-            platform: 'mochi',
-            platform_identifier: 'mochi',
-          },
+          default_money_source:
+            data.payment?.default_money_source || defaultMoneySource,
           prioritized_token: data.payment?.prioritized_token_ids?.map((id) => ({
             id,
           })),

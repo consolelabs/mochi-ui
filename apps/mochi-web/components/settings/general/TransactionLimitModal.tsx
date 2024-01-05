@@ -128,7 +128,7 @@ export const TransactionLimitModal = ({
               control={control}
               render={({ field, fieldState: { error } }) => (
                 <FormControl error={!!error?.message} className="w-full mt-4">
-                  <FormLabel>Minimun value</FormLabel>
+                  <FormLabel>Minimum value</FormLabel>
                   <TextFieldRoot>
                     <TextFieldInput
                       {...field}
@@ -156,7 +156,7 @@ export const TransactionLimitModal = ({
               control={control}
               render={({ field, fieldState: { error } }) => (
                 <FormControl error={!!error?.message} className="w-full mt-4">
-                  <FormLabel>Maximun value</FormLabel>
+                  <FormLabel>Maximum value</FormLabel>
                   <TextFieldRoot>
                     <TextFieldInput
                       {...field}

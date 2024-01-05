@@ -28,7 +28,12 @@ export const platformList = [
     label: 'Telegram',
   },
   {
-    key: 'website',
+    key: 'web',
     label: 'Website',
   },
 ]
+
+export const defaultMoneySource = {
+  platform: 'mochi',
+  platform_identifier: 'mochi-balance',
+}
