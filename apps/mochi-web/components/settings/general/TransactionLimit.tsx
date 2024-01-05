@@ -35,7 +35,11 @@ export const TransactionLimit = () => {
               <TransactionLimitModal
                 actionList={filteredActionList}
                 onConfirm={(data) => append(data)}
-                onCancel={() => setValue('payment.tx_limit_enable', false)}
+                onCancel={() =>
+                  setValue('payment.tx_limit_enable', false, {
+                    shouldDirty: true,
+                  })
+                }
                 trigger={
                   <div>
                     <Switch
