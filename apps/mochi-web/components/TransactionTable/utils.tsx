@@ -1,5 +1,5 @@
 import UI, { Platform, utils as mochiUtils } from '@consolelabs/mochi-formatter'
-import { MonitorLine } from '@mochi-ui/icons'
+import { WebSolid } from '@mochi-ui/icons'
 import { utils } from 'ethers'
 import ReactDOMServer from 'react-dom/server'
 import { ROUTES } from '~constants/routes'
@@ -32,7 +32,7 @@ export async function transform(d: any): Promise<Tx> {
     case 'web':
     case Platform.Web: {
       fromPlatformIcon = `data:image/svg+xml,${escape(
-        ReactDOMServer.renderToStaticMarkup(<MonitorLine />),
+        ReactDOMServer.renderToStaticMarkup(<WebSolid />),
       )}`
       break
     }
@@ -62,12 +62,6 @@ export async function transform(d: any): Promise<Tx> {
         where.text = 'Telegram'
         where.avatar = telegramLogo.src
       }
-
-      if ([Platform.Web, 'web'].includes(d.source_platform)) {
-        where.text = 'Web'
-        where.avatar = MonitorLine as any
-      }
-
       if ([Platform.App, 'app', 'application'].includes(d.source_platform)) {
         where.text = 'App'
         where.avatar = appLogo.src
@@ -80,6 +74,13 @@ export async function transform(d: any): Promise<Tx> {
       // get channel avatar
       if ('channel_avatar' in d.metadata && d.metadata.channel_avatar) {
         where.avatar = d.metadata.channel_avatar
+      }
+
+      if ([Platform.Web, 'web'].includes(d.source_platform)) {
+        // hard-code for now
+        // later tip widget could be used anywhere so need to get from api response
+        where.text = 'beta.mochi.gg'
+        where.avatar = WebSolid as any
       }
 
       // get vault name (if it's a vault_transfer tx)

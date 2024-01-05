@@ -105,6 +105,8 @@ export async function transformData(rawData: any) {
     to: (receiver?.plain ?? '') as any,
     symbol: rawData?.token.symbol,
     amount: mochiUtils.formatTokenDigit({
+      scientificFormat: false,
+      subscript: false,
       value: utils.formatUnits(
         rawData?.amount ?? 0,
         rawData?.token.decimal ?? 0,
@@ -146,14 +148,13 @@ export async function transformData(rawData: any) {
       rawData.group_total_amount ?? 0,
       rawData?.token.decimal ?? 0,
     ),
-    scientificFormat: true,
+    scientificFormat: false,
+    subscript: false,
   })
   // @ts-ignore
   const groupAmountUsdDisplay = mochiUtils.formatUsdDigit(
     rawData.group_total_usd,
   )
-
-  const isLongNumber = groupAmountDisplay.length >= 12
 
   const originalTxId = rawData.original_tx_id
 
@@ -222,7 +223,6 @@ export async function transformData(rawData: any) {
     amountApproxMoniker,
     amountSection,
     unitAmountSection,
-    isLongNumber,
     amountUsd,
     message: rawData.metadata?.message ?? '',
     groupAmountDisplay,

@@ -24,7 +24,7 @@ export default function Amount({
   size = 'md',
   isMultipleTokens = false,
 }: AmountProps) {
-  const isLongNumber = value.length >= 12
+  const isLongNumber = value.length >= 9
 
   return (
     <div

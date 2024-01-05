@@ -1,4 +1,4 @@
-import { DiscordColored, MonitorLine, TelegramColored } from '@mochi-ui/icons'
+import { DiscordColored, WebSolid, TelegramColored } from '@mochi-ui/icons'
 import Link from 'next/link'
 import React from 'react'
 import clsx from 'clsx'
@@ -27,7 +27,7 @@ export function LivePlatforms({
                 Web
               </span>
             ),
-            icon: <MonitorLine className="flex-shrink-0 w-4 h-4" />,
+            icon: <WebSolid className="flex-shrink-0 w-4 h-4" />,
             href: '/',
           },
           {
