@@ -132,7 +132,10 @@ export default function Receipt({ id, data: _data }: Props) {
                       level="p7"
                       className="!font-light !text-neutral-600"
                     >
-                      {data.groupAmountDisplay} {data.unitCurrency}
+                      {data.isMultipleTokens
+                        ? data.data.amount
+                        : data.groupAmountDisplay}{' '}
+                      {data.unitCurrency}
                     </Typography>
                     {data.unitAmountSection && (
                       <span className="ml-1 text-current">
