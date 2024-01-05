@@ -75,11 +75,7 @@ export default function Receipt({ id, data: _data }: Props) {
                 />
               )}
               <div className="mt-2 text-sm">
-                <span className="font-medium">
-                  {Array.isArray(data.data.from)
-                    ? data.data.from[0].name
-                    : data.data.from}
-                </span>
+                <span className="font-medium">{data.data.from[0].name}</span>
                 <br />
                 <span className="text-xs font-light capitalize">
                   {data.data.template
@@ -88,12 +84,17 @@ export default function Receipt({ id, data: _data }: Props) {
                 </span>
               </div>
               <Amount
-                value={data.groupAmountDisplay}
+                value={
+                  data.isMultipleTokens
+                    ? data.data.amount
+                    : data.groupAmountDisplay
+                }
                 valueUsd={data.groupAmountUsdDisplay}
                 tokenIcon={data.data.tokenIcon}
                 unit={data.unitCurrency}
                 approxMoniker={data.amountApproxMoniker}
                 className="mt-8"
+                isMultipleTokens={data.isMultipleTokens}
               />
             </div>
             {data.message && (
@@ -118,24 +119,10 @@ export default function Receipt({ id, data: _data }: Props) {
             <div className="relative receipt-body !text-neutral-600">
               <div className="flex flex-col gap-y-2 gap-x-4 pt-4 font-light">
                 <DataList>
-                  <ListUser
-                    data={data.data.from}
-                    tokenIcon={data.data.tokenIcon}
-                    amountDisplay={data.amountDisplay}
-                    amountUsd={data.amountUsd}
-                    unitAmountSection={data.unitAmountSection}
-                    title="Issued by"
-                  />
-                  {Array.isArray(data.data.from) ? <DashLine /> : null}
-                  <ListUser
-                    data={data.data.to}
-                    tokenIcon={data.data.tokenIcon}
-                    amountDisplay={data.amountDisplay}
-                    amountUsd={data.amountUsd}
-                    unitAmountSection={data.unitAmountSection}
-                    title="Recipients"
-                  />
-                  {Array.isArray(data.data.to) ? <DashLine /> : null}
+                  <ListUser data={data.data.from} title="Issued by" />
+                  {data.data.from.length > 1 ? <DashLine /> : null}
+                  <ListUser data={data.data.to} title="Recipients" />
+                  {data.data.to.length > 1 ? <DashLine /> : null}
                 </DataList>
               </div>
               <div className="flex flex-col gap-y-2 gap-x-4 py-2">

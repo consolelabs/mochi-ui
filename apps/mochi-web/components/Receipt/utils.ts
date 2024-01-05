@@ -1,9 +1,40 @@
 import UI, { Platform, utils as mochiUtils } from '@consolelabs/mochi-formatter'
-import { discordLogo, telegramLogo, xlogo } from '~utils/image'
+import { coinIcon, discordLogo, telegramLogo, xlogo } from '~utils/image'
 import { utils } from 'ethers'
 import { api } from '~constants/mochi'
 import { HOME_URL } from '~envs'
 import { templates, type TemplateName } from './Template'
+
+function getAmountData(tx: any) {
+  const amountSymbol = mochiUtils.formatTokenDigit({
+    value: utils.formatUnits(tx?.amount ?? 0, tx?.token.decimal ?? 0),
+  })
+  const amountDisplay = tx.metadata.moniker
+    ? tx.metadata.original_amount
+    : amountSymbol
+  const unitCurrency = tx.metadata.moniker
+    ? tx.metadata.moniker
+    : tx.token.symbol
+  const amountApproxMoniker = tx.metadata.moniker
+    ? `${amountSymbol} ${tx.token.symbol}`
+    : ``
+  const amountSection = tx.metadata.moniker
+    ? `${amountDisplay} ${tx.metadata.moniker}`
+    : `${amountDisplay} ${tx.token.symbol}`
+  const unitAmountSection = tx.metadata.moniker
+    ? `(${amountSymbol} ${tx.token.symbol})`
+    : null
+  const amountUsd = mochiUtils.formatUsdDigit(tx.usd_amount)
+
+  return {
+    amountDisplay,
+    unitCurrency,
+    amountApproxMoniker,
+    amountSection,
+    unitAmountSection,
+    amountUsd,
+  }
+}
 
 export async function transformData(rawData: any) {
   const templateName =
@@ -18,6 +49,10 @@ export async function transformData(rawData: any) {
     Array.isArray(rawData.other_txs) &&
     rawData.other_txs.length
   const success = rawData.status === 'success'
+  const isMultipleTokens =
+    rawData.other_txs.length > 0
+      ? rawData.other_txs.some((tx: any) => tx.token_id !== rawData.token_id)
+      : false
 
   let avatar = (rawData.from_profile.avatar || '') as string
   let [sender, receiver] = UI.render(
@@ -64,10 +99,10 @@ export async function transformData(rawData: any) {
   const image = emojiData?.[0]?.emoji_url
 
   const ogDataOnly = {
-    from: (sender?.plain ?? '') as string | { name: string; url: string }[],
+    from: [{ name: sender?.plain ?? '', url: `/tx/${rawData.external_id}` }],
     native: rawData?.token.native,
     tokenIcon: image || `${HOME_URL}/assets/coin.png`,
-    to: (receiver?.plain ?? '') as string | { name: string; url: string }[],
+    to: [{ name: receiver?.plain ?? '', url: `/tx/${rawData.external_id}` }],
     symbol: rawData?.token.symbol,
     amount: mochiUtils.formatTokenDigit({
       value: utils.formatUnits(
@@ -91,57 +126,19 @@ export async function transformData(rawData: any) {
     template,
   }
 
-  if (isMultipleSenders) {
-    data.from = [
-      { name: sender?.plain ?? '', url: `/tx/${data.external_id}` },
-      ...rawData.other_txs.map((tx: any) => {
-        const [profile] = UI.render(Platform.Web, tx.from_profile)
-        return {
-          name: profile?.plain ?? '',
-          url: `/tx/${tx.external_id}`,
-        }
-      }),
-    ]
-  }
-
-  if (isMultipleReceivers) {
-    data.to = rawData.other_profiles
-      .map((p: any) => {
-        const [profile] = UI.render(Platform.Web, p)
-        return {
-          name: profile?.plain ?? '',
-          url: `/tx/${
-            rawData.other_txs.find((tx: any) => tx.other_profile_id === p.id)
-              ?.external_id ?? rawData.external_id
-          }`,
-        }
-      })
-      .filter(Boolean)
-  }
-
   if (rawData) {
     data.short_date = rawData?.created_at
     data.full_date = rawData?.created_at
   }
 
-  const amountSymbol = data.amount
-  const amountDisplay = rawData.metadata.moniker
-    ? rawData.metadata.original_amount
-    : amountSymbol
-  const unitCurrency = rawData.metadata.moniker
-    ? rawData.metadata.moniker
-    : rawData.token.symbol
-  const amountApproxMoniker = rawData.metadata.moniker
-    ? `${amountSymbol} ${rawData.token.symbol}`
-    : ``
-  const amountSection = rawData.metadata.moniker
-    ? `${amountDisplay} ${rawData.metadata.moniker}`
-    : `${amountDisplay} ${rawData.token.symbol}`
-  const unitAmountSection = rawData.metadata.moniker
-    ? `(${amountSymbol} ${rawData.token.symbol})`
-    : null
-
-  const amountUsd = mochiUtils.formatUsdDigit(rawData.usd_amount)
+  const {
+    unitAmountSection,
+    amountSection,
+    amountApproxMoniker,
+    unitCurrency,
+    amountDisplay,
+    amountUsd,
+  } = getAmountData(rawData)
 
   // @ts-ignore
   const groupAmountDisplay = mochiUtils.formatTokenDigit({
@@ -160,6 +157,58 @@ export async function transformData(rawData: any) {
 
   const originalTxId = rawData.original_tx_id
 
+  if (isMultipleSenders) {
+    data.from = [
+      {
+        name: sender?.plain ?? '',
+        url: `/tx/${data.external_id}`,
+        tokenIcon: data.tokenIcon,
+        amountDisplay,
+        amountUsd,
+        unitAmountSection,
+      },
+      ...(await Promise.all(
+        rawData.other_txs.map(async (tx: any) => {
+          const [profile] = UI.render(Platform.Web, tx.from_profile)
+          const { ok, data } = await api.base.metadata.getEmojis({
+            codes: [tx.token.symbol],
+          })
+          const { amountDisplay, amountUsd, unitAmountSection } =
+            getAmountData(tx)
+
+          return {
+            name: profile?.plain ?? '',
+            url: `/tx/${tx.external_id}`,
+            tokenIcon: ok ? data[0].emoji_url : coinIcon.src,
+            amountDisplay,
+            amountUsd,
+            unitAmountSection,
+          }
+        }),
+      )),
+    ]
+  }
+
+  if (isMultipleReceivers) {
+    data.to = rawData.other_profiles
+      .map((p: any) => {
+        const [profile] = UI.render(Platform.Web, p)
+
+        return {
+          name: profile?.plain ?? '',
+          url: `/tx/${
+            rawData.other_txs.find((tx: any) => tx.other_profile_id === p.id)
+              ?.external_id ?? rawData.external_id
+          }`,
+          tokenIcon: data.tokenIcon,
+          amountDisplay,
+          amountUsd,
+          unitAmountSection,
+        }
+      })
+      .filter(Boolean)
+  }
+
   return {
     data,
     ogDataOnly,
@@ -176,5 +225,6 @@ export async function transformData(rawData: any) {
     groupAmountDisplay,
     groupAmountUsdDisplay,
     originalTxId,
+    isMultipleTokens,
   }
 }

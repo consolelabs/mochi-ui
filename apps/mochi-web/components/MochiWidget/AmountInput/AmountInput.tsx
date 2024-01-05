@@ -81,7 +81,6 @@ export const AmountInput: React.FC<AmountInputProps> = ({
     value,
     fractionDigits: 2,
     shorten: value >= 1,
-    scientificFormat: true,
     takeExtraDecimal: 1,
   })
 
@@ -97,7 +96,6 @@ export const AmountInput: React.FC<AmountInputProps> = ({
     value: valueToken,
     fractionDigits: 2,
     shorten: valueToken >= 1,
-    scientificFormat: true,
     takeExtraDecimal: 1,
   })
 
@@ -204,6 +202,10 @@ export const AmountInput: React.FC<AmountInputProps> = ({
     return () =>
       window.removeEventListener(events.TIP_WIDGET.FOCUS_AMOUNT, focusInput)
   }, [])
+
+  useEffect(() => {
+    onSelectAsset?.(selectedAsset as BalanceWithSource | Moniker | null)
+  }, [onSelectAsset, selectedAsset])
 
   return (
     <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-3">

@@ -11,6 +11,7 @@ interface AmountProps {
   approxMoniker?: string
   className?: string
   size?: 'sm' | 'md'
+  isMultipleTokens?: boolean
 }
 
 export default function Amount({
@@ -21,13 +22,14 @@ export default function Amount({
   approxMoniker,
   className = '',
   size = 'md',
+  isMultipleTokens = false,
 }: AmountProps) {
   const isLongNumber = value.length >= 12
 
   return (
     <div
       className={clsx('flex items-center', className, {
-        'flex-col': !!valueUsd,
+        'flex-col': !!valueUsd || isMultipleTokens,
       })}
     >
       <div className="flex justify-center items-center font-medium">
@@ -66,11 +68,21 @@ export default function Amount({
           </div>
         </div>
       </div>
-      {valueUsd && (
-        <Typography level={size === 'md' ? 'p5' : 'p6'} color="textSecondary">
-          {approxMoniker} {valueUsd.startsWith('<') ? '' : <>&asymp;</>}{' '}
-          {valueUsd}
-        </Typography>
+      {(valueUsd || isMultipleTokens) && (
+        <>
+          {isMultipleTokens && (
+            <Typography
+              level={size === 'md' ? 'p5' : 'p6'}
+              color="textSecondary"
+            >
+              and other tokens
+            </Typography>
+          )}
+          <Typography level={size === 'md' ? 'p5' : 'p6'} color="textSecondary">
+            {approxMoniker} {valueUsd?.startsWith('<') ? '' : <>&asymp;</>}{' '}
+            {valueUsd}
+          </Typography>
+        </>
       )}
     </div>
   )
