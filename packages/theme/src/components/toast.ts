@@ -4,7 +4,8 @@ const toastCva = cva(
   [
     'w-fit pointer-events-auto',
     'data-[state=open]:animate-in',
-    'data-[state=open]:slide-in-from-right-full',
+    'data-[state=open]:zoom-in-95',
+    'data-[state=closed]:fade-in-50',
     'data-[state=closed]:animate-out',
     'data-[state=closed]:zoom-out-95',
     'data-[state=closed]:fade-out-0',
