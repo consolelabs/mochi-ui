@@ -128,6 +128,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
               valueUsd={tx.amountUsd}
               unit={tx.token.symbol}
               tokenIcon={tx.token.icon}
+              className="!items-center"
             />
           )
         },
