@@ -6,7 +6,10 @@ import { format } from 'date-fns'
 import Link from 'next/link'
 import useSWR from 'swr'
 import { API } from '~constants/api'
-import { transactionActionString } from '~constants/transactions'
+import {
+  TransactionActionType,
+  transactionActionString,
+} from '~constants/transactions'
 import Amount from '~cpn/Amount'
 import DashLine from '~cpn/DashLine'
 import { robotoFont } from '~utils/next-font'
@@ -80,7 +83,9 @@ export default function Receipt({ id, data: _data }: Props) {
                 <span className="text-xs font-light capitalize">
                   {data.data.template
                     ? data.data.template.phrase
-                    : transactionActionString[data.data.action] ?? 'sent'}
+                    : transactionActionString[
+                        data.data.action as TransactionActionType
+                      ] ?? 'sent'}
                 </span>
               </div>
               <Amount
