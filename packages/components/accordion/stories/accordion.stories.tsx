@@ -33,8 +33,8 @@ export const Default: Story = {
     return (
       <Accordion {...props}>
         <AccordionItem value="2">
-          <AccordionTrigger leftIcon={<QuestsSolid />} asChild>
-            <h3 className="!font-bold">Server Management</h3>
+          <AccordionTrigger leftIcon={<QuestsSolid />}>
+            Server Management
           </AccordionTrigger>
           <AccordionContent>
             Yes, you can try us for free for 30 days. Our friendly team will
