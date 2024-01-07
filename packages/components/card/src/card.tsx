@@ -1,23 +1,29 @@
-import { PropsWithChildren, forwardRef } from 'react'
+import {
+  ComponentPropsWithoutRef,
+  ElementRef,
+  ElementType,
+  PropsWithChildren,
+  forwardRef,
+} from 'react'
 import { card } from '@mochi-ui/theme'
-import type * as Polymorphic from '@mochi-ui/polymorphic'
+import { Slot } from '@radix-ui/react-slot'
 
-interface CardProps extends PropsWithChildren {
+interface CardProps extends PropsWithChildren<ComponentPropsWithoutRef<'div'>> {
   className?: string
+  asChild?: boolean
 }
 const { cardClsx } = card
 
-type PolymorphicCard = Polymorphic.ForwardRefComponent<'div', CardProps>
-
-const Card = forwardRef(
-  ({ children, as: Component = 'div', className, ...props }, ref) => {
+const Card = forwardRef<ElementRef<ElementType<'div'>>, CardProps>(
+  ({ children, asChild, className, ...props }, ref) => {
+    const Component = asChild ? Slot : 'div'
     return (
       <Component ref={ref} className={cardClsx({ className })} {...props}>
         {children}
       </Component>
     )
   },
-) as PolymorphicCard
+)
 
 Card.displayName = 'Card'
 

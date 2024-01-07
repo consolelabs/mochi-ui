@@ -27,12 +27,14 @@ const Template = (args: CardProps) => (
         engaging user experiences.
       </Typography>
     </Card>
-    <Card {...args} as="a">
-      <Typography level="h5">Cross-platform</Typography>
-      <Typography color="textSecondary">
-        Save time and enhance interoperability effortlessly by reusing code
-        while keeping the consistency across platforms.
-      </Typography>
+    <Card {...args} asChild>
+      <p>
+        <Typography level="h5">Cross-platform</Typography>
+        <Typography color="textSecondary">
+          Save time and enhance interoperability effortlessly by reusing code
+          while keeping the consistency across platforms.
+        </Typography>
+      </p>
     </Card>
   </div>
 )
