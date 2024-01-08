@@ -40,7 +40,7 @@ export const useFetchProfileTransaction = (
       return API.MOCHI_PAY.query(query)
         .get(GET_PATHS.PROFILE_TRANSACTION(id))
         .json(async (r) => ({
-          data: await Promise.all(r.data.map(transform)),
+          data: await Promise.all(r.data?.map(transform) ?? []),
           pagination: r.pagination,
         }))
     },

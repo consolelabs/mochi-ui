@@ -1,12 +1,10 @@
-import { PaylinkSection } from '~cpn/Profile/PaylinkSection'
-import { PaymeSection } from '~cpn/Profile/PaymeSection'
 import { ProfileWidget } from '~cpn/Profile/ProfileWidget'
-import { TransactionSection } from '~cpn/Profile/TransactionSection'
 import { NextPageWithLayout } from '~pages/_app'
 import { SEO } from '~app/layout/seo'
 import { useLoginWidget } from '@mochi-web3/login-widget'
 import MochiWidget from '~cpn/MochiWidget'
 import { DashboardBody } from '~cpn/DashboardBody'
+import { TransactionOverviewSection } from '~cpn/Profile/TransactionSection'
 
 const Profile: NextPageWithLayout = () => {
   const { profile } = useLoginWidget()
@@ -23,9 +21,7 @@ const Profile: NextPageWithLayout = () => {
               className="!border-none !shadow-none"
             />
           </div>
-          <TransactionSection />
-          <PaymeSection />
-          <PaylinkSection />
+          <TransactionOverviewSection />
         </div>
       </DashboardBody>
     </>
