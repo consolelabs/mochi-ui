@@ -9,7 +9,7 @@ const wrapperClsx =
 const wrapperInnerClsx = 'flex flex-col gap-y-5 gap-x-8 sm:gap-x-12 md:flex-row'
 
 const navClsx =
-  'flex flex-col gap-y-7 gap-x-12 mb-10 sm:gap-x-24 sm:mb-0 md:flex-row md:flex-wrap md:gap-y-0'
+  'flex flex-col gap-y-7 gap-x-12 mb-10 sm:gap-x-24 sm:mb-0 md:flex-row md:gap-y-0'
 
 const navBlockClsx = 'space-y-2 text-[13px]'
 
