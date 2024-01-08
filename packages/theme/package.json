@@ -1,6 +1,6 @@
 {
   "name": "@mochi-ui/theme",
-  "version": "0.13.0",
+  "version": "0.14.0",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
