@@ -1,23 +1,13 @@
-import { Button, Typography } from '@mochi-ui/core'
+import { Tx, TransactionTable } from '~cpn/TransactionTable'
+import { Badge, Button, Typography } from '@mochi-ui/core'
 import { ArrowRightLine } from '@mochi-ui/icons'
 import { useLoginWidget } from '@mochi-web3/login-widget'
 import clsx from 'clsx'
 import { useState } from 'react'
 import { ROUTES } from '~constants/routes'
-import { TransactionActionType } from '~constants/transactions'
-import { ignoreOptionAll } from '~cpn/Transaction/utils'
-import { TransactionTable } from '~cpn/TransactionTable'
 import { useFetchProfileTransaction } from '~hooks/app/useFetchProfileTransaction'
 
 type OverviewTransactionTabs = 'Transaction' | 'Pay Me' | 'Pay Link'
-const OverviewTransactionFilters: Record<
-  OverviewTransactionTabs,
-  TransactionActionType | 'all'
-> = {
-  Transaction: 'all',
-  'Pay Me': 'payme',
-  'Pay Link': 'paylink',
-}
 
 export const TransactionOverviewSection = () => {
   const [selectedTab, setSelectedTab] =
@@ -28,11 +18,50 @@ export const TransactionOverviewSection = () => {
     profile?.id ?? '',
     Boolean(profile?.id),
     {
-      action: ignoreOptionAll(OverviewTransactionFilters[selectedTab]),
       page: 0,
       size: 5,
     },
   )
+  const {
+    transactions: paymeTransactions,
+    isLoading: isLoadingPayme,
+    pagination: paginationPayme,
+  } = useFetchProfileTransaction(profile?.id ?? '', Boolean(profile?.id), {
+    action: 'payme',
+    page: 0,
+    size: 5,
+  })
+
+  const {
+    transactions: paylinkTransactions,
+    isLoading: isLoadingPaylink,
+    pagination: paginationPaylink,
+  } = useFetchProfileTransaction(profile?.id ?? '', Boolean(profile?.id), {
+    action: 'paylink',
+    page: 0,
+    size: 5,
+  })
+
+  const transactionMapper = {
+    Transaction: transactions ?? [],
+    'Pay Me': paymeTransactions ?? [],
+    'Pay Link': paylinkTransactions ?? [],
+  }
+
+  const displayTransactions: Tx[] = transactionMapper[selectedTab]
+
+  const isLoadingTransaction = {
+    Transaction: isLoading,
+    'Pay Me': isLoadingPayme,
+    'Pay Link': isLoadingPaylink,
+  }[selectedTab]
+
+  const isDisplayFooter = displayTransactions.length >= 5
+  const displayTotalItems = {
+    Transaction: pagination?.total,
+    'Pay Me': paginationPayme?.total,
+    'Pay Link': paginationPaylink?.total,
+  }[selectedTab]
 
   return (
     <div className="bg-background-level2 shadow-input rounded-lg overflow-hidden">
@@ -53,6 +82,9 @@ export const TransactionOverviewSection = () => {
             onClick={() => setSelectedTab(t)}
           >
             {t}
+            {transactionMapper[t].length > 0 && (
+              <Badge appearance="danger">{transactionMapper[t].length}</Badge>
+            )}
           </Button>
         ))}
       </div>
@@ -61,8 +93,8 @@ export const TransactionOverviewSection = () => {
         <div className="h-[404px]">
           <TransactionTable
             className="min-w-[1320px]"
-            data={transactions || []}
-            isLoading={isLoading}
+            data={displayTransactions}
+            isLoading={isLoadingTransaction}
             hideLastBorder
             componentsProps={{
               empty: {
@@ -79,9 +111,10 @@ export const TransactionOverviewSection = () => {
           />
         </div>
         <div className="flex gap-4 p-3 items-center justify-end">
-          {(transactions?.length ?? 0) >= 5 && (
+          {isDisplayFooter && (
             <Typography level="p6" color="textSecondary" className="flex-1">
-              Showing {transactions?.length} latest items of {pagination?.total}
+              Showing {displayTransactions.length} latest items of{' '}
+              {displayTotalItems}
             </Typography>
           )}
           <Button
