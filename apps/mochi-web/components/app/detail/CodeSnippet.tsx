@@ -1,5 +1,6 @@
 import {
   ScrollArea,
+  ScrollAreaCorner,
   ScrollAreaScrollbar,
   ScrollAreaThumb,
   ScrollAreaViewport,
@@ -53,6 +54,10 @@ export const CodeSnippet = ({ code = defaultCode, language = 'js' }: Props) => {
         <ScrollAreaScrollbar orientation="vertical">
           <ScrollAreaThumb />
         </ScrollAreaScrollbar>
+        <ScrollAreaScrollbar orientation="horizontal">
+          <ScrollAreaThumb />
+        </ScrollAreaScrollbar>
+        <ScrollAreaCorner />
       </ScrollArea>
     </div>
   )
