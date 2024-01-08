@@ -1,12 +1,13 @@
 import { badge } from '@mochi-ui/theme'
 import { Children, ReactNode, useEffect, useMemo, useState } from 'react'
+import { Slot } from '@radix-ui/react-slot'
 import { BadgeContext, useBadgeContext } from './context'
 import { BadgeIconProps, BadgeProps } from './type'
 
 const { badgeWrapperCva, badgeIconCva } = badge
 
 function BadgeIcon(props: BadgeIconProps) {
-  const { children, className } = props
+  const { children, className, asChild } = props
 
   const {
     hasIconOnly = false,
@@ -14,8 +15,9 @@ function BadgeIcon(props: BadgeIconProps) {
     appearance = 'primary',
   } = useBadgeContext()
 
+  const Com = asChild ? Slot : 'span'
   return (
-    <span
+    <Com
       className={badgeIconCva({
         hasIconOnly,
         appearance,
@@ -24,22 +26,26 @@ function BadgeIcon(props: BadgeIconProps) {
       })}
     >
       {children}
-    </span>
+    </Com>
   )
 }
 
 function BadgeInner({
   children,
   className,
+  asChild,
 }: {
   children: ReactNode
   className?: string
+  asChild?: boolean
 }) {
   const {
     appearance = 'primary',
     isAvatarIcon = false,
     setHasIconOnly,
   } = useBadgeContext()
+
+  const Com = asChild ? Slot : 'span'
 
   const childArray = Children.toArray(children)
 
@@ -66,7 +72,7 @@ function BadgeInner({
   }, [childArray, hasIcon, setHasIconOnly])
 
   return (
-    <span
+    <Com
       className={badgeWrapperCva({
         className,
         appearance,
@@ -77,12 +83,12 @@ function BadgeInner({
       })}
     >
       {children}
-    </span>
+    </Com>
   )
 }
 
 function Badge(props: BadgeProps) {
-  const { isAvatarIcon, appearance, children, className } = props
+  const { isAvatarIcon, appearance, children, className, asChild } = props
   const [hasIconOnly, setHasIconOnly] = useState(false)
 
   const contextValue = useMemo(
@@ -97,7 +103,9 @@ function Badge(props: BadgeProps) {
 
   return (
     <BadgeContext.Provider value={contextValue}>
-      <BadgeInner className={className}>{children}</BadgeInner>
+      <BadgeInner className={className} asChild={asChild}>
+        {children}
+      </BadgeInner>
     </BadgeContext.Provider>
   )
 }

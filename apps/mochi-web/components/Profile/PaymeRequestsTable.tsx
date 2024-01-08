@@ -32,13 +32,13 @@ const Sender: ColumnProps<ModelPayRequest>['cell'] = (props) => {
 }
 
 const Action: ColumnProps<ModelPayRequest>['cell'] = (props) => (
-  <Button
-    size="sm"
-    as="a"
-    href={`https://mochi.gg/receive/${props.row.original.code}`}
-    target="_blank"
-  >
-    Pay
+  <Button size="sm">
+    <a
+      href={`https://mochi.gg/receive/${props.row.original.code}`}
+      target="_blank"
+    >
+      Pay
+    </a>
   </Button>
 )
 

@@ -97,14 +97,10 @@ export default function Feed({ className = '' }: Props) {
         className="flex justify-between items-center pt-6 pb-4 sm:px-8 px-4 mx-auto w-screen"
       >
         <Typography>Recent Transactions</Typography>
-        <Button
-          as={Link}
-          href={ROUTES.EXPLORE}
-          className="!pr-0"
-          variant="link"
-          color="primary"
-        >
-          View all <ArrowRightLine />
+        <Button asChild className="!pr-0" variant="link" color="primary">
+          <Link href={ROUTES.EXPLORE}>
+            View all <ArrowRightLine />
+          </Link>
         </Button>
       </div>
       <ScrollArea className="min-h-0">

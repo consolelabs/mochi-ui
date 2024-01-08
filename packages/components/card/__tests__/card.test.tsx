@@ -18,8 +18,12 @@ describe('Card', () => {
   })
 
   it('should allow custom element', () => {
-    const wrapper = render(<Card as="a" />)
-    expect(wrapper.container.querySelector('a')).not.toBeNull()
+    const wrapper = render(
+      <Card asChild>
+        <p />
+      </Card>,
+    )
+    expect(wrapper.container.querySelector('p')).not.toBeNull()
   })
 
   it('should allow to custom className', () => {

@@ -1,7 +1,7 @@
 import { button, ButtonStylesProps } from '@mochi-ui/theme'
 import { ThreeDotLoading } from '@mochi-ui/icons'
-import type * as Polymorphic from '@mochi-ui/polymorphic'
-import React, { ReactNode } from 'react'
+import { Slot } from '@radix-ui/react-slot'
+import React, { ComponentPropsWithoutRef, ElementRef, ReactNode } from 'react'
 
 const { buttonCva, buttonloadIndicatorCva, buttonLoadingIconClsx } = button
 
@@ -9,14 +9,12 @@ export type ButtonProps = ButtonStylesProps & {
   loading?: boolean
   loadingIndicator?: ReactNode
   loadingIndicatorClassName?: string
-}
+  asChild?: boolean
+} & ComponentPropsWithoutRef<'button'>
 
-type PolymorphicButton = Polymorphic.ForwardRefComponent<'button', ButtonProps>
-
-const Button = React.forwardRef(
+const Button = React.forwardRef<ElementRef<'button'>, ButtonProps>(
   (
     {
-      as: Component = 'button',
       children,
       variant,
       color,
@@ -26,10 +24,12 @@ const Button = React.forwardRef(
       loading,
       loadingIndicator: customerIndicator,
       loadingIndicatorClassName,
+      asChild,
       ...rest
     },
     ref,
   ) => {
+    const Component = asChild ? Slot : 'button'
     const loadingIndicator = (
       <div
         className={buttonloadIndicatorCva({
@@ -61,7 +61,7 @@ const Button = React.forwardRef(
       </Component>
     )
   },
-) as PolymorphicButton
+)
 
 Button.displayName = 'Button'
 

@@ -9,14 +9,13 @@ const Action: ColumnProps<ModelPayRequest>['cell'] = (props) =>
   props.row.original.claim_tx ? (
     <Badge appearance="black">Claimed</Badge>
   ) : (
-    <Button
-      color="success"
-      size="sm"
-      as="a"
-      href={`https://mochi.gg/pay/${props.row.original.code}`}
-      target="_blank"
-    >
-      Claim
+    <Button color="success" size="sm" asChild>
+      <a
+        href={`https://mochi.gg/pay/${props.row.original.code}`}
+        target="_blank"
+      >
+        Claim
+      </a>
     </Button>
   )
 

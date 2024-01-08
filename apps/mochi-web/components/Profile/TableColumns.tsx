@@ -27,14 +27,10 @@ export const PaymeUrl: ColumnProps<ModelPayRequest>['cell'] = (props) => {
   const link = `mochi.gg/receive/${props.row.original.code}`
 
   return (
-    <Button
-      variant="link"
-      as="a"
-      href={`https://${link}`}
-      target="_blank"
-      className="!font-normal pl-0 pr-0"
-    >
-      {truncate(link, 21)}
+    <Button variant="link" className="!font-normal pl-0 pr-0">
+      <a href={`https://${link}`} target="_blank">
+        {truncate(link, 21)}
+      </a>
     </Button>
   )
 }
@@ -43,14 +39,10 @@ export const PaylinkUrl: ColumnProps<ModelPayRequest>['cell'] = (props) => {
   const link = `mochi.gg/pay/${props.row.original.code}`
 
   return (
-    <Button
-      variant="link"
-      as="a"
-      href={`https://${link}`}
-      target="_blank"
-      className="!font-normal pl-0 pr-0"
-    >
-      {truncate(link, 21)}
+    <Button variant="link" className="!font-normal pl-0 pr-0">
+      <a href={`https://${link}`} target="_blank">
+        {truncate(link, 21)}
+      </a>
     </Button>
   )
 }
