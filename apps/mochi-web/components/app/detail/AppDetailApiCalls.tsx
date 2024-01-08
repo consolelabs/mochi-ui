@@ -36,14 +36,10 @@ const Expander: ColumnProps<ViewApplicationWebhookLog>['cell'] = (props) =>
   ) : null
 
 const Call: ColumnProps<ViewApplicationWebhookLog>['cell'] = (props) => (
-  <Button
-    variant="link"
-    className="!font-normal !px-0"
-    as="a"
-    href={props.row.original.url}
-    target="_blank"
-  >
-    {props.row.original.url}
+  <Button variant="link" className="!font-normal !px-0" asChild>
+    <a href={props.row.original.url} target="_blank">
+      {props.row.original.url}
+    </a>
   </Button>
 )
 
