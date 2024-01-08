@@ -1,7 +1,6 @@
 import {
   ComponentPropsWithoutRef,
   ElementRef,
-  ElementType,
   PropsWithChildren,
   forwardRef,
 } from 'react'
@@ -14,7 +13,7 @@ interface CardProps extends PropsWithChildren<ComponentPropsWithoutRef<'div'>> {
 }
 const { cardClsx } = card
 
-const Card = forwardRef<ElementRef<ElementType<'div'>>, CardProps>(
+const Card = forwardRef<ElementRef<'div'>, CardProps>(
   ({ children, asChild, className, ...props }, ref) => {
     const Component = asChild ? Slot : 'div'
     return (
