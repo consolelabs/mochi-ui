@@ -1,5 +1,14 @@
 # @mochi-ui/icons
 
+## 0.7.2
+
+### Patch Changes
+
+- [#484](https://github.com/consolelabs/mochi-ui/pull/484)
+  [`4b89514`](https://github.com/consolelabs/mochi-ui/commit/4b89514102beff9f17c3a3e66f6e27434566d5c7)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Update Select
+  component style
+
 ## 0.7.1
 
 ### Patch Changes
