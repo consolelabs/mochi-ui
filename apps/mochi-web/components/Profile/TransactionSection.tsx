@@ -110,7 +110,7 @@ export const TransactionOverviewSection = () => {
             }}
           />
         </div>
-        <div className="flex gap-4 p-3 items-center justify-end">
+        <div className="flex gap-4 py-3 px-[18px] items-center justify-end">
           {isDisplayFooter && (
             <Typography level="p6" color="textSecondary" className="flex-1">
               Showing {displayTransactions.length} latest items of{' '}
