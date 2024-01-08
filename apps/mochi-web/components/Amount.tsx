@@ -12,6 +12,7 @@ interface AmountProps {
   className?: string
   size?: 'sm' | 'md'
   isMultipleTokens?: boolean
+  alignment?: 'left' | 'center'
 }
 
 export default function Amount({
@@ -23,68 +24,80 @@ export default function Amount({
   className = '',
   size = 'md',
   isMultipleTokens = false,
+  alignment = 'center',
 }: AmountProps) {
-  const isLongNumber = value.length >= 9
+  const isLongNumber = value.length >= 12
 
   return (
     <div
-      className={clsx('flex items-start font-medium text-left', className, {
-        'flex-col': isLongNumber || isMultipleTokens,
+      className={clsx('gap-x-1.5 grid font-medium text-left', className, {
+        'grid-cols-[28px_minmax(0,1fr)]': size === 'md' && !isLongNumber,
+        'grid-cols-[24px_minmax(0,1fr)]': size === 'sm' && !isLongNumber,
+        'grid-rows-2': !isLongNumber,
+        'grid-rows-[28px_minmax(0,1fr)_min-content] gap-y-1.5 grid-cols-1':
+          isLongNumber,
       })}
     >
       <Image
         width={size === 'md' ? 28 : 24}
         height={size === 'md' ? 28 : 24}
-        className={clsx('mr-1.5', {
-          'my-1': size === 'md',
+        className={clsx({
+          'my-1': size === 'md' && alignment === 'center' && !isLongNumber,
+          'row-start-1 row-span-2 my-auto':
+            alignment === 'left' && !isLongNumber,
+          'mx-auto': isLongNumber,
         })}
         src={tokenIcon || coinIcon.src}
         alt=""
       />
-      <div className="flex flex-col flex-1 gap-1">
-        <div className="flex">
-          <Typography
-            level={size === 'md' ? 'h4' : 'h9'}
-            className="!leading-[1]"
-            fontWeight={size === 'md' ? 'md' : 'sm'}
-          >
-            {value}
-          </Typography>
-          <div
-            className={clsx('flex ml-1', {
-              'items-center': isLongNumber,
-              'items-baseline': !isLongNumber,
-            })}
-          >
-            <Typography
-              level={size === 'md' ? 'h4' : 'h9'}
-              className="!leading-[1]"
-              fontWeight={size === 'md' ? 'md' : 'sm'}
-            >
-              {unit}
-            </Typography>
-          </div>
-        </div>
-        {(valueUsd || isMultipleTokens) && (
-          <>
-            {isMultipleTokens && (
-              <Typography
-                level={size === 'md' ? 'p5' : 'p6'}
-                color="textSecondary"
-              >
-                and other tokens
-              </Typography>
-            )}
+      <div
+        className={clsx('flex gap-x-1', {
+          'flex-col items-center': isLongNumber,
+        })}
+      >
+        <Typography
+          level={size === 'md' ? 'h4' : 'h9'}
+          className="!leading-[1]"
+          fontWeight={size === 'md' ? 'md' : 'sm'}
+        >
+          {value}
+        </Typography>
+        <Typography
+          level={size === 'md' ? 'h4' : 'h9'}
+          className="!leading-[1]"
+          fontWeight={size === 'md' ? 'md' : 'sm'}
+        >
+          {unit}
+        </Typography>
+      </div>
+      {(valueUsd || isMultipleTokens) && (
+        <div
+          className={clsx({
+            'col-start-1 col-span-2 text-center':
+              alignment === 'center' && !isLongNumber,
+            'col-start-2 col-span-1': alignment === 'left' && !isLongNumber,
+            'text-center': isLongNumber,
+          })}
+        >
+          {isMultipleTokens && (
             <Typography
               level={size === 'md' ? 'p5' : 'p6'}
               color="textSecondary"
+              fontWeight="sm"
             >
-              {approxMoniker} {valueUsd?.startsWith('<') ? '' : <>&asymp;</>}{' '}
-              {valueUsd}
+              and other tokens
             </Typography>
-          </>
-        )}
-      </div>
+          )}
+          <Typography
+            level={size === 'md' ? 'p5' : 'p6'}
+            fontWeight="sm"
+            color="textSecondary"
+          >
+            {approxMoniker} {valueUsd?.startsWith('<') ? '' : <>&asymp;</>}{' '}
+            {valueUsd}
+          </Typography>
+        </div>
+      )}
     </div>
   )
 }

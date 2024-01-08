@@ -14,6 +14,8 @@ import { isToken } from '../TokenPicker/utils'
 import { Moniker } from '../TokenPicker/type'
 
 const notEnoughBalMsg = 'Insufficient balance'
+const amountTooSmallMsg = 'Amount too small'
+const amountTooBigMsg = 'Amount too big'
 
 export default function StepOne() {
   const {
@@ -34,6 +36,11 @@ export default function StepOne() {
     if (isToken(request.asset)) {
       if (request.amount > (request.asset?.asset_balance ?? 0))
         return notEnoughBalMsg
+
+      if (request.amount < Number(`1e-${request.asset.token.decimal}`))
+        return amountTooSmallMsg
+      if (request.amount > Number(`1e${request.asset.token.decimal}`))
+        return amountTooBigMsg
     } else {
       const assetAmount =
         wallet?.balances?.find(

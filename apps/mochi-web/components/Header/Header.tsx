@@ -352,28 +352,28 @@ export const Header = ({
       : [
           <Link
             href={ROUTES.EXPLORE}
-            className="flex items-center text-sm font-medium"
+            className="flex items-center px-4 text-sm font-medium"
             key="desktop-nav-explore"
           >
             Explore
           </Link>,
           <Link
             href={ROUTES.FEATURES}
-            className="flex items-center text-sm font-medium"
+            className="flex items-center px-4 text-sm font-medium"
             key="desktop-nav-features"
           >
             Features
           </Link>,
           <Link
             href={ROUTES.DOCS}
-            className="flex items-center text-sm font-medium"
+            className="flex items-center px-4 text-sm font-medium"
             key="desktop-nav-api"
           >
             Docs
           </Link>,
           <DropdownMenu key="desktop-nav-dropdown">
             <DropdownMenuTrigger asChild>
-              <button type="button">
+              <button type="button" className="px-4">
                 <Typography level="p5" fontWeight="md">
                   Download
                 </Typography>
@@ -382,7 +382,7 @@ export const Header = ({
             <DropdownMenuContent
               className="bg-white-pure"
               sideOffset={20}
-              align="end"
+              align="center"
             >
               <DropdownMenuItem
                 leftIcon={<DiscordColored />}
