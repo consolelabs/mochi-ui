@@ -35,7 +35,11 @@ export const TransactionLimit = () => {
               <TransactionLimitModal
                 actionList={filteredActionList}
                 onConfirm={(data) => append(data)}
-                onCancel={() => setValue('payment.tx_limit_enable', false)}
+                onCancel={() =>
+                  setValue('payment.tx_limit_enable', false, {
+                    shouldDirty: true,
+                  })
+                }
                 trigger={
                   <div>
                     <Switch
@@ -68,7 +72,7 @@ export const TransactionLimit = () => {
                 <div className="flex flex-wrap">
                   <Typography level="p5" className="mr-2">
                     Minimum value: $
-                    {mochiUtils.formatDigit({ value: field.value.min || 0 })},
+                    {mochiUtils.formatDigit({ value: field.value.min || 0 })};
                   </Typography>
                   <Typography level="p5">
                     Maximum value: $

@@ -12,7 +12,12 @@ import {
   ResponseUserGeneralSettingResponse,
 } from '~types/mochi-schema'
 import { SaveBar } from '~cpn/SaveBar'
-import { defaultMoneySource } from '~constants/settings'
+import {
+  defaultMoneySource,
+  platformList,
+  targetGroupList,
+} from '~constants/settings'
+import { utils } from '@consolelabs/mochi-formatter'
 import { MoneySource } from './MoneySource'
 import { ReceiverPlatform } from './ReceiverPlatform'
 import { TokenPriority } from './TokenPriority'
@@ -50,6 +55,65 @@ export const GeneralPage = () => {
           prioritized_token: data.payment?.prioritized_token_ids?.map((id) => ({
             id,
           })),
+          // FIXME: convert number value to string
+          tx_limit_settings: data.payment?.tx_limit_settings?.map((each) => ({
+            ...each,
+            min: utils.formatDigit({
+              value: each.min || 0,
+              scientificFormat: false,
+              withoutCommas: true,
+            }),
+            max: utils.formatDigit({
+              value: each.max || 0,
+              scientificFormat: false,
+              withoutCommas: true,
+            }),
+          })) as any,
+        },
+        // FIXME: prevent api return empty target_group and platform
+        privacy: {
+          tx: {
+            ...data.privacy?.tx,
+            custom_settings:
+              data.privacy?.tx?.custom_settings?.length !==
+                platformList.length ||
+              data.privacy.tx.custom_settings.some(
+                (each) => !each.platform || !each.target_group,
+              )
+                ? platformList.map((each) => ({
+                    target_group: targetGroupList[0].key,
+                    platform: each.key,
+                  }))
+                : data.privacy.tx.custom_settings,
+          },
+          social_accounts: {
+            ...data.privacy?.social_accounts,
+            custom_settings:
+              data.privacy?.social_accounts?.custom_settings?.length !==
+                platformList.length ||
+              data.privacy.social_accounts.custom_settings.some(
+                (each) => !each.platform || !each.target_group,
+              )
+                ? platformList.map((each) => ({
+                    target_group: targetGroupList[0].key,
+                    platform: each.key,
+                  }))
+                : data.privacy.social_accounts.custom_settings,
+          },
+          wallets: {
+            ...data.privacy?.wallets,
+            custom_settings:
+              data.privacy?.wallets?.custom_settings?.length !==
+                platformList.length ||
+              data.privacy.wallets.custom_settings.some(
+                (each) => !each.platform || !each.target_group,
+              )
+                ? platformList.map((each) => ({
+                    target_group: targetGroupList[0].key,
+                    platform: each.key,
+                  }))
+                : data.privacy.wallets.custom_settings,
+          },
         },
       })
     },
@@ -63,6 +127,11 @@ export const GeneralPage = () => {
         ...data.payment,
         token_priorities:
           data.payment?.prioritized_token?.map((each) => each.id) || [],
+        tx_limit_settings: data.payment?.tx_limit_settings?.map((each) => ({
+          ...each,
+          min: Number(each.min),
+          max: Number(each.max),
+        })),
       },
       privacy: {
         ...data.privacy,

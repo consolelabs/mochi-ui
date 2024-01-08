@@ -35,7 +35,9 @@ export const DefaultMessage = () => {
                 actionList={filteredActionList}
                 onConfirm={(data) => append(data)}
                 onCancel={() =>
-                  setValue('payment.default_message_enable', false)
+                  setValue('payment.default_message_enable', false, {
+                    shouldDirty: true,
+                  })
                 }
                 trigger={
                   <div>

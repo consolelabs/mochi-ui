@@ -30,7 +30,7 @@ export const PrivacySetting = ({
   const { control, watch } = useFormContext<ResponseGeneralSettingData>()
   const isCustomPlatformGroup =
     watch(`privacy.${name}.general_platform_group`) === 'custom'
-  const { fields, replace } = useFieldArray({
+  const { fields } = useFieldArray({
     control,
     name: `privacy.${name}.custom_settings`,
   })
@@ -41,21 +41,6 @@ export const PrivacySetting = ({
   )
   const isCustomTargetGroup =
     isCustomPlatformGroup && customTargetGroups.size > 1
-
-  const onPlatformGroupChange = (value: string) => {
-    if (
-      value === 'custom' &&
-      (customSettings.length < platformList.length ||
-        customSettings.some((each) => !each.platform || !each.target_group))
-    ) {
-      replace(
-        platformList.map((each) => ({
-          target_group: targetGroupList[0].key,
-          platform: each.key,
-        })),
-      )
-    }
-  }
 
   return (
     <>
@@ -100,13 +85,7 @@ export const PrivacySetting = ({
               error={!!fieldState.error}
               className="flex-1 min-w-[215px]"
             >
-              <Select
-                {...field}
-                onChange={(value) => {
-                  field.onChange(value)
-                  onPlatformGroupChange(value)
-                }}
-              >
+              <Select {...field}>
                 <SelectTrigger
                   appearance="form"
                   className="justify-between h-10"

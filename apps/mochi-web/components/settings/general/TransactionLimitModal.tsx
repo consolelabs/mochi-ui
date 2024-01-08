@@ -31,17 +31,17 @@ const schema = z
       .string({ required_error: 'This field is required' })
       .min(1, 'This field is required'),
     min: z
-      .number({
-        required_error: 'Amount is required',
-        invalid_type_error: 'Amount must be a number',
-      })
-      .min(0, 'Amount must be greater than 0'),
+      .string({ required_error: 'This field is required' })
+      .min(1, 'This field is required')
+      .refine((data) => Number(data) > 0, {
+        message: 'Amount must be a positive number',
+      }),
     max: z
-      .number({
-        required_error: 'Amount is required',
-        invalid_type_error: 'Amount must be a number',
-      })
-      .min(0, 'Amount must be greater than 0'),
+      .string({ required_error: 'This field is required' })
+      .min(1, 'This field is required')
+      .refine((data) => Number(data) > 0, {
+        message: 'Amount must be a positive number',
+      }),
   })
   .refine((data) => Number(data.max) > Number(data.min), {
     path: ['max'],
@@ -136,11 +136,6 @@ export const TransactionLimitModal = ({
                       autoComplete="off"
                       type="number"
                       step="any"
-                      onChange={(e) =>
-                        field.onChange(
-                          e.target.value ? Number(e.target.value) : '',
-                        )
-                      }
                       className="w-1/2"
                     />
                     <TextFieldDecorator>
@@ -164,11 +159,6 @@ export const TransactionLimitModal = ({
                       autoComplete="off"
                       type="number"
                       step="any"
-                      onChange={(e) =>
-                        field.onChange(
-                          e.target.value ? Number(e.target.value) : '',
-                        )
-                      }
                       className="w-1/2"
                     />
                     <TextFieldDecorator>
