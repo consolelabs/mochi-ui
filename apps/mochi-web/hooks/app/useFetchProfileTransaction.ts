@@ -22,7 +22,7 @@ export const useFetchProfileTransaction = (
   } = {},
 ) => {
   const { data, ...rest } = useSWR<{
-    data?: Tx[]
+    data: Tx[]
     pagination: ViewPaginationResponse
   }>(
     allowFetch
