@@ -121,6 +121,7 @@ export default function StepTwo() {
               : request.asset?.name ?? ''
           }
           tokenIcon={request.asset?.token.icon ?? ''}
+          className="self-center"
         />
         {/* <div className="flex flex-col"> */}
         {/*   {!isToken(request.asset) && ( */}

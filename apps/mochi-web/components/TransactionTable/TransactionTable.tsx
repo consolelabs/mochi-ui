@@ -45,7 +45,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
           const tx = props.row.original
 
           return (
-            <div className="flex items-center gap-1.5">
+            <div className="flex gap-1.5 items-center">
               <TransactionStatusIcon tx={tx} />
               <TransactionTxGroup tx={tx} />
             </div>
@@ -128,7 +128,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
               valueUsd={tx.amountUsd}
               unit={tx.token.symbol}
               tokenIcon={tx.token.icon}
-              className="!items-center"
+              alignment="left"
             />
           )
         },

@@ -6,6 +6,7 @@ import {
   Dango,
   WalletSolid,
   Mochi,
+  Facebook,
 } from '@mochi-ui/icons'
 import { useProfileStore } from '~store'
 import UI, { Platform } from '@consolelabs/mochi-formatter'
@@ -33,6 +34,9 @@ function Recipient({
       break
     case Platform.Mochi:
       Icon = Dango
+      break
+    case Platform.Facebook:
+      Icon = Facebook
       break
     default:
       Icon = WalletSolid

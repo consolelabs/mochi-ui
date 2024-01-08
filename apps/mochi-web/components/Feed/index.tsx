@@ -94,7 +94,7 @@ export default function Feed({ className = '' }: Props) {
       />
       <div
         style={{ maxWidth: 1500 }}
-        className="flex justify-between items-center pt-6 pb-4 sm:px-8 px-4 mx-auto w-screen"
+        className="flex justify-between items-center px-4 pt-6 pb-4 mx-auto w-screen sm:px-8"
       >
         <Typography>Recent Transactions</Typography>
         <Button
