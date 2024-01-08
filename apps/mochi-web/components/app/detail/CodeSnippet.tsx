@@ -1,4 +1,12 @@
-import { Tooltip, Typography } from '@mochi-ui/core'
+import {
+  ScrollArea,
+  ScrollAreaCorner,
+  ScrollAreaScrollbar,
+  ScrollAreaThumb,
+  ScrollAreaViewport,
+  Tooltip,
+  Typography,
+} from '@mochi-ui/core'
 import { CopySolid } from '@mochi-ui/icons'
 import { useClipboard } from '@dwarvesf/react-hooks'
 import Prism from 'prismjs'
@@ -37,11 +45,20 @@ export const CodeSnippet = ({ code = defaultCode, language = 'js' }: Props) => {
           <CopySolid className="w-6 h-6 text-neutral-0" onClick={onCopy} />
         </Tooltip>
       </div>
-      <div className="relative h-full overflow-auto">
-        <pre className="!bg-transparent !m-0 !pt-0 !pb-2 !text-sm static sm:absolute !px-4">
-          <code className={`language-${language}`}>{code}</code>
-        </pre>
-      </div>
+      <ScrollArea className="h-full dark" type="scroll">
+        <ScrollAreaViewport className="relative h-full">
+          <pre className="!bg-transparent !m-0 !pt-0 !pb-2 !text-sm static sm:absolute !px-4">
+            <code className={`language-${language}`}>{code}</code>
+          </pre>
+        </ScrollAreaViewport>
+        <ScrollAreaScrollbar orientation="vertical">
+          <ScrollAreaThumb />
+        </ScrollAreaScrollbar>
+        <ScrollAreaScrollbar orientation="horizontal">
+          <ScrollAreaThumb />
+        </ScrollAreaScrollbar>
+        <ScrollAreaCorner />
+      </ScrollArea>
     </div>
   )
 }
