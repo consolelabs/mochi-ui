@@ -164,9 +164,17 @@ export const Header = ({
       <Button
         variant="link"
         color="neutral"
-        className="flex w-full !justify-start !text-base !px-2 py-3 bg-background-surface !text-neutral-800 !font-normal hover:!text-black !h-max"
+        className="flex w-full !justify-start !text-base !px-2 py-3 bg-background-surface !font-normal !h-max"
       >
-        <Typography level="p6" className="!text-base">
+        <Typography
+          level="p6"
+          className={clsx(
+            '!text-base !text-neutral-800 hover:!text-primary-plain-fg',
+            {
+              '!text-primary-plain-fg': pathname === ROUTES.FEATURES,
+            },
+          )}
+        >
           Features
         </Typography>
       </Button>
@@ -176,9 +184,12 @@ export const Header = ({
       <Button
         variant="link"
         color="neutral"
-        className="flex w-full !justify-start !text-base !px-2 py-3 bg-background-surface !text-neutral-800 !font-normal hover:!text-black !h-max"
+        className="flex w-full !justify-start !text-base !px-2 py-3 bg-background-surface !font-normal !h-max"
       >
-        <Typography level="p6" className="!text-base">
+        <Typography
+          level="p6"
+          className="!text-base !text-neutral-800 hover:!text-primary-plain-fg"
+        >
           API
         </Typography>
       </Button>
@@ -352,21 +363,31 @@ export const Header = ({
       : [
           <Link
             href={ROUTES.EXPLORE}
-            className="flex items-center px-4 text-sm font-medium"
+            className={clsx(
+              'flex items-center px-4 text-sm font-medium hover:text-primary-plain-fg',
+              {
+                'text-primary-plain-fg': pathname === ROUTES.EXPLORE,
+              },
+            )}
             key="desktop-nav-explore"
           >
             Explore
           </Link>,
           <Link
             href={ROUTES.FEATURES}
-            className="flex items-center px-4 text-sm font-medium"
+            className={clsx(
+              'flex items-center px-4 text-sm font-medium hover:text-primary-plain-fg',
+              {
+                'text-primary-plain-fg': pathname === ROUTES.FEATURES,
+              },
+            )}
             key="desktop-nav-features"
           >
             Features
           </Link>,
           <Link
             href={ROUTES.DOCS}
-            className="flex items-center px-4 text-sm font-medium"
+            className="flex items-center px-4 text-sm font-medium hover:text-primary-plain-fg"
             key="desktop-nav-api"
           >
             Docs
@@ -374,7 +395,11 @@ export const Header = ({
           <DropdownMenu key="desktop-nav-dropdown">
             <DropdownMenuTrigger asChild>
               <button type="button" className="px-4">
-                <Typography level="p5" fontWeight="md">
+                <Typography
+                  level="p5"
+                  fontWeight="md"
+                  className="hover:text-primary-plain-fg"
+                >
                   Download
                 </Typography>
               </button>
@@ -418,7 +443,7 @@ export const Header = ({
             </DropdownMenuContent>
           </DropdownMenu>,
           <div
-            className="flex items-center -mx-2 w-px h-full"
+            className="flex items-center -ml-4 w-px h-full"
             key="desktop-nav-divider"
           >
             <div className="w-full h-6 bg-[#eeedec]" />
