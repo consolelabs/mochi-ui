@@ -61,6 +61,7 @@ const AccordionTrigger = forwardRef<
     wrapperClassName,
     rightIcon,
     leftIcon,
+    asChild,
     ...restProps
   } = props
 
@@ -81,10 +82,19 @@ const AccordionTrigger = forwardRef<
         className={accordionTriggerWrapperClsx({ className: wrapperClassName })}
         ref={ref}
         {...restProps}
+        asChild={asChild}
       >
-        {renderLeftIcon}
-        <span className={accordionTriggerClsx({ className })}>{children}</span>
-        {renderRightIcon}
+        {asChild ? (
+          children
+        ) : (
+          <>
+            {renderLeftIcon}
+            <span className={accordionTriggerClsx({ className })}>
+              {children}
+            </span>
+            {renderRightIcon}
+          </>
+        )}
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   )
