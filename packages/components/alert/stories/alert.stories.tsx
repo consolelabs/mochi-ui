@@ -127,7 +127,9 @@ export const Colors: Story = {
                   </AlertDescription>
                 </AlertBody>
                 <AlertActionGroup>
-                  <AlertCancelButton>Confirm</AlertCancelButton>
+                  <AlertCancelButton asChild>
+                    <a href="/#">Cancel</a>
+                  </AlertCancelButton>
                   <AlertConfirmButton>Confirm</AlertConfirmButton>
                 </AlertActionGroup>
                 <AlertCloseButton />

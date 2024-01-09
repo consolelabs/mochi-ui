@@ -1,22 +1,18 @@
 import { Button, ButtonProps } from '@mochi-ui/button'
-import { ComponentPropsWithRef, forwardRef } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 import { alert } from '@mochi-ui/theme'
-import { Slot } from '@radix-ui/react-slot'
-import * as Polymorphic from '@mochi-ui/polymorphic'
 import { useAlertContext } from './context'
 
-type PolymorphicAlertCancelButton = Polymorphic.ForwardRefComponent<
-  'button',
+type AlertCancelProps = ComponentPropsWithoutRef<typeof Button> &
   ButtonProps & {
     asChild?: boolean
   }
->
 
-type AlertCancelProps = ComponentPropsWithRef<PolymorphicAlertCancelButton>
-
-const AlertCancelButton = forwardRef((props, ref) => {
+const AlertCancelButton = forwardRef<
+  ElementRef<typeof Button>,
+  AlertCancelProps
+>((props, ref) => {
   const {
-    asChild,
     className,
     variant: variantProp,
     color: colorProp,
@@ -24,16 +20,16 @@ const AlertCancelButton = forwardRef((props, ref) => {
     ...restProps
   } = props
   const { scheme, layout, size } = useAlertContext()
-  const Component = asChild ? Slot : Button
-  const passProps = asChild
-    ? {}
-    : {
-        variant: variantProp ?? layout === 'inline' ? 'link' : 'solid',
-        color: colorProp ?? 'white',
-        ...restProps,
-      }
+  const passProps = {
+    variant:
+      variantProp ?? layout === 'inline'
+        ? ('link' as const) // Ensure type compatible, otherwise will be indicated as type string
+        : ('solid' as const),
+    color: colorProp ?? 'white',
+    ...restProps,
+  }
   return (
-    <Component
+    <Button
       data-scheme={scheme}
       data-layout={layout}
       data-size={size}
@@ -42,10 +38,10 @@ const AlertCancelButton = forwardRef((props, ref) => {
       {...passProps}
     >
       {children}
-    </Component>
+    </Button>
   )
-}) as PolymorphicAlertCancelButton
+})
 AlertCancelButton.displayName = 'AlertCancelButton'
 
 export { AlertCancelButton }
-export type { AlertCancelProps, PolymorphicAlertCancelButton }
+export type { AlertCancelProps }
