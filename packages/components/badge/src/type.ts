@@ -1,13 +1,14 @@
 import { BadgeStyleProps } from '@mochi-ui/theme'
-import { ReactNode } from 'react'
+import { ComponentPropsWithoutRef, ReactNode } from 'react'
 
 export type BadgeIconProps = {
   className?: string
+  asChild?: boolean
   children: ReactNode
-}
+} & ComponentPropsWithoutRef<'span'>
 
-export interface BadgeProps
-  extends Omit<BadgeStyleProps, 'hasIcon' | 'hasLabel'> {
+export type BadgeProps = Omit<BadgeStyleProps, 'hasIcon' | 'hasLabel'> & {
   className?: string
   children: ReactNode
-}
+  asChild?: boolean
+} & ComponentPropsWithoutRef<'span'>
