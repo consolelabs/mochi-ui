@@ -52,15 +52,17 @@ export const MoneySource = () => {
               <SelectItem value={defaultMoneySource.platform_identifier}>
                 Mochi wallet
               </SelectItem>
-              {profile?.associated_accounts?.map((each) => (
-                <SelectItem
-                  key={each.platform_identifier}
-                  value={each.platform_identifier}
-                >
-                  {getPlatform(each.platform).name} |{' '}
-                  {truncate(each.platform_identifier, 10, true)}
-                </SelectItem>
-              ))}
+              {profile?.associated_accounts
+                ?.filter((each) => (each as any).is_wallet)
+                .map((each) => (
+                  <SelectItem
+                    key={each.platform_identifier}
+                    value={each.platform_identifier}
+                  >
+                    {getPlatform(each.platform).name} |{' '}
+                    {truncate(each.platform_identifier, 10, true)}
+                  </SelectItem>
+                ))}
               <SelectSeparator />
               <Button variant="ghost" className="w-full pl-2 pr-2 h-9">
                 <PlusLine className="w-4 h-4" />
