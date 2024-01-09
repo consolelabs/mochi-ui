@@ -117,7 +117,7 @@ const MobileLoginPanel = () => {
 const MobileHeader = ({ onClose }: { onClose: () => void }) => {
   const { profile } = useLoginWidget()
   return (
-    <button className="" onClick={onClose}>
+    <button onClick={onClose}>
       <Link
         href={ROUTES.MY_PROFILE}
         className="block relative w-full h-20 group"
@@ -158,41 +158,32 @@ export const Header = ({
   const mobileNavItems = [
     <Link
       href={ROUTES.FEATURES}
-      className="flex items-center text-sm"
+      className="flex items-center text-sm px-2 py-3"
       key="mobile-nav-features"
     >
-      <Button
-        variant="link"
+      <Typography
+        level="p6"
         color="neutral"
-        className="flex w-full !justify-start !text-base !px-2 py-3 bg-background-surface !font-normal !h-max"
+        className={clsx('!text-base hover:!text-primary-plain-fg', {
+          '!text-primary-plain-fg': pathname === ROUTES.FEATURES,
+        })}
       >
-        <Typography
-          level="p6"
-          className={clsx(
-            '!text-base !text-neutral-800 hover:!text-primary-plain-fg',
-            {
-              '!text-primary-plain-fg': pathname === ROUTES.FEATURES,
-            },
-          )}
-        >
-          Features
-        </Typography>
-      </Button>
+        Features
+      </Typography>
     </Link>,
     // eslint-disable-next-line jsx-a11y/anchor-is-valid
-    <Link href="#" className="flex items-center text-sm" key="mobile-nav-api">
-      <Button
-        variant="link"
+    <Link
+      href="#"
+      className="flex items-center text-sm px-2 py-3"
+      key="mobile-nav-api"
+    >
+      <Typography
+        level="p6"
         color="neutral"
-        className="flex w-full !justify-start !text-base !px-2 py-3 bg-background-surface !font-normal !h-max"
+        className="!text-base hover:!text-primary-plain-fg"
       >
-        <Typography
-          level="p6"
-          className="!text-base !text-neutral-800 hover:!text-primary-plain-fg"
-        >
-          API
-        </Typography>
-      </Button>
+        API
+      </Typography>
     </Link>,
     <MobileNavAccordionItem
       key="mobile-nav-accordion"
@@ -364,7 +355,7 @@ export const Header = ({
           <Link
             href={ROUTES.EXPLORE}
             className={clsx(
-              'flex items-center px-4 text-sm font-medium hover:text-primary-plain-fg',
+              'px-4 text-sm font-medium hover:text-primary-plain-fg',
               {
                 'text-primary-plain-fg': pathname === ROUTES.EXPLORE,
               },
@@ -376,7 +367,7 @@ export const Header = ({
           <Link
             href={ROUTES.FEATURES}
             className={clsx(
-              'flex items-center px-4 text-sm font-medium hover:text-primary-plain-fg',
+              'px-4 text-sm font-medium hover:text-primary-plain-fg',
               {
                 'text-primary-plain-fg': pathname === ROUTES.FEATURES,
               },
@@ -387,7 +378,7 @@ export const Header = ({
           </Link>,
           <Link
             href={ROUTES.DOCS}
-            className="flex items-center px-4 text-sm font-medium hover:text-primary-plain-fg"
+            className="px-4 text-sm font-medium hover:text-primary-plain-fg"
             key="desktop-nav-api"
           >
             Docs
@@ -396,9 +387,9 @@ export const Header = ({
             <DropdownMenuTrigger asChild>
               <button type="button" className="px-4">
                 <Typography
-                  level="p5"
+                  level="p6"
                   fontWeight="md"
-                  className="hover:text-primary-plain-fg"
+                  className="!text-sm hover:text-primary-plain-fg"
                 >
                   Download
                 </Typography>
@@ -413,7 +404,7 @@ export const Header = ({
                 leftIcon={<DiscordColored />}
                 onClick={() => window.open(DISCORD_LINK, '_blank')}
               >
-                Discord asdas
+                Discord
               </DropdownMenuItem>
               <DropdownMenuItem
                 leftIcon={<TelegramColored />}
