@@ -2,37 +2,41 @@ import { utils } from '@consolelabs/mochi-formatter'
 import { Avatar, AvatarGroup, Typography } from '@mochi-ui/core'
 import { Tx } from './types'
 
-export type TransactionRecipientsProps = {
+export type TransactionIssuedByProps = {
   tx: Tx
 }
 
-export const TransactionRecipients = (props: TransactionRecipientsProps) => {
+export const TransactionIssuedBy = (props: TransactionIssuedByProps) => {
   const { tx } = props
 
-  const allTxs = [tx, ...tx.siblingTxs]
+  const allTxs = [tx, ...tx.otherTxs]
 
   return (
     <div className="flex gap-3 items-center">
       {allTxs.length === 1 ? (
         <Avatar
-          smallSrc={tx.to.platformIcon}
-          src={tx.to.avatar}
-          fallback={tx.to.address}
+          smallSrc={tx.from.platformIcon}
+          src={tx.from.avatar}
+          fallback={tx.from.address}
         />
       ) : (
         <AvatarGroup>
           {allTxs.map((tx) => (
-            <Avatar key={tx.code} src={tx.to.avatar} fallback={tx.to.address} />
+            <Avatar
+              key={tx.code}
+              src={tx.from.avatar}
+              fallback={tx.from.address}
+            />
           ))}
         </AvatarGroup>
       )}
       <div className="flex flex-col gap-1">
         <Typography level="p5" className="break-words truncate">
-          {utils.string.formatAddressUsername(tx.to.address)}
+          {utils.string.formatAddressUsername(tx.from.address)}
         </Typography>
-        {tx.to.platform && (
+        {tx.from.platform && (
           <Typography level="p6" className="!text-text-secondary capitalize">
-            {tx.to.platform}
+            {tx.from.platform}
           </Typography>
         )}
       </div>

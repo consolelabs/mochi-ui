@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { truncate } from '@dwarvesf/react-utils'
 import { Badge, Typography } from '@mochi-ui/core'
 import DataList from '~cpn/DataList'
@@ -11,6 +12,29 @@ type Props = {
 }
 
 export default function LowerBody({ data }: Props) {
+  const statusComponent = useMemo(() => {
+    if (data.claim_tx) {
+      return (
+        <Badge
+          className="!bg-[#088752]/[.15] !text-[#34C77B]"
+          appearance="success"
+        >
+          Success
+        </Badge>
+      )
+    }
+    return (
+      <Typography
+        level="p7"
+        color="textSecondary"
+        fontWeight="sm"
+        className="capitalize"
+      >
+        {data.status}
+      </Typography>
+    )
+  }, [data.claim_tx, data.status])
+
   return (
     <div className="flex flex-col gap-y-2 py-3 mt-9 receipt-body">
       <DashLine />
@@ -50,29 +74,7 @@ export default function LowerBody({ data }: Props) {
           </Typography>
         </DataList.Item>
         <DataList.Item title="Date">{data.date}</DataList.Item>
-        <DataList.Item title="Status">
-          {data.claim_tx ? (
-            <Badge
-              className={
-                data.claim_tx
-                  ? '!bg-[#088752]/[.15] !text-[#34C77B]'
-                  : '!bg-[#E02D3C]/[.15] !text-[#EB5757]'
-              }
-              appearance={data.claim_tx ? 'success' : 'danger'}
-            >
-              {data.claim_tx ? 'Success' : 'Failed'}
-            </Badge>
-          ) : (
-            <Typography
-              level="p7"
-              color="textSecondary"
-              fontWeight="sm"
-              className="capitalize"
-            >
-              {data.status}
-            </Typography>
-          )}
-        </DataList.Item>
+        <DataList.Item title="Status">{statusComponent}</DataList.Item>
         {data.note && (
           <DataList.Item title="Message">
             <q className="text-right text-xxxs">{data.note}</q>

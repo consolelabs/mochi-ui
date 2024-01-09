@@ -205,15 +205,17 @@ export const useTipWidget = create(
           )
         }
 
+        const originalAmount = isToken(request.asset)
+          ? amount
+          : amount * (request.asset?.asset_balance ?? 0)
+
         const tx = await API.MOCHI.post(
           {
             sender: profile?.id,
             recipients,
             platform: 'web',
             transfer_type: 'transfer',
-            amount: isToken(request.asset)
-              ? amount
-              : amount * (request.asset?.asset_balance ?? 0),
+            amount: originalAmount,
             token: request.asset?.token?.symbol,
             chain_id: parseInt(
               request.asset?.token?.chain_id ?? '',
@@ -222,6 +224,13 @@ export const useTipWidget = create(
             // optional
             ...(request?.theme?.id ? { theme_id: request.theme.id } : {}),
             ...(request?.message ? { message: request.message } : {}),
+            metadata: {
+              original_amount: originalAmount,
+              channel_name:
+                window.location.hostname === 'localhost'
+                  ? 'beta.mochi.gg'
+                  : window.location.hostname,
+            },
           },
           '/tip/transfer-v2',
         ).json((r) => r.data)

@@ -1,4 +1,3 @@
-import { utils } from '@consolelabs/mochi-formatter'
 import {
   Avatar,
   Badge,
@@ -23,6 +22,7 @@ import { TransactionStatusIcon } from './TransactionStatusIcon'
 import { TransactionTxGroup } from './TransactionTxGroup'
 import { TransactionTableProps, Tx } from './types'
 import { openTx } from './utils'
+import { TransactionIssuedBy } from './TransactionIssuedBy'
 
 export const TransactionTable = (props: TransactionTableProps) => {
   const {
@@ -60,28 +60,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
         cell: (props) => {
           const tx = props.row.original
 
-          return (
-            <div className="flex gap-3 items-center">
-              <Avatar
-                smallSrc={tx.from.platformIcon}
-                src={tx.from.avatar}
-                fallback={tx.from.address}
-              />
-              <div className="flex flex-col gap-1">
-                <Typography level="p5" className="break-words truncate">
-                  {utils.string.formatAddressUsername(tx.from.address)}
-                </Typography>
-                {tx.from.platform && (
-                  <Typography
-                    level="p6"
-                    className="!text-text-secondary capitalize"
-                  >
-                    {tx.from.platform}
-                  </Typography>
-                )}
-              </div>
-            </div>
-          )
+          return <TransactionIssuedBy tx={tx} />
         },
       },
       {
