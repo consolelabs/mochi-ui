@@ -11,7 +11,6 @@ const {
   accordionHeaderClsx,
   accordionTriggerWrapperClsx,
   accordionTriggerClsx,
-  accordionContentWrapperClsx,
   accordionContentClsx,
 } = accordion
 
@@ -104,7 +103,6 @@ AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName
 
 interface AccordionContentProps
   extends ComponentPropsWithoutRef<typeof AccordionPrimitive.Content> {
-  wrapperClassName?: string
   hasPadding?: boolean
 }
 
@@ -112,22 +110,14 @@ const AccordionContent = forwardRef<
   ElementRef<typeof AccordionPrimitive.Content>,
   AccordionContentProps
 >((props, ref) => {
-  const {
-    children,
-    className,
-    wrapperClassName,
-    hasPadding = false,
-    ...restProps
-  } = props
+  const { children, className, hasPadding = false, ...restProps } = props
   return (
     <AccordionPrimitive.Content
-      className={accordionContentWrapperClsx({ className: wrapperClassName })}
+      className={accordionContentClsx({ className, hasPadding })}
       ref={ref}
       {...restProps}
     >
-      <div className={accordionContentClsx({ className, hasPadding })}>
-        {children}
-      </div>
+      {children}
     </AccordionPrimitive.Content>
   )
 })

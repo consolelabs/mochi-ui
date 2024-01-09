@@ -34,19 +34,6 @@ const accordionTriggerClsx = ({
   className = '',
 }: { className?: string } = {}) => clsx('flex flex-1', className)
 
-const accordionContentWrapperClsx = ({
-  className = '',
-}: {
-  className?: string
-}) =>
-  clsx(
-    'text-sm',
-    'data-[state=open]:animate-accordion-open',
-    'data-[state=closed]:animate-accordion-close',
-    'overflow-hidden',
-    className,
-  )
-
 const accordionContentClsx = ({
   className = '',
   hasPadding = false,
@@ -55,6 +42,10 @@ const accordionContentClsx = ({
   hasPadding?: boolean
 }) =>
   clsx(
+    'text-sm',
+    'data-[state=open]:animate-accordion-open',
+    'data-[state=closed]:animate-accordion-close',
+    'overflow-hidden',
     'py-2 h-fit',
     {
       'px-10': hasPadding,
@@ -70,6 +61,5 @@ export const accordion = {
   accordionHeaderClsx,
   accordionTriggerWrapperClsx,
   accordionTriggerClsx,
-  accordionContentWrapperClsx,
   accordionContentClsx,
 }
