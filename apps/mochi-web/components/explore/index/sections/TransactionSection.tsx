@@ -42,7 +42,7 @@ export const TransactionSection = () => {
 
   return (
     <div ref={containerRef} className="mx-auto" style={{ maxWidth: 1488 }}>
-      <div className="flex justify-end py-2 gap-4 px-6">
+      <div className="flex gap-4 justify-end py-2 px-14">
         <ChainPicker
           value={filters.chainId || 'all'}
           onChange={(chainId) => setFilters({ chainId })}
@@ -66,7 +66,7 @@ export const TransactionSection = () => {
             className: 'px-2',
           },
         }}
-        className="px-6"
+        className="px-14"
       />
     </div>
   )

@@ -252,7 +252,7 @@ export default function Index() {
               {isLoggedIn ? 'Profile' : 'Login'}
             </Button>
           </Link>
-          <Link href={ROUTES.FEATURES}>
+          <Link className="hidden" href={ROUTES.FEATURES}>
             <Button size="lg" color="neutral" variant="outline">
               View features
               <ArrowRightLine />

@@ -14,11 +14,7 @@ export const TransactionRecipients = (props: TransactionRecipientsProps) => {
   return (
     <div className="flex gap-3 items-center">
       {allTxs.length === 1 ? (
-        <Avatar
-          smallSrc={tx.to.platformIcon}
-          src={tx.to.avatar}
-          fallback={tx.to.address}
-        />
+        <Avatar src={tx.to.avatar} fallback={tx.to.address} size="sm" />
       ) : (
         <AvatarGroup size="xs">
           {allTxs.map((tx) => (
@@ -31,7 +27,10 @@ export const TransactionRecipients = (props: TransactionRecipientsProps) => {
           {utils.string.formatAddressUsername(tx.to.address)}
         </Typography>
         {tx.to.platform && (
-          <Typography level="p6" className="!text-text-secondary capitalize">
+          <Typography
+            level="p6"
+            className="hidden !text-text-secondary capitalize"
+          >
             {tx.to.platform}
           </Typography>
         )}

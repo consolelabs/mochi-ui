@@ -1,10 +1,11 @@
+import emojiStrip from 'emoji-strip'
 import UI, { Platform, utils as mochiUtils } from '@consolelabs/mochi-formatter'
 import { WebSolid } from '@mochi-ui/icons'
 import { utils } from 'ethers'
 import ReactDOMServer from 'react-dom/server'
 import { ROUTES } from '~constants/routes'
 import { appLogo, discordLogo, telegramLogo } from '~utils/image'
-import { formatRelative } from '~utils/time'
+import { formatDate, formatRelative } from '~utils/time'
 import { Tx } from './types'
 
 function isVault(source: string) {
@@ -62,10 +63,6 @@ export async function transform(d: any): Promise<Tx> {
         where.text = 'Telegram'
         where.avatar = telegramLogo.src
       }
-      if ([Platform.App, 'app', 'application'].includes(d.source_platform)) {
-        where.text = 'App'
-        where.avatar = appLogo.src
-      }
 
       // get channel name
       if ('channel_name' in d.metadata && d.metadata.channel_name) {
@@ -81,6 +78,15 @@ export async function transform(d: any): Promise<Tx> {
         // later tip widget could be used anywhere so need to get from api response
         where.text = d.metadata.channel_name || 'beta.mochi.gg'
         where.avatar = WebSolid as any
+      }
+
+      if (
+        'sender_profile_type' in d.metadata &&
+        d.metadata.sender_profile_type === 'application'
+      ) {
+        where.text = emojiStrip(
+          (d.type === 'out' ? from?.plain : to?.plain) ?? 'App',
+        )
       }
 
       // get vault name (if it's a vault_transfer tx)
@@ -163,6 +169,7 @@ export async function transform(d: any): Promise<Tx> {
     ),
     amountUsd: mochiUtils.formatUsdDigit(d.usd_amount),
     date: formatRelative(d.created_at),
+    full_date: formatDate(d.created_at, 'MMMM d, yyyy HH:mm:ss'),
     status: d.status,
     action: d.action,
   }

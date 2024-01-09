@@ -57,15 +57,15 @@ export default function Amount({
       >
         <Typography
           level={size === 'md' ? 'h4' : 'h9'}
-          className="!leading-[1]"
-          fontWeight={size === 'md' ? 'md' : 'sm'}
+          className="!leading-[1] font-mono"
+          fontWeight="md"
         >
           {value}
         </Typography>
         <Typography
           level={size === 'md' ? 'h4' : 'h9'}
-          className="!leading-[1]"
-          fontWeight={size === 'md' ? 'md' : 'sm'}
+          className="!leading-[1] font-mono"
+          fontWeight="md"
         >
           {unit}
         </Typography>
@@ -83,15 +83,17 @@ export default function Amount({
             <Typography
               level={size === 'md' ? 'p5' : 'p6'}
               color="textSecondary"
-              fontWeight="sm"
+              fontWeight="md"
+              className="font-mono"
             >
               and other tokens
             </Typography>
           )}
           <Typography
             level={size === 'md' ? 'p5' : 'p6'}
-            fontWeight="sm"
+            fontWeight="md"
             color="textSecondary"
+            className="font-mono"
           >
             {approxMoniker} {valueUsd?.startsWith('<') ? '' : <>&asymp;</>}{' '}
             {valueUsd}

@@ -21,7 +21,7 @@ interface FooterSocial {
 interface FooterProps {
   className?: string
   logo: React.ReactNode
-  copyrightText: string
+  copyrightText: React.ReactNode
   nav: FooterNavBlock[]
   social: FooterSocial[]
 }
@@ -58,13 +58,17 @@ const Footer = forwardRef<HTMLElement, FooterProps>(
               </div>
             ) : null}
             <div className={footer.infoClsx}>
-              <Typography
-                level="p5"
-                color="textSecondary"
-                className={footer.copyrightClsx}
-              >
-                {copyrightText}
-              </Typography>
+              {typeof copyrightText === 'string' ? (
+                <Typography
+                  level="p5"
+                  color="textSecondary"
+                  className={footer.copyrightClsx}
+                >
+                  {copyrightText}
+                </Typography>
+              ) : (
+                copyrightText
+              )}
               <div className={footer.socialClsx}>
                 {social.map(({ href, title, Icon }) => (
                   <a

@@ -14,11 +14,7 @@ export const TransactionIssuedBy = (props: TransactionIssuedByProps) => {
   return (
     <div className="flex gap-3 items-center">
       {allTxs.length === 1 ? (
-        <Avatar
-          smallSrc={tx.from.platformIcon}
-          src={tx.from.avatar}
-          fallback={tx.from.address}
-        />
+        <Avatar src={tx.from.avatar} fallback={tx.from.address} size="sm" />
       ) : (
         <AvatarGroup size="xs">
           {allTxs.map((tx) => (
@@ -35,7 +31,10 @@ export const TransactionIssuedBy = (props: TransactionIssuedByProps) => {
           {utils.string.formatAddressUsername(tx.from.address)}
         </Typography>
         {tx.from.platform && (
-          <Typography level="p6" className="!text-text-secondary capitalize">
+          <Typography
+            level="p6"
+            className="hidden !text-text-secondary capitalize"
+          >
             {tx.from.platform}
           </Typography>
         )}
