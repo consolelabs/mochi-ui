@@ -3,10 +3,10 @@ import { clsx } from 'clsx'
 const pageContentWrapperClsx = ({
   className = '',
 }: { className?: string } = {}) =>
-  clsx('p-4 lg:p-8 min-[1440px]:p-14 overflow-y-auto grow', className)
+  clsx('py-4 lg:py-8 2xl:py-14 overflow-y-auto grow', className)
 
 const pageContentClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx('max-w-[1108px] mx-auto', className)
+  clsx('dashboard-container', className)
 
 const pageContent = { pageContentWrapperClsx, pageContentClsx }
 

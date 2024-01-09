@@ -113,7 +113,7 @@ export function Default() {
             </PageHeaderTitle>
           </PageHeader>
 
-          <PageContent containerClassName="bg-background-surface p-6 border rounded-md">
+          <PageContent>
             <Typography level="p4">Content</Typography>
           </PageContent>
         </Layout>

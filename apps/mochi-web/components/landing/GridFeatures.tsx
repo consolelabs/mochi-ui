@@ -14,7 +14,7 @@ interface Props {
 
 export function GridFeatures({ title, data, className }: Props) {
   return (
-    <div className={clsx('flex flex-col gap-y-7 landing-block', className)}>
+    <div className={clsx('flex flex-col gap-y-7 landing-container', className)}>
       {typeof title === 'string' ? (
         <span className="text-2xl font-medium md:text-4xl title-tracking">
           {title}

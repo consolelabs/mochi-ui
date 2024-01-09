@@ -100,7 +100,33 @@ export const mochiui = () => {
   return plugin(
     ({ addVariant, addUtilities }) => {
       // add the css variables to "@layer utilities"
-      addUtilities({ ...resolved?.utilities })
+      addUtilities({
+        ...resolved?.utilities,
+        '.landing-container': {
+          width: '100%',
+          maxWidth: '1280px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          paddingLeft: '16px',
+          paddingRight: '16px',
+          '@screen md': {
+            paddingLeft: '24px',
+            paddingRight: '24px',
+          },
+        },
+        '.dashboard-container': {
+          width: '100%',
+          maxWidth: '1108px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          paddingLeft: '16px',
+          paddingRight: '16px',
+          '@screen md': {
+            paddingLeft: '24px',
+            paddingRight: '24px',
+          },
+        },
+      })
 
       // add the theme as variant e.g. "[theme-name]:text-2xl"
       resolved?.variants.forEach((variant) => {
@@ -253,8 +279,14 @@ export const mochiui = () => {
             'accordion-close': 'accordion-close 0.2s ease-out',
           },
           screens: {
-            xxs: '375px',
-            xs: '425px',
+            '4xl': '1728px',
+            '3xl': '1536px',
+            '2xl': '1440px',
+            xl: '1280px',
+            lg: '1024px',
+            md: '768px',
+            sm: '425px',
+            xs: '375px',
           },
         },
       },

@@ -3,8 +3,7 @@ import clsx from 'clsx'
 const footerClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx('border-t border-divider', className)
 
-const wrapperClsx =
-  'pt-16 pb-5 md:py-18 md:h-[300px] w-full px-5 mx-auto xl:max-w-7xl 2xl:px-0'
+const wrapperClsx = 'pt-16 pb-5 md:py-18 md:h-[300px] landing-container'
 
 const wrapperInnerClsx = 'flex flex-col gap-y-5 gap-x-8 sm:gap-x-12 md:flex-row'
 

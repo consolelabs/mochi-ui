@@ -95,7 +95,7 @@ function Platform({
 
 export function SupportedPlatforms() {
   return (
-    <div className="hidden flex-col mt-16 md:flex landing-block">
+    <div className="hidden flex-col mt-16 md:flex landing-container">
       <p className="text-4xl font-medium text-center font-text">
         Supported platforms
       </p>

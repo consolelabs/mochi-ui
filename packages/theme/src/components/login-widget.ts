@@ -26,7 +26,7 @@ const loginWidgetDialogContentWrapperClsx = ({
 
 const loginContentClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx(
-    'overflow-hidden rounded-lg relative max-w-[400px] w-full xs:w-screen',
+    'overflow-hidden rounded-lg relative max-w-[400px] w-full sm:w-screen',
     className,
   )
 
