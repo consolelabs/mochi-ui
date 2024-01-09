@@ -6,6 +6,7 @@ import clsx from 'clsx'
 import { useState } from 'react'
 import { ROUTES } from '~constants/routes'
 import { useFetchProfileTransaction } from '~hooks/app/useFetchProfileTransaction'
+import Link from 'next/link'
 
 type OverviewTransactionTabs = 'Transaction' | 'Pay Me' | 'Pay Link'
 
@@ -90,7 +91,7 @@ export const TransactionOverviewSection = () => {
       </div>
       <div className="bg-background-popup">
         {/* NOTE: Fix 5 rows height for ensure empty render do not overflow */}
-        <div className="h-[404px]">
+        <div className="h-[414px]">
           <TransactionTable
             className="min-w-[1320px]"
             data={displayTransactions}
@@ -117,15 +118,10 @@ export const TransactionOverviewSection = () => {
               {displayTotalItems}
             </Typography>
           )}
-          <Button
-            size="sm"
-            color="white"
-            variant="outline"
-            as="a"
-            href={ROUTES.TRANSACTIONS}
-          >
-            View all transactions
-            <ArrowRightLine />
+          <Button size="sm" color="white" variant="outline" asChild>
+            <Link href={ROUTES.TRANSACTIONS}>
+              View all transactions <ArrowRightLine />
+            </Link>
           </Button>
         </div>
       </div>
