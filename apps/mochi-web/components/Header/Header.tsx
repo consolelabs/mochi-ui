@@ -164,9 +164,12 @@ export const Header = ({
       <Typography
         level="p6"
         color="neutral"
-        className={clsx('!text-base hover:!text-primary-plain-fg', {
-          '!text-primary-plain-fg': pathname === ROUTES.FEATURES,
-        })}
+        className={clsx(
+          '!text-base transition-colors duration-300 hover:!text-primary-plain-fg',
+          {
+            '!text-primary-plain-fg': pathname === ROUTES.FEATURES,
+          },
+        )}
       >
         Features
       </Typography>
@@ -180,7 +183,7 @@ export const Header = ({
       <Typography
         level="p6"
         color="neutral"
-        className="!text-base hover:!text-primary-plain-fg"
+        className="!text-base transition-colors duration-300 hover:!text-primary-plain-fg"
       >
         API
       </Typography>
@@ -355,7 +358,7 @@ export const Header = ({
           <Link
             href={ROUTES.EXPLORE}
             className={clsx(
-              'px-4 text-sm font-medium hover:text-primary-plain-fg',
+              'px-4 text-sm font-medium transition-colors duration-300 hover:text-primary-plain-fg',
               {
                 'text-primary-plain-fg': pathname === ROUTES.EXPLORE,
               },
@@ -367,7 +370,7 @@ export const Header = ({
           <Link
             href={ROUTES.FEATURES}
             className={clsx(
-              'px-4 text-sm font-medium hover:text-primary-plain-fg',
+              'px-4 text-sm font-medium transition-colors duration-300 hover:text-primary-plain-fg',
               {
                 'text-primary-plain-fg': pathname === ROUTES.FEATURES,
               },
@@ -378,7 +381,7 @@ export const Header = ({
           </Link>,
           <Link
             href={ROUTES.DOCS}
-            className="px-4 text-sm font-medium hover:text-primary-plain-fg"
+            className="px-4 text-sm font-medium transition-colors duration-300 hover:text-primary-plain-fg"
             key="desktop-nav-api"
           >
             Docs
@@ -389,7 +392,7 @@ export const Header = ({
                 <Typography
                   level="p6"
                   fontWeight="md"
-                  className="!text-sm hover:text-primary-plain-fg"
+                  className="!text-sm transition-colors duration-300 hover:text-primary-plain-fg"
                 >
                   Download
                 </Typography>
