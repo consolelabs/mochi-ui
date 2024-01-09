@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { truncate } from '@dwarvesf/react-utils'
 import { Avatar, Badge, Typography } from '@mochi-ui/core'
@@ -48,10 +49,41 @@ export default function Receipt({ id, data: _data }: Props) {
     defaultIsOpen: false,
   })
 
+  const statusComponent = useMemo(() => {
+    if (data?.data.isSuccess) {
+      return (
+        <Badge
+          className="!bg-[#088752]/[.15] !text-[#34C77B]"
+          appearance="success"
+        >
+          Success
+        </Badge>
+      )
+    }
+    if (data?.data.isFail) {
+      return (
+        <Badge
+          className="!bg-[#E02D3C]/[.15] !text-[#EB5757]"
+          appearance="danger"
+        >
+          Failed
+        </Badge>
+      )
+    }
+    return (
+      <Typography
+        level="p7"
+        color="textSecondary"
+        fontWeight="sm"
+        className="capitalize"
+      >
+        {data?.status}
+      </Typography>
+    )
+  }, [data?.data?.isSuccess, data?.data?.isFail, data?.status])
+
   if (data === null) return <span>404 tx</span>
   if (isLoading || !data) return null
-
-  const isSuccess = data.data.success
 
   return (
     <div className="flex flex-col flex-1 gap-y-7 m-auto w-[300px] max-w-[300px]">
@@ -185,27 +217,7 @@ export default function Receipt({ id, data: _data }: Props) {
                     {format(new Date(data.data.short_date), 'MMM do, yyyy')}
                   </DataList.Item>
                   <DataList.Item title="Status">
-                    {isSuccess ? (
-                      <Badge
-                        className={
-                          isSuccess
-                            ? '!bg-[#088752]/[.15] !text-[#34C77B]'
-                            : '!bg-[#E02D3C]/[.15] !text-[#EB5757]'
-                        }
-                        appearance={isSuccess ? 'success' : 'danger'}
-                      >
-                        {isSuccess ? 'Success' : 'Failed'}
-                      </Badge>
-                    ) : (
-                      <Typography
-                        level="p7"
-                        color="textSecondary"
-                        fontWeight="sm"
-                        className="capitalize"
-                      >
-                        {data.status}
-                      </Typography>
-                    )}
+                    {statusComponent}
                   </DataList.Item>
                 </DataList>
               </div>

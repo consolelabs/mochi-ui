@@ -41,14 +41,13 @@ export async function transformData(rawData: any) {
     rawData.metadata?.template?.slug.toLowerCase() as TemplateName
   const template = templates[templateName] ?? null
 
-  const { type, action } = rawData
+  const { type, action, status } = rawData
   const isMultipleReceivers =
     Array.isArray(rawData.other_profiles) && rawData.other_profiles.length > 1
   const isMultipleSenders =
     action !== 'airdrop' &&
     Array.isArray(rawData.other_txs) &&
     rawData.other_txs.length
-  const success = rawData.status === 'success'
   const isMultipleTokens =
     rawData.other_txs.length > 0
       ? rawData.other_txs.some((tx: any) => tx.token_id !== rawData.token_id)
@@ -119,7 +118,9 @@ export async function transformData(rawData: any) {
     moniker: rawData.metadata.moniker || '',
     original_amount: rawData.metadata.original_amount || '',
     template,
-    success,
+    status,
+    isSuccess: status === 'success',
+    isFail: status === 'failed',
     action,
   }
 

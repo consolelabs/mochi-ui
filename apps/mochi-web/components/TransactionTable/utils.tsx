@@ -79,7 +79,7 @@ export async function transform(d: any): Promise<Tx> {
       if ([Platform.Web, 'web'].includes(d.source_platform)) {
         // hard-code for now
         // later tip widget could be used anywhere so need to get from api response
-        where.text = 'beta.mochi.gg'
+        where.text = d.metadata.channel_name || 'beta.mochi.gg'
         where.avatar = WebSolid as any
       }
 

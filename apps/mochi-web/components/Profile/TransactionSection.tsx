@@ -65,7 +65,7 @@ export const TransactionOverviewSection = () => {
   }[selectedTab]
 
   return (
-    <div className="bg-background-level2 shadow-input rounded-lg overflow-hidden">
+    <div className="overflow-hidden rounded-lg bg-background-level2 shadow-input">
       <div className="border-b border-b-divider">
         {(
           ['Transaction', 'Pay Me', 'Pay Link'] as OverviewTransactionTabs[]
@@ -75,7 +75,7 @@ export const TransactionOverviewSection = () => {
             variant={t === selectedTab ? 'solid' : 'ghost'}
             key={t}
             className={clsx(
-              'font-semibold border-divider border-b-0 !rounded-b-none focus-visible:shadow-none',
+              'font-semibold border-divider border-b-0 !rounded-b-none',
               {
                 'hover:!bg-background-popup': selectedTab === t,
               },
@@ -111,7 +111,7 @@ export const TransactionOverviewSection = () => {
             }}
           />
         </div>
-        <div className="flex gap-4 py-3 px-[18px] items-center justify-end">
+        <div className="flex gap-4 justify-end items-center py-3 px-[18px]">
           {isDisplayFooter && (
             <Typography level="p6" color="textSecondary" className="flex-1">
               Showing {displayTransactions.length} latest items of{' '}
