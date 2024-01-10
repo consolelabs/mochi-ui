@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@dwarvesf/react-utils": "^0.4.2",
-    "@mochi-ui/skeleton": "1.0.7",
+    "@mochi-ui/skeleton": "workspace:*",
     "@mochi-ui/theme": "workspace:*",
     "@radix-ui/react-avatar": "^1.0.4",
     "class-variance-authority": "^0.7.0",
