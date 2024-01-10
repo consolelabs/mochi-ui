@@ -1,22 +1,18 @@
 import { iconButton, IconButtonStylesProps } from '@mochi-ui/theme'
-import React from 'react'
-import type * as Polymorphic from '@mochi-ui/polymorphic'
+import React, { ComponentPropsWithoutRef, ElementRef } from 'react'
+import { Slot } from '@radix-ui/react-slot'
 
 const { iconButtonCva } = iconButton
 
 export type IconButtonProps = IconButtonStylesProps & {
   label: string
-}
+  asChild?: boolean
+} & ComponentPropsWithoutRef<'button'>
 
-type PolymorphicIconButton = Polymorphic.ForwardRefComponent<
-  'button',
-  IconButtonProps
->
-
-const IconButton = React.forwardRef(
+const IconButton = React.forwardRef<ElementRef<'button'>, IconButtonProps>(
   (
     {
-      as: Component = 'button',
+      asChild,
       children,
       variant,
       color,
@@ -28,6 +24,7 @@ const IconButton = React.forwardRef(
     },
     ref,
   ) => {
+    const Component = asChild ? Slot : 'button'
     return (
       <Component
         ref={ref}
@@ -40,7 +37,7 @@ const IconButton = React.forwardRef(
       </Component>
     )
   },
-) as PolymorphicIconButton
+)
 
 IconButton.displayName = 'IconButton'
 
