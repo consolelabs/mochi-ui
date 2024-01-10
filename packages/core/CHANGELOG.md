@@ -1,5 +1,59 @@
 # @mochi-ui/core
 
+## 0.13.1
+
+### Patch Changes
+
+- [#610](https://github.com/consolelabs/mochi-ui/pull/610)
+  [`4c633a8`](https://github.com/consolelabs/mochi-ui/commit/4c633a8ee7af48c4153d4999157b73a6d1532e10)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Bump new version
+
+- Updated dependencies
+  [[`4c633a8`](https://github.com/consolelabs/mochi-ui/commit/4c633a8ee7af48c4153d4999157b73a6d1532e10)]:
+  - @mochi-ui/accordion@0.1.17
+  - @mochi-ui/action-bar@0.1.7
+  - @mochi-ui/alert@1.2.7
+  - @mochi-ui/avatar@0.2.1
+  - @mochi-ui/avatar-group@0.3.1
+  - @mochi-ui/badge@0.3.2
+  - @mochi-ui/button@0.4.13
+  - @mochi-ui/card@0.1.5
+  - @mochi-ui/checkbox@0.1.17
+  - @mochi-ui/content-editable@1.1.5
+  - @mochi-ui/drawer@0.3.4
+  - @mochi-ui/dropdown@0.2.4
+  - @mochi-ui/footer@0.1.8
+  - @mochi-ui/form@0.1.14
+  - @mochi-ui/icon-button@0.4.14
+  - @mochi-ui/input@0.3.4
+  - @mochi-ui/label@0.1.14
+  - @mochi-ui/layout@0.1.14
+  - @mochi-ui/list@0.0.27
+  - @mochi-ui/logo@0.1.14
+  - @mochi-ui/modal@0.3.4
+  - @mochi-ui/page-content@0.1.14
+  - @mochi-ui/page-header@0.3.4
+  - @mochi-ui/pagination@0.3.1
+  - @mochi-ui/popover@0.3.4
+  - @mochi-ui/profile-badge@0.2.1
+  - @mochi-ui/scroll-area@0.0.3
+  - @mochi-ui/section-header@0.2.4
+  - @mochi-ui/select@0.2.1
+  - @mochi-ui/separator@0.0.28
+  - @mochi-ui/sidebar@0.1.7
+  - @mochi-ui/skeleton@1.0.7
+  - @mochi-ui/switch@0.0.25
+  - @mochi-ui/table@0.7.1
+  - @mochi-ui/tabs@0.2.4
+  - @mochi-ui/toast@0.1.7
+  - @mochi-ui/toggle-button@0.1.2
+  - @mochi-ui/tooltip@0.2.14
+  - @mochi-ui/top-bar@0.1.13
+  - @mochi-ui/typography@0.1.1
+  - @mochi-ui/value-change@0.0.3
+  - @mochi-ui/icons@0.7.3
+  - @mochi-ui/theme@0.14.1
+
 ## 0.13.0
 
 ### Minor Changes

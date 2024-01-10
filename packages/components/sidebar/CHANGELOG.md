@@ -1,5 +1,21 @@
 # @mochi-ui/sidebar
 
+## 0.1.7
+
+### Patch Changes
+
+- [#610](https://github.com/consolelabs/mochi-ui/pull/610)
+  [`4c633a8`](https://github.com/consolelabs/mochi-ui/commit/4c633a8ee7af48c4153d4999157b73a6d1532e10)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Bump new version
+
+- Updated dependencies
+  [[`4c633a8`](https://github.com/consolelabs/mochi-ui/commit/4c633a8ee7af48c4153d4999157b73a6d1532e10)]:
+  - @mochi-ui/accordion@0.1.17
+  - @mochi-ui/tooltip@0.2.14
+  - @mochi-ui/typography@0.1.1
+  - @mochi-ui/icons@0.7.3
+  - @mochi-ui/theme@0.14.1
+
 ## 0.1.6
 
 ### Patch Changes
