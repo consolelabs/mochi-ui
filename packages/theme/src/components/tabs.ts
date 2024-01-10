@@ -25,13 +25,13 @@ const tabTriggerVariants = cva(
         disabled: false,
         variant: 'solid',
         className:
-          'rounded text-text-secondary hover:bg-neutral-outline-hover data-[state=active]:text-text-primary data-[state=active]:hover:text-text-secondary',
+          'rounded text-text-secondary hover:bg-background-level2 hover:text-text-primary data-[state=active]:text-primary-solid',
       },
       {
         disabled: false,
         variant: 'link',
         className:
-          'text-text-secondary hover:text-neutral-plain-fg data-[state=active]:text-text-primary data-[state=active]:hover:text-neutral-700',
+          'text-text-secondary hover:text-text-primary data-[state=active]:text-primary-solid',
       },
     ],
     defaultVariants: {
