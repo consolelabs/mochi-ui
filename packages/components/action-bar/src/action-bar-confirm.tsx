@@ -1,18 +1,14 @@
-import {
-  AlertConfirmButton,
-  AlertConfirmProps,
-  PolymorphicAlertConfirmButton,
-} from '@mochi-ui/alert'
-import { forwardRef } from 'react'
+import { AlertConfirmButton, AlertConfirmProps } from '@mochi-ui/alert'
+import { ElementRef, forwardRef } from 'react'
 
 type ActionBarConfirmButtonProps = AlertConfirmProps
-type PolymorphicActionBarConfirmButton = PolymorphicAlertConfirmButton
 
-const ActionBarConfirmButton = forwardRef((props, ref) => (
-  <AlertConfirmButton {...props} ref={ref} />
-)) as PolymorphicActionBarConfirmButton
+const ActionBarConfirmButton = forwardRef<
+  ElementRef<typeof AlertConfirmButton>,
+  ActionBarConfirmButtonProps
+>((props, ref) => <AlertConfirmButton {...props} ref={ref} />)
 
 ActionBarConfirmButton.displayName = 'ActionBarConfirmButton'
 
 export { ActionBarConfirmButton }
-export type { ActionBarConfirmButtonProps, PolymorphicActionBarConfirmButton }
+export type { ActionBarConfirmButtonProps }

@@ -34,6 +34,7 @@ const ActionBarContent = forwardRef<
     sideOffset,
     scheme,
     anchorClassName,
+    asChild,
     ...passProps
   } = props
 
@@ -46,6 +47,7 @@ const ActionBarContent = forwardRef<
     layout,
     size,
     scheme,
+    asChild,
   }
 
   return (

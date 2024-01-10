@@ -1,19 +1,14 @@
-import {
-  AlertActionGroup,
-  AlertActionGroupProps,
-  PolymorphicAlertActionGroup,
-} from '@mochi-ui/alert'
-import { forwardRef } from 'react'
+import { AlertActionGroup, AlertActionGroupProps } from '@mochi-ui/alert'
+import { ElementRef, forwardRef } from 'react'
 
 type ActionBarActionGroupProps = AlertActionGroupProps
 
-type PolymorphicActionBarActionGroup = PolymorphicAlertActionGroup
-
-const ActionBarActionGroup = forwardRef((props, ref) => (
-  <AlertActionGroup ref={ref} {...props} />
-)) as PolymorphicActionBarActionGroup
+const ActionBarActionGroup = forwardRef<
+  ElementRef<typeof AlertActionGroup>,
+  ActionBarActionGroupProps
+>((props, ref) => <AlertActionGroup ref={ref} {...props} />)
 
 ActionBarActionGroup.displayName = 'ActionBarActionGroup'
 
 export { ActionBarActionGroup }
-export type { ActionBarActionGroupProps, PolymorphicActionBarActionGroup }
+export type { ActionBarActionGroupProps }
