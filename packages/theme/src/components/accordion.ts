@@ -1,7 +1,10 @@
 import clsx from 'clsx'
 
 const accordionRootClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx('p-2 space-y-1 rounded-lg shadow-md text-text-primary', className)
+  clsx(
+    'p-2 space-y-1 rounded-lg shadow-md text-text-primary bg-background-body',
+    className,
+  )
 
 const accordionTriggerIconClsx = ({
   className = '',

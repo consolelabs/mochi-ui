@@ -48,7 +48,8 @@ const AppPageHeader = ({
 
       <PageHeaderActions>
         <Button
-          color="white"
+          color="neutral"
+          variant="outline"
           onClick={() => window.open(SOCIAL_LINKS.DOCS, '_blank')}
         >
           See docs

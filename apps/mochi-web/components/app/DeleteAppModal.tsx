@@ -138,7 +138,8 @@ export const DeleteAppModal = ({
             <div className="grid grid-cols-2 gap-3 mt-8">
               <Button
                 size="lg"
-                color="white"
+                color="neutral"
+                variant="outline"
                 type="button"
                 onClick={() => onOpenChange(false)}
               >

@@ -74,4 +74,9 @@ export const parameters: Parameters = {
       ],
     },
   },
+  darkMode: {
+    current: 'light',
+    classTarget: 'html',
+    stylePreview: true,
+  },
 }

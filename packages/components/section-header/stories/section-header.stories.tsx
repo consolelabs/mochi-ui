@@ -32,7 +32,7 @@ export function Default() {
 
   const actions = (
     <>
-      <Button color="white" className="w-full sm:w-max">
+      <Button color="neutral" variant="outline" className="w-full sm:w-max">
         See docs
       </Button>
       <Select value={selectedApp} onChange={setSelectedApp}>

@@ -125,7 +125,9 @@ export const MessageModal = ({
             />
             <div className="grid w-full grid-cols-2 gap-3 mt-8">
               <ModalTrigger asChild>
-                <Button color="white">Cancel</Button>
+                <Button color="neutral" variant="outline">
+                  Cancel
+                </Button>
               </ModalTrigger>
               <Button type="submit">Confirm</Button>
             </div>

@@ -79,7 +79,8 @@ export const TokenPriority = () => {
                     </div>
                     <IconButton
                       label="Delete"
-                      color="white"
+                      color="neutral"
+                      variant="outline"
                       className="px-1.5 py-1.5 mx-4"
                       onClick={() => remove(index)}
                     >
@@ -94,7 +95,7 @@ export const TokenPriority = () => {
       </DndWrapper>
       <DropdownMenu onOpenChange={() => setTokenQuery('')}>
         <DropdownMenuTrigger asChild>
-          <Button color="white" className="pl-2 pr-2 w-fit">
+          <Button color="neutral" variant="outline" className="pl-2 pr-2 w-fit">
             Add a default token
             <ChevronDownLine />
           </Button>

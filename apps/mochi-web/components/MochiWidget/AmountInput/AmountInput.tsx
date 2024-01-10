@@ -260,8 +260,8 @@ export const AmountInput: React.FC<AmountInputProps> = ({
           >
             <IconButton
               label="Toggle USD mode"
-              variant="solid"
-              color="white"
+              color="neutral"
+              variant="outline"
               onClick={toggleUsdMode}
             >
               <ArrowUpDownLine />

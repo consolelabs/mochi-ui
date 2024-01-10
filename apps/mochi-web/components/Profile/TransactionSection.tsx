@@ -71,7 +71,7 @@ export const TransactionOverviewSection = () => {
           ['Transaction', 'Pay Me', 'Pay Link'] as OverviewTransactionTabs[]
         ).map((t) => (
           <Button
-            color="white"
+            color="neutral"
             variant={t === selectedTab ? 'solid' : 'ghost'}
             key={t}
             className={clsx(
@@ -118,7 +118,7 @@ export const TransactionOverviewSection = () => {
               {displayTotalItems}
             </Typography>
           )}
-          <Button size="sm" color="white" variant="outline" asChild>
+          <Button size="sm" color="neutral" variant="outline" asChild>
             <Link href={ROUTES.TRANSACTIONS}>
               View all transactions <ArrowRightLine />
             </Link>

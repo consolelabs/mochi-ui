@@ -191,7 +191,8 @@ export const ProfileWidget = () => {
               </Typography>
             </ValueChange>
             <IconButton
-              color="white"
+              color="neutral"
+              variant="outline"
               label="chart"
               className="py-1 px-1"
               disabled

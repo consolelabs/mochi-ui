@@ -110,7 +110,8 @@ export const AppDetailIntegration = ({
                   onConfirm={onResetSecretKey}
                   trigger={
                     <Button
-                      color="white"
+                      color="neutral"
+                      variant="outline"
                       loading={isResettingSecretKey}
                       disabled={isResettingSecretKey}
                       className="min-w-[130px]"
@@ -125,7 +126,8 @@ export const AppDetailIntegration = ({
                 onConfirm={onResetSecretKey}
                 trigger={
                   <Button
-                    color="white"
+                    color="neutral"
+                    variant="outline"
                     loading={isResettingSecretKey}
                     disabled={isResettingSecretKey}
                     className="min-w-[75px]"

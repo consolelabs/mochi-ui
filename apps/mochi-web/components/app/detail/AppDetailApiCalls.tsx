@@ -23,7 +23,7 @@ const Expander: ColumnProps<ViewApplicationWebhookLog>['cell'] = (props) =>
     <IconButton
       onClick={props.row.getToggleExpandedHandler()}
       variant="link"
-      color="white"
+      color="neutral"
       className="w-6 !h-6 flex justify-center items-center"
       label={props.row.getIsExpanded() ? 'Collapse' : 'Expand'}
     >
