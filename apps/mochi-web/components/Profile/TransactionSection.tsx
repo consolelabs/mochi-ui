@@ -83,7 +83,7 @@ export const TransactionOverviewSection = () => {
             onClick={() => setSelectedTab(t)}
           >
             {t}
-            {transactionMapper[t].length > 0 && (
+            {transactionMapper[t].length > 0 && t !== 'Transaction' && (
               <Badge appearance="danger">{transactionMapper[t].length}</Badge>
             )}
           </Button>

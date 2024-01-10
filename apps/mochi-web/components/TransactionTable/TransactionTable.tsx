@@ -66,7 +66,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: 'type',
         id: 'type',
-        width: 140,
+        width: 120,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
