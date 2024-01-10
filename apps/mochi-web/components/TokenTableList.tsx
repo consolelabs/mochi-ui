@@ -93,7 +93,7 @@ export const TokenTableList = ({
             '!overflow-y-visible h-full',
             clsx(wrapperClassName),
           )}
-          className={clsx('!static', { 'h-full': !data.length }, className)}
+          className={clsx('!static', { 'h-[420px]': !data.length }, className)}
           emptyContent={
             <div className="flex flex-col justify-center items-center h-full">
               <Bag className="w-14 h-14 text-neutral-500" />
