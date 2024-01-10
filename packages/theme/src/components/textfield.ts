@@ -25,7 +25,7 @@ const textFieldVariants = cva(
         lg: 'h-[52px] text-md leading-snug',
       },
       disabled: {
-        true: 'text-text-secondary cursor-not-allowed',
+        true: 'text-text-disabled cursor-not-allowed',
       },
       error: {
         true: '!caret-danger-solid-focus',

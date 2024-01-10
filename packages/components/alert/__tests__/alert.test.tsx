@@ -27,7 +27,7 @@ describe('Alert', () => {
         <AlertDescription>{message}</AlertDescription>
       </Alert>,
     )
-    expect(container.firstChild).toHaveClass('bg-neutral-outline')
+    expect(container.firstChild).toHaveClass('bg-neutral-soft')
   })
 
   it('renders with the provided appearance', () => {
@@ -39,7 +39,7 @@ describe('Alert', () => {
         <AlertDescription>{message}</AlertDescription>
       </Alert>,
     )
-    expect(container.firstChild).toHaveClass('bg-success-outline')
+    expect(container.firstChild).toHaveClass('bg-success-soft')
   })
 
   it('renders with the provided size', () => {
