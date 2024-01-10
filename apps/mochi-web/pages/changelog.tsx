@@ -82,7 +82,7 @@ export default function Changelog({ data }: Props) {
   return (
     <Layout>
       <SEO title={PAGES.CHANGE_LOG.title} tailTitle />
-      <div className="flex flex-col py-16 px-6 mx-auto max-w-7xl md:px-12">
+      <div className="flex flex-col py-16 landing-container">
         <div className="mb-12 text-3xl text-center md:text-4xl lg:text-5xl">
           Changelog
         </div>

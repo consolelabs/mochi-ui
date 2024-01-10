@@ -95,7 +95,7 @@ export default function Index() {
   return (
     <Layout>
       <SEO title="Mochi" />
-      <div className="grid grid-cols-1 auto-rows-min gap-y-7 gap-x-32 py-8 m-auto w-full max-w-7xl lg:grid-cols-2 lg:grid-rows-2 xl:gap-x-60 landing-block">
+      <div className="grid grid-cols-1 auto-rows-min gap-y-7 gap-x-32 py-8 m-auto lg:grid-cols-2 lg:grid-rows-2 xl:gap-x-60 landing-container">
         <div className="flex flex-col lg:justify-end">
           <p className="text-[32px] leading-[38.4px] title-tracking md:text-[40px] md:leading-[48px]">
             Send{' '}
@@ -224,7 +224,7 @@ export default function Index() {
       />
       <Divider />
       <SupportedPlatforms />
-      <div className="flex justify-center mb-8 md:justify-between md:my-36 landing-block">
+      <div className="flex justify-center mb-8 md:justify-between md:my-36 landing-container">
         <div className="flex flex-col gap-y-1">
           <p className="text-3xl md:text-4xl title-tracking text-neutral-900">
             Simple, intuitive commands

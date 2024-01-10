@@ -40,7 +40,7 @@ const gray1 = '#F7F6F4'
 
 function BrowseAPIs() {
   return (
-    <div className="flex flex-col landing-block">
+    <div className="flex flex-col landing-container">
       <p className="text-2xl font-medium md:text-4xl">Browse APIs</p>
       <div className="flex flex-col gap-5 mt-5 md:grid md:grid-cols-2 md:grid-rows-3">
         {[
@@ -162,7 +162,7 @@ const networks: [
 ]
 function SupportedPlatforms() {
   return (
-    <div className="hidden flex-col mt-16 md:flex landing-block">
+    <div className="hidden flex-col mt-16 md:flex landing-container">
       <p className="text-4xl font-medium text-center">Supported platforms</p>
       <div className="flex flex-col gap-y-8 mt-8">
         <div className="flex flex-col gap-y-4">
@@ -218,7 +218,7 @@ function SupportedPlatforms() {
 function TryItOut() {
   const [idx, setIdx] = useState(0)
   return (
-    <div className="hidden flex-col md:flex landing-block">
+    <div className="hidden flex-col md:flex landing-container">
       <p className="text-4xl font-medium">Try it out</p>
       <div className="flex gap-x-5 mt-8">
         <ul className="flex flex-col flex-shrink-0 gap-y-2 w-1/3">
@@ -299,7 +299,7 @@ export default function Developer() {
   return (
     <Layout>
       <SEO />
-      <div className="flex flex-col items-center mt-24 landing-block">
+      <div className="flex flex-col items-center mt-24 landing-container">
         <p className="text-3xl font-medium text-center md:text-6xl">
           Bring Mochi power into
           <br />
@@ -351,7 +351,7 @@ export default function Developer() {
       <TryItOut />
       <Divider className="hidden md:block" />
       <SupportedPlatforms />
-      <div className="flex flex-col gap-x-10 gap-y-10 md:flex-row md:gap-y-0 md:items-center md:py-14 md:pt-4 md:mt-36 landing-block">
+      <div className="flex flex-col gap-x-10 gap-y-10 md:flex-row md:gap-y-0 md:items-center md:py-14 md:pt-4 md:mt-36 landing-container">
         <div className="flex flex-col flex-1">
           <p className="text-2xl font-medium md:text-4xl md:whitespace-nowrap">
             Ready to start building?

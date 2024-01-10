@@ -20,6 +20,6 @@ describe('Page Content', () => {
     )
 
     const content = container.querySelector('main')
-    expect(content?.firstChild).toHaveClass('max-w-[1108px]')
+    expect(content?.firstChild).toHaveClass('dashboard-container')
   })
 })
