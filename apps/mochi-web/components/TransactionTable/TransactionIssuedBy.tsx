@@ -20,7 +20,7 @@ export const TransactionIssuedBy = (props: TransactionIssuedByProps) => {
           fallback={tx.from.address}
         />
       ) : (
-        <AvatarGroup>
+        <AvatarGroup size="xs">
           {allTxs.map((tx) => (
             <Avatar
               key={tx.code}
