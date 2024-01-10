@@ -1,6 +1,6 @@
 {
   "name": "@mochi-ui/separator",
-  "version": "0.0.27",
+  "version": "0.0.28",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
