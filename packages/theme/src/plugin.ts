@@ -66,29 +66,32 @@ export const mochiui = () => {
         parsedColorsCache[colorValue] = parsedColor
 
         const [h, s, l, defaultAlphaValue] = parsedColor
-        const colorVariable = `--tw-${colorName}`
-        const opacityVariable = `--tw-${colorName}-opacity`
+        // const colorVariable = `--tw-${colorName}`
+        // const opacityVariable = `--tw-${colorName}-opacity`
+        const mochiColorVariable = `--tw-${colorName}`
+        const mochiOpacityVariable = `--tw-${colorName}-opacity`
         // set the css variable in "@layer utilities"
-        resolved.utilities[cssSelector]![colorVariable] = `${h} ${s}% ${l}%`
+        resolved.utilities[cssSelector]![mochiColorVariable] =
+          `${h} ${s}% ${l}%`
         // if an alpha value was provided in the color definition, store it in a css variable
         if (typeof defaultAlphaValue === 'number') {
-          resolved.utilities[cssSelector]![opacityVariable] =
+          resolved.utilities[cssSelector]![mochiOpacityVariable] =
             defaultAlphaValue.toFixed(2)
         }
         // set the dynamic color in tailwind config theme.colors
         resolved.colors[colorName] = ({ opacityVariable, opacityValue }) => {
           // if the opacity is set  with a slash (e.g. bg-primary/90), use the provided value
           if (!Number.isNaN(+opacityValue)) {
-            return `hsl(var(${colorVariable}) / ${opacityValue})`
+            return `hsl(var(${mochiColorVariable}) / ${opacityValue})`
           }
           // if no opacityValue was provided (=it is not parsable to a number)
           // the opacityVariable (opacity defined in the color definition rgb(0, 0, 0, 0.5)) should have the priority
           // over the tw class based opacity(e.g. "bg-opacity-90")
           // This is how tailwind behaves as for v3.2.4
           if (opacityVariable) {
-            return `hsl(var(${colorVariable}) / var(${opacityVariable}, var(${opacityVariable})))`
+            return `hsl(var(${mochiColorVariable}) / var(${mochiOpacityVariable}, var(${opacityVariable})))`
           }
-          return `hsl(var(${colorVariable}) / var(${opacityVariable}, 1))`
+          return `hsl(var(${mochiColorVariable}) / var(${mochiOpacityVariable}, 1))`
         }
       } catch (error: any) {
         // eslint-disable-next-line no-console
