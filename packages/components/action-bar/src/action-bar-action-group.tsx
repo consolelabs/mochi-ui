@@ -1,7 +1,9 @@
-import { AlertActionGroup, AlertActionGroupProps } from '@mochi-ui/alert'
 import { ElementRef, forwardRef } from 'react'
+import { AlertActionGroup, AlertActionGroupProps } from '@mochi-ui/alert'
 
-type ActionBarActionGroupProps = AlertActionGroupProps
+// NOTE: this fix build err
+// The inferred type of 'ActionBarActionGroup' cannot be named without a reference to '../../alert/node_modules/@mochi-ui/theme/src'.
+interface ActionBarActionGroupProps extends AlertActionGroupProps {}
 
 const ActionBarActionGroup = forwardRef<
   ElementRef<typeof AlertActionGroup>,
