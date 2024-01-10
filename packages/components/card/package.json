@@ -39,14 +39,14 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "@mochi-ui/polymorphic": "workspace:*",
     "@mochi-ui/theme": "workspace:*",
+    "@radix-ui/react-slot": "^1.0.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0"
   },
   "devDependencies": {
-    "clean-package": "^2.2.0",
     "@mochi-ui/typography": "workspace:*",
+    "clean-package": "^2.2.0",
     "eslint-config-custom": "workspace:*",
     "prettier": "^3.0.3",
     "react": "^18.2.0",
