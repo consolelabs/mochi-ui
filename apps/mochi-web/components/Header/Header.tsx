@@ -117,7 +117,7 @@ const MobileLoginPanel = () => {
 const MobileHeader = ({ onClose }: { onClose: () => void }) => {
   const { profile } = useLoginWidget()
   return (
-    <button className="" onClick={onClose}>
+    <button onClick={onClose}>
       <Link
         href={ROUTES.MY_PROFILE}
         className="block relative w-full h-20 group"
@@ -158,30 +158,35 @@ export const Header = ({
   const mobileNavItems = [
     <Link
       href={ROUTES.FEATURES}
-      className="flex items-center text-sm"
+      className="flex items-center text-sm px-2 py-3"
       key="mobile-nav-features"
     >
-      <Button
-        variant="link"
+      <Typography
+        level="p6"
         color="neutral"
-        className="flex w-full !justify-start !text-base !px-2 py-3 bg-background-surface !text-neutral-800 !font-normal hover:!text-black !h-max"
+        className={clsx(
+          '!text-base transition-colors duration-300 hover:!text-primary-plain-fg',
+          {
+            '!text-primary-plain-fg': pathname === ROUTES.FEATURES,
+          },
+        )}
       >
-        <Typography level="p6" className="!text-base">
-          Features
-        </Typography>
-      </Button>
+        Features
+      </Typography>
     </Link>,
     // eslint-disable-next-line jsx-a11y/anchor-is-valid
-    <Link href="#" className="flex items-center text-sm" key="mobile-nav-api">
-      <Button
-        variant="link"
+    <Link
+      href="#"
+      className="flex items-center text-sm px-2 py-3"
+      key="mobile-nav-api"
+    >
+      <Typography
+        level="p6"
         color="neutral"
-        className="flex w-full !justify-start !text-base !px-2 py-3 bg-background-surface !text-neutral-800 !font-normal hover:!text-black !h-max"
+        className="!text-base transition-colors duration-300 hover:!text-primary-plain-fg"
       >
-        <Typography level="p6" className="!text-base">
-          API
-        </Typography>
-      </Button>
+        API
+      </Typography>
     </Link>,
     <MobileNavAccordionItem
       key="mobile-nav-accordion"
@@ -352,21 +357,31 @@ export const Header = ({
       : [
           <Link
             href={ROUTES.EXPLORE}
-            className="flex items-center px-4 text-sm font-medium"
+            className={clsx(
+              'px-4 text-sm font-medium transition-colors duration-300 hover:text-primary-plain-fg',
+              {
+                'text-primary-plain-fg': pathname === ROUTES.EXPLORE,
+              },
+            )}
             key="desktop-nav-explore"
           >
             Explore
           </Link>,
           <Link
             href={ROUTES.FEATURES}
-            className="flex items-center px-4 text-sm font-medium"
+            className={clsx(
+              'px-4 text-sm font-medium transition-colors duration-300 hover:text-primary-plain-fg',
+              {
+                'text-primary-plain-fg': pathname === ROUTES.FEATURES,
+              },
+            )}
             key="desktop-nav-features"
           >
             Features
           </Link>,
           <Link
             href={ROUTES.DOCS}
-            className="flex items-center px-4 text-sm font-medium"
+            className="px-4 text-sm font-medium transition-colors duration-300 hover:text-primary-plain-fg"
             key="desktop-nav-api"
           >
             Docs
@@ -374,7 +389,11 @@ export const Header = ({
           <DropdownMenu key="desktop-nav-dropdown">
             <DropdownMenuTrigger asChild>
               <button type="button" className="px-4">
-                <Typography level="p5" fontWeight="md">
+                <Typography
+                  level="p6"
+                  fontWeight="md"
+                  className="!text-sm transition-colors duration-300 hover:text-primary-plain-fg"
+                >
                   Download
                 </Typography>
               </button>
@@ -388,7 +407,7 @@ export const Header = ({
                 leftIcon={<DiscordColored />}
                 onClick={() => window.open(DISCORD_LINK, '_blank')}
               >
-                Discord asdas
+                Discord
               </DropdownMenuItem>
               <DropdownMenuItem
                 leftIcon={<TelegramColored />}
@@ -418,7 +437,7 @@ export const Header = ({
             </DropdownMenuContent>
           </DropdownMenu>,
           <div
-            className="flex items-center -mx-2 w-px h-full"
+            className="flex items-center -ml-4 w-px h-full"
             key="desktop-nav-divider"
           >
             <div className="w-full h-6 bg-[#eeedec]" />
