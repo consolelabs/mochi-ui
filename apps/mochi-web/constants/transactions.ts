@@ -1,17 +1,4 @@
-import {
-  Arb,
-  Avalanche,
-  Base,
-  Bnb,
-  DiscordColored,
-  Eth,
-  Ftm,
-  LinkLine,
-  Matic,
-  Mnt,
-  WebSolid,
-  ShapesSolid,
-} from '@mochi-ui/icons'
+import { DiscordColored, ShapesSolid, WebSolid } from '@mochi-ui/icons'
 import { SVGProps } from 'react'
 import Telegram from '~cpn/MochiWidget/PlatformPicker/icons/telegram-ic'
 
@@ -103,57 +90,5 @@ export const platformFilters: {
     label: 'Telegram',
     value: 'telegram',
     icon: Telegram,
-  },
-]
-
-export const networkFilters: {
-  label: string
-  value: string
-  icon?: (props: SVGProps<SVGSVGElement>) => JSX.Element
-}[] = [
-  {
-    label: 'All Networks',
-    value: 'all',
-    icon: LinkLine,
-  },
-  {
-    label: 'Ethereum',
-    value: '1',
-    icon: Eth,
-  },
-  {
-    label: 'Binance',
-    value: '56',
-    icon: Bnb,
-  },
-  {
-    label: 'Base',
-    value: '8453',
-    icon: Base,
-  },
-  {
-    label: 'Fantom',
-    value: '250',
-    icon: Ftm,
-  },
-  {
-    label: 'Arbitrum',
-    value: '42161',
-    icon: Arb,
-  },
-  {
-    label: 'Avalanche',
-    value: '43114',
-    icon: Avalanche,
-  },
-  {
-    label: 'Mantle',
-    value: '5000',
-    icon: Mnt,
-  },
-  {
-    label: 'Polygon',
-    value: '137',
-    icon: Matic,
   },
 ]

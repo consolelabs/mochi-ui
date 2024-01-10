@@ -314,6 +314,7 @@ export interface ModelProfileTransaction {
   other_profiles?: MochiprofileMochiProfile[]
   other_txs?: ModelProfileTransaction[]
   settled_at?: string
+  sibling_txs?: ModelProfileTransaction[]
   source_platform?: string
   status?: string
   token?: ModelToken
@@ -372,17 +373,13 @@ export interface ModelTransactionResponse {
   created_at?: string
   expired_at?: string
   external_id?: string
-  from_amount?: string
   from_profile?: MochiprofileMochiProfile
   from_profile_id?: string
   from_profile_source?: string
-  from_token?: ModelToken
-  /** used in swap response */
-  from_token_id?: string
   hashtags?: string[]
   id?: string
   internal_id?: number
-  metadata?: Record<string, any>
+  metadata?: ModelProfileTransactionMetadata
   onchain_tx_hash?: string
   original_tx?: ModelProfileTransaction
   original_tx_id?: string
@@ -394,11 +391,9 @@ export interface ModelTransactionResponse {
   other_profiles?: MochiprofileMochiProfile[]
   other_txs?: ModelProfileTransaction[]
   settled_at?: string
+  sibling_txs?: ModelProfileTransaction[]
   source_platform?: string
   status?: string
-  to_amount?: string
-  to_token?: ModelToken
-  to_token_id?: string
   token?: ModelToken
   token_id?: string
   total_amount?: string

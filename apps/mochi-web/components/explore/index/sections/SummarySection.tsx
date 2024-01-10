@@ -43,7 +43,6 @@ export const SummarySection = () => {
               'Tips given',
               `${utils.formatDigit({
                 value: transactionSummary?.tips_given || 0,
-                shorten: true,
               })}+`,
             ],
             [
@@ -56,7 +55,6 @@ export const SummarySection = () => {
               'Active users',
               `${utils.formatDigit({
                 value: transactionSummary?.active_users || 0,
-                shorten: true,
               })}+`,
             ],
             [
@@ -64,7 +62,6 @@ export const SummarySection = () => {
               'Networks',
               `${utils.formatDigit({
                 value: transactionSummary?.total_networks || 0,
-                shorten: true,
               })}+`,
             ],
           ] as [any, string, string][]

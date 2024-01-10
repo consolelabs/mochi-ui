@@ -98,6 +98,15 @@ export async function transform(d: any): Promise<Tx> {
         const [newTo] = UI.render(Platform.Web, d.metadata.vault)
         to = newTo
       }
+
+      // get application name
+      if (d.other_profile.application) {
+        where.text = d.other_profile.application.name
+      }
+      // prioritize application name from from_profile
+      if (d.from_profile.application) {
+        where.text = d.from_profile.application.name
+      }
     } catch (e) {
       console.error(e)
     }
@@ -183,4 +192,42 @@ export const openTx = (tx: Tx) => {
   } else {
     window.open(ROUTES.TX_RECEIPTS(tx.code))
   }
+}
+
+// Build an address string that looks like this:
+// 0xabc...123 & N person/people (first tx & remaining N)
+export const buildAddressString = (addresses: string[]) => {
+  const initialAddresses = addresses.slice(0, 1)
+  const remainingAddresses = addresses.slice(1)
+
+  const initialAddressString = initialAddresses
+    .map(mochiUtils.string.formatAddressUsername)
+    .join(', ')
+  const remainingAddressCount = remainingAddresses.length
+
+  if (remainingAddressCount === 0) {
+    return initialAddressString
+  }
+
+  return `${initialAddressString} & ${remainingAddressCount} ${
+    remainingAddressCount > 1 ? 'people' : 'person'
+  }`
+}
+
+// Build a platform string that looks like this:
+// Discord, Twitter & 2 other (first 2 platforms & remaining N)
+export const buildPlatformString = (platforms: string[]) => {
+  const initialPlatforms = platforms.slice(0, 2)
+  const remainingPlatforms = platforms.slice(2)
+
+  const initialPlatformsNameString = initialPlatforms.join(', ')
+  const remainingPlatformsCount = remainingPlatforms.length
+
+  if (remainingPlatformsCount === 0) {
+    return initialPlatformsNameString
+  }
+
+  return `${initialPlatformsNameString} & ${remainingPlatformsCount} other${
+    remainingPlatformsCount > 1 ? 's' : ''
+  }`
 }

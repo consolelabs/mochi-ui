@@ -6,7 +6,9 @@ import {
   SelectValue,
 } from '@mochi-ui/core'
 import { LinkLine } from '@mochi-ui/icons'
-import { networkFilters } from '~constants/transactions'
+import { useEffect, useState } from 'react'
+import { API } from '~constants/api'
+import { ModelChain } from '~types/mochi-pay-schema'
 
 export type ChainPickerProps = {
   value: string
@@ -14,11 +16,18 @@ export type ChainPickerProps = {
 }
 
 export const ChainPicker = (props: ChainPickerProps) => {
-  const { value, onChange } = props
+  const { value = 'all', onChange } = props
 
-  const selectedNetwork = networkFilters.find(
-    (network) => network.value === value,
-  )
+  const [chains, setChains] = useState<ModelChain[]>([])
+  useEffect(() => {
+    API.MOCHI_PAY.get('/chains')
+      .json((r) => r)
+      .then((r) => {
+        setChains(r.data)
+      })
+  }, [])
+
+  const selectedChain = chains.find((c) => c.chain_id === value)
 
   return (
     <Select value={value} onChange={(v) => onChange(v === 'all' ? '' : v)}>
@@ -28,9 +37,13 @@ export const ChainPicker = (props: ChainPickerProps) => {
         hasPadding
         leftIcon={
           // eslint-disable-next-line
-          selectedNetwork ? (
-            selectedNetwork.icon ? (
-              <selectedNetwork.icon />
+          selectedChain ? (
+            selectedChain.icon ? (
+              <img
+                src={selectedChain.icon}
+                alt={selectedChain.name}
+                className="w-6 h-6"
+              />
             ) : undefined
           ) : (
             <LinkLine />
@@ -41,14 +54,21 @@ export const ChainPicker = (props: ChainPickerProps) => {
         <SelectValue placeholder="All Networks" />
       </SelectTrigger>
       <SelectContent className="min-w-[250px]">
-        {networkFilters.map((network) => {
+        <SelectItem value="all" leftIcon={<LinkLine />}>
+          All Networks
+        </SelectItem>
+        {chains.map((chain) => {
           return (
             <SelectItem
-              key={network.value}
-              value={network.value}
-              leftIcon={network.icon ? <network.icon /> : undefined}
+              key={chain.chain_id}
+              value={chain.chain_id || ''}
+              leftIcon={
+                chain.icon ? (
+                  <img src={chain.icon} alt={chain.name} className="w-6 h-6" />
+                ) : undefined
+              }
             >
-              {network.label}
+              {chain.name}
             </SelectItem>
           )
         })}
