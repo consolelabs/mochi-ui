@@ -4,7 +4,6 @@ import Button, { ButtonProps } from '../src/button'
 
 const buttonColorVariants: ButtonProps['color'][] = [
   'primary',
-  'white',
   'secondary',
   'warning',
   'danger',
@@ -16,6 +15,7 @@ const buttonVariants: ButtonProps['variant'][] = [
   'solid',
   'outline',
   'ghost',
+  'soft',
   'link',
 ]
 
@@ -58,15 +58,39 @@ export const Default: Story = {
 
 export function Variants() {
   return (
-    <div className="flex items-stretch space-x-4">
-      {buttonVariants.map((variant) => (
-        <div key={variant} className="flex flex-col justify-around gap-4">
-          <Button variant={variant}>{variant}</Button>
-          <Button disabled variant={variant}>
-            {variant}
-          </Button>
-        </div>
-      ))}
+    <div className="flex w-full">
+      <div className="flex flex-col items-stretch gap-5">
+        {buttonVariants.map((variant) => (
+          <>
+            <div key={variant} className="flex justify-around gap-4">
+              {buttonColorVariants.map((color) => (
+                <Button
+                  key={`${variant}-${color}`}
+                  variant={variant}
+                  color={color}
+                >
+                  {variant}-{color}
+                </Button>
+              ))}
+            </div>
+
+            <div key={variant} className="flex justify-around gap-4">
+              {buttonColorVariants.map((color) => (
+                <Button
+                  key={`${variant}-${color}`}
+                  variant={variant}
+                  color={color}
+                  disabled
+                >
+                  {variant}-{color}-disabled
+                </Button>
+              ))}
+            </div>
+
+            <hr />
+          </>
+        ))}
+      </div>
     </div>
   )
 }

@@ -32,7 +32,7 @@ const alertCva = cva(['flex rounded-lg relative gap-1'], {
       large: ['p-4'],
     },
     scheme: {
-      primary: ['bg-primary-outline'],
+      primary: ['bg-background-body'],
       secondary: ['bg-secondary-outline'],
       neutral: ['bg-neutral-outline'],
       success: ['bg-success-outline'],

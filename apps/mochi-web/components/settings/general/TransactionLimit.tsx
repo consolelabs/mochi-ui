@@ -90,14 +90,20 @@ export const TransactionLimit = () => {
                 defaultValues={field.value}
                 onConfirm={(data) => update(index, data)}
                 trigger={
-                  <IconButton label="Edit" color="white" className="px-1 py-1">
+                  <IconButton
+                    label="Edit"
+                    color="neutral"
+                    variant="outline"
+                    className="px-1 py-1"
+                  >
                     <EditLine className="w-4 h-4" />
                   </IconButton>
                 }
               />
               <IconButton
                 label="Delete"
-                color="white"
+                color="neutral"
+                variant="outline"
                 className="px-1.5 py-1.5"
                 onClick={() => {
                   remove(index)
@@ -117,7 +123,7 @@ export const TransactionLimit = () => {
           actionList={filteredActionList}
           onConfirm={(data) => append(data)}
           trigger={
-            <Button color="white" className="w-fit">
+            <Button color="neutral" variant="outline" className="w-fit">
               Add a new limit
             </Button>
           }

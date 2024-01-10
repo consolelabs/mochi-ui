@@ -283,11 +283,8 @@ export const AmountInput: React.FC<AmountInputProps> = ({
           >
             <IconButton
               label="Toggle USD mode"
-              variant="solid"
-              className={clsx('!p-0 !w-6 !h-6 my-auto flex justify-center', {
-                '!bg-neutral-500': !isUsdMode,
-                '!bg-primary-700': isUsdMode,
-              })}
+              variant="outline"
+              color="neutral"
               onClick={() => {
                 if (!isUsdMode) {
                   handleAmountChanged({

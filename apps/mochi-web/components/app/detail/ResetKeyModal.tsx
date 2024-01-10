@@ -39,7 +39,7 @@ export const ResetKeyModal = ({ trigger, onConfirm }: Props) => {
           </div>
           <div className="grid grid-cols-2 gap-3 mt-8">
             <ModalTrigger asChild>
-              <Button size="lg" color="white">
+              <Button size="lg" color="neutral" variant="outline">
                 Cancel
               </Button>
             </ModalTrigger>

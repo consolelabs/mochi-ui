@@ -31,7 +31,7 @@ export const AppDetailMembers = ({ profileId, appId }: Props) => {
         <Typography level="p4" className="font-medium">
           Members {members.length ? `(${members.length})` : ''}
         </Typography>
-        <Button size="sm" color="white">
+        <Button size="sm" color="neutral" variant="outline">
           <AddUserSolid className="w-4 h-4" />
           Invite
         </Button>

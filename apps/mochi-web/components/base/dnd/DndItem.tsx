@@ -25,7 +25,7 @@ export const DndItem = ({ className, draggableId, index, children }: Props) => {
           <IconButton
             label="Move"
             variant="ghost"
-            color="white"
+            color="neutral"
             className="cursor-grab active:cursor-grabbing mx-1.5"
             {...provided.dragHandleProps}
           >
