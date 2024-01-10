@@ -75,7 +75,7 @@ export const TransactionOverviewSection = () => {
             variant={t === selectedTab ? 'solid' : 'ghost'}
             key={t}
             className={clsx(
-              'font-semibold border-divider border-b-0 !rounded-b-none',
+              'font-semibold border-divider border-b-0 !rounded-b-none focus-visible:shadow-none',
               {
                 'hover:!bg-background-popup': selectedTab === t,
               },
