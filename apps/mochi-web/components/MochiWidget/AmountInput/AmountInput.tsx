@@ -272,7 +272,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
       <div className="flex flex-col p-4 rounded-lg bg-white-pure">
         <div className="flex flex-1 gap-x-8 justify-between items-center">
           <div className="flex flex-col flex-1 gap-y-4 items-start">
-            <div className="flex gap-x-1 items-start h-[34px]">
+            <div className="flex gap-x-1 items-start h-max">
               {isUsdMode && (
                 <div className="font-medium leading-[34px] text-[32px] text-neutral-800">
                   $
