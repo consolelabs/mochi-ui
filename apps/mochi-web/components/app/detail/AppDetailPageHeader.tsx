@@ -30,7 +30,7 @@ export const AppDetailPageHeader = ({ name = '', onDeleteApp }: Props) => {
       <PageHeaderTitle>{name}</PageHeaderTitle>
 
       <PageHeaderActions>
-        <Button color="white" asChild>
+        <Button color="neutral" variant="outline" asChild>
           <a href={SOCIAL_LINKS.DOCS} target="_blank">
             See docs
           </a>

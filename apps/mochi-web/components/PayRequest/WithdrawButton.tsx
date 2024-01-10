@@ -57,8 +57,8 @@ export default function WithdrawButton({ code }: { code: string }) {
                 <Button
                   type="button"
                   className="flex-1"
+                  color="neutral"
                   variant="outline"
-                  color="white"
                 >
                   Close
                 </Button>
