@@ -107,11 +107,11 @@ export const mochiui = () => {
           maxWidth: '1280px',
           marginLeft: 'auto',
           marginRight: 'auto',
-          paddingLeft: '16px',
-          paddingRight: '16px',
+          paddingLeft: '1rem',
+          paddingRight: '1rem',
           '@screen md': {
-            paddingLeft: '24px',
-            paddingRight: '24px',
+            paddingLeft: '1.5rem',
+            paddingRight: '1.5rem',
           },
         },
         '.dashboard-container': {
@@ -119,11 +119,11 @@ export const mochiui = () => {
           maxWidth: '1108px',
           marginLeft: 'auto',
           marginRight: 'auto',
-          paddingLeft: '16px',
-          paddingRight: '16px',
+          paddingLeft: '1rem',
+          paddingRight: '1rem',
           '@screen md': {
-            paddingLeft: '24px',
-            paddingRight: '24px',
+            paddingLeft: '1.5rem',
+            paddingRight: '1.5rem',
           },
         },
       })

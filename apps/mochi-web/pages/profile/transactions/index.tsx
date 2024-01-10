@@ -97,7 +97,7 @@ const App: NextPageWithLayout = () => {
         onFilterTypeChange={setFilterType}
         onChainIdChange={setChainId}
       />
-      <DashboardBody containerClassName="max-w-[1488px]">
+      <DashboardBody containerClassName="!max-w-[1488px]">
         <Transaction
           filterType={filterType}
           filterPlatform={filterPlatform}
