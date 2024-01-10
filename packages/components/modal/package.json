@@ -1,6 +1,6 @@
 {
   "name": "@mochi-ui/modal",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [

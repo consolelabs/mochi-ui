@@ -1,5 +1,13 @@
 # @mochi-ui/theme
 
+## 0.15.0
+
+### Minor Changes
+
+- [#592](https://github.com/consolelabs/mochi-ui/pull/592)
+  [`46de143`](https://github.com/consolelabs/mochi-ui/commit/46de143b5afa658a7fa4cb9f7a47d523aa14a53b)
+  Thanks [@leduyhien152](https://github.com/leduyhien152)! - Fix Tabs style
+
 ## 0.14.1
 
 ### Patch Changes

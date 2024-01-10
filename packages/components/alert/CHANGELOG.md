@@ -1,5 +1,15 @@
 # @mochi-ui/alert
 
+## 1.2.8
+
+### Patch Changes
+
+- Updated dependencies
+  [[`46de143`](https://github.com/consolelabs/mochi-ui/commit/46de143b5afa658a7fa4cb9f7a47d523aa14a53b)]:
+  - @mochi-ui/theme@0.15.0
+  - @mochi-ui/button@0.4.14
+  - @mochi-ui/icon-button@0.4.15
+
 ## 1.2.7
 
 ### Patch Changes

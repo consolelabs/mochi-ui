@@ -1,5 +1,15 @@
 # @mochi-ui/top-bar
 
+## 0.1.14
+
+### Patch Changes
+
+- Updated dependencies
+  [[`46de143`](https://github.com/consolelabs/mochi-ui/commit/46de143b5afa658a7fa4cb9f7a47d523aa14a53b)]:
+  - @mochi-ui/theme@0.15.0
+  - @mochi-ui/icon-button@0.4.15
+  - @mochi-ui/list@0.0.28
+
 ## 0.1.13
 
 ### Patch Changes

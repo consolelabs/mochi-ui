@@ -1,5 +1,18 @@
 # @mochi-ui/card
 
+## 0.1.6
+
+### Patch Changes
+
+- [#599](https://github.com/consolelabs/mochi-ui/pull/599)
+  [`1dbe779`](https://github.com/consolelabs/mochi-ui/commit/1dbe7793ef50f9636d304ed551f8fc85c7e5637d)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Support
+  polymorphic for card component
+
+- Updated dependencies
+  [[`46de143`](https://github.com/consolelabs/mochi-ui/commit/46de143b5afa658a7fa4cb9f7a47d523aa14a53b)]:
+  - @mochi-ui/theme@0.15.0
+
 ## 0.1.5
 
 ### Patch Changes
