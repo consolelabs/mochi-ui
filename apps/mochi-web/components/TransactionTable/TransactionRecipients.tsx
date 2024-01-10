@@ -20,7 +20,7 @@ export const TransactionRecipients = (props: TransactionRecipientsProps) => {
           fallback={tx.to.address}
         />
       ) : (
-        <AvatarGroup>
+        <AvatarGroup size="xs">
           {allTxs.map((tx) => (
             <Avatar key={tx.code} src={tx.to.avatar} fallback={tx.to.address} />
           ))}

@@ -106,7 +106,7 @@ export function Default() {
       </PageHeader>
 
       <PageHeader>
-        <PageHeaderBackButton as="a" href="#" />
+        <PageHeaderBackButton />
         <PageHeaderTitle>
           Mochi
           <PageHeaderTitleExtra>(2,951 members)</PageHeaderTitleExtra>

@@ -10,7 +10,6 @@ import {
   SelectValue,
 } from '@mochi-ui/core'
 import { useLoginWidget } from '@mochi-web3/login-widget'
-import Link from 'next/link'
 import { SEO } from '~app/layout/seo'
 import { ROUTES } from '~constants/routes'
 import {
@@ -23,6 +22,7 @@ import { useState } from 'react'
 import { DashboardBody } from '~cpn/DashboardBody'
 import Transaction from '~cpn/Transaction'
 import { ChainPicker, PlatformPicker } from '~cpn/explore/index/components'
+import { useRouter } from 'next/router'
 
 interface AppPageHeaderProps {
   filterType: TransactionActionType | 'all'
@@ -42,10 +42,11 @@ const AppPageHeader = (props: AppPageHeaderProps) => {
     onFilterTypeChange,
     onChainIdChange,
   } = props
+  const { push } = useRouter()
 
   return (
     <PageHeader>
-      <PageHeaderBackButton as={Link} href={ROUTES.MY_PROFILE} />
+      <PageHeaderBackButton onClick={() => push(ROUTES.MY_PROFILE)} />
       <PageHeaderTitle>Transactions</PageHeaderTitle>
       <PageHeaderActions>
         <ChainPicker value={chainId} onChange={onChainIdChange} />
