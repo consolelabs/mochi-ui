@@ -36,7 +36,6 @@
     "@mochi-ui/button": "workspace:*",
     "@mochi-ui/icon-button": "workspace:*",
     "@mochi-ui/icons": "workspace:*",
-    "@mochi-ui/polymorphic": "workspace:*",
     "@mochi-ui/theme": "workspace:*",
     "@radix-ui/react-slot": "^1.0.2",
     "class-variance-authority": "^0.7.0",

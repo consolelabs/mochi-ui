@@ -1,9 +1,8 @@
-import { AlertIcon } from '@mochi-ui/alert'
-import { ComponentPropsWithRef } from 'react'
+import { AlertIcon, AlertIconProps } from '@mochi-ui/alert'
+
+type ToastIconProps = AlertIconProps
 
 const ToastIcon = AlertIcon
 ToastIcon.displayName = 'ToastIcon'
-
-type ToastIconProps = ComponentPropsWithRef<typeof ToastIcon>
 
 export { ToastIcon, type ToastIconProps }

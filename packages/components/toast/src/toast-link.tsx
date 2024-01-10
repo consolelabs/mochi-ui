@@ -1,14 +1,9 @@
-import {
-  AlertLink,
-  AlertLinkProps,
-  PolymorphicAlertLink,
-} from '@mochi-ui/alert'
+import { AlertLink, AlertLinkProps } from '@mochi-ui/alert'
 
-type PolymorphicToastLink = PolymorphicAlertLink
 type ToastLinkProps = AlertLinkProps
 
 const ToastLink = AlertLink
 ToastLink.displayName = 'ToastConfirmButton'
 
 export { ToastLink }
-export type { ToastLinkProps, PolymorphicToastLink }
+export type { ToastLinkProps }

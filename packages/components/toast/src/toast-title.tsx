@@ -1,22 +1,19 @@
-import {
-  AlertTitle,
-  AlertTitleProps,
-  PolymorphicAlertTitle,
-} from '@mochi-ui/alert'
+import { AlertTitle, AlertTitleProps } from '@mochi-ui/alert'
 import * as ToastPrimitive from '@radix-ui/react-toast'
-import { forwardRef } from 'react'
+import { ElementRef, forwardRef } from 'react'
 
-type PolymorphicToastTitle = PolymorphicAlertTitle
 type ToastTitleProps = AlertTitleProps
 
-const ToastTitle = forwardRef((props, ref) => {
-  return (
-    <ToastPrimitive.Title asChild>
-      <AlertTitle ref={ref} {...props} />
-    </ToastPrimitive.Title>
-  )
-}) as PolymorphicToastTitle
+const ToastTitle = forwardRef<ElementRef<typeof AlertTitle>, ToastTitleProps>(
+  (props, ref) => {
+    return (
+      <ToastPrimitive.Title asChild>
+        <AlertTitle ref={ref} {...props} />
+      </ToastPrimitive.Title>
+    )
+  },
+)
 
 ToastTitle.displayName = ToastPrimitive.Title.displayName
 
-export { ToastTitle, type ToastTitleProps, type PolymorphicToastTitle }
+export { ToastTitle, type ToastTitleProps }

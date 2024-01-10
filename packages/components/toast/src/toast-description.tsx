@@ -1,26 +1,21 @@
 import * as ToastPrimitive from '@radix-ui/react-toast'
-import * as Polymorphic from '@mochi-ui/polymorphic'
-import { ComponentPropsWithRef, forwardRef } from 'react'
-import { AlertDescription } from '@mochi-ui/alert'
+import { ElementRef, forwardRef } from 'react'
+import { AlertDescription, AlertDescriptionProps } from '@mochi-ui/alert'
 
-type PolymorphicToastDescription = Polymorphic.ForwardRefComponent<
-  'p',
-  {
-    asChild?: boolean
-  }
->
+type ToastDescriptionProps = AlertDescriptionProps
 
-const ToastDescription = forwardRef((props, ref) => {
+const ToastDescription = forwardRef<
+  ElementRef<typeof AlertDescription>,
+  ToastDescriptionProps
+>((props, ref) => {
   return (
     <ToastPrimitive.Description asChild>
       <AlertDescription {...props} ref={ref} />
     </ToastPrimitive.Description>
   )
-}) as PolymorphicToastDescription
+})
 
 ToastDescription.displayName = 'ToastDescription'
 
-type ToastDescriptionProps = ComponentPropsWithRef<PolymorphicToastDescription>
-
 export { ToastDescription }
-export type { ToastDescriptionProps, PolymorphicToastDescription }
+export type { ToastDescriptionProps }
