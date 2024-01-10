@@ -1,21 +1,21 @@
-import { ComponentPropsWithRef, forwardRef } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 import { alert } from '@mochi-ui/theme'
 import { CloseLgLine } from '@mochi-ui/icons'
 import { Slot } from '@radix-ui/react-slot'
-import { IconButton, IconButtonProps } from '@mochi-ui/icon-button'
-import type * as Polymorphic from '@mochi-ui/polymorphic'
+import { IconButton } from '@mochi-ui/icon-button'
 import { useAlertContext } from './context'
 
-type PolymorphicAlertCloseButton = Polymorphic.ForwardRefComponent<
-  'button',
-  Omit<IconButtonProps, 'label'> & {
-    asChild?: boolean
-  }
->
+type AlertCloseButtonProps = Omit<
+  ComponentPropsWithoutRef<typeof IconButton>,
+  'label'
+> & {
+  asChild?: boolean
+}
 
-type AlertCloseButtonProps = ComponentPropsWithRef<PolymorphicAlertCloseButton>
-
-const AlertCloseButton = forwardRef((props, ref) => {
+const AlertCloseButton = forwardRef<
+  ElementRef<typeof IconButton>,
+  AlertCloseButtonProps
+>((props, ref) => {
   const { scheme, layout, size } = useAlertContext()
   const { className, asChild, ...restProps } = props
 
@@ -55,11 +55,7 @@ const AlertCloseButton = forwardRef((props, ref) => {
       <CloseLgLine />
     </IconButton>
   )
-}) as PolymorphicAlertCloseButton
+})
 AlertCloseButton.displayName = 'AlertCloseButton'
 
-export {
-  type PolymorphicAlertCloseButton,
-  type AlertCloseButtonProps,
-  AlertCloseButton,
-}
+export { type AlertCloseButtonProps, AlertCloseButton }

@@ -1,12 +1,11 @@
-import { Button, ButtonProps } from '@mochi-ui/button'
+import { Button } from '@mochi-ui/button'
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 import { alert } from '@mochi-ui/theme'
 import { useAlertContext } from './context'
 
-type AlertCancelProps = ComponentPropsWithoutRef<typeof Button> &
-  ButtonProps & {
-    asChild?: boolean
-  }
+type AlertCancelProps = ComponentPropsWithoutRef<typeof Button> & {
+  asChild?: boolean
+}
 
 const AlertCancelButton = forwardRef<
   ElementRef<typeof Button>,

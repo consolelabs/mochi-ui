@@ -1,5 +1,6 @@
 import { alert } from '@mochi-ui/theme'
-import { useMemo, forwardRef } from 'react'
+import { useMemo, forwardRef, ComponentPropsWithoutRef } from 'react'
+import { Slot } from '@radix-ui/react-slot'
 import { AlertContext, AlertContextValue } from './context'
 
 const { alertCva } = alert
@@ -10,7 +11,8 @@ type AlertProps = Partial<AlertContextValue> & {
   shadow?: boolean
   outline?: boolean
   paddingSize?: 'default' | 'large'
-}
+  asChild?: boolean
+} & ComponentPropsWithoutRef<'div'>
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
   const {
@@ -21,8 +23,11 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
     paddingSize,
     shadow,
     className,
+    asChild,
     ...restProps
   } = props
+
+  const Component = asChild ? Slot : 'div'
 
   const contextValue = useMemo(
     () => ({
@@ -35,7 +40,7 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
 
   return (
     <AlertContext.Provider value={contextValue}>
-      <div
+      <Component
         ref={ref}
         className={alertCva({
           scheme,
