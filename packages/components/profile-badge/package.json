@@ -1,6 +1,6 @@
 {
   "name": "@mochi-ui/profile-badge",
-  "version": "0.1.13",
+  "version": "0.2.0",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [

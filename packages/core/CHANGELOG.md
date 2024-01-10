@@ -1,5 +1,122 @@
 # @mochi-ui/core
 
+## 0.13.0
+
+### Minor Changes
+
+- [#534](https://github.com/consolelabs/mochi-ui/pull/534)
+  [`79c6d7d`](https://github.com/consolelabs/mochi-ui/commit/79c6d7db5733900de363977bdb1492daeeece875)
+  Thanks [@leduyhien152](https://github.com/leduyhien152)! - Add ScrollArea
+  component
+
+- [#545](https://github.com/consolelabs/mochi-ui/pull/545)
+  [`fad8487`](https://github.com/consolelabs/mochi-ui/commit/fad84874642f232669a9bf5111b4c328bf0ccac9)
+  Thanks [@leduyhien152](https://github.com/leduyhien152)! - Remove SectionList
+  component
+
+- [#504](https://github.com/consolelabs/mochi-ui/pull/504)
+  [`bd0ea77`](https://github.com/consolelabs/mochi-ui/commit/bd0ea77d3e743f664942ee99a010c3c6803ebcf9)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Update avatar
+  lazy loading
+
+### Patch Changes
+
+- [#595](https://github.com/consolelabs/mochi-ui/pull/595)
+  [`c2eb166`](https://github.com/consolelabs/mochi-ui/commit/c2eb166ae25ef5d14d2e0e1d8e34eedf5b6db2d6)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Fix accordion
+  asChild multiple child err
+
+- [#532](https://github.com/consolelabs/mochi-ui/pull/532)
+  [`657e4d2`](https://github.com/consolelabs/mochi-ui/commit/657e4d2034d58127f973c704a31791cad5dc854a)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Create Value change
+  component
+
+- [#543](https://github.com/consolelabs/mochi-ui/pull/543)
+  [`f80292d`](https://github.com/consolelabs/mochi-ui/commit/f80292dc6d7967e901ec0c6446c10801650d741f)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Use Select component
+  in Pagination
+
+- [#484](https://github.com/consolelabs/mochi-ui/pull/484)
+  [`4b89514`](https://github.com/consolelabs/mochi-ui/commit/4b89514102beff9f17c3a3e66f6e27434566d5c7)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Update Select
+  component style
+
+- [#601](https://github.com/consolelabs/mochi-ui/pull/601)
+  [`9a55706`](https://github.com/consolelabs/mochi-ui/commit/9a557064c2da34dbe9374b97ae93743166de395c)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - migrate to
+  use asChild prop for polymorphic
+
+- [#604](https://github.com/consolelabs/mochi-ui/pull/604)
+  [`31dc886`](https://github.com/consolelabs/mochi-ui/commit/31dc886624a12ef3c317fb0cb19a42bac0969fc5)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Add container max
+  width config
+
+- [#546](https://github.com/consolelabs/mochi-ui/pull/546)
+  [`bc91cc1`](https://github.com/consolelabs/mochi-ui/commit/bc91cc1507bd74123b5db93cd0acabd758b99b11)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Fix checking if
+  Select is filled
+
+- Updated dependencies
+  [[`e1fb6b9`](https://github.com/consolelabs/mochi-ui/commit/e1fb6b91f6cc7c2e9a721fa8b17b3d2bb047b598),
+  [`ae4b76a`](https://github.com/consolelabs/mochi-ui/commit/ae4b76a5485b1e1a28d0bbdf83f8a5add58d67bc),
+  [`c2eb166`](https://github.com/consolelabs/mochi-ui/commit/c2eb166ae25ef5d14d2e0e1d8e34eedf5b6db2d6),
+  [`657e4d2`](https://github.com/consolelabs/mochi-ui/commit/657e4d2034d58127f973c704a31791cad5dc854a),
+  [`a867f35`](https://github.com/consolelabs/mochi-ui/commit/a867f3543cb8377a8d23457d50a81155ee6e0e8d),
+  [`5688ed6`](https://github.com/consolelabs/mochi-ui/commit/5688ed632bdb0da0703103e74670c3f3c8ba683e),
+  [`c9ce71f`](https://github.com/consolelabs/mochi-ui/commit/c9ce71f800f7484711d87566371d2ce227dab148),
+  [`f80292d`](https://github.com/consolelabs/mochi-ui/commit/f80292dc6d7967e901ec0c6446c10801650d741f),
+  [`4b89514`](https://github.com/consolelabs/mochi-ui/commit/4b89514102beff9f17c3a3e66f6e27434566d5c7),
+  [`79c6d7d`](https://github.com/consolelabs/mochi-ui/commit/79c6d7db5733900de363977bdb1492daeeece875),
+  [`ac54eb4`](https://github.com/consolelabs/mochi-ui/commit/ac54eb42198bb087bccf4319d84001b5acf9e528),
+  [`fad8487`](https://github.com/consolelabs/mochi-ui/commit/fad84874642f232669a9bf5111b4c328bf0ccac9),
+  [`9a55706`](https://github.com/consolelabs/mochi-ui/commit/9a557064c2da34dbe9374b97ae93743166de395c),
+  [`31dc886`](https://github.com/consolelabs/mochi-ui/commit/31dc886624a12ef3c317fb0cb19a42bac0969fc5),
+  [`bc91cc1`](https://github.com/consolelabs/mochi-ui/commit/bc91cc1507bd74123b5db93cd0acabd758b99b11),
+  [`bd0ea77`](https://github.com/consolelabs/mochi-ui/commit/bd0ea77d3e743f664942ee99a010c3c6803ebcf9)]:
+  - @mochi-ui/theme@0.14.0
+  - @mochi-ui/page-content@0.1.13
+  - @mochi-ui/table@0.7.0
+  - @mochi-ui/accordion@0.1.16
+  - @mochi-ui/value-change@0.0.2
+  - @mochi-ui/pagination@0.3.0
+  - @mochi-ui/select@0.2.0
+  - @mochi-ui/input@0.3.3
+  - @mochi-ui/icons@0.7.2
+  - @mochi-ui/icon-button@0.4.13
+  - @mochi-ui/layout@0.1.13
+  - @mochi-ui/profile-badge@0.2.0
+  - @mochi-ui/avatar-group@0.3.0
+  - @mochi-ui/avatar@0.2.0
+  - @mochi-ui/action-bar@0.1.6
+  - @mochi-ui/alert@1.2.6
+  - @mochi-ui/badge@0.3.1
+  - @mochi-ui/button@0.4.12
+  - @mochi-ui/card@0.1.4
+  - @mochi-ui/checkbox@0.1.16
+  - @mochi-ui/content-editable@1.1.4
+  - @mochi-ui/drawer@0.3.3
+  - @mochi-ui/dropdown@0.2.3
+  - @mochi-ui/footer@0.1.7
+  - @mochi-ui/form@0.1.13
+  - @mochi-ui/label@0.1.13
+  - @mochi-ui/list@0.0.26
+  - @mochi-ui/logo@0.1.13
+  - @mochi-ui/modal@0.3.3
+  - @mochi-ui/page-header@0.3.3
+  - @mochi-ui/popover@0.3.3
+  - @mochi-ui/scroll-area@0.0.2
+  - @mochi-ui/section-header@0.2.3
+  - @mochi-ui/separator@0.0.27
+  - @mochi-ui/sidebar@0.1.6
+  - @mochi-ui/skeleton@1.0.6
+  - @mochi-ui/switch@0.0.24
+  - @mochi-ui/tabs@0.2.3
+  - @mochi-ui/toast@0.1.6
+  - @mochi-ui/toggle-button@0.1.1
+  - @mochi-ui/tooltip@0.2.13
+  - @mochi-ui/top-bar@0.1.12
+  - @mochi-ui/typography@0.1.0
+
 ## 0.12.0
 
 ### Minor Changes

@@ -1,5 +1,66 @@
 # @mochi-ui/theme
 
+## 0.14.0
+
+### Minor Changes
+
+- [#534](https://github.com/consolelabs/mochi-ui/pull/534)
+  [`79c6d7d`](https://github.com/consolelabs/mochi-ui/commit/79c6d7db5733900de363977bdb1492daeeece875)
+  Thanks [@leduyhien152](https://github.com/leduyhien152)! - Add ScrollArea
+  component
+
+- [#545](https://github.com/consolelabs/mochi-ui/pull/545)
+  [`fad8487`](https://github.com/consolelabs/mochi-ui/commit/fad84874642f232669a9bf5111b4c328bf0ccac9)
+  Thanks [@leduyhien152](https://github.com/leduyhien152)! - Remove SectionList
+  component
+
+- [#504](https://github.com/consolelabs/mochi-ui/pull/504)
+  [`bd0ea77`](https://github.com/consolelabs/mochi-ui/commit/bd0ea77d3e743f664942ee99a010c3c6803ebcf9)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Update avatar
+  lazy loading
+
+### Patch Changes
+
+- [#533](https://github.com/consolelabs/mochi-ui/pull/533)
+  [`e1fb6b9`](https://github.com/consolelabs/mochi-ui/commit/e1fb6b91f6cc7c2e9a721fa8b17b3d2bb047b598)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Increase page content
+  width
+
+- [#595](https://github.com/consolelabs/mochi-ui/pull/595)
+  [`c2eb166`](https://github.com/consolelabs/mochi-ui/commit/c2eb166ae25ef5d14d2e0e1d8e34eedf5b6db2d6)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Fix accordion
+  asChild multiple child err
+
+- [#532](https://github.com/consolelabs/mochi-ui/pull/532)
+  [`657e4d2`](https://github.com/consolelabs/mochi-ui/commit/657e4d2034d58127f973c704a31791cad5dc854a)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Create Value change
+  component
+
+- [#588](https://github.com/consolelabs/mochi-ui/pull/588)
+  [`5688ed6`](https://github.com/consolelabs/mochi-ui/commit/5688ed632bdb0da0703103e74670c3f3c8ba683e)
+  Thanks [@tuanddd](https://github.com/tuanddd)! - Fix footer remove flex wrap
+  property
+
+- [#543](https://github.com/consolelabs/mochi-ui/pull/543)
+  [`f80292d`](https://github.com/consolelabs/mochi-ui/commit/f80292dc6d7967e901ec0c6446c10801650d741f)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Use Select component
+  in Pagination
+
+- [#484](https://github.com/consolelabs/mochi-ui/pull/484)
+  [`4b89514`](https://github.com/consolelabs/mochi-ui/commit/4b89514102beff9f17c3a3e66f6e27434566d5c7)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Update Select
+  component style
+
+- [#539](https://github.com/consolelabs/mochi-ui/pull/539)
+  [`ac54eb4`](https://github.com/consolelabs/mochi-ui/commit/ac54eb42198bb087bccf4319d84001b5acf9e528)
+  Thanks [@zlatanpham](https://github.com/zlatanpham)! - Fix select and table
+  key issues
+
+- [#604](https://github.com/consolelabs/mochi-ui/pull/604)
+  [`31dc886`](https://github.com/consolelabs/mochi-ui/commit/31dc886624a12ef3c317fb0cb19a42bac0969fc5)
+  Thanks [@nguyend-nam](https://github.com/nguyend-nam)! - Add container max
+  width config
+
 ## 0.13.0
 
 ### Minor Changes
