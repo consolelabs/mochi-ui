@@ -1,5 +1,60 @@
 # @mochi-ui/core
 
+## 0.13.2
+
+### Patch Changes
+
+- [#599](https://github.com/consolelabs/mochi-ui/pull/599)
+  [`1dbe779`](https://github.com/consolelabs/mochi-ui/commit/1dbe7793ef50f9636d304ed551f8fc85c7e5637d)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Support
+  polymorphic for card component
+
+- Updated dependencies
+  [[`46de143`](https://github.com/consolelabs/mochi-ui/commit/46de143b5afa658a7fa4cb9f7a47d523aa14a53b),
+  [`1dbe779`](https://github.com/consolelabs/mochi-ui/commit/1dbe7793ef50f9636d304ed551f8fc85c7e5637d)]:
+  - @mochi-ui/theme@0.15.0
+  - @mochi-ui/card@0.1.6
+  - @mochi-ui/accordion@0.1.18
+  - @mochi-ui/action-bar@0.1.8
+  - @mochi-ui/alert@1.2.8
+  - @mochi-ui/avatar@0.2.2
+  - @mochi-ui/avatar-group@0.3.2
+  - @mochi-ui/badge@0.3.3
+  - @mochi-ui/button@0.4.14
+  - @mochi-ui/checkbox@0.1.18
+  - @mochi-ui/content-editable@1.1.6
+  - @mochi-ui/drawer@0.3.5
+  - @mochi-ui/dropdown@0.2.5
+  - @mochi-ui/footer@0.1.9
+  - @mochi-ui/form@0.1.15
+  - @mochi-ui/icon-button@0.4.15
+  - @mochi-ui/input@0.3.5
+  - @mochi-ui/label@0.1.15
+  - @mochi-ui/layout@0.1.15
+  - @mochi-ui/list@0.0.28
+  - @mochi-ui/logo@0.1.15
+  - @mochi-ui/modal@0.3.5
+  - @mochi-ui/page-content@0.1.15
+  - @mochi-ui/page-header@0.3.5
+  - @mochi-ui/pagination@0.3.2
+  - @mochi-ui/popover@0.3.5
+  - @mochi-ui/profile-badge@0.2.2
+  - @mochi-ui/scroll-area@0.0.4
+  - @mochi-ui/section-header@0.2.5
+  - @mochi-ui/select@0.2.2
+  - @mochi-ui/separator@0.0.29
+  - @mochi-ui/sidebar@0.1.8
+  - @mochi-ui/skeleton@1.0.8
+  - @mochi-ui/switch@0.0.26
+  - @mochi-ui/table@0.7.2
+  - @mochi-ui/tabs@0.2.5
+  - @mochi-ui/toast@0.1.8
+  - @mochi-ui/toggle-button@0.1.2
+  - @mochi-ui/tooltip@0.2.15
+  - @mochi-ui/top-bar@0.1.14
+  - @mochi-ui/typography@0.1.1
+  - @mochi-ui/value-change@0.0.4
+
 ## 0.13.1
 
 ### Patch Changes
