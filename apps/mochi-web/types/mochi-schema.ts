@@ -35,12 +35,6 @@ export interface ModelAirdropStatusCount {
   status?: string
 }
 
-export interface ModelBasePrivacySetting {
-  custom_settings?: ModelPrivacyCustomSetting[]
-  general_platform_group?: string
-  general_target_group?: string
-}
-
 export interface ModelChain {
   coin_gecko_id?: string
   currency?: string
@@ -402,11 +396,6 @@ export interface ModelPayToken {
   symbol?: string
 }
 
-export interface ModelPrivacyCustomSetting {
-  platform?: string
-  target_group?: string
-}
-
 export interface ModelProductBotCommand {
   code?: string
   created_at?: string
@@ -564,8 +553,6 @@ export interface ModelUserPaymentSetting {
   default_message_settings?: ModelDefaultMessageSetting[]
   default_money_source?: ModelMoneySource
   default_receiver_platform?: string
-  default_token?: ModelPayToken
-  default_token_id?: string
   prioritized_token?: ModelPayToken[]
   prioritized_token_ids?: string[]
   profile_id?: string
@@ -575,9 +562,8 @@ export interface ModelUserPaymentSetting {
 
 export interface ModelUserPrivacySetting {
   profile_id?: string
-  social_accounts?: ModelBasePrivacySetting
-  tx?: ModelBasePrivacySetting
-  wallets?: ModelBasePrivacySetting
+  show_destination_wallet?: boolean
+  tx_target_group?: string
 }
 
 export interface ModelUserTokenSupportRequest {
@@ -674,12 +660,6 @@ export interface RequestAddTokenPriceAlertRequest {
 export interface RequestAssignVerifiedRoleRequest {
   guild_id: string
   user_discord_id: string
-}
-
-export interface RequestBasePrivacySetting {
-  custom_settings?: RequestPrivacyCustomSetting[]
-  general_platform_group?: string
-  general_target_group?: string
 }
 
 export interface RequestClaimQuestsRewardsRequest {
@@ -911,21 +891,14 @@ export interface RequestPaymentSetting {
   default_message_settings: RequestDefaultMessageSetting[]
   default_money_source: RequestMoneySource
   default_receiver_platform: string
-  default_token: string
   token_priorities: string[]
   tx_limit_enable: boolean
   tx_limit_settings: RequestTxLimitSetting[]
 }
 
-export interface RequestPrivacyCustomSetting {
-  platform?: string
-  target_group?: string
-}
-
 export interface RequestPrivacySetting {
-  social_accounts?: RequestBasePrivacySetting
-  tx?: RequestBasePrivacySetting
-  wallets?: RequestBasePrivacySetting
+  show_destination_wallet: boolean
+  tx_target_group: string
 }
 
 export interface RequestRoleReactionRequest {
@@ -1790,7 +1763,6 @@ export interface ResponseGetVote {
 
 export interface ResponseGetWatchlistResponse {
   data?: ResponseCoinMarketItemData[]
-  metadata?: ResponsePaginationResponse
 }
 
 export interface ResponseGetWelcomeChannelConfigResponse {
