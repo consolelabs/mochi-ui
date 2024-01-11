@@ -158,7 +158,7 @@ export const Header = ({
   const mobileNavItems = [
     <Link
       href={ROUTES.FEATURES}
-      className="flex items-center text-sm px-2 py-3"
+      className="flex hidden items-center py-3 px-2 text-sm"
       key="mobile-nav-features"
     >
       <Typography
@@ -177,7 +177,7 @@ export const Header = ({
     // eslint-disable-next-line jsx-a11y/anchor-is-valid
     <Link
       href="#"
-      className="flex items-center text-sm px-2 py-3"
+      className="flex items-center py-3 px-2 text-sm"
       key="mobile-nav-api"
     >
       <Typography
@@ -370,7 +370,7 @@ export const Header = ({
           <Link
             href={ROUTES.FEATURES}
             className={clsx(
-              'px-4 text-sm font-medium transition-colors duration-300 hover:text-primary-plain-fg',
+              'hidden px-4 text-sm font-medium transition-colors duration-300 hover:text-primary-plain-fg',
               {
                 'text-primary-plain-fg': pathname === ROUTES.FEATURES,
               },

@@ -10,8 +10,10 @@ import {
   ScrollAreaThumb,
   ScrollAreaViewport,
   Table,
+  Tooltip,
   Typography,
 } from '@mochi-ui/core'
+import { ArrowRightLine } from '@mochi-ui/icons'
 import clsx from 'clsx'
 import { useMemo } from 'react'
 import { transactionActionString } from '~constants/transactions'
@@ -37,9 +39,9 @@ export const TransactionTable = (props: TransactionTableProps) => {
 
     columns.push(
       {
-        header: 'tx id',
+        header: '#',
         id: 'txId',
-        width: 130,
+        width: 50,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -53,27 +55,33 @@ export const TransactionTable = (props: TransactionTableProps) => {
         },
       },
       {
-        header: 'issued by',
-        id: 'from',
-        width: 210,
+        header: 'wen',
+        id: 'wen',
+        width: 170,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
 
-          return <TransactionIssuedBy tx={tx} />
+          return (
+            <Tooltip content={tx.full_date}>
+              <Typography level="p5" className="tabular-nums text-left">
+                {tx.date}
+              </Typography>
+            </Tooltip>
+          )
         },
       },
       {
-        header: 'type',
+        header: 'action',
         id: 'type',
-        width: 120,
+        width: 50,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
 
           return (
             <Badge
-              className="inline-flex capitalize border border-primary-solid"
+              className="inline-flex items-center capitalize border border-primary-solid"
               appearance="primary"
             >
               {transactionActionString[tx.action] ?? 'tip'}
@@ -82,9 +90,33 @@ export const TransactionTable = (props: TransactionTableProps) => {
         },
       },
       {
+        header: 'issued by',
+        id: 'from',
+        width: 220,
+        // eslint-disable-next-line
+        cell: (props) => {
+          const tx = props.row.original
+
+          return <TransactionIssuedBy tx={tx} />
+        },
+      },
+      {
+        header: '',
+        id: 'decoration arrow',
+        width: 50,
+        // eslint-disable-next-line
+        cell: () => {
+          return (
+            <div className="flex justify-center items-center p-1 w-5 h-5 rounded-full border border-neutral-300">
+              <ArrowRightLine />
+            </div>
+          )
+        },
+      },
+      {
         header: 'recipients',
         id: 'to',
-        width: 200,
+        width: 220,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -95,7 +127,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: 'total value',
         id: 'amount',
-        width: 210,
+        width: 140,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -115,7 +147,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: 'where',
         id: 'where',
-        width: 210,
+        width: 50,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -137,20 +169,9 @@ export const TransactionTable = (props: TransactionTableProps) => {
         },
       },
       {
-        header: 'wen',
-        id: 'wen',
-        width: 180,
-        // eslint-disable-next-line
-        cell: (props) => {
-          const tx = props.row.original
-
-          return <Typography level="p5">{tx.date}</Typography>
-        },
-      },
-      {
         header: '',
         id: 'action',
-        width: 100,
+        width: 50,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -175,6 +196,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
           <div style={{ minWidth: 1400 }} className={className}>
             <Table
               {...rest}
+              size="sm"
               columns={columns}
               className="p-0"
               loadingRows={
@@ -217,7 +239,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       )}
       {componentsProps.pagination &&
         (componentsProps.pagination.totalItems || 0) > 0 && (
-          <div className="p-4 text-sm">
+          <div className="p-4 px-12 text-sm">
             <Pagination
               recordName="transactions"
               {...componentsProps.pagination}

@@ -112,7 +112,7 @@ export default function Receipt({ id, data: _data }: Props) {
               <div className="mt-2 text-sm">
                 <span className="font-medium">{data.data.from[0].name}</span>
                 <br />
-                <span className="text-xs font-light capitalize">
+                <span className="text-xs capitalize">
                   {data.data.template
                     ? data.data.template.phrase
                     : transactionActionString[
@@ -154,7 +154,7 @@ export default function Receipt({ id, data: _data }: Props) {
               </div>
             )}
             <div className="relative receipt-body !text-neutral-600">
-              <div className="flex flex-col gap-y-2 gap-x-4 pt-4 font-light">
+              <div className="flex flex-col gap-y-2 gap-x-4 pt-4">
                 <DataList>
                   <ListUser data={data.data.from} title="Issued by" />
                   {data.data.from.length > 1 ? <DashLine /> : null}
@@ -167,7 +167,8 @@ export default function Receipt({ id, data: _data }: Props) {
                   <DataList.Item title="Amount">
                     <Typography
                       level="p7"
-                      className="!font-light !text-neutral-600"
+                      fontWeight="sm"
+                      className="!text-neutral-600"
                     >
                       {data.isMultipleTokens
                         ? data.data.amount
@@ -207,7 +208,8 @@ export default function Receipt({ id, data: _data }: Props) {
                     <DataList.Item title="Tx ID">
                       <Typography
                         level="p7"
-                        className="underline !text-neutral-600 !font-light"
+                        className="underline !text-neutral-600"
+                        fontWeight="sm"
                       >
                         {data.data.external_id.slice(0, 9)}
                       </Typography>
@@ -222,7 +224,7 @@ export default function Receipt({ id, data: _data }: Props) {
                 </DataList>
               </div>
               <DashLine />
-              <div className="flex justify-between py-2 text-xs font-light text-neutral-600">
+              <div className="flex justify-between py-2 text-xs text-neutral-600">
                 <span className="text-xxxs">
                   Mochi &copy; {new Date().getUTCFullYear()}
                 </span>

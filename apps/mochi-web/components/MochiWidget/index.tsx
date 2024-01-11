@@ -2,21 +2,21 @@ import BottomSheetProvider from '~cpn/BottomSheet'
 import React, { SVGProps, useState } from 'react'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import {
-  DollarBubbleCircleSolid,
+  /* DollarBubbleCircleSolid, */
   /* GiftSolid, */
-  LinkCircledSolid,
+  /* LinkCircledSolid, */
   PaperplaneCircleSolid,
 } from '@mochi-ui/icons'
 import clsx from 'clsx'
 import Tip from './Tip'
 
-function ComingSoon() {
-  return (
-    <span className="flex flex-1 justify-center items-center m-4 text-neutral-500">
-      Coming soon...
-    </span>
-  )
-}
+/* function ComingSoon() { */
+/*   return ( */
+/*     <span className="flex flex-1 justify-center items-center m-4 text-neutral-500"> */
+/*       Coming soon... */
+/*     </span> */
+/*   ) */
+/* } */
 
 const tabs: {
   id: string
@@ -30,18 +30,18 @@ const tabs: {
     Icon: PaperplaneCircleSolid,
     render: (props) => <Tip {...props} />,
   },
-  {
-    id: 'payme',
-    title: 'Pay Me',
-    Icon: DollarBubbleCircleSolid,
-    render: ComingSoon,
-  },
-  {
-    id: 'paylink',
-    title: 'Pay Link',
-    Icon: LinkCircledSolid,
-    render: ComingSoon,
-  },
+  /* { */
+  /*   id: 'payme', */
+  /*   title: 'Pay Me', */
+  /*   Icon: DollarBubbleCircleSolid, */
+  /*   render: ComingSoon, */
+  /* }, */
+  /* { */
+  /*   id: 'paylink', */
+  /*   title: 'Pay Link', */
+  /*   Icon: LinkCircledSolid, */
+  /*   render: ComingSoon, */
+  /* }, */
   /* { */
   /*   id: 'gift', */
   /*   title: 'Gift', */

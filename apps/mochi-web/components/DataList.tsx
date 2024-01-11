@@ -21,19 +21,20 @@ DataList.Item = function Item({
 }: { title: string } & Props) {
   return (
     <li
-      className={clsx('shrink-0 flex justify-between font-light flex-1', {
+      className={clsx('shrink-0 flex justify-between flex-1', {
         'items-start flex-col gap-y-1': !!right,
       })}
     >
       <div className="flex justify-between self-stretch">
         <Typography
           level="p7"
-          className="!font-light shrink-0 !text-neutral-600"
+          fontWeight="sm"
+          className="shrink-0 !text-neutral-600"
         >
           {title}
         </Typography>
         {right ? (
-          <Typography level="p7" className="!font-light !text-neutral-600">
+          <Typography level="p7" fontWeight="sm" className="!text-neutral-600">
             {right}
           </Typography>
         ) : null}
@@ -41,7 +42,8 @@ DataList.Item = function Item({
       {typeof children === 'string' ? (
         <Typography
           level="p7"
-          className="!font-light shrink-0 !text-neutral-600"
+          fontWeight="sm"
+          className="shrink-0 !text-neutral-600"
         >
           {children}
         </Typography>

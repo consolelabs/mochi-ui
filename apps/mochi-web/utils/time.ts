@@ -2,6 +2,8 @@
 import enUS from 'date-fns/locale/en-US'
 import format from 'date-fns/format'
 import relative from 'date-fns/formatRelative'
+import isToday from 'date-fns/isToday'
+import distance from 'date-fns/formatDistanceStrict'
 
 const formatRelativeLocale = {
   lastWeek: "'Last' eeee",
@@ -19,7 +21,9 @@ const locale = {
 }
 
 export function formatRelative(date: string) {
-  return relative(new Date(date), new Date(), { locale })
+  return isToday(new Date(date))
+    ? distance(new Date(date), new Date(), { addSuffix: true })
+    : relative(new Date(date), new Date(), { locale })
 }
 
 export function formatDate(date: string, template: string = 'MMM dd, yyyy') {

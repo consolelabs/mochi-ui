@@ -31,8 +31,8 @@ const socials: [
   string,
   boolean,
 ][] = [
-  [FacebookColored, 'Facebook', false],
   [DiscordColored, 'Discord', false],
+  [FacebookColored, 'Facebook', false],
   [TelegramColored, 'Telegram', false],
   [RedditColored, 'Reddit', true],
   [GoogleColored, 'Google', false],
@@ -46,21 +46,21 @@ const networks: [
   string,
   boolean,
 ][] = [
-  [Btc, 'BTC', true],
+  [Sol, 'Solana', false],
   [Eth, 'Ethereum', false],
-  [Bnb, 'Binance', false],
-  [Ftm, 'Fantom', false],
-  [Matic, 'Polygon', false],
-  [Ron, 'Ronin', true],
+  [Btc, 'BTC', true],
   [Arb, 'Arbitrum', false],
-  [Mnt, 'Mantle', false],
   [Op, 'Optimism', false],
   [ZkSync, 'zkSync', false],
-  [Sol, 'Solana', false],
-  [Ton, 'Ton', false],
+  [Matic, 'Polygon', false],
+  [Ron, 'Ronin', true],
+  [Mnt, 'Mantle', false],
+  [Ftm, 'Fantom', false],
+  [Ton, 'TON', false],
   [Apt, 'Aptos', true],
   [Sui, 'Sui', true],
   [Atom, 'Cosmos', true],
+  [Bnb, 'BNB chain', false],
 ]
 
 function Platform({
@@ -103,29 +103,33 @@ export function SupportedPlatforms() {
         <div className="flex flex-col gap-y-4">
           <span className="text-lg font-medium">Socials</span>
           <div className="grid grid-cols-5 auto-rows-auto border-t border-l border-neutral-300">
-            {socials.map(([Icon, name, comingSoon]) => (
-              <Platform
-                key={name}
-                Icon={Icon}
-                name={name}
-                comingSoon={comingSoon}
-              />
-            ))}
+            {socials.map(
+              ([Icon, name, comingSoon]) =>
+                !comingSoon && (
+                  <Platform
+                    key={name}
+                    Icon={Icon}
+                    name={name}
+                    comingSoon={comingSoon}
+                  />
+                ),
+            )}
           </div>
         </div>
         <div className="flex flex-col gap-y-4">
           <span className="text-lg font-medium">Networks</span>
           <div className="grid grid-cols-5 auto-rows-auto border-t border-l border-neutral-300">
-            {networks.map(([Icon, name, comingSoon]) => {
-              return (
-                <Platform
-                  key={name}
-                  Icon={Icon}
-                  name={name}
-                  comingSoon={comingSoon}
-                />
-              )
-            })}
+            {networks.map(
+              ([Icon, name, comingSoon]) =>
+                !comingSoon && (
+                  <Platform
+                    key={name}
+                    Icon={Icon}
+                    name={name}
+                    comingSoon={comingSoon}
+                  />
+                ),
+            )}
           </div>
         </div>
       </div>

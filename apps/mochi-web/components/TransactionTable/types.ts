@@ -33,6 +33,7 @@ export interface Tx {
   amount: string
   amountUsd: string
   date: string
+  full_date: string
   status: TransactionStatus
   isNew?: boolean
 }

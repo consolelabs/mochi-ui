@@ -33,10 +33,60 @@ export const SummarySection = () => {
   return (
     <div className="lg:py-8 bg-background-level2">
       <div
-        className="grid gap-4 lg:grid-cols-12 p-6 mx-auto"
+        className="flex flex-col-reverse gap-4 p-6 mx-auto sm:grid sm:grid-cols-3 sm:grid-rows-4 xl:grid-cols-5 xl:grid-rows-2"
         style={{ maxWidth: 1248 }}
       >
-        <div className="flex flex-wrap col-span-12 gap-4 justify-between items-center p-6 rounded-xl border bg-background-body border-divider">
+        {(
+          [
+            [
+              HeartColored,
+              'Tips given',
+              `${utils.formatDigit({
+                value: transactionSummary?.tips_given || 0,
+                shorten: true,
+              })}+`,
+            ],
+            [
+              DollarColored,
+              'Total volume',
+              `${utils.formatUsdDigit(transactionSummary?.total_volume || 0)}+`,
+            ],
+            [
+              UserShieldColored,
+              'Active users',
+              `${utils.formatDigit({
+                value: transactionSummary?.active_users || 0,
+                shorten: true,
+              })}+`,
+            ],
+            [
+              LinkColored,
+              'Networks',
+              `${utils.formatDigit({
+                value: transactionSummary?.total_networks || 0,
+                shorten: true,
+              })}+`,
+            ],
+          ] as [any, string, string][]
+        ).map(([Icon, title, value], index) => (
+          <div
+            key={index}
+            className="flex overflow-hidden relative col-span-1 col-start-1 items-center rounded-xl border xl:col-start-auto bg-background-body border-divider"
+          >
+            <div className="absolute right-0 top-1/2 flex-shrink-0 opacity-60 -translate-y-1/2 scale-[3]">
+              <Icon width={40} height={40} />
+            </div>
+            <div className="flex flex-col py-3 px-5">
+              <Typography level="h8" className="!text-text-secondary">
+                {title}
+              </Typography>
+              <Typography level="h5" className="font-mono" fontWeight="lg">
+                {loading ? <Skeleton className="w-32 h-8" /> : value}
+              </Typography>
+            </div>
+          </div>
+        ))}
+        <div className="flex flex-wrap col-span-2 col-start-2 row-span-4 row-start-1 gap-4 justify-evenly items-center p-3 rounded-xl border xl:col-span-3 xl:col-start-3 xl:row-span-2 xl:row-start-1 bg-background-body border-divider">
           <div className="flex flex-col gap-4 w-full lg:w-auto">
             <div className="flex flex-col-4">
               <div className="flex gap-3 items-center">
@@ -49,7 +99,7 @@ export const SummarySection = () => {
                 <Typography level="h6">Current Transactions</Typography>
               </div>
             </div>
-            <Typography level="h2" className="text-text-primary">
+            <Typography level="h2" className="font-mono text-text-primary">
               {loading ? (
                 <Skeleton className="w-64 h-14" />
               ) : (
@@ -61,7 +111,10 @@ export const SummarySection = () => {
                 <Skeleton className="w-24 h-8" />
               ) : (
                 <>
-                  <Typography level="h5" className="!text-primary-solid">
+                  <Typography
+                    level="h5"
+                    className="!text-primary-solid font-mono"
+                  >
                     {formatNumber(
                       Math.floor(transactionSummary.transactions_per_day) || 0,
                     )}
@@ -73,13 +126,16 @@ export const SummarySection = () => {
               )}
             </div>
           </div>
-          <div className="flex gap-4 lg:justify-center items-center w-full lg:w-auto">
+          <div className="flex gap-4 items-center w-full lg:justify-center lg:w-auto">
             {loading ? (
               <Skeleton className="rounded-full w-[150px] h-[150px]" />
             ) : (
               <div className="flex gap-4 items-center">
-                <div className="flex flex-col items-center justify-center">
-                  <Typography level="h4" className="!text-success-solid">
+                <div className="flex flex-col justify-center items-center">
+                  <Typography
+                    level="h4"
+                    className="!text-success-solid font-mono"
+                  >
                     {successRate}%
                   </Typography>
                   <Typography level="p4">Successful</Typography>
@@ -128,58 +184,6 @@ export const SummarySection = () => {
             )}
           </div>
         </div>
-        {(
-          [
-            [
-              HeartColored,
-              'Tips given',
-              `${utils.formatDigit({
-                value: transactionSummary?.tips_given || 0,
-                shorten: true,
-              })}+`,
-            ],
-            [
-              DollarColored,
-              'Total volume',
-              `${utils.formatUsdDigit(transactionSummary?.total_volume || 0)}+`,
-            ],
-            [
-              UserShieldColored,
-              'Active users',
-              `${utils.formatDigit({
-                value: transactionSummary?.active_users || 0,
-                shorten: true,
-              })}+`,
-            ],
-            [
-              LinkColored,
-              'Networks',
-              `${utils.formatDigit({
-                value: transactionSummary?.total_networks || 0,
-                shorten: true,
-              })}+`,
-            ],
-          ] as [any, string, string][]
-        ).map(([Icon, title, value], index) => (
-          <div
-            key={index}
-            className="col-span-12 p-8 rounded-xl border md:col-span-6 xl:col-span-3 bg-background-body border-divider"
-          >
-            <div className="flex gap-8 items-center">
-              <div className="flex-shrink-0">
-                <Icon width={40} height={40} />
-              </div>
-              <div className="flex flex-col gap-2">
-                <Typography level="h8" className="!text-text-secondary">
-                  {title}
-                </Typography>
-                <Typography level="h4">
-                  {loading ? <Skeleton className="w-32 h-8" /> : value}
-                </Typography>
-              </div>
-            </div>
-          </div>
-        ))}
       </div>
     </div>
   )
