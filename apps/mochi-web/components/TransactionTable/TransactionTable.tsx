@@ -1,3 +1,4 @@
+import { truncate } from '@dwarvesf/react-utils'
 import {
   Avatar,
   Badge,
@@ -19,12 +20,12 @@ import { useMemo } from 'react'
 import { transactionActionString } from '~constants/transactions'
 import Amount from '~cpn/Amount'
 import { TransactionAction } from './TransactionAction'
+import { TransactionIssuedBy } from './TransactionIssuedBy'
 import { TransactionRecipients } from './TransactionRecipients'
 import { TransactionStatusIcon } from './TransactionStatusIcon'
 import { TransactionTxGroup } from './TransactionTxGroup'
 import { TransactionTableProps, Tx } from './types'
 import { openTx } from './utils'
-import { TransactionIssuedBy } from './TransactionIssuedBy'
 
 export const TransactionTable = (props: TransactionTableProps) => {
   const {
@@ -163,7 +164,11 @@ export const TransactionTable = (props: TransactionTableProps) => {
                   </div>
                 )}
               </BadgeIcon>
-              <span className="w-full truncate">{tx.where.text}</span>
+              <Tooltip content={tx.where.text}>
+                <span className="w-full truncate">
+                  {truncate(tx.where.text, 20)}
+                </span>
+              </Tooltip>
             </Badge>
           )
         },
