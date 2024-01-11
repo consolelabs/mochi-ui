@@ -155,7 +155,7 @@ export const ProfileWidget = () => {
   return (
     <Card className="pb-3 space-y-4 shadow-input">
       <div className="flex items-center space-x-2">
-        <Avatar src={me?.avatar || ''} size="lg" />
+        <Avatar src={me?.avatar || ''} size="xl" />
         <div className="overflow-hidden flex-1 space-y-1">
           <Typography level="h6" noWrap>
             {me?.profile_name}

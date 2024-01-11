@@ -5,10 +5,12 @@ const avatarCva = cva(['inline-block flex-shrink-0 rounded-full'], {
   variants: {
     size: {
       xs: 'w-4 h-4',
-      sm: 'w-7 h-7',
+      sm: 'w-8 h-8',
       base: 'w-10 h-10',
-      lg: 'w-14 h-14',
-      xl: 'w-20 h-20',
+      lg: 'w-12 h-12',
+      xl: 'w-14 h-14',
+      '2xl': 'w-16 h-16',
+      '3xl': 'w-20 h-20',
     },
   },
   defaultVariants: {
@@ -19,30 +21,36 @@ const avatarCva = cva(['inline-block flex-shrink-0 rounded-full'], {
 const avatarGroupWrapperCva = cva(['overflow-hidden'], {
   variants: {
     size: {
-      xs: 'w-10 h-10',
-      sm: 'w-12 h-12',
-      md: 'w-14 h-14',
-      lg: 'w-16 h-16',
+      xs: 'w-4 h-4',
+      sm: 'w-8 h-8',
+      base: 'w-10 h-10',
+      lg: 'w-12 h-12',
+      xl: 'w-14 h-14',
+      '2xl': 'w-16 h-16',
+      '3xl': 'w-20 h-20',
     },
   },
   defaultVariants: {
-    size: 'md',
+    size: 'base',
   },
 })
 
 const avatarGroupCva = cva(
-  ['relative overflow-hidden bg-background-level3 rounded-full w-14 h-14'],
+  ['relative overflow-hidden bg-background-level3 rounded-full w-10 h-10'],
   {
     variants: {
       size: {
-        xs: 'scale-[calc(5/7)] -translate-x-2 -translate-y-2',
-        sm: 'scale-[calc(6/7)] -translate-x-1 -translate-y-1',
-        md: '',
-        lg: 'scale-[calc(8/7)] translate-x-1 translate-y-1',
+        xs: 'scale-[calc(4/10)] -translate-x-3 -translate-y-3',
+        sm: 'scale-[calc(8/10)] -translate-x-2 -translate-y-2',
+        base: '',
+        lg: 'scale-[calc(12/10)] translate-x-1 translate-y-1',
+        xl: 'scale-[calc(14/10)] translate-x-2 translate-y-2',
+        '2xl': 'scale-[calc(16/10)] translate-x-3 translate-y-3',
+        '3xl': 'scale-[calc(2)] translate-x-5 translate-y-5',
       },
     },
     defaultVariants: {
-      size: 'md',
+      size: 'base',
     },
   },
 )

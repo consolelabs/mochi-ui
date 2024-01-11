@@ -49,7 +49,7 @@ export default function Template({
         alt={title}
       />
       <div className="absolute bottom-0 left-1/2 p-1 rounded-full -translate-x-1/2 translate-y-1/2 bg-inherit">
-        <Avatar size="xl" src={avatar} smallSrc={platformIcon} />
+        <Avatar size="3xl" src={avatar} smallSrc={platformIcon} />
       </div>
     </div>
   )

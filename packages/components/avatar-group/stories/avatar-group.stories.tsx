@@ -31,6 +31,8 @@ export const Default: Story = {
         <Avatar src="https://mochi.gg/logo.png" />
         <Avatar size="lg" src="https://mochi.gg/logo.png" />
         <Avatar size="xl" src="https://mochi.gg/logo.png" />
+        <Avatar size="2xl" src="https://mochi.gg/logo.png" />
+        <Avatar size="3xl" src="https://mochi.gg/logo.png" />
       </div>
     )
   },
@@ -40,7 +42,7 @@ export const Fallback: Story = {
   render: () => {
     return (
       <div className="gap-3 flex">
-        <Avatar size="lg" src="https://mochi.gg/notfound.png" />
+        <Avatar size="xl" src="https://mochi.gg/notfound.png" />
       </div>
     )
   },
@@ -74,6 +76,16 @@ export const Cutout: Story = {
           smallSrc="https://cdn.discordapp.com/emojis/1093923016691421205.png?size=240&quality=lossless"
           src="https://mochi.gg/logo.png"
         />
+        <Avatar
+          size="2xl"
+          smallSrc="https://cdn.discordapp.com/emojis/1093923016691421205.png?size=240&quality=lossless"
+          src="https://mochi.gg/logo.png"
+        />
+        <Avatar
+          size="3xl"
+          smallSrc="https://cdn.discordapp.com/emojis/1093923016691421205.png?size=240&quality=lossless"
+          src="https://mochi.gg/logo.png"
+        />
       </div>
     )
   },
@@ -83,7 +95,7 @@ export const Group: Story = {
   render: () => {
     return (
       <div className="space-y-3">
-        {['xs', 'sm', 'base', 'lg'].map((size) => (
+        {['xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl'].map((size) => (
           <div className="gap-3 flex flex-wrap" key={size}>
             <AvatarGroup size={size as AvatarGroupProps['size']}>
               {Array(2).fill(<Avatar src="https://mochi.gg/logo.png" />)}

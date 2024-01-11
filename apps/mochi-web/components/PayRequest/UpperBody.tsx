@@ -43,7 +43,7 @@ export default function UpperBody({
   return (
     <div className="flex flex-col items-center">
       <Avatar
-        size="lg"
+        size="xl"
         src={avatarUrl || '/logo.png'}
         smallSrc={avatarPlatform}
       />

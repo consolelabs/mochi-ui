@@ -23,7 +23,7 @@ export const SelectedRecipient: React.FC<SelectedRecipientProps> = ({
     >
       <div className="relative w-full">
         <div className="flex overflow-hidden justify-center items-center rounded-full border-white w-[56px] h-[56px] border-[2.5px]">
-          <Avatar src={profile.avatar} fallback={p?.plain} size="lg" />
+          <Avatar src={profile.avatar} fallback={p?.plain} size="xl" />
         </div>
         <IconButton
           tabIndex={-1}
