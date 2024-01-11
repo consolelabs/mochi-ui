@@ -25,7 +25,7 @@ export const TransactionRecipients = (props: TransactionRecipientsProps) => {
 
   return (
     <div className="flex gap-3 items-center">
-      <AvatarGroup size="xs">
+      <AvatarGroup>
         {allTxs
           // Dedupe by address
           .filter(

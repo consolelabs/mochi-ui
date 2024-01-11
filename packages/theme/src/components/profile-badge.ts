@@ -10,7 +10,7 @@ const profileBadgeAvatarWrapperClsx = ({
   className = '',
 }: {
   className?: string
-} = {}) => clsx('shrink-0 h-7', className)
+} = {}) => clsx('shrink-0 h-8', className)
 
 const profileBadgeNameClsx = ({
   className = '',

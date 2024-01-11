@@ -96,7 +96,7 @@ export const AppDetailStatistics = ({
               disabled={uploading}
               onClick={() => inputFile.current?.click()}
             >
-              <Avatar src={detail?.avatar || ''} size="xl" />
+              <Avatar src={detail?.avatar || ''} size="3xl" />
               {uploading ? (
                 <div className="absolute inset-0 flex items-center justify-center w-full h-full bg-white rounded-full bg-opacity-30">
                   <ThreeDotLoading className="w-6 h-6" />

@@ -16,12 +16,12 @@ const {
 
 export type AvatarGroupProps = {
   children: ReactNode
-  size?: 'xs' | 'sm' | 'md' | 'lg'
+  size?: 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl'
   className?: string
 }
 
 export default function AvatarGroup(props: AvatarGroupProps) {
-  const { children, size = 'md', className } = props
+  const { children, size = 'base', className } = props
   const avatarChild = Children.toArray(children).filter(
     (child) => (child as React.ReactElement<AvatarProps, any>).type === Avatar,
   )
