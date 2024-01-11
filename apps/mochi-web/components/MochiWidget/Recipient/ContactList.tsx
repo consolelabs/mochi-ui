@@ -6,6 +6,7 @@ import useSWR from 'swr'
 import { API } from '~constants/api'
 import { useLoginWidget } from '@mochi-web3/login-widget'
 import { SectionList } from '~cpn/base/section-list'
+import { useAuthStore } from '~store'
 import { RecipientItem } from './RecipientItem'
 import { EmptyList } from './EmptyList'
 import Skeleton from '../Tip/Skeleton'
@@ -20,11 +21,12 @@ interface Props {
 
 export const ContactList = (props: Props) => {
   const { isLoggedIn, profile } = useLoginWidget()
+  const { isLoggedIn: isApiLoggedIn } = useAuthStore()
   const { recentRecipients, queryValue, selectedRecipients = [] } = props
   const { data: contacts = [], isLoading } = useSWR(
-    ['contact-list', isLoggedIn, profile?.id],
+    ['contact-list', isLoggedIn, profile?.id, isApiLoggedIn],
     async ([_, isLoggedIn, profileId]) => {
-      if (!isLoggedIn || !profileId) return []
+      if (!isApiLoggedIn || !isLoggedIn || !profileId) return []
       const data = await API.MOCHI_PROFILE.get(
         `/profiles/${profileId}/contacts`,
       ).json((r) => r.data)
