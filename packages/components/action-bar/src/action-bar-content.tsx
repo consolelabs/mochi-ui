@@ -39,7 +39,6 @@ const ActionBarContent = forwardRef<
 
   const alertProps = {
     children,
-    className,
     outline,
     paddingSize,
     shadow,
@@ -62,12 +61,9 @@ const ActionBarContent = forwardRef<
           e.preventDefault()
           onInteractOutside?.(e)
         }}
+        className={actionBar.contentCva({ className })}
       >
-        <Alert
-          {...alertProps}
-          ref={ref}
-          className={actionBar.contentCva({ className })}
-        />
+        <Alert {...alertProps} ref={ref} />
       </PopoverPrimitive.Content>
     </PopoverPrimitive.Anchor>
   )

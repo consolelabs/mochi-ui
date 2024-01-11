@@ -51,8 +51,8 @@ const SettingsPage = () => {
           <TabTrigger value="general">General</TabTrigger>
           <TabTrigger value="notification">Notification</TabTrigger>
         </TabList>
-        <DashboardBody>
-          <TabContent value="general">
+        <DashboardBody containerClassName="h-full">
+          <TabContent className="h-full" value="general">
             <GeneralPage />
           </TabContent>
           <TabContent className="static" value="notification">
