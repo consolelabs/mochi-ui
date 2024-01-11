@@ -39,6 +39,11 @@ module.exports = {
         hostname: 'zapper.fi',
         port: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'coin.top',
+        port: '',
+      },
     ],
   },
   transpilePackages: ['@mochi-ui/icons'],

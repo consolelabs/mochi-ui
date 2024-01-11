@@ -104,14 +104,16 @@ export const mochiui = () => {
         ...resolved?.utilities,
         '.landing-container': {
           width: '100%',
-          maxWidth: '1280px',
           marginLeft: 'auto',
           marginRight: 'auto',
-          paddingLeft: '1rem',
-          paddingRight: '1rem',
-          '@screen md': {
-            paddingLeft: '1.5rem',
-            paddingRight: '1.5rem',
+          paddingLeft: '1.25rem',
+          paddingRight: '1.25rem',
+          '@screen lg': {
+            paddingLeft: '5rem',
+            paddingRight: '5rem',
+          },
+          '@screen xl': {
+            maxWidth: '1280px',
           },
         },
         '.dashboard-container': {

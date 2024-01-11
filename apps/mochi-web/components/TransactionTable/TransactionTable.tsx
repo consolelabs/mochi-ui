@@ -1,3 +1,4 @@
+import { useClipboard } from '@dwarvesf/react-hooks'
 import { truncate } from '@dwarvesf/react-utils'
 import {
   Avatar,
@@ -14,10 +15,9 @@ import {
   Tooltip,
   Typography,
 } from '@mochi-ui/core'
-import { ArrowRightLine } from '@mochi-ui/icons'
+import { ArrowRightLine, CheckLine, CopyLine } from '@mochi-ui/icons'
 import clsx from 'clsx'
 import { useMemo } from 'react'
-import { transactionActionString } from '~constants/transactions'
 import Amount from '~cpn/Amount'
 import { TransactionAction } from './TransactionAction'
 import { TransactionIssuedBy } from './TransactionIssuedBy'
@@ -26,6 +26,8 @@ import { TransactionStatusIcon } from './TransactionStatusIcon'
 import { TransactionTxGroup } from './TransactionTxGroup'
 import { TransactionTableProps, Tx } from './types'
 import { openTx } from './utils'
+import { TransactionBadge } from './TransactionBadge'
+import { TransactionHeaderAction } from './TransactionHeaderAction'
 
 export const TransactionTable = (props: TransactionTableProps) => {
   const {
@@ -46,11 +48,23 @@ export const TransactionTable = (props: TransactionTableProps) => {
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
+          // eslint-disable-next-line react-hooks/rules-of-hooks
+          const { onCopy, hasCopied } = useClipboard(tx.code)
 
           return (
             <div className="flex gap-1.5 items-center">
               <TransactionStatusIcon tx={tx} />
               <TransactionTxGroup tx={tx} />
+              {hasCopied ? (
+                <CheckLine />
+              ) : (
+                <CopyLine
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    onCopy()
+                  }}
+                />
+              )}
             </div>
           )
         },
@@ -73,21 +87,14 @@ export const TransactionTable = (props: TransactionTableProps) => {
         },
       },
       {
-        header: 'action',
+        header: TransactionHeaderAction,
         id: 'type',
         width: 50,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
 
-          return (
-            <Badge
-              className="inline-flex items-center capitalize border border-primary-solid"
-              appearance="primary"
-            >
-              {transactionActionString[tx.action] ?? 'tip'}
-            </Badge>
-          )
+          return <TransactionBadge action={tx.action} />
         },
       },
       {

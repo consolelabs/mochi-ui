@@ -24,14 +24,9 @@ export default function LowerBody({ data }: Props) {
       )
     }
     return (
-      <Typography
-        level="p7"
-        color="textSecondary"
-        fontWeight="sm"
-        className="capitalize"
-      >
+      <Badge className="capitalize" appearance="black">
         {data.status}
-      </Typography>
+      </Badge>
     )
   }, [data.claim_tx, data.status])
 

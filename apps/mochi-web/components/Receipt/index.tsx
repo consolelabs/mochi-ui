@@ -71,14 +71,9 @@ export default function Receipt({ id, data: _data }: Props) {
       )
     }
     return (
-      <Typography
-        level="p7"
-        color="textSecondary"
-        fontWeight="sm"
-        className="capitalize"
-      >
+      <Badge appearance="black" className="capitalize">
         {data?.status}
-      </Typography>
+      </Badge>
     )
   }, [data?.data?.isSuccess, data?.data?.isFail, data?.status])
 
