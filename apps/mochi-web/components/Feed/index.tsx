@@ -120,6 +120,8 @@ export default function Feed({ className = '' }: Props) {
         >
           <div className="px-6 mx-auto" style={{ width: 1488 }}>
             <TransactionTable
+              enableColFilter={false}
+              enableColSort={false}
               data={txns}
               loadingRows={10}
               isLoading={loading}

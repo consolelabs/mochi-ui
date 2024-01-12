@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 import { useClipboard } from '@dwarvesf/react-hooks'
 import { truncate } from '@dwarvesf/react-utils'
 import {
@@ -28,12 +29,16 @@ import { TransactionTableProps, Tx } from './types'
 import { openTx } from './utils'
 import { TransactionBadge } from './TransactionBadge'
 import { TransactionHeaderAction } from './TransactionHeaderAction'
+import { TransactionHeaderWen } from './TransactionHeaderWen'
+import { TransactionHeaderTotalValue } from './TransactionHeaderTotalValue'
 
 export const TransactionTable = (props: TransactionTableProps) => {
   const {
     className,
     componentsProps = {},
     columns: columnFlags = {},
+    enableColFilter = true,
+    enableColSort = true,
     ...rest
   } = props
 
@@ -70,7 +75,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
         },
       },
       {
-        header: 'wen',
+        header: () => <TransactionHeaderWen disabled={!enableColSort} />,
         id: 'wen',
         width: 170,
         // eslint-disable-next-line
@@ -87,7 +92,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
         },
       },
       {
-        header: TransactionHeaderAction,
+        header: () => <TransactionHeaderAction disabled={!enableColFilter} />,
         id: 'type',
         width: 50,
         // eslint-disable-next-line
@@ -133,7 +138,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
         },
       },
       {
-        header: 'total value',
+        header: () => <TransactionHeaderTotalValue disabled={!enableColSort} />,
         id: 'amount',
         width: 140,
         // eslint-disable-next-line

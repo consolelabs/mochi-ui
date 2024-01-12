@@ -57,14 +57,14 @@ export const transactionActionIcon: Record<
 }
 
 export const transactionActionColor: Record<TransactionActionType, string> = {
-  transfer: 'text-[#039855] bg-[#d1fadf]',
-  vault_transfer: 'text-[#5d6267] bg-[#f2f4f7]',
-  payme: 'text-[#175CD3] bg-[#d1e9ff]',
-  paylink: 'text-[#175CD3] bg-[#d1e9ff]',
-  swap: 'text-[#6938ef] bg-[#ebe9fe]',
-  airdrop: 'text-[#0891b2] bg-[#cffafe]',
-  deposit: 'bg-[#f2f4f7] text-[#5d6267]',
-  withdraw: 'bg-[#f2f4f7] text-[#5d6267]',
+  transfer: '!text-[#039855] !bg-[#d1fadf]',
+  vault_transfer: '!text-[#5d6267] !bg-[#f2f4f7]',
+  payme: '!text-[#175CD3] !bg-[#d1e9ff]',
+  paylink: '!text-[#175CD3] !bg-[#d1e9ff]',
+  swap: '!text-[#6938ef] !bg-[#ebe9fe]',
+  airdrop: '!text-[#0891b2] !bg-[#cffafe]',
+  deposit: '!bg-[#f2f4f7] !text-[#5d6267]',
+  withdraw: '!bg-[#f2f4f7] !text-[#5d6267]',
 }
 
 export const typeFilters: {

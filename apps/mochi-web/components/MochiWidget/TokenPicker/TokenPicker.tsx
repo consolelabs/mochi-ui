@@ -1,14 +1,22 @@
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import clsx from 'clsx'
 import Image from 'next/image'
-import { ChevronDownLine, MagnifierLine } from '@mochi-ui/icons'
+import {
+  ChevronDownLine,
+  MagnifierLine,
+  DollarSquareSolid,
+  TeaSolid,
+} from '@mochi-ui/icons'
 import { useShallow } from 'zustand/react/shallow'
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { Tab } from '@headlessui/react'
 import {
   TextFieldInput,
   TextFieldDecorator,
   TextFieldRoot,
+  Tabs,
+  TabList,
+  TabTrigger,
+  Typography,
 } from '@mochi-ui/core'
 import { BottomSheet } from '~cpn/BottomSheet'
 import { BalanceWithSource, TokenTableList } from '~cpn/TokenTableList'
@@ -17,16 +25,19 @@ import { Moniker } from './type'
 import { MonikerIcons, isToken } from './utils'
 import { DEFAULT_BALANCE } from './default-data'
 import sortOrder from './sort-order.json'
+import { MonikerList } from './MonikerList'
 
 const TokenTabs = [
   {
     key: 1,
-    value: 'Token',
+    value: 'token',
+    Icon: DollarSquareSolid,
   },
-  /* { */
-  /*   key: 2, */
-  /*   value: 'Moniker', */
-  /* }, */
+  {
+    key: 2,
+    value: 'moniker',
+    Icon: TeaSolid,
+  },
 ]
 
 interface TokenPickerProps {
@@ -52,7 +63,7 @@ const TokenButton = (props: TokenButtonProps) => {
             width={22}
             height={22}
             alt={`${props.name} icon`}
-            className="object-contain rounded-full"
+            className="object-contain rounded-full shrink-0"
             src={props.icon}
           />
         </span>
@@ -63,7 +74,7 @@ const TokenButton = (props: TokenButtonProps) => {
       )}
       <span className="text-sm font-medium">{props.name}</span>
       <ChevronDownLine
-        className={clsx('transition w-4 h-4 text-primary-500', {
+        className={clsx('shrink-0 transition w-4 h-4 text-primary-500', {
           'rotate-180': props.isOpenSelector,
         })}
       />
@@ -83,6 +94,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
   authorized,
   unauthorizedContent,
 }) => {
+  const [selectedTab, setSelectedTab] = useState('token')
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { isFetchingWallets, wallets } = useWalletStore(
     useShallow((s) => ({
@@ -97,7 +109,6 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
   /*   [searchTerm, tokenBalances], */
   /* ) */
   const isTokenSelected = isToken(selectedAsset)
-  const [tabIdx, setTabIdx] = useState(isTokenSelected ? 0 : 1)
 
   const balancesWithSource = useMemo(() => {
     return wallets.flatMap((w) =>
@@ -134,19 +145,17 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
       setSearchTerm('')
       setIsOpenSelector(false)
       onSelect?.(asset)
-      setTabIdx(0)
       onClose()
     },
     [onClose, onSelect],
   )
 
-  /* function handleMonikerSelect(asset: Moniker) { */
-  /*   setSearchTerm('') */
-  /*   setIsOpenSelector(false) */
-  /*   onSelect?.(asset) */
-  /*   setTabIdx(1) */
-  /*   onClose() */
-  /* } */
+  function handleMonikerSelect(asset: Moniker) {
+    setSearchTerm('')
+    setIsOpenSelector(false)
+    onSelect?.(asset)
+    onClose()
+  }
 
   function onSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     setSearchTerm(e.target.value)
@@ -202,51 +211,83 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
                 onChange={onSearchChange}
               />
             </TextFieldRoot>
-            <Tab.Group selectedIndex={tabIdx} onChange={setTabIdx}>
-              <Tab.List className="flex gap-6 mt-2 w-full">
-                {TokenTabs.map((tab) => (
-                  <Tab key={tab.key} className="focus-visible:outline-none">
-                    {({ selected }) => (
-                      <div className="flex justify-start py-2 w-full">
-                        <h2
-                          className={`text-sm ${
-                            selected
-                              ? 'text-text-primary'
-                              : 'text-text-secondary'
-                          }`}
-                        >
-                          {tab.value}
-                        </h2>
-                      </div>
-                    )}
-                  </Tab>
-                ))}
-              </Tab.List>
-              <Tab.Panels className="flex-1 w-full min-h-0">
-                <Tab.Panel className="flex flex-col gap-2 h-full">
-                  <TokenTableList
-                    isLoading={isFetchingWallets}
-                    data={filteredTokens}
-                    hideLastBorder
-                    onRow={(record) => {
-                      return {
-                        onClick: () => handleTokenSelect(record),
-                      }
-                    }}
+            <Tabs value={selectedTab} className="flex flex-col mt-3 min-h-0">
+              <TabList className="flex -mx-3">
+                {TokenTabs.map((t) => {
+                  const isSelected = selectedTab === t.value
+                  return (
+                    <TabTrigger
+                      key={t.key}
+                      value={t.value}
+                      onClick={() => setSelectedTab(t.value)}
+                      wrapperClassName="!p-0"
+                      variant="solid"
+                      className={clsx(
+                        'flex flex-1 justify-center py-3 !px-0 rounded-none border-t border-b border-divider',
+                        {
+                          'bg-background-level2': isSelected,
+                        },
+                      )}
+                    >
+                      <t.Icon
+                        className={clsx('w-5 h-5', {
+                          'text-neutral-800': isSelected,
+                          'text-neutral-500': !isSelected,
+                        })}
+                      />
+                      <Typography
+                        color={isSelected ? 'textPrimary' : 'textSecondary'}
+                        className="capitalize"
+                        level="p5"
+                      >
+                        {t.value}
+                      </Typography>
+                    </TabTrigger>
+                  )
+                })}
+              </TabList>
+              <div className="flex flex-col gap-2 min-h-0">
+                {selectedTab === 'token' ? (
+                  <>
+                    <TokenTableList
+                      isLoading={isFetchingWallets}
+                      data={filteredTokens}
+                      hideLastBorder
+                      onRow={(record) => {
+                        return {
+                          onClick: () => handleTokenSelect(record),
+                        }
+                      }}
+                    />
+                    <span className="mt-auto text-xs text-neutral-500">
+                      Only supported tokens are shown
+                    </span>
+                  </>
+                ) : (
+                  <MonikerList
+                    balances={balancesWithSource}
+                    searchTerm={searchTerm}
+                    onSelect={handleMonikerSelect}
                   />
-                  <span className="mt-auto text-xs text-neutral-500">
-                    Only supported tokens are shown
-                  </span>
-                </Tab.Panel>
-                {/* <Tab.Panel className="flex flex-col gap-2 h-full"> */}
-                {/*   <MonikerList */}
-                {/*     balances={balancesWithSource} */}
-                {/*     searchTerm={searchTerm} */}
-                {/*     onSelect={handleMonikerSelect} */}
-                {/*   /> */}
-                {/* </Tab.Panel> */}
-              </Tab.Panels>
-            </Tab.Group>{' '}
+                )}
+              </div>
+            </Tabs>
+            {/* <Tab.Group selectedIndex={tabIdx} onChange={setTabIdx}> */}
+            {/*   <Tab.List className="flex gap-6 mt-2 w-full"> */}
+            {/*     {TokenTabs.map((tab) => ( */}
+            {/*       <Tab */}
+            {/*         key={tab.key} */}
+            {/*         className="focus-visible:outline-none" */}
+            {/*       ></Tab> */}
+            {/*     ))} */}
+            {/*   </Tab.List> */}
+            {/*   <Tab.Panels className="flex-1 w-full min-h-0"> */}
+            {/*     <Tab.Panel className="flex flex-col gap-2 h-full"> */}
+            {/*     </Tab.Panel> */}
+            {/*     <Tab.Panel className="flex flex-col gap-2 h-full"> */}
+            {/*     </Tab.Panel> */}
+            {/*   </Tab.Panels> */}
+            {/* </Tab.Group> */}
           </div>
         ) : (
           unauthorizedContent

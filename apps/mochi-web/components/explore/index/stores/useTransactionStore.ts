@@ -16,7 +16,12 @@ interface State {
   txns: Tx[][]
   addNewTx: (tx: Tx) => void
   loading: boolean
-  fetchTxns: (filters?: Filters, page?: number, size?: number) => Promise<void>
+  fetchTxns: (
+    filters?: Filters,
+    sort?: string,
+    page?: number,
+    size?: number,
+  ) => Promise<void>
 
   size: number
   setSize: (size: number) => void
@@ -26,6 +31,9 @@ interface State {
 
   filters: Filters
   setFilters: (partialFilters: Partial<Filters>) => void
+
+  sort: string
+  setSort: (sort: string) => void
 
   initWs: (override?: boolean) => void
   ws: WebSocket | null
@@ -68,13 +76,14 @@ export const useTransactionStore = create<State>((set, get) => ({
 
     set((s) => ({ ...s, txns: paginatedTxns }))
   },
-  fetchTxns: async (filters, page = 1, size = DEFAULT_PAGE_SIZE) => {
+  fetchTxns: async (filters, sort, page = 1, size = DEFAULT_PAGE_SIZE) => {
     set((s) => ({ ...s, loading: true }))
     return API.MOCHI_PAY.query({
       page: page - 1,
       size,
       platforms: filters?.platform ? [filters.platform] : undefined,
       action: filters?.actions ? filters.actions.join('|') : undefined,
+      sort_by: sort || undefined,
       // eslint-disable-next-line
       chain_ids: filters?.chainId ? [parseInt(filters.chainId)] : undefined,
     })
@@ -101,20 +110,20 @@ export const useTransactionStore = create<State>((set, get) => ({
   size: 15,
   page: 1,
   setSize: (size) => {
-    const { size: _size, fetchTxns } = get()
+    const { sort, size: _size, fetchTxns } = get()
 
     if (size !== _size) {
       set((s) => ({ ...s, size, page: 1, txns: [] }))
-      fetchTxns(undefined, 1, size)
+      fetchTxns(undefined, sort, 1, size)
     }
   },
   setPage: async (page) => {
-    const { txns, size, page: _page, filters, fetchTxns } = get()
+    const { txns, size, sort, page: _page, filters, fetchTxns } = get()
 
     if (page !== _page) {
       // Fetch new page if not exists
       if (!txns[page - 1]) {
-        fetchTxns(filters, page, size)
+        fetchTxns(filters, sort, page, size)
       }
 
       set((s) => ({ ...s, page }))
@@ -125,13 +134,21 @@ export const useTransactionStore = create<State>((set, get) => ({
     platform: '',
   },
   setFilters: (partialFilters) => {
-    const { filters: _filters, size, fetchTxns } = get()
+    const { filters: _filters, sort, size, fetchTxns } = get()
 
     const finalFilters = { ..._filters, ...partialFilters }
 
     if (JSON.stringify(finalFilters) !== JSON.stringify(_filters)) {
       set((s) => ({ ...s, filters: finalFilters, page: 1, txns: [], total: 0 }))
-      fetchTxns(finalFilters, 1, size)
+      fetchTxns(finalFilters, sort, 1, size)
+    }
+  },
+  sort: '',
+  setSort: (sort) => {
+    const { sort: _sort, filters, size, fetchTxns } = get()
+    if (sort !== _sort) {
+      set((s) => ({ ...s, sort, txs: [], page: 1, total: 0 }))
+      fetchTxns(filters, sort, 1, size)
     }
   },
 

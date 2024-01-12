@@ -17,31 +17,38 @@ import { useTransactionStore } from '~cpn/explore/index/stores/useTransactionSto
 import { TransactionBadge } from './TransactionBadge'
 
 const ALL_ACTIONS = [
-  { id: 'transfer', value: 'Transfer' },
-  { id: 'airdrop', value: 'Airdrop' },
-  { id: 'deposit', value: 'Deposit' },
-  { id: 'withdraw', value: 'Withdraw' },
-  { id: 'swap', value: 'Swap' },
-  { id: 'vault_transfer', value: 'Vault Transfer' },
-  { id: 'paylink', value: 'Pay Link' },
-  { id: 'payme', value: 'Pay Me' },
+  { id: 'transfer', idSearch: 'transfer tip', value: 'Transfer' },
+  { id: 'airdrop', idSearch: 'airdrop', value: 'Airdrop' },
+  { id: 'deposit', idSearch: 'deposit dp', value: 'Deposit' },
+  { id: 'withdraw', idSearch: 'withdraw wd', value: 'Withdraw' },
+  { id: 'swap', idSearch: 'swap', value: 'Swap' },
+  { id: 'vault_transfer', idSearch: 'vault', value: 'Vault Transfer' },
+  { id: 'paylink', idSearch: 'paylink', value: 'Pay Link' },
+  { id: 'payme', idSearch: 'payme', value: 'Pay Me' },
 ]
 
-export const TransactionHeaderAction = () => {
+interface Props {
+  disabled: boolean
+}
+
+export const TransactionHeaderAction = ({ disabled }: Props) => {
   const { setFilters } = useTransactionStore()
   const [selectedActions, setSelectedActions] = useState<Array<string>>([])
   const [query, setQuery] = useState('')
 
   useEffect(() => {
-    if (selectedActions.length) {
-      setFilters({ actions: selectedActions })
-    }
+    setFilters({ actions: selectedActions })
   }, [selectedActions, setFilters])
+
+  if (disabled) return 'ACTION'
 
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <button className="flex gap-x-1 justify-between items-center">
+        <button
+          type="button"
+          className="flex gap-x-1 justify-between items-center focus:outline-none"
+        >
           <span>ACTION</span>
           <ChevronDownLine className="w-4 h-4" />
         </button>
@@ -52,7 +59,9 @@ export const TransactionHeaderAction = () => {
             <Combobox
               multiple
               value={selectedActions}
-              onChange={(values) => setSelectedActions(values)}
+              onChange={(values) => {
+                setSelectedActions(values)
+              }}
             >
               <TextFieldRoot>
                 <TextFieldDecorator>
@@ -67,7 +76,9 @@ export const TransactionHeaderAction = () => {
               </TextFieldRoot>
               <Combobox.Options static className="-mx-1 mt-2">
                 <List
-                  data={ALL_ACTIONS}
+                  data={ALL_ACTIONS.filter((a) =>
+                    a.idSearch.toLowerCase().includes(query.toLowerCase()),
+                  )}
                   renderItem={(a) => {
                     return (
                       <Combobox.Option

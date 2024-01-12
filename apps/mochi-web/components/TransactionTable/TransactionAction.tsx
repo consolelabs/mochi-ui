@@ -10,14 +10,18 @@ export const TransactionAction = (props: TransactionActionProps) => {
 
   switch (tx.action) {
     case 'payme': {
-      return <Button>Pay</Button>
+      return <Button className="!shadow-none">Pay</Button>
     }
     case 'paylink': {
-      return <Button color="success">Claim</Button>
+      return (
+        <Button color="success" className="!shadow-none">
+          Claim
+        </Button>
+      )
     }
     default: {
       return (
-        <Button variant="outline" className="border-none">
+        <Button variant="outline" className="border-none !shadow-none">
           View
         </Button>
       )
