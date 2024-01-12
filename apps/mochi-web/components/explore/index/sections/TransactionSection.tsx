@@ -63,7 +63,7 @@ export const TransactionSection = () => {
             totalItems: total,
             onItemPerPageChange: setSize,
             onPageChange: setPage,
-            className: 'px-2',
+            className: 'px-10',
           },
         }}
         className="px-14"

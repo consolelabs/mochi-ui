@@ -53,7 +53,7 @@ export const ChainPicker = (props: ChainPickerProps) => {
       >
         <SelectValue placeholder="All Networks" />
       </SelectTrigger>
-      <SelectContent className="min-w-[250px]">
+      <SelectContent className="min-w-[250px] max-h-96">
         <SelectItem value="all" leftIcon={<LinkLine />}>
           All Networks
         </SelectItem>
