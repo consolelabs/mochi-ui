@@ -12,11 +12,7 @@ import {
   ResponseUserGeneralSettingResponse,
 } from '~types/mochi-schema'
 import { SaveBar } from '~cpn/SaveBar'
-import {
-  defaultMoneySource,
-  platformList,
-  targetGroupList,
-} from '~constants/settings'
+import { defaultMoneySource } from '~constants/settings'
 import { utils } from '@consolelabs/mochi-formatter'
 import { MoneySource } from './MoneySource'
 import { ReceiverPlatform } from './ReceiverPlatform'
@@ -24,8 +20,7 @@ import { TokenPriority } from './TokenPriority'
 import { DefaultMessage } from './DefaultMessage'
 import { TransactionLimit } from './TransactionLimit'
 import { TransactionPrivacy } from './TransactionPrivacy'
-import { SocialAccountsPrivacy } from './SocialAccountsPrivacy'
-import { WalletsPrivacy } from './WalletsPrivacy'
+import { WalletPrivacy } from './WalletPrivacy'
 
 const SETTINGS_GENERAL_FORM_ID = 'settings-general-form'
 
@@ -70,51 +65,6 @@ export const GeneralPage = () => {
             }),
           })) as any,
         },
-        // FIXME: prevent api return empty target_group and platform
-        privacy: {
-          tx: {
-            ...data.privacy?.tx,
-            custom_settings:
-              data.privacy?.tx?.custom_settings?.length !==
-                platformList.length ||
-              data.privacy.tx.custom_settings.some(
-                (each) => !each.platform || !each.target_group,
-              )
-                ? platformList.map((each) => ({
-                    target_group: targetGroupList[0].key,
-                    platform: each.key,
-                  }))
-                : data.privacy.tx.custom_settings,
-          },
-          social_accounts: {
-            ...data.privacy?.social_accounts,
-            custom_settings:
-              data.privacy?.social_accounts?.custom_settings?.length !==
-                platformList.length ||
-              data.privacy.social_accounts.custom_settings.some(
-                (each) => !each.platform || !each.target_group,
-              )
-                ? platformList.map((each) => ({
-                    target_group: targetGroupList[0].key,
-                    platform: each.key,
-                  }))
-                : data.privacy.social_accounts.custom_settings,
-          },
-          wallets: {
-            ...data.privacy?.wallets,
-            custom_settings:
-              data.privacy?.wallets?.custom_settings?.length !==
-                platformList.length ||
-              data.privacy.wallets.custom_settings.some(
-                (each) => !each.platform || !each.target_group,
-              )
-                ? platformList.map((each) => ({
-                    target_group: targetGroupList[0].key,
-                    platform: each.key,
-                  }))
-                : data.privacy.wallets.custom_settings,
-          },
-        },
       })
     },
     [reset],
@@ -123,6 +73,7 @@ export const GeneralPage = () => {
   const onUpdateSettings = (data: ResponseGeneralSettingData) => {
     if (!profile?.id) return
     const payload = {
+      ...data,
       payment: {
         ...data.payment,
         token_priorities:
@@ -132,9 +83,6 @@ export const GeneralPage = () => {
           min: Number(each.min),
           max: Number(each.max),
         })),
-      },
-      privacy: {
-        ...data.privacy,
       },
     }
     return API.MOCHI.put(payload, GET_PATHS.UPDATE_GENERAL_SETTINGS(profile.id))
@@ -162,10 +110,8 @@ export const GeneralPage = () => {
       />
       <div className="space-y-4 sm:max-w-[600px]">
         <Typography level="h6">Payment setting</Typography>
-        <div className="flex gap-4">
-          <MoneySource />
-          <ReceiverPlatform />
-        </div>
+        <MoneySource />
+        <ReceiverPlatform />
         <TokenPriority />
         <Separator />
         <DefaultMessage />
@@ -174,11 +120,11 @@ export const GeneralPage = () => {
         <Separator className="!mb-8" />
 
         <Typography level="h6">Privacy</Typography>
+        <WalletPrivacy />
+        <Separator />
         <TransactionPrivacy />
-        <SocialAccountsPrivacy />
-        <WalletsPrivacy />
 
-        <Separator className="!my-8" />
+        <Separator />
       </div>
       <div className="mt-8">
         <Button

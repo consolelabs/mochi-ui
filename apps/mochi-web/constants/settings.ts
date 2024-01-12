@@ -13,26 +13,6 @@ export const targetGroupList = [
   { key: 'friends', label: 'Only friends can see' },
 ]
 
-export const platformGroupList = [
-  { key: 'all', label: 'All platforms' },
-  { key: 'custom', label: 'Custom on each platform' },
-]
-
-export const platformList = [
-  {
-    key: 'discord',
-    label: 'Discord',
-  },
-  {
-    key: 'telegram',
-    label: 'Telegram',
-  },
-  {
-    key: 'web',
-    label: 'Website',
-  },
-]
-
 export const defaultMoneySource = {
   platform: 'mochi',
   platform_identifier: 'mochi-balance',

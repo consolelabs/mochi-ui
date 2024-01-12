@@ -1,7 +1,10 @@
 import {
   FormControl,
   FormErrorMessage,
-  FormLabel,
+  SectionHeader,
+  SectionHeaderActions,
+  SectionHeaderDescription,
+  SectionHeaderTitle,
   Select,
   SelectContent,
   SelectItem,
@@ -20,17 +23,32 @@ export const ReceiverPlatform = () => {
       control={control}
       render={({ field, fieldState }) => (
         <FormControl error={!!fieldState.error} className="min-w-[160px]">
-          <FormLabel>Default receiver platform</FormLabel>
-          <Select {...field}>
-            <SelectTrigger appearance="form" className="justify-between h-10">
-              <SelectValue placeholder="Discord" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="discord">Discord</SelectItem>
-              <SelectItem value="telegram">Telegram</SelectItem>
-              <SelectItem value="google">Google Account</SelectItem>
-            </SelectContent>
-          </Select>
+          <SectionHeader
+            wrapActionsOnMobile={false}
+            className="!grid-cols-[1fr,auto]"
+          >
+            <SectionHeaderTitle className="font-normal">
+              Default receiver platform
+            </SectionHeaderTitle>
+            <SectionHeaderDescription>
+              Choose which platform of recipient to use first/default.
+            </SectionHeaderDescription>
+            <SectionHeaderActions>
+              <Select {...field}>
+                <SelectTrigger
+                  appearance="form"
+                  className="justify-between h-10 w-48"
+                >
+                  <SelectValue placeholder="Discord" />
+                </SelectTrigger>
+                <SelectContent align="end">
+                  <SelectItem value="discord">Discord</SelectItem>
+                  <SelectItem value="telegram">Telegram</SelectItem>
+                  <SelectItem value="google">Google Account</SelectItem>
+                </SelectContent>
+              </Select>
+            </SectionHeaderActions>
+          </SectionHeader>
           <FormErrorMessage>{fieldState.error?.message}</FormErrorMessage>
         </FormControl>
       )}
