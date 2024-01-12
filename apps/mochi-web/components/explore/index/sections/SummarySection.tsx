@@ -31,9 +31,9 @@ export const SummarySection = () => {
   )
 
   return (
-    <div className="lg:py-8 bg-background-level2">
+    <div className="bg-background-level2">
       <div
-        className="flex flex-col-reverse gap-4 p-6 mx-auto sm:grid sm:grid-cols-3 sm:grid-rows-4 xl:grid-cols-5 xl:grid-rows-2"
+        className="flex flex-col-reverse gap-4 p-6 mx-auto md:grid md:grid-cols-3 md:grid-rows-4 xl:grid-cols-5 xl:grid-rows-2"
         style={{ maxWidth: 1248 }}
       >
         {(
@@ -84,7 +84,7 @@ export const SummarySection = () => {
           </div>
         ))}
         <div className="flex flex-wrap col-span-2 col-start-2 row-span-4 row-start-1 gap-4 justify-evenly items-center p-3 rounded-xl border xl:col-span-3 xl:col-start-3 xl:row-span-2 xl:row-start-1 bg-background-body border-divider">
-          <div className="flex flex-col gap-4 w-full lg:w-auto">
+          <div className="flex flex-col gap-4 items-center w-full lg:w-auto">
             <div className="flex flex-col-4">
               <div className="flex gap-3 items-center">
                 <div className="flex gap-1.5 items-center py-1 px-2 rounded-full bg-success-solid">
@@ -123,11 +123,11 @@ export const SummarySection = () => {
               )}
             </div>
           </div>
-          <div className="flex gap-4 items-center w-full lg:justify-center lg:w-auto">
+          <div className="flex gap-4 justify-center items-center w-full lg:w-auto">
             {loading ? (
               <Skeleton className="rounded-full w-[150px] h-[150px]" />
             ) : (
-              <div className="flex gap-4 items-center">
+              <div className="grid grid-cols-2 grid-rows-2 gap-x-6 items-center sm:flex sm:gap-4">
                 <div className="flex flex-col justify-center items-center">
                   <Typography
                     level="h4"
@@ -137,10 +137,10 @@ export const SummarySection = () => {
                   </Typography>
                   <Typography level="p4">Successful</Typography>
                 </div>
-                <div className="-m-4">
+                <div className="col-span-2 col-start-1 row-start-1 -m-4 mx-auto">
                   <PieChart
-                    width={180}
-                    height={180}
+                    width={150}
+                    height={150}
                     margin={{
                       top: 0,
                       right: 0,
@@ -163,7 +163,7 @@ export const SummarySection = () => {
                       stroke="none"
                       startAngle={-270}
                       endAngle={90}
-                      innerRadius={36}
+                      innerRadius={30}
                     />
                   </PieChart>
                 </div>

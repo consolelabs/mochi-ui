@@ -42,7 +42,7 @@ export const TransactionOverviewSection = ({ defaultPageSize = 5 }: Props) => {
 
   return (
     <div>
-      <SectionHeader>
+      <SectionHeader className="!pt-0">
         <SectionHeaderTitle className="flex items-center">
           Transactions
         </SectionHeaderTitle>
@@ -51,7 +51,7 @@ export const TransactionOverviewSection = ({ defaultPageSize = 5 }: Props) => {
           <PlatformPicker value={filterPlatform} onChange={setFilterPlatform} />
         </SectionHeaderActions>
       </SectionHeader>
-      <div className="border border-divider rounded-lg overflow-hidden bg-background-body mt-1">
+      <div className="overflow-hidden mt-1 rounded-lg border border-divider bg-background-body">
         <TransactionTable
           cellClassName={() => 'h-[60px]'}
           className="min-w-[1320px]"
