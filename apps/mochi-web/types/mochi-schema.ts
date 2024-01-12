@@ -564,8 +564,6 @@ export interface ModelUserPaymentSetting {
   default_message_settings?: ModelDefaultMessageSetting[]
   default_money_source?: ModelMoneySource
   default_receiver_platform?: string
-  default_token?: ModelPayToken
-  default_token_id?: string
   prioritized_token?: ModelPayToken[]
   prioritized_token_ids?: string[]
   profile_id?: string
@@ -674,12 +672,6 @@ export interface RequestAddTokenPriceAlertRequest {
 export interface RequestAssignVerifiedRoleRequest {
   guild_id: string
   user_discord_id: string
-}
-
-export interface RequestBasePrivacySetting {
-  custom_settings?: RequestPrivacyCustomSetting[]
-  general_platform_group?: string
-  general_target_group?: string
 }
 
 export interface RequestClaimQuestsRewardsRequest {
@@ -911,21 +903,14 @@ export interface RequestPaymentSetting {
   default_message_settings: RequestDefaultMessageSetting[]
   default_money_source: RequestMoneySource
   default_receiver_platform: string
-  default_token: string
   token_priorities: string[]
   tx_limit_enable: boolean
   tx_limit_settings: RequestTxLimitSetting[]
 }
 
-export interface RequestPrivacyCustomSetting {
-  platform?: string
-  target_group?: string
-}
-
 export interface RequestPrivacySetting {
-  social_accounts?: RequestBasePrivacySetting
-  tx?: RequestBasePrivacySetting
-  wallets?: RequestBasePrivacySetting
+  show_destination_wallet: boolean
+  tx_target_group: string
 }
 
 export interface RequestRoleReactionRequest {
@@ -1164,6 +1149,24 @@ export interface ResponseAssetPlatformResponseData {
   shortname?: string
 }
 
+export interface ResponseAssetToken {
+  address?: string
+  chain?: ResponseAssetTokenChain
+  decimal?: number
+  icon?: string
+  id?: string
+  name?: string
+  native?: boolean
+  price?: number
+  symbol?: string
+}
+
+export interface ResponseAssetTokenChain {
+  name?: string
+  short_name?: string
+  type?: string
+}
+
 export interface ResponseBinanceFutureAccountPositionResponse {
   data?: ResponseBinanceFuturePositionInformation[]
 }
@@ -1189,6 +1192,36 @@ export interface ResponseBinanceFuturePositionInfo {
 export interface ResponseBinanceFuturePositionInformation {
   apiKey?: string
   positions?: ResponseBinanceFuturePositionInfo[]
+}
+
+export interface ResponseBinancePositionAmountVos {
+  amount?: string
+  amountInBTC?: string
+  amountInUSDT?: string
+  asset?: string
+}
+
+export interface ResponseBinanceStakingProductPosition {
+  accrualDays?: number
+  amount?: string
+  apy?: string
+  asset?: string
+  canReStake?: boolean
+  canRedeemEarly?: boolean
+  deliveryDate?: number
+  duration?: number
+  interestEndDate?: number
+  nexInterestPay?: string
+  nextInterestPayDate?: number
+  payInterestPeriod?: number
+  positionId?: number
+  projectId?: string
+  purchaseTime?: number
+  redeemPeriod?: number
+  rewardAmt?: string
+  rewardAsset?: string
+  status?: string
+  type?: string
 }
 
 export interface ResponseChainGasTrackerResponseData {
@@ -1790,7 +1823,6 @@ export interface ResponseGetVote {
 
 export interface ResponseGetWatchlistResponse {
   data?: ResponseCoinMarketItemData[]
-  metadata?: ResponsePaginationResponse
 }
 
 export interface ResponseGetWelcomeChannelConfigResponse {
@@ -2510,6 +2542,27 @@ export interface ResponseUser {
   username?: string
 }
 
+export interface ResponseUserBalanceCex {
+  binance?: ResponseWalletAssetData[]
+}
+
+export interface ResponseUserBalanceOnchain {
+  evm?: ResponseWalletAssetData[]
+  ron?: ResponseWalletAssetData[]
+  sol?: ResponseWalletAssetData[]
+  sui?: ResponseWalletAssetData[]
+}
+
+export interface ResponseUserBalanceResponse {
+  cex?: ResponseUserBalanceCex
+  lastest_snapshot_bals?: string
+  offchain?: ResponseWalletAssetData[]
+  onchain?: ResponseUserBalanceOnchain
+  pnl?: string
+  summarize?: ResponseWalletAssetData[]
+  totalUsdAmount?: number
+}
+
 export interface ResponseUserFeedbackResponse {
   data?: ModelUserFeedback[]
   page?: number
@@ -2523,6 +2576,18 @@ export interface ResponseUserGeneralSettingResponse {
 
 export interface ResponseUserNotificationSettingResponse {
   data?: ModelUserNotificationSetting
+}
+
+export interface ResponseWalletAssetData {
+  amount?: string
+  asset_balance?: number
+  chain_id?: number
+  contract_name?: string
+  contract_symbol?: string
+  detail_lending?: ResponseBinancePositionAmountVos
+  detail_staking?: ResponseBinanceStakingProductPosition
+  token?: ResponseAssetToken
+  usd_balance?: number
 }
 
 export interface UtilPagination {

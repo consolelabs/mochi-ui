@@ -72,7 +72,6 @@ export const GET_PATHS = {
     `/profiles/${profileId}/applications/${appId}/deactivate`,
   UPDATE_APPLICATION_AVATAR: (profileId: string, appId: string) =>
     `/profiles/${profileId}/applications/${appId}/avatar`,
-  GET_BALANCES: (profileId: string) => `/mochi-wallet/${profileId}/balances`,
   GET_PROFILE_GLOBAL_INFO: (profileId: string) =>
     `/profiles/${profileId}/global-info`,
   GET_PAY_REQUESTS: '/pay-requests',
@@ -84,4 +83,5 @@ export const GET_PATHS = {
     `/profiles/${profileId}/settings/general`,
   UPDATE_GENERAL_SETTINGS: (profileId: string) =>
     `/profiles/${profileId}/settings/general`,
+  GET_TOTAL_BALANCES: (profileId: string) => `/users/${profileId}/balances`,
 }
