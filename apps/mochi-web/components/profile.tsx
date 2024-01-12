@@ -87,7 +87,7 @@ export default function Profile() {
   return (
     <div className="flex flex-col max-w-3xl">
       <div className="flex flex-col gap-y-2 items-center mx-auto mb-10">
-        <Avatar src={me?.avatar ?? ''} fallback={me?.profile_name} size="xl" />
+        <Avatar src={me?.avatar ?? ''} fallback={me?.profile_name} size="3xl" />
         <span className="font-semibold">{me?.profile_name}</span>
       </div>
       <div className="flex gap-3">

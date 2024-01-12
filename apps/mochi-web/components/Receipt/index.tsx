@@ -100,7 +100,7 @@ export default function Receipt({ id, data: _data }: Props) {
               {data.data.template ? null : (
                 <Avatar
                   smallSrc={data.platformIcon}
-                  size="xl"
+                  size="3xl"
                   src={data.senderAvatar}
                 />
               )}
