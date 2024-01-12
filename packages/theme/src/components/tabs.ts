@@ -31,7 +31,7 @@ const tabTriggerVariants = cva(
         disabled: false,
         variant: 'link',
         className:
-          'text-text-secondary hover:text-text-primary data-[state=active]:text-primary-solid',
+          'text-text-secondary hover:text-text-primary hover:opacity-50 data-[state=active]:text-primary-solid data-[state=active]:hover:opacity-100',
       },
     ],
     defaultVariants: {

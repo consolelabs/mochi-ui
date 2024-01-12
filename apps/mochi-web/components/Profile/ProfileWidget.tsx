@@ -47,6 +47,7 @@ const defaultChainMapping: Record<string, string> = {
   APT: 'Aptos',
   SUI: 'Sui',
   FIAT: 'Fiat',
+  TON: 'TON',
 }
 
 export const ProfileWidget = () => {
@@ -239,11 +240,13 @@ export const ProfileWidget = () => {
               <TabTrigger
                 key={chain}
                 value={chain}
-                variant="solid"
                 wrapperClassName="pl-0 pr-0 border-r-0"
-                className={clsx('h-10 space-x-1 outline-none rounded-none', {
-                  'bg-background-level2 w-[120px]': isSelected,
-                })}
+                className={clsx(
+                  'h-10 space-x-1 outline-none rounded-none transition duration-1000',
+                  {
+                    'bg-background-level2 w-[120px]': isSelected,
+                  },
+                )}
                 onClick={() => setSelectedChain(chain)}
               >
                 {avatar}
