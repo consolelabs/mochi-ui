@@ -37,8 +37,11 @@ export const Light: Story = {
 }
 
 export const Dark: Story = {
-  args: {
-    children: 'Hover me',
-    content: 'This is a tooltip',
+  render: () => {
+    return (
+      <Tooltip className="dark" content="This is a tooltip" arrow="bottom-end">
+        Hoverme
+      </Tooltip>
+    )
   },
 }

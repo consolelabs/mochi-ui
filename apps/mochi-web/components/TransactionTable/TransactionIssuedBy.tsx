@@ -56,7 +56,11 @@ export const TransactionIssuedBy = (props: TransactionIssuedByProps) => {
             content={
               <div className="flex flex-col gap-2">
                 {allAddresses.map((address) => (
-                  <Typography key={address} level="p5">
+                  <Typography
+                    key={address}
+                    level="p5"
+                    className="!text-inherit"
+                  >
                     {address}
                   </Typography>
                 ))}

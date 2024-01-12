@@ -74,11 +74,7 @@ const Actions: ColumnProps<ViewApplication>['cell'] = (props) => {
         >
           <Tooltip
             arrow="top-center"
-            content={
-              <Typography level="p6" className="font-semibold">
-                Copied to clipboard
-              </Typography>
-            }
+            content="Copied to clipboard"
             componentProps={{
               trigger: { className: 'w-full text-left' },
               root: { open: hasCopied },

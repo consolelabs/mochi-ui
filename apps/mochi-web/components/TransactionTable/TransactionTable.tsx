@@ -84,7 +84,10 @@ export const TransactionTable = (props: TransactionTableProps) => {
 
           return (
             <Tooltip content={tx.full_date}>
-              <Typography level="p5" className="tabular-nums text-left">
+              <Typography
+                level="p5"
+                className="tabular-nums text-left text-inherit"
+              >
                 {tx.date}
               </Typography>
             </Tooltip>
