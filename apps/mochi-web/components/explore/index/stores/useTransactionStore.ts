@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { API } from '~constants/api'
-import { Tx } from '~cpn/TransactionTable'
+import type { Tx } from '~cpn/TransactionTable'
 import { transform } from '~cpn/TransactionTable/utils'
 import { MOCHI_PAY_WSS } from '~envs'
 
@@ -9,6 +9,7 @@ export const DEFAULT_PAGE_SIZE = 15
 type Filters = {
   platform?: string
   chainId?: string
+  actions?: string[]
 }
 
 interface State {
@@ -73,6 +74,7 @@ export const useTransactionStore = create<State>((set, get) => ({
       page: page - 1,
       size,
       platforms: filters?.platform ? [filters.platform] : undefined,
+      action: filters?.actions ? filters.actions.join('|') : undefined,
       // eslint-disable-next-line
       chain_ids: filters?.chainId ? [parseInt(filters.chainId)] : undefined,
     })
