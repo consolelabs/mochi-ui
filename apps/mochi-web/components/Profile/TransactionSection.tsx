@@ -1,129 +1,82 @@
-import { Tx, TransactionTable } from '~cpn/TransactionTable'
-import { Badge, Button, Typography } from '@mochi-ui/core'
-import { ArrowRightLine } from '@mochi-ui/icons'
+import { TransactionTable } from '~cpn/TransactionTable'
+import {
+  SectionHeader,
+  SectionHeaderActions,
+  SectionHeaderTitle,
+} from '@mochi-ui/core'
 import { useLoginWidget } from '@mochi-web3/login-widget'
-import clsx from 'clsx'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ROUTES } from '~constants/routes'
 import { useFetchProfileTransaction } from '~hooks/app/useFetchProfileTransaction'
-import Link from 'next/link'
+import { TransactionPlatform } from '~constants/transactions'
+import { ChainPicker, PlatformPicker } from '~cpn/explore/index/components'
 
-type OverviewTransactionTabs = 'Transaction' | 'Pay Me' | 'Pay Link'
+const ignoreOptionAll = <T extends string>(value: T | 'all') => {
+  return value === 'all' ? undefined : value
+}
 
-export const TransactionOverviewSection = () => {
-  const [selectedTab, setSelectedTab] =
-    useState<OverviewTransactionTabs>('Transaction')
+interface Props {
+  defaultPageSize?: number
+}
 
+export const TransactionOverviewSection = ({ defaultPageSize = 5 }: Props) => {
   const { profile } = useLoginWidget()
+  const [page, setPage] = useState(1)
+  const [size, setSize] = useState(defaultPageSize)
+  const [filterNetwork, setFilterNetwork] = useState('all')
+  const [filterPlatform, setFilterPlatform] = useState('all')
   const { transactions, isLoading, pagination } = useFetchProfileTransaction(
     profile?.id ?? '',
     Boolean(profile?.id),
     {
-      page: 0,
-      size: 5,
+      platform: ignoreOptionAll(filterPlatform) as TransactionPlatform,
+      chain_ids: ignoreOptionAll(filterNetwork),
+      page: page - 1,
+      size,
     },
   )
-  const {
-    transactions: paymeTransactions,
-    isLoading: isLoadingPayme,
-    pagination: paginationPayme,
-  } = useFetchProfileTransaction(profile?.id ?? '', Boolean(profile?.id), {
-    action: 'payme',
-    page: 0,
-    size: 5,
-  })
 
-  const {
-    transactions: paylinkTransactions,
-    isLoading: isLoadingPaylink,
-    pagination: paginationPaylink,
-  } = useFetchProfileTransaction(profile?.id ?? '', Boolean(profile?.id), {
-    action: 'paylink',
-    page: 0,
-    size: 5,
-  })
-
-  const transactionMapper = {
-    Transaction: transactions ?? [],
-    'Pay Me': paymeTransactions ?? [],
-    'Pay Link': paylinkTransactions ?? [],
-  }
-
-  const displayTransactions: Tx[] = transactionMapper[selectedTab]
-
-  const isLoadingTransaction = {
-    Transaction: isLoading,
-    'Pay Me': isLoadingPayme,
-    'Pay Link': isLoadingPaylink,
-  }[selectedTab]
-
-  const isDisplayFooter = displayTransactions.length >= 5
-  const displayTotalItems = {
-    Transaction: pagination?.total,
-    'Pay Me': paginationPayme?.total,
-    'Pay Link': paginationPaylink?.total,
-  }[selectedTab]
+  useEffect(() => {
+    setPage(1)
+  }, [filterNetwork, filterPlatform])
 
   return (
-    <div className="overflow-hidden rounded-lg bg-background-level2 shadow-input">
-      <div className="border-b border-b-divider">
-        {(
-          ['Transaction', 'Pay Me', 'Pay Link'] as OverviewTransactionTabs[]
-        ).map((t) => (
-          <Button
-            color="white"
-            variant={t === selectedTab ? 'solid' : 'ghost'}
-            key={t}
-            className={clsx(
-              'font-semibold border-divider border-b-0 !rounded-b-none focus-visible:shadow-none',
-              {
-                'hover:!bg-background-popup': selectedTab === t,
+    <div>
+      <SectionHeader>
+        <SectionHeaderTitle className="flex items-center">
+          Transactions
+        </SectionHeaderTitle>
+        <SectionHeaderActions>
+          <ChainPicker value={filterNetwork} onChange={setFilterNetwork} />
+          <PlatformPicker value={filterPlatform} onChange={setFilterPlatform} />
+        </SectionHeaderActions>
+      </SectionHeader>
+      <div className="border border-divider rounded-lg overflow-hidden bg-background-body mt-1">
+        <TransactionTable
+          cellClassName={() => 'h-[60px]'}
+          className="min-w-[1320px]"
+          data={transactions || []}
+          isLoading={isLoading}
+          componentsProps={{
+            empty: {
+              className: '!h-[295px]',
+            },
+            pagination: {
+              initalPage: page,
+              initItemsPerPage: size,
+              totalItems: pagination?.total || 0,
+              onItemPerPageChange: setSize,
+              onPageChange: setPage,
+            },
+          }}
+          onRow={(tx) => {
+            return {
+              onClick: () => {
+                window.open(ROUTES.TX_RECEIPTS(tx.code))
               },
-            )}
-            onClick={() => setSelectedTab(t)}
-          >
-            {t}
-            {transactionMapper[t].length > 0 && t !== 'Transaction' && (
-              <Badge appearance="danger">{transactionMapper[t].length}</Badge>
-            )}
-          </Button>
-        ))}
-      </div>
-      <div className="bg-background-popup">
-        {/* NOTE: Fix 5 rows height for ensure empty render do not overflow */}
-        <div className="h-[414px]">
-          <TransactionTable
-            className="min-w-[1320px]"
-            data={displayTransactions}
-            isLoading={isLoadingTransaction}
-            hideLastBorder
-            componentsProps={{
-              empty: {
-                className: 'h-full',
-              },
-            }}
-            onRow={(tx) => {
-              return {
-                onClick: () => {
-                  window.open(ROUTES.TX_RECEIPTS(tx.code))
-                },
-              }
-            }}
-          />
-        </div>
-        <div className="flex gap-4 justify-end items-center py-3 px-[18px]">
-          {isDisplayFooter && (
-            <Typography level="p6" color="textSecondary" className="flex-1">
-              Showing {displayTransactions.length} latest items of{' '}
-              {displayTotalItems}
-            </Typography>
-          )}
-          <Button size="sm" color="white" variant="outline" asChild>
-            <Link href={ROUTES.TRANSACTIONS}>
-              View all transactions <ArrowRightLine />
-            </Link>
-          </Button>
-        </div>
+            }
+          }}
+        />
       </div>
     </div>
   )

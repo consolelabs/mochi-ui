@@ -244,7 +244,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       )}
       {componentsProps.pagination &&
         (componentsProps.pagination.totalItems || 0) > 0 && (
-          <div className="p-4 px-12 text-sm">
+          <div className="p-4 text-sm">
             <Pagination
               recordName="transactions"
               {...componentsProps.pagination}
