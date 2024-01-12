@@ -34,6 +34,7 @@ import { useEffect, useRef, useState } from 'react'
 import clsx from 'clsx'
 import { useShallow } from 'zustand/react/shallow'
 import { TokenAvatar } from '~cpn/TokenAvatar'
+import { useFetchTotalBalance } from '~hooks/profile/useFetchTotalBalance'
 
 const sortOrder = ['All', 'Mochi']
 const defaultChainMapping: Record<string, string> = {
@@ -52,7 +53,9 @@ const defaultChainMapping: Record<string, string> = {
 
 export const ProfileWidget = () => {
   const { me } = useProfileStore()
-  const { data } = useFetchProfileGlobalInfo(me?.id)
+  const { data: info } = useFetchProfileGlobalInfo(me?.id)
+  const { data: { totalUsdAmount: total = 0, pnl = '0' } = {} } =
+    useFetchTotalBalance(me?.id)
   const { isFetchingWallets, wallets } = useWalletStore(
     useShallow((s) => ({
       isFetchingWallets: s.isFetching,
@@ -68,7 +71,6 @@ export const ProfileWidget = () => {
   const tabElement = useRef<HTMLDivElement>(null)
   const [displayChainAmount, setDisplayChainAmount] = useState(2)
   const [_selectedChain, setSelectedChain] = useState('')
-  const { info, pnl, total } = data
 
   const balances: BalanceWithSource[] = wallets.flatMap((w) =>
     w.balances.map((b) => ({
@@ -166,13 +168,7 @@ export const ProfileWidget = () => {
           </Badge>
         </div>
         <div className="text-right">
-          <Typography level="h5">
-            $
-            {utils.formatDigit({
-              value: total,
-              fractionDigits: total >= 100 ? 0 : 2,
-            })}
-          </Typography>
+          <Typography level="h5">{utils.formatUsdDigit(total)}</Typography>
           <div className="flex justify-end items-center">
             <ValueChange
               trend={pnl.startsWith('-') ? 'down' : 'up'}
@@ -186,7 +182,7 @@ export const ProfileWidget = () => {
                 {utils.formatPercentDigit(Number.isNaN(Number(pnl)) ? 0 : pnl)}{' '}
                 (
                 {utils.formatUsdDigit(
-                  Number.isNaN(Number(pnl)) ? 0 : (pnl * total) / 100,
+                  Number.isNaN(Number(pnl)) ? 0 : (Number(pnl) * total) / 100,
                 )}
                 )
               </Typography>

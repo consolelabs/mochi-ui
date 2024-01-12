@@ -1137,6 +1137,24 @@ export interface ResponseAssetPlatformResponseData {
   shortname?: string
 }
 
+export interface ResponseAssetToken {
+  address?: string
+  chain?: ResponseAssetTokenChain
+  decimal?: number
+  icon?: string
+  id?: string
+  name?: string
+  native?: boolean
+  price?: number
+  symbol?: string
+}
+
+export interface ResponseAssetTokenChain {
+  name?: string
+  short_name?: string
+  type?: string
+}
+
 export interface ResponseBinanceFutureAccountPositionResponse {
   data?: ResponseBinanceFuturePositionInformation[]
 }
@@ -1162,6 +1180,36 @@ export interface ResponseBinanceFuturePositionInfo {
 export interface ResponseBinanceFuturePositionInformation {
   apiKey?: string
   positions?: ResponseBinanceFuturePositionInfo[]
+}
+
+export interface ResponseBinancePositionAmountVos {
+  amount?: string
+  amountInBTC?: string
+  amountInUSDT?: string
+  asset?: string
+}
+
+export interface ResponseBinanceStakingProductPosition {
+  accrualDays?: number
+  amount?: string
+  apy?: string
+  asset?: string
+  canReStake?: boolean
+  canRedeemEarly?: boolean
+  deliveryDate?: number
+  duration?: number
+  interestEndDate?: number
+  nexInterestPay?: string
+  nextInterestPayDate?: number
+  payInterestPeriod?: number
+  positionId?: number
+  projectId?: string
+  purchaseTime?: number
+  redeemPeriod?: number
+  rewardAmt?: string
+  rewardAsset?: string
+  status?: string
+  type?: string
 }
 
 export interface ResponseChainGasTrackerResponseData {
@@ -2482,6 +2530,27 @@ export interface ResponseUser {
   username?: string
 }
 
+export interface ResponseUserBalanceCex {
+  binance?: ResponseWalletAssetData[]
+}
+
+export interface ResponseUserBalanceOnchain {
+  evm?: ResponseWalletAssetData[]
+  ron?: ResponseWalletAssetData[]
+  sol?: ResponseWalletAssetData[]
+  sui?: ResponseWalletAssetData[]
+}
+
+export interface ResponseUserBalanceResponse {
+  cex?: ResponseUserBalanceCex
+  lastest_snapshot_bals?: string
+  offchain?: ResponseWalletAssetData[]
+  onchain?: ResponseUserBalanceOnchain
+  pnl?: string
+  summarize?: ResponseWalletAssetData[]
+  totalUsdAmount?: number
+}
+
 export interface ResponseUserFeedbackResponse {
   data?: ModelUserFeedback[]
   page?: number
@@ -2495,6 +2564,18 @@ export interface ResponseUserGeneralSettingResponse {
 
 export interface ResponseUserNotificationSettingResponse {
   data?: ModelUserNotificationSetting
+}
+
+export interface ResponseWalletAssetData {
+  amount?: string
+  asset_balance?: number
+  chain_id?: number
+  contract_name?: string
+  contract_symbol?: string
+  detail_lending?: ResponseBinancePositionAmountVos
+  detail_staking?: ResponseBinanceStakingProductPosition
+  token?: ResponseAssetToken
+  usd_balance?: number
 }
 
 export interface UtilPagination {
