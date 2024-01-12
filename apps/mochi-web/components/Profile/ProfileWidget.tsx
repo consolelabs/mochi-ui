@@ -242,7 +242,7 @@ export const ProfileWidget = () => {
                 value={chain}
                 wrapperClassName="pl-0 pr-0 border-r-0"
                 className={clsx(
-                  'h-10 space-x-1 outline-none rounded-none transition duration-1000',
+                  'h-10 space-x-1 outline-none rounded-none transition duration-500',
                   {
                     'bg-background-level2 w-[120px]': isSelected,
                   },
