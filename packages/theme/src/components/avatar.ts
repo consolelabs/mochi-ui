@@ -41,7 +41,7 @@ const avatarGroupCva = cva(
     variants: {
       size: {
         xs: 'scale-[calc(4/10)] -translate-x-3 -translate-y-3',
-        sm: 'scale-[calc(8/10)] -translate-x-2 -translate-y-2',
+        sm: 'scale-[calc(8/10)] -translate-x-1 -translate-y-1',
         base: '',
         lg: 'scale-[calc(12/10)] translate-x-1 translate-y-1',
         xl: 'scale-[calc(14/10)] translate-x-2 translate-y-2',
@@ -62,10 +62,10 @@ const avatarGroupItemClsx = ({
   clsx(
     'absolute overflow-hidden',
     {
-      'top-[5px] left-[5px] h-1/2 w-1/2': index === 0,
-      'bottom-2.5 right-1 h-2/5 w-2/5': index === 1,
-      'bottom-1 left-3 h-1/3 w-1/3': index === 2,
-      'top-2 right-2 h-1/4 w-1/4': index === 3,
+      'top-[5px] left-[3px] h-1/2 w-1/2': index === 0,
+      'bottom-2 right-0.5 h-2/5 w-2/5': index === 1,
+      'bottom-0.5 left-[10px] h-[30%] w-[30%]': index === 2,
+      'top-[5px] right-1.5 h-1/4 w-1/4': index === 3,
     },
     className,
   )
@@ -77,7 +77,7 @@ const avatarGroupItemAvatarClsx = ({
   clsx(
     'absolute !w-full !h-full object-contain top-0 rounded-full overflow-hidden flex justify-center items-center',
     {
-      'text-text-contrast bg-primary-plain-fg text-[9px]': isExtraCell,
+      'text-text-contrast bg-primary-plain-fg text-[6px]': isExtraCell,
     },
     className,
   )
