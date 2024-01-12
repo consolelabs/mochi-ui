@@ -270,61 +270,59 @@ export const AmountInput: React.FC<AmountInputProps> = ({
         </div>
       </div>
       <div className="flex flex-col p-4 rounded-lg bg-white-pure">
-        <div className="flex flex-1 gap-x-8 justify-between items-center">
-          <div className="flex flex-col flex-1 gap-y-4 items-start">
-            <div className="flex gap-x-1 items-start h-max">
-              {isUsdMode && (
-                <div className="font-medium leading-[34px] text-[32px] text-neutral-800">
-                  $
-                </div>
-              )}
-              <input
-                className="self-start w-full h-full font-medium appearance-none outline-none text-[32px] text-neutral-800"
-                placeholder="0"
-                type="text"
-                min={0}
-                onKeyDown={handleKeyDown}
-                value={tipAmount.display}
-                onChange={handleAmountChanged}
-                onBlur={onBlurInput}
-                ref={ref}
-              />
-            </div>
-            <span className="text-sm text-right shrink-0 text-neutral-600">
-              &#8776; {!isUsdMode ? tipAmountUSD : tipAmountToken}{' '}
-              {!isUsdMode ? 'USD' : selectedAsset?.token.symbol}
-            </span>
+        <div className="grid grid-cols-6 gap-y-4 grid-rows-auto">
+          <div className="flex col-span-4 gap-x-1 items-center pr-4 h-max">
+            {isUsdMode && (
+              <div className="font-medium leading-[32px] text-[32px] text-neutral-800">
+                $
+              </div>
+            )}
+            <input
+              className="self-start w-full h-full min-h-0 font-medium appearance-none outline-none leading-[32px] text-[32px] text-neutral-800"
+              placeholder="0"
+              type="text"
+              min={0}
+              onKeyDown={handleKeyDown}
+              value={tipAmount.display}
+              onChange={handleAmountChanged}
+              onBlur={onBlurInput}
+              ref={ref}
+            />
           </div>
-          <div className="flex flex-col gap-y-4 items-end shrink-0">
+          <div className="flex col-span-2 justify-end items-center">
             <TokenPicker
               authorized={authorized}
               unauthorizedContent={unauthorizedContent}
               selectedAsset={selectedAsset}
               onSelect={handleAssetChanged}
             />
-            <button
-              tabIndex={-1}
-              type="button"
-              onClick={() => {
-                let value = isMonikerAsset
-                  ? getBalanceByMoniker(selectedAsset, wallet).value
-                  : selectedAsset?.asset_balance ?? 0
-
-                if (isUsdMode) {
-                  value *= unitPrice
-                }
-
-                onBlurInput({
-                  target: {
-                    value: String(value),
-                  },
-                } as any)
-              }}
-              className="outline-none text-[#848281] text-[13px]"
-            >
-              Balance: {!isUsdMode ? balance : balanceUsd}
-            </button>
           </div>
+          <span className="col-span-3 row-start-2 text-sm text-left shrink-0 text-neutral-600">
+            &#8776; {!isUsdMode ? tipAmountUSD : tipAmountToken}{' '}
+            {!isUsdMode ? 'USD' : selectedAsset?.token.symbol}
+          </span>
+          <button
+            tabIndex={-1}
+            type="button"
+            onClick={() => {
+              let value = isMonikerAsset
+                ? getBalanceByMoniker(selectedAsset, wallet).value
+                : selectedAsset?.asset_balance ?? 0
+
+              if (isUsdMode) {
+                value *= unitPrice
+              }
+
+              onBlurInput({
+                target: {
+                  value: String(value),
+                },
+              } as any)
+            }}
+            className="outline-none text-[#848281] text-[13px] col-span-3 text-right"
+          >
+            Balance: {!isUsdMode ? balance : balanceUsd}
+          </button>
         </div>
       </div>
     </div>

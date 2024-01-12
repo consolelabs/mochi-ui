@@ -56,4 +56,6 @@ export type TransactionTableProps = Omit<TableProps<Tx>, 'columns'> & {
     wen?: boolean
     status?: boolean
   }
+  enableColFilter?: boolean
+  enableColSort?: boolean
 }
