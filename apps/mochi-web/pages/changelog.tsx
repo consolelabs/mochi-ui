@@ -68,7 +68,7 @@ const Paragraph = ({ children }: { children: React.ReactNode }) => {
 const Image = (props: any) => {
   return (
     <NativeImage
-      className="w-[70%] mx-auto rounded-lg"
+      className="w-full mx-auto rounded-lg"
       src={props.src}
       alt={props.alt || ''}
     />
