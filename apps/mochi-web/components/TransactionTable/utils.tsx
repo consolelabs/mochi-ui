@@ -201,7 +201,7 @@ export const buildAddressString = (addresses: string[]) => {
   const remainingAddresses = addresses.slice(1)
 
   const initialAddressString = initialAddresses
-    .map(mochiUtils.string.formatAddressUsername)
+    .map((s) => mochiUtils.string.formatAddressUsername(s, 20))
     .join(', ')
   const remainingAddressCount = remainingAddresses.length
 

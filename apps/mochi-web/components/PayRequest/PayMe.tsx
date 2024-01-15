@@ -15,10 +15,10 @@ export type Props = {
 
 export default function PayMe({ data }: Props) {
   return (
-    <div className="flex flex-col gap-y-10 m-auto w-[300px] max-w-[300px]">
+    <div className="gap-y-10 receipt-container">
       <div className="flex-1 drop-shadow-xl">
         <style jsx global>{`
-          #receipt-body {
+          .receipt-body {
             font-family: ${robotoFont.style.fontFamily};
           }
         `}</style>

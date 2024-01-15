@@ -21,7 +21,7 @@ export const TransactionSection = () => {
     ws,
     initWs,
   } = useTransactionStore()
-  const txnsCurrentPage = txns[page - 1]
+  const txnsCurrentPage = txns[page - 1] || txns[page - 2]
 
   useEffect(() => {
     fetchTxns()
@@ -38,8 +38,6 @@ export const TransactionSection = () => {
     containerRef.current?.scrollIntoView()
   }, [size, page])
 
-  const isLoading = loading || !txnsCurrentPage
-
   return (
     <div ref={containerRef} className="mx-auto" style={{ maxWidth: 1488 }}>
       <div className="flex gap-4 justify-end py-2 px-14">
@@ -55,7 +53,7 @@ export const TransactionSection = () => {
       <TransactionTable
         loadingRows={10}
         data={txnsCurrentPage}
-        isLoading={isLoading}
+        isLoading={loading}
         componentsProps={{
           pagination: {
             initalPage: 1,
