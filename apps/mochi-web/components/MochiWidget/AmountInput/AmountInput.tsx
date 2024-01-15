@@ -79,8 +79,15 @@ export const AmountInput: React.FC<AmountInputProps> = ({
     : tipAmount.value * (request.asset?.token_amount ?? 0) * unitPrice
   const tipAmountUSD = utils.formatDigit({
     value,
-    fractionDigits: 2,
+    fractionDigits: 1,
     shorten: value >= 1,
+    takeExtraDecimal: 1,
+  })
+
+  const tipAmountUSDhidden = utils.formatDigit({
+    value,
+    fractionDigits: MAX_AMOUNT_PRECISION,
+    shorten: false,
     takeExtraDecimal: 1,
   })
 
@@ -174,14 +181,17 @@ export const AmountInput: React.FC<AmountInputProps> = ({
     }
   }
 
-  function handleAmountChanged(event: ChangeEvent<HTMLInputElement>) {
-    const formattedAmount = formatTokenAmount(event.target.value)
-    formattedAmount.display = event.target.value // Keep displaying the original user input
-    setTipAmount(formattedAmount)
-    onAmountChanged?.(
-      isUsdMode ? formattedAmount.value / unitPrice : formattedAmount.value,
-    )
-  }
+  const handleAmountChanged = useCallback(
+    <E extends { target: { value: string } }>(event: E) => {
+      const formattedAmount = formatTokenAmount(event.target.value)
+      formattedAmount.display = event.target.value // Keep displaying the original user input
+      setTipAmount(formattedAmount)
+      onAmountChanged?.(
+        isUsdMode ? formattedAmount.value / unitPrice : formattedAmount.value,
+      )
+    },
+    [isUsdMode, onAmountChanged, unitPrice],
+  )
 
   function onBlurInput(event: ChangeEvent<HTMLInputElement>) {
     // Format number on blur
@@ -262,7 +272,20 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               label="Toggle USD mode"
               variant="solid"
               color="white"
-              onClick={toggleUsdMode}
+              onClick={() => {
+                if (!isUsdMode) {
+                  handleAmountChanged({
+                    target: {
+                      value: String(tipAmountUSDhidden),
+                    },
+                  })
+                } else {
+                  handleAmountChanged({
+                    target: { value: String(tipAmountToken) },
+                  })
+                }
+                toggleUsdMode()
+              }}
             >
               <ArrowUpDownLine />
             </IconButton>

@@ -26,20 +26,6 @@ import { ROUTES } from '~constants/routes'
 import { NativeImage } from '~cpn/NativeImage'
 
 const currencies = [
-  `<span class="banner-token ethereum-color">&#8203;${renderToString(
-    <NativeImage
-      src="https://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/256/Ethereum-ETH-icon.png"
-      className="object-contain w-9 h-9 md:w-10 md:h-10"
-      alt="Ethereum"
-    />,
-  )}Ethereum</span>`,
-  `<span class="banner-token bitcoin-color">&#8203;${renderToString(
-    <NativeImage
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/128px-Bitcoin.svg.png"
-      alt="Bitcoin"
-      className="w-9 h-9 md:w-10 md:h-10"
-    />,
-  )}Bitcoin</span>`,
   `<span class="banner-token solana-color">&#8203;${renderToString(
     <NativeImage
       src="https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png"
@@ -47,13 +33,27 @@ const currencies = [
       className="w-9 h-9 md:w-10 md:h-10"
     />,
   )}Solana</span>`,
-  `<span class="banner-token dogecoin-color">&#8203;${renderToString(
+  `<span class="banner-token usdt-color">&#8203;${renderToString(
     <NativeImage
       className="w-9 h-9 md:w-10 md:h-10"
-      src="https://upload.wikimedia.org/wikipedia/en/d/d0/Dogecoin_Logo.png"
-      alt="Dogecoin"
+      src="https://coin.top/production/logo/usdtlogo.png"
+      alt="USDT"
     />,
-  )}Dogecoin</span>`,
+  )}USDT</span>`,
+  `<span class="banner-token bitcoin-color">&#8203;${renderToString(
+    <NativeImage
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/128px-Bitcoin.svg.png"
+      alt="Bitcoin"
+      className="w-9 h-9 md:w-10 md:h-10"
+    />,
+  )}Bitcoin</span>`,
+  `<span class="banner-token ethereum-color">&#8203;${renderToString(
+    <NativeImage
+      src="https://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/256/Ethereum-ETH-icon.png"
+      className="object-contain w-9 h-9 md:w-10 md:h-10"
+      alt="Ethereum"
+    />,
+  )}Ethereum</span>`,
 ]
 const platforms = [
   '<span class="fb-color">Facebook</span>',
@@ -73,7 +73,7 @@ export default function Index() {
       strings: currencies,
       typeSpeed: 90,
       backSpeed: 50,
-      backDelay: 10000,
+      backDelay: 5000,
       loop: true,
     })
 
@@ -81,7 +81,7 @@ export default function Index() {
       showCursor: false,
       strings: platforms,
       typeSpeed: 90,
-      backDelay: 1000,
+      backDelay: 5000,
       backSpeed: 50,
       loop: true,
     })

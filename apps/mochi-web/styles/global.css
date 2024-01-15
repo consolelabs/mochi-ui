@@ -36,8 +36,8 @@ body {
 .solana-color {
   color: #9945ff;
 }
-.dogecoin-color {
-  color: #cb9800;
+.usdt-color {
+  color: #54ac94;
 }
 .discord-color {
   color: #5865f2;
@@ -85,6 +85,10 @@ iframe[id^='telegram-login'] {
 
 .receipt-dashed-box {
   background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23B0B0B0FF' stroke-width='2' stroke-dasharray='1%2c5' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+}
+
+.receipt-container {
+  @apply flex flex-col m-auto w-[320px] max-w-[320px];
 }
 
 #profile-list-sidebar {
