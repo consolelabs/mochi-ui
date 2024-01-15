@@ -29,7 +29,7 @@ import {
 import { ROUTES } from '~constants/routes'
 import { ReactNode } from 'react'
 import { DISCORD_INSTALL_BOT_LINK, TELEGRAM_LINK } from '~constants/resources'
-import packageInfo from 'package.json'
+import { appVersion } from '~constants/common'
 
 export default function ProfileDropdown({
   children,
@@ -177,7 +177,7 @@ export default function ProfileDropdown({
               Powered by Console Labs
             </Typography>
             <Typography level="p6" color="textSecondary" fontWeight="sm">
-              Version {packageInfo.version}
+              Version {appVersion}
             </Typography>
           </DropdownMenuLabel>
         </DropdownMenuContent>

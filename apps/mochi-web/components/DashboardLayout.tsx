@@ -18,7 +18,7 @@ import { useRouter } from 'next/router'
 import { ROUTES } from '~constants/routes'
 import clsx from 'clsx'
 import { LoginWidget, useLoginWidget } from '@mochi-web3/login-widget'
-import packageInfo from 'package.json'
+import { appVersion } from '~constants/common'
 import { useSidebarContext } from '../context/app/sidebar'
 import { matchUrl } from '../utils/url'
 import { DashboardSkeleton } from './DashboardSkeleton'
@@ -139,7 +139,7 @@ export default function DashboardLayout({
             footerItems={sideBarItems[variant].footerItems as Item[]}
             isSelected={(item) => !!item.href && matchUrl(item.href, pathname)}
             className="!h-[calc(100vh-56px)] hidden lg:block"
-            version={packageInfo.version}
+            version={appVersion}
           />
 
           <Layout
