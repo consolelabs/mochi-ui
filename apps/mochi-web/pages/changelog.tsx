@@ -76,11 +76,11 @@ const Image = (props: any) => {
 }
 
 const ChangelogItem = ({ name, content }: Page) => (
-  <div className="gap-8 mb-24 lg:flex justify-center">
-    <div className="inline-block relative w-full lg:w-[176px] flex-shrink-0 mb-12">
-      <div className="top-24 lg:sticky flex flex-row lg:flex-col gap-4 lg:gap-2 items-center lg:items-start">
+  <div className="gap-8 mb-24 md:flex justify-center">
+    <div className="inline-block relative w-full md:w-[176px] flex-shrink-0 mb-12 md:mb-0">
+      <div className="top-24 md:sticky flex flex-row md:flex-col gap-4 md:gap-2 items-center md:items-start">
         <Badge className="w-max !text-base !rounded-md !px-4">v1.52.0</Badge>
-        <Typography className="!text-[#5D6267]">{name}</Typography>
+        <Typography className="!text-text-secondary">{name}</Typography>
       </div>
     </div>
     <div className="flex flex-col flex-1 max-w-[800px] whitespace-pre-wrap -my-8">
@@ -108,13 +108,13 @@ export default function Changelog({ data }: Props) {
   return (
     <Layout>
       <SEO title={PAGES.CHANGE_LOG.title} tailTitle />
-      <div className="flex flex-col pt-8 lg:pt-24 landing-container">
-        <div className="w-full flex justify-center mb-18 lg:mb-24">
+      <div className="flex flex-col pt-8 md:pt-24 landing-container">
+        <div className="w-full flex justify-center mb-24">
           <div className="w-full max-w-[1008px] flex justify-end">
             <Typography
               level="h1"
               fontWeight="md"
-              className="w-full lg:pl-[208px] text-[40px] overflow-visible"
+              className="w-full md:pl-[208px] text-[40px] overflow-visible"
             >
               Changelog
             </Typography>
