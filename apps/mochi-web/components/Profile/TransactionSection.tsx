@@ -19,7 +19,7 @@ interface Props {
   defaultPageSize?: number
 }
 
-export const TransactionOverviewSection = ({ defaultPageSize = 5 }: Props) => {
+export const TransactionOverviewSection = ({ defaultPageSize = 15 }: Props) => {
   const { profile } = useLoginWidget()
   const [page, setPage] = useState(1)
   const [size, setSize] = useState(defaultPageSize)
@@ -54,7 +54,7 @@ export const TransactionOverviewSection = ({ defaultPageSize = 5 }: Props) => {
       <div className="overflow-hidden mt-1 rounded-lg border border-divider bg-background-body">
         <TransactionTable
           cellClassName={() => 'h-[60px]'}
-          className="min-w-[1320px]"
+          className="min-w-[1320px] min-h-[344px]"
           data={transactions || []}
           isLoading={isLoading}
           componentsProps={{

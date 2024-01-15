@@ -47,7 +47,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
 
     columns.push(
       {
-        header: '#',
+        header: () => <span className="px-1">#</span>,
         id: 'txId',
         width: 50,
         // eslint-disable-next-line
