@@ -16,6 +16,7 @@ interface SidebarProps {
   className?: string
   isSelected?: (item: Item) => boolean
   expanded?: boolean
+  version?: string
 }
 
 const {
@@ -37,6 +38,7 @@ export default function Sidebar({
   isSelected,
   Header,
   expanded: expandedProp,
+  version = '1.0.0',
 }: SidebarProps) {
   const [expanded, setExpanded] = useState(expandedProp ?? true)
 
@@ -71,7 +73,7 @@ export default function Sidebar({
           {Boolean(expanded) && (
             <div className={sidebarFooterVersionWrapperClsx()}>
               <div className={sidebarFooterVersionTextClsx()}>
-                Version 1.0.0
+                Version {version}
               </div>
             </div>
           )}
