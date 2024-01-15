@@ -238,7 +238,7 @@ export const useTipWidget = create(
         get().reset()
       } catch (e) {
         console.error(e)
-        set({ error: e })
+        set({ tx: null, error: e })
       } finally {
         set({ isTransferring: false })
       }
