@@ -110,3 +110,26 @@ div[data-radix-popper-content-wrapper]:has(.tooltip) {
   outline: none !important;
   box-shadow: none !important;
 }
+
+ul.list-dashed {
+  list-style-type: none;
+  white-space: normal !important;
+  padding: 0 0 32px 32px;
+}
+
+ul.list-dashed > li {
+  display: block;
+  position: relative;
+}
+
+ul.list-dashed > li:not(:last-child) {
+  padding-bottom: 32px;
+}
+
+ul.list-dashed > li:before {
+  content: '\2014';
+  position: absolute;
+  top: 0;
+  right: 100%;
+  margin-right: 16px;
+}

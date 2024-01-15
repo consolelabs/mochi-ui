@@ -7,6 +7,8 @@ import remarkGfm from 'remark-gfm'
 import remarkBreaks from 'remark-breaks'
 import { api } from '~constants/mochi'
 import { NativeImage } from '~cpn/NativeImage'
+import { Badge, Typography, TypographyProps } from '@mochi-ui/core'
+import clsx from 'clsx'
 
 type Page = {
   name: string
@@ -29,18 +31,44 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   }
 }
 
-const Heading = ({ children }: { children: React.ReactNode }) => {
-  return <p className="text-2xl font-medium">{children}</p>
+const Heading = ({
+  children,
+  level,
+}: {
+  children: React.ReactNode
+  level: number
+}) => {
+  return (
+    <Typography
+      level={`h${level}` as TypographyProps['level']}
+      fontWeight="md"
+      className={clsx('py-8 overflow-visible', {
+        '!text-[32px]': level === 1,
+        '!text-2xl': level === 2,
+        '!text-xl': level > 2,
+      })}
+    >
+      {children}
+    </Typography>
+  )
+}
+
+const UnorderedList = ({ children }: { children: React.ReactNode }) => {
+  return <ul className="list-dashed">{children}</ul>
 }
 
 const Paragraph = ({ children }: { children: React.ReactNode }) => {
-  return <span className="mb-8 font-normal">{children}</span>
+  return (
+    <Typography level="p1" className="text-xl font-normal pb-8">
+      {children}
+    </Typography>
+  )
 }
 
 const Image = (props: any) => {
   return (
     <NativeImage
-      className="-mt-5 w-[70%] mx-auto rounded-lg"
+      className="w-[70%] mx-auto rounded-lg"
       src={props.src}
       alt={props.alt || ''}
     />
@@ -48,17 +76,14 @@ const Image = (props: any) => {
 }
 
 const ChangelogItem = ({ name, content }: Page) => (
-  <div className="gap-9 mb-16 lg:flex">
-    <div className="inline-block relative flex-shrink-0 mb-5 lg:pt-2">
-      <div className="top-36 lg:sticky">
-        <div className="bg-white rounded-xl border border-gray-200">
-          <div className="relative px-4 font-semibold leading-9 text-center text-gray-600 lg:px-5">
-            {name}
-          </div>
-        </div>
+  <div className="gap-8 mb-24 lg:flex justify-center">
+    <div className="inline-block relative w-full lg:w-[176px] flex-shrink-0 mb-12">
+      <div className="top-24 lg:sticky flex flex-row lg:flex-col gap-4 lg:gap-2 items-center lg:items-start">
+        <Badge className="w-max !text-base !rounded-md !px-4">v1.52.0</Badge>
+        <Typography className="!text-[#5D6267]">{name}</Typography>
       </div>
     </div>
-    <div className="flex flex-col flex-1 pb-6 max-w-prose whitespace-pre-wrap">
+    <div className="flex flex-col flex-1 max-w-[800px] whitespace-pre-wrap -my-8">
       <ReactMarkdown
         components={{
           h1: Heading,
@@ -69,6 +94,7 @@ const ChangelogItem = ({ name, content }: Page) => (
           h6: Heading,
           p: Paragraph,
           img: Image,
+          ul: UnorderedList,
         }}
         remarkPlugins={[remarkGfm, remarkBreaks]}
       >
@@ -82,9 +108,17 @@ export default function Changelog({ data }: Props) {
   return (
     <Layout>
       <SEO title={PAGES.CHANGE_LOG.title} tailTitle />
-      <div className="flex flex-col py-16 landing-container">
-        <div className="mb-12 text-3xl text-center md:text-4xl lg:text-5xl">
-          Changelog
+      <div className="flex flex-col pt-8 lg:pt-24 landing-container">
+        <div className="w-full flex justify-center mb-18 lg:mb-24">
+          <div className="w-full max-w-[1008px] flex justify-end">
+            <Typography
+              level="h1"
+              fontWeight="md"
+              className="w-full lg:pl-[208px] text-[40px] overflow-visible"
+            >
+              Changelog
+            </Typography>
+          </div>
         </div>
         {data?.map(
           (d, i) => d && <ChangelogItem {...d} key={`changelog-${i}`} />,
