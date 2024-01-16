@@ -199,11 +199,11 @@ export const ProfileWidget = () => {
       </div>
       <Tabs value={selectedChain}>
         <TabList
-          className="flex items-center -mx-4 border-t border-b border-divider relative"
+          className="flex relative items-center -mx-4 border-t border-b border-divider"
           ref={tabElement}
         >
           <div
-            className="bg-background-level2 absolute top-0 left-0 h-full w-[120px] transition-transform duration-300"
+            className="absolute top-0 left-0 h-full transition-transform duration-300 bg-background-level2 w-[120px]"
             style={{
               transform: `translateX(${translateX}px)`,
             }}
@@ -244,7 +244,7 @@ export const ProfileWidget = () => {
                 {isSelected && (
                   <Typography
                     level="h8"
-                    className="animate-in fade-in-0 duration-500"
+                    className="duration-500 animate-in fade-in-0"
                   >
                     {name.split(' ')[0]}
                   </Typography>

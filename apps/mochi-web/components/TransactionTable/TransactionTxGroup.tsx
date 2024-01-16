@@ -28,6 +28,8 @@ export const TransactionTxGroup = (props: TransactionTxGroupProps) => {
     )
   }
 
+  const uniqueTxCodes = Array.from(new Set(allTxs.map((tx) => tx.code)))
+
   return (
     <Select
       value={undefined}
@@ -45,10 +47,10 @@ export const TransactionTxGroup = (props: TransactionTxGroupProps) => {
         </Typography>
       </SelectTrigger>
       <SelectContent>
-        {allTxs.map((tx) => (
-          <SelectItem key={tx.code} value={tx.code} onClick={() => alert('Hi')}>
+        {uniqueTxCodes.map((code) => (
+          <SelectItem key={code} value={code} onClick={() => alert('Hi')}>
             <Typography level="p5" className="font-mono">
-              {tx.code.slice(0, 9)}
+              {code.slice(0, 9)}
             </Typography>
           </SelectItem>
         ))}

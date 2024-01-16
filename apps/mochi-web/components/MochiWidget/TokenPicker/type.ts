@@ -10,6 +10,10 @@ export type Moniker = {
   group: string
   asset_balance: number
   token_amount: number
+  source: {
+    id: string
+    title: string
+  }
   token: {
     icon: string
     address: string

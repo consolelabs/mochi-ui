@@ -68,7 +68,7 @@ export default function StepOne() {
   const onSelectAsset = useCallback(
     (asset: BalanceWithSource | Moniker | null) => {
       setAsset(asset)
-      if (asset?.type === 'token' && asset.source.id) {
+      if (asset) {
         updateSourceWallet(asset.source.id)
       }
     },

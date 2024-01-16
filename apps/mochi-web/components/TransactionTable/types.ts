@@ -30,6 +30,7 @@ export interface Tx {
     symbol: string
   }
   action: TransactionActionType
+  singleAmount: string
   amount: string
   amountUsd: string
   date: string

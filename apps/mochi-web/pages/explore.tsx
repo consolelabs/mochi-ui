@@ -12,7 +12,7 @@ export default function ExplorePage() {
   return (
     <Layout>
       <SEO
-        title="Explore Mochi"
+        title="Mochi Transactions"
         description="Let's see how Mochi citizens are doing!"
         image={`${HOME_URL}/assets/explore/explore.thumbnail.png`}
       />

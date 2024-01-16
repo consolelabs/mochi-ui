@@ -6,7 +6,6 @@ import UI, {
   Platform,
   utils,
 } from '@consolelabs/mochi-formatter'
-import { truncate } from '@dwarvesf/react-utils'
 import { getLoginWidgetState } from '@mochi-web3/login-widget'
 import { coinIcon } from '~utils/image'
 
@@ -73,6 +72,10 @@ export const useWalletStore = create<State>((set) => ({
           subtitle: p?.plain ?? me.profile_name,
           usd_amount: utils.formatUsdDigit(mochiWallet.usd_total),
           balances: mochiWallet.balances.map((b) => ({
+            source: {
+              id: 'mochi',
+              title: 'Mochi Wallet',
+            },
             type: 'token',
             token: {
               ...b.token,
@@ -143,10 +146,16 @@ export const useWalletStore = create<State>((set) => ({
             wallets.push({
               id: w.platform_identifier,
               icon: w.platform,
-              title: truncate(w.platform_identifier, 10, true),
+              title: utils.string.formatAddressUsername(w.platform_identifier),
               subtitle: ChainDisplayNames.get(w.platform) || '',
               usd_amount: utils.formatUsdDigit(data.latest_snapshot_bal),
               balances: data.balance.map((b) => ({
+                source: {
+                  id: w.platform_identifier,
+                  title: utils.string.formatAddressUsername(
+                    w.platform_identifier,
+                  ),
+                },
                 type: 'token',
                 token: {
                   ...b.token,

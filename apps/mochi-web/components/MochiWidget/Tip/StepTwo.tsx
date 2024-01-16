@@ -120,7 +120,12 @@ export default function StepTwo() {
               ? request.asset?.token?.symbol ?? ''
               : request.asset?.name ?? ''
           }
-          tokenIcon={request.asset?.token.icon ?? ''}
+          tokenIcon={
+            isToken(request.asset)
+              ? request.asset?.token.icon ?? ''
+              : request.asset?.name ?? ''
+          }
+          isMoniker={!isToken(request.asset)}
           className="self-center"
         />
         {/* <div className="flex flex-col"> */}

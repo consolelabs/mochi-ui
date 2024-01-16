@@ -173,10 +173,13 @@ export async function transform(d: any): Promise<Tx> {
       icon: d.token?.icon,
       symbol: d.token?.symbol,
     },
-    amount: mochiUtils.formatTokenDigit(
+    singleAmount: mochiUtils.formatTokenDigit(
       utils.formatUnits(d.amount, d.token?.decimal),
     ),
-    amountUsd: mochiUtils.formatUsdDigit(d.usd_amount),
+    amount: mochiUtils.formatTokenDigit(
+      utils.formatUnits(d.group_total_amount || d.amount, d.token?.decimal),
+    ),
+    amountUsd: mochiUtils.formatUsdDigit(d.group_total_usd || d.usd_amount),
     date: formatRelative(d.created_at),
     full_date: formatDate(d.created_at, 'MMMM d, yyyy HH:mm:ss'),
     status: d.status,

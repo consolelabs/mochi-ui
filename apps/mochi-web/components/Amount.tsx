@@ -2,6 +2,7 @@ import { Typography } from '@mochi-ui/core'
 import clsx from 'clsx'
 import Image from 'next/image'
 import { coinIcon } from '~utils/image'
+import { MonikerIcons } from './MochiWidget/TokenPicker/utils'
 
 interface AmountProps {
   value: string
@@ -12,6 +13,7 @@ interface AmountProps {
   className?: string
   size?: 'sm' | 'md'
   isMultipleTokens?: boolean
+  isMoniker?: boolean
   alignment?: 'left' | 'center'
 }
 
@@ -25,6 +27,7 @@ export default function Amount({
   size = 'md',
   isMultipleTokens = false,
   alignment = 'center',
+  isMoniker,
 }: AmountProps) {
   const isLongNumber = value.length >= 12
 
@@ -38,18 +41,24 @@ export default function Amount({
           isLongNumber,
       })}
     >
-      <Image
-        width={size === 'md' ? 28 : 24}
-        height={size === 'md' ? 28 : 24}
-        className={clsx({
-          'my-1': size === 'md' && alignment === 'center' && !isLongNumber,
-          'row-start-1 row-span-2 my-auto':
-            alignment === 'left' && !isLongNumber,
-          'mx-auto': isLongNumber,
-        })}
-        src={tokenIcon || coinIcon.src}
-        alt=""
-      />
+      {isMoniker ? (
+        <div className="my-auto flex justify-center items-center w-7 h-7 rounded-full border border-[#E5E4E3]">
+          <span className="text-sm">{MonikerIcons.get(tokenIcon)}</span>
+        </div>
+      ) : (
+        <Image
+          width={size === 'md' ? 28 : 24}
+          height={size === 'md' ? 28 : 24}
+          className={clsx({
+            'my-1': size === 'md' && alignment === 'center' && !isLongNumber,
+            'row-start-1 row-span-2 my-auto':
+              alignment === 'left' && !isLongNumber,
+            'mx-auto': isLongNumber,
+          })}
+          src={tokenIcon || coinIcon.src}
+          alt=""
+        />
+      )}
       <div
         className={clsx('flex gap-x-1', {
           'flex-col items-center': isLongNumber,

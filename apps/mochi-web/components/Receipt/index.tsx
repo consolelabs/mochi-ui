@@ -176,7 +176,6 @@ export default function Receipt({ id, data: _data }: Props) {
                       </span>
                     )}
                   </DataList.Item>
-                  <div className="pt-3 w-full h-0" />
                   {data.originalTxId ? (
                     <DataList.Item
                       title="Tx ID"
