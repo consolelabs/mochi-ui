@@ -138,7 +138,7 @@ export const AppDetailStatistics = ({
               />
               <IconButton
                 variant="outline"
-                color="info"
+                color="neutral"
                 className="px-1 py-1 transition-all opacity-0 group-hover:opacity-100 bg-background-body"
                 onClick={() => setEditing('app_name')}
                 label="Edit app name"
@@ -176,7 +176,7 @@ export const AppDetailStatistics = ({
               />
               <IconButton
                 variant="outline"
-                color="info"
+                color="neutral"
                 label="Edit app description"
                 className="px-1 py-1 transition-all opacity-0 group-hover:opacity-100 bg-background-body"
                 onClick={() => setEditing('description')}

@@ -105,7 +105,7 @@ export function Default() {
           <IconButton
             label="Open menu"
             variant="ghost"
-            color="info"
+            color="neutral"
             className="shrink-0 !h-10 !w-10"
           >
             <ThreeDotsLine className="text-2xl" aria-hidden />
@@ -130,7 +130,7 @@ export function Default() {
           <IconButton
             label="Open menu"
             variant="ghost"
-            color="info"
+            color="neutral"
             className="shrink-0 !h-10 !w-10"
           >
             <ThreeDotsLine className="text-2xl" aria-hidden />

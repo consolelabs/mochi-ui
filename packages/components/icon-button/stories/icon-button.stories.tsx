@@ -9,13 +9,13 @@ const colors: IconButtonProps['color'][] = [
   'warning',
   'danger',
   'neutral',
-  'info',
 ]
 const variants: IconButtonProps['variant'][] = [
   'solid',
   'outline',
   'ghost',
   'link',
+  'soft',
 ]
 
 const meta: Meta<typeof IconButton> = {
@@ -63,7 +63,7 @@ export const Default: Story = {
 export const Colors: Story = {
   render() {
     return (
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-5 gap-4">
         {colors.map((color) =>
           variants.map((variant) => (
             <div className="flex items-center justify-center w-full h-10">
@@ -86,7 +86,7 @@ export const Colors: Story = {
 export const Disabled: Story = {
   render() {
     return (
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-5 gap-4">
         {colors.map((color) =>
           variants.map((variant) => (
             <div className="flex items-center justify-center w-full h-10">

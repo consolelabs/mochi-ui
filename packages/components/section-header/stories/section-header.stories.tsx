@@ -96,7 +96,7 @@ export function Default() {
           Communities Activities
         </SectionHeaderTitle>
         <SectionHeaderActions>
-          <IconButton label="Open menu" variant="link" color="info">
+          <IconButton label="Open menu" variant="link" color="neutral">
             <ThreeDotsLine className="text-2xl" aria-hidden />
           </IconButton>
         </SectionHeaderActions>
