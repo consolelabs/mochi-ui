@@ -50,7 +50,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: () => <span className="px-1">#</span>,
         id: 'txId',
-        width: 100,
+        width: 80,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -78,7 +78,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: () => <TransactionHeaderWen disabled={!enableColSort} />,
         id: 'wen',
-        width: 80,
+        width: 60,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -93,7 +93,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: () => <TransactionHeaderAction disabled={!enableColFilter} />,
         id: 'type',
-        width: 80,
+        width: 60,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -104,7 +104,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: 'issued by',
         id: 'from',
-        width: 150,
+        width: 135,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -128,7 +128,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: 'recipients',
         id: 'to',
-        width: 150,
+        width: 135,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original

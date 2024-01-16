@@ -32,7 +32,7 @@ export type TransactionStatus =
 
 export const transactionActionString: Record<TransactionActionType, string> = {
   transfer: 'Tip',
-  vault_transfer: 'Vault Transfer',
+  vault_transfer: 'Vault',
   payme: 'Pay Me',
   swap: 'Swap',
   paylink: 'Pay Link',
