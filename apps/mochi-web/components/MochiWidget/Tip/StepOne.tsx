@@ -84,7 +84,7 @@ export default function StepOne() {
 
   return (
     <div className="flex flex-col flex-1 gap-y-3 h-full min-h-0">
-      <div className="flex flex-col gap-y-2 h-full">
+      <div className="flex flex-col gap-y-1 h-full">
         <div className="flex flex-col gap-y-2.5 items-center pb-3">
           <p className="text-xl text-[#343433] font-medium">Send a tip</p>
           <span className="text-[#848281] text-xs text-center">

@@ -110,7 +110,7 @@ export default function MochiWidget({ wrapperClassName, className }: Props) {
             )
           })}
         </div>
-        <div className="flex overflow-hidden relative z-10 flex-col flex-1 p-3 min-h-0">
+        <div className="flex overflow-hidden relative z-10 flex-col flex-1 p-3 mt-auto min-h-0">
           <div className="flex flex-col flex-1 gap-y-2 min-h-0">
             {activeTab.render({ showTab, hideTab })}
             <span className="text-xs text-[#adacaa] mx-auto">
