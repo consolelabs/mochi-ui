@@ -30,7 +30,13 @@ const modalCloseButtonClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
-    '!m-0 absolute translate-x-1/2 -translate-y-1/2 right-6 top-6 rounded-full border border-neutral-outline-border opacity-70 transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none w-6 h-6 flex items-center justify-center',
+    '!m-0 absolute translate-x-1/2 -translate-y-1/2 right-6 top-6 rounded-full border  focus:outline-none disabled:pointer-events-none w-6 h-6 flex items-center justify-center',
+    'text-neutral-outline-fg',
+    'border-neutral-outline-border',
+    'hover:bg-neutral-outline-hover',
+    'active:bg-neutral-outline-active',
+    'disabled:text-neutral-outline-disable-fg disabled:border-neutral-outline-disable-border',
+    'focus-visible:shadow-small focus-visible:shadow-focus',
     className,
   )
 
