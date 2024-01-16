@@ -18,6 +18,7 @@ const toggleButtonVariants = cva(
           'data-[state=on]:bg-primary-outline-active',
           'hover:enabled:bg-primary-outline-hover',
           'data-[disabled]:text-primary-outline-disable-fg',
+          'data-[disabled]:border-primary-outline-disable-border',
           'focus:ring-primary-solid-focus',
         ],
         secondary: [
@@ -26,6 +27,7 @@ const toggleButtonVariants = cva(
           'data-[state=on]:bg-secondary-outline-active',
           'hover:enabled:bg-secondary-outline-hover',
           'data-[disabled]:text-secondary-outline-disable-fg',
+          'data-[disabled]:border-secondary-outline-disable-border',
           'focus:ring-secondary-solid-focus',
         ],
         success: [
@@ -34,6 +36,7 @@ const toggleButtonVariants = cva(
           'data-[state=on]:bg-success-outline-active',
           'hover:enabled:bg-success-outline-hover',
           'data-[disabled]:text-success-outline-disable-fg',
+          'data-[disabled]:border-success-outline-disable-border',
           'focus:ring-success-solid-focus',
         ],
         warning: [
@@ -42,6 +45,7 @@ const toggleButtonVariants = cva(
           'data-[state=on]:bg-warning-outline-active',
           'hover:enabled:bg-warning-outline-hover',
           'data-[disabled]:text-warning-outline-disable-fg',
+          'data-[disabled]:border-warning-outline-disable-border',
           'focus:ring-warning-solid-focus',
         ],
         danger: [
@@ -50,6 +54,7 @@ const toggleButtonVariants = cva(
           'data-[state=on]:bg-danger-outline-active',
           'hover:enabled:bg-danger-outline-hover',
           'data-[disabled]:text-danger-outline-disable-fg',
+          'data-[disabled]:border-danger-outline-disable-border',
           'focus:ring-danger-solid-focus',
         ],
         neutral: [
@@ -58,6 +63,7 @@ const toggleButtonVariants = cva(
           'data-[state=on]:bg-neutral-outline-active',
           'hover:enabled:bg-neutral-outline-hover',
           'data-[disabled]:text-neutral-outline-disable-fg',
+          'data-[disabled]:border-neutral-outline-disable-border',
           'focus:ring-neutral-solid-focus',
         ],
       },
