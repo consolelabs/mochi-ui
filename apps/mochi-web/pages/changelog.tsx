@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next'
+import { Badge, Typography, TypographyProps } from '@mochi-ui/core'
 import { Layout } from '~app/layout'
 import { SEO } from '~app/layout/seo'
 import { PAGES } from '~constants'
@@ -7,7 +8,6 @@ import remarkGfm from 'remark-gfm'
 import remarkBreaks from 'remark-breaks'
 import { api } from '~constants/mochi'
 import { NativeImage } from '~cpn/NativeImage'
-import { Badge, Typography, TypographyProps } from '@mochi-ui/core'
 
 type Page = {
   name: string
@@ -40,7 +40,6 @@ const Heading = ({
   return (
     <Typography
       level={`h${level + 2}` as TypographyProps['level']}
-      fontWeight="md"
       className="py-8 leading-tight"
     >
       {children}
@@ -109,7 +108,6 @@ export default function Changelog({ data }: Props) {
           <div className="w-full max-w-[1008px] flex justify-end">
             <Typography
               level="h3"
-              fontWeight="md"
               className="w-full md:pl-[208px] leading-tight"
             >
               Changelog
