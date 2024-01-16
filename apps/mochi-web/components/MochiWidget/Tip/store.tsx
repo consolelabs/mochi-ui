@@ -147,7 +147,7 @@ export const useTipWidget = create(
               : { tokenAddress: request.asset?.token.address }),
           })
 
-          set({ tx })
+          set({ tx, error: null })
           get().reset()
 
           return
@@ -209,6 +209,8 @@ export const useTipWidget = create(
           ? amount
           : amount * (request.asset?.asset_balance ?? 0)
 
+        const assetChainId = request.asset?.token.chain_id ?? ''
+
         const tx = await API.MOCHI.post(
           {
             sender: profile?.id,
@@ -217,10 +219,9 @@ export const useTipWidget = create(
             transfer_type: 'transfer',
             amount: originalAmount,
             token: request.asset?.token?.symbol,
-            chain_id: parseInt(
-              request.asset?.token?.chain_id ?? '',
-              16,
-            ).toString(),
+            chain_id: assetChainId.startsWith('0x')
+              ? parseInt(assetChainId, 16).toString()
+              : assetChainId,
             // optional
             ...(request?.theme?.id ? { theme_id: request.theme.id } : {}),
             ...(request?.message ? { message: request.message } : {}),
@@ -234,7 +235,7 @@ export const useTipWidget = create(
           },
           '/tip/transfer-v2',
         ).json((r) => r.data)
-        set({ tx })
+        set({ tx, error: null })
         get().reset()
       } catch (e) {
         console.error(e)

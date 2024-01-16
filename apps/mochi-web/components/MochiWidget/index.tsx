@@ -66,7 +66,7 @@ export default function MochiWidget({ wrapperClassName, className }: Props) {
   return (
     <BottomSheetProvider
       className={clsx(
-        'w-auto lg:w-full overflow-hidden rounded-2xl border-2 shadow-xl border-neutral-300',
+        'w-auto lg:w-full overflow-hidden rounded-2xl border shadow-xl border-neutral-300',
         wrapperClassName,
       )}
     >

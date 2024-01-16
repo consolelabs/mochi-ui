@@ -35,6 +35,8 @@ export const TransactionIssuedBy = (props: TransactionIssuedByProps) => {
     </Typography>
   )
 
+  const isAddress = ['payme', 'deposit'].includes(tx.action)
+
   return (
     <div className="flex gap-3 items-center">
       <AvatarGroup size="sm">
@@ -51,7 +53,7 @@ export const TransactionIssuedBy = (props: TransactionIssuedByProps) => {
         ))}
       </AvatarGroup>
       <div className="flex flex-col gap-1">
-        {allAddresses.length > 1 ? (
+        {allAddresses.length > 1 || isAddress ? (
           <Tooltip
             content={
               <div className="flex flex-col gap-2">

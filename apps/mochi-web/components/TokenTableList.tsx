@@ -20,8 +20,8 @@ const sortOrder = ['SOL']
 
 export interface BalanceWithSource extends Balance {
   source: {
-    id?: string
-    title?: string
+    id: string
+    title: string
   }
 }
 

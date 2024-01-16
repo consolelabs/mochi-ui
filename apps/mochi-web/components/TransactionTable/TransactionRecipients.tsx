@@ -36,6 +36,8 @@ export const TransactionRecipients = (props: TransactionRecipientsProps) => {
     </Typography>
   )
 
+  const isAddress = ['paylink', 'withdraw'].includes(tx.action)
+
   return (
     <div className="flex gap-3 items-center">
       <AvatarGroup size="sm">
@@ -52,25 +54,30 @@ export const TransactionRecipients = (props: TransactionRecipientsProps) => {
         ))}
       </AvatarGroup>
       <div className="flex flex-col gap-1">
-        {allAddresses.length > 1 ? (
+        {allAddresses.length > 1 || isAddress ? (
           <Tooltip
             content={
               <div className="flex flex-col gap-2">
                 {allAddresses.map((address, i) => (
                   <div className="flex gap-x-2 justify-between" key={address}>
-                    <Typography level="p5">{address}:</Typography>
-                    <div className="flex gap-x-1 items-center">
-                      <Image
-                        width={16}
-                        height={16}
-                        src={allTxs[i].token.icon}
-                        alt=""
-                        className="ml-1 w-4 h-4"
-                      />
-                      <Typography level="p5">
-                        {allTxs[i].amount} {allTxs[i].token.symbol}
-                      </Typography>
-                    </div>
+                    <Typography level="p5">
+                      {address}
+                      {!isAddress && ':'}
+                    </Typography>
+                    {!isAddress && (
+                      <div className="flex gap-x-1 items-center">
+                        <Image
+                          width={16}
+                          height={16}
+                          src={allTxs[i].token.icon}
+                          alt=""
+                          className="ml-1 w-4 h-4"
+                        />
+                        <Typography level="p5">
+                          {allTxs[i].singleAmount} {allTxs[i].token.symbol}
+                        </Typography>
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
