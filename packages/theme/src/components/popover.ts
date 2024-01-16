@@ -2,7 +2,7 @@ import clsx from 'clsx'
 
 const popoverContentClsx = ({ className = '' }: { className?: string }) =>
   clsx(
-    'z-50 bg-white p-5 rounded-lg border border-neutral-outline-hover shadow-md',
+    'z-50 bg-background-popup p-5 rounded-lg border border-divider shadow-md',
 
     'data-[state=open]:animate-in',
     'data-[state=open]:fade-in-50',
