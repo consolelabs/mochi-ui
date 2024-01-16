@@ -53,8 +53,8 @@ export default function MessagePicker({
           {[
             '☕️ Coffee treat for you',
             '💸 Pay my debt',
-            '🍕 Pizza on me tonight!',
-            '🎉 Treat yourself',
+            /* '🍕 Pizza on me tonight!', */
+            /* '🎉 Treat yourself', */
           ].map((message) => {
             return (
               <button

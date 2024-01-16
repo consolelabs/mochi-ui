@@ -92,7 +92,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: () => <TransactionHeaderAction disabled={!enableColFilter} />,
         id: 'type',
-        width: 100,
+        width: 80,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
