@@ -3,7 +3,7 @@ import { cva } from 'class-variance-authority'
 
 const drawerOverlayClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx(
-    'fixed inset-0 z-50 bg-background-backdrop/40',
+    'fixed inset-0 z-50 bg-background-backdrop',
     'data-[state=open]:animate-in',
     'data-[state=open]:fade-in-0',
     'data-[state=closed]:animate-out',
@@ -48,7 +48,13 @@ const drawerCloseButtonClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
-    '!m-0 absolute translate-x-1/2 -translate-y-1/2 right-6 top-6 rounded-full border border-neutral-outline-border opacity-70 transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none w-6 h-6 flex items-center justify-center',
+    '!m-0 absolute translate-x-1/2 -translate-y-1/2 right-6 top-6 rounded-full',
+    'border border-neutral-outline-border',
+    'opacity-70',
+    'transition-opacity',
+    'hover:opacity-100',
+    'focus:outline-none disabled:pointer-events-none w-6 h-6 flex items-center justify-center',
+    'text-neutral-outline-fg',
     className,
   )
 

@@ -23,19 +23,19 @@ const meta: Meta<DrawerProps> = {
 
 const content = [
   {
-    icon: <UserSolid className="text-xl text-neutral-800" />,
+    icon: <UserSolid className="text-xl text-text-secondary" />,
     label: 'Profile',
   },
   {
-    icon: <EyeShowSolid className="text-xl text-neutral-800" />,
+    icon: <EyeShowSolid className="text-xl text-text-secondary" />,
     label: 'View Options',
   },
   {
-    icon: <SettingSolid className="text-xl text-neutral-800" />,
+    icon: <SettingSolid className="text-xl text-text-secondary" />,
     label: 'Setting',
   },
   {
-    icon: <ShieldDoneSolid className="text-xl text-neutral-800" />,
+    icon: <ShieldDoneSolid className="text-xl text-text-secondary" />,
     label: 'Terms and Policies',
   },
 ]
