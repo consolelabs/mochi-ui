@@ -18,8 +18,9 @@ import {
 } from '@mochi-ui/core'
 import { ArrowRightLine, CheckLine, CopyLine } from '@mochi-ui/icons'
 import clsx from 'clsx'
-import { useMemo } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import Amount from '~cpn/Amount'
+import { useTransactionStore } from '~cpn/explore/index/stores/useTransactionStore'
 import { TransactionAction } from './TransactionAction'
 import { TransactionIssuedBy } from './TransactionIssuedBy'
 import { TransactionRecipients } from './TransactionRecipients'
@@ -208,10 +209,16 @@ export const TransactionTable = (props: TransactionTableProps) => {
 
   const isEmpty = !rest.isLoading && rest.data?.length === 0
 
+  const { filters } = useTransactionStore()
+  const scrollRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    scrollRef.current?.scrollTo({ left: 0, top: 0 })
+  }, [filters])
+
   return (
     <>
       <ScrollArea>
-        <ScrollAreaViewport>
+        <ScrollAreaViewport ref={scrollRef}>
           <div style={{ minWidth: 1400 }} className={className}>
             <Table
               {...rest}
