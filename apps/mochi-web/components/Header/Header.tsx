@@ -304,7 +304,7 @@ export const Header = ({
               return (
                 <IconButton
                   key={icon.key}
-                  color="info"
+                  color="neutral"
                   variant="outline"
                   label=""
                   className="!p-1 !w-8 !h-8 my-auto hidden lg:block"
@@ -314,7 +314,7 @@ export const Header = ({
               )
             })}
             <IconButton
-              color="info"
+              color="neutral"
               variant="link"
               label=""
               className="!p-1 !w-10 !h-10 my-auto justify-center block lg:hidden"
@@ -322,7 +322,7 @@ export const Header = ({
               <MagnifierLine className="text-2xl" />
             </IconButton>
             <IconButton
-              color="info"
+              color="neutral"
               variant="link"
               label=""
               className="!p-1 !w-10 !h-10 my-auto justify-center block lg:hidden"
@@ -330,7 +330,7 @@ export const Header = ({
               <TipSolid className="text-2xl" />
             </IconButton>
             <IconButton
-              color="info"
+              color="neutral"
               variant="link"
               label=""
               className="!p-1 !w-10 !h-10 my-auto justify-center block lg:hidden"
