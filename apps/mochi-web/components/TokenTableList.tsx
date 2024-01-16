@@ -46,7 +46,7 @@ const Token: ColumnProps<BalanceWithSource>['cell'] = (props) => (
         </Typography>
       </div>
       <Typography
-        level="p6"
+        level="p7"
         fontWeight="md"
         color="textSecondary"
         className="flex items-center"
@@ -66,7 +66,7 @@ export const TokenTableList = ({
   ...props
 }: Props) => {
   return (
-    <ScrollArea className="h-[420px]">
+    <ScrollArea className="h-[430px]">
       <ScrollAreaViewport>
         <Table
           {...props}
