@@ -12,7 +12,7 @@ export const TransactionSection = () => {
     txns,
     fetchTxns,
     page,
-    size,
+    /* size, */
     total = 0,
     setPage,
     setSize,
@@ -21,7 +21,8 @@ export const TransactionSection = () => {
     ws,
     initWs,
   } = useTransactionStore()
-  const txnsCurrentPage = txns[page - 1] || txns[page - 2]
+  const txnsCurrentPage =
+    txns[page - 1] || txns[page - 2] || txns.find((list) => list.length)
 
   useEffect(() => {
     fetchTxns()
@@ -33,10 +34,10 @@ export const TransactionSection = () => {
   }, []) // eslint-disable-line
 
   const containerRef = useRef<HTMLDivElement | null>(null)
-  useEffect(() => {
-    // Scroll top when page change
-    containerRef.current?.scrollIntoView()
-  }, [size, page])
+  /* useEffect(() => { */
+  /*   // Scroll top when page change */
+  /*   containerRef.current?.scrollIntoView() */
+  /* }, [size, page]) */
 
   return (
     <div ref={containerRef} className="mx-auto" style={{ maxWidth: 1488 }}>

@@ -8,11 +8,11 @@ export type TransactionActionProps = {
 export const TransactionAction = (props: TransactionActionProps) => {
   const { tx } = props
 
-  switch (tx.action) {
-    case 'payme': {
+  switch (true) {
+    case tx.action === 'payme' && tx.status !== 'success': {
       return <Button className="!shadow-none">Pay</Button>
     }
-    case 'paylink': {
+    case tx.action === 'paylink' && tx.status !== 'success': {
       return (
         <Button color="success" className="!shadow-none">
           Claim

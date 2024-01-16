@@ -33,7 +33,7 @@ export const SummarySection = () => {
   return (
     <div className="bg-background-level2">
       <div
-        className="flex flex-col-reverse gap-4 p-6 mx-auto md:grid md:grid-cols-3 md:grid-rows-4 xl:grid-cols-5 xl:grid-rows-2"
+        className="flex flex-col-reverse gap-2 p-2 mx-auto md:grid md:grid-cols-3 md:grid-rows-4 lg:gap-4 lg:p-4 xl:grid-cols-5 xl:grid-rows-2"
         style={{ maxWidth: 1248 }}
       >
         {(
@@ -77,14 +77,14 @@ export const SummarySection = () => {
               <Typography level="h8" className="!text-text-secondary">
                 {title}
               </Typography>
-              <Typography level="h5" className="font-mono" fontWeight="lg">
+              <Typography level="h5" fontWeight="lg">
                 {loading ? <Skeleton className="w-32 h-8" /> : value}
               </Typography>
             </div>
           </div>
         ))}
         <div className="flex flex-wrap col-span-2 col-start-2 row-span-4 row-start-1 gap-4 justify-evenly items-center p-3 rounded-xl border xl:col-span-3 xl:col-start-3 xl:row-span-2 xl:row-start-1 bg-background-body border-divider">
-          <div className="flex flex-col gap-4 items-center w-full lg:w-auto">
+          <div className="flex flex-col gap-4 items-center w-full lg:items-start lg:w-auto">
             <div className="flex flex-col-4">
               <div className="flex gap-3 items-center">
                 <div className="flex gap-1.5 items-center py-1 px-2 rounded-full bg-success-solid">
@@ -96,7 +96,7 @@ export const SummarySection = () => {
                 <Typography level="h6">Current Transactions</Typography>
               </div>
             </div>
-            <Typography level="h2" className="font-mono text-text-primary">
+            <Typography level="h2" className="text-text-primary">
               {loading ? (
                 <Skeleton className="w-64 h-14" />
               ) : (
@@ -108,10 +108,7 @@ export const SummarySection = () => {
                 <Skeleton className="w-24 h-8" />
               ) : (
                 <>
-                  <Typography
-                    level="h5"
-                    className="!text-primary-solid font-mono"
-                  >
+                  <Typography level="h5" className="!text-primary-solid">
                     {formatNumber(
                       Math.floor(transactionSummary.transactions_per_day) || 0,
                     )}
@@ -129,10 +126,7 @@ export const SummarySection = () => {
             ) : (
               <div className="grid grid-cols-2 grid-rows-2 gap-x-6 items-center sm:flex sm:gap-4">
                 <div className="flex flex-col justify-center items-center">
-                  <Typography
-                    level="h4"
-                    className="!text-success-solid font-mono"
-                  >
+                  <Typography level="h4" className="!text-success-solid">
                     {successRate}%
                   </Typography>
                   <Typography level="p4">Successful</Typography>

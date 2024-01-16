@@ -6,11 +6,12 @@ import isToday from 'date-fns/isToday'
 import distance from 'date-fns/formatDistanceStrict'
 
 const formatRelativeLocale = {
-  lastWeek: "'Last' eeee",
-  yesterday: "'Yesterday at' HH:mm",
+  lastWeek: "'Last week'",
+  yesterday: "'Yesterday'",
   today: "'Today at' HH:mm",
   tomorrow: "'Tomorrow'",
   nextWeek: "'Next' eeee",
+  lastMonth: "'a month ago'",
   other: 'dd.MM.yyyy',
 }
 

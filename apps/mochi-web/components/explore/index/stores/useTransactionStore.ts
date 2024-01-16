@@ -16,6 +16,7 @@ interface State {
   txns: Tx[][]
   addNewTx: (tx: Tx) => void
   loading: boolean
+  fetching: boolean
   fetchTxns: (
     filters?: Filters,
     sort?: string,
@@ -42,6 +43,7 @@ interface State {
 export const useTransactionStore = create<State>((set, get) => ({
   txns: [],
   loading: true,
+  fetching: true,
   addNewTx: (tx) => {
     const { txns, size } = get()
 
@@ -77,6 +79,7 @@ export const useTransactionStore = create<State>((set, get) => ({
     set((s) => ({ ...s, txns: paginatedTxns }))
   },
   fetchTxns: async (filters, sort, page = 1, size = DEFAULT_PAGE_SIZE) => {
+    set({ fetching: true })
     return API.MOCHI_PAY.query({
       page: page - 1,
       size,
@@ -99,6 +102,7 @@ export const useTransactionStore = create<State>((set, get) => ({
           set((s) => ({
             ...s,
             loading: false,
+            fetching: false,
             txns,
             total: r.pagination.total,
           }))
@@ -138,7 +142,7 @@ export const useTransactionStore = create<State>((set, get) => ({
     const finalFilters = { ..._filters, ...partialFilters }
 
     if (JSON.stringify(finalFilters) !== JSON.stringify(_filters)) {
-      set((s) => ({ ...s, filters: finalFilters, page: 1, total: 0 }))
+      set((s) => ({ ...s, filters: finalFilters, page: 1, fetching: true }))
       fetchTxns(finalFilters, sort, 1, size)
     }
   },
@@ -146,7 +150,7 @@ export const useTransactionStore = create<State>((set, get) => ({
   setSort: (sort) => {
     const { sort: _sort, filters, size, fetchTxns } = get()
     if (sort !== _sort) {
-      set((s) => ({ ...s, sort, page: 1, total: 0 }))
+      set((s) => ({ ...s, sort, page: 1, fetching: true }))
       fetchTxns(filters, sort, 1, size)
     }
   },

@@ -49,7 +49,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: () => <span className="px-1">#</span>,
         id: 'txId',
-        width: 50,
+        width: 100,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -77,24 +77,22 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: () => <TransactionHeaderWen disabled={!enableColSort} />,
         id: 'wen',
-        width: 170,
+        width: 80,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
 
           return (
-            <Tooltip content={tx.full_date}>
-              <Typography level="p5" className="tabular-nums text-left">
-                {tx.date}
-              </Typography>
-            </Tooltip>
+            <Typography level="p5" className="tabular-nums text-left">
+              {tx.date}
+            </Typography>
           )
         },
       },
       {
         header: () => <TransactionHeaderAction disabled={!enableColFilter} />,
         id: 'type',
-        width: 50,
+        width: 100,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -105,7 +103,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: 'issued by',
         id: 'from',
-        width: 220,
+        width: 150,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -116,7 +114,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: '',
         id: 'decoration arrow',
-        width: 50,
+        width: 25,
         // eslint-disable-next-line
         cell: () => {
           return (
@@ -129,7 +127,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: 'recipients',
         id: 'to',
-        width: 220,
+        width: 150,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -140,7 +138,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: () => <TransactionHeaderTotalValue disabled={!enableColSort} />,
         id: 'amount',
-        width: 140,
+        width: 100,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -160,10 +158,12 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: 'where',
         id: 'where',
-        width: 50,
+        width: 100,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
+          const truncatedVal = truncate(tx.where.text, 20)
+          const isTruncated = truncatedVal !== tx.where.text
 
           return (
             <Badge className="inline-flex !bg-neutral-150" appearance="white">
@@ -176,11 +176,13 @@ export const TransactionTable = (props: TransactionTableProps) => {
                   </div>
                 )}
               </BadgeIcon>
-              <Tooltip content={tx.where.text}>
-                <span className="w-full truncate">
-                  {truncate(tx.where.text, 20)}
-                </span>
-              </Tooltip>
+              {isTruncated ? (
+                <Tooltip content={tx.where.text}>
+                  <span className="w-full truncate">{truncatedVal}</span>
+                </Tooltip>
+              ) : (
+                <span className="w-full truncate">{truncatedVal}</span>
+              )}
             </Badge>
           )
         },
@@ -254,15 +256,14 @@ export const TransactionTable = (props: TransactionTableProps) => {
           </Typography>
         </div>
       )}
-      {componentsProps.pagination &&
-        (componentsProps.pagination.totalItems || 0) > 0 && (
-          <div className="p-4 text-sm">
-            <Pagination
-              recordName="transactions"
-              {...componentsProps.pagination}
-            />
-          </div>
-        )}
+      {componentsProps.pagination && (
+        <div className="p-4 text-sm">
+          <Pagination
+            recordName="transactions"
+            {...componentsProps.pagination}
+          />
+        </div>
+      )}
     </>
   )
 }

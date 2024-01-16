@@ -11,7 +11,7 @@ const tableWrapperClsx = ({
   )
 
 const tableClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx('w-full border-collapse relative', className)
+  clsx('table-fixed w-full border-collapse relative', className)
 
 const tableRowClsx = ({
   clickable = false,
@@ -80,7 +80,7 @@ const tableDataClsx = ({
   size?: 'sm' | 'md'
 } = {}) =>
   clsx(
-    'text-sm font-normal leading-tight border-0 border-b border-neutral-outline-active border-solid min-w-[48px] text-text-primary',
+    'overflow-hidden text-sm font-normal leading-tight border-0 border-b border-neutral-outline-active border-solid min-w-[48px] text-text-primary',
     { 'group-last:border-b-0': hideLastBorder || border },
     {
       'px-2 py-2 h-14': size === 'sm',

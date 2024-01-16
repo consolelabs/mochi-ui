@@ -18,7 +18,7 @@ const avatarCva = cva(['inline-block flex-shrink-0 rounded-full'], {
   },
 })
 
-const avatarGroupWrapperCva = cva(['overflow-hidden'], {
+const avatarGroupWrapperCva = cva(['overflow-hidden shrink-0'], {
   variants: {
     size: {
       xs: 'w-4 h-4',

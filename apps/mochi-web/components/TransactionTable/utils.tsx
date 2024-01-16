@@ -140,9 +140,9 @@ export async function transform(d: any): Promise<Tx> {
     to.plain = '🍡 Mochi user'
   }
 
-  if (to && d.action === 'withdraw') {
+  if (to && (d.action === 'withdraw' || d.action === 'paylink')) {
     to.plain = d.other_profile_source
-  } else if (from && d.action === 'deposit') {
+  } else if (from && (d.action === 'deposit' || d.action === 'payme')) {
     from.plain = d.from_profile_source
   }
 
