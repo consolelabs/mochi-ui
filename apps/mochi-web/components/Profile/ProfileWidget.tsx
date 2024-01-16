@@ -7,7 +7,6 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-  IconButton,
   ScrollArea,
   ScrollAreaScrollbar,
   ScrollAreaThumb,
@@ -23,7 +22,6 @@ import { utils } from '@consolelabs/mochi-formatter'
 import {
   ArrowDownSquareSolid,
   ArrowUpSquareSolid,
-  ChartSolid,
   ChevronDownLine,
   MenuAddSolid,
 } from '@mochi-ui/icons'
@@ -69,6 +67,7 @@ export const ProfileWidget = () => {
     })),
   )
   const tabElement = useRef<HTMLDivElement>(null)
+  const [tabsWidth, setTabsWidth] = useState(0)
   const [displayChainAmount, setDisplayChainAmount] = useState(2)
   const [_selectedChain, setSelectedChain] = useState('')
 
@@ -103,19 +102,6 @@ export const ProfileWidget = () => {
             }))
           : [],
       ),
-      SOL: [],
-      ETH: [],
-      ARB: [],
-      Fantom: [],
-      RON: [],
-      ATOM: [],
-      TON: [],
-      OP: [],
-      ZKSYNC: [],
-      APT: [],
-      SUI: [],
-      CEX: [],
-      FIAT: [],
     },
   )
   const sortedChains = Object.keys(chains)
@@ -141,12 +127,23 @@ export const ProfileWidget = () => {
     })
     .map(({ chain }) => chain)
   const selectedChain = _selectedChain || sortedChains[0]
+  const selectedIndex = sortedChains.findIndex(
+    (chain) => chain === selectedChain,
+  )
+  const dropdownWidth = sortedChains.length > displayChainAmount ? 40 : 0
+  const tabWidth =
+    tabsWidth && displayChainAmount > 1
+      ? (tabsWidth - 120 - dropdownWidth) /
+        (Math.min(displayChainAmount, sortedChains.length) - 1)
+      : 0
+  const translateX = selectedIndex * tabWidth
 
   useEffect(() => {
     const element = tabElement.current
     if (!element) return
     const observer = new ResizeObserver(() => {
-      const amount = Math.floor((element.clientWidth - 120) / 50)
+      setTabsWidth(element.clientWidth)
+      const amount = Math.floor((element.clientWidth - 120) / 40)
       setDisplayChainAmount(amount)
     })
     observer.observe(element)
@@ -187,14 +184,6 @@ export const ProfileWidget = () => {
                 )
               </Typography>
             </ValueChange>
-            <IconButton
-              color="white"
-              label="chart"
-              className="py-1 px-1"
-              disabled
-            >
-              <ChartSolid className="w-3 h-3" />
-            </IconButton>
           </div>
         </div>
       </div>
@@ -210,9 +199,15 @@ export const ProfileWidget = () => {
       </div>
       <Tabs value={selectedChain}>
         <TabList
-          className="flex items-center -mx-4 border-t border-b border-divider"
+          className="flex items-center -mx-4 border-t border-b border-divider relative"
           ref={tabElement}
         >
+          <div
+            className="bg-background-level2 absolute top-0 left-0 h-full w-[120px] transition-transform duration-300"
+            style={{
+              transform: `translateX(${translateX}px)`,
+            }}
+          />
           {sortedChains.slice(0, displayChainAmount).map((chain) => {
             const isSelected = chain === selectedChain
             const name =
@@ -238,16 +233,21 @@ export const ProfileWidget = () => {
                 value={chain}
                 wrapperClassName="pl-0 pr-0 border-r-0"
                 className={clsx(
-                  'h-10 space-x-1 outline-none rounded-none transition duration-500',
+                  'h-10 space-x-1 outline-none rounded-none transition duration-500 z-10 hover:!opacity-100',
                   {
-                    'bg-background-level2 w-[120px]': isSelected,
+                    'w-[120px]': isSelected,
                   },
                 )}
                 onClick={() => setSelectedChain(chain)}
               >
                 {avatar}
                 {isSelected && (
-                  <Typography level="h8">{name.split(' ')[0]}</Typography>
+                  <Typography
+                    level="h8"
+                    className="animate-in fade-in-0 duration-500"
+                  >
+                    {name.split(' ')[0]}
+                  </Typography>
                 )}
               </TabTrigger>
             )
@@ -297,15 +297,15 @@ export const ProfileWidget = () => {
             </DropdownMenu>
           )}
         </TabList>
+        <TokenTableList
+          isLoading={!wallets.length && isFetchingWallets}
+          data={chains[selectedChain]}
+          hideLastBorder
+          onRow={(record) => ({
+            onClick: () => setSelectedAsset(record),
+          })}
+        />
       </Tabs>
-      <TokenTableList
-        isLoading={!wallets.length && isFetchingWallets}
-        data={chains[selectedChain]}
-        hideLastBorder
-        onRow={(record) => ({
-          onClick: () => setSelectedAsset(record),
-        })}
-      />
     </Card>
   )
 }
