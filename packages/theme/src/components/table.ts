@@ -32,7 +32,7 @@ const tableHeaderClsx = ({
   size,
 }: { className?: string; stickyHeader?: boolean; size?: 'sm' | 'md' } = {}) =>
   clsx(
-    'py-3 text-xxs font-semibold tracking-tight uppercase min-w-[48px] text-text-secondary',
+    'py-3 text-xxs font-semibold tracking-tight uppercase text-text-secondary',
     stickyHeader
       ? 'sticky top-0 bg-background-surface after:absolute after:inset-0 after:h-full after:w-full after:border-b after:border-neutral-outline-active'
       : 'border-b border-neutral-outline-active',
@@ -66,7 +66,8 @@ const tableDataLoadingClsx = ({
 
 const tableDataSkeletonClsx = ({
   className = '',
-}: { className?: string } = {}) => clsx('w-full h-[22px] rounded-md', className)
+}: { className?: string } = {}) =>
+  clsx('sm:w-3/4 w-full h-[22px] rounded-md', className)
 
 const tableDataClsx = ({
   className = '',

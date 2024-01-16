@@ -49,7 +49,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: () => <span className="px-1">#</span>,
         id: 'txId',
-        width: 100,
+        width: 165,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -92,7 +92,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: () => <TransactionHeaderAction disabled={!enableColFilter} />,
         id: 'type',
-        width: 100,
+        width: 130,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -103,7 +103,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: 'issued by',
         id: 'from',
-        width: 150,
+        width: 240,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -113,8 +113,8 @@ export const TransactionTable = (props: TransactionTableProps) => {
       },
       {
         header: '',
-        id: 'decoration arrow',
-        width: 25,
+        id: 'decoration-arrow',
+        width: 50,
         // eslint-disable-next-line
         cell: () => {
           return (
@@ -158,7 +158,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: 'where',
         id: 'where',
-        width: 100,
+        width: 170,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -190,7 +190,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: '',
         id: 'action',
-        width: 50,
+        width: 90,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original

@@ -99,6 +99,10 @@ export default function Table<T extends RowData>({
                     typeof col.width === 'string'
                       ? col.width
                       : `${col.width}px`,
+                  minWidth:
+                    typeof col.width === 'string'
+                      ? col.width
+                      : `${col.width}px`,
                 }}
               />
             ))}
