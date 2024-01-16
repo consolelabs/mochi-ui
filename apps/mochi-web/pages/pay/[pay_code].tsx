@@ -1,15 +1,13 @@
 /* import dynamic from 'next/dynamic' */
-import { formatDate } from '~utils/time'
 /* import { Text } from '~cpn/base/text' */
 /* import { SEO } from '~app/layout/seo' */
 /* import QRCodeButton from '~components/Pay/QRCodeButton' */
 /* import CopyLinkButton from '~components/Pay/CopyLinkButton' */
 /* import ShareButton from '~components/Pay/ShareButton' */
 /* import PaymentButton from '~components/Pay/PaymentButton' */
-import { Layout } from '~app/layout'
 import { GetServerSideProps } from 'next'
+import { Layout } from '~app/layout'
 import { API } from '~constants/api'
-import { utils } from 'ethers'
 /* import clsx from 'clsx' */
 /* import { button, Button } from '~cpn/base/button' */
 /* import Image from 'next/image' */
@@ -24,8 +22,7 @@ import { utils } from 'ethers'
 import { PayLink, PayMe } from '~cpn/PayRequest'
 /* import { useEffect } from 'react' */
 import { PayRequest } from '~cpn/PayRequest/type'
-import { Platform, utils as mochiUtils } from '@consolelabs/mochi-formatter'
-import { UI } from '../../constants/mochi'
+import { transformData } from '~cpn/PayRequest/utils'
 
 /* const Toaster = dynamic(() => import('sonner').then((m) => m.Toaster)) */
 
@@ -39,64 +36,12 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     }
   }
 
-  const payRequest = await API.MOCHI_PAY.get(`/pay-requests/${pay_code}`)
+  let payRequest = await API.MOCHI_PAY.get(`/pay-requests/${pay_code}`)
     .setTimeout(2000)
     .fetchError(() => null)
     .json((r) => r.data)
 
-  if (payRequest.profile_tx.from_profile) {
-    const [name] = UI.render(Platform.Web, payRequest.profile_tx.from_profile)
-
-    payRequest.profile = {
-      name: name?.plain ?? '',
-      avatar: payRequest.profile_tx.from_profile.avatar ?? '',
-    }
-  }
-
-  if (payRequest.profile_tx.other_profile) {
-    const [name] = UI.render(Platform.Web, payRequest.profile_tx.other_profile)
-
-    payRequest.to = {
-      name: name?.plain ?? '',
-      avatar: payRequest.profile_tx.other_profile.avatar ?? '',
-    }
-  }
-
-  payRequest.usdAmountDisplay = mochiUtils.formatUsdDigit({
-    value: payRequest.usd_amount,
-    scientificFormat: true,
-  })
-
-  payRequest.amountDisplay = mochiUtils.formatTokenDigit({
-    value: utils.formatUnits(payRequest.amount, payRequest.token.decimal),
-    scientificFormat: true,
-  })
-
-  payRequest.date = formatDate(payRequest.created_at, 'dd/MM/yyyy')
-
-  if (payRequest.type === 'payme') {
-    let key = ''
-    if (payRequest.profile_id === payRequest.profile_tx.from_profile_id) {
-      key = 'from_profile'
-    } else {
-      key = 'other_profile'
-    }
-
-    payRequest.recipient_wallets =
-      payRequest.profile_tx[key]?.associated_accounts.filter((aa: any) =>
-        payRequest.token.chain.type === 'evm'
-          ? aa.platform === 'evm-chain'
-          : aa.platform === 'solana-chain',
-      ) ?? []
-  }
-
-  switch (payRequest.status.toLowerCase()) {
-    case 'submitted':
-      payRequest.status = 'pending'
-      break
-    default:
-      break
-  }
+  payRequest = transformData(payRequest)
 
   return {
     props: {

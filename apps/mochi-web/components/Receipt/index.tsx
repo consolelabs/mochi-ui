@@ -1,10 +1,11 @@
-import { useMemo } from 'react'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { truncate } from '@dwarvesf/react-utils'
 import { Avatar, Badge, Typography } from '@mochi-ui/core'
 import { CornerBottomLeftLine, LinkLine } from '@mochi-ui/icons'
+import clsx from 'clsx'
 import { format } from 'date-fns'
 import Link from 'next/link'
+import { useMemo } from 'react'
 import useSWR from 'swr'
 import { API } from '~constants/api'
 import {
@@ -23,11 +24,18 @@ interface Props {
   // data will override and disable request fetching
   // instead the UI will use this data to render
   data?: any
+  variant?: 'default' | 'peeking'
+  className?: string
 }
 
 let transformData: any
 
-export default function Receipt({ id, data: _data }: Props) {
+export default function Receipt({
+  id,
+  data: _data,
+  variant = 'default',
+  className,
+}: Props) {
   const { data, isLoading } = useSWR(
     [`transfer/${id}`, id],
     async ([_, id]) => {
@@ -81,7 +89,15 @@ export default function Receipt({ id, data: _data }: Props) {
   if (isLoading || !data) return null
 
   return (
-    <div className="flex-1 gap-y-7 receipt-container">
+    <div
+      className={clsx(
+        'flex-1 gap-y-7 receipt-container',
+        {
+          peeking: variant === 'peeking',
+        },
+        className,
+      )}
+    >
       <style jsx global>{`
         .receipt-body {
           font-family: ${robotoFont.style.fontFamily};
@@ -89,66 +105,75 @@ export default function Receipt({ id, data: _data }: Props) {
       `}</style>
       <div className="font-sans drop-shadow-xl">
         <div className="flex overflow-hidden relative flex-col gap-y-6 w-full text-center rounded bg-white-pure jagged-bottom">
-          <Header
-            template={data.data.template}
-            platformIcon={data.platformIcon}
-            senderAvatar={data.senderAvatar}
-            code={data.data.external_id}
-          />
-          <div className="flex flex-col gap-y-12 py-3 px-4 pb-6 md:px-6 !text-neutral-600">
-            <div className="flex relative flex-col items-center">
-              {data.data.template ? null : (
-                <Avatar
-                  smallSrc={data.platformIcon}
-                  size="3xl"
-                  src={data.senderAvatar}
+          {variant === 'default' && (
+            <Header
+              template={data.data.template}
+              platformIcon={data.platformIcon}
+              senderAvatar={data.senderAvatar}
+              code={data.data.external_id}
+            />
+          )}
+          <div
+            className={clsx('py-3 px-4 pb-6 md:px-6 !text-neutral-600', {
+              'flex flex-col gap-y-12': variant === 'default',
+              'flex gap-x-12 ': variant === 'peeking',
+            })}
+          >
+            <div className="flex-1 flex flex-col gap-y-12">
+              <div className="flex relative flex-col items-center">
+                {data.data.template ? null : (
+                  <Avatar
+                    smallSrc={data.platformIcon}
+                    size="3xl"
+                    src={data.senderAvatar}
+                  />
+                )}
+                <div className="mt-2 text-sm">
+                  <span className="font-medium">{data.data.from[0].name}</span>
+                  <br />
+                  <span className="text-xs capitalize">
+                    {data.data.template
+                      ? data.data.template.phrase
+                      : transactionActionString[
+                          data.data.action as TransactionActionType
+                        ] ?? 'sent'}
+                  </span>
+                </div>
+                <Amount
+                  value={
+                    data.isMultipleTokens
+                      ? data.data.amount
+                      : data.groupAmountDisplay
+                  }
+                  valueUsd={data.groupAmountUsdDisplay}
+                  tokenIcon={data.data.tokenIcon}
+                  unit={data.unitCurrency}
+                  approxMoniker={data.amountApproxMoniker}
+                  className="mt-8"
+                  isMultipleTokens={data.isMultipleTokens}
                 />
+              </div>
+              {data.message && (
+                <div className="flex flex-col gap-y-3">
+                  <span className="relative mt-3 font-normal text-center break-words">
+                    &ldquo;
+                    {isViewFullMessage
+                      ? data.message
+                      : truncate(data.message, 300, false)}
+                    &rdquo;
+                  </span>
+                  {data.message.length > 300 ? (
+                    <button
+                      className="font-normal text-gray-500 underline"
+                      onClick={onToggle}
+                    >
+                      {isViewFullMessage ? 'view less' : 'view more'}
+                    </button>
+                  ) : null}
+                </div>
               )}
-              <div className="mt-2 text-sm">
-                <span className="font-medium">{data.data.from[0].name}</span>
-                <br />
-                <span className="text-xs capitalize">
-                  {data.data.template
-                    ? data.data.template.phrase
-                    : transactionActionString[
-                        data.data.action as TransactionActionType
-                      ] ?? 'sent'}
-                </span>
-              </div>
-              <Amount
-                value={
-                  data.isMultipleTokens
-                    ? data.data.amount
-                    : data.groupAmountDisplay
-                }
-                valueUsd={data.groupAmountUsdDisplay}
-                tokenIcon={data.data.tokenIcon}
-                unit={data.unitCurrency}
-                approxMoniker={data.amountApproxMoniker}
-                className="mt-8"
-                isMultipleTokens={data.isMultipleTokens}
-              />
             </div>
-            {data.message && (
-              <div className="flex flex-col gap-y-3">
-                <span className="relative mt-3 font-normal text-center break-words">
-                  &ldquo;
-                  {isViewFullMessage
-                    ? data.message
-                    : truncate(data.message, 300, false)}
-                  &rdquo;
-                </span>
-                {data.message.length > 300 ? (
-                  <button
-                    className="font-normal text-gray-500 underline"
-                    onClick={onToggle}
-                  >
-                    {isViewFullMessage ? 'view less' : 'view more'}
-                  </button>
-                ) : null}
-              </div>
-            )}
-            <div className="relative receipt-body !text-neutral-600">
+            <div className="flex-1 relative receipt-body !text-neutral-600">
               <div className="flex flex-col gap-y-2 gap-x-4 pt-4">
                 <DataList>
                   <ListUser data={data.data.from} title="Issued by" />
