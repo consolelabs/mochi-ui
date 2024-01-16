@@ -81,7 +81,7 @@ const dropdownMenuSubTriggerClsx = ({
 
 const dropdownContentStyleCva = cva(
   [
-    'border border-neutral-outline-border z-50',
+    'border border-divider z-50',
     'p-2',
     'bg-background-popup',
     'space-y-1',
