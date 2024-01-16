@@ -8,7 +8,6 @@ import remarkBreaks from 'remark-breaks'
 import { api } from '~constants/mochi'
 import { NativeImage } from '~cpn/NativeImage'
 import { Badge, Typography, TypographyProps } from '@mochi-ui/core'
-import clsx from 'clsx'
 
 type Page = {
   name: string
@@ -40,13 +39,9 @@ const Heading = ({
 }) => {
   return (
     <Typography
-      level={`h${level}` as TypographyProps['level']}
+      level={`h${level + 2}` as TypographyProps['level']}
       fontWeight="md"
-      className={clsx('py-8 overflow-visible', {
-        '!text-[32px]': level === 1,
-        '!text-2xl': level === 2,
-        '!text-xl': level > 2,
-      })}
+      className="py-8 leading-tight"
     >
       {children}
     </Typography>
@@ -78,6 +73,7 @@ const Image = (props: any) => {
 const ChangelogItem = ({ name, content }: Page) => (
   <div className="gap-8 mb-24 md:flex justify-center">
     <div className="inline-block relative w-full md:w-[176px] flex-shrink-0 mb-12 md:mb-0">
+      {/* TODO: use new Badge variant when design is provided */}
       <div className="top-24 md:sticky flex flex-row md:flex-col gap-4 md:gap-2 items-center md:items-start">
         <Badge className="w-max !text-base !rounded-md !px-4">v1.52.0</Badge>
         <Typography className="!text-text-secondary">{name}</Typography>
@@ -112,14 +108,15 @@ export default function Changelog({ data }: Props) {
         <div className="w-full flex justify-center mb-24">
           <div className="w-full max-w-[1008px] flex justify-end">
             <Typography
-              level="h1"
+              level="h3"
               fontWeight="md"
-              className="w-full md:pl-[208px] text-[40px] overflow-visible"
+              className="w-full md:pl-[208px] leading-tight"
             >
               Changelog
             </Typography>
           </div>
         </div>
+
         {data?.map(
           (d, i) => d && <ChangelogItem {...d} key={`changelog-${i}`} />,
         )}
