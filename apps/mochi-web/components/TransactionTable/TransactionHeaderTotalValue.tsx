@@ -7,7 +7,7 @@ interface Props {
 }
 
 export const TransactionHeaderTotalValue = ({ disabled }: Props) => {
-  const { sort, setSort: _setSort } = useTransactionStore()
+  const { sort, setSort: _setSort, fetching } = useTransactionStore()
 
   const icon = useMemo(() => {
     if (sort === 'total_usd+') return <ArrowUpLine className="w-3 h-3" />
@@ -25,6 +25,7 @@ export const TransactionHeaderTotalValue = ({ disabled }: Props) => {
   return (
     <button
       type="button"
+      disabled={fetching}
       className="flex gap-x-1 justify-between items-center focus:outline-none"
       onClick={setSort}
     >

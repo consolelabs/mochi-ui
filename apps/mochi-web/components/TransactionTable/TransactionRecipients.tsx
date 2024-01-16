@@ -1,4 +1,5 @@
 import emojiStrip from 'emoji-strip'
+import Image from 'next/image'
 import { Avatar, AvatarGroup, Tooltip, Typography } from '@mochi-ui/core'
 import { useMemo } from 'react'
 import { Tx } from './types'
@@ -55,10 +56,22 @@ export const TransactionRecipients = (props: TransactionRecipientsProps) => {
           <Tooltip
             content={
               <div className="flex flex-col gap-2">
-                {allAddresses.map((address) => (
-                  <Typography key={address} level="p5">
-                    {address}
-                  </Typography>
+                {allAddresses.map((address, i) => (
+                  <div className="flex gap-x-2 justify-between" key={address}>
+                    <Typography level="p5">{address}:</Typography>
+                    <div className="flex gap-x-1 items-center">
+                      <Image
+                        width={16}
+                        height={16}
+                        src={allTxs[i].token.icon}
+                        alt=""
+                        className="ml-1 w-4 h-4"
+                      />
+                      <Typography level="p5">
+                        {allTxs[i].amount} {allTxs[i].token.symbol}
+                      </Typography>
+                    </div>
+                  </div>
                 ))}
               </div>
             }
