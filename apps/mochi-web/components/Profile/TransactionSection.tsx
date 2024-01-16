@@ -5,40 +5,40 @@ import {
   SectionHeaderTitle,
 } from '@mochi-ui/core'
 import { useLoginWidget } from '@mochi-web3/login-widget'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { ROUTES } from '~constants/routes'
-import { useFetchProfileTransaction } from '~hooks/app/useFetchProfileTransaction'
-import { TransactionPlatform } from '~constants/transactions'
 import { ChainPicker, PlatformPicker } from '~cpn/explore/index/components'
+import { useTransactionStore } from '~cpn/explore/index/stores/useTransactionStore'
+import clsx from 'clsx'
 
-const ignoreOptionAll = <T extends string>(value: T | 'all') => {
-  return value === 'all' ? undefined : value
-}
-
-interface Props {
-  defaultPageSize?: number
-}
-
-export const TransactionOverviewSection = ({ defaultPageSize = 15 }: Props) => {
+export const TransactionOverviewSection = () => {
   const { profile } = useLoginWidget()
-  const [page, setPage] = useState(1)
-  const [size, setSize] = useState(defaultPageSize)
-  const [filterNetwork, setFilterNetwork] = useState('all')
-  const [filterPlatform, setFilterPlatform] = useState('all')
-  const { transactions, isLoading, pagination } = useFetchProfileTransaction(
-    profile?.id ?? '',
-    Boolean(profile?.id),
-    {
-      platform: ignoreOptionAll(filterPlatform) as TransactionPlatform,
-      chain_ids: ignoreOptionAll(filterNetwork),
-      page: page - 1,
-      size,
-    },
-  )
+  const {
+    loading,
+    txns,
+    fetchTxns,
+    page,
+    size,
+    total = 0,
+    setPage,
+    setSize,
+    filters,
+    setFilters,
+    ws,
+    initWs,
+  } = useTransactionStore()
+  const txnsCurrentPage = txns[page - 1]
+  const isLoading = loading || !txnsCurrentPage
 
   useEffect(() => {
-    setPage(1)
-  }, [filterNetwork, filterPlatform])
+    if (!profile?.id) return
+    initWs(true, profile.id)
+    fetchTxns()
+
+    return () => {
+      ws?.close()
+    }
+  }, [profile?.id]) // eslint-disable-line
 
   return (
     <div>
@@ -47,24 +47,33 @@ export const TransactionOverviewSection = ({ defaultPageSize = 15 }: Props) => {
           Transactions
         </SectionHeaderTitle>
         <SectionHeaderActions>
-          <ChainPicker value={filterNetwork} onChange={setFilterNetwork} />
-          <PlatformPicker value={filterPlatform} onChange={setFilterPlatform} />
+          <ChainPicker
+            value={filters.chainId || 'all'}
+            onChange={(chainId) => setFilters({ chainId })}
+          />
+          <PlatformPicker
+            value={filters.platform || 'all'}
+            onChange={(platform) => setFilters({ platform })}
+          />
         </SectionHeaderActions>
       </SectionHeader>
       <div className="overflow-hidden mt-1 rounded-lg border border-divider bg-background-body">
         <TransactionTable
           cellClassName={() => 'h-[60px]'}
-          className="min-w-[1320px] min-h-[344px]"
-          data={transactions || []}
+          className={clsx('min-w-[1320px]', {
+            'min-h-[344px]': txnsCurrentPage?.length,
+          })}
+          data={txnsCurrentPage}
           isLoading={isLoading}
+          loadingRows={size}
           componentsProps={{
             empty: {
-              className: '!h-[295px]',
+              className: '!h-[300.5px]',
             },
             pagination: {
               initalPage: page,
               initItemsPerPage: size,
-              totalItems: pagination?.total || 0,
+              totalItems: total,
               onItemPerPageChange: setSize,
               onPageChange: setPage,
             },

@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { API } from '~constants/api'
+import { API, GET_PATHS } from '~constants/api'
 import type { Tx } from '~cpn/TransactionTable'
 import { transform } from '~cpn/TransactionTable/utils'
 import { MOCHI_PAY_WSS } from '~envs'
@@ -13,6 +13,7 @@ type Filters = {
 }
 
 interface State {
+  profileId: string
   txns: Tx[][]
   addNewTx: (tx: Tx) => void
   loading: boolean
@@ -36,11 +37,12 @@ interface State {
   sort: string
   setSort: (sort: string) => void
 
-  initWs: (override?: boolean) => void
+  initWs: (override?: boolean, profileId?: string) => void
   ws: WebSocket | null
 }
 
 export const useTransactionStore = create<State>((set, get) => ({
+  profileId: '',
   txns: [],
   loading: true,
   fetching: true,
@@ -80,6 +82,7 @@ export const useTransactionStore = create<State>((set, get) => ({
   },
   fetchTxns: async (filters, sort, page = 1, size = DEFAULT_PAGE_SIZE) => {
     set({ fetching: true })
+    const { profileId } = get()
     return API.MOCHI_PAY.query({
       page: page - 1,
       size,
@@ -89,10 +92,12 @@ export const useTransactionStore = create<State>((set, get) => ({
       // eslint-disable-next-line
       chain_ids: filters?.chainId ? [parseInt(filters.chainId)] : undefined,
     })
-      .get(`/transactions`)
+      .get(
+        profileId ? GET_PATHS.PROFILE_TRANSACTION(profileId) : `/transactions`,
+      )
       .json((r) => r)
       .then((r) => {
-        Promise.allSettled(r.data.map(transform)).then((results) => {
+        Promise.allSettled(r.data?.map(transform) || []).then((results) => {
           const { txns } = get()
 
           txns[page - 1] = results
@@ -156,9 +161,17 @@ export const useTransactionStore = create<State>((set, get) => ({
   },
 
   ws: null,
-  initWs: (override = false) => {
-    if (!override && get().ws) return
-    const ws = new WebSocket(`${MOCHI_PAY_WSS}/ws/transactions`)
+  initWs: (override = false, profileId = '') => {
+    const { profileId: _profileId } = get()
+    const shouldOverride = profileId !== _profileId
+    if (!override && get().ws && !shouldOverride) return
+
+    set((s) => ({ ...s, profileId }))
+    const ws = new WebSocket(
+      profileId
+        ? `${MOCHI_PAY_WSS}/ws${GET_PATHS.PROFILE_TRANSACTION(profileId)}`
+        : `${MOCHI_PAY_WSS}/ws/transactions`,
+    )
     ws.onopen = (e) => {
       console.info('feed connected', e)
     }
