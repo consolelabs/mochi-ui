@@ -199,11 +199,11 @@ export const ProfileWidget = () => {
         </div>
       </div>
       <div className="grid grid-cols-2 gap-2">
-        <Button variant="outline">
+        <Button variant="soft" color="primary">
           <ArrowUpSquareSolid className="w-4 h-4" />
           Send
         </Button>
-        <Button variant="outline">
+        <Button variant="soft" color="primary">
           <ArrowDownSquareSolid className="w-4 h-4" />
           Receive
         </Button>
