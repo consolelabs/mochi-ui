@@ -85,21 +85,28 @@ export async function transform(d: any): Promise<Tx> {
         where.avatar = WebSolid as any
       }
 
-      if (
-        ('sender_profile_type' in d.metadata &&
-          d.metadata.sender_profile_type === 'application') ||
-        ('recipient_profile_type' in d.metadata &&
-          d.metadata.recipient_profile_type === 'application')
-      ) {
+      const isSenderApp =
+        'sender_profile_type' in d.metadata &&
+        d.metadata.sender_profile_type === 'application'
+      const isReceiverApp =
+        'recipient_profile_type' in d.metadata &&
+        d.metadata.recipient_profile_type === 'application'
+
+      if (isSenderApp) {
         where.text = emojiStrip(
-          (d.type === 'out' ? from?.plain : to?.plain) ?? 'App',
+          (d.type === 'in' ? to?.plain : from?.plain) ?? 'App',
         )
-        where.avatar =
-          d.type === 'in'
-            ? d.other_profile.application.avatar
-            : d.from_profile.application.avatar
+        where.avatar = d.from_profile.application.avatar
 
         fromAvatar = d.from_profile.application.avatar
+      }
+
+      if (isReceiverApp) {
+        where.text = emojiStrip(
+          (d.type === 'in' ? from?.plain : to?.plain) ?? 'App',
+        )
+        where.avatar = d.other_profile.application.avatar
+
         toAvatar = d.other_profile.application.avatar
       }
 
@@ -111,15 +118,6 @@ export async function transform(d: any): Promise<Tx> {
       if (isVault(d.other_profile_source) && 'vault' in d.metadata) {
         const [newTo] = UI.render(Platform.Web, d.metadata.vault)
         to = newTo
-      }
-
-      // get application name
-      if (d.other_profile.application) {
-        where.text = d.other_profile.application.name
-      }
-      // prioritize application name from from_profile
-      if (d.from_profile.application) {
-        where.text = d.from_profile.application.name
       }
     } catch (e) {
       console.error(e)

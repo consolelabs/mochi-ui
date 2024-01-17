@@ -50,7 +50,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
 
     columns.push(
       {
-        header: () => <span className="px-1">#</span>,
+        header: () => <span className="px-1 pl-2">#</span>,
         id: 'txId',
         width: 80,
         // eslint-disable-next-line
@@ -60,7 +60,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
           const { onCopy, hasCopied } = useClipboard(tx.code)
 
           return (
-            <div className="flex gap-1.5 items-center">
+            <div className="flex gap-1.5 items-center pl-2">
               <TransactionStatusIcon tx={tx} />
               <Tooltip
                 key={tx.code}
@@ -111,7 +111,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: 'issued by',
         id: 'from',
-        width: 135,
+        width: 120,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -135,7 +135,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: 'recipients',
         id: 'to',
-        width: 135,
+        width: 120,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -146,7 +146,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: () => <TransactionHeaderTotalValue disabled={!enableColSort} />,
         id: 'amount',
-        width: 100,
+        width: 90,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
