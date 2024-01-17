@@ -101,7 +101,7 @@ export default function Amount({
           <Typography
             level={size === 'md' ? 'p5' : 'p6'}
             fontWeight="md"
-            color="textSecondary"
+            color="textTertiary"
             className="font-mono"
           >
             {approxMoniker} {valueUsd?.startsWith('<') ? '' : <>&asymp;</>}{' '}
