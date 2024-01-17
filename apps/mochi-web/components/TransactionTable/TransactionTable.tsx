@@ -32,6 +32,7 @@ import { TransactionBadge } from './TransactionBadge'
 import { TransactionHeaderAction } from './TransactionHeaderAction'
 import { TransactionHeaderWen } from './TransactionHeaderWen'
 import { TransactionHeaderTotalValue } from './TransactionHeaderTotalValue'
+import { TransactionTime } from './TransactionTime'
 
 export const TransactionTable = (props: TransactionTableProps) => {
   const {
@@ -83,11 +84,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
         cell: (props) => {
           const tx = props.row.original
 
-          return (
-            <Typography level="p5" className="tabular-nums text-left">
-              {tx.date}
-            </Typography>
-          )
+          return <TransactionTime date={tx.date} raw={tx.rawDate} />
         },
       },
       {

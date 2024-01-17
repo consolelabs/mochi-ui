@@ -182,6 +182,7 @@ export async function transform(d: any): Promise<Tx> {
     amountUsd: mochiUtils.formatUsdDigit(d.group_total_usd || d.usd_amount),
     date: formatRelative(d.created_at),
     full_date: formatDate(d.created_at, 'MMMM d, yyyy HH:mm:ss'),
+    rawDate: d.created_at,
     status: d.status,
     action: d.action,
   }
