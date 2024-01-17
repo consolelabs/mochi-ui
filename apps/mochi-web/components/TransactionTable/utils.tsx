@@ -8,6 +8,11 @@ import { appLogo, discordLogo, telegramLogo } from '~utils/image'
 import { formatDate, formatRelative } from '~utils/time'
 import { Tx } from './types'
 
+const domainNameKeyByChain = {
+  [Platform.EvmChain]: 'ens',
+  [Platform.SolanaChain]: 'sns',
+}
+
 function isVault(source: string) {
   return source === 'mochi-vault'
 }
@@ -87,6 +92,13 @@ export async function transform(d: any): Promise<Tx> {
         where.text = emojiStrip(
           (d.type === 'out' ? from?.plain : to?.plain) ?? 'App',
         )
+        where.avatar =
+          d.type === 'in'
+            ? d.other_profile.application.avatar
+            : d.from_profile.application.avatar
+
+        fromAvatar = d.from_profile.application.avatar
+        toAvatar = d.other_profile.application.avatar
       }
 
       // get vault name (if it's a vault_transfer tx)
@@ -141,9 +153,45 @@ export async function transform(d: any): Promise<Tx> {
   }
 
   if (to && (d.action === 'withdraw' || d.action === 'paylink')) {
-    to.plain = d.other_profile_source
+    const address = d.other_profile_source
+    const account = d.from_profile?.associated_accounts.find(
+      (aa: any) =>
+        aa.platform_identifier.toLowerCase() === address.toLowerCase(),
+    )
+
+    const key =
+      domainNameKeyByChain[
+        account?.platform as keyof typeof domainNameKeyByChain
+      ]
+
+    const domainName = account?.platform_metadata[key]
+
+    if (!account || !key || !domainName) {
+      to.plain = d.other_profile_source
+    } else {
+      to.plain = domainName
+    }
   } else if (from && (d.action === 'deposit' || d.action === 'payme')) {
     from.plain = d.from_profile_source
+
+    const address = d.from_profile_source
+    const account = d.other_profile?.associated_accounts.find(
+      (aa: any) =>
+        aa.platform_identifier.toLowerCase() === address.toLowerCase(),
+    )
+
+    const key =
+      domainNameKeyByChain[
+        account?.platform as keyof typeof domainNameKeyByChain
+      ]
+
+    const domainName = account?.platform_metadata[key]
+
+    if (!account || !key || !domainName) {
+      from.plain = d.from_profile_source
+    } else {
+      from.plain = domainName
+    }
   }
 
   const paycode = ['payme', 'paylink'].includes(d.action) ? d.metadata.code : ''
@@ -182,6 +230,7 @@ export async function transform(d: any): Promise<Tx> {
     amountUsd: mochiUtils.formatUsdDigit(d.group_total_usd || d.usd_amount),
     date: formatRelative(d.created_at),
     full_date: formatDate(d.created_at, 'MMMM d, yyyy HH:mm:ss'),
+    rawDate: d.created_at,
     status: d.status,
     action: d.action,
   }
