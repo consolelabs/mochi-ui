@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { API } from '~constants/api'
+import { API, GET_PATHS } from '~constants/api'
 import type { Tx } from '~cpn/TransactionTable'
 import { transform } from '~cpn/TransactionTable/utils'
 import { MOCHI_PAY_WSS } from '~envs'
@@ -13,6 +13,7 @@ type Filters = {
 }
 
 interface State {
+  profileId: string
   txns: Tx[][]
   addNewTx: (tx: Tx) => void
   loading: boolean
@@ -36,11 +37,12 @@ interface State {
   sort: string
   setSort: (sort: string) => void
 
-  initWs: (override?: boolean) => void
+  initWs: (profileId: string, override?: boolean) => void
   ws: WebSocket | null
 }
 
-export const useTransactionStore = create<State>((set, get) => ({
+export const useProfileTransactionStore = create<State>((set, get) => ({
+  profileId: '',
   txns: [],
   loading: true,
   fetching: true,
@@ -79,7 +81,10 @@ export const useTransactionStore = create<State>((set, get) => ({
     set((s) => ({ ...s, txns: paginatedTxns }))
   },
   fetchTxns: async (filters, sort, page = 1, size = DEFAULT_PAGE_SIZE) => {
-    set({ fetching: true })
+    const { profileId } = get()
+    if (!profileId) return
+
+    set((s) => ({ ...s, fetching: true }))
     return API.MOCHI_PAY.query({
       page: page - 1,
       size,
@@ -89,7 +94,7 @@ export const useTransactionStore = create<State>((set, get) => ({
       // eslint-disable-next-line
       chain_ids: filters?.chainId ? [parseInt(filters.chainId)] : undefined,
     })
-      .get(`/transactions`)
+      .get(GET_PATHS.PROFILE_TRANSACTION(profileId))
       .json((r) => r)
       .then((r) => {
         Promise.allSettled(r.data?.map(transform) || []).then((results) => {
@@ -156,10 +161,13 @@ export const useTransactionStore = create<State>((set, get) => ({
   },
 
   ws: null,
-  initWs: (override = false) => {
+  initWs: (profileId, override = false) => {
     if (!override && get().ws) return
 
-    const ws = new WebSocket(`${MOCHI_PAY_WSS}/ws/transactions`)
+    set((s) => ({ ...s, profileId }))
+    const ws = new WebSocket(
+      `${MOCHI_PAY_WSS}/ws${GET_PATHS.PROFILE_TRANSACTION(profileId)}`,
+    )
     ws.onopen = (e) => {
       console.info('feed connected', e)
     }

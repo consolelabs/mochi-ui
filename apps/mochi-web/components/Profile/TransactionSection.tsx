@@ -8,8 +8,8 @@ import { useLoginWidget } from '@mochi-web3/login-widget'
 import { useEffect } from 'react'
 import { ROUTES } from '~constants/routes'
 import { ChainPicker, PlatformPicker } from '~cpn/explore/index/components'
-import { useTransactionStore } from '~cpn/explore/index/stores/useTransactionStore'
 import clsx from 'clsx'
+import { useProfileTransactionStore } from './stores/useProfileTransactionStore'
 
 export const TransactionOverviewSection = () => {
   const { profile } = useLoginWidget()
@@ -24,15 +24,18 @@ export const TransactionOverviewSection = () => {
     setSize,
     filters,
     setFilters,
+    sort,
+    setSort,
+    fetching,
     ws,
     initWs,
-  } = useTransactionStore()
-  const txnsCurrentPage = txns[page - 1]
-  const isLoading = loading || !txnsCurrentPage
+  } = useProfileTransactionStore()
+  const txnsCurrentPage =
+    txns[page - 1] || txns[page - 2] || txns.find((list) => list.length)
 
   useEffect(() => {
     if (!profile?.id) return
-    initWs(true, profile.id)
+    initWs(profile.id)
     fetchTxns()
 
     return () => {
@@ -64,7 +67,7 @@ export const TransactionOverviewSection = () => {
             'min-h-[344px]': txnsCurrentPage?.length,
           })}
           data={txnsCurrentPage}
-          isLoading={isLoading}
+          isLoading={loading}
           loadingRows={size}
           componentsProps={{
             empty: {
@@ -85,6 +88,7 @@ export const TransactionOverviewSection = () => {
               },
             }
           }}
+          {...{ fetching, filters, setFilters, sort, setSort }}
         />
       </div>
     </div>

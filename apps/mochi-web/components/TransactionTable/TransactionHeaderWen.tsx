@@ -1,14 +1,20 @@
+import { noop } from '@dwarvesf/react-utils'
 import { ArrowDownLine, ArrowUpDownLine, ArrowUpLine } from '@mochi-ui/icons'
 import { useCallback, useMemo } from 'react'
-import { useTransactionStore } from '~cpn/explore/index/stores/useTransactionStore'
 
 interface Props {
   disabled: boolean
+  fetching?: boolean
+  sort?: string
+  setSort?: (sort: string) => void
 }
 
-export const TransactionHeaderWen = ({ disabled }: Props) => {
-  const { sort, setSort: _setSort, fetching } = useTransactionStore()
-
+export const TransactionHeaderWen = ({
+  disabled,
+  sort,
+  setSort: _setSort = noop,
+  fetching,
+}: Props) => {
   const icon = useMemo(() => {
     if (sort === 'created_at+') return <ArrowUpLine className="w-3 h-3" />
     if (sort === 'created_at-') return <ArrowDownLine className="w-3 h-3" />

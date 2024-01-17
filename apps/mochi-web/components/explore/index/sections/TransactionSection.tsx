@@ -18,6 +18,9 @@ export const TransactionSection = () => {
     setSize,
     filters,
     setFilters,
+    sort,
+    setSort,
+    fetching,
     ws,
     initWs,
   } = useTransactionStore()
@@ -66,6 +69,7 @@ export const TransactionSection = () => {
           },
         }}
         className="px-2 lg:px-14"
+        {...{ fetching, filters, setFilters, sort, setSort }}
       />
     </div>
   )

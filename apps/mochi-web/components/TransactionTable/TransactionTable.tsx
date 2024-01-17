@@ -20,7 +20,6 @@ import { ArrowRightLine, CheckLine, CopyLine } from '@mochi-ui/icons'
 import clsx from 'clsx'
 import { useEffect, useMemo, useRef } from 'react'
 import Amount from '~cpn/Amount'
-import { useTransactionStore } from '~cpn/explore/index/stores/useTransactionStore'
 import { TransactionPeekingCard } from '~cpn/TransactionPeekingCard'
 import { TransactionAction } from './TransactionAction'
 import { TransactionBadge } from './TransactionBadge'
@@ -42,6 +41,11 @@ export const TransactionTable = (props: TransactionTableProps) => {
     columns: columnFlags = {},
     enableColFilter = true,
     enableColSort = true,
+    fetching,
+    filters,
+    setFilters,
+    sort,
+    setSort,
     ...rest
   } = props
 
@@ -87,7 +91,12 @@ export const TransactionTable = (props: TransactionTableProps) => {
         },
       },
       {
-        header: () => <TransactionHeaderWen disabled={!enableColSort} />,
+        header: () => (
+          <TransactionHeaderWen
+            disabled={!enableColSort}
+            {...{ fetching, sort, setSort }}
+          />
+        ),
         id: 'wen',
         width: 70,
         // eslint-disable-next-line
@@ -98,7 +107,12 @@ export const TransactionTable = (props: TransactionTableProps) => {
         },
       },
       {
-        header: () => <TransactionHeaderAction disabled={!enableColFilter} />,
+        header: () => (
+          <TransactionHeaderAction
+            disabled={!enableColFilter}
+            {...{ setFilters }}
+          />
+        ),
         id: 'type',
         width: 60,
         // eslint-disable-next-line
@@ -144,7 +158,12 @@ export const TransactionTable = (props: TransactionTableProps) => {
         },
       },
       {
-        header: () => <TransactionHeaderTotalValue disabled={!enableColSort} />,
+        header: () => (
+          <TransactionHeaderTotalValue
+            disabled={!enableColSort}
+            {...{ fetching, sort, setSort }}
+          />
+        ),
         id: 'amount',
         width: 100,
         // eslint-disable-next-line
@@ -212,11 +231,10 @@ export const TransactionTable = (props: TransactionTableProps) => {
       (c) => columnFlags[c.id as keyof typeof columnFlags] !== false,
     )
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [JSON.stringify(columnFlags)])
+  }, [JSON.stringify(columnFlags), fetching, filters, sort])
 
   const isEmpty = !rest.isLoading && rest.data?.length === 0
 
-  const { filters } = useTransactionStore()
   const scrollRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
     scrollRef.current?.scrollTo({ left: 0, top: 0 })

@@ -60,4 +60,15 @@ export type TransactionTableProps = Omit<TableProps<Tx>, 'columns'> & {
   }
   enableColFilter?: boolean
   enableColSort?: boolean
+  fetching?: boolean
+  filters?: TransactionFilters
+  setFilters?: (partialFilters: Partial<TransactionFilters>) => void
+  sort?: string
+  setSort?: (sort: string) => void
+}
+
+export interface TransactionFilters {
+  platform?: string
+  chainId?: string
+  actions?: string[]
 }

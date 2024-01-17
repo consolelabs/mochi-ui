@@ -13,8 +13,9 @@ import {
 import { Combobox } from '@headlessui/react'
 import { useEffect, useState } from 'react'
 import clsx from 'clsx'
-import { useTransactionStore } from '~cpn/explore/index/stores/useTransactionStore'
+import { noop } from '@dwarvesf/react-utils'
 import { TransactionBadge } from './TransactionBadge'
+import { TransactionFilters } from './types'
 
 const ALL_ACTIONS = [
   { id: 'transfer', idSearch: 'transfer tip', value: 'Transfer' },
@@ -29,10 +30,13 @@ const ALL_ACTIONS = [
 
 interface Props {
   disabled: boolean
+  setFilters?: (partialFilters: Partial<TransactionFilters>) => void
 }
 
-export const TransactionHeaderAction = ({ disabled }: Props) => {
-  const { setFilters } = useTransactionStore()
+export const TransactionHeaderAction = ({
+  disabled,
+  setFilters = noop,
+}: Props) => {
   const [selectedActions, setSelectedActions] = useState<Array<string>>([])
   const [query, setQuery] = useState('')
 
