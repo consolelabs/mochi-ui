@@ -1,6 +1,15 @@
 import { cva, VariantProps } from 'class-variance-authority'
 import clsx from 'clsx'
 
+const cryptoAvatarCva = cva(['inline-block flex-shrink-0 rounded-full'], {
+  variants: {
+    hasSmallSrc: {
+      true: 'w-8 h-8',
+      false: 'w-6 h-6',
+    },
+  },
+})
+
 const avatarCva = cva(['inline-block flex-shrink-0 rounded-full'], {
   variants: {
     size: {
@@ -93,6 +102,7 @@ const avatarFallbackCls = 'w-full h-full rounded-full'
 const avatarImgSvgCls = 'rounded-full overflow-hidden'
 
 export const avatar = {
+  cryptoAvatarCva,
   avatarCva,
   avatarGroupWrapperCva,
   avatarGroupCva,

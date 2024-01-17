@@ -5,7 +5,13 @@ import { Skeleton } from '@mochi-ui/skeleton'
 import { isSSR } from '@dwarvesf/react-utils'
 import { boringAvatar } from './util'
 
-const { avatarCva, avatarImgClsx, avatarFallbackCls, avatarImgSvgCls } = avatar
+const {
+  cryptoAvatarCva,
+  avatarCva,
+  avatarImgClsx,
+  avatarFallbackCls,
+  avatarImgSvgCls,
+} = avatar
 
 interface AvatarProps extends AvatarStylesProps {
   src: string
@@ -14,6 +20,7 @@ interface AvatarProps extends AvatarStylesProps {
   className?: string
   onLoadingStatusChange?: RadixAvatar.AvatarImageProps['onLoadingStatusChange']
   isLoading?: boolean
+  type?: 'avatar' | 'cryto'
 }
 
 export default function Avatar({
@@ -24,6 +31,7 @@ export default function Avatar({
   onLoadingStatusChange,
   className,
   isLoading = false,
+  type = 'avatar',
 }: AvatarProps) {
   const id = useId()
   const fallbackUrl = boringAvatar(fallback)
@@ -34,6 +42,49 @@ export default function Avatar({
     image.src = src || fallbackUrl
     return image.complete
   }, [src, fallbackUrl])
+
+  if (type === 'cryto') {
+    return (
+      <RadixAvatar.Root
+        className={cryptoAvatarCva({ hasSmallSrc: !!smallSrc, className })}
+      >
+        <RadixAvatar.Image
+          src={isLoading ? '' : src || fallbackUrl}
+          className={avatarImgClsx({ smallSrc: Boolean(smallSrc), isCached })}
+          asChild={!!smallSrc}
+          onLoadingStatusChange={onLoadingStatusChange}
+        >
+          {smallSrc ? (
+            <svg height="100%" role="none" viewBox="0 0 100 100" width="100%">
+              <mask id={`circle-mask-${id}`}>
+                <circle cx="50%" cy="50%" fill="white" r="37.5%" />
+                <circle cx="77%" cy="77%" fill="black" r="28%" />
+              </mask>
+              <image
+                width="75%"
+                height="75%"
+                x="12.5%"
+                y="12.5%"
+                mask={`url(#circle-mask-${id})`}
+                xlinkHref={src || fallbackUrl}
+                className={avatarImgSvgCls}
+              />
+              <image
+                width="43.75%"
+                height="43.75%"
+                x="55%"
+                y="55%"
+                xlinkHref={smallSrc || fallbackUrl}
+              />
+            </svg>
+          ) : null}
+        </RadixAvatar.Image>
+        <RadixAvatar.Fallback>
+          <Skeleton className={avatarFallbackCls} />
+        </RadixAvatar.Fallback>
+      </RadixAvatar.Root>
+    )
+  }
 
   return (
     <RadixAvatar.Root className={avatarCva({ size, className })}>

@@ -119,3 +119,21 @@ export const Group: Story = {
   },
 }
 Group.name = 'Avatar Group'
+
+export const Crypto: Story = {
+  render: () => {
+    return (
+      <div className="gap-3 flex items-center">
+        <Avatar
+          src="https://cdn.discordapp.com/emojis/1049620715374133288.png?size=240&quality=lossless"
+          smallSrc="https://cdn.discordapp.com/emojis/1150601602835685456.png?size=240&quality=lossless"
+          type="cryto"
+        />
+        <Avatar
+          src="https://cdn.discordapp.com/emojis/1049620715374133288.png?size=240&quality=lossless"
+          type="cryto"
+        />
+      </div>
+    )
+  },
+}
