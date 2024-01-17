@@ -10,6 +10,8 @@ import { useEffect, useState } from 'react'
 import { API } from '~constants/api'
 import { ModelChain } from '~types/mochi-pay-schema'
 
+const sortOrder = ['SOL']
+
 export type ChainPickerProps = {
   value: string
   onChange: (value: string) => void
@@ -53,25 +55,41 @@ export const ChainPicker = (props: ChainPickerProps) => {
       >
         <SelectValue placeholder="All Networks" />
       </SelectTrigger>
-      <SelectContent className="min-w-[250px] max-h-96">
+      <SelectContent className="max-h-96 min-w-[250px]">
         <SelectItem value="all" leftIcon={<LinkLine />}>
           All Networks
         </SelectItem>
-        {chains.map((chain) => {
-          return (
-            <SelectItem
-              key={chain.chain_id}
-              value={chain.chain_id || ''}
-              leftIcon={
-                chain.icon ? (
-                  <img src={chain.icon} alt={chain.name} className="w-6 h-6" />
-                ) : undefined
-              }
-            >
-              {chain.name}
-            </SelectItem>
-          )
-        })}
+        {chains
+          .sort((a, b) => {
+            const indexA = sortOrder.findIndex((symbol) => symbol === a.symbol)
+            const indexB = sortOrder.findIndex((symbol) => symbol === b.symbol)
+
+            if (indexA === -1) return 1
+            if (indexB === -1) return -1
+
+            if (indexA > indexB) return 1
+            if (indexA < indexB) return -1
+            return 0
+          })
+          .map((chain) => {
+            return (
+              <SelectItem
+                key={chain.chain_id}
+                value={chain.chain_id || ''}
+                leftIcon={
+                  chain.icon ? (
+                    <img
+                      src={chain.icon}
+                      alt={chain.name}
+                      className="w-6 h-6"
+                    />
+                  ) : undefined
+                }
+              >
+                {chain.name}
+              </SelectItem>
+            )
+          })}
       </SelectContent>
     </Select>
   )

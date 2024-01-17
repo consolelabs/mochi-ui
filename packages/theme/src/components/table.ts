@@ -43,6 +43,10 @@ const tableHeaderClsx = ({
     className,
   )
 
+const tableHeaderContainerClsx = ({
+  className = '',
+}: { className?: string } = {}) => clsx('relative z-10', className)
+
 const tableDataLoadingClsx = ({
   className = '',
   border,
@@ -105,6 +109,7 @@ const table = {
   tableClsx,
   tableRowClsx,
   tableHeaderClsx,
+  tableHeaderContainerClsx,
   tableDataLoadingClsx,
   tableDataSkeletonClsx,
   tableDataClsx,

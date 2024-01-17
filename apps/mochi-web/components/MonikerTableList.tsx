@@ -132,7 +132,7 @@ export const MonikerTableList = ({
             cellClassName={() => '!border-0 !h-10'}
             rowClassName={(row) =>
               clsx('rounded', {
-                'opacity-30 hover:bg-transparent !cursor-not-allowed':
+                'opacity-50 hover:bg-transparent !cursor-not-allowed':
                   row.disabled,
               })
             }
