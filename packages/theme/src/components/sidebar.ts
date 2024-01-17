@@ -122,7 +122,8 @@ const sidebarItemTitleBadgeClsx = ({
 
 const sidebarItemAccordionClsx = ({
   className = '',
-}: { className?: string } = {}) => clsx('shadow-none !p-0', className)
+}: { className?: string } = {}) =>
+  clsx('shadow-none !p-0 !bg-inherit', className)
 
 const sidebarItemAccordionTriggerClsx = ({
   className = '',
