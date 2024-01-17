@@ -1,18 +1,14 @@
-import {
-  AlertTitle,
-  AlertTitleProps,
-  PolymorphicAlertTitle,
-} from '@mochi-ui/alert'
-import { forwardRef } from 'react'
+import { AlertTitle, AlertTitleProps } from '@mochi-ui/alert'
+import { ElementRef, forwardRef } from 'react'
 
 type ActionBarTitleProps = AlertTitleProps
-type PolymorphicActionbarTitle = PolymorphicAlertTitle
 
-const ActionBarTitle = forwardRef((props, ref) => (
-  <AlertTitle {...props} ref={ref} />
-)) as PolymorphicActionbarTitle
+const ActionBarTitle = forwardRef<
+  ElementRef<typeof AlertTitle>,
+  ActionBarTitleProps
+>((props, ref) => <AlertTitle {...props} ref={ref} />)
 
 ActionBarTitle.displayName = 'ActionBarTitle'
 
 export { ActionBarTitle }
-export type { PolymorphicActionbarTitle, ActionBarTitleProps }
+export type { ActionBarTitleProps }

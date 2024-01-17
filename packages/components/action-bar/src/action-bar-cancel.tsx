@@ -1,21 +1,19 @@
-import {
-  AlertCancelButton,
-  AlertCancelProps,
-  PolymorphicAlertCancelButton,
-} from '@mochi-ui/alert'
+import { AlertCancelButton, AlertCancelProps } from '@mochi-ui/alert'
 import * as PopoverPrimitive from '@radix-ui/react-popover'
-import { forwardRef } from 'react'
+import { ElementRef, forwardRef } from 'react'
 
 type ActionBarCancelButtonProps = AlertCancelProps
-type PolymorphicActionBarCancelButton = PolymorphicAlertCancelButton
 
-const ActionBarCancelButton = forwardRef((props, ref) => (
+const ActionBarCancelButton = forwardRef<
+  ElementRef<typeof AlertCancelButton>,
+  ActionBarCancelButtonProps
+>((props, ref) => (
   <PopoverPrimitive.Close asChild>
     <AlertCancelButton {...props} ref={ref} />
   </PopoverPrimitive.Close>
-)) as PolymorphicActionBarCancelButton
+))
 
 ActionBarCancelButton.displayName = 'ActionBarCancelButton'
 
 export { ActionBarCancelButton }
-export type { ActionBarCancelButtonProps, PolymorphicActionBarCancelButton }
+export type { ActionBarCancelButtonProps }

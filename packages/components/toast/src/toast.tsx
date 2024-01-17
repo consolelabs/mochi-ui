@@ -28,12 +28,21 @@ const ToastViewPort = forwardRef<ToastViewPortRef, ToastViewPortProps>(
 ToastViewPort.displayName = ToastPrimitive.Viewport.displayName
 
 const Toast = forwardRef<ToastRef, ToastProps>((props, ref) => {
-  const { className, scheme, size, children, fullWidth, ...restProps } = props
+  const {
+    className,
+    scheme,
+    size,
+    children,
+    fullWidth,
+    asChild,
+    ...restProps
+  } = props
   const alertProps: AlertProps = {
     className,
     scheme,
     size,
     children,
+    asChild,
   }
   return (
     <ToastPrimitive.Root

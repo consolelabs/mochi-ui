@@ -1,20 +1,17 @@
-import { Button, ButtonProps } from '@mochi-ui/button'
-import { ComponentPropsWithRef, forwardRef } from 'react'
-import type * as Polymorphic from '@mochi-ui/polymorphic'
+import { Button } from '@mochi-ui/button'
+import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 import { alert } from '@mochi-ui/theme'
 import { Slot } from '@radix-ui/react-slot'
 import { useAlertContext } from './context'
 
-type PolymorphicAlertConfirmButton = Polymorphic.ForwardRefComponent<
-  'button',
-  ButtonProps & {
-    asChild?: boolean
-  }
->
+type AlertConfirmProps = ComponentPropsWithoutRef<typeof Button> & {
+  asChild?: boolean
+}
 
-type AlertConfirmProps = ComponentPropsWithRef<PolymorphicAlertConfirmButton>
-
-const AlertConfirmButton = forwardRef((props, ref) => {
+const AlertConfirmButton = forwardRef<
+  ElementRef<typeof Button>,
+  AlertConfirmProps
+>((props, ref) => {
   const {
     asChild,
     className,
@@ -45,11 +42,7 @@ const AlertConfirmButton = forwardRef((props, ref) => {
       {children}
     </Component>
   )
-}) as PolymorphicAlertConfirmButton
+})
 AlertConfirmButton.displayName = 'AlertConfirmButton'
 
-export {
-  type PolymorphicAlertConfirmButton,
-  type AlertConfirmProps,
-  AlertConfirmButton,
-}
+export { type AlertConfirmProps, AlertConfirmButton }

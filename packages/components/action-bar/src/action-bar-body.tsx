@@ -1,18 +1,16 @@
-import {
-  AlertBody,
-  AlertBodyProps,
-  PolymorphicAlertBody,
-} from '@mochi-ui/alert'
-import { forwardRef } from 'react'
+import { AlertBody, AlertBodyProps } from '@mochi-ui/alert'
+import { ElementRef, forwardRef } from 'react'
 
 type ActionBarBodyProps = AlertBodyProps
-type PolymorphicActionBarBody = PolymorphicAlertBody
 
-const ActionBarBody = forwardRef((props, ref) => {
+const ActionBarBody = forwardRef<
+  ElementRef<typeof AlertBody>,
+  ActionBarBodyProps
+>((props, ref) => {
   return <AlertBody {...props} ref={ref} />
-}) as PolymorphicActionBarBody
+})
 
 ActionBarBody.displayName = 'ActionBarBody'
 
 export { ActionBarBody }
-export type { ActionBarBodyProps, PolymorphicActionBarBody }
+export type { ActionBarBodyProps }
