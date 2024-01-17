@@ -35,8 +35,8 @@ export const ChainPicker = (props: ChainPickerProps) => {
     <Select value={value} onChange={(v) => onChange(v === 'all' ? '' : v)}>
       <SelectTrigger
         appearance="form"
-        color="white"
-        hasPadding
+        color="neutral"
+        variant="plain"
         leftIcon={
           // eslint-disable-next-line
           selectedChain ? (
@@ -51,7 +51,7 @@ export const ChainPicker = (props: ChainPickerProps) => {
             <LinkLine />
           )
         }
-        className="border border-divider !font-normal"
+        className="border border-divider !font-normal bg-background-body"
       >
         <SelectValue placeholder="All Networks" />
       </SelectTrigger>
