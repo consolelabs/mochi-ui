@@ -8,7 +8,7 @@ const tooltipClsx = ({ className = '' }: { className?: string }) =>
     'text-xs',
     'font-semibold',
     'bg-background-tooltip',
-    'text-text-primary',
+    'text-text-contrast',
     'tooltip',
 
     'data-[state=delayed-open]:animate-in',
