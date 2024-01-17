@@ -47,7 +47,7 @@ const Token: ColumnProps<BalanceWithSource>['cell'] = (props) => (
       <Typography
         level="p7"
         fontWeight="md"
-        color="textSecondary"
+        color="textTertiary"
         className="flex items-center"
       >
         <WalletSolid className="mr-1 w-3.5 h-3.5" />
