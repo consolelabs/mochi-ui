@@ -78,7 +78,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: () => <TransactionHeaderWen disabled={!enableColSort} />,
         id: 'wen',
-        width: 60,
+        width: 70,
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original

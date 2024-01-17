@@ -4,21 +4,53 @@ import format from 'date-fns/format'
 import relative from 'date-fns/formatRelative'
 import isToday from 'date-fns/isToday'
 import distance from 'date-fns/formatDistanceStrict'
+import diffInWeeks from 'date-fns/differenceInCalendarWeeks'
+import diffInMonths from 'date-fns/differenceInCalendarMonths'
+import startOfDay from 'date-fns/startOfDay'
 
 const formatRelativeLocale = {
-  lastWeek: "'Last week'",
-  yesterday: "'Yesterday'",
+  lastWeek: "'1 week ago'",
+  yesterday: "'a day ago'",
   today: "'Today at' HH:mm",
   tomorrow: "'Tomorrow'",
   nextWeek: "'Next' eeee",
-  lastMonth: "'a month ago'",
-  other: 'dd.MM.yyyy',
+  other: (date: Date, baseDate: Date) => {
+    const deltaWeeks = diffInWeeks(startOfDay(baseDate), startOfDay(date))
+    const deltaMonths = diffInMonths(startOfDay(baseDate), startOfDay(date))
+
+    if (deltaMonths === 1) {
+      return "'a month ago'"
+    }
+
+    if (deltaMonths >= 2) {
+      return `'${deltaMonths} months ago'`
+    }
+
+    if (deltaWeeks === 1) {
+      return "'1 week ago'"
+    }
+
+    if (deltaWeeks >= 2) {
+      return `'${deltaWeeks} weeks ago'`
+    }
+
+    return 'dd.MM.yyyy'
+  },
 }
 
 const locale = {
   ...enUS,
-  formatRelative: (token: keyof typeof formatRelativeLocale) =>
-    formatRelativeLocale[token],
+  formatRelative: (
+    token: keyof typeof formatRelativeLocale,
+    date: Date,
+    baseDate: Date,
+  ) => {
+    const format = formatRelativeLocale[token]
+
+    if (typeof format === 'string') return format
+
+    return format(date, baseDate)
+  },
 }
 
 export function formatRelative(date: string) {
