@@ -229,7 +229,6 @@ const commonCompoundVariants = [
     color: 'primary',
     className: [
       'text-primary-plain-fg',
-      'hover:text-primary-plain-hover-fg',
       'disabled:text-primary-plain-disable-fg',
     ],
   },
@@ -238,7 +237,6 @@ const commonCompoundVariants = [
     color: 'secondary',
     className: [
       'text-secondary-plain-fg',
-      'hover:text-secondary-plain-hover-fg',
       'disabled:text-secondary-plain-disable-fg',
     ],
   },
@@ -247,7 +245,6 @@ const commonCompoundVariants = [
     color: 'success',
     className: [
       'text-success-plain-fg',
-      'hover:text-success-plain-hover-fg',
       'disabled:text-success-plain-disable-fg',
     ],
   },
@@ -256,7 +253,6 @@ const commonCompoundVariants = [
     color: 'danger',
     className: [
       'text-danger-plain-fg',
-      'hover:text-danger-plain-hover-fg',
       'disabled:text-danger-plain-disable-fg',
     ],
   },
@@ -265,7 +261,6 @@ const commonCompoundVariants = [
     color: 'warning',
     className: [
       'text-warning-plain-fg',
-      'hover:text-warning-plain-hover-fg',
       'disabled:text-warning-plain-disable-fg',
     ],
   },
@@ -274,7 +269,6 @@ const commonCompoundVariants = [
     color: 'neutral',
     className: [
       'text-neutral-plain-fg',
-      'hover:text-neutral-plain-hover-fg',
       'disabled:text-neutral-plain-disable-fg',
     ],
   },

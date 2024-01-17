@@ -11,27 +11,27 @@ const root = cva(
       color: {
         primary: [
           'data-[state=checked]:bg-primary-solid',
-          'focus-visible:outline-none focus-visible:shadow-small focus-visible:shadow-primary-solid-focus/20',
+          'focus-visible:outline-none focus-visible:shadow-small',
         ],
         secondary: [
           'data-[state=checked]:bg-secondary-solid',
-          'focus-visible:outline-none focus-visible:shadow-small focus-visible:shadow-secondary-solid-focus/20',
+          'focus-visible:outline-none focus-visible:shadow-small',
         ],
         success: [
           'data-[state=checked]:bg-success-solid',
-          'focus-visible:outline-none focus-visible:shadow-small focus-visible:shadow-success-solid-focus/20',
+          'focus-visible:outline-none focus-visible:shadow-small',
         ],
         warning: [
           'data-[state=checked]:bg-warning-solid',
-          'focus-visible:outline-none focus-visible:shadow-small focus-visible:shadow-warning-solid-focus/20',
+          'focus-visible:outline-none focus-visible:shadow-small',
         ],
         danger: [
           'data-[state=checked]:bg-danger-solid',
-          'focus-visible:outline-none focus-visible:shadow-small focus-visible:shadow-danger-solid-focus/20',
+          'focus-visible:outline-none focus-visible:shadow-small',
         ],
         neutral: [
           'data-[state=checked]:bg-neutral-solid',
-          'focus-visible:outline-none focus-visible:shadow-small focus-visible:shadow-neutral-solid-focus/20',
+          'focus-visible:outline-none focus-visible:shadow-small',
         ],
       },
       size: {
