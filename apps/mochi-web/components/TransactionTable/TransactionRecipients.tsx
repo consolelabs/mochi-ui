@@ -2,6 +2,7 @@ import emojiStrip from 'emoji-strip'
 import Image from 'next/image'
 import { Avatar, AvatarGroup, Tooltip, Typography } from '@mochi-ui/core'
 import { useMemo } from 'react'
+import { utils } from '@consolelabs/mochi-formatter'
 import { Tx } from './types'
 import { buildAddressString } from './utils'
 
@@ -36,7 +37,9 @@ export const TransactionRecipients = (props: TransactionRecipientsProps) => {
     </Typography>
   )
 
-  const isAddress = ['paylink', 'withdraw'].includes(tx.action)
+  const hasAddress =
+    allAddresses.some((addr) => utils.address.isAddress(addr).valid) &&
+    ['paylink', 'withdraw'].includes(tx.action)
 
   return (
     <div className="flex gap-3 items-center">
@@ -54,7 +57,7 @@ export const TransactionRecipients = (props: TransactionRecipientsProps) => {
         ))}
       </AvatarGroup>
       <div className="flex flex-col gap-1">
-        {allAddresses.length > 1 || isAddress ? (
+        {allAddresses.length > 1 || hasAddress ? (
           <Tooltip
             content={
               <div className="flex flex-col gap-2">
@@ -62,9 +65,9 @@ export const TransactionRecipients = (props: TransactionRecipientsProps) => {
                   <div className="flex gap-x-2 justify-between" key={address}>
                     <Typography level="p5" fontWeight="md">
                       {address}
-                      {!isAddress && ':'}
+                      {!hasAddress && ':'}
                     </Typography>
-                    {!isAddress && (
+                    {!hasAddress && (
                       <div className="flex gap-x-1 items-center">
                         <Image
                           width={16}
