@@ -4,6 +4,7 @@ import get from 'lodash.get'
 import omit from 'lodash.omit'
 import forEach from 'lodash.foreach'
 import deepMerge from 'deepmerge'
+import { CSSRuleObject } from 'tailwindcss/types/config'
 import { commonColors, semanticColors } from './colors'
 import { flattenThemeObject } from './util'
 import { ConfigTheme, MochiUIPluginConfig } from './types'
@@ -13,20 +14,42 @@ const parsedColorsCache: Record<string, number[]> = {}
 export const isBaseTheme = (theme: string) =>
   theme === 'light' || theme === 'dark'
 
-export const mochiui = (config: MochiUIPluginConfig) => {
+export const isScreenSizeKey = (key: string) =>
+  ['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'].includes(key)
+
+export const mapCSSRulesWithBreakpoints = (rules: CSSRuleObject) =>
+  Object.keys(rules).reduce((acc, key) => {
+    Object.assign(
+      acc,
+      isScreenSizeKey(key)
+        ? {
+            [`@screen ${key}`]: rules[key],
+          }
+        : {
+            [key]: rules[key],
+          },
+    )
+    return acc
+  }, {} as CSSRuleObject)
+
+export const mochiui = (config: MochiUIPluginConfig = {}) => {
   const {
     themes: themeObject = {},
     defaultTheme = 'light',
     defaultExtendTheme = 'light',
     prefix = 'mochi',
     addCommonColors = false,
+    container: {
+      landing: landingContainerConfig = {},
+      dashboard: dashboardContainerConfig = {},
+    } = {},
   } = config
 
   const userLightColors = get(themeObject, 'light.colors', {})
   const userDarkColors = get(themeObject, 'dark.colors', {})
 
   // get other themes from the config different from light and dark
-  let otherThemes = omit(themeObject, ['light', 'dark']) || {}
+  const otherThemes = omit(themeObject, ['light', 'dark']) || {}
 
   forEach(otherThemes, ({ extend, colors }, themeName) => {
     const baseTheme =
@@ -139,37 +162,78 @@ export const mochiui = (config: MochiUIPluginConfig) => {
     }
   }
 
+  const {
+    maxWidth: landingMaxWidth,
+    paddingLeft: landingPaddingLeft,
+    paddingRight: landingPaddingRight,
+    ...landingRestConfig
+  } = landingContainerConfig
+
+  const {
+    maxWidth: dashboardMaxWidth,
+    paddingLeft: dashboardPaddingLeft,
+    paddingRight: dashboardPaddingRight,
+    ...dashboardRestConfig
+  } = dashboardContainerConfig
+
   return plugin(
     ({ addVariant, addUtilities }) => {
       // add the css variables to "@layer utilities"
       addUtilities({
         ...resolved?.utilities,
-        '.landing-container': {
-          width: '100%',
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          paddingLeft: '1.25rem',
-          paddingRight: '1.25rem',
-          '@screen lg': {
-            paddingLeft: '5rem',
-            paddingRight: '5rem',
+        '.landing-container': deepMerge(
+          {
+            width: '100%',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            maxWidth: landingMaxWidth ?? '100%',
+            paddingLeft: landingPaddingLeft ?? '1.25rem',
+            paddingRight: landingPaddingRight ?? '1.25rem',
+            // iterate landingRestConfig and apply to '@screen <size>' if the key is of type ScreenSizes
+            ...mapCSSRulesWithBreakpoints(landingRestConfig),
           },
-          '@screen xl': {
-            maxWidth: '1280px',
+          {
+            '@screen md': {
+              maxWidth:
+                landingRestConfig?.md?.maxWidth ?? landingMaxWidth ?? '1280px',
+              paddingLeft:
+                landingRestConfig?.md?.paddingLeft ??
+                landingPaddingLeft ??
+                '5rem',
+              paddingRight:
+                landingRestConfig?.md?.paddingRight ??
+                landingPaddingRight ??
+                '5rem',
+            },
           },
-        },
-        '.dashboard-container': {
-          width: '100%',
-          maxWidth: '1108px',
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          paddingLeft: '1rem',
-          paddingRight: '1rem',
-          '@screen md': {
-            paddingLeft: '1.5rem',
-            paddingRight: '1.5rem',
+        ),
+        '.dashboard-container': deepMerge(
+          {
+            width: '100%',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            maxWidth: dashboardMaxWidth ?? '100%',
+            paddingLeft: dashboardPaddingLeft ?? '1rem',
+            paddingRight: dashboardPaddingRight ?? '1rem',
+            ...mapCSSRulesWithBreakpoints(dashboardRestConfig),
           },
-        },
+          {
+            '@screen md': {
+              maxWidth:
+                dashboardRestConfig?.md?.maxWidth ??
+                dashboardMaxWidth ??
+                '1108px',
+              paddingLeft:
+                dashboardRestConfig?.md?.paddingLeft ??
+                dashboardPaddingLeft ??
+                '1.5rem',
+              paddingRight:
+                dashboardRestConfig?.md?.paddingRight ??
+                dashboardPaddingRight ??
+                '1.5rem',
+            },
+          },
+        ),
       })
 
       // add the theme as variant e.g. "[theme-name]:text-2xl"

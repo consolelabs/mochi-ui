@@ -12,9 +12,20 @@ describe('Plugin', () => {
           colors: {
             primary: {
               solid: {
-                DEFAULT: 'yellow'
-              }
-            }
+                DEFAULT: 'yellow',
+              },
+            },
+          },
+        },
+      },
+      container: {
+        landing: {
+          maxWidth: '1280px',
+          paddingLeft: '16px',
+          paddingRight: '16px',
+          md: {
+            paddingLeft: '24px',
+            paddingRight: '24px',
           },
         },
       },

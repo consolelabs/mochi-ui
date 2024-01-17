@@ -22,7 +22,7 @@
     "build:storybook": "turbo run build --filter=@mochi-ui/storybook",
     "lint": "turbo lint",
     "lint:fix": "turbo lint:fix",
-    "test": "jest --verbose --config ./jest.config.js",
+    "test": "jest --verbose --config ./jest.config.js --watch",
     "test:cov": "jest --verbose --config ./jest.config.js --ci --bail --silent --coverage --detectOpenHandles --coverageReporters=\"text-summary\"",
     "turbo:clean": "turbo clean && rimraf ./node_modules/.cache/turbo ./packages/**/.turbo ./packages/**/**/.turbo ./apps/**/**/.turbo",
     "clean:node-modules": "rimraf ./apps/**/node_modules ./packages/**/node_modules ./packages/**/**/node_modules ./node_modules",
