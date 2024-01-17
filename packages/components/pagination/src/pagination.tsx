@@ -244,7 +244,12 @@ export default function Pagination({
             setCurrentItemPerPage(Number(value))
           }}
         >
-          <SelectTrigger appearance="form" color="gray" className="h-9">
+          <SelectTrigger
+            appearance="form"
+            color="neutral"
+            variant="soft"
+            className="h-9"
+          >
             <SelectValue />
           </SelectTrigger>
           <SelectContent>

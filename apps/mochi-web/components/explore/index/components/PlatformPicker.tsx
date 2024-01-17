@@ -24,9 +24,10 @@ export const PlatformPicker = (props: PlatformPickerProps) => {
     <Select value={value} onChange={(v) => onChange(v === 'all' ? '' : v)}>
       <SelectTrigger
         appearance="form"
-        color="white"
+        color="neutral"
+        variant="plain"
         leftIcon={selectedPlatform ? <selectedPlatform.icon /> : <WebSolid />}
-        className="border border-divider !font-normal capitalize"
+        className="border border-divider !font-normal capitalize bg-background-body"
       >
         <SelectValue placeholder="All Platforms" />
       </SelectTrigger>

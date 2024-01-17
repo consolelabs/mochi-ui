@@ -58,10 +58,7 @@ export const MoneySource = () => {
                   )
                 }}
               >
-                <SelectTrigger
-                  appearance="form"
-                  className="justify-between h-10 w-48"
-                >
+                <SelectTrigger appearance="form" className="h-10 w-48">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent align="end">
