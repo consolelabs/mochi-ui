@@ -231,11 +231,11 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   }, [authorized, onSelectAsset, selectedAsset])
 
   return (
-    <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-3">
+    <div className="rounded-xl bg p-2 bg-background-level2 flex flex-col gap-y-3">
       <div className="flex justify-between items-center">
         <Typography
           level="p5"
-          color="textSecondary"
+          color="textTertiary"
           fontWeight="md"
           className="ml-4"
         >
@@ -245,34 +245,31 @@ export const AmountInput: React.FC<AmountInputProps> = ({
           <div className="flex gap-x-2">
             <Button
               size="sm"
-              variant="outline"
+              variant="soft"
               color="neutral"
               style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('1')}
               tabIndex={-1}
-              className="text-primary-700"
             >
               {!isUsdMode ? '$' : ''}1
             </Button>
             <Button
               size="sm"
-              variant="outline"
+              variant="soft"
               color="neutral"
               style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('2')}
               tabIndex={-1}
-              className="text-primary-700"
             >
               {!isUsdMode ? '$' : ''}2
             </Button>
             <Button
               size="sm"
-              variant="outline"
+              variant="soft"
               color="neutral"
               style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('5')}
               tabIndex={-1}
-              className="text-primary-700"
             >
               {!isUsdMode ? '$' : ''}5
             </Button>
@@ -283,7 +280,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
           >
             <IconButton
               label="Toggle USD mode"
-              variant="outline"
+              variant="soft"
               color="neutral"
               onClick={() => {
                 if (!isUsdMode) {
@@ -314,7 +311,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               </div>
             )}
             <input
-              className="self-start w-full h-full min-h-0 font-medium appearance-none outline-none leading-[32px] text-[32px] text-neutral-800"
+              className="placeholder:text-text-disabled self-start w-full h-full min-h-0 font-medium appearance-none outline-none leading-[32px] text-[32px] text-neutral-800"
               placeholder="0"
               type="text"
               min={0}

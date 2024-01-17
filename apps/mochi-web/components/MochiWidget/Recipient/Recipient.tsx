@@ -199,12 +199,12 @@ export const Recipient: React.FC<RecipientProps> = ({
 
   return (
     <>
-      <div className="flex flex-col gap-y-3 p-2 rounded-xl bg bg-neutral-150">
+      <div className="flex flex-col gap-y-3 p-2 rounded-xl bg bg-background-level2">
         <div className="flex justify-between items-center px-4 h-[34px]">
           <div className="flex gap-x-2 items-center">
             <label
               htmlFor="recipients"
-              className="text-sm font-medium text-neutral-600"
+              className="text-sm font-medium text-text-tertiary"
             >
               Recipients
             </label>
@@ -251,7 +251,7 @@ export const Recipient: React.FC<RecipientProps> = ({
           <input
             id="recipients"
             readOnly
-            className="flex-1 h-full bg-transparent outline-none min-w-[100px]"
+            className="flex-1 h-full bg-transparent outline-none min-w-[100px] placeholder:text-text-disabled"
             placeholder={isOnChain ? 'Enter address' : 'Enter username'}
             onFocus={() => openRecipients()}
             autoComplete="off"
