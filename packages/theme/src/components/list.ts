@@ -12,7 +12,7 @@ const listViewportContentClsx = ({
 
 const listScrollbarClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx(
-    'flex select-none touch-none p-0.5 bg-neutral-outline transition-colors w-2 hover:bg-neutral-outline-hover',
+    'flex select-none touch-none p-0.5 bg-transparent transition-colors w-2 hover:bg-neutral-outline-hover',
     className,
   )
 

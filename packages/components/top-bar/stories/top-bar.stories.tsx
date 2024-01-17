@@ -159,7 +159,7 @@ const desktopNavItems = [
 export function Default() {
   return (
     <div className="h-[600px] !overflow-auto border border-neutral-outline-border">
-      <div className="bg-neutral-outline h-[1000px]">
+      <div className="h-[1000px]">
         <TopBar
           leftSlot={
             <LogoWithText
