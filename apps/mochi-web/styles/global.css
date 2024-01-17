@@ -91,6 +91,10 @@ iframe[id^='telegram-login'] {
   @apply flex flex-col m-auto w-[320px] max-w-[320px];
 }
 
+.receipt-container.peeking {
+  @apply flex flex-col m-auto w-[640px] max-w-[640px];
+}
+
 #profile-list-sidebar {
   height: calc(100vh - 66px);
 }

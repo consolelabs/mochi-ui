@@ -11,9 +11,10 @@ import PayButton from './PayButton'
 
 export type Props = {
   data: PayRequest
+  variant?: 'default' | 'peeking'
 }
 
-export default function PayMe({ data }: Props) {
+export default function PayMe({ data, variant = 'default' }: Props) {
   return (
     <div className="gap-y-10 receipt-container">
       <div className="flex-1 drop-shadow-xl">
@@ -23,12 +24,14 @@ export default function PayMe({ data }: Props) {
           }
         `}</style>
         <div className="flex flex-col pb-10 rounded-t bg-white-pure jagged-bottom">
-          <Header
-            color="gray"
-            title="Pay Me"
-            url={`/pay/${data.code}`}
-            Icon={DollarBubbleSolid}
-          />
+          {variant === 'default' && (
+            <Header
+              color="gray"
+              title="Pay Me"
+              url={`/pay/${data.code}`}
+              Icon={DollarBubbleSolid}
+            />
+          )}
           <div className="flex flex-col p-6 pt-10 pb-0">
             <UpperBody
               author={data.profile?.name ?? 'User'}

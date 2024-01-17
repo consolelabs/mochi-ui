@@ -21,17 +21,18 @@ import clsx from 'clsx'
 import { useEffect, useMemo, useRef } from 'react'
 import Amount from '~cpn/Amount'
 import { useTransactionStore } from '~cpn/explore/index/stores/useTransactionStore'
+import { TransactionPeekingCard } from '~cpn/TransactionPeekingCard'
 import { TransactionAction } from './TransactionAction'
+import { TransactionBadge } from './TransactionBadge'
+import { TransactionHeaderAction } from './TransactionHeaderAction'
+import { TransactionHeaderTotalValue } from './TransactionHeaderTotalValue'
+import { TransactionHeaderWen } from './TransactionHeaderWen'
 import { TransactionIssuedBy } from './TransactionIssuedBy'
 import { TransactionRecipients } from './TransactionRecipients'
 import { TransactionStatusIcon } from './TransactionStatusIcon'
 import { TransactionTxGroup } from './TransactionTxGroup'
 import { TransactionTableProps, Tx } from './types'
 import { openTx } from './utils'
-import { TransactionBadge } from './TransactionBadge'
-import { TransactionHeaderAction } from './TransactionHeaderAction'
-import { TransactionHeaderWen } from './TransactionHeaderWen'
-import { TransactionHeaderTotalValue } from './TransactionHeaderTotalValue'
 import { TransactionTime } from './TransactionTime'
 
 export const TransactionTable = (props: TransactionTableProps) => {
@@ -61,7 +62,16 @@ export const TransactionTable = (props: TransactionTableProps) => {
           return (
             <div className="flex gap-1.5 items-center">
               <TransactionStatusIcon tx={tx} />
-              <TransactionTxGroup tx={tx} />
+              <Tooltip
+                key={tx.code}
+                content={<TransactionPeekingCard tx={tx} />}
+                className="!shadow-none bg-transparent"
+                arrow="right-center"
+              >
+                <div>
+                  <TransactionTxGroup tx={tx} />
+                </div>
+              </Tooltip>
               {hasCopied ? (
                 <CheckLine />
               ) : (
