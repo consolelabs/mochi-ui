@@ -86,8 +86,10 @@ export async function transform(d: any): Promise<Tx> {
       }
 
       if (
-        'sender_profile_type' in d.metadata &&
-        d.metadata.sender_profile_type === 'application'
+        ('sender_profile_type' in d.metadata &&
+          d.metadata.sender_profile_type === 'application') ||
+        ('recipient_profile_type' in d.metadata &&
+          d.metadata.recipient_profile_type === 'application')
       ) {
         where.text = emojiStrip(
           (d.type === 'out' ? from?.plain : to?.plain) ?? 'App',
