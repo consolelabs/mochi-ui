@@ -80,7 +80,6 @@ export default function List<Item extends NonNullable<object> | string>({
     <ScrollArea.Root
       className={listWrapperClsx({ className: rootClassName })}
       style={rootStyle}
-      type="always"
     >
       <ScrollArea.Viewport
         className={listViewportClsx({ className: viewportClassName })}
