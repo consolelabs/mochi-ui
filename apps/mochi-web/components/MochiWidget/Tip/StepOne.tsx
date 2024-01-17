@@ -37,10 +37,11 @@ export default function StepOne() {
       if (request.amount > (request.asset?.asset_balance ?? 0))
         return notEnoughBalMsg
 
-      if (request.amount < Number(`1e-${request.asset.token.decimal}`))
+      const [_, rightStr] = request.amount.toString().split('.')
+      if (rightStr?.length > 8 && Number(rightStr) !== 0)
         return amountTooSmallMsg
-      if (request.amount > Number(`1e${request.asset.token.decimal}`))
-        return amountTooBigMsg
+      if (request.amount < Number(`1e-8`)) return amountTooSmallMsg
+      if (request.amount > Number(`1e8`)) return amountTooBigMsg
     } else {
       const assetAmount =
         wallet?.balances?.find(
