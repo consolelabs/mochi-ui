@@ -35,6 +35,7 @@ export interface Tx {
   amountUsd: string
   date: string
   full_date: string
+  rawDate: string
   status: TransactionStatus
   isNew?: boolean
 }
