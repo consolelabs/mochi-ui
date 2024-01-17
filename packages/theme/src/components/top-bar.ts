@@ -21,13 +21,13 @@ const topBarNavToggleButtonClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
-    'bg-background-surface focus:outline-none !p-2 rounded-md hover:border-none focus:ring ring-neutral-outline',
+    'bg-background-surface focus:outline-none !p-2 rounded-md hover:border-none focus-visible:shadow-small',
     className,
   )
 
 const topBarNavToggleButtonIconClsx = ({
   className = '',
-}: { className?: string } = {}) => clsx('text-2xl text-neutral-800', className)
+}: { className?: string } = {}) => clsx('text-2xl text-text-primary', className)
 
 const topBarNavMobileNavContainerClsx = ({
   className = '',
