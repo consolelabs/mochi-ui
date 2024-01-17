@@ -52,6 +52,7 @@ const {
   tableWrapperClsx,
   tableClsx,
   tableHeaderClsx,
+  tableHeaderContainerClsx,
   tableDataLoadingClsx,
   tableDataSkeletonClsx,
   tableDataClsx,
@@ -104,7 +105,7 @@ export default function Table<T extends RowData>({
             ))}
           </colgroup>
         ) : null}
-        <thead>
+        <thead className={tableHeaderContainerClsx({})}>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (

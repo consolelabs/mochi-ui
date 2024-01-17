@@ -67,10 +67,9 @@ export const TransactionTable = (props: TransactionTableProps) => {
                 content={<TransactionPeekingCard tx={tx} />}
                 className="!shadow-none bg-transparent"
                 arrow="right-center"
+                componentProps={{ trigger: { className: 'flex' } }}
               >
-                <div>
-                  <TransactionTxGroup tx={tx} />
-                </div>
+                <TransactionTxGroup tx={tx} />
               </Tooltip>
               {hasCopied ? (
                 <CheckLine />
