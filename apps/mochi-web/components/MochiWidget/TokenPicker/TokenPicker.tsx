@@ -20,12 +20,12 @@ import {
 } from '@mochi-ui/core'
 import { BottomSheet } from '~cpn/BottomSheet'
 import { BalanceWithSource, TokenTableList } from '~cpn/TokenTableList'
+import { MonikerTableList } from '~cpn/MonikerTableList'
 import { Balance, useWalletStore } from '~store'
 import { Moniker } from './type'
 import { MonikerIcons, isToken } from './utils'
 import { DEFAULT_BALANCE } from './default-data'
 import sortOrder from './sort-order.json'
-import { MonikerList } from './MonikerList'
 
 const TokenTabs = [
   {
@@ -264,10 +264,15 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
                     </span>
                   </>
                 ) : (
-                  <MonikerList
-                    balances={balancesWithSource}
+                  <MonikerTableList
+                    data={balancesWithSource}
                     searchTerm={searchTerm}
-                    onSelect={handleMonikerSelect}
+                    onRow={(record) => {
+                      return {
+                        onClick: () =>
+                          !record.disabled && handleMonikerSelect(record),
+                      }
+                    }}
                   />
                 )}
               </div>

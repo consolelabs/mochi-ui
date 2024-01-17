@@ -60,26 +60,20 @@ export default function Receipt({
   const statusComponent = useMemo(() => {
     if (data?.data.isSuccess) {
       return (
-        <Badge
-          className="!bg-[#088752]/[.15] !text-[#34C77B]"
-          appearance="success"
-        >
+        <Badge className="border border-[#A6F4C5]" appearance="success">
           Success
         </Badge>
       )
     }
     if (data?.data.isFail) {
       return (
-        <Badge
-          className="!bg-[#E02D3C]/[.15] !text-[#EB5757]"
-          appearance="danger"
-        >
+        <Badge className="border border-[#F4A1A7]" appearance="danger">
           Failed
         </Badge>
       )
     }
     return (
-      <Badge appearance="black" className="capitalize">
+      <Badge appearance="black" className="border capitalize border-[#EAECF0]">
         {data?.status}
       </Badge>
     )
@@ -119,7 +113,7 @@ export default function Receipt({
               'flex gap-x-12 ': variant === 'peeking',
             })}
           >
-            <div className="flex-1 flex flex-col gap-y-12">
+            <div className="flex flex-col flex-1 gap-y-12">
               <div className="flex relative flex-col items-center">
                 {data.data.template ? null : (
                   <Avatar
