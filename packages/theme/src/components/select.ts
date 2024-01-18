@@ -62,9 +62,9 @@ const triggerCva = cva(
   {
     variants: {
       size: {
-        sm: 'text-sm leading-4 px-4 h-[34px] rounded',
-        md: 'text-sm leading-4 px-4 h-10 rounded-lg',
-        lg: 'text-base leading-6 px-6 h-12 rounded-lg',
+        sm: '',
+        md: '',
+        lg: '',
       },
       color: {
         primary: '',
@@ -90,6 +90,45 @@ const triggerCva = cva(
       },
     },
     compoundVariants: [
+      {
+        appearance: 'form',
+        size: ['lg', 'md', 'sm'],
+        className: 'px-3.5',
+      },
+      {
+        appearance: 'button',
+        size: 'sm',
+        className: 'text-sm leading-4 px-4 h-[34px] rounded',
+      },
+      {
+        appearance: 'button',
+        size: 'md',
+        className: 'text-sm leading-4 px-4 h-10 rounded-lg',
+      },
+      {
+        appearance: 'button',
+        size: 'lg',
+        className: 'text-base leading-6 px-6 h-12 rounded-lg',
+      },
+      {
+        appearance: 'form',
+        size: 'sm',
+        className: 'text-sm leading-4 px-3.5 h-[34px] rounded',
+      },
+      {
+        appearance: 'form',
+        size: 'md',
+        className: 'text-sm px-3.5 h-10 rounded',
+      },
+      {
+        appearance: 'form',
+        size: 'lg',
+        className: 'text-md px-3.5 h-[52px] rounded',
+      },
+      {
+        appearance: 'button',
+        className: '',
+      },
       {
         variant: 'solid',
         color: 'primary',
