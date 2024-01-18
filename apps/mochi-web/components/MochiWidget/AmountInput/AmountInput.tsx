@@ -1,4 +1,10 @@
-import { Button, IconButton, Tooltip, Typography } from '@mochi-ui/core'
+import {
+  Button,
+  IconButton,
+  Separator,
+  Tooltip,
+  Typography,
+} from '@mochi-ui/core'
 import {
   ChangeEvent,
   KeyboardEvent,
@@ -14,12 +20,12 @@ import {
   TokenAmount,
   formatTokenAmount,
 } from '~utils/number'
-import clsx from 'clsx'
-import { ArrowUpDownLine } from '@mochi-ui/icons'
+import { SwapCircleSolid } from '@mochi-ui/icons'
 import events from '~constants/events'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { BalanceWithSource } from '~cpn/TokenTableList'
 import { useShallow } from 'zustand/react/shallow'
+import clsx from 'clsx'
 import { TokenPicker } from '../TokenPicker'
 import { Moniker } from '../TokenPicker/type'
 import { useTipWidget } from '../Tip/store'
@@ -241,32 +247,34 @@ export const AmountInput: React.FC<AmountInputProps> = ({
         >
           You send
         </Typography>
-        <div className="flex gap-x-2 justify-end">
-          <div className="flex gap-x-2">
+        <div className="flex gap-x-2 justify-end items-center">
+          <div className="flex gap-x-2 items-center">
             <Button
               size="sm"
-              variant="soft"
-              color="neutral"
+              variant="ghost"
+              color="primary"
               style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('1')}
               tabIndex={-1}
             >
               {!isUsdMode ? '$' : ''}1
             </Button>
+            <Separator orientation="vertical" className="!h-4" />
             <Button
               size="sm"
-              variant="soft"
-              color="neutral"
+              variant="ghost"
+              color="primary"
               style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('2')}
               tabIndex={-1}
             >
               {!isUsdMode ? '$' : ''}2
             </Button>
+            <Separator orientation="vertical" className="!h-4" />
             <Button
               size="sm"
-              variant="soft"
-              color="neutral"
+              variant="ghost"
+              color="primary"
               style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('5')}
               tabIndex={-1}
@@ -280,8 +288,10 @@ export const AmountInput: React.FC<AmountInputProps> = ({
           >
             <IconButton
               label="Toggle USD mode"
-              variant="soft"
-              color="neutral"
+              className={clsx('text-[24px]', {
+                'text-text-icon-secondary': isUsdMode,
+              })}
+              variant="link"
               onClick={() => {
                 if (!isUsdMode) {
                   handleAmountChanged({
@@ -297,7 +307,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
                 toggleUsdMode()
               }}
             >
-              <ArrowUpDownLine className="!text-white scale-125" />
+              <SwapCircleSolid />
             </IconButton>
           </Tooltip>
         </div>
