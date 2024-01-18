@@ -73,7 +73,10 @@ export default function Receipt({
       )
     }
     return (
-      <Badge appearance="black" className="border capitalize border-[#EAECF0]">
+      <Badge
+        appearance="neutral"
+        className="border capitalize border-[#EAECF0]"
+      >
         {data?.status}
       </Badge>
     )

@@ -17,7 +17,7 @@ export const TransactionBadge = ({ action }: Props) => {
 
   return (
     <Badge
-      appearance={transactionActionAppearance[action] as any}
+      appearance={transactionActionAppearance[action]}
       className={clsx(
         'inline-flex border font-medium',
         transactionActionColor[action],
