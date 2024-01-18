@@ -449,7 +449,7 @@ export const Header = ({
   return (
     <TopBar
       className={clsx({
-        'border-b border-b-dashboard-gray-6':
+        'border-b border-b-divider':
           isLoggedIn || !authenticatedRoute.includes(pathname),
         'bg-dashboard-gray-1':
           !isLoggedIn && authenticatedRoute.includes(pathname),

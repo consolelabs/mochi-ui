@@ -106,7 +106,7 @@ export function Default() {
         />
 
         <Layout className="flex-1 bg-neutral-outline/50">
-          <PageHeader className="border-b">
+          <PageHeader className="border-b border-divider">
             <PageHeaderTitle>
               Page Title
               <PageHeaderTitleExtra>(2,951 members)</PageHeaderTitleExtra>

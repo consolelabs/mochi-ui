@@ -45,7 +45,7 @@ const topBarNavContainerClsx = ({
     'pl-4 pr-3 gap-y-4', // mobile
     'lg:px-8', // desktop
     'lg:flex-row', // tablet-desktop
-    'border-b border-neutral-outline-border',
+    'border-b border-divider',
     className,
   )
 
