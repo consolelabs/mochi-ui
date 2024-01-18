@@ -11,6 +11,7 @@ import {
   ScrollAreaScrollbar,
   ScrollAreaThumb,
   ScrollAreaViewport,
+  TabContent,
   TabList,
   TabTrigger,
   Tabs,
@@ -33,6 +34,7 @@ import clsx from 'clsx'
 import { useShallow } from 'zustand/react/shallow'
 import { TokenAvatar } from '~cpn/TokenAvatar'
 import { useFetchTotalBalance } from '~hooks/profile/useFetchTotalBalance'
+import { usePrevious } from '@dwarvesf/react-hooks'
 
 const sortOrder = ['All', 'Mochi']
 const defaultChainMapping: Record<string, string> = {
@@ -47,6 +49,7 @@ const defaultChainMapping: Record<string, string> = {
   SUI: 'Sui',
   FIAT: 'Fiat',
   TON: 'TON',
+  BNB: 'BNB',
 }
 
 export const ProfileWidget = () => {
@@ -131,12 +134,20 @@ export const ProfileWidget = () => {
     (chain) => chain === selectedChain,
   )
   const dropdownWidth = sortedChains.length > displayChainAmount ? 40 : 0
+  const tabAmount = Math.min(displayChainAmount, sortedChains.length)
   const tabWidth =
     tabsWidth && displayChainAmount > 1
-      ? (tabsWidth - 120 - dropdownWidth) /
-        (Math.min(displayChainAmount, sortedChains.length) - 1)
+      ? Math.min(
+          (tabsWidth - 120 - dropdownWidth) / (tabAmount - 1),
+          tabsWidth / tabAmount,
+        )
       : 0
+  const selectedTabWidth = Math.max(tabWidth, 120)
   const translateX = selectedIndex * tabWidth
+
+  const previousSelectedIndex = usePrevious(selectedIndex)
+  const slideTabDirection =
+    selectedIndex < previousSelectedIndex ? 'left' : 'right'
 
   useEffect(() => {
     const element = tabElement.current
@@ -197,15 +208,16 @@ export const ProfileWidget = () => {
           Receive
         </Button>
       </div>
-      <Tabs value={selectedChain}>
+      <Tabs value={selectedChain} onValueChange={setSelectedChain}>
         <TabList
           className="flex relative items-center -mx-4 border-t border-b border-divider"
           ref={tabElement}
         >
           <div
-            className="absolute top-0 left-0 h-full transition-transform duration-300 bg-background-level2 w-[120px]"
+            className="absolute top-0 left-0 h-full transition-transform duration-500 bg-background-level2"
             style={{
               transform: `translateX(${translateX}px)`,
+              width: selectedTabWidth,
             }}
           />
           {sortedChains.slice(0, displayChainAmount).map((chain) => {
@@ -233,18 +245,27 @@ export const ProfileWidget = () => {
                 value={chain}
                 wrapperClassName="pl-0 pr-0 border-r-0"
                 className={clsx(
-                  'h-10 space-x-1 outline-none rounded-none transition duration-500 z-10 hover:!opacity-100',
+                  'h-10 outline-none rounded-none transition duration-500 z-10 hover:!opacity-100',
                   {
                     'w-[120px]': isSelected,
                   },
                 )}
                 onClick={() => setSelectedChain(chain)}
               >
-                {avatar}
+                <div
+                  className={clsx(
+                    'duration-500',
+                    isSelected
+                      ? 'animate-in slide-in-from-right-2'
+                      : 'animate-out',
+                  )}
+                >
+                  {avatar}
+                </div>
                 {isSelected && (
                   <Typography
                     level="h8"
-                    className="duration-500 animate-in fade-in-0"
+                    className="duration-500 animate-in fade-in-0 slide-in-from-left-2 translate-x-1"
                   >
                     {name.split(' ')[0]}
                   </Typography>
@@ -297,14 +318,30 @@ export const ProfileWidget = () => {
             </DropdownMenu>
           )}
         </TabList>
-        <TokenTableList
-          isLoading={!wallets.length && isFetchingWallets}
-          data={chains[selectedChain]}
-          hideLastBorder
-          onRow={(record) => ({
-            onClick: () => setSelectedAsset(record),
-          })}
-        />
+        <div className="relative overflow-hidden">
+          {Object.entries(chains).map(([chain, data]) => (
+            <TabContent
+              key={chain}
+              value={chain}
+              className={clsx(
+                'data-[state=active]:animate-in data-[state=active]:duration-500 data-[state=active]:fade-in',
+                'data-[state=inactive]:absolute data-[state=inactive]:inset-0 data-[state=inactive]:animate-out data-[state=inactive]:duration-500 data-[state=inactive]:fade-out',
+                slideTabDirection === 'left'
+                  ? 'data-[state=active]:slide-in-from-left data-[state=inactive]:slide-out-to-right'
+                  : 'data-[state=active]:slide-in-from-right data-[state=inactive]:slide-out-to-left',
+              )}
+            >
+              <TokenTableList
+                isLoading={!wallets.length && isFetchingWallets}
+                data={data}
+                hideLastBorder
+                onRow={(record) => ({
+                  onClick: () => setSelectedAsset(record),
+                })}
+              />
+            </TabContent>
+          ))}
+        </div>
       </Tabs>
     </Card>
   )
