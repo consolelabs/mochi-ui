@@ -13,6 +13,7 @@ import clsx from 'clsx'
 type Page = {
   name: string
   content: any
+  version?: string
 }
 
 type Props = {
@@ -25,7 +26,11 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 
   return {
     props: {
-      data: changelogs.map((c: any) => ({ name: c.title, content: c.content })),
+      data: changelogs.map((c: any) => ({
+        name: c.title,
+        content: c.content,
+        version: c?.version || '',
+      })),
     },
     revalidate: 60 * 10,
   }
@@ -91,12 +96,16 @@ const Strong = ({ children }: { children: React.ReactNode[] }) => {
   )
 }
 
-const ChangelogItem = ({ name, content }: Page) => (
+const ChangelogItem = ({ name, content, version }: Page) => (
   <div className="gap-8 mb-24 md:flex justify-center">
     <div className="inline-block relative w-full md:w-[176px] flex-shrink-0 mb-12 md:mb-0">
       {/* TODO: use new Badge variant when design is provided */}
       <div className="top-8 md:sticky flex flex-row md:flex-col gap-4 md:gap-2 items-center md:items-start">
-        <Badge className="w-max !text-base !rounded-md !px-4">v1.52.0</Badge>
+        {version ? (
+          <Badge className="w-max !text-base !rounded-md !px-4">
+            {version}
+          </Badge>
+        ) : null}
         <Typography className="!text-text-secondary">{name}</Typography>
       </div>
     </div>
