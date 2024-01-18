@@ -175,7 +175,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
 
           return (
             <Badge
-              className="inline-flex !bg-neutral-soft-hover"
+              className="inline-flex !bg-neutral-soft-hover border border-neutral--border"
               appearance="neutral"
             >
               <BadgeIcon className="-ml-0.5">
