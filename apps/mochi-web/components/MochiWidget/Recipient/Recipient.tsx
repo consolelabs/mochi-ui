@@ -298,10 +298,10 @@ export const Recipient: React.FC<RecipientProps> = ({
           </ScrollArea>
         ) : (
           <div
-            className="flex flex-col gap-y-2 justify-center items-center text-neutral-500"
+            className="flex flex-col gap-y-2 justify-center items-center"
             style={{ height: 84 }}
           >
-            <ProfileGuardSuccessLine className="w-10 h-10" />
+            <ProfileGuardSuccessLine className="w-10 h-10 text-text-tertiary" />
             <span className="text-xs font-normal">
               Select your recipients to send money
             </span>
