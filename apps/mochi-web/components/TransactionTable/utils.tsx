@@ -150,33 +150,37 @@ export async function transform(d: any): Promise<Tx> {
 
   if (to && (d.action === 'withdraw' || d.action === 'paylink')) {
     const address = d.other_profile_source
-    const account = d.from_profile?.associated_accounts.find(
+    const account = d.from_profile?.associated_accounts?.find(
       (aa: any) =>
         aa.platform_identifier.toLowerCase() === address.toLowerCase(),
     )
 
-    const domainName = mochiUtils.string.formatAddressUsername(account)
-
-    if (!account || !domainName) {
+    if (!account) {
       to.plain = d.other_profile_source
     } else {
-      to.plain = domainName
+      const domainName = mochiUtils.string.formatAddressUsername(account)
+      if (!domainName) {
+        to.plain = d.other_profile_source
+      } else {
+        to.plain = domainName
+      }
     }
   } else if (from && (d.action === 'deposit' || d.action === 'payme')) {
-    from.plain = d.from_profile_source
-
     const address = d.from_profile_source
-    const account = d.other_profile?.associated_accounts.find(
+    const account = d.from_profile?.associated_accounts?.find(
       (aa: any) =>
         aa.platform_identifier.toLowerCase() === address.toLowerCase(),
     )
 
-    const domainName = mochiUtils.string.formatAddressUsername(account)
-
-    if (!account || !domainName) {
+    if (!account) {
       from.plain = d.from_profile_source
     } else {
-      from.plain = domainName
+      const domainName = mochiUtils.string.formatAddressUsername(account)
+      if (!domainName) {
+        from.plain = d.from_profile_source
+      } else {
+        from.plain = domainName
+      }
     }
   }
 

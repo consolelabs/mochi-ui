@@ -120,11 +120,11 @@ importers:
         specifier: ^0.1.67
         version: 0.1.67(@solana/buffer-layout@4.0.1)(@solana/spl-token@0.3.7)(@solana/web3.js@1.74.0)(bn.js@5.2.1)(borsh@0.7.0)
       '@consolelabs/mochi-formatter':
-        specifier: ^19.0.0
-        version: 19.0.0(@consolelabs/mochi-rest@5.2.0)(ioredis@5.3.2)
+        specifier: ^19.0.1
+        version: 19.0.1(@consolelabs/mochi-rest@5.2.1)(ioredis@5.3.2)
       '@consolelabs/mochi-rest':
-        specifier: ^5.2.0
-        version: 5.2.0
+        specifier: ^5.2.1
+        version: 5.2.1
       '@dwarvesf/react-hooks':
         specifier: ^0.8.2
         version: 0.8.2(react-dom@18.2.0)(react@18.2.0)
@@ -4417,14 +4417,14 @@ packages:
       chalk: 4.1.2
     dev: true
 
-  /@consolelabs/mochi-formatter@19.0.0(@consolelabs/mochi-rest@5.2.0)(ioredis@5.3.2):
-    resolution: {integrity: sha512-WoUC08HUXqACNv2NJY2YDjno7ihDVeYNMYcKFA7n3J8KIId2lmKBBGqdhULY4dYmSo2ARXOI52O+81Iz4/vv0g==}
+  /@consolelabs/mochi-formatter@19.0.1(@consolelabs/mochi-rest@5.2.1)(ioredis@5.3.2):
+    resolution: {integrity: sha512-+LGLvgLb03t9XIa66AKyyZ72hbg9yYQwsFCqxzppR+Bznp29rVOeRfVJYAFNa3LiE50j0wOp5Gpu9xKti0TEoQ==}
     peerDependencies:
-      '@consolelabs/mochi-rest': ^5.2.0
+      '@consolelabs/mochi-rest': ^5.2.1
       ioredis: ^5.x.x
     dependencies:
       '@bonfida/spl-name-service': 1.6.1(@solana/web3.js@1.89.1)
-      '@consolelabs/mochi-rest': 5.2.0
+      '@consolelabs/mochi-rest': 5.2.1
       '@solana/web3.js': 1.89.1
       change-case: 4.1.2
       ethers: 6.10.0
@@ -4443,6 +4443,18 @@ packages:
 
   /@consolelabs/mochi-rest@5.2.0:
     resolution: {integrity: sha512-zn776tWTrVvDS2WffcxN6HN7K47Z2d36lxnmlQA8fUY/KABHMekG955IAb8h9dXb4rbypq/rs5LvEFWBfU3vhg==}
+    dependencies:
+      deepmerge: 4.3.1
+      lodash.snakecase: 4.1.1
+      nanoid: 5.0.4
+      path-parser: 6.1.0
+      snakecase-keys: 5.5.0
+      wretch: 2.6.0
+      zod: 3.22.4
+    dev: false
+
+  /@consolelabs/mochi-rest@5.2.1:
+    resolution: {integrity: sha512-NLsjjoN1w2LQ/BXdZu4czhoCx20qV1S5srrlMI+50TF7JF6+47wYydk2IFrATYPq66SKGjcofOch3Le0gEa+GQ==}
     dependencies:
       deepmerge: 4.3.1
       lodash.snakecase: 4.1.1
@@ -8189,7 +8201,7 @@ packages:
     resolution: {integrity: sha512-osvveYtyzdEVbt3OfwwXFr4P2iVBL5u1Q3q4ONBfDY/UpOuXmOlbgwc1xECEboY8wIays8Yt6onaWMUdUbfl0A==}
     dependencies:
       '@noble/curves': 1.1.0
-      '@noble/hashes': 1.3.1
+      '@noble/hashes': 1.3.3
       '@scure/base': 1.1.5
     dev: false
 

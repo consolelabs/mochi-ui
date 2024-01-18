@@ -31,6 +31,7 @@ export type Balance = {
   asset_balance: number
   usd_balance: number
   token: Token
+  disabled: boolean
 }
 
 export type Wallet = {
@@ -50,6 +51,20 @@ type State = {
   isFetching: boolean
 }
 
+function isTokenSupported(
+  balance: any,
+  _list: Awaited<ReturnType<typeof api.pay.tokens.getSupported>>['data'],
+) {
+  const list = _list || []
+  if (list.length <= 0) return false
+
+  return list.some(
+    (t) =>
+      balance.token.address.toLowerCase() === t.address.toLowerCase() &&
+      String(balance.chain_id) === String(t.chain_id),
+  )
+}
+
 export const useWalletStore = create<State>((set) => ({
   isFetching: false,
   wallets: [],
@@ -57,6 +72,10 @@ export const useWalletStore = create<State>((set) => ({
   setWallets: async (me) => {
     try {
       set((s) => ({ ...s, isFetching: true }))
+
+      // get list supported tokens
+      const { data: supportedTokens = [] } = await api.pay.tokens.getSupported()
+
       const wallets: Wallet[] = []
 
       // Default Mochi Wallets
@@ -76,6 +95,7 @@ export const useWalletStore = create<State>((set) => ({
               id: 'mochi',
               title: 'Mochi Wallet',
             },
+            disabled: false,
             type: 'token',
             token: {
               ...b.token,
@@ -154,6 +174,7 @@ export const useWalletStore = create<State>((set) => ({
                   id: w.platform_identifier,
                   title: utils.string.formatAddressUsername(w),
                 },
+                disabled: !isTokenSupported(b, supportedTokens),
                 type: 'token',
                 token: {
                   ...b.token,

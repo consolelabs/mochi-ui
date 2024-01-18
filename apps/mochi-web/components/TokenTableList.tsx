@@ -72,7 +72,12 @@ export const TokenTableList = ({
           {...props}
           stickyHeader
           cellClassName={() => '!border-0 !h-10'}
-          rowClassName={() => 'rounded'}
+          rowClassName={(record) =>
+            clsx('rounded', {
+              'opacity-30 !cursor-not-allowed hover:bg-transparent':
+                record.disabled,
+            })
+          }
           data={data.sort((a, b) => {
             const indexA = sortOrder.findIndex(
               (symbol) => symbol === a.token.symbol,

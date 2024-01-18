@@ -271,7 +271,8 @@ export const AmountInput: React.FC<AmountInputProps> = ({
             <IconButton
               label="Toggle USD mode"
               variant="solid"
-              color="white"
+              color={!isUsdMode ? 'neutral' : 'primary'}
+              className="!p-0 !w-7 !h-7 my-auto flex justify-center"
               onClick={() => {
                 if (!isUsdMode) {
                   handleAmountChanged({
@@ -287,7 +288,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
                 toggleUsdMode()
               }}
             >
-              <ArrowUpDownLine />
+              <ArrowUpDownLine className="w-5 h-5 !text-white" />
             </IconButton>
           </Tooltip>
         </div>
