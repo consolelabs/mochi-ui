@@ -146,15 +146,13 @@ export const useWalletStore = create<State>((set) => ({
             wallets.push({
               id: w.platform_identifier,
               icon: w.platform,
-              title: utils.string.formatAddressUsername(w.platform_identifier),
+              title: utils.string.formatAddressUsername(w),
               subtitle: ChainDisplayNames.get(w.platform) || '',
               usd_amount: utils.formatUsdDigit(data.latest_snapshot_bal),
               balances: data.balance.map((b) => ({
                 source: {
                   id: w.platform_identifier,
-                  title: utils.string.formatAddressUsername(
-                    w.platform_identifier,
-                  ),
+                  title: utils.string.formatAddressUsername(w),
                 },
                 type: 'token',
                 token: {

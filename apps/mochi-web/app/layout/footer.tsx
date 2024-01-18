@@ -46,8 +46,8 @@ const PoweredBySolana = ({ className = '' }: any) => (
           y2="21.872"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#00FFA3" />
-          <stop offset="1" stop-color="#DC1FFF" />
+          <stop stopColor="#00FFA3" />
+          <stop offset="1" stopColor="#DC1FFF" />
         </linearGradient>
         <linearGradient
           id="svg-1864516501_9223_b"
@@ -57,8 +57,8 @@ const PoweredBySolana = ({ className = '' }: any) => (
           y2="19.727"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#00FFA3" />
-          <stop offset="1" stop-color="#DC1FFF" />
+          <stop stopColor="#00FFA3" />
+          <stop offset="1" stopColor="#DC1FFF" />
         </linearGradient>
         <linearGradient
           id="svg-1864516501_9223_c"
@@ -68,8 +68,8 @@ const PoweredBySolana = ({ className = '' }: any) => (
           y2="20.793"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#00FFA3" />
-          <stop offset="1" stop-color="#DC1FFF" />
+          <stop stopColor="#00FFA3" />
+          <stop offset="1" stopColor="#DC1FFF" />
         </linearGradient>
       </defs>
     </svg>

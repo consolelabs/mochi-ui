@@ -1,5 +1,6 @@
 import emojiStrip from 'emoji-strip'
 import UI, { Platform, utils as mochiUtils } from '@consolelabs/mochi-formatter'
+import type { AssociatedAccount } from '@consolelabs/mochi-rest'
 import { WebSolid } from '@mochi-ui/icons'
 import { utils } from 'ethers'
 import ReactDOMServer from 'react-dom/server'
@@ -7,11 +8,6 @@ import { ROUTES } from '~constants/routes'
 import { appLogo, discordLogo, telegramLogo } from '~utils/image'
 import { formatDate, formatRelative } from '~utils/time'
 import { Tx } from './types'
-
-const domainNameKeyByChain = {
-  [Platform.EvmChain]: 'ens',
-  [Platform.SolanaChain]: 'sns',
-}
 
 function isVault(source: string) {
   return source === 'mochi-vault'
@@ -159,14 +155,9 @@ export async function transform(d: any): Promise<Tx> {
         aa.platform_identifier.toLowerCase() === address.toLowerCase(),
     )
 
-    const key =
-      domainNameKeyByChain[
-        account?.platform as keyof typeof domainNameKeyByChain
-      ]
+    const domainName = mochiUtils.string.formatAddressUsername(account)
 
-    const domainName = account?.platform_metadata[key]
-
-    if (!account || !key || !domainName) {
+    if (!account || !domainName) {
       to.plain = d.other_profile_source
     } else {
       to.plain = domainName
@@ -180,14 +171,9 @@ export async function transform(d: any): Promise<Tx> {
         aa.platform_identifier.toLowerCase() === address.toLowerCase(),
     )
 
-    const key =
-      domainNameKeyByChain[
-        account?.platform as keyof typeof domainNameKeyByChain
-      ]
+    const domainName = mochiUtils.string.formatAddressUsername(account)
 
-    const domainName = account?.platform_metadata[key]
-
-    if (!account || !key || !domainName) {
+    if (!account || !domainName) {
       from.plain = d.from_profile_source
     } else {
       from.plain = domainName
@@ -248,12 +234,14 @@ export const openTx = (tx: Tx) => {
 
 // Build an address string that looks like this:
 // 0xabc...123 & N person/people (first tx & remaining N)
-export const buildAddressString = (addresses: string[]) => {
+export const buildAddressString = (
+  addresses: Array<string | AssociatedAccount>,
+) => {
   const initialAddresses = addresses.slice(0, 1)
   const remainingAddresses = addresses.slice(1)
 
   const initialAddressString = initialAddresses
-    .map((s) => mochiUtils.string.formatAddressUsername(s, 20))
+    .map((s) => mochiUtils.string.formatAddressUsername(s))
     .join(', ')
   const remainingAddressCount = remainingAddresses.length
 

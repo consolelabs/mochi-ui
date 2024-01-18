@@ -11,7 +11,7 @@ const tableWrapperClsx = ({
   )
 
 const tableClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx('table-fixed w-full border-collapse relative', className)
+  clsx('w-full border-collapse relative', className)
 
 const tableRowClsx = ({
   clickable = false,
