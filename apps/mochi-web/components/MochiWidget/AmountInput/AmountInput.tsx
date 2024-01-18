@@ -288,7 +288,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
           >
             <IconButton
               label="Toggle USD mode"
-              className={clsx('text-[24px]', {
+              className={clsx('!text-[24px]', {
                 'text-text-icon-secondary': !isUsdMode,
               })}
               variant="link"
