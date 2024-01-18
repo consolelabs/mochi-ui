@@ -14,16 +14,7 @@ const badgeWrapperCva = cva(
         success: ['bg-success-soft', 'text-success-soft-fg'],
         danger: ['bg-danger-soft', 'text-danger-soft-fg'],
         warning: ['bg-warning-soft', 'text-warning-soft-fg'],
-        neutral: ['bg-neutral-soft', 'text-neutral-solid-hover'],
-        // Migrate to neutral variant
-        black: ['bg-neutral-soft', 'text-neutral-solid-hover'],
-        // Migrate to neutral variant
-        white: [
-          'bg-neutral-solid-fg',
-          'border',
-          'text-neutral-solid-active',
-          'border-neutral-outline-hover',
-        ],
+        neutral: ['bg-neutral-soft', 'text-neutral-soft-fg'],
       },
       iconPosition: {
         left: 'pl-[6px]',
@@ -72,10 +63,6 @@ const badgeIconCva = cva(['flex'], {
       danger: 'text-danger-soft-fg',
       warning: 'text-warning-soft-fg',
       neutral: 'text-neutral-soft-fg',
-      // Migrate to neutral variant
-      black: 'text-neutral-500',
-      // Migrate to neutral variant
-      white: 'text-neutral-500',
     },
     hasIconOnly: { true: '' },
     isAvatarIcon: { true: 'w-4 h-4' },

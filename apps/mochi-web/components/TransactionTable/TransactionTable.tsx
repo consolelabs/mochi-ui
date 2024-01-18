@@ -174,7 +174,10 @@ export const TransactionTable = (props: TransactionTableProps) => {
           const isTruncated = truncatedVal !== tx.where.text
 
           return (
-            <Badge className="inline-flex !bg-neutral-150" appearance="white">
+            <Badge
+              className="inline-flex !bg-neutral-soft-hover"
+              appearance="neutral"
+            >
               <BadgeIcon className="-ml-0.5">
                 {typeof tx.where.avatar === 'string' ? (
                   <Avatar src={tx.where.avatar} size="xxs" />

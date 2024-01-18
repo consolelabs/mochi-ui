@@ -24,7 +24,7 @@ export default function LowerBody({ data }: Props) {
       )
     }
     return (
-      <Badge className="capitalize" appearance="black">
+      <Badge className="capitalize" appearance="neutral">
         {data.status}
       </Badge>
     )

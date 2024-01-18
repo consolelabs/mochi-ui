@@ -66,19 +66,16 @@ export const transactionActionColor: Record<TransactionActionType, string> = {
   withdraw: 'border-[#EAECF0]',
 }
 
-export const transactionActionAppearance: Record<
-  TransactionActionType,
-  string
-> = {
+export const transactionActionAppearance = {
   transfer: 'success',
-  deposit: 'black',
-  withdraw: 'black',
-  vault_transfer: 'black',
+  deposit: 'neutral',
+  withdraw: 'neutral',
+  vault_transfer: 'neutral',
   airdrop: 'warning',
   payme: 'primary',
   paylink: 'primary',
   swap: 'secondary',
-}
+} as const
 
 export const typeFilters: {
   label: string
