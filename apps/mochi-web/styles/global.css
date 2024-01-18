@@ -88,7 +88,7 @@ iframe[id^='telegram-login'] {
 }
 
 .receipt-container {
-  @apply flex flex-col m-auto w-[320px] max-w-[320px];
+  @apply flex flex-col m-auto w-[360px] max-w-[360px];
 }
 
 .receipt-container.peeking {
