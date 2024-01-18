@@ -293,8 +293,8 @@ export const AmountInput: React.FC<AmountInputProps> = ({
         </div>
       </div>
       <div className="flex flex-col p-4 rounded-lg bg-white-pure">
-        <div className="grid grid-cols-6 gap-y-4 grid-rows-auto">
-          <div className="flex col-span-4 gap-x-1 items-center pr-4 h-max">
+        <div className="grid grid-cols-8 gap-y-4 grid-rows-auto">
+          <div className="flex col-span-5 gap-x-1 items-center pr-4 h-max">
             {isUsdMode && (
               <div className="font-medium leading-[32px] text-[32px] text-neutral-800">
                 $
@@ -312,7 +312,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               ref={ref}
             />
           </div>
-          <div className="flex col-span-2 justify-end items-center">
+          <div className="flex col-span-3 justify-end items-center">
             <TokenPicker
               authorized={authorized}
               unauthorizedContent={unauthorizedContent}
@@ -320,7 +320,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               onSelect={handleAssetChanged}
             />
           </div>
-          <span className="col-span-3 row-start-2 text-sm text-left shrink-0 text-neutral-600">
+          <span className="col-span-4 row-start-2 text-sm text-left shrink-0 text-neutral-600">
             &#8776; {!isUsdMode ? tipAmountUSD : tipAmountToken}{' '}
             {!isUsdMode ? 'USD' : selectedAsset?.token.symbol}
           </span>
@@ -342,7 +342,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
                 },
               } as any)
             }}
-            className="outline-none text-[#848281] text-[13px] col-span-3 text-right"
+            className="outline-none text-[#848281] text-[13px] col-span-4 text-right"
           >
             Balance: {!isUsdMode ? balance : balanceUsd}
           </button>
