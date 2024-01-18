@@ -23,7 +23,7 @@ export const TransactionBadge = ({ action }: Props) => {
         transactionActionColor[action],
       )}
     >
-      <Icon className="w-3 h-3" />
+      <Icon className="w-3 h-3 opacity-70" />
       {transactionActionString[action] ?? 'tip'}
     </Badge>
   )
