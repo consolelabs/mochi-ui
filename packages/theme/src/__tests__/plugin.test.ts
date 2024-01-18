@@ -7,6 +7,15 @@ describe('Plugin', () => {
       prefix: 'custom',
       defaultTheme: 'light',
       themes: {
+        dark: {
+          colors: {
+            primary: {
+              solid: {
+                DEFAULT: 'blue',
+              },
+            },
+          },
+        },
         retro: {
           extend: 'light',
           colors: {
@@ -21,13 +30,18 @@ describe('Plugin', () => {
       container: {
         landing: {
           maxWidth: '1280px',
-          paddingLeft: '16px',
-          paddingRight: '16px',
+
+          paddingLeft: '1rem',
+          paddingRight: '1rem',
+
           md: {
-            paddingLeft: '24px',
-            paddingRight: '24px',
+            paddingLeft: '1.5rem',
+            paddingRight: '1.5rem',
           },
         },
+      },
+      screens: {
+        xs: '500px',
       },
     }
 

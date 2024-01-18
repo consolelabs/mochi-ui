@@ -30,6 +30,10 @@ type ContainerConfigType = {
   [key in LayoutType]?: ConfigLayout
 }
 
+type ScreensConfigType = {
+  [key in ScreenSizes]?: string
+}
+
 export type MochiUIPluginConfig = {
   /**
    * The prefix for the css variables.
@@ -59,4 +63,8 @@ export type MochiUIPluginConfig = {
    * The container configuration for each layout type.
    */
   container?: ContainerConfigType
+  /**
+   * The config for screen breakpoints.
+   */
+  screens?: ScreensConfigType
 }

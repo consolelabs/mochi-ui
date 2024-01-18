@@ -43,6 +43,7 @@ export const mochiui = (config: MochiUIPluginConfig = {}) => {
       landing: landingContainerConfig = {},
       dashboard: dashboardContainerConfig = {},
     } = {},
+    screens = {},
   } = config
 
   const userLightColors = get(themeObject, 'light.colors', {})
@@ -312,14 +313,14 @@ export const mochiui = (config: MochiUIPluginConfig = {}) => {
             'accordion-close': 'accordion-close 0.2s ease-out',
           },
           screens: {
-            '4xl': '1728px',
-            '3xl': '1536px',
-            '2xl': '1440px',
-            xl: '1280px',
-            lg: '1024px',
-            md: '768px',
-            sm: '425px',
-            xs: '375px',
+            '4xl': screens?.['4xl'] || '1728px',
+            '3xl': screens?.['3xl'] || '1536px',
+            '2xl': screens?.['2xl'] || '1440px',
+            xl: screens?.xl || '1280px',
+            lg: screens?.lg || '1024px',
+            md: screens?.md || '768px',
+            sm: screens?.sm || '425px',
+            xs: screens?.xs || '375px',
           },
         },
       },
