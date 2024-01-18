@@ -21,7 +21,7 @@ export const neutral = {
   150: '#f4f3f2', // NOTE: Missing in design system on figma.
   200: '#EAECF0',
   300: '#D6DADD',
-  400: '#d4d3d0',
+  400: '#AAAEB3',
   500: '#787E85',
   600: '#5D6267',
   700: '#4C5054',
