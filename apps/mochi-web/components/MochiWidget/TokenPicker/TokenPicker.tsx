@@ -260,7 +260,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
                         }
                       }}
                     />
-                    <span className="mt-auto text-xs text-neutral-500">
+                    <span className="mt-auto text-xs text-text-disabled">
                       Only supported tokens are shown
                     </span>
                   </>

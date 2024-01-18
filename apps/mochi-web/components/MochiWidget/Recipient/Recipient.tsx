@@ -208,7 +208,7 @@ export const Recipient: React.FC<RecipientProps> = ({
             >
               Recipients
             </label>
-            <span className="text-sm text-neutral-600">
+            <span className="text-sm text-text-tertiary">
               {selectedRecipients?.length ?? 0}/{MAX_RECIPIENTS}
             </span>
           </div>

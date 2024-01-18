@@ -330,7 +330,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               onSelect={handleAssetChanged}
             />
           </div>
-          <span className="col-span-4 row-start-2 text-sm text-left shrink-0 text-neutral-600">
+          <span className="col-span-4 row-start-2 text-sm text-left shrink-0 text-text-tertiary">
             &#8776; {!isUsdMode ? tipAmountUSD : tipAmountToken}{' '}
             {!isUsdMode ? 'USD' : selectedAsset?.token.symbol}
           </span>
@@ -352,7 +352,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
                 },
               } as any)
             }}
-            className="w-max ml-auto outline-none text-[#848281] text-[13px] col-span-4 text-right"
+            className="outline-none text-text-tertiary text-[13px] col-span-4 text-right"
           >
             Balance: {!isUsdMode ? balance : balanceUsd}
           </button>
