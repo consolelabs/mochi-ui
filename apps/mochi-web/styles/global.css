@@ -124,13 +124,18 @@ ul.list-dashed {
 }
 
 ul.list-dashed > li {
-  @apply block relative;
+  @apply block relative text-xl;
 }
 
 ul.list-dashed > li:not(:last-child) {
-  @apply pb-8;
+  @apply pb-4;
 }
 
 ul.list-dashed > li:before {
   @apply content-['\2014'] absolute top-0 right-full mr-4;
+}
+
+.react-markdown-block p + h5,
+.react-markdown-block p + h6 {
+  @apply pt-8;
 }

@@ -8,6 +8,7 @@ import remarkGfm from 'remark-gfm'
 import remarkBreaks from 'remark-breaks'
 import { api } from '~constants/mochi'
 import { NativeImage } from '~cpn/NativeImage'
+import clsx from 'clsx'
 
 type Page = {
   name: string
@@ -34,26 +35,39 @@ const Heading = ({
   children,
   level,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode[]
   level: number
 }) => {
   return (
     <Typography
       level={`h${level + 2}` as TypographyProps['level']}
-      className="py-8 leading-tight"
+      className="pb-8 leading-tight"
+      fontWeight="md"
     >
       {children}
     </Typography>
   )
 }
 
-const UnorderedList = ({ children }: { children: React.ReactNode }) => {
+const UnorderedList = ({ children }: { children: React.ReactNode[] }) => {
   return <ul className="list-dashed">{children}</ul>
 }
 
-const Paragraph = ({ children }: { children: React.ReactNode }) => {
+const Paragraph = ({ children }: { children: React.ReactNode[] }) => {
+  const hasOnlyOneChildOfStrong =
+    children.length === 1 &&
+    typeof children[0] !== 'string' &&
+    (children[0] as React.ReactElement<any, any>)?.props.node.tagName ===
+      'strong'
+
   return (
-    <Typography level="p1" className="text-xl font-normal pb-8">
+    <Typography
+      level="p1"
+      className={clsx('text-xl font-normal', {
+        'pb-4': hasOnlyOneChildOfStrong,
+        'pb-8': !hasOnlyOneChildOfStrong,
+      })}
+    >
       {children}
     </Typography>
   )
@@ -69,16 +83,24 @@ const Image = (props: any) => {
   )
 }
 
+const Strong = ({ children }: { children: React.ReactNode[] }) => {
+  return (
+    <Typography component="strong" className="!text-xl" fontWeight="lg">
+      {children}
+    </Typography>
+  )
+}
+
 const ChangelogItem = ({ name, content }: Page) => (
   <div className="gap-8 mb-24 md:flex justify-center">
     <div className="inline-block relative w-full md:w-[176px] flex-shrink-0 mb-12 md:mb-0">
       {/* TODO: use new Badge variant when design is provided */}
-      <div className="top-24 md:sticky flex flex-row md:flex-col gap-4 md:gap-2 items-center md:items-start">
+      <div className="top-8 md:sticky flex flex-row md:flex-col gap-4 md:gap-2 items-center md:items-start">
         <Badge className="w-max !text-base !rounded-md !px-4">v1.52.0</Badge>
         <Typography className="!text-text-secondary">{name}</Typography>
       </div>
     </div>
-    <div className="flex flex-col flex-1 max-w-[800px] whitespace-pre-wrap -my-8">
+    <div className="flex flex-col flex-1 max-w-[800px] whitespace-pre-wrap -mb-8 react-markdown-block">
       <ReactMarkdown
         components={{
           h1: Heading,
@@ -90,6 +112,8 @@ const ChangelogItem = ({ name, content }: Page) => (
           p: Paragraph,
           img: Image,
           ul: UnorderedList,
+          strong: Strong,
+          br: () => null,
         }}
         remarkPlugins={[remarkGfm, remarkBreaks]}
       >
