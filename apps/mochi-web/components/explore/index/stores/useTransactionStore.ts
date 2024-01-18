@@ -15,37 +15,49 @@ type Filters = {
 interface State {
   profileId: string
   txns: Tx[][]
-  addNewTx: (tx: Tx) => void
   loading: boolean
   fetching: boolean
+  size: number
+  page: number
+  total?: number
+  filters: Filters
+  sort: string
+  ws: WebSocket | null
+}
+
+interface Action {
+  addNewTx: (tx: Tx) => void
   fetchTxns: (
     filters?: Filters,
     sort?: string,
     page?: number,
     size?: number,
   ) => Promise<void>
-
-  size: number
   setSize: (size: number) => void
-  page: number
   setPage: (page: number) => void
-  total?: number
-
-  filters: Filters
   setFilters: (partialFilters: Partial<Filters>) => void
-
-  sort: string
   setSort: (sort: string) => void
-
   initWs: (override?: boolean, profileId?: string) => void
-  ws: WebSocket | null
 }
 
-export const useTransactionStore = create<State>((set, get) => ({
+const initialState: State = {
   profileId: '',
   txns: [],
   loading: true,
   fetching: true,
+  page: 1,
+  size: 15,
+  total: undefined,
+  filters: {
+    platform: '',
+    actions: [],
+  },
+  sort: '',
+  ws: null,
+}
+
+export const useTransactionStore = create<State & Action>((set, get) => ({
+  ...initialState,
   addNewTx: (tx) => {
     const { txns, size } = get()
 
@@ -114,15 +126,12 @@ export const useTransactionStore = create<State>((set, get) => ({
         })
       })
   },
-
-  size: 15,
-  page: 1,
   setSize: (size) => {
-    const { sort, size: _size, fetchTxns } = get()
+    const { sort, size: _size, filters, fetchTxns } = get()
 
     if (size !== _size) {
       set((s) => ({ ...s, size, page: 1 }))
-      fetchTxns(undefined, sort, 1, size)
+      fetchTxns(filters, sort, 1, size)
     }
   },
   setPage: async (page) => {
@@ -137,10 +146,6 @@ export const useTransactionStore = create<State>((set, get) => ({
       set((s) => ({ ...s, page }))
     }
   },
-
-  filters: {
-    platform: '',
-  },
   setFilters: (partialFilters) => {
     const { filters: _filters, sort, size, fetchTxns } = get()
 
@@ -151,7 +156,6 @@ export const useTransactionStore = create<State>((set, get) => ({
       fetchTxns(finalFilters, sort, 1, size)
     }
   },
-  sort: '',
   setSort: (sort) => {
     const { sort: _sort, filters, size, fetchTxns } = get()
     if (sort !== _sort) {
@@ -159,14 +163,18 @@ export const useTransactionStore = create<State>((set, get) => ({
       fetchTxns(filters, sort, 1, size)
     }
   },
-
   ws: null,
   initWs: (override = false, profileId = '') => {
     const { profileId: _profileId } = get()
     const shouldOverride = profileId !== _profileId
     if (!override && get().ws && !shouldOverride) return
 
-    set((s) => ({ ...s, profileId }))
+    set((s) => ({
+      ...s,
+      ...initialState,
+      txns: [],
+      profileId,
+    }))
     const ws = new WebSocket(
       profileId
         ? `${MOCHI_PAY_WSS}/ws${GET_PATHS.PROFILE_TRANSACTION(profileId)}`
