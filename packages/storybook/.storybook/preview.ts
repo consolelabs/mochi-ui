@@ -1,83 +1,85 @@
-import { RouterContext } from 'next/dist/shared/lib/router-context.shared-runtime'
 import './styles.css'
-import { Parameters, StoryContext } from '@storybook/react'
+import { Preview, StoryContext } from '@storybook/react'
+import prettier from 'prettier/standalone'
+// @ts-expect-error
+import prettierTypescript from 'prettier/parser-babel'
 
-// Reference: https://github.com/storybookjs/storybook/tree/next/code/lib/source-loader
-function loadSource(c: StoryContext, input: string) {
-  const storySource = c.parameters.storySource
-  const { source: loaderSource, locationsMap } = storySource
-  const { __isArgsStory: isArgsStory } = c.parameters
-
-  // If has hardcoded
-  if (c.parameters.code !== undefined) {
-    return c.parameters.code
+function replaceStart(input: string) {
+  const lines = input.split('\n')
+  const firstLine = lines[0]?.trim()
+  const secondLine = lines[1]?.trim()
+  const renderFunctions = ['render() {', 'render()', 'render({', 'render']
+  const isStartWithRenderFnc = renderFunctions.some(
+    (r) => secondLine?.startsWith(r),
+  )
+  // Modify function render to fix prettier error formatting
+  if (isStartWithRenderFnc && firstLine === '{') {
+    lines[1] = `function ${lines[1]}`
+    return lines.slice(1, lines.length - 1).join('\n')
   }
-
-  const currentLocationIndex = locationsMap
-    ? Object.keys(locationsMap).find((key: string) => {
-        const sourceLoaderId = key.split('--')
-        return c.id.endsWith(sourceLoaderId[sourceLoaderId.length - 1])
-      })
-    : undefined
-  const currentLocation =
-    locationsMap && currentLocationIndex
-      ? locationsMap[currentLocationIndex]
-      : undefined
-  // If not has location or is an story display by argument
-  if (!currentLocation || isArgsStory) {
-    return input
-  }
-
-  const lines = loaderSource.split('\n')
-
-  const { startBody: start, endBody: end } = currentLocation
-  if (start.line === end.line && lines[start.line - 1] !== undefined) {
-    return lines[start.line - 1].substring(start.col, end.col)
-  }
-  const startLine = lines[start.line - 1]
-  const endLine = lines[end.line - 1]
-  if (startLine === undefined || endLine === undefined) {
-    return null
-  }
-  return [
-    startLine.substring(start.col),
-    ...lines.slice(start.line, end.line - 1),
-    endLine.substring(0, end.col),
-  ].join('\n')
+  return lines.join('\n')
 }
 
-export const parameters: Parameters = {
-  actions: { argTypesRegex: '^on[A-Z].*' },
-  nextRouter: {
-    Provider: RouterContext.Provider,
-  },
-  docs: {
-    source: {
-      transform(input: string, c: StoryContext) {
-        return loadSource(c, input)
+function isNotIncludedComponentName(input: string) {
+  return input.includes('<[object Object]')
+}
+
+const preview: Preview = {
+  parameters: {
+    actions: { argTypesRegex: '^on[A-Z].*' },
+    docs: {
+      source: {
+        transform(input: string, c: StoryContext) {
+          const { __isArgsStory: isArgsStory, docs } = c.parameters
+          if (isArgsStory && !isNotIncludedComponentName(input)) {
+            return input
+          }
+          const originalStory = docs.source?.originalSource || input
+          try {
+            return prettier.format(replaceStart(originalStory), {
+              parser: 'babel-ts',
+              plugins: [prettierTypescript],
+              bracketSpacing: true,
+              bracketSameLine: false,
+              jsxSingleQuote: false,
+              printWidth: 80,
+              proseWrap: 'always',
+              semi: false,
+              singleQuote: true,
+              tabWidth: 2,
+              trailingComma: 'all',
+              htmlWhitespaceSensitivity: 'ignore',
+            })
+          } catch (err) {
+            console.error(err)
+            return input
+          }
+        },
       },
     },
-  },
-  controls: {
-    matchers: {
-      color: /(background|color)$/i,
-      date: /Date$/,
+    controls: {
+      matchers: {
+        color: /(background|color)$/i,
+        date: /Date$/,
+      },
     },
-  },
-  options: {
-    storySort: {
-      order: [
-        'Introduction',
-        ['Welcome', 'Installation', 'Design Philosophy'],
-        'Icons',
-        'Components',
-      ],
+    options: {
+      storySort: {
+        order: [
+          'Introduction',
+          ['Welcome', 'Installation', 'Design Philosophy'],
+          'Icons',
+          'Components',
+        ],
+      },
     },
-  },
-  darkMode: {
-    darkClass: 'dark',
-    lightClass: 'light',
-    classTarget: 'html',
-    stylePreview: true,
+    darkMode: {
+      darkClass: 'dark',
+      lightClass: 'light',
+      classTarget: 'html',
+      stylePreview: true,
+    },
   },
 }
+
+export default preview

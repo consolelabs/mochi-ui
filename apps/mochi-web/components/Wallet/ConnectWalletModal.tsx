@@ -283,11 +283,9 @@ export default function ConnectWalletModal({ isOpen, onClose }: Props) {
               if (isSuiConnected) {
                 return 'sui'
               }
-
               if (isEVMConnected) {
                 return 'evm'
               }
-
               return 'solana'
             })(),
           }),
