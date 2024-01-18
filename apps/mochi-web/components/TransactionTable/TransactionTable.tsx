@@ -52,7 +52,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: () => <span className="px-1 pl-2">#</span>,
         id: 'txId',
-        width: 80,
+        width: '5%',
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -67,7 +67,9 @@ export const TransactionTable = (props: TransactionTableProps) => {
                 content={<TransactionPeekingCard tx={tx} />}
                 className="!shadow-none bg-transparent"
                 arrow="right-center"
-                componentProps={{ trigger: { className: 'flex' } }}
+                componentProps={{
+                  trigger: { className: 'flex' },
+                }}
               >
                 <TransactionTxGroup tx={tx} />
               </Tooltip>
@@ -88,7 +90,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: () => <TransactionHeaderWen disabled={!enableColSort} />,
         id: 'wen',
-        width: 70,
+        width: '9%',
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -99,7 +101,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: () => <TransactionHeaderAction disabled={!enableColFilter} />,
         id: 'type',
-        width: 60,
+        width: '8%',
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -110,7 +112,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: 'issued by',
         id: 'from',
-        width: 120,
+        width: '7%',
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -121,7 +123,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: '',
         id: 'decoration arrow',
-        width: 25,
+        width: '2%',
         // eslint-disable-next-line
         cell: () => {
           return (
@@ -134,7 +136,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: 'recipients',
         id: 'to',
-        width: 120,
+        width: '7%',
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original

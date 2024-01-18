@@ -65,7 +65,7 @@
     "jest-watch-typeahead": "^2.2.2",
     "lint-staged": "^15.0.1",
     "plop": "^4.0.0",
-    "prettier": "^3.1.0",
+    "prettier": "3.1.1",
     "prettier-plugin-tailwindcss": "^0.5.7",
     "rimraf": "^5.0.5",
     "ts-node": "^10.9.1",
