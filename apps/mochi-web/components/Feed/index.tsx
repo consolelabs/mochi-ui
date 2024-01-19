@@ -94,7 +94,7 @@ export default function Feed({ className = '' }: Props) {
       />
       <div
         style={{ maxWidth: 1500 }}
-        className="flex justify-between items-center px-4 pt-6 pb-4 mx-auto w-screen sm:px-8"
+        className="flex justify-between items-center px-4 pt-6 pb-4 mx-auto w-screen sm:px-6"
       >
         <Typography>Recent Transactions</Typography>
         <Button asChild className="!pr-0" variant="link" color="primary">
@@ -118,7 +118,7 @@ export default function Feed({ className = '' }: Props) {
           /* }} */
           className="overflow-hidden h-screen max-h-full"
         >
-          <div className="px-6 mx-auto" style={{ width: 1488 }}>
+          <div className="px-6 mx-auto">
             <TransactionTable
               enableColFilter={false}
               enableColSort={false}

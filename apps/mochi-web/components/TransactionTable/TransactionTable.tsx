@@ -89,7 +89,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: () => <TransactionHeaderWen disabled={!enableColSort} />,
         id: 'wen',
-        width: '9%',
+        width: '10%',
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -146,7 +146,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: () => <TransactionHeaderTotalValue disabled={!enableColSort} />,
         id: 'amount',
-        width: '10%',
+        width: '20%',
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -230,7 +230,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
     <>
       <ScrollArea>
         <ScrollAreaViewport ref={scrollRef}>
-          <div style={{ minWidth: 1400 }} className={className}>
+          <div className={clsx('w-max mx-auto', className)}>
             <Table
               {...rest}
               size="sm"

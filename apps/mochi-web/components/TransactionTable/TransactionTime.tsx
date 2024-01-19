@@ -37,7 +37,7 @@ export const TransactionTime = ({ date, raw: _raw }: Props) => {
   /*   ) */
   /* } */
   return (
-    <Typography level="p5" className="tabular-nums text-left">
+    <Typography level="p5" className="w-max tabular-nums text-left">
       {date}
     </Typography>
   )
