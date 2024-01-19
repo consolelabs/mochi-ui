@@ -11,7 +11,11 @@ interface Props {
 export default function DataList({
   children,
 }: Omit<Props, 'listMode' | 'title' | 'right'>) {
-  return <ul className="relative flex-1 space-y-2 text-xs">{children}</ul>
+  return (
+    <ul className="relative flex-1 self-stretch space-y-2 text-xs">
+      {children}
+    </ul>
+  )
 }
 
 DataList.Item = function Item({

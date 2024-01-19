@@ -27,8 +27,8 @@ export default function ListUser({ data, title }: Props) {
     <DataList.Item right={data.length > 1 && <>&#8203;</>} title={title}>
       {data.length > 1 ? (
         <div className="flex flex-col gap-y-1 items-start whitespace-nowrap !text-neutral-600">
-          {data.map((n: any) => (
-            <Tooltip key={n.name} content={n.name}>
+          {data.map((n: any, i: number) => (
+            <Tooltip key={`${n.name}-${i}`} content={n.name}>
               <div className="flex gap-x-1 items-center text-current">
                 <CornerBottomLeftLine className="w-3 h-3 text-neutral-500 shrink-0" />
                 <Link

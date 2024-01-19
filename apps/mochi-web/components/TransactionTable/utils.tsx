@@ -148,39 +148,30 @@ export async function transform(d: any): Promise<Tx> {
     to.plain = '🍡 Mochi user'
   }
 
-  if (to && (d.action === 'withdraw' || d.action === 'paylink')) {
+  let subject = to
+
+  // handle domain name when dealing with external addresses
+  if (['withdraw', 'deposit'].includes(d.action)) {
+    // withdraw & deposit always target the other_profile
     const address = d.other_profile_source
     const account = d.from_profile?.associated_accounts?.find(
       (aa: any) =>
         aa.platform_identifier.toLowerCase() === address.toLowerCase(),
     )
 
-    if (!account) {
-      to.plain = d.other_profile_source
-    } else {
-      const domainName = mochiUtils.string.formatAddressUsername(account)
-      if (!domainName) {
-        to.plain = d.other_profile_source
-      } else {
-        to.plain = domainName
-      }
+    if (d.action === 'deposit') {
+      subject = from
     }
-  } else if (from && (d.action === 'deposit' || d.action === 'payme')) {
-    const address = d.from_profile_source
-    const account = d.from_profile?.associated_accounts?.find(
-      (aa: any) =>
-        aa.platform_identifier.toLowerCase() === address.toLowerCase(),
-    )
 
-    if (!account) {
-      from.plain = d.from_profile_source
-    } else {
+    if (!account && subject) {
+      subject.plain = d.other_profile_source
+    } else if (subject) {
       const domainName = mochiUtils.string.formatAddressUsername(account)
-      if (!domainName) {
-        from.plain = d.from_profile_source
-      } else {
-        from.plain = domainName
+      subject.plain = domainName
+      if (mochiUtils.address.isShorten(domainName)) {
+        subject.plain = d.other_profile_source
       }
+      subject.plain ||= d.other_profile_source
     }
   }
 

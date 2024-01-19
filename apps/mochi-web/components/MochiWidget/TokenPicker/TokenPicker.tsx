@@ -162,7 +162,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
   }
 
   useEffect(() => {
-    if (!Array.isArray(balancesSorted)) return
+    if (!authorized || !Array.isArray(balancesSorted)) return
     if (balancesSorted.length) {
       if (!selectedAsset) {
         handleTokenSelect(balancesSorted[0])
@@ -170,7 +170,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
     } else {
       handleTokenSelect(null)
     }
-  }, [balancesSorted, handleTokenSelect, selectedAsset])
+  }, [authorized, balancesSorted, handleTokenSelect, selectedAsset])
 
   return (
     <>

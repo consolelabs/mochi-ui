@@ -63,7 +63,6 @@ export const TransactionTable = (props: TransactionTableProps) => {
             <div className="flex gap-1.5 items-center pl-2">
               <TransactionStatusIcon tx={tx} />
               <Tooltip
-                key={tx.code}
                 content={<TransactionPeekingCard tx={tx} />}
                 className="!shadow-none bg-transparent"
                 arrow="right-center"
