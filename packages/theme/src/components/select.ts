@@ -34,7 +34,8 @@ const content = [
 const viewportPoperMode =
   'h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)] '
 
-const viewport = 'space-y-1 bg-background-popup p-3 rounded-lg shadow-md'
+const viewport =
+  'space-y-1 bg-background-popup p-3 rounded-lg shadow-md border border-divider'
 
 const label =
   'text-[10px] uppercase font-bold text-text-secondary tracking-tight leading-4'
@@ -408,17 +409,15 @@ const itemCva = cva(
     'flex gap-2 items-center',
     'transition duration-100',
     'text-sm',
-    'focus-visible:outline-none',
     'truncate',
-    //
     'font-medium',
     'hover:bg-background-level2 focus:bg-background-level2',
     'hover:outline-none focus:outline-none',
     'cursor-pointer',
     'p-2',
     'rounded-lg',
-    //
     'focus:shadow-none',
+    'focus-visible:outline-none',
   ],
   {
     variants: {
