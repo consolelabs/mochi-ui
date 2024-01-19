@@ -124,7 +124,11 @@ ul.list-dashed {
 }
 
 ul.list-dashed > li {
-  @apply block relative text-base md:text-xl;
+  @apply block relative text-base md:text-xl !leading-[1.25rem] md:!leading-[1.5rem] font-light;
+}
+
+ul.list-dashed > li > strong {
+  @apply !leading-[1.25rem] md:!leading-[1.5rem];
 }
 
 ul.list-dashed > li:not(:last-child) {
