@@ -41,7 +41,7 @@ const sidebarFooterVersionTextClsx = ({
   className = '',
 }: {
   className?: string
-} = {}) => clsx('text-xs text-text-secondary tracking-tight p-2', className)
+} = {}) => clsx('text-xs text-text-disabled tracking-tight p-2', className)
 
 const sidebarToggleButtonClsx = ({
   className = '',
@@ -142,7 +142,7 @@ const sidebarItemAccordionWrapperClsx = ({
 }) =>
   clsx(
     {
-      'rounded hover:bg-neutral-outline-hover': Boolean(expanded),
+      'rounded hover:bg-background-level2': Boolean(expanded),
       '!p-0': !expanded,
       'p-2.5': expanded,
     },
@@ -196,7 +196,7 @@ const classNamePropClsx = ({
     {
       'pointer-events-none': disabled,
       'cursor-default': selected,
-      'hover:bg-background-level3 focus:bg-background-level3 cursor-pointer':
+      'hover:bg-background-level2 focus:bg-background-level2 cursor-pointer':
         !selected,
     },
     className,

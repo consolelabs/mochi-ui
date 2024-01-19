@@ -59,7 +59,7 @@ export const dropdownItemStyleCva = cva(
     'flex items-center justify-between gap-3',
     'cursor-default',
     'rounded-md',
-    'focus-visible:outline-none data-[highlighted]:bg-neutral-plain-hover',
+    'focus-visible:outline-none data-[highlighted]:bg-background-level2',
   ],
   {
     variants: {
