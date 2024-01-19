@@ -26,6 +26,7 @@ export const Default: Story = {
   render: () => {
     return (
       <div className="gap-3 flex">
+        <Avatar size="xxs" src="https://mochi.gg/logo.png" />
         <Avatar size="xs" src="https://mochi.gg/logo.png" />
         <Avatar size="sm" src="https://mochi.gg/logo.png" />
         <Avatar src="https://mochi.gg/logo.png" />
@@ -52,6 +53,11 @@ export const Cutout: Story = {
   render: () => {
     return (
       <div className="gap-3 flex">
+        <Avatar
+          size="xxs"
+          smallSrc="https://cdn.discordapp.com/emojis/1093923016691421205.png?size=240&quality=lossless"
+          src="https://mochi.gg/logo.png"
+        />
         <Avatar
           size="xs"
           smallSrc="https://cdn.discordapp.com/emojis/1093923016691421205.png?size=240&quality=lossless"

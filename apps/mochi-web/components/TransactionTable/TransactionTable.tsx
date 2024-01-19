@@ -177,7 +177,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
             <Badge className="inline-flex !bg-neutral-150" appearance="white">
               <BadgeIcon className="-ml-0.5">
                 {typeof tx.where.avatar === 'string' ? (
-                  <Avatar src={tx.where.avatar} size="xs" />
+                  <Avatar src={tx.where.avatar} size="xxs" />
                 ) : (
                   <div className="flex justify-center items-center w-4 h-4 rounded-full">
                     <tx.where.avatar />

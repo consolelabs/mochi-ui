@@ -4,7 +4,8 @@ import clsx from 'clsx'
 const avatarCva = cva(['inline-block flex-shrink-0 rounded-full'], {
   variants: {
     size: {
-      xs: 'w-4 h-4',
+      xxs: 'w-4 h-4',
+      xs: '',
       sm: 'w-8 h-8',
       base: 'w-10 h-10',
       lg: 'w-12 h-12',
@@ -12,9 +13,26 @@ const avatarCva = cva(['inline-block flex-shrink-0 rounded-full'], {
       '2xl': 'w-16 h-16',
       '3xl': 'w-20 h-20',
     },
+    hasSmallSrc: {
+      true: '',
+      false: '',
+    },
   },
+  compoundVariants: [
+    {
+      size: 'xs',
+      hasSmallSrc: true,
+      className: 'w-8 h-8',
+    },
+    {
+      size: 'xs',
+      hasSmallSrc: false,
+      className: 'w-6 h-6',
+    },
+  ],
   defaultVariants: {
     size: 'base',
+    hasSmallSrc: false,
   },
 })
 
