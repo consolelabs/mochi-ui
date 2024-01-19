@@ -13,6 +13,7 @@ import {
   TextFieldDecorator,
   TextFieldInput,
   TextFieldRoot,
+  Tooltip,
 } from '@mochi-ui/core'
 import { ProfileGuardSuccessLine, Spinner, UserSolid } from '@mochi-ui/icons'
 import { useDebounce, useDisclosure } from '@dwarvesf/react-hooks'
@@ -211,19 +212,25 @@ export const Recipient: React.FC<RecipientProps> = ({
               {selectedRecipients?.length ?? 0}/{MAX_RECIPIENTS}
             </span>
           </div>
-          <button
-            tabIndex={-1}
-            type="button"
-            onClick={openContacts}
-            className="flex relative justify-center items-center -mr-2 w-5 h-5 rounded-full outline-none bg-neutral-500 text-white-pure"
+          <Tooltip
+            componentProps={{ trigger: { asChild: true } }}
+            content="Contact list"
+            arrow="top-center"
           >
-            <input
+            <button
               tabIndex={-1}
-              readOnly
-              className="absolute top-0 left-0 w-full h-full bg-transparent border-0 cursor-pointer outline-none"
-            />
-            <UserSolid />
-          </button>
+              type="button"
+              onClick={openContacts}
+              className="flex relative justify-center items-center w-5 h-5 rounded-full outline-none bg-neutral-500 text-white-pure"
+            >
+              <input
+                tabIndex={-1}
+                readOnly
+                className="absolute top-0 left-0 w-full h-full bg-transparent border-0 cursor-pointer outline-none"
+              />
+              <UserSolid />
+            </button>
+          </Tooltip>
         </div>
 
         <div

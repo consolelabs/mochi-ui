@@ -118,7 +118,11 @@ export const MonikerTableList = ({
   const isUserHasUnusableMoniker = data.some((d) => d.disabled)
 
   const filteredMonikers = useMemo(() => {
-    return data.filter(getFilterMonikerNameFunc(searchTerm))
+    return data.filter(getFilterMonikerNameFunc(searchTerm)).sort((a, b) => {
+      if (a.disabled) return 1
+      if (b.disabled) return -1
+      return 0
+    })
   }, [searchTerm, data])
 
   return (

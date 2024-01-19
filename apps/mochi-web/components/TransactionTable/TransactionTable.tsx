@@ -147,7 +147,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: () => <TransactionHeaderTotalValue disabled={!enableColSort} />,
         id: 'amount',
-        width: 90,
+        width: '10%',
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -167,7 +167,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: 'where',
         id: 'where',
-        width: 100,
+        width: '8%',
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
@@ -204,7 +204,11 @@ export const TransactionTable = (props: TransactionTableProps) => {
         cell: (props) => {
           const tx = props.row.original
 
-          return <TransactionAction tx={tx} />
+          return (
+            <div className="flex justify-end">
+              <TransactionAction tx={tx} />
+            </div>
+          )
         },
       },
     )

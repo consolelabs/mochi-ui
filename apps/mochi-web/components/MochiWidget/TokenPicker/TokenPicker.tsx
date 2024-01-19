@@ -255,7 +255,8 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
                       hideLastBorder
                       onRow={(record) => {
                         return {
-                          onClick: () => handleTokenSelect(record),
+                          onClick: () =>
+                            !record.disabled && handleTokenSelect(record),
                         }
                       }}
                     />

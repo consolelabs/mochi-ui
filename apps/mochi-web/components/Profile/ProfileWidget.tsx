@@ -265,7 +265,7 @@ export const ProfileWidget = () => {
                 {isSelected && (
                   <Typography
                     level="h8"
-                    className="duration-500 animate-in fade-in-0 slide-in-from-left-2 translate-x-1"
+                    className="duration-500 translate-x-1 animate-in fade-in-0 slide-in-from-left-2"
                   >
                     {name.split(' ')[0]}
                   </Typography>
@@ -318,7 +318,7 @@ export const ProfileWidget = () => {
             </DropdownMenu>
           )}
         </TabList>
-        <div className="relative overflow-hidden">
+        <div className="overflow-hidden relative">
           {Object.entries(chains).map(([chain, data]) => (
             <TabContent
               key={chain}
@@ -336,7 +336,7 @@ export const ProfileWidget = () => {
                 data={data}
                 hideLastBorder
                 onRow={(record) => ({
-                  onClick: () => setSelectedAsset(record),
+                  onClick: () => !record.disabled && setSelectedAsset(record),
                 })}
               />
             </TabContent>
