@@ -17,7 +17,7 @@ const contentAnimations = [
 ]
 
 const dropdownIconStyleCva = cva(
-  ['shrink-0 flex text-text-primary group-data-[disabled]:text-text-secondary'],
+  ['shrink-0 flex text-text-primary group-data-[disabled]:text-text-tertiary'],
   {
     variants: {
       isLeftIconAvatar: {
@@ -42,7 +42,7 @@ const dropdownChildItemClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
-    'flex-1 py-0.5 flex flex-col text-text-primary group-data-[disabled]:text-text-secondary',
+    'flex-1 py-0.5 flex flex-col text-text-primary group-data-[disabled]:text-text-tertiary',
     className,
   )
 
@@ -50,7 +50,7 @@ const dropdownChildItemSubtitleClsx = ({
   className = '',
 }: {
   className?: string
-} = {}) => clsx('text-text-secondary', className)
+} = {}) => clsx('text-text-tertiary', className)
 
 export const dropdownItemStyleCva = cva(
   [
@@ -77,7 +77,7 @@ const dropdownMenuSubTriggerClsx = ({
   className = '',
 }: {
   className?: string
-} = {}) => clsx('-rotate-90 text-text-secondary', className)
+} = {}) => clsx('-rotate-90 text-text-tertiary', className)
 
 const dropdownContentStyleCva = cva(
   [
