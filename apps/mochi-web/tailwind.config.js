@@ -173,5 +173,5 @@ module.exports = {
       },
     },
   },
-  plugins: [mochiui(), tailwindAnimate],
+  plugins: [mochiui({ addCommonColors: true }), tailwindAnimate],
 }
