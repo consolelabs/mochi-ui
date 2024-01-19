@@ -14,7 +14,7 @@ export function TabbedFeatures({ title, data, className }: Props) {
   return (
     <div className={clsx('flex flex-col gap-y-7 landing-container', className)}>
       {typeof title === 'string' ? (
-        <span className="text-2xl font-medium md:text-4xl title-tracking">
+        <span className="text-2xl font-medium md:text-4xl title-tracking text-text-primary">
           {title}
         </span>
       ) : (
@@ -39,10 +39,10 @@ export function TabbedFeatures({ title, data, className }: Props) {
                     type="button"
                     onClick={() => setIdx(i)}
                   >
-                    <span className="text-lg font-medium md:text-2xl md:leading-7">
+                    <span className="text-lg font-medium md:text-2xl md:leading-7 text-text-primary">
                       {d.title}
                     </span>
-                    <span className="mt-2 text-sm font-normal md:text-base md:leading-5">
+                    <span className="mt-2 text-sm font-normal md:text-base md:leading-5 text-text-secondary">
                       {d.body}
                     </span>
                   </button>

@@ -85,7 +85,7 @@ export const Footer = () => {
           <PoweredBySolana className="self-end w-auto h-7" />
           <Typography
             level="p5"
-            color="textSecondary"
+            color="textDisabled"
             className="mb-6 text-xs text-right"
           >
             Copyright © {year} Mochi, All rights reserved
