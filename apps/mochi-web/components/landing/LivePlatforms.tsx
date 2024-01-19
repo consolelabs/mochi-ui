@@ -13,7 +13,9 @@ export function LivePlatforms({
 }) {
   return (
     <div className={clsx('flex flex-col', className)}>
-      <span className="text-sm font-medium">Mochi is live on</span>
+      <span className="text-sm font-medium text-text-secondary">
+        Mochi is live on
+      </span>
       <ul
         className={clsx('gap-2 mt-2', {
           'grid grid-cols-2 auto-rows-auto md:flex': useGridOnMobile,
