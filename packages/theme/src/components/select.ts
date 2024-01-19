@@ -79,7 +79,7 @@ const triggerCva = cva(
         solid: '',
         plain: '',
         soft: '',
-        outline: 'shadow-button border',
+        outline: 'border',
       },
       isFilled: {
         true: [],

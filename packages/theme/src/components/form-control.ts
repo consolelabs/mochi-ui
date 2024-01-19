@@ -15,8 +15,8 @@ const formHelperText = ({
   clsx(
     'text-xs tracking-tighter',
     {
-      'text-danger-plain-fg': error,
-      'text-text-secondary': !error,
+      'text-danger-outline-fg': error,
+      'text-text-tertiary': !error,
     },
     className,
   )
