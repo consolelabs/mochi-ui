@@ -6,11 +6,25 @@ import {
   TextFieldRoot,
   TextFieldInput,
   TextFieldDecorator,
+  Tabs,
+  TabList,
+  TabTrigger,
+  ScrollArea,
+  ScrollAreaScrollbar,
+  ScrollAreaThumb,
+  ScrollAreaCorner,
+  ScrollAreaViewport,
+  Typography,
 } from '@mochi-ui/core'
-import { CrossCircleOutlined, MagnifierLine } from '@mochi-ui/icons'
+import {
+  StarsSolid,
+  ShapesSolid,
+  CrossCircleOutlined,
+  MagnifierLine,
+} from '@mochi-ui/icons'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useDisclosure } from '@dwarvesf/react-hooks'
-import { Tab } from '@headlessui/react'
+/* import { Tab } from '@headlessui/react' */
 import { BottomSheet } from '~cpn/BottomSheet'
 import { sectionFormatter } from '../TokenPicker/utils'
 
@@ -33,7 +47,7 @@ function getFilterThemeFunc(searchTerm: string) {
 }
 
 export default function ThemePicker({ value, onChange }: ThemePickerProps) {
-  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [selectedTab, setSelectedTab] = useState<'common' | 'zodiac'>('common')
   const { data: themes = [] } = useSWR<Theme[]>(
     ['tip-widget-themes'],
     async () => {
@@ -44,14 +58,17 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
         d.name.toLowerCase().includes('aries'),
       )
       return [
-        ...data
-          .slice(0, startOfZodiac)
-          .map((d) => ({ id: d.id, name: d.name, src: d.image, group: 'TBD' })),
+        ...data.slice(0, startOfZodiac).map((d) => ({
+          id: d.id,
+          name: d.name,
+          src: d.image,
+          group: 'common',
+        })),
         ...data.slice(startOfZodiac).map((d) => ({
           id: d.id,
           name: d.name,
           src: d.image,
-          group: 'Zodiac signs',
+          group: 'zodiac',
         })),
       ]
     },
@@ -63,7 +80,7 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
   function onThemeSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     setThemeSearch(e.target.value)
     if (!e.target.value) {
-      setSelectedIndex(0)
+      setSelectedTab('common')
     }
   }
 
@@ -76,7 +93,7 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
     const firstGroupHasValueIdx = groupByTheme.findIndex(
       (g) => g.data.filter(getFilterThemeFunc(themeSearch)).length,
     )
-    setSelectedIndex(firstGroupHasValueIdx)
+    setSelectedTab(firstGroupHasValueIdx === 0 ? 'common' : 'zodiac')
   }, [groupByTheme, themeSearch])
 
   return (
@@ -169,64 +186,181 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
                 onChange={onThemeSearchChange}
               />
             </TextFieldRoot>
-            <Tab.Group
-              selectedIndex={selectedIndex}
-              onChange={setSelectedIndex}
-            >
-              <Tab.List className="flex overflow-x-auto flex-shrink-0 gap-6 mt-2 w-full">
-                {groupByTheme.map((tab) => (
-                  <Tab
-                    key={`theme-tab-${tab.title}`}
-                    className="focus-visible:outline-none"
+            <Tabs value={selectedTab} className="flex flex-col mt-3 min-h-0">
+              <TabList className="flex -mx-3">
+                <TabTrigger
+                  value="common"
+                  onClick={() => setSelectedTab('common')}
+                  wrapperClassName="!p-0"
+                  variant="solid"
+                  className={clsx(
+                    'flex flex-1 justify-center py-3 !px-0 rounded-none border-t border-b border-divider',
+                    {
+                      'bg-background-level2': selectedTab === 'common',
+                    },
+                  )}
+                >
+                  <ShapesSolid
+                    className={clsx('w-5 h-5', {
+                      'text-neutral-800': selectedTab === 'common',
+                      'text-neutral-500': selectedTab !== 'common',
+                    })}
+                  />
+                  <Typography
+                    color={
+                      selectedTab === 'common' ? 'textPrimary' : 'textSecondary'
+                    }
+                    className="capitalize"
+                    level="p5"
                   >
-                    {({ selected }) => (
-                      <h2
-                        className={`py-2 whitespace-nowrap text-sm
-                        ${
-                          selected ? 'text-text-primary' : 'text-text-secondary'
-                        }`}
-                      >
-                        {tab.title}
-                      </h2>
-                    )}
-                  </Tab>
-                ))}
-              </Tab.List>
-              <Tab.Panels className="overflow-y-auto w-full">
-                {groupByTheme.map((t) => {
-                  return (
-                    <Tab.Panel
-                      key={`theme-panel-${t.title}`}
-                      className="grid grid-cols-2 auto-rows-fr gap-4"
-                    >
-                      {t.data
-                        .filter((d) => !!d.src)
-                        .filter(getFilterThemeFunc(themeSearch))
-                        .map((d) => {
-                          return (
-                            <button
-                              type="button"
-                              key={`theme-image-${d.name}-${d.id}`}
-                              onClick={() => {
-                                onChange(d)
-                                onClose()
-                              }}
-                              className="relative h-full outline-none aspect-video"
-                            >
-                              <Image
-                                fill
-                                alt=""
-                                src={d.src}
-                                className="object-cover w-full h-full rounded-lg"
-                              />
-                            </button>
-                          )
-                        })}
-                    </Tab.Panel>
-                  )
-                })}
-              </Tab.Panels>
-            </Tab.Group>
+                    Common
+                  </Typography>
+                </TabTrigger>
+                <TabTrigger
+                  value="zodiac"
+                  onClick={() => setSelectedTab('zodiac')}
+                  wrapperClassName="!p-0"
+                  variant="solid"
+                  className={clsx(
+                    'flex flex-1 justify-center py-3 !px-0 rounded-none border-t border-b border-divider',
+                    {
+                      'bg-background-level2': selectedTab === 'zodiac',
+                    },
+                  )}
+                >
+                  <StarsSolid
+                    className={clsx('w-5 h-5', {
+                      'text-neutral-800': selectedTab === 'zodiac',
+                      'text-neutral-500': selectedTab !== 'zodiac',
+                    })}
+                  />
+                  <Typography
+                    color={
+                      selectedTab === 'zodiac' ? 'textPrimary' : 'textSecondary'
+                    }
+                    className="capitalize"
+                    level="p5"
+                  >
+                    Zodiac signs
+                  </Typography>
+                </TabTrigger>
+              </TabList>
+              <ScrollArea className="h-[430px]">
+                <ScrollAreaViewport>
+                  <div className="grid grid-cols-2 auto-rows-fr gap-4 mt-4">
+                    {selectedTab === 'common'
+                      ? groupByTheme[0]?.data
+                          .filter((d) => !!d.src)
+                          .filter(getFilterThemeFunc(themeSearch))
+                          .map((d) => {
+                            return (
+                              <button
+                                type="button"
+                                key={`theme-image-${d.name}-${d.id}`}
+                                onClick={() => {
+                                  onChange(d)
+                                  onClose()
+                                }}
+                                className="relative h-full outline-none aspect-video"
+                              >
+                                <Image
+                                  fill
+                                  alt=""
+                                  src={d.src}
+                                  className="object-cover w-full h-full rounded-lg"
+                                />
+                              </button>
+                            )
+                          })
+                      : groupByTheme[1]?.data
+                          .filter((d) => !!d.src)
+                          .filter(getFilterThemeFunc(themeSearch))
+                          .map((d) => {
+                            return (
+                              <button
+                                type="button"
+                                key={`theme-image-${d.name}-${d.id}`}
+                                onClick={() => {
+                                  onChange(d)
+                                  onClose()
+                                }}
+                                className="relative h-full outline-none aspect-video"
+                              >
+                                <Image
+                                  fill
+                                  alt=""
+                                  src={d.src}
+                                  className="object-cover w-full h-full rounded-lg"
+                                />
+                              </button>
+                            )
+                          })}
+                  </div>
+                </ScrollAreaViewport>
+                <ScrollAreaScrollbar orientation="vertical" className="mt-10">
+                  <ScrollAreaThumb />
+                </ScrollAreaScrollbar>
+                <ScrollAreaCorner className="bg-neutral-outline-hover" />
+              </ScrollArea>
+            </Tabs>
+            {/* <Tab.Group */}
+            {/*   selectedIndex={selectedIndex} */}
+            {/*   onChange={setSelectedIndex} */}
+            {/* > */}
+            {/*   <Tab.List className="flex overflow-x-auto flex-shrink-0 gap-6 mt-2 w-full"> */}
+            {/*     {groupByTheme.map((tab) => ( */}
+            {/*       <Tab */}
+            {/*         key={`theme-tab-${tab.title}`} */}
+            {/*         className="focus-visible:outline-none" */}
+            {/*       > */}
+            {/*         {({ selected }) => ( */}
+            {/*           <h2 */}
+            {/*             className={`py-2 whitespace-nowrap text-sm */}
+            {/*             ${ */}
+            {/*               selected ? 'text-text-primary' : 'text-text-secondary' */}
+            {/*             }`} */}
+            {/*           > */}
+            {/*             {tab.title} */}
+            {/*           </h2> */}
+            {/*         )} */}
+            {/*       </Tab> */}
+            {/*     ))} */}
+            {/*   </Tab.List> */}
+            {/*   <Tab.Panels className="overflow-y-auto w-full"> */}
+            {/*     {groupByTheme.map((t) => { */}
+            {/*       return ( */}
+            {/*         <Tab.Panel */}
+            {/*           key={`theme-panel-${t.title}`} */}
+            {/*           className="grid grid-cols-2 auto-rows-fr gap-4" */}
+            {/*         > */}
+            {/*           {t.data */}
+            {/*             .filter((d) => !!d.src) */}
+            {/*             .filter(getFilterThemeFunc(themeSearch)) */}
+            {/*             .map((d) => { */}
+            {/*               return ( */}
+            {/*                 <button */}
+            {/*                   type="button" */}
+            {/*                   key={`theme-image-${d.name}-${d.id}`} */}
+            {/*                   onClick={() => { */}
+            {/*                     onChange(d) */}
+            {/*                     onClose() */}
+            {/*                   }} */}
+            {/*                   className="relative h-full outline-none aspect-video" */}
+            {/*                 > */}
+            {/*                   <Image */}
+            {/*                     fill */}
+            {/*                     alt="" */}
+            {/*                     src={d.src} */}
+            {/*                     className="object-cover w-full h-full rounded-lg" */}
+            {/*                   /> */}
+            {/*                 </button> */}
+            {/*               ) */}
+            {/*             })} */}
+            {/*         </Tab.Panel> */}
+            {/*       ) */}
+            {/*     })} */}
+            {/*   </Tab.Panels> */}
+            {/* </Tab.Group> */}
           </div>
         </BottomSheet>
       </div>

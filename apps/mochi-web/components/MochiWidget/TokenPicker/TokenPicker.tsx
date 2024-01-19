@@ -278,22 +278,6 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
                 )}
               </div>
             </Tabs>
-            {/* <Tab.Group selectedIndex={tabIdx} onChange={setTabIdx}> */}
-            {/*   <Tab.List className="flex gap-6 mt-2 w-full"> */}
-            {/*     {TokenTabs.map((tab) => ( */}
-            {/*       <Tab */}
-            {/*         key={tab.key} */}
-            {/*         className="focus-visible:outline-none" */}
-            {/*       ></Tab> */}
-            {/*     ))} */}
-            {/*   </Tab.List> */}
-            {/*   <Tab.Panels className="flex-1 w-full min-h-0"> */}
-            {/*     <Tab.Panel className="flex flex-col gap-2 h-full"> */}
-            {/*     </Tab.Panel> */}
-            {/*     <Tab.Panel className="flex flex-col gap-2 h-full"> */}
-            {/*     </Tab.Panel> */}
-            {/*   </Tab.Panels> */}
-            {/* </Tab.Group> */}
           </div>
         ) : (
           unauthorizedContent

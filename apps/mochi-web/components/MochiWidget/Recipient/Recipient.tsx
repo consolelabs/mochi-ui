@@ -368,6 +368,7 @@ export const Recipient: React.FC<RecipientProps> = ({
                   loading={showSkeleton}
                   data={filteredRecipients}
                   selectedRecipients={selectedRecipients}
+                  isOnChain={selectedPlatform.platform === 'on-chain'}
                 />
               </Combobox.Options>
             </BottomSheetProvider>
