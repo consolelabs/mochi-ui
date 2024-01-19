@@ -173,10 +173,10 @@ export default function ProfileDropdown({
           </Accordion>
           <DropdownMenuSeparator />
           <DropdownMenuLabel className="flex flex-col">
-            <Typography level="p6" color="textSecondary" fontWeight="sm">
+            <Typography level="p6" color="textDisabled" fontWeight="sm">
               Powered by Console Labs
             </Typography>
-            <Typography level="p6" color="textSecondary" fontWeight="sm">
+            <Typography level="p6" color="textDisabled" fontWeight="sm">
               Version {appVersion}
             </Typography>
           </DropdownMenuLabel>

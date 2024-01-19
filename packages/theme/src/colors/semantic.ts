@@ -253,7 +253,7 @@ export const semanticColors = {
       tooltip: commonColors.neutral[500], // slider tooltip
       backdrop: 'rgba(23, 24, 29, .4)', // 40%
     },
-    divider: 'rgba(23, 24, 29, .08)',
+    divider: 'rgba(20, 21, 24, .08)',
     focus: commonColors.primary['100'],
   },
   dark: {
