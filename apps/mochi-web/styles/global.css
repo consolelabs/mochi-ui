@@ -124,7 +124,7 @@ ul.list-dashed {
 }
 
 ul.list-dashed > li {
-  @apply block relative text-base md:text-xl font-light;
+  @apply block relative text-base -tracking-[0.2px] font-light;
 }
 
 ul.list-dashed > li:not(:last-child) {

@@ -46,10 +46,10 @@ const Heading = ({
   return (
     <Typography
       level={`h${level + 2}` as TypographyProps['level']}
-      className={clsx('pb-8 leading-tight', {
-        '!text-3xl md:!text-4.5xl': level === 1,
-        '!text-2xl md:!text-3.5xl': level === 2,
-        '!text-xl md:!text-2xl': level === 3,
+      className={clsx('pb-8 leading-tight -tracking-[0.2px]', {
+        '!text-3xl md:!text-4xl': level === 1,
+        '!text-2xl': level === 2,
+        '!text-xl': level === 3,
       })}
       fontWeight="md"
     >
@@ -72,7 +72,7 @@ const Paragraph = ({ children }: { children: React.ReactNode[] }) => {
   return (
     <Typography
       level="p1"
-      className={clsx('!text-base md:!text-xl font-normal', {
+      className={clsx('!text-base font-normal -tracking-[0.2px]', {
         'pb-4': hasOnlyOneChildOfStrong,
         'pb-8': !hasOnlyOneChildOfStrong,
       })}
@@ -96,8 +96,8 @@ const Strong = ({ children }: { children: React.ReactNode[] }) => {
   return (
     <Typography
       component="strong"
-      className="!text-base md:!text-xl"
-      fontWeight="lg"
+      className="!text-base -tracking-[0.2px]"
+      fontWeight="md"
     >
       {children}
     </Typography>
@@ -144,12 +144,15 @@ export default function Changelog({ data }: Props) {
       <SEO title={PAGES.CHANGE_LOG.title} tailTitle />
       <div className="flex flex-col pt-8 md:pt-24 landing-container">
         <div className="w-full flex justify-center mb-16 md:mb-24">
-          <div className="w-full max-w-[1008px] flex justify-end">
+          <div className="w-full max-w-[1008px]">
             <Typography
               level="h3"
-              className="w-full md:pl-[208px] leading-tight text-[32px] md:text-4.5xl"
+              className="w-full -tracking-[2px] text-[32px] md:text-4xl mb-2 overflow-visible"
             >
               Changelog
+            </Typography>
+            <Typography className="!text-text-secondary">
+              The latest updates from Mochi.
             </Typography>
           </div>
         </div>
