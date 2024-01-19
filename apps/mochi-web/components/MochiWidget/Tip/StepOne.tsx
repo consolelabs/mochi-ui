@@ -85,8 +85,8 @@ export default function StepOne() {
 
   return (
     <div className="flex flex-col flex-1 gap-y-3 h-full min-h-0">
-      <div className="flex flex-col gap-y-1 h-full">
-        <div className="flex flex-col gap-y-2.5 items-center pb-3">
+      <div className="flex flex-col h-full gap-y-3">
+        <div className="flex flex-col gap-y-1.5 items-center pb-1">
           <p className="text-xl text-text-primary font-medium">Send a tip</p>
           <span className="text-text-tertiary text-xs text-center">
             Celebrate someone&apos;s birthday or achievement

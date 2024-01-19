@@ -199,8 +199,8 @@ export const Recipient: React.FC<RecipientProps> = ({
 
   return (
     <>
-      <div className="flex flex-col gap-y-3 p-2 rounded-xl bg bg-background-level2">
-        <div className="flex justify-between items-center px-4 h-[34px]">
+      <div className="flex flex-col gap-y-3 p-3 rounded-xl bg bg-background-level2">
+        <div className="flex justify-between items-center px-3 h-[34px]">
           <div className="flex gap-x-2 items-center">
             <label
               htmlFor="recipients"
@@ -221,7 +221,7 @@ export const Recipient: React.FC<RecipientProps> = ({
               tabIndex={-1}
               type="button"
               onClick={openContacts}
-              className="flex relative justify-center items-center -mr-2 w-5 h-5 rounded-full outline-none bg-text-icon-secondary text-white-pure"
+              className="flex relative justify-center items-center -mr-3 w-5 h-5 rounded-full outline-none bg-text-icon-secondary text-white-pure"
             >
               <input
                 tabIndex={-1}
@@ -234,7 +234,7 @@ export const Recipient: React.FC<RecipientProps> = ({
         </div>
 
         <div
-          className="flex gap-x-2 items-center py-2.5 px-4 rounded-lg border bg-white-pure border-white-pure"
+          className="flex gap-x-2 items-center py-2.5 px-3 rounded-lg border bg-white-pure border-white-pure"
           style={
             isOpenRecipients
               ? {
