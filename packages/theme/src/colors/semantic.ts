@@ -235,7 +235,7 @@ export const semanticColors = {
     },
     text: {
       primary: commonColors.neutral['800'],
-      secondary: commonColors.neutral['600'],
+      secondary: commonColors.neutral['700'],
       tertiary: commonColors.neutral['500'],
       disabled: commonColors.neutral['400'],
       icon: commonColors.neutral['800'], // removeable
