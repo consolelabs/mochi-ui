@@ -57,9 +57,12 @@ export default function Feed({ className = '' }: Props) {
   return (
     <div
       style={{ maxHeight: 700 }}
-      className={clsx('h-screen relative bg-white w-screen flex flex-col', {
-        className,
-      })}
+      className={clsx(
+        'h-screen relative  bg-background-level1 w-screen flex flex-col',
+        {
+          className,
+        },
+      )}
     >
       <button
         type="button"
@@ -96,7 +99,7 @@ export default function Feed({ className = '' }: Props) {
         style={{ maxWidth: 1500 }}
         className="flex justify-between items-center px-4 pt-6 pb-4 mx-auto w-screen sm:px-6"
       >
-        <Typography>Recent Transactions</Typography>
+        <Typography color="textSecondary">Recent Transactions</Typography>
         <Button asChild className="!pr-0" variant="link" color="primary">
           <Link href={ROUTES.EXPLORE}>
             View all <ArrowRightLine />
@@ -116,7 +119,7 @@ export default function Feed({ className = '' }: Props) {
           /*   if (bottomSpace > showBotFadeLimit && isShowBotFade) hideBotFade() */
           /*   if (bottomSpace <= showBotFadeLimit && !isShowBotFade) showBotFade() */
           /* }} */
-          className="overflow-hidden h-screen max-h-full"
+          className="overflow-hidden h-screen max-h-full  bg-background-level1"
         >
           <div className="px-6 mx-auto">
             <TransactionTable

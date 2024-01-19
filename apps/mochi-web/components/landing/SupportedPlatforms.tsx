@@ -104,7 +104,7 @@ export function SupportedPlatforms() {
           <span className="text-lg font-medium text-text-secondary">
             Socials
           </span>
-          <div className="grid grid-cols-5 auto-rows-auto border-t border-l border-divider">
+          <div className="grid grid-cols-5 auto-rows-auto border-t border-l border-neutral-outline-border">
             {socials.map(
               ([Icon, name, comingSoon]) =>
                 !comingSoon && (
@@ -120,7 +120,7 @@ export function SupportedPlatforms() {
         </div>
         <div className="flex flex-col gap-y-4">
           <span className="text-lg font-medium">Networks</span>
-          <div className="grid grid-cols-5 auto-rows-auto border-t border-l border-divider">
+          <div className="grid grid-cols-5 auto-rows-auto border-t border-l border-neutral-outline-border">
             {networks.map(
               ([Icon, name, comingSoon]) =>
                 !comingSoon && (
