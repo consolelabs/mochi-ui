@@ -61,7 +61,7 @@ export function Slot() {
       <TextFieldRoot>
         <TextFieldDecorator>
           <Avatar
-            size="xs"
+            size="xxs"
             smallSrc="https://cdn.discordapp.com/emojis/1093923016691421205.png?size=240&quality=lossless"
             src="https://mochi.gg/logo.png"
           />

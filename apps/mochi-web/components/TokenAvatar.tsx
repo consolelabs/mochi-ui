@@ -38,8 +38,7 @@ export const TokenAvatar = (
       src={data.src}
       smallSrc={data.smallSrc}
       fallback={coinIcon.src}
-      className="w-6 h-6"
-      size="base"
+      size="xs"
     />
   )
 }

@@ -33,8 +33,7 @@ const Token: ColumnProps<BalanceWithSource>['cell'] = (props) => (
       src={props.row.original.token.icon}
       smallSrc={props.row.original.token.chain?.icon ?? coinIcon.src}
       fallback={coinIcon.src}
-      className="w-6 h-6"
-      size="base"
+      size="xs"
     />
     <div>
       <div className="flex space-x-1">

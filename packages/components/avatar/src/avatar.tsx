@@ -16,6 +16,59 @@ interface AvatarProps extends AvatarStylesProps {
   isLoading?: boolean
 }
 
+const AvatarContent = (
+  props: Pick<AvatarProps, 'smallSrc' | 'size' | 'src' | 'fallback'>,
+) => {
+  const { smallSrc, size, src, fallback } = props
+  const id = useId()
+
+  return size === 'xs' ? (
+    <svg height="100%" role="none" viewBox="0 0 100 100" width="100%">
+      <mask id={`circle-mask-${id}`}>
+        <circle cx="50%" cy="50%" fill="white" r="50%" />
+        <circle cx="75%" cy="75%" fill="black" r="21.875%" />
+      </mask>
+      <image
+        width="75%"
+        height="75%"
+        x="12.5%"
+        y="12.5%"
+        mask={`url(#circle-mask-${id})`}
+        xlinkHref={src || fallback}
+        className={avatarImgSvgCls}
+      />
+      <image
+        width="38.28125%"
+        height="38.28125%"
+        x="55.859375%"
+        y="55.859375%"
+        xlinkHref={smallSrc || fallback}
+      />
+    </svg>
+  ) : (
+    <svg height="100%" role="none" viewBox="0 0 100 100" width="100%">
+      <mask id={`circle-mask-${id}`}>
+        <circle cx="50%" cy="50%" fill="white" r="50%" />
+        <circle cx="80%" cy="80%" fill="black" r="20%" />
+      </mask>
+      <image
+        height="100%"
+        mask={`url(#circle-mask-${id})`}
+        width="100%"
+        xlinkHref={src || fallback}
+        className={avatarImgSvgCls}
+      />
+      <image
+        height="33%"
+        width="33%"
+        x="63%"
+        xlinkHref={smallSrc || fallback}
+        y="63%"
+      />
+    </svg>
+  )
+}
+
 export default function Avatar({
   size,
   src,
@@ -25,7 +78,6 @@ export default function Avatar({
   className,
   isLoading = false,
 }: AvatarProps) {
-  const id = useId()
   const fallbackUrl = boringAvatar(fallback)
 
   const isCached = useMemo(() => {
@@ -36,7 +88,9 @@ export default function Avatar({
   }, [src, fallbackUrl])
 
   return (
-    <RadixAvatar.Root className={avatarCva({ size, className })}>
+    <RadixAvatar.Root
+      className={avatarCva({ size, className, hasSmallSrc: !!smallSrc })}
+    >
       <RadixAvatar.Image
         // NOTE:if loading => show skeleton
         src={isLoading ? '' : src || fallbackUrl}
@@ -45,26 +99,7 @@ export default function Avatar({
         onLoadingStatusChange={onLoadingStatusChange}
       >
         {smallSrc ? (
-          <svg height="100%" role="none" viewBox="0 0 100 100" width="100%">
-            <mask id={`circle-mask-${id}`}>
-              <circle cx="50%" cy="50%" fill="white" r="50%" />
-              <circle cx="80%" cy="80%" fill="black" r="20%" />
-            </mask>
-            <image
-              height="100%"
-              mask={`url(#circle-mask-${id})`}
-              width="100%"
-              xlinkHref={src || fallbackUrl}
-              className={avatarImgSvgCls}
-            />
-            <image
-              height="33%"
-              width="33%"
-              x="63%"
-              xlinkHref={smallSrc || fallbackUrl}
-              y="63%"
-            />
-          </svg>
+          <AvatarContent {...{ smallSrc, size, src }} fallback={fallbackUrl} />
         ) : null}
       </RadixAvatar.Image>
       <RadixAvatar.Fallback>
