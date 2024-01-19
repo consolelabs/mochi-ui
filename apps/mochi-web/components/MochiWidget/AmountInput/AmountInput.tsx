@@ -14,6 +14,7 @@ import {
   TokenAmount,
   formatTokenAmount,
 } from '~utils/number'
+import clsx from 'clsx'
 import { ArrowUpDownLine } from '@mochi-ui/icons'
 import events from '~constants/events'
 import { useDisclosure } from '@dwarvesf/react-hooks'
@@ -68,9 +69,11 @@ export const AmountInput: React.FC<AmountInputProps> = ({
       }`.trim()
 
   const balanceUsd = !isToken(request.asset)
-    ? getBalanceByMoniker(selectedAsset as Moniker, wallet).value *
-      (request.asset?.token_amount ?? 0) *
-      unitPrice
+    ? formatTokenAmount(
+        getBalanceByMoniker(selectedAsset as Moniker, wallet).value *
+          (request.asset?.token_amount ?? 0) *
+          unitPrice,
+      ).display
     : utils.formatUsdDigit((selectedAsset?.asset_balance ?? 0) * unitPrice)
 
   // tipAmountUSD will be inaccurate if it's rounded by formatUsdDigit. Ex: $1 -> $0.99, $2 -> $1.99
@@ -85,7 +88,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   })
 
   const tipAmountUSDhidden = utils.formatDigit({
-    value,
+    value: value.toFixed(request.asset?.token.decimal || MAX_AMOUNT_PRECISION),
     fractionDigits: MAX_AMOUNT_PRECISION,
     shorten: false,
     takeExtraDecimal: 1,
@@ -103,6 +106,15 @@ export const AmountInput: React.FC<AmountInputProps> = ({
     value: valueToken,
     fractionDigits: 2,
     shorten: valueToken >= 1,
+    takeExtraDecimal: 1,
+  })
+
+  const tipAmountTokenHidden = utils.formatDigit({
+    value: valueToken.toFixed(
+      request.asset?.token.decimal || MAX_AMOUNT_PRECISION,
+    ),
+    fractionDigits: MAX_AMOUNT_PRECISION,
+    shorten: false,
     takeExtraDecimal: 1,
   })
 
@@ -214,8 +226,9 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   }, [])
 
   useEffect(() => {
+    if (!authorized) return
     onSelectAsset?.(selectedAsset as BalanceWithSource | Moniker | null)
-  }, [onSelectAsset, selectedAsset])
+  }, [authorized, onSelectAsset, selectedAsset])
 
   return (
     <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-3">
@@ -271,8 +284,10 @@ export const AmountInput: React.FC<AmountInputProps> = ({
             <IconButton
               label="Toggle USD mode"
               variant="solid"
-              color={!isUsdMode ? 'neutral' : 'primary'}
-              className="!p-0 !w-7 !h-7 my-auto flex justify-center"
+              className={clsx('!p-0 !w-6 !h-6 my-auto flex justify-center', {
+                '!bg-neutral-500': !isUsdMode,
+                '!bg-primary-700': isUsdMode,
+              })}
               onClick={() => {
                 if (!isUsdMode) {
                   handleAmountChanged({
@@ -282,13 +297,13 @@ export const AmountInput: React.FC<AmountInputProps> = ({
                   })
                 } else {
                   handleAmountChanged({
-                    target: { value: String(tipAmountToken) },
+                    target: { value: String(tipAmountTokenHidden) },
                   })
                 }
                 toggleUsdMode()
               }}
             >
-              <ArrowUpDownLine className="w-5 h-5 !text-white" />
+              <ArrowUpDownLine className="!text-white scale-125" />
             </IconButton>
           </Tooltip>
         </div>
@@ -343,7 +358,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
                 },
               } as any)
             }}
-            className="outline-none text-[#848281] text-[13px] col-span-4 text-right"
+            className="w-max ml-auto outline-none text-[#848281] text-[13px] col-span-4 text-right"
           >
             Balance: {!isUsdMode ? balance : balanceUsd}
           </button>

@@ -221,7 +221,7 @@ export const Recipient: React.FC<RecipientProps> = ({
               tabIndex={-1}
               type="button"
               onClick={openContacts}
-              className="flex relative justify-center items-center w-5 h-5 rounded-full outline-none bg-neutral-500 text-white-pure"
+              className="flex relative justify-center items-center !w-5 h-5 rounded-full outline-none shrink-0 bg-neutral-500 text-white-pure"
             >
               <input
                 tabIndex={-1}

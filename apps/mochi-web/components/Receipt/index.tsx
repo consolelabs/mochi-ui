@@ -31,8 +31,8 @@ interface Props {
 let transformData: any
 
 export default function Receipt({
-  id,
   data: _data,
+  id = _data?.data?.external_id,
   variant = 'default',
   className,
 }: Props) {
@@ -204,18 +204,20 @@ export default function Receipt({
                         </span>
                       }
                     >
-                      <div className="flex gap-x-2 self-stretch">
-                        <CornerBottomLeftLine className="text-neutral-600 shrink-0" />
-                        <DataList.Item title="Group Tx ID">
-                          <Link
-                            href={`/tx/${data.originalTxId}`}
-                            className="flex items-center underline text-xxxs"
-                          >
-                            {data.originalTxId}
-                            <LinkLine />
-                          </Link>
-                        </DataList.Item>
-                      </div>
+                      <DataList>
+                        <div className="flex gap-x-2 self-stretch">
+                          <CornerBottomLeftLine className="text-neutral-600 shrink-0" />
+                          <DataList.Item title="Group Tx ID">
+                            <Link
+                              href={`/tx/${data.originalTxId}`}
+                              className="flex items-center underline text-xxxs"
+                            >
+                              {data.originalTxId}
+                              <LinkLine />
+                            </Link>
+                          </DataList.Item>
+                        </div>
+                      </DataList>
                     </DataList.Item>
                   ) : (
                     <DataList.Item title="Tx ID">
