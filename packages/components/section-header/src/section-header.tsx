@@ -45,7 +45,7 @@ const SectionHeaderDescription = ({
   return (
     <Typography
       level="p5"
-      color="textSecondary"
+      color="textTertiary"
       className={sectionHeaderDescriptionClsx({
         className,
       })}
