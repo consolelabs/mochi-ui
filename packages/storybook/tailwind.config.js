@@ -7,5 +7,5 @@ module.exports = {
     '../components/*/stories/**/*.stories.{js,jsx,ts,tsx}',
     '../theme/src/components/**/*.{js,jsx,ts,tsx}',
   ],
-  plugins: [mochiui(), tailwindAnimate],
+  plugins: [mochiui({ addCommonColors: true }), tailwindAnimate],
 }
