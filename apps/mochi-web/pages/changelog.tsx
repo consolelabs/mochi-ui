@@ -46,7 +46,10 @@ const Heading = ({
   return (
     <Typography
       level={`h${level + 2}` as TypographyProps['level']}
-      className="pb-8 leading-tight"
+      className={clsx('pb-8 leading-tight', {
+        '!text-2xl md:!text-3.5xl': level === 2,
+        '!text-xl md:!text-2xl': level === 3,
+      })}
       fontWeight="md"
     >
       {children}
@@ -68,7 +71,7 @@ const Paragraph = ({ children }: { children: React.ReactNode[] }) => {
   return (
     <Typography
       level="p1"
-      className={clsx('text-xl font-normal', {
+      className={clsx('!text-base md:!text-xl font-normal', {
         'pb-4': hasOnlyOneChildOfStrong,
         'pb-8': !hasOnlyOneChildOfStrong,
       })}
@@ -90,7 +93,11 @@ const Image = (props: any) => {
 
 const Strong = ({ children }: { children: React.ReactNode[] }) => {
   return (
-    <Typography component="strong" className="!text-xl" fontWeight="lg">
+    <Typography
+      component="strong"
+      className="!text-base md:!text-xl"
+      fontWeight="lg"
+    >
       {children}
     </Typography>
   )
@@ -101,11 +108,9 @@ const ChangelogItem = ({ name, content, version }: Page) => (
     <div className="inline-block relative w-full md:w-[176px] flex-shrink-0 mb-12 md:mb-0">
       {/* TODO: use new Badge variant when design is provided */}
       <div className="top-8 md:sticky flex flex-row md:flex-col gap-4 md:gap-2 items-center md:items-start">
-        {version ? (
-          <Badge className="w-max !text-base !rounded-md !px-4">
-            {version}
-          </Badge>
-        ) : null}
+        <Badge className="w-max !text-base !rounded-md !px-4">
+          {version || '-'}
+        </Badge>
         <Typography className="!text-text-secondary">{name}</Typography>
       </div>
     </div>
@@ -137,11 +142,11 @@ export default function Changelog({ data }: Props) {
     <Layout>
       <SEO title={PAGES.CHANGE_LOG.title} tailTitle />
       <div className="flex flex-col pt-8 md:pt-24 landing-container">
-        <div className="w-full flex justify-center mb-24">
+        <div className="w-full flex justify-center mb-16 md:mb-24">
           <div className="w-full max-w-[1008px] flex justify-end">
             <Typography
               level="h3"
-              className="w-full md:pl-[208px] leading-tight"
+              className="w-full md:pl-[208px] leading-tight text-[32px] md:text-4.5xl"
             >
               Changelog
             </Typography>
