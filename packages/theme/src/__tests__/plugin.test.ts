@@ -2,7 +2,7 @@ import { mochiui } from '../plugin'
 import { MochiUIPluginConfig } from '../types'
 
 describe('Plugin', () => {
-  it('case', () => {
+  it('should allow users to configure themes, breakpoints and spacings', () => {
     const config: MochiUIPluginConfig = {
       prefix: 'custom',
       defaultTheme: 'light',

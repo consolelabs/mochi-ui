@@ -58,7 +58,6 @@ export const mochiui = (config: MochiUIPluginConfig = {}) => {
 
     if (colors && typeof colors === 'object') {
       otherThemes[themeName].colors = deepMerge(
-        // @ts-ignore
         semanticColors[baseTheme],
         colors,
       )
@@ -66,7 +65,6 @@ export const mochiui = (config: MochiUIPluginConfig = {}) => {
   })
 
   const light: ConfigTheme = {
-    // @ts-ignore
     colors: deepMerge(semanticColors.light, userLightColors),
   }
 

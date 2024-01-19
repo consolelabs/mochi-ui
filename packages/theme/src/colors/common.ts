@@ -14,30 +14,17 @@ export const gray = {
   1000: '#000000',
 }
 
-export const neutral = {
-  50: '#F9FAFB',
-  100: '#F2F4F7',
-  200: '#EAECF0',
-  300: '#D6DADD',
-  400: '#AAAEB3',
-  500: '#787E85',
-  600: '#5D6267',
-  700: '#4C5054',
-  800: '#333639',
-  900: '#17181D',
-}
-
 export const blue = {
-  50: '#EFF8FF',
-  100: '#D1E9FF',
-  200: '#B2DDFF',
-  300: '#84CAFF',
-  400: '#53B1FD',
-  500: '#2E90FA',
-  600: '#1570EF',
-  700: '#175CD3',
-  800: '#1849A9',
-  900: '#194185',
+  100: '#f0f7ff',
+  200: '#dcecfe',
+  300: '#beddfe',
+  400: '#91c5fd',
+  500: '#61abfa',
+  600: '#3d97f7',
+  700: '#017aff',
+  800: '#0068d6',
+  900: '#0054ad',
+  1000: '#004085',
 }
 
 export const purple = {
@@ -108,7 +95,7 @@ export const commonColors = {
   success: green,
   warning: yellow,
   danger: red,
-  neutral,
+  neutral: gray,
 }
 
 export type CommonColors = typeof commonColors
