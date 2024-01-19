@@ -47,6 +47,7 @@ const Heading = ({
     <Typography
       level={`h${level + 2}` as TypographyProps['level']}
       className={clsx('pb-8 leading-tight', {
+        '!text-3xl md:!text-4.5xl': level === 1,
         '!text-2xl md:!text-3.5xl': level === 2,
         '!text-xl md:!text-2xl': level === 3,
       })}
