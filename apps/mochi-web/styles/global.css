@@ -124,11 +124,7 @@ ul.list-dashed {
 }
 
 ul.list-dashed > li {
-  @apply block relative text-base md:text-xl !leading-[1.25rem] md:!leading-[1.5rem] font-light;
-}
-
-ul.list-dashed > li > strong {
-  @apply !leading-[1.25rem] md:!leading-[1.5rem];
+  @apply block relative text-base md:text-xl font-light;
 }
 
 ul.list-dashed > li:not(:last-child) {
@@ -136,11 +132,14 @@ ul.list-dashed > li:not(:last-child) {
 }
 
 ul.list-dashed > li:before {
-  @apply content-['\2014'] absolute top-0 right-full mr-4;
+  @apply content-[''] h-[1px] w-4 bg-neutral-solid absolute top-3 right-full mr-4;
 }
 
 .react-markdown-block p + h4,
 .react-markdown-block p + h5,
-.react-markdown-block p + h6 {
+.react-markdown-block p + h6,
+.react-markdown-block ul + h4,
+.react-markdown-block ul + h5,
+.react-markdown-block ul + h6 {
   @apply pt-8;
 }
