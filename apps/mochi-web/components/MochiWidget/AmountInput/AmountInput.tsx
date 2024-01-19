@@ -237,13 +237,13 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   }, [authorized, onSelectAsset, selectedAsset])
 
   return (
-    <div className="rounded-xl bg p-2 bg-background-level2 flex flex-col gap-y-3">
+    <div className="rounded-xl bg p-3 bg-background-level2 flex flex-col gap-y-3">
       <div className="flex justify-between items-center">
         <Typography
           level="p5"
           color="textTertiary"
           fontWeight="md"
-          className="ml-4"
+          className="ml-3"
         >
           You send
         </Typography>
@@ -312,8 +312,8 @@ export const AmountInput: React.FC<AmountInputProps> = ({
           </Tooltip>
         </div>
       </div>
-      <div className="flex flex-col p-4 rounded-lg bg-white-pure">
-        <div className="grid grid-cols-8 gap-y-4 grid-rows-auto">
+      <div className="flex flex-col p-3 rounded-lg bg-white-pure">
+        <div className="grid grid-cols-8 gap-y-3 grid-rows-auto">
           <div className="flex col-span-5 gap-x-1 items-center pr-4 h-max">
             {isUsdMode && (
               <div className="font-medium leading-[32px] text-[32px] text-neutral-800">
