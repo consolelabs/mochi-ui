@@ -141,5 +141,5 @@ ul.list-dashed > li:before {
 .react-markdown-block ul + h4,
 .react-markdown-block ul + h5,
 .react-markdown-block ul + h6 {
-  @apply pt-8;
+  @apply pt-4;
 }
