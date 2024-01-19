@@ -30,8 +30,9 @@ export function TabbedFeatures({ title, data, className }: Props) {
                     className={clsx(
                       'text-left flex flex-col py-4 px-0 sm:p-4 md:p-6 rounded-2xl transition md:border pointer-events-none md:pointer-events-auto',
                       {
-                        'md:border-blue-700 md:bg-blue-100': i === idx,
-                        'md:border-transparent md:hover:bg-neutral-150':
+                        'md:border-primary-outline-border md:bg-primary-outline-hover':
+                          i === idx,
+                        'md:border-transparent md:hover:bg-background-level2':
                           i !== idx,
                       },
                     )}
@@ -47,7 +48,7 @@ export function TabbedFeatures({ title, data, className }: Props) {
                   </button>
                 </li>
                 {i !== data.length - 1 && (
-                  <div className="mx-0 sm:mx-4 h-px bg-neutral-150" />
+                  <div className="mx-0 sm:mx-4 h-px bg-background-level2" />
                 )}
               </React.Fragment>
             )
