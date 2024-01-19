@@ -148,11 +148,11 @@ export default function Index() {
               <>
                 Send money to anyone, anywhere, and Mochi will automatically
                 calculate the split. You can send to a recipient by{' '}
-                <span className="text-sm leading-7 rounded border px-[3px] py-[2px] border-neutral-400">
+                <span className="text-sm leading-7 rounded border px-[3px] py-[2px] border-neutral-outline-border">
                   @role
                 </span>
                 ,{' '}
-                <span className="text-sm leading-7 rounded border px-[3px] py-[2px] border-neutral-400">
+                <span className="text-sm leading-7 rounded border px-[3px] py-[2px] border-neutral-outline-border">
                   #channel
                 </span>{' '}
                 or even on other socials.

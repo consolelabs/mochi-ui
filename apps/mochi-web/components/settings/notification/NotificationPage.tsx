@@ -200,7 +200,7 @@ export function NotificationPage() {
             <Typography className="py-4" level="h6">
               Wallet Activity
             </Typography>
-            <div className="divide-y">
+            <div className="divide-y divide-divider">
               <NotificationSwitcherField
                 className="-mt-3"
                 tabIndex={switchTabIndex}
@@ -289,7 +289,7 @@ export function NotificationPage() {
             <Typography className="py-4" level="h6">
               Apps Activity
             </Typography>
-            <div className="divide-y">
+            <div className="divide-y divide-divider">
               <NotificationSwitcherField
                 className="-mt-3"
                 tabIndex={switchTabIndex}
@@ -328,7 +328,7 @@ export function NotificationPage() {
             <Typography level="p5" color="textSecondary" className="pb-2 -mt-2">
               Select the platform you want to receive the notification
             </Typography>
-            <div className="divide-y">
+            <div className="divide-y divide-divider">
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Discord"
