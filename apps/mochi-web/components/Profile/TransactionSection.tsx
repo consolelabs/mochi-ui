@@ -30,7 +30,9 @@ export const TransactionOverviewSection = () => {
   } = useTransactionStore()
   const txnsCurrentPage = txns[page - 1]
   const [ready, setReady] = useState(false)
-  const previousTxns = usePrevious(txnsCurrentPage || [])
+  const previousTxns = usePrevious(
+    txnsCurrentPage || txns.reverse().find((p) => p.length),
+  )
 
   useEffect(() => {
     if (profile?.id) {

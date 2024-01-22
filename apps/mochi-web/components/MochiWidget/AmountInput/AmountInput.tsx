@@ -237,7 +237,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   }, [authorized, onSelectAsset, selectedAsset])
 
   return (
-    <div className="rounded-xl bg p-3 bg-background-level2 flex flex-col gap-y-3">
+    <div className="flex flex-col gap-y-3 p-3 rounded-xl bg bg-background-level2">
       <div className="flex justify-between items-center">
         <Typography
           level="p5"
@@ -321,7 +321,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               </div>
             )}
             <input
-              className="placeholder:text-text-disabled self-start w-full h-full min-h-0 font-medium appearance-none outline-none leading-[32px] text-[32px] text-neutral-800"
+              className="self-start w-full h-full min-h-0 font-medium appearance-none outline-none placeholder:text-text-disabled leading-[32px] text-[32px] text-neutral-800"
               placeholder="0"
               type="text"
               min={0}
@@ -362,7 +362,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
                 },
               } as any)
             }}
-            className="outline-none text-text-tertiary text-[13px] col-span-4 text-right"
+            className="col-span-4 text-right outline-none text-text-tertiary text-[13px]"
           >
             Balance: {!isUsdMode ? balance : balanceUsd}
           </button>

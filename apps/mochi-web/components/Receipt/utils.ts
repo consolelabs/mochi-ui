@@ -122,15 +122,10 @@ export async function transformData(rawData: any) {
       break
   }
 
-  const { data: emojiData } = await api.base.metadata.getEmojis({
-    codes: [rawData.token.symbol],
-  })
-  const image = emojiData?.[0]?.emoji_url
-
   const ogDataOnly = {
     from: (sender?.plain ?? '') as any,
     native: rawData?.token.native,
-    tokenIcon: image || `${HOME_URL}/assets/coin.png`,
+    tokenIcon: rawData.token.icon || `${HOME_URL}/assets/coin.png`,
     to: (receiver?.plain ?? '') as any,
     symbol: rawData?.token.symbol,
     amount: mochiUtils.formatTokenDigit({
