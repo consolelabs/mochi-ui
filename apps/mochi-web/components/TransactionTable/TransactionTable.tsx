@@ -60,7 +60,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
           const { onCopy, hasCopied } = useClipboard(tx.code)
 
           return (
-            <div className="flex gap-1.5 items-center pl-2">
+            <div className="flex gap-1.5 items-center pl-2 w-[150px]">
               <TransactionStatusIcon tx={tx} />
               <Tooltip
                 content={<TransactionPeekingCard tx={tx} />}
@@ -146,20 +146,22 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: () => <TransactionHeaderTotalValue disabled={!enableColSort} />,
         id: 'amount',
-        width: '20%',
+        width: '10%',
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
 
           return (
-            <Amount
-              size="sm"
-              value={tx.amount}
-              valueUsd={tx.amountUsd}
-              unit={tx.token.symbol}
-              tokenIcon={tx.token.icon}
-              alignment="left"
-            />
+            <div className="w-[160px]">
+              <Amount
+                size="sm"
+                value={tx.amount}
+                valueUsd={tx.amountUsd}
+                unit={tx.token.symbol}
+                tokenIcon={tx.token.icon}
+                alignment="left"
+              />
+            </div>
           )
         },
       },
@@ -233,7 +235,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
     <>
       <ScrollArea>
         <ScrollAreaViewport ref={scrollRef}>
-          <div className={clsx('w-max mx-auto', className)}>
+          <div style={{ width: 1440 }} className={clsx('mx-auto', className)}>
             <Table
               {...rest}
               size="sm"

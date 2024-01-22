@@ -87,7 +87,7 @@ const tableDataClsx = ({
     'overflow-hidden text-sm font-normal leading-tight border-0 border-b border-neutral-outline-active border-solid min-w-[48px] text-text-primary',
     { 'group-last:border-b-0': hideLastBorder || border },
     {
-      'px-2 py-2 h-14': size === 'sm',
+      'px-4 py-2 h-14': size === 'sm',
       'px-4 py-3 h-[72px]': size === 'md',
     },
     className,
