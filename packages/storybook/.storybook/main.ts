@@ -23,7 +23,9 @@ const storybookConfig: StorybookConfig = {
 
   framework: {
     name: getAbsolutePath('@storybook/react-vite'),
-    options: {},
+    options: {
+      strictMode: true,
+    },
   },
 
   features: {
@@ -35,7 +37,7 @@ const storybookConfig: StorybookConfig = {
   },
 
   typescript: {
-    reactDocgen: false,
+    reactDocgen: 'react-docgen',
   },
 
   async viteFinal(config) {

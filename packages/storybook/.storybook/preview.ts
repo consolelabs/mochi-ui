@@ -8,7 +8,7 @@ function replaceStart(input: string) {
   const lines = input.split('\n')
   const firstLine = lines[0]?.trim()
   const secondLine = lines[1]?.trim()
-  const renderFunctions = ['render() {', 'render()', 'render({', 'render']
+  const renderFunctions = ['render() {', 'render()', 'render({']
   const isStartWithRenderFnc = renderFunctions.some(
     (r) => secondLine?.startsWith(r),
   )
@@ -21,7 +21,7 @@ function replaceStart(input: string) {
 }
 
 function isNotIncludedComponentName(input: string) {
-  return input.includes('<[object Object]')
+  return !input.includes('<[object Object]')
 }
 
 const preview: Preview = {
@@ -31,7 +31,7 @@ const preview: Preview = {
       source: {
         transform(input: string, c: StoryContext) {
           const { __isArgsStory: isArgsStory, docs } = c.parameters
-          if (isArgsStory && !isNotIncludedComponentName(input)) {
+          if (isArgsStory && isNotIncludedComponentName(input)) {
             return input
           }
           const originalStory = docs.source?.originalSource || input
