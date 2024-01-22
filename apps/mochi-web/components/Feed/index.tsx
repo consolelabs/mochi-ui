@@ -88,7 +88,7 @@ export default function Feed({ className = '' }: Props) {
       </button>
       <div
         className={clsx(
-          'transition bottom-0 left-0 absolute w-full h-20 bg-gradient-to-t pointer-events-none from-white z-10',
+          'transition bottom-0 left-0 absolute w-full h-20 bg-gradient-to-t pointer-events-none from-background-level1 z-10',
           {
             'opacity-100': isShowBotFade,
             'opacity-0': !isShowBotFade,

@@ -17,6 +17,10 @@ body {
   overscroll-behavior-y: none;
 }
 
+hr {
+  @apply border-divider
+}
+
 #__next {
   /* height: calc(100vh - 56px); */
 }

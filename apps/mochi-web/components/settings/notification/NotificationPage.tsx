@@ -77,7 +77,7 @@ const NotificationSwitcherField = (
   )
 }
 
-const Divider = () => <div className="w-full h-px my-8 bg-neutral-200" />
+const Divider = () => <div className="w-full h-px my-8 bg-divider" />
 
 export function NotificationPage() {
   const form = useForm<NotificationFormValue>({
@@ -196,7 +196,7 @@ export function NotificationPage() {
           })}
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className="border-b">
+          <div className="border-b border-divider">
             <Typography className="py-4" level="h6">
               Wallet Activity
             </Typography>
@@ -285,7 +285,7 @@ export function NotificationPage() {
             />
           </div>
           <Divider />
-          <div className="-mt-4 border-b">
+          <div className="-mt-4 border-b border-divider">
             <Typography className="py-4" level="h6">
               Apps Activity
             </Typography>
