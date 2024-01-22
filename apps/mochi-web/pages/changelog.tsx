@@ -9,6 +9,7 @@ import remarkBreaks from 'remark-breaks'
 import { api } from '~constants/mochi'
 import { NativeImage } from '~cpn/NativeImage'
 import clsx from 'clsx'
+import { getDescription, getFirstImageUrl } from '../utils/changelog'
 
 type Page = {
   name: string
@@ -139,9 +140,17 @@ const ChangelogItem = ({ name, content, version }: Page) => (
 )
 
 export default function Changelog({ data }: Props) {
+  const firstImgUrl = getFirstImageUrl(data)
+  const description = getDescription(data)
+
   return (
     <Layout>
-      <SEO title={PAGES.CHANGE_LOG.title} tailTitle />
+      <SEO
+        description={description}
+        image={firstImgUrl || ''}
+        title={PAGES.CHANGE_LOG.title}
+        tailTitle
+      />
       <div className="flex flex-col pt-8 md:pt-20 landing-container">
         <div className="w-full flex justify-center mb-16 md:mb-20">
           <div className="w-full max-w-[1008px]">
