@@ -34,14 +34,13 @@ export function getDescription(
     .join('\n')
 
   // Remove markdown syntax (e.g., ![image](url), ## heading) before extracting text
-  const plainTextContent = mergedContent.replace(
-    /!\[.*?\]\(.*?\)|#{1,6}.*?\n|\*\*.*?\*\*/g,
-    '',
-  )
+  const plainTextContent = mergedContent
+    .replace(/(##+|###+|\*\*|__|!\[.*?\]\(.*?\))/g, '')
+    .replace(/\n/g, ' ')
 
   // Extract the first 50 words
   const words = plainTextContent.split(/\s+/)
-  const description = words.slice(0, 50).join(' ')
+  const description = words.slice(0, 50).join(' ').trim()
 
   return description
 }

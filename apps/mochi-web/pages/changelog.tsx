@@ -140,6 +140,7 @@ const ChangelogItem = ({ name, content, version }: Page) => (
 )
 
 export default function Changelog({ data }: Props) {
+  console.log(data)
   const firstImgUrl = getFirstImageUrl(data)
   const description = getDescription(data)
 
