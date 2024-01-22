@@ -4,7 +4,7 @@ import { clsx } from 'clsx'
 const commonVariant = {
   variant: {
     solid: '',
-    outline: 'shadow-button border',
+    outline: 'border',
     ghost: '',
     link: 'bg-transparent',
     soft: '',
