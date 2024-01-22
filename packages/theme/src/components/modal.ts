@@ -36,7 +36,7 @@ const modalCloseButtonClsx = ({
     'hover:bg-neutral-outline-hover',
     'active:bg-neutral-outline-active',
     'disabled:text-neutral-outline-disable-fg disabled:border-neutral-outline-disable-border',
-    'focus-visible:shadow-small focus-visible:shadow-focus',
+    'focus-visible:shadow-small',
     className,
   )
 

@@ -28,7 +28,7 @@ const commonCompoundVariants = [
       'hover:bg-primary-solid-hover',
       'active:bg-primary-solid-active',
       'disabled:bg-primary-solid-disable disabled:text-primary-solid-disable-fg',
-      'focus:shadow-small focus:shadow-focus',
+      'focus:shadow-small',
     ],
   },
   {
@@ -39,7 +39,7 @@ const commonCompoundVariants = [
       'hover:bg-secondary-solid-hover',
       'active:bg-secondary-solid-active',
       'disabled:bg-secondary-solid-disable disabled:text-secondary-solid-disable-fg',
-      'focus:shadow-small focus:shadow-focus',
+      'focus:shadow-small',
     ],
   },
   {
@@ -50,7 +50,7 @@ const commonCompoundVariants = [
       'hover:bg-danger-solid-hover',
       'active:bg-danger-solid-active',
       'disabled:bg-danger-solid-disable disabled:text-danger-solid-disable-fg',
-      'focus:shadow-small focus:shadow-focus',
+      'focus:shadow-small',
     ],
   },
   {
@@ -61,7 +61,7 @@ const commonCompoundVariants = [
       'hover:bg-success-solid-hover',
       'active:bg-success-solid-active',
       'disabled:bg-success-solid-disable disabled:text-success-solid-disable-fg',
-      'focus:shadow-small focus:shadow-focus',
+      'focus:shadow-small',
     ],
   },
   {
@@ -72,7 +72,7 @@ const commonCompoundVariants = [
       'hover:bg-warning-solid-hover',
       'active:bg-warning-solid-active',
       'disabled:bg-warning-solid-disable disabled:text-warning-solid-disable-fg',
-      'focus:shadow-small focus:shadow-focus',
+      'focus:shadow-small',
     ],
   },
   {
@@ -83,7 +83,7 @@ const commonCompoundVariants = [
       'hover:bg-neutral-solid-hover',
       'active:bg-neutral-solid-active',
       'disabled:bg-neutral-solid-disable disabled:text-neutral-solid-disable-fg',
-      'focus:shadow-small focus:shadow-focus',
+      'focus:shadow-small',
     ],
   },
   {
@@ -95,7 +95,7 @@ const commonCompoundVariants = [
       'hover:bg-primary-outline-hover',
       'active:bg-primary-outline-active',
       'disabled:text-primary-outline-disable-fg disabled:border-primary-outline-disable-border',
-      'focus:shadow-small focus:shadow-focus',
+      'focus:shadow-small',
     ],
   },
   {
@@ -107,7 +107,7 @@ const commonCompoundVariants = [
       'hover:bg-secondary-outline-hover',
       'active:bg-secondary-outline-active',
       'disabled:text-secondary-outline-disable-fg disabled:border-secondary-outline-disable-border',
-      'focus:shadow-small focus:shadow-focus',
+      'focus:shadow-small',
     ],
   },
   {
@@ -119,7 +119,7 @@ const commonCompoundVariants = [
       'hover:bg-success-outline-hover',
       'active:bg-success-outline-active',
       'disabled:text-success-outline-disable-fg disabled:border-success-outline-disable-border',
-      'focus:shadow-small focus:shadow-focus',
+      'focus:shadow-small',
     ],
   },
   {
@@ -131,7 +131,7 @@ const commonCompoundVariants = [
       'hover:bg-danger-outline-hover',
       'active:bg-danger-outline-active',
       'disabled:text-danger-outline-disable-fg disabled:border-danger-outline-disable-border',
-      'focus:shadow-small focus:shadow-focus',
+      'focus:shadow-small',
     ],
   },
   {
@@ -143,7 +143,7 @@ const commonCompoundVariants = [
       'hover:bg-warning-outline-hover',
       'active:bg-warning-outline-active',
       'disabled:text-warning-outline-disable-fg disabled:border-warning-outline-disable-border',
-      'focus:shadow-small focus:shadow-focus',
+      'focus:shadow-small',
     ],
   },
   {
@@ -155,7 +155,7 @@ const commonCompoundVariants = [
       'hover:bg-neutral-outline-hover',
       'active:bg-neutral-outline-active',
       'disabled:text-neutral-outline-disable-fg disabled:border-neutral-outline-disable-border',
-      'focus:shadow-small focus:shadow-focus',
+      'focus:shadow-small',
     ],
   },
   {
@@ -166,7 +166,7 @@ const commonCompoundVariants = [
       'hover:bg-primary-plain-hover',
       'active:bg-primary-plain-active',
       'disabled:text-primary-plain-disable-fg',
-      'focus:shadow-small focus:shadow-focus',
+      'focus:shadow-small',
     ],
   },
   {
@@ -177,7 +177,7 @@ const commonCompoundVariants = [
       'hover:bg-secondary-plain-hover',
       'active:bg-secondary-plain-active',
       'disabled:text-secondary-plain-disable-fg',
-      'focus:shadow-small focus:shadow-focus',
+      'focus:shadow-small',
     ],
   },
   {
@@ -188,7 +188,7 @@ const commonCompoundVariants = [
       'hover:bg-success-plain-hover',
       'active:bg-success-plain-active',
       'disabled:text-success-plain-disable-fg',
-      'focus:shadow-small focus:shadow-focus',
+      'focus:shadow-small',
     ],
   },
   {
@@ -199,7 +199,7 @@ const commonCompoundVariants = [
       'hover:bg-warning-plain-hover',
       'active:bg-warning-plain-active',
       'disabled:text-warning-plain-disable-fg',
-      'focus:shadow-small focus:shadow-focus',
+      'focus:shadow-small',
     ],
   },
   {
@@ -210,7 +210,7 @@ const commonCompoundVariants = [
       'hover:bg-danger-plain-hover',
       'active:bg-danger-plain-active',
       'disabled:text-danger-plain-disable-fg',
-      'focus:shadow-small focus:shadow-focus',
+      'focus:shadow-small',
     ],
   },
   {
@@ -221,7 +221,7 @@ const commonCompoundVariants = [
       'hover:bg-neutral-plain-hover',
       'active:bg-neutral-plain-active',
       'disabled:text-neutral-plain-disable-fg',
-      'focus:shadow-small focus:shadow-focus',
+      'focus:shadow-small',
     ],
   },
   {
@@ -281,7 +281,7 @@ const commonCompoundVariants = [
       'hover:bg-primary-soft-hover',
       'active:bg-primary-soft-active active:text-primary-soft-active-fg',
       'disabled:bg-primary-soft-disable disabled:text-primary-soft-disable-fg',
-      'focus:shadow-small focus:shadow-focus',
+      'focus:shadow-small',
     ],
   },
   {
@@ -293,7 +293,7 @@ const commonCompoundVariants = [
       'hover:bg-secondary-soft-hover',
       'active:bg-secondary-soft-active active:text-secondary-soft-active-fg',
       'disabled:bg-secondary-soft-disable disabled:text-secondary-soft-disable-fg',
-      'focus:shadow-small focus:shadow-focus',
+      'focus:shadow-small',
     ],
   },
   {
@@ -305,7 +305,7 @@ const commonCompoundVariants = [
       'hover:bg-danger-soft-hover',
       'active:bg-danger-soft-active active:text-danger-soft-active-fg',
       'disabled:bg-danger-soft-disable disabled:text-danger-soft-disable-fg',
-      'focus:shadow-small focus:shadow-focus',
+      'focus:shadow-small',
     ],
   },
   {
@@ -317,7 +317,7 @@ const commonCompoundVariants = [
       'hover:bg-success-soft-hover',
       'active:bg-success-soft-active active:text-success-soft-active-fg',
       'disabled:bg-success-soft-disable disabled:text-success-soft-disable-fg',
-      'focus:shadow-small focus:shadow-focus',
+      'focus:shadow-small',
     ],
   },
   {
@@ -329,7 +329,7 @@ const commonCompoundVariants = [
       'hover:bg-warning-soft-hover',
       'active:bg-warning-soft-active active:text-warning-soft-active-fg',
       'disabled:bg-warning-soft-disable disabled:text-warning-soft-disable-fg',
-      'focus:shadow-small focus:shadow-focus',
+      'focus:shadow-small',
     ],
   },
   {
@@ -341,7 +341,7 @@ const commonCompoundVariants = [
       'hover:bg-neutral-soft-hover',
       'active:bg-neutral-soft-active active:text-neutral-soft-active-fg',
       'disabled:bg-neutral-soft-disable disabled:text-neutral-soft-disable-fg',
-      'focus:shadow-small focus:shadow-focus',
+      'focus:shadow-small',
     ],
   },
 ] as const
