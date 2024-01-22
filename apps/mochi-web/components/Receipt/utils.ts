@@ -3,6 +3,7 @@ import { coinIcon, discordLogo, telegramLogo, xlogo } from '~utils/image'
 import { utils } from 'ethers'
 import { api } from '~constants/mochi'
 import { HOME_URL } from '~envs'
+import { truncate } from '@dwarvesf/react-utils'
 import { templates, type TemplateName } from './Template'
 
 function getAmountData(tx: any) {
@@ -49,7 +50,7 @@ export async function transformData(rawData: any) {
     Array.isArray(rawData.other_txs) &&
     rawData.other_txs.length
   const isMultipleTokens =
-    rawData.other_txs.length > 0
+    Array.isArray(rawData.other_txs) && rawData.other_txs.length > 0
       ? rawData.other_txs.some((tx: any) => tx.token_id !== rawData.token_id)
       : false
 
@@ -70,8 +71,37 @@ export async function transformData(rawData: any) {
 
   if (type === 'in') {
     ;[sender, receiver] = [receiver, sender]
-    const rawAvatar = rawData.other_profile.avatar
-    avatar = rawAvatar
+
+    if (rawData.other_profile?.avatar) {
+      const rawAvatar = rawData.other_profile.avatar
+      avatar = rawAvatar
+    }
+  }
+
+  // handle domain name when dealing with external addresses
+  if (['withdraw', 'deposit'].includes(rawData.action)) {
+    let subject = receiver
+    // withdraw & deposit always target the other_profile
+    const address = rawData.other_profile_source
+    const account = rawData.from_profile?.associated_accounts?.find(
+      (aa: any) =>
+        aa.platform_identifier.toLowerCase() === address.toLowerCase(),
+    )
+
+    if (rawData.action === 'deposit') {
+      subject = sender
+    }
+
+    if (!account && subject) {
+      subject.plain = rawData.other_profile_source
+    } else if (subject) {
+      const domainName = mochiUtils.string.formatAddressUsername(account)
+      subject.plain = domainName
+      if (mochiUtils.address.isShorten(domainName)) {
+        subject.plain = rawData.other_profile_source
+      }
+      subject.plain ||= rawData.other_profile_source
+    }
   }
 
   let platformIcon = null
@@ -122,6 +152,8 @@ export async function transformData(rawData: any) {
     isSuccess: status === 'success',
     isFail: status === 'failed',
     action,
+    title: '',
+    description: '',
   }
 
   const data = {
@@ -212,6 +244,37 @@ export async function transformData(rawData: any) {
         }
       })
       .filter(Boolean)
+  }
+
+  switch (rawData.action) {
+    case 'transfer':
+      ogDataOnly.title = `Tip from ${data.from[0].name}`
+      ogDataOnly.description = `${data.from[0].name} paid ${
+        data.to.length > 1 ? `${data.to.length} people` : data.to[0].name
+      } ${amountDisplay} ${unitCurrency}${
+        rawData.metadata?.message
+          ? ` with message: "${truncate(rawData.metadata.message, 30, false)}"`
+          : ''
+      }`
+      break
+    case 'deposit':
+      ogDataOnly.title = `Deposit from ${data.from[0].name}`
+      break
+    case 'withdraw':
+      ogDataOnly.title = `Withdraw to ${data.to[0].name}`
+      break
+    case 'vault_transfer':
+      ogDataOnly.title = `${data.from[0].name} vault transfer`
+      break
+    case 'airdrop':
+      ogDataOnly.title = `Airdrop from ${data.from[0].name}`
+      break
+    default:
+      break
+  }
+
+  if (data.template) {
+    ogDataOnly.title = data.template.title
   }
 
   return {

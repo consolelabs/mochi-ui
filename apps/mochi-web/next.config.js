@@ -44,6 +44,11 @@ module.exports = {
         hostname: 'coin.top',
         port: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'beta.mochi.gg',
+        port: '',
+      },
     ],
   },
   transpilePackages: ['@mochi-ui/icons'],

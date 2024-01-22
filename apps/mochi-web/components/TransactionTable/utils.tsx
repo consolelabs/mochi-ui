@@ -148,10 +148,9 @@ export async function transform(d: any): Promise<Tx> {
     to.plain = '🍡 Mochi user'
   }
 
-  let subject = to
-
   // handle domain name when dealing with external addresses
   if (['withdraw', 'deposit'].includes(d.action)) {
+    let subject = to
     // withdraw & deposit always target the other_profile
     const address = d.other_profile_source
     const account = d.from_profile?.associated_accounts?.find(
