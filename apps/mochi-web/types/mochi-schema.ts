@@ -124,6 +124,7 @@ export interface ModelDaoVoteOption {
 
 export interface ModelDefaultMessageSetting {
   action?: string
+  enable?: boolean
   message?: string
 }
 
@@ -802,6 +803,7 @@ export interface RequestCreateUserTokenSupportRequest {
 
 export interface RequestDefaultMessageSetting {
   action: string
+  enable: boolean
   message: string
 }
 

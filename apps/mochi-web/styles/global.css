@@ -128,13 +128,22 @@ ul.list-dashed {
 }
 
 ul.list-dashed > li {
-  @apply block relative;
+  @apply block relative text-base -tracking-[0.2px] text-text-primary;
 }
 
 ul.list-dashed > li:not(:last-child) {
-  @apply pb-8;
+  @apply pb-4;
 }
 
 ul.list-dashed > li:before {
-  @apply content-['\2014'] absolute top-0 right-full mr-4;
+  @apply content-[''] h-[1px] w-4 bg-neutral-solid absolute top-3 right-full mr-4;
+}
+
+.react-markdown-block p + h4,
+.react-markdown-block p + h5,
+.react-markdown-block p + h6,
+.react-markdown-block ul + h4,
+.react-markdown-block ul + h5,
+.react-markdown-block ul + h6 {
+  @apply pt-4;
 }
