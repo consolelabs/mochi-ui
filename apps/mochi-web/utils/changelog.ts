@@ -40,7 +40,7 @@ export function getDescription(
 
   // Extract the first 50 words
   const words = plainTextContent.split(/\s+/)
-  const description = words.slice(0, 50).join(' ').trim()
+  const description = `${words.slice(0, 50).join(' ').trim()}...`
 
   return description
 }
