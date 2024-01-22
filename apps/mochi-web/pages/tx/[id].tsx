@@ -2,7 +2,6 @@ import { GetServerSideProps } from 'next'
 import { Layout } from '~app/layout'
 import { HOME_URL } from '~envs'
 import { SEO } from '~app/layout/seo'
-import { truncate } from '@dwarvesf/react-utils'
 import Receipt from '~cpn/Receipt'
 import { transformData } from '~cpn/Receipt/utils'
 import { API } from '~constants/api'
@@ -50,8 +49,6 @@ interface Props {
 }
 
 export default function Transfer({ data, ogData }: Props) {
-  const name = data.data.from[0].name
-
   return (
     <Layout noFooter className="bg-white lg:bg-white-pure">
       <style jsx global>{`
@@ -60,23 +57,11 @@ export default function Transfer({ data, ogData }: Props) {
         }
       `}</style>
       <SEO
-        title={
-          data.data.template
-            ? data.data.template.title
-            : `Tip from ${name} - Mochi`
-        }
+        title={ogData.title}
         image={`${HOME_URL}/api/transfer-og?data=${encodeURIComponent(
           JSON.stringify(ogData),
         )}`}
-        description={`${name} paid ${
-          data.data.to.length > 1
-            ? `${data.data.to.length} people`
-            : data.data.to[0].name
-        } ${data.amountDisplay} ${data.unitCurrency}${
-          data.message
-            ? ` with message: "${truncate(data.message, 30, false)}"`
-            : ''
-        }`}
+        description={ogData.description}
         url={`${HOME_URL}/transfer/${data.data.external_id}`}
       />
       <div className="flex relative m-auto h-[calc(100vh-56px)] lg:m-0">

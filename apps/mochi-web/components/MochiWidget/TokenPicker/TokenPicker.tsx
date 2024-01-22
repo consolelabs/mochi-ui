@@ -84,7 +84,13 @@ const TokenButton = (props: TokenButtonProps) => {
 
 function getFilterTokenNameFunc(searchTerm: string) {
   return function filterTokenName(bal: BalanceWithSource) {
-    return bal.token?.name?.toLowerCase().includes(searchTerm.toLowerCase())
+    const name = bal.token?.name?.toLowerCase()
+    const symbol = bal.token?.symbol?.toLowerCase()
+
+    return (
+      name.includes(searchTerm.toLowerCase()) ||
+      symbol.includes(searchTerm.toLowerCase())
+    )
   }
 }
 
