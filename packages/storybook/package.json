@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "sideEffects": true,
+  "type": "module",
   "files": [
     "storybook-static"
   ],
@@ -14,19 +15,18 @@
     "preview:storybook": "pnpm build && serve storybook-static -p 6006"
   },
   "devDependencies": {
-    "@storybook/addon-a11y": "^7.6.6",
-    "@storybook/addon-actions": "^7.6.6",
-    "@storybook/addon-essentials": "^7.6.6",
-    "@storybook/addon-links": "^7.6.6",
-    "@storybook/addon-storysource": "^7.6.6",
-    "@storybook/addon-styling-webpack": "^0.0.5",
-    "@storybook/addons": "^7.6.6",
-    "@storybook/nextjs": "^7.6.6",
-    "@storybook/react": "^7.6.6",
-    "@storybook/theming": "^7.6.6",
+    "@storybook/addon-a11y": "^7.6.10",
+    "@storybook/addon-essentials": "^7.6.10",
+    "@storybook/addon-links": "^7.6.10",
+    "@storybook/addons": "^7.6.10",
+    "@storybook/blocks": "^7.6.10",
+    "@storybook/react": "^7.6.10",
+    "@storybook/react-vite": "^7.6.10",
+    "@storybook/theming": "^7.6.10",
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.31",
-    "storybook": "^7.6.6",
+    "prettier": "2.8.8",
+    "storybook": "^7.6.10",
     "tailwindcss": "^3.3.5",
     "tailwindcss-animate": "^1.0.7",
     "tsconfig": "workspace:*",
@@ -34,7 +34,6 @@
   },
   "dependencies": {
     "@mochi-ui/theme": "workspace:*",
-    "next": "^14.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "storybook-dark-mode": "^3.0.3"

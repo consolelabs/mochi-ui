@@ -1,34 +1,47 @@
-import type { StorybookConfig } from '@storybook/nextjs'
+import { dirname, join } from 'path'
+import type { StorybookConfig } from '@storybook/react-vite'
+
+function getAbsolutePath(value: string): any {
+  return dirname(require.resolve(join(value, 'package.json')))
+}
 
 const storybookConfig: StorybookConfig = {
-  framework: {
-    name: '@storybook/nextjs',
-    options: { builder: { useSWC: true } },
-  },
   staticDirs: ['./assets'],
+
   stories: [
-    '../../(components|web3)/**/stories/*.stories.@(js|jsx|ts|tsx|md|mdx)',
+    '../../components/**/stories/*.stories.@(js|jsx|ts|tsx|md|mdx)',
+    '../../web3/**/stories/*.stories.@(js|jsx|ts|tsx|md|mdx)',
     '../src/*.stories.@(js|jsx|ts|tsx|md|mdx)',
   ],
+
   addons: [
-    '@storybook/addon-essentials',
-    '@storybook/addon-storysource',
-    '@storybook/addon-styling-webpack',
-    '@storybook/addon-a11y',
-    'storybook-dark-mode',
+    getAbsolutePath('@storybook/addon-links'),
+    getAbsolutePath('@storybook/addon-essentials'),
+    getAbsolutePath('@storybook/addon-a11y'),
+    getAbsolutePath('storybook-dark-mode'),
   ],
-  webpackFinal: async (config) => {
-    // Resolve mjs files from libs
-    // Here we need the absolute paths to our other libs that the ui package depends on
-    config.module?.rules?.push({
-      test: /\.mjs$/,
-      include: [
-        /node_modules/,
-        // path.join(__dirname, '../../utils'),
-        // path.join(__dirname, '../../hooks'),
-      ],
-      type: 'javascript/auto',
-    })
+
+  framework: {
+    name: getAbsolutePath('@storybook/react-vite'),
+    options: {
+      strictMode: true,
+    },
+  },
+
+  features: {
+    buildStoriesJson: true,
+  },
+
+  core: {
+    disableTelemetry: true,
+  },
+
+  typescript: {
+    reactDocgen: 'react-docgen',
+  },
+
+  async viteFinal(config) {
+    config.define = { 'process.env': {} }
 
     return config
   },

@@ -1,5 +1,5 @@
 {
-  "extends": "tsconfig/nextjs.json",
+  "extends": "tsconfig/react-library.json",
   "include": [".storybook/**/*.ts"],
   "exclude": ["node_modules"]
 }
