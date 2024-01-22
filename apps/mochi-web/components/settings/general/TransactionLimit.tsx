@@ -1,4 +1,13 @@
-import { Button, IconButton, Switch, Typography } from '@mochi-ui/core'
+import {
+  Button,
+  IconButton,
+  SectionHeader,
+  SectionHeaderActions,
+  SectionHeaderDescription,
+  SectionHeaderTitle,
+  Switch,
+  Typography,
+} from '@mochi-ui/core'
 import { EditLine, TrashBin2Line } from '@mochi-ui/icons'
 import React from 'react'
 import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
@@ -23,37 +32,48 @@ export const TransactionLimit = () => {
 
   return (
     <div className="flex flex-col space-y-2 w-full">
-      <div className="flex justify-between items-center">
-        <Typography level="p4">Set the limit for transaction</Typography>
-        <Controller
-          name="payment.tx_limit_enable"
-          control={control}
-          render={({ field: { value, onChange, ...rest } }) =>
-            fields.length > 0 ? (
-              <Switch {...rest} checked={value} onCheckedChange={onChange} />
-            ) : (
-              <TransactionLimitModal
-                actionList={filteredActionList}
-                onConfirm={(data) => append(data)}
-                onCancel={() =>
-                  setValue('payment.tx_limit_enable', false, {
-                    shouldDirty: true,
-                  })
-                }
-                trigger={
-                  <div>
-                    <Switch
-                      {...rest}
-                      checked={value}
-                      onCheckedChange={onChange}
-                    />
-                  </div>
-                }
-              />
-            )
-          }
-        />
-      </div>
+      <Controller
+        name="payment.tx_limit_enable"
+        control={control}
+        render={({ field: { value, onChange, ...rest } }) => (
+          <SectionHeader
+            wrapActionsOnMobile={false}
+            className="!grid-cols-[1fr,auto]"
+          >
+            <SectionHeaderTitle className="font-normal">
+              Set the limit for transaction
+            </SectionHeaderTitle>
+            <SectionHeaderDescription>
+              Tailor transaction limits to your preferences through convenient
+              settings.
+            </SectionHeaderDescription>
+            <SectionHeaderActions>
+              {fields.length > 0 ? (
+                <Switch {...rest} checked={value} onCheckedChange={onChange} />
+              ) : (
+                <TransactionLimitModal
+                  actionList={filteredActionList}
+                  onConfirm={(data) => append(data)}
+                  onCancel={() =>
+                    setValue('payment.tx_limit_enable', false, {
+                      shouldDirty: true,
+                    })
+                  }
+                  trigger={
+                    <div>
+                      <Switch
+                        {...rest}
+                        checked={value}
+                        onCheckedChange={onChange}
+                      />
+                    </div>
+                  }
+                />
+              )}
+            </SectionHeaderActions>
+          </SectionHeader>
+        )}
+      />
       {(enableTransactionLimit ? fields : []).map((each, index) => (
         <Controller
           key={each.id}

@@ -1,3 +1,13 @@
+import {
+  DiscordColored,
+  Github,
+  GoogleColored,
+  RedditColored,
+  TelegramColored,
+  WalletSolid,
+  X,
+} from '@mochi-ui/icons'
+
 export const actionList = [
   { key: 'tip', label: 'Tip' },
   { key: 'payme', label: 'Pay me' },
@@ -17,3 +27,20 @@ export const defaultMoneySource = {
   platform: 'mochi',
   platform_identifier: 'mochi-balance',
 }
+
+export const platformList = [
+  { key: 'discord', label: 'Discord', Icon: DiscordColored },
+  { key: 'telegram', label: 'Telegram', Icon: TelegramColored },
+  { key: 'google', label: 'Email', Icon: GoogleColored },
+  { key: 'twitter', label: 'X', Icon: X },
+  { key: 'github', label: 'Github', Icon: Github },
+  { key: 'reddit', label: 'Reddit', Icon: RedditColored },
+  { key: 'onchain', label: 'On-chain', Icon: WalletSolid },
+]
+
+export const defaultMessages = (name: string) => [
+  { action: 'tip', message: `${name} sends you money`, enable: true },
+  { action: 'payme', message: '💵  Debt settled. Thank you!', enable: true },
+  { action: 'paylink', message: '☕ A good treat for you', enable: true },
+  { action: 'airdrop', message: '🔥 Welcome to our Airdrop  🪂', enable: true },
+]
