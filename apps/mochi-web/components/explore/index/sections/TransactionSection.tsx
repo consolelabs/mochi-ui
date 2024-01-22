@@ -23,7 +23,9 @@ export const TransactionSection = () => {
     initWs,
   } = useTransactionStore()
   const txnsCurrentPage = txns[page - 1]
-  const previousTxns = usePrevious(txnsCurrentPage || [])
+  const previousTxns = usePrevious(
+    txnsCurrentPage || txns.reverse().find((p) => p.length),
+  )
 
   useEffect(() => {
     fetchTxns()
