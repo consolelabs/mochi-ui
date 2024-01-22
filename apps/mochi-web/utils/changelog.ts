@@ -35,7 +35,7 @@ export function getDescription(
 
   // Remove markdown syntax (e.g., ![image](url), ## heading) before extracting text
   const plainTextContent = mergedContent.replace(
-    /!\[.*?\]\(.*?\)|#{1,6}.*?\n/g,
+    /!\[.*?\]\(.*?\)|#{1,6}.*?\n|\*\*.*?\*\*/g,
     '',
   )
 
