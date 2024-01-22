@@ -1,14 +1,13 @@
 import './styles.css'
 import { Preview, StoryContext } from '@storybook/react'
 import prettier from 'prettier/standalone'
-// @ts-expect-error
 import prettierTypescript from 'prettier/parser-babel'
 
 function replaceStart(input: string) {
   const lines = input.split('\n')
   const firstLine = lines[0]?.trim()
   const secondLine = lines[1]?.trim()
-  const renderFunctions = ['render() {', 'render()', 'render({']
+  const renderFunctions = ['render() {', 'render()', 'render({', 'render(']
   const isStartWithRenderFnc = renderFunctions.some(
     (r) => secondLine?.startsWith(r),
   )
@@ -20,7 +19,7 @@ function replaceStart(input: string) {
   return lines.join('\n')
 }
 
-function isNotIncludedComponentName(input: string) {
+function isIncludedComponentName(input: string) {
   return !input.includes('<[object Object]')
 }
 
@@ -31,7 +30,7 @@ const preview: Preview = {
       source: {
         transform(input: string, c: StoryContext) {
           const { __isArgsStory: isArgsStory, docs } = c.parameters
-          if (isArgsStory && isNotIncludedComponentName(input)) {
+          if (isArgsStory && isIncludedComponentName(input)) {
             return input
           }
           const originalStory = docs.source?.originalSource || input
