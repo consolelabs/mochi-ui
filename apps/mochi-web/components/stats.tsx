@@ -28,13 +28,16 @@ function Spotlight({
       {icon}
       <p className="flex flex-col items-start w-full">
         <span
-          className={clsx('text-sm leading-5 md:text-2xl md:leading-8', {
-            'bg-neutral-300 rounded animate-pulse h-full w-2/3': loading,
-          })}
+          className={clsx(
+            'text-sm leading-5 md:text-2xl md:leading-8 text-text-primary',
+            {
+              'bg-neutral-300 rounded animate-pulse h-full w-2/3': loading,
+            },
+          )}
         >
           {loading ? <>&#8203;</> : title}
         </span>
-        <span className="text-xs leading-4 md:text-sm md:leading-5 text-neutral-600">
+        <span className="text-xs leading-4 md:text-sm md:leading-5 text-text-tertiary">
           {subtitle}
         </span>
       </p>

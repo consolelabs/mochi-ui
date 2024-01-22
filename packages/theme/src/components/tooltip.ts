@@ -8,7 +8,7 @@ const tooltipClsx = ({ className = '' }: { className?: string }) =>
     'text-xs',
     'font-semibold',
     'bg-background-tooltip',
-    'text-text-primary',
+    'text-text-contrast',
     'tooltip',
 
     'data-[state=delayed-open]:animate-in',
@@ -23,7 +23,7 @@ const tooltipClsx = ({ className = '' }: { className?: string }) =>
     className,
   )
 
-const tooltipArrowClxs = 'fill-neutral-0'
+const tooltipArrowClxs = 'fill-current text-background-tooltip'
 
 const tooltipTriggerClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx('w-fit', className)

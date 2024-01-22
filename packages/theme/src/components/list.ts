@@ -12,18 +12,18 @@ const listViewportContentClsx = ({
 
 const listScrollbarClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx(
-    'flex select-none touch-none p-0.5 bg-neutral-outline transition-colors w-2 hover:bg-neutral-outline-hover',
+    'flex select-none touch-none p-0.5 bg-transparent transition-colors w-2',
     className,
   )
 
 const listThumbClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx(
-    "flex-1 bg-neutral-solid rounded-lg relative before:content-[''] before:absolute before:w-full before:h-full before:min-w-[44px] before:min-h-[44px] before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2",
+    "flex-1 bg-text-primary rounded-lg relative before:content-[''] before:absolute before:w-full before:h-full before:min-w-[44px] before:min-h-[44px] before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2",
     className,
   )
 
 const listCornerClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx('bg-neutral-outline-hover', className)
+  clsx('bg-transparent', className)
 
 export const list = {
   listWrapperClsx,

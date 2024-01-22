@@ -84,10 +84,7 @@ export const MessageModal = ({
                 <FormControl error={!!fieldState.error} className="w-full mt-8">
                   <FormLabel>Action</FormLabel>
                   <Select {...field}>
-                    <SelectTrigger
-                      appearance="form"
-                      className="justify-between h-10"
-                    >
+                    <SelectTrigger appearance="form" className=" h-10">
                       <SelectValue placeholder="Choose action" />
                     </SelectTrigger>
                     <SelectContent>
@@ -125,7 +122,9 @@ export const MessageModal = ({
             />
             <div className="grid w-full grid-cols-2 gap-3 mt-8">
               <ModalTrigger asChild>
-                <Button color="white">Cancel</Button>
+                <Button color="neutral" variant="outline">
+                  Cancel
+                </Button>
               </ModalTrigger>
               <Button type="submit">Confirm</Button>
             </div>

@@ -63,7 +63,11 @@ export const TransactionRecipients = (props: TransactionRecipientsProps) => {
               <div className="flex flex-col gap-2">
                 {allAddresses.map((address, i) => (
                   <div className="flex gap-x-2 justify-between" key={address}>
-                    <Typography level="p5" fontWeight="md">
+                    <Typography
+                      level="p5"
+                      fontWeight="md"
+                      className="!text-inherit"
+                    >
                       {address}
                       {!hasAddress && ':'}
                     </Typography>
@@ -76,7 +80,11 @@ export const TransactionRecipients = (props: TransactionRecipientsProps) => {
                           alt=""
                           className="ml-1 w-4 h-4"
                         />
-                        <Typography level="p5" fontWeight="md">
+                        <Typography
+                          level="p5"
+                          fontWeight="md"
+                          className="!text-inherit"
+                        >
                           {allTxs[i].singleAmount} {allTxs[i].token.symbol}
                         </Typography>
                       </div>

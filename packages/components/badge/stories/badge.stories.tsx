@@ -98,12 +98,8 @@ export const Warning: Story = {
   render: () => renderByAppearance('warning'),
 }
 
-export const Black: Story = {
-  render: () => renderByAppearance('black'),
-}
-
-export const White: Story = {
-  render: () => renderByAppearance('white'),
+export const Neutral: Story = {
+  render: () => renderByAppearance('neutral'),
 }
 
 export const TruncateText: Story = {

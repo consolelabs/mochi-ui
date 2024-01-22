@@ -62,7 +62,8 @@ export const AppDetailNewUrl = ({ onAddNewUrl }: Props) => {
               render={({ field }) => (
                 <Select {...field}>
                   <SelectTrigger
-                    className="bg-neutral-outline"
+                    size="sm"
+                    variant="soft"
                     leftIcon={getIcon(field.value)}
                   >
                     <SelectValue placeholder="Select link" />

@@ -184,7 +184,7 @@ export const MonikerTableList = ({
       </ScrollArea>
 
       {isUserHasUnusableMoniker ? (
-        <span className="text-xs text-neutral-500">
+        <span className="text-xs text-text-disabled">
           Unusable monikers (equivalent token has 0 amount) are disabled
         </span>
       ) : null}

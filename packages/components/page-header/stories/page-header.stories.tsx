@@ -33,7 +33,11 @@ export function Default() {
 
   const actions = (
     <>
-      <Button color="white" className="min-w-xs w-full sm:w-max">
+      <Button
+        color="neutral"
+        variant="outline"
+        className="min-w-xs w-full sm:w-max"
+      >
         See docs
       </Button>
       <Select value={selectedApp} onChange={setSelectedApp}>
@@ -91,13 +95,17 @@ export function Default() {
           <PageHeaderTitleExtra>(2,951 members)</PageHeaderTitleExtra>
         </PageHeaderTitle>
         <PageHeaderActions className="!flex-nowrap">
-          <Button color="white" className="min-w-xs w-full sm:w-max">
+          <Button
+            color="neutral"
+            variant="outline"
+            className="min-w-xs w-full sm:w-max"
+          >
             Invite
           </Button>
           <IconButton
             label="Open menu"
             variant="ghost"
-            color="info"
+            color="neutral"
             className="shrink-0 !h-10 !w-10"
           >
             <ThreeDotsLine className="text-2xl" aria-hidden />
@@ -112,13 +120,17 @@ export function Default() {
           <PageHeaderTitleExtra>(2,951 members)</PageHeaderTitleExtra>
         </PageHeaderTitle>
         <PageHeaderActions className="!flex-nowrap">
-          <Button color="white" className="min-w-xs w-full sm:w-max">
+          <Button
+            color="neutral"
+            variant="outline"
+            className="min-w-xs w-full sm:w-max"
+          >
             Invite
           </Button>
           <IconButton
             label="Open menu"
             variant="ghost"
-            color="info"
+            color="neutral"
             className="shrink-0 !h-10 !w-10"
           >
             <ThreeDotsLine className="text-2xl" aria-hidden />

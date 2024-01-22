@@ -126,7 +126,7 @@ export default function ConnectSocial() {
                 }
                 disabled={disabled}
                 variant="outline"
-                color="info"
+                color="neutral"
                 size="lg"
                 className="!p-2"
               >

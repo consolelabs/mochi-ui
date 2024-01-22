@@ -61,7 +61,7 @@ const Footer = forwardRef<HTMLElement, FooterProps>(
               {typeof copyrightText === 'string' ? (
                 <Typography
                   level="p5"
-                  color="textSecondary"
+                  color="textDisabled"
                   className={footer.copyrightClsx}
                 >
                   {copyrightText}

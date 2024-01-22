@@ -171,7 +171,7 @@ export const ProfileWidget = () => {
           <Typography level="h6" noWrap>
             {me?.profile_name}
           </Typography>
-          <Badge appearance="white" className="w-fit">
+          <Badge appearance="neutral" className="w-fit">
             <Typography level="p6">Rank #{info?.rank || 0}</Typography>
           </Badge>
         </div>
@@ -199,11 +199,11 @@ export const ProfileWidget = () => {
         </div>
       </div>
       <div className="grid grid-cols-2 gap-2">
-        <Button variant="outline">
+        <Button variant="soft" color="primary">
           <ArrowUpSquareSolid className="w-4 h-4" />
           Send
         </Button>
-        <Button variant="outline">
+        <Button variant="soft" color="primary">
           <ArrowDownSquareSolid className="w-4 h-4" />
           Receive
         </Button>

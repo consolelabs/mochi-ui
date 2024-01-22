@@ -32,7 +32,7 @@ export function Default() {
 
   const actions = (
     <>
-      <Button color="white" className="w-full sm:w-max">
+      <Button color="neutral" variant="outline" className="w-full sm:w-max">
         See docs
       </Button>
       <Select value={selectedApp} onChange={setSelectedApp}>
@@ -96,7 +96,7 @@ export function Default() {
           Communities Activities
         </SectionHeaderTitle>
         <SectionHeaderActions>
-          <IconButton label="Open menu" variant="link" color="info">
+          <IconButton label="Open menu" variant="link" color="neutral">
             <ThreeDotsLine className="text-2xl" aria-hidden />
           </IconButton>
         </SectionHeaderActions>

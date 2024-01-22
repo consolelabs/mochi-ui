@@ -56,7 +56,7 @@ interface TokenButtonProps {
 
 const TokenButton = (props: TokenButtonProps) => {
   return (
-    <div className="flex gap-x-2 items-center py-1.5 px-3 rounded-lg bg-primary-100">
+    <div className="flex gap-x-2 items-center py-1.5 px-3 rounded-lg bg-primary-50">
       {props.isToken ? (
         <span className="text-base shrink-0" role="img">
           <Image
@@ -260,7 +260,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
                         }
                       }}
                     />
-                    <span className="mt-auto text-xs text-neutral-500">
+                    <span className="mt-auto text-xs text-text-disabled">
                       Only supported tokens are shown
                     </span>
                   </>

@@ -21,7 +21,11 @@ export const TransactionAction = (props: TransactionActionProps) => {
     }
     default: {
       return (
-        <Button variant="outline" className="border-none !shadow-none">
+        <Button
+          variant="soft"
+          color="primary"
+          className="border-none !shadow-none"
+        >
           View
         </Button>
       )

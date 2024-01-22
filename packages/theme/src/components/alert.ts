@@ -32,12 +32,12 @@ const alertCva = cva(['flex rounded-lg relative gap-1'], {
       large: ['p-4'],
     },
     scheme: {
-      primary: ['bg-primary-outline'],
-      secondary: ['bg-secondary-outline'],
-      neutral: ['bg-neutral-outline'],
-      success: ['bg-success-outline'],
-      warning: ['bg-warning-outline'],
-      danger: ['bg-danger-outline'],
+      primary: ['bg-primary-soft'],
+      secondary: ['bg-secondary-soft'],
+      neutral: ['bg-neutral-soft'],
+      success: ['bg-success-soft'],
+      warning: ['bg-warning-soft'],
+      danger: ['bg-danger-soft'],
     },
     size: {
       sm: '',
@@ -183,12 +183,12 @@ const createTextCva = (base?: string, compoundVariants: any[] = []) =>
   cva(base, {
     variants: {
       scheme: {
-        primary: 'text-primary-solid',
-        secondary: 'text-secondary-solid',
-        success: 'text-success-solid',
-        danger: 'text-danger-solid',
-        warning: 'text-warning-solid',
-        neutral: 'text-neutral-solid',
+        primary: 'text-primary-soft-fg',
+        secondary: 'text-secondary-soft-fg',
+        success: 'text-success-soft-fg',
+        danger: 'text-danger-soft-fg',
+        warning: 'text-warning-soft-fg',
+        neutral: 'text-neutral-soft-fg',
       },
       size: {
         sm: '',

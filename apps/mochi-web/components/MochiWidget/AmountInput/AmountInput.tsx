@@ -1,4 +1,10 @@
-import { Button, IconButton, Tooltip, Typography } from '@mochi-ui/core'
+import {
+  Button,
+  IconButton,
+  Separator,
+  Tooltip,
+  Typography,
+} from '@mochi-ui/core'
 import {
   ChangeEvent,
   KeyboardEvent,
@@ -14,12 +20,12 @@ import {
   TokenAmount,
   formatTokenAmount,
 } from '~utils/number'
-import clsx from 'clsx'
-import { ArrowUpDownLine } from '@mochi-ui/icons'
+import { SwapCircleSolid } from '@mochi-ui/icons'
 import events from '~constants/events'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { BalanceWithSource } from '~cpn/TokenTableList'
 import { useShallow } from 'zustand/react/shallow'
+import clsx from 'clsx'
 import { TokenPicker } from '../TokenPicker'
 import { Moniker } from '../TokenPicker/type'
 import { useTipWidget } from '../Tip/store'
@@ -231,48 +237,47 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   }, [authorized, onSelectAsset, selectedAsset])
 
   return (
-    <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-3">
+    <div className="rounded-xl bg p-3 bg-background-level2 flex flex-col gap-y-3">
       <div className="flex justify-between items-center">
         <Typography
           level="p5"
-          color="textSecondary"
+          color="textTertiary"
           fontWeight="md"
-          className="ml-4"
+          className="ml-3"
         >
           You send
         </Typography>
-        <div className="flex gap-x-2 justify-end">
-          <div className="flex gap-x-2">
+        <div className="flex gap-x-2 justify-end items-center">
+          <div className="flex gap-x-2 items-center">
             <Button
               size="sm"
-              variant="outline"
-              color="neutral"
+              variant="ghost"
+              color="primary"
               style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('1')}
               tabIndex={-1}
-              className="text-primary-700"
             >
               {!isUsdMode ? '$' : ''}1
             </Button>
+            <Separator orientation="vertical" className="!h-4" />
             <Button
               size="sm"
-              variant="outline"
-              color="neutral"
+              variant="ghost"
+              color="primary"
               style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('2')}
               tabIndex={-1}
-              className="text-primary-700"
             >
               {!isUsdMode ? '$' : ''}2
             </Button>
+            <Separator orientation="vertical" className="!h-4" />
             <Button
               size="sm"
-              variant="outline"
-              color="neutral"
+              variant="ghost"
+              color="primary"
               style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('5')}
               tabIndex={-1}
-              className="text-primary-700"
             >
               {!isUsdMode ? '$' : ''}5
             </Button>
@@ -283,11 +288,10 @@ export const AmountInput: React.FC<AmountInputProps> = ({
           >
             <IconButton
               label="Toggle USD mode"
-              variant="solid"
-              className={clsx('!p-0 !w-6 !h-6 my-auto flex justify-center', {
-                '!bg-neutral-500': !isUsdMode,
-                '!bg-primary-700': isUsdMode,
+              className={clsx('!text-[24px]', {
+                'text-text-icon-secondary': !isUsdMode,
               })}
+              variant="link"
               onClick={() => {
                 if (!isUsdMode) {
                   handleAmountChanged({
@@ -303,13 +307,13 @@ export const AmountInput: React.FC<AmountInputProps> = ({
                 toggleUsdMode()
               }}
             >
-              <ArrowUpDownLine className="!text-white scale-125" />
+              <SwapCircleSolid />
             </IconButton>
           </Tooltip>
         </div>
       </div>
-      <div className="flex flex-col p-4 rounded-lg bg-white-pure">
-        <div className="grid grid-cols-8 gap-y-4 grid-rows-auto">
+      <div className="flex flex-col p-3 rounded-lg bg-white-pure">
+        <div className="grid grid-cols-8 gap-y-3 grid-rows-auto">
           <div className="flex col-span-5 gap-x-1 items-center pr-4 h-max">
             {isUsdMode && (
               <div className="font-medium leading-[32px] text-[32px] text-neutral-800">
@@ -317,7 +321,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               </div>
             )}
             <input
-              className="self-start w-full h-full min-h-0 font-medium appearance-none outline-none leading-[32px] text-[32px] text-neutral-800"
+              className="placeholder:text-text-disabled self-start w-full h-full min-h-0 font-medium appearance-none outline-none leading-[32px] text-[32px] text-neutral-800"
               placeholder="0"
               type="text"
               min={0}
@@ -336,7 +340,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               onSelect={handleAssetChanged}
             />
           </div>
-          <span className="col-span-4 row-start-2 text-sm text-left shrink-0 text-neutral-600">
+          <span className="col-span-4 row-start-2 text-sm text-left shrink-0 text-text-tertiary">
             &#8776; {!isUsdMode ? tipAmountUSD : tipAmountToken}{' '}
             {!isUsdMode ? 'USD' : selectedAsset?.token.symbol}
           </span>
@@ -358,7 +362,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
                 },
               } as any)
             }}
-            className="w-max ml-auto outline-none text-[#848281] text-[13px] col-span-4 text-right"
+            className="outline-none text-text-tertiary text-[13px] col-span-4 text-right"
           >
             Balance: {!isUsdMode ? balance : balanceUsd}
           </button>

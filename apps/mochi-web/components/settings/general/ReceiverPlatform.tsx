@@ -35,10 +35,7 @@ export const ReceiverPlatform = () => {
             </SectionHeaderDescription>
             <SectionHeaderActions>
               <Select {...field}>
-                <SelectTrigger
-                  appearance="form"
-                  className="justify-between h-10 w-48"
-                >
+                <SelectTrigger appearance="form" className="h-10 w-48">
                   <SelectValue placeholder="Discord" />
                 </SelectTrigger>
                 <SelectContent align="end">

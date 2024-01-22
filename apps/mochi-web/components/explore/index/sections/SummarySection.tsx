@@ -74,7 +74,7 @@ export const SummarySection = () => {
               <Icon width={40} height={40} />
             </div>
             <div className="flex flex-col py-3 px-5">
-              <Typography level="h8" className="!text-text-secondary">
+              <Typography level="h8" color="textTertiary">
                 {title}
               </Typography>
               <Typography level="h5" fontWeight="lg">
@@ -88,8 +88,8 @@ export const SummarySection = () => {
             <div className="flex flex-col-4">
               <div className="flex gap-3 items-center">
                 <div className="flex gap-1.5 items-center py-1 px-2 rounded-full bg-success-solid">
-                  <div className="w-1.5 h-1.5 rounded-full animate-pulse bg-white-solid outline outline-2 outline-white-solid/50" />
-                  <Typography level="p6" className="text-white-solid">
+                  <div className="w-1.5 h-1.5 rounded-full animate-pulse bg-success-solid-fg outline outline-2 outline-success-solid-fg/50" />
+                  <Typography level="p6" className="!text-success-solid-fg">
                     Live
                   </Typography>
                 </div>
@@ -108,7 +108,7 @@ export const SummarySection = () => {
                 <Skeleton className="w-24 h-8" />
               ) : (
                 <>
-                  <Typography level="h5" className="!text-primary-solid">
+                  <Typography level="h5" className="!text-primary-solid-hover">
                     {formatNumber(
                       Math.floor(transactionSummary.transactions_per_day) || 0,
                     )}

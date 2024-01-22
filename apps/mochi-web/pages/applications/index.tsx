@@ -48,16 +48,17 @@ const AppPageHeader = ({
 
       <PageHeaderActions>
         <Button
-          color="white"
+          color="neutral"
+          variant="outline"
           onClick={() => window.open(SOCIAL_LINKS.DOCS, '_blank')}
         >
           See docs
         </Button>
         <DropdownMenu>
-          <DropdownMenuTrigger className="">
-            <Button className="!bg-neutral-150">
+          <DropdownMenuTrigger className="" asChild>
+            <Button variant="soft" color="neutral">
               <Typography level="p5">All apps</Typography>
-              <ChevronDownLine className="w-4 h-4 text-neutral-800" />
+              <ChevronDownLine className="w-4 h-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuPortal>

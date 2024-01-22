@@ -17,13 +17,13 @@ export const TransactionBadge = ({ action }: Props) => {
 
   return (
     <Badge
-      appearance={transactionActionAppearance[action] as any}
+      appearance={transactionActionAppearance[action]}
       className={clsx(
         'inline-flex border font-medium',
         transactionActionColor[action],
       )}
     >
-      <Icon className="w-3 h-3" />
+      <Icon className="w-3 h-3 opacity-70" />
       {transactionActionString[action] ?? 'tip'}
     </Badge>
   )

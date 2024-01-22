@@ -42,7 +42,7 @@ export const ChainPicker: React.FC<ChainPickerProps> = ({ className }) => {
         title="Networks"
       >
         <ChainList data={Chains} onSelect={handleChainSelect} />
-        <span className="w-full text-xs text-neutral-500">
+        <span className="w-full text-xs text-text-disabled">
           Only supported tokens are shown
         </span>
       </BottomSheet>

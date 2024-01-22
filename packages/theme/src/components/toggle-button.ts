@@ -6,8 +6,8 @@ const toggleButtonVariants = cva(
     'border',
     'disabled:cursor-not-allowed',
     'transition',
-    'focus:ring-2',
     'focus:outline-none',
+    'focus-visible:shadow-small',
   ],
   {
     variants: {
@@ -18,7 +18,7 @@ const toggleButtonVariants = cva(
           'data-[state=on]:bg-primary-outline-active',
           'hover:enabled:bg-primary-outline-hover',
           'data-[disabled]:text-primary-outline-disable-fg',
-          'focus:ring-primary-solid-focus',
+          'data-[disabled]:border-primary-outline-disable-border',
         ],
         secondary: [
           'border-secondary-outline-border',
@@ -26,7 +26,7 @@ const toggleButtonVariants = cva(
           'data-[state=on]:bg-secondary-outline-active',
           'hover:enabled:bg-secondary-outline-hover',
           'data-[disabled]:text-secondary-outline-disable-fg',
-          'focus:ring-secondary-solid-focus',
+          'data-[disabled]:border-secondary-outline-disable-border',
         ],
         success: [
           'border-success-outline-border',
@@ -34,7 +34,7 @@ const toggleButtonVariants = cva(
           'data-[state=on]:bg-success-outline-active',
           'hover:enabled:bg-success-outline-hover',
           'data-[disabled]:text-success-outline-disable-fg',
-          'focus:ring-success-solid-focus',
+          'data-[disabled]:border-success-outline-disable-border',
         ],
         warning: [
           'border-warning-outline-border',
@@ -42,7 +42,7 @@ const toggleButtonVariants = cva(
           'data-[state=on]:bg-warning-outline-active',
           'hover:enabled:bg-warning-outline-hover',
           'data-[disabled]:text-warning-outline-disable-fg',
-          'focus:ring-warning-solid-focus',
+          'data-[disabled]:border-warning-outline-disable-border',
         ],
         danger: [
           'border-danger-outline-border',
@@ -50,7 +50,7 @@ const toggleButtonVariants = cva(
           'data-[state=on]:bg-danger-outline-active',
           'hover:enabled:bg-danger-outline-hover',
           'data-[disabled]:text-danger-outline-disable-fg',
-          'focus:ring-danger-solid-focus',
+          'data-[disabled]:border-danger-outline-disable-border',
         ],
         neutral: [
           'border-neutral-outline-border',
@@ -58,7 +58,7 @@ const toggleButtonVariants = cva(
           'data-[state=on]:bg-neutral-outline-active',
           'hover:enabled:bg-neutral-outline-hover',
           'data-[disabled]:text-neutral-outline-disable-fg',
-          'focus:ring-neutral-solid-focus',
+          'data-[disabled]:border-neutral-outline-disable-border',
         ],
       },
       size: {

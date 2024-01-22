@@ -90,7 +90,7 @@ export const ApplicationDetailSidebarHeader = ({
           <div className="flex items-center w-full">
             <IconButton
               variant="link"
-              color="info"
+              color="neutral"
               label="Back"
               onClick={() => push(ROUTES.APPLICATON_LIST)}
             >

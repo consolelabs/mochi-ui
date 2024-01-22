@@ -73,7 +73,7 @@ function Platform({
   Icon: (props: React.SVGProps<SVGSVGElement>) => JSX.Element
 }) {
   return (
-    <div className="flex flex-col gap-y-3 justify-center items-center p-6 border-r border-b border-neutral-300">
+    <div className="flex flex-col gap-y-3 justify-center items-center p-6 border-r border-b border-neutral-outline-border">
       <div className="relative">
         <Icon
           className={clsx('w-10 h-10', {
@@ -96,13 +96,15 @@ function Platform({
 export function SupportedPlatforms() {
   return (
     <div className="hidden flex-col mt-16 md:flex landing-container">
-      <p className="text-4xl font-medium text-center font-text">
+      <p className="text-4xl font-medium text-center font-text text-text-primary">
         Supported platforms
       </p>
       <div className="flex flex-col gap-y-8 mt-8">
         <div className="flex flex-col gap-y-4">
-          <span className="text-lg font-medium">Socials</span>
-          <div className="grid grid-cols-5 auto-rows-auto border-t border-l border-neutral-300">
+          <span className="text-lg font-medium text-text-secondary">
+            Socials
+          </span>
+          <div className="grid grid-cols-5 auto-rows-auto border-t border-l border-neutral-outline-border">
             {socials.map(
               ([Icon, name, comingSoon]) =>
                 !comingSoon && (
@@ -117,8 +119,10 @@ export function SupportedPlatforms() {
           </div>
         </div>
         <div className="flex flex-col gap-y-4">
-          <span className="text-lg font-medium">Networks</span>
-          <div className="grid grid-cols-5 auto-rows-auto border-t border-l border-neutral-300">
+          <span className="text-lg font-medium text-text-secondary">
+            Networks
+          </span>
+          <div className="grid grid-cols-5 auto-rows-auto border-t border-l border-neutral-outline-border">
             {networks.map(
               ([Icon, name, comingSoon]) =>
                 !comingSoon && (

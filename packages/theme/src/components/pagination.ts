@@ -8,7 +8,7 @@ const paginationButtonClsx = ({
     'min-w-[24px] h-6 py-1 px-2 rounded-full flex-col justify-center items-center inline-flex border-none cursor-pointer',
     {
       'hover:bg-neutral-plain-hover text-text-primary': !active,
-      'bg-neutral-solid text-neutral-solid-fg': active,
+      'bg-primary-solid text-primary-solid-fg': active,
     },
     className,
   )

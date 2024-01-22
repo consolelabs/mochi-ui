@@ -77,7 +77,7 @@ const NotificationSwitcherField = (
   )
 }
 
-const Divider = () => <div className="w-full h-px my-8 bg-neutral-200" />
+const Divider = () => <div className="w-full h-px my-8 bg-divider" />
 
 export function NotificationPage() {
   const form = useForm<NotificationFormValue>({
@@ -196,11 +196,11 @@ export function NotificationPage() {
           })}
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className="border-b">
+          <div className="border-b border-divider">
             <Typography className="py-4" level="h6">
               Wallet Activity
             </Typography>
-            <div className="divide-y">
+            <div className="divide-y divide-divider">
               <NotificationSwitcherField
                 className="-mt-3"
                 tabIndex={switchTabIndex}
@@ -285,11 +285,11 @@ export function NotificationPage() {
             />
           </div>
           <Divider />
-          <div className="-mt-4 border-b">
+          <div className="-mt-4 border-b border-divider">
             <Typography className="py-4" level="h6">
               Apps Activity
             </Typography>
-            <div className="divide-y">
+            <div className="divide-y divide-divider">
               <NotificationSwitcherField
                 className="-mt-3"
                 tabIndex={switchTabIndex}
@@ -328,7 +328,7 @@ export function NotificationPage() {
             <Typography level="p5" color="textSecondary" className="pb-2 -mt-2">
               Select the platform you want to receive the notification
             </Typography>
-            <div className="divide-y">
+            <div className="divide-y divide-divider">
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Discord"

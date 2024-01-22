@@ -1,8 +1,7 @@
 /* istanbul ignore file */
 import type { ComponentPropsWithoutRef, ElementRef, ReactNode } from 'react'
 import type * as SelectPrimitive from '@radix-ui/react-select'
-
-type SelectAppearance = 'button' | 'form'
+import { SelectTriggerStyleProps } from '@mochi-ui/theme'
 
 type ReplaceOnValueChangeByOnChange<T extends { onValueChange?: any }> = Omit<
   T,
@@ -33,12 +32,9 @@ export type SelectTriggerProps = ComponentPropsWithoutRef<
   leftIcon?: ReactNode
   rightIcon?: ReactNode
   hideRightIcon?: boolean
-  appearance?: SelectAppearance
   isError?: boolean
-  color?: 'primary' | 'secondary' | 'white' | 'gray'
-  hasPadding?: boolean
   loading?: boolean
-}
+} & SelectTriggerStyleProps
 export type SelectGroupRef = ElementRef<typeof SelectPrimitive.Group>
 export type SelectGroupProps = ComponentPropsWithoutRef<
   typeof SelectPrimitive.Group

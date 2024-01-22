@@ -186,7 +186,7 @@ export const RenderSubComponent: Story = {
                       label={row.getIsExpanded() ? 'Collapse' : 'Expand'}
                       onClick={row.getToggleExpandedHandler()}
                       variant="link"
-                      color="white"
+                      color="neutral"
                       size="lg"
                     >
                       {row.getIsExpanded() ? (

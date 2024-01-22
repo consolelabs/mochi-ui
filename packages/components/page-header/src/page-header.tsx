@@ -25,7 +25,7 @@ const PageHeaderBackButton = forwardRef(({ className, ...props }, ref) => {
   return (
     <IconButton
       variant="link"
-      color="info"
+      color="neutral"
       className={pageHeaderBackButtonWrapperClsx({ className })}
       ref={ref}
       {...props}

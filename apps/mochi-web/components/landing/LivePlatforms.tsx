@@ -13,7 +13,9 @@ export function LivePlatforms({
 }) {
   return (
     <div className={clsx('flex flex-col', className)}>
-      <span className="text-sm font-medium">Mochi is live on</span>
+      <span className="text-sm font-medium text-text-secondary">
+        Mochi is live on
+      </span>
       <ul
         className={clsx('gap-2 mt-2', {
           'grid grid-cols-2 auto-rows-auto md:flex': useGridOnMobile,
@@ -23,16 +25,18 @@ export function LivePlatforms({
         {[
           {
             text: (
-              <span className="text-sm font-medium transition group-hover:text-blue-700 text-neutral-900">
+              <span className="text-sm font-medium transition group-hover:text-primary-outline-fg text-neutral-outline-fg">
                 Web
               </span>
             ),
-            icon: <WebSolid className="flex-shrink-0 w-4 h-4" />,
+            icon: (
+              <WebSolid className="flex-shrink-0 w-4 h-4 group-hover:text-primary-outline-fg" />
+            ),
             href: '/',
           },
           {
             text: (
-              <div className="flex flex-col gap-y-px -mr-1.5 text-neutral-900">
+              <div className="flex flex-col gap-y-px -mr-1.5 text-neutral-outline-fg">
                 <span className="text-[9px] leading-[9px]">Run on the</span>
                 <span className="text-[15px] leading-[15px]">Discord</span>
               </div>
@@ -42,7 +46,7 @@ export function LivePlatforms({
           },
           {
             text: (
-              <div className="flex flex-col gap-y-px -mr-1.5 text-neutral-900">
+              <div className="flex flex-col gap-y-px -mr-1.5 text-neutral-outline-fg">
                 <span className="text-[9px] leading-[9px]">Run on the</span>
                 <span className="text-[15px] leading-[15px]">Telegram</span>
               </div>
@@ -58,7 +62,7 @@ export function LivePlatforms({
             })}
           >
             <Link
-              className="flex flex-1 gap-x-1.5 justify-center items-center py-2 px-4 rounded-lg border transition md:flex-initial md:min-h-0 hover:text-blue-700 hover:bg-blue-100 hover:border-blue-300 min-h-[48px] group border-neutral-300 bg-white-pure"
+              className="flex flex-1 gap-x-1.5 justify-center items-center py-2 px-4 rounded-lg transition md:flex-initial md:min-h-0 min-h-[48px] group border border-primary-outline-disable-border hover:border-primary-outline-border hover:bg-primary-outline-hover"
               href={href}
             >
               {icon}

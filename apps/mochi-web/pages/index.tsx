@@ -97,7 +97,7 @@ export default function Index() {
       <SEO title="Mochi" />
       <div className="grid grid-cols-1 auto-rows-min gap-y-7 gap-x-32 py-8 m-auto lg:grid-cols-2 lg:grid-rows-2 xl:gap-x-60 landing-container">
         <div className="flex flex-col lg:justify-end">
-          <p className="text-[32px] leading-[38.4px] title-tracking md:text-[40px] md:leading-[48px]">
+          <p className="text-[32px] leading-[38.4px] title-tracking md:text-[40px] md:leading-[48px] text-text-primary">
             Send{' '}
             <span
               ref={currency}
@@ -110,7 +110,7 @@ export default function Index() {
               <span ref={platform} className="font-medium" />
             </span>
           </p>
-          <span className="mt-5 font-normal">
+          <span className="mt-5 font-normal text-text-secondary">
             Use Mochi to send and receive any amount of crypto, directly on your
             favorite Discord servers or Telegram groups, without having a wallet
             or having to pay a single cent in fees.
@@ -148,11 +148,11 @@ export default function Index() {
               <>
                 Send money to anyone, anywhere, and Mochi will automatically
                 calculate the split. You can send to a recipient by{' '}
-                <span className="text-sm leading-7 rounded border px-[3px] py-[2px] border-neutral-400">
+                <span className="text-sm leading-7 rounded border px-[3px] py-[2px] border-neutral-outline-border">
                   @role
                 </span>
                 ,{' '}
-                <span className="text-sm leading-7 rounded border px-[3px] py-[2px] border-neutral-400">
+                <span className="text-sm leading-7 rounded border px-[3px] py-[2px] border-neutral-outline-border">
                   #channel
                 </span>{' '}
                 or even on other socials.
@@ -226,10 +226,10 @@ export default function Index() {
       <SupportedPlatforms />
       <div className="flex justify-center mb-8 md:justify-between md:my-36 landing-container">
         <div className="flex flex-col gap-y-1">
-          <p className="text-3xl md:text-4xl title-tracking text-neutral-900">
+          <p className="text-3xl md:text-4xl title-tracking text-text-primary">
             Simple, intuitive commands
           </p>
-          <span className="mt-2 text-base font-normal md:text-lg text-neutral-700">
+          <span className="mt-2 text-base font-normal md:text-lg text-text-secondary">
             Mochi has a single, extensible command for tipping, airdropping on
             users.
           </span>
