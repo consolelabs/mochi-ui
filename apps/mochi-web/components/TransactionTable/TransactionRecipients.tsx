@@ -88,7 +88,8 @@ export const TransactionRecipients = (props: TransactionRecipientsProps) => {
                           fontWeight="md"
                           className="font-mono !text-inherit"
                         >
-                          {allTxs[i].singleAmount} {allTxs[i].token.symbol}
+                          {allTxs[i].singleAmount} {allTxs[i].token.symbol}{' '}
+                          {allTxs[i].isMultipleTokens && '& others'}
                         </Typography>
                       </div>
                     )}

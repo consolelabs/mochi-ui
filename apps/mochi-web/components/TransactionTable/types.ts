@@ -26,9 +26,12 @@ export interface Tx {
     platformIcon?: string
   }
   token: {
+    id: string
     icon: string
     symbol: string
+    decimal: number
   }
+  isMultipleTokens: boolean
   action: TransactionActionType
   singleAmount: string
   amount: string
@@ -60,4 +63,5 @@ export type TransactionTableProps = Omit<TableProps<Tx>, 'columns'> & {
   }
   enableColFilter?: boolean
   enableColSort?: boolean
+  upper?: React.ReactNode
 }

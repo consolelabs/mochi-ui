@@ -10,12 +10,14 @@ function getAmountData(tx: any) {
   const amountSymbol = mochiUtils.formatTokenDigit({
     value: utils.formatUnits(tx?.amount ?? 0, tx?.token.decimal ?? 0),
   })
-  const amountDisplay = tx.metadata.moniker
-    ? tx.metadata.original_amount
-    : amountSymbol
-  const unitCurrency = tx.metadata.moniker
-    ? tx.metadata.moniker
-    : tx.token.symbol
+  const amountDisplay = amountSymbol
+  // TODO: moniker
+  // const amountDisplay = tx.metadata.moniker
+  //   ? tx.metadata.original_amount
+  //   : amountSymbol
+  // const unitCurrency = tx.metadata.moniker
+  //   ? tx.metadata.moniker
+  //   : tx.token.symbol
   const amountApproxMoniker = tx.metadata.moniker
     ? `${amountSymbol} ${tx.token.symbol}`
     : ``
@@ -29,7 +31,7 @@ function getAmountData(tx: any) {
 
   return {
     amountDisplay,
-    unitCurrency,
+    unitCurrency: tx.token.symbol,
     amountApproxMoniker,
     amountSection,
     unitAmountSection,

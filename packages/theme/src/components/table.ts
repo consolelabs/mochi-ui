@@ -29,17 +29,12 @@ const tableRowClsx = ({
 const tableHeaderClsx = ({
   className = '',
   stickyHeader,
-  size,
-}: { className?: string; stickyHeader?: boolean; size?: 'sm' | 'md' } = {}) =>
+}: { className?: string; stickyHeader?: boolean } = {}) =>
   clsx(
-    'whitespace-nowrap py-3 text-xxs font-semibold tracking-tight uppercase min-w-[48px] text-text-tertiary',
+    'px-4 whitespace-nowrap py-3 text-xxs font-semibold tracking-tight uppercase min-w-[48px] text-text-tertiary',
     stickyHeader
       ? 'sticky top-0 bg-background-surface after:absolute after:inset-0 after:h-full after:w-full after:border-b after:border-neutral-outline-active'
       : 'border-b border-neutral-outline-active',
-    {
-      'px-2': size === 'sm',
-      'px-4': size === 'md',
-    },
     className,
   )
 
@@ -84,11 +79,11 @@ const tableDataClsx = ({
   size?: 'sm' | 'md'
 } = {}) =>
   clsx(
-    'overflow-hidden text-sm font-normal leading-tight border-0 border-b border-neutral-outline-active border-solid min-w-[48px] text-text-primary',
+    'px-4 overflow-hidden text-sm font-normal leading-tight border-0 border-b border-neutral-outline-active border-solid min-w-[48px] text-text-primary',
     { 'group-last:border-b-0': hideLastBorder || border },
     {
-      'px-4 py-2 h-14': size === 'sm',
-      'px-4 py-3 h-[72px]': size === 'md',
+      'py-2 h-14': size === 'sm',
+      'py-3 h-[72px]': size === 'md',
     },
     className,
   )

@@ -114,22 +114,30 @@ export const useTransactionStore = create<State & Action>((set, get) => ({
       )
       .json((r) => r)
       .then((r) => {
-        Promise.allSettled(r.data?.map(transform) || []).then((results) => {
-          const { txns } = get()
+        Promise.allSettled(r.data?.map((d: any) => transform(d)) || []).then(
+          (results) => {
+            if (results.some((r) => r.status === 'rejected')) {
+              console.error(
+                'some tx data cannot be rendered',
+                results.filter((r) => r.status === 'rejected'),
+              )
+            }
+            const { txns } = get()
 
-          txns[page - 1] = results
-            .map((c) => (c.status === 'fulfilled' ? c.value : null))
-            .filter(Boolean) as any
+            txns[page - 1] = results
+              .map((c) => (c.status === 'fulfilled' ? c.value : null))
+              .filter(Boolean) as any
 
-          set((s) => ({
-            ...s,
-            loading: false,
-            fetching: false,
-            txns,
-            lastTxns: txns[page - 1],
-            total: r.pagination.total,
-          }))
-        })
+            set((s) => ({
+              ...s,
+              loading: false,
+              fetching: false,
+              txns,
+              lastTxns: txns[page - 1],
+              total: r.pagination.total,
+            }))
+          },
+        )
       })
   },
   setSize: (size) => {
@@ -177,9 +185,9 @@ export const useTransactionStore = create<State & Action>((set, get) => ({
   },
   ws: null,
   initWs: (override = false, profileId = '') => {
-    const { profileId: _profileId } = get()
+    const { profileId: _profileId, ws: _ws } = get()
     const shouldOverride = profileId !== _profileId
-    if (!override && get().ws && !shouldOverride) return
+    if (!override && _ws && !shouldOverride) return
 
     set((s) => ({
       ...s,
@@ -187,11 +195,12 @@ export const useTransactionStore = create<State & Action>((set, get) => ({
       txns: [],
       profileId,
     }))
-    const ws = new WebSocket(
-      profileId
-        ? `${MOCHI_PAY_WSS}/ws${GET_PATHS.PROFILE_TRANSACTION(profileId)}`
-        : `${MOCHI_PAY_WSS}/ws/transactions`,
-    )
+
+    if (_ws) {
+      _ws.close()
+    }
+
+    const ws = new WebSocket(`${MOCHI_PAY_WSS}/ws/transactions`)
     ws.onopen = (e) => {
       console.info('feed connected', e)
     }
