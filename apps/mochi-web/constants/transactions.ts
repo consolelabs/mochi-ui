@@ -56,14 +56,14 @@ export const transactionActionIcon: Record<
 }
 
 export const transactionActionColor: Record<TransactionActionType, string> = {
-  transfer: 'border-[#A6F4C5]',
-  vault_transfer: 'border-[#EAECF0]',
-  payme: 'border-[#B2DDFF]',
-  paylink: 'border-[#B2DDFF]',
-  swap: 'border-[#D9D6FE]',
-  airdrop: 'border-[#FEDF89]',
-  deposit: 'border-[#EAECF0]',
-  withdraw: 'border-[#EAECF0]',
+  transfer: 'border-success-outline-border',
+  vault_transfer: 'border-neutral-outline-border',
+  payme: 'border-primary-outline-border',
+  paylink: 'border-primary-outline-border',
+  swap: 'border-secondary-outline-border',
+  airdrop: 'border-warning-outline-border',
+  deposit: 'border-neutral-outline-border',
+  withdraw: 'border-neutral-outline-border',
 }
 
 export const transactionActionAppearance = {

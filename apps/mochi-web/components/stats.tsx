@@ -48,7 +48,7 @@ function Spotlight({
 function Divider() {
   return (
     <div className="flex flex-shrink-0 justify-center mx-8">
-      <div className="w-px h-10 bg-neutral-200" />
+      <div className="w-px h-10 bg-divider" />
     </div>
   )
 }

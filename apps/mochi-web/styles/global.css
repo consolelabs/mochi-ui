@@ -9,11 +9,10 @@
 }
 
 body {
-  @apply bg-white-pure;
+  @apply bg-background-body text-text-primary;
   position: relative;
   height: 100svh;
   letter-spacing: -0.2px;
-  color: #474645;
   overscroll-behavior-y: none;
 }
 

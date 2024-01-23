@@ -66,13 +66,13 @@ export default function MochiWidget({ wrapperClassName, className }: Props) {
   return (
     <BottomSheetProvider
       className={clsx(
-        'w-auto lg:w-full overflow-hidden rounded-2xl border shadow-xl border-neutral-300',
+        'w-auto lg:w-full overflow-hidden rounded-2xl border shadow-xl border-divider',
         wrapperClassName,
       )}
     >
       <div
         className={clsx(
-          'shadow-xl rounded-[15px] bg-white-pure flex flex-col',
+          'shadow-xl rounded-[15px] bg-background-body flex flex-col',
           className,
         )}
         style={{
@@ -81,7 +81,7 @@ export default function MochiWidget({ wrapperClassName, className }: Props) {
         }}
       >
         <div
-          className={clsx('items-center p-3 border-b border-neutral-300', {
+          className={clsx('items-center p-3 border-b border-divider', {
             flex: isOpen,
             hidden: !isOpen,
           })}
@@ -90,7 +90,7 @@ export default function MochiWidget({ wrapperClassName, className }: Props) {
             return (
               <React.Fragment key={t.title}>
                 {i !== 0 && (
-                  <div className="flex-shrink-0 w-px h-4 bg-[#d4d3d0] mx-2" />
+                  <div className="flex-shrink-0 w-px h-4 bg-text-tertiary mx-2" />
                 )}
                 <button
                   type="button"
@@ -98,8 +98,8 @@ export default function MochiWidget({ wrapperClassName, className }: Props) {
                   className={clsx(
                     'whitespace-nowrap text-sm flex-1 flex justify-center items-center gap-x-1',
                     {
-                      'text-[#343433]': t.id === activeTab.id,
-                      'text-[#848281]': t.id !== activeTab.id,
+                      'text-text-primary': t.id === activeTab.id,
+                      'text-text-secondary': t.id !== activeTab.id,
                     },
                   )}
                 >

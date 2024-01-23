@@ -292,8 +292,8 @@ const alertCancelClsx = ({
   clsx(
     {
       'wit-fit bg-inherit h-[34px]': layout === 'inline',
-      'w-full bg-white h-10': layout === 'stack',
-      'w-full bg-white sm:h-[34px] h-10 sm:w-fit sm:bg-inherit sm:border-none sm:focus:shadow-none sm:hover:bg-inherit':
+      'w-full h-10': layout === 'stack',
+      'w-full sm:h-[34px] h-10 sm:w-fit sm:bg-inherit sm:border-none sm:focus:shadow-none sm:hover:bg-inherit':
         layout === 'auto',
     },
     className,

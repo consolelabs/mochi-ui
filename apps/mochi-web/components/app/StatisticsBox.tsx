@@ -29,7 +29,7 @@ export const StatisticsBox = ({
   return (
     <div
       className={clsx(
-        'bg-neutral-0 rounded-xl',
+        'bg-background-body rounded-xl',
         size === 'md' ? 'p-4 space-y-4' : 'p-6 space-y-2',
         className,
       )}

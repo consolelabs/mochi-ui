@@ -312,16 +312,16 @@ export const AmountInput: React.FC<AmountInputProps> = ({
           </Tooltip>
         </div>
       </div>
-      <div className="flex flex-col p-3 rounded-lg bg-white-pure">
+      <div className="flex flex-col p-3 rounded-lg bg-background-body">
         <div className="grid grid-cols-8 gap-y-3 grid-rows-auto">
           <div className="flex col-span-5 gap-x-1 items-center pr-4 h-max">
             {isUsdMode && (
-              <div className="font-medium leading-[32px] text-[32px] text-neutral-800">
+              <div className="font-medium leading-[32px] text-[32px] text-text-primary">
                 $
               </div>
             )}
             <input
-              className="self-start w-full h-full min-h-0 font-medium appearance-none outline-none placeholder:text-text-disabled leading-[32px] text-[32px] text-neutral-800"
+              className="bg-transparent self-start w-full h-full min-h-0 font-medium appearance-none outline-none placeholder:text-text-disabled leading-[32px] text-[32px] text-text-primary"
               placeholder="0"
               type="text"
               min={0}

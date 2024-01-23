@@ -43,7 +43,7 @@ export const RecipientItem: React.FC<ItemProps> = ({
       <CheckIcon isSelected={isSelected} isHovering={isHovering || active} />
     ) : (
       <PlatformIcon
-        className="p-1 w-6 h-6 text-neutral-500"
+        className="p-1 w-6 h-6 text-text-icon-secondary"
         platform={platform ?? ''}
         compact
       />
@@ -54,8 +54,8 @@ export const RecipientItem: React.FC<ItemProps> = ({
       className={clsx(
         'group flex flex-row items-center w-full min-w-[230px] p-2 rounded-lg space-x-2 cursor-pointer',
         {
-          'bg-neutral-100': active,
-          'hover:bg-neutral-100': !active || !isSelected,
+          'bg-background-level2': active,
+          'hover:bg-background-level2': !active || !isSelected,
         },
       )}
       onMouseEnter={setIsHovering}

@@ -221,7 +221,7 @@ export const Recipient: React.FC<RecipientProps> = ({
               tabIndex={-1}
               type="button"
               onClick={openContacts}
-              className="flex relative justify-center items-center -mr-3 !w-5 h-5 rounded-full outline-none bg-text-icon-secondary text-white-pure"
+              className="flex relative justify-center items-center -mr-3 !w-5 h-5 rounded-full outline-none bg-text-icon-secondary text-text-contrast"
             >
               <input
                 tabIndex={-1}
@@ -234,7 +234,7 @@ export const Recipient: React.FC<RecipientProps> = ({
         </div>
 
         <div
-          className="flex gap-x-2 items-center py-2.5 px-3 rounded-lg border bg-white-pure border-white-pure"
+          className="flex gap-x-2 items-center py-2.5 px-3 rounded-lg bg-background-body"
           style={
             isOpenRecipients
               ? {
@@ -247,7 +247,7 @@ export const Recipient: React.FC<RecipientProps> = ({
               : {}
           }
         >
-          <span className="pt-0.5 text-lg h-[34px] text-neutral-600">@</span>
+          <span className="pt-0.5 text-lg h-[34px] text-text-tertiary">@</span>
           <input
             id="recipients"
             readOnly
@@ -273,7 +273,7 @@ export const Recipient: React.FC<RecipientProps> = ({
         </div>
         {selectedRecipients?.length ? (
           <ScrollArea className="relative">
-            <div className="absolute top-0 left-0 z-10 -ml-2 w-8 h-full bg-gradient-to-r pointer-events-none from-neutral-150 from-20%" />
+            <div className="absolute top-0 left-0 z-10 -ml-2 w-8 h-full bg-gradient-to-r pointer-events-none from-background-level2 from-20%" />
             <ScrollAreaViewport className="relative">
               <div
                 style={{ height: 84 }}
@@ -291,7 +291,7 @@ export const Recipient: React.FC<RecipientProps> = ({
                 ))}
               </div>
             </ScrollAreaViewport>
-            <div className="absolute top-0 right-0 z-10 -mr-2 w-8 h-full bg-gradient-to-l pointer-events-none from-neutral-150 from-20%" />
+            <div className="absolute top-0 right-0 z-10 -mr-2 w-8 h-full bg-gradient-to-l pointer-events-none from-background-level2 from-20%" />
             <ScrollAreaScrollbar orientation="horizontal">
               <ScrollAreaThumb />
             </ScrollAreaScrollbar>
@@ -343,7 +343,7 @@ export const Recipient: React.FC<RecipientProps> = ({
                 ) : null}
                 {prefix ? (
                   <TextFieldDecorator>
-                    <div className="flex gap-x-1 items-center py-0.5 px-2 -ml-2 text-sm bg-gray-200 rounded text-neutral-800">
+                    <div className="flex gap-x-1 items-center py-0.5 px-2 -ml-2 text-sm bg-background-level3 rounded text-text-primary">
                       {prefix}
                     </div>
                   </TextFieldDecorator>
@@ -359,7 +359,7 @@ export const Recipient: React.FC<RecipientProps> = ({
                 />
               </TextFieldRoot>
               {selectedPlatform.platform !== 'on-chain' && (
-                <span className="mt-1 text-xs text-neutral-500">
+                <span className="mt-1 text-xs text-text-tertiary">
                   Type dsc: or tg: to quickly switch platform
                 </span>
               )}
@@ -403,7 +403,7 @@ export const Recipient: React.FC<RecipientProps> = ({
             <TextFieldRoot className="flex-shrink-0 mt-2">
               {prefix ? (
                 <TextFieldDecorator>
-                  <div className="flex gap-x-1 items-center py-0.5 px-2 -ml-2 text-sm bg-gray-200 rounded text-neutral-800">
+                  <div className="flex gap-x-1 items-center py-0.5 px-2 -ml-2 text-sm bg-background-level3 rounded text-text-primary">
                     {prefix}
                   </div>
                 </TextFieldDecorator>

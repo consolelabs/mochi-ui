@@ -73,11 +73,7 @@ const LoginPopover = () => {
         </div>
       </PopoverTrigger>
       <PopoverPortal>
-        <PopoverContent
-          className="bg-white-pure"
-          sideOffset={10}
-          collisionPadding={20}
-        >
+        <PopoverContent sideOffset={10} collisionPadding={20}>
           <LoginWidget raw />
         </PopoverContent>
       </PopoverPortal>
@@ -246,7 +242,7 @@ export const Header = ({
             >
               <MagnifierLine />
               <input
-                className="flex-1 text-sm outline-none"
+                className="flex-1 text-sm outline-none bg-transparent placeholder:text-text-disabled"
                 placeholder="Search token, ID or address"
               />
               <div className="flex gap-x-1">
@@ -254,7 +250,7 @@ export const Header = ({
                   style={{
                     boxShadow: '0px 2px 0px 0px rgba(212, 211, 208, 1)',
                   }}
-                  className="text-center leading-[1.1rem] rounded-sm font-mono w-4 h-4 bg-[#eeedec]"
+                  className="text-center leading-[1.1rem] rounded-sm font-mono w-4 h-4 bg-[#eeedec] text-black"
                 >
                   ⌘
                 </span>
@@ -262,14 +258,14 @@ export const Header = ({
                   style={{
                     boxShadow: '0px 2px 0px 0px rgba(212, 211, 208, 1)',
                   }}
-                  className="text-[10px] text-center leading-[1.1rem] rounded-sm font-mono w-4 h-4 bg-[#eeedec]"
+                  className="text-[10px] text-center leading-[1.1rem] rounded-sm font-mono w-4 h-4 bg-[#eeedec] text-black"
                 >
                   K
                 </span>
               </div>
             </div>
             <div className="hidden py-1.5 ml-2 w-px lg:block">
-              <div className="w-full h-full bg-[#eeedec]" />
+              <div className="w-full h-full bg-divider" />
             </div>
             <Button
               onClick={async () => {
@@ -298,7 +294,7 @@ export const Header = ({
               />,
               <BellSolid
                 key="header-icon-button-3"
-                className="w-full h-full text-neutral-800"
+                className="w-full h-full text-text-primary"
               />,
             ].map((icon) => {
               return (

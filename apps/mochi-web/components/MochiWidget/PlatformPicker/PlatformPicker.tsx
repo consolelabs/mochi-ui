@@ -66,20 +66,23 @@ export const PlatformPicker: React.FC<Props> = ({
       <button
         type="button"
         onClick={onOpen}
-        className="flex gap-x-2 items-center py-1.5 px-3 rounded-lg outline-none bg-primary-50"
+        className="flex gap-x-2 items-center py-1.5 px-3 rounded-lg outline-none bg-primary-soft"
         tabIndex={-1}
       >
         <PlatformIcon
           platform={value.platform}
-          className="flex-shrink-0 text-primary-700 w-[22px] h-[22px]"
+          className="flex-shrink-0 text-primary-soft-fg w-[22px] h-[22px]"
         />
         <span className="text-sm font-medium capitalize whitespace-nowrap">
           {value.platform}
         </span>
         <ChevronDownLine
-          className={clsx('w-4 h-4 text-primary-500 transition', {
-            'rotate-180': isOpen,
-          })}
+          className={clsx(
+            'w-4 h-4 text-primary-soft-fg opacity-80 transition',
+            {
+              'rotate-180': isOpen,
+            },
+          )}
         />
       </button>
       <BottomSheet
