@@ -1,5 +1,11 @@
 import { GetStaticProps } from 'next'
-import { Badge, Typography, TypographyProps } from '@mochi-ui/core'
+import {
+  Badge,
+  Button,
+  IconButton,
+  Typography,
+  TypographyProps,
+} from '@mochi-ui/core'
 import { Layout } from '~app/layout'
 import { SEO } from '~app/layout/seo'
 import { PAGES } from '~constants'
@@ -9,8 +15,11 @@ import remarkBreaks from 'remark-breaks'
 import { api } from '~constants/mochi'
 import { NativeImage } from '~cpn/NativeImage'
 import clsx from 'clsx'
-import { getDescription, getFirstImageUrl } from '../utils/changelog'
+import Link from 'next/link'
+import { InboxSolid } from '@mochi-ui/icons'
+import { useRef } from 'react'
 import { ChangelogPage } from '../types/mochi-schema'
+import { getDescription, getFirstImageUrl } from '../utils/changelog'
 
 type Props = {
   data: Array<ChangelogPage>
@@ -137,9 +146,9 @@ const ChangelogItem = ({ name, content, version }: ChangelogPage) => (
 export default function Changelog({ data }: Props) {
   const firstImgUrl = getFirstImageUrl(data)
   const description = getDescription(data)
-
+  const layoutRef = useRef<HTMLDivElement>(null)
   return (
-    <Layout>
+    <Layout ref={layoutRef}>
       <SEO
         description={description}
         image={firstImgUrl || ''}
@@ -147,7 +156,7 @@ export default function Changelog({ data }: Props) {
         tailTitle
       />
       <div className="flex flex-col pt-8 md:pt-20 landing-container">
-        <div className="w-full flex justify-center mb-16 md:mb-20">
+        <div className="w-full flex justify-between mb-16 md:mb-20 items-center">
           <div className="w-full max-w-[1008px]">
             <Typography
               level="h3"
@@ -159,12 +168,45 @@ export default function Changelog({ data }: Props) {
               The latest updates from Mochi.
             </Typography>
           </div>
+          <div className="flex gap-2 items-center">
+            <Button asChild variant="outline" color="neutral" size="sm">
+              <Link href="https://twitter.com/mochi_gg_" target="_blank">
+                Follow @mochi_gg
+              </Link>
+            </Button>
+            <IconButton
+              label="Subscribe"
+              color="neutral"
+              variant="outline"
+              size="md"
+              onClick={() => {
+                layoutRef.current?.scrollTo({
+                  top: layoutRef.current.scrollHeight,
+                  behavior: 'smooth',
+                })
+              }}
+            >
+              <InboxSolid />
+            </IconButton>
+          </div>
         </div>
 
         {data?.map(
           (d, i) => d && <ChangelogItem {...d} key={`changelog-${i}`} />,
         )}
       </div>
+
+      {/* <iframe
+        src="https://mochigg.substack.com/embed"
+        width="480"
+        height="150"
+        // style="border:1px solid #EEE; background:white;"
+        // eslint-disable-next-line
+        frameborder="0"
+        scrolling="no"
+      >
+        asdoiaoidj
+      </iframe> */}
     </Layout>
   )
 }
