@@ -23,6 +23,7 @@ const {
 } = pagination
 
 interface PaginationProps {
+  page?: number
   initalPage?: number
   totalPages?: number
   totalItems: number
@@ -57,6 +58,7 @@ function PageButton({
 
 export default function Pagination({
   initalPage = 1,
+  page = initalPage,
   totalPages: initTotalPage = 1,
   initItemsPerPage = 25,
   totalItems,
@@ -65,7 +67,7 @@ export default function Pagination({
   className,
   recordName = 'members',
 }: PaginationProps) {
-  const [currentPage, setCurrentPage] = useState(initalPage)
+  const [currentPage, setCurrentPage] = useState(page)
   const [currentItemPerPage, setCurrentItemPerPage] = useState(initItemsPerPage)
 
   useEffect(() => {
@@ -73,6 +75,13 @@ export default function Pagination({
       onPageChange(currentPage)
     }
   }, [currentPage, onPageChange])
+
+  useEffect(() => {
+    if (typeof page === 'number' && page >= 1 && page !== currentPage) {
+      setCurrentPage(page)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page])
 
   useEffect(() => {
     if (onItemPerPageChange) {

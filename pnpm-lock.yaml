@@ -224,6 +224,9 @@ importers:
       lodash.groupby:
         specifier: ^4.6.0
         version: 4.6.0
+      lodash.isequal:
+        specifier: ^4.5.0
+        version: 4.5.0
       next:
         specifier: ^14.0.3
         version: 14.0.3(@babel/core@7.23.7)(react-dom@18.2.0)(react@18.2.0)
@@ -348,6 +351,9 @@ importers:
       '@types/lodash.groupby':
         specifier: ^4.6.8
         version: 4.6.8
+      '@types/lodash.isequal':
+        specifier: ^4.5.8
+        version: 4.5.8
       '@types/node':
         specifier: ^18.15.5
         version: 18.15.5
@@ -11280,6 +11286,12 @@ packages:
 
   /@types/lodash.groupby@4.6.8:
     resolution: {integrity: sha512-+VbBhRhzo6g6q5RdVQXlU1vwbYVodEkS9ZCVuqHtZvhlSu1muQLNYYR1yhyYwAcSz7gMDOHlWPnPvAoQqV4rlg==}
+    dependencies:
+      '@types/lodash': 4.14.202
+    dev: true
+
+  /@types/lodash.isequal@4.5.8:
+    resolution: {integrity: sha512-uput6pg4E/tj2LGxCZo9+y27JNyB2OZuuI/T5F+ylVDYuqICLG2/ktjxx0v6GvVntAf8TvEzeQLcV0ffRirXuA==}
     dependencies:
       '@types/lodash': 4.14.202
     dev: true

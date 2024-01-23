@@ -22,7 +22,7 @@ import {
   CrossCircleOutlined,
   MagnifierLine,
 } from '@mochi-ui/icons'
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 /* import { Tab } from '@headlessui/react' */
 import { BottomSheet } from '~cpn/BottomSheet'
@@ -47,7 +47,15 @@ function getFilterThemeFunc(searchTerm: string) {
 }
 
 export default function ThemePicker({ value, onChange }: ThemePickerProps) {
-  const [selectedTab, setSelectedTab] = useState<'common' | 'zodiac'>('common')
+  const ref = useRef<HTMLDivElement>(null)
+  const [selectedTab, _setSelectedTab] = useState<'common' | 'zodiac'>('common')
+  const setSelectedTab = useCallback((tab: 'common' | 'zodiac') => {
+    if (ref.current) {
+      ref.current.scrollTop = 0
+    }
+    _setSelectedTab(tab)
+  }, [])
+
   const { data: themes = [] } = useSWR<Theme[]>(
     ['tip-widget-themes'],
     async () => {
@@ -94,7 +102,7 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
       (g) => g.data.filter(getFilterThemeFunc(themeSearch)).length,
     )
     setSelectedTab(firstGroupHasValueIdx === 0 ? 'common' : 'zodiac')
-  }, [groupByTheme, themeSearch])
+  }, [groupByTheme, setSelectedTab, themeSearch])
 
   return (
     <div className="flex flex-col gap-y-1">
@@ -246,7 +254,7 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
                 </TabTrigger>
               </TabList>
               <ScrollArea className="h-[430px]">
-                <ScrollAreaViewport>
+                <ScrollAreaViewport ref={ref}>
                   <div className="grid grid-cols-2 auto-rows-fr gap-4 mt-4">
                     {selectedTab === 'common'
                       ? groupByTheme[0]?.data

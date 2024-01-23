@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import emojiStrip from 'emoji-strip'
 import Image from 'next/image'
 import { Avatar, AvatarGroup, Tooltip, Typography } from '@mochi-ui/core'
@@ -66,7 +67,9 @@ export const TransactionRecipients = (props: TransactionRecipientsProps) => {
                     <Typography
                       level="p5"
                       fontWeight="md"
-                      className="!text-inherit"
+                      className={clsx('!text-inherit', {
+                        'font-mono': utils.address.isAddress(address).valid,
+                      })}
                     >
                       {address}
                       {!hasAddress && ':'}
@@ -83,7 +86,7 @@ export const TransactionRecipients = (props: TransactionRecipientsProps) => {
                         <Typography
                           level="p5"
                           fontWeight="md"
-                          className="!text-inherit"
+                          className="font-mono !text-inherit"
                         >
                           {allTxs[i].singleAmount} {allTxs[i].token.symbol}
                         </Typography>

@@ -3,6 +3,7 @@ import { API, GET_PATHS } from '~constants/api'
 import type { Tx } from '~cpn/TransactionTable'
 import { transform } from '~cpn/TransactionTable/utils'
 import { MOCHI_PAY_WSS } from '~envs'
+import isEqual from 'lodash.isequal'
 
 export const DEFAULT_PAGE_SIZE = 15
 
@@ -15,6 +16,7 @@ type Filters = {
 interface State {
   profileId: string
   txns: Tx[][]
+  lastTxns: Tx[]
   loading: boolean
   fetching: boolean
   size: number
@@ -43,6 +45,7 @@ interface Action {
 const initialState: State = {
   profileId: '',
   txns: [],
+  lastTxns: [],
   loading: true,
   fetching: true,
   page: 1,
@@ -93,8 +96,10 @@ export const useTransactionStore = create<State & Action>((set, get) => ({
     set((s) => ({ ...s, txns: paginatedTxns }))
   },
   fetchTxns: async (filters, sort, page = 1, size = DEFAULT_PAGE_SIZE) => {
-    set({ fetching: true })
     const { profileId } = get()
+    set({
+      fetching: true,
+    })
     return API.MOCHI_PAY.query({
       page: page - 1,
       size,
@@ -121,6 +126,7 @@ export const useTransactionStore = create<State & Action>((set, get) => ({
             loading: false,
             fetching: false,
             txns,
+            lastTxns: txns[page - 1],
             total: r.pagination.total,
           }))
         })
@@ -151,8 +157,14 @@ export const useTransactionStore = create<State & Action>((set, get) => ({
 
     const finalFilters = { ..._filters, ...partialFilters }
 
-    if (JSON.stringify(finalFilters) !== JSON.stringify(_filters)) {
-      set((s) => ({ ...s, filters: finalFilters, page: 1, fetching: true }))
+    if (!isEqual(finalFilters, _filters)) {
+      set((s) => ({
+        ...s,
+        filters: finalFilters,
+        page: 1,
+        fetching: true,
+        txns: [],
+      }))
       fetchTxns(finalFilters, sort, 1, size)
     }
   },

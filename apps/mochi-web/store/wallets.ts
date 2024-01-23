@@ -47,7 +47,7 @@ export type Wallet = {
 
 type State = {
   wallets: Wallet[]
-  setWallets: (me: Profile) => Promise<void>
+  setWallets: (me: Profile) => Promise<Wallet[]>
   isFetching: boolean
 }
 
@@ -224,9 +224,12 @@ export const useWalletStore = create<State>((set) => ({
       if (getLoginWidgetState().isLoggedIn) {
         set({ isFetching: false, wallets })
       }
+
+      return wallets
     } catch (e) {
       console.error(e)
       set((s) => ({ ...s, isFetching: false }))
+      return []
     }
   },
 }))

@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react'
 import { TransactionTable } from '~cpn/TransactionTable'
-import { usePrevious } from '@dwarvesf/react-hooks'
 import { ChainPicker, PlatformPicker } from '../components'
 import {
   DEFAULT_PAGE_SIZE,
@@ -11,6 +10,7 @@ export const TransactionSection = () => {
   const {
     loading,
     txns,
+    lastTxns,
     fetchTxns,
     page,
     /* size, */
@@ -23,9 +23,6 @@ export const TransactionSection = () => {
     initWs,
   } = useTransactionStore()
   const txnsCurrentPage = txns[page - 1]
-  const previousTxns = usePrevious(
-    txnsCurrentPage || txns.reverse().find((p) => p.length),
-  )
 
   useEffect(() => {
     fetchTxns()
@@ -56,10 +53,11 @@ export const TransactionSection = () => {
       </div>
       <TransactionTable
         loadingRows={10}
-        data={txnsCurrentPage || previousTxns}
+        data={txnsCurrentPage || lastTxns}
         isLoading={loading}
         componentsProps={{
           pagination: {
+            page,
             initalPage: 1,
             initItemsPerPage: DEFAULT_PAGE_SIZE,
             totalItems: total,

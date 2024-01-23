@@ -1,5 +1,5 @@
 import { useDisclosure } from '@dwarvesf/react-hooks'
-import { useWalletStore } from '~store'
+import { useMochiWidget, useWalletStore } from '~store'
 import { useCallback, useEffect, useMemo } from 'react'
 import { Button } from '@mochi-ui/core'
 import { ArrowRightLine, ChevronDownLine } from '@mochi-ui/icons'
@@ -29,6 +29,7 @@ export default function StepOne() {
     setAsset,
     setAmount,
   } = useTipWidget()
+  const { setSelectedAsset } = useMochiWidget()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { isLoggedIn, profile } = useLoginWidget()
   const amountErrorMgs = useMemo(() => {
@@ -78,17 +79,32 @@ export default function StepOne() {
 
   useEffect(() => {
     if (!isLoggedIn || !profile) return
-    setWallets(profile)
+    setWallets(profile).then((wallets) => {
+      // if there is previously chosen asset
+      // refresh that assset's balance
+      if (request.asset) {
+        const chosenWallet = wallets.find((w) => w.id === wallet?.id)
+        const asset = chosenWallet?.balances.find(
+          (b) =>
+            b.token.address.toLowerCase() ===
+            request.asset?.token.address.toLowerCase(),
+        )
+        if (asset) {
+          setSelectedAsset(asset)
+        }
+      }
+    })
 
     onClose()
-  }, [isLoggedIn, onClose, profile, setWallets])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoggedIn, onClose, profile])
 
   return (
     <div className="flex flex-col flex-1 gap-y-3 h-full min-h-0">
-      <div className="flex flex-col h-full gap-y-3">
+      <div className="flex flex-col gap-y-3 h-full">
         <div className="flex flex-col gap-y-1.5 items-center pb-1">
-          <p className="text-xl text-text-primary font-medium">Send a tip</p>
-          <span className="text-text-tertiary text-xs text-center">
+          <p className="text-xl font-medium text-text-primary">Send a tip</p>
+          <span className="text-xs text-center text-text-tertiary">
             Celebrate someone&apos;s birthday or achievement
             <br />
             by sending them money
