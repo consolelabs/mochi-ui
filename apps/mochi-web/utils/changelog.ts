@@ -1,10 +1,6 @@
-export function getFirstImageUrl(
-  changelogs: {
-    name: string
-    content: any
-    version?: string
-  }[],
-) {
+import { ChangelogPage } from 'types/mochi-schema'
+
+export function getFirstImageUrl(changelogs: ChangelogPage[]) {
   const imgUrls: string[] = []
 
   changelogs.forEach((changelog) => {
@@ -21,13 +17,7 @@ export function getFirstImageUrl(
   return imgUrls.length > 0 ? imgUrls[0] : null
 }
 
-export function getDescription(
-  changelogs: {
-    name: string
-    content: any
-    version?: string
-  }[],
-) {
+export function getDescription(changelogs: ChangelogPage[]) {
   // Merge all content into a single string
   const mergedContent = changelogs
     .map((changelog) => changelog.content)
