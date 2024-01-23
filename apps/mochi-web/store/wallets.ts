@@ -197,7 +197,10 @@ export const useWalletStore = create<State>((set) => ({
       for (const wallet of wallets) {
         for (const bal of wallet.balances) {
           symbolsSet.add(bal.token.symbol)
-          const chainSymbol = bal.token.symbol
+          const chainSymbol =
+            bal.token.chain?.symbol ||
+            bal.token.chain?.short_name ||
+            bal.token.chain?.name
           if (chainSymbol) {
             symbolsSet.add(chainSymbol)
           }
@@ -211,11 +214,15 @@ export const useWalletStore = create<State>((set) => ({
         for (const wallet of wallets) {
           for (const bal of wallet.balances) {
             const tokenEmoji = data?.find((d) => d.code === bal.token.symbol)
-            const chainEmoji = data?.find(
-              (d) => d.code === bal.token.chain?.symbol,
+            const chainEmoji = data?.find((d) =>
+              [
+                bal.token.chain?.symbol?.toUpperCase(),
+                bal.token.chain?.short_name?.toUpperCase(),
+                bal.token.chain?.name?.toUpperCase(),
+              ].includes(d.code?.toUpperCase()),
             )
             bal.token.icon = tokenEmoji?.emoji_url || coinIcon.src
-            if (bal.token.chain?.icon)
+            if (bal.token.chain && !bal.token.chain.icon)
               bal.token.chain.icon = chainEmoji?.emoji_url || coinIcon.src
           }
         }
