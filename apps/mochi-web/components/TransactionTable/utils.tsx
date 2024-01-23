@@ -1,3 +1,4 @@
+import { Typography } from '@mochi-ui/core'
 import emojiStrip from 'emoji-strip'
 import UI, { Platform, utils as mochiUtils } from '@consolelabs/mochi-formatter'
 import type { AssociatedAccount } from '@consolelabs/mochi-rest'
@@ -233,14 +234,38 @@ export const buildAddressString = (
 ) => {
   const initialAddresses = addresses.slice(0, 1)
   const remainingAddresses = addresses.slice(1)
+  const isInitialAddress = mochiUtils.address.isAddress(
+    typeof initialAddresses[0] === 'string'
+      ? initialAddresses[0]
+      : initialAddresses[0].platform_identifier,
+  ).valid
 
   const initialAddressString = initialAddresses
     .map((s) => mochiUtils.string.formatAddressUsername(s))
     .join(', ')
   const remainingAddressCount = remainingAddresses.length
 
+  let first: React.ReactNode = initialAddressString
+
+  if (isInitialAddress) {
+    first = (
+      <Typography className="inline font-mono" level="p5">
+        {initialAddressString}
+      </Typography>
+    )
+  }
+
   if (remainingAddressCount === 0) {
-    return initialAddressString
+    return first
+  }
+
+  if (isInitialAddress) {
+    return (
+      <>
+        {first} & {remainingAddressCount}{' '}
+        {remainingAddressCount > 1 ? 'people' : 'person'}
+      </>
+    )
   }
 
   return `${initialAddressString} & ${remainingAddressCount} ${

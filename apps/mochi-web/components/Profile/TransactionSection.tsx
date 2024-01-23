@@ -79,6 +79,7 @@ export const TransactionOverviewSection = () => {
                 className: '!h-[300.5px]',
               },
               pagination: {
+                page,
                 initalPage: page,
                 initItemsPerPage: size,
                 totalItems: total,

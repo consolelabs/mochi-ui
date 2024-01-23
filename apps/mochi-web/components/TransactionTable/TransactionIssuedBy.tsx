@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import emojiStrip from 'emoji-strip'
 import { Avatar, AvatarGroup, Tooltip, Typography } from '@mochi-ui/core'
 import { useMemo } from 'react'
@@ -65,7 +66,9 @@ export const TransactionIssuedBy = (props: TransactionIssuedByProps) => {
                     key={address}
                     level="p5"
                     fontWeight="md"
-                    className="!text-inherit"
+                    className={clsx('!text-inherit', {
+                      'font-mono': utils.address.isAddress(address).valid,
+                    })}
                   >
                     {address}
                   </Typography>
