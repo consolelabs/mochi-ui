@@ -17,6 +17,7 @@ import {
   TabList,
   TabTrigger,
   Typography,
+  TabContent,
 } from '@mochi-ui/core'
 import { BottomSheet } from '~cpn/BottomSheet'
 import { BalanceWithSource, TokenTableList } from '~cpn/TokenTableList'
@@ -217,7 +218,11 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
                 onChange={onSearchChange}
               />
             </TextFieldRoot>
-            <Tabs value={selectedTab} className="flex flex-col mt-3 min-h-0">
+            <Tabs
+              value={selectedTab}
+              onValueChange={setSelectedTab}
+              className="flex flex-col mt-3 min-h-0"
+            >
               <TabList className="flex -mx-3">
                 {TokenTabs.map((t) => {
                   const isSelected = selectedTab === t.value
@@ -229,7 +234,7 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
                       wrapperClassName="!p-0"
                       variant="solid"
                       className={clsx(
-                        'flex flex-1 justify-center py-3 !px-0 rounded-none border-t border-b border-divider',
+                        'flex flex-1 justify-center !px-0 rounded-none border-t border-b border-divider h-10',
                         {
                           'bg-background-level2': isSelected,
                         },
@@ -252,37 +257,37 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
                   )
                 })}
               </TabList>
-              <div className="flex flex-col gap-2 min-h-0">
-                {selectedTab === 'token' ? (
-                  <>
-                    <TokenTableList
-                      isLoading={isFetchingWallets}
-                      data={filteredTokens}
-                      hideLastBorder
-                      onRow={(record) => {
-                        return {
-                          onClick: () =>
-                            !record.disabled && handleTokenSelect(record),
-                        }
-                      }}
-                    />
-                    <span className="mt-auto text-xs text-text-disabled">
-                      Only supported tokens are shown
-                    </span>
-                  </>
-                ) : (
-                  <MonikerTableList
-                    data={balancesWithSource}
-                    searchTerm={searchTerm}
-                    onRow={(record) => {
-                      return {
-                        onClick: () =>
-                          !record.disabled && handleMonikerSelect(record),
-                      }
-                    }}
-                  />
-                )}
-              </div>
+              <TabContent value="token" className="flex flex-col gap-2 min-h-0">
+                <TokenTableList
+                  isLoading={isFetchingWallets}
+                  data={filteredTokens}
+                  hideLastBorder
+                  onRow={(record) => {
+                    return {
+                      onClick: () =>
+                        !record.disabled && handleTokenSelect(record),
+                    }
+                  }}
+                />
+                <span className="mt-auto text-xs text-text-disabled">
+                  Only supported tokens are shown
+                </span>
+              </TabContent>
+              <TabContent
+                value="moniker"
+                className="flex flex-col gap-2 min-h-0"
+              >
+                <MonikerTableList
+                  data={balancesWithSource}
+                  searchTerm={searchTerm}
+                  onRow={(record) => {
+                    return {
+                      onClick: () =>
+                        !record.disabled && handleMonikerSelect(record),
+                    }
+                  }}
+                />
+              </TabContent>
             </Tabs>
           </div>
         ) : (
