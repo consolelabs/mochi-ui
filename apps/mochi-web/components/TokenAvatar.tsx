@@ -6,7 +6,7 @@ import { api } from '~constants/mochi'
 export const TokenAvatar = (
   props: Omit<AvatarProps, 'fallback'> & { name: string; chainName?: string },
 ) => {
-  const { src: _src, name, smallSrc: _smallSrc, chainName } = props
+  const { src: _src, name, smallSrc: _smallSrc, chainName, className } = props
 
   const { data = { src: _src, smallSrc: _smallSrc } } = useSWR(
     [name, _src, chainName, _smallSrc],
@@ -39,6 +39,7 @@ export const TokenAvatar = (
       smallSrc={data.smallSrc}
       fallback={coinIcon.src}
       size="xs"
+      className={className}
     />
   )
 }

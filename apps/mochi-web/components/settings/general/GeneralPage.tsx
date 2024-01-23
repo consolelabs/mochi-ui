@@ -72,6 +72,9 @@ export const GeneralPage = () => {
 
   const onUpdateSettings = (data: ResponseGeneralSettingData) => {
     if (!profile?.id) return
+    const default_message_enable = data.payment?.default_message_settings?.some(
+      (each) => each.enable,
+    )
     const payload = {
       ...data,
       payment: {
@@ -83,6 +86,10 @@ export const GeneralPage = () => {
           min: Number(each.min),
           max: Number(each.max),
         })),
+        default_message_enable,
+        default_message_settings: default_message_enable
+          ? data.payment?.default_message_settings
+          : [],
       },
     }
     return API.MOCHI.put(payload, GET_PATHS.UPDATE_GENERAL_SETTINGS(profile.id))
@@ -126,7 +133,7 @@ export const GeneralPage = () => {
 
         <Separator />
       </div>
-      <div className="mt-8">
+      <div className="py-8">
         <Button
           variant="outline"
           color="danger"

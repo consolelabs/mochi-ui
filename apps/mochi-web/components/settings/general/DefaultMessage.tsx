@@ -1,17 +1,28 @@
-import { Button, IconButton, Switch, Typography } from '@mochi-ui/core'
-import { EditLine, TrashBin2Line } from '@mochi-ui/icons'
+import {
+  IconButton,
+  SectionHeader,
+  SectionHeaderActions,
+  SectionHeaderDescription,
+  SectionHeaderTitle,
+  Switch,
+  Typography,
+} from '@mochi-ui/core'
+import { EditLine } from '@mochi-ui/icons'
 import React from 'react'
 import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
-import { actionList } from '~constants/settings'
+import { actionList, defaultMessages } from '~constants/settings'
 import { ResponseGeneralSettingData } from '~types/mochi-schema'
+import { useLoginWidget } from '@mochi-web3/login-widget'
+import { truncateWallet } from '~utils/string'
 import { MessageModal } from './MessageModal'
 
 const excludedActionList = ['deposit', 'withdraw']
 
 export const DefaultMessage = () => {
+  const { profile } = useLoginWidget()
   const { control, watch, setValue } =
     useFormContext<ResponseGeneralSettingData>()
-  const { fields, append, remove, update } = useFieldArray({
+  const { fields, update } = useFieldArray({
     control,
     name: 'payment.default_message_settings',
   })
@@ -22,37 +33,42 @@ export const DefaultMessage = () => {
 
   return (
     <div className="flex flex-col w-full space-y-2">
-      <div className="flex items-center justify-between">
-        <Typography level="p4">Default message</Typography>
-        <Controller
-          name="payment.default_message_enable"
-          control={control}
-          render={({ field: { value, onChange, ...rest } }) =>
-            fields.length > 0 ? (
-              <Switch {...rest} checked={value} onCheckedChange={onChange} />
-            ) : (
-              <MessageModal
-                actionList={filteredActionList}
-                onConfirm={(data) => append(data)}
-                onCancel={() =>
-                  setValue('payment.default_message_enable', false, {
-                    shouldDirty: true,
-                  })
-                }
-                trigger={
-                  <div>
-                    <Switch
-                      {...rest}
-                      checked={value}
-                      onCheckedChange={onChange}
-                    />
-                  </div>
-                }
+      <Controller
+        name="payment.default_message_enable"
+        control={control}
+        render={({ field: { value, onChange, ...rest } }) => (
+          <SectionHeader
+            wrapActionsOnMobile={false}
+            className="!grid-cols-[1fr,auto]"
+          >
+            <SectionHeaderTitle className="font-normal">
+              Default message
+            </SectionHeaderTitle>
+            <SectionHeaderDescription>
+              Allows you to pre-define messages that will automatically be
+              displayed.
+            </SectionHeaderDescription>
+            <SectionHeaderActions>
+              <Switch
+                {...rest}
+                checked={value}
+                onCheckedChange={(checked) => {
+                  onChange(checked)
+                  setValue(
+                    'payment.default_message_settings',
+                    checked
+                      ? defaultMessages(
+                          truncateWallet(profile?.profile_name) || 'unknown',
+                        )
+                      : [],
+                    { shouldDirty: true },
+                  )
+                }}
               />
-            )
-          }
-        />
-      </div>
+            </SectionHeaderActions>
+          </SectionHeader>
+        )}
+      />
       {(enableDefaultMessage ? fields : []).map((each, index) => (
         <Controller
           key={each.id}
@@ -92,35 +108,21 @@ export const DefaultMessage = () => {
                   </IconButton>
                 }
               />
-              <IconButton
-                label="Delete"
-                color="neutral"
-                variant="outline"
-                className="px-1.5 py-1.5"
-                onClick={() => {
-                  remove(index)
-                  if (fields.length === 1) {
-                    setValue('payment.default_message_enable', false)
-                  }
-                }}
-              >
-                <TrashBin2Line className="w-3 h-3" />
-              </IconButton>
+              <Controller
+                name={`payment.default_message_settings.${index}.enable`}
+                control={control}
+                render={({ field: { value, onChange, ...rest } }) => (
+                  <Switch
+                    {...rest}
+                    checked={value}
+                    onCheckedChange={onChange}
+                  />
+                )}
+              />
             </div>
           )}
         />
       ))}
-      {!!enableDefaultMessage && !!filteredActionList.length && (
-        <MessageModal
-          actionList={filteredActionList}
-          onConfirm={(data) => append(data)}
-          trigger={
-            <Button color="neutral" variant="outline" className="w-fit">
-              Add a new default message
-            </Button>
-          }
-        />
-      )}
     </div>
   )
 }

@@ -1,6 +1,5 @@
 import {
   FormControl,
-  FormErrorMessage,
   SectionHeader,
   SectionHeaderActions,
   SectionHeaderDescription,
@@ -12,6 +11,7 @@ import {
   SelectValue,
 } from '@mochi-ui/core'
 import { Controller, useFormContext } from 'react-hook-form'
+import { platformList } from '~constants/settings'
 import { ResponseGeneralSettingData } from '~types/mochi-schema'
 
 export const ReceiverPlatform = () => {
@@ -21,8 +21,8 @@ export const ReceiverPlatform = () => {
     <Controller
       name="payment.default_receiver_platform"
       control={control}
-      render={({ field, fieldState }) => (
-        <FormControl error={!!fieldState.error} className="min-w-[160px]">
+      render={({ field }) => (
+        <FormControl className="min-w-[160px]">
           <SectionHeader
             wrapActionsOnMobile={false}
             className="!grid-cols-[1fr,auto]"
@@ -35,18 +35,22 @@ export const ReceiverPlatform = () => {
             </SectionHeaderDescription>
             <SectionHeaderActions>
               <Select {...field}>
-                <SelectTrigger appearance="form" className="h-10 w-48">
-                  <SelectValue placeholder="Discord" />
+                <SelectTrigger appearance="form" className="h-10 w-52">
+                  <SelectValue />
                 </SelectTrigger>
                 <SelectContent align="end">
-                  <SelectItem value="discord">Discord</SelectItem>
-                  <SelectItem value="telegram">Telegram</SelectItem>
-                  <SelectItem value="google">Google Account</SelectItem>
+                  {platformList.map(({ key, label, Icon }) => (
+                    <SelectItem key={key} value={key}>
+                      <div className="flex items-center">
+                        <Icon className="w-6 h-6 mr-2" />
+                        {label}
+                      </div>
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </SectionHeaderActions>
           </SectionHeader>
-          <FormErrorMessage>{fieldState.error?.message}</FormErrorMessage>
         </FormControl>
       )}
     />
