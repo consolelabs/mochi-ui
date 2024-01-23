@@ -418,6 +418,12 @@ export interface ModelProductChangelogView {
   updated_at?: string
 }
 
+export type ChangelogPage = {
+  name: string
+  content: string
+  version?: string
+}
+
 export interface ModelProductChangelogs {
   content?: string
   created_at?: string

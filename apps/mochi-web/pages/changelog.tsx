@@ -9,15 +9,11 @@ import remarkBreaks from 'remark-breaks'
 import { api } from '~constants/mochi'
 import { NativeImage } from '~cpn/NativeImage'
 import clsx from 'clsx'
-
-type Page = {
-  name: string
-  content: any
-  version?: string
-}
+import { getDescription, getFirstImageUrl } from '../utils/changelog'
+import { ChangelogPage } from '../types/mochi-schema'
 
 type Props = {
-  data: Array<Page>
+  data: Array<ChangelogPage>
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
@@ -104,7 +100,7 @@ const Strong = ({ children }: { children: React.ReactNode[] }) => {
   )
 }
 
-const ChangelogItem = ({ name, content, version }: Page) => (
+const ChangelogItem = ({ name, content, version }: ChangelogPage) => (
   <div className="gap-8 mb-20 md:flex justify-center">
     <div className="inline-block relative w-full md:w-[176px] flex-shrink-0 mb-12 md:mb-0">
       {/* TODO: use new Badge variant when design is provided */}
@@ -139,9 +135,17 @@ const ChangelogItem = ({ name, content, version }: Page) => (
 )
 
 export default function Changelog({ data }: Props) {
+  const firstImgUrl = getFirstImageUrl(data)
+  const description = getDescription(data)
+
   return (
     <Layout>
-      <SEO title={PAGES.CHANGE_LOG.title} tailTitle />
+      <SEO
+        description={description}
+        image={firstImgUrl || ''}
+        title={PAGES.CHANGE_LOG.title}
+        tailTitle
+      />
       <div className="flex flex-col pt-8 md:pt-20 landing-container">
         <div className="w-full flex justify-center mb-16 md:mb-20">
           <div className="w-full max-w-[1008px]">
