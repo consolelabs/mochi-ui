@@ -22,7 +22,7 @@ export type NotificationCommunitiesActivityFlags = {
   new_configuration: boolean
 }
 
-export type NotificationPlatform = 'website' | 'telegram' | 'discord'
+export type NotificationPlatform = 'web' | 'telegram' | 'discord'
 
 export type NotificationFlags = NotificationWalletFlags &
   NotificationAppActivityFlags &

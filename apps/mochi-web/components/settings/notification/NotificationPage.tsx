@@ -98,11 +98,11 @@ export function NotificationPage() {
   const isDisabledSwitch = !enableNotification || isFirstLoading || isUpdating
 
   const onSubmit = async (data: NotificationFormValue) => {
-    const { enable, discord, telegram, website, ...restData } = data
+    const { enable, discord, telegram, web, ...restData } = data
     const platformObj: Record<string, boolean> = {
       discord,
       telegram,
-      website,
+      web,
     }
     const platforms = Object.keys(platformObj).filter((p: any) =>
       Boolean(platformObj[p]),
@@ -127,7 +127,7 @@ export function NotificationPage() {
         enable: newSettings?.enable,
         discord: platforms?.includes('discord'),
         telegram: platforms?.includes('telegram'),
-        website: platforms?.includes('website'),
+        web: platforms?.includes('web'),
         ...flags,
       })
       await mutate()
@@ -151,7 +151,7 @@ export function NotificationPage() {
       enable: settings?.enable,
       discord: platforms?.includes('discord'),
       telegram: platforms?.includes('telegram'),
-      website: platforms?.includes('website'),
+      web: platforms?.includes('web'),
       ...flags,
     })
   }, [isFirstLoading, reset, settings])
@@ -321,7 +321,7 @@ export function NotificationPage() {
               />
             </div>
           </div>
-          <div className="mt-4">
+          <div className="mt-4 pb-8">
             <Typography className="py-4" level="h6">
               Platform Notification
             </Typography>
@@ -344,7 +344,7 @@ export function NotificationPage() {
               <NotificationSwitcherField
                 tabIndex={switchTabIndex}
                 label="Website"
-                name="website"
+                name="web"
                 disabled={isDisabledSwitch}
               />
             </div>
