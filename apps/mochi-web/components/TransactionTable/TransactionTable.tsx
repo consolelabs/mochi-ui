@@ -42,6 +42,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
     columns: columnFlags = {},
     enableColFilter = true,
     enableColSort = true,
+    upper,
     ...rest
   } = props
 
@@ -60,7 +61,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
           const { onCopy, hasCopied } = useClipboard(tx.code)
 
           return (
-            <div className="flex gap-1.5 items-center pl-2 w-[150px]">
+            <div className="flex gap-1.5 items-center pl-2">
               <TransactionStatusIcon tx={tx} />
               <Tooltip
                 content={<TransactionPeekingCard tx={tx} />}
@@ -146,13 +147,13 @@ export const TransactionTable = (props: TransactionTableProps) => {
       {
         header: () => <TransactionHeaderTotalValue disabled={!enableColSort} />,
         id: 'amount',
-        width: '10%',
+        width: '8%',
         // eslint-disable-next-line
         cell: (props) => {
           const tx = props.row.original
 
           return (
-            <div className="w-[160px]">
+            <div className="w-max">
               <Amount
                 size="sm"
                 value={tx.amount}
@@ -232,33 +233,34 @@ export const TransactionTable = (props: TransactionTableProps) => {
   }, [filters])
 
   return (
-    <>
+    <div
+      style={{ maxWidth: '100vw' }}
+      className={clsx('mx-auto w-max', className)}
+    >
+      {upper}
       <ScrollArea>
         <ScrollAreaViewport ref={scrollRef}>
-          <div style={{ width: 1440 }} className={clsx('mx-auto', className)}>
-            <Table
-              {...rest}
-              size="sm"
-              columns={columns}
-              className="p-0"
-              loadingRows={
-                (componentsProps.pagination as PaginationProps)
-                  ?.initItemsPerPage
+          <Table
+            {...rest}
+            size="sm"
+            columns={columns}
+            className="p-0"
+            loadingRows={
+              (componentsProps.pagination as PaginationProps)?.initItemsPerPage
+            }
+            rowClassName={(row) => {
+              if (row.isNew) {
+                return 'animate-new-tx-fade-out'
               }
-              rowClassName={(row) => {
-                if (row.isNew) {
-                  return 'animate-new-tx-fade-out'
-                }
 
-                return ''
-              }}
-              onRow={(tx) => ({
-                onClick: () => {
-                  openTx(tx)
-                },
-              })}
-            />
-          </div>
+              return ''
+            }}
+            onRow={(tx) => ({
+              onClick: () => {
+                openTx(tx)
+              },
+            })}
+          />
         </ScrollAreaViewport>
         {!isEmpty && (
           <ScrollAreaScrollbar orientation="horizontal">
@@ -280,13 +282,13 @@ export const TransactionTable = (props: TransactionTableProps) => {
         </div>
       )}
       {componentsProps.pagination && (
-        <div className="p-4 text-sm">
+        <div className="p-4 w-full text-sm">
           <Pagination
             recordName="transactions"
             {...componentsProps.pagination}
           />
         </div>
       )}
-    </>
+    </div>
   )
 }

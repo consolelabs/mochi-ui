@@ -10,13 +10,13 @@ import { ROUTES } from '~constants/routes'
 import { ChainPicker, PlatformPicker } from '~cpn/explore/index/components'
 import { useTransactionStore } from '~cpn/explore/index/stores/useTransactionStore'
 import clsx from 'clsx'
-import { usePrevious } from '@dwarvesf/react-hooks'
 
 export const TransactionOverviewSection = () => {
   const { profile } = useLoginWidget()
   const {
     loading,
     txns,
+    lastTxns,
     fetchTxns,
     page,
     size,
@@ -30,9 +30,6 @@ export const TransactionOverviewSection = () => {
   } = useTransactionStore()
   const txnsCurrentPage = txns[page - 1]
   const [ready, setReady] = useState(false)
-  const previousTxns = usePrevious(
-    txnsCurrentPage || txns.reverse().find((p) => p.length),
-  )
 
   useEffect(() => {
     if (profile?.id) {
@@ -68,10 +65,10 @@ export const TransactionOverviewSection = () => {
         {ready && (
           <TransactionTable
             cellClassName={() => 'h-[60px]'}
-            className={clsx('min-w-[1320px]', {
+            className={clsx('!w-auto', {
               'min-h-[344px]': txnsCurrentPage?.length,
             })}
-            data={txnsCurrentPage || previousTxns}
+            data={txnsCurrentPage || lastTxns}
             isLoading={loading}
             loadingRows={size}
             componentsProps={{

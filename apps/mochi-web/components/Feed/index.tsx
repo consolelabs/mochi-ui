@@ -95,17 +95,7 @@ export default function Feed({ className = '' }: Props) {
           },
         )}
       />
-      <div
-        style={{ maxWidth: 1500 }}
-        className="flex justify-between items-center px-4 pt-6 pb-4 mx-auto w-screen sm:px-6"
-      >
-        <Typography color="textSecondary">Recent Transactions</Typography>
-        <Button asChild className="!pr-0" variant="link" color="primary">
-          <Link href={ROUTES.EXPLORE}>
-            View all <ArrowRightLine />
-          </Link>
-        </Button>
-      </div>
+
       <ScrollArea className="min-h-0">
         <ScrollAreaViewport
           ref={containerRef}
@@ -119,10 +109,30 @@ export default function Feed({ className = '' }: Props) {
           /*   if (bottomSpace > showBotFadeLimit && isShowBotFade) hideBotFade() */
           /*   if (bottomSpace <= showBotFadeLimit && !isShowBotFade) showBotFade() */
           /* }} */
-          className="overflow-hidden h-screen max-h-full  bg-background-level1"
+          className="overflow-hidden h-screen max-h-full bg-background-level1"
         >
-          <div className="px-6 mx-auto">
+          <div className="mx-auto">
             <TransactionTable
+              upper={
+                <div
+                  style={{ maxWidth: '100%' }}
+                  className="flex justify-between items-center px-4 pt-6 pb-4 mx-auto sm:px-6"
+                >
+                  <Typography color="textSecondary">
+                    Recent Transactions
+                  </Typography>
+                  <Button
+                    asChild
+                    className="!pr-0"
+                    variant="link"
+                    color="primary"
+                  >
+                    <Link href={ROUTES.EXPLORE}>
+                      View all <ArrowRightLine />
+                    </Link>
+                  </Button>
+                </div>
+              }
               enableColFilter={false}
               enableColSort={false}
               data={txns}

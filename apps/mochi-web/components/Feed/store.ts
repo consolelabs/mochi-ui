@@ -29,15 +29,17 @@ export const useTipFeed = create<State>((set, get) => ({
     return API.MOCHI_PAY.get('/transactions/latest')
       .json((r) => r.data)
       .then((data) => {
-        Promise.allSettled(data.map(transform)).then((results) => {
-          set((s) => ({
-            ...s,
-            loading: false,
-            txns: results
-              .map((c) => (c.status === 'fulfilled' ? c.value : null))
-              .filter(Boolean) as any,
-          }))
-        })
+        Promise.allSettled<Tx>(data.map((d: any) => transform(d))).then(
+          (results) => {
+            set((s) => ({
+              ...s,
+              loading: false,
+              txns: results
+                .map((c) => (c.status === 'fulfilled' ? c.value : null))
+                .filter(Boolean) as any,
+            }))
+          },
+        )
       })
   },
   ws: null,

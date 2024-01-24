@@ -48,11 +48,11 @@ export default function ListUser({ data, title }: Props) {
                 />
                 <span>
                   {n.amountDisplay} ({n.amountUsd})
-                  {n.unitAmountSection && (
-                    <span className="ml-1 text-current">
-                      {n.unitAmountSection}
-                    </span>
-                  )}
+                  {/* {n.unitAmountSection && ( */}
+                  {/*   <span className="ml-1 text-current"> */}
+                  {/*     {n.unitAmountSection} */}
+                  {/*   </span> */}
+                  {/* )} */}
                 </span>
               </div>
             </Tooltip>

@@ -3,7 +3,7 @@ import emojiStrip from 'emoji-strip'
 import UI, { Platform, utils as mochiUtils } from '@consolelabs/mochi-formatter'
 import type { AssociatedAccount } from '@consolelabs/mochi-rest'
 import { WebSolid } from '@mochi-ui/icons'
-import { utils } from 'ethers'
+import { utils, BigNumber } from 'ethers'
 import ReactDOMServer from 'react-dom/server'
 import { ROUTES } from '~constants/routes'
 import { appLogo, discordLogo, telegramLogo } from '~utils/image'
@@ -14,7 +14,7 @@ function isVault(source: string) {
   return source === 'mochi-vault'
 }
 
-export async function transform(d: any): Promise<Tx> {
+export async function transform(d: any, isNested = false): Promise<Tx> {
   let [from, to] = UI.render(Platform.Web, d.from_profile, d.other_profile)
   let [fromAvatar, toAvatar] = [
     d.from_profile?.avatar || '',
@@ -166,7 +166,7 @@ export async function transform(d: any): Promise<Tx> {
     if (!account && subject) {
       subject.plain = d.other_profile_source
     } else if (subject) {
-      const domainName = mochiUtils.string.formatAddressUsername(account)
+      const domainName = mochiUtils.string.formatAddressUsername(account, 10)
       subject.plain = domainName
       if (mochiUtils.address.isShorten(domainName)) {
         subject.plain = d.other_profile_source
@@ -177,13 +177,28 @@ export async function transform(d: any): Promise<Tx> {
 
   const paycode = ['payme', 'paylink'].includes(d.action) ? d.metadata.code : ''
 
-  const siblingTxs = await Promise.all((d.sibling_txs || []).map(transform))
-  const otherTxs = await Promise.all((d.other_txs || []).map(transform))
+  const siblingTxs = await Promise.all(
+    (d.sibling_txs || []).map((d: any) => transform(d)),
+  )
+  const otherTxs = await Promise.all(
+    (d.other_txs || [])
+      .map((otherTx: any) =>
+        isNested ? otherTx : { ...otherTx, other_txs: d.other_txs },
+      )
+      .map((otherTx: any) => transform(otherTx, true)),
+  )
+
+  // join tip
+  let sumAmount = BigNumber.from(d.amount)
+  for (const otherTx of d.other_txs ?? []) {
+    if (otherTx.token.id !== d.token.id) continue
+    sumAmount = sumAmount.add(otherTx.amount)
+  }
 
   return {
     code: d.external_id,
     paycode,
-    siblingTxs,
+    siblingTxs: !isNested && d.other_txs?.length > 0 ? otherTxs : siblingTxs,
     otherTxs,
     from: {
       address: from?.plain ?? '?',
@@ -199,21 +214,29 @@ export async function transform(d: any): Promise<Tx> {
     },
     where,
     token: {
+      id: d.token?.id,
       icon: d.token?.icon,
       symbol: d.token?.symbol,
+      decimal: d.token?.decimal,
     },
     singleAmount: mochiUtils.formatTokenDigit(
-      utils.formatUnits(d.amount, d.token?.decimal),
+      utils.formatUnits(sumAmount, d.token?.decimal),
     ),
-    amount: mochiUtils.formatTokenDigit(
-      utils.formatUnits(d.group_total_amount || d.amount, d.token?.decimal),
-    ),
+    amount: isNested
+      ? d.amount
+      : mochiUtils.formatTokenDigit(
+          utils.formatUnits(d.group_total_amount || d.amount, d.token?.decimal),
+        ),
     amountUsd: mochiUtils.formatUsdDigit(d.group_total_usd || d.usd_amount),
     date: formatRelative(d.created_at),
     full_date: formatDate(d.created_at, 'MMMM d, yyyy HH:mm:ss'),
     rawDate: d.created_at,
     status: d.status,
     action: d.action,
+    isMultipleTokens:
+      d.other_txs?.length > 0
+        ? new Set(d.other_txs.map((otherTx: any) => otherTx.token.id)).size > 1
+        : false,
   }
 }
 
@@ -241,7 +264,7 @@ export const buildAddressString = (
   ).valid
 
   const initialAddressString = initialAddresses
-    .map((s) => mochiUtils.string.formatAddressUsername(s))
+    .map((s) => mochiUtils.string.formatAddressUsername(s, 10))
     .join(', ')
   const remainingAddressCount = remainingAddresses.length
 
