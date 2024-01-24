@@ -15,6 +15,7 @@ import {
   ScrollAreaCorner,
   ScrollAreaViewport,
   Typography,
+  TabContent,
 } from '@mochi-ui/core'
 import {
   StarsSolid,
@@ -22,7 +23,7 @@ import {
   CrossCircleOutlined,
   MagnifierLine,
 } from '@mochi-ui/icons'
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 /* import { Tab } from '@headlessui/react' */
 import { BottomSheet } from '~cpn/BottomSheet'
@@ -48,13 +49,7 @@ function getFilterThemeFunc(searchTerm: string) {
 
 export default function ThemePicker({ value, onChange }: ThemePickerProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const [selectedTab, _setSelectedTab] = useState<'common' | 'zodiac'>('common')
-  const setSelectedTab = useCallback((tab: 'common' | 'zodiac') => {
-    if (ref.current) {
-      ref.current.scrollTop = 0
-    }
-    _setSelectedTab(tab)
-  }, [])
+  const [selectedTab, setSelectedTab] = useState<'common' | 'zodiac'>('common')
 
   const { data: themes = [] } = useSWR<Theme[]>(
     ['tip-widget-themes'],
@@ -84,6 +79,12 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
 
   const [themeSearch, setThemeSearch] = useState('')
   const { isOpen, onClose, onOpen } = useDisclosure()
+
+  useEffect(() => {
+    if (isOpen) {
+      ref.current?.scrollTo({ left: 0, top: 0 })
+    }
+  }, [isOpen])
 
   function onThemeSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     setThemeSearch(e.target.value)
@@ -194,7 +195,13 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
                 onChange={onThemeSearchChange}
               />
             </TextFieldRoot>
-            <Tabs value={selectedTab} className="flex flex-col mt-3 min-h-0">
+            <Tabs
+              value={selectedTab}
+              onValueChange={(value) =>
+                setSelectedTab(value as 'common' | 'zodiac')
+              }
+              className="flex flex-col mt-3 min-h-0"
+            >
               <TabList className="flex -mx-3">
                 <TabTrigger
                   value="common"
@@ -202,7 +209,7 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
                   wrapperClassName="!p-0"
                   variant="solid"
                   className={clsx(
-                    'flex flex-1 justify-center py-3 !px-0 rounded-none border-t border-b border-divider',
+                    'flex flex-1 justify-center !px-0 rounded-none border-t border-b border-divider h-10',
                     {
                       'bg-background-level2': selectedTab === 'common',
                     },
@@ -230,7 +237,7 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
                   wrapperClassName="!p-0"
                   variant="solid"
                   className={clsx(
-                    'flex flex-1 justify-center py-3 !px-0 rounded-none border-t border-b border-divider',
+                    'flex flex-1 justify-center !px-0 rounded-none border-t border-b border-divider h-10',
                     {
                       'bg-background-level2': selectedTab === 'zodiac',
                     },
@@ -253,63 +260,76 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
                   </Typography>
                 </TabTrigger>
               </TabList>
-              <ScrollArea className="h-[430px]">
-                <ScrollAreaViewport ref={ref}>
-                  <div className="grid grid-cols-2 auto-rows-fr gap-4 mt-4">
-                    {selectedTab === 'common'
-                      ? groupByTheme[0]?.data
-                          .filter((d) => !!d.src)
-                          .filter(getFilterThemeFunc(themeSearch))
-                          .map((d) => {
-                            return (
-                              <button
-                                type="button"
-                                key={`theme-image-${d.name}-${d.id}`}
-                                onClick={() => {
-                                  onChange(d)
-                                  onClose()
-                                }}
-                                className="relative h-full outline-none aspect-video"
-                              >
-                                <Image
-                                  fill
-                                  alt=""
-                                  src={d.src}
-                                  className="object-cover w-full h-full rounded-lg"
-                                />
-                              </button>
-                            )
-                          })
-                      : groupByTheme[1]?.data
-                          .filter((d) => !!d.src)
-                          .filter(getFilterThemeFunc(themeSearch))
-                          .map((d) => {
-                            return (
-                              <button
-                                type="button"
-                                key={`theme-image-${d.name}-${d.id}`}
-                                onClick={() => {
-                                  onChange(d)
-                                  onClose()
-                                }}
-                                className="relative h-full outline-none aspect-video"
-                              >
-                                <Image
-                                  fill
-                                  alt=""
-                                  src={d.src}
-                                  className="object-cover w-full h-full rounded-lg"
-                                />
-                              </button>
-                            )
-                          })}
-                  </div>
-                </ScrollAreaViewport>
-                <ScrollAreaScrollbar orientation="vertical" className="mt-10">
-                  <ScrollAreaThumb />
-                </ScrollAreaScrollbar>
-                <ScrollAreaCorner className="bg-neutral-outline-hover" />
-              </ScrollArea>
+              <TabContent value="common">
+                <ScrollArea className="h-[300px] mt-3">
+                  <ScrollAreaViewport ref={ref}>
+                    <div className="grid grid-cols-2 auto-rows-fr gap-4">
+                      {groupByTheme[0]?.data
+                        .filter((d) => !!d.src)
+                        .filter(getFilterThemeFunc(themeSearch))
+                        .map((d) => {
+                          return (
+                            <button
+                              type="button"
+                              key={`theme-image-${d.name}-${d.id}`}
+                              onClick={() => {
+                                onChange(d)
+                                onClose()
+                              }}
+                              className="relative h-full outline-none aspect-video"
+                            >
+                              <Image
+                                fill
+                                alt=""
+                                src={d.src}
+                                className="object-cover w-full h-full rounded-lg"
+                              />
+                            </button>
+                          )
+                        })}
+                    </div>
+                  </ScrollAreaViewport>
+                  <ScrollAreaScrollbar>
+                    <ScrollAreaThumb />
+                  </ScrollAreaScrollbar>
+                  <ScrollAreaCorner />
+                </ScrollArea>
+              </TabContent>
+              <TabContent value="zodiac">
+                <ScrollArea className="h-[300px] mt-3">
+                  <ScrollAreaViewport ref={ref}>
+                    <div className="grid grid-cols-2 auto-rows-fr gap-4">
+                      {groupByTheme[1]?.data
+                        .filter((d) => !!d.src)
+                        .filter(getFilterThemeFunc(themeSearch))
+                        .map((d) => {
+                          return (
+                            <button
+                              type="button"
+                              key={`theme-image-${d.name}-${d.id}`}
+                              onClick={() => {
+                                onChange(d)
+                                onClose()
+                              }}
+                              className="relative h-full outline-none aspect-video"
+                            >
+                              <Image
+                                fill
+                                alt=""
+                                src={d.src}
+                                className="object-cover w-full h-full rounded-lg"
+                              />
+                            </button>
+                          )
+                        })}
+                    </div>
+                  </ScrollAreaViewport>
+                  <ScrollAreaScrollbar>
+                    <ScrollAreaThumb />
+                  </ScrollAreaScrollbar>
+                  <ScrollAreaCorner />
+                </ScrollArea>
+              </TabContent>
             </Tabs>
             {/* <Tab.Group */}
             {/*   selectedIndex={selectedIndex} */}
