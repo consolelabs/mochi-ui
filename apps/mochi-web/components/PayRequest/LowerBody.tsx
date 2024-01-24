@@ -39,28 +39,28 @@ export default function LowerBody({ data }: Props) {
         >
           <Link
             href="TODO"
-            className="flex gap-x-1 items-center underline text-xxxs text-neutral-600"
+            className="flex gap-x-1 items-center text-xs underline text-neutral-600"
           >
             {data.profile?.name ?? 'User'}
             <LinkLine />
           </Link>
         </DataList.Item>
         <DataList.Item title="Recipients">
-          <Typography level="p7" color="textSecondary" fontWeight="sm">
+          <Typography level="p6" color="textSecondary" fontWeight="sm">
             {data.claimer ? truncate(data.claimer, 10, true) : '⎯'}
           </Typography>
         </DataList.Item>
       </DataList>
       <DataList>
         <DataList.Item title="Amount">
-          <Typography level="p7" color="textSecondary" fontWeight="sm">
+          <Typography level="p6" color="textSecondary" fontWeight="sm">
             {data.amountDisplay} {data.token.symbol}
           </Typography>
         </DataList.Item>
         <div className="pt-3 w-full h-0" />
         <DataList.Item title="Tx ID">
           <Typography
-            level="p7"
+            level="p6"
             color="textSecondary"
             fontWeight="sm"
             className="underline"
@@ -72,7 +72,7 @@ export default function LowerBody({ data }: Props) {
         <DataList.Item title="Status">{statusComponent}</DataList.Item>
         {data.note && (
           <DataList.Item title="Message">
-            <q className="text-right text-xxxs">{data.note}</q>
+            <q className="text-xs text-right">{data.note}</q>
           </DataList.Item>
         )}
       </DataList>

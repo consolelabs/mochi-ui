@@ -49,7 +49,7 @@ export default function Amount({
         <Image
           width={size === 'md' ? 28 : 24}
           height={size === 'md' ? 28 : 24}
-          className={clsx({
+          className={clsx('rounded-full', {
             'my-1': size === 'md' && alignment === 'center' && !isLongNumber,
             'row-start-1 row-span-2 my-auto':
               alignment === 'left' && !isLongNumber,

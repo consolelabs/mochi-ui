@@ -100,8 +100,16 @@ export default function Receipt({
           font-family: ${robotoFont.style.fontFamily};
         }
       `}</style>
-      <div className="font-sans drop-shadow-xl">
-        <div className="flex overflow-hidden relative flex-col gap-y-6 w-full text-center rounded bg-white-pure jagged-bottom">
+      <div className="font-sans drop-shadow-lg">
+        <div
+          className={clsx(
+            'flex overflow-hidden relative flex-col gap-y-6 w-full text-center bg-white-pure',
+            {
+              'rounded jagged-bottom': variant !== 'peeking',
+              'rounded-xl': variant === 'peeking',
+            },
+          )}
+        >
           {variant === 'default' && (
             <Header
               template={data.data.template}
@@ -111,9 +119,9 @@ export default function Receipt({
             />
           )}
           <div
-            className={clsx('py-3 px-4 pb-6 md:px-6 !text-neutral-600', {
-              'flex flex-col gap-y-12': variant === 'default',
-              'flex gap-x-12 ': variant === 'peeking',
+            className={clsx('px-4 pb-6 md:px-6 !text-neutral-600', {
+              'flex flex-col gap-y-12 py-3': variant === 'default',
+              'flex gap-x-12 py-6': variant === 'peeking',
             })}
           >
             <div className="flex flex-col flex-1 gap-y-12">
@@ -170,8 +178,19 @@ export default function Receipt({
                 </div>
               )}
             </div>
-            <div className="flex-1 relative receipt-body !text-neutral-600">
-              <div className="flex flex-col gap-y-2 gap-x-4 pt-4">
+            <div
+              className={clsx(
+                'flex-1 relative receipt-body !text-neutral-600',
+                {
+                  'flex flex-col justify-between': variant === 'peeking',
+                },
+              )}
+            >
+              <div
+                className={clsx('flex flex-col gap-y-2 gap-x-4', {
+                  'pt-4': variant !== 'peeking',
+                })}
+              >
                 <DataList>
                   <ListUser data={data.data.from} title="Issued by" />
                   {data.data.from.length > 1 ? <DashLine /> : null}
@@ -183,7 +202,7 @@ export default function Receipt({
                 <DataList>
                   <DataList.Item title="Amount">
                     <Typography
-                      level="p7"
+                      level="p6"
                       fontWeight="sm"
                       className="!text-neutral-600"
                     >
@@ -213,7 +232,7 @@ export default function Receipt({
                           <DataList.Item title="Group Tx ID">
                             <Link
                               href={`/tx/${data.originalTxId}`}
-                              className="flex items-center underline text-xxxs"
+                              className="flex items-center text-xs underline"
                             >
                               {data.originalTxId}
                               <LinkLine />
@@ -225,7 +244,7 @@ export default function Receipt({
                   ) : (
                     <DataList.Item title="Tx ID">
                       <Typography
-                        level="p7"
+                        level="p6"
                         className="underline !text-neutral-600"
                         fontWeight="sm"
                       >
@@ -243,10 +262,10 @@ export default function Receipt({
               </div>
               <DashLine />
               <div className="flex justify-between py-2 text-xs text-neutral-600">
-                <span className="text-xxxs">
+                <span className="text-xs">
                   Mochi &copy; {new Date().getUTCFullYear()}
                 </span>
-                <span className="text-xxxs">
+                <span className="text-xs">
                   {format(new Date(data.data.full_date), 'dd/MM/yyyy hh:mmaa')}
                 </span>
               </div>

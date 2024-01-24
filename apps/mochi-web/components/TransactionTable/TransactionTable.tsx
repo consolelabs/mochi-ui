@@ -16,7 +16,7 @@ import {
   Tooltip,
   Typography,
 } from '@mochi-ui/core'
-import { ArrowRightLine, CheckLine, CopyLine } from '@mochi-ui/icons'
+import { ArrowRightLine, CopyLine } from '@mochi-ui/icons'
 import clsx from 'clsx'
 import { useEffect, useMemo, useRef } from 'react'
 import Amount from '~cpn/Amount'
@@ -73,16 +73,20 @@ export const TransactionTable = (props: TransactionTableProps) => {
               >
                 <TransactionTxGroup tx={tx} />
               </Tooltip>
-              {hasCopied ? (
-                <CheckLine />
-              ) : (
+              <Tooltip
+                content={hasCopied ? 'Copied' : 'Click to copy tx id'}
+                arrow="top-center"
+                componentProps={{
+                  root: { open: hasCopied || undefined },
+                }}
+              >
                 <CopyLine
                   onClick={(e) => {
                     e.stopPropagation()
                     onCopy()
                   }}
                 />
-              )}
+              </Tooltip>
             </div>
           )
         },
@@ -178,7 +182,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
 
           return (
             <Badge
-              className="inline-flex !bg-neutral-soft-hover border border-neutral-outline-border text-neutral-soft-fg"
+              className="inline-flex border border-background-level3 bg-background-level1"
               appearance="neutral"
             >
               <BadgeIcon className="-ml-0.5">
@@ -282,7 +286,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
         </div>
       )}
       {componentsProps.pagination && (
-        <div className="p-4 w-full text-sm">
+        <div className="py-4 w-full text-sm">
           <Pagination
             recordName="transactions"
             {...componentsProps.pagination}

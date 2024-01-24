@@ -10,9 +10,15 @@ interface Props {
 
 export default function DataList({
   children,
-}: Omit<Props, 'listMode' | 'title' | 'right'>) {
+  className = '',
+}: Omit<Props, 'listMode' | 'title' | 'right'> & { className?: string }) {
   return (
-    <ul className="relative flex-1 self-stretch space-y-2 text-xs">
+    <ul
+      className={clsx(
+        'relative flex-1 self-stretch space-y-2 text-xs',
+        className,
+      )}
+    >
       {children}
     </ul>
   )
@@ -31,21 +37,21 @@ DataList.Item = function Item({
     >
       <div className="flex justify-between self-stretch">
         <Typography
-          level="p7"
+          level="p6"
           fontWeight="sm"
           className="shrink-0 !text-neutral-600"
         >
           {title}
         </Typography>
         {right ? (
-          <Typography level="p7" fontWeight="sm" className="!text-neutral-600">
+          <Typography level="p6" fontWeight="sm" className="!text-neutral-600">
             {right}
           </Typography>
         ) : null}
       </div>
       {typeof children === 'string' ? (
         <Typography
-          level="p7"
+          level="p6"
           fontWeight="sm"
           className="shrink-0 !text-neutral-600"
         >
