@@ -82,6 +82,7 @@ export const TransactionOverviewSection = () => {
                 totalItems: total,
                 onItemPerPageChange: setSize,
                 onPageChange: setPage,
+                className: 'px-4',
               },
             }}
             onRow={(tx) => {

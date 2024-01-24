@@ -6,10 +6,10 @@ export default function Footer({ date }: { date: string }) {
     <div className="flex flex-col">
       <DashLine />
       <div className="flex justify-between pt-3 text-xs font-light">
-        <Typography level="p7" fontWeight="sm" color="textSecondary">
+        <Typography level="p6" fontWeight="sm" color="textSecondary">
           Mochi &copy; {new Date().getUTCFullYear()}
         </Typography>
-        <Typography level="p7" fontWeight="sm" color="textSecondary">
+        <Typography level="p6" fontWeight="sm" color="textSecondary">
           {date}
         </Typography>
       </div>

@@ -58,7 +58,7 @@ export default function UpperBody({
       </Typography>
       {/* TODO */}
       <Typography
-        level="p7"
+        level="p6"
         color="textSecondary"
         fontWeight="sm"
         className="mt-1"

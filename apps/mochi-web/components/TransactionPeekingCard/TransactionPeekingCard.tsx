@@ -1,4 +1,4 @@
-import { Spinner } from '@mochi-ui/icons'
+import { SpinnerLine } from '@mochi-ui/icons'
 import useSWR from 'swr'
 import { API } from '~constants/api'
 import { PayLink, PayMe } from '~cpn/PayRequest'
@@ -37,7 +37,7 @@ export const TransactionPeekingCard = (props: TransactionPeekingCardProps) => {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center w-16 h-16 shadow bg-white-pure">
-        <Spinner />
+        <SpinnerLine className="w-8 h-8 text-neutral-500" />
       </div>
     )
   }

@@ -87,13 +87,13 @@ export const useWalletStore = create<State>((set) => ({
         wallets.push({
           id: 'mochi',
           icon: '',
-          title: 'Mochi Wallet',
+          title: 'Mochi',
           subtitle: p?.plain ?? me.profile_name,
           usd_amount: utils.formatUsdDigit(mochiWallet.usd_total),
           balances: mochiWallet.balances.map((b) => ({
             source: {
               id: 'mochi',
-              title: 'Mochi Wallet',
+              title: 'Mochi',
             },
             disabled: false,
             type: 'token',
