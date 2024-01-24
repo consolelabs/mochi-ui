@@ -3,7 +3,7 @@ import clsx from 'clsx'
 const footerClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx('border-t border-divider', className)
 
-const wrapperClsx = 'pt-16 pb-5 md:py-18 md:h-[300px] landing-container'
+const wrapperClsx = 'pt-16 pb-5 md:py-18 md:min-h-[300px] landing-container'
 
 const wrapperInnerClsx = 'flex flex-col gap-y-5 gap-x-8 sm:gap-x-12 md:flex-row'
 
@@ -17,9 +17,9 @@ const navTitleClsx = 'text-[13px] font-normal text-text-primary'
 const navLinkClsx = 'block text-text-tertiary'
 
 const infoClsx =
-  'flex flex-col justify-center items-center mx-auto md:items-end md:mr-0 md:ml-auto'
+  'flex flex-col justify-center items-center mx-auto md:items-end md:mr-0 md:ml-auto gap-6'
 
-const copyrightClsx = 'mb-6 text-xs text-right'
+const copyrightClsx = 'text-xs text-right'
 
 const socialClsx = 'flex gap-2 items-center'
 
