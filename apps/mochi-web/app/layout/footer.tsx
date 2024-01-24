@@ -86,7 +86,7 @@ export const Footer = () => {
           <Typography
             level="p5"
             color="textDisabled"
-            className="mb-6 text-xs text-right"
+            className="text-xs text-right"
           >
             Copyright © {year} Mochi, All rights reserved
           </Typography>

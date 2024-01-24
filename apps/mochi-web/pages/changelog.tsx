@@ -18,6 +18,7 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import { InboxSolid } from '@mochi-ui/icons'
 import { useRef } from 'react'
+import { ChangelogFooter } from '~app/layout/changelog-footer'
 import { ChangelogPage } from '../types/mochi-schema'
 import { getDescription, getFirstImageUrl } from '../utils/changelog'
 
@@ -148,7 +149,7 @@ export default function Changelog({ data }: Props) {
   const description = getDescription(data)
   const layoutRef = useRef<HTMLDivElement>(null)
   return (
-    <Layout ref={layoutRef}>
+    <Layout ref={layoutRef} footer={<ChangelogFooter />}>
       <SEO
         description={description}
         image={firstImgUrl || ''}
@@ -195,18 +196,6 @@ export default function Changelog({ data }: Props) {
           (d, i) => d && <ChangelogItem {...d} key={`changelog-${i}`} />,
         )}
       </div>
-
-      {/* <iframe
-        src="https://mochigg.substack.com/embed"
-        width="480"
-        height="150"
-        // style="border:1px solid #EEE; background:white;"
-        // eslint-disable-next-line
-        frameborder="0"
-        scrolling="no"
-      >
-        asdoiaoidj
-      </iframe> */}
     </Layout>
   )
 }

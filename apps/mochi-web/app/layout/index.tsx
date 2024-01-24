@@ -6,6 +6,7 @@ interface Props {
   children: React.ReactNode
   noFooter?: boolean
   className?: string
+  footer?: React.ReactNode
 }
 
 export const Layout = forwardRef<ElementRef<'div'>, Props>((props, ref) => (
@@ -17,6 +18,6 @@ export const Layout = forwardRef<ElementRef<'div'>, Props>((props, ref) => (
     )}
   >
     {props.children}
-    {!(props.noFooter ?? false) && <Footer />}
+    {!(props.noFooter ?? false) && (props.footer || <Footer />)}
   </div>
 ))

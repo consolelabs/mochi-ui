@@ -76,7 +76,7 @@ const PoweredBySolana = ({ className = '' }: any) => (
   </svg>
 )
 
-export const Footer = () => {
+export const ChangelogFooter = () => {
   const year = new Date().getFullYear()
   return (
     <FooterCore
@@ -86,7 +86,7 @@ export const Footer = () => {
           <Typography
             level="p5"
             color="textDisabled"
-            className="mb-6 text-xs text-right"
+            className="text-xs text-right"
           >
             Copyright © {year} Mochi, All rights reserved
           </Typography>
@@ -127,6 +127,15 @@ export const Footer = () => {
         { href: SOCIAL_LINKS.DISCORD, Icon: Discord, title: 'Discord' },
         { href: SOCIAL_LINKS.TELEGRAM, Icon: Telegram, title: 'Telegram' },
       ]}
+      extraEl={
+        <iframe
+          src="https://test.substack.com/embed"
+          className="w-full"
+          // style="border:1px solid #EEE; background:white;"
+          frameborder="0"
+          scrolling="no"
+        />
+      }
     />
   )
 }
