@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  docs-story {
+  /* docs-story {
     @apply !bg-background-body
   }
 
@@ -15,4 +15,8 @@
   #storybook-docs p {
     @apply !text-text-primary
   }
+
+  #storybook-docs {
+    @apply !text-text-primary
+  } */
 }
