@@ -31,7 +31,7 @@ export default function LowerBody({ data }: Props) {
   }, [data.claim_tx, data.status])
 
   return (
-    <div className="flex flex-col gap-y-2 py-3 mt-9 receipt-body">
+    <div className="flex flex-col gap-y-2 py-3 mt-9 font-mono">
       <DashLine />
       <DataList>
         <DataList.Item

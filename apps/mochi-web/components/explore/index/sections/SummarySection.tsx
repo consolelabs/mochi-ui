@@ -22,7 +22,7 @@ export const SummarySection = () => {
     fetchTransactionSummary()
   }, []) // eslint-disable-line
 
-  const loading = isTransactionSummaryLoading || !transactionSummary
+  const loading = false || isTransactionSummaryLoading || !transactionSummary
   const successRate = Math.round(
     (transactionSummary
       ? transactionSummary.success_transactions /
@@ -83,7 +83,7 @@ export const SummarySection = () => {
             </div>
           </div>
         ))}
-        <div className="flex flex-wrap col-span-2 col-start-2 row-span-4 row-start-1 gap-4 justify-evenly items-center p-3 rounded-xl border xl:col-span-3 xl:col-start-3 xl:row-span-2 xl:row-start-1 bg-background-body border-divider">
+        <div className="flex flex-wrap col-span-2 col-start-2 row-span-4 row-start-1 gap-4 justify-between items-center py-4 px-10 rounded-xl border xl:col-span-3 xl:col-start-3 xl:row-span-2 xl:row-start-1 bg-background-body border-divider">
           <div className="flex flex-col gap-4 items-center w-full lg:items-start lg:w-auto">
             <div className="flex flex-col-4">
               <div className="flex gap-3 items-center">
@@ -98,7 +98,7 @@ export const SummarySection = () => {
             </div>
             <Typography level="h2" className="text-text-primary">
               {loading ? (
-                <Skeleton className="w-64 h-14" />
+                <Skeleton className="w-64 h-12" />
               ) : (
                 formatNumber(transactionSummary.current_transactions)
               )}
@@ -121,17 +121,21 @@ export const SummarySection = () => {
             </div>
           </div>
           <div className="flex gap-4 justify-center items-center w-full lg:w-auto">
-            {loading ? (
-              <Skeleton className="rounded-full w-[150px] h-[150px]" />
-            ) : (
-              <div className="grid grid-cols-2 grid-rows-2 gap-x-6 items-center sm:flex sm:gap-4">
-                <div className="flex flex-col justify-center items-center">
+            <div className="grid grid-cols-2 grid-rows-2 gap-x-6 items-center sm:flex sm:gap-4">
+              <div className="flex flex-col justify-center items-center">
+                {loading ? (
+                  <Skeleton className="w-14 h-12" />
+                ) : (
                   <Typography level="h4" className="!text-success-solid">
                     {successRate}%
                   </Typography>
-                  <Typography level="p4">Successful</Typography>
-                </div>
-                <div className="col-span-2 col-start-1 row-start-1 -m-4 mx-auto">
+                )}
+                {!loading && <Typography level="p4">Successful</Typography>}
+              </div>
+              <div className="col-span-2 col-start-1 row-start-1 -m-4 mx-auto">
+                {loading ? (
+                  <Skeleton className="rounded-full w-30 h-30" />
+                ) : (
                   <PieChart
                     width={150}
                     height={150}
@@ -160,19 +164,27 @@ export const SummarySection = () => {
                       innerRadius={30}
                     />
                   </PieChart>
-                </div>
-                <div className="flex flex-col gap-1">
+                )}
+              </div>
+              <div className="flex flex-col gap-1">
+                {loading ? (
+                  <Skeleton className="w-10 h-5" />
+                ) : (
                   <div className="flex gap-2 items-center">
                     <div className="w-2 h-2 rounded-full bg-danger-solid" />
                     <Typography level="p5">Failed</Typography>
                   </div>
+                )}
+                {loading ? (
+                  <Skeleton className="w-14 h-5" />
+                ) : (
                   <div className="flex gap-2 items-center">
                     <div className="w-2 h-2 rounded-full bg-success-solid" />
                     <Typography level="p5">Success</Typography>
                   </div>
-                </div>
+                )}
               </div>
-            )}
+            </div>
           </div>
         </div>
       </div>

@@ -14,7 +14,7 @@ export function Divider({
       className={clsx(
         'w-full',
         {
-          'my-8 md:my-16 mx-auto': !noSpace,
+          'my-10 mx-auto': !noSpace,
           'w-screen': fullWidth,
           'max-w-4xl xl:max-w-7xl': !fullWidth,
         },

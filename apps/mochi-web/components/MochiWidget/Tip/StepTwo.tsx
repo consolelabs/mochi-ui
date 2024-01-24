@@ -113,6 +113,7 @@ export default function StepTwo() {
         </button>
         <span className="mx-auto text-base text-neutral-800">You send</span>
         <Amount
+          size="lg"
           value={formatTokenAmount(request.amount ?? 0).display}
           valueUsd={`${amountUsd} USD`}
           unit={

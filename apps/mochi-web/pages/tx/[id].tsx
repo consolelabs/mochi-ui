@@ -5,7 +5,6 @@ import { SEO } from '~app/layout/seo'
 import Receipt from '~cpn/Receipt'
 import { transformData } from '~cpn/Receipt/utils'
 import { API } from '~constants/api'
-import { robotoFont } from '~utils/next-font'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {
@@ -51,11 +50,6 @@ interface Props {
 export default function Transfer({ data, ogData }: Props) {
   return (
     <Layout noFooter className="bg-white lg:bg-white-pure">
-      <style jsx global>{`
-        #receipt-body {
-          font-family: ${robotoFont.style.fontFamily};
-        }
-      `}</style>
       <SEO
         title={ogData.title}
         image={`${HOME_URL}/api/transfer-og?data=${encodeURIComponent(

@@ -263,10 +263,16 @@ export const buildAddressString = (
       : initialAddresses[0].platform_identifier,
   ).valid
 
-  const initialAddressString = initialAddresses
-    .map((s) => mochiUtils.string.formatAddressUsername(s, 10))
-    .join(', ')
   const remainingAddressCount = remainingAddresses.length
+  const initialAddressString = initialAddresses
+    .map((s) =>
+      remainingAddressCount === 0 &&
+      typeof s === 'string' &&
+      !mochiUtils.address.isAddress(s).valid
+        ? mochiUtils.string.formatAddressUsername(s, 20)
+        : mochiUtils.string.formatAddressUsername(s, 10),
+    )
+    .join(', ')
 
   let first: React.ReactNode = initialAddressString
 

@@ -23,7 +23,7 @@ export default function Header({ color, Icon, url, title }: Props) {
       className={clsx(
         'flex overflow-hidden relative justify-between items-center p-4 h-[56px]',
         {
-          'bg-primary-700': color === 'blue',
+          'bg-primary-600': color === 'blue',
           'bg-neutral-800': color === 'gray',
           'bg-green-700': color === 'green',
         },

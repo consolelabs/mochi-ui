@@ -1,3 +1,5 @@
+import { CopyLine } from '@mochi-ui/icons'
+import { useClipboard } from '@dwarvesf/react-hooks'
 import clsx from 'clsx'
 import emojiStrip from 'emoji-strip'
 import Image from 'next/image'
@@ -19,6 +21,7 @@ export const TransactionRecipients = (props: TransactionRecipientsProps) => {
     () => Array.from(new Set(allTxs.map((tx) => emojiStrip(tx.to.address)))),
     [allTxs],
   )
+  const { hasCopied, onCopy } = useClipboard(allAddresses[0])
   /* const allPlatforms = useMemo( */
   /*   () => */
   /*     Array.from(new Set(allTxs.map((tx) => tx.to.platform))).filter( */
@@ -57,49 +60,67 @@ export const TransactionRecipients = (props: TransactionRecipientsProps) => {
           />
         ))}
       </AvatarGroup>
-      <div className="flex flex-col gap-1">
+      <div className="flex gap-1.5">
         {allAddresses.length > 1 || hasAddress ? (
-          <Tooltip
-            content={
-              <div className="flex flex-col gap-2">
-                {allAddresses.map((address, i) => (
-                  <div className="flex gap-x-2 justify-between" key={address}>
-                    <Typography
-                      level="p5"
-                      fontWeight="md"
-                      className={clsx('!text-inherit', {
-                        'font-mono': utils.address.isAddress(address).valid,
-                      })}
-                    >
-                      {address}
-                      {!hasAddress && ':'}
-                    </Typography>
-                    {!hasAddress && (
-                      <div className="flex gap-x-1 items-center">
-                        <Image
-                          width={16}
-                          height={16}
-                          src={allTxs[i].token.icon}
-                          alt=""
-                          className="ml-1 w-4 h-4"
-                        />
-                        <Typography
-                          level="p5"
-                          fontWeight="md"
-                          className="font-mono !text-inherit"
-                        >
-                          {allTxs[i].singleAmount} {allTxs[i].token.symbol}{' '}
-                          {allTxs[i].isMultipleTokens && '& others'}
-                        </Typography>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            }
-          >
-            {text}
-          </Tooltip>
+          <>
+            <Tooltip
+              content={
+                <div className="flex flex-col gap-2">
+                  {allAddresses.map((address, i) => (
+                    <div className="flex gap-x-2 justify-between" key={address}>
+                      <Typography
+                        level="p5"
+                        fontWeight="md"
+                        className={clsx('!text-inherit', {
+                          'font-mono': utils.address.isAddress(address).valid,
+                        })}
+                      >
+                        {address}
+                        {!hasAddress && ':'}
+                      </Typography>
+                      {!hasAddress && (
+                        <div className="flex gap-x-1 items-center">
+                          <Image
+                            width={16}
+                            height={16}
+                            src={allTxs[i].token.icon}
+                            alt=""
+                            className="ml-1 w-4 h-4"
+                          />
+                          <Typography
+                            level="p5"
+                            fontWeight="md"
+                            className="font-mono !text-inherit"
+                          >
+                            {allTxs[i].singleAmount} {allTxs[i].token.symbol}{' '}
+                            {allTxs[i].isMultipleTokens && '& others'}
+                          </Typography>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              }
+            >
+              {text}
+            </Tooltip>
+            {hasAddress && (
+              <Tooltip
+                content={hasCopied ? 'Copied' : 'Click to copy address'}
+                arrow="top-center"
+                componentProps={{
+                  root: { open: hasCopied || undefined },
+                }}
+              >
+                <CopyLine
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    onCopy()
+                  }}
+                />
+              </Tooltip>
+            )}
+          </>
         ) : (
           text
         )}

@@ -12,9 +12,9 @@ import {
   TransactionActionType,
   transactionActionString,
 } from '~constants/transactions'
+import { utils } from '@consolelabs/mochi-formatter'
 import Amount from '~cpn/Amount'
 import DashLine from '~cpn/DashLine'
-import { robotoFont } from '~utils/next-font'
 import DataList from '../DataList'
 import Header from './Header'
 import ListUser from './ListUser'
@@ -95,17 +95,22 @@ export default function Receipt({
         className,
       )}
     >
-      <style jsx global>{`
-        .receipt-body {
-          font-family: ${robotoFont.style.fontFamily};
-        }
-      `}</style>
-      <div className="font-sans drop-shadow-lg">
+      <div
+        className={clsx('relative overflow-hidden rounded-xl drop-shadow-lg', {
+          'backdrop-blur-md': variant === 'peeking',
+        })}
+      >
+        {variant === 'peeking' && (
+          <div
+            className="absolute top-0 left-0 w-full h-full bg-white-pure"
+            style={{ opacity: 0.85 }}
+          />
+        )}
         <div
           className={clsx(
-            'flex overflow-hidden relative flex-col gap-y-6 w-full text-center bg-white-pure',
+            'flex relative flex-col gap-y-10 w-full text-center',
             {
-              'rounded jagged-bottom': variant !== 'peeking',
+              'rounded jagged-bottom bg-white-pure': variant !== 'peeking',
               'rounded-xl': variant === 'peeking',
             },
           )}
@@ -119,22 +124,34 @@ export default function Receipt({
             />
           )}
           <div
-            className={clsx('px-4 pb-6 md:px-6 !text-neutral-600', {
-              'flex flex-col gap-y-12 py-3': variant === 'default',
-              'flex gap-x-12 py-6': variant === 'peeking',
+            className={clsx('px-4 md:px-6 !text-neutral-600', {
+              'flex flex-col gap-y-4 pb-10': variant === 'default',
+              'flex gap-x-16 !px-8': variant === 'peeking',
             })}
           >
-            <div className="flex flex-col flex-1 gap-y-12">
+            <div
+              className={clsx('flex flex-col gap-y-4', {
+                'flex-1': variant !== 'peeking',
+                'w-1/2 aspect-square justify-center': variant === 'peeking',
+              })}
+            >
               <div className="flex relative flex-col items-center">
                 {data.data.template ? null : (
                   <Avatar
                     smallSrc={data.platformIcon}
-                    size="3xl"
+                    size="xl"
                     src={data.senderAvatar}
                   />
                 )}
                 <div className="mt-2 text-sm">
-                  <span className="font-medium">{data.data.from[0].name}</span>
+                  <Typography
+                    level="p5"
+                    color="textPrimary"
+                    className="inline"
+                    fontWeight="md"
+                  >
+                    {utils.string.formatAddressUsername(data.data.from[0].name)}
+                  </Typography>
                   <br />
                   <span className="text-xs capitalize">
                     {data.data.template
@@ -154,19 +171,23 @@ export default function Receipt({
                   tokenIcon={data.data.tokenIcon}
                   unit={data.unitCurrency}
                   approxMoniker={data.amountApproxMoniker}
-                  className="mt-8"
+                  className="mt-4"
                   isMultipleTokens={data.isMultipleTokens}
                 />
               </div>
               {data.message && (
                 <div className="flex flex-col gap-y-3">
-                  <span className="relative mt-3 font-normal text-center break-words">
+                  <Typography
+                    level="p6"
+                    fontWeight="sm"
+                    className="relative text-center break-words"
+                  >
                     &ldquo;
                     {isViewFullMessage
                       ? data.message
                       : truncate(data.message, 300, false)}
                     &rdquo;
-                  </span>
+                  </Typography>
                   {data.message.length > 300 ? (
                     <button
                       className="font-normal text-gray-500 underline"
@@ -179,13 +200,13 @@ export default function Receipt({
               )}
             </div>
             <div
-              className={clsx(
-                'flex-1 relative receipt-body !text-neutral-600',
-                {
-                  'flex flex-col justify-between': variant === 'peeking',
-                },
-              )}
+              className={clsx('relative font-mono !text-neutral-600', {
+                'flex-1': variant !== 'peeking',
+                'w-1/2 flex flex-col aspect-square justify-center':
+                  variant === 'peeking',
+              })}
             >
+              {variant !== 'peeking' && <DashLine />}
               <div
                 className={clsx('flex flex-col gap-y-2 gap-x-4', {
                   'pt-4': variant !== 'peeking',
@@ -261,7 +282,7 @@ export default function Receipt({
                 </DataList>
               </div>
               <DashLine />
-              <div className="flex justify-between py-2 text-xs text-neutral-600">
+              <div className="flex justify-between pt-2 text-xs text-neutral-600">
                 <span className="text-xs">
                   Mochi &copy; {new Date().getUTCFullYear()}
                 </span>

@@ -18,23 +18,23 @@ function getAmountData(tx: any) {
   // const unitCurrency = tx.metadata.moniker
   //   ? tx.metadata.moniker
   //   : tx.token.symbol
-  const amountApproxMoniker = tx.metadata.moniker
-    ? `${amountSymbol} ${tx.token.symbol}`
-    : ``
+  // const amountApproxMoniker = tx.metadata.moniker
+  //   ? `${amountSymbol} ${tx.token.symbol}`
+  //   : ``
   const amountSection = tx.metadata.moniker
     ? `${amountDisplay} ${tx.metadata.moniker}`
     : `${amountDisplay} ${tx.token.symbol}`
-  const unitAmountSection = tx.metadata.moniker
-    ? `(${amountSymbol} ${tx.token.symbol})`
-    : null
+  // const unitAmountSection = tx.metadata.moniker
+  //   ? `(${amountSymbol} ${tx.token.symbol})`
+  //   : null
   const amountUsd = mochiUtils.formatUsdDigit(tx.usd_amount)
 
   return {
     amountDisplay,
     unitCurrency: tx.token.symbol,
-    amountApproxMoniker,
+    amountApproxMoniker: '',
     amountSection,
-    unitAmountSection,
+    unitAmountSection: null,
     amountUsd,
   }
 }

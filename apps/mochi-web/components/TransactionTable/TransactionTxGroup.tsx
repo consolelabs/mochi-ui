@@ -21,7 +21,7 @@ export const TransactionTxGroup = (props: TransactionTxGroupProps) => {
     return (
       <Typography
         level="p6"
-        className="py-0.5 px-2 font-mono rounded-full border border-background-level3 bg-background-level1 !h-[20px] !w-[80px] inline-block"
+        className="py-0.5 px-2 font-mono rounded-full border border-background-level3 bg-background-level1 !h-[20px] !w-[80px] flex items-center"
       >
         {tx.code.slice(0, 9)}
       </Typography>

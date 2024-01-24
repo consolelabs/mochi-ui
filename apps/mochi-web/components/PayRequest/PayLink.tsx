@@ -1,4 +1,3 @@
-import { robotoFont } from '~utils/next-font'
 import { LinkSquircledSolid } from '@mochi-ui/icons'
 import { isSSR } from '@dwarvesf/react-utils'
 import Header from './Header'
@@ -18,11 +17,6 @@ export default function PayLink({ data, variant = 'default' }: Props) {
   return (
     <div className="gap-y-10 receipt-container">
       <div className="flex-1 drop-shadow-xl">
-        <style jsx global>{`
-          .receipt-body {
-            font-family: ${robotoFont.style.fontFamily};
-          }
-        `}</style>
         <div className="flex flex-col pb-10 rounded-t bg-white-pure jagged-bottom">
           {variant === 'default' && (
             <Header
