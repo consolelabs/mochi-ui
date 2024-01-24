@@ -9,5 +9,5 @@ export default {
     '../components/*/stories/**/*.stories.{js,jsx,ts,tsx}',
     '../theme/src/components/**/*.{js,jsx,ts,tsx}',
   ],
-  plugins: [mochiui({ addCommonColors: true }), tailwindAnimate],
+  plugins: [mochiui(), tailwindAnimate],
 }

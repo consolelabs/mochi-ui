@@ -38,7 +38,7 @@ export const mochiui = (config: MochiUIPluginConfig = {}) => {
     defaultTheme = 'light',
     defaultExtendTheme = 'light',
     prefix = 'mochi',
-    addCommonColors = false,
+    addCommonColors = true,
     container: {
       landing: landingContainerConfig = {},
       dashboard: dashboardContainerConfig = {},
