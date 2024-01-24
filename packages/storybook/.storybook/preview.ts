@@ -1,7 +1,11 @@
 import './styles.css'
 import { Preview, StoryContext } from '@storybook/react'
 import prettier from 'prettier/standalone'
+// @ts-expect-error
 import prettierTypescript from 'prettier/parser-babel'
+import { themes, type ThemeVarsColors } from '@storybook/theming'
+import darkTheme from './dark-theme'
+import lightTheme from './light-theme'
 
 function replaceStart(input: string) {
   const lines = input.split('\n')
@@ -73,6 +77,12 @@ const preview: Preview = {
       },
     },
     darkMode: {
+      light: {
+        ...lightTheme,
+      },
+      dark: {
+        ...darkTheme,
+      },
       darkClass: 'dark',
       lightClass: 'light',
       classTarget: 'html',

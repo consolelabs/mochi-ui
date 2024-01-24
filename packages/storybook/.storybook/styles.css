@@ -3,7 +3,16 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply bg-white dark:bg-slate-900;
+  docs-story {
+    @apply !bg-background-body
+  }
+
+
+  #storybook-docs h1, h2, h3, h4, h5, h6 {
+    @apply !text-text-primary
+  }
+
+  #storybook-docs p {
+    @apply !text-text-primary
   }
 }
