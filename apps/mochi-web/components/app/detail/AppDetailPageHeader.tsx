@@ -50,7 +50,9 @@ export const AppDetailPageHeader = ({ name = '', onDeleteApp }: Props) => {
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
-                leftIcon={<TrashBinSolid className="w-5 h-5 text-danger-700" />}
+                leftIcon={
+                  <TrashBinSolid className="w-5 h-5 text-danger-outline-fg" />
+                }
                 onClick={onDeleteApp}
               >
                 <Typography level="h8" color="danger">

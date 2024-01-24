@@ -100,7 +100,7 @@ function BottomSheet({
       <div
         ref={sheetRef}
         className={clsx(
-          'relative flex flex-col min-h-0 p-3 bg-white-pure rounded-t-lg',
+          'relative flex flex-col min-h-0 p-3 bg-background-surface rounded-t-lg',
           className,
           {
             'h-[75%]': !dynamic,
@@ -201,14 +201,11 @@ export default function BottomSheetProvider({
             scale: !nested && isOpen ? '100%' : '100%',
           }}
           transition={{ type: 'spring', bounce: 0, duration: 0.5 }}
-          className={clsx(
-            'will-change-transform bg-white-pure h-full flex flex-col',
-            {
-              '-mx-3 px-3': nested && isOpen,
-              'pointer-events-none overflow-hidden': isOpen || delayIsOpen,
-              'pointer-events-auto': !isOpen && !delayIsOpen,
-            },
-          )}
+          className={clsx('will-change-transform h-full flex flex-col', {
+            '-mx-3 px-3': nested && isOpen,
+            'pointer-events-none overflow-hidden': isOpen || delayIsOpen,
+            'pointer-events-auto': !isOpen && !delayIsOpen,
+          })}
         >
           {children}
         </m.div>

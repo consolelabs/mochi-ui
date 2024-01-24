@@ -13,8 +13,8 @@ export const Statistics = ({ id, onOpenCreateAppModal }: Props) => {
   const { data: stats } = useFetchApplicationStats(id)
 
   return (
-    <div className="flex flex-col gap-2 p-2 bg-neutral-150 rounded-2xl sm:flex-row">
-      <div className="w-full px-6 pb-8 space-y-2 sm:w-1/3 bg-neutral-0 rounded-xl">
+    <div className="flex flex-col gap-2 p-2 bg-background-level2 rounded-2xl sm:flex-row">
+      <div className="w-full px-6 pb-8 space-y-2 sm:w-1/3 bg-background-body rounded-xl">
         <Image
           width={204}
           height={124}

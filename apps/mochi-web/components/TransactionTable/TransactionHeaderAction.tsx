@@ -54,7 +54,7 @@ export const TransactionHeaderAction = ({ disabled }: Props) => {
         </button>
       </PopoverTrigger>
       <PopoverPortal>
-        <PopoverContent className="!p-3 bg-white-pure">
+        <PopoverContent className="!p-3 bg-background-popup">
           <div className="flex flex-col">
             <Combobox
               multiple
@@ -92,7 +92,7 @@ export const TransactionHeaderAction = ({ disabled }: Props) => {
                               className={clsx(
                                 'rounded flex gap-x-2 items-center py-1 px-2',
                                 {
-                                  'cursor-pointer bg-neutral-150': active,
+                                  'cursor-pointer bg-background-level2': active,
                                 },
                               )}
                             >

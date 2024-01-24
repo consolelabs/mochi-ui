@@ -57,7 +57,7 @@ interface TokenButtonProps {
 
 const TokenButton = (props: TokenButtonProps) => {
   return (
-    <div className="flex gap-x-2 items-center py-1.5 px-3 rounded-lg bg-primary-50">
+    <div className="flex gap-x-2 items-center py-1.5 px-3 rounded-lg bg-primary-soft">
       {props.isToken ? (
         <span className="text-base shrink-0" role="img">
           <Image
@@ -75,9 +75,12 @@ const TokenButton = (props: TokenButtonProps) => {
       )}
       <span className="text-sm font-medium">{props.name}</span>
       <ChevronDownLine
-        className={clsx('shrink-0 transition w-4 h-4 text-primary-500', {
-          'rotate-180': props.isOpenSelector,
-        })}
+        className={clsx(
+          'shrink-0 transition w-4 h-4 text-primary-soft-fg opacity-80',
+          {
+            'rotate-180': props.isOpenSelector,
+          },
+        )}
       />
     </div>
   )

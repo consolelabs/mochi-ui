@@ -118,7 +118,7 @@ export default function ProfileDropdown({
 
           <Accordion
             type="multiple"
-            className="!p-0 shadow-none"
+            className="!p-0 shadow-none bg-transparent"
             defaultValue={['Download']}
           >
             <AccordionItem value="Home">

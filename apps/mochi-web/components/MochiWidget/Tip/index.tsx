@@ -95,8 +95,10 @@ export default function Tip({
         className={clsx(
           'origin-center flex justify-between z-10 transition-transform absolute top-0 w-full p-3 duration-300 rounded-md border font-medium text-sm',
           {
-            'border-green-200 bg-green-50 text-green-700': !error,
-            'border-red-200 bg-red-50 text-red-700': error,
+            'border-success-outline-border bg-success-soft text-success-soft-fg':
+              !error,
+            'border-danger-outline-border bg-danger-soft text-danger-soft-fg':
+              error,
             'scale-1 translate-y-0 shadow-xl': isOpen,
             'shadow scale-[0.9] translate-y-[calc(-100%-57px)]': !isOpen,
           },
@@ -115,7 +117,7 @@ export default function Tip({
               </Link>
             </span>
             <Timer
-              className="w-5 h-5 text-green-500"
+              className="w-5 h-5 text-success-outline-fg"
               start={isOpen}
               onEnd={onClose}
               time={6000}
@@ -131,7 +133,7 @@ export default function Tip({
               )}
             </span>
             <Timer
-              className="w-5 h-5 text-red-500"
+              className="w-5 h-5 text-danger-outline-fg"
               start={isOpen}
               onEnd={onClose}
               time={6000}

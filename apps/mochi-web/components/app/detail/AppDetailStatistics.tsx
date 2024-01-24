@@ -81,7 +81,7 @@ export const AppDetailStatistics = ({
 
   return (
     <div>
-      <div className="grid grid-cols-1 gap-2 p-2 sm:grid-cols-2 bg-neutral-150 rounded-2xl">
+      <div className="grid grid-cols-1 gap-2 p-2 sm:grid-cols-2 bg-background-level2 rounded-2xl">
         <div className="flex gap-8 p-6">
           <div className="py-4 ">
             <input
@@ -98,7 +98,7 @@ export const AppDetailStatistics = ({
             >
               <Avatar src={detail?.avatar || ''} size="3xl" />
               {uploading ? (
-                <div className="absolute inset-0 flex items-center justify-center w-full h-full bg-white rounded-full bg-opacity-30">
+                <div className="absolute inset-0 flex items-center justify-center w-full h-full bg-background-body rounded-full bg-opacity-30 text-text-primary">
                   <ThreeDotLoading className="w-6 h-6" />
                 </div>
               ) : (
@@ -197,11 +197,11 @@ export const AppDetailStatistics = ({
           footer={
             <div className="flex gap-2 mt-4">
               <Button size="sm">
-                <ArrowDownSquareSolid className="w-4 h-4 text-neutral-0" />
+                <ArrowDownSquareSolid className="w-4 h-4" />
                 Deposit
               </Button>
               <Button size="sm" variant="outline" color="neutral">
-                <ArrowUpSquareSolid className="w-4 h-4 text-neutral-800" />
+                <ArrowUpSquareSolid className="w-4 h-4" />
                 Withdraw
               </Button>
             </div>
@@ -213,39 +213,39 @@ export const AppDetailStatistics = ({
           label="All time Users"
           amount={stats?.users_in_total}
           change={stats?.users_in_total_change?.last_month_percentage}
-          className="border border-neutral-200 shadow-input sm:order-1"
+          className="border border-divider shadow-input sm:order-1"
         />
         <StatisticsBox
           label="7 days Users"
           amount={stats?.users_in_7d}
           change={stats?.users_in_7d_change?.last_month_percentage}
-          className="border border-neutral-200 shadow-input sm:order-4"
+          className="border border-divider shadow-input sm:order-4"
         />
         <StatisticsBox
           label="All time Revenue"
           amount={stats?.revenue_in_total}
           formatAmount={(amount) => `$${formatNumber(amount)}`}
           change={stats?.revenue_in_total_change?.last_month_percentage}
-          className="border border-neutral-200 shadow-input sm:order-2"
+          className="border border-divider shadow-input sm:order-2"
         />
         <StatisticsBox
           label="7 days Revenue"
           amount={stats?.revenue_in_7d}
           formatAmount={(amount) => `$${formatNumber(amount)}`}
           change={stats?.revenue_in_7d_change?.last_month_percentage}
-          className="border border-neutral-200 shadow-input sm:order-5"
+          className="border border-divider shadow-input sm:order-5"
         />
         <StatisticsBox
           label="All time Txs"
           amount={stats?.txs_in_total}
           change={stats?.txs_in_total_change?.last_month_percentage}
-          className="border border-neutral-200 shadow-input sm:order-3"
+          className="border border-divider shadow-input sm:order-3"
         />
         <StatisticsBox
           label="7 days Txs"
           amount={stats?.txs_in_7d}
           change={stats?.txs_in_7d_change?.last_month_percentage}
-          className="border border-neutral-200 shadow-input sm:order-6"
+          className="border border-divider shadow-input sm:order-6"
         />
       </div>
     </div>
