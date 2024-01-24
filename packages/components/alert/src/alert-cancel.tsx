@@ -22,9 +22,9 @@ const AlertCancelButton = forwardRef<
   const passProps = {
     variant:
       variantProp ?? layout === 'inline'
-        ? ('link' as const) // Ensure type compatible, otherwise will be indicated as type string
-        : ('soft' as const), // FIXME: update colors for support darkmode
-    color: colorProp ?? 'neutral',
+        ? ('link' as const)
+        : ('outline' as const), // FIXME: update colors for support darkmode
+    color: colorProp ?? scheme,
     ...restProps,
   }
   return (
