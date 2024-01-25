@@ -50,7 +50,7 @@ const ChangelogItem = ({
         <div className="top-8 md:sticky flex flex-row md:flex-col gap-4 md:gap-2 items-center md:items-start">
           <Badge className="w-max !text-base !rounded-md !px-4" asChild>
             <Link href={ROUTES.CHANGELOG_DETAIL(version ?? '')}>
-              {version || '-'}
+              v{version || '-'}
             </Link>
           </Badge>
           <Typography className="!text-text-secondary">
