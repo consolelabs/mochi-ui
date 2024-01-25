@@ -11,94 +11,113 @@ import {
 import { Typography } from '@mochi-ui/typography'
 import { loginWidget } from '@mochi-ui/theme'
 import { IconButton } from '@mochi-ui/icon-button'
+import MochiAPI from '@consolelabs/mochi-rest'
 import qs from 'query-string'
-import { api } from './fetchers'
+import { Platform } from '@consolelabs/mochi-ui'
+import { useLoginWidget } from './store'
 
 const { loginContentSocialGridWrapperClsx, loginContentSocialGridClsx } =
   loginWidget
 
-const socialAuths = [
-  {
-    name: 'discord',
-    icon: <DiscordColored className="w-7 h-7" />,
-    onClick: (urlLocation: string) =>
-      api.profile.auth
-        .byDiscord({ urlLocation, platform: 'web' })
-        .then((res) => {
-          if (!res.ok) return
-          window.location.href = res.data.url
-        }),
-  },
-  {
-    name: 'telegram',
-    icon: <TelegramColored className="w-7 h-7" />,
-    onClick: (urlLocation: string) =>
-      // @ts-ignore
-      window.Telegram.Login.auth(
-        {
-          bot_id: '6518249764',
-          request_access: true,
-          return_to: encodeURI(window.location.href),
-          lang: 'en',
-        },
-        (user: any) => {
-          const telegramAuth = `https://api-preview.mochi-profile.console.so/api/v1/profiles/auth/telegram?${qs.stringify(
-            {
-              ...user,
-              url_location: urlLocation,
-            },
-          )}`
+const initSocialAuths = (profileBaseUrl: string) => {
+  const api = new MochiAPI({
+    log: false,
+    payUrl: '',
+    baseUrl: '',
+    profileUrl: profileBaseUrl,
+  })
 
-          window.location.href = telegramAuth
-        },
-      ),
-  },
-  {
-    name: 'twitter',
-    icon: <X className="w-7 h-7" />,
-    onClick: (urlLocation: string) =>
-      api.profile.auth
-        .byTwitter({ urlLocation, platform: 'web' })
-        .then((res) => {
-          if (!res.ok) return
-          window.location.href = res.data.url
-        }),
-  },
-  {
-    name: 'gmail',
-    icon: <GoogleColored className="w-7 h-7" />,
-    onClick: (urlLocation: string) =>
-      api.profile.auth.byGmail({ urlLocation, platform: 'web' }).then((res) => {
-        if (!res.ok) return
-        window.location.href = res.data.url
-      }),
-  },
-  {
-    name: 'facebook',
-    icon: <FacebookColored className="w-7 h-7" />,
-    onClick: (urlLocation: string) =>
-      api.profile.auth
-        .byFacebook({ urlLocation, platform: 'web' })
-        .then((res) => {
-          if (!res.ok) return
-          window.location.href = res.data.url
-        }),
-  },
-  {
-    name: 'slack',
-    icon: <SlackColored className="w-7 h-7 opacity-50" />,
-  },
-  {
-    name: 'github',
-    icon: <Github className="w-7 h-7 opacity-50" />,
-  },
-  {
-    name: 'mail',
-    icon: <MailLine className="w-7 h-7" />,
-  },
-]
+  return [
+    {
+      id: Platform.Discord,
+      name: 'discord',
+      icon: <DiscordColored className="w-7 h-7" />,
+      onClick: (urlLocation: string) =>
+        api.profile.auth
+          .byDiscord({ urlLocation, platform: 'web' })
+          .then((res) => {
+            if (!res.ok) return
+            window.location.href = res.data.url
+          }),
+    },
+    {
+      id: Platform.Telegram,
+      name: 'telegram',
+      icon: <TelegramColored className="w-7 h-7" />,
+      onClick: (urlLocation: string) =>
+        // @ts-ignore
+        window.Telegram.Login.auth(
+          {
+            bot_id: '6518249764',
+            request_access: true,
+            return_to: encodeURI(window.location.href),
+            lang: 'en',
+          },
+          (user: any) => {
+            const telegramAuth = `https://api-preview.mochi-profile.console.so/api/v1/profiles/auth/telegram?${qs.stringify(
+              {
+                ...user,
+                url_location: urlLocation,
+              },
+            )}`
+
+            window.location.href = telegramAuth
+          },
+        ),
+    },
+    {
+      id: Platform.Twitter,
+      name: 'twitter',
+      icon: <X className="w-7 h-7" />,
+      onClick: (urlLocation: string) =>
+        api.profile.auth
+          .byTwitter({ urlLocation, platform: 'web' })
+          .then((res) => {
+            if (!res.ok) return
+            window.location.href = res.data.url
+          }),
+    },
+    {
+      id: Platform.Email,
+      name: 'gmail',
+      icon: <GoogleColored className="w-7 h-7" />,
+      onClick: (urlLocation: string) =>
+        api.profile.auth
+          .byGmail({ urlLocation, platform: 'web' })
+          .then((res) => {
+            if (!res.ok) return
+            window.location.href = res.data.url
+          }),
+    },
+    {
+      name: 'facebook',
+      icon: <FacebookColored className="w-7 h-7" />,
+      onClick: (urlLocation: string) =>
+        api.profile.auth
+          .byFacebook({ urlLocation, platform: 'web' })
+          .then((res) => {
+            if (!res.ok) return
+            window.location.href = res.data.url
+          }),
+    },
+    {
+      name: 'slack',
+      icon: <SlackColored className="w-7 h-7 opacity-50" />,
+    },
+    {
+      name: 'github',
+      icon: <Github className="w-7 h-7 opacity-50" />,
+    },
+    {
+      name: 'mail',
+      icon: <MailLine className="w-7 h-7" />,
+    },
+  ]
+}
 
 export default function ConnectSocial() {
+  const { socials, profileBaseUrl } = useLoginWidget()
+
   return (
     <>
       <Typography
@@ -114,8 +133,9 @@ export default function ConnectSocial() {
       </Typography>
       <div className={loginContentSocialGridWrapperClsx()}>
         <div className={loginContentSocialGridClsx()}>
-          {socialAuths.map((item) => {
-            const disabled = !item.onClick
+          {initSocialAuths(profileBaseUrl).map((item) => {
+            const disabled = socials.every((s) => s !== item.id)
+
             return (
               <IconButton
                 label=""

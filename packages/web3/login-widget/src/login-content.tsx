@@ -67,8 +67,13 @@ export default function LoginContent({
   chain?: string
 }) {
   const [isConnecting, setIsConnecting] = useState(false)
-  const { isLoggedIn, setIsLoggingIn, setIsLoadingProfile, dispatch } =
-    useLoginWidget()
+  const {
+    profileBaseUrl,
+    isLoggedIn,
+    setIsLoggingIn,
+    setIsLoadingProfile,
+    dispatch,
+  } = useLoginWidget()
   const [state, setState] = useState({ step: chain ? 2 : 1, direction: 0 })
   const [isInteractive, setIsInteractive] = useState(false)
 
@@ -81,6 +86,7 @@ export default function LoginContent({
         platform: string
       },
     ) => {
+      if (!profileBaseUrl) return
       if (isLoggedIn) {
         dispatch({
           type: 'update_wallets',
@@ -94,12 +100,12 @@ export default function LoginContent({
       }
 
       setIsLoggingIn(true)
-      const token = await fetchers.getAccessToken(data)
+      const token = await fetchers.getAccessToken(data, profileBaseUrl)
       if (!token) return
       setIsLoggingIn(false)
 
       setIsLoadingProfile(true)
-      const profile = await fetchers.getOwnProfile(token)
+      const profile = await fetchers.getOwnProfile(token, profileBaseUrl)
       if (!profile) return
       setIsLoadingProfile(false)
 
@@ -114,7 +120,7 @@ export default function LoginContent({
         },
       })
     },
-    [dispatch, isLoggedIn, setIsLoadingProfile, setIsLoggingIn],
+    [dispatch, isLoggedIn, profileBaseUrl, setIsLoadingProfile, setIsLoggingIn],
   )
 
   useEffect(() => {

@@ -1,3 +1,4 @@
+import { Platform } from '@consolelabs/mochi-ui'
 import type { Profile } from '@consolelabs/mochi-rest'
 import { ChainProvider } from '@mochi-web3/connect-wallet-widget'
 import { create } from 'zustand'
@@ -59,6 +60,12 @@ export type LoginWidgetState = {
   isAddressConnected: (address: string) => boolean
 
   dispatch: (action: Action) => void
+
+  profileBaseUrl: string
+  setProfileBaseUrl: (url: string) => void
+
+  socials: Array<Platform>
+  setSocials: (socials: Array<Platform>) => void
 }
 
 export const useLoginWidget = create<LoginWidgetState>((set, get) => {
@@ -102,6 +109,12 @@ export const useLoginWidget = create<LoginWidgetState>((set, get) => {
       // update state
       set(newState)
     },
+
+    profileBaseUrl: '',
+    setProfileBaseUrl: (url) => set({ profileBaseUrl: url }),
+
+    socials: [],
+    setSocials: (socials) => set({ socials }),
   }
 })
 

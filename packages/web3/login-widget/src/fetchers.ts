@@ -1,22 +1,9 @@
-import MochiAPI from '@consolelabs/mochi-rest'
 import { msg } from '@mochi-web3/connect-wallet-widget'
 
-export const api = new MochiAPI({
-  log: false,
-  payUrl: 'https://api-preview.mochi-pay.console.so/api/v1',
-  profileUrl: 'https://api-preview.mochi-profile.console.so/api/v1',
-  baseUrl: 'https://api-preview.mochi.console.so/api/v1',
-})
-
-const authUrl =
-  'https://api-preview.mochi-profile.console.so/api/v1/profiles/auth' as const
-const meUrl =
-  'https://api-preview.mochi-profile.console.so/api/v1/profiles/me' as const
-
-async function getAccessToken(data: any) {
+async function getAccessToken(data: any, profileBaseUrl: string) {
   try {
     const res = await fetch(
-      `${authUrl}/${data.platform.replace('-chain', '')}`,
+      `${profileBaseUrl}/profiles/auth/${data.platform.replace('-chain', '')}`,
       {
         method: 'POST',
         body: JSON.stringify({
@@ -38,9 +25,9 @@ async function getAccessToken(data: any) {
   }
 }
 
-async function getOwnProfile(token: string) {
+async function getOwnProfile(token: string, profileBaseUrl: string) {
   try {
-    const res = await fetch(meUrl, {
+    const res = await fetch(`${profileBaseUrl}/profiles/me`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
