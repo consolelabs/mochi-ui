@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next'
-import { Badge, Typography } from '@mochi-ui/core'
+import { Badge, Button, IconButton, Typography } from '@mochi-ui/core'
 import { Layout } from '~app/layout'
 import { SEO } from '~app/layout/seo'
 import { PAGES } from '~constants'
@@ -13,6 +13,10 @@ import { format, isValid } from 'date-fns'
 import Link from 'next/link'
 import { ROUTES } from '~constants/routes'
 import { API, GET_PATHS } from '~constants/api'
+import { InboxSolid } from '@mochi-ui/icons'
+import { TWITTER_LINK } from '~envs'
+import { useRef } from 'react'
+import { ChangelogFooter } from '~cpn/Changelog/ChangelogFooter'
 
 type Props = {
   data?: Array<ModelProductChangelogs>
@@ -69,9 +73,10 @@ const ChangelogItem = ({
 export default function Changelog({ data }: Props) {
   const firstImgUrl = getFirstImageUrl(data ?? [])
   const description = getDescription(data ?? [])
+  const ref = useRef<HTMLDivElement>(null)
 
   return (
-    <Layout>
+    <Layout ref={ref} footer={<ChangelogFooter />}>
       <SEO
         description={description}
         image={firstImgUrl || ''}
@@ -90,6 +95,27 @@ export default function Changelog({ data }: Props) {
             <Typography className="!text-text-primary">
               The latest updates from Mochi.
             </Typography>
+          </div>
+          <div className="flex gap-2 items-center">
+            <Button asChild variant="outline" color="neutral" size="sm">
+              <Link href={TWITTER_LINK} target="_blank">
+                Follow @mochi_gg
+              </Link>
+            </Button>
+            <IconButton
+              label="Subscribe"
+              color="neutral"
+              variant="outline"
+              size="md"
+              onClick={() => {
+                ref.current?.scrollTo({
+                  top: ref.current?.scrollHeight,
+                  behavior: 'smooth',
+                })
+              }}
+            >
+              <InboxSolid />
+            </IconButton>
           </div>
         </div>
 

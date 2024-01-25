@@ -18,7 +18,9 @@ export const ChangelogDetailTitle = (props: ChangelogDetailTitleProps) => {
   return (
     <div className="flex md:flex-row flex-col gap-2 items-start justify-between w-full">
       <div className="flex flex-col gap-2">
-        <Typography level="h3">{title}</Typography>
+        <Typography level="h3" className="text-[32px]">
+          {title}
+        </Typography>
         <div className="flex gap-2 items-center">
           <Badge
             className="h-8 !px-4 !rounded-lg !text-base"
