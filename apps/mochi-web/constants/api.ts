@@ -84,4 +84,6 @@ export const GET_PATHS = {
   UPDATE_GENERAL_SETTINGS: (profileId: string) =>
     `/profiles/${profileId}/settings/general`,
   GET_TOTAL_BALANCES: (profileId: string) => `/users/${profileId}/balances`,
+  GET_MONTHLY_STATS: (profileId: string) =>
+    `/profile/${profileId}/monthly-stats`,
 }
