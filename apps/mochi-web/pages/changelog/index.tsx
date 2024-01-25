@@ -106,7 +106,7 @@ export default function Changelog({ data }: Props) {
               label="Subscribe"
               color="neutral"
               variant="outline"
-              size="md"
+              className="!text-xl !p-1.5"
               onClick={() => {
                 ref.current?.scrollTo({
                   top: ref.current?.scrollHeight,

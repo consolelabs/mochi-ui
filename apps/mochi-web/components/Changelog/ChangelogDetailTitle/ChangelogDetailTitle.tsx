@@ -43,8 +43,8 @@ export const ChangelogDetailTitle = (props: ChangelogDetailTitleProps) => {
           label="Subscribe"
           color="neutral"
           variant="outline"
-          size="md"
           onClick={onFollow}
+          className="!text-xl !p-1.5"
         >
           <InboxSolid />
         </IconButton>

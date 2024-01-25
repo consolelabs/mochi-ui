@@ -56,7 +56,7 @@ export default function Page(
         title={title}
         tailTitle
       />
-      <div className="flex flex-col md:px-20 pt-8 md:pt-20 landing-container !max-w-[960px] react-markdown-block">
+      <div className="flex flex-col md:px-20 pt-8 md:pt-20 landing-container !max-w-[960px]">
         <div className="w-full flex justify-center mb-10">
           <ChangelogDetailTitle
             title={title ?? ''}
@@ -71,7 +71,9 @@ export default function Page(
             }}
           />
         </div>
-        {content ? <Markdown>{content}</Markdown> : null}
+        <div className="react-markdown-block">
+          {content ? <Markdown>{content}</Markdown> : null}
+        </div>
       </div>
     </Layout>
   )
