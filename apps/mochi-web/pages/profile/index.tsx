@@ -2,9 +2,9 @@ import { ProfileWidget } from '~cpn/Profile/ProfileWidget'
 import { NextPageWithLayout } from '~pages/_app'
 import { SEO } from '~app/layout/seo'
 import { useLoginWidget } from '@mochi-web3/login-widget'
-import MochiWidget from '~cpn/MochiWidget'
 import { DashboardBody } from '~cpn/DashboardBody'
 import { TransactionOverviewSection } from '~cpn/Profile/TransactionSection'
+import { RecapSection } from '~cpn/Profile/RecapSection'
 
 const Profile: NextPageWithLayout = () => {
   const { profile } = useLoginWidget()
@@ -16,10 +16,7 @@ const Profile: NextPageWithLayout = () => {
         <div className="space-y-6">
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             <ProfileWidget />
-            <MochiWidget
-              wrapperClassName="!shadow-input !border-divider h-full"
-              className="!border-none !shadow-none"
-            />
+            <RecapSection />
           </div>
           <TransactionOverviewSection />
         </div>

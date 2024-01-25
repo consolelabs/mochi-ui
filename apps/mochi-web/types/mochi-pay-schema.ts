@@ -169,6 +169,7 @@ export interface DtoWithdrawRequest {
 export interface MochiprofileApplication {
   active?: boolean
   application_profile_id?: string
+  avatar?: string
   id?: number
   name?: string
   owner_profile_id?: string
@@ -328,6 +329,7 @@ export type ModelProfileTransactionMetadata = Record<string, any>
 
 export interface ModelStatTx {
   amount?: string
+  other_profile?: MochiprofileMochiProfile
   other_profile_id?: string
   price?: number
   profile_id?: string
@@ -376,6 +378,8 @@ export interface ModelTransactionResponse {
   from_profile?: MochiprofileMochiProfile
   from_profile_id?: string
   from_profile_source?: string
+  group_total_amount?: string
+  group_total_usd?: number
   hashtags?: string[]
   id?: string
   internal_id?: number
