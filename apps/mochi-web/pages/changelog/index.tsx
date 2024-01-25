@@ -84,7 +84,7 @@ export default function Changelog({ data }: Props) {
         tailTitle
       />
       <div className="flex flex-col pt-8 md:pt-20 landing-container">
-        <div className="w-full flex justify-center mb-16 md:mb-20">
+        <div className="w-full flex flex-col gap-2 justify-between items-start mb-16 md:flex-row md:mb-20">
           <div className="w-full max-w-[1008px]">
             <Typography
               level="h3"
