@@ -13,6 +13,8 @@ import { LazyMotion, domAnimation } from 'framer-motion'
 import { WalletProviderProps } from '~context/wallet-context'
 import { useAuthStore } from '~store/auth'
 import { useLoginWidget } from '@mochi-web3/login-widget'
+import { MOCHI_PROFILE_API } from '~envs'
+import { Platform } from '@consolelabs/mochi-formatter'
 
 const SidebarContextProvider = dynamic(() =>
   import('../context/app/sidebar').then((m) => m.SidebarContextProvider),
@@ -93,7 +95,16 @@ export default function App(props: AppPropsWithLayout) {
       <Script async src="https://telegram.org/js/telegram-widget.js?22" />
       <WalletProvider>
         <LazyMotion strict features={domAnimation}>
-          <LoginWidgetProvider>
+          <LoginWidgetProvider
+            // @ts-ignore
+            socials={[
+              Platform.Discord,
+              Platform.Telegram,
+              Platform.Email,
+              Platform.Twitter,
+            ]}
+            profileApi={MOCHI_PROFILE_API}
+          >
             <InnerApp {...props} />
           </LoginWidgetProvider>
         </LazyMotion>
