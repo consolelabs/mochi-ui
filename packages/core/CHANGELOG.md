@@ -1,5 +1,57 @@
 # @mochi-ui/core
 
+## 0.13.3
+
+### Patch Changes
+
+- [#600](https://github.com/consolelabs/mochi-ui/pull/600) [`2d2fa43`](https://github.com/consolelabs/mochi-ui/commit/2d2fa4395f16e51a0011ae257b89123e9fa4fbd3) Thanks [@tonible14012002](https://github.com/tonible14012002)! - Remove `as` prop, support asChild for polymorphic
+
+- [#622](https://github.com/consolelabs/mochi-ui/pull/622) [`98bc453`](https://github.com/consolelabs/mochi-ui/commit/98bc4533289e63dacb8e6cdde6313836cf0d67c7) Thanks [@tonible14012002](https://github.com/tonible14012002)! - Update sizes for Avatar and AvatarGroup for consistency
+
+- Updated dependencies [[`068213c`](https://github.com/consolelabs/mochi-ui/commit/068213c147927cd4f910da1bbf38002144cd1fae), [`9f85c75`](https://github.com/consolelabs/mochi-ui/commit/9f85c754b7fcdb1694b47e0424fe74d6e1358fff), [`8d09ddf`](https://github.com/consolelabs/mochi-ui/commit/8d09ddfb54b116f9018064da3852f5ef0530818d), [`2d2fa43`](https://github.com/consolelabs/mochi-ui/commit/2d2fa4395f16e51a0011ae257b89123e9fa4fbd3), [`5448287`](https://github.com/consolelabs/mochi-ui/commit/544828722357e3d65f333784c5f0b9a3389c7579), [`98bc453`](https://github.com/consolelabs/mochi-ui/commit/98bc4533289e63dacb8e6cdde6313836cf0d67c7), [`9c5447a`](https://github.com/consolelabs/mochi-ui/commit/9c5447a0b3d76c2f317c7bb0f832df02e44bb9ed)]:
+  - @mochi-ui/avatar@0.3.0
+  - @mochi-ui/theme@0.16.0
+  - @mochi-ui/action-bar@0.2.0
+  - @mochi-ui/pagination@0.4.0
+  - @mochi-ui/alert@1.2.9
+  - @mochi-ui/toast@0.1.9
+  - @mochi-ui/sidebar@0.1.9
+  - @mochi-ui/avatar-group@0.3.3
+  - @mochi-ui/dropdown@0.2.6
+  - @mochi-ui/input@0.3.6
+  - @mochi-ui/popover@0.3.6
+  - @mochi-ui/profile-badge@0.2.3
+  - @mochi-ui/accordion@0.1.19
+  - @mochi-ui/badge@0.3.4
+  - @mochi-ui/button@0.4.15
+  - @mochi-ui/card@0.1.7
+  - @mochi-ui/checkbox@0.1.19
+  - @mochi-ui/content-editable@1.1.7
+  - @mochi-ui/drawer@0.3.6
+  - @mochi-ui/footer@0.1.10
+  - @mochi-ui/form@0.1.16
+  - @mochi-ui/icon-button@0.4.16
+  - @mochi-ui/label@0.1.16
+  - @mochi-ui/layout@0.1.16
+  - @mochi-ui/list@0.0.29
+  - @mochi-ui/logo@0.1.16
+  - @mochi-ui/modal@0.3.6
+  - @mochi-ui/page-content@0.1.16
+  - @mochi-ui/page-header@0.3.6
+  - @mochi-ui/scroll-area@0.0.5
+  - @mochi-ui/section-header@0.2.6
+  - @mochi-ui/select@0.2.3
+  - @mochi-ui/separator@0.0.30
+  - @mochi-ui/skeleton@1.0.9
+  - @mochi-ui/switch@0.0.27
+  - @mochi-ui/table@0.7.3
+  - @mochi-ui/tabs@0.2.6
+  - @mochi-ui/toggle-button@0.1.2
+  - @mochi-ui/tooltip@0.2.16
+  - @mochi-ui/top-bar@0.1.15
+  - @mochi-ui/typography@0.1.1
+  - @mochi-ui/value-change@0.0.5
+
 ## 0.13.2
 
 ### Patch Changes
