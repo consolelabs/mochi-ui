@@ -1,7 +1,9 @@
 import './styles.css'
 import { Preview, StoryContext } from '@storybook/react'
 import prettier from 'prettier/standalone'
+// @ts-ignore
 import prettierTypescript from 'prettier/parser-babel'
+import { themes } from '@storybook/theming'
 
 function replaceStart(input: string) {
   const lines = input.split('\n')
@@ -27,6 +29,7 @@ const preview: Preview = {
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },
     docs: {
+      theme: themes.dark,
       source: {
         transform(input: string, c: StoryContext) {
           const { __isArgsStory: isArgsStory, docs } = c.parameters
