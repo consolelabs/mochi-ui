@@ -33,7 +33,7 @@ export const UnorderedList = ({
 }: {
   children: React.ReactNode[]
 }) => {
-  return <ul className="list-dashed !pb-4">{children}</ul>
+  return <ul className="list-dashed">{children}</ul>
 }
 
 export const Paragraph = ({ children }: { children: React.ReactNode[] }) => {
@@ -46,7 +46,7 @@ export const Paragraph = ({ children }: { children: React.ReactNode[] }) => {
   return (
     <Typography
       level="p1"
-      className={clsx('!text-base font-normal -tracking-[0.2px]', {
+      className={clsx('!text-base font-normal -tracking-[0.2px] =', {
         'pb-2': hasOnlyOneChildOfStrong,
         'pb-4': !hasOnlyOneChildOfStrong,
       })}

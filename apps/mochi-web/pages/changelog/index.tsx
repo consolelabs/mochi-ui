@@ -83,9 +83,9 @@ export default function Changelog({ data }: Props) {
         title={PAGES.CHANGE_LOG.title}
         tailTitle
       />
-      <div className="flex flex-col pt-8 md:pt-20 landing-container">
+      <div className="flex flex-col pt-8 md:pt-20 landing-container !max-w-[1168px]">
         <div className="w-full flex flex-col gap-2 justify-between items-start md:flex-row mb-10">
-          <div className="w-full max-w-[1008px]">
+          <div className="w-full">
             <Typography
               level="h3"
               className="w-full md:text-4xl mb-2 overflow-visible !text-3xl font-semibold"

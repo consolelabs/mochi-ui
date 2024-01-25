@@ -56,7 +56,7 @@ export default function Page(
         title={title}
         tailTitle
       />
-      <div className="flex flex-col md:px-4 pt-8 md:pt-20 landing-container !max-w-[832px]">
+      <div className="flex flex-col md:px-20 pt-8 md:pt-20 landing-container !max-w-[960px] react-markdown-block">
         <div className="w-full flex justify-center mb-10">
           <ChangelogDetailTitle
             title={title ?? ''}
