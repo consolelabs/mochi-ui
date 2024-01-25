@@ -56,7 +56,7 @@ export default function Page(
         title={title}
         tailTitle
       />
-      <div className="flex flex-col !px-0 pt-8 md:pt-20 landing-container !max-w-[800px]">
+      <div className="flex flex-col md:px-4 pt-8 md:pt-20 landing-container !max-w-[832px]">
         <div className="w-full flex justify-center mb-10">
           <ChangelogDetailTitle
             title={title ?? ''}
