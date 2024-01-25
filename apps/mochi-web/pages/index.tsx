@@ -97,7 +97,7 @@ export default function Index() {
       <SEO title="Mochi" />
       <div className="grid grid-cols-1 auto-rows-min gap-y-7 gap-x-32 py-8 m-auto lg:grid-cols-2 lg:grid-rows-2 xl:gap-x-60 landing-container">
         <div className="flex flex-col lg:justify-end">
-          <p className="text-[32px] leading-[38.4px] title-tracking md:text-[40px] md:leading-[48px] text-text-primary">
+          <p className="text-[32px] leading-[38.4px] title-tracking text-text-primary md:text-[40px] md:leading-[48px]">
             Send{' '}
             <span
               ref={currency}
@@ -110,7 +110,7 @@ export default function Index() {
               <span ref={platform} className="font-medium" />
             </span>
           </p>
-          <span className="mt-5 font-normal text-text-secondary">
+          <span className="mt-5 text-lg font-normal text-text-secondary">
             Use Mochi to send and receive any amount of crypto, directly on your
             favorite Discord servers or Telegram groups, without having a wallet
             or having to pay a single cent in fees.
@@ -122,7 +122,7 @@ export default function Index() {
         </div>
 
         <div className="flex flex-col mt-5 lg:mt-2">
-          <LivePlatforms useGridOnMobile />
+          <LivePlatforms />
           {/* <SoonAvailablePlatforms className="mt-5" /> */}
           {/* <Alert className="mt-5" appearance="info" size="sm"> */}
           {/*   <span> */}
@@ -182,6 +182,7 @@ export default function Index() {
       />
       <Divider />
       <GridFeatures
+        className="mt-10"
         title="Mochi goes Web3"
         data={[
           {
@@ -224,12 +225,12 @@ export default function Index() {
       />
       <Divider />
       <SupportedPlatforms />
-      <div className="flex justify-center mb-8 md:justify-between md:my-36 landing-container">
+      <div className="flex justify-center mb-8 md:justify-between md:my-20 landing-container">
         <div className="flex flex-col gap-y-1">
-          <p className="text-3xl md:text-4xl title-tracking text-text-primary">
+          <p className="text-3xl font-semibold title-tracking text-text-primary">
             Simple, intuitive commands
           </p>
-          <span className="mt-2 text-base font-normal md:text-lg text-text-secondary">
+          <span className="mt-2 text-base font-normal md:text-lg text-text-primary">
             Mochi has a single, extensible command for tipping, airdropping on
             users.
           </span>

@@ -95,13 +95,13 @@ function Platform({
 
 export function SupportedPlatforms() {
   return (
-    <div className="hidden flex-col mt-16 md:flex landing-container">
-      <p className="text-4xl font-medium text-center font-text text-text-primary">
+    <div className="hidden flex-col mt-10 md:flex landing-container">
+      <p className="text-3xl font-medium text-center font-text text-text-primary">
         Supported platforms
       </p>
       <div className="flex flex-col gap-y-8 mt-8">
         <div className="flex flex-col gap-y-4">
-          <span className="text-lg font-medium text-text-secondary">
+          <span className="text-xl font-semibold text-text-primary">
             Socials
           </span>
           <div className="grid grid-cols-5 auto-rows-auto border-t border-l border-neutral-outline-border">
@@ -119,7 +119,7 @@ export function SupportedPlatforms() {
           </div>
         </div>
         <div className="flex flex-col gap-y-4">
-          <span className="text-lg font-medium text-text-secondary">
+          <span className="text-xl font-semibold text-text-primary">
             Networks
           </span>
           <div className="grid grid-cols-5 auto-rows-auto border-t border-l border-neutral-outline-border">

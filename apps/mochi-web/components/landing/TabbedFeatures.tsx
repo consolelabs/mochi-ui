@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
 import clsx from 'clsx'
+import { Typography } from '@mochi-ui/core'
 
 interface Props {
   title: string
@@ -14,9 +15,13 @@ export function TabbedFeatures({ title, data, className }: Props) {
   return (
     <div className={clsx('flex flex-col gap-y-7 landing-container', className)}>
       {typeof title === 'string' ? (
-        <span className="text-2xl font-medium md:text-4xl title-tracking text-text-primary">
+        <Typography
+          fontWeight="lg"
+          color="textPrimary"
+          className="text-2xl md:text-3xl title-tracking"
+        >
           {title}
-        </span>
+        </Typography>
       ) : (
         title
       )}
@@ -39,7 +44,7 @@ export function TabbedFeatures({ title, data, className }: Props) {
                     type="button"
                     onClick={() => setIdx(i)}
                   >
-                    <span className="text-lg font-medium md:text-2xl md:leading-7 text-text-primary">
+                    <span className="text-xl font-semibold md:leading-7 text-text-primary">
                       {d.title}
                     </span>
                     <span className="mt-2 text-sm font-normal md:text-base md:leading-5 text-text-secondary">
@@ -48,7 +53,7 @@ export function TabbedFeatures({ title, data, className }: Props) {
                   </button>
                 </li>
                 {i !== data.length - 1 && (
-                  <div className="mx-0 sm:mx-4 h-px bg-background-level2" />
+                  <div className="mx-0 h-px sm:mx-4 bg-background-level2" />
                 )}
               </React.Fragment>
             )

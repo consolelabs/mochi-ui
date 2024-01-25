@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { Typography } from '@mochi-ui/core'
 import clsx from 'clsx'
 import Image from 'next/image'
@@ -11,7 +12,7 @@ interface AmountProps {
   unit: string
   approxMoniker?: string
   className?: string
-  size?: 'sm' | 'md'
+  size?: 'lg' | 'sm' | 'md'
   isMultipleTokens?: boolean
   isMoniker?: boolean
   alignment?: 'left' | 'center'
@@ -31,13 +32,26 @@ export default function Amount({
 }: AmountProps) {
   const isLongNumber = value.length >= 12
 
+  const titleSize = useMemo(() => {
+    if (size === 'lg') return 'h4'
+    if (size === 'md') return 'h5'
+    return 'h9'
+  }, [size])
+
+  const subtitleSize = useMemo(() => {
+    if (size === 'lg') return 'p5'
+    return 'p6'
+  }, [size])
+
   return (
     <div
-      className={clsx('gap-x-1.5 grid font-medium text-left', className, {
-        'grid-cols-[28px_minmax(0,1fr)]': size === 'md' && !isLongNumber,
-        'grid-cols-[24px_minmax(0,1fr)]': size === 'sm' && !isLongNumber,
-        'grid-rows-2': !isLongNumber,
-        'grid-rows-[28px_minmax(0,1fr)_min-content] gap-y-1.5 grid-cols-1':
+      className={clsx('gap-x-2 grid font-medium text-left', className, {
+        'grid-cols-[24px_minmax(0,1fr)]': !isLongNumber,
+        'grid-cols-[32px_minmax(0,1fr)]': size === 'lg' && !isLongNumber,
+        'grid-rows-[minmax(0,1fr)_min-content]': !isLongNumber,
+        'grid-rows-[32px_minmax(0,1fr)_min-content] gap-y-1.5 grid-cols-1':
+          size === 'lg' && isLongNumber,
+        'grid-rows-[24px_minmax(0,1fr)_min-content] gap-y-1.5 grid-cols-1':
           isLongNumber,
       })}
     >
@@ -47,10 +61,10 @@ export default function Amount({
         </div>
       ) : (
         <Image
-          width={size === 'md' ? 28 : 24}
-          height={size === 'md' ? 28 : 24}
-          className={clsx('rounded-full', {
-            'my-1': size === 'md' && alignment === 'center' && !isLongNumber,
+          width={size === 'lg' ? 32 : 24}
+          height={size === 'lg' ? 32 : 24}
+          className={clsx('shrink-0 aspect-square rounded-full', {
+            /* 'my-1': size === 'md' && alignment === 'center' && !isLongNumber, */
             'row-start-1 row-span-2 my-auto':
               alignment === 'left' && !isLongNumber,
             'mx-auto': isLongNumber,
@@ -60,19 +74,19 @@ export default function Amount({
         />
       )}
       <div
-        className={clsx('flex gap-x-1', {
+        className={clsx('flex gap-x-1 items-center', {
           'flex-col items-center': isLongNumber,
         })}
       >
         <Typography
-          level={size === 'md' ? 'h4' : 'h9'}
+          level={titleSize}
           className="!leading-[1] font-mono"
           fontWeight="md"
         >
           {value}
         </Typography>
         <Typography
-          level={size === 'md' ? 'h4' : 'h9'}
+          level={titleSize}
           className="!leading-[1] font-mono"
           fontWeight="md"
         >
@@ -90,7 +104,7 @@ export default function Amount({
         >
           {isMultipleTokens && (
             <Typography
-              level={size === 'md' ? 'p5' : 'p6'}
+              level={subtitleSize}
               color="textSecondary"
               fontWeight="md"
               className="font-mono"
@@ -99,7 +113,7 @@ export default function Amount({
             </Typography>
           )}
           <Typography
-            level={size === 'md' ? 'p5' : 'p6'}
+            level={subtitleSize}
             fontWeight="md"
             color="textTertiary"
             className="font-mono"

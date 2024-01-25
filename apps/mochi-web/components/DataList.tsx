@@ -39,12 +39,13 @@ DataList.Item = function Item({
         <Typography
           level="p6"
           fontWeight="sm"
-          className="shrink-0 !text-neutral-600"
+          className="shrink-0"
+          color="textSecondary"
         >
           {title}
         </Typography>
         {right ? (
-          <Typography level="p6" fontWeight="sm" className="!text-neutral-600">
+          <Typography color="textSecondary" level="p6" fontWeight="sm">
             {right}
           </Typography>
         ) : null}
@@ -53,7 +54,8 @@ DataList.Item = function Item({
         <Typography
           level="p6"
           fontWeight="sm"
-          className="shrink-0 !text-neutral-600"
+          color="textSecondary"
+          className="shrink-0"
         >
           {children}
         </Typography>

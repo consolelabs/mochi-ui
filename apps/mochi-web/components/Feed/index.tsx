@@ -118,7 +118,11 @@ export default function Feed({ className = '' }: Props) {
                   style={{ maxWidth: '100%' }}
                   className="flex justify-between items-center px-4 pt-6 pb-4 mx-auto sm:px-6"
                 >
-                  <Typography color="textSecondary">
+                  <Typography
+                    color="textPrimary"
+                    className="!text-xl"
+                    fontWeight="lg"
+                  >
                     Recent Transactions
                   </Typography>
                   <Button
