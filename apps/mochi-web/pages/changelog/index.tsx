@@ -3,51 +3,68 @@ import { Badge, Typography } from '@mochi-ui/core'
 import { Layout } from '~app/layout'
 import { SEO } from '~app/layout/seo'
 import { PAGES } from '~constants'
-import { api } from '~constants/mochi'
 import { getDescription, getFirstImageUrl } from '~utils/changelog'
-import { ChangelogPage } from '~types/mochi-schema'
 import { Markdown } from '~cpn/Changelog/Markdown'
+import {
+  ModelProductChangelogs,
+  ResponseProductChangelogs,
+} from '~types/mochi-schema'
+import { format } from 'date-fns'
+import Link from 'next/link'
+import { ROUTES } from '~constants/routes'
+import { API, GET_PATHS } from '~constants/api'
 
 type Props = {
-  data: Array<ChangelogPage>
+  data?: Array<ModelProductChangelogs>
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  await api.isReady
-  const { changelogs } = api
+  const { data } = await API.MOCHI.get(
+    GET_PATHS.CHANGELOGS,
+  ).json<ResponseProductChangelogs>((r) => r)
 
   return {
     props: {
-      data: changelogs.map((c: any) => ({
-        name: c.title,
-        content: c.content,
-        version: c?.version || '',
-      })),
+      data,
     },
     revalidate: 60 * 10,
   }
 }
 
-const ChangelogItem = ({ name, content, version }: ChangelogPage) => (
+const ChangelogItem = ({
+  content,
+  version,
+  created_at,
+  title,
+}: ModelProductChangelogs) => (
   <div className="gap-8 mb-20 md:flex justify-center">
     <div className="inline-block relative w-full md:w-[176px] flex-shrink-0 mb-12 md:mb-0">
       {/* TODO: use new Badge variant when design is provided */}
       <div className="top-8 md:sticky flex flex-row md:flex-col gap-4 md:gap-2 items-center md:items-start">
-        <Badge className="w-max !text-base !rounded-md !px-4">
-          {version || '-'}
+        <Badge className="w-max !text-base !rounded-md !px-4" asChild>
+          <Link href={ROUTES.CHANGELOG_DETAIL(version ?? '')}>
+            {version || '-'}
+          </Link>
         </Badge>
-        <Typography className="!text-text-secondary">{name}</Typography>
+        <Typography className="!text-text-secondary">
+          {created_at ? format(new Date(created_at), 'PPP') : null}
+        </Typography>
       </div>
     </div>
     <div className="flex flex-col flex-1 max-w-[800px] whitespace-pre-wrap -mb-8 react-markdown-block">
-      <Markdown>{content}</Markdown>
+      <Link href={ROUTES.CHANGELOG_DETAIL(version ?? '')}>
+        <Typography level="h2" className="!text-3xl mb-4">
+          {title}
+        </Typography>
+      </Link>
+      {content ? <Markdown>{content}</Markdown> : null}
     </div>
   </div>
 )
 
 export default function Changelog({ data }: Props) {
-  const firstImgUrl = getFirstImageUrl(data)
-  const description = getDescription(data)
+  const firstImgUrl = getFirstImageUrl(data ?? [])
+  const description = getDescription(data ?? [])
 
   return (
     <Layout>

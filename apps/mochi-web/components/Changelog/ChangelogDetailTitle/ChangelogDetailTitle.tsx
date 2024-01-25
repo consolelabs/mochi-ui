@@ -1,6 +1,6 @@
 import { Badge, Button, IconButton, Typography } from '@mochi-ui/core'
 import { InboxSolid } from '@mochi-ui/icons'
-import { format } from 'date-fns'
+import { format, isValid } from 'date-fns'
 import Link from 'next/link'
 
 interface ChangelogDetailTitleProps {
@@ -13,6 +13,8 @@ interface ChangelogDetailTitleProps {
 
 export const ChangelogDetailTitle = (props: ChangelogDetailTitleProps) => {
   const { title, version, date, social, onFollow } = props
+  const parsedDate = new Date(date)
+  const displayDate = isValid(parsedDate) ? format(parsedDate, 'PPP') : ''
   return (
     <div className="flex md:flex-row flex-col gap-2 items-start justify-between w-full">
       <div className="flex flex-col gap-2">
@@ -25,7 +27,7 @@ export const ChangelogDetailTitle = (props: ChangelogDetailTitleProps) => {
             v{version}
           </Badge>
           <Typography level="p4" color="textTertiary">
-            {format(new Date(date), 'PPP')}
+            {displayDate}
           </Typography>
         </div>
       </div>

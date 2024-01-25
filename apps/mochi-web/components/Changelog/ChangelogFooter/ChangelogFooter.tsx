@@ -128,6 +128,16 @@ export const ChangelogFooter = () => {
         { href: SOCIAL_LINKS.TELEGRAM, Icon: Telegram, title: 'Telegram' },
       ]}
       // FIXME: Embed email subscribe code from substack
+      // extraInfo={
+      //   <iframe
+      //     src="https://mochigg.substack.com/embed"
+      //     width="480"
+      //     height="150"
+      //     // style="border:1px solid #EEE; background:white;"
+      //     frameborder="0"
+      //     scrolling="no"
+      //   />
+      // }
     />
   )
 }

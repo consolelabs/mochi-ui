@@ -1,6 +1,7 @@
 export const ROUTES = {
   HOME: '/',
   CHANGELOG: '/changelog',
+  CHANGELOG_DETAIL: (version: string) => `/changelog/${version}`,
   EXPLORE: '/explore',
   FEATURES: '/features',
   DOCS: 'https://mochi.readme.io/reference/getting-started-with-your-api-1',

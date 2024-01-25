@@ -418,22 +418,20 @@ export interface ModelProductChangelogView {
   updated_at?: string
 }
 
-export type ChangelogPage = {
-  name: string
-  content: string
-  version?: string
-}
-
 export interface ModelProductChangelogs {
   content?: string
   created_at?: string
   file_name?: string
   github_url?: string
+  id?: number
   is_expired?: boolean
+  next_version?: string
+  previous_version?: string
   product?: string
   thumbnail_url?: string
   title?: string
   updated_at?: string
+  version?: string
 }
 
 export interface ModelProductMetadataEmojis {
@@ -1153,6 +1151,7 @@ export interface ResponseAssetToken {
   id?: string
   name?: string
   native?: boolean
+  pnl?: string
   price?: number
   symbol?: string
 }
@@ -2303,6 +2302,7 @@ export interface ResponseProductBotCommand {
 
 export interface ResponseProductChangelogs {
   data?: ModelProductChangelogs[]
+  pagination?: ResponsePaginationResponse
 }
 
 export interface ResponseProfileAirdropCampaignResponse {
