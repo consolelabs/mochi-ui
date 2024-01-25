@@ -326,9 +326,15 @@ export const ProfileWidget = () => {
               className={clsx(
                 'data-[state=active]:animate-in data-[state=active]:duration-500 data-[state=active]:fade-in',
                 'data-[state=inactive]:absolute data-[state=inactive]:inset-0 data-[state=inactive]:animate-out data-[state=inactive]:duration-500 data-[state=inactive]:fade-out',
-                slideTabDirection === 'left'
-                  ? 'data-[state=active]:slide-in-from-left data-[state=inactive]:slide-out-to-right'
-                  : 'data-[state=active]:slide-in-from-right data-[state=inactive]:slide-out-to-left',
+
+                {
+                  'data-[state=active]:slide-in-from-left data-[state=inactive]:slide-out-to-right':
+                    slideTabDirection === 'left' &&
+                    (!!selectedIndex || !!previousSelectedIndex),
+                  'data-[state=active]:slide-in-from-right data-[state=inactive]:slide-out-to-left':
+                    slideTabDirection === 'right' &&
+                    (!!selectedIndex || !!previousSelectedIndex),
+                },
               )}
             >
               <TokenTableList
