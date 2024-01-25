@@ -62,13 +62,13 @@ export default function Page(
 ) {
   const {
     title,
-    github_url,
     thumbnail_url,
     content,
     version,
     created_at,
     next_version,
     previous_version,
+    seo_description,
   } = props
   const layoutRef = useRef<HTMLDivElement>(null)
 
@@ -83,7 +83,7 @@ export default function Page(
       ref={layoutRef}
     >
       <SEO
-        description={github_url}
+        description={seo_description}
         image={thumbnail_url}
         title={`v${version} - ${title}`}
         tailTitle

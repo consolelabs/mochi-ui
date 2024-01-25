@@ -428,6 +428,7 @@ export interface ModelProductChangelogs {
   next_version?: string
   previous_version?: string
   product?: string
+  seo_description?: string
   thumbnail_url?: string
   title?: string
   updated_at?: string
