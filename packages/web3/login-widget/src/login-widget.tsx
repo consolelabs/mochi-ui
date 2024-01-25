@@ -1,6 +1,8 @@
+import { Platform } from '@consolelabs/mochi-ui'
 import React, { useEffect } from 'react'
 import qs from 'query-string'
 import { LazyMotion, domAnimation } from 'framer-motion'
+import xor from 'lodash.xor'
 import fetchers from './fetchers'
 import {
   useLoginWidget,
@@ -21,15 +23,29 @@ function LoginWidget({ raw = false, chain }: LoginWidgetProps) {
 
 interface LoginWidgetProviderProps {
   children?: React.ReactNode
+  profileApi?: string
+  socials?: Array<Platform>
 }
 
-const LoginWidgetProvider = ({ children }: LoginWidgetProviderProps) => {
+const LoginWidgetProvider = ({
+  profileApi,
+  children,
+  socials = [],
+}: LoginWidgetProviderProps) => {
   // reducer for main state
-  const { isLoggedIn, setIsLoadingProfile, dispatch } = useLoginWidget()
+  const {
+    isLoggedIn,
+    setIsLoadingProfile,
+    dispatch,
+    profileBaseUrl,
+    setProfileBaseUrl,
+    setSocials,
+    socials: _socials,
+  } = useLoginWidget()
 
   // handle login from url query `token`
   useEffect(() => {
-    if (isLoggedIn) return
+    if (isLoggedIn || !profileBaseUrl) return
     const { token: _token, ...rest } = qs.parse(window.location.search)
     let token = _token
     if (!token) {
@@ -42,7 +58,7 @@ const LoginWidgetProvider = ({ children }: LoginWidgetProviderProps) => {
 
     setIsLoadingProfile(true)
     fetchers
-      .getOwnProfile(token as string)
+      .getOwnProfile(token as string, profileBaseUrl)
       .then((profile) => {
         const hasParams = Object.keys(rest).length > 0
 
@@ -69,7 +85,20 @@ const LoginWidgetProvider = ({ children }: LoginWidgetProviderProps) => {
       })
       .finally(() => setIsLoadingProfile(false))
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoggedIn])
+  }, [isLoggedIn, profileBaseUrl])
+
+  useEffect(() => {
+    setProfileBaseUrl(
+      profileApi || 'https://api.mochi-profile.console.so/api/v1',
+    )
+  }, [profileApi, setProfileBaseUrl])
+
+  useEffect(() => {
+    const diff = xor(socials, _socials)
+    if (diff.length) {
+      setSocials(socials)
+    }
+  }, [_socials, setSocials, socials])
 
   return <LazyMotion features={domAnimation}>{children}</LazyMotion>
 }

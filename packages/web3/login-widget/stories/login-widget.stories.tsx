@@ -1,3 +1,4 @@
+import { Platform } from '@consolelabs/mochi-ui'
 import type { Meta, StoryObj } from '@storybook/react'
 import {
   LoginWidget,
@@ -48,7 +49,10 @@ function Wrapper() {
 
 function Widget() {
   return (
-    <LoginWidgetProvider>
+    <LoginWidgetProvider
+      profileApi="https://api-preview.mochi-profile.console.so/api/v1"
+      socials={[Platform.Discord]}
+    >
       <Wrapper />
     </LoginWidgetProvider>
   )
