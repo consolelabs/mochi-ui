@@ -55,8 +55,9 @@ const defaultChainMapping: Record<string, string> = {
 export const ProfileWidget = () => {
   const { me } = useProfileStore()
   const { data: info } = useFetchProfileGlobalInfo(me?.id)
-  const { data: { totalUsdAmount: total = 0, pnl = '0' } = {} } =
+  const { data: { totalUsdAmount: total = 0, pnl = '0' } = {}, isLoading } =
     useFetchTotalBalance(me?.id)
+  const isFetchingBalance = !me?.id || isLoading
   const { isFetchingWallets, wallets } = useWalletStore(
     useShallow((s) => ({
       isFetchingWallets: s.isFetching,
@@ -176,7 +177,9 @@ export const ProfileWidget = () => {
           </Badge>
         </div>
         <div className="text-right">
-          <Typography level="h5">{utils.formatUsdDigit(total)}</Typography>
+          <Typography level="h5">
+            {isFetchingBalance ? '$0.00' : utils.formatUsdDigit(total)}
+          </Typography>
           <div className="flex justify-end items-center">
             <ValueChange
               trend={pnl.startsWith('-') ? 'down' : 'up'}
@@ -189,9 +192,13 @@ export const ProfileWidget = () => {
               >
                 {utils.formatPercentDigit(Number.isNaN(Number(pnl)) ? 0 : pnl)}{' '}
                 (
-                {utils.formatUsdDigit(
-                  Number.isNaN(Number(pnl)) ? 0 : (Number(pnl) * total) / 100,
-                )}
+                {isFetchingBalance
+                  ? '$0.00'
+                  : utils.formatUsdDigit(
+                      Number.isNaN(Number(pnl))
+                        ? 0
+                        : (Number(pnl) * total) / 100,
+                    )}
                 )
               </Typography>
             </ValueChange>
