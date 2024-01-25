@@ -136,9 +136,6 @@ export default function ProfileDropdown({
                 <Link href={ROUTES.EXPLORE}>
                   <DropdownMenuItem hasPaddingLeft>Explore</DropdownMenuItem>
                 </Link>
-                <Link href={ROUTES.FEATURES}>
-                  <DropdownMenuItem hasPaddingLeft>Features</DropdownMenuItem>
-                </Link>
                 <Link href={ROUTES.DOCS}>
                   <DropdownMenuItem hasPaddingLeft>API</DropdownMenuItem>
                 </Link>

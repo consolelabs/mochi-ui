@@ -13,6 +13,7 @@ import { Button } from '@mochi-ui/core'
 import { useLoginWidget } from '@mochi-web3/login-widget'
 import {
   ArrowRightLine,
+  BinaryLockColored,
   BlocksColored,
   HandKeyColored,
   LayersColored,
@@ -145,7 +146,7 @@ export default function Index() {
             id: 'tip-anyone',
             title: 'Tip anyone',
             body: (
-              <>
+              <div className="leading-5">
                 Send money to anyone, anywhere, and Mochi will automatically
                 calculate the split. You can send to a recipient by{' '}
                 <span className="text-sm leading-7 rounded border px-[3px] py-[2px] border-neutral-outline-border">
@@ -156,7 +157,7 @@ export default function Index() {
                   #channel
                 </span>{' '}
                 or even on other socials.
-              </>
+              </div>
             ),
             image: '/developer/build-with-mochi-apis-1.png',
           },
@@ -219,7 +220,7 @@ export default function Index() {
             id: 'advanded-security-measures',
             title: 'Advanced Security Measures',
             body: 'Protect your assets by a high-tech lock - strong encryption, providing a worry-free Web3 experience.',
-            icon: <PasswordLockColored className="w-8 h-8 md:w-12 md:h-12" />,
+            icon: <BinaryLockColored className="w-8 h-8 md:w-12 md:h-12" />,
           },
         ]}
       />
@@ -230,12 +231,11 @@ export default function Index() {
           <p className="text-3xl font-semibold title-tracking text-text-primary">
             Simple, intuitive commands
           </p>
-          <span className="mt-2 text-base font-normal md:text-lg text-text-primary">
+          <span className="mt-2 text-base font-normal leading-6 md:text-lg text-text-primary">
             Mochi has a single, extensible command for tipping, airdropping on
             users.
           </span>
-          <LivePlatforms className="mt-3" />
-          <Link href={ROUTES.FEATURES} className="mt-1 md:hidden">
+          <Link href={ROUTES.FEATURES} className="hidden mt-1">
             <Button
               className="justify-center w-full"
               size="lg"
@@ -244,6 +244,11 @@ export default function Index() {
             >
               View features
               <ArrowRightLine />
+            </Button>
+          </Link>
+          <Link href={ROUTES.MY_PROFILE} className="mt-4">
+            <Button size="lg" className="!px-10">
+              {isLoggedIn ? 'Profile' : 'Login'}
             </Button>
           </Link>
         </div>

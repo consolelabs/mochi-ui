@@ -40,7 +40,7 @@ const tableHeaderClsx = ({
 
 const tableHeaderContainerClsx = ({
   className = '',
-}: { className?: string } = {}) => clsx('relative z-10', className)
+}: { className?: string } = {}) => clsx('relative', className)
 
 const tableDataLoadingClsx = ({
   className = '',
@@ -79,7 +79,7 @@ const tableDataClsx = ({
   size?: 'sm' | 'md'
 } = {}) =>
   clsx(
-    'px-4 overflow-hidden text-sm font-normal leading-tight border-0 border-b border-neutral-outline-active border-solid min-w-[48px] text-text-primary',
+    'px-2 overflow-hidden text-sm font-normal leading-tight border-0 border-b border-neutral-outline-active border-solid min-w-[48px] text-text-primary',
     { 'group-last:border-b-0': hideLastBorder || border },
     {
       'py-2 h-14': size === 'sm',

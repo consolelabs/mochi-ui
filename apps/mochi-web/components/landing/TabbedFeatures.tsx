@@ -18,7 +18,7 @@ export function TabbedFeatures({ title, data, className }: Props) {
         <Typography
           fontWeight="lg"
           color="textPrimary"
-          className="text-2xl md:text-3xl title-tracking"
+          className="!text-3xl title-tracking"
         >
           {title}
         </Typography>
@@ -47,7 +47,7 @@ export function TabbedFeatures({ title, data, className }: Props) {
                     <span className="text-xl font-semibold md:leading-7 text-text-primary">
                       {d.title}
                     </span>
-                    <span className="mt-2 text-sm font-normal md:text-base md:leading-5 text-text-secondary">
+                    <span className="mt-2 text-sm font-normal md:text-base md:leading-6 text-text-secondary">
                       {d.body}
                     </span>
                   </button>

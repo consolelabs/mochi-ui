@@ -20,7 +20,7 @@ export function GridFeatures({ title, data, className }: Props) {
         <Typography
           fontWeight="lg"
           color="textPrimary"
-          className="text-2xl md:text-3xl title-tracking"
+          className="!text-3xl title-tracking"
         >
           {title}
         </Typography>
