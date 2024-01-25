@@ -16,7 +16,7 @@ import { API, GET_PATHS } from '~constants/api'
 import { InboxSolid } from '@mochi-ui/icons'
 import { TWITTER_LINK } from '~envs'
 import { useRef } from 'react'
-import { ChangelogFooter } from '~cpn/Changelog/ChangelogFooter'
+import { Footer } from '~app/layout/footer'
 
 type Props = {
   data?: Array<ModelProductChangelogs>
@@ -45,12 +45,12 @@ const ChangelogItem = ({
   const displayDate = isValid(parsedDate) ? format(parsedDate, 'PPP') : ''
   return (
     <div className="gap-8 mb-20 md:flex justify-center">
-      <div className="inline-block relative w-full md:w-[176px] flex-shrink-0 mb-12 md:mb-0">
+      <div className="inline-block relative w-full md:w-[176px] flex-shrink-0 mb-10 md:mb-0">
         {/* TODO: use new Badge variant when design is provided */}
         <div className="top-8 md:sticky flex flex-row md:flex-col gap-4 md:gap-2 items-center md:items-start">
           <Badge className="w-max !text-base !rounded-md !px-4" asChild>
             <Link href={ROUTES.CHANGELOG_DETAIL(version ?? '')}>
-              v{version || '-'}
+              v{version || '_'}
             </Link>
           </Badge>
           <Typography className="!text-text-secondary">
@@ -76,7 +76,7 @@ export default function Changelog({ data }: Props) {
   const ref = useRef<HTMLDivElement>(null)
 
   return (
-    <Layout ref={ref} footer={<ChangelogFooter />}>
+    <Layout ref={ref} footer={<Footer includeEmailSubscribe />}>
       <SEO
         description={description}
         image={firstImgUrl || ''}
@@ -84,7 +84,7 @@ export default function Changelog({ data }: Props) {
         tailTitle
       />
       <div className="flex flex-col pt-8 md:pt-20 landing-container">
-        <div className="w-full flex flex-col gap-2 justify-between items-start mb-16 md:flex-row md:mb-20">
+        <div className="w-full flex flex-col gap-2 justify-between items-start md:flex-row mb-10">
           <div className="w-full max-w-[1008px]">
             <Typography
               level="h3"

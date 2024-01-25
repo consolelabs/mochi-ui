@@ -3,7 +3,7 @@ import { useRef } from 'react'
 import { Layout } from '~app/layout'
 import { SEO } from '~app/layout/seo'
 import { ChangelogDetailTitle } from '~cpn/Changelog/ChangelogDetailTitle'
-import { ChangelogFooter } from '~cpn/Changelog/ChangelogFooter'
+import { Footer } from '~app/layout/footer'
 import { Markdown } from '~cpn/Changelog/Markdown'
 import { TWITTER_LINK } from '~envs'
 import { ModelProductChangelogs } from '~types/mochi-schema'
@@ -46,7 +46,7 @@ export default function Page(
     props
   const layoutRef = useRef<HTMLDivElement>(null)
   return (
-    <Layout footer={<ChangelogFooter />} ref={layoutRef}>
+    <Layout footer={<Footer includeEmailSubscribe />} ref={layoutRef}>
       <SEO
         description={github_url}
         image={thumbnail_url}
@@ -54,7 +54,7 @@ export default function Page(
         tailTitle
       />
       <div className="flex flex-col pt-8 md:pt-20 landing-container">
-        <div className="w-full flex justify-center mb-16 md:mb-20">
+        <div className="w-full flex justify-center mb-10">
           <ChangelogDetailTitle
             title={title ?? ''}
             social={TWITTER_LINK}
