@@ -1,7 +1,14 @@
 import './styles.css'
 import { Preview, StoryContext } from '@storybook/react'
 import prettier from 'prettier/standalone'
+// @ts-ignore
 import prettierTypescript from 'prettier/parser-babel'
+import { addons } from '@storybook/preview-api'
+import { DocsContainer } from '@storybook/addon-docs'
+import { themes } from '@storybook/theming'
+
+import { DARK_MODE_EVENT_NAME } from 'storybook-dark-mode'
+import React from 'react'
 
 function replaceStart(input: string) {
   const lines = input.split('\n')
@@ -22,11 +29,27 @@ function replaceStart(input: string) {
 function isIncludedComponentName(input: string) {
   return !input.includes('<[object Object]')
 }
+const channel = addons.getChannel()
 
 const preview: Preview = {
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },
     docs: {
+      container: (props: any) => {
+        const [isDark, setDark] = React.useState()
+
+        React.useEffect(() => {
+          channel.on(DARK_MODE_EVENT_NAME, setDark)
+          return () => channel.removeListener(DARK_MODE_EVENT_NAME, setDark)
+        }, [channel, setDark])
+
+        return (
+          <DocsContainer
+            {...props}
+            theme={isDark ? themes.dark : themes.light}
+          />
+        )
+      },
       source: {
         transform(input: string, c: StoryContext) {
           const { __isArgsStory: isArgsStory, docs } = c.parameters
