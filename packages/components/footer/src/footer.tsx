@@ -1,4 +1,4 @@
-import { forwardRef } from 'react'
+import { ReactNode, forwardRef } from 'react'
 import { footer } from '@mochi-ui/theme'
 import { Typography } from '@mochi-ui/typography'
 
@@ -24,10 +24,11 @@ interface FooterProps {
   copyrightText: React.ReactNode
   nav: FooterNavBlock[]
   social: FooterSocial[]
+  extraInfo?: ReactNode
 }
 
 const Footer = forwardRef<HTMLElement, FooterProps>(
-  ({ className, logo, copyrightText, nav, social }, ref) => {
+  ({ className, logo, copyrightText, nav, social, extraInfo }, ref) => {
     return (
       <footer ref={ref} className={footer.footerClsx({ className })}>
         <div className={footer.wrapperClsx}>
@@ -83,6 +84,7 @@ const Footer = forwardRef<HTMLElement, FooterProps>(
                   </a>
                 ))}
               </div>
+              {extraInfo}
             </div>
           </div>
         </div>

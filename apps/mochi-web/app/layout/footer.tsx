@@ -76,10 +76,17 @@ const PoweredBySolana = ({ className = '' }: any) => (
   </svg>
 )
 
-export const Footer = () => {
+interface FooterProps {
+  includeEmailSubscribe?: boolean
+  className?: string
+}
+
+export const Footer = (props: FooterProps) => {
+  const { includeEmailSubscribe, className } = props
   const year = new Date().getFullYear()
   return (
     <FooterCore
+      className={className}
       copyrightText={
         <div className="flex flex-col gap-y-2">
           <PoweredBySolana className="self-center w-auto h-7 md:self-end" />
@@ -127,6 +134,19 @@ export const Footer = () => {
         { href: SOCIAL_LINKS.DISCORD, Icon: Discord, title: 'Discord' },
         { href: SOCIAL_LINKS.TELEGRAM, Icon: Telegram, title: 'Telegram' },
       ]}
+      extraInfo={
+        includeEmailSubscribe
+          ? // FIXME: Embed email subscribe code from substack
+            null
+          : // <iframe
+            //   title="subscribe"
+            //   src="https://mochigg.substack.com/embed"
+            //   width="480"
+            //   height="150"
+            //   className="w-full"
+            // />
+            null
+      }
     />
   )
 }

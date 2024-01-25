@@ -124,7 +124,7 @@ div[data-radix-popper-content-wrapper]:has(.tooltip) {
 }
 
 ul.list-dashed {
-  @apply list-none whitespace-normal pb-8 pl-8;
+  @apply list-none whitespace-normal pb-4 pl-8;
 }
 
 ul.list-dashed > li {
@@ -145,5 +145,5 @@ ul.list-dashed > li:before {
 .react-markdown-block ul + h4,
 .react-markdown-block ul + h5,
 .react-markdown-block ul + h6 {
-  @apply pt-4;
+  @apply !pt-4;
 }

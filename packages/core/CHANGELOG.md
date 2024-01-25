@@ -4,11 +4,24 @@
 
 ### Patch Changes
 
-- [#600](https://github.com/consolelabs/mochi-ui/pull/600) [`2d2fa43`](https://github.com/consolelabs/mochi-ui/commit/2d2fa4395f16e51a0011ae257b89123e9fa4fbd3) Thanks [@tonible14012002](https://github.com/tonible14012002)! - Remove `as` prop, support asChild for polymorphic
+- [#600](https://github.com/consolelabs/mochi-ui/pull/600)
+  [`2d2fa43`](https://github.com/consolelabs/mochi-ui/commit/2d2fa4395f16e51a0011ae257b89123e9fa4fbd3)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Remove `as`
+  prop, support asChild for polymorphic
 
-- [#622](https://github.com/consolelabs/mochi-ui/pull/622) [`98bc453`](https://github.com/consolelabs/mochi-ui/commit/98bc4533289e63dacb8e6cdde6313836cf0d67c7) Thanks [@tonible14012002](https://github.com/tonible14012002)! - Update sizes for Avatar and AvatarGroup for consistency
+- [#622](https://github.com/consolelabs/mochi-ui/pull/622)
+  [`98bc453`](https://github.com/consolelabs/mochi-ui/commit/98bc4533289e63dacb8e6cdde6313836cf0d67c7)
+  Thanks [@tonible14012002](https://github.com/tonible14012002)! - Update sizes
+  for Avatar and AvatarGroup for consistency
 
-- Updated dependencies [[`068213c`](https://github.com/consolelabs/mochi-ui/commit/068213c147927cd4f910da1bbf38002144cd1fae), [`9f85c75`](https://github.com/consolelabs/mochi-ui/commit/9f85c754b7fcdb1694b47e0424fe74d6e1358fff), [`8d09ddf`](https://github.com/consolelabs/mochi-ui/commit/8d09ddfb54b116f9018064da3852f5ef0530818d), [`2d2fa43`](https://github.com/consolelabs/mochi-ui/commit/2d2fa4395f16e51a0011ae257b89123e9fa4fbd3), [`5448287`](https://github.com/consolelabs/mochi-ui/commit/544828722357e3d65f333784c5f0b9a3389c7579), [`98bc453`](https://github.com/consolelabs/mochi-ui/commit/98bc4533289e63dacb8e6cdde6313836cf0d67c7), [`9c5447a`](https://github.com/consolelabs/mochi-ui/commit/9c5447a0b3d76c2f317c7bb0f832df02e44bb9ed)]:
+- Updated dependencies
+  [[`068213c`](https://github.com/consolelabs/mochi-ui/commit/068213c147927cd4f910da1bbf38002144cd1fae),
+  [`9f85c75`](https://github.com/consolelabs/mochi-ui/commit/9f85c754b7fcdb1694b47e0424fe74d6e1358fff),
+  [`8d09ddf`](https://github.com/consolelabs/mochi-ui/commit/8d09ddfb54b116f9018064da3852f5ef0530818d),
+  [`2d2fa43`](https://github.com/consolelabs/mochi-ui/commit/2d2fa4395f16e51a0011ae257b89123e9fa4fbd3),
+  [`5448287`](https://github.com/consolelabs/mochi-ui/commit/544828722357e3d65f333784c5f0b9a3389c7579),
+  [`98bc453`](https://github.com/consolelabs/mochi-ui/commit/98bc4533289e63dacb8e6cdde6313836cf0d67c7),
+  [`9c5447a`](https://github.com/consolelabs/mochi-ui/commit/9c5447a0b3d76c2f317c7bb0f832df02e44bb9ed)]:
   - @mochi-ui/avatar@0.3.0
   - @mochi-ui/theme@0.16.0
   - @mochi-ui/action-bar@0.2.0
