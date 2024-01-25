@@ -27,6 +27,7 @@ import { useDisclosure } from '@dwarvesf/react-hooks'
 const schema = z.object({
   action: z.string().min(1, 'This field is required'),
   message: z.string().min(1, 'This field is required'),
+  enable: z.boolean(),
 })
 
 interface Props {
@@ -39,7 +40,7 @@ interface Props {
 
 export const MessageModal = ({
   actionList,
-  defaultValues = { action: '', message: '' },
+  defaultValues = { action: '', message: '', enable: true },
   onConfirm,
   trigger,
   onCancel,
