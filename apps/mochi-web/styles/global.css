@@ -17,7 +17,7 @@ body {
 }
 
 hr {
-  @apply border-divider;
+  @apply border-background-level2;
 }
 
 #__next {

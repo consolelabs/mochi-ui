@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { appVersion } from '~constants/common'
 import {
   LifeBuoySolid,
   X,
@@ -154,6 +155,7 @@ export const DashboardMobileSidebar = (
             isSelected={(item) => !!item.href && matchUrl(item.href, pathname)}
             expanded
             className="!h-[calc(100vh-56px)] !border-none"
+            version={appVersion}
           />
         </DrawerContent>
       </DrawerPortal>

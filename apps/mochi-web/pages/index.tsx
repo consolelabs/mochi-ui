@@ -246,7 +246,7 @@ export default function Index() {
               <ArrowRightLine />
             </Button>
           </Link>
-          <Link href={ROUTES.MY_PROFILE} className="mt-4">
+          <Link href={ROUTES.MY_PROFILE} className="mt-4 md:hidden">
             <Button size="lg" className="!px-10">
               {isLoggedIn ? 'Profile' : 'Login'}
             </Button>

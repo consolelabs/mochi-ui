@@ -213,9 +213,17 @@ export default function Receipt({
                 })}
               >
                 <DataList>
-                  <ListUser data={data.data.from} title="Issued by" />
+                  <ListUser
+                    isPeeking={variant === 'peeking'}
+                    data={data.data.from}
+                    title="Issued by"
+                  />
                   {data.data.from.length > 1 ? <DashLine /> : null}
-                  <ListUser data={data.data.to} title="Recipients" />
+                  <ListUser
+                    isPeeking={variant === 'peeking'}
+                    data={data.data.to}
+                    title="Recipients"
+                  />
                   {data.data.to.length > 1 ? <DashLine /> : null}
                 </DataList>
               </div>

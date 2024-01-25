@@ -15,10 +15,7 @@ export default function LowerBody({ data }: Props) {
   const statusComponent = useMemo(() => {
     if (data.claim_tx) {
       return (
-        <Badge
-          className="!bg-[#088752]/[.15] !text-[#34C77B]"
-          appearance="success"
-        >
+        <Badge className="border border-[#A6F4C5]" appearance="success">
           Success
         </Badge>
       )
