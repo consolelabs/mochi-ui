@@ -79,7 +79,9 @@ export async function transform(d: any, isNested = false): Promise<Tx> {
         // hard-code for now
         // later tip widget could be used anywhere so need to get from api response
         where.text = d.metadata.channel_name || 'beta.mochi.gg'
-        where.avatar = WebSolid as any
+        // service to get any website's favicon
+        where.avatar = `https://icon.horse/icon/${where.text}`
+        /* where.avatar = WebSolid as any */
       }
 
       const isSenderApp =

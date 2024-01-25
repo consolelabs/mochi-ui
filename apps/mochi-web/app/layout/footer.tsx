@@ -82,7 +82,7 @@ export const Footer = () => {
     <FooterCore
       copyrightText={
         <div className="flex flex-col gap-y-2">
-          <PoweredBySolana className="self-end w-auto h-7" />
+          <PoweredBySolana className="self-center w-auto h-7 md:self-end" />
           <Typography
             level="p5"
             color="textDisabled"

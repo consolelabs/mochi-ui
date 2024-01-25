@@ -58,7 +58,7 @@ export default function Feed({ className = '' }: Props) {
     <div
       style={{ maxHeight: 700 }}
       className={clsx(
-        'h-screen relative  bg-background-level1 w-screen flex flex-col',
+        'h-screen relative bg-background-level1 w-screen flex flex-col',
         {
           className,
         },

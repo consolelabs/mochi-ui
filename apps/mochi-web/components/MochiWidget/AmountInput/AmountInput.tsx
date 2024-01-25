@@ -251,33 +251,36 @@ export const AmountInput: React.FC<AmountInputProps> = ({
           <div className="flex gap-x-2 items-center">
             <Button
               size="sm"
-              variant="ghost"
+              variant="link"
               color="primary"
               style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('1')}
               tabIndex={-1}
+              className="bg-white-pure"
             >
               {!isUsdMode ? '$' : ''}1
             </Button>
             <Separator orientation="vertical" className="!h-4" />
             <Button
               size="sm"
-              variant="ghost"
+              variant="link"
               color="primary"
               style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('2')}
               tabIndex={-1}
+              className="bg-white-pure"
             >
               {!isUsdMode ? '$' : ''}2
             </Button>
             <Separator orientation="vertical" className="!h-4" />
             <Button
               size="sm"
-              variant="ghost"
+              variant="link"
               color="primary"
               style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('5')}
               tabIndex={-1}
+              className="bg-white-pure"
             >
               {!isUsdMode ? '$' : ''}5
             </Button>
@@ -321,7 +324,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               </div>
             )}
             <input
-              className="bg-transparent self-start w-full h-full min-h-0 font-medium appearance-none outline-none placeholder:text-text-disabled leading-[32px] text-[32px] text-text-primary"
+              className="self-start w-full h-full min-h-0 font-medium bg-transparent appearance-none outline-none placeholder:text-text-disabled leading-[32px] text-[32px] text-text-primary"
               placeholder="0"
               type="text"
               min={0}
