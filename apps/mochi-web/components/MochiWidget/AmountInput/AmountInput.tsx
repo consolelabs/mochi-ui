@@ -1,10 +1,4 @@
-import {
-  Button,
-  IconButton,
-  Separator,
-  Tooltip,
-  Typography,
-} from '@mochi-ui/core'
+import { Button, IconButton, Tooltip, Typography } from '@mochi-ui/core'
 import {
   ChangeEvent,
   KeyboardEvent,
@@ -260,7 +254,6 @@ export const AmountInput: React.FC<AmountInputProps> = ({
             >
               {!isUsdMode ? '$' : ''}1
             </Button>
-            <Separator orientation="vertical" className="!h-4" />
             <Button
               size="sm"
               variant="link"
@@ -272,7 +265,6 @@ export const AmountInput: React.FC<AmountInputProps> = ({
             >
               {!isUsdMode ? '$' : ''}2
             </Button>
-            <Separator orientation="vertical" className="!h-4" />
             <Button
               size="sm"
               variant="link"

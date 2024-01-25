@@ -139,8 +139,8 @@ export default function ProfileDropdown({
                 <Link href={ROUTES.DOCS}>
                   <DropdownMenuItem hasPaddingLeft>API</DropdownMenuItem>
                 </Link>
-                <Link href="#Roadmap">
-                  <DropdownMenuItem hasPaddingLeft>Roadmap</DropdownMenuItem>
+                <Link href={ROUTES.CHANGELOG}>
+                  <DropdownMenuItem hasPaddingLeft>Changelog</DropdownMenuItem>
                 </Link>
               </AccordionContent>
             </AccordionItem>

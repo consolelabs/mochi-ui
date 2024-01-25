@@ -21,15 +21,16 @@ type Props = {
     unitAmountSection?: string
   }[]
   title: string
+  isPeeking: boolean
 }
 
-export default function ListUser({ data, title }: Props) {
+export default function ListUser({ data, title, isPeeking }: Props) {
   return (
     <DataList.Item right={data.length > 1 && <>&#8203;</>} title={title}>
       {data.length > 1 ? (
         <div className="flex flex-col gap-y-1 items-start whitespace-nowrap !text-neutral-600">
-          {data.map((n: any, i: number) => (
-            <Tooltip key={`${n.name}-${i}`} content={n.name}>
+          {data.map((n: any, i: number) => {
+            const text = (
               <div className="flex gap-x-1 items-center text-current">
                 <CornerBottomLeftLine className="w-3 h-3 text-neutral-500 shrink-0" />
                 <Link
@@ -56,8 +57,16 @@ export default function ListUser({ data, title }: Props) {
                   {/* )} */}
                 </span>
               </div>
-            </Tooltip>
-          ))}
+            )
+
+            if (isPeeking) return text
+
+            return (
+              <Tooltip key={`${n.name}-${i}`} content={n.name}>
+                {text}
+              </Tooltip>
+            )
+          })}
         </div>
       ) : (
         <Link
@@ -66,9 +75,13 @@ export default function ListUser({ data, title }: Props) {
             'flex gap-x-1 items-center text-current underline text-xs',
           )}
         >
-          <Tooltip content={data[0].name}>
-            {utils.string.formatAddressUsername(data[0].name)}
-          </Tooltip>
+          {isPeeking ? (
+            utils.string.formatAddressUsername(data[0].name)
+          ) : (
+            <Tooltip content={data[0].name}>
+              {utils.string.formatAddressUsername(data[0].name)}
+            </Tooltip>
+          )}
           <LinkLine />
         </Link>
       )}
