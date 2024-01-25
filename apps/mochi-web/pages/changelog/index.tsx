@@ -60,7 +60,7 @@ const ChangelogItem = ({
       </div>
       <div className="flex flex-col flex-1 max-w-[800px] whitespace-pre-wrap -mb-8 react-markdown-block">
         <Link href={ROUTES.CHANGELOG_DETAIL(version ?? '')}>
-          <Typography level="h2" className="!text-3xl mb-4">
+          <Typography level="h2" className="mb-4 !text-2xl">
             {title}
           </Typography>
         </Link>
@@ -88,7 +88,7 @@ export default function Changelog({ data }: Props) {
           <div className="w-full max-w-[1008px]">
             <Typography
               level="h3"
-              className="w-full text-[32px] md:text-4xl mb-2 overflow-visible"
+              className="w-full md:text-4xl mb-2 overflow-visible !text-3xl font-semibold"
             >
               Changelog
             </Typography>

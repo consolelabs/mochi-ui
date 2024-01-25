@@ -78,13 +78,15 @@ const PoweredBySolana = ({ className = '' }: any) => (
 
 interface FooterProps {
   includeEmailSubscribe?: boolean
+  className?: string
 }
 
 export const Footer = (props: FooterProps) => {
-  const { includeEmailSubscribe } = props
+  const { includeEmailSubscribe, className } = props
   const year = new Date().getFullYear()
   return (
     <FooterCore
+      className={className}
       copyrightText={
         <div className="flex flex-col gap-y-2">
           <PoweredBySolana className="self-center w-auto h-7 md:self-end" />

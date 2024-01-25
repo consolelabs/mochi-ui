@@ -46,14 +46,17 @@ export default function Page(
     props
   const layoutRef = useRef<HTMLDivElement>(null)
   return (
-    <Layout footer={<Footer includeEmailSubscribe />} ref={layoutRef}>
+    <Layout
+      footer={<Footer includeEmailSubscribe className="mt-10" />}
+      ref={layoutRef}
+    >
       <SEO
         description={github_url}
         image={thumbnail_url}
         title={title}
         tailTitle
       />
-      <div className="flex flex-col pt-8 md:pt-20 landing-container">
+      <div className="flex flex-col !px-0 pt-8 md:pt-20 landing-container !max-w-[800px]">
         <div className="w-full flex justify-center mb-10">
           <ChangelogDetailTitle
             title={title ?? ''}

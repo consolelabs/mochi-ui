@@ -33,7 +33,7 @@ export const UnorderedList = ({
 }: {
   children: React.ReactNode[]
 }) => {
-  return <ul className="list-dashed">{children}</ul>
+  return <ul className="list-dashed !pb-4">{children}</ul>
 }
 
 export const Paragraph = ({ children }: { children: React.ReactNode[] }) => {
