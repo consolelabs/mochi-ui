@@ -8,6 +8,7 @@ package-lock.json
 pnpm-lock.yaml
 yarn.lock
 package.json
+CHANGELOG.md
 # next.js
 /.next/
 /out/
