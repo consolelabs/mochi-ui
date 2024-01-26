@@ -55,8 +55,10 @@ const defaultChainMapping: Record<string, string> = {
 export const ProfileWidget = () => {
   const { me } = useProfileStore()
   const { data: info } = useFetchProfileGlobalInfo(me?.id)
-  const { data: { totalUsdAmount: total = 0, pnl = '0' } = {}, isLoading } =
-    useFetchTotalBalance(me?.id)
+  const {
+    data: { totalUsdAmount: total = 0, pnl = '0', lastest_snapshot_bals } = {},
+    isLoading,
+  } = useFetchTotalBalance(me?.id)
   const isFetchingBalance = !me?.id || isLoading
   const { isFetchingWallets, wallets } = useWalletStore(
     useShallow((s) => ({
@@ -195,9 +197,10 @@ export const ProfileWidget = () => {
                 {isFetchingBalance
                   ? '$0.00'
                   : utils.formatUsdDigit(
-                      Number.isNaN(Number(pnl))
+                      Number.isNaN(Number(pnl)) ||
+                        Number.isNaN(Number(lastest_snapshot_bals))
                         ? 0
-                        : (Number(pnl) * total) / 100,
+                        : total - Number(lastest_snapshot_bals),
                     )}
                 )
               </Typography>
