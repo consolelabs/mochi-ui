@@ -126,13 +126,13 @@ export default function Receipt({
           <div
             className={clsx('px-4 md:px-6 !text-neutral-600', {
               'flex flex-col gap-y-4 pb-10': variant === 'default',
-              'flex gap-x-16 !px-8': variant === 'peeking',
+              'flex gap-x-16 !p-8': variant === 'peeking',
             })}
           >
             <div
               className={clsx('flex flex-col gap-y-4', {
                 'flex-1': variant !== 'peeking',
-                'w-1/2 aspect-square justify-center': variant === 'peeking',
+                'w-1/2 justify-center': variant === 'peeking',
               })}
             >
               <div className="flex relative flex-col items-center">
@@ -202,8 +202,7 @@ export default function Receipt({
             <div
               className={clsx('relative font-mono !text-neutral-600', {
                 'flex-1': variant !== 'peeking',
-                'w-1/2 flex flex-col aspect-square justify-center':
-                  variant === 'peeking',
+                'w-1/2 flex flex-col justify-center': variant === 'peeking',
               })}
             >
               {variant !== 'peeking' && <DashLine />}

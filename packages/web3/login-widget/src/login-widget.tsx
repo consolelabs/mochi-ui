@@ -25,12 +25,14 @@ interface LoginWidgetProviderProps {
   children?: React.ReactNode
   profileApi?: string
   socials?: Array<Platform>
+  telegramBotId?: string
 }
 
 const LoginWidgetProvider = ({
   profileApi,
   children,
   socials = [],
+  telegramBotId,
 }: LoginWidgetProviderProps) => {
   // reducer for main state
   const {
@@ -41,6 +43,7 @@ const LoginWidgetProvider = ({
     setProfileBaseUrl,
     setSocials,
     socials: _socials,
+    setTelegramBotId,
   } = useLoginWidget()
 
   // handle login from url query `token`
@@ -99,6 +102,10 @@ const LoginWidgetProvider = ({
       setSocials(socials)
     }
   }, [_socials, setSocials, socials])
+
+  useEffect(() => {
+    setTelegramBotId(telegramBotId || '6298380973')
+  }, [setTelegramBotId, telegramBotId])
 
   return <LazyMotion features={domAnimation}>{children}</LazyMotion>
 }

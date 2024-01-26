@@ -19,7 +19,7 @@ import { useLoginWidget } from './store'
 const { loginContentSocialGridWrapperClsx, loginContentSocialGridClsx } =
   loginWidget
 
-const initSocialAuths = (profileBaseUrl: string) => {
+const initSocialAuths = (profileBaseUrl: string, telegramBotId: string) => {
   const api = new MochiAPI({
     log: false,
     payUrl: '',
@@ -48,13 +48,13 @@ const initSocialAuths = (profileBaseUrl: string) => {
         // @ts-ignore
         window.Telegram.Login.auth(
           {
-            bot_id: '6518249764',
+            bot_id: telegramBotId,
             request_access: true,
             return_to: encodeURI(window.location.href),
             lang: 'en',
           },
           (user: any) => {
-            const telegramAuth = `https://api-preview.mochi-profile.console.so/api/v1/profiles/auth/telegram?${qs.stringify(
+            const telegramAuth = `${profileBaseUrl}/profiles/auth/telegram?${qs.stringify(
               {
                 ...user,
                 url_location: urlLocation,
@@ -116,7 +116,7 @@ const initSocialAuths = (profileBaseUrl: string) => {
 }
 
 export default function ConnectSocial() {
-  const { socials, profileBaseUrl } = useLoginWidget()
+  const { socials, profileBaseUrl, telegramBotId } = useLoginWidget()
 
   return (
     <>
@@ -133,7 +133,7 @@ export default function ConnectSocial() {
       </Typography>
       <div className={loginContentSocialGridWrapperClsx()}>
         <div className={loginContentSocialGridClsx()}>
-          {initSocialAuths(profileBaseUrl).map((item) => {
+          {initSocialAuths(profileBaseUrl, telegramBotId).map((item) => {
             const disabled = socials.every((s) => s !== item.id)
 
             return (
