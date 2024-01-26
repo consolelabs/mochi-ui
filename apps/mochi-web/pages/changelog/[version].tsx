@@ -108,7 +108,7 @@ export default function Page(
         </div>
         <div className="flex gap-2.5 justify-between items-center mt-6">
           <div className="flex flex-col gap-2">
-            <Typography level="p7" className="uppercase text-text-disabled">
+            <Typography level="p7" className="uppercase" color="textDisabled">
               Share this release
             </Typography>
             <div className="flex gap-2 items-center">
