@@ -10,8 +10,9 @@ const iconButtonCva = cva(
     'rounded-full',
     'font-semibold',
     'h-fit',
-    'transition',
+    'enabled:transition',
     'disabled:cursor-not-allowed',
+    'disabled:opacity-50',
     'outline-none',
   ],
   {
