@@ -31,13 +31,7 @@ export const getServerSideProps: GetServerSideProps<
   ModelProductChangelogs
 > = async (context) => {
   const version = context.params?.version as string
-  const validVersion = /\d+\.\d+\.\d+/.test(version)
 
-  if (!validVersion) {
-    return {
-      notFound: true,
-    }
-  }
   try {
     const { data } = await API.MOCHI.get(
       GET_PATHS.CHANGELOG_DETAIL(version),
