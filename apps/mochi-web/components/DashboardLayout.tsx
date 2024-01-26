@@ -76,9 +76,10 @@ export default function DashboardLayout({
           title: 'Developer',
           Icon: CodingSolid,
           type: 'link',
-          as: Link,
-          href: ROUTES.APPLICATON_LIST,
-          badge: getSidebarBadge['NEW'],
+          /* as: Link, */
+          /* href: ROUTES.APPLICATON_LIST, */
+          /* badge: getSidebarBadge['NEW'], */
+          disabled: true,
         },
         { title: 'Invite Friends', Icon: AddUserSolid },
       ],
