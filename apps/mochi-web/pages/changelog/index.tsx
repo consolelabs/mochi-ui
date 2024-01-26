@@ -75,7 +75,7 @@ export default function Changelog({ data }: Props) {
   return (
     <Layout ref={ref} footer={<Footer includeEmailSubscribe />}>
       <SEO
-        description="Latest updates from Mochi."
+        description="The latest updates from Mochi."
         image={`${HOME_URL}/changelog-thumbnail.png`}
         title={PAGES.CHANGE_LOG.title}
         tailTitle
