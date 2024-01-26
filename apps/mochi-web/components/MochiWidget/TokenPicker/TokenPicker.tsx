@@ -57,7 +57,7 @@ interface TokenButtonProps {
 
 const TokenButton = (props: TokenButtonProps) => {
   return (
-    <div className="flex gap-x-2 items-center py-1.5 px-3 rounded-lg border bg-primary-soft border-primary-200">
+    <div className="flex gap-x-2 items-center py-1.5 px-3 rounded-lg border bg-primary-soft border-primary-outline-border">
       {props.isToken ? (
         <span className="text-base shrink-0" role="img">
           <Image

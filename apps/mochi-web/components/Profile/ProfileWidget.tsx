@@ -209,7 +209,7 @@ export const ProfileWidget = () => {
         <Button
           variant="soft"
           color="primary"
-          className="border border-primary-200"
+          className="border border-primary-outline-border"
         >
           <ArrowUpSquareSolid className="w-4 h-4" />
           Send
@@ -217,7 +217,7 @@ export const ProfileWidget = () => {
         <Button
           variant="soft"
           color="primary"
-          className="border border-primary-200"
+          className="border border-primary-outline-border"
         >
           <ArrowDownSquareSolid className="w-4 h-4" />
           Receive
@@ -229,7 +229,7 @@ export const ProfileWidget = () => {
           ref={tabElement}
         >
           <div
-            className="absolute top-0 left-0 h-full transition-transform duration-500 bg-background-level2"
+            className="absolute top-0 left-0 h-full transition-transform duration-500 bg-background-hover"
             style={{
               transform: `translateX(${translateX}px)`,
               width: selectedTabWidth,
