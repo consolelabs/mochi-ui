@@ -33,8 +33,8 @@ const tableHeaderClsx = ({
   clsx(
     'px-4 whitespace-nowrap py-3 text-xxs font-semibold tracking-tight uppercase min-w-[48px] text-text-tertiary',
     stickyHeader
-      ? 'sticky top-0 bg-background-surface after:absolute after:inset-0 after:h-full after:w-full after:border-b after:border-neutral-outline-active'
-      : 'border-b border-neutral-outline-active',
+      ? 'sticky top-0 bg-background-surface after:absolute after:inset-0 after:h-full after:w-full after:border-b after:border-divider'
+      : 'border-b border-divider',
     className,
   )
 
@@ -54,7 +54,7 @@ const tableDataLoadingClsx = ({
   size?: 'sm' | 'md'
 } = {}) =>
   clsx(
-    'text-sm font-normal leading-tight border-0 border-b border-neutral-outline-active border-solid rounded text-text-primary',
+    'text-sm font-normal leading-tight border-0 border-b border-divider border-solid rounded text-text-primary',
     { 'group-last:border-b-0': hideLastBorder || border },
     {
       'px-2 py-2 h-14': size === 'sm',
@@ -79,7 +79,7 @@ const tableDataClsx = ({
   size?: 'sm' | 'md'
 } = {}) =>
   clsx(
-    'px-2 overflow-hidden text-sm font-normal leading-tight border-0 border-b border-neutral-outline-active border-solid min-w-[48px] text-text-primary',
+    'px-2 overflow-hidden text-sm font-normal leading-tight border-0 border-b border-divider border-solid min-w-[48px] text-text-primary',
     { 'group-last:border-b-0': hideLastBorder || border },
     {
       'py-2 h-14': size === 'sm',
