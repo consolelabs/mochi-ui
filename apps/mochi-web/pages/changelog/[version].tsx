@@ -80,10 +80,11 @@ export default function Page(
         description={seo_description}
         image={thumbnail_url}
         title={`v${version} - ${title}`}
+        url={HOME_URL + ROUTES.CHANGELOG_DETAIL(version || '1.0')}
         tailTitle
       />
       <div className="flex flex-col md:px-20 pt-8 md:pt-20 landing-container !max-w-[960px]">
-        <div className="w-full flex justify-center mb-10">
+        <div className="flex justify-center mb-10 w-full">
           <ChangelogDetailTitle
             title={title ?? ''}
             social={TWITTER_LINK}
