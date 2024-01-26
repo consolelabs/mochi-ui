@@ -13,7 +13,7 @@ import { LazyMotion, domAnimation } from 'framer-motion'
 import { WalletProviderProps } from '~context/wallet-context'
 import { useAuthStore } from '~store/auth'
 import { useLoginWidget } from '@mochi-web3/login-widget'
-import { MOCHI_PROFILE_API } from '~envs'
+import { AUTH_TELEGRAM_ID, MOCHI_PROFILE_API } from '~envs'
 import { Platform } from '@consolelabs/mochi-formatter'
 
 const SidebarContextProvider = dynamic(() =>
@@ -103,6 +103,7 @@ export default function App(props: AppPropsWithLayout) {
               Platform.Email,
               Platform.Twitter,
             ]}
+            telegramBotId={AUTH_TELEGRAM_ID}
             profileApi={MOCHI_PROFILE_API}
           >
             <InnerApp {...props} />

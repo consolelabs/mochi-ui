@@ -66,6 +66,9 @@ export type LoginWidgetState = {
 
   socials: Array<Platform>
   setSocials: (socials: Array<Platform>) => void
+
+  telegramBotId: string
+  setTelegramBotId: (id: string) => void
 }
 
 export const useLoginWidget = create<LoginWidgetState>((set, get) => {
@@ -115,6 +118,9 @@ export const useLoginWidget = create<LoginWidgetState>((set, get) => {
 
     socials: [],
     setSocials: (socials) => set({ socials }),
+
+    telegramBotId: '',
+    setTelegramBotId: (telegramBotId) => set({ telegramBotId }),
   }
 })
 
