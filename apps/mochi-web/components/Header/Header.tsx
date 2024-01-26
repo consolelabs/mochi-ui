@@ -39,9 +39,11 @@ import {
   MagnifierLine,
   ChevronRightLine,
   WalletSolid,
+  CodingSolid,
+  Github,
 } from '@mochi-ui/icons'
 import clsx from 'clsx'
-import { DISCORD_LINK, TELEGRAM_LINK } from '~envs'
+import { DISCORD_LINK, GITHUB_LINK, TELEGRAM_LINK } from '~envs'
 import { useState } from 'react'
 import events from '~constants/events'
 import { LoginWidget, useLoginWidget } from '@mochi-web3/login-widget'
@@ -242,7 +244,7 @@ export const Header = ({
             >
               <MagnifierLine />
               <input
-                className="flex-1 text-sm outline-none bg-transparent placeholder:text-text-disabled"
+                className="flex-1 text-sm bg-transparent outline-none placeholder:text-text-disabled"
                 placeholder="Search token, ID or address"
               />
               <div className="flex gap-x-1">
@@ -376,12 +378,43 @@ export const Header = ({
             Features
           </Link>,
           <Link
-            href={ROUTES.DOCS}
+            href={ROUTES.DEVELOPER}
             className="px-4 text-sm font-medium transition-colors duration-300 hover:text-primary-plain-fg"
             key="desktop-nav-api"
           >
-            Docs
+            Developer
           </Link>,
+          <DropdownMenu key="desktop-nav-dropdown">
+            <DropdownMenuTrigger asChild>
+              <button type="button" className="px-4">
+                <Typography
+                  level="p6"
+                  fontWeight="md"
+                  className="!text-sm transition-colors duration-300 hover:text-primary-plain-fg"
+                >
+                  Resources
+                </Typography>
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              className="bg-white-pure"
+              sideOffset={20}
+              align="center"
+            >
+              <DropdownMenuItem
+                leftIcon={<CodingSolid />}
+                onClick={() => window.open(ROUTES.DOCS, '_blank')}
+              >
+                Documentation
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                leftIcon={<Github />}
+                onClick={() => window.open(GITHUB_LINK, '_blank')}
+              >
+                Telegram
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>,
           <DropdownMenu key="desktop-nav-dropdown">
             <DropdownMenuTrigger asChild>
               <button type="button" className="px-4">
