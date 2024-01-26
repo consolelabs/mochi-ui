@@ -3,7 +3,6 @@ import { Badge, Button, IconButton, Typography } from '@mochi-ui/core'
 import { Layout } from '~app/layout'
 import { SEO } from '~app/layout/seo'
 import { PAGES } from '~constants'
-import { getDescription, getFirstImageUrl } from '~utils/changelog'
 import { Markdown } from '~cpn/Changelog/Markdown'
 import {
   ModelProductChangelogs,
@@ -71,15 +70,13 @@ const ChangelogItem = ({
 }
 
 export default function Changelog({ data }: Props) {
-  const firstImgUrl = getFirstImageUrl(data ?? [])
-  const description = getDescription(data ?? [])
   const ref = useRef<HTMLDivElement>(null)
 
   return (
     <Layout ref={ref} footer={<Footer includeEmailSubscribe />}>
       <SEO
-        description={description}
-        image={firstImgUrl || ''}
+        description="Latest updates from Mochi."
+        image="../changelog-thumbnail.png"
         title={PAGES.CHANGE_LOG.title}
         tailTitle
       />
