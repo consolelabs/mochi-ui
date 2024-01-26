@@ -26,6 +26,7 @@ import {
   SHARE_CONTENT,
   TWITTER_SHARE_URL,
 } from '~constants/common'
+import { getFirstImageUrl } from '../../utils/changelog'
 
 export const getServerSideProps: GetServerSideProps<
   ModelProductChangelogs
@@ -56,7 +57,6 @@ export default function Page(
 ) {
   const {
     title,
-    thumbnail_url,
     content,
     version,
     created_at,
@@ -65,6 +65,7 @@ export default function Page(
     seo_description,
   } = props
   const layoutRef = useRef<HTMLDivElement>(null)
+  const thumbnail = getFirstImageUrl(content)
 
   const { hasCopied, onCopy } = useClipboard(
     HOME_URL + ROUTES.CHANGELOG_DETAIL(version ?? ''),
@@ -78,7 +79,7 @@ export default function Page(
     >
       <SEO
         description={seo_description}
-        image={thumbnail_url}
+        image={thumbnail}
         title={`v${version} - ${title}`}
         url={HOME_URL + ROUTES.CHANGELOG_DETAIL(version || '1.0')}
         tailTitle
