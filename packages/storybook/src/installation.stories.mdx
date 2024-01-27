@@ -16,15 +16,20 @@ To integrate Mochi UI into your project, follow these steps:
 For a quick start, the global setup is recommended. This approach involves
 importing all components from a single package.
 
-It is recommended to install the package [Tailwindcss-animate](https://github.com/jamiebuilds/tailwindcss-animate), as the animations within the project are implemented using this plugin
+It is recommended to install the package
+[Tailwindcss-animate](https://github.com/jamiebuilds/tailwindcss-animate), as
+the animations within the project are implemented using this plugin
 
 **1. Install packages**
 
 Execute the following command in your terminal to install Mochi UI:
 
-<Source code={`
+<Source
+  dark
+  code={`
 pnpm add @mochi-ui/core @mochi-ui/theme tailwindcss-animate
-`} />
+`}
+/>
 
 **2. TailwindCSS setup**
 
@@ -33,20 +38,14 @@ first. Follow the official
 [guide for installation](https://tailwindcss.com/docs/installation). Afterward,
 add this code to your `tailwind.config.js`:
 
-<Source code={`
+<Source dark code={`
 // tailwind.config.js
 import { mochiui } from '@mochi-ui/theme'
 import animate from 'tailwindcss-animate'
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    // ...
-    './node_modules/@mochi-ui/theme/dist/components/**/*.{js,jsx,ts,tsx}',
-  ],
-  plugins: [mochiui(), animate],
-}
-`} />
+/** @type {import('tailwindcss').Config} \*/ module.exports = { content: [ //
+... './node_modules/@mochi-ui/theme/dist/components/**/\*.{js,jsx,ts,tsx}', ],
+plugins: [mochiui(), animate], } `} />
 
 **3. Configuring pnpm (Optional)**
 
@@ -54,9 +53,13 @@ For those utilizing pnpm, it's necessary to modify your `.npmrc` file with the
 following code. This step ensures that the package paths align correctly,
 allowing TailwindCSS to accurately interpret Tailwind class names:
 
-<Source code={`
+<Source
+  dark
+  code={`
 public-hoist-pattern[]=*@mochi-ui/*
-`} language="md" />
+`}
+  language="md"
+/>
 
 Once you've updated the `.npmrc` file, execute pnpm install once more to
 guarantee proper installation of the dependencies.
@@ -73,53 +76,54 @@ it includes only the styles for the components in use.
 To install components individually, follow these steps:
 
 **1. Core Package Installation**
-[tailwindcss-animate](https://tailwindcss.com/docs/installation) is optional but highly recommended, as the project's animations are implemented using this package.
-<Source code={`
+[tailwindcss-animate](https://tailwindcss.com/docs/installation) is optional but
+highly recommended, as the project's animations are implemented using this
+package.
+
+<Source
+  dark
+  code={`
 pnpm add @mochi-ui/theme tailwindcss-animate
-`} />
+`}
+/>
 
 **2. Component Installation**
 
 Install the desired component. For instance, to use the Button component, run:
 
-<Source code={`
+<Source
+  dark
+  code={`
 pnpm add @mochi-ui/button
-`} />
+`}
+/>
 
 **3. Tailwind CSS Configuration**
 
 When using individual packages, modify your `tailwind.config.js` to include only
 the styles of the components you are using. For the Button component, add:
 
-<Source code={`
+<Source dark code={`
 // tailwind.config.js
 import { mochiui } from '@mochi-ui/theme'
 import animate from 'tailwindcss-animate'
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    // single component styles
-    './node_modules/@mochi-ui/theme/dist/components/button.js',
-    // or you can use a glob pattern (multiple component styles)
-    './node_modules/@mochi-ui/theme/dist/components/(button|snippet|code|input).js',
-  ],
-  plugins: [mochiui(), animate],
-}
-`} />
+/\*_ @type {import('tailwindcss').Config} _/ module.exports = { content: [ //
+single component styles
+'./node_modules/@mochi-ui/theme/dist/components/button.js', // or you can use a
+glob pattern (multiple component styles)
+'./node_modules/@mochi-ui/theme/dist/components/(button|snippet|code|input).js',
+], plugins: [mochiui(), animate], } `} />
 
 **4. Use the Component**
 
 You can now use the installed component in your application:
 
-<Source code={`
+<Source dark code={`
 import * as React from 'react'
 import { Button } from '@mochi-ui/button'
 
-function App() {
-  return <Button>Press me</Button>
-}
-`} />
+function App() { return <Button>Press me</Button> } `} />
 
 **5. Configuring pnpm (Optional)**
 
@@ -127,9 +131,12 @@ For those utilizing pnpm, it's necessary to modify your `.npmrc` file with the
 following code. This step ensures that the package paths align correctly,
 allowing TailwindCSS to accurately interpret Tailwind class names:
 
-<Source code={`
+<Source
+  dark
+  code={`
 public-hoist-pattern[]=*@mochi-ui/*
-`} />
+`}
+/>
 
 Once you've updated the `.npmrc` file, execute pnpm install once more to
 guarantee proper installation of the dependencies.

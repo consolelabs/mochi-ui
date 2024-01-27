@@ -33,7 +33,7 @@ function Header() {
 export function Default() {
   const [section, setSection] = useState('Profile')
   return (
-    <div className="h-[700px] border">
+    <div className="h-[700px] border border-divider">
       <Sidebar
         Header={Header}
         footerItems={[

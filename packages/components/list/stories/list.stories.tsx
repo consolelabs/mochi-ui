@@ -107,7 +107,7 @@ const defaultData: DataType[] = [
 function renderItem(item: DataType) {
   return (
     <li
-      className="flex flex-row items-center w-full p-2 hover:bg-[#FAF9F7] rounded-lg space-x-2"
+      className="flex flex-row items-center w-full p-2 hover:bg-background-level2 rounded-lg space-x-2"
       key={item.id}
     >
       <img
@@ -117,7 +117,7 @@ function renderItem(item: DataType) {
       />
       <div className="flex flex-col flex-1">
         <h3 className="text-sm">{item.name}</h3>
-        <span className="text-xs text-[#848281]">
+        <span className="text-xs text-text-secondary">
           {item.balance.toLocaleString('en-US')}
         </span>
       </div>

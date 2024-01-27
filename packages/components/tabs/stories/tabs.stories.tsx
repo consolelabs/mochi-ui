@@ -42,7 +42,7 @@ export function Default() {
           ))}
         </TabList>
 
-        <div className="border-b" />
+        <div className="border-b border-divider" />
 
         <div className="p-4">
           {items.map((item) => (
@@ -57,7 +57,7 @@ export function Default() {
 export function Variant() {
   return (
     <div className="space-y-4">
-      <div className="w-full max-w-sm border rounded">
+      <div className="w-full max-w-sm border border-divider rounded">
         <Tabs defaultValue="account">
           <TabList className="flex justify-between py-1.5">
             <TabTrigger value="account">Account</TabTrigger>
@@ -67,7 +67,7 @@ export function Variant() {
             </TabTrigger>
           </TabList>
 
-          <div className="border-b" />
+          <div className="border-b border-divider" />
 
           <div className="p-4">
             <TabContent value="account">
@@ -83,7 +83,7 @@ export function Variant() {
         </Tabs>
       </div>
 
-      <div className="w-full max-w-sm border rounded">
+      <div className="w-full max-w-sm border border-divider rounded">
         <Tabs defaultValue="account">
           <TabList className="flex justify-between py-1.5">
             <TabTrigger value="account" variant="solid">
@@ -97,7 +97,7 @@ export function Variant() {
             </TabTrigger>
           </TabList>
 
-          <div className="border-b" />
+          <div className="border-b border-divider" />
 
           <div className="p-4">
             <TabContent value="account">

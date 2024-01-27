@@ -1,9 +1,4 @@
 import { DiscordColored, TelegramColored, ChromeColored } from '@mochi-ui/icons'
-import {
-  TextFieldRoot,
-  TextFieldDecorator,
-  TextFieldInput,
-} from '@mochi-ui/input'
 import { Button } from '@mochi-ui/button'
 import { LogoWithText } from '@mochi-ui/logo'
 import {
@@ -75,12 +70,6 @@ const downloadContent = (
 )
 
 const mobileNavItems = [
-  <TextFieldRoot className="m-1" key="1">
-    <TextFieldInput />
-    <TextFieldDecorator>
-      <DiscordColored />
-    </TextFieldDecorator>
-  </TextFieldRoot>,
   <Button
     variant="link"
     color="neutral"
@@ -115,12 +104,6 @@ const mobileNavItems = [
 ]
 
 const desktopNavItems = [
-  <TextFieldRoot className="m-1" key="1">
-    <TextFieldInput />
-    <TextFieldDecorator>
-      <DiscordColored />
-    </TextFieldDecorator>
-  </TextFieldRoot>,
   <Button
     variant="link"
     className="flex focus:outline-none items-center flex-1 gap-3.5 !px-0"
@@ -149,7 +132,7 @@ const desktopNavItems = [
     </DropdownMenuContent>
   </DropdownMenu>,
   <div className="w-px h-full py-2.5 -mx-2">
-    <div className="w-auto h-full bg-[#eeedec]" />
+    <div className="w-auto h-full bg-divider" />
   </div>,
   <Button color="primary" key="4">
     Login
@@ -158,7 +141,7 @@ const desktopNavItems = [
 
 export function Default() {
   return (
-    <div className="h-[600px] !overflow-auto border border-neutral-outline-border">
+    <div className="h-[600px] !overflow-auto border border-divider">
       <div className="h-[1000px]">
         <TopBar
           leftSlot={

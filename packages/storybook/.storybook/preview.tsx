@@ -4,7 +4,7 @@ import prettier from 'prettier/standalone'
 // @ts-ignore
 import prettierTypescript from 'prettier/parser-babel'
 import { addons } from '@storybook/preview-api'
-import { DocsContainer } from '@storybook/addon-docs'
+import { DocsContainer, Source } from '@storybook/addon-docs'
 import { themes } from '@storybook/theming'
 
 import { DARK_MODE_EVENT_NAME } from 'storybook-dark-mode'
@@ -51,6 +51,9 @@ const preview: Preview = {
         )
       },
       source: {
+        container: (props: any) => {
+          return <Source {...props} dark />
+        },
         transform(input: string, c: StoryContext) {
           const { __isArgsStory: isArgsStory, docs } = c.parameters
           if (isArgsStory && isIncludedComponentName(input)) {
