@@ -2250,6 +2250,9 @@ importers:
       '@storybook/addon-a11y':
         specifier: ^7.6.10
         version: 7.6.10
+      '@storybook/addon-docs':
+        specifier: ^7.6.10
+        version: 7.6.10(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/addon-essentials':
         specifier: ^7.6.10
         version: 7.6.10(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
@@ -2262,6 +2265,9 @@ importers:
       '@storybook/blocks':
         specifier: ^7.6.10
         version: 7.6.10(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/preview-api':
+        specifier: ^7.6.10
+        version: 7.6.10
       '@storybook/react':
         specifier: ^7.6.10
         version: 7.6.10(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
