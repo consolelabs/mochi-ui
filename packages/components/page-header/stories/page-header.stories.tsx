@@ -41,7 +41,7 @@ export function Default() {
         See docs
       </Button>
       <Select value={selectedApp} onChange={setSelectedApp}>
-        <SelectTrigger className="h-10 rounded bg-neutral-150 shrink-0">
+        <SelectTrigger>
           <Tooltip content="Selected app" arrow="top-center" className="z-20">
             <SelectValue placeholder="All apps" />
           </Tooltip>

@@ -70,13 +70,8 @@ export function AllIcons() {
               .map((e) => {
                 const [name, Icon] = e
                 return (
-                  <Tooltip
-                    arrow="top-center"
-                    content={name}
-                    key={name}
-                    theme="dark"
-                  >
-                    <Icon className="w-10 h-10 text-gray-700" />
+                  <Tooltip arrow="top-center" content={name} key={name}>
+                    <Icon className="w-10 h-10 text-text-primary" />
                   </Tooltip>
                 )
               })}
@@ -103,13 +98,8 @@ export function LineIcons() {
               .map((e) => {
                 const [name, Icon] = e
                 return (
-                  <Tooltip
-                    arrow="top-center"
-                    content={name}
-                    key={name}
-                    theme="dark"
-                  >
-                    <Icon className="w-10 h-10 text-gray-700" />
+                  <Tooltip arrow="top-center" content={name} key={name}>
+                    <Icon className="w-10 h-10 text-text-primary" />
                   </Tooltip>
                 )
               })}
@@ -136,13 +126,8 @@ export function OutlinedIcons() {
               .map((e) => {
                 const [name, Icon] = e
                 return (
-                  <Tooltip
-                    arrow="top-center"
-                    content={name}
-                    key={name}
-                    theme="dark"
-                  >
-                    <Icon className="w-10 h-10 text-gray-700" />
+                  <Tooltip arrow="top-center" content={name} key={name}>
+                    <Icon className="w-10 h-10 text-text-primary" />
                   </Tooltip>
                 )
               })}
@@ -169,13 +154,8 @@ export function SocialIcons() {
               .map((e) => {
                 const [name, Icon] = e
                 return (
-                  <Tooltip
-                    arrow="top-center"
-                    content={name}
-                    key={name}
-                    theme="dark"
-                  >
-                    <Icon className="w-10 h-10 text-gray-700" />
+                  <Tooltip arrow="top-center" content={name} key={name}>
+                    <Icon className="w-10 h-10 text-text-primary" />
                   </Tooltip>
                 )
               })}
@@ -201,13 +181,8 @@ export function SolidIcons() {
               .map((e) => {
                 const [name, Icon] = e
                 return (
-                  <Tooltip
-                    arrow="top-center"
-                    content={name}
-                    key={name}
-                    theme="dark"
-                  >
-                    <Icon className="w-10 h-10 text-gray-700" />
+                  <Tooltip arrow="top-center" content={name} key={name}>
+                    <Icon className="w-10 h-10 text-text-primary" />
                   </Tooltip>
                 )
               })}
@@ -233,13 +208,8 @@ export function PictogramIcons() {
               .map((e) => {
                 const [name, Icon] = e
                 return (
-                  <Tooltip
-                    arrow="top-center"
-                    content={name}
-                    key={name}
-                    theme="dark"
-                  >
-                    <Icon className="w-10 h-10 text-gray-700" />
+                  <Tooltip arrow="top-center" content={name} key={name}>
+                    <Icon className="w-10 h-10 text-text-primary" />
                   </Tooltip>
                 )
               })}
@@ -266,13 +236,8 @@ export function Web3Icons() {
               .map((e) => {
                 const [name, Icon] = e
                 return (
-                  <Tooltip
-                    arrow="top-center"
-                    content={name}
-                    key={name}
-                    theme="dark"
-                  >
-                    <Icon className="w-10 h-10 text-gray-700" />
+                  <Tooltip arrow="top-center" content={name} key={name}>
+                    <Icon className="w-10 h-10 text-text-primary" />
                   </Tooltip>
                 )
               })}
@@ -299,13 +264,8 @@ export function WalletIcons() {
               .map((e) => {
                 const [name, Icon] = e
                 return (
-                  <Tooltip
-                    arrow="top-center"
-                    content={name}
-                    key={name}
-                    theme="dark"
-                  >
-                    <Icon className="w-10 h-10 text-gray-700" />
+                  <Tooltip arrow="top-center" content={name} key={name}>
+                    <Icon className="w-10 h-10 text-text-primary" />
                   </Tooltip>
                 )
               })}

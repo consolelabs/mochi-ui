@@ -75,7 +75,7 @@ export const Default: Story = {
     }
 
     return (
-      <div className="relative w-[600px] h-[400px] border">
+      <div className="relative w-[600px] h-[400px] border border-divider">
         <div className="h-full w-full overflow-y-auto flex flex-col items-center p-4">
           <ActionBar open={open} onOpenChange={setOpen}>
             <ActionBarTrigger asChild>
@@ -125,7 +125,7 @@ export const CustomizePostition: Story = {
       setOpen(false)
     }
     return (
-      <div className="relative w-[600px] h-[400px] border">
+      <div className="relative w-[600px] h-[400px] border border-divider">
         <div className="h-full w-full overflow-y-auto flex flex-col items-center p-4">
           <ActionBar open={open} onOpenChange={setOpen}>
             <ActionBarTrigger asChild>
