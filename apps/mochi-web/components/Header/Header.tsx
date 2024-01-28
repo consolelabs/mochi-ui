@@ -35,19 +35,19 @@ import {
   TipSolid,
   DollarBubbleCircleSolid,
   LinkCircledSolid,
-  BellSolid,
   MagnifierLine,
   ChevronRightLine,
   WalletSolid,
   CodingSolid,
   Github,
 } from '@mochi-ui/icons'
+import NotificationList from '~cpn/NotificationList'
 import clsx from 'clsx'
 import { DISCORD_LINK, GITHUB_LINK, TELEGRAM_LINK } from '~envs'
 import { useState } from 'react'
 import events from '~constants/events'
 import { LoginWidget, useLoginWidget } from '@mochi-web3/login-widget'
-import ProfileDropdown from '~cpn/profile-dropdrown'
+import ProfileDropdown from '~cpn/ProfileDropdown'
 import { MobileNavAccordionItem } from './MobileNavAccordionItem'
 import { DashboardMobileSidebar } from './DashboardMobileSidebar'
 
@@ -294,10 +294,6 @@ export const Header = ({
                 key="header-icon-button-2"
                 className="w-full h-full text-neutral-800"
               />,
-              <BellSolid
-                key="header-icon-button-3"
-                className="w-full h-full text-text-primary"
-              />,
             ].map((icon) => {
               return (
                 <IconButton
@@ -311,30 +307,7 @@ export const Header = ({
                 </IconButton>
               )
             })}
-            <IconButton
-              color="neutral"
-              variant="link"
-              label=""
-              className="!p-1 !w-10 !h-10 my-auto justify-center block lg:hidden"
-            >
-              <MagnifierLine className="text-2xl" />
-            </IconButton>
-            <IconButton
-              color="neutral"
-              variant="link"
-              label=""
-              className="!p-1 !w-10 !h-10 my-auto justify-center block lg:hidden"
-            >
-              <TipSolid className="text-2xl" />
-            </IconButton>
-            <IconButton
-              color="neutral"
-              variant="link"
-              label=""
-              className="!p-1 !w-10 !h-10 my-auto justify-center block lg:hidden"
-            >
-              <BellSolid className="text-2xl" />
-            </IconButton>
+            <NotificationList key="header-icon-button-3" />
           </div>,
           <ProfileDropdown
             className="hidden lg:flex"

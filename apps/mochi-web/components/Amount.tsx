@@ -1,4 +1,3 @@
-import { useMemo } from 'react'
 import { Typography } from '@mochi-ui/core'
 import clsx from 'clsx'
 import Image from 'next/image'
@@ -12,10 +11,33 @@ interface AmountProps {
   unit: string
   approxMoniker?: string
   className?: string
-  size?: 'lg' | 'sm' | 'md'
+  size?: 'sm' | 'base' | 'md' | 'lg'
+  //      14      16      24     32
   isMultipleTokens?: boolean
   isMoniker?: boolean
   alignment?: 'left' | 'center'
+  inline?: boolean
+}
+
+const titleSize: any = {
+  sm: 'h9',
+  base: 'h7',
+  md: 'h5',
+  lg: 'h4',
+}
+
+const subtitleSize: any = {
+  sm: 'p6',
+  base: 'p6',
+  md: 'p6',
+  lg: 'p5',
+}
+
+const iconSize: any = {
+  sm: 16,
+  base: 16,
+  md: 24,
+  lg: 32,
 }
 
 export default function Amount({
@@ -29,30 +51,22 @@ export default function Amount({
   isMultipleTokens = false,
   alignment = 'center',
   isMoniker,
+  inline = false,
 }: AmountProps) {
   const isLongNumber = value.length >= 12
 
-  const titleSize = useMemo(() => {
-    if (size === 'lg') return 'h4'
-    if (size === 'md') return 'h5'
-    return 'h9'
-  }, [size])
-
-  const subtitleSize = useMemo(() => {
-    if (size === 'lg') return 'p5'
-    return 'p6'
-  }, [size])
-
   return (
     <div
-      className={clsx('gap-x-2 grid font-medium text-left', className, {
-        'grid-cols-[24px_minmax(0,1fr)]': !isLongNumber,
-        'grid-cols-[32px_minmax(0,1fr)]': size === 'lg' && !isLongNumber,
-        'grid-rows-[minmax(0,1fr)_min-content]': !isLongNumber,
-        'grid-rows-[32px_minmax(0,1fr)_min-content] gap-y-1.5 grid-cols-1':
-          size === 'lg' && isLongNumber,
-        'grid-rows-[24px_minmax(0,1fr)_min-content] gap-y-1.5 grid-cols-1':
-          isLongNumber,
+      style={{
+        gridTemplateColumns: `${iconSize[size]}px minmax(0, 1fr)`,
+        gridTemplateRows: !isLongNumber
+          ? 'minmax(0, 1fr) min-content'
+          : `${iconSize[size]}px minmax(0, 1fr) min-content`,
+      }}
+      className={clsx('shrink-0 gap-x-2 font-medium text-left', className, {
+        grid: !inline,
+        'inline-grid': inline,
+        'gap-y-1.5 grid-cols-1': isLongNumber,
       })}
     >
       {isMoniker ? (
@@ -79,14 +93,14 @@ export default function Amount({
         })}
       >
         <Typography
-          level={titleSize}
+          level={titleSize[size]}
           className="!leading-[1] font-mono"
           fontWeight="md"
         >
           {value}
         </Typography>
         <Typography
-          level={titleSize}
+          level={titleSize[size]}
           className="!leading-[1] font-mono"
           fontWeight="md"
         >
@@ -104,7 +118,7 @@ export default function Amount({
         >
           {isMultipleTokens && (
             <Typography
-              level={subtitleSize}
+              level={subtitleSize[size]}
               color="textSecondary"
               fontWeight="md"
               className="font-mono"
@@ -113,7 +127,7 @@ export default function Amount({
             </Typography>
           )}
           <Typography
-            level={subtitleSize}
+            level={subtitleSize[size]}
             fontWeight="md"
             color="textTertiary"
             className="font-mono"

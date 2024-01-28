@@ -13,7 +13,7 @@ import {
   Discord,
   GameSolid,
   LifeBuoySolid,
-  SettingSolid,
+  GearSolid,
   StarSolid,
   SuperGroupSolid,
   TwinkleSolid,
@@ -33,7 +33,7 @@ export default meta
 export function Default() {
   return (
     <Layout className="border border-divider">
-      <Layout tagName="header" className="border-b border-divider p-4">
+      <Layout tagName="header" className="p-4 border-b border-divider">
         <Typography level="h1" className="!text-3xl font-semibold">
           Header
         </Typography>
@@ -68,7 +68,7 @@ export function Default() {
               title: 'App Store',
               Icon: GameSolid,
             },
-            { title: 'Settings', Icon: SettingSolid },
+            { title: 'Settings', Icon: GearSolid },
             { type: 'break' },
             { title: 'Developer', Icon: CodingSolid, disabled: true },
             {

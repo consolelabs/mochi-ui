@@ -124,8 +124,7 @@ export const mochiui = (config: MochiUIPluginConfig = {}) => {
 
       try {
         const parsedColor =
-          parsedColorsCache[colorValue] ||
-          Color(colorValue).hsl().round().array()
+          parsedColorsCache[colorValue] || Color(colorValue).hsl().array()
 
         parsedColorsCache[colorValue] = parsedColor
 

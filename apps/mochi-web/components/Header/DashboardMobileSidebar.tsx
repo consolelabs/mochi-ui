@@ -6,7 +6,7 @@ import {
   Discord,
   AddUserSolid,
   CodingSolid,
-  SettingSolid,
+  GearSolid,
   SafeBoxSolid,
   HomeSolid,
   CategorySolid,
@@ -63,7 +63,7 @@ export const DashboardMobileSidebar = (
         {
           title: 'Settings',
           type: 'link',
-          Icon: SettingSolid,
+          Icon: GearSolid,
           as: Link,
           href: ROUTES.SETTINGS(),
           onClick: () => setIsSidebarOpen(false),

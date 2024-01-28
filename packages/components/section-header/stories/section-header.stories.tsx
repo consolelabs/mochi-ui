@@ -8,7 +8,7 @@ import {
 } from '@mochi-ui/select'
 import { Tooltip } from '@mochi-ui/tooltip'
 import { useState } from 'react'
-import { CheckLine, ThreeDotsLine } from '@mochi-ui/icons'
+import { CheckLine, ThreeDotLine } from '@mochi-ui/icons'
 import { IconButton } from '@mochi-ui/icon-button'
 import { Button } from '@mochi-ui/button'
 import clsx from 'clsx'
@@ -97,7 +97,7 @@ export function Default() {
         </SectionHeaderTitle>
         <SectionHeaderActions>
           <IconButton label="Open menu" variant="link" color="neutral">
-            <ThreeDotsLine className="text-2xl" aria-hidden />
+            <ThreeDotLine className="text-2xl" aria-hidden />
           </IconButton>
         </SectionHeaderActions>
       </SectionHeader>

@@ -1,6 +1,6 @@
 import {
   EyeShowSolid,
-  SettingSolid,
+  GearSolid,
   UserSolid,
   ShieldDoneSolid,
 } from '@mochi-ui/icons'
@@ -31,7 +31,7 @@ const content = [
     label: 'View Options',
   },
   {
-    icon: <SettingSolid className="text-xl text-text-secondary" />,
+    icon: <GearSolid className="text-xl text-text-secondary" />,
     label: 'Setting',
   },
   {
@@ -53,7 +53,7 @@ export const Default: Story = {
         </DrawerTrigger>
         <DrawerPortal>
           <DrawerOverlay />
-          <DrawerContent className="text-center w-[280px] p-6" showCloseBtn>
+          <DrawerContent className="p-6 text-center w-[280px]" showCloseBtn>
             <div className="flex flex-col gap-2 py-2">
               {content.map((c) => (
                 <Button
@@ -76,7 +76,7 @@ export const Default: Story = {
 export const Anchor: Story = {
   render() {
     return (
-      <div className="flex gap-2 flex-wrap">
+      <div className="flex flex-wrap gap-2">
         {['left', 'right', 'top', 'bottom'].map((anchor) => (
           <Drawer anchor={anchor as DrawerProps['anchor']} key={anchor}>
             <DrawerTrigger asChild>
