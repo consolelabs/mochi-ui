@@ -125,10 +125,13 @@ export function useNotificationData(
     },
   )
 
+  const currentPageLen = res.data?.[res.size - 1]?.length ?? 0
+
   return {
     ...res,
     data: res.data?.flat(1) ?? [],
     refresh: res.mutate,
     nextPage: () => res.setSize(res.size + 1),
+    isEnd: currentPageLen === 0 || currentPageLen < MAX_PER_PAGE,
   }
 }

@@ -22,6 +22,7 @@ import {
   ArrowUpLine,
   BellSolid,
   CheckCircleOutlined,
+  CheckLine,
   GearLine,
   InboxLine,
 } from '@mochi-ui/icons'
@@ -46,7 +47,7 @@ const NotificationList = () => {
   const { profile } = useLoginWidget()
   const [tabValue, setTabValue] = useState<'for-you' | 'unread'>('for-you')
   const unreadCount = useUnreadNotiCount(profile?.id)
-  const { data, isLoading, isValidating, refresh, nextPage } =
+  const { isEnd, data, isLoading, isValidating, refresh, nextPage } =
     useNotificationData(tabValue, profile?.id)
   const actualRowCount = data?.length || MAX_ROW_COUNT
   const {
@@ -238,7 +239,7 @@ const NotificationList = () => {
                     return content
                   })}
                   {((isValidating && isLoadMore) || isLoading) && <Skeleton />}
-                  {!isLoadMore && data.length >= MAX_PER_PAGE && (
+                  {!isLoadMore && !isEnd && data.length >= MAX_PER_PAGE && (
                     <button
                       type="button"
                       style={{ height: FOOTER_HEIGHT }}
@@ -258,6 +259,17 @@ const NotificationList = () => {
                       </Typography>
                     </button>
                   )}
+                  {isEnd && !isLoadMore && !isValidating && (
+                    <div
+                      className="flex gap-x-1 justify-center items-center"
+                      style={{ height: FOOTER_HEIGHT }}
+                    >
+                      <CheckLine className="w-3.5 h-3.5 text-text-secondary" />
+                      <Typography level="p5" color="textSecondary">
+                        You&apos;re caught up!
+                      </Typography>
+                    </div>
+                  )}
                 </Virtualizer>
               )}
               {data?.length === 0 && !isLoading && (
@@ -265,7 +277,7 @@ const NotificationList = () => {
                   <div className="flex flex-col items-center">
                     <InboxLine className="w-10 h-10 text-text-disabled" />
                     <Typography level="p4" color="textDisabled">
-                      You&apos;re all caught up
+                      The inbox is empty
                     </Typography>
                   </div>
                 </div>
