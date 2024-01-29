@@ -15,8 +15,8 @@ const valueChangeCva = cva(['flex items-center font-medium text-sm gap-1'], {
 const valueChangeIndicatorCva = cva(['h-4 w-4 stroke-[3]'], {
   variants: {
     trend: {
-      up: 'text-success-plain-disable-fg',
-      down: 'text-danger-plain-disable-fg',
+      up: 'text-success-solid',
+      down: 'text-danger-solid',
     },
   },
   defaultVariants: {
