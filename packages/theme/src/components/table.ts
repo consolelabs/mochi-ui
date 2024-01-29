@@ -20,7 +20,7 @@ const tableRowClsx = ({
   clsx(
     'group',
     {
-      'cursor-pointer transition duration-150 bg-transparent hover:bg-background-level2':
+      'cursor-pointer transition duration-150 bg-transparent hover:bg-background-hover':
         clickable,
     },
     className,
