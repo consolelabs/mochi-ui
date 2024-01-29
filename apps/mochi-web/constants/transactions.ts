@@ -66,6 +66,18 @@ export const transactionActionColor: Record<TransactionActionType, string> = {
   withdraw: 'border-neutral-outline-border',
 }
 
+export const transactionActionTextColor: Record<TransactionActionType, string> =
+  {
+    transfer: '!text-success-soft-fg',
+    vault_transfer: '!text-neutral-soft-fg',
+    payme: '!text-success-soft-fg',
+    paylink: '!text-success-soft-fg',
+    swap: '!text-secondary-soft-fg',
+    airdrop: '!text-warning-soft-fg',
+    deposit: '!text-neutral-soft-fg',
+    withdraw: '!text-neutral-soft-fg',
+  }
+
 export const transactionActionAppearance = {
   transfer: 'success',
   deposit: 'neutral',

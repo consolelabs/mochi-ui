@@ -51,13 +51,13 @@ const UserSection = ({ type, statTx }: Props) => {
 
   if (type === 'sent' && !statTx) {
     return (
-      <div className="flex items-center space-x-2 py-6">
+      <div className="flex items-center py-6 space-x-2">
         {icon}
         <div className="flex items-center flex-wrap [&>*]:mr-1">
           <Typography level="p5" color="textTertiary">
             To send money
           </Typography>
-          <Button variant="link" color="neutral" className="pl-0 pr-0 h-auto">
+          <Button variant="link" color="neutral" className="pr-0 pl-0 h-auto">
             <TipSolid className="w-4 h-4" />
             tip
           </Button>
@@ -71,13 +71,13 @@ const UserSection = ({ type, statTx }: Props) => {
 
   if (type === 'received' && !statTx) {
     return (
-      <div className="flex items-center space-x-2 py-6">
+      <div className="flex items-center py-6 space-x-2">
         {icon}
         <div className="flex items-center flex-wrap [&>*]:mr-1">
           <Typography level="p5" color="textTertiary">
             To receive money
           </Typography>
-          <Button variant="link" color="neutral" className="pl-0 pr-0 h-auto">
+          <Button variant="link" color="neutral" className="pr-0 pl-0 h-auto">
             <AddUserSolid className="w-4 h-4" />
             invite friends
           </Button>
@@ -90,7 +90,7 @@ const UserSection = ({ type, statTx }: Props) => {
   }
 
   return (
-    <div className="flex items-center space-x-2 py-6">
+    <div className="flex items-center py-6 space-x-2">
       {icon}
       <div className="flex items-center flex-wrap [&>*]:mr-1">
         <Typography level="p5">You {type} the most</Typography>
@@ -135,7 +135,7 @@ const TokenSection = ({ type, statTx }: Props) => {
             src={statTx.token?.icon || ''}
             name={statTx.token?.symbol || ''}
           />
-          <div className="flex items-center flex-wrap">
+          <div className="flex flex-wrap items-center">
             <Typography level="h8" className="mr-2 font-mono">
               {mochiUtils.formatDigit({
                 value: utils.formatUnits(
@@ -143,6 +143,7 @@ const TokenSection = ({ type, statTx }: Props) => {
                   statTx.token?.decimal,
                 ),
                 fractionDigits: 2,
+                shorten: false,
               })}{' '}
               {statTx?.token?.symbol}
             </Typography>
@@ -163,13 +164,13 @@ export const RecapSection = () => {
   const { data } = useFetchMonthlyStats(profile?.id)
 
   return (
-    <Card className="pb-3 px-0 shadow-input">
+    <Card className="px-0 pb-3 shadow-input">
       <Typography level="h9" className="px-4">
         Your last 30 days recap
       </Typography>
       <Separator className="mt-4" />
       <div className="px-4">
-        <div className="flex items-center space-x-2 py-6">
+        <div className="flex items-center py-6 space-x-2">
           {(data?.total_spending || 0) > (data?.total_receive || 0) ? (
             <ArrowUpSquareSolid className="w-6 h-6 text-primary-solid" />
           ) : (
@@ -186,7 +187,7 @@ export const RecapSection = () => {
         <Separator />
         <div className="flex py-6 space-x-8">
           <TokenSection type="sent" statTx={data?.spending?.[0]} />
-          <div className="h-10 my-auto">
+          <div className="my-auto h-10">
             <Separator orientation="vertical" />
           </div>
           <TokenSection type="received" statTx={data?.receive?.[0]} />
@@ -206,7 +207,7 @@ export const RecapSection = () => {
         ].map((item) => (
           <div
             key={item.label}
-            className="flex items-center justify-between py-2"
+            className="flex justify-between items-center py-2"
           >
             <Typography level="p5">{item.label}</Typography>
             <Typography level="h8">

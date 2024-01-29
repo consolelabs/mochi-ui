@@ -14,7 +14,7 @@ import {
 import {
   AddUserSolid,
   TrashBinSolid,
-  ThreeDotsLine,
+  ThreeDotLine,
   KeySolid,
 } from '@mochi-ui/icons'
 import { SOCIAL_LINKS } from '~constants'
@@ -41,7 +41,7 @@ export const AppDetailPageHeader = ({ name = '', onDeleteApp }: Props) => {
         </Button>
         <DropdownMenu>
           <DropdownMenuTrigger className="p-1.5">
-            <ThreeDotsLine className="w-5 h-5" />
+            <ThreeDotLine className="w-5 h-5" />
           </DropdownMenuTrigger>
           <DropdownMenuPortal>
             <DropdownMenuContent align="end">
