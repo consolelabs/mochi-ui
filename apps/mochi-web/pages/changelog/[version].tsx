@@ -8,7 +8,16 @@ import { Markdown } from '~cpn/Changelog/Markdown'
 import { HOME_URL, TWITTER_LINK } from '~envs'
 import { ModelProductChangelogs } from '~types/mochi-schema'
 import { API, GET_PATHS } from '~constants/api'
-import { IconButton, Tooltip, Typography } from '@mochi-ui/core'
+import {
+  Button,
+  IconButton,
+  Separator,
+  TextFieldDecorator,
+  TextFieldInput,
+  TextFieldRoot,
+  Tooltip,
+  Typography,
+} from '@mochi-ui/core'
 import {
   Facebook,
   LinkHorizontalLine,
@@ -16,6 +25,7 @@ import {
   MailSolid,
   ArrowLeftLine,
   ArrowRightLine,
+  MailLine,
 } from '@mochi-ui/icons'
 import Link from 'next/link'
 import { ROUTES } from '~constants/routes'
@@ -209,6 +219,27 @@ export default function Page(
               )}
             </IconButton>
           </div>
+        </div>
+        <Separator className="my-8" />
+        <div className="flex items-center w-full justify-between">
+          <TextFieldRoot size="md">
+            <TextFieldDecorator className="text-xl text-text-tertiary">
+              <MailLine />
+            </TextFieldDecorator>
+            <TextFieldInput placeholder="Send us your feedback" />
+          </TextFieldRoot>
+          <Button
+            size="sm"
+            variant="outline"
+            color="neutral"
+            className="group"
+            asChild
+          >
+            <Link href={ROUTES.CHANGELOG}>
+              View all releases
+              <ArrowRightLine className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </Button>
         </div>
       </div>
     </Layout>
