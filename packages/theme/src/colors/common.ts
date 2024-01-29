@@ -26,7 +26,7 @@ export const neutral = {
   600: '#5D6267',
   700: '#4C5054',
   800: '#333639',
-  900: '#17181D',
+  900: '#232426',
   1000: '#000000', // NOTE: Missing in design system on figma.
 }
 

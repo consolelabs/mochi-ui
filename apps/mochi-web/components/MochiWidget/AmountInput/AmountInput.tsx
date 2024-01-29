@@ -250,7 +250,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('1')}
               tabIndex={-1}
-              className="bg-white-pure"
+              className="!bg-background-body"
             >
               {!isUsdMode ? '$' : ''}1
             </Button>
@@ -261,7 +261,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('2')}
               tabIndex={-1}
-              className="bg-white-pure"
+              className="!bg-background-body"
             >
               {!isUsdMode ? '$' : ''}2
             </Button>
@@ -272,7 +272,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               style={{ padding: '0.25rem 0.625rem', borderRadius: '0.5rem' }}
               onClick={() => handleQuickAmount('5')}
               tabIndex={-1}
-              className="bg-white-pure"
+              className="!bg-background-body"
             >
               {!isUsdMode ? '$' : ''}5
             </Button>

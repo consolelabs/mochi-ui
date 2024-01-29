@@ -411,7 +411,7 @@ const itemCva = cva(
     'text-sm',
     'truncate',
     'font-medium',
-    'hover:bg-background-level2 focus:bg-background-level2',
+    'hover:bg-background-hover focus:bg-background-hover',
     'hover:outline-none focus:outline-none',
     'cursor-pointer',
     'p-2',

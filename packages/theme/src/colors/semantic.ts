@@ -252,6 +252,7 @@ export const semanticColors = {
       popup: commonColors.white, // dropdown, menu
       tooltip: commonColors.neutral[500], // slider tooltip
       backdrop: 'rgba(23, 24, 29, .4)', // 40%
+      hover: commonColors.neutral['100'],
     },
     divider: 'rgba(20, 21, 24, .10)',
     focus: commonColors.primary['100'],
@@ -269,14 +270,14 @@ export const semanticColors = {
       outline: {
         fg: commonColors.primary['300'],
         border: commonColors.primary['700'],
-        hover: commonColors.primary['800'],
+        hover: commonColors.primary['900'],
         active: commonColors.primary['800'],
         'disable-fg': commonColors.neutral['600'],
         'disable-border': commonColors.neutral['800'],
       },
       plain: {
         fg: commonColors.primary['300'],
-        hover: commonColors.primary['800'],
+        hover: commonColors.primary['900'],
         active: commonColors.primary['800'],
         'disable-fg': commonColors.neutral['600'],
       },
@@ -302,14 +303,14 @@ export const semanticColors = {
       outline: {
         fg: commonColors.secondary['300'],
         border: commonColors.secondary['700'],
-        hover: commonColors.secondary['800'],
+        hover: commonColors.secondary['900'],
         active: commonColors.secondary['800'],
         'disable-fg': commonColors.neutral['600'],
         'disable-border': commonColors.neutral['800'],
       },
       plain: {
         fg: commonColors.secondary['300'],
-        hover: commonColors.secondary['800'],
+        hover: commonColors.secondary['900'],
         active: commonColors.secondary['800'],
         'disable-fg': commonColors.neutral['600'],
       },
@@ -335,14 +336,14 @@ export const semanticColors = {
       outline: {
         fg: commonColors.success['300'],
         border: commonColors.success['700'],
-        hover: commonColors.success['800'],
+        hover: commonColors.success['900'],
         active: commonColors.success['800'],
         'disable-fg': commonColors.neutral['600'],
         'disable-border': commonColors.neutral['800'],
       },
       plain: {
         fg: commonColors.success['300'],
-        hover: commonColors.success['800'],
+        hover: commonColors.success['900'],
         active: commonColors.success['800'],
         'disable-fg': commonColors.neutral['600'],
       },
@@ -368,14 +369,14 @@ export const semanticColors = {
       outline: {
         fg: commonColors.warning['300'],
         border: commonColors.warning['700'],
-        hover: commonColors.warning['800'],
+        hover: commonColors.warning['900'],
         active: commonColors.warning['800'],
         'disable-fg': commonColors.neutral['600'],
         'disable-border': commonColors.neutral['800'],
       },
       plain: {
         fg: commonColors.warning['300'],
-        hover: commonColors.warning['800'],
+        hover: commonColors.warning['900'],
         active: commonColors.warning['800'],
         'disable-fg': commonColors.neutral['600'],
       },
@@ -401,14 +402,14 @@ export const semanticColors = {
       outline: {
         fg: commonColors.danger['300'],
         border: commonColors.danger['700'],
-        hover: commonColors.danger['800'],
+        hover: commonColors.danger['900'],
         active: commonColors.danger['800'],
         'disable-fg': commonColors.neutral['600'],
         'disable-border': commonColors.neutral['800'],
       },
       plain: {
         fg: commonColors.danger['300'],
-        hover: commonColors.danger['800'],
+        hover: commonColors.danger['900'],
         active: commonColors.danger['800'],
         'disable-fg': commonColors.neutral['600'],
       },
@@ -434,14 +435,14 @@ export const semanticColors = {
       outline: {
         fg: commonColors.neutral['300'],
         border: commonColors.neutral['700'],
-        hover: commonColors.neutral['800'],
+        hover: commonColors.neutral['900'],
         active: commonColors.neutral['800'],
         'disable-fg': commonColors.neutral['600'],
         'disable-border': commonColors.neutral['800'],
       },
       plain: {
         fg: commonColors.neutral['300'],
-        hover: commonColors.neutral['800'],
+        hover: commonColors.neutral['900'],
         active: commonColors.neutral['800'],
         'disable-fg': commonColors.neutral['600'],
       },
@@ -458,7 +459,7 @@ export const semanticColors = {
     text: {
       primary: commonColors.neutral['100'],
       secondary: commonColors.neutral['300'],
-      tertiary: commonColors.neutral['400'],
+      tertiary: commonColors.neutral['500'],
       disabled: commonColors.neutral['600'],
       icon: commonColors.neutral['50'], // removeable
       'icon-primary': commonColors.neutral['50'],
@@ -470,13 +471,13 @@ export const semanticColors = {
       level1: commonColors.neutral['900'],
       level2: commonColors.neutral['800'],
       level3: commonColors.neutral['700'],
-      surface: commonColors.neutral['900'], // card, sheet, drawer
+      surface: commonColors.neutral['800'],
       popup: commonColors.neutral['800'], // dropdown, menu
       tooltip: commonColors.neutral['600'], // slider tooltip
       backdrop: 'rgba(0, 0, 0, .4)', // 40%
-      // hover: 'rgba(255, 255, 255, .04)',
+      hover: 'rgba(93, 98, 103, 0.3)', // migrate hover state
     },
-    divider: 'rgba(76, 80, 84, .5)',
+    divider: 'rgba(93,98,103, .75)',
     focus: commonColors.primary['700'],
   },
 }

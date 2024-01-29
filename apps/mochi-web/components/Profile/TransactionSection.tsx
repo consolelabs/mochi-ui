@@ -1,5 +1,6 @@
 import { TransactionTable } from '~cpn/TransactionTable'
 import {
+  Card,
   SectionHeader,
   SectionHeaderActions,
   SectionHeaderTitle,
@@ -61,7 +62,7 @@ export const TransactionOverviewSection = () => {
           />
         </SectionHeaderActions>
       </SectionHeader>
-      <div className="overflow-hidden mt-1 rounded-lg border border-divider bg-background-body">
+      <Card className="mt-1 !p-0 !rounded-lg">
         {ready && (
           <TransactionTable
             cellClassName={() => 'h-[60px]'}
@@ -94,7 +95,7 @@ export const TransactionOverviewSection = () => {
             }}
           />
         )}
-      </div>
+      </Card>
     </div>
   )
 }
