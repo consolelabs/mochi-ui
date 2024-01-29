@@ -1,3 +1,5 @@
+import { useClipboard } from '@dwarvesf/react-hooks'
+import { truncate } from '@dwarvesf/react-utils'
 import {
   Alert,
   AlertDescription,
@@ -11,9 +13,8 @@ import {
   Tooltip,
   Typography,
 } from '@mochi-ui/core'
-import { ThreeDotLoading, CopyLine } from '@mochi-ui/icons'
-import { truncate } from '@dwarvesf/react-utils'
-import { useClipboard } from '@dwarvesf/react-hooks'
+import { CopyLine, ThreeDotLoading } from '@mochi-ui/icons'
+import { useMemo } from 'react'
 import { Control, Controller } from 'react-hook-form'
 import { AppDetailFormValues } from '~types/app'
 import { CodeSnippet } from './CodeSnippet'
@@ -23,6 +24,8 @@ interface Props {
   apiKey?: string
   control: Control<AppDetailFormValues>
   secretKey?: string
+  appId?: string
+  profileId?: string
   onResetSecretKey: () => void
   isResettingSecretKey?: boolean
 }
@@ -31,6 +34,8 @@ export const AppDetailIntegration = ({
   apiKey = '',
   control,
   secretKey = '',
+  appId,
+  profileId,
   onResetSecretKey,
   isResettingSecretKey,
 }: Props) => {
@@ -38,6 +43,10 @@ export const AppDetailIntegration = ({
     useClipboard(apiKey)
   const { onCopy: onCopySecretKey, hasCopied: hasCopiedSecretKey } =
     useClipboard(secretKey)
+
+  const code = useMemo(() => {
+    return `curl --location https://api.mochi-pay.console.so/api/v1/profiles/${profileId}/applications/${appId}/balances \\\n  --header 'Content-Type: application/json' \\\n  --header 'Authorization: <Bearer token>'`
+  }, [appId, profileId])
 
   return (
     <div className="mt-8">
@@ -154,7 +163,7 @@ export const AppDetailIntegration = ({
             </Typography>
           )}
         </div>
-        <CodeSnippet />
+        <CodeSnippet code={code} />
       </div>
       <Controller
         name="webhook"
