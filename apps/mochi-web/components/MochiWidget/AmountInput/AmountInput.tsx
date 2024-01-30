@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import { Button, IconButton, Tooltip, Typography } from '@mochi-ui/core'
 import {
   ChangeEvent,
@@ -69,11 +70,13 @@ export const AmountInput: React.FC<AmountInputProps> = ({
       }`.trim()
 
   const balanceUsd = !isToken(request.asset)
-    ? formatTokenAmount(
-        getBalanceByMoniker(selectedAsset as Moniker, wallet).value *
-          (request.asset?.token_amount ?? 0) *
-          unitPrice,
-      ).display
+    ? `$${
+        formatTokenAmount(
+          getBalanceByMoniker(selectedAsset as Moniker, wallet).value *
+            (request.asset?.token_amount ?? 0) *
+            unitPrice,
+        ).display
+      }`
     : utils.formatUsdDigit((selectedAsset?.asset_balance ?? 0) * unitPrice)
 
   // tipAmountUSD will be inaccurate if it's rounded by formatUsdDigit. Ex: $1 -> $0.99, $2 -> $1.99
@@ -83,7 +86,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   const tipAmountUSD = utils.formatDigit({
     value,
     fractionDigits: 1,
-    shorten: value >= 1,
+    shorten: value >= 0,
     takeExtraDecimal: 1,
   })
 
@@ -105,7 +108,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   const tipAmountToken = utils.formatDigit({
     value: valueToken,
     fractionDigits: 2,
-    shorten: valueToken >= 1,
+    shorten: valueToken >= 0,
     takeExtraDecimal: 1,
   })
 
@@ -130,8 +133,16 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   }, [authorized, setSelectedAsset])
 
   function handleQuickAmount(amount: string) {
+    let value = Number(amount)
+    if (isUsdMode && isMonikerAsset) {
+      value *= selectedAsset?.token_amount ?? 0
+    }
+    if (!isUsdMode && isMonikerAsset) {
+      value /= (selectedAsset?.token_amount ?? 0) * unitPrice
+    } else {
+      value /= unitPrice
+    }
     // Amount is USD -> convert to token amount
-    let value = Number(amount) / unitPrice
     if (isUsdMode) {
       value *= unitPrice
       value *= unitPrice
@@ -148,6 +159,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
 
   const handleAssetChanged = useCallback(
     (asset: BalanceWithSource | Moniker | null) => {
+      if (!authorized) return
       setSelectedAsset(asset)
       // only set to init if asset is null
       // otherwise user might be coming back from step 2
@@ -157,7 +169,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
       }
       onSelectAsset?.(asset)
     },
-    [onAmountChanged, onSelectAsset, setSelectedAsset],
+    [authorized, onAmountChanged, onSelectAsset, setSelectedAsset],
   )
 
   function handleKeyDown(event: KeyboardEvent) {
@@ -199,10 +211,24 @@ export const AmountInput: React.FC<AmountInputProps> = ({
       formattedAmount.display = event.target.value // Keep displaying the original user input
       setTipAmount(formattedAmount)
       onAmountChanged?.(
-        isUsdMode ? formattedAmount.value / unitPrice : formattedAmount.value,
+        isUsdMode
+          ? formatTokenAmount(formattedAmount.value / unitPrice).value
+          : formattedAmount.value,
       )
     },
     [isUsdMode, onAmountChanged, unitPrice],
+  )
+
+  const handleSwitchAmount = useCallback(
+    (value: string) => {
+      const formattedAmount = formatTokenAmount(value)
+      if (formattedAmount.value === 0) return
+      setTipAmount(formattedAmount)
+      onAmountChanged?.(
+        formatTokenAmount(formattedAmount.value / unitPrice).value,
+      )
+    },
+    [onAmountChanged, unitPrice],
   )
 
   function onBlurInput(event: ChangeEvent<HTMLInputElement>) {
@@ -210,7 +236,9 @@ export const AmountInput: React.FC<AmountInputProps> = ({
     const formattedAmount = formatTokenAmount(event.target.value)
     setTipAmount(formattedAmount)
     onAmountChanged?.(
-      isUsdMode ? formattedAmount.value / unitPrice : formattedAmount.value,
+      isUsdMode
+        ? formatTokenAmount(formattedAmount.value / unitPrice).value
+        : formattedAmount.value,
     )
   }
 
@@ -289,15 +317,9 @@ export const AmountInput: React.FC<AmountInputProps> = ({
               variant="link"
               onClick={() => {
                 if (!isUsdMode) {
-                  handleAmountChanged({
-                    target: {
-                      value: String(tipAmountUSDhidden),
-                    },
-                  })
+                  handleSwitchAmount(String(tipAmountUSDhidden))
                 } else {
-                  handleAmountChanged({
-                    target: { value: String(tipAmountTokenHidden) },
-                  })
+                  handleSwitchAmount(String(tipAmountTokenHidden))
                 }
                 toggleUsdMode()
               }}
@@ -337,7 +359,11 @@ export const AmountInput: React.FC<AmountInputProps> = ({
           </div>
           <span className="col-span-4 row-start-2 text-sm text-left shrink-0 text-text-tertiary">
             &#8776; {!isUsdMode ? tipAmountUSD : tipAmountToken}{' '}
-            {!isUsdMode ? 'USD' : selectedAsset?.token.symbol}
+            {!isUsdMode
+              ? 'USD'
+              : isMonikerAsset
+                ? selectedAsset?.name
+                : selectedAsset?.token.symbol}
           </span>
           <button
             tabIndex={-1}

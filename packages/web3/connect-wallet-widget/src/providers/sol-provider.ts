@@ -64,12 +64,14 @@ export class ProviderSOL extends ChainProvider {
 
       const signResult = await this.provider.signMessage(hexedMsg)
       let signature
-      let pb
+      let pb = this.provider.publicKey
       if (signResult instanceof Uint8Array) {
         signature = signResult
-        pb = this.provider.publicKey
       } else {
         signature = signResult.signature
+      }
+
+      if (!pb) {
         pb = signResult.publicKey
       }
 
