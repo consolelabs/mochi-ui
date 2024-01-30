@@ -143,6 +143,7 @@ export const AppDetailNewUrl = ({ onAddNewUrl }: Props) => {
                     size="sm"
                     variant="soft"
                     leftIcon={getIcon(field.value)}
+                    className="min-w-[156px]"
                   >
                     <SelectValue placeholder="Select link" />
                   </SelectTrigger>

@@ -80,7 +80,7 @@ export const AppDetailUrl = ({ control, errors }: Props) => {
                     render={({ field }) => (
                       <Select {...field}>
                         <SelectTrigger
-                          className="bg-neutral-outline"
+                          className="bg-neutral-outline min-w-[156px]"
                           leftIcon={getIcon(field.value)}
                         >
                           <SelectValue placeholder="Select link" />

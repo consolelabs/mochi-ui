@@ -1,3 +1,4 @@
+import { AssociatedAccount } from '@consolelabs/mochi-rest'
 import { Avatar, Button, ColumnProps, Table, Typography } from '@mochi-ui/core'
 import { AddUserSolid } from '@mochi-ui/icons'
 import { useFetchApplicationDetailMembers } from '~hooks/app/useFetchApplicationDetailMembers'
@@ -10,14 +11,21 @@ interface Props {
   appId?: string
 }
 
-const Name: ColumnProps<ViewApplicationMember>['cell'] = (props) => (
-  <div className="flex items-center space-x-3.5">
-    <Avatar src={props.row.original.profile_metadata?.avatar || ''} />
-    <Typography level="h8">
-      {props.row.original.profile_metadata?.username}
-    </Typography>
-  </div>
-)
+const Name: ColumnProps<ViewApplicationMember>['cell'] = (props) => {
+  // @ts-ignore -- need to inform BE to update schemas
+  const profile = props.row.original.profile
+  const name = profile.associated_accounts.find(
+    (a: AssociatedAccount) => a.platform_metadata?.username,
+  )?.platform_metadata?.username
+  const avatarSrc = profile.avatar
+
+  return (
+    <div className="flex items-center space-x-3.5">
+      <Avatar src={avatarSrc || ''} />
+      <Typography level="h8">{name}</Typography>
+    </div>
+  )
+}
 
 export const AppDetailMembers = ({ profileId, appId }: Props) => {
   const { data: members = [], isLoading } = useFetchApplicationDetailMembers(
@@ -31,7 +39,7 @@ export const AppDetailMembers = ({ profileId, appId }: Props) => {
         <Typography level="p4" className="font-medium">
           Members {members.length ? `(${members.length})` : ''}
         </Typography>
-        <Button size="sm" color="neutral" variant="outline">
+        <Button size="sm" color="neutral" variant="outline" disabled>
           <AddUserSolid className="w-4 h-4" />
           Invite
         </Button>
@@ -41,6 +49,7 @@ export const AppDetailMembers = ({ profileId, appId }: Props) => {
         className="min-w-[600px]"
         data={members}
         isLoading={isLoading}
+        cellClassName={() => 'px-4'}
         columns={[
           {
             header: 'Name',
