@@ -1,6 +1,6 @@
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { useMochiWidget, useWalletStore } from '~store'
-import { useCallback, useEffect, useMemo } from 'react'
+import { useCallback, useEffect, useMemo, useRef } from 'react'
 import { Button } from '@mochi-ui/core'
 import { ArrowRightLine, ChevronDownLine } from '@mochi-ui/icons'
 import { MAX_AMOUNT_PRECISION, formatTokenAmount } from '~utils/number'
@@ -32,6 +32,7 @@ export default function StepOne() {
   const { setSelectedAsset } = useMochiWidget()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { isLoggedIn, profile } = useLoginWidget()
+  const timeout = useRef<number>(0)
   const amountErrorMgs = useMemo(() => {
     if (!request.amount) return ''
     if (isToken(request.asset)) {
@@ -78,26 +79,34 @@ export default function StepOne() {
   )
 
   useEffect(() => {
-    if (!isLoggedIn || !profile) return
-    setWallets(profile).then((wallets) => {
-      // if there is previously chosen asset
-      // refresh that assset's balance
-      if (request.asset) {
-        const chosenWallet = wallets.find((w) => w.id === wallet?.id)
-        const asset = chosenWallet?.balances.find(
-          (b) =>
-            b.token.address.toLowerCase() ===
-            request.asset?.token.address.toLowerCase(),
-        )
-        if (asset) {
-          setSelectedAsset(asset)
-        }
+    window.clearTimeout(timeout.current)
+    timeout.current = window.setTimeout(() => {
+      if (!profile) {
+        setSelectedAsset(null)
+        return
       }
-    })
+      setWallets(profile).then((wallets) => {
+        // if there is previously chosen asset
+        // refresh that assset's balance
+        if (request.asset) {
+          const chosenWallet = wallets.find((w) => w.id === wallet?.id)
+          const asset = chosenWallet?.balances.find(
+            (b) =>
+              b.token.address.toLowerCase() ===
+              request.asset?.token.address.toLowerCase(),
+          )
+          if (asset && isLoggedIn) {
+            setSelectedAsset(asset)
+            return
+          }
+          setSelectedAsset(null)
+        }
+      })
 
-    onClose()
+      onClose()
+    }, 500)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoggedIn, onClose, profile])
+  }, [isLoggedIn])
 
   return (
     <div className="flex flex-col flex-1 gap-y-3 h-full min-h-0">

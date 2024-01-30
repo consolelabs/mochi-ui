@@ -233,20 +233,7 @@ export const Recipient: React.FC<RecipientProps> = ({
           </Tooltip>
         </div>
 
-        <div
-          className="flex gap-x-2 items-center py-2.5 px-3 rounded-lg bg-background-body"
-          style={
-            isOpenRecipients
-              ? {
-                  borderBottomLeftRadius: 0,
-                  borderBottomRightRadius: 0,
-                  border: '1px solid #017AFF',
-                  boxShadow:
-                    '0px 0px 0px 4px rgba(1, 122, 255, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.05)',
-                }
-              : {}
-          }
-        >
+        <div className="flex gap-x-2 items-center py-2.5 px-3 rounded-lg bg-background-body">
           <span className="pt-0.5 text-lg h-[34px] text-text-tertiary">@</span>
           <input
             id="recipients"
@@ -343,7 +330,7 @@ export const Recipient: React.FC<RecipientProps> = ({
                 ) : null}
                 {prefix ? (
                   <TextFieldDecorator>
-                    <div className="flex gap-x-1 items-center py-0.5 px-2 -ml-2 text-sm bg-background-level3 rounded text-text-primary">
+                    <div className="flex gap-x-1 items-center py-0.5 px-2 -ml-2 text-sm rounded bg-background-level3 text-text-primary">
                       {prefix}
                     </div>
                   </TextFieldDecorator>
@@ -403,7 +390,7 @@ export const Recipient: React.FC<RecipientProps> = ({
             <TextFieldRoot className="flex-shrink-0 mt-2">
               {prefix ? (
                 <TextFieldDecorator>
-                  <div className="flex gap-x-1 items-center py-0.5 px-2 -ml-2 text-sm bg-background-level3 rounded text-text-primary">
+                  <div className="flex gap-x-1 items-center py-0.5 px-2 -ml-2 text-sm rounded bg-background-level3 text-text-primary">
                     {prefix}
                   </div>
                 </TextFieldDecorator>
