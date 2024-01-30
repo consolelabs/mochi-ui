@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import { useLoginWidget } from '@mochi-web3/login-widget'
 import { ActivityType } from '@consolelabs/mochi-rest'
 import {
@@ -26,7 +27,9 @@ import {
   CheckLine,
   GearLine,
   InboxLine,
+  BellNewSolid,
 } from '@mochi-ui/icons'
+import { api } from '~constants/mochi'
 import clsx from 'clsx'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
@@ -49,9 +52,17 @@ const NAVBAR_HEIGHT = 56
 const NotificationList = () => {
   const { profile } = useLoginWidget()
   const [tabValue, setTabValue] = useState<'for-you' | 'unread'>('for-you')
-  const unreadCount = useUnreadNotiCount(profile?.id)
-  const { isEnd, data, isLoading, isValidating, refresh, nextPage } =
-    useNotificationData(tabValue, profile?.id)
+  const { count: unreadCount, refresh: refreshUnreadCount } =
+    useUnreadNotiCount(profile?.id)
+  const {
+    isEnd,
+    data,
+    isLoading,
+    isValidating,
+    refresh,
+    optimisticMarkReadAll,
+    nextPage,
+  } = useNotificationData(tabValue, profile?.id)
   const actualRowCount = data?.length || MAX_ROW_COUNT
   const {
     isOpen: isLoadMore,
@@ -101,7 +112,11 @@ const NotificationList = () => {
           label=""
           className="!p-1 !w-8 !h-8 my-auto hidden lg:block"
         >
-          <BellSolid className="w-full h-full text-neutral-800" />
+          {unreadCount > 0 ? (
+            <BellNewSolid className="w-full h-full text-neutral-800" />
+          ) : (
+            <BellSolid className="w-full h-full text-neutral-800" />
+          )}
         </IconButton>
       </DropdownMenuTrigger>
       <DropdownMenuContent sideOffset={10} className="!p-0 overflow-hidden">
@@ -150,6 +165,16 @@ const NotificationList = () => {
                     label=""
                     variant="link"
                     className="p-0.5 text-text-icon-secondary"
+                    onClick={() => {
+                      if (!profile?.id) return
+                      api.profile.activities.markReadAll({
+                        profileId: profile.id,
+                      })
+
+                      // optimistic update
+                      optimisticMarkReadAll()
+                      refreshUnreadCount(0)
+                    }}
                   >
                     <CheckCircleOutlined className="w-5 h-5" />
                   </IconButton>
@@ -174,7 +199,7 @@ const NotificationList = () => {
           <Badge
             appearance="primary"
             className={clsx(
-              'cursor-pointer top-[45px] left-1/2 -translate-x-1/2 z-10 absolute inline-flex transition !bg-primary-solid',
+              'cursor-pointer top-[44px] left-1/2 -translate-x-1/2 z-10 absolute inline-flex transition !bg-primary-solid',
               {
                 '-translate-y-full': !isShowScrollTop,
                 'translate-y-1/2': isShowScrollTop,
@@ -220,7 +245,7 @@ const NotificationList = () => {
                     <SkeletonCore className="mx-auto w-1/2 h-5 rounded" />
                   </div>
                 </>
-              ) : (
+              ) : data.length !== 0 ? (
                 <Virtualizer
                   onScroll={(offset) => {
                     if (offset < ROW_HEIGHT && isShowScrollTop)
@@ -254,7 +279,6 @@ const NotificationList = () => {
                       /* case 'vault_transfer': */
                       /*   return <VaultRow /> */
                       case ActivityType.ACTIVITY_PAY_RECEIVE:
-                      case ActivityType.ACTIVITY_PAY_SEND:
                         content = (
                           <TransferRow key={key} refresh={refresh} {...d} />
                         )
@@ -293,12 +317,12 @@ const NotificationList = () => {
                     >
                       <CheckLine className="w-3.5 h-3.5 text-text-secondary" />
                       <Typography level="p5" color="textSecondary">
-                        You&apos;re caught up!
+                        You&apos;re all caught up!
                       </Typography>
                     </div>
                   )}
                 </Virtualizer>
-              )}
+              ) : null}
               {data?.length === 0 && !isLoading && (
                 <div className="flex justify-center items-center w-full h-full">
                   <div className="flex flex-col items-center">

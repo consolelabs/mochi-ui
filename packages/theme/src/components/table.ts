@@ -32,7 +32,7 @@ const tableHeaderClsx = ({
   size,
 }: { className?: string; stickyHeader?: boolean; size?: 'sm' | 'md' } = {}) =>
   clsx(
-    'whitespace-nowrap py-3 text-xxs font-semibold tracking-tight uppercase min-w-[48px] text-text-tertiary',
+    'relative z-20 whitespace-nowrap py-3 text-xxs font-semibold tracking-tight uppercase min-w-[48px] text-text-tertiary',
     stickyHeader
       ? 'sticky top-0 bg-background-surface after:absolute after:inset-0 after:h-full after:w-full after:border-b after:border-divider'
       : 'border-b border-divider',
