@@ -137,10 +137,13 @@ export default function ProfileDropdown({
                   <DropdownMenuItem hasPaddingLeft>Explore</DropdownMenuItem>
                 </Link>
                 <Link href={ROUTES.DOCS}>
-                  <DropdownMenuItem hasPaddingLeft>API</DropdownMenuItem>
+                  <DropdownMenuItem hasPaddingLeft>API docs</DropdownMenuItem>
                 </Link>
                 <Link href={ROUTES.CHANGELOG}>
                   <DropdownMenuItem hasPaddingLeft>Changelog</DropdownMenuItem>
+                </Link>
+                <Link href={ROUTES.DEVELOPER}>
+                  <DropdownMenuItem hasPaddingLeft>Developer</DropdownMenuItem>
                 </Link>
               </AccordionContent>
             </AccordionItem>
