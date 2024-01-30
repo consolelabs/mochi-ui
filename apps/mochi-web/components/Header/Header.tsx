@@ -40,6 +40,7 @@ import {
   WalletSolid,
   CodingSolid,
   Github,
+  TwinkleSolid,
 } from '@mochi-ui/icons'
 import NotificationList from '~cpn/NotificationList'
 import clsx from 'clsx'
@@ -384,7 +385,13 @@ export const Header = ({
                 leftIcon={<Github />}
                 onClick={() => window.open(GITHUB_LINK, '_blank')}
               >
-                Telegram
+                Github
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                leftIcon={<TwinkleSolid />}
+                onClick={() => window.open(ROUTES.CHANGELOG, '_blank')}
+              >
+                Changelog
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>,

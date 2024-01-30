@@ -16,6 +16,7 @@ import {
   Tooltip,
   Badge,
   BadgeIcon,
+  Skeleton as SkeletonCore,
 } from '@mochi-ui/core'
 import { Virtualizer } from 'virtua'
 import {
@@ -26,7 +27,7 @@ import {
   InboxLine,
 } from '@mochi-ui/icons'
 import clsx from 'clsx'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import WithdrawRow from './WithdrawRow'
@@ -40,7 +41,9 @@ import Skeleton from './Skeleton'
 import { MAX_PER_PAGE, useNotificationData, useUnreadNotiCount } from './util'
 
 const MAX_ROW_COUNT = 7
+const HEADER_HEIGHT = 45
 const FOOTER_HEIGHT = 46
+const NAVBAR_HEIGHT = 56
 
 const NotificationList = () => {
   const { profile } = useLoginWidget()
@@ -57,9 +60,19 @@ const NotificationList = () => {
 
   const { isOpen, onClose, onOpenChange } = useDisclosure()
 
-  const height =
-    Math.min(MAX_ROW_COUNT, actualRowCount) * ROW_HEIGHT +
-    (isLoading || data.length < MAX_PER_PAGE ? 0 : FOOTER_HEIGHT)
+  const { height, maxRow } = useMemo(() => {
+    const getContentHeight = (limit: number) =>
+      Math.min(limit, actualRowCount) * ROW_HEIGHT + FOOTER_HEIGHT
+
+    for (let i = MAX_ROW_COUNT; i > 1; i--) {
+      const h = getContentHeight(i)
+      if (h < window.innerHeight - NAVBAR_HEIGHT - HEADER_HEIGHT)
+        return { height: h, maxRow: i }
+    }
+
+    return { height: getContentHeight(2), maxRow: 2 }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [actualRowCount, data.length, isOpen])
 
   const scrollRef = useRef<HTMLDivElement>(null)
 
@@ -73,6 +86,10 @@ const NotificationList = () => {
     if (isValidating) return
     setIsNotLoadMore()
   }, [isValidating, setIsNotLoadMore])
+
+  useEffect(() => {
+    if (!isOpen) setHideScrollTop()
+  }, [isOpen, setHideScrollTop])
 
   return (
     <DropdownMenu open={isOpen} onOpenChange={onOpenChange}>
@@ -189,9 +206,19 @@ const NotificationList = () => {
               })}
             >
               {isLoading ? (
-                Array(7)
-                  .fill(0)
-                  .map((_, i) => <Skeleton key={i} />)
+                <>
+                  {Array(maxRow)
+                    .fill(0)
+                    .map((_, i) => (
+                      <Skeleton key={i} />
+                    ))}
+                  <div
+                    style={{ height: FOOTER_HEIGHT }}
+                    className="py-3 px-4 w-full"
+                  >
+                    <SkeletonCore className="mx-auto w-1/2 h-5 rounded" />
+                  </div>
+                </>
               ) : (
                 <Virtualizer
                   onScroll={(offset) => {

@@ -148,7 +148,12 @@ const TokenSection = ({ type, statTx }: Props) => {
               {statTx?.token?.symbol}
             </Typography>
             <Typography level="h8" color="textDisabled" className="font-mono">
-              ({mochiUtils.formatUsdDigit(statTx.usd_amount || 0)})
+              (
+              {mochiUtils.formatUsdDigit({
+                value: statTx.usd_amount || 0,
+                shorten: false,
+              })}
+              )
             </Typography>
           </div>
         </div>
