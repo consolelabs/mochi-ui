@@ -254,7 +254,7 @@ export const semanticColors = {
       backdrop: 'rgba(23, 24, 29, .4)', // 40%
       hover: commonColors.neutral['100'],
     },
-    divider: 'rgba(20, 21, 24, .10)',
+    divider: 'rgba(35,36,38, 0.08)',
     focus: commonColors.primary['100'],
   },
   dark: {
