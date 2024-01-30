@@ -1,4 +1,3 @@
-import { AssociatedAccount } from '@consolelabs/mochi-rest'
 import { Avatar, Button, ColumnProps, Table, Typography } from '@mochi-ui/core'
 import { AddUserSolid } from '@mochi-ui/icons'
 import { useFetchApplicationDetailMembers } from '~hooks/app/useFetchApplicationDetailMembers'
@@ -12,12 +11,11 @@ interface Props {
 }
 
 const Name: ColumnProps<ViewApplicationMember>['cell'] = (props) => {
-  // @ts-ignore -- need to inform BE to update schemas
-  const profile = props.row.original.profile
-  const name = profile.associated_accounts.find(
-    (a: AssociatedAccount) => a.platform_metadata?.username,
+  const { profile } = props.row.original
+  const name = (profile?.associated_accounts || []).find(
+    (a) => a.platform_metadata?.username,
   )?.platform_metadata?.username
-  const avatarSrc = profile.avatar
+  const avatarSrc = profile?.avatar
 
   return (
     <div className="flex items-center space-x-3.5">

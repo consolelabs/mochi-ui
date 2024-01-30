@@ -40,10 +40,7 @@ export const AppDetailStatistics = ({
   refresh,
 }: Props) => {
   const { toast } = useToast()
-  const { data: stats } = useFetchApplicationDetailStats(
-    profileId,
-    appId,
-  ) as any // FIXME: Remove after schema is updated
+  const { data: stats } = useFetchApplicationDetailStats(profileId, appId)
   const [editing, setEditing] = useState('')
   const inputFile = useRef<HTMLInputElement>(null)
   const [uploading, setUploading] = useState(false)
@@ -194,7 +191,7 @@ export const AppDetailStatistics = ({
           label="Balance"
           amount={stats?.balance_in_total || 0}
           formatAmount={(amount) => `$${formatNumber(amount)}`}
-          change={stats?.balance_in_total_change?.last_week || 0}
+          change={stats?.balance_in_total_change_vs_last_week || 0}
           formatChange={(change) => `$${formatNumber(change)}`}
           milestone="week"
           footer={

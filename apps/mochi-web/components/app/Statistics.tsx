@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const Statistics = ({ id, onOpenCreateAppModal }: Props) => {
-  const { data: stats } = useFetchApplicationStats(id) as any // FIXME: Remove after schema is updated
+  const { data: stats } = useFetchApplicationStats(id)
 
   return (
     <div className="flex flex-col gap-2 p-2 bg-background-level2 rounded-2xl sm:flex-row">
