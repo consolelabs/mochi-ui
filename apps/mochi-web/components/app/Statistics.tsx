@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const Statistics = ({ id, onOpenCreateAppModal }: Props) => {
-  const { data: stats } = useFetchApplicationStats(id)
+  const { data: stats } = useFetchApplicationStats(id) as any // FIXME: Remove after schema is updated
 
   return (
     <div className="flex flex-col gap-2 p-2 bg-background-level2 rounded-2xl sm:flex-row">
@@ -36,40 +36,40 @@ export const Statistics = ({ id, onOpenCreateAppModal }: Props) => {
         <StatisticsBox
           label="All time Users"
           amount={stats?.users_in_total}
-          change={stats?.users_in_total_change?.last_month_percentage}
           className="sm:order-1"
         />
         <StatisticsBox
           label="7 days Users"
           amount={stats?.users_in_7d}
-          change={stats?.users_in_7d_change?.last_month_percentage}
+          change={stats?.users_in_7d_change_percentage_vs_last_period}
           className="sm:order-4"
+          milestone="week"
         />
         <StatisticsBox
           label="All time Revenue"
           amount={stats?.revenue_in_total}
           formatAmount={(amount) => `$${formatNumber(amount)}`}
-          change={stats?.revenue_in_total_change?.last_month_percentage}
           className="sm:order-2"
         />
         <StatisticsBox
           label="7 days Revenue"
           amount={stats?.revenue_in_7d}
           formatAmount={(amount) => `$${formatNumber(amount)}`}
-          change={stats?.revenue_in_7d_change?.last_month_percentage}
+          change={stats?.revenue_in_7d_change_percentage_vs_last_period}
           className="sm:order-5"
+          milestone="week"
         />
         <StatisticsBox
           label="All time Txs"
           amount={stats?.txs_in_total}
-          change={stats?.txs_in_total_change?.last_month_percentage}
           className="sm:order-3"
         />
         <StatisticsBox
           label="7 days Txs"
           amount={stats?.txs_in_7d}
-          change={stats?.txs_in_7d_change?.last_month_percentage}
+          change={stats?.txs_in_7d_change_percentage_vs_last_period}
           className="sm:order-6"
+          milestone="week"
         />
       </div>
     </div>
