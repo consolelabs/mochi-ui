@@ -8,7 +8,8 @@ import useSWRInfinite from 'swr/infinite'
 import { api } from '~constants/mochi'
 
 export const MAX_PER_PAGE = 20
-const actions = [8, 9, 10, 11, 12]
+const actions = [8, 9, 11, 13]
+const REFRESH_INTERVAL_MS = 1000 * 60
 
 export type NotificationRow = {
   id: number
@@ -28,6 +29,7 @@ export type NotificationRow = {
     symbol: string
     icon: string
     decimal: number
+    chainIcon: string
   }
 }
 
@@ -37,11 +39,13 @@ async function transform(raw: any) {
     raw.user_profile_id || raw.target_profile_id,
     raw.target_profile_id || raw.user_profile_id,
   )
-  const amount = raw.changes.find((c: any) => c.key === 'amount')?.value
-  const symbol = raw.changes.find((c: any) => c.key === 'token')?.value
+  const symbol =
+    raw.token?.symbol ?? raw.changes.find((c: any) => c.key === 'token')?.value
   const decimal = Number(
-    raw.changes.find((c: any) => c.key === 'decimal')?.value,
+    raw.token?.decimal ??
+      raw.changes.find((c: any) => c.key === 'decimal')?.value,
   )
+  const amount = raw.changes.find((c: any) => c.key === 'amount')?.value
   const validDecimal = typeof decimal === 'number' && !Number.isNaN(decimal)
 
   let token
@@ -49,7 +53,8 @@ async function transform(raw: any) {
     token = {
       symbol,
       decimal: -1,
-      icon: '',
+      icon: raw.token?.icon ?? '',
+      chainIcon: raw.token?.chain?.icon ?? '',
     }
   }
 
@@ -59,16 +64,17 @@ async function transform(raw: any) {
 
   return {
     id: raw.id,
+    externalId: raw.external_id,
     type: raw.type,
     time: formatRelative(raw.created_at),
     isNew: raw.status === 'new',
     from: {
       address: emojiStrip(from?.plain ?? ''),
-      avatar: '',
+      avatar: raw.user_profile?.avatar ?? '',
     },
     to: {
       address: emojiStrip(to?.plain ?? ''),
-      avatar: '',
+      avatar: raw.target_profile?.avatar ?? '',
     },
     amount:
       amount && validDecimal && token
@@ -79,7 +85,7 @@ async function transform(raw: any) {
 }
 
 export function useUnreadNotiCount(profileId?: string) {
-  const { data: unreadCount = 0 } = useSWR(
+  const { data: unreadCount = 0, mutate } = useSWR(
     ['notification-list-unread', profileId],
     async ([_, profileId]) => {
       if (!profileId) return 0
@@ -95,8 +101,9 @@ export function useUnreadNotiCount(profileId?: string) {
 
       return res.pagination.total
     },
+    { refreshInterval: REFRESH_INTERVAL_MS },
   )
-  return unreadCount
+  return { count: unreadCount, refresh: mutate }
 }
 
 export function useNotificationData(
@@ -123,14 +130,21 @@ export function useNotificationData(
       }
       return Promise.all(res.data.map(transform))
     },
+    {
+      refreshInterval: REFRESH_INTERVAL_MS,
+    },
   )
 
   const currentPageLen = res.data?.[res.size - 1]?.length ?? 0
 
+  const data = res.data?.flat(1) ?? []
+
   return {
     ...res,
-    data: res.data?.flat(1) ?? [],
+    data,
     refresh: res.mutate,
+    optimisticMarkReadAll: () =>
+      res.mutate(res.data?.map((d) => d.map((r) => ({ ...r, isNew: false })))),
     nextPage: () => res.setSize(res.size + 1),
     isEnd: currentPageLen === 0 || currentPageLen < MAX_PER_PAGE,
   }

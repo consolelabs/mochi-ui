@@ -1,6 +1,5 @@
-import { Typography } from '@mochi-ui/core'
+import { Avatar, Typography } from '@mochi-ui/core'
 import clsx from 'clsx'
-import Image from 'next/image'
 import { coinIcon } from '~utils/image'
 import { MonikerIcons } from './MochiWidget/TokenPicker/utils'
 
@@ -8,6 +7,7 @@ interface AmountProps {
   value: string
   valueUsd?: string
   tokenIcon: string
+  platformIcon?: string
   unit: string
   approxMoniker?: string
   className?: string
@@ -44,6 +44,7 @@ export default function Amount({
   value,
   valueUsd,
   tokenIcon,
+  platformIcon,
   unit,
   approxMoniker,
   className = '',
@@ -74,9 +75,8 @@ export default function Amount({
           <span className="text-sm">{MonikerIcons.get(tokenIcon)}</span>
         </div>
       ) : (
-        <Image
-          width={size === 'lg' ? 32 : 24}
-          height={size === 'lg' ? 32 : 24}
+        <Avatar
+          size={size === 'lg' ? 'xs' : 'xxs'}
           className={clsx('shrink-0 aspect-square rounded-full', {
             /* 'my-1': size === 'md' && alignment === 'center' && !isLongNumber, */
             'row-start-1 row-span-2 my-auto':
@@ -84,7 +84,7 @@ export default function Amount({
             'mx-auto': isLongNumber,
           })}
           src={tokenIcon || coinIcon.src}
-          alt=""
+          smallSrc={platformIcon}
         />
       )}
       <div

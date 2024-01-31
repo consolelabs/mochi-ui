@@ -14,12 +14,13 @@ const TransferRow = (props: CommonProps) => {
           value={props.amount ?? '0'}
           unit={props.token?.symbol ?? '???'}
           tokenIcon={props.token?.icon ?? ''}
+          platformIcon={props.token?.chainIcon ?? ''}
           inline
         />{' '}
         {props.type === ActivityType.ACTIVITY_PAY_SEND ? 'to' : 'from'}{' '}
         <Badge className="inline-flex border border-divider !bg-background-level1">
           <BadgeIcon className="-ml-0.5">
-            <Avatar src="/logo.png" size="xxs" />
+            <Avatar src={props.to.avatar} size="xxs" />
           </BadgeIcon>
           <Typography level="p6">
             {utils.string.formatAddressUsername(props.to.address)}

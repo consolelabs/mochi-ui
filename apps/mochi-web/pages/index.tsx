@@ -16,9 +16,9 @@ import {
   BinaryLockColored,
   BlocksColored,
   HandKeyColored,
-  LayersColored,
   PasswordLockColored,
   WalletPasswordColored,
+  EncryptedColored,
 } from '@mochi-ui/icons'
 import { GridFeatures } from '~cpn/landing/GridFeatures'
 import Feed from '~cpn/Feed'
@@ -208,7 +208,7 @@ export default function Index() {
             id: 'keyless-wallet',
             title: 'Keyless Wallet',
             body: 'Elevate security by multiple protection layer while keep the friendly experience for all both crypto wizard and newbie.',
-            icon: <LayersColored className="w-8 h-8 md:w-12 md:h-12" />,
+            icon: <EncryptedColored className="w-8 h-8 md:w-12 md:h-12" />,
           },
           {
             id: 'account-abstraction',
