@@ -28,6 +28,7 @@ export default function StepOne() {
     removeRecipient,
     setAsset,
     setAmount,
+    isUsdMode,
   } = useTipWidget()
   const { setSelectedAsset } = useMochiWidget()
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -36,8 +37,11 @@ export default function StepOne() {
   const amountErrorMgs = useMemo(() => {
     if (!request.amount) return ''
     if (isToken(request.asset)) {
-      if (request.amount > (request.asset?.asset_balance ?? 0))
-        return notEnoughBalMsg
+      let balanceToCheck = request.asset?.asset_balance ?? 0
+      if (isUsdMode) {
+        balanceToCheck = request.asset?.usd_balance ?? 0
+      }
+      if (request.amount > balanceToCheck) return notEnoughBalMsg
 
       const [_, rightStr] = request.amount.toString().split('.')
       if (rightStr?.length > 8 && Number(rightStr) !== 0)
@@ -52,16 +56,23 @@ export default function StepOne() {
             b.token?.symbol === request.asset?.token.symbol,
         )?.asset_balance ?? 0
 
-      const monikerAmount = request.asset?.asset_balance ?? 0
+      const monikerAmount = request.asset?.token_amount ?? 0
       const currentMonikerAmount = monikerAmount
         ? formatTokenAmount(
             (assetAmount / monikerAmount).toFixed(MAX_AMOUNT_PRECISION),
           ).value
         : 0
-      if (request.amount > currentMonikerAmount) return notEnoughBalMsg
+      if (
+        isUsdMode &&
+        request.amount >
+          (request.asset?.asset_balance ?? 0) * currentMonikerAmount
+      )
+        return notEnoughBalMsg
+      if (!isUsdMode && request.amount > currentMonikerAmount)
+        return notEnoughBalMsg
     }
     return ''
-  }, [request.amount, request.asset, wallet?.balances])
+  }, [isUsdMode, request.amount, request.asset, wallet?.balances])
 
   const { setWallets } = useWalletStore()
 
@@ -93,7 +104,7 @@ export default function StepOne() {
           const asset = chosenWallet?.balances.find(
             (b) =>
               b.token.address.toLowerCase() ===
-              request.asset?.token.address.toLowerCase(),
+              request.asset?.token.address?.toLowerCase(),
           )
           if (asset && isLoggedIn) {
             setSelectedAsset(asset)

@@ -95,8 +95,8 @@ export const MonikerTableList = ({
           group: 'Default',
           id: d.moniker.id,
           name: d.moniker.moniker,
-          asset_balance: d.moniker.amount,
-          token_amount: d.value,
+          asset_balance: d.value,
+          token_amount: d.moniker.amount,
           disabled: !tokenIdsSet.has(d.moniker.token_id) && !wallet,
           source,
           token: {
