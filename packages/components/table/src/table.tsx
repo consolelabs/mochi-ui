@@ -112,6 +112,7 @@ export default function Table<T extends RowData>({
                 <th
                   className={tableHeaderClsx({
                     stickyHeader,
+                    size,
                   })}
                   colSpan={header.colSpan}
                   key={header.id}
