@@ -1,8 +1,11 @@
 import { SOCIAL_LINKS } from '~constants'
+import { SUBSTACK_DOMAIN } from '~envs'
 import { X, Discord, Telegram, Consolelabs } from '@mochi-ui/icons'
 import Link from 'next/link'
 import { Logo, Footer as FooterCore, Typography } from '@mochi-ui/core'
 import { ROUTES } from '~constants/routes'
+import { useEffect } from 'react'
+import clsx from 'clsx'
 
 const PoweredBySolana = ({ className = '' }: any) => (
   <svg
@@ -84,6 +87,25 @@ interface FooterProps {
 export const Footer = (props: FooterProps) => {
   const { includeEmailSubscribe, className } = props
   const year = new Date().getFullYear()
+
+  useEffect(() => {
+    const script = document.createElement('script')
+
+    script.src = 'https://substackapi.com/widget.js'
+    script.async = true
+
+    document.body.appendChild(script)
+    ;(window as any).CustomSubstackWidget = {
+      substackUrl: SUBSTACK_DOMAIN,
+      placeholder: 'Enter your email',
+      buttonText: 'Subscribe',
+      // Go to substackapi.com to unlock custom redirect
+    }
+
+    return () => {
+      document.body.removeChild(script)
+    }
+  }, [])
   return (
     <FooterCore
       className={className}
@@ -93,7 +115,7 @@ export const Footer = (props: FooterProps) => {
           <Typography
             level="p5"
             color="textDisabled"
-            className="mb-6 text-xs text-right"
+            className="text-xs text-right"
           >
             Copyright © {year} Mochi, All rights reserved
           </Typography>
@@ -135,17 +157,32 @@ export const Footer = (props: FooterProps) => {
         { href: SOCIAL_LINKS.TELEGRAM, Icon: Telegram, title: 'Telegram' },
       ]}
       extraInfo={
-        includeEmailSubscribe
-          ? // FIXME: Embed email subscribe code from substack
-            null
-          : // <iframe
-            //   title="subscribe"
-            //   src="https://mochigg.substack.com/embed"
-            //   width="480"
-            //   height="150"
-            //   className="w-full"
-            // />
-            null
+        includeEmailSubscribe ? (
+          <div>
+            <div
+              id="custom-substack-embed"
+              className={clsx(
+                '[&_input]:!bg-transparent',
+                '[&_input]:placeholder:!text-text-disabled',
+                '[&_input]:!text-text-primary',
+                '[&_input]:!text-sm',
+                '[&_input]:!border-solid',
+                '[&_input]:!border',
+                '[&_input]:!rounded-l',
+                '[&_input]:!border-neutral-outline-border',
+                '[&:has(.error)_input]:!caret-danger-outline-fg',
+                '[&:has(.error)_input]:!border-danger-outline-border',
+                '[&_form]:border-none',
+                '[&_button]:!bg-primary-solid',
+                '[&_button]:!text-primary-solid-fg',
+                '[&_button]:!rounded-r',
+                '[&_.error]:!text-danger-outline-fg',
+                '[&_.error]:!text-xs',
+                '[&_.error]:!tracking-tighter',
+              )}
+            />
+          </div>
+        ) : null
       }
     />
   )

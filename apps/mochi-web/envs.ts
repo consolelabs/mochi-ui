@@ -43,3 +43,7 @@ export const BETA_PAGE = process.env.NEXT_PUBLIC_BETA_PAGE
 export const MOCHI_PAY_WSS =
   (process.env.NEXT_PUBLIC_MOCHI_PAY_WSS as string) ||
   'wss://api-preview.mochi-pay.console.so'
+
+export const SUBSTACK_DOMAIN =
+  (process.env.NEXT_PUBLIC_SUBSTACK_DOMAIN as string) ||
+  'dmmochigg.substack.com'
