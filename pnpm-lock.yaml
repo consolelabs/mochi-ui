@@ -2262,15 +2262,9 @@ importers:
       '@storybook/addon-links':
         specifier: ^7.6.10
         version: 7.6.10(react@18.2.0)
-      '@storybook/addons':
-        specifier: ^7.6.10
-        version: 7.6.10(react-dom@18.2.0)(react@18.2.0)
       '@storybook/blocks':
         specifier: ^7.6.10
         version: 7.6.10(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
-      '@storybook/preview-api':
-        specifier: ^7.6.10
-        version: 7.6.10
       '@storybook/react':
         specifier: ^7.6.10
         version: 7.6.10(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
@@ -4676,6 +4670,7 @@ packages:
 
   /@emotion/memoize@0.7.4:
     resolution: {integrity: sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==}
+    requiresBuild: true
     dev: false
     optional: true
 
@@ -9440,6 +9435,7 @@ packages:
     transitivePeerDependencies:
       - react
       - react-dom
+    dev: false
 
   /@storybook/blocks@7.6.10(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-oSIukGC3yuF8pojABC/HLu5tv2axZvf60TaUs8eDg7+NiiKhzYSPoMQxs5uMrKngl+EJDB92ESgWT9vvsfvIPg==}

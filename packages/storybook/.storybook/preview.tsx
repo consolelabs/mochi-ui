@@ -3,11 +3,14 @@ import { Preview, StoryContext } from '@storybook/react'
 import prettier from 'prettier/standalone'
 // @ts-ignore
 import prettierTypescript from 'prettier/parser-babel'
-import { addons } from '@storybook/preview-api'
-import { DocsContainer, Source } from '@storybook/addon-docs'
+import {
+  DocsContainer,
+  DocsContainerProps,
+  Source,
+} from '@storybook/addon-docs'
 import { themes } from '@storybook/theming'
 
-import { DARK_MODE_EVENT_NAME } from 'storybook-dark-mode'
+import { useDarkMode } from 'storybook-dark-mode'
 import React from 'react'
 
 function replaceStart(input: string) {
@@ -29,20 +32,19 @@ function replaceStart(input: string) {
 function isIncludedComponentName(input: string) {
   return !input.includes('<[object Object]')
 }
-const channel = addons.getChannel()
+
+const baseBrand = {
+  brandTitle: 'Mochi UI',
+  brandUrl: 'https://www.mochiui.com/',
+  brandTarget: '_self',
+}
 
 const preview: Preview = {
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },
     docs: {
-      container: (props: any) => {
-        const [isDark, setDark] = React.useState()
-
-        React.useEffect(() => {
-          channel.on(DARK_MODE_EVENT_NAME, setDark)
-          return () => channel.removeListener(DARK_MODE_EVENT_NAME, setDark)
-        }, [channel, setDark])
-
+      container: (props: DocsContainerProps) => {
+        const isDark = useDarkMode()
         return (
           <DocsContainer
             {...props}
@@ -103,6 +105,12 @@ const preview: Preview = {
       lightClass: 'light',
       classTarget: 'html',
       stylePreview: true,
+      dark: {
+        ...themes.dark,
+        ...baseBrand,
+        brandImage: './logo-white.png',
+      },
+      light: { ...themes.light, ...baseBrand, brandImage: './logo-black.png' },
     },
   },
 }
