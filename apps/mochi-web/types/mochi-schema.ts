@@ -2301,6 +2301,10 @@ export interface ResponseProductBotCommand {
   data?: ModelProductBotCommand[]
 }
 
+export interface ResponseProductChangelogLatest {
+  data?: ModelProductChangelogs
+}
+
 export interface ResponseProductChangelogs {
   data?: ModelProductChangelogs[]
   pagination?: ResponsePaginationResponse

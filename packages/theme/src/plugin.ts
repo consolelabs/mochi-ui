@@ -302,6 +302,10 @@ export const mochiui = (config: MochiUIPluginConfig = {}) => {
               from: { height: 'var(--radix-accordion-content-height)' },
               to: { height: '0' },
             },
+            'show-changelog-alert': {
+              from: { height: '0' },
+              to: { height: '3.5rem' },
+            },
           },
           animation: {
             'slide-from-left': 'slide-left 0.2s ease-in-out',
@@ -311,6 +315,7 @@ export const mochiui = (config: MochiUIPluginConfig = {}) => {
             'fade-in': 'fade-in 0.5s ease-in-out',
             'accordion-open': 'accordion-open 0.2s ease-out',
             'accordion-close': 'accordion-close 0.2s ease-out',
+            'show-changelog-alert': 'show-changelog-alert 0.2s ease-out',
           },
           screens: {
             '4xl': screens?.['4xl'] || '1728px',
