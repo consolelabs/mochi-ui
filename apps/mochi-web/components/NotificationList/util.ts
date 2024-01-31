@@ -3,7 +3,7 @@ import { ActivityType } from '@consolelabs/mochi-rest'
 import emojiStrip from 'emoji-strip'
 import { utils } from 'ethers'
 import { formatRelative } from '~utils/time'
-import useSWR from 'swr'
+import useSWR, { mutate } from 'swr'
 import useSWRInfinite from 'swr/infinite'
 import { api } from '~constants/mochi'
 
@@ -143,8 +143,15 @@ export function useNotificationData(
     ...res,
     data,
     refresh: res.mutate,
-    optimisticMarkReadAll: () =>
-      res.mutate(res.data?.map((d) => d.map((r) => ({ ...r, isNew: false })))),
+    optimisticMarkReadAll: () => {
+      const newData = res.data?.map((d) =>
+        d.map((r) => ({ ...r, isNew: false })),
+      )
+      res.mutate(newData, { optimisticData: newData })
+      mutate(['notification-list', profileId, 'unread', res.size], [], {
+        optimisticData: [],
+      })
+    },
     nextPage: () => res.setSize(res.size + 1),
     isEnd: currentPageLen === 0 || currentPageLen < MAX_PER_PAGE,
   }

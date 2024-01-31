@@ -17,7 +17,6 @@ import {
 } from '~utils/number'
 import { SwapCircleSolid } from '@mochi-ui/icons'
 import events from '~constants/events'
-import { useDisclosure } from '@dwarvesf/react-hooks'
 import { BalanceWithSource } from '~cpn/TokenTableList'
 import { useShallow } from 'zustand/react/shallow'
 import clsx from 'clsx'
@@ -25,6 +24,7 @@ import { TokenPicker } from '../TokenPicker'
 import { Moniker } from '../TokenPicker/type'
 import { useTipWidget } from '../Tip/store'
 import { getBalanceByMoniker, isToken } from '../TokenPicker/utils'
+import { useSolPrice } from './useSolPrice'
 
 const INIT_AMOUNT: TokenAmount = {
   value: 0,
@@ -48,9 +48,10 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   onAmountChanged,
   canProceed,
 }) => {
-  const { isOpen: isUsdMode, onToggle: toggleUsdMode } = useDisclosure()
+  const solPrice = useSolPrice()
   const ref = useRef<HTMLInputElement | null>(null)
-  const { setStep, request, setAmountUsd } = useTipWidget()
+  const { setStep, request, setAmountUsd, isUsdMode, toggleUsdMode } =
+    useTipWidget()
   const { selectedAsset, setSelectedAsset } = useMochiWidget(
     useShallow((s) => ({
       selectedAsset: s.selectedAsset,
@@ -60,13 +61,13 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   const [tipAmount, setTipAmount] = useState<TokenAmount>(
     request.amount ? formatTokenAmount(request.amount) : INIT_AMOUNT,
   )
-  const unitPrice = selectedAsset?.token?.price ?? 0
+  const unitPrice = authorized ? selectedAsset?.token?.price ?? 0 : solPrice
   const isMonikerAsset = !isToken(selectedAsset)
 
   const balance = isMonikerAsset
     ? getBalanceByMoniker(selectedAsset, wallet).display
     : `${utils.formatTokenDigit(selectedAsset?.asset_balance ?? 0)} ${
-        selectedAsset?.token?.symbol ?? ''
+        selectedAsset?.token?.symbol ?? 'SOL'
       }`.trim()
 
   const balanceUsd = !isToken(request.asset)
@@ -82,7 +83,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   // tipAmountUSD will be inaccurate if it's rounded by formatUsdDigit. Ex: $1 -> $0.99, $2 -> $1.99
   const value = isToken(request.asset)
     ? tipAmount.value * unitPrice
-    : tipAmount.value * (request.asset?.token_amount ?? 0) * unitPrice
+    : tipAmount.value * (request.asset?.asset_balance ?? 0)
   const tipAmountUSD = utils.formatDigit({
     value,
     fractionDigits: 1,
@@ -132,31 +133,6 @@ export const AmountInput: React.FC<AmountInputProps> = ({
     }
   }, [authorized, setSelectedAsset])
 
-  function handleQuickAmount(amount: string) {
-    let value = Number(amount)
-    if (isUsdMode && isMonikerAsset) {
-      value *= selectedAsset?.token_amount ?? 0
-    }
-    if (!isUsdMode && isMonikerAsset) {
-      value /= (selectedAsset?.token_amount ?? 0) * unitPrice
-    } else {
-      value /= unitPrice
-    }
-    // Amount is USD -> convert to token amount
-    if (isUsdMode) {
-      value *= unitPrice
-      value *= unitPrice
-    }
-    if (!Number.isFinite(value)) {
-      value = 0
-    }
-    const formattedAmount = formatTokenAmount(
-      value.toFixed(MAX_AMOUNT_PRECISION),
-    )
-    setTipAmount(formattedAmount)
-    onAmountChanged?.(formattedAmount.value)
-  }
-
   const handleAssetChanged = useCallback(
     (asset: BalanceWithSource | Moniker | null) => {
       if (!authorized) return
@@ -205,18 +181,39 @@ export const AmountInput: React.FC<AmountInputProps> = ({
     }
   }
 
+  function handleQuickAmount(amount: string) {
+    let value = Number(amount)
+    if (isUsdMode && isMonikerAsset) {
+      value *= selectedAsset?.token_amount ?? 0
+    }
+    if (!isUsdMode && isMonikerAsset) {
+      value /= (selectedAsset?.token_amount ?? 0) * unitPrice
+    } else {
+      value /= unitPrice
+    }
+    // Amount is USD -> convert to token amount
+    if (isUsdMode) {
+      value *= unitPrice
+      value *= unitPrice
+    }
+    if (!Number.isFinite(value)) {
+      value = 0
+    }
+    const formattedAmount = formatTokenAmount(
+      value.toFixed(MAX_AMOUNT_PRECISION),
+    )
+    setTipAmount(formattedAmount)
+    onAmountChanged?.(formattedAmount.value)
+  }
+
   const handleAmountChanged = useCallback(
     <E extends { target: { value: string } }>(event: E) => {
       const formattedAmount = formatTokenAmount(event.target.value)
       formattedAmount.display = event.target.value // Keep displaying the original user input
       setTipAmount(formattedAmount)
-      onAmountChanged?.(
-        isUsdMode
-          ? formatTokenAmount(formattedAmount.value / unitPrice).value
-          : formattedAmount.value,
-      )
+      onAmountChanged?.(formattedAmount.value)
     },
-    [isUsdMode, onAmountChanged, unitPrice],
+    [onAmountChanged],
   )
 
   const handleSwitchAmount = useCallback(

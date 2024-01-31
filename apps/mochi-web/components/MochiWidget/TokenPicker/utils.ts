@@ -36,8 +36,9 @@ export function getBalanceByMoniker(
       ?.asset_balance ?? 0
 
   const value = formatTokenAmount(
-    (assetAmount * moniker.asset_balance).toFixed(MAX_AMOUNT_PRECISION),
+    (assetAmount / moniker.token_amount).toFixed(MAX_AMOUNT_PRECISION),
   )
+
   return {
     value: value.value,
     display: `${value.display} ${moniker.name}`,
