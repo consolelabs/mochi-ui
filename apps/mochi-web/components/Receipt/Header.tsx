@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { SVGProps } from 'react'
 import { TipSolid } from '@mochi-ui/icons'
 import TemplateComp, { type TemplateProps } from './Template'
 import PayRequestHeader from '../PayRequest/Header'
@@ -8,6 +8,8 @@ interface Props {
   platformIcon?: string
   senderAvatar: string
   code: string
+  title?: string
+  icon?: (props: SVGProps<SVGSVGElement>) => JSX.Element
 }
 
 export default function Header({
@@ -15,6 +17,8 @@ export default function Header({
   platformIcon,
   template,
   code,
+  title = 'Tip',
+  icon = TipSolid,
 }: Props) {
   return template ? (
     <TemplateComp
@@ -25,9 +29,9 @@ export default function Header({
   ) : (
     <PayRequestHeader
       color="blue"
-      title="Tip"
+      title={title}
       url={`/tx/${code}`}
-      Icon={TipSolid}
+      Icon={icon}
     />
   )
 }

@@ -85,9 +85,9 @@ export const AmountInput: React.FC<AmountInputProps> = ({
     ? tipAmount.value * unitPrice
     : tipAmount.value * (request.asset?.asset_balance ?? 0)
   const tipAmountUSD = utils.formatDigit({
-    value,
+    value: Math.round(value) === 0 ? value : Math.round(value),
     fractionDigits: 1,
-    shorten: value >= 0,
+    shorten: value >= 1,
     takeExtraDecimal: 1,
   })
 
@@ -107,9 +107,9 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   }
 
   const tipAmountToken = utils.formatDigit({
-    value: valueToken,
+    value: Math.round(valueToken) === 0 ? valueToken : Math.round(valueToken),
     fractionDigits: 2,
-    shorten: valueToken >= 0,
+    shorten: valueToken >= 1,
     takeExtraDecimal: 1,
   })
 
