@@ -89,4 +89,5 @@ export const GET_PATHS = {
   CHANGELOGS: '/product-metadata/changelogs/',
   CHANGELOG_DETAIL: (version: string) =>
     `/product-metadata/changelogs/${version}`,
+  CHANGELOGS_LATEST: '/product-metadata/changelogs/latest',
 }
