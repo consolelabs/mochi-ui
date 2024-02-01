@@ -90,7 +90,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
   })
 
   const tipAmountUSDhidden = utils.formatDigit({
-    value: value.toFixed(request.asset?.token.decimal || MAX_AMOUNT_PRECISION),
+    value: Math.round(value),
     fractionDigits: MAX_AMOUNT_PRECISION,
     shorten: false,
     takeExtraDecimal: 1,

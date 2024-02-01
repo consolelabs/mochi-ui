@@ -272,11 +272,8 @@ export const Header = ({
             </div>
             <Button
               onClick={async () => {
-                if (
-                  pathname !== ROUTES.HOME &&
-                  pathname !== ROUTES.MY_PROFILE
-                ) {
-                  await push('/profile')
+                if (pathname !== ROUTES.HOME) {
+                  await push(ROUTES.HOME)
                 }
                 window.dispatchEvent(new Event(events.TIP_WIDGET.FOCUS_AMOUNT))
               }}
