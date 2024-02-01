@@ -1,4 +1,4 @@
-import { BottomSheet } from '~cpn/BottomSheet'
+import { BottomSheet, useBottomSheetContext } from '~cpn/BottomSheet'
 import {
   TextFieldRoot,
   TextFieldInput,
@@ -7,7 +7,6 @@ import {
 import { Combobox } from '@headlessui/react'
 import clsx from 'clsx'
 import { MagnifierLine } from '@mochi-ui/icons'
-import { useDisclosure } from '@dwarvesf/react-hooks'
 import { useState } from 'react'
 import { SectionList } from '~cpn/base/section-list'
 import { MessageList } from './data'
@@ -25,7 +24,7 @@ export default function MessagePicker({
   sectionTitleHtmlFor,
 }: MessagePickerProps) {
   const [messageSearch, setMessageSearch] = useState('')
-  const { isOpen, onClose, onOpen } = useDisclosure()
+  const { setOpenSheets } = useBottomSheetContext()
 
   function onMessageSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     setMessageSearch(e.target.value)
@@ -36,7 +35,7 @@ export default function MessagePicker({
       value={messageSearch}
       onChange={(message) => {
         setMessageSearch('')
-        onClose()
+        setOpenSheets([])
         onChange(message)
       }}
     >
@@ -67,18 +66,18 @@ export default function MessagePicker({
               </button>
             )
           })}
-          <button
-            type="button"
-            onClick={onOpen}
-            className="py-1 px-3 text-sm font-medium rounded-lg outline-none bg-neutral-300"
-          >
-            More
-          </button>
           <BottomSheet
-            isOpen={isOpen}
-            onClose={onClose}
+            name="MessagePicker"
             title="Choose message"
             focusNthChild={0}
+            trigger={
+              <button
+                type="button"
+                className="py-1 px-3 text-sm font-medium rounded-lg outline-none bg-neutral-300"
+              >
+                More
+              </button>
+            }
           >
             <TextFieldRoot className="flex-shrink-0 mt-2">
               <TextFieldDecorator>
@@ -117,7 +116,7 @@ export default function MessagePicker({
                             )}
                             onClick={() => {
                               onChange(item.content)
-                              onClose()
+                              setOpenSheets([])
                             }}
                           >
                             <h3 className="text-sm">{item.content}</h3>

@@ -1,7 +1,6 @@
 import clsx from 'clsx'
 import { ChevronDownLine } from '@mochi-ui/icons'
-import { BottomSheet } from '~cpn/BottomSheet'
-import { useDisclosure } from '@dwarvesf/react-hooks'
+import { BottomSheet, useBottomSheetContext } from '~cpn/BottomSheet'
 import { PlatformList } from './PlatformList'
 import { Platform } from './type'
 import PlatformIcon from './PlatformIcon'
@@ -44,59 +43,45 @@ export const Platforms: Platform[] = [
 interface Props {
   onSelect?: (item: Platform) => void
   value: Platform
-  authorized: boolean
-  unauthorizedContent: React.ReactNode
 }
 
-export const PlatformPicker: React.FC<Props> = ({
-  authorized,
-  unauthorizedContent,
-  onSelect,
-  value,
-}) => {
-  const { isOpen, onClose, onOpen } = useDisclosure()
+export const PlatformPicker: React.FC<Props> = ({ onSelect, value }) => {
+  const { openSheets, setOpenSheets } = useBottomSheetContext()
 
   function handlePlatformSelect(platform: Platform) {
-    onClose()
+    setOpenSheets([])
     onSelect?.(platform)
   }
 
   return (
-    <>
-      <button
-        type="button"
-        onClick={onOpen}
-        className="flex gap-x-2 items-center py-1.5 px-3 rounded-lg border outline-none bg-primary-soft  border-primary-outline-border"
-        tabIndex={-1}
-      >
-        <PlatformIcon
-          platform={value.platform}
-          className="flex-shrink-0 text-primary-soft-fg w-[22px] h-[22px]"
-        />
-        <span className="text-sm font-medium capitalize whitespace-nowrap">
-          {value.platform}
-        </span>
-        <ChevronDownLine
-          className={clsx(
-            'w-4 h-4 text-primary-soft-fg opacity-80 transition',
-            {
-              'rotate-180': isOpen,
-            },
-          )}
-        />
-      </button>
-      <BottomSheet
-        isOpen={isOpen}
-        onClose={onClose}
-        title={authorized ? 'Choose platform' : ''}
-        dynamic={!authorized}
-      >
-        {authorized ? (
-          <PlatformList data={Platforms} onSelect={handlePlatformSelect} />
-        ) : (
-          unauthorizedContent
-        )}
-      </BottomSheet>
-    </>
+    <BottomSheet
+      name="PlatformPicker"
+      title="Choose platform"
+      trigger={
+        <button
+          type="button"
+          className="flex gap-x-2 items-center py-1.5 px-3 rounded-lg border outline-none bg-primary-soft  border-primary-outline-border"
+          tabIndex={-1}
+        >
+          <PlatformIcon
+            platform={value.platform}
+            className="flex-shrink-0 text-primary-soft-fg w-[22px] h-[22px]"
+          />
+          <span className="text-sm font-medium capitalize whitespace-nowrap">
+            {value.platform}
+          </span>
+          <ChevronDownLine
+            className={clsx(
+              'w-4 h-4 text-primary-soft-fg opacity-80 transition',
+              {
+                'rotate-180': openSheets.includes('PlatformPicker'),
+              },
+            )}
+          />
+        </button>
+      }
+    >
+      <PlatformList data={Platforms} onSelect={handlePlatformSelect} />
+    </BottomSheet>
   )
 }

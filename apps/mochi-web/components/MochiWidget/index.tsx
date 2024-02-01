@@ -1,4 +1,4 @@
-import BottomSheetProvider from '~cpn/BottomSheet'
+import { BottomSheetProvider } from '~cpn/BottomSheet'
 import React, { SVGProps, useState } from 'react'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import {

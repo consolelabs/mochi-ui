@@ -20,6 +20,7 @@ import events from '~constants/events'
 import { BalanceWithSource } from '~cpn/TokenTableList'
 import { useShallow } from 'zustand/react/shallow'
 import clsx from 'clsx'
+import { useLoginWidget } from '@mochi-web3/login-widget'
 import { TokenPicker } from '../TokenPicker'
 import { Moniker } from '../TokenPicker/type'
 import { useTipWidget } from '../Tip/store'
@@ -32,8 +33,6 @@ const INIT_AMOUNT: TokenAmount = {
 }
 
 interface AmountInputProps {
-  authorized: boolean
-  unauthorizedContent: React.ReactNode
   wallet: Wallet | null
   onSelectAsset?: (item: BalanceWithSource | Moniker | null) => void
   onAmountChanged?: (amount: number) => void
@@ -41,14 +40,13 @@ interface AmountInputProps {
 }
 
 export const AmountInput: React.FC<AmountInputProps> = ({
-  authorized,
-  unauthorizedContent,
   wallet,
   onSelectAsset,
   onAmountChanged,
   canProceed,
 }) => {
   const solPrice = useSolPrice()
+  const { isLoggedIn: authorized } = useLoginWidget()
   const ref = useRef<HTMLInputElement | null>(null)
   const { setStep, request, setAmountUsd, isUsdMode, toggleUsdMode } =
     useTipWidget()
@@ -348,8 +346,6 @@ export const AmountInput: React.FC<AmountInputProps> = ({
           </div>
           <div className="flex col-span-3 justify-end items-center">
             <TokenPicker
-              authorized={authorized}
-              unauthorizedContent={unauthorizedContent}
               selectedAsset={selectedAsset}
               onSelect={handleAssetChanged}
             />
