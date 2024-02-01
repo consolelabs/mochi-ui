@@ -84,6 +84,9 @@ export const MonikerTableList = ({
               +b.token.chain_id === +d.moniker.token.chain_id,
           ),
         )
+        const equivalentBal = wallet?.balances.find(
+          (b) => b.token.id === d.moniker.token_id,
+        )
 
         const source = {
           id: wallet?.id,
@@ -97,7 +100,9 @@ export const MonikerTableList = ({
           name: d.moniker.moniker,
           asset_balance: d.value,
           token_amount: d.moniker.amount,
-          disabled: !tokenIdsSet.has(d.moniker.token_id) && !wallet,
+          disabled:
+            (!tokenIdsSet.has(d.moniker.token_id) && !wallet) ||
+            (equivalentBal?.usd_balance ?? 0) < d.value,
           source,
           token: {
             // @ts-ignore
@@ -185,7 +190,7 @@ export const MonikerTableList = ({
 
       {isUserHasUnusableMoniker ? (
         <span className="text-xs text-text-disabled">
-          Unusable monikers (equivalent token has 0 amount) are disabled
+          Unusable monikers are disabled
         </span>
       ) : null}
     </>
