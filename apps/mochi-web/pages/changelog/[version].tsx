@@ -221,13 +221,14 @@ export default function Page(
           </div>
         </div>
         <Separator className="my-8" />
-        <div className="flex items-center w-full justify-between">
-          <TextFieldRoot size="md">
+        <div className="flex items-center w-full justify-end">
+          {/* NOTE: integrate API later  */}
+          {/* <TextFieldRoot size="md">
             <TextFieldDecorator className="text-xl text-text-tertiary">
               <MailLine />
             </TextFieldDecorator>
             <TextFieldInput placeholder="Send us your feedback" />
-          </TextFieldRoot>
+          </TextFieldRoot> */}
           <Button
             size="sm"
             variant="outline"
