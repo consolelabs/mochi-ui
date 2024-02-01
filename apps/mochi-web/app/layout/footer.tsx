@@ -158,10 +158,15 @@ export const Footer = (props: FooterProps) => {
       ]}
       extraInfo={
         includeEmailSubscribe ? (
-          <div>
+          <div className="max-w-full">
             <div
               id="custom-substack-embed"
               className={clsx(
+                'md:[&_input]:!w-[240px]',
+                '[&_form]:!w-full',
+                '[&_form]:border-none',
+
+                '[&_input]:!h-10',
                 '[&_input]:!bg-transparent',
                 '[&_input]:placeholder:!text-text-disabled',
                 '[&_input]:!text-text-primary',
@@ -172,13 +177,22 @@ export const Footer = (props: FooterProps) => {
                 '[&_input]:!border-neutral-outline-border',
                 '[&:has(.error)_input]:!caret-danger-outline-fg',
                 '[&:has(.error)_input]:!border-danger-outline-border',
-                '[&_form]:border-none',
+
+                '[&_button]:!h-10',
+                '[&_button]:!w-[100px]',
+                '[&_button]:!min-w-[100px]',
                 '[&_button]:!bg-primary-solid',
                 '[&_button]:!text-primary-solid-fg',
                 '[&_button]:!rounded-r',
+
                 '[&_.error]:!text-danger-outline-fg',
-                '[&_.error]:!text-xs',
-                '[&_.error]:!tracking-tighter',
+                '[&_.success]:!text-success-outline-fg',
+
+                '[&_p]:!tracking-tighter',
+                '[&_p]:!max-w-[340px]',
+                '[&_p]:!text-center',
+                'md:[&_p]:!text-left',
+                '[&_p]:!text-xs',
               )}
             />
           </div>
