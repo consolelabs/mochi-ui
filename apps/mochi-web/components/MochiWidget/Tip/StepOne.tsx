@@ -1,10 +1,9 @@
-import { useDisclosure } from '@dwarvesf/react-hooks'
 import { useMochiWidget, useWalletStore } from '~store'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import { Button } from '@mochi-ui/core'
 import { ArrowRightLine, ChevronDownLine } from '@mochi-ui/icons'
 import { MAX_AMOUNT_PRECISION, formatTokenAmount } from '~utils/number'
-import { BottomSheet } from '~cpn/BottomSheet'
+import { BottomSheet, useBottomSheetContext } from '~cpn/BottomSheet'
 import { useLoginWidget } from '@mochi-web3/login-widget'
 import { BalanceWithSource } from '~cpn/TokenTableList'
 import { Recipient } from '../Recipient'
@@ -19,7 +18,6 @@ const amountTooBigMsg = 'Amount too big'
 
 export default function StepOne() {
   const {
-    unauthorizedContent,
     wallet,
     request,
     setStep,
@@ -31,7 +29,7 @@ export default function StepOne() {
     isUsdMode,
   } = useTipWidget()
   const { setSelectedAsset } = useMochiWidget()
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { setOpenSheets } = useBottomSheetContext()
   const { isLoggedIn, profile } = useLoginWidget()
   const timeout = useRef<number>(0)
   const amountErrorMgs = useMemo(() => {
@@ -114,7 +112,7 @@ export default function StepOne() {
         }
       })
 
-      onClose()
+      setOpenSheets([])
     }, 500)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn])
@@ -130,24 +128,13 @@ export default function StepOne() {
             by sending them money
           </span>
         </div>
-        {/* <WalletPicker */}
-        {/*   authorized={isLoggedIn} */}
-        {/*   unauthorizedContent={unauthorizedContent} */}
-        {/*   data={wallets} */}
-        {/*   loading={isFetchingWallets} */}
-        {/*   onSelect={updateSourceWallet} */}
-        {/* /> */}
         <AmountInput
-          authorized={isLoggedIn}
-          unauthorizedContent={unauthorizedContent}
           wallet={wallet}
           onSelectAsset={onSelectAsset}
           onAmountChanged={setAmount}
           canProceed={canProceed}
         />
         <Recipient
-          authorized={isLoggedIn}
-          unauthorizedContent={unauthorizedContent}
           selectedRecipients={request.recipients ?? []}
           onUpdateRecipient={setRecipients}
           onRemoveRecipient={removeRecipient}
@@ -164,23 +151,16 @@ export default function StepOne() {
           {canProceed && <ArrowRightLine className="w-4 h-4" />}
         </Button>
       ) : (
-        <Button
-          onClick={onOpen}
-          className="justify-center"
-          size="lg"
-          type="button"
-        >
-          Connect options
-          <ChevronDownLine className="w-5 h-5 text-white-pure" />
-        </Button>
+        <BottomSheet
+          name="StepOne"
+          trigger={
+            <Button className="justify-center" size="lg" type="button">
+              Connect options
+              <ChevronDownLine className="w-5 h-5 text-white-pure" />
+            </Button>
+          }
+        />
       )}
-      <BottomSheet
-        isOpen={isOpen && !isLoggedIn}
-        onClose={onClose}
-        dynamic={!isLoggedIn}
-      >
-        {unauthorizedContent}
-      </BottomSheet>
     </div>
   )
 }
