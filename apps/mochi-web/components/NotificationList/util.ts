@@ -34,10 +34,10 @@ export type NotificationRow = {
 }
 
 async function transform(raw: any) {
-  const [from, to] = await UI.formatProfile(
+  const [from, to] = UI.render(
     Platform.Web,
-    raw.user_profile_id || raw.target_profile_id,
-    raw.target_profile_id || raw.user_profile_id,
+    raw.user_profile || raw.target_profile,
+    raw.target_profile || raw.user_profile,
   )
   const symbol =
     raw.token?.symbol ?? raw.changes.find((c: any) => c.key === 'token')?.value

@@ -10,6 +10,7 @@ import useSWR from 'swr'
 import { API } from '~constants/api'
 import {
   TransactionActionType,
+  transactionActionIcon,
   transactionActionString,
 } from '~constants/transactions'
 import { utils } from '@consolelabs/mochi-formatter'
@@ -122,6 +123,16 @@ export default function Receipt({
               platformIcon={data.platformIcon}
               senderAvatar={data.senderAvatar}
               code={data.data.external_id}
+              title={
+                transactionActionString[
+                  data.data.action as keyof typeof transactionActionString
+                ]
+              }
+              icon={
+                transactionActionIcon[
+                  data.data.action as keyof typeof transactionActionIcon
+                ]
+              }
             />
           )}
           <div
