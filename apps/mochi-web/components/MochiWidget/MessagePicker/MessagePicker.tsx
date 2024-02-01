@@ -1,3 +1,4 @@
+import { useLoginWidget } from '@mochi-web3/login-widget'
 import { BottomSheet, useBottomSheetContext } from '~cpn/BottomSheet'
 import {
   TextFieldRoot,
@@ -7,10 +8,11 @@ import {
 import { Combobox } from '@headlessui/react'
 import clsx from 'clsx'
 import { MagnifierLine } from '@mochi-ui/icons'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { SectionList } from '~cpn/base/section-list'
 import { MessageList } from './data'
 import { sectionFormatter } from '../TokenPicker/utils'
+import { useDefaultMessage } from './useDefaultMessage'
 
 interface MessagePickerProps {
   value: string
@@ -25,10 +27,18 @@ export default function MessagePicker({
 }: MessagePickerProps) {
   const [messageSearch, setMessageSearch] = useState('')
   const { setOpenSheets } = useBottomSheetContext()
+  const { profile } = useLoginWidget()
+  const defaultTipMessage = useDefaultMessage(profile?.id)
 
   function onMessageSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     setMessageSearch(e.target.value)
   }
+
+  useEffect(() => {
+    if (!defaultTipMessage) return
+
+    onChange(defaultTipMessage)
+  }, [defaultTipMessage])
 
   return (
     <Combobox
