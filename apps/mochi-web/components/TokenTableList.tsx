@@ -88,7 +88,7 @@ const Price: ColumnProps<BalanceWithSource>['cell'] = (props) => {
         trigger: { className: 'flex items-center' },
       }}
     >
-      <div className="w-6 h-6 flex items-center justify-center">
+      <div className="flex justify-center items-center w-6 h-6">
         <Icon className="w-2 h-2" />
       </div>
       {mochiUtils.formatUsdPriceDigit({
@@ -158,10 +158,6 @@ export const TokenTableList = ({
               header: 'Price',
               accessorKey: 'token.price',
               cell: Price,
-              // accessorFn: (row) =>
-              //   mochiUtils.formatUsdPriceDigit({
-              //     value: row.token?.price || 0,
-              //   }),
               width: '25%',
             },
             {

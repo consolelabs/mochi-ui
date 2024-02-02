@@ -95,7 +95,7 @@ export const ProfileWidget = () => {
         },
       })),
     ),
-    ...binance.map<BalanceWithSource>((each) => ({
+    ...(binance?.map<BalanceWithSource>((each) => ({
       type: 'token',
       asset_balance: each.asset_balance || 0,
       usd_balance: each.usd_balance || 0,
@@ -112,7 +112,7 @@ export const ProfileWidget = () => {
         id: 'binance',
         title: 'Binance',
       },
-    })),
+    })) ?? []),
   ]
   const chains = balances.reduce<{ [chain: string]: BalanceWithSource[] }>(
     (prev, curr) => {
