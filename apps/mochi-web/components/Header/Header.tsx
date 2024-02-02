@@ -40,7 +40,7 @@ import {
   WalletSolid,
   CodingSolid,
   Github,
-  TwinkleSolid,
+  DocumentStarSolid,
 } from '@mochi-ui/icons'
 import NotificationList from '~cpn/NotificationList'
 import clsx from 'clsx'
@@ -385,7 +385,7 @@ export const Header = ({
                 Github
               </DropdownMenuItem>
               <DropdownMenuItem
-                leftIcon={<TwinkleSolid />}
+                leftIcon={<DocumentStarSolid />}
                 onClick={() => window.open(ROUTES.CHANGELOG, '_blank')}
               >
                 Changelog
