@@ -28,6 +28,7 @@ import { ROUTES } from '~constants/routes'
 import { useFetchChangelogLatest } from '~hooks/app/useFetchChangelogLatest'
 import { CheckCircleOutlined } from '@mochi-ui/icons'
 import { useIsNavOpenStore } from '~cpn/Header/util'
+import { ThemeProvider } from '~context/theme'
 
 const SidebarContextProvider = dynamic(() =>
   import('../context/app/sidebar').then((m) => m.SidebarContextProvider),
@@ -136,28 +137,30 @@ export default function App(props: AppPropsWithLayout) {
   }, [])
   return (
     <StrictMode>
-      <div className="fixed top-3 right-3 z-50">
-        <Toaster />
-      </div>
-      <TopProgressBar />
-      <Script async src="https://telegram.org/js/telegram-widget.js?22" />
-      <WalletProvider>
-        <LazyMotion strict features={domAnimation}>
-          <LoginWidgetProvider
-            // @ts-ignore
-            socials={[
-              Platform.Discord,
-              Platform.Telegram,
-              Platform.Email,
-              Platform.Twitter,
-            ]}
-            telegramBotId={AUTH_TELEGRAM_ID}
-            profileApi={MOCHI_PROFILE_API}
-          >
-            <InnerApp {...props} />
-          </LoginWidgetProvider>
-        </LazyMotion>
-      </WalletProvider>
+      <ThemeProvider>
+        <div className="fixed top-3 right-3 z-50">
+          <Toaster />
+        </div>
+        <TopProgressBar />
+        <Script async src="https://telegram.org/js/telegram-widget.js?22" />
+        <WalletProvider>
+          <LazyMotion strict features={domAnimation}>
+            <LoginWidgetProvider
+              // @ts-ignore
+              socials={[
+                Platform.Discord,
+                Platform.Telegram,
+                Platform.Email,
+                Platform.Twitter,
+              ]}
+              telegramBotId={AUTH_TELEGRAM_ID}
+              profileApi={MOCHI_PROFILE_API}
+            >
+              <InnerApp {...props} />
+            </LoginWidgetProvider>
+          </LazyMotion>
+        </WalletProvider>
+      </ThemeProvider>
     </StrictMode>
   )
 }
