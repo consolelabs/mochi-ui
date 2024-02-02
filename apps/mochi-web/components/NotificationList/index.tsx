@@ -34,6 +34,7 @@ import clsx from 'clsx'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useDisclosure } from '@dwarvesf/react-hooks'
+import { useFetchChangelogLatest } from '~hooks/app/useFetchChangelogLatest'
 import WithdrawRow from './WithdrawRow'
 import { ROW_HEIGHT } from './Row'
 import TransferRow from './TransferRow'
@@ -44,6 +45,7 @@ import SwapRow from './SwapRow'
 import Skeleton from './Skeleton'
 import { MAX_PER_PAGE, useNotificationData, useUnreadNotiCount } from './util'
 
+const CHANGELOG_HEIGHT = 56
 const MAX_ROW_COUNT = 7
 const HEADER_HEIGHT = 45
 const FOOTER_HEIGHT = 46
@@ -63,28 +65,50 @@ const NotificationList = () => {
     optimisticMarkReadAll,
     nextPage,
   } = useNotificationData(tabValue, profile?.id)
-  const actualRowCount = data?.length || MAX_ROW_COUNT
+  const actualRowCount = data?.length ?? MAX_ROW_COUNT
   const {
     isOpen: isLoadMore,
     onOpen: setIsLoadMore,
     onClose: setIsNotLoadMore,
   } = useDisclosure()
 
+  const { data: changelog } = useFetchChangelogLatest()
+
   const { isOpen, onClose, onOpenChange } = useDisclosure()
 
+  const previousHeight = useRef(0)
   const { height, maxRow } = useMemo(() => {
     const getContentHeight = (limit: number) =>
       Math.min(limit, actualRowCount) * ROW_HEIGHT + FOOTER_HEIGHT
 
     for (let i = MAX_ROW_COUNT; i > 1; i--) {
-      const h = getContentHeight(i)
-      if (h < window.innerHeight - NAVBAR_HEIGHT - HEADER_HEIGHT)
+      let h = getContentHeight(i)
+      if (
+        h <
+        window.innerHeight -
+          NAVBAR_HEIGHT -
+          HEADER_HEIGHT -
+          (changelog ? CHANGELOG_HEIGHT : 0)
+      ) {
+        if (actualRowCount === 0) {
+          h = previousHeight.current
+        }
+        previousHeight.current = h
         return { height: h, maxRow: i }
+      }
     }
 
-    return { height: getContentHeight(2), maxRow: 2 }
+    let height = getContentHeight(2)
+
+    if (actualRowCount === 0) {
+      height = previousHeight.current
+    }
+
+    previousHeight.current = height
+
+    return { height, maxRow: 2 }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [actualRowCount, data.length, isOpen])
+  }, [actualRowCount, isOpen])
 
   const scrollRef = useRef<HTMLDivElement>(null)
 
@@ -102,6 +126,10 @@ const NotificationList = () => {
   useEffect(() => {
     if (!isOpen) setHideScrollTop()
   }, [isOpen, setHideScrollTop])
+
+  useEffect(() => {
+    setHideScrollTop()
+  }, [setHideScrollTop, tabValue])
 
   return (
     <DropdownMenu open={isOpen} onOpenChange={onOpenChange}>
