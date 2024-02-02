@@ -1805,6 +1805,10 @@ export interface ResponseGetUserResponse {
   data?: ResponseUser
 }
 
+export interface ResponseGetUserTipMessageResponse {
+  data?: ResponseUserTipMessageData
+}
+
 export interface ResponseGetVaultResponse {
   data?: ModelVault
 }
@@ -2577,6 +2581,10 @@ export interface ResponseUserGeneralSettingResponse {
 
 export interface ResponseUserNotificationSettingResponse {
   data?: ModelUserNotificationSetting
+}
+
+export interface ResponseUserTipMessageData {
+  message?: string
 }
 
 export interface ResponseWalletAssetData {

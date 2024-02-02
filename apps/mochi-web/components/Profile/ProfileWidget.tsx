@@ -35,6 +35,7 @@ import { useShallow } from 'zustand/react/shallow'
 import { TokenAvatar } from '~cpn/TokenAvatar'
 import { useFetchTotalBalance } from '~hooks/profile/useFetchTotalBalance'
 import { usePrevious } from '@dwarvesf/react-hooks'
+import { Token } from '@consolelabs/mochi-rest'
 
 const sortOrder = ['All', 'Mochi']
 const defaultChainMapping: Record<string, string> = {
@@ -56,7 +57,13 @@ export const ProfileWidget = () => {
   const { me } = useProfileStore()
   const { data: info } = useFetchProfileGlobalInfo(me?.id)
   const {
-    data: { totalUsdAmount: total = 0, pnl = '0', lastest_snapshot_bals } = {},
+    data: {
+      totalUsdAmount: total = 0,
+      pnl = '0',
+      lastest_snapshot_bals,
+      offchain = [],
+      cex: { binance = [] } = {},
+    } = {},
     isLoading,
   } = useFetchTotalBalance(me?.id)
   const isFetchingBalance = !me?.id || isLoading
@@ -77,15 +84,36 @@ export const ProfileWidget = () => {
   const [displayChainAmount, setDisplayChainAmount] = useState(2)
   const [_selectedChain, setSelectedChain] = useState('')
 
-  const balances: BalanceWithSource[] = wallets.flatMap((w) =>
-    w.balances.map((b) => ({
-      ...b,
+  const balances: BalanceWithSource[] = [
+    ...wallets.flatMap((w) =>
+      w.balances.map((b) => ({
+        ...b,
+        pnl: offchain.find((each) => each.token?.id === b.token.id)?.token?.pnl,
+        source: {
+          id: w.id,
+          title: w.title,
+        },
+      })),
+    ),
+    ...binance.map<BalanceWithSource>((each) => ({
+      type: 'token',
+      asset_balance: each.asset_balance || 0,
+      usd_balance: each.usd_balance || 0,
+      token: {
+        ...each.token,
+        chain: {
+          id: 'binance',
+          symbol: 'Binance',
+        },
+      } as Token,
+      disabled: false,
+      pnl: each.token?.pnl,
       source: {
-        id: w.id,
-        title: w.title,
+        id: 'binance',
+        title: 'Binance',
       },
     })),
-  )
+  ]
   const chains = balances.reduce<{ [chain: string]: BalanceWithSource[] }>(
     (prev, curr) => {
       const key =
@@ -100,14 +128,7 @@ export const ProfileWidget = () => {
     },
     {
       All: balances,
-      Mochi: wallets.flatMap((w) =>
-        w.id === 'mochi'
-          ? w.balances.map((b) => ({
-              ...b,
-              source: { id: w.id, title: w.title },
-            }))
-          : [],
-      ),
+      Mochi: balances.filter((b) => b.source.id === 'mochi'),
     },
   )
   const sortedChains = Object.keys(chains)
@@ -270,16 +291,7 @@ export const ProfileWidget = () => {
                 )}
                 onClick={() => setSelectedChain(chain)}
               >
-                <div
-                  className={clsx(
-                    'duration-500',
-                    isSelected
-                      ? 'animate-in slide-in-from-right-2'
-                      : 'animate-out',
-                  )}
-                >
-                  {avatar}
-                </div>
+                <div>{avatar}</div>
                 {isSelected && (
                   <Typography
                     level="h8"

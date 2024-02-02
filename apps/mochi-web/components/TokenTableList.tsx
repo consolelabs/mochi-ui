@@ -8,17 +8,25 @@ import {
   ScrollAreaThumb,
   ScrollAreaViewport,
   ScrollAreaCorner,
-  Avatar,
+  Tooltip,
+  ValueChange,
+  ValueChangeIndicator,
 } from '@mochi-ui/core'
 import { utils as mochiUtils } from '@consolelabs/mochi-formatter'
-import { Bag, WalletSolid } from '@mochi-ui/icons'
+import {
+  ArrowDownDownColored,
+  ArrowUpUpColored,
+  Bag,
+  WalletSolid,
+} from '@mochi-ui/icons'
 import { Balance } from '~store/wallets'
 import clsx from 'clsx'
-import { coinIcon } from '~utils/image'
+import { TokenAvatar } from './TokenAvatar'
 
 const sortOrder = ['SOL']
 
 export interface BalanceWithSource extends Balance {
+  pnl?: string
   source: {
     id: string
     title: string
@@ -29,11 +37,15 @@ interface Props extends Omit<TableProps<BalanceWithSource>, 'columns'> {}
 
 const Token: ColumnProps<BalanceWithSource>['cell'] = (props) => (
   <div className="flex items-center space-x-2">
-    <Avatar
+    <TokenAvatar
       src={props.row.original.token.icon}
-      smallSrc={props.row.original.token.chain?.icon ?? coinIcon.src}
-      fallback={coinIcon.src}
-      size="xs"
+      name={props.row.original.token.symbol}
+      smallSrc={props.row.original.token.chain?.icon}
+      chainName={
+        props.row.original.token.chain?.symbol ||
+        props.row.original.token.chain?.short_name ||
+        props.row.original.token.chain?.name
+      }
     />
     <div>
       <div className="flex space-x-1">
@@ -56,6 +68,35 @@ const Token: ColumnProps<BalanceWithSource>['cell'] = (props) => (
     </div>
   </div>
 )
+
+const Price: ColumnProps<BalanceWithSource>['cell'] = (props) => {
+  const trend = Number(props.row.original.pnl) < 0 ? 'down' : 'up'
+  const Icon = trend === 'up' ? ArrowUpUpColored : ArrowDownDownColored
+
+  return (
+    <Tooltip
+      content={
+        <ValueChange trend={trend}>
+          <ValueChangeIndicator className="text-text-contrast" />
+          <Typography level="h9" color="textContrast">
+            {props.row.original.pnl || '0.00'}%
+          </Typography>
+        </ValueChange>
+      }
+      arrow="bottom-center"
+      componentProps={{
+        trigger: { className: 'flex items-center' },
+      }}
+    >
+      <div className="w-6 h-6 flex items-center justify-center">
+        <Icon className="w-2 h-2" />
+      </div>
+      {mochiUtils.formatUsdPriceDigit({
+        value: props.row.original.token?.price || 0,
+      })}
+    </Tooltip>
+  )
+}
 
 export const TokenTableList = ({
   data,
@@ -116,10 +157,11 @@ export const TokenTableList = ({
             {
               header: 'Price',
               accessorKey: 'token.price',
-              accessorFn: (row) =>
-                mochiUtils.formatUsdPriceDigit({
-                  value: row.token?.price || 0,
-                }),
+              cell: Price,
+              // accessorFn: (row) =>
+              //   mochiUtils.formatUsdPriceDigit({
+              //     value: row.token?.price || 0,
+              //   }),
               width: '25%',
             },
             {
