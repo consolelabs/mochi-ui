@@ -32,6 +32,7 @@ interface RowProps extends Pick<CommonProps, 'refresh'> {
   children?: React.ReactNode
   isSkeleton?: boolean
   isNew?: boolean
+  url?: string
 }
 
 export const ROW_HEIGHT = 67
@@ -44,6 +45,7 @@ const Row = ({
   action,
   children,
   refresh,
+  url,
 }: RowProps) => {
   const { profile } = useLoginWidget()
   const { isOpen, onClose, onToggle } = useDisclosure()
@@ -61,6 +63,16 @@ const Row = ({
       type="button"
       style={{ maxHeight: ROW_HEIGHT }}
       disabled={isSkeleton}
+      onClick={() => {
+        if (!url || !profile?.id) return
+        api.profile.activities
+          .markRead({
+            profileId: profile.id,
+            ids: [id],
+          })
+          .finally(refresh)
+        window.open(url)
+      }}
     >
       <div className="flex overflow-hidden relative flex-col flex-1 gap-y-1 min-w-0">
         {isSkeleton ? (
