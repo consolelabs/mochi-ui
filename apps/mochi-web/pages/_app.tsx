@@ -76,7 +76,7 @@ function ChangelogAlert() {
           {data.seo_description}
         </AlertDescription>
         <AlertLink
-          href={`https://mochi.gg/changelog/${data.version}`}
+          href={ROUTES.CHANGELOG_DETAIL(data.version || '')}
           target="_blank"
         >
           View More
