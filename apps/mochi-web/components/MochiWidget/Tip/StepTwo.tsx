@@ -1,9 +1,8 @@
-import { BottomSheet } from '~cpn/BottomSheet'
-import { useDisclosure } from '@dwarvesf/react-hooks'
+import { BottomSheet, useBottomSheetContext } from '~cpn/BottomSheet'
 import { useCallback, useEffect, useMemo } from 'react'
 import { formatTokenAmount } from '~utils/number'
 import { Button } from '@mochi-ui/core'
-import { LoginWidget, useLoginWidget } from '@mochi-web3/login-widget'
+import { useLoginWidget } from '@mochi-web3/login-widget'
 import { CheckLine, ChevronLeftLine, Spinner } from '@mochi-ui/icons'
 import Amount from '~cpn/Amount'
 import { useTipWidget } from './store'
@@ -25,7 +24,8 @@ export default function StepTwo() {
   } = useTipWidget()
 
   const { wallets, isAddressConnected, getProviderByAddress } = useLoginWidget()
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { openSheets, setOpenSheets } = useBottomSheetContext()
+  const isOpen = useMemo(() => openSheets.includes('StepTwo'), [openSheets])
 
   const incorrectParams = useMemo(() => {
     const params: Record<string, any> = {
@@ -84,24 +84,23 @@ export default function StepTwo() {
           method: 'wallet_switchEthereumChain',
           params: [{ chainId: incorrectParams.chainIdHex }],
         })
-        .then(() => onClose())
+        .then(() => setOpenSheets([]))
         .catch(() => void 0)
       return
     }
 
-    onOpen()
+    setOpenSheets(['StepTwo'])
   }, [
     getProviderByAddress,
     incorrectParams.chainIdHex,
-    onClose,
-    onOpen,
+    setOpenSheets,
     wallet?.id,
   ])
 
   useEffect(() => {
     if (!wallet?.id) return
     const provider = getProviderByAddress(wallet.id)
-    if (provider) onClose()
+    if (provider) setOpenSheets([])
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [wallets])
 
@@ -174,9 +173,11 @@ export default function StepTwo() {
         {isTransferring ? <>&#8203;</> : 'Send'}
         {isTransferring ? <Spinner /> : <CheckLine />}
       </Button>
-      <BottomSheet isOpen={isOpen} onClose={onClose} title="Connect wallet">
-        <LoginWidget raw chain={incorrectParams.chainType} />
-      </BottomSheet>
+      <BottomSheet
+        name="StepTwo"
+        title="Connect wallet"
+        loginWidgetProps={{ chain: incorrectParams.chainType }}
+      />
     </div>
   )
 }

@@ -10,6 +10,7 @@ import useSWR from 'swr'
 import { API } from '~constants/api'
 import {
   TransactionActionType,
+  transactionActionIcon,
   transactionActionString,
 } from '~constants/transactions'
 import { utils } from '@consolelabs/mochi-formatter'
@@ -96,8 +97,9 @@ export default function Receipt({
       )}
     >
       <div
-        className={clsx('relative overflow-hidden rounded-xl drop-shadow-lg', {
-          'backdrop-blur-md': variant === 'peeking',
+        className={clsx('relative rounded-xl', {
+          'backdrop-blur-md overflow-hidden shadow-lg': variant === 'peeking',
+          'drop-shadow-lg': variant !== 'peeking',
         })}
       >
         {variant === 'peeking' && (
@@ -121,6 +123,16 @@ export default function Receipt({
               platformIcon={data.platformIcon}
               senderAvatar={data.senderAvatar}
               code={data.data.external_id}
+              title={
+                transactionActionString[
+                  data.data.action as keyof typeof transactionActionString
+                ]
+              }
+              icon={
+                transactionActionIcon[
+                  data.data.action as keyof typeof transactionActionIcon
+                ]
+              }
             />
           )}
           <div

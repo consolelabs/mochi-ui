@@ -8,7 +8,13 @@ import { Markdown } from '~cpn/Changelog/Markdown'
 import { HOME_URL, TWITTER_LINK } from '~envs'
 import { ModelProductChangelogs } from '~types/mochi-schema'
 import { API, GET_PATHS } from '~constants/api'
-import { IconButton, Tooltip, Typography } from '@mochi-ui/core'
+import {
+  Button,
+  IconButton,
+  Separator,
+  Tooltip,
+  Typography,
+} from '@mochi-ui/core'
 import {
   Facebook,
   LinkHorizontalLine,
@@ -26,6 +32,7 @@ import {
   SHARE_CONTENT,
   TWITTER_SHARE_URL,
 } from '~constants/common'
+import { getFirstImageUrl } from '../../utils/changelog'
 
 export const getServerSideProps: GetServerSideProps<
   ModelProductChangelogs
@@ -56,7 +63,6 @@ export default function Page(
 ) {
   const {
     title,
-    thumbnail_url,
     content,
     version,
     created_at,
@@ -65,6 +71,7 @@ export default function Page(
     seo_description,
   } = props
   const layoutRef = useRef<HTMLDivElement>(null)
+  const thumbnail = getFirstImageUrl(content)
 
   const { hasCopied, onCopy } = useClipboard(
     HOME_URL + ROUTES.CHANGELOG_DETAIL(version ?? ''),
@@ -78,7 +85,7 @@ export default function Page(
     >
       <SEO
         description={seo_description}
-        image={thumbnail_url}
+        image={thumbnail}
         title={`v${version} - ${title}`}
         url={HOME_URL + ROUTES.CHANGELOG_DETAIL(version || '1.0')}
         tailTitle
@@ -208,6 +215,28 @@ export default function Page(
               )}
             </IconButton>
           </div>
+        </div>
+        <Separator className="my-8" />
+        <div className="flex items-center w-full justify-end">
+          {/* NOTE: integrate API later  */}
+          {/* <TextFieldRoot size="md">
+            <TextFieldDecorator className="text-xl text-text-tertiary">
+              <MailLine />
+            </TextFieldDecorator>
+            <TextFieldInput placeholder="Send us your feedback" />
+          </TextFieldRoot> */}
+          <Button
+            size="sm"
+            variant="outline"
+            color="neutral"
+            className="group"
+            asChild
+          >
+            <Link href={ROUTES.CHANGELOG}>
+              View all releases
+              <ArrowRightLine className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </Button>
         </div>
       </div>
     </Layout>

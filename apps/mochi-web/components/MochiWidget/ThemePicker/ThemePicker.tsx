@@ -24,9 +24,7 @@ import {
   MagnifierLine,
 } from '@mochi-ui/icons'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
-import { useDisclosure } from '@dwarvesf/react-hooks'
-/* import { Tab } from '@headlessui/react' */
-import { BottomSheet } from '~cpn/BottomSheet'
+import { BottomSheet, useBottomSheetContext } from '~cpn/BottomSheet'
 import { sectionFormatter } from '../TokenPicker/utils'
 
 export interface Theme {
@@ -78,13 +76,13 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
   )
 
   const [themeSearch, setThemeSearch] = useState('')
-  const { isOpen, onClose, onOpen } = useDisclosure()
+  const { openSheets, setOpenSheets } = useBottomSheetContext()
 
   useEffect(() => {
-    if (isOpen) {
+    if (openSheets.includes('ThemePicker')) {
       ref.current?.scrollTo({ left: 0, top: 0 })
     }
-  }, [isOpen])
+  }, [openSheets])
 
   function onThemeSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     setThemeSearch(e.target.value)
@@ -125,7 +123,7 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
             <div
               key={t.name}
               className={clsx(
-                'flex-shrink-0 relative relative rounded-lg outline-none border-4',
+                'flex-shrink-0 relative rounded-lg outline-none border-4',
                 {
                   'border-transparent': !isSelected,
                   'border-blue-700': isSelected,
@@ -163,26 +161,26 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
             </div>
           )
         })}
-        <button
-          type="button"
-          onClick={onOpen}
-          className="overflow-hidden relative rounded-lg border-4 border-transparent outline-none"
-        >
-          <Image
-            fill
-            src="/tip-theme-more.jpg"
-            className="object-cover w-full h-full rounded-lg"
-            alt=""
-          />
-          <span className="absolute top-1/2 left-1/2 text-xs font-medium whitespace-nowrap -translate-x-1/2 -translate-y-1/2 text-white-pure">
-            +More
-          </span>
-        </button>
         <BottomSheet
+          name="ThemePicker"
           title="Choose theme"
-          isOpen={isOpen}
-          onClose={onClose}
           focusNthChild={0}
+          trigger={
+            <button
+              type="button"
+              className="overflow-hidden relative rounded-lg border-4 border-transparent outline-none"
+            >
+              <Image
+                fill
+                src="/tip-theme-more.jpg"
+                className="object-cover w-full h-full rounded-lg"
+                alt=""
+              />
+              <span className="absolute top-1/2 left-1/2 text-xs font-medium whitespace-nowrap -translate-x-1/2 -translate-y-1/2 text-white-pure">
+                +More
+              </span>
+            </button>
+          }
         >
           <div className="flex flex-col w-full min-h-0">
             <TextFieldRoot className="flex-shrink-0 mt-2">
@@ -274,7 +272,7 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
                               key={`theme-image-${d.name}-${d.id}`}
                               onClick={() => {
                                 onChange(d)
-                                onClose()
+                                setOpenSheets([])
                               }}
                               className="relative h-full outline-none aspect-video"
                             >
@@ -309,7 +307,7 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
                               key={`theme-image-${d.name}-${d.id}`}
                               onClick={() => {
                                 onChange(d)
-                                onClose()
+                                setOpenSheets([])
                               }}
                               className="relative h-full outline-none aspect-video"
                             >

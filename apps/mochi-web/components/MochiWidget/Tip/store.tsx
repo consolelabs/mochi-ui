@@ -39,6 +39,9 @@ interface TipWidgetState {
   setAsset: (asset: Balance | Moniker | null) => void
   setAmount: (amount: number) => void
 
+  isUsdMode: boolean
+  toggleUsdMode: () => void
+
   execute: () => Promise<void>
   isTransferring: boolean
 
@@ -57,6 +60,9 @@ export const useTipWidget = create(
         <LoginWidget raw />
       </div>
     ),
+
+    isUsdMode: false,
+    toggleUsdMode: () => set({ isUsdMode: !get().isUsdMode }),
 
     request: {
       recipients: [],

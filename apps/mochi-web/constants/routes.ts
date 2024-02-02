@@ -1,5 +1,6 @@
 export const ROUTES = {
   HOME: '/',
+  DEVELOPER: '/developer',
   CHANGELOG: '/changelog',
   CHANGELOG_DETAIL: (version: string) => `/changelog/${version}`,
   EXPLORE: '/explore',

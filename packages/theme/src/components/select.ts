@@ -17,18 +17,25 @@ const iconChevron = cva([], {
 const content = [
   'relative z-50 w-fit',
 
-  '[state=open]:animate-in',
-  '[state=open]:fade-in-50',
-  '[state=open]:zoom-in-95',
+  'data-[state=open]:animate-in',
+  'data-[state=open]:fade-in-0',
+  'data-[state=open]:zoom-in-90',
+  'data-[state=open]:duration-300',
 
-  '[side=bottom]:slide-in-from-top-2',
-  '[side=left]:slide-in-from-right-2',
-  '[side=right]:slide-in-from-left-2',
-  '[side=top]:slide-in-from-bottom-2',
+  'data-[state=open]:data-[side=bottom]:slide-in-from-top-10',
+  'data-[state=open]:data-[side=left]:slide-in-from-right-10',
+  'data-[state=open]:data-[side=right]:slide-in-from-left-10',
+  'data-[state=open]:data-[side=top]:slide-in-from-bottom-10',
 
-  '[state=closed]:animate-out',
-  '[state=closed]:fade-out-0',
-  '[state=closed]:zoom-out-95',
+  'data-[state=closed]:animate-out',
+  'data-[state=closed]:fade-out-0',
+  'data-[state=closed]:zoom-out-90',
+  'data-[state=closed]:duration-300',
+
+  'data-[state=closed]:data-[side=bottom]:slide-out-to-top-10',
+  'data-[state=closed]:data-[side=left]:slide-out-to-right-10',
+  'data-[state=closed]:data-[side=right]:slide-out-to-left-10',
+  'data-[state=closed]:data-[side=top]:slide-out-to-bottom-10',
 ].join(' ')
 
 const viewportPoperMode =
@@ -411,7 +418,7 @@ const itemCva = cva(
     'text-sm',
     'truncate',
     'font-medium',
-    'hover:bg-background-level2 focus:bg-background-level2',
+    'hover:bg-background-hover focus:bg-background-hover',
     'hover:outline-none focus:outline-none',
     'cursor-pointer',
     'p-2',

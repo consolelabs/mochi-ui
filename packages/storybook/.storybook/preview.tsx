@@ -1,7 +1,17 @@
 import './styles.css'
 import { Preview, StoryContext } from '@storybook/react'
 import prettier from 'prettier/standalone'
+// @ts-ignore
 import prettierTypescript from 'prettier/parser-babel'
+import {
+  DocsContainer,
+  DocsContainerProps,
+  Source,
+} from '@storybook/addon-docs'
+import { themes } from '@storybook/theming'
+
+import { useDarkMode } from 'storybook-dark-mode'
+import React from 'react'
 
 function replaceStart(input: string) {
   const lines = input.split('\n')
@@ -23,11 +33,29 @@ function isIncludedComponentName(input: string) {
   return !input.includes('<[object Object]')
 }
 
+const baseBrand = {
+  brandTitle: 'Mochi UI',
+  brandUrl: 'https://www.mochiui.com/',
+  brandTarget: '_self',
+}
+
 const preview: Preview = {
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },
     docs: {
+      container: (props: DocsContainerProps) => {
+        const isDark = useDarkMode()
+        return (
+          <DocsContainer
+            {...props}
+            theme={isDark ? themes.dark : themes.light}
+          />
+        )
+      },
       source: {
+        container: (props: any) => {
+          return <Source {...props} dark />
+        },
         transform(input: string, c: StoryContext) {
           const { __isArgsStory: isArgsStory, docs } = c.parameters
           if (isArgsStory && isIncludedComponentName(input)) {
@@ -77,6 +105,12 @@ const preview: Preview = {
       lightClass: 'light',
       classTarget: 'html',
       stylePreview: true,
+      dark: {
+        ...themes.dark,
+        ...baseBrand,
+        brandImage: './logo-white.png',
+      },
+      light: { ...themes.light, ...baseBrand, brandImage: './logo-black.png' },
     },
   },
 }

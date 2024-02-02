@@ -61,6 +61,7 @@ export default function ProfileDropdown({
       </DropdownMenuTrigger>
       <DropdownMenuPortal>
         <DropdownMenuContent
+          wrapperClassName="z-20"
           className="overflow-y-auto max-h-[calc(100dvh-100px)]"
           sideOffset={20}
           collisionPadding={{
@@ -137,10 +138,13 @@ export default function ProfileDropdown({
                   <DropdownMenuItem hasPaddingLeft>Explore</DropdownMenuItem>
                 </Link>
                 <Link href={ROUTES.DOCS}>
-                  <DropdownMenuItem hasPaddingLeft>API</DropdownMenuItem>
+                  <DropdownMenuItem hasPaddingLeft>API docs</DropdownMenuItem>
                 </Link>
                 <Link href={ROUTES.CHANGELOG}>
                   <DropdownMenuItem hasPaddingLeft>Changelog</DropdownMenuItem>
+                </Link>
+                <Link href={ROUTES.DEVELOPER}>
+                  <DropdownMenuItem hasPaddingLeft>Developer</DropdownMenuItem>
                 </Link>
               </AccordionContent>
             </AccordionItem>

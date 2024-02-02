@@ -1,4 +1,4 @@
-import { CodingSolid, SettingSolid, UserSolid } from '@mochi-ui/icons'
+import { CodingSolid, GearSolid, UserSolid } from '@mochi-ui/icons'
 import { act, render } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { TabContent, TabList, TabTrigger, Tabs } from '../src/tabs'
@@ -17,7 +17,7 @@ describe('Tabs', () => {
             Documents
           </TabTrigger>
           <TabTrigger disabled value="settings">
-            <SettingSolid width={16} height={16} />
+            <GearSolid width={16} height={16} />
             Settings
           </TabTrigger>
         </TabList>

@@ -8,7 +8,7 @@ import {
 } from '@mochi-ui/select'
 import { Tooltip } from '@mochi-ui/tooltip'
 import { useState } from 'react'
-import { CheckLine, ThreeDotsLine } from '@mochi-ui/icons'
+import { CheckLine, ThreeDotLine } from '@mochi-ui/icons'
 import { IconButton } from '@mochi-ui/icon-button'
 import { Button } from '@mochi-ui/button'
 import clsx from 'clsx'
@@ -36,12 +36,12 @@ export function Default() {
       <Button
         color="neutral"
         variant="outline"
-        className="min-w-xs w-full sm:w-max"
+        className="w-full sm:w-max min-w-xs"
       >
         See docs
       </Button>
       <Select value={selectedApp} onChange={setSelectedApp}>
-        <SelectTrigger className="h-10 rounded bg-neutral-150 shrink-0">
+        <SelectTrigger>
           <Tooltip content="Selected app" arrow="top-center" className="z-20">
             <SelectValue placeholder="All apps" />
           </Tooltip>
@@ -98,7 +98,7 @@ export function Default() {
           <Button
             color="neutral"
             variant="outline"
-            className="min-w-xs w-full sm:w-max"
+            className="w-full sm:w-max min-w-xs"
           >
             Invite
           </Button>
@@ -108,7 +108,7 @@ export function Default() {
             color="neutral"
             className="shrink-0 !h-10 !w-10"
           >
-            <ThreeDotsLine className="text-2xl" aria-hidden />
+            <ThreeDotLine className="text-2xl" aria-hidden />
           </IconButton>
         </PageHeaderActions>
       </PageHeader>
@@ -123,7 +123,7 @@ export function Default() {
           <Button
             color="neutral"
             variant="outline"
-            className="min-w-xs w-full sm:w-max"
+            className="w-full sm:w-max min-w-xs"
           >
             Invite
           </Button>
@@ -133,7 +133,7 @@ export function Default() {
             color="neutral"
             className="shrink-0 !h-10 !w-10"
           >
-            <ThreeDotsLine className="text-2xl" aria-hidden />
+            <ThreeDotLine className="text-2xl" aria-hidden />
           </IconButton>
         </PageHeaderActions>
       </PageHeader>

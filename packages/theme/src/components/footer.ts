@@ -5,7 +5,7 @@ const footerClsx = ({ className = '' }: { className?: string } = {}) =>
 
 const wrapperClsx = 'pt-16 pb-5 md:py-18 md:min-h-[300px] landing-container'
 
-const wrapperInnerClsx = 'flex flex-col gap-y-5 gap-x-8 sm:gap-x-12 md:flex-row'
+const wrapperInnerClsx = 'flex flex-col gap-y-5 gap-x-8 sm:gap-x-12 lg:flex-row'
 
 const navClsx =
   'flex flex-col gap-y-7 gap-x-12 mb-10 sm:gap-x-24 sm:mb-0 md:flex-row md:gap-y-0'

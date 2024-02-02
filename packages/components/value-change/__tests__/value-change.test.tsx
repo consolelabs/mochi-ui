@@ -9,9 +9,7 @@ describe('Logo', () => {
         <ValueChangeIndicator />
       </ValueChange>,
     )
-    expect(container.querySelector('svg')).toHaveClass(
-      'text-danger-plain-disable-fg',
-    )
+    expect(container.querySelector('svg')).toHaveClass('text-danger-solid')
   })
 
   it('renders custom indicator correctly', () => {

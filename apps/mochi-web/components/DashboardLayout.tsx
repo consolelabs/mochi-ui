@@ -5,7 +5,7 @@ import {
   Discord,
   AddUserSolid,
   CodingSolid,
-  SettingSolid,
+  GearSolid,
   TwinkleSolid,
   SafeBoxSolid,
   HomeSolid,
@@ -68,7 +68,7 @@ export default function DashboardLayout({
         {
           title: 'Settings',
           type: 'link',
-          Icon: SettingSolid,
+          Icon: GearSolid,
           as: Link,
           href: ROUTES.SETTINGS(),
         },

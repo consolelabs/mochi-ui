@@ -55,8 +55,10 @@ const defaultChainMapping: Record<string, string> = {
 export const ProfileWidget = () => {
   const { me } = useProfileStore()
   const { data: info } = useFetchProfileGlobalInfo(me?.id)
-  const { data: { totalUsdAmount: total = 0, pnl = '0' } = {}, isLoading } =
-    useFetchTotalBalance(me?.id)
+  const {
+    data: { totalUsdAmount: total = 0, pnl = '0', lastest_snapshot_bals } = {},
+    isLoading,
+  } = useFetchTotalBalance(me?.id)
   const isFetchingBalance = !me?.id || isLoading
   const { isFetchingWallets, wallets } = useWalletStore(
     useShallow((s) => ({
@@ -195,9 +197,10 @@ export const ProfileWidget = () => {
                 {isFetchingBalance
                   ? '$0.00'
                   : utils.formatUsdDigit(
-                      Number.isNaN(Number(pnl))
+                      Number.isNaN(Number(pnl)) ||
+                        Number.isNaN(Number(lastest_snapshot_bals))
                         ? 0
-                        : (Number(pnl) * total) / 100,
+                        : total - Number(lastest_snapshot_bals),
                     )}
                 )
               </Typography>
@@ -209,7 +212,7 @@ export const ProfileWidget = () => {
         <Button
           variant="soft"
           color="primary"
-          className="border border-primary-200"
+          className="border border-primary-outline-border"
         >
           <ArrowUpSquareSolid className="w-4 h-4" />
           Send
@@ -217,7 +220,7 @@ export const ProfileWidget = () => {
         <Button
           variant="soft"
           color="primary"
-          className="border border-primary-200"
+          className="border border-primary-outline-border"
         >
           <ArrowDownSquareSolid className="w-4 h-4" />
           Receive
@@ -229,7 +232,7 @@ export const ProfileWidget = () => {
           ref={tabElement}
         >
           <div
-            className="absolute top-0 left-0 h-full transition-transform duration-500 bg-background-level2"
+            className="absolute top-0 left-0 h-full transition-transform duration-500 bg-background-hover"
             style={{
               transform: `translateX(${translateX}px)`,
               width: selectedTabWidth,

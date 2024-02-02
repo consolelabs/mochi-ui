@@ -6,7 +6,7 @@ import {
   Discord,
   GameSolid,
   LifeBuoySolid,
-  SettingSolid,
+  GearSolid,
   StarSolid,
   SuperGroupSolid,
   TwinkleSolid,
@@ -24,7 +24,7 @@ function Header() {
   return (
     <img
       alt="header"
-      className="h-20 w-full object-cover"
+      className="object-cover w-full h-20"
       src="https://pbs.twimg.com/profile_banners/1168522102410010626/1684159976/300x100"
     />
   )
@@ -33,7 +33,7 @@ function Header() {
 export function Default() {
   const [section, setSection] = useState('Profile')
   return (
-    <div className="h-[700px] border">
+    <div className="border h-[700px] border-divider">
       <Sidebar
         Header={Header}
         footerItems={[
@@ -80,7 +80,7 @@ export function Default() {
               </Button>
             ),
           },
-          { title: 'Settings', Icon: SettingSolid },
+          { title: 'Settings', Icon: GearSolid },
           { type: 'break' },
           { title: 'Developer', Icon: CodingSolid, disabled: true },
           {

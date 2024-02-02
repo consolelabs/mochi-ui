@@ -5,7 +5,7 @@ import {
   Discord,
   GameSolid,
   LifeBuoySolid,
-  SettingSolid,
+  GearSolid,
   StarSolid,
   SuperGroupSolid,
   TwinkleSolid,
@@ -21,7 +21,7 @@ function Header() {
   return (
     <img
       alt="header"
-      className="h-20 w-full object-cover"
+      className="object-cover w-full h-20"
       src="https://pbs.twimg.com/profile_banners/1168522102410010626/1684159976/300x100"
     />
   )
@@ -30,7 +30,7 @@ function Header() {
 function Component() {
   const [section, setSection] = useState('Profile')
   return (
-    <div className="h-[700px] border">
+    <div className="border h-[700px]">
       <Sidebar
         Header={Header}
         footerItems={[
@@ -64,7 +64,7 @@ function Component() {
             Icon: GameSolid,
             onClick: () => setSection('App Store'),
           },
-          { title: 'Settings', Icon: SettingSolid },
+          { title: 'Settings', Icon: GearSolid },
           { type: 'break' },
           { title: 'Developer', Icon: CodingSolid, disabled: true },
           {

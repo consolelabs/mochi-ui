@@ -8,13 +8,24 @@ import 'nprogress/nprogress.css'
 import '~styles/nprogress.css'
 import Script from 'next/script'
 import { interFont } from '~utils/next-font'
-import { Toaster } from '@mochi-ui/core'
+import {
+  Alert,
+  AlertBody,
+  AlertDescription,
+  AlertIcon,
+  AlertLink,
+  AlertTitle,
+  Toaster,
+} from '@mochi-ui/core'
 import { LazyMotion, domAnimation } from 'framer-motion'
 import { WalletProviderProps } from '~context/wallet-context'
 import { useAuthStore } from '~store/auth'
 import { useLoginWidget } from '@mochi-web3/login-widget'
 import { AUTH_TELEGRAM_ID, MOCHI_PROFILE_API } from '~envs'
 import { Platform } from '@consolelabs/mochi-formatter'
+import { useRouter } from 'next/router'
+import { ROUTES } from '~constants/routes'
+import { useFetchChangelogLatest } from '~hooks/app/useFetchChangelogLatest'
 
 const SidebarContextProvider = dynamic(() =>
   import('../context/app/sidebar').then((m) => m.SidebarContextProvider),
@@ -49,10 +60,39 @@ export function handleCancelRendering(e: any) {
   if (!e.cancelled) throw e
 }
 
+function ChangelogAlert() {
+  const { data } = useFetchChangelogLatest()
+
+  if (!data) {
+    return null
+  }
+
+  return (
+    <Alert className="!p-0 h-14 rounded-none transition-[height] animate-show-changelog-alert">
+      <AlertBody className="landing-container !flex-row !items-center">
+        <AlertIcon />
+        <AlertTitle className="pl-[26px] truncate">{data.title}</AlertTitle>
+        <AlertDescription className="truncate !block pr-6">
+          {data.seo_description}
+        </AlertDescription>
+        <AlertLink
+          href={ROUTES.CHANGELOG_DETAIL(data.version || '')}
+          target="_blank"
+        >
+          View More
+        </AlertLink>
+      </AlertBody>
+    </Alert>
+  )
+}
+
 function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
   const { login } = useAuthStore()
   const { isLoggedIn, token } = useLoginWidget()
+  const { pathname } = useRouter()
+
   const layoutType = Component.layoutType ?? 'dashboard'
+  const shouldShowChangelogAlert = pathname === ROUTES.HOME
 
   useEffect(() => {
     if (!isLoggedIn || !token) return
@@ -66,6 +106,7 @@ function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
           font-family: ${interFont.style.fontFamily};
         }
       `}</style>
+      {shouldShowChangelogAlert && <ChangelogAlert />}
       <Header layoutType={Component?.layoutType || 'dashboard'} />
       {layoutType === 'landing' ? (
         <Component {...pageProps} />

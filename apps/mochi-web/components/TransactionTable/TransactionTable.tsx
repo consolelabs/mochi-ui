@@ -16,7 +16,7 @@ import {
   Tooltip,
   Typography,
 } from '@mochi-ui/core'
-import { ArrowRightLine, CopyLine } from '@mochi-ui/icons'
+import { ArrowRightShortLine, CopyLine } from '@mochi-ui/icons'
 import clsx from 'clsx'
 import { useEffect, useMemo, useRef } from 'react'
 import Amount from '~cpn/Amount'
@@ -132,7 +132,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
         cell: () => {
           return (
             <div className="flex justify-center items-center p-1 w-5 h-5 rounded-full border border-neutral-300">
-              <ArrowRightLine />
+              <ArrowRightShortLine />
             </div>
           )
         },

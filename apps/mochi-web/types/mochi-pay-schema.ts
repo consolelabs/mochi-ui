@@ -449,9 +449,8 @@ export interface ViewApplicationListWithPaginationResponse {
 export interface ViewApplicationMember {
   app_id?: number
   created_at?: string
-  id?: number
+  profile?: MochiprofileMochiProfile
   profile_id?: string
-  profile_metadata?: Record<string, any>
   role?: string
   updated_at?: string
 }
@@ -486,33 +485,24 @@ export interface ViewApplicationResponse {
 }
 
 export interface ViewApplicationStats {
-  balance_in_7d?: number
-  balance_in_7d_change?: ViewApplicationStatsChange
   /** balance */
   balance_in_total?: number
-  balance_in_total_change?: ViewApplicationStatsChange
+  balance_in_total_change_vs_last_week?: number
   revenue_in_7d?: number
-  revenue_in_7d_change?: ViewApplicationStatsChange
+  revenue_in_7d_change_percentage_vs_last_period?: number
   /** revenue */
   revenue_in_total?: number
-  revenue_in_total_change?: ViewApplicationStatsChange
+  revenue_in_total_change_percentage_vs_last_month?: number
   txs_in_7d?: number
-  txs_in_7d_change?: ViewApplicationStatsChange
+  txs_in_7d_change_percentage_vs_last_period?: number
   /** txs */
   txs_in_total?: number
-  txs_in_total_change?: ViewApplicationStatsChange
+  txs_in_total_change_percentage_vs_last_month?: number
   users_in_7d?: number
-  users_in_7d_change?: ViewApplicationStatsChange
+  users_in_7d_change_percentage_vs_last_period?: number
   /** users */
   users_in_total?: number
-  users_in_total_change?: ViewApplicationStatsChange
-}
-
-export interface ViewApplicationStatsChange {
-  last_month?: number
-  last_month_percentage?: number
-  last_week?: number
-  last_week_percentage?: number
+  users_in_total_change_percentage_vs_last_month?: number
 }
 
 export interface ViewApplicationStatsResponse {

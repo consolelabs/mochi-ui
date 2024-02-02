@@ -1,5 +1,7 @@
 import { Typography, TypographyProps } from '@mochi-ui/core'
 import clsx from 'clsx'
+import Link from 'next/link'
+import { AnchorHTMLAttributes } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { ReactMarkdownOptions } from 'react-markdown/lib/react-markdown'
 import remarkBreaks from 'remark-breaks'
@@ -46,7 +48,7 @@ export const Paragraph = ({ children }: { children: React.ReactNode[] }) => {
   return (
     <Typography
       level="p1"
-      className={clsx('!text-base font-normal -tracking-[0.2px] =', {
+      className={clsx('!text-base font-normal -tracking-[0.2px]', {
         'pb-2': hasOnlyOneChildOfStrong,
         'pb-4': !hasOnlyOneChildOfStrong,
       })}
@@ -78,6 +80,23 @@ export const Strong = ({ children }: { children: React.ReactNode[] }) => {
   )
 }
 
+export const Anchor = ({
+  href,
+  children,
+}: AnchorHTMLAttributes<HTMLAnchorElement>) => {
+  return (
+    <Link href={href || ''}>
+      <Typography
+        level="p6"
+        color="primary"
+        className="!text-base font-normal -tracking-[0.2px]"
+      >
+        {children}
+      </Typography>
+    </Link>
+  )
+}
+
 export interface MarkdownProps extends ReactMarkdownOptions {}
 
 export const Markdown = ({
@@ -98,6 +117,7 @@ export const Markdown = ({
         img: Image,
         ul: UnorderedList,
         strong: Strong,
+        a: Anchor,
         br: () => null,
         ...components,
       }}

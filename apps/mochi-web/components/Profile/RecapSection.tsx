@@ -11,6 +11,7 @@ import {
 import {
   AddUserSolid,
   ArrowDownSquareSolid,
+  ArrowUpSquareSolid,
   GiftSolid,
   TipSolid,
 } from '@mochi-ui/icons'
@@ -27,14 +28,14 @@ import { truncate } from '@dwarvesf/react-utils'
 const getSummary = (total_spending: number = 0, total_receive: number = 0) => {
   if (!total_spending && !total_receive) return 'No data found.'
   if (!total_spending || total_spending < total_receive)
-    return 'You receive more than you spend.'
+    return 'You receive more than you send.'
   if (!total_receive || total_spending > total_receive)
-    return 'You spend more than you receive.'
-  return 'You spend as much as you receive.'
+    return 'You send more than you receive.'
+  return 'You send as much as you receive.'
 }
 
 interface Props {
-  type: 'spent' | 'received'
+  type: 'sent' | 'received'
   statTx?: ModelStatTx
 }
 
@@ -42,21 +43,21 @@ const UserSection = ({ type, statTx }: Props) => {
   const [profile] = UI.render(Platform.Web, statTx?.other_profile as Profile)
   const name = emojiStrip(profile?.plain || '').trim()
   const icon =
-    type === 'spent' ? (
+    type === 'sent' ? (
       <TipSolid className="w-6 h-6 text-primary-solid" />
     ) : (
       <GiftSolid className="w-6 h-6 text-secondary-solid" />
     )
 
-  if (type === 'spent' && !statTx) {
+  if (type === 'sent' && !statTx) {
     return (
-      <div className="flex items-center space-x-2 py-6">
+      <div className="flex items-center py-6 space-x-2">
         {icon}
-        <div className="flex items-center flex-wrap [&>*]:mr-2">
+        <div className="flex items-center flex-wrap [&>*]:mr-1">
           <Typography level="p5" color="textTertiary">
             To send money
           </Typography>
-          <Button variant="link" color="neutral" className="pl-0 pr-0 h-auto">
+          <Button variant="link" color="neutral" className="pr-0 pl-0 h-auto">
             <TipSolid className="w-4 h-4" />
             tip
           </Button>
@@ -70,13 +71,13 @@ const UserSection = ({ type, statTx }: Props) => {
 
   if (type === 'received' && !statTx) {
     return (
-      <div className="flex items-center space-x-2 py-6">
+      <div className="flex items-center py-6 space-x-2">
         {icon}
-        <div className="flex items-center flex-wrap [&>*]:mr-2">
+        <div className="flex items-center flex-wrap [&>*]:mr-1">
           <Typography level="p5" color="textTertiary">
             To receive money
           </Typography>
-          <Button variant="link" color="neutral" className="pl-0 pr-0 h-auto">
+          <Button variant="link" color="neutral" className="pr-0 pl-0 h-auto">
             <AddUserSolid className="w-4 h-4" />
             invite friends
           </Button>
@@ -89,16 +90,19 @@ const UserSection = ({ type, statTx }: Props) => {
   }
 
   return (
-    <div className="flex items-center space-x-2 py-6">
+    <div className="flex items-center py-6 space-x-2">
       {icon}
-      <div className="flex items-center flex-wrap [&>*]:mr-2">
+      <div className="flex items-center flex-wrap [&>*]:mr-1">
         <Typography level="p5">You {type} the most</Typography>
         <TokenAvatar
           src={statTx?.token?.icon || ''}
           name={statTx?.token?.symbol || ''}
         />
         <Typography level="h8">{statTx?.token?.symbol}</Typography>
-        <Typography level="p5">{type === 'spent' ? 'to' : 'from'}</Typography>
+        <Typography level="p5">
+          {mochiUtils.formatUsdDigit(statTx?.usd_amount || 0)}
+        </Typography>
+        <Typography level="p5">{type === 'sent' ? 'to' : 'from'}</Typography>
         <Tooltip
           content={name}
           arrow="top-center"
@@ -131,15 +135,25 @@ const TokenSection = ({ type, statTx }: Props) => {
             src={statTx.token?.icon || ''}
             name={statTx.token?.symbol || ''}
           />
-          <div className="flex items-center flex-wrap">
-            <Typography level="h8" className="mr-2">
-              {mochiUtils.formatTokenDigit(
-                utils.formatUnits(statTx.amount || 0, statTx.token?.decimal),
-              )}{' '}
+          <div className="flex flex-wrap items-center">
+            <Typography level="h8" className="mr-2 font-mono">
+              {mochiUtils.formatDigit({
+                value: utils.formatUnits(
+                  statTx.amount || 0,
+                  statTx.token?.decimal,
+                ),
+                fractionDigits: 2,
+                shorten: false,
+              })}{' '}
               {statTx?.token?.symbol}
             </Typography>
-            <Typography level="h8" color="textDisabled">
-              ({mochiUtils.formatUsdDigit(statTx.usd_amount || 0)})
+            <Typography level="h8" color="textDisabled" className="font-mono">
+              (
+              {mochiUtils.formatUsdDigit({
+                value: statTx.usd_amount || 0,
+                shorten: false,
+              })}
+              )
             </Typography>
           </div>
         </div>
@@ -155,26 +169,30 @@ export const RecapSection = () => {
   const { data } = useFetchMonthlyStats(profile?.id)
 
   return (
-    <Card className="pb-3 px-0 shadow-input">
+    <Card className="px-0 pb-3 shadow-input">
       <Typography level="h9" className="px-4">
         Your last 30 days recap
       </Typography>
       <Separator className="mt-4" />
       <div className="px-4">
-        <div className="flex items-center space-x-2 py-6">
-          <ArrowDownSquareSolid className="w-6 h-6 text-success-solid" />
+        <div className="flex items-center py-6 space-x-2">
+          {(data?.total_spending || 0) > (data?.total_receive || 0) ? (
+            <ArrowUpSquareSolid className="w-6 h-6 text-primary-solid" />
+          ) : (
+            <ArrowDownSquareSolid className="w-6 h-6 text-success-solid" />
+          )}
           <Typography level="p5">
             {getSummary(data?.total_spending, data?.total_receive)}
           </Typography>
         </div>
         <Separator />
-        <UserSection type="spent" statTx={data?.most_send} />
+        <UserSection type="sent" statTx={data?.most_send} />
         <Separator />
         <UserSection type="received" statTx={data?.most_receive} />
         <Separator />
         <div className="flex py-6 space-x-8">
-          <TokenSection type="spent" statTx={data?.spending?.[0]} />
-          <div className="h-10 my-auto">
+          <TokenSection type="sent" statTx={data?.spending?.[0]} />
+          <div className="my-auto h-10">
             <Separator orientation="vertical" />
           </div>
           <TokenSection type="received" statTx={data?.receive?.[0]} />
@@ -188,13 +206,13 @@ export const RecapSection = () => {
           Details
         </Typography>
         {[
-          { label: 'Spending', value: data?.total_spending },
-          { label: 'Receive', value: data?.total_receive },
+          { label: 'Sent', value: data?.total_spending },
+          { label: 'Received', value: data?.total_receive },
           { label: 'Net', value: data?.total_volume },
         ].map((item) => (
           <div
             key={item.label}
-            className="flex items-center justify-between py-2"
+            className="flex justify-between items-center py-2"
           >
             <Typography level="p5">{item.label}</Typography>
             <Typography level="h8">

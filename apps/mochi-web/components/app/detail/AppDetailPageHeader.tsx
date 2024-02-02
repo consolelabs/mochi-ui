@@ -1,3 +1,4 @@
+import { useClipboard } from '@dwarvesf/react-hooks'
 import {
   Button,
   PageHeader,
@@ -10,21 +11,30 @@ import {
   DropdownMenuPortal,
   PageHeaderTitle,
   PageHeaderActions,
+  Tooltip,
 } from '@mochi-ui/core'
 import {
   AddUserSolid,
   TrashBinSolid,
-  ThreeDotsLine,
+  ThreeDotLine,
   KeySolid,
 } from '@mochi-ui/icons'
 import { SOCIAL_LINKS } from '~constants'
 
 interface Props {
   name?: string
+  apiKey?: string
   onDeleteApp: () => void
 }
 
-export const AppDetailPageHeader = ({ name = '', onDeleteApp }: Props) => {
+export const AppDetailPageHeader = ({
+  name = '',
+  apiKey = '',
+  onDeleteApp,
+}: Props) => {
+  const { onCopy: onCopyApiKey, hasCopied: hasCopiedApiKey } =
+    useClipboard(apiKey)
+
   return (
     <PageHeader>
       <PageHeaderTitle>{name}</PageHeaderTitle>
@@ -35,13 +45,21 @@ export const AppDetailPageHeader = ({ name = '', onDeleteApp }: Props) => {
             See docs
           </a>
         </Button>
-        <Button variant="outline">
-          <KeySolid className="w-4 h-4" />
-          API Keys
-        </Button>
+        <Tooltip
+          content={hasCopiedApiKey ? 'Copied' : 'Click to copy API key'}
+          arrow="top-center"
+          componentProps={{
+            root: { open: hasCopiedApiKey || undefined },
+          }}
+        >
+          <Button variant="outline" onClick={onCopyApiKey}>
+            <KeySolid className="w-4 h-4" />
+            API Keys
+          </Button>
+        </Tooltip>
         <DropdownMenu>
           <DropdownMenuTrigger className="p-1.5">
-            <ThreeDotsLine className="w-5 h-5" />
+            <ThreeDotLine className="w-5 h-5" />
           </DropdownMenuTrigger>
           <DropdownMenuPortal>
             <DropdownMenuContent align="end">

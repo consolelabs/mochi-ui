@@ -142,7 +142,7 @@ const sidebarItemAccordionWrapperClsx = ({
 }) =>
   clsx(
     {
-      'rounded hover:bg-background-level2': Boolean(expanded),
+      'rounded hover:bg-background-hover': Boolean(expanded),
       '!p-0': !expanded,
       'p-2.5': expanded,
     },
@@ -196,7 +196,7 @@ const classNamePropClsx = ({
     {
       'pointer-events-none': disabled,
       'cursor-default': selected,
-      'hover:bg-background-level2 focus:bg-background-level2 cursor-pointer':
+      'hover:bg-background-hover focus:bg-background-hover cursor-pointer':
         !selected,
     },
     className,

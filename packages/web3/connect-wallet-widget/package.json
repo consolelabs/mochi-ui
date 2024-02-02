@@ -45,7 +45,7 @@
     "@mochi-ui/tabs": "workspace:*",
     "@mochi-ui/theme": "workspace:*",
     "@solana/web3.js": "1.74.0",
-    "@walletconnect/sign-client": "^2.10.6",
+    "@walletconnect/sign-client": "2.10.6",
     "browser-string-hexer": "^1.0.0",
     "bs58": "^5.0.0",
     "class-variance-authority": "^0.7.0",

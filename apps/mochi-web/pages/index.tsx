@@ -16,15 +16,16 @@ import {
   BinaryLockColored,
   BlocksColored,
   HandKeyColored,
-  LayersColored,
   PasswordLockColored,
   WalletPasswordColored,
+  EncryptedColored,
 } from '@mochi-ui/icons'
 import { GridFeatures } from '~cpn/landing/GridFeatures'
 import Feed from '~cpn/Feed'
 import Link from 'next/link'
 import { ROUTES } from '~constants/routes'
 import { NativeImage } from '~cpn/NativeImage'
+import { useFetchChangelogLatest } from '~hooks/app/useFetchChangelogLatest'
 
 const currencies = [
   `<span class="banner-token solana-color">&#8203;${renderToString(
@@ -65,6 +66,7 @@ const platforms = [
 
 export default function Index() {
   const { isLoggedIn } = useLoginWidget()
+  const { data } = useFetchChangelogLatest()
   const currency = useRef<HTMLSpanElement>(null)
   const platform = useRef<HTMLSpanElement>(null)
 
@@ -94,7 +96,7 @@ export default function Index() {
   }, [])
 
   return (
-    <Layout>
+    <Layout hasChangelogAlert={!!data}>
       <SEO title="Mochi" />
       <div className="grid grid-cols-1 auto-rows-min gap-y-7 gap-x-32 py-8 m-auto lg:grid-cols-2 lg:grid-rows-2 xl:gap-x-60 landing-container">
         <div className="flex flex-col lg:justify-end">
@@ -208,7 +210,7 @@ export default function Index() {
             id: 'keyless-wallet',
             title: 'Keyless Wallet',
             body: 'Elevate security by multiple protection layer while keep the friendly experience for all both crypto wizard and newbie.',
-            icon: <LayersColored className="w-8 h-8 md:w-12 md:h-12" />,
+            icon: <EncryptedColored className="w-8 h-8 md:w-12 md:h-12" />,
           },
           {
             id: 'account-abstraction',

@@ -31,6 +31,7 @@ import { SEO } from '~app/layout/seo'
 import { DashboardBody } from '~cpn/DashboardBody'
 import { AppDetailSkeleton } from '~cpn/app/detail/AppDetailSkeleton'
 import { SaveBar } from '~cpn/SaveBar'
+import { appDetailUrlSchema } from '~cpn/app/detail/AppDetailNewUrl'
 
 const APP_DETAIL_FORM_ID = 'app-detail-form'
 
@@ -45,12 +46,7 @@ const schema = z.object({
       {},
     ),
   ),
-  urls: z
-    .object({
-      platform: z.string().min(1, 'This field is required'),
-      url: z.string().min(1, 'This field is required').url('Invalid URL'),
-    })
-    .array(),
+  urls: appDetailUrlSchema.array(),
   app_name: z
     .string()
     .min(6, 'Name must contain at least 6 characters')
@@ -216,6 +212,7 @@ const App: NextPageWithLayout = () => {
       <SEO title={detail?.name} tailTitle />
       <AppDetailPageHeader
         name={detail?.name}
+        apiKey={detail?.public_key}
         onDeleteApp={() => onOpenChangeDeleteAppModal(true)}
       />
       <DashboardBody>
@@ -225,6 +222,8 @@ const App: NextPageWithLayout = () => {
         />
         <AppDetailIntegration
           apiKey={detail?.public_key}
+          appId={appId}
+          profileId={profileId}
           {...{ control, secretKey, onResetSecretKey, isResettingSecretKey }}
         />
         <AppDetailApiCalls {...{ profileId, appId }} />
