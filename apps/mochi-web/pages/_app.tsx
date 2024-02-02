@@ -26,6 +26,7 @@ import { Platform } from '@consolelabs/mochi-formatter'
 import { useRouter } from 'next/router'
 import { ROUTES } from '~constants/routes'
 import { useFetchChangelogLatest } from '~hooks/app/useFetchChangelogLatest'
+import { CheckCircleOutlined } from '@mochi-ui/icons'
 
 const SidebarContextProvider = dynamic(() =>
   import('../context/app/sidebar').then((m) => m.SidebarContextProvider),
@@ -70,10 +71,12 @@ function ChangelogAlert() {
   return (
     <Alert className="!p-0 h-14 rounded-none transition-[height] animate-show-changelog-alert">
       <AlertBody className="landing-container !flex-row !items-center">
-        <AlertIcon />
-        <AlertTitle className="pl-[26px] truncate">{data.title}</AlertTitle>
+        <AlertIcon asChild>
+          <CheckCircleOutlined />
+        </AlertIcon>
+        <AlertTitle className="pl-[26px] truncate">{`Mochi version ${data.version} is now available!`}</AlertTitle>
         <AlertDescription className="truncate !block pr-6">
-          {data.seo_description}
+          {data.title}
         </AlertDescription>
         <AlertLink
           href={ROUTES.CHANGELOG_DETAIL(data.version || '')}
