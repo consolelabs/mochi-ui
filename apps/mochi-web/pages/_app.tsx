@@ -69,18 +69,19 @@ function ChangelogAlert() {
   }
 
   return (
-    <Alert className="!p-0 h-14 rounded-none transition-[height] animate-show-changelog-alert">
-      <AlertBody className="landing-container !flex-row !items-center">
+    <Alert className="!p-0 !px-4 h-14 rounded-none transition-[height] animate-show-changelog-alert">
+      <AlertBody className="!max-w-full !flex-row !items-center !flex-none truncate !m-auto !w-full sm:!w-auto">
         <AlertIcon asChild>
           <CheckCircleOutlined />
         </AlertIcon>
         <AlertTitle className="pl-[26px] truncate">{`Mochi version ${data.version} is now available!`}</AlertTitle>
-        <AlertDescription className="truncate !block pr-6">
+        <AlertDescription className="truncate hidden sm:!block pr-6">
           {data.title}
         </AlertDescription>
         <AlertLink
           href={ROUTES.CHANGELOG_DETAIL(data.version || '')}
           target="_blank"
+          className="ml-auto"
         >
           View More
         </AlertLink>
