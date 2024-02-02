@@ -4,7 +4,7 @@ import { cva } from 'class-variance-authority'
 const contentAnimations = [
   'data-[state=open]:animate-in',
   'data-[state=open]:fade-in-0',
-  'data-[state=open]:zoom-in-50',
+  'data-[state=open]:zoom-in-90',
   'data-[state=open]:duration-300',
 
   'data-[state=open]:data-[side=bottom]:slide-in-from-top-10',
@@ -14,7 +14,7 @@ const contentAnimations = [
 
   'data-[state=closed]:animate-out',
   'data-[state=closed]:fade-out-0',
-  'data-[state=closed]:zoom-out-50',
+  'data-[state=closed]:zoom-out-90',
   'data-[state=closed]:duration-300',
 
   'data-[state=closed]:data-[side=bottom]:slide-out-to-top-10',
