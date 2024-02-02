@@ -303,6 +303,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
           <Tooltip
             componentProps={{ trigger: { asChild: true } }}
             content="Currency switcher"
+            arrow="top-center"
           >
             <IconButton
               label="Toggle USD mode"
