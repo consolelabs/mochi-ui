@@ -6,6 +6,7 @@ import { formatRelative } from '~utils/time'
 import useSWR, { mutate } from 'swr'
 import useSWRInfinite from 'swr/infinite'
 import { api } from '~constants/mochi'
+import { ROUTES } from '~constants/routes'
 
 export const MAX_PER_PAGE = 20
 const actions = [8, 9, 11, 13]
@@ -31,6 +32,7 @@ export type NotificationRow = {
     decimal: number
     chainIcon: string
   }
+  url?: string
 }
 
 async function transform(raw: any) {
@@ -62,6 +64,11 @@ async function transform(raw: any) {
     token.decimal = decimal
   }
 
+  let url
+  if (raw.type === ActivityType.ACTIVITY_PAY_RECEIVE && raw.external_id) {
+    url = ROUTES.TX_RECEIPTS(raw.external_id)
+  }
+
   return {
     id: raw.id,
     externalId: raw.external_id,
@@ -81,6 +88,7 @@ async function transform(raw: any) {
         ? mochiUtils.formatTokenDigit(utils.formatUnits(amount, token.decimal))
         : amount,
     token,
+    url,
   }
 }
 
