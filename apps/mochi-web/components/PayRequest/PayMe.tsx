@@ -17,7 +17,7 @@ export default function PayMe({ data, variant = 'default' }: Props) {
   return (
     <div className="gap-y-10 receipt-container">
       <div className="flex-1 drop-shadow-xl">
-        <div className="flex flex-col pb-10 rounded-t bg-white-pure jagged-bottom">
+        <div className="flex flex-col pb-10 rounded-t bg-background-popup jagged-bottom">
           {variant === 'default' && (
             <Header
               color="gray"

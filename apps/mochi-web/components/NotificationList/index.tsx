@@ -144,16 +144,16 @@ const NotificationList = () => {
           className="!p-1 !w-8 !h-8 my-auto hidden lg:block"
         >
           {unreadCount > 0 ? (
-            <BellNewSolid className="w-full h-full text-neutral-800" />
+            <BellNewSolid className="w-full h-full text-text-primary" />
           ) : (
-            <BellSolid className="w-full h-full text-neutral-800" />
+            <BellSolid className="w-full h-full text-text-primary" />
           )}
         </IconButton>
       </DropdownMenuTrigger>
       <DropdownMenuContent sideOffset={14} className="!p-0 overflow-hidden">
         <div className="flex relative flex-col" style={{ width: 400 }}>
-          <Tabs value={tabValue} className="relative z-20 bg-white-pure">
-            <div className="flex justify-between items-center p-2 pr-4 border-b border-neutral-200">
+          <Tabs value={tabValue} className="relative z-20 bg-background-popup">
+            <div className="flex justify-between items-center p-2 pr-4 border-b border-divider">
               <TabList className="flex w-max">
                 {[
                   ['for-you', 'For You'],
@@ -171,7 +171,7 @@ const NotificationList = () => {
                       className={clsx(
                         'w-max !px-2 !py-1 text-sm font-semibold',
                         {
-                          '!text-primary-700': isSelected,
+                          '!text-primary-plain-fg': isSelected,
                         },
                       )}
                     >

@@ -27,15 +27,16 @@ export function LivePlatforms({ className = '' }: { className?: string }) {
           /*   href: '/', */
           /* }, */
           {
-            className: 'bg-primary-600 text-white-pure border-transparent',
+            className:
+              'bg-primary-solid text-primary-solid-fg border-transparent',
             text: (
-              <div className="flex flex-col gap-y-px -mr-1.5 text-white-pure">
+              <div className="flex flex-col gap-y-px -mr-1.5 text-primary-solid-fg">
                 <span className="text-xs leading-[12px]">Run on the</span>
                 <span className="text-base">Discord</span>
               </div>
             ),
             icon: (
-              <Discord className="flex-shrink-0 -ml-1.5 w-8 h-8 text-white-pure" />
+              <Discord className="flex-shrink-0 -ml-1.5 w-8 h-8 text-primary-solid-fg" />
             ),
             href: DISCORD_LINK,
           },
@@ -79,7 +80,7 @@ export function LivePlatforms({ className = '' }: { className?: string }) {
               key={`mochi-is-live-on-reasons-${text}`}
               className="flex gap-x-2 items-center"
             >
-              <CheckLine className="w-5 h-5 text-primary-600" />
+              <CheckLine className="w-5 h-5 text-primary-plain-fg" />
               <Typography fontWeight="md" color="textPrimary" level="p4">
                 {text}
               </Typography>

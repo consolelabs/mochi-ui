@@ -23,15 +23,15 @@ export default function Header({ color, Icon, url, title }: Props) {
       className={clsx(
         'flex overflow-hidden relative justify-between items-center p-4 h-[56px]',
         {
-          'bg-primary-600': color === 'blue',
-          'bg-neutral-800': color === 'gray',
-          'bg-green-700': color === 'green',
+          'bg-primary-solid': color === 'blue',
+          'bg-neutral-solid': color === 'gray',
+          'bg-green-solid': color === 'green',
         },
       )}
     >
       <Image fill src="/svg/wavy-pattern.svg" alt="wavy pattern" />
       <div className="flex relative gap-x-2">
-        <Icon className="w-6 h-6 text-white-pure" />
+        <Icon className="w-6 h-6 text-text-contrast" />
         <Typography className="p4" color="textContrast" fontWeight="md">
           {title}
         </Typography>
@@ -45,9 +45,9 @@ export default function Header({ color, Icon, url, title }: Props) {
       >
         <button onClick={onCopy} type="button" className="outline-none">
           {hasCopied ? (
-            <CheckLine className="relative w-4 h-4 text-white-pure" />
+            <CheckLine className="relative w-4 h-4 text-text-contrast" />
           ) : (
-            <LinkLine className="relative w-4 h-4 text-white-pure" />
+            <LinkLine className="relative w-4 h-4 text-text-contrast" />
           )}
         </button>
       </Tooltip>
