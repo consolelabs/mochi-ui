@@ -33,13 +33,13 @@ import {
   AppleColored,
   ChromeColored,
   TipSolid,
-  DollarBubbleCircleSolid,
-  LinkCircledSolid,
   MagnifierLine,
   WalletSolid,
   CodingSolid,
   Github,
   DocumentStarSolid,
+  DollarBubbleSolid,
+  LinkSquircledSolid,
 } from '@mochi-ui/icons'
 import NotificationList from '~cpn/NotificationList'
 import clsx from 'clsx'
@@ -249,13 +249,17 @@ export const Header = () => {
               Tip
             </Button>
             {[
-              <DollarBubbleCircleSolid
+              <DollarBubbleSolid
                 key="header-icon-button-1"
-                className="w-full h-full text-text-primary"
+                className="w-5 h-5 text-text-primary mx-auto align-middle"
               />,
-              <LinkCircledSolid
+              // <DollarBubbleCircleSolid
+              //   key="header-icon-button-1"
+              //   className="w-full h-full text-text-primary"
+              // />,
+              <LinkSquircledSolid
                 key="header-icon-button-2"
-                className="w-full h-full text-text-primary"
+                className="w-5 h-5 text-text-primary mx-auto align-middle"
               />,
             ].map((icon) => {
               return (

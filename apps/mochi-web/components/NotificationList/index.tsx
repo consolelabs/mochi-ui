@@ -144,9 +144,9 @@ const NotificationList = () => {
           className="!p-1 !w-8 !h-8 my-auto hidden lg:block"
         >
           {unreadCount > 0 ? (
-            <BellNewSolid className="w-full h-full text-text-primary" />
+            <BellNewSolid className="w-5 h-5 text-text-primary mx-auto" />
           ) : (
-            <BellSolid className="w-full h-full text-text-primary" />
+            <BellSolid className="w-5 h-5 text-text-primary mx-auto" />
           )}
         </IconButton>
       </DropdownMenuTrigger>
