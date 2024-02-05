@@ -82,9 +82,12 @@ export default function SidebarItem({
           <div className={sidebarItemInfoWrapperClsx()}>
             <div className={sidebarItemTitleWrapperClsx()}>
               <Typography
-                level="p5"
+                level="p4"
                 fontWeight="md"
-                className={sidebarItemTitleClsx({ disabled })}
+                className={sidebarItemTitleClsx({
+                  disabled,
+                  className: 'lg:text-sm',
+                })}
               >
                 {title}
               </Typography>

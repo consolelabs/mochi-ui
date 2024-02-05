@@ -62,7 +62,7 @@ export default function ProfileDropdown({
       <DropdownMenuPortal>
         <DropdownMenuContent
           wrapperClassName="z-20"
-          className="overflow-y-auto max-h-[calc(100dvh-100px)]"
+          className="overflow-y-auto w-screen flex flex-col -mt-3 rounded-none h-[calc(100vh-56px)] lg:m-0 lg:block lg:w-auto lg:h-auto lg:rounded-lg lg:max-h-[calc(100dvh-100px)]"
           sideOffset={20}
           collisionPadding={{
             right: 32,
@@ -172,7 +172,8 @@ export default function ProfileDropdown({
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-          <DropdownMenuSeparator />
+          <DropdownMenuSeparator className="hidden lg:flex" />
+          <DropdownMenuSeparator className="lg:hidden !mt-auto" />
           <DropdownMenuLabel className="flex flex-col">
             <Typography level="p6" color="textDisabled" fontWeight="sm">
               Powered by Console Labs
