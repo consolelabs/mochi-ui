@@ -21,9 +21,9 @@ export const TransactionTxGroup = (props: TransactionTxGroupProps) => {
     return (
       <Typography
         level="p6"
-        className="py-0.5 px-2 font-mono rounded-full border border-background-level3 bg-background-level1 !h-[20px] !w-[73px] flex items-center"
+        className="py-0.5 px-2 font-mono rounded-full border border-background-level3 bg-background-level1 !h-[20px] !w-[53px] flex items-center"
       >
-        {tx.code.slice(0, 5)}...
+        {tx.code.slice(0, 5)}
       </Typography>
     )
   }
@@ -41,9 +41,9 @@ export const TransactionTxGroup = (props: TransactionTxGroupProps) => {
         }
       }}
     >
-      <SelectTrigger className="!rounded-full !bg-background-level1 border !border-background-level3 !py-0.5 !px-2 !h-[20px] !font-normal !w-[73px] justify-between gap-x-0">
+      <SelectTrigger className="!rounded-full !bg-background-level1 border !border-background-level3 !py-0.5 !px-2 !h-[20px] !font-normal !w-[53px] justify-between gap-x-0">
         <Typography level="p6" className="font-mono">
-          {tx.code.slice(0, 2)}...
+          {tx.code.slice(0, 2)}
         </Typography>
       </SelectTrigger>
       <SelectContent>
