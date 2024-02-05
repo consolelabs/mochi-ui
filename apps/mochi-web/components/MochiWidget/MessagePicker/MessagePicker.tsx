@@ -83,7 +83,7 @@ export default function MessagePicker({
             trigger={
               <button
                 type="button"
-                className="py-1 px-3 text-sm font-medium rounded-lg outline-none bg-neutral-300" // FIXME: bg-neutral-300 non semantic.
+                className="py-1 px-3 text-sm font-medium rounded-lg outline-none bg-background-body"
               >
                 More
               </button>

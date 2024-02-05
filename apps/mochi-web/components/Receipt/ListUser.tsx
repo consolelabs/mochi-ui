@@ -28,7 +28,7 @@ export default function ListUser({ data, title, isPeeking }: Props) {
   return (
     <DataList.Item right={data.length > 1 && <>&#8203;</>} title={title}>
       {data.length > 1 ? (
-        <div className="flex flex-col gap-y-1 items-start whitespace-nowrap !text-neutral-600">
+        <div className="flex flex-col gap-y-1 items-start whitespace-nowrap !text-text-tertiary">
           {data.map((n: any, i: number) => {
             const text = (
               <div className="flex gap-x-1 items-center text-current">
