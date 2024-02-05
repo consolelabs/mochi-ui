@@ -99,7 +99,7 @@ const UserSection = ({ type, statTx }: Props) => {
           name={statTx?.token?.symbol || ''}
         />
         <Typography level="h8">{statTx?.token?.symbol}</Typography>
-        <Typography level="p5">
+        <Typography level="p5" className="font-mono">
           {mochiUtils.formatUsdDigit(statTx?.usd_amount || 0)}
         </Typography>
         <Typography level="p5">{type === 'sent' ? 'to' : 'from'}</Typography>
@@ -136,7 +136,7 @@ const TokenSection = ({ type, statTx }: Props) => {
             name={statTx.token?.symbol || ''}
           />
           <div className="flex flex-wrap items-center">
-            <Typography level="h8" className="mr-2 font-mono">
+            <Typography level="h8" className="mr-2">
               {mochiUtils.formatDigit({
                 value: utils.formatUnits(
                   statTx.amount || 0,
