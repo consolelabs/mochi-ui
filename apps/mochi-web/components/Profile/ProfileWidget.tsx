@@ -62,10 +62,11 @@ export const ProfileWidget = () => {
       pnl = '0',
       lastest_snapshot_bals,
       offchain = [],
-      cex: { binance = [] } = {},
+      cex = {},
     } = {},
     isLoading,
   } = useFetchTotalBalance(me?.id)
+  const binance = cex.binance?.asset || []
   const isFetchingBalance = !me?.id || isLoading
   const { isFetchingWallets, wallets } = useWalletStore(
     useShallow((s) => ({
