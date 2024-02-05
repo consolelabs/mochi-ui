@@ -191,7 +191,7 @@ const classNamePropClsx = ({
   selected?: boolean
 }) =>
   clsx(
-    'flex gap-3.5 justify-between items-center p-2.5 rounded w-full transition-all',
+    'flex gap-3.5 justify-between items-center p-2.5 rounded w-full transition-colors',
     'outline-none bg-transparent',
     {
       'pointer-events-none': disabled,
