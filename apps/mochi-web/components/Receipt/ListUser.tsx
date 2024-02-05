@@ -32,15 +32,15 @@ export default function ListUser({ data, title, isPeeking }: Props) {
           {data.map((n: any, i: number) => {
             const text = (
               <div className="flex gap-x-1 items-center text-current">
-                <CornerBottomLeftLine className="w-3 h-3 text-neutral-500 shrink-0" />
+                <CornerBottomLeftLine className="w-3 h-3 text-text-tertiary shrink-0" />
                 <Link
                   href={n.url}
-                  className={clsx('underline text-neutral-600 text-xs')}
+                  className={clsx('underline text-text-secondary text-xs')}
                 >
                   {utils.string.formatAddressUsername(n.name)}
                 </Link>
                 <ArrowTopRightLine className="w-4 h-4 shrink-0" />
-                <span className="text-neutral-500">for</span>
+                <span className="text-text-tertiary">for</span>
                 <Image
                   width={12}
                   height={12}

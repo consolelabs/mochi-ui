@@ -89,7 +89,7 @@ export const ContactList = (props: Props) => {
       renderSectionHeader={(section) => (
         <label
           htmlFor="recipients"
-          className="font-bold uppercase text-[0.625rem] text-neutral-500"
+          className="font-bold uppercase text-[0.625rem] text-text-tertiary"
         >
           {section.title}
         </label>

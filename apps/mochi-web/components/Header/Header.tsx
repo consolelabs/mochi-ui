@@ -175,17 +175,17 @@ export const Header = () => {
           title: 'Soon available on',
           data: [
             {
-              label: <span className="text-neutral-500">Extension</span>,
+              label: <span className="text-text-tertiary">Extension</span>,
               iconLeft: <ChromeColored />,
               href: '#',
             },
             {
-              label: <span className="text-neutral-500">Discord</span>,
+              label: <span className="text-text-tertiary">Discord</span>,
               iconLeft: <SlackColored className="opacity-50" />,
               href: '#',
             },
             {
-              label: <span className="text-neutral-500">iOS</span>,
+              label: <span className="text-text-tertiary">iOS</span>,
               iconLeft: <AppleColored className="opacity-50" />,
               href: '#',
             },
@@ -251,11 +251,11 @@ export const Header = () => {
             {[
               <DollarBubbleCircleSolid
                 key="header-icon-button-1"
-                className="w-full h-full text-neutral-800"
+                className="w-full h-full text-text-primary"
               />,
               <LinkCircledSolid
                 key="header-icon-button-2"
-                className="w-full h-full text-neutral-800"
+                className="w-full h-full text-text-primary"
               />,
             ].map((icon) => {
               return (
@@ -292,7 +292,7 @@ export const Header = () => {
             <Button variant="link" className="!px-0 relative">
               <Avatar src={profile?.avatar || '/logo.png'} />
               <div className="absolute -right-1 -bottom-1 p-0.5 rounded-full bg-background-surface">
-                <WalletSolid className="text-sm text-neutral-800" />
+                <WalletSolid className="text-sm text-text-primary" />
               </div>
             </Button>
           </ProfileDropdown>,

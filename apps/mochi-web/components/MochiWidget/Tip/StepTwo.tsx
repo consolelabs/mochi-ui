@@ -110,7 +110,7 @@ export default function StepTwo() {
         <button onClick={() => setStep(1)} className="self-start outline-none">
           <ChevronLeftLine className="w-5 h-5" />
         </button>
-        <span className="mx-auto text-base text-neutral-800">You send</span>
+        <span className="mx-auto text-base text-text-primary">You send</span>
         <Amount
           size="lg"
           value={formatTokenAmount(request.amount ?? 0).display}

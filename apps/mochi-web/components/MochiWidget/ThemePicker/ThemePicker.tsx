@@ -105,7 +105,7 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
 
   return (
     <div className="flex flex-col gap-y-1">
-      <span className="text-sm font-medium text-neutral-800">
+      <span className="text-sm font-medium text-text-primary">
         Select theme{' '}
       </span>
       <div className="grid grid-cols-4 grid-rows-1 h-20">
@@ -215,8 +215,8 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
                 >
                   <ShapesSolid
                     className={clsx('w-5 h-5', {
-                      'text-neutral-800': selectedTab === 'common',
-                      'text-neutral-500': selectedTab !== 'common',
+                      'text-text-primary': selectedTab === 'common',
+                      'text-text-tertiary': selectedTab !== 'common',
                     })}
                   />
                   <Typography
@@ -243,8 +243,8 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
                 >
                   <StarsSolid
                     className={clsx('w-5 h-5', {
-                      'text-neutral-800': selectedTab === 'zodiac',
-                      'text-neutral-500': selectedTab !== 'zodiac',
+                      'text-text-primary': selectedTab === 'zodiac',
+                      'text-text-tertiary': selectedTab !== 'zodiac',
                     })}
                   />
                   <Typography
