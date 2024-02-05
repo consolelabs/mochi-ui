@@ -108,8 +108,8 @@ function BrowseAPIs() {
                       alt=""
                     />
                     developer
-                    <div className="font-medium text-gray-500">
-                      <span className="text-lg md:text-base text-foreground">
+                    <div className="font-medium text-text-disabled">
+                      <span className="text-lg md:text-base text-text-primary">
                         {d.title}
                       </span>{' '}
                       API
@@ -167,26 +167,26 @@ function SupportedPlatforms() {
       <div className="flex flex-col gap-y-8 mt-8">
         <div className="flex flex-col gap-y-4">
           <span className="text-lg font-medium">Socials</span>
-          <div className="grid grid-cols-5 auto-rows-auto border-t border-l border-neutral-300">
+          <div className="grid grid-cols-5 auto-rows-auto border-t border-l border-neutral-outline-border">
             {socials.map(([Icon, name]) => (
               <div
                 key={name}
-                className="flex flex-col gap-y-3 justify-center items-center p-6 border-r border-b border-neutral-300"
+                className="flex flex-col gap-y-3 justify-center items-center p-6 border-r border-b border-neutral-outline-border"
               >
                 <Icon key={name} className="w-10 h-10" />
-                <span className="text-base">{name}</span>
+                <span className="text-base text">{name}</span>
               </div>
             ))}
           </div>
         </div>
         <div className="flex flex-col gap-y-4">
           <span className="text-lg font-medium">Networks</span>
-          <div className="grid grid-cols-5 auto-rows-auto border-t border-l border-neutral-300">
+          <div className="grid grid-cols-5 auto-rows-auto border-t border-l border-neutral-outline-border">
             {networks.map(([Icon, name, comingSoon]) => {
               return (
                 <div
                   key={name}
-                  className="flex flex-col gap-y-3 justify-center items-center p-6 border-r border-b border-neutral-300"
+                  className="flex flex-col gap-y-3 justify-center items-center p-6 border-r border-b border-neutral-outline-border"
                 >
                   <div className="relative">
                     <Icon
@@ -195,7 +195,7 @@ function SupportedPlatforms() {
                       })}
                     />
                     {comingSoon && (
-                      <span className="absolute bottom-0 left-1/2 px-1 leading-3 rounded-full border -translate-x-1/2 text-xxxs bg-white-pure border-neutral-200">
+                      <span className="absolute bottom-0 left-1/2 px-1 leading-3 rounded-full border -translate-x-1/2 text-xxxs bg-neutral-soft border-neutral-outline-border">
                         soon
                       </span>
                     )}
@@ -235,8 +235,10 @@ function TryItOut() {
                   className={clsx(
                     'text-left w-full text-lg p-6 font-medium rounded-md transition border',
                     {
-                      'border-blue-700 bg-blue-100': i === idx,
-                      'border-neutral-300 hover:bg-neutral-150': i !== idx,
+                      'border-primary-outline-border bg-primary-soft text-text-primary':
+                        i === idx,
+                      'border-neutral-outline-border hover:bg-neutral-outline-hover':
+                        i !== idx,
                     },
                   )}
                   onClick={() => setIdx(i)}
@@ -247,7 +249,7 @@ function TryItOut() {
             )
           })}
         </ul>
-        <div className="flex flex-col p-8 w-2/3 bg-[#3B3B3B] rounded-2xl max-h-[500px]">
+        <div className="flex flex-col p-8 w-2/3 bg-neutral-800 rounded-2xl max-h-[500px]">
           <div className="flex justify-between items-center">
             <span className="text-xs uppercase text-white-pure">
               curl request
@@ -257,7 +259,7 @@ function TryItOut() {
             </IconButton>
           </div>
           <div className="overflow-auto h-full">
-            <code className="text-sm text-white-pure">
+            <code className="text-sm text-text-contrast">
               <pre
                 dangerouslySetInnerHTML={{
                   __html: `curl --location 'http://localhost:8200/api/v1/tip/transfer-v2' \
@@ -277,13 +279,13 @@ function TryItOut() {
                 className="whitespace-pre-wrap"
               />
             </code>
-            <div className="flex sticky bottom-0 justify-between items-center p-4 w-full text-sm font-medium rounded-lg bg-white-pure">
+            <div className="flex sticky bottom-0 justify-between items-center p-4 w-full text-sm font-medium rounded-lg bg-background-body">
               <span>
-                <span className="text-blue-500">Sign in</span> to edit real
-                requests.
+                <span className="text-primary-plain-fg">Sign in</span> to edit
+                real requests.
               </span>
               <Tooltip content="Download" arrow="top-center">
-                <div className="text-white-pure rounded-lg bg-[#3B3B3B] p-1">
+                <div className="text-text-contrast rounded-lg bg-neutral-800 p-1">
                   <ArrowDownLine className="w-4 h-4" />
                 </div>
               </Tooltip>
@@ -305,7 +307,7 @@ export default function Developer() {
           <br />
           your app
         </p>
-        <span className="mt-8 text-base font-normal text-center md:max-w-2xl md:text-lg">
+        <span className="mt-8 text-base font-normal text-center md:max-w-2xl md:text-lg text-text-secondary">
           Mochi allows developers to create a payment between users on any
           platforms, crossing web2 social platforms to web3 layers via a single
           API call.

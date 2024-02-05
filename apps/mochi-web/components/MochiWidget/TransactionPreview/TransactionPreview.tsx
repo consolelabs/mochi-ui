@@ -98,9 +98,9 @@ function TipPreview() {
   }, [request.recipients])
 
   return (
-    <div className="flex flex-col py-2 px-4 rounded-xl border border-neutral-300">
+    <div className="flex flex-col py-2 px-4 rounded-xl border border-neutral-outline-border">
       <span className="text-sm font-medium">Preview</span>
-      <div className="grid overflow-hidden grid-cols-2 gap-y-1 place-content-between mt-1 text-sm font-light text-gray-800 auto-row-auto">
+      <div className="grid overflow-hidden grid-cols-2 gap-y-1 place-content-between mt-1 text-sm font-light text-text-primary auto-row-auto">
         <span>Issued by</span>
         <span className="text-right">{me?.profile_name}</span>
         <span>Addressed to</span>
