@@ -72,6 +72,10 @@ const Token: ColumnProps<BalanceWithSource>['cell'] = (props) => (
 const Price: ColumnProps<BalanceWithSource>['cell'] = (props) => {
   const trend = Number(props.row.original.pnl) < 0 ? 'down' : 'up'
   const Icon = trend === 'up' ? ArrowUpUpColored : ArrowDownDownColored
+  const {
+    pnl = '0.00',
+    token: { price = 0 },
+  } = props.row.original || {}
 
   return (
     <Tooltip
@@ -79,7 +83,7 @@ const Price: ColumnProps<BalanceWithSource>['cell'] = (props) => {
         <ValueChange trend={trend}>
           <ValueChangeIndicator className="text-text-contrast" />
           <Typography level="h9" color="textContrast">
-            {props.row.original.pnl || '0.00'}%
+            {Number.isNaN(Number(pnl)) ? '0.00' : pnl}%
           </Typography>
         </ValueChange>
       }
@@ -91,9 +95,7 @@ const Price: ColumnProps<BalanceWithSource>['cell'] = (props) => {
       <div className="flex justify-center items-center w-6 h-6">
         <Icon className="w-2 h-2" />
       </div>
-      {mochiUtils.formatUsdPriceDigit({
-        value: props.row.original.token?.price || 0,
-      })}
+      {mochiUtils.formatUsdPriceDigit({ value: price })}
     </Tooltip>
   )
 }
