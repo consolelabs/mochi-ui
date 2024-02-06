@@ -19,9 +19,9 @@ export default function Skeleton(props: SkeletonProps) {
       >
         <div
           style={{ height: props.avatarHeight ?? 24 }}
-          className="flex-shrink-0 my-auto rounded-full bg-neutral-200 aspect-square"
+          className="flex-shrink-0 my-auto rounded-full bg-background-level3 aspect-square"
         />
-        <div className="flex-1 w-full rounded-md bg-neutral-200" />
+        <div className="flex-1 w-full rounded-md bg-background-level3" />
       </div>
     ))
 }

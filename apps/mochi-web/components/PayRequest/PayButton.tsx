@@ -112,7 +112,7 @@ export default function PayButton({
                         setItem(null)
                       }
                     }}
-                    className="flex gap-x-2 items-center p-2 rounded-md hover:bg-neutral-200"
+                    className="flex gap-x-2 items-center p-2 rounded-md hover:bg-background-level3"
                   >
                     <Avatar
                       src={emojis[item.platform as keyof typeof emojis]}
