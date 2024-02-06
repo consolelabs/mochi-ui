@@ -1,6 +1,11 @@
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import {
   Button,
+  Drawer,
+  DrawerContent,
+  DrawerOverlay,
+  DrawerPortal,
+  DrawerTrigger,
   IconButton,
   Popover,
   PopoverContent,
@@ -9,7 +14,7 @@ import {
   Skeleton,
   Typography,
 } from '@mochi-ui/core'
-import { ThreeDotLine } from '@mochi-ui/icons'
+import { CheckCircleOutlined, GearLine, ThreeDotLine } from '@mochi-ui/icons'
 import { useLoginWidget } from '@mochi-web3/login-widget'
 import clsx from 'clsx'
 import { api } from '~constants/mochi'
@@ -37,6 +42,58 @@ interface RowProps extends Pick<CommonProps, 'refresh'> {
 
 export const ROW_HEIGHT = 67
 
+const RowMenu = ({
+  id,
+  refresh,
+  onClose,
+}: {
+  id: number
+  refresh: () => void
+  onClose: () => void
+}) => {
+  const { profile } = useLoginWidget()
+
+  return (
+    <>
+      <Button
+        type="button"
+        color="neutral"
+        variant="ghost"
+        className="!justify-start h-[52px] lg:h-11 !font-medium !text-base lg:!text-sm"
+        onClick={(e) => {
+          e.preventDefault()
+          if (!profile?.id) return
+          api.profile.activities
+            .markRead({
+              profileId: profile.id,
+              ids: [id],
+            })
+            .finally(() => {
+              refresh()
+              onClose()
+            })
+        }}
+      >
+        <CheckCircleOutlined className="w-6 h-6 lg:hidden" />
+        Mark as read
+      </Button>
+      <Button
+        type="button"
+        color="neutral"
+        variant="ghost"
+        className="!justify-start h-[52px] lg:h-11 !font-medium !text-base lg:!text-sm"
+        onClick={(e) => {
+          e.preventDefault()
+          onClose()
+        }}
+      >
+        <GearLine className="w-6 h-6 lg:hidden" />
+        Hide this notification
+      </Button>
+    </>
+  )
+}
+
 const Row = ({
   id,
   time,
@@ -48,7 +105,16 @@ const Row = ({
   url,
 }: RowProps) => {
   const { profile } = useLoginWidget()
-  const { isOpen, onClose, onToggle } = useDisclosure()
+  const {
+    isOpen: isOpenPopover,
+    onClose: onClosePopover,
+    onToggle: onTogglePopover,
+  } = useDisclosure()
+  const {
+    isOpen: isOpenDrawer,
+    onClose: onCloseDrawer,
+    onToggle: onToggleDrawer,
+  } = useDisclosure()
   const Icon = transactionActionIcon[action] ?? (() => null)
   const random = Math.random()
 
@@ -63,7 +129,8 @@ const Row = ({
       type="button"
       style={{ maxHeight: ROW_HEIGHT }}
       disabled={isSkeleton}
-      onClick={() => {
+      onClick={(e) => {
+        if (e.defaultPrevented) return
         if (!url || !profile?.id) return
         api.profile.activities
           .markRead({
@@ -130,53 +197,53 @@ const Row = ({
           )}
         />
       </div>
-      <Popover open={isOpen} onOpenChange={onToggle}>
+      <Popover open={isOpenPopover} onOpenChange={onTogglePopover}>
         <PopoverTrigger asChild>
           <IconButton
             disabled={isSkeleton}
             label=""
             variant="link"
-            className={clsx('relative z-50 my-auto', {
+            className={clsx('relative z-50 my-auto hidden lg:block', {
               invisible: isSkeleton,
             })}
+            onClick={(e) => {
+              e.preventDefault()
+              onTogglePopover()
+            }}
           >
             <ThreeDotLine className="w-4 h-4 rotate-90 text-text-icon-secondary" />
           </IconButton>
         </PopoverTrigger>
         <PopoverPortal>
           <PopoverContent className="flex flex-col items-stretch !p-3">
-            <Button
-              type="button"
-              color="neutral"
-              variant="ghost"
-              className="!justify-start"
-              onClick={() => {
-                if (!profile?.id) return
-                api.profile.activities
-                  .markRead({
-                    profileId: profile.id,
-                    ids: [id],
-                  })
-                  .finally(() => {
-                    refresh()
-                    onClose()
-                  })
-              }}
-            >
-              Mark as read
-            </Button>
-            <Button
-              type="button"
-              color="neutral"
-              variant="ghost"
-              className="!justify-start"
-              onClick={onClose}
-            >
-              Hide this notification
-            </Button>
+            <RowMenu {...{ id, refresh }} onClose={onClosePopover} />
           </PopoverContent>
         </PopoverPortal>
       </Popover>
+      <Drawer open={isOpenDrawer} onOpenChange={onToggleDrawer} anchor="bottom">
+        <DrawerTrigger asChild>
+          <IconButton
+            disabled={isSkeleton}
+            label=""
+            variant="link"
+            className={clsx('relative z-50 my-auto lg:hidden', {
+              invisible: isSkeleton,
+            })}
+            onClick={(e) => {
+              e.preventDefault()
+              onToggleDrawer()
+            }}
+          >
+            <ThreeDotLine className="w-4 h-4 rotate-90 text-text-icon-secondary" />
+          </IconButton>
+        </DrawerTrigger>
+        <DrawerPortal>
+          <DrawerOverlay onClick={(e) => e.preventDefault()} />
+          <DrawerContent className="flex flex-col rounded-t-lg p-4 space-y-4">
+            <RowMenu {...{ id, refresh }} onClose={onCloseDrawer} />
+          </DrawerContent>
+        </DrawerPortal>
+      </Drawer>
     </button>
   )
 }
