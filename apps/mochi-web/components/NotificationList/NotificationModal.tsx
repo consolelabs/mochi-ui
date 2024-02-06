@@ -44,7 +44,6 @@ import clsx from 'clsx'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useDisclosure } from '@dwarvesf/react-hooks'
-import { useFetchChangelogLatest } from '~hooks/app/useFetchChangelogLatest'
 import { ROUTES } from '~constants/routes'
 import ProfileDropdown from '~cpn/ProfileDropdown'
 import WithdrawRow from './WithdrawRow'
@@ -54,8 +53,6 @@ import SwapRow from './SwapRow'
 import Skeleton from './Skeleton'
 import { MAX_PER_PAGE, useNotificationData, useUnreadNotiCount } from './util'
 
-const CHANGELOG_HEIGHT = 56
-const MAX_ROW_COUNT = 7
 const HEADER_HEIGHT = 45
 const FOOTER_HEIGHT = 46
 const NAVBAR_HEIGHT = 56
@@ -74,50 +71,21 @@ const NotificationModal = () => {
     optimisticMarkReadAll,
     nextPage,
   } = useNotificationData(tabValue, profile?.id)
-  const actualRowCount = data?.length ?? MAX_ROW_COUNT
   const {
     isOpen: isLoadMore,
     onOpen: setIsLoadMore,
     onClose: setIsNotLoadMore,
   } = useDisclosure()
 
-  const { data: changelog } = useFetchChangelogLatest()
-
   const { isOpen, onOpenChange } = useDisclosure()
 
-  const previousHeight = useRef(0)
-  const { maxRow } = useMemo(() => {
-    const getContentHeight = (limit: number) =>
-      Math.min(limit, actualRowCount) * ROW_HEIGHT + FOOTER_HEIGHT
-
-    for (let i = MAX_ROW_COUNT; i > 1; i--) {
-      let h = getContentHeight(i)
-      if (
-        h <
-        window.innerHeight -
-          NAVBAR_HEIGHT -
-          HEADER_HEIGHT -
-          (changelog ? CHANGELOG_HEIGHT : 0)
-      ) {
-        if (actualRowCount === 0) {
-          h = previousHeight.current
-        }
-        previousHeight.current = h
-        return { maxRow: i }
-      }
+  const { height, maxRow } = useMemo(() => {
+    const height = window.innerHeight - NAVBAR_HEIGHT - HEADER_HEIGHT
+    return {
+      height,
+      maxRow: Math.floor((height - FOOTER_HEIGHT) / ROW_HEIGHT),
     }
-
-    let height = getContentHeight(2)
-
-    if (actualRowCount === 0) {
-      height = previousHeight.current
-    }
-
-    previousHeight.current = height
-
-    return { maxRow: 2 }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [actualRowCount, isOpen])
+  }, [])
 
   const scrollRef = useRef<HTMLDivElement>(null)
 
@@ -157,7 +125,7 @@ const NotificationModal = () => {
         </IconButton>
       </ModalTrigger>
       <ModalPortal>
-        <ModalContent className="w-screen h-screen px-0 py-0">
+        <ModalContent className="w-screen px-0 py-0">
           <div className="h-14 w-screen grid grid-cols-3 gap-6 items-center pr-4 pl-3">
             <ModalClose className="p-1">
               <CloseLgLine className="w-6 h-6" />
@@ -281,7 +249,7 @@ const NotificationModal = () => {
                 Scroll to top
               </Typography>
             </Badge>
-            <ScrollArea className="w-full h-[calc(100vh-56px-45px)]">
+            <ScrollArea className="w-full" style={{ height }}>
               <ScrollAreaViewport
                 ref={scrollRef}
                 className={clsx({
