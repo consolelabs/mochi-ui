@@ -36,8 +36,6 @@ import { HOME_URL } from '~envs'
 import { TabbedFeatures } from '~cpn/landing/TabbedFeatures'
 import { Divider } from '~cpn/landing/Divider'
 
-const gray1 = '#F7F6F4'
-
 function BrowseAPIs() {
   return (
     <div className="flex flex-col landing-container">
@@ -80,8 +78,7 @@ function BrowseAPIs() {
               target="_blank"
               href={HOME_URL}
               key={d.body}
-              style={{ backgroundColor: gray1 }}
-              className="flex overflow-hidden items-start rounded-lg"
+              className="flex overflow-hidden items-start rounded-lg bg-background-level2"
             >
               <div className="relative flex-shrink-0 w-3 h-full">
                 <Image
