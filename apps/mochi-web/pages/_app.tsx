@@ -27,6 +27,7 @@ import { useRouter } from 'next/router'
 import { ROUTES } from '~constants/routes'
 import { useFetchChangelogLatest } from '~hooks/app/useFetchChangelogLatest'
 import { CheckCircleOutlined } from '@mochi-ui/icons'
+import { useIsNavOpenStore } from '~cpn/Header/util'
 
 const SidebarContextProvider = dynamic(() =>
   import('../context/app/sidebar').then((m) => m.SidebarContextProvider),
@@ -34,9 +35,12 @@ const SidebarContextProvider = dynamic(() =>
 const DashboardLayout = dynamic(() =>
   import('~cpn/DashboardLayout').then((m) => m.default),
 )
+
 const Header = dynamic(() =>
   import('~cpn/Header').then((m) => m.Header),
-) as FC<{ layoutType?: 'dashboard' | 'landing' }>
+) as FC<{
+  layoutType?: 'dashboard' | 'landing'
+}>
 const WalletProvider = dynamic(() =>
   import('~context/wallet-context').then((m) => m.WalletProvider),
 ) as FC<WalletProviderProps>
@@ -62,9 +66,10 @@ export function handleCancelRendering(e: any) {
 }
 
 function ChangelogAlert() {
+  const { isNavOpen } = useIsNavOpenStore()
   const { data } = useFetchChangelogLatest()
 
-  if (!data) {
+  if (!data || isNavOpen) {
     return null
   }
 

@@ -51,6 +51,7 @@ import { LoginWidget, useLoginWidget } from '@mochi-web3/login-widget'
 import ProfileDropdown from '~cpn/ProfileDropdown'
 import { MobileNavAccordionItem } from './MobileNavAccordionItem'
 import { DashboardMobileSidebar } from './DashboardMobileSidebar'
+import { useIsNavOpenStore } from './util'
 
 const authenticatedRoute = [
   ROUTES.MY_PROFILE,
@@ -151,6 +152,7 @@ export const Header = ({
 }: {
   layoutType?: 'dashboard' | 'landing'
 }) => {
+  const { setIsNavOpen } = useIsNavOpenStore()
   const { pathname, push } = useRouter()
   const { profile, isLoggedIn } = useLoginWidget()
 
@@ -494,6 +496,7 @@ export const Header = ({
             navItems={mobileNavItems}
             Header={isLoggedIn && profile ? MobileHeader : undefined}
             className={layoutType === 'dashboard' ? '!hidden' : ''}
+            onNavStateChanged={setIsNavOpen}
           />
           <DesktopNav
             navItems={desktopNavItems}
