@@ -24,8 +24,8 @@ class MyDocument extends Document {
             sizes="16x16"
             href="/favicon-16x16.png"
           />
+          <link rel="icon" href="/favicon.ico" type="image/x-icon" />
           <link rel="manifest" href="/site.webmanifest" />
-          <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#24292e" />
           <link
             href="https://fonts.googleapis.com/css?family=IBM Plex Mono&display=optional"
             rel="stylesheet"

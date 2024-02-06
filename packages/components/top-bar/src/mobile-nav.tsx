@@ -1,8 +1,9 @@
+import { useHasMounted } from '@dwarvesf/react-hooks'
 import { IconButton } from '@mochi-ui/icon-button'
 import { CloseLine, MenuSolid } from '@mochi-ui/icons'
 import { List } from '@mochi-ui/list'
 import { topBar } from '@mochi-ui/theme'
-import { ReactNode, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import { useLockScreenScroll } from '../hooks'
 import { MobileNavProps } from './type'
 
@@ -24,12 +25,24 @@ const LockScrollWrapper = ({ children }: { children: ReactNode }) => {
 }
 
 export const MobileNav = (props: MobileNavProps) => {
-  const { navItems, Header, toggleIconClassName, className } = props
+  const {
+    navItems,
+    Header,
+    toggleIconClassName,
+    className,
+    onNavStateChanged,
+  } = props
+  const hasMounted = useHasMounted()
   const [openMobileNav, setOpenMobileNav] = useState(false)
 
   const onCloseMobileNav = () => {
     setOpenMobileNav(false)
   }
+
+  useEffect(() => {
+    if (!hasMounted) return
+    onNavStateChanged?.(openMobileNav)
+  }, [hasMounted, onNavStateChanged, openMobileNav])
 
   return (
     <>
