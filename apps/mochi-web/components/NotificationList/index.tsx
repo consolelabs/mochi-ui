@@ -147,7 +147,7 @@ const NotificationList = () => {
           )}
         </IconButton>
       </DropdownMenuTrigger>
-      <DropdownMenuContent sideOffset={10} className="!p-0 overflow-hidden">
+      <DropdownMenuContent sideOffset={14} className="!p-0 overflow-hidden">
         <div className="flex relative flex-col" style={{ width: 400 }}>
           <Tabs value={tabValue} className="relative z-20 bg-white-pure">
             <div className="flex justify-between items-center p-2 pr-4 border-b border-neutral-200">
