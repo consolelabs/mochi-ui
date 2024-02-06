@@ -146,7 +146,7 @@ export default function ThemePicker({ value, onChange }: ThemePickerProps) {
                 />
               </button>
               {!isSelected ? (
-                <span className="absolute top-1/2 left-1/2 px-2 text-xs font-medium -translate-x-1/2 -translate-y-1/2 pointer-events-none text-white-pure">
+                <span className="absolute top-1/2 left-1/2 px-2 text-xs font-medium -translate-x-1/2 -translate-y-1/2 pointer-events-none text-text-contrast">
                   {t.name}
                 </span>
               ) : (

@@ -18,7 +18,7 @@ export default function NotFoundPage() {
           'mx-4 px-8 py-10',
         )}
       >
-        <h3 className="sm:absolute -z-10 text-[#F4F3F2] sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 text-[160px] md:text-[420px] sm:text-[340px] w-fit">
+        <h3 className="sm:absolute -z-10 text-background-level3 text-opacity-50 sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 text-[160px] md:text-[420px] sm:text-[340px] w-fit">
           404
         </h3>
         <div
@@ -42,7 +42,7 @@ export default function NotFoundPage() {
             </Link>
             <Link href={ROUTES.HOME}>
               <Button
-                className="text-base shadow-none !bg-blue-700 text-white !border-blue-700 h-12 w-full sm:w-[144px]"
+                className="text-base shadow-none !bg-primary-solid text-primary-solid-fg border-primary-solid  h-12 w-full sm:w-[144px]"
                 href={ROUTES.HOME}
               >
                 Confirm
