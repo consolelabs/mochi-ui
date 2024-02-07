@@ -1163,20 +1163,22 @@ export interface ResponseAssetTokenChain {
   type?: string
 }
 
-export interface ResponseBinanceFutureAccountBalance {
-  accountAlias?: string
-  asset?: string
-  availableBalance?: string
-  balance?: string
-  crossUnPnl?: string
-  crossWalletBalance?: string
-  marginAvailable?: boolean
-  maxWithdrawAmount?: string
-  updateTime?: number
-}
-
 export interface ResponseBinanceFutureAccountPositionResponse {
   data?: ResponseBinanceFuturePositionInformation[]
+}
+
+export interface ResponseBinanceFutureBalanceResponse {
+  account_alias?: string
+  asset?: string
+  available_balance?: string
+  balance?: string
+  cross_un_pnl?: string
+  cross_wallet_balance?: string
+  margin_available?: boolean
+  max_withdraw_amount?: string
+  token?: ResponseAssetToken
+  update_time?: number
+  usd_balance?: number
 }
 
 export interface ResponseBinanceFuturePositionInfo {
@@ -1517,7 +1519,7 @@ export interface ResponseGetAllDaoProposals {
 export interface ResponseGetBinanceAsset {
   asset?: ResponseWalletAssetData[]
   earn?: ResponseWalletAssetData[]
-  future?: ResponseBinanceFutureAccountBalance[]
+  future?: ResponseBinanceFutureBalanceResponse[]
   simple_earn?: ResponseWalletBinanceAssetSimpleEarnResponse
 }
 

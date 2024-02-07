@@ -49,6 +49,7 @@ import { useState } from 'react'
 import events from '~constants/events'
 import { LoginWidget, useLoginWidget } from '@mochi-web3/login-widget'
 import ProfileDropdown from '~cpn/ProfileDropdown'
+import NotificationModal from '~cpn/NotificationList/NotificationModal'
 import { MobileNavAccordionItem } from './MobileNavAccordionItem'
 import { DashboardMobileSidebar } from './DashboardMobileSidebar'
 import { useIsNavOpenStore } from './util'
@@ -239,7 +240,7 @@ export const Header = ({
     ...(isLoggedIn && profile
       ? [
           <div
-            className="flex gap-x-0 items-stretch -mr-2 lg:gap-x-3 lg:mr-0"
+            className="flex gap-x-2 items-stretch -mr-2 lg:gap-x-3 lg:mr-0"
             key="desktop-nav-items"
           >
             <div
@@ -308,6 +309,15 @@ export const Header = ({
               )
             })}
             <NotificationList key="header-icon-button-3" />
+            <NotificationModal />
+            <IconButton
+              color="neutral"
+              variant="outline"
+              label="Tip"
+              className="!p-1 !w-8 !h-8 my-auto block lg:hidden"
+            >
+              <TipSolid className="w-full h-full text-neutral-800" />
+            </IconButton>
           </div>,
           <ProfileDropdown
             className="hidden lg:flex"
