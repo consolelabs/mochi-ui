@@ -66,7 +66,8 @@ export const ProfileWidget = () => {
     } = {},
     isLoading,
   } = useFetchTotalBalance(me?.id)
-  const binance = cex.binance?.asset || []
+  const { future: binanceFuture = [], asset: binanceSpot = [] } =
+    cex.binance ?? {}
   const isFetchingBalance = !me?.id || isLoading
   const { isFetchingWallets, wallets } = useWalletStore(
     useShallow((s) => ({
@@ -96,7 +97,7 @@ export const ProfileWidget = () => {
         },
       })),
     ),
-    ...(binance?.map<BalanceWithSource>((each) => ({
+    ...(binanceSpot?.map<BalanceWithSource>((each) => ({
       type: 'token',
       asset_balance: each.asset_balance || 0,
       usd_balance: each.usd_balance || 0,
@@ -114,6 +115,27 @@ export const ProfileWidget = () => {
         title: 'Binance',
       },
     })) ?? []),
+    ...(binanceFuture
+      ?.filter((each) => Number(each.balance) !== 0)
+      .map<BalanceWithSource>((each) => ({
+        type: 'token',
+        asset_balance: +(each.balance || 0),
+        usd_balance: each.usd_balance || 0,
+        token: {
+          symbol: each.asset ?? '',
+          price: each.token?.price,
+          chain: {
+            id: 'binance',
+            symbol: 'Binance',
+          },
+        } as Token,
+        disabled: false,
+        pnl: each.token?.pnl,
+        source: {
+          id: 'binance',
+          title: 'Binance (Future)',
+        },
+      })) ?? []),
   ]
   const chains = balances.reduce<{ [chain: string]: BalanceWithSource[] }>(
     (prev, curr) => {
