@@ -109,6 +109,17 @@ export const AppDetailApiCalls = ({ profileId, appId }: Props) => {
             </pre>
           </div>
         )}
+        onRow={(record, index, row) => ({
+          onClick: row.getToggleExpandedHandler(),
+        })}
+        emptyContent={
+          <div className="h-[357.5px] flex flex-col items-center justify-center text-center space-y-1">
+            <Typography level="h7">No logs found</Typography>
+            <Typography level="p4">
+              Your app hasn&apos;t called API with the provided key.
+            </Typography>
+          </div>
+        }
       />
     </div>
   )
