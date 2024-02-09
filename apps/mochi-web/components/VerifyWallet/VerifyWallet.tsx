@@ -1,10 +1,15 @@
 import { useCallback, useState } from 'react'
-import { button } from '~cpn/base/button'
 import { API } from '~constants/api'
-import { useAppWalletContext } from '~context/wallet-context'
-import { WretchError } from 'wretch'
-import { useAuthStore } from '~store'
-import { shallow } from 'zustand/shallow'
+import {
+  Button,
+  Modal,
+  ModalContent,
+  ModalOverlay,
+  ModalPortal,
+} from '@mochi-ui/core'
+import { useDisclosure } from '@dwarvesf/react-hooks'
+import { LoginWidget } from '@mochi-web3/login-widget'
+import { WretchError } from 'wretch/resolver'
 
 interface Props {
   code: string
@@ -15,19 +20,14 @@ export const VerifyWallet: React.FC<Props> = ({ code, guild_id }) => {
   const [loading, setLoading] = useState(false)
   const [verified, setVerified] = useState(false)
   const [error, _setError] = useState('')
-  const { showConnectModal, closeConnectModal, disconnect } =
-    useAppWalletContext()
-  const { login, isLoggedIn } = useAuthStore(
-    (s) => ({ login: s.login, isLoggedIn: s.isLoggedIn }),
-    shallow,
-  )
-
   const setError = useCallback(
     (e: WretchError) => {
       _setError(e.json?.msg ?? 'Something went wrong')
     },
     [_setError],
   )
+
+  const { isOpen, onOpenChange } = useDisclosure()
 
   if (error) {
     return (
@@ -65,87 +65,74 @@ export const VerifyWallet: React.FC<Props> = ({ code, guild_id }) => {
         exclusive privileges.
       </p>
       <div className="flex gap-x-2 justify-center">
-        <button
-          disabled={loading}
-          className={button({ size: 'sm' })}
-          onClick={() =>
-            showConnectModal(async ({ signature, address, platform, msg }) => {
-              if (!code || loading) return
-              setLoading(true)
-              const payload = {
-                wallet_address: address,
-                code,
-                signature,
-                message: msg,
-              }
-
-              API.MOCHI_PROFILE.post(
-                payload,
-                `/profiles/me/accounts/connect-${platform}`,
-              )
-                .badRequest(setError)
-                .json((r) => {
-                  const user_discord_id = r.associated_accounts.find(
-                    (aa: any) => aa.platform === 'discord',
-                  )?.platform_identifier
-                  if (!guild_id) {
-                    setVerified(true)
-                  } else if (user_discord_id) {
-                    API.MOCHI.post(
-                      {
-                        user_discord_id,
-                        guild_id,
-                      },
-                      `/verify/assign-role`,
-                    )
-                      .badRequest(setError)
-                      .res(() => {
-                        setVerified(true)
-
-                        if (!isLoggedIn) {
-                          // log the user in with the new connected discord account
-                          API.MOCHI_PROFILE.post(
-                            payload,
-                            `/profiles/auth/${platform}`,
-                          )
-                            .json((r) =>
-                              login({
-                                token: r.data.access_token,
-                              }),
-                            )
-                            .catch(setError)
-                            .finally(() => {
-                              closeConnectModal()
-                              setLoading(false)
-                              disconnect()
-                            })
-                        }
-                      })
-                      .catch(setError)
-                      .finally(() => {
-                        closeConnectModal()
-                        setLoading(false)
-                        disconnect()
-                      })
+        <Modal open={isOpen} onOpenChange={onOpenChange}>
+          <ModalPortal>
+            <ModalOverlay />
+            <ModalContent
+              className="p-5 w-full sm:w-auto"
+              style={{
+                maxWidth: 'calc(100% - 32px)',
+              }}
+            >
+              <LoginWidget
+                raw
+                onchain
+                onWalletConnectSuccess={async ({
+                  address,
+                  signature,
+                  platform,
+                }) => {
+                  if (!code || loading) return
+                  setLoading(true)
+                  const payload = {
+                    wallet_address: address,
+                    code,
+                    signature,
+                    message:
+                      'Please sign this message to prove wallet ownership',
                   }
-                })
-                .catch(setError)
-                .finally(() => {
-                  closeConnectModal()
-                  setLoading(false)
-                  disconnect()
-                })
-            }, code)
-          }
-        >
-          Connect
-        </button>
-        <button
-          onClick={() => setLoading(false)}
-          className={button({ size: 'sm' })}
-        >
-          Cancel
-        </button>
+
+                  await API.MOCHI_PROFILE.post(
+                    payload,
+                    `/profiles/me/accounts/connect-${platform.replace(
+                      '-chain',
+                      '',
+                    )}`,
+                  )
+                    .badRequest(setError)
+                    .json(async (r) => {
+                      const user_discord_id = r.associated_accounts.find(
+                        (aa: any) => aa.platform === 'discord',
+                      )?.platform_identifier
+                      if (!guild_id) {
+                        setVerified(true)
+                      } else if (user_discord_id) {
+                        await API.MOCHI.post(
+                          {
+                            user_discord_id,
+                            guild_id,
+                          },
+                          `/verify/assign-role`,
+                        )
+                          .badRequest(setError)
+                          .res(() => {
+                            setVerified(true)
+                          })
+                          .catch(setError)
+                          .finally(() => {
+                            setLoading(false)
+                            onOpenChange(false)
+                          })
+                      }
+                    })
+                }}
+              />
+            </ModalContent>
+          </ModalPortal>
+        </Modal>
+        <Button color="primary" onClick={() => onOpenChange(true)}>
+          Verify
+        </Button>
       </div>
     </div>
   )

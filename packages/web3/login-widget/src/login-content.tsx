@@ -62,9 +62,17 @@ const { popoverContentClsx } = popover
 export default function LoginContent({
   raw = false,
   chain,
+  onchain = false,
+  onWalletConnectSuccess,
 }: {
   raw?: boolean
   chain?: string
+  onchain?: boolean
+  onWalletConnectSuccess?: (data: {
+    signature: string
+    platform: string
+    address: string
+  }) => Promise<void>
 }) {
   const [isConnecting, setIsConnecting] = useState(false)
   const {
@@ -74,7 +82,10 @@ export default function LoginContent({
     setIsLoadingProfile,
     dispatch,
   } = useLoginWidget()
-  const [state, setState] = useState({ step: chain ? 2 : 1, direction: 0 })
+  const [state, setState] = useState({
+    step: chain || onchain ? 2 : 1,
+    direction: 0,
+  })
   const [isInteractive, setIsInteractive] = useState(false)
 
   const handleAfterConnect = useCallback(
@@ -86,6 +97,11 @@ export default function LoginContent({
         platform: string
       },
     ) => {
+      await onWalletConnectSuccess?.({
+        signature: data.signature,
+        platform: data.platform,
+        address: data.addresses[0],
+      })
       if (!profileBaseUrl) return
       if (isLoggedIn) {
         dispatch({
@@ -120,7 +136,14 @@ export default function LoginContent({
         },
       })
     },
-    [dispatch, isLoggedIn, profileBaseUrl, setIsLoadingProfile, setIsLoggingIn],
+    [
+      dispatch,
+      isLoggedIn,
+      onWalletConnectSuccess,
+      profileBaseUrl,
+      setIsLoadingProfile,
+      setIsLoggingIn,
+    ],
   )
 
   useEffect(() => {
