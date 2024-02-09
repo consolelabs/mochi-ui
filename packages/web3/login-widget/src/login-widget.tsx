@@ -15,10 +15,28 @@ import LoginContent from './login-content'
 interface LoginWidgetProps {
   raw?: boolean
   chain?: string
+  onchain?: boolean
+  onWalletConnectSuccess?: (data: {
+    signature: string
+    platform: string
+    address: string
+  }) => Promise<void>
 }
 
-function LoginWidget({ raw = false, chain }: LoginWidgetProps) {
-  return <LoginContent raw={raw} chain={chain} />
+function LoginWidget({
+  raw = false,
+  chain,
+  onchain,
+  onWalletConnectSuccess,
+}: LoginWidgetProps) {
+  return (
+    <LoginContent
+      raw={raw}
+      chain={chain}
+      onchain={onchain}
+      onWalletConnectSuccess={onWalletConnectSuccess}
+    />
+  )
 }
 
 interface LoginWidgetProviderProps {

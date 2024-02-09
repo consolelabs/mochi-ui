@@ -239,7 +239,7 @@ const Row = ({
         </DrawerTrigger>
         <DrawerPortal>
           <DrawerOverlay onClick={(e) => e.preventDefault()} />
-          <DrawerContent className="flex flex-col rounded-t-lg p-4 space-y-4">
+          <DrawerContent className="flex flex-col p-4 space-y-4 rounded-t-lg">
             <RowMenu {...{ id, refresh }} onClose={onCloseDrawer} />
           </DrawerContent>
         </DrawerPortal>
