@@ -155,9 +155,10 @@ export function useNotificationData(
       const newData = res.data?.map((d) =>
         d.map((r) => ({ ...r, isNew: false })),
       )
-      res.mutate(newData, { optimisticData: newData })
-      mutate(['notification-list', profileId, 'unread', res.size], [], {
-        optimisticData: [],
+      res.mutate(newData).then(() => {
+        mutate(['notification-list', profileId, 'unread', res.size], [], {
+          optimisticData: [],
+        })
       })
     },
     nextPage: () => res.setSize(res.size + 1),

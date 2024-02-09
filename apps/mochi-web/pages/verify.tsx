@@ -6,7 +6,7 @@ import { GetServerSideProps } from 'next'
 import { VerifyWallet } from '~cpn/VerifyWallet'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { code, guild_id } = ctx.query
+  const { code, guild_id = null } = ctx.query
 
   if (!code)
     return {

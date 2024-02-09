@@ -79,7 +79,7 @@ function ChangelogAlert() {
         <AlertIcon asChild>
           <CheckCircleOutlined />
         </AlertIcon>
-        <AlertTitle className="pl-[26px] truncate">{`Mochi version ${data.version} is now available!`}</AlertTitle>
+        <AlertTitle className="pl-[26px] truncate">{`Mochi v${data.version} is now available!`}</AlertTitle>
         <AlertDescription className="truncate hidden sm:!block pr-6">
           {data.title}
         </AlertDescription>
