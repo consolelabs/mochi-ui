@@ -48,7 +48,7 @@ export const TransactionOverviewSection = () => {
   return (
     <div>
       <SectionHeader className="!pt-0">
-        <SectionHeaderTitle className="flex items-center">
+        <SectionHeaderTitle className="!text-xl !font-semibold flex items-center">
           Transactions
         </SectionHeaderTitle>
         <SectionHeaderActions>

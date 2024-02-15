@@ -8,6 +8,13 @@ import useSWRInfinite from 'swr/infinite'
 import { api } from '~constants/mochi'
 import { ROUTES } from '~constants/routes'
 
+export const CHANGELOG_HEIGHT = 56
+export const MAX_ROW_COUNT = 7
+export const HEADER_HEIGHT = 45
+export const FOOTER_HEIGHT = 46
+export const NAVBAR_HEIGHT = 56
+export const ROW_HEIGHT = 66
+
 export const MAX_PER_PAGE = 20
 const actions = [8, 9, 11, 13]
 const REFRESH_INTERVAL_MS = 1000 * 60

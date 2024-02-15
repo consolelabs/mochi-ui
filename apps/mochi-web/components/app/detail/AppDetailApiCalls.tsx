@@ -58,8 +58,8 @@ export const AppDetailApiCalls = ({ profileId, appId }: Props) => {
 
   return (
     <div className="mt-8">
-      <div className="flex items-center justify-between py-2 mb-4">
-        <Typography level="p4" className="font-medium">
+      <div className="flex justify-between items-center py-2 mb-4">
+        <Typography level="p2" fontWeight="lg">
           API Calls
         </Typography>
       </div>
@@ -96,7 +96,7 @@ export const AppDetailApiCalls = ({ profileId, appId }: Props) => {
         ]}
         getRowCanExpand={() => true}
         renderSubComponent={(record) => (
-          <div className="p-4 overflow-x-auto bg-background-level2 pl-18">
+          <div className="overflow-x-auto p-4 bg-background-level2 pl-18">
             <Typography level="h9">Request</Typography>
             <pre className="text-sm">
               {JSON.stringify(JSON.parse(record.request || '{}'), null, 2)}

@@ -7,7 +7,10 @@ import Row from './Row'
 const AirdropRow = (props: any) => {
   return (
     <Row action="airdrop" {...props}>
-      <Typography className="flex flex-wrap gap-x-2 items-center text-left break-all">
+      <Typography
+        level="p5"
+        className="flex flex-wrap gap-x-2 items-center text-left break-all"
+      >
         Receive{' '}
         <Amount
           size="base"

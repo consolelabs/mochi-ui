@@ -42,7 +42,7 @@ export const AppDetailUrl = ({ control, errors }: Props) => {
   return (
     <div className="mt-8">
       <div className="py-2 space-y-2">
-        <Typography level="p4" className="font-medium">
+        <Typography level="p2" fontWeight="lg">
           URL
         </Typography>
         <Typography level="p5" color="textSecondary">

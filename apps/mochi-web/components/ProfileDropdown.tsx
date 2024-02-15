@@ -30,6 +30,7 @@ import { ROUTES } from '~constants/routes'
 import { ReactNode } from 'react'
 import { DISCORD_INSTALL_BOT_LINK, TELEGRAM_LINK } from '~constants/resources'
 import { appVersion } from '~constants/common'
+import { useIsNavOpenStore } from './Header/util'
 
 export default function ProfileDropdown({
   children,
@@ -38,6 +39,7 @@ export default function ProfileDropdown({
   children?: ReactNode
   className?: string
 }) {
+  const { setIsNavOpen } = useIsNavOpenStore()
   const { isLoggedIn, profile } = useLoginWidget()
 
   let triggerRender = null
@@ -55,14 +57,14 @@ export default function ProfileDropdown({
   }
 
   return (
-    <DropdownMenu>
+    <DropdownMenu onOpenChange={setIsNavOpen}>
       <DropdownMenuTrigger className={className} asChild>
         {triggerRender}
       </DropdownMenuTrigger>
       <DropdownMenuPortal>
         <DropdownMenuContent
           wrapperClassName="z-[60]"
-          className="overflow-y-auto w-screen flex flex-col -mt-3 rounded-none h-[calc(100vh-56px)] lg:m-0 lg:block lg:w-auto lg:h-auto lg:rounded-lg lg:max-h-[calc(100dvh-100px)]"
+          className="overflow-y-auto w-screen flex flex-col rounded-none h-[calc(100vh-56px)] lg:m-0 lg:block lg:w-auto lg:h-auto lg:rounded-lg lg:max-h-[calc(100dvh-100px)]"
           sideOffset={9}
           collisionPadding={{
             right: 32,
@@ -122,7 +124,7 @@ export default function ProfileDropdown({
             className="!p-0 shadow-none bg-transparent"
             defaultValue={['Download']}
           >
-            <AccordionItem value="Home">
+            <AccordionItem value="Mochi">
               <AccordionTrigger
                 className="py-0.5"
                 leftIcon={
@@ -131,9 +133,12 @@ export default function ProfileDropdown({
                   </div>
                 }
               >
-                Home
+                Mochi
               </AccordionTrigger>
               <AccordionContent className="!p-0">
+                <Link href={ROUTES.HOME}>
+                  <DropdownMenuItem hasPaddingLeft>Home</DropdownMenuItem>
+                </Link>
                 <Link href={ROUTES.EXPLORE}>
                   <DropdownMenuItem hasPaddingLeft>Explore</DropdownMenuItem>
                 </Link>

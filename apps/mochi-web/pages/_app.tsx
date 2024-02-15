@@ -38,9 +38,7 @@ const DashboardLayout = dynamic(() =>
 
 const Header = dynamic(() =>
   import('~cpn/Header').then((m) => m.Header),
-) as FC<{
-  layoutType?: 'dashboard' | 'landing'
-}>
+) as FC<{}>
 const WalletProvider = dynamic(() =>
   import('~context/wallet-context').then((m) => m.WalletProvider),
 ) as FC<WalletProviderProps>
@@ -116,7 +114,7 @@ function InnerApp({ Component, pageProps }: AppPropsWithLayout) {
         }
       `}</style>
       {shouldShowChangelogAlert && <ChangelogAlert />}
-      <Header layoutType={Component?.layoutType || 'dashboard'} />
+      <Header />
       {layoutType === 'landing' ? (
         <Component {...pageProps} />
       ) : (

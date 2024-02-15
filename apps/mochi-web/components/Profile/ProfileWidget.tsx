@@ -60,7 +60,6 @@ export const ProfileWidget = () => {
     data: {
       totalUsdAmount: total = 0,
       pnl = '0',
-      lastest_snapshot_bals,
       offchain = [],
       cex = {},
     } = {},
@@ -215,7 +214,7 @@ export const ProfileWidget = () => {
       <div className="flex items-center space-x-2">
         <Avatar src={me?.avatar || ''} size="xl" />
         <div className="overflow-hidden flex-1 space-y-1">
-          <Typography level="h6" noWrap>
+          <Typography level="h6" noWrap fontWeight="md">
             {me?.profile_name}
           </Typography>
           <Badge appearance="neutral" className="w-fit">
@@ -227,26 +226,13 @@ export const ProfileWidget = () => {
             {isFetchingBalance ? '$0.00' : utils.formatUsdDigit(total)}
           </Typography>
           <div className="flex justify-end items-center">
-            <ValueChange
-              trend={pnl.startsWith('-') ? 'down' : 'up'}
-              className="mr-2"
-            >
+            <ValueChange trend={pnl.startsWith('-') ? 'down' : 'up'}>
               <ValueChangeIndicator />
               <Typography
                 level="h8"
                 color={pnl.startsWith('-') ? 'danger' : 'success'}
               >
-                {utils.formatPercentDigit(Number.isNaN(Number(pnl)) ? 0 : pnl)}{' '}
-                (
-                {isFetchingBalance
-                  ? '$0.00'
-                  : utils.formatUsdDigit(
-                      Number.isNaN(Number(pnl)) ||
-                        Number.isNaN(Number(lastest_snapshot_bals))
-                        ? 0
-                        : total - Number(lastest_snapshot_bals),
-                    )}
-                )
+                {utils.formatPercentDigit(Number.isNaN(Number(pnl)) ? 0 : pnl)}
               </Typography>
             </ValueChange>
           </div>

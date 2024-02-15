@@ -36,7 +36,6 @@ import {
   DollarBubbleCircleSolid,
   LinkCircledSolid,
   MagnifierLine,
-  ChevronRightLine,
   WalletSolid,
   CodingSolid,
   Github,
@@ -115,47 +114,10 @@ const MobileLoginPanel = () => {
   )
 }
 
-const MobileHeader = ({ onClose }: { onClose: () => void }) => {
-  const { profile } = useLoginWidget()
-  return (
-    <button onClick={onClose}>
-      <Link
-        href={ROUTES.MY_PROFILE}
-        className="block relative w-full h-20 group"
-      >
-        <div className="absolute inset-0 bg-transparent">
-          <img
-            className="object-cover w-full h-full"
-            alt="Header"
-            src="https://pbs.twimg.com/profile_banners/1168522102410010626/1684159976/300x100"
-          />
-        </div>
-        <div className="flex relative z-10 gap-4 items-center p-4 w-full h-full text-white">
-          <Avatar
-            fallback={profile?.profile_name}
-            /* smallSrc={me?.platformIcon} */
-            src={profile?.avatar as string}
-          />
-          <div className="flex flex-1 items-center font-medium">
-            <span className="inline-block w-max whitespace-nowrap max-w-40 truncate">
-              {profile?.profile_name}
-            </span>
-          </div>
-          <ChevronRightLine className="text-lg transition group-hover:translate-x-1" />
-        </div>
-      </Link>
-    </button>
-  )
-}
-
-export const Header = ({
-  layoutType,
-}: {
-  layoutType?: 'dashboard' | 'landing'
-}) => {
-  const { setIsNavOpen } = useIsNavOpenStore()
+export const Header = () => {
   const { pathname, push } = useRouter()
   const { profile, isLoggedIn } = useLoginWidget()
+  const { setIsNavOpen } = useIsNavOpenStore()
 
   const mobileNavItems = [
     <Link
@@ -473,7 +435,7 @@ export const Header = ({
           !isLoggedIn && authenticatedRoute.includes(pathname),
       })}
       leftSlot={
-        layoutType === 'landing' || !isLoggedIn ? (
+        !isLoggedIn ? (
           <Link href={ROUTES.HOME} className="gap-x-2 items-center">
             <LogoWithText
               logoProps={{ size: 'xs' }}
@@ -504,13 +466,12 @@ export const Header = ({
         <>
           <MobileNav
             navItems={mobileNavItems}
-            Header={isLoggedIn && profile ? MobileHeader : undefined}
-            className={layoutType === 'dashboard' ? '!hidden' : ''}
+            className={isLoggedIn && profile ? '!hidden' : ''}
             onNavStateChanged={setIsNavOpen}
           />
           <DesktopNav
             navItems={desktopNavItems}
-            className={layoutType === 'dashboard' ? '!flex' : ''}
+            className={isLoggedIn && profile ? '!flex' : '!hidden'}
           />
         </>
       }

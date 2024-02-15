@@ -47,11 +47,15 @@ import { useDisclosure } from '@dwarvesf/react-hooks'
 import { ROUTES } from '~constants/routes'
 import ProfileDropdown from '~cpn/ProfileDropdown'
 import WithdrawRow from './WithdrawRow'
-import { ROW_HEIGHT } from './Row'
 import TransferRow from './TransferRow'
 import SwapRow from './SwapRow'
 import Skeleton from './Skeleton'
-import { MAX_PER_PAGE, useNotificationData, useUnreadNotiCount } from './util'
+import {
+  MAX_PER_PAGE,
+  ROW_HEIGHT,
+  useNotificationData,
+  useUnreadNotiCount,
+} from './util'
 
 const HEADER_HEIGHT = 45
 const FOOTER_HEIGHT = 46
@@ -125,18 +129,18 @@ const NotificationModal = () => {
         </IconButton>
       </ModalTrigger>
       <ModalPortal>
-        <ModalContent className="w-screen px-0 py-0">
-          <div className="h-14 w-screen grid grid-cols-3 gap-6 items-center pr-4 pl-3">
+        <ModalContent className="py-0 px-0 w-screen">
+          <div className="grid grid-cols-3 gap-6 items-center pr-4 pl-3 w-screen h-14">
             <ModalClose className="p-1">
               <CloseLgLine className="w-6 h-6" />
             </ModalClose>
             <Typography level="h8" className="text-center">
               Inbox
             </Typography>
-            <div className="flex items-center justify-end space-x-2">
+            <div className="flex justify-end items-center space-x-2">
               <Popover>
                 <PopoverTrigger asChild>
-                  <Button variant="link" className="pl-0 pr-0 w-10">
+                  <Button variant="link" className="pr-0 pl-0 w-10">
                     <ThreeDotLine className="w-6 h-6 text-text-icon-primary" />
                   </Button>
                 </PopoverTrigger>
@@ -192,7 +196,7 @@ const NotificationModal = () => {
           </div>
           <div className="flex relative flex-col">
             <Tabs value={tabValue} className="relative z-20 bg-white-pure">
-              <TabList className="grid grid-cols-2 h-[46px] border-t border-b border-divider">
+              <TabList className="grid grid-cols-2 border-t border-b h-[46px] border-divider">
                 {[
                   ['for-you', 'For You'],
                   ['unread', 'Unread'],

@@ -24,7 +24,7 @@ import {
   transactionActionString,
   transactionActionTextColor,
 } from '~constants/transactions'
-import { NotificationRow } from './util'
+import { NotificationRow, ROW_HEIGHT } from './util'
 
 export interface CommonProps extends NotificationRow {
   refresh: any
@@ -39,8 +39,6 @@ interface RowProps extends Pick<CommonProps, 'refresh'> {
   isNew?: boolean
   url?: string
 }
-
-export const ROW_HEIGHT = 67
 
 const RowMenu = ({
   id,
