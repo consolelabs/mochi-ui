@@ -24,6 +24,8 @@ import emojiStrip from 'emoji-strip'
 import { Profile } from '@consolelabs/mochi-rest'
 import { utils } from 'ethers'
 import { truncate } from '@dwarvesf/react-utils'
+import { useTheme } from '~context/theme'
+import clsx from 'clsx'
 
 const getSummary = (total_spending: number = 0, total_receive: number = 0) => {
   if (!total_spending && !total_receive) return 'No data found.'
@@ -41,12 +43,23 @@ interface Props {
 
 const UserSection = ({ type, statTx }: Props) => {
   const [profile] = UI.render(Platform.Web, statTx?.other_profile as Profile)
+  const { theme } = useTheme()
   const name = emojiStrip(profile?.plain || '').trim()
   const icon =
     type === 'sent' ? (
-      <TipSolid className="w-6 h-6 text-primary-solid" />
+      <TipSolid
+        className={clsx('w-6 h-6', {
+          'text-primary-solid': theme === 'light',
+          'text-primary-500': theme === 'dark',
+        })}
+      />
     ) : (
-      <GiftSolid className="w-6 h-6 text-secondary-solid" />
+      <GiftSolid
+        className={clsx('w-6 h-6', {
+          'text-secondary-solid': theme === 'light',
+          'text-secondary-500': theme === 'dark',
+        })}
+      />
     )
 
   if (type === 'sent' && !statTx) {
@@ -167,6 +180,7 @@ const TokenSection = ({ type, statTx }: Props) => {
 export const RecapSection = () => {
   const { profile } = useLoginWidget()
   const { data } = useFetchMonthlyStats(profile?.id)
+  const { theme } = useTheme()
 
   return (
     <Card className="px-0 pb-3 shadow-input">
@@ -177,9 +191,19 @@ export const RecapSection = () => {
       <div className="px-4">
         <div className="flex items-center py-6 space-x-2">
           {(data?.total_spending || 0) > (data?.total_receive || 0) ? (
-            <ArrowUpSquareSolid className="w-6 h-6 text-primary-solid" />
+            <ArrowUpSquareSolid
+              className={clsx('w-6 h-6', {
+                'text-primary-solid': theme === 'light',
+                'text-primary-500': theme === 'dark',
+              })}
+            />
           ) : (
-            <ArrowDownSquareSolid className="w-6 h-6 text-success-solid" />
+            <ArrowDownSquareSolid
+              className={clsx('w-6 h-6', {
+                'text-primary-solid': theme === 'light',
+                'text-primary-500': theme === 'dark',
+              })}
+            />
           )}
           <Typography level="p5">
             {getSummary(data?.total_spending, data?.total_receive)}

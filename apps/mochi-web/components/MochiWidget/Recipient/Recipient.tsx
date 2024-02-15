@@ -15,10 +15,16 @@ import {
   TextFieldRoot,
   Tooltip,
 } from '@mochi-ui/core'
-import { ProfileGuardSuccessLine, Spinner, UserSolid } from '@mochi-ui/icons'
+import {
+  Spinner,
+  UserSolid,
+  ProfileGuardSuccessColoredLine,
+  ProfileGuardSuccessDarkColoredLine,
+} from '@mochi-ui/icons'
 import { useDebounce } from '@dwarvesf/react-hooks'
 import { BottomSheet, useBottomSheetContext } from '~cpn/BottomSheet'
 import { useLoginWidget } from '@mochi-web3/login-widget'
+import { useTheme } from '~context/theme'
 import { ChainPicker } from '../ChainPicker'
 import { Platform } from '../PlatformPicker/type'
 import { RecipientList } from './RecipientList'
@@ -57,6 +63,7 @@ export const Recipient: React.FC<RecipientProps> = ({
   onRemoveRecipient,
 }) => {
   const { isLoggedIn: authorized } = useLoginWidget()
+  const { theme } = useTheme()
   const { openSheets, setOpenSheets } = useBottomSheetContext()
   const [searchTerm, setSearchTerm] = useState('')
   const [searchContactTerm, setSearchContactTerm] = useState('')
@@ -222,7 +229,7 @@ export const Recipient: React.FC<RecipientProps> = ({
                   readOnly
                   className="absolute top-0 left-0 w-full h-full bg-transparent border-0 cursor-pointer outline-none"
                 />
-                <UserSolid />
+                <UserSolid className="text-background-level2" />
               </button>
             </Tooltip>
           }
@@ -388,7 +395,11 @@ export const Recipient: React.FC<RecipientProps> = ({
           className="flex flex-col gap-y-2 justify-center items-center text-text-disabled"
           style={{ height: 84 }}
         >
-          <ProfileGuardSuccessLine className="w-10 h-10" />
+          {theme === 'dark' ? (
+            <ProfileGuardSuccessDarkColoredLine className="w-10 h-10" />
+          ) : (
+            <ProfileGuardSuccessColoredLine className="w-10 h-10" />
+          )}
           <span className="text-xs font-normal">
             Select your recipients to send money
           </span>

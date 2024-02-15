@@ -13,6 +13,7 @@ export interface Item {
   title: string
   description?: ReactNode
   Icon?: (props: any) => JSX.Element
+  iconClassName?: string
   selected?: boolean
   type?: 'list' | 'button' | 'link'
   as?: React.ComponentType<any>
@@ -64,6 +65,7 @@ export default function SidebarItem({
     href,
     as,
     type,
+    iconClassName,
     children = [],
     ...props
   } = item
@@ -72,7 +74,11 @@ export default function SidebarItem({
     <>
       {Icon ? (
         <Icon
-          className={sidebarItemIconClsx({ selected, disabled })}
+          className={sidebarItemIconClsx({
+            selected,
+            disabled,
+            className: iconClassName,
+          })}
           height={20}
           width={20}
         />
