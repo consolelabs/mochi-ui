@@ -6,7 +6,10 @@ import Row, { CommonProps } from './Row'
 const SwapRow = (props: CommonProps) => {
   return (
     <Row action="swap" {...props}>
-      <Typography className="flex gap-x-2 items-center text-left shrink-0">
+      <Typography
+        level="p5"
+        className="flex gap-x-2 items-center text-left shrink-0"
+      >
         Swap{' '}
         <Amount
           size="base"

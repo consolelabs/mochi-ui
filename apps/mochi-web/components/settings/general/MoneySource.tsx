@@ -37,9 +37,7 @@ export const MoneySource = () => {
               wrapActionsOnMobile={false}
               className="!grid-cols-[1fr,auto]"
             >
-              <SectionHeaderTitle className="font-normal">
-                Default money source
-              </SectionHeaderTitle>
+              <SectionHeaderTitle>Default money source</SectionHeaderTitle>
               <SectionHeaderDescription>
                 Prioritize your preferred payment wallet.
               </SectionHeaderDescription>
@@ -60,11 +58,11 @@ export const MoneySource = () => {
                     )
                   }}
                 >
-                  <SelectTrigger appearance="form" className="h-10 w-52">
+                  <SelectTrigger appearance="form" className="w-52 h-10">
                     <div className="flex items-center">
                       {field.value ===
                       defaultMoneySource.platform_identifier ? (
-                        <Mochi className="w-6 h-6 mr-2" />
+                        <Mochi className="mr-2 w-6 h-6" />
                       ) : (
                         <TokenAvatar
                           src={wallet?.icon || ''}
@@ -111,7 +109,7 @@ export const MoneySource = () => {
                       ),
                     )}
                     <SelectSeparator />
-                    <Button variant="ghost" className="w-full pl-2 pr-2 h-9">
+                    <Button variant="ghost" className="pr-2 pl-2 w-full h-9">
                       <PlusLine className="w-4 h-4" />
                       Add new wallet
                     </Button>

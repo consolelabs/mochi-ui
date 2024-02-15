@@ -36,20 +36,23 @@ import Link from 'next/link'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { useFetchChangelogLatest } from '~hooks/app/useFetchChangelogLatest'
 import WithdrawRow from './WithdrawRow'
-import { ROW_HEIGHT } from './Row'
 import TransferRow from './TransferRow'
 import SwapRow from './SwapRow'
 /* import AirdropRow from './AirdropRow' */
 /* import PayLinkRow from './PayLinkRow' */
 /* import PayMeRow from './PayMeRow' */
 import Skeleton from './Skeleton'
-import { MAX_PER_PAGE, useNotificationData, useUnreadNotiCount } from './util'
-
-const CHANGELOG_HEIGHT = 56
-const MAX_ROW_COUNT = 7
-const HEADER_HEIGHT = 45
-const FOOTER_HEIGHT = 46
-const NAVBAR_HEIGHT = 56
+import {
+  CHANGELOG_HEIGHT,
+  FOOTER_HEIGHT,
+  HEADER_HEIGHT,
+  MAX_PER_PAGE,
+  MAX_ROW_COUNT,
+  NAVBAR_HEIGHT,
+  ROW_HEIGHT,
+  useNotificationData,
+  useUnreadNotiCount,
+} from './util'
 
 const NotificationList = () => {
   const { profile } = useLoginWidget()

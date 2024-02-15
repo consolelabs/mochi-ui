@@ -43,7 +43,7 @@ interface Props {
 const Name: ColumnProps<ViewApplication>['cell'] = (props) => (
   <div className="flex items-center space-x-3.5">
     <Avatar src={props.row.original.avatar || ''} />
-    <Typography level="p5" className="font-bold">
+    <Typography level="p5" fontWeight="lg">
       {props.row.original.name}
     </Typography>
   </div>
@@ -61,7 +61,7 @@ const Actions: ColumnProps<ViewApplication>['cell'] = (props) => {
         onClick={(e) => {
           e.stopPropagation()
         }}
-        className="flex items-center justify-center w-6 h-6 border rounded-full border-neutral-300"
+        className="flex justify-center items-center w-6 h-6 rounded-full border border-neutral-300"
       >
         <ThreeDotLine width={15} height={15} />
       </DropdownMenuTrigger>
@@ -121,11 +121,11 @@ export const AppListing = ({
 
   return (
     <div className={clsx('mt-8', className)}>
-      <Typography level="h7" color="textPrimary">
+      <Typography level="p2" fontWeight="lg" color="textPrimary">
         My Applications
       </Typography>
       {apps?.length || isLoading ? (
-        <div className="max-w-full overflow-auto">
+        <div className="overflow-auto max-w-full">
           <Table
             onRow={(record) => ({
               onClick: () => {

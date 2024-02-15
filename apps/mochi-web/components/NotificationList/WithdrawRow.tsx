@@ -6,7 +6,10 @@ import Row, { CommonProps } from './Row'
 const WithdrawRow = (props: CommonProps) => {
   return (
     <Row action="withdraw" {...props}>
-      <Typography className="flex gap-x-2 items-center w-full text-left shrink-0">
+      <Typography
+        level="p5"
+        className="flex gap-x-2 items-center w-full text-left shrink-0"
+      >
         Withdraw{' '}
         <Amount
           size="base"

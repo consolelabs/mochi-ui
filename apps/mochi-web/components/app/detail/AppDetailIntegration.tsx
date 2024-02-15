@@ -51,11 +51,11 @@ export const AppDetailIntegration = ({
   return (
     <div className="mt-8">
       <div className="py-2">
-        <Typography level="p4" className="font-medium">
+        <Typography level="p2" fontWeight="lg">
           Integrations
         </Typography>
       </div>
-      <div className="grid grid-cols-1 gap-8 p-6 mt-4 border sm:grid-cols-2 rounded-xl border-divider bg-background-body">
+      <div className="grid grid-cols-1 gap-8 p-6 mt-4 rounded-xl border sm:grid-cols-2 border-divider bg-background-body">
         <div>
           <Typography level="p3" className="font-medium">
             API Key
@@ -63,7 +63,7 @@ export const AppDetailIntegration = ({
           <Typography level="p5" color="textSecondary" className="py-3">
             Make a sample request to any Mochi product with the key below.
           </Typography>
-          <div className="rounded border border-divider shadow-input px-4 py-1.5 flex items-center gap-2 w-fit min-w-[175px] justify-between">
+          <div className="flex gap-2 justify-between items-center py-1.5 px-4 rounded border border-divider shadow-input w-fit min-w-[175px]">
             {apiKey ? (
               <>
                 <Typography level="h8">{truncate(apiKey, 12, true)}</Typography>
@@ -92,11 +92,11 @@ export const AppDetailIntegration = ({
           >
             Secret key
           </Typography>
-          <div className="flex flex-col my-2 space-y-2 sm:space-y-0 sm:space-x-2 sm:flex-row">
-            <div className="rounded border border-divider shadow-input px-3.5 flex items-center flex-1 overflow-hidden">
+          <div className="flex flex-col my-2 space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2">
+            <div className="flex overflow-hidden flex-1 items-center px-3.5 rounded border border-divider shadow-input">
               <Typography
                 level="p5"
-                className="leading-10 text-ellipsis whitespace-nowrap"
+                className="leading-10 whitespace-nowrap text-ellipsis"
               >
                 {secretKey || '********* ******** ********'}
               </Typography>

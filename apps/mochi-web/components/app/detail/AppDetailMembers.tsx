@@ -33,8 +33,8 @@ export const AppDetailMembers = ({ profileId, appId }: Props) => {
 
   return (
     <div className="mt-8">
-      <div className="flex items-center justify-between py-2 mb-4">
-        <Typography level="p4" className="font-medium">
+      <div className="flex justify-between items-center py-2 mb-4">
+        <Typography level="p2" fontWeight="lg">
           Members {members.length ? `(${members.length})` : ''}
         </Typography>
         <Button size="sm" color="neutral" variant="outline" disabled>
