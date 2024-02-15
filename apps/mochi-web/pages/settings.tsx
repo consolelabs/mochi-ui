@@ -47,7 +47,7 @@ const SettingsPage = () => {
           replace(ROUTES.SETTINGS(tab))
         }}
       >
-        <TabList className="px-4 sm:px-6">
+        <TabList className="px-4 md:px-8 -ml-3">
           <TabTrigger value="general">General</TabTrigger>
           <TabTrigger value="notification">Notification</TabTrigger>
         </TabList>

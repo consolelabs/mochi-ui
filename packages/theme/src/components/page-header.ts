@@ -4,7 +4,7 @@ const pageHeaderWrapperClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
-    'overflow-hidden flex flex-col items-start sm:items-center gap-2 sm:flex-row px-4 py-4 sm:px-8 sm:py-3 bg-background-body shrink-0',
+    'overflow-hidden flex flex-col items-start sm:items-center gap-2 sm:flex-row px-4 py-4 md:px-8 sm:py-3 bg-background-body shrink-0',
     className,
   )
 
