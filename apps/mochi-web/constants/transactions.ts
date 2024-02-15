@@ -7,8 +7,8 @@ import {
   TipSolid,
   DollarBubbleSolid,
   LinkSquircledSolid,
-  ParachuteCircleSolid,
   RefreshSolid,
+  AirdropCircleSolid,
 } from '@mochi-ui/icons'
 import { SVGProps } from 'react'
 import Telegram from '~cpn/MochiWidget/PlatformPicker/icons/telegram-ic'
@@ -50,7 +50,7 @@ export const transactionActionIcon: Record<
   payme: DollarBubbleSolid,
   swap: RefreshSolid,
   paylink: LinkSquircledSolid,
-  airdrop: ParachuteCircleSolid,
+  airdrop: AirdropCircleSolid,
   deposit: ArrowDownSquareSolid,
   withdraw: ArrowUpSquareSolid,
 }

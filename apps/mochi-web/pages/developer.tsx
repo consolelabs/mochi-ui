@@ -31,12 +31,26 @@ import {
   ZkSync,
   CopySolid,
   FarcasterColored,
+  ProfileShieldColored,
+  ProfileShieldDarkColored,
+  TipDarkColored,
+  TipColored,
+  LayersColored,
+  LayersDarkColores,
+  BagColored,
+  BagDarkColored,
+  PayLinkColored,
+  PayLinkDarkColored,
+  VaultDarkColored,
+  VaultColored,
 } from '@mochi-ui/icons'
 import { HOME_URL } from '~envs'
 import { TabbedFeatures } from '~cpn/landing/TabbedFeatures'
 import { Divider } from '~cpn/landing/Divider'
+import { useTheme } from '~context/theme'
 
 function BrowseAPIs() {
+  const { theme } = useTheme()
   return (
     <div className="flex flex-col landing-container">
       <p className="text-2xl font-medium md:text-4xl">Browse APIs</p>
@@ -45,32 +59,38 @@ function BrowseAPIs() {
           {
             title: 'Profile',
             body: 'Provides end-users data on balance, transaction, and payment requests.',
-            icon: '/developer/profile-circle.png',
+            icon:
+              theme === 'dark' ? (
+                <ProfileShieldDarkColored />
+              ) : (
+                <ProfileShieldColored />
+              ),
           },
           {
             title: 'Balance',
             body: 'Query user balance on multichains',
-            icon: '/developer/balance.png',
+            icon: theme === 'dark' ? <BagDarkColored /> : <BagColored />,
           },
           {
             title: 'Tip',
             body: 'Provides end-users data on balance, transaction, and payment requests.',
-            icon: '/developer/tip.png',
+            icon: theme === 'dark' ? <TipDarkColored /> : <TipColored />,
           },
           {
             title: 'Pay Link',
             body: 'Query user balance on multichains',
-            icon: '/developer/link.png',
+            icon:
+              theme === 'dark' ? <PayLinkDarkColored /> : <PayLinkColored />,
           },
           {
             title: 'Server',
             body: 'Provides end-users data on balance, transaction, and payment requests.',
-            icon: '/developer/server.png',
+            icon: theme === 'dark' ? <LayersDarkColores /> : <LayersColored />,
           },
           {
             title: 'Vault',
             body: 'Query user balance on multichains',
-            icon: '/developer/vault.png',
+            icon: theme === 'dark' ? <VaultDarkColored /> : <VaultColored />,
           },
         ].map((d) => {
           return (
@@ -84,26 +104,16 @@ function BrowseAPIs() {
                 <Image
                   fill
                   alt=""
-                  src="/developer/browse-api-left-border.jpg"
+                  src="/developer/browse-api-left-border.png"
                 />
               </div>
               <div className="flex gap-x-4 items-start p-6 h-full">
-                <Image
-                  width={48}
-                  height={48}
-                  src={d.icon}
-                  className="hidden object-contain md:inline-block"
-                  alt=""
-                />
+                <span className="text-5xl hidden md:block">{d.icon}</span>
                 <div className="flex flex-col gap-y-3 h-full md:gap-0">
                   <div className="flex gap-x-3">
-                    <Image
-                      width={32}
-                      height={32}
-                      src={d.icon}
-                      className="object-contain md:hidden"
-                      alt=""
-                    />
+                    <span className=" text-[32px] object-contain md:hidden">
+                      {d.icon}
+                    </span>
                     developer
                     <div className="font-medium text-text-disabled">
                       <span className="text-lg md:text-base text-text-primary">
