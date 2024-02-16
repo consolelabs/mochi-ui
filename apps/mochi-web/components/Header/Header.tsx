@@ -1,5 +1,6 @@
 'use client'
 
+import { isMobile } from '~utils/isMobile'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ROUTES } from '~constants/routes'
@@ -44,7 +45,7 @@ import {
 import NotificationList from '~cpn/NotificationList'
 import clsx from 'clsx'
 import { DISCORD_LINK, GITHUB_LINK, TELEGRAM_LINK } from '~envs'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import events from '~constants/events'
 import { LoginWidget, useLoginWidget } from '@mochi-web3/login-widget'
 import ProfileDropdown from '~cpn/ProfileDropdown'
@@ -92,7 +93,7 @@ const MobileLoginPanel = () => {
   return (
     <Modal open={isOpenLoginPanel} onOpenChange={setOpenLoginPanel}>
       <Button
-        className="justify-center w-full sm:hidden"
+        className="justify-center w-full lg:hidden"
         size="lg"
         onClick={() => setOpenLoginPanel(true)}
         loading={isLoadingProfile}
@@ -119,25 +120,14 @@ export const Header = () => {
   const { profile, isLoggedIn } = useLoginWidget()
   const { setIsNavOpen } = useIsNavOpenStore()
 
+  const redirectToTipWidget = useCallback(async () => {
+    if (pathname !== ROUTES.HOME) {
+      await push(ROUTES.HOME)
+    }
+    window.dispatchEvent(new Event(events.TIP_WIDGET.FOCUS_AMOUNT))
+  }, [pathname, push])
+
   const mobileNavItems = [
-    <Link
-      href={ROUTES.FEATURES}
-      className="flex hidden items-center py-3 px-2 text-sm"
-      key="mobile-nav-features"
-    >
-      <Typography
-        level="p6"
-        color="neutral"
-        className={clsx(
-          '!text-base transition-colors duration-300 hover:!text-primary-plain-fg',
-          {
-            '!text-primary-plain-fg': pathname === ROUTES.FEATURES,
-          },
-        )}
-      >
-        Features
-      </Typography>
-    </Link>,
     // eslint-disable-next-line jsx-a11y/anchor-is-valid
     <Link
       href="#"
@@ -236,12 +226,7 @@ export const Header = () => {
               <div className="w-full h-full bg-divider" />
             </div>
             <Button
-              onClick={async () => {
-                if (pathname !== ROUTES.HOME) {
-                  await push(ROUTES.HOME)
-                }
-                window.dispatchEvent(new Event(events.TIP_WIDGET.FOCUS_AMOUNT))
-              }}
+              onClick={redirectToTipWidget}
               size="md"
               className="hidden lg:flex"
             >
@@ -281,6 +266,7 @@ export const Header = () => {
               variant="outline"
               label="Tip"
               className="!p-1 !w-8 !h-8 my-auto block lg:hidden"
+              onClick={redirectToTipWidget}
             >
               <TipSolid className="w-full h-full text-text-primary" />
             </IconButton>
@@ -475,7 +461,11 @@ export const Header = () => {
           />
           <DesktopNav
             navItems={desktopNavItems}
-            className={isLoggedIn && profile ? '!flex' : '!hidden'}
+            className={
+              isLoggedIn && profile && isMobile() && window.innerWidth <= 1024
+                ? '!flex'
+                : ''
+            }
           />
         </>
       }

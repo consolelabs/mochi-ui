@@ -1,3 +1,4 @@
+import { isMobile } from '~utils/isMobile'
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -59,7 +60,11 @@ export default function ProfileDropdown({
   }
 
   return (
-    <DropdownMenu onOpenChange={setIsNavOpen}>
+    <DropdownMenu
+      onOpenChange={(b) =>
+        isMobile() && window.innerWidth <= 1024 && setIsNavOpen(b)
+      }
+    >
       <DropdownMenuTrigger className={className} asChild>
         {triggerRender}
       </DropdownMenuTrigger>

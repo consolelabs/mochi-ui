@@ -37,7 +37,7 @@ import { useFetchTotalBalance } from '~hooks/profile/useFetchTotalBalance'
 import { usePrevious } from '@dwarvesf/react-hooks'
 import { Token } from '@consolelabs/mochi-rest'
 
-const sortOrder = ['All', 'Mochi']
+const sortOrder = ['All', 'SOL', 'Mochi']
 const defaultChainMapping: Record<string, string> = {
   SOL: 'Solana',
   ETH: 'Ethereum',
@@ -61,6 +61,7 @@ export const ProfileWidget = () => {
       totalUsdAmount: total = 0,
       pnl = '0',
       offchain = [],
+      onchain = {},
       cex = {},
     } = {},
     isLoading,
@@ -87,14 +88,19 @@ export const ProfileWidget = () => {
 
   const balances: BalanceWithSource[] = [
     ...wallets.flatMap((w) =>
-      w.balances.map((b) => ({
-        ...b,
-        pnl: offchain.find((each) => each.token?.id === b.token.id)?.token?.pnl,
-        source: {
-          id: w.id,
-          title: w.title,
-        },
-      })),
+      w.balances.map((b) => {
+        return {
+          ...b,
+          pnl: (w.type === 'offchain'
+            ? offchain
+            : onchain[w.chainSymbol.toLowerCase() as keyof typeof onchain] ?? []
+          ).find((each) => each.token?.id === b.token.id)?.token?.pnl,
+          source: {
+            id: w.id,
+            title: w.title,
+          },
+        }
+      }),
     ),
     ...(binanceSpot?.map<BalanceWithSource>((each) => ({
       type: 'token',
