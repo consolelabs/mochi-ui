@@ -49,7 +49,7 @@ interface Props {
 
 export default function Transfer({ data, ogData }: Props) {
   return (
-    <Layout noFooter className="bg-white lg:bg-white-pure">
+    <Layout noFooter className="bg-background-body lg:bg-background-body">
       <SEO
         title={ogData.title}
         image={`${HOME_URL}/api/transfer-og?data=${encodeURIComponent(

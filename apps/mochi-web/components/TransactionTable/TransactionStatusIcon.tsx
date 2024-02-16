@@ -1,8 +1,8 @@
 import { Tooltip } from '@mochi-ui/core'
 import {
-  CheckCircleHalfLine,
-  ClockCircleArrowLine,
   InfoCircleOutlined,
+  CheckCircleHalfColoredLine,
+  ClockCircleArrowColoredLine,
 } from '@mochi-ui/icons'
 import { useMemo } from 'react'
 import { Tx } from './types'
@@ -19,14 +19,14 @@ export const TransactionStatusIcon = (props: TransactionStatusIconProps) => {
     switch (tx.status) {
       case 'submitted':
       case 'pending': {
-        return <ClockCircleArrowLine width={size} />
+        return <ClockCircleArrowColoredLine width={size} />
       }
       case 'failed':
       case 'expired': {
         return <InfoCircleOutlined width={size} className="text-danger-solid" />
       }
       case 'success': {
-        return <CheckCircleHalfLine width={size} />
+        return <CheckCircleHalfColoredLine width={size} />
       }
       default: {
         return null

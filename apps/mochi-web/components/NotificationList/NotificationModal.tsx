@@ -122,9 +122,9 @@ const NotificationModal = () => {
           className="!p-1 !w-8 !h-8 my-auto lg:hidden"
         >
           {unreadCount > 0 ? (
-            <BellNewSolid className="w-full h-full text-neutral-800" />
+            <BellNewSolid className="w-full h-full text-text-primary" />
           ) : (
-            <BellSolid className="w-full h-full text-neutral-800" />
+            <BellSolid className="w-full h-full text-text-primary" />
           )}
         </IconButton>
       </ModalTrigger>
@@ -188,14 +188,17 @@ const NotificationModal = () => {
                 <Button variant="link" className="!px-0 relative">
                   <Avatar src={profile?.avatar || '/logo.png'} />
                   <div className="absolute -right-1 -bottom-1 p-0.5 rounded-full bg-background-surface">
-                    <WalletSolid className="text-sm text-neutral-800" />
+                    <WalletSolid className="text-sm text-text-primary" />
                   </div>
                 </Button>
               </ProfileDropdown>
             </div>
           </div>
           <div className="flex relative flex-col">
-            <Tabs value={tabValue} className="relative z-20 bg-white-pure">
+            <Tabs
+              value={tabValue}
+              className="relative z-20 bg-background-popup"
+            >
               <TabList className="grid grid-cols-2 border-t border-b h-[46px] border-divider">
                 {[
                   ['for-you', 'For You'],

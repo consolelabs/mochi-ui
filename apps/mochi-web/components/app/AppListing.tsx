@@ -61,7 +61,7 @@ const Actions: ColumnProps<ViewApplication>['cell'] = (props) => {
         onClick={(e) => {
           e.stopPropagation()
         }}
-        className="flex justify-center items-center w-6 h-6 rounded-full border border-neutral-300"
+        className="flex items-center justify-center w-6 h-6 border rounded-full border-neutral-outline-border"
       >
         <ThreeDotLine width={15} height={15} />
       </DropdownMenuTrigger>

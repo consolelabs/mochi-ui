@@ -19,6 +19,7 @@ import { ROUTES } from '~constants/routes'
 import clsx from 'clsx'
 import { LoginWidget, useLoginWidget } from '@mochi-web3/login-widget'
 import { appVersion } from '~constants/common'
+import { useTheme } from '~context/theme'
 import { useSidebarContext } from '../context/app/sidebar'
 import { matchUrl } from '../utils/url'
 import { DashboardSkeleton } from './DashboardSkeleton'
@@ -49,6 +50,7 @@ export default function DashboardLayout({
   className,
 }: DashboardLayoutProps) {
   const { pathname, query } = useRouter()
+  const { theme } = useTheme()
   const { isLoggedIn, isLoggingIn, isLoadingProfile } = useLoginWidget()
 
   const { variant } = useSidebarContext()
@@ -63,14 +65,20 @@ export default function DashboardLayout({
           type: 'link',
           as: Link,
           href: ROUTES.MY_PROFILE,
+          selectedIconClassName: theme === 'dark' ? '!text-primary-500' : '',
         },
-        { title: 'Servers', Icon: Discord },
+        {
+          title: 'Servers',
+          Icon: Discord,
+          selectedIconClassName: theme === 'dark' ? '!text-primary-500' : '',
+        },
         {
           title: 'Settings',
           type: 'link',
           Icon: GearSolid,
           as: Link,
           href: ROUTES.SETTINGS(),
+          selectedIconClassName: theme === 'dark' ? '!text-primary-500' : '',
         },
         {
           title: 'Developer',
@@ -79,8 +87,13 @@ export default function DashboardLayout({
           as: Link,
           href: ROUTES.APPLICATON_LIST,
           badge: getSidebarBadge['NEW'],
+          selectedIconClassName: theme === 'dark' ? '!text-primary-500' : '',
         },
-        { title: 'Invite Friends', Icon: AddUserSolid },
+        {
+          title: 'Invite Friends',
+          Icon: AddUserSolid,
+          selectedIconClassName: theme === 'dark' ? '!text-primary-500' : '',
+        },
       ],
       footerItems: [
         {
@@ -153,8 +166,8 @@ export default function DashboardLayout({
           </Layout>
         </Layout>
       ) : (
-        <div className="flex items-center justify-center flex-1 w-full !min-h-[calc(100vh-56px)] bg-black/40">
-          <div className="p-5 rounded-lg shadow-md bg-white-pure">
+        <div className="flex items-center justify-center flex-1 w-full !min-h-[calc(100vh-56px)] bg-background-backdrop">
+          <div className="p-5 rounded-lg shadow-md bg-background-popup">
             <LoginWidget raw />
           </div>
         </div>

@@ -5,6 +5,7 @@ import tailwindAnimate from 'tailwindcss-animate'
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
+  darkMode: 'class',
   content: [
     './**/*.{html,ts,tsx}',
     '!node_modules',

@@ -105,20 +105,20 @@ export default function CommandMessages() {
                   alt="social icons"
                 />
                 {item.sender}
-                <span className="text-[#017AFF] font-semibold">
+                <span className="text-primary-plain-fg font-semibold">
                   &nbsp;{`/${item.command}`}&nbsp;
                 </span>
-                <span className="text-[#017AFF] font-semibold">
+                <span className="text-primary-plain-fg font-semibold">
                   {`@${item.receiver}`}&nbsp;
                 </span>
                 {item.message}
               </li>
             ))}
           </ul>
-          <div className="bg-gradient-to-b from-white-pure to-transparent absolute left-0 right-0 top-0 h-[50%]">
+          <div className="bg-gradient-to-b from-background-body to-transparent absolute left-0 right-0 top-0 h-[50%]">
             &nbsp;
           </div>
-          <div className="bg-gradient-to-t from-white-pure to-transparent absolute left-0 right-0 bottom-0 h-[50%]">
+          <div className="bg-gradient-to-t from-background-body to-transparent absolute left-0 right-0 bottom-0 h-[50%]">
             &nbsp;
           </div>
         </div>

@@ -65,7 +65,7 @@ const AppPageHeader = ({
             <DropdownMenuContent align="end">
               <DropdownMenuItem
                 rightIcon={
-                  <CheckLine className="ml-4 w-4 h-4 text-primary-700" />
+                  <CheckLine className="ml-4 w-4 h-4 text-primary-plain-fg" />
                 }
               >
                 All apps

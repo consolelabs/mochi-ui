@@ -35,7 +35,9 @@ export async function transform(d: any, isNested = false): Promise<Tx> {
     case 'web':
     case Platform.Web: {
       fromPlatformIcon = `data:image/svg+xml,${escape(
-        ReactDOMServer.renderToStaticMarkup(<WebSolid />),
+        ReactDOMServer.renderToStaticMarkup(
+          <WebSolid className="text-text-primary" />,
+        ),
       )}`
       break
     }

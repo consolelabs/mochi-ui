@@ -33,13 +33,13 @@ import {
   AppleColored,
   ChromeColored,
   TipSolid,
-  DollarBubbleCircleSolid,
-  LinkCircledSolid,
   MagnifierLine,
   WalletSolid,
   CodingSolid,
   Github,
   DocumentStarSolid,
+  DollarBubbleSolid,
+  LinkSquircledSolid,
 } from '@mochi-ui/icons'
 import NotificationList from '~cpn/NotificationList'
 import clsx from 'clsx'
@@ -175,17 +175,17 @@ export const Header = () => {
           title: 'Soon available on',
           data: [
             {
-              label: <span className="text-neutral-500">Extension</span>,
+              label: <span className="text-text-tertiary">Extension</span>,
               iconLeft: <ChromeColored />,
               href: '#',
             },
             {
-              label: <span className="text-neutral-500">Discord</span>,
+              label: <span className="text-text-tertiary">Discord</span>,
               iconLeft: <SlackColored className="opacity-50" />,
               href: '#',
             },
             {
-              label: <span className="text-neutral-500">iOS</span>,
+              label: <span className="text-text-tertiary">iOS</span>,
               iconLeft: <AppleColored className="opacity-50" />,
               href: '#',
             },
@@ -249,13 +249,17 @@ export const Header = () => {
               Tip
             </Button>
             {[
-              <DollarBubbleCircleSolid
+              <DollarBubbleSolid
                 key="header-icon-button-1"
-                className="w-full h-full text-neutral-800"
+                className="w-5 h-5 text-text-primary mx-auto align-middle"
               />,
-              <LinkCircledSolid
+              // <DollarBubbleCircleSolid
+              //   key="header-icon-button-1"
+              //   className="w-full h-full text-text-primary"
+              // />,
+              <LinkSquircledSolid
                 key="header-icon-button-2"
-                className="w-full h-full text-neutral-800"
+                className="w-5 h-5 text-text-primary mx-auto align-middle"
               />,
             ].map((icon) => {
               return (
@@ -278,7 +282,7 @@ export const Header = () => {
               label="Tip"
               className="!p-1 !w-8 !h-8 my-auto block lg:hidden"
             >
-              <TipSolid className="w-full h-full text-neutral-800" />
+              <TipSolid className="w-full h-full text-text-primary" />
             </IconButton>
           </div>,
           <ProfileDropdown
@@ -292,7 +296,7 @@ export const Header = () => {
             <Button variant="link" className="!px-0 relative">
               <Avatar src={profile?.avatar || '/logo.png'} />
               <div className="absolute -right-1 -bottom-1 p-0.5 rounded-full bg-background-surface">
-                <WalletSolid className="text-sm text-neutral-800" />
+                <WalletSolid className="text-sm text-text-primary" />
               </div>
             </Button>
           </ProfileDropdown>,

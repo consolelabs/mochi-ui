@@ -31,7 +31,8 @@ function Spotlight({
           className={clsx(
             'text-sm leading-5 md:text-2xl md:leading-8 text-text-primary',
             {
-              'bg-neutral-300 rounded animate-pulse h-full w-2/3': loading,
+              'bg-background-level3 rounded animate-pulse h-full w-2/3':
+                loading,
             },
           )}
         >

@@ -38,7 +38,7 @@ export const AppDetailPlatforms = ({ control, setValue }: Props) => {
                   <Icon
                     width={22}
                     height={22}
-                    className="ml-5 text-neutral-800"
+                    className="ml-5 text-text-primary"
                   />
                   <Typography level="h8" className="ml-2 normal-case">
                     {label}

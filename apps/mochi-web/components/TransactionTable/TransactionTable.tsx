@@ -131,7 +131,7 @@ export const TransactionTable = (props: TransactionTableProps) => {
         // eslint-disable-next-line
         cell: () => {
           return (
-            <div className="flex justify-center items-center p-1 w-5 h-5 rounded-full border border-neutral-300">
+            <div className="flex justify-center items-center p-1 w-5 h-5 rounded-full border border-neutral-outline-border">
               <ArrowRightShortLine />
             </div>
           )

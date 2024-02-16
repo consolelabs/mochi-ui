@@ -137,9 +137,9 @@ export const DashboardMobileSidebar = (
           className="!px-0 h-8 w-8"
         >
           {isSidebarOpen ? (
-            <CloseLine className="text-2xl text-neutral-600" aria-hidden />
+            <CloseLine className="text-2xl text-text-tertiary" aria-hidden />
           ) : (
-            <MenuSolid className="text-2xl text-neutral-800" aria-hidden />
+            <MenuSolid className="text-2xl text-text-primary" aria-hidden />
           )}
         </Button>
       </DrawerTrigger>

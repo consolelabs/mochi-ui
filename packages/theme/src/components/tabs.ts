@@ -25,7 +25,7 @@ const tabTriggerVariants = cva(
         disabled: false,
         variant: 'solid',
         className:
-          'rounded text-text-secondary hover:bg-background-level2 hover:text-text-primary data-[state=active]:text-primary-solid',
+          'rounded text-text-secondary hover:bg-background-hover hover:text-text-primary data-[state=active]:text-primary-solid',
       },
       {
         disabled: false,

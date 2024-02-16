@@ -30,6 +30,7 @@ import { ROUTES } from '~constants/routes'
 import { ReactNode } from 'react'
 import { DISCORD_INSTALL_BOT_LINK, TELEGRAM_LINK } from '~constants/resources'
 import { appVersion } from '~constants/common'
+import { useTheme } from '~context/theme'
 import { useIsNavOpenStore } from './Header/util'
 
 export default function ProfileDropdown({
@@ -41,6 +42,7 @@ export default function ProfileDropdown({
 }) {
   const { setIsNavOpen } = useIsNavOpenStore()
   const { isLoggedIn, profile } = useLoginWidget()
+  const { theme, setTheme } = useTheme()
 
   let triggerRender = null
   if (children) {
@@ -90,7 +92,14 @@ export default function ProfileDropdown({
           <Link href="#Darkmode">
             <DropdownMenuItem
               hasPaddingLeft
-              rightExtra={<Switch />}
+              rightExtra={
+                <Switch
+                  onCheckedChange={(e) => {
+                    setTheme(e ? 'dark' : 'light')
+                  }}
+                  checked={theme === 'dark'}
+                />
+              }
               onClick={(e) => e.preventDefault()}
             >
               Dark Mode

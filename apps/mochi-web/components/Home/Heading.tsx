@@ -19,7 +19,7 @@ export default function Heading({
     <>
       <Tag
         className={clsx(
-          'text-[2rem] sm:text-3xl mb-4 leading-tight font-medium tracking-[-0.5px] text-[#343433]',
+          'text-[2rem] sm:text-3xl mb-4 leading-tight font-medium tracking-[-0.5px] text-text-primary',
           className,
         )}
       >
@@ -27,7 +27,9 @@ export default function Heading({
         {children}
       </Tag>
       {subtitle && (
-        <div className="mb-12 text-base sm:text-lg md:w-4/5">{subtitle}</div>
+        <div className="mb-12 text-base sm:text-lg md:w-4/5 text-text-secondary">
+          {subtitle}
+        </div>
       )}
     </>
   )

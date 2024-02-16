@@ -72,7 +72,7 @@ export default function Feed({ className = '' }: Props) {
           }
         }}
         className={clsx(
-          'hidden absolute left-1/2 top-[110px] z-20 gap-x-1 items-center py-1 px-2 rounded-full transition -translate-x-1/2 bg-white-pure hover:bg-neutral-300',
+          'hidden absolute left-1/2 top-[110px] z-20 gap-x-1 items-center py-1 px-2 rounded-full transition -translate-x-1/2 bg-background-popup hover:bg-neutral-soft',
           {
             'opacity-0': !isShowTopFade,
             'opacity-100 translate-y-2': isShowTopFade,
