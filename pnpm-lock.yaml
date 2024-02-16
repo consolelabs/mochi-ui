@@ -623,6 +623,9 @@ importers:
         specifier: workspace:*
         version: link:../../theme
     devDependencies:
+      '@mochi-ui/icons':
+        specifier: workspace:*
+        version: link:../../icons
       clean-package:
         specifier: ^2.2.0
         version: 2.2.0
@@ -4576,7 +4579,7 @@ packages:
     engines: {node: '>=12.0.0'}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': 6.x
-      '@typescript-eslint/parser': 6.x
+      '@typescript-eslint/parser': ^6.12.0
       babel-eslint: 10.x
       eslint: 8.x
       eslint-config-airbnb: 19.x
@@ -4656,6 +4659,7 @@ packages:
 
   /@emotion/memoize@0.7.4:
     resolution: {integrity: sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==}
+    requiresBuild: true
     dev: false
     optional: true
 
@@ -11477,7 +11481,7 @@ packages:
     resolution: {integrity: sha512-XOpZ3IyJUIV1b15M7HVOpgQxPPF7lGXgsfcEIu3yDxFPaf/xZKt7s9QO/pbk7vpWQyVulpJbu4E5LwpZiQo4kA==}
     engines: {node: ^16.0.0 || >=18.0.0}
     peerDependencies:
-      '@typescript-eslint/parser': ^6.0.0 || ^6.0.0-alpha
+      '@typescript-eslint/parser': ^6.12.0
       eslint: ^7.0.0 || ^8.0.0
       typescript: '*'
     peerDependenciesMeta:
@@ -15727,7 +15731,7 @@ packages:
     resolution: {integrity: sha512-GPxI5URre6dDpJ0CtcthSZVBAfI+Uw7un5OYNVxP2EYi3H81Jw701yFP7AU+/vCE7xBtFmjge7kfhhk4+RAiig==}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': ^5.13.0 || ^6.0.0
-      '@typescript-eslint/parser': ^5.0.0 || ^6.0.0
+      '@typescript-eslint/parser': ^6.12.0
       eslint: ^7.32.0 || ^8.2.0
       eslint-plugin-import: ^2.25.3
     dependencies:

@@ -4,7 +4,6 @@ import UI, { Platform, utils as mochiUtils } from '@consolelabs/mochi-formatter'
 import type { AssociatedAccount } from '@consolelabs/mochi-rest'
 import { WebSolid } from '@mochi-ui/icons'
 import { utils, BigNumber } from 'ethers'
-import ReactDOMServer from 'react-dom/server'
 import { ROUTES } from '~constants/routes'
 import { appLogo, discordLogo, telegramLogo } from '~utils/image'
 import { formatDate, formatRelative } from '~utils/time'
@@ -34,11 +33,7 @@ export async function transform(d: any, isNested = false): Promise<Tx> {
     }
     case 'web':
     case Platform.Web: {
-      fromPlatformIcon = `data:image/svg+xml,${escape(
-        ReactDOMServer.renderToStaticMarkup(
-          <WebSolid className="text-text-primary" />,
-        ),
-      )}`
+      fromPlatformIcon = WebSolid
       break
     }
     case 'app':
