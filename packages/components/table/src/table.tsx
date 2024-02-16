@@ -19,6 +19,7 @@ export interface TableProps<T> {
   className?: string
   wrapperClassName?: string
   rowClassName?: (record: T, index: number) => string
+  headerCellClassName?: string
   cellClassName?: (
     record: T | null,
     rowIndex: number,
@@ -77,6 +78,7 @@ export default function Table<T extends RowData>({
   rowClassName,
   cellClassName,
   stickyHeader,
+  headerCellClassName,
 }: TableProps<T>) {
   const table = useReactTable({
     data,
@@ -113,6 +115,7 @@ export default function Table<T extends RowData>({
                   className={tableHeaderClsx({
                     stickyHeader,
                     size,
+                    className: headerCellClassName,
                   })}
                   colSpan={header.colSpan}
                   key={header.id}
