@@ -11,11 +11,12 @@ import {
 } from '@mochi-ui/core'
 import { useMemo } from 'react'
 import { utils } from '@consolelabs/mochi-formatter'
-import { Bag } from '@mochi-ui/icons'
+import { Bag, BagDark } from '@mochi-ui/icons'
 import { Balance, useWalletStore } from '~store/wallets'
 import clsx from 'clsx'
 import useSWR from 'swr'
 import { api } from '~constants/mochi'
+import { useTheme } from '~context/theme'
 import { Moniker } from './MochiWidget/TokenPicker/type'
 import { MonikerIcons } from './MochiWidget/TokenPicker/utils'
 import { BalanceWithSource } from './TokenTableList'
@@ -67,6 +68,7 @@ export const MonikerTableList = ({
 }: Props) => {
   const { searchTerm } = props
   const { wallets } = useWalletStore()
+  const { theme } = useTheme()
 
   const { data = [], isLoading } = useSWR<Moniker[], any, [string, Balance[]]>(
     ['moniker-list', balances],
@@ -158,7 +160,11 @@ export const MonikerTableList = ({
             )}
             emptyContent={
               <div className="flex flex-col justify-center items-center h-full">
-                <Bag className="w-14 h-14 text-text-tertiary" />
+                {theme === 'dark' ? (
+                  <BagDark className="w-14 h-14 text-text-tertiary" />
+                ) : (
+                  <Bag className="w-14 h-14 text-text-tertiary" />
+                )}
                 <Typography level="h7" color="textSecondary">
                   No assets
                 </Typography>
