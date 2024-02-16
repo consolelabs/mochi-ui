@@ -1,13 +1,14 @@
 import { Avatar, Typography } from '@mochi-ui/core'
 import clsx from 'clsx'
 import { coinIcon } from '~utils/image'
+import { SVGProps } from 'react'
 import { MonikerIcons } from './MochiWidget/TokenPicker/utils'
 
 interface AmountProps {
   value: string
   valueUsd?: string
   tokenIcon: string
-  platformIcon?: string
+  platformIcon?: string | ((props: SVGProps<SVGSVGElement>) => JSX.Element)
   unit: string
   approxMoniker?: string
   className?: string

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Avatar } from '@mochi-ui/avatar'
+import { WebSolid } from '@mochi-ui/icons'
 import { AvatarGroup, AvatarGroupProps } from '../src'
 
 const meta: Meta<typeof Avatar> = {
@@ -52,46 +53,29 @@ export const Fallback: Story = {
 export const Cutout: Story = {
   render: () => {
     return (
-      <div className="gap-3 flex">
-        <Avatar
-          size="xxs"
-          smallSrc="https://cdn.discordapp.com/emojis/1093923016691421205.png?size=240&quality=lossless"
-          src="https://mochi.gg/logo.png"
-        />
-        <Avatar
-          size="xs"
-          smallSrc="https://cdn.discordapp.com/emojis/1093923016691421205.png?size=240&quality=lossless"
-          src="https://mochi.gg/logo.png"
-        />
-        <Avatar
-          size="sm"
-          smallSrc="https://cdn.discordapp.com/emojis/1093923016691421205.png?size=240&quality=lossless"
-          src="https://mochi.gg/logo.png"
-        />
-        <Avatar
-          smallSrc="https://cdn.discordapp.com/emojis/1093923016691421205.png?size=240&quality=lossless"
-          src="https://mochi.gg/logo.png"
-        />
-        <Avatar
-          size="lg"
-          smallSrc="https://cdn.discordapp.com/emojis/1093923016691421205.png?size=240&quality=lossless"
-          src="https://mochi.gg/logo.png"
-        />
-        <Avatar
-          size="xl"
-          smallSrc="https://cdn.discordapp.com/emojis/1093923016691421205.png?size=240&quality=lossless"
-          src="https://mochi.gg/logo.png"
-        />
-        <Avatar
-          size="2xl"
-          smallSrc="https://cdn.discordapp.com/emojis/1093923016691421205.png?size=240&quality=lossless"
-          src="https://mochi.gg/logo.png"
-        />
-        <Avatar
-          size="3xl"
-          smallSrc="https://cdn.discordapp.com/emojis/1093923016691421205.png?size=240&quality=lossless"
-          src="https://mochi.gg/logo.png"
-        />
+      <div className="flex flex-col gap-3">
+        <div className="gap-3 flex">
+          {(['xxs', 'xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl'] as const).map(
+            (size) => (
+              <Avatar
+                size={size}
+                smallSrc="https://cdn.discordapp.com/emojis/1093923016691421205.png?size=240&quality=lossless"
+                src="https://mochi.gg/logo.png"
+              />
+            ),
+          )}
+        </div>
+        <div className="gap-3 flex">
+          {(['xxs', 'xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl'] as const).map(
+            (size) => (
+              <Avatar
+                size={size}
+                smallSrc={WebSolid}
+                src="https://mochi.gg/logo.png"
+              />
+            ),
+          )}
+        </div>
       </div>
     )
   },
