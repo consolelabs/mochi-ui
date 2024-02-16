@@ -125,6 +125,7 @@ export default function DashboardLayout({
           type: 'link',
           as: Link,
           href: ROUTES.APPLICATION_DETAIL.getPath(query?.id as string),
+          selectedIconClassName: theme === 'dark' ? '!text-primary-500' : '',
         },
         {
           title: 'Revenue',
@@ -132,6 +133,7 @@ export default function DashboardLayout({
           type: 'link',
           as: Link,
           href: ROUTES.APPLICATION_DETAIL_REVENUE.getPath(query?.id as string),
+          selectedIconClassName: theme === 'dark' ? '!text-primary-500' : '',
         },
       ],
       footerItems: [],
