@@ -27,6 +27,7 @@ export interface TableProps<T> {
   onRow?: (
     record: T,
     rowIndex: number,
+    row: Row<T>,
   ) => {
     onClick?: (event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
     onDoubleClick?: (
@@ -161,7 +162,7 @@ export default function Table<T extends RowData>({
                       clickable: !!onRow,
                       className: rowClassName?.(row.original, rowIndex),
                     })}
-                    {...(onRow ? onRow(row.original, rowIndex) : {})}
+                    {...(onRow ? onRow(row.original, rowIndex, row) : {})}
                   >
                     {row.getVisibleCells().map((cell, colIndex) => (
                       <td
