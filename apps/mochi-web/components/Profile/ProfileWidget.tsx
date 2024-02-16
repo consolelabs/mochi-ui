@@ -383,6 +383,7 @@ export const ProfileWidget = () => {
               )}
             >
               <TokenTableList
+                headerCellClassName="!bg-background-level1"
                 isLoading={!wallets.length && isFetchingWallets}
                 data={data}
                 hideLastBorder
