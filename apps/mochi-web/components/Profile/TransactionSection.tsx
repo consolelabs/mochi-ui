@@ -62,7 +62,7 @@ export const TransactionOverviewSection = () => {
           />
         </SectionHeaderActions>
       </SectionHeader>
-      <Card className="mt-1 !p-0 !rounded-lg">
+      <Card className="mt-1 !p-0 !rounded-lg !bg-background-level1">
         {ready && (
           <TransactionTable
             cellClassName={() => 'h-[60px]'}

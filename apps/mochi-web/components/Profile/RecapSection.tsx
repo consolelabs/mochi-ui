@@ -183,7 +183,7 @@ export const RecapSection = () => {
   const { theme } = useTheme()
 
   return (
-    <Card className="px-0 pb-3 shadow-input">
+    <Card className="px-0 pb-3 shadow-input !bg-background-level1">
       <Typography level="h9" className="px-4">
         Your last 30 days recap
       </Typography>
