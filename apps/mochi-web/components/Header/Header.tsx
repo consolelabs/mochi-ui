@@ -282,7 +282,7 @@ export const Header = () => {
               label="Tip"
               className="!p-1 !w-8 !h-8 my-auto block lg:hidden"
             >
-              <TipSolid className="w-full h-full text-neutral-800" />
+              <TipSolid className="w-full h-full text-text-primary" />
             </IconButton>
           </div>,
           <ProfileDropdown
