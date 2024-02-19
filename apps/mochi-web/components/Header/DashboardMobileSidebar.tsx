@@ -27,6 +27,7 @@ import {
 import { useRouter } from 'next/router'
 import clsx from 'clsx'
 import { useState } from 'react'
+import { useFetchChangelogLatest } from '~hooks/app/useFetchChangelogLatest'
 import { useSidebarContext } from '../../context/app/sidebar'
 import { ROUTES } from '../../constants/routes'
 import { MainSidebarHeader } from '../MainSidebarHeader'
@@ -42,6 +43,7 @@ export const DashboardMobileSidebar = (
   const { pathname, query } = useRouter()
   const { variant } = useSidebarContext()
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const { data: changelogData } = useFetchChangelogLatest()
 
   const sideBarItems = {
     main: {
@@ -154,7 +156,10 @@ export const DashboardMobileSidebar = (
             footerItems={sideBarItems[variant].footerItems as Item[]}
             isSelected={(item) => !!item.href && matchUrl(item.href, pathname)}
             expanded
-            className="!h-[calc(100vh-56px)] !border-none"
+            className={clsx('!border-none', {
+              '!h-[calc(100vh-112px)]': !!changelogData,
+              '!h-[calc(100vh-56px)]': !changelogData,
+            })}
             version={appVersion}
           />
         </DrawerContent>

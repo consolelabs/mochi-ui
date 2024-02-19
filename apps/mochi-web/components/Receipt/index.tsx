@@ -1,3 +1,5 @@
+import Image from 'next/image'
+import { coinIcon } from '~utils/image'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { truncate } from '@dwarvesf/react-utils'
 import { Avatar, Badge, Typography } from '@mochi-ui/core'
@@ -82,7 +84,7 @@ export default function Receipt({
     return (
       <Badge
         appearance="neutral"
-        className="border capitalize border-neutral-outline-border"
+        className="capitalize border border-neutral-outline-border"
       >
         {data?.status}
       </Badge>
@@ -210,7 +212,7 @@ export default function Receipt({
                   </Typography>
                   {data.message.length > 300 ? (
                     <button
-                      className="font-normal text-text-tertiary underline"
+                      className="font-normal underline text-text-tertiary"
                       onClick={onToggle}
                     >
                       {isViewFullMessage ? 'view less' : 'view more'}
@@ -249,21 +251,30 @@ export default function Receipt({
               <div className="flex flex-col gap-y-2 gap-x-4 py-2">
                 <DataList>
                   <DataList.Item title="Amount">
-                    <Typography
-                      level="p6"
-                      fontWeight="sm"
-                      className="!text-text-secondary"
-                    >
-                      {data.isMultipleTokens
-                        ? data.data.amount
-                        : data.groupAmountDisplay}{' '}
-                      {data.unitCurrency}
-                    </Typography>
-                    {data.unitAmountSection && (
-                      <span className="ml-1 text-current">
-                        {data.unitAmountSection}
-                      </span>
-                    )}
+                    <div className="flex gap-x-1 items-center">
+                      <Image
+                        width={12}
+                        height={12}
+                        src={data.data.tokenIcon || coinIcon.src}
+                        alt=""
+                        className="object-contain"
+                      />
+                      <Typography
+                        level="p6"
+                        fontWeight="sm"
+                        className="!text-text-secondary"
+                      >
+                        {data.isMultipleTokens
+                          ? data.data.amount
+                          : data.groupAmountDisplay}{' '}
+                        {data.unitCurrency}
+                      </Typography>
+                      {data.unitAmountSection && (
+                        <span className="ml-1 text-current">
+                          {data.unitAmountSection}
+                        </span>
+                      )}
+                    </div>
                   </DataList.Item>
                   {data.originalTxId ? (
                     <DataList.Item

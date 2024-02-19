@@ -20,11 +20,7 @@ import {
   TopBar,
   MobileNav,
   DesktopNav,
-  Modal,
-  ModalContent,
   Avatar,
-  ModalPortal,
-  ModalOverlay,
   PopoverPortal,
 } from '@mochi-ui/core'
 import {
@@ -41,6 +37,8 @@ import {
   DocumentStarSolid,
   DollarBubbleSolid,
   LinkSquircledSolid,
+  WalletAddSolid,
+  ScanLine,
 } from '@mochi-ui/icons'
 import NotificationList from '~cpn/NotificationList'
 import clsx from 'clsx'
@@ -50,6 +48,7 @@ import events from '~constants/events'
 import { LoginWidget, useLoginWidget } from '@mochi-web3/login-widget'
 import ProfileDropdown from '~cpn/ProfileDropdown'
 import NotificationModal from '~cpn/NotificationList/NotificationModal'
+import { useFetchChangelogLatest } from '~hooks/app/useFetchChangelogLatest'
 import { MobileNavAccordionItem } from './MobileNavAccordionItem'
 import { DashboardMobileSidebar } from './DashboardMobileSidebar'
 import { useIsNavOpenStore } from './util'
@@ -78,7 +77,7 @@ const LoginPopover = () => {
         </div>
       </PopoverTrigger>
       <PopoverPortal>
-        <PopoverContent sideOffset={10} collisionPadding={20}>
+        <PopoverContent className="!p-3" sideOffset={10} collisionPadding={20}>
           <LoginWidget raw />
         </PopoverContent>
       </PopoverPortal>
@@ -86,39 +85,11 @@ const LoginPopover = () => {
   )
 }
 
-const MobileLoginPanel = () => {
-  const [isOpenLoginPanel, setOpenLoginPanel] = useState(false)
-  const { isLoadingProfile } = useLoginWidget()
-
-  return (
-    <Modal open={isOpenLoginPanel} onOpenChange={setOpenLoginPanel}>
-      <Button
-        className="justify-center w-full lg:hidden"
-        size="lg"
-        onClick={() => setOpenLoginPanel(true)}
-        loading={isLoadingProfile}
-      >
-        Login
-      </Button>
-      <ModalPortal>
-        <ModalOverlay />
-        <ModalContent
-          className="p-5 w-full sm:w-auto"
-          style={{
-            maxWidth: 'calc(100% - 32px)',
-          }}
-        >
-          <LoginWidget raw />
-        </ModalContent>
-      </ModalPortal>
-    </Modal>
-  )
-}
-
 export const Header = () => {
   const { pathname, push } = useRouter()
-  const { profile, isLoggedIn } = useLoginWidget()
+  const { profile, isLoggedIn, socials } = useLoginWidget()
   const { setIsNavOpen } = useIsNavOpenStore()
+  const { data: changelogData } = useFetchChangelogLatest()
 
   const redirectToTipWidget = useCallback(async () => {
     if (pathname !== ROUTES.HOME) {
@@ -129,8 +100,44 @@ export const Header = () => {
 
   const mobileNavItems = [
     // eslint-disable-next-line jsx-a11y/anchor-is-valid
+    <div
+      key="mobile-nav-login"
+      className="flex flex-col gap-y-3 pb-3 border-b border-divider"
+    >
+      <Typography level="h6" fontWeight="md" color="textPrimary">
+        Login
+      </Typography>
+      <Button size="lg">
+        <WalletAddSolid className="w-6 h-6" />
+        Connect Wallet
+      </Button>
+      <Typography level="p5" color="textTertiary" className="!font-light">
+        Don&apos;t have a crypto wallet? Login social instead.
+      </Typography>
+      <div className="flex flex-wrap gap-2">
+        {socials.map((social) => {
+          return (
+            <IconButton
+              label=""
+              type="button"
+              key={social.name}
+              onClick={() =>
+                social.onClick?.(window.location.href.split('#')[0])
+              }
+              disabled={social.disabled}
+              variant="outline"
+              color="neutral"
+              size="lg"
+              className="!p-2 flex justify-center items-center !w-12 !h-12"
+            >
+              {social.icon}
+            </IconButton>
+          )
+        })}
+      </div>
+    </div>,
     <Link
-      href="#"
+      href={ROUTES.EXPLORE}
       className="flex items-center py-3 px-2 text-sm"
       key="mobile-nav-api"
     >
@@ -139,11 +146,50 @@ export const Header = () => {
         color="neutral"
         className="!text-base transition-colors duration-300 hover:!text-primary-plain-fg"
       >
-        API
+        Explore
+      </Typography>
+    </Link>,
+    <Link
+      href={ROUTES.DEVELOPER}
+      className="flex items-center py-3 px-2 text-sm"
+      key="mobile-nav-api"
+    >
+      <Typography
+        level="p6"
+        color="neutral"
+        className="!text-base transition-colors duration-300 hover:!text-primary-plain-fg"
+      >
+        Developer
       </Typography>
     </Link>,
     <MobileNavAccordionItem
-      key="mobile-nav-accordion"
+      key="mobile-nav-accordion-resource"
+      label="Resources"
+      items={[
+        {
+          title: '',
+          data: [
+            {
+              label: 'Documentation',
+              iconLeft: <CodingSolid />,
+              href: '#',
+            },
+            {
+              label: 'Github',
+              iconLeft: <Github />,
+              href: '#',
+            },
+            {
+              label: 'Changelog',
+              iconLeft: <DocumentStarSolid />,
+              href: '#',
+            },
+          ],
+        },
+      ]}
+    />,
+    <MobileNavAccordionItem
+      key="mobile-nav-accordion-download"
       label="Download"
       items={[
         {
@@ -183,9 +229,6 @@ export const Header = () => {
         },
       ]}
     />,
-    ...(!(isLoggedIn && profile)
-      ? [<MobileLoginPanel key="mobile-login-panel" />]
-      : []),
   ]
 
   const desktopNavItems = [
@@ -236,7 +279,7 @@ export const Header = () => {
             {[
               <DollarBubbleSolid
                 key="header-icon-button-1"
-                className="w-5 h-5 text-text-primary mx-auto align-middle"
+                className="mx-auto w-5 h-5 align-middle text-text-primary"
               />,
               // <DollarBubbleCircleSolid
               //   key="header-icon-button-1"
@@ -244,7 +287,7 @@ export const Header = () => {
               // />,
               <LinkSquircledSolid
                 key="header-icon-button-2"
-                className="w-5 h-5 text-text-primary mx-auto align-middle"
+                className="mx-auto w-5 h-5 align-middle text-text-primary"
               />,
             ].map((icon) => {
               return (
@@ -260,15 +303,22 @@ export const Header = () => {
               )
             })}
             <NotificationList key="header-icon-button-3" />
+            <IconButton
+              className="!w-5 !h-5 self-center lg:hidden"
+              color="neutral"
+              label="search"
+              variant="link"
+            >
+              <MagnifierLine className="w-full h-full text-text-primary" />
+            </IconButton>
             <NotificationModal />
             <IconButton
+              className="!w-6 !h-6 self-center lg:hidden"
               color="neutral"
-              variant="outline"
-              label="Tip"
-              className="!p-1 !w-8 !h-8 my-auto block lg:hidden"
-              onClick={redirectToTipWidget}
+              label="scan"
+              variant="link"
             >
-              <TipSolid className="w-full h-full text-text-primary" />
+              <ScanLine className="w-full h-full text-text-primary" />
             </IconButton>
           </div>,
           <ProfileDropdown
@@ -447,7 +497,10 @@ export const Header = () => {
             </Link>
             <DashboardMobileSidebar
               triggerClassName="block lg:hidden"
-              contentClassName="!top-[56px]"
+              contentClassName={clsx({
+                '!top-[112px]': !!changelogData,
+                '!top-[56px]': !changelogData,
+              })}
             />
           </>
         )

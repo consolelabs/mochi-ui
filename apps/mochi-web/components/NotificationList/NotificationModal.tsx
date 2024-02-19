@@ -117,7 +117,7 @@ const NotificationModal = () => {
       <ModalTrigger asChild>
         <IconButton
           color="neutral"
-          variant="outline"
+          variant="link"
           label=""
           className="!p-1 !w-8 !h-8 my-auto lg:hidden"
         >

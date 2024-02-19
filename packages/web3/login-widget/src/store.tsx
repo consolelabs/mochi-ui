@@ -1,3 +1,15 @@
+import {
+  DiscordColored,
+  FacebookColored,
+  Github,
+  GoogleColored,
+  MailLine,
+  SlackColored,
+  TelegramColored,
+  X,
+} from '@mochi-ui/icons'
+import MochiAPI from '@consolelabs/mochi-rest'
+import qs from 'query-string'
 import { Platform } from '@consolelabs/mochi-ui'
 import type { Profile } from '@consolelabs/mochi-rest'
 import { ChainProvider } from '@mochi-web3/connect-wallet-widget'
@@ -12,6 +24,102 @@ type EventName = 'login' | 'update_wallets' | 'logout' | 'refresh'
 type ActionCreator<E extends EventName, P extends any = null> = {
   type: E
   payload: P
+}
+
+const initSocialAuths = (profileBaseUrl: string, telegramBotId: string) => {
+  const api = new MochiAPI({
+    log: false,
+    payUrl: '',
+    baseUrl: '',
+    profileUrl: profileBaseUrl,
+  })
+
+  return [
+    {
+      id: Platform.Discord,
+      name: 'discord',
+      icon: <DiscordColored className="w-7 h-7" />,
+      onClick: (urlLocation: string) =>
+        api.profile.auth
+          .byDiscord({ urlLocation, platform: 'web' })
+          .then((res) => {
+            if (!res.ok) return
+            window.location.href = res.data.url
+          }),
+    },
+    {
+      id: Platform.Telegram,
+      name: 'telegram',
+      icon: <TelegramColored className="w-7 h-7" />,
+      onClick: (urlLocation: string) =>
+        // @ts-ignore
+        window.Telegram.Login.auth(
+          {
+            bot_id: telegramBotId,
+            request_access: true,
+            return_to: encodeURI(window.location.href),
+            lang: 'en',
+          },
+          (user: any) => {
+            const telegramAuth = `${profileBaseUrl}/profiles/auth/telegram?${qs.stringify(
+              {
+                ...user,
+                url_location: urlLocation,
+              },
+            )}`
+
+            window.location.href = telegramAuth
+          },
+        ),
+    },
+    {
+      id: Platform.Twitter,
+      name: 'twitter',
+      icon: <X className="w-7 h-7" />,
+      onClick: (urlLocation: string) =>
+        api.profile.auth
+          .byTwitter({ urlLocation, platform: 'web' })
+          .then((res) => {
+            if (!res.ok) return
+            window.location.href = res.data.url
+          }),
+    },
+    {
+      id: Platform.Email,
+      name: 'gmail',
+      icon: <GoogleColored className="w-7 h-7" />,
+      onClick: (urlLocation: string) =>
+        api.profile.auth
+          .byGmail({ urlLocation, platform: 'web' })
+          .then((res) => {
+            if (!res.ok) return
+            window.location.href = res.data.url
+          }),
+    },
+    {
+      name: 'facebook',
+      icon: <FacebookColored className="w-7 h-7" />,
+      onClick: (urlLocation: string) =>
+        api.profile.auth
+          .byFacebook({ urlLocation, platform: 'web' })
+          .then((res) => {
+            if (!res.ok) return
+            window.location.href = res.data.url
+          }),
+    },
+    {
+      name: 'slack',
+      icon: <SlackColored className="w-7 h-7 opacity-50" />,
+    },
+    {
+      name: 'github',
+      icon: <Github className="w-7 h-7 opacity-50" />,
+    },
+    {
+      name: 'mail',
+      icon: <MailLine className="w-7 h-7" />,
+    },
+  ]
 }
 
 export type Action =
@@ -61,14 +169,27 @@ export type LoginWidgetState = {
 
   dispatch: (action: Action) => void
 
+  setupSocials: (params: {
+    telegramBotId: string
+    profileBaseUrl: string
+    allowedSocials: Platform[]
+  }) => void
+
+  socials: {
+    id?: string
+    name: string
+    icon: JSX.Element
+    disabled: boolean
+    onClick?: (urlLocation: string) => Promise<void>
+  }[]
+
   profileBaseUrl: string
-  setProfileBaseUrl: (url: string) => void
-
-  socials: Array<Platform>
-  setSocials: (socials: Array<Platform>) => void
-
-  telegramBotId: string
-  setTelegramBotId: (id: string) => void
+  //
+  // socials: Array<Platform>
+  // setSocials: (socials: Array<Platform>) => void
+  //
+  // telegramBotId: string
+  // setTelegramBotId: (id: string) => void
 }
 
 export const useLoginWidget = create<LoginWidgetState>((set, get) => {
@@ -113,14 +234,18 @@ export const useLoginWidget = create<LoginWidgetState>((set, get) => {
       set(newState)
     },
 
-    profileBaseUrl: '',
-    setProfileBaseUrl: (url) => set({ profileBaseUrl: url }),
-
     socials: [],
-    setSocials: (socials) => set({ socials }),
-
-    telegramBotId: '',
-    setTelegramBotId: (telegramBotId) => set({ telegramBotId }),
+    setupSocials: (params) => {
+      const socials = initSocialAuths(
+        params.profileBaseUrl,
+        params.telegramBotId,
+      ).map((item) => ({
+        ...item,
+        disabled: params.allowedSocials.every((s) => s !== item.id),
+      }))
+      set({ socials, profileBaseUrl: params.profileBaseUrl })
+    },
+    profileBaseUrl: '',
   }
 })
 
@@ -159,6 +284,8 @@ export const usePublicLoginWidget = () =>
         localStorage.removeItem(STORAGE_KEY)
         s.dispatch({ type: 'logout', payload: null })
       },
+
+      socials: s.socials,
     })),
   )
 

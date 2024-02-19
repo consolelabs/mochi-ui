@@ -5,6 +5,7 @@ import tailwindAnimate from 'tailwindcss-animate'
 export default {
   darkMode: 'class',
   content: [
+    '../web3/*/src/**/*.{js,jsx,ts,tsx}',
     '../web3/*/stories/**/*.stories.{js,jsx,ts,tsx}',
     '../components/*/stories/**/*.stories.{js,jsx,ts,tsx}',
     '../theme/src/components/**/*.{js,jsx,ts,tsx}',

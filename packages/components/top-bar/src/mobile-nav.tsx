@@ -1,3 +1,4 @@
+import { Button } from '@mochi-ui/button'
 import { useHasMounted } from '@dwarvesf/react-hooks'
 import { IconButton } from '@mochi-ui/icon-button'
 import { CloseLine, MenuSolid } from '@mochi-ui/icons'
@@ -47,6 +48,7 @@ export const MobileNav = (props: MobileNavProps) => {
   return (
     <>
       <div className={topBarMobileNavClsx({ className })}>
+        <Button size="md">Login</Button>
         <IconButton
           label={openMobileNav ? 'Close' : 'Open'}
           size="lg"
