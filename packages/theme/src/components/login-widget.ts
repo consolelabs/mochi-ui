@@ -30,22 +30,35 @@ const loginContentClsx = ({ className = '' }: { className?: string } = {}) =>
     className,
   )
 
-const loginSocialClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx('flex flex-col items-stretch', className)
+const loginIntroClsx = ({ className = '' }: { className?: string } = {}) =>
+  clsx('flex flex-col items-stretch gap-y-3', className)
 
-const loginSocialButtonChangePageClsx = ({
-  className = '',
-}: { className?: string } = {}) => clsx('mt-8', className)
-
-const loginContentSocialGridWrapperClsx = ({
+const loginIntroHeaderClsx = ({
   className = '',
 }: { className?: string } = {}) =>
-  clsx('flex flex-col gap-8 mt-8 text-center', className)
+  clsx('flex justify-between items-center', className)
 
-const loginContentSocialGridClsx = ({
+const loginIntroHeaderIconClsx = ({
+  className = '',
+}: { className?: string } = {}) => clsx('w-6 h-6', className)
+
+const loginIntroBodyClsx = ({ className = '' }: { className?: string } = {}) =>
+  clsx('flex flex-col gap-y-1 pt-3', className)
+
+const loginIntroBodyWalletButtonClsx = ({
   className = '',
 }: { className?: string } = {}) =>
-  clsx('grid grid-cols-4 grid-rows-2 gap-4 mx-auto text-3xl w-fit', className)
+  clsx(
+    'flex justify-between items-center py-3 px-6 rounded-md bg-background-level1 h-[56px]',
+    className,
+  )
+
+const loginIntroBodyWalletIconClsx = ({
+  className = '',
+}: { className?: string } = {}) => clsx('w-8 h-8', className)
+
+const loginSocialListClsx = ({ className = '' }: { className?: string } = {}) =>
+  clsx('h-[48px] w-full flex gap-x-2', className)
 
 const loginWalletListWrapperClsx = ({
   className = '',
@@ -57,11 +70,14 @@ const loginWidget = {
   loginWidgetDialogOverlayClsx,
   loginWidgetDialogContentWrapperClsx,
   loginContentClsx,
-  loginContentSocialGridWrapperClsx,
-  loginContentSocialGridClsx,
   loginWalletListWrapperClsx,
-  loginSocialButtonChangePageClsx,
-  loginSocialClsx,
+  loginIntroClsx,
+  loginIntroHeaderClsx,
+  loginIntroHeaderIconClsx,
+  loginIntroBodyClsx,
+  loginIntroBodyWalletButtonClsx,
+  loginIntroBodyWalletIconClsx,
+  loginSocialListClsx,
 }
 
 export { loginWidget }

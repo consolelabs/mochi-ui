@@ -69,7 +69,7 @@ export const VerifyWallet: React.FC<Props> = ({ code, guild_id }) => {
           <ModalPortal>
             <ModalOverlay />
             <ModalContent
-              className="p-5 w-full sm:w-auto"
+              className="p-3 w-full sm:w-auto"
               style={{
                 maxWidth: 'calc(100% - 32px)',
               }}

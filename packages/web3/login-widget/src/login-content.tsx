@@ -1,5 +1,14 @@
 import { Button } from '@mochi-ui/button'
-import { ArrowLeftLine, WalletSolid } from '@mochi-ui/icons'
+import { Typography } from '@mochi-ui/typography'
+import { IconButton } from '@mochi-ui/icon-button'
+import {
+  ArrowLeftLine,
+  MetamaskWallet,
+  PhantomWallet,
+  RainbowWallet,
+  CloseLgLine,
+  ChevronRightLine,
+} from '@mochi-ui/icons'
 import { loginWidget, popover } from '@mochi-ui/theme'
 import {
   ChainProvider,
@@ -14,8 +23,12 @@ import { useLoginWidget } from './store'
 const {
   loginContentClsx,
   loginWalletListWrapperClsx,
-  loginSocialButtonChangePageClsx,
-  loginSocialClsx,
+  loginIntroClsx,
+  loginIntroHeaderClsx,
+  loginIntroHeaderIconClsx,
+  loginIntroBodyClsx,
+  loginIntroBodyWalletButtonClsx,
+  loginIntroBodyWalletIconClsx,
 } = loginWidget
 
 const variants: Variants = {
@@ -64,6 +77,7 @@ export default function LoginContent({
   chain,
   onchain = false,
   onWalletConnectSuccess,
+  onClose,
 }: {
   raw?: boolean
   chain?: string
@@ -73,6 +87,7 @@ export default function LoginContent({
     platform: string
     address: string
   }) => Promise<void>
+  onClose?: () => void
 }) {
   const [isConnecting, setIsConnecting] = useState(false)
   const {
@@ -155,31 +170,91 @@ export default function LoginContent({
   return (
     <div
       className={
-        !raw ? popoverContentClsx({}) : 'flex flex-col items-center w-full'
+        !raw
+          ? popoverContentClsx({ className: '!p-3' })
+          : 'flex flex-col items-center w-full'
       }
     >
-      <div className={loginContentClsx({ className: raw ? 'p-0' : 'p-3' })}>
+      <div className={loginContentClsx()}>
         <AnimatePresence initial={false} custom={state.direction}>
           {state.step === 1 ? (
             <m.div
               key={state.step}
               custom={state.direction}
               {...commonProps}
-              className={loginSocialClsx({})}
+              className={loginIntroClsx()}
             >
+              <div className={loginIntroHeaderClsx()}>
+                <div className={loginIntroHeaderIconClsx()} />
+                <Typography
+                  level="h8"
+                  fontWeight="lg"
+                  color="neutral"
+                  className="text-center"
+                >
+                  Connect Options
+                </Typography>
+                <IconButton
+                  onClick={onClose}
+                  label="close"
+                  variant="link"
+                  color="neutral"
+                >
+                  <CloseLgLine className={loginIntroHeaderIconClsx()} />
+                </IconButton>
+              </div>
+              <div className={loginIntroBodyClsx()}>
+                <button
+                  type="button"
+                  className={loginIntroBodyWalletButtonClsx()}
+                >
+                  <Typography fontWeight="md" level="h7" color="neutral">
+                    Phantom
+                  </Typography>
+                  <PhantomWallet
+                    className={loginIntroBodyWalletIconClsx({
+                      className: 'rounded-md',
+                    })}
+                  />
+                </button>
+                <button
+                  type="button"
+                  className={loginIntroBodyWalletButtonClsx()}
+                >
+                  <Typography fontWeight="md" level="h7" color="neutral">
+                    Metamask
+                  </Typography>
+                  <MetamaskWallet className={loginIntroBodyWalletIconClsx()} />
+                </button>
+                <button
+                  type="button"
+                  className={loginIntroBodyWalletButtonClsx()}
+                >
+                  <Typography fontWeight="md" level="h7" color="neutral">
+                    Rainbow
+                  </Typography>
+                  <RainbowWallet className={loginIntroBodyWalletIconClsx()} />
+                </button>
+                <button
+                  type="button"
+                  className={loginIntroBodyWalletButtonClsx()}
+                  disabled={!isInteractive}
+                  onClick={() => {
+                    setIsInteractive(false)
+                    setState({ step: 2, direction: 1 })
+                  }}
+                >
+                  <Typography fontWeight="md" level="h7" color="neutral">
+                    Connect another wallet
+                  </Typography>
+                  <ChevronRightLine
+                    className={loginIntroBodyWalletIconClsx({
+                      className: '!w-6 !h-6 text-text-icon-secondary',
+                    })}
+                  />
+                </button>
+              </div>
               <ConnectSocial />
-              <Button
-                size="lg"
-                disabled={!isInteractive}
-                onClick={() => {
-                  setIsInteractive(false)
-                  setState({ step: 2, direction: 1 })
-                }}
-                className={loginSocialButtonChangePageClsx({})}
-              >
-                <WalletSolid className="text-xl" />
-                Connect Wallet
-              </Button>
             </m.div>
           ) : (
             <m.div
