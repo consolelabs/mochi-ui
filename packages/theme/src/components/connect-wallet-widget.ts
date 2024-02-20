@@ -14,7 +14,7 @@ const connectWalletState = () => ({
       'overflow-hidden mt-2 rounded-lg border border-neutral-outline-active',
     error: 'text-sm text-center text-danger-solid',
     header: 'mt-4 text-lg font-medium text-center text-text-primary',
-    buttons: 'mt-8 space-x-3',
+    buttons: 'mt-8 mb-4 space-x-3',
     'connect-icon-success':
       'flex items-center justify-center w-5 h-5 bg-success-solid rounded-full absolute -top-2.5 left-1/2 -translate-x-1/2',
     'connect-icon-error':

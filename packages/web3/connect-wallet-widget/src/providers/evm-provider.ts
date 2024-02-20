@@ -137,7 +137,10 @@ export class ProviderEVM extends ChainProvider {
 
       if (!this.signClient) throw new Error('Cannot init/find signClient')
 
-      const chainIds = ['1', '56', '42161', '137', '10', '8453']
+      const chainIds = [
+        '1',
+        // , '56', '42161', '137', '10', '8453'
+      ]
 
       const { uri, approval } = await this.signClient.connect({
         requiredNamespaces: {
