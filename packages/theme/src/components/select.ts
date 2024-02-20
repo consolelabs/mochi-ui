@@ -47,9 +47,29 @@ const viewport =
 const label =
   'text-[10px] uppercase font-bold text-text-secondary tracking-tight leading-4'
 
-const bodyWrapper = 'flex-1 flex flex-col items-start'
+const bodyWrapper = cva(['flex-1 flex flex-col items-start'], {
+  variants: {
+    disabled: {
+      true: 'text-text-disabled',
+      false: '',
+    },
+  },
+  defaultVariants: {
+    disabled: false,
+  },
+})
 
-const subTitleWrapper = 'text-text-secondary text-xs'
+const subTitleWrapper = cva(['text-xs'], {
+  variants: {
+    disabled: {
+      true: 'text-text-disabled',
+      false: 'text-text-secondary',
+    },
+  },
+  defaultVariants: {
+    disabled: false,
+  },
+})
 
 const separator = 'block !my-3 w-full h-px bg-divider'
 
@@ -405,9 +425,14 @@ const iconWrapperCva = cva('', {
       true: 'text-base max-w-4 max-h-4',
       false: 'text-2xl max-w-6 max-h-6',
     },
+    disabled: {
+      true: 'opacity-50',
+      false: 'opacity-100',
+    },
   },
   defaultVariants: {
     isRightIcon: false,
+    disabled: false,
   },
 })
 
@@ -420,7 +445,6 @@ const itemCva = cva(
     'font-medium',
     'hover:bg-background-hover focus:bg-background-hover',
     'hover:outline-none focus:outline-none',
-    'cursor-pointer',
     'p-2',
     'rounded-lg',
     'focus:shadow-none',
@@ -429,8 +453,8 @@ const itemCva = cva(
   {
     variants: {
       disabled: {
-        true: ['text-text-secondary', 'cursor-not-allowed'],
-        false: ['text-text-primary'],
+        true: ['text-text-disabled', 'cursor-not-allowed'],
+        false: ['text-text-primary', 'cursor-pointer'],
       },
     },
     defaultVariants: {
