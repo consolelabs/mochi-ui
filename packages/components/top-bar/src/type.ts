@@ -28,6 +28,7 @@ export interface MobileNavProps {
   toggleIconClassName?: string
   className?: string
   onNavStateChanged?: (newState: boolean) => void
+  login?: JSX.Element
 }
 
 export type TopBarProps = {

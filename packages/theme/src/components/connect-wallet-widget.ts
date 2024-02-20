@@ -5,14 +5,14 @@ const connectWalletState = () => ({
     container: 'flex flex-col items-center justify-center p-3 w-full',
     imgWrapper: 'flex items-center mt-5',
     img: 'w-12 h-12 rounded-full',
-    divider: 'w-16 border border-dashed border-primary-solid-focus relative',
+    divider: 'w-16 border border-dashed border-primary-solid relative',
     icon: 'w-12 h-12 rounded',
     message: 'mt-5 text-sm font-semibold text-text-primary',
     'message-detail': 'mt-2 text-sm text-text-secondary text-center',
     'qr-message': 'mt-1 text-sm font-light text-text-primary',
     'qr-container':
       'overflow-hidden mt-2 rounded-lg border border-neutral-outline-active',
-    error: 'text-sm text-center text-danger-solid-focus',
+    error: 'text-sm text-center text-danger-solid',
     header: 'mt-4 text-lg font-medium text-center text-text-primary',
     buttons: 'mt-8 space-x-3',
     'connect-icon-success':

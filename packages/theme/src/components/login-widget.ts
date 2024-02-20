@@ -48,22 +48,27 @@ const loginIntroBodyClsx = ({ className = '' }: { className?: string } = {}) =>
 const loginIntroBodyWalletButtonClsx = ({
   className = '',
 }: { className?: string } = {}) =>
-  clsx(
-    'flex justify-between items-center py-3 px-6 rounded-md bg-background-level1 h-[56px]',
-    className,
-  )
+  clsx('flex justify-between items-center h-[56px]', className)
 
 const loginIntroBodyWalletIconClsx = ({
   className = '',
 }: { className?: string } = {}) => clsx('w-8 h-8', className)
 
 const loginSocialListClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx('h-[48px] w-full flex gap-x-2', className)
+  clsx(
+    'h-[48px] lg:h-auto lg:max-h-[144px] w-full flex lg:flex-wrap gap-2',
+    className,
+  )
 
 const loginWalletListWrapperClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx('flex flex-col gap-y-3 items-center', className)
+
+const loginWalletListHeaderClsx = ({
+  className = '',
+}: { className?: string } = {}) =>
+  clsx('flex justify-between items-center self-stretch', className)
 
 const loginWidget = {
   loginWidgetTriggerClsx,
@@ -71,6 +76,7 @@ const loginWidget = {
   loginWidgetDialogContentWrapperClsx,
   loginContentClsx,
   loginWalletListWrapperClsx,
+  loginWalletListHeaderClsx,
   loginIntroClsx,
   loginIntroHeaderClsx,
   loginIntroHeaderIconClsx,
