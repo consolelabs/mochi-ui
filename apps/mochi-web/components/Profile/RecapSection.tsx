@@ -44,7 +44,10 @@ interface Props {
 const UserSection = ({ type, statTx }: Props) => {
   const [profile] = UI.render(Platform.Web, statTx?.other_profile as Profile)
   const { theme } = useTheme()
-  const name = emojiStrip(profile?.plain || '').trim()
+  const name =
+    statTx?.other_profile?.type === 'vault'
+      ? statTx.other_profile.profile_name || 'Vault'
+      : emojiStrip(profile?.plain || '').trim()
   const icon =
     type === 'sent' ? (
       <TipSolid
