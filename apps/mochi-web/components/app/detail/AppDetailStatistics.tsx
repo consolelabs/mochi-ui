@@ -22,6 +22,7 @@ import { Control, Controller } from 'react-hook-form'
 import { AppDetailFormValues } from '~types/app'
 import { ChangeEvent, useState, useRef } from 'react'
 import { API, GET_PATHS } from '~constants/api'
+import clsx from 'clsx'
 import { StatisticsBox } from '../StatisticsBox'
 
 interface Props {
@@ -119,7 +120,11 @@ export const AppDetailStatistics = ({
                     <FormLabel>Display name</FormLabel>
                     <ContentEditable
                       {...field}
-                      className="text-sm font-medium"
+                      className={clsx('text-sm font-medium', {
+                        'border border-divider rounded px-3.5 py-2.5':
+                          editing === field.name,
+                      })}
+                      placeholder="Provide a name for your app..."
                       disabled={editing !== field.name}
                       onBlur={() => setEditing('')}
                       ref={(ref) => {
@@ -158,7 +163,10 @@ export const AppDetailStatistics = ({
                     <FormLabel>Description</FormLabel>
                     <ContentEditable
                       {...field}
-                      className="text-sm font-medium"
+                      className={clsx('text-sm font-medium', {
+                        'border border-divider rounded px-3.5 py-2.5':
+                          editing === field.name,
+                      })}
                       placeholder="Provide a description for your app..."
                       disabled={editing !== field.name}
                       onBlur={() => setEditing('')}
