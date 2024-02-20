@@ -2360,6 +2360,9 @@ importers:
 
   packages/web3/connect-wallet-widget:
     dependencies:
+      '@mochi-ui/badge':
+        specifier: workspace:^
+        version: link:../../components/badge
       '@mochi-ui/button':
         specifier: workspace:*
         version: link:../../components/button
@@ -2375,6 +2378,9 @@ importers:
       '@mochi-ui/theme':
         specifier: workspace:*
         version: link:../../theme
+      '@mochi-ui/typography':
+        specifier: workspace:^
+        version: link:../../components/typography
       '@solana/web3.js':
         specifier: 1.74.0
         version: 1.74.0

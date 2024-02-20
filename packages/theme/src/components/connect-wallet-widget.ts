@@ -31,7 +31,7 @@ const connectWalletState = () => ({
 
 const connectWalletListTabsClsx = ({
   className = '',
-}: { className?: string } = {}) => clsx('space-y-3 h-[292px] w-full', className)
+}: { className?: string } = {}) => clsx('space-y-3 h-[343px] w-full', className)
 
 const connectWalletListTabListClsx = ({
   className = '',
@@ -76,21 +76,14 @@ const connectWalletListDropdownItemClsx = ({
   className = '',
 }: { className?: string } = {}) => clsx('text-text-secondary', className)
 
-const connectWallet = ({
-  isInstalled,
-  className = '',
-}: {
-  isInstalled?: boolean
-  className?: string
-}) =>
+const connectWallet = ({ className = '' }: { className?: string }) =>
   clsx(
-    'flex flex-col items-center justify-center h-20 gap-2 px-1 border rounded-lg border-neutral-outline-active',
-    {
-      'hover:bg-neutral-outline-hover transition': isInstalled,
-      'opacity-25 cursor-not-allowed': !isInstalled,
-    },
+    'flex flex-col items-center justify-center aspect-square !h-auto border rounded-lg !border-neutral-outline-active',
     className,
   )
+
+const connectWalletBadgeClsx = ({ className = '' }: { className?: string }) =>
+  clsx('mt-0.5 !p-0 border bg-white-pure border-outline-border', className)
 
 const connectWalletIconClsx = ({
   className = '',
@@ -99,7 +92,7 @@ const connectWalletIconClsx = ({
 const connectWalletNameClsx = ({
   className = '',
 }: { className?: string } = {}) =>
-  clsx('text-xs font-medium text-text-secondary', className)
+  clsx('text-xs font-medium text-text-secondary mt-3', className)
 
 const connectWalletWidget = {
   connectWalletState,
@@ -115,6 +108,7 @@ const connectWalletWidget = {
   connectWallet,
   connectWalletIconClsx,
   connectWalletNameClsx,
+  connectWalletBadgeClsx,
 }
 
 export { connectWalletWidget }

@@ -31,7 +31,6 @@ interface WalletListProps {
   onSelectWallet: (w: ChainProvider) => void
   connectors: Connectors
   chain?: string
-  hideDisabledWallets: boolean
 }
 
 const connectorNames = ['EVM', 'SOL', 'RON', 'SUI', 'TON'].sort(
@@ -51,7 +50,6 @@ export default function WalletList({
   connectors,
   onSelectWallet,
   chain: _chain,
-  hideDisabledWallets,
 }: WalletListProps) {
   const chain = _chain?.slice(0, 3).toUpperCase()
   const [selectedConnector, setSelectedConnector] = useState(
@@ -125,7 +123,6 @@ export default function WalletList({
               key={provider.name}
               provider={provider}
               connect={() => onSelectWallet(provider)}
-              hideDisabledWallets={hideDisabledWallets}
             />
           ))}
         </TabContent>
