@@ -43,7 +43,10 @@ export default function ConnectSocial() {
             })}
           </div>
         </ScrollAreaViewport>
-        <ScrollAreaScrollbar orientation="horizontal">
+        <ScrollAreaScrollbar className="lg:hidden" orientation="horizontal">
+          <ScrollAreaThumb />
+        </ScrollAreaScrollbar>
+        <ScrollAreaScrollbar className="hidden lg:block" orientation="vertical">
           <ScrollAreaThumb />
         </ScrollAreaScrollbar>
       </ScrollArea>

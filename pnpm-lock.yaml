@@ -1939,7 +1939,7 @@ importers:
         specifier: workspace:*
         version: link:../accordion
       '@mochi-ui/button':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../button
       '@mochi-ui/dropdown':
         specifier: workspace:*

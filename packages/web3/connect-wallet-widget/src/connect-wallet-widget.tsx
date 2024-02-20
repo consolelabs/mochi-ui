@@ -32,9 +32,10 @@ interface ConnectWalletWidgetProps extends PropsWithChildren {
   chain?: string
   dispatch?: any
   onConnectSuccess?: (wallet: ChainProvider, data: any) => void
-  onStartConnect?: () => void
-  onEndConnect?: () => void
+  onStartConnect?: (wallet: ChainProvider) => void
+  onEndConnect?: (wallet: ChainProvider | null) => void
   hideDisabledWallets?: boolean
+  walletId?: string
 }
 
 type Reducer = (
@@ -63,8 +64,10 @@ const ConnectWalletWidget = forwardRef<
     onEndConnect,
     onConnectSuccess,
     hideDisabledWallets = true,
+    walletId,
   }) => {
     const connectors = useMemo(() => getProviders(dispatch), [dispatch])
+    const walletById = connectors.EVM.find((c) => c.id && c.id === walletId)
 
     const [state, setState] = useReducer<Reducer>(
       (state, action) => {
@@ -74,8 +77,8 @@ const ConnectWalletWidget = forwardRef<
         }
       },
       {
-        step: Step.Idle,
-        wallet: null,
+        step: walletById ? Step.Connecting : Step.Idle,
+        wallet: walletById || null,
         error: null,
       },
     )
@@ -99,11 +102,12 @@ const ConnectWalletWidget = forwardRef<
 
     useEffect(() => {
       if (state.step === Step.Idle) {
-        onEndConnect?.()
+        onEndConnect?.(state.wallet)
         return
       }
-      onStartConnect?.()
-    }, [onEndConnect, onStartConnect, state.step])
+      if (!state.wallet) return
+      onStartConnect?.(state.wallet)
+    }, [onEndConnect, onStartConnect, state.step, state.wallet])
 
     const Icon = state.wallet?.icon ?? ExclamationTriangleOutlined
     const innerClsx = connectWalletState().connecting
@@ -120,9 +124,9 @@ const ConnectWalletWidget = forwardRef<
     ) {
       content = (
         <div className={innerClsx.container}>
-          <div className={innerClsx.header}>
-            Connect to {state.wallet?.name} Wallet
-          </div>
+          {/* <div className={innerClsx.header}> */}
+          {/*   Connect to {state.wallet?.name} Wallet */}
+          {/* </div> */}
           <div className={innerClsx.imgWrapper}>
             <img
               alt="mochi icon"
@@ -174,16 +178,6 @@ const ConnectWalletWidget = forwardRef<
             </>
           )}
           <div className={innerClsx.buttons}>
-            <Button
-              variant="outline"
-              color="neutral"
-              size="lg"
-              onClick={() =>
-                setState({ step: Step.Idle, wallet: null, error: null })
-              }
-            >
-              Back
-            </Button>
             {isSuccess === -1 && (
               <Button
                 variant="solid"

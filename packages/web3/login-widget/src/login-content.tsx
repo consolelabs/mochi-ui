@@ -23,6 +23,7 @@ import { useLoginWidget } from './store'
 const {
   loginContentClsx,
   loginWalletListWrapperClsx,
+  loginWalletListHeaderClsx,
   loginIntroClsx,
   loginIntroHeaderClsx,
   loginIntroHeaderIconClsx,
@@ -89,7 +90,7 @@ export default function LoginContent({
   }) => Promise<void>
   onClose?: () => void
 }) {
-  const [isConnecting, setIsConnecting] = useState(false)
+  const [title, setTitle] = useState('Supported Wallets')
   const {
     profileBaseUrl,
     isLoggedIn,
@@ -97,7 +98,11 @@ export default function LoginContent({
     setIsLoadingProfile,
     dispatch,
   } = useLoginWidget()
-  const [state, setState] = useState({
+  const [state, setState] = useState<{
+    step: number
+    direction: number
+    walletId?: string
+  }>({
     step: chain || onchain ? 2 : 1,
     direction: 0,
   })
@@ -204,9 +209,15 @@ export default function LoginContent({
                 </IconButton>
               </div>
               <div className={loginIntroBodyClsx()}>
-                <button
-                  type="button"
+                <Button
+                  size="lg"
                   className={loginIntroBodyWalletButtonClsx()}
+                  variant="soft"
+                  color="neutral"
+                  onClick={() => {
+                    setIsInteractive(false)
+                    setState({ step: 2, direction: 1, walletId: 'app.phantom' })
+                  }}
                 >
                   <Typography fontWeight="md" level="h7" color="neutral">
                     Phantom
@@ -216,32 +227,46 @@ export default function LoginContent({
                       className: 'rounded-md',
                     })}
                   />
-                </button>
-                <button
-                  type="button"
+                </Button>
+                <Button
+                  size="lg"
                   className={loginIntroBodyWalletButtonClsx()}
+                  variant="soft"
+                  color="neutral"
+                  onClick={() => {
+                    setIsInteractive(false)
+                    setState({ step: 2, direction: 1, walletId: 'io.metamask' })
+                  }}
                 >
                   <Typography fontWeight="md" level="h7" color="neutral">
                     Metamask
                   </Typography>
                   <MetamaskWallet className={loginIntroBodyWalletIconClsx()} />
-                </button>
-                <button
-                  type="button"
+                </Button>
+                <Button
+                  size="lg"
                   className={loginIntroBodyWalletButtonClsx()}
+                  variant="soft"
+                  color="neutral"
+                  onClick={() => {
+                    setIsInteractive(false)
+                    setState({ step: 2, direction: 1, walletId: 'me.rainbow' })
+                  }}
                 >
                   <Typography fontWeight="md" level="h7" color="neutral">
                     Rainbow
                   </Typography>
                   <RainbowWallet className={loginIntroBodyWalletIconClsx()} />
-                </button>
-                <button
-                  type="button"
+                </Button>
+                <Button
+                  size="lg"
                   className={loginIntroBodyWalletButtonClsx()}
+                  variant="soft"
+                  color="neutral"
                   disabled={!isInteractive}
                   onClick={() => {
                     setIsInteractive(false)
-                    setState({ step: 2, direction: 1 })
+                    setState({ step: 2, direction: 1, walletId: undefined })
                   }}
                 >
                   <Typography fontWeight="md" level="h7" color="neutral">
@@ -252,7 +277,7 @@ export default function LoginContent({
                       className: '!w-6 !h-6 text-text-icon-secondary',
                     })}
                   />
-                </button>
+                </Button>
               </div>
               <ConnectSocial />
             </m.div>
@@ -263,29 +288,55 @@ export default function LoginContent({
               {...commonProps}
               className={loginWalletListWrapperClsx()}
             >
+              {!chain && (
+                <div className={loginWalletListHeaderClsx()}>
+                  <IconButton
+                    onClick={() => {
+                      setIsInteractive(false)
+                      setState({ step: 1, direction: -1, walletId: undefined })
+                    }}
+                    label="close"
+                    variant="link"
+                    color="neutral"
+                  >
+                    <ArrowLeftLine className={loginIntroHeaderIconClsx()} />
+                  </IconButton>
+                  <Typography
+                    level="h8"
+                    fontWeight="lg"
+                    color="neutral"
+                    className="text-center"
+                  >
+                    {title}
+                  </Typography>
+                  <div className={loginIntroBodyWalletIconClsx()} />
+                </div>
+              )}
               <ConnectWalletWidget
                 chain={chain}
                 dispatch={dispatch}
                 onConnectSuccess={handleAfterConnect}
-                onStartConnect={() => setIsConnecting(true)}
-                onEndConnect={() => setIsConnecting(false)}
+                onStartConnect={(wallet) =>
+                  setTitle(`Connect to ${wallet.name} Wallet`)
+                }
+                walletId={state.walletId}
               />
-              {!chain && !isConnecting && (
-                <Button
-                  type="button"
-                  disabled={!isInteractive}
-                  onClick={() => {
-                    setIsInteractive(false)
-                    setState({ step: 1, direction: -1 })
-                  }}
-                  size="lg"
-                  color="neutral"
-                  variant="outline"
-                >
-                  <ArrowLeftLine />
-                  Back
-                </Button>
-              )}
+              {/* {!chain && !isConnecting && ( */}
+              {/*   <Button */}
+              {/*     type="button" */}
+              {/*     disabled={!isInteractive} */}
+              {/*     onClick={() => { */}
+              {/*       setIsInteractive(false) */}
+              {/*       setState({ step: 1, direction: -1 }) */}
+              {/*     }} */}
+              {/*     size="lg" */}
+              {/*     color="neutral" */}
+              {/*     variant="outline" */}
+              {/*   > */}
+              {/*     <ArrowLeftLine /> */}
+              {/*     Back */}
+              {/*   </Button> */}
+              {/* )} */}
             </m.div>
           )}
         </AnimatePresence>

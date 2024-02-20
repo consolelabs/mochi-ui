@@ -22,6 +22,11 @@ import {
   DesktopNav,
   Avatar,
   PopoverPortal,
+  Drawer,
+  DrawerTrigger,
+  DrawerPortal,
+  DrawerOverlay,
+  DrawerContent,
 } from '@mochi-ui/core'
 import {
   DiscordColored,
@@ -511,6 +516,19 @@ export const Header = () => {
             navItems={mobileNavItems}
             className={isLoggedIn && profile ? '!hidden' : ''}
             onNavStateChanged={setIsNavOpen}
+            login={
+              <Drawer anchor="bottom">
+                <DrawerTrigger asChild>
+                  <Button size="md">Login</Button>
+                </DrawerTrigger>
+                <DrawerPortal>
+                  <DrawerOverlay />
+                  <DrawerContent className="!bg-transparent [&>div]:!w-auto [&>div]:!max-w-screen [&>div]:sm:!max-w-max [&>div]:mx-auto [&>div]:!rounded-t-lg [&>div]:!rounded-b-none">
+                    <LoginWidget />
+                  </DrawerContent>
+                </DrawerPortal>
+              </Drawer>
+            }
           />
           <DesktopNav
             navItems={desktopNavItems}
