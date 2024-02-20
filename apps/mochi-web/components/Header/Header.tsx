@@ -44,7 +44,10 @@ import {
   LinkSquircledSolid,
   WalletAddSolid,
   ScanLine,
+  MoonLine,
+  SunLine,
 } from '@mochi-ui/icons'
+import { useTheme } from '~context/theme'
 import NotificationList from '~cpn/NotificationList'
 import clsx from 'clsx'
 import { DISCORD_LINK, GITHUB_LINK, TELEGRAM_LINK } from '~envs'
@@ -95,6 +98,7 @@ export const Header = () => {
   const { profile, isLoggedIn, socials } = useLoginWidget()
   const { setIsNavOpen } = useIsNavOpenStore()
   const { data: changelogData } = useFetchChangelogLatest()
+  const { theme, setTheme } = useTheme()
 
   const redirectToTipWidget = useCallback(async () => {
     if (pathname !== ROUTES.HOME) {
@@ -467,6 +471,20 @@ export const Header = () => {
           >
             <div className="w-full h-6 bg-[#eeedec]" />
           </div>,
+          <IconButton
+            label="dark/light mode toggle button"
+            key="dark/light mode toggle"
+            variant="outline"
+            color="neutral"
+            className="!p-1.5"
+            onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+          >
+            {theme === 'light' ? (
+              <MoonLine className="w-5 h-5" />
+            ) : (
+              <SunLine className="w-5 h-5" />
+            )}
+          </IconButton>,
           <LoginPopover key="desktop-login-popover" />,
         ]),
   ]
