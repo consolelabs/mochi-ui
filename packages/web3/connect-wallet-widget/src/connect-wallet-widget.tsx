@@ -10,9 +10,9 @@ import {
   CheckLine,
   CloseLine,
 } from '@mochi-ui/icons'
+import { Typography } from '@mochi-ui/typography'
 import { Button } from '@mochi-ui/button'
 import { connectWalletWidget } from '@mochi-ui/theme'
-import isMobile from 'is-mobile'
 import WalletList from './wallet-list'
 import getProviders, { ChainProvider, msg } from './providers'
 
@@ -34,7 +34,6 @@ interface ConnectWalletWidgetProps extends PropsWithChildren {
   onConnectSuccess?: (wallet: ChainProvider, data: any) => void
   onStartConnect?: (wallet: ChainProvider) => void
   onEndConnect?: (wallet: ChainProvider | null) => void
-  hideDisabledWallets?: boolean
   walletId?: string
 }
 
@@ -63,7 +62,6 @@ const ConnectWalletWidget = forwardRef<
     onStartConnect,
     onEndConnect,
     onConnectSuccess,
-    hideDisabledWallets = true,
     walletId,
   }) => {
     const connectors = useMemo(() => getProviders(dispatch), [dispatch])
@@ -189,6 +187,31 @@ const ConnectWalletWidget = forwardRef<
               </Button>
             )}
           </div>
+          <Typography>
+            Download the wallet app:{' '}
+            <Button
+              variant="link"
+              className="!h-auto !p-0"
+              onClick={() =>
+                window.open(state.wallet?.metadata?.installUrl.ios, '_blank')
+              }
+            >
+              iOS
+            </Button>
+            ,{' '}
+            <Button
+              onClick={() =>
+                window.open(
+                  state.wallet?.metadata?.installUrl.android,
+                  '_blank',
+                )
+              }
+              variant="link"
+              className="!h-auto !p-0"
+            >
+              Android
+            </Button>
+          </Typography>
         </div>
       )
     } else if (state.step !== Step.Idle) {
@@ -235,7 +258,6 @@ const ConnectWalletWidget = forwardRef<
           onSelectWallet={(w) =>
             setState({ step: Step.Connecting, wallet: w, error: null })
           }
-          hideDisabledWallets={isMobile() ? false : hideDisabledWallets}
         />
       )
 

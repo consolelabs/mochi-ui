@@ -36,22 +36,57 @@ export default function getProviders(dispatch: any) {
         .setName('MetaMask')
         .setIcon(MetamaskWallet)
         .setMobileProtocol('metamask://')
+        .setMetadata({
+          installUrl: {
+            ios: 'https://apps.apple.com/us/app/metamask-blockchain-wallet/id1438144202',
+            android:
+              'https://play.google.com/store/apps/details?id=io.metamask',
+            extension:
+              'https://chromewebstore.google.com/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?utm_source=google.com',
+          },
+        })
         .sync(dispatch),
       new ProviderEVM()
         .setId('io.rabby')
         .setName('Rabby')
         .setIcon(RabbyWallet)
+        .setMetadata({
+          installUrl: {
+            ios: '',
+            android:
+              'https://play.google.com/store/apps/details?id=com.debank.rabbymobile',
+            extension:
+              'https://chromewebstore.google.com/detail/rabby-wallet/acmacodkjbdgmoleebolmdjonilkdbch',
+          },
+        })
         .sync(dispatch),
       new ProviderEVM()
         .setId('me.rainbow')
         .setName('Rainbow')
         .setIcon(RainbowWallet)
         .setMobileProtocol('rainbow://')
+        .setMetadata({
+          installUrl: {
+            ios: 'https://apps.apple.com/us/app/rainbow-ethereum-wallet/id1457119021?%24web_only=true&_branch_match_id=1261206776426563479&utm_source=branch&utm_campaign=web-home&utm_medium=marketing&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXL8pLKk8sKNBLzs%2FV90%2F1TcnN9jLzr0gCAI5wN7gfAAAA',
+            android:
+              'https://play.google.com/store/apps/details?id=me.rainbow&%24web_only=true&_branch_match_id=1261206776426563479&utm_source=branch&utm_campaign=web-home&utm_medium=marketing&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXL8pLKk8sKNBLzs%2FVD0s0MfQIDzbzr0gCAIiGbKYfAAAA',
+            extension:
+              'https://chromewebstore.google.com/detail/rainbow/opfgelmcmbiajamepnmloijbpoleiama',
+          },
+        })
         .sync(dispatch),
       new ProviderEVM()
         .setName('Uniswap')
         .setIcon(UniswapWallet)
         .setMobileProtocol('uniswap://')
+        .setMetadata({
+          installUrl: {
+            ios: 'https://apps.apple.com/us/app/uniswap-crypto-nft-wallet/id6443944476?mt=8',
+            android:
+              'https://play.google.com/store/apps/details?id=com.uniswap.mobile&referrer=af_tranid%3DiDYGSyobTvStWkivbJlRZw%26c%3DEvergreen%26pid%3Dweb_microsite',
+            extension: '',
+          },
+        })
         .sync(dispatch),
       new ProviderEVM()
         .setId('com.coinbase.wallet')

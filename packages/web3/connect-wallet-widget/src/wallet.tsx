@@ -1,21 +1,24 @@
+import { Button } from '@mochi-ui/button'
+import { Badge } from '@mochi-ui/badge'
+import { Typography } from '@mochi-ui/typography'
+import isMobile from 'is-mobile'
 import { connectWalletWidget } from '@mochi-ui/theme'
 import { useEffect, useState } from 'react'
 import { ChainProvider } from './providers/provider'
 
-const { connectWallet, connectWalletIconClsx, connectWalletNameClsx } =
-  connectWalletWidget
+const {
+  connectWallet,
+  connectWalletBadgeClsx,
+  connectWalletIconClsx,
+  connectWalletNameClsx,
+} = connectWalletWidget
 
 export interface WalletProps {
   provider: ChainProvider
   connect: () => void
-  hideDisabledWallets: boolean
 }
 
-export default function Wallet({
-  provider,
-  hideDisabledWallets,
-  connect,
-}: WalletProps) {
+export default function Wallet({ provider, connect }: WalletProps) {
   const Icon = provider.icon
   const [isInstalled, setIsInstalled] = useState(false)
 
@@ -23,16 +26,17 @@ export default function Wallet({
     provider.isInstalled().then(setIsInstalled)
   }, [provider])
 
-  if (!isInstalled && hideDisabledWallets) return null
-
   return (
-    <button
-      className={connectWallet({
-        isInstalled: true,
-      })}
+    <Button
+      variant="outline"
+      color="neutral"
+      className={connectWallet({})}
       /* disabled={!isInstalled} */
-      onClick={connect}
-      type="button"
+      onClick={() =>
+        !isMobile() && !isInstalled
+          ? window.open(provider.metadata?.installUrl.extension, '_blank')
+          : connect()
+      }
     >
       <Icon width={24} height={24} className={connectWalletIconClsx()} />
       <span
@@ -41,6 +45,13 @@ export default function Wallet({
       >
         {provider.name}
       </span>
-    </button>
+      {isInstalled && (
+        <Badge className={connectWalletBadgeClsx({})} appearance="neutral">
+          <Typography level="p7" color="textTertiary">
+            INSTALLED
+          </Typography>
+        </Badge>
+      )}
+    </Button>
   )
 }
