@@ -103,7 +103,7 @@ export default function LoginContent({
     direction: number
     walletId?: string
   }>({
-    step: chain || onchain ? 2 : 1,
+    step: chain ? 2 : 1,
     direction: 0,
   })
   const [isInteractive, setIsInteractive] = useState(false)
@@ -279,7 +279,7 @@ export default function LoginContent({
                   />
                 </Button>
               </div>
-              <ConnectSocial />
+              {!onchain && <ConnectSocial />}
             </m.div>
           ) : (
             <m.div
