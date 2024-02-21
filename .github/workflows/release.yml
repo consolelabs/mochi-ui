@@ -12,7 +12,7 @@ on:
       - ".changeset/**"
       - "packages/**"
     branches:
-      - main
+      - develop
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
