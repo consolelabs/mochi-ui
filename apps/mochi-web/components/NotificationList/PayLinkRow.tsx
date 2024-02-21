@@ -6,7 +6,10 @@ import Row from './Row'
 const PayLinkRow = (props: any) => {
   return (
     <Row action="paylink" {...props}>
-      <Typography className="flex flex-wrap gap-x-2 items-center text-left break-all">
+      <Typography
+        level="p5"
+        className="flex flex-wrap gap-x-2 items-center text-left break-all"
+      >
         Create the pay link{' '}
         <Amount
           size="base"

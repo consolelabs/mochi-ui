@@ -49,8 +49,8 @@ export default function MessagePicker({
         onChange(message)
       }}
     >
-      <div className="rounded-xl bg p-2 bg-[#f4f3f2] flex flex-col gap-y-2">
-        <div className="flex gap-x-2 items-center py-5 px-4 rounded-lg bg-white-pure">
+      <div className="rounded-xl bg p-2 bg-background-level2 flex flex-col gap-y-2">
+        <div className="flex gap-x-2 items-center py-5 px-4 rounded-lg bg-background-body">
           <input
             value={value}
             className="flex-1 h-full bg-transparent outline-none"
@@ -68,7 +68,7 @@ export default function MessagePicker({
             return (
               <button
                 key={message}
-                className="py-1 px-3 text-sm font-medium rounded-lg outline-none bg-white-pure text-neutral-800"
+                className="py-1 px-3 text-sm font-medium rounded-lg outline-none bg-background-body text-text-primary"
                 type="button"
                 onClick={() => onChange(message)}
               >
@@ -83,7 +83,7 @@ export default function MessagePicker({
             trigger={
               <button
                 type="button"
-                className="py-1 px-3 text-sm font-medium rounded-lg outline-none bg-neutral-300"
+                className="py-1 px-3 text-sm font-medium rounded-lg outline-none bg-background-body"
               >
                 More
               </button>
@@ -91,12 +91,13 @@ export default function MessagePicker({
           >
             <TextFieldRoot className="flex-shrink-0 mt-2">
               <TextFieldDecorator>
-                <MagnifierLine className="w-5 h-5 text-gray-500" />
+                <MagnifierLine className="w-5 h-5 text-text-disabled" />
               </TextFieldDecorator>
               <Combobox.Input
                 as={TextFieldInput}
                 value={messageSearch}
                 placeholder="Search"
+                className="placeholder:text-text-disabled"
                 onChange={onMessageSearchChange}
               />
             </TextFieldRoot>
@@ -120,8 +121,8 @@ export default function MessagePicker({
                             className={clsx(
                               'flex items-center p-2 space-x-2 w-full rounded-lg cursor-pointer outline-none',
                               {
-                                'bg-neutral-100': active,
-                                'hover:bg-neutral-100': !active,
+                                'bg-neutral-soft-active': active,
+                                'hover:bg-neutral-soft-hover': !active,
                               },
                             )}
                             onClick={() => {
@@ -139,7 +140,7 @@ export default function MessagePicker({
                 renderSectionHeader={(section: any) => (
                   <label
                     htmlFor={sectionTitleHtmlFor}
-                    className="font-bold text-[0.625rem] uppercase text-[#ADACAA]"
+                    className="font-bold text-[0.625rem] uppercase text-text-disabled"
                   >
                     {section.title}
                   </label>

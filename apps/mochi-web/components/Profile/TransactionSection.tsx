@@ -48,7 +48,7 @@ export const TransactionOverviewSection = () => {
   return (
     <div>
       <SectionHeader className="!pt-0">
-        <SectionHeaderTitle className="flex items-center">
+        <SectionHeaderTitle className="!text-xl !font-semibold flex items-center">
           Transactions
         </SectionHeaderTitle>
         <SectionHeaderActions>
@@ -62,7 +62,7 @@ export const TransactionOverviewSection = () => {
           />
         </SectionHeaderActions>
       </SectionHeader>
-      <Card className="mt-1 !p-0 !rounded-lg">
+      <Card className="mt-1 !p-0 !rounded-lg !bg-background-level1">
         {ready && (
           <TransactionTable
             cellClassName={() => 'h-[60px]'}

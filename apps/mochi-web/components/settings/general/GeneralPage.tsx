@@ -116,7 +116,9 @@ export const GeneralPage = () => {
         onSubmit={handleSubmit(onUpdateSettings)}
       />
       <div className="space-y-4 sm:max-w-[600px]">
-        <Typography level="h6">Payment setting</Typography>
+        <Typography level="p2" fontWeight="lg">
+          Payment setting
+        </Typography>
         <MoneySource />
         <ReceiverPlatform />
         <TokenPriority />
@@ -126,7 +128,9 @@ export const GeneralPage = () => {
         <TransactionLimit />
         <Separator className="!mb-8" />
 
-        <Typography level="h6">Privacy</Typography>
+        <Typography level="p2" fontWeight="lg">
+          Privacy
+        </Typography>
         <WalletPrivacy />
         <Separator />
         <TransactionPrivacy />

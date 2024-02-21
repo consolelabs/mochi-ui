@@ -1,6 +1,6 @@
 {
   "name": "@mochi-ui/top-bar",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
@@ -25,14 +25,14 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@mochi-ui/logo": "workspace:*",
-    "@mochi-ui/input": "workspace:*",
     "@mochi-ui/accordion": "workspace:*",
+    "@mochi-ui/button": "workspace:^",
     "@mochi-ui/dropdown": "workspace:*",
-    "@mochi-ui/button": "workspace:*",
+    "@mochi-ui/input": "workspace:*",
+    "@mochi-ui/logo": "workspace:*",
     "@mochi-ui/typography": "workspace:*",
-    "clsx": "^2.0.0",
     "clean-package": "^2.2.0",
+    "clsx": "^2.0.0",
     "eslint-config-custom": "workspace:*",
     "prettier": "^3.1.1",
     "react": "^18.2.0",
@@ -41,10 +41,10 @@
   },
   "dependencies": {
     "@dwarvesf/react-hooks": "^0.8.2",
-    "@mochi-ui/theme": "workspace:*",
-    "@mochi-ui/list": "workspace:*",
+    "@mochi-ui/icon-button": "workspace:*",
     "@mochi-ui/icons": "workspace:*",
-    "@mochi-ui/icon-button": "workspace:*"
+    "@mochi-ui/list": "workspace:*",
+    "@mochi-ui/theme": "workspace:*"
   },
   "clean-package": "../../../clean-package.config.json"
 }

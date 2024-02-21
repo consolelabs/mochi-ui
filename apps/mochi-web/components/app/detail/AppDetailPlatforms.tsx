@@ -12,7 +12,7 @@ export const AppDetailPlatforms = ({ control, setValue }: Props) => {
   return (
     <div className="mt-8">
       <div className="py-2 space-y-2">
-        <Typography level="p4" className="font-medium">
+        <Typography level="p2" fontWeight="lg">
           Platforms
         </Typography>
       </div>
@@ -38,9 +38,9 @@ export const AppDetailPlatforms = ({ control, setValue }: Props) => {
                   <Icon
                     width={22}
                     height={22}
-                    className="ml-5 text-neutral-800"
+                    className="ml-5 text-text-primary"
                   />
-                  <Typography level="h9" className="ml-2 normal-case">
+                  <Typography level="h8" className="ml-2 normal-case">
                     {label}
                   </Typography>
                 </Label>

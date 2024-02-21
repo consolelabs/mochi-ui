@@ -1,164 +1,55 @@
-import {
-  DiscordColored,
-  FacebookColored,
-  Github,
-  GoogleColored,
-  MailLine,
-  SlackColored,
-  TelegramColored,
-  X,
-} from '@mochi-ui/icons'
 import { Typography } from '@mochi-ui/typography'
 import { loginWidget } from '@mochi-ui/theme'
 import { IconButton } from '@mochi-ui/icon-button'
-import MochiAPI from '@consolelabs/mochi-rest'
-import qs from 'query-string'
-import { Platform } from '@consolelabs/mochi-ui'
+import {
+  ScrollArea,
+  ScrollAreaViewport,
+  ScrollAreaThumb,
+  ScrollAreaScrollbar,
+} from '@mochi-ui/scroll-area'
 import { useLoginWidget } from './store'
 
-const { loginContentSocialGridWrapperClsx, loginContentSocialGridClsx } =
-  loginWidget
-
-const initSocialAuths = (profileBaseUrl: string, telegramBotId: string) => {
-  const api = new MochiAPI({
-    log: false,
-    payUrl: '',
-    baseUrl: '',
-    profileUrl: profileBaseUrl,
-  })
-
-  return [
-    {
-      id: Platform.Discord,
-      name: 'discord',
-      icon: <DiscordColored className="w-7 h-7" />,
-      onClick: (urlLocation: string) =>
-        api.profile.auth
-          .byDiscord({ urlLocation, platform: 'web' })
-          .then((res) => {
-            if (!res.ok) return
-            window.location.href = res.data.url
-          }),
-    },
-    {
-      id: Platform.Telegram,
-      name: 'telegram',
-      icon: <TelegramColored className="w-7 h-7" />,
-      onClick: (urlLocation: string) =>
-        // @ts-ignore
-        window.Telegram.Login.auth(
-          {
-            bot_id: telegramBotId,
-            request_access: true,
-            return_to: encodeURI(window.location.href),
-            lang: 'en',
-          },
-          (user: any) => {
-            const telegramAuth = `${profileBaseUrl}/profiles/auth/telegram?${qs.stringify(
-              {
-                ...user,
-                url_location: urlLocation,
-              },
-            )}`
-
-            window.location.href = telegramAuth
-          },
-        ),
-    },
-    {
-      id: Platform.Twitter,
-      name: 'twitter',
-      icon: <X className="w-7 h-7" />,
-      onClick: (urlLocation: string) =>
-        api.profile.auth
-          .byTwitter({ urlLocation, platform: 'web' })
-          .then((res) => {
-            if (!res.ok) return
-            window.location.href = res.data.url
-          }),
-    },
-    {
-      id: Platform.Email,
-      name: 'gmail',
-      icon: <GoogleColored className="w-7 h-7" />,
-      onClick: (urlLocation: string) =>
-        api.profile.auth
-          .byGmail({ urlLocation, platform: 'web' })
-          .then((res) => {
-            if (!res.ok) return
-            window.location.href = res.data.url
-          }),
-    },
-    {
-      name: 'facebook',
-      icon: <FacebookColored className="w-7 h-7" />,
-      onClick: (urlLocation: string) =>
-        api.profile.auth
-          .byFacebook({ urlLocation, platform: 'web' })
-          .then((res) => {
-            if (!res.ok) return
-            window.location.href = res.data.url
-          }),
-    },
-    {
-      name: 'slack',
-      icon: <SlackColored className="w-7 h-7 opacity-50" />,
-    },
-    {
-      name: 'github',
-      icon: <Github className="w-7 h-7 opacity-50" />,
-    },
-    {
-      name: 'mail',
-      icon: <MailLine className="w-7 h-7" />,
-    },
-  ]
-}
+const { loginSocialListClsx } = loginWidget
 
 export default function ConnectSocial() {
-  const { socials, profileBaseUrl, telegramBotId } = useLoginWidget()
+  const { socials } = useLoginWidget()
 
   return (
     <>
-      <Typography
-        level="h5"
-        fontWeight="md"
-        color="neutral"
-        className="text-center"
-      >
-        Welcome back!
+      <Typography className="!font-light" level="h8" color="textTertiary">
+        Or quickly sign in with your existing social account.
       </Typography>
-      <Typography level="p5" color="neutral" className="text-center">
-        Great to see you again! Sign in your account to continue.
-      </Typography>
-      <div className={loginContentSocialGridWrapperClsx()}>
-        <div className={loginContentSocialGridClsx()}>
-          {initSocialAuths(profileBaseUrl, telegramBotId).map((item) => {
-            const disabled = socials.every((s) => s !== item.id)
-
-            return (
-              <IconButton
-                label=""
-                type="button"
-                key={item.name}
-                onClick={() =>
-                  item.onClick?.(window.location.href.split('#')[0])
-                }
-                disabled={disabled}
-                variant="outline"
-                color="neutral"
-                size="lg"
-                className="!p-2"
-              >
-                {item.icon}
-              </IconButton>
-            )
-          })}
-        </div>
-        <Typography level="p5" color="neutral">
-          Or connect with an extension wallet
-        </Typography>
-      </div>
+      <ScrollArea>
+        <ScrollAreaViewport>
+          <div className={loginSocialListClsx()}>
+            {socials.map((item) => {
+              return (
+                <IconButton
+                  label=""
+                  type="button"
+                  key={item.name}
+                  onClick={() =>
+                    item.onClick?.(window.location.href.split('#')[0])
+                  }
+                  disabled={item.disabled}
+                  variant="outline"
+                  color="neutral"
+                  size="lg"
+                  className="!p-2"
+                >
+                  {item.icon}
+                </IconButton>
+              )
+            })}
+          </div>
+        </ScrollAreaViewport>
+        <ScrollAreaScrollbar className="lg:hidden" orientation="horizontal">
+          <ScrollAreaThumb />
+        </ScrollAreaScrollbar>
+        <ScrollAreaScrollbar className="hidden lg:block" orientation="vertical">
+          <ScrollAreaThumb />
+        </ScrollAreaScrollbar>
+      </ScrollArea>
     </>
   )
 }

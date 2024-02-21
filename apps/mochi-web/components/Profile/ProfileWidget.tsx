@@ -37,7 +37,7 @@ import { useFetchTotalBalance } from '~hooks/profile/useFetchTotalBalance'
 import { usePrevious } from '@dwarvesf/react-hooks'
 import { Token } from '@consolelabs/mochi-rest'
 
-const sortOrder = ['All', 'Mochi']
+const sortOrder = ['All', 'SOL', 'Mochi']
 const defaultChainMapping: Record<string, string> = {
   SOL: 'Solana',
   ETH: 'Ethereum',
@@ -60,8 +60,8 @@ export const ProfileWidget = () => {
     data: {
       totalUsdAmount: total = 0,
       pnl = '0',
-      lastest_snapshot_bals,
       offchain = [],
+      onchain = {},
       cex = {},
     } = {},
     isLoading,
@@ -88,14 +88,19 @@ export const ProfileWidget = () => {
 
   const balances: BalanceWithSource[] = [
     ...wallets.flatMap((w) =>
-      w.balances.map((b) => ({
-        ...b,
-        pnl: offchain.find((each) => each.token?.id === b.token.id)?.token?.pnl,
-        source: {
-          id: w.id,
-          title: w.title,
-        },
-      })),
+      w.balances.map((b) => {
+        return {
+          ...b,
+          pnl: (w.type === 'offchain'
+            ? offchain
+            : onchain[w.chainSymbol.toLowerCase() as keyof typeof onchain] ?? []
+          ).find((each) => each.token?.id === b.token.id)?.token?.pnl,
+          source: {
+            id: w.id,
+            title: w.title,
+          },
+        }
+      }),
     ),
     ...(binanceSpot?.map<BalanceWithSource>((each) => ({
       type: 'token',
@@ -211,11 +216,11 @@ export const ProfileWidget = () => {
   }, [])
 
   return (
-    <Card className="pb-3 space-y-4 shadow-input">
+    <Card className="pb-3 space-y-4 shadow-input !bg-background-level1">
       <div className="flex items-center space-x-2">
         <Avatar src={me?.avatar || ''} size="xl" />
         <div className="overflow-hidden flex-1 space-y-1">
-          <Typography level="h6" noWrap>
+          <Typography level="h6" noWrap fontWeight="md">
             {me?.profile_name}
           </Typography>
           <Badge appearance="neutral" className="w-fit">
@@ -227,26 +232,13 @@ export const ProfileWidget = () => {
             {isFetchingBalance ? '$0.00' : utils.formatUsdDigit(total)}
           </Typography>
           <div className="flex justify-end items-center">
-            <ValueChange
-              trend={pnl.startsWith('-') ? 'down' : 'up'}
-              className="mr-2"
-            >
+            <ValueChange trend={pnl.startsWith('-') ? 'down' : 'up'}>
               <ValueChangeIndicator />
               <Typography
                 level="h8"
                 color={pnl.startsWith('-') ? 'danger' : 'success'}
               >
-                {utils.formatPercentDigit(Number.isNaN(Number(pnl)) ? 0 : pnl)}{' '}
-                (
-                {isFetchingBalance
-                  ? '$0.00'
-                  : utils.formatUsdDigit(
-                      Number.isNaN(Number(pnl)) ||
-                        Number.isNaN(Number(lastest_snapshot_bals))
-                        ? 0
-                        : total - Number(lastest_snapshot_bals),
-                    )}
-                )
+                {utils.formatPercentDigit(Number.isNaN(Number(pnl)) ? 0 : pnl)}
               </Typography>
             </ValueChange>
           </div>
@@ -391,6 +383,7 @@ export const ProfileWidget = () => {
               )}
             >
               <TokenTableList
+                headerCellClassName="!bg-background-level1"
                 isLoading={!wallets.length && isFetchingWallets}
                 data={data}
                 hideLastBorder

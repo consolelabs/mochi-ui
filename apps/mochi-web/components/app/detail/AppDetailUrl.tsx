@@ -42,7 +42,7 @@ export const AppDetailUrl = ({ control, errors }: Props) => {
   return (
     <div className="mt-8">
       <div className="py-2 space-y-2">
-        <Typography level="p4" className="font-medium">
+        <Typography level="p2" fontWeight="lg">
           URL
         </Typography>
         <Typography level="p5" color="textSecondary">
@@ -119,7 +119,7 @@ export const AppDetailUrl = ({ control, errors }: Props) => {
                     label="Remove"
                     onClick={() => remove(index)}
                   >
-                    <PlusLine className="w-6 h-6 rotate-45 text-danger-700" />
+                    <PlusLine className="w-6 h-6 rotate-45 text-danger-plain-fg" />
                   </IconButton>
                 </TextFieldDecorator>
               </TextFieldRoot>

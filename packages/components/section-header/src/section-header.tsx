@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { Typography } from '@mochi-ui/typography'
 import { sectionHeader } from '@mochi-ui/theme'
 import React, { Children } from 'react'
@@ -29,7 +30,7 @@ const SectionHeaderTitle = ({
       level="h6"
       color="textPrimary"
       className={sectionHeaderTitleClsx({
-        className,
+        className: clsx('!font-medium', className),
         hasDescription,
       })}
     >

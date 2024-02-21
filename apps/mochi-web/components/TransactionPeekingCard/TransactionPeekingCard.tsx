@@ -36,8 +36,8 @@ export const TransactionPeekingCard = (props: TransactionPeekingCardProps) => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center w-16 h-16 shadow bg-white-pure">
-        <SpinnerLine className="w-8 h-8 text-neutral-500" />
+      <div className="flex justify-center items-center w-16 h-16 shadow bg-background-popup">
+        <SpinnerLine className="w-8 h-8 text-text-tertiary" />
       </div>
     )
   }

@@ -1,5 +1,14 @@
 import { Button } from '@mochi-ui/button'
-import { ArrowLeftLine, WalletSolid } from '@mochi-ui/icons'
+import { Typography } from '@mochi-ui/typography'
+import { IconButton } from '@mochi-ui/icon-button'
+import {
+  ArrowLeftLine,
+  MetamaskWallet,
+  PhantomWallet,
+  RainbowWallet,
+  CloseLgLine,
+  ChevronRightLine,
+} from '@mochi-ui/icons'
 import { loginWidget, popover } from '@mochi-ui/theme'
 import {
   ChainProvider,
@@ -14,8 +23,13 @@ import { useLoginWidget } from './store'
 const {
   loginContentClsx,
   loginWalletListWrapperClsx,
-  loginSocialButtonChangePageClsx,
-  loginSocialClsx,
+  loginWalletListHeaderClsx,
+  loginIntroClsx,
+  loginIntroHeaderClsx,
+  loginIntroHeaderIconClsx,
+  loginIntroBodyClsx,
+  loginIntroBodyWalletButtonClsx,
+  loginIntroBodyWalletIconClsx,
 } = loginWidget
 
 const variants: Variants = {
@@ -64,6 +78,7 @@ export default function LoginContent({
   chain,
   onchain = false,
   onWalletConnectSuccess,
+  onClose,
 }: {
   raw?: boolean
   chain?: string
@@ -73,8 +88,9 @@ export default function LoginContent({
     platform: string
     address: string
   }) => Promise<void>
+  onClose?: () => void
 }) {
-  const [isConnecting, setIsConnecting] = useState(false)
+  const [title, setTitle] = useState('Supported Wallets')
   const {
     profileBaseUrl,
     isLoggedIn,
@@ -82,8 +98,12 @@ export default function LoginContent({
     setIsLoadingProfile,
     dispatch,
   } = useLoginWidget()
-  const [state, setState] = useState({
-    step: chain || onchain ? 2 : 1,
+  const [state, setState] = useState<{
+    step: number
+    direction: number
+    walletId?: string
+  }>({
+    step: chain ? 2 : 1,
     direction: 0,
   })
   const [isInteractive, setIsInteractive] = useState(false)
@@ -155,31 +175,111 @@ export default function LoginContent({
   return (
     <div
       className={
-        !raw ? popoverContentClsx({}) : 'flex flex-col items-center w-full'
+        !raw
+          ? popoverContentClsx({ className: '!p-3' })
+          : 'flex flex-col items-center w-full'
       }
     >
-      <div className={loginContentClsx({ className: raw ? 'p-0' : 'p-3' })}>
+      <div className={loginContentClsx()}>
         <AnimatePresence initial={false} custom={state.direction}>
           {state.step === 1 ? (
             <m.div
               key={state.step}
               custom={state.direction}
               {...commonProps}
-              className={loginSocialClsx({})}
+              className={loginIntroClsx()}
             >
-              <ConnectSocial />
-              <Button
-                size="lg"
-                disabled={!isInteractive}
-                onClick={() => {
-                  setIsInteractive(false)
-                  setState({ step: 2, direction: 1 })
-                }}
-                className={loginSocialButtonChangePageClsx({})}
-              >
-                <WalletSolid className="text-xl" />
-                Connect Wallet
-              </Button>
+              <div className={loginIntroHeaderClsx()}>
+                <div className={loginIntroHeaderIconClsx()} />
+                <Typography
+                  level="h8"
+                  fontWeight="lg"
+                  color="neutral"
+                  className="text-center"
+                >
+                  Connect Options
+                </Typography>
+                <IconButton
+                  onClick={onClose}
+                  label="close"
+                  variant="link"
+                  color="neutral"
+                >
+                  <CloseLgLine className={loginIntroHeaderIconClsx()} />
+                </IconButton>
+              </div>
+              <div className={loginIntroBodyClsx()}>
+                <Button
+                  size="lg"
+                  className={loginIntroBodyWalletButtonClsx()}
+                  variant="soft"
+                  color="neutral"
+                  onClick={() => {
+                    setIsInteractive(false)
+                    setState({ step: 2, direction: 1, walletId: 'app.phantom' })
+                  }}
+                >
+                  <Typography fontWeight="md" level="h7" color="neutral">
+                    Phantom
+                  </Typography>
+                  <PhantomWallet
+                    className={loginIntroBodyWalletIconClsx({
+                      className: 'rounded-md',
+                    })}
+                  />
+                </Button>
+                <Button
+                  size="lg"
+                  className={loginIntroBodyWalletButtonClsx()}
+                  variant="soft"
+                  color="neutral"
+                  onClick={() => {
+                    setIsInteractive(false)
+                    setState({ step: 2, direction: 1, walletId: 'io.metamask' })
+                  }}
+                >
+                  <Typography fontWeight="md" level="h7" color="neutral">
+                    Metamask
+                  </Typography>
+                  <MetamaskWallet className={loginIntroBodyWalletIconClsx()} />
+                </Button>
+                <Button
+                  size="lg"
+                  className={loginIntroBodyWalletButtonClsx()}
+                  variant="soft"
+                  color="neutral"
+                  onClick={() => {
+                    setIsInteractive(false)
+                    setState({ step: 2, direction: 1, walletId: 'me.rainbow' })
+                  }}
+                >
+                  <Typography fontWeight="md" level="h7" color="neutral">
+                    Rainbow
+                  </Typography>
+                  <RainbowWallet className={loginIntroBodyWalletIconClsx()} />
+                </Button>
+                <Button
+                  size="lg"
+                  className={loginIntroBodyWalletButtonClsx()}
+                  variant="soft"
+                  color="neutral"
+                  disabled={!isInteractive}
+                  onClick={() => {
+                    setIsInteractive(false)
+                    setState({ step: 2, direction: 1, walletId: undefined })
+                  }}
+                >
+                  <Typography fontWeight="md" level="h7" color="neutral">
+                    Connect another wallet
+                  </Typography>
+                  <ChevronRightLine
+                    className={loginIntroBodyWalletIconClsx({
+                      className: '!w-6 !h-6 text-text-icon-secondary',
+                    })}
+                  />
+                </Button>
+              </div>
+              {!onchain && <ConnectSocial />}
             </m.div>
           ) : (
             <m.div
@@ -188,29 +288,55 @@ export default function LoginContent({
               {...commonProps}
               className={loginWalletListWrapperClsx()}
             >
+              {!chain && (
+                <div className={loginWalletListHeaderClsx()}>
+                  <IconButton
+                    onClick={() => {
+                      setIsInteractive(false)
+                      setState({ step: 1, direction: -1, walletId: undefined })
+                    }}
+                    label="close"
+                    variant="link"
+                    color="neutral"
+                  >
+                    <ArrowLeftLine className={loginIntroHeaderIconClsx()} />
+                  </IconButton>
+                  <Typography
+                    level="h8"
+                    fontWeight="lg"
+                    color="neutral"
+                    className="text-center"
+                  >
+                    {title}
+                  </Typography>
+                  <div className={loginIntroBodyWalletIconClsx()} />
+                </div>
+              )}
               <ConnectWalletWidget
                 chain={chain}
                 dispatch={dispatch}
                 onConnectSuccess={handleAfterConnect}
-                onStartConnect={() => setIsConnecting(true)}
-                onEndConnect={() => setIsConnecting(false)}
+                onStartConnect={(wallet) =>
+                  setTitle(`Connect to ${wallet.name} Wallet`)
+                }
+                walletId={state.walletId}
               />
-              {!chain && !isConnecting && (
-                <Button
-                  type="button"
-                  disabled={!isInteractive}
-                  onClick={() => {
-                    setIsInteractive(false)
-                    setState({ step: 1, direction: -1 })
-                  }}
-                  size="lg"
-                  color="neutral"
-                  variant="outline"
-                >
-                  <ArrowLeftLine />
-                  Back
-                </Button>
-              )}
+              {/* {!chain && !isConnecting && ( */}
+              {/*   <Button */}
+              {/*     type="button" */}
+              {/*     disabled={!isInteractive} */}
+              {/*     onClick={() => { */}
+              {/*       setIsInteractive(false) */}
+              {/*       setState({ step: 1, direction: -1 }) */}
+              {/*     }} */}
+              {/*     size="lg" */}
+              {/*     color="neutral" */}
+              {/*     variant="outline" */}
+              {/*   > */}
+              {/*     <ArrowLeftLine /> */}
+              {/*     Back */}
+              {/*   </Button> */}
+              {/* )} */}
             </m.div>
           )}
         </AnimatePresence>

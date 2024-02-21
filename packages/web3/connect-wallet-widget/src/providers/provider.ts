@@ -25,6 +25,13 @@ export abstract class ChainProvider<I = TransferInput> {
   public platform: string = ''
   public chainId: string | string[] = ''
   public signClient: Awaited<ReturnType<typeof SignClient.init>> | null = null
+  public metadata?: {
+    installUrl: {
+      ios: string
+      android: string
+      extension: string
+    }
+  }
   protected session: any | null = null
 
   setMobileProtocol(mobileProtocol: string) {
@@ -45,6 +52,12 @@ export abstract class ChainProvider<I = TransferInput> {
 
   setChainId(chainId: string) {
     return Object.assign(this, { chainId })
+  }
+
+  setMetadata(metadata: {
+    installUrl: { ios: string; android: string; extension: string }
+  }) {
+    return Object.assign(this, { metadata })
   }
 
   async initSignClient() {

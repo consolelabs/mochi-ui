@@ -212,19 +212,21 @@ const SelectItem = forwardRef<SelectItemRef, SelectItemProps>((props, ref) => {
       disabled={disabled}
     >
       {leftIcon ? (
-        <span className={select.iconWrapperCva()}>{leftIcon}</span>
+        <span className={select.iconWrapperCva({ disabled })}>{leftIcon}</span>
       ) : null}
-      <div className={select.bodyWrapper}>
+      <div className={select.bodyWrapper({ disabled })}>
         <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
         {subTitle ? (
-          <span className={select.subTitleWrapper}>{subTitle}</span>
+          <span className={select.subTitleWrapper({ disabled })}>
+            {subTitle}
+          </span>
         ) : null}
       </div>
       {extraRight}
       {rightIcon ||
         (useIndicator && (
           <RightIconWrapper
-            className={select.iconWrapperCva({ isRightIcon: true })}
+            className={select.iconWrapperCva({ disabled, isRightIcon: true })}
           >
             {rightIcon || <CheckLine />}
           </RightIconWrapper>

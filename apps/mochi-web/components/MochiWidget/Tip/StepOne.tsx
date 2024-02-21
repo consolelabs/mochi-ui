@@ -156,7 +156,7 @@ export default function StepOne() {
           trigger={
             <Button className="justify-center" size="lg" type="button">
               Connect options
-              <ChevronDownLine className="w-5 h-5 text-white-pure" />
+              <ChevronDownLine className="w-5 h-5 text-primary-solid-fg" />
             </Button>
           }
         />

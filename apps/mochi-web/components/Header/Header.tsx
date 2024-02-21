@@ -1,5 +1,6 @@
 'use client'
 
+import { isMobile } from '~utils/isMobile'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ROUTES } from '~constants/routes'
@@ -19,12 +20,13 @@ import {
   TopBar,
   MobileNav,
   DesktopNav,
-  Modal,
-  ModalContent,
   Avatar,
-  ModalPortal,
-  ModalOverlay,
   PopoverPortal,
+  Drawer,
+  DrawerTrigger,
+  DrawerPortal,
+  DrawerOverlay,
+  DrawerContent,
 } from '@mochi-ui/core'
 import {
   DiscordColored,
@@ -33,23 +35,27 @@ import {
   AppleColored,
   ChromeColored,
   TipSolid,
-  DollarBubbleCircleSolid,
-  LinkCircledSolid,
   MagnifierLine,
-  ChevronRightLine,
   WalletSolid,
   CodingSolid,
   Github,
   DocumentStarSolid,
+  DollarBubbleSolid,
+  LinkSquircledSolid,
+  WalletAddSolid,
+  MoonLine,
+  SunLine,
 } from '@mochi-ui/icons'
+import { useTheme } from '~context/theme'
 import NotificationList from '~cpn/NotificationList'
 import clsx from 'clsx'
 import { DISCORD_LINK, GITHUB_LINK, TELEGRAM_LINK } from '~envs'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import events from '~constants/events'
 import { LoginWidget, useLoginWidget } from '@mochi-web3/login-widget'
 import ProfileDropdown from '~cpn/ProfileDropdown'
 import NotificationModal from '~cpn/NotificationList/NotificationModal'
+import { useFetchChangelogLatest } from '~hooks/app/useFetchChangelogLatest'
 import { MobileNavAccordionItem } from './MobileNavAccordionItem'
 import { DashboardMobileSidebar } from './DashboardMobileSidebar'
 import { useIsNavOpenStore } from './util'
@@ -78,7 +84,7 @@ const LoginPopover = () => {
         </div>
       </PopoverTrigger>
       <PopoverPortal>
-        <PopoverContent sideOffset={10} collisionPadding={20}>
+        <PopoverContent className="!p-3" sideOffset={10} collisionPadding={20}>
           <LoginWidget raw />
         </PopoverContent>
       </PopoverPortal>
@@ -86,99 +92,60 @@ const LoginPopover = () => {
   )
 }
 
-const MobileLoginPanel = () => {
-  const [isOpenLoginPanel, setOpenLoginPanel] = useState(false)
-  const { isLoadingProfile } = useLoginWidget()
-
-  return (
-    <Modal open={isOpenLoginPanel} onOpenChange={setOpenLoginPanel}>
-      <Button
-        className="justify-center w-full sm:hidden"
-        size="lg"
-        onClick={() => setOpenLoginPanel(true)}
-        loading={isLoadingProfile}
-      >
-        Login
-      </Button>
-      <ModalPortal>
-        <ModalOverlay />
-        <ModalContent
-          className="p-5 w-full sm:w-auto"
-          style={{
-            maxWidth: 'calc(100% - 32px)',
-          }}
-        >
-          <LoginWidget raw />
-        </ModalContent>
-      </ModalPortal>
-    </Modal>
-  )
-}
-
-const MobileHeader = ({ onClose }: { onClose: () => void }) => {
-  const { profile } = useLoginWidget()
-  return (
-    <button onClick={onClose}>
-      <Link
-        href={ROUTES.MY_PROFILE}
-        className="block relative w-full h-20 group"
-      >
-        <div className="absolute inset-0 bg-transparent">
-          <img
-            className="object-cover w-full h-full"
-            alt="Header"
-            src="https://pbs.twimg.com/profile_banners/1168522102410010626/1684159976/300x100"
-          />
-        </div>
-        <div className="flex relative z-10 gap-4 items-center p-4 w-full h-full text-white">
-          <Avatar
-            fallback={profile?.profile_name}
-            /* smallSrc={me?.platformIcon} */
-            src={profile?.avatar as string}
-          />
-          <div className="flex flex-1 items-center font-medium">
-            <span className="inline-block w-max whitespace-nowrap max-w-40 truncate">
-              {profile?.profile_name}
-            </span>
-          </div>
-          <ChevronRightLine className="text-lg transition group-hover:translate-x-1" />
-        </div>
-      </Link>
-    </button>
-  )
-}
-
-export const Header = ({
-  layoutType,
-}: {
-  layoutType?: 'dashboard' | 'landing'
-}) => {
-  const { setIsNavOpen } = useIsNavOpenStore()
+export const Header = () => {
   const { pathname, push } = useRouter()
-  const { profile, isLoggedIn } = useLoginWidget()
+  const { profile, isLoggedIn, socials } = useLoginWidget()
+  const { setIsNavOpen } = useIsNavOpenStore()
+  const { data: changelogData } = useFetchChangelogLatest()
+  const { theme, setTheme } = useTheme()
+
+  const redirectToTipWidget = useCallback(async () => {
+    if (pathname !== ROUTES.HOME) {
+      await push(ROUTES.HOME)
+    }
+    window.dispatchEvent(new Event(events.TIP_WIDGET.FOCUS_AMOUNT))
+  }, [pathname, push])
 
   const mobileNavItems = [
-    <Link
-      href={ROUTES.FEATURES}
-      className="flex hidden items-center py-3 px-2 text-sm"
-      key="mobile-nav-features"
-    >
-      <Typography
-        level="p6"
-        color="neutral"
-        className={clsx(
-          '!text-base transition-colors duration-300 hover:!text-primary-plain-fg',
-          {
-            '!text-primary-plain-fg': pathname === ROUTES.FEATURES,
-          },
-        )}
-      >
-        Features
-      </Typography>
-    </Link>,
     // eslint-disable-next-line jsx-a11y/anchor-is-valid
+    <div
+      key="mobile-nav-login"
+      className="flex flex-col gap-y-3 pb-3 border-b border-divider"
+    >
+      <Typography level="h6" fontWeight="md" color="textPrimary">
+        Login
+      </Typography>
+      <Button size="lg">
+        <WalletAddSolid className="w-6 h-6" />
+        Connect Wallet
+      </Button>
+      <Typography level="p5" color="textTertiary" className="!font-light">
+        Don&apos;t have a crypto wallet? Login social instead.
+      </Typography>
+      <div className="flex flex-wrap gap-2">
+        {socials.map((social) => {
+          return (
+            <IconButton
+              label=""
+              type="button"
+              key={social.name}
+              onClick={() =>
+                social.onClick?.(window.location.href.split('#')[0])
+              }
+              disabled={social.disabled}
+              variant="outline"
+              color="neutral"
+              size="lg"
+              className="!p-2 flex justify-center items-center !w-12 !h-12"
+            >
+              {social.icon}
+            </IconButton>
+          )
+        })}
+      </div>
+    </div>,
     <Link
-      href="#"
+      href={ROUTES.EXPLORE}
       className="flex items-center py-3 px-2 text-sm"
       key="mobile-nav-api"
     >
@@ -187,11 +154,50 @@ export const Header = ({
         color="neutral"
         className="!text-base transition-colors duration-300 hover:!text-primary-plain-fg"
       >
-        API
+        Explore
+      </Typography>
+    </Link>,
+    <Link
+      href={ROUTES.DEVELOPER}
+      className="flex items-center py-3 px-2 text-sm"
+      key="mobile-nav-api"
+    >
+      <Typography
+        level="p6"
+        color="neutral"
+        className="!text-base transition-colors duration-300 hover:!text-primary-plain-fg"
+      >
+        Developer
       </Typography>
     </Link>,
     <MobileNavAccordionItem
-      key="mobile-nav-accordion"
+      key="mobile-nav-accordion-resource"
+      label="Resources"
+      items={[
+        {
+          title: '',
+          data: [
+            {
+              label: 'Documentation',
+              iconLeft: <CodingSolid />,
+              href: '#',
+            },
+            {
+              label: 'Github',
+              iconLeft: <Github />,
+              href: '#',
+            },
+            {
+              label: 'Changelog',
+              iconLeft: <DocumentStarSolid />,
+              href: '#',
+            },
+          ],
+        },
+      ]}
+    />,
+    <MobileNavAccordionItem
+      key="mobile-nav-accordion-download"
       label="Download"
       items={[
         {
@@ -213,17 +219,17 @@ export const Header = ({
           title: 'Soon available on',
           data: [
             {
-              label: <span className="text-neutral-500">Extension</span>,
+              label: <span className="text-text-tertiary">Extension</span>,
               iconLeft: <ChromeColored />,
               href: '#',
             },
             {
-              label: <span className="text-neutral-500">Discord</span>,
+              label: <span className="text-text-tertiary">Discord</span>,
               iconLeft: <SlackColored className="opacity-50" />,
               href: '#',
             },
             {
-              label: <span className="text-neutral-500">iOS</span>,
+              label: <span className="text-text-tertiary">iOS</span>,
               iconLeft: <AppleColored className="opacity-50" />,
               href: '#',
             },
@@ -231,16 +237,13 @@ export const Header = ({
         },
       ]}
     />,
-    ...(!(isLoggedIn && profile)
-      ? [<MobileLoginPanel key="mobile-login-panel" />]
-      : []),
   ]
 
   const desktopNavItems = [
     ...(isLoggedIn && profile
       ? [
           <div
-            className="flex gap-x-2 items-stretch -mr-2 lg:gap-x-3 lg:mr-0"
+            className="flex gap-x-2 items-stretch mr-1 lg:gap-x-3 lg:mr-0"
             key="desktop-nav-items"
           >
             <div
@@ -274,12 +277,7 @@ export const Header = ({
               <div className="w-full h-full bg-divider" />
             </div>
             <Button
-              onClick={async () => {
-                if (pathname !== ROUTES.HOME) {
-                  await push(ROUTES.HOME)
-                }
-                window.dispatchEvent(new Event(events.TIP_WIDGET.FOCUS_AMOUNT))
-              }}
+              onClick={redirectToTipWidget}
               size="md"
               className="hidden lg:flex"
             >
@@ -287,13 +285,17 @@ export const Header = ({
               Tip
             </Button>
             {[
-              <DollarBubbleCircleSolid
+              <DollarBubbleSolid
                 key="header-icon-button-1"
-                className="w-full h-full text-neutral-800"
+                className="mx-auto w-5 h-5 align-middle text-text-primary"
               />,
-              <LinkCircledSolid
+              // <DollarBubbleCircleSolid
+              //   key="header-icon-button-1"
+              //   className="w-full h-full text-text-primary"
+              // />,
+              <LinkSquircledSolid
                 key="header-icon-button-2"
-                className="w-full h-full text-neutral-800"
+                className="mx-auto w-5 h-5 align-middle text-text-primary"
               />,
             ].map((icon) => {
               return (
@@ -309,14 +311,23 @@ export const Header = ({
               )
             })}
             <NotificationList key="header-icon-button-3" />
+            <IconButton
+              className="!w-5 !h-5 self-center lg:hidden"
+              color="neutral"
+              label="search"
+              variant="link"
+            >
+              <MagnifierLine className="w-full h-full text-text-primary" />
+            </IconButton>
             <NotificationModal />
             <IconButton
+              className="!w-6 !h-6 self-center lg:hidden"
               color="neutral"
-              variant="outline"
-              label="Tip"
-              className="!p-1 !w-8 !h-8 my-auto block lg:hidden"
+              label="scan"
+              variant="link"
+              onClick={redirectToTipWidget}
             >
-              <TipSolid className="w-full h-full text-neutral-800" />
+              <TipSolid className="w-full h-full text-text-primary" />
             </IconButton>
           </div>,
           <ProfileDropdown
@@ -330,7 +341,7 @@ export const Header = ({
             <Button variant="link" className="!px-0 relative">
               <Avatar src={profile?.avatar || '/logo.png'} />
               <div className="absolute -right-1 -bottom-1 p-0.5 rounded-full bg-background-surface">
-                <WalletSolid className="text-sm text-neutral-800" />
+                <WalletSolid className="text-sm text-text-primary" />
               </div>
             </Button>
           </ProfileDropdown>,
@@ -460,6 +471,20 @@ export const Header = ({
           >
             <div className="w-full h-6 bg-[#eeedec]" />
           </div>,
+          <IconButton
+            label="dark/light mode toggle button"
+            key="dark/light mode toggle"
+            variant="outline"
+            color="neutral"
+            className="!p-1.5"
+            onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+          >
+            {theme === 'light' ? (
+              <MoonLine className="w-5 h-5" />
+            ) : (
+              <SunLine className="w-5 h-5" />
+            )}
+          </IconButton>,
           <LoginPopover key="desktop-login-popover" />,
         ]),
   ]
@@ -473,7 +498,7 @@ export const Header = ({
           !isLoggedIn && authenticatedRoute.includes(pathname),
       })}
       leftSlot={
-        layoutType === 'landing' || !isLoggedIn ? (
+        !isLoggedIn ? (
           <Link href={ROUTES.HOME} className="gap-x-2 items-center">
             <LogoWithText
               logoProps={{ size: 'xs' }}
@@ -495,7 +520,10 @@ export const Header = ({
             </Link>
             <DashboardMobileSidebar
               triggerClassName="block lg:hidden"
-              contentClassName="!top-[56px]"
+              contentClassName={clsx({
+                '!top-[112px]': pathname === ROUTES.HOME && !!changelogData,
+                '!top-[56px]': pathname !== ROUTES.HOME,
+              })}
             />
           </>
         )
@@ -504,13 +532,29 @@ export const Header = ({
         <>
           <MobileNav
             navItems={mobileNavItems}
-            Header={isLoggedIn && profile ? MobileHeader : undefined}
-            className={layoutType === 'dashboard' ? '!hidden' : ''}
+            className={isLoggedIn && profile ? '!hidden' : ''}
             onNavStateChanged={setIsNavOpen}
+            login={
+              <Drawer anchor="bottom">
+                <DrawerTrigger asChild>
+                  <Button size="md">Login</Button>
+                </DrawerTrigger>
+                <DrawerPortal>
+                  <DrawerOverlay />
+                  <DrawerContent className="!bg-transparent [&>div]:!w-auto [&>div]:!max-w-screen [&>div]:sm:!max-w-max [&>div]:mx-auto [&>div]:!rounded-t-lg [&>div]:!rounded-b-none">
+                    <LoginWidget />
+                  </DrawerContent>
+                </DrawerPortal>
+              </Drawer>
+            }
           />
           <DesktopNav
             navItems={desktopNavItems}
-            className={layoutType === 'dashboard' ? '!flex' : ''}
+            className={
+              isLoggedIn && profile && isMobile() && window.innerWidth <= 1024
+                ? '!flex'
+                : ''
+            }
           />
         </>
       }

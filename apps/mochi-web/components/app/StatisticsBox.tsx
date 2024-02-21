@@ -42,13 +42,16 @@ export const StatisticsBox = ({
       </Typography>
       <div
         className={clsx('flex items-center space-x-1 flex-wrap', {
-          invisible: !change,
+          invisible: false,
+          // invisible: !change,
         })}
       >
         <ArrowUpLine
           className={clsx(
             'w-4 h-4',
-            change > 0 ? 'text-success-500' : 'text-danger-500 rotate-180',
+            change > 0
+              ? 'text-success-plain-fg'
+              : 'text-danger-plain-fg rotate-180',
           )}
         />
         <Typography

@@ -19,6 +19,12 @@ import {
   PasswordLockColored,
   WalletPasswordColored,
   EncryptedColored,
+  BlocksDarkColored,
+  HandKeyDarkColored,
+  WalletPasswordDarkColored,
+  EncryptedDarkColored,
+  PasswordLockDarkColored,
+  BinaryLockDarkColored,
 } from '@mochi-ui/icons'
 import { GridFeatures } from '~cpn/landing/GridFeatures'
 import Feed from '~cpn/Feed'
@@ -26,6 +32,7 @@ import Link from 'next/link'
 import { ROUTES } from '~constants/routes'
 import { NativeImage } from '~cpn/NativeImage'
 import { useFetchChangelogLatest } from '~hooks/app/useFetchChangelogLatest'
+import { useTheme } from '~context/theme'
 
 const currencies = [
   `<span class="banner-token solana-color">&#8203;${renderToString(
@@ -67,6 +74,7 @@ const platforms = [
 export default function Index() {
   const { isLoggedIn } = useLoginWidget()
   const { data } = useFetchChangelogLatest()
+  const { theme } = useTheme()
   const currency = useRef<HTMLSpanElement>(null)
   const platform = useRef<HTMLSpanElement>(null)
 
@@ -192,37 +200,67 @@ export default function Index() {
             id: 'support-on-chain-and-hybrid',
             title: 'On-chain & Hybrid Support',
             body: 'Make gasless transactions easily using social handles, ensuring strong security. Connect with different blockchains for both on-chain and hybrid transactions.',
-            icon: <BlocksColored className="w-8 h-8 md:w-12 md:h-12" />,
+            icon:
+              theme === 'dark' ? (
+                <BlocksDarkColored className="w-8 h-8 md:w-12 md:h-12" />
+              ) : (
+                <BlocksColored className="w-8 h-8 md:w-12 md:h-12" />
+              ),
           },
           {
             id: 'self-custodial-solutions',
             title: 'Self-custodial Solutions',
             body: "Take command of your assets with Mochi's self-custodial solutions, ensuring true ownership. Enjoy secure storage without compromising usability.",
-            icon: <HandKeyColored className="w-8 h-8 md:w-12 md:h-12" />,
+            icon:
+              theme === 'dark' ? (
+                <HandKeyDarkColored className="w-8 h-8 md:w-12 md:h-12" />
+              ) : (
+                <HandKeyColored className="w-8 h-8 md:w-12 md:h-12" />
+              ),
           },
           {
             id: 'invisible-wallets',
             title: 'Invisible Wallets',
             body: "Login with Telegram, Discord, SSO or Facebook account make onboarding seamless. Nevermind where's the seedphrase.",
-            icon: <WalletPasswordColored className="w-8 h-8 md:w-12 md:h-12" />,
+            icon:
+              theme === 'dark' ? (
+                <WalletPasswordDarkColored className="w-8 h-8 md:w-12 md:h-12" />
+              ) : (
+                <WalletPasswordColored className="w-8 h-8 md:w-12 md:h-12" />
+              ),
           },
           {
             id: 'keyless-wallet',
             title: 'Keyless Wallet',
             body: 'Elevate security by multiple protection layer while keep the friendly experience for all both crypto wizard and newbie.',
-            icon: <EncryptedColored className="w-8 h-8 md:w-12 md:h-12" />,
+            icon:
+              theme === 'dark' ? (
+                <EncryptedDarkColored className="w-8 h-8 md:w-12 md:h-12" />
+              ) : (
+                <EncryptedColored className="w-8 h-8 md:w-12 md:h-12" />
+              ),
           },
           {
             id: 'account-abstraction',
             title: 'Account Abstraction',
             body: 'Enables smart accounts, that can initiate and execute transactions without the need for an external account.',
-            icon: <PasswordLockColored className="w-8 h-8 md:w-12 md:h-12" />,
+            icon:
+              theme === 'dark' ? (
+                <PasswordLockDarkColored className="w-8 h-8 md:w-12 md:h-12" />
+              ) : (
+                <PasswordLockColored className="w-8 h-8 md:w-12 md:h-12" />
+              ),
           },
           {
             id: 'advanded-security-measures',
             title: 'Advanced Security Measures',
             body: 'Protect your assets by a high-tech lock - strong encryption, providing a worry-free Web3 experience.',
-            icon: <BinaryLockColored className="w-8 h-8 md:w-12 md:h-12" />,
+            icon:
+              theme === 'dark' ? (
+                <BinaryLockDarkColored className="w-8 h-8 md:w-12 md:h-12" />
+              ) : (
+                <BinaryLockColored className="w-8 h-8 md:w-12 md:h-12" />
+              ),
           },
         ]}
       />

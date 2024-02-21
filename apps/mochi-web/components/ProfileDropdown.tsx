@@ -1,3 +1,4 @@
+import { isMobile } from '~utils/isMobile'
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -30,6 +31,8 @@ import { ROUTES } from '~constants/routes'
 import { ReactNode } from 'react'
 import { DISCORD_INSTALL_BOT_LINK, TELEGRAM_LINK } from '~constants/resources'
 import { appVersion } from '~constants/common'
+import { useTheme } from '~context/theme'
+import { useIsNavOpenStore } from './Header/util'
 
 export default function ProfileDropdown({
   children,
@@ -38,7 +41,9 @@ export default function ProfileDropdown({
   children?: ReactNode
   className?: string
 }) {
+  const { setIsNavOpen } = useIsNavOpenStore()
   const { isLoggedIn, profile } = useLoginWidget()
+  const { theme, setTheme } = useTheme()
 
   let triggerRender = null
   if (children) {
@@ -55,14 +60,18 @@ export default function ProfileDropdown({
   }
 
   return (
-    <DropdownMenu>
+    <DropdownMenu
+      onOpenChange={(b) =>
+        isMobile() && window.innerWidth <= 1024 && setIsNavOpen(b)
+      }
+    >
       <DropdownMenuTrigger className={className} asChild>
         {triggerRender}
       </DropdownMenuTrigger>
       <DropdownMenuPortal>
         <DropdownMenuContent
           wrapperClassName="z-[60]"
-          className="overflow-y-auto w-screen flex flex-col -mt-3 rounded-none h-[calc(100vh-56px)] lg:m-0 lg:block lg:w-auto lg:h-auto lg:rounded-lg lg:max-h-[calc(100dvh-100px)]"
+          className="overflow-y-auto w-screen flex flex-col rounded-none h-[calc(100vh-56px)] lg:m-0 lg:block lg:w-auto lg:h-auto lg:rounded-lg lg:max-h-[calc(100dvh-100px)]"
           sideOffset={9}
           collisionPadding={{
             right: 32,
@@ -88,7 +97,14 @@ export default function ProfileDropdown({
           <Link href="#Darkmode">
             <DropdownMenuItem
               hasPaddingLeft
-              rightExtra={<Switch />}
+              rightExtra={
+                <Switch
+                  onCheckedChange={(e) => {
+                    setTheme(e ? 'dark' : 'light')
+                  }}
+                  checked={theme === 'dark'}
+                />
+              }
               onClick={(e) => e.preventDefault()}
             >
               Dark Mode
@@ -122,7 +138,7 @@ export default function ProfileDropdown({
             className="!p-0 shadow-none bg-transparent"
             defaultValue={['Download']}
           >
-            <AccordionItem value="Home">
+            <AccordionItem value="Mochi">
               <AccordionTrigger
                 className="py-0.5"
                 leftIcon={
@@ -131,9 +147,12 @@ export default function ProfileDropdown({
                   </div>
                 }
               >
-                Home
+                Mochi
               </AccordionTrigger>
               <AccordionContent className="!p-0">
+                <Link href={ROUTES.HOME}>
+                  <DropdownMenuItem hasPaddingLeft>Home</DropdownMenuItem>
+                </Link>
                 <Link href={ROUTES.EXPLORE}>
                   <DropdownMenuItem hasPaddingLeft>Explore</DropdownMenuItem>
                 </Link>

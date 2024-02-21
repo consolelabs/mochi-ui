@@ -24,7 +24,7 @@ export const MobileNavAccordionItem = (props: MobileNavAccordion) => {
   const itemRenderer = (item: NavItem) => {
     if (item.component) return item.component
     const wrapperClassName =
-      'flex w-full text-left !px-2 !py-3 bg-white-pure text-neutral-800 !font-normal hover:text-black'
+      'flex w-full text-left !px-2 !py-3 bg-transparent text-text-primary !font-normal'
 
     const LinkWrapper = item.href ? Link : Fragment
 
@@ -48,18 +48,18 @@ export const MobileNavAccordionItem = (props: MobileNavAccordion) => {
 
   const renderItemSection = (section: MobileAccordionItem) =>
     section.title ? (
-      <h3 className="py-2 text-sm text-neutral-600">{section.title}</h3>
+      <h3 className="py-2 text-sm text-text-disabled">{section.title}</h3>
     ) : null
 
   return (
     <Accordion
       type="multiple"
-      className="!p-0 !text-neutral-900 rounded-none shadow-none"
+      className="!p-0 !text-text-primary rounded-none shadow-none bg-transparent"
     >
       <AccordionItem value="1">
         <AccordionTrigger
           wrapperClassName="!px-2 !py-3"
-          className="text-base !text-neutral-800 !font-normal"
+          className="text-base !text-text-primary !font-normal"
         >
           {label}
         </AccordionTrigger>

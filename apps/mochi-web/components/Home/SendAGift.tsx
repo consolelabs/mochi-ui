@@ -11,7 +11,7 @@ export default function SendAGift() {
           subtitle="Spread the joy to your frens and show them your heartwarming affection: buy them a Starbucks, celebrate a birthday, or just be generous – because you can!"
         />
         <div className="grid md:grid-cols-2 gap-8">
-          <div className="bg-home-gray-600 rounded-[22px] overflow-hidden flex flex-col">
+          <div className="bg-background-level3 rounded-[22px] overflow-hidden flex flex-col">
             <Image
               src="/home/tip.svg"
               alt="Tip"
@@ -41,7 +41,7 @@ export default function SendAGift() {
               </div>
             </div>
           </div>
-          <div className="bg-home-gray-600 rounded-[22px] overflow-hidden flex flex-col">
+          <div className="bg-background-level3 rounded-[22px] overflow-hidden flex flex-col">
             <Image
               src="/home/pay-link.svg"
               alt="Pay Link"

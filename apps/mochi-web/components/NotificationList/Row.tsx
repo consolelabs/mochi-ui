@@ -24,7 +24,7 @@ import {
   transactionActionString,
   transactionActionTextColor,
 } from '~constants/transactions'
-import { NotificationRow } from './util'
+import { NotificationRow, ROW_HEIGHT } from './util'
 
 export interface CommonProps extends NotificationRow {
   refresh: any
@@ -39,8 +39,6 @@ interface RowProps extends Pick<CommonProps, 'refresh'> {
   isNew?: boolean
   url?: string
 }
-
-export const ROW_HEIGHT = 67
 
 const RowMenu = ({
   id,
@@ -123,7 +121,7 @@ const Row = ({
       className={clsx(
         'flex gap-x-2 justify-between py-3 px-4 w-full transition outline-none',
         {
-          'bg-primary-50': isNew,
+          'bg-primary-soft': isNew,
         },
       )}
       type="button"
@@ -168,7 +166,7 @@ const Row = ({
               </Typography>
             </div>
             <Typography
-              className="!text-neutral-600"
+              className="!text-text-secondary"
               level="h9"
               fontWeight="sm"
             >
@@ -191,8 +189,8 @@ const Row = ({
           className={clsx(
             'opacity-100 transition bottom-0 right-0 absolute w-[10%] h-6 bg-gradient-to-l pointer-events-none z-10',
             {
-              'from-primary-50': isNew,
-              'from-white-pure': !isNew,
+              'from-primary-soft': isNew,
+              'from-background-popup': !isNew,
             },
           )}
         />

@@ -12,7 +12,7 @@ export default function PayYourFrens() {
           financial transaction into a personal connection."
         />
         <div className="grid md:grid-rows-2 md:grid-flow-col gap-8">
-          <div className="row-span-2 bg-home-gray-600 rounded-[22px] overflow-hidden">
+          <div className="row-span-2 bg-background-level2 rounded-[22px] overflow-hidden">
             <Image
               src="/home/send-n-receive.svg"
               alt="send and receive"
@@ -40,12 +40,12 @@ export default function PayYourFrens() {
                 </svg>
                 Send & Receive
               </div>
-              <div className="text-sm font-normal text-home-gray-700">
+              <div className="text-sm font-normal text-text-tertiary">
                 All-in-one, user-friendly for people of all experience levels.
               </div>
             </div>
           </div>
-          <div className="bg-home-gray-600 rounded-[22px] overflow-hidden p-4 flex flex-col">
+          <div className="bg-background-level2 rounded-[22px] overflow-hidden p-4 flex flex-col">
             <div className="flex justify-center items-start h-[180px] pt-4">
               <Image
                 src="/home/swap.svg"
@@ -75,12 +75,12 @@ export default function PayYourFrens() {
                 </svg>
                 Swap
               </div>
-              <div className="text-sm font-normal text-home-gray-700">
+              <div className="text-sm font-normal text-text-tertiary">
                 Enable trading for thousands of tokens with minimal fees, 24/7.
               </div>
             </div>
           </div>
-          <div className="bg-home-gray-600 rounded-[22px] overflow-hidden p-4 flex flex-col">
+          <div className="bg-background-level2 rounded-[22px] overflow-hidden p-4 flex flex-col">
             <div className="flex justify-center items-center h-[180px] pt-4 pb-10">
               <Image
                 src="/home/pay-me.svg"
@@ -109,13 +109,13 @@ export default function PayYourFrens() {
                 </svg>
                 Pay Me
               </div>
-              <div className="text-sm font-normal text-home-gray-700">
+              <div className="text-sm font-normal text-text-tertiary">
                 Your friends can pay you with just a few clicks, Mochi makes it
                 easy!
               </div>
             </div>
           </div>
-          <div className="bg-home-gray-600 rounded-[22px] overflow-hidden p-4 flex flex-col">
+          <div className="bg-background-level2 rounded-[22px] overflow-hidden p-4 flex flex-col">
             <div className="h-[180px] flex items-center justify-center">
               <Image
                 src="/home/airdrop.svg"
@@ -146,12 +146,12 @@ export default function PayYourFrens() {
                 </svg>
                 Airdrop
               </div>
-              <div className="text-sm font-normal text-home-gray-700">
+              <div className="text-sm font-normal text-text-tertiary">
                 Give away your cash. Make your friends feel fun and special.
               </div>
             </div>
           </div>
-          <div className="bg-home-gray-600 rounded-[22px] overflow-hidden p-4 flex flex-col">
+          <div className="bg-background-level2 rounded-[22px] overflow-hidden p-4 flex flex-col">
             <div className="flex justify-center items-center h-[180px] pt-4 pb-10">
               <Image
                 src="/home/deposit.svg"
@@ -162,7 +162,7 @@ export default function PayYourFrens() {
               />
             </div>
             <div className="mt-auto">
-              <div className="text-base text-[#333333] font-medium flex items-center mb-2">
+              <div className="text-base text-text-primary font-medium flex items-center mb-2">
                 <svg
                   width="20"
                   height="20"
@@ -173,12 +173,12 @@ export default function PayYourFrens() {
                 >
                   <path
                     d="M10.0085 13.0264C8.3255 13.0264 6.97746 11.6709 6.97746 9.99684C6.97746 8.32284 8.3255 6.9673 10.0085 6.9673C11.6834 6.9673 13.0314 8.32284 13.0314 9.99684C13.0314 11.6709 11.6834 13.0264 10.0085 13.0264ZM4.39575 5.90573C4.81242 5.31778 5.31079 4.8115 5.89085 4.39503L7.50851 6.01189C6.9121 6.39569 6.38106 6.91014 6.00524 7.51441L4.39575 5.90573ZM15.6049 5.91389L13.9873 7.52258C13.6196 6.91831 13.0886 6.40385 12.4921 6.02005L14.1099 4.4032C14.6899 4.81966 15.1882 5.33411 15.6049 5.91389ZM15.6049 14.0635C15.1964 14.6433 14.6899 15.1577 14.118 15.5742L12.4921 13.9573C13.0967 13.5735 13.6196 13.0591 13.9955 12.4548L15.6049 14.0635ZM4.40393 14.0717L6.01341 12.463C6.38923 13.0673 6.9121 13.5817 7.50851 13.9655L5.89085 15.5824C5.31896 15.1659 4.81242 14.6596 4.40393 14.0717ZM10.0003 18.3343C14.5592 18.3343 18.3337 14.5616 18.3337 10.005C18.3337 5.4566 14.551 1.67578 9.99217 1.67578C5.44151 1.67578 1.66699 5.4566 1.66699 10.005C1.66699 14.5616 5.44968 18.3343 10.0003 18.3343Z"
-                    fill="#333333"
+                    fill="currentColor"
                   />
                 </svg>
                 Deposit
               </div>
-              <div className="text-sm font-normal text-home-gray-700">
+              <div className="text-sm font-normal text-text-tertiary">
                 Organize your finances by creating a savings vault for each
                 financial goal.
               </div>

@@ -19,6 +19,7 @@ export interface TableProps<T> {
   className?: string
   wrapperClassName?: string
   rowClassName?: (record: T, index: number) => string
+  headerCellClassName?: string
   cellClassName?: (
     record: T | null,
     rowIndex: number,
@@ -27,6 +28,7 @@ export interface TableProps<T> {
   onRow?: (
     record: T,
     rowIndex: number,
+    row: Row<T>,
   ) => {
     onClick?: (event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => void
     onDoubleClick?: (
@@ -77,6 +79,7 @@ export default function Table<T extends RowData>({
   rowClassName,
   cellClassName,
   stickyHeader,
+  headerCellClassName,
 }: TableProps<T>) {
   const table = useReactTable({
     data,
@@ -113,6 +116,7 @@ export default function Table<T extends RowData>({
                   className={tableHeaderClsx({
                     stickyHeader,
                     size,
+                    className: headerCellClassName,
                   })}
                   colSpan={header.colSpan}
                   key={header.id}
@@ -161,7 +165,7 @@ export default function Table<T extends RowData>({
                       clickable: !!onRow,
                       className: rowClassName?.(row.original, rowIndex),
                     })}
-                    {...(onRow ? onRow(row.original, rowIndex) : {})}
+                    {...(onRow ? onRow(row.original, rowIndex, row) : {})}
                   >
                     {row.getVisibleCells().map((cell, colIndex) => (
                       <td

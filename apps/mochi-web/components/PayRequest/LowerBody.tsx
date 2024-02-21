@@ -36,7 +36,7 @@ export default function LowerBody({ data }: Props) {
         >
           <Link
             href="TODO"
-            className="flex gap-x-1 items-center text-xs underline text-neutral-600"
+            className="flex gap-x-1 items-center text-xs underline text-text-tertiary"
           >
             {data.profile?.name ?? 'User'}
             <LinkLine />

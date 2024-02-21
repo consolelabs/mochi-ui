@@ -62,7 +62,7 @@ const topBarDesktopNavClsx = ({
 
 const topBarMobileNavClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx(
-    'flex lg:hidden flex-nowrap flex-row self-center ml-auto gap-y-2 gap-x-6',
+    'flex lg:hidden flex-nowrap flex-row self-center ml-auto gap-y-2 gap-x-2',
     className,
   )
 

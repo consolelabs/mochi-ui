@@ -227,11 +227,11 @@ export const mochiui = (config: MochiUIPluginConfig = {}) => {
               paddingLeft:
                 dashboardRestConfig?.md?.paddingLeft ??
                 dashboardPaddingLeft ??
-                '1.5rem',
+                '2rem',
               paddingRight:
                 dashboardRestConfig?.md?.paddingRight ??
                 dashboardPaddingRight ??
-                '1.5rem',
+                '2rem',
             },
           },
         ),

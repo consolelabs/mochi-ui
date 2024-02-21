@@ -58,8 +58,8 @@ export const AppDetailApiCalls = ({ profileId, appId }: Props) => {
 
   return (
     <div className="mt-8">
-      <div className="flex items-center justify-between py-2 mb-4">
-        <Typography level="p4" className="font-medium">
+      <div className="flex justify-between items-center py-2 mb-4">
+        <Typography level="p2" fontWeight="lg">
           API Calls
         </Typography>
       </div>
@@ -96,7 +96,7 @@ export const AppDetailApiCalls = ({ profileId, appId }: Props) => {
         ]}
         getRowCanExpand={() => true}
         renderSubComponent={(record) => (
-          <div className="p-4 overflow-x-auto bg-background-level2 pl-18">
+          <div className="overflow-x-auto p-4 bg-background-level2 pl-18">
             <Typography level="h9">Request</Typography>
             <pre className="text-sm">
               {JSON.stringify(JSON.parse(record.request || '{}'), null, 2)}
@@ -109,6 +109,17 @@ export const AppDetailApiCalls = ({ profileId, appId }: Props) => {
             </pre>
           </div>
         )}
+        onRow={(record, index, row) => ({
+          onClick: row.getToggleExpandedHandler(),
+        })}
+        emptyContent={
+          <div className="h-[357.5px] flex flex-col items-center justify-center text-center space-y-1">
+            <Typography level="h7">No logs found</Typography>
+            <Typography level="p4">
+              Your app hasn&apos;t called API with the provided key.
+            </Typography>
+          </div>
+        }
       />
     </div>
   )

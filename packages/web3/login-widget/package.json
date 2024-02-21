@@ -1,6 +1,6 @@
 {
   "name": "@mochi-web3/login-widget",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
@@ -46,6 +46,7 @@
     "@mochi-ui/tabs": "workspace:*",
     "@mochi-ui/theme": "workspace:*",
     "@mochi-ui/typography": "workspace:^",
+    "@mochi-ui/scroll-area": "workspace:^",
     "@mochi-web3/connect-wallet-widget": "workspace:*",
     "@radix-ui/react-dialog": "^1.0.5",
     "@solana/web3.js": "1.74.0",

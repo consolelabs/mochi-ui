@@ -71,10 +71,12 @@ const sidebarItemIconClsx = ({
   className = '',
   selected,
   disabled,
+  selectedIconClassName,
 }: {
   className?: string
   selected?: boolean
   disabled?: boolean
+  selectedIconClassName?: string
 }) =>
   clsx(
     'shrink-0',
@@ -82,6 +84,9 @@ const sidebarItemIconClsx = ({
       'text-primary-plain-fg': selected,
       'text-text-primary': !selected && !disabled,
       'text-text-secondary': disabled,
+    },
+    {
+      [`${selectedIconClassName}`]: selected,
     },
     className,
   )

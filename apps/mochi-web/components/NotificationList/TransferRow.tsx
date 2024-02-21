@@ -7,7 +7,10 @@ import Row, { CommonProps } from './Row'
 const TransferRow = (props: CommonProps) => {
   return (
     <Row action="transfer" {...props}>
-      <Typography className="flex gap-x-2 items-center text-left shrink-0">
+      <Typography
+        level="p5"
+        className="flex gap-x-2 items-center text-left shrink-0"
+      >
         {props.type === ActivityType.ACTIVITY_PAY_SEND ? 'Send' : 'Receive'}{' '}
         <Amount
           size="base"

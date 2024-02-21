@@ -5,16 +5,16 @@ const connectWalletState = () => ({
     container: 'flex flex-col items-center justify-center p-3 w-full',
     imgWrapper: 'flex items-center mt-5',
     img: 'w-12 h-12 rounded-full',
-    divider: 'w-16 border border-dashed border-primary-solid-focus relative',
+    divider: 'w-16 border border-dashed border-primary-solid relative',
     icon: 'w-12 h-12 rounded',
     message: 'mt-5 text-sm font-semibold text-text-primary',
     'message-detail': 'mt-2 text-sm text-text-secondary text-center',
     'qr-message': 'mt-1 text-sm font-light text-text-primary',
     'qr-container':
       'overflow-hidden mt-2 rounded-lg border border-neutral-outline-active',
-    error: 'text-sm text-center text-danger-solid-focus',
+    error: 'text-sm text-center text-danger-solid',
     header: 'mt-4 text-lg font-medium text-center text-text-primary',
-    buttons: 'mt-8 space-x-3',
+    buttons: 'mt-8 mb-4 space-x-3',
     'connect-icon-success':
       'flex items-center justify-center w-5 h-5 bg-success-solid rounded-full absolute -top-2.5 left-1/2 -translate-x-1/2',
     'connect-icon-error':
@@ -31,7 +31,7 @@ const connectWalletState = () => ({
 
 const connectWalletListTabsClsx = ({
   className = '',
-}: { className?: string } = {}) => clsx('space-y-3 h-[292px] w-full', className)
+}: { className?: string } = {}) => clsx('space-y-3 h-[343px] w-full', className)
 
 const connectWalletListTabListClsx = ({
   className = '',
@@ -76,21 +76,14 @@ const connectWalletListDropdownItemClsx = ({
   className = '',
 }: { className?: string } = {}) => clsx('text-text-secondary', className)
 
-const connectWallet = ({
-  isInstalled,
-  className = '',
-}: {
-  isInstalled?: boolean
-  className?: string
-}) =>
+const connectWallet = ({ className = '' }: { className?: string }) =>
   clsx(
-    'flex flex-col items-center justify-center h-20 gap-2 px-1 border rounded-lg border-neutral-outline-active',
-    {
-      'hover:bg-neutral-outline-hover transition': isInstalled,
-      'opacity-25 cursor-not-allowed': !isInstalled,
-    },
+    'flex flex-col items-center justify-center aspect-square !h-auto border rounded-lg !border-neutral-outline-active',
     className,
   )
+
+const connectWalletBadgeClsx = ({ className = '' }: { className?: string }) =>
+  clsx('mt-0.5 !p-0 border bg-white-pure border-outline-border', className)
 
 const connectWalletIconClsx = ({
   className = '',
@@ -99,7 +92,7 @@ const connectWalletIconClsx = ({
 const connectWalletNameClsx = ({
   className = '',
 }: { className?: string } = {}) =>
-  clsx('text-xs font-medium text-text-secondary', className)
+  clsx('text-xs font-medium text-text-secondary mt-3', className)
 
 const connectWalletWidget = {
   connectWalletState,
@@ -115,6 +108,7 @@ const connectWalletWidget = {
   connectWallet,
   connectWalletIconClsx,
   connectWalletNameClsx,
+  connectWalletBadgeClsx,
 }
 
 export { connectWalletWidget }

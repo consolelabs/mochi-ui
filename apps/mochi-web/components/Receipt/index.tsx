@@ -1,3 +1,5 @@
+import Image from 'next/image'
+import { coinIcon } from '~utils/image'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { truncate } from '@dwarvesf/react-utils'
 import { Avatar, Badge, Typography } from '@mochi-ui/core'
@@ -61,14 +63,20 @@ export default function Receipt({
   const statusComponent = useMemo(() => {
     if (data?.data.isSuccess) {
       return (
-        <Badge className="border border-[#A6F4C5]" appearance="success">
+        <Badge
+          className="border border-success-outline-border"
+          appearance="success"
+        >
           Success
         </Badge>
       )
     }
     if (data?.data.isFail) {
       return (
-        <Badge className="border border-[#F4A1A7]" appearance="danger">
+        <Badge
+          className="border border-danger-outline-border"
+          appearance="danger"
+        >
           Failed
         </Badge>
       )
@@ -76,7 +84,7 @@ export default function Receipt({
     return (
       <Badge
         appearance="neutral"
-        className="border capitalize border-[#EAECF0]"
+        className="capitalize border border-neutral-outline-border"
       >
         {data?.status}
       </Badge>
@@ -104,7 +112,7 @@ export default function Receipt({
       >
         {variant === 'peeking' && (
           <div
-            className="absolute top-0 left-0 w-full h-full bg-white-pure"
+            className="absolute top-0 left-0 w-full h-full bg-background-surface" // FIXME correct background color
             style={{ opacity: 0.85 }}
           />
         )}
@@ -112,7 +120,8 @@ export default function Receipt({
           className={clsx(
             'flex relative flex-col gap-y-10 w-full text-center',
             {
-              'rounded jagged-bottom bg-white-pure': variant !== 'peeking',
+              'rounded jagged-bottom bg-background-surface':
+                variant !== 'peeking',
               'rounded-xl': variant === 'peeking',
             },
           )}
@@ -136,7 +145,8 @@ export default function Receipt({
             />
           )}
           <div
-            className={clsx('px-4 md:px-6 !text-neutral-600', {
+            className={clsx('px-4 md:px-6 !text-text-secondary', {
+              // FIXME: coorect text color
               'flex flex-col gap-y-4 pb-10': variant === 'default',
               'flex gap-x-16 !p-8': variant === 'peeking',
             })}
@@ -202,7 +212,7 @@ export default function Receipt({
                   </Typography>
                   {data.message.length > 300 ? (
                     <button
-                      className="font-normal text-gray-500 underline"
+                      className="font-normal underline text-text-tertiary"
                       onClick={onToggle}
                     >
                       {isViewFullMessage ? 'view less' : 'view more'}
@@ -212,7 +222,7 @@ export default function Receipt({
               )}
             </div>
             <div
-              className={clsx('relative font-mono !text-neutral-600', {
+              className={clsx('relative font-mono !text-text-secondary', {
                 'flex-1': variant !== 'peeking',
                 'w-1/2 flex flex-col justify-center': variant === 'peeking',
               })}
@@ -241,34 +251,43 @@ export default function Receipt({
               <div className="flex flex-col gap-y-2 gap-x-4 py-2">
                 <DataList>
                   <DataList.Item title="Amount">
-                    <Typography
-                      level="p6"
-                      fontWeight="sm"
-                      className="!text-neutral-600"
-                    >
-                      {data.isMultipleTokens
-                        ? data.data.amount
-                        : data.groupAmountDisplay}{' '}
-                      {data.unitCurrency}
-                    </Typography>
-                    {data.unitAmountSection && (
-                      <span className="ml-1 text-current">
-                        {data.unitAmountSection}
-                      </span>
-                    )}
+                    <div className="flex gap-x-1 items-center">
+                      <Image
+                        width={12}
+                        height={12}
+                        src={data.data.tokenIcon || coinIcon.src}
+                        alt=""
+                        className="object-contain"
+                      />
+                      <Typography
+                        level="p6"
+                        fontWeight="sm"
+                        className="!text-text-secondary"
+                      >
+                        {data.isMultipleTokens
+                          ? data.data.amount
+                          : data.groupAmountDisplay}{' '}
+                        {data.unitCurrency}
+                      </Typography>
+                      {data.unitAmountSection && (
+                        <span className="ml-1 text-current">
+                          {data.unitAmountSection}
+                        </span>
+                      )}
+                    </div>
                   </DataList.Item>
                   {data.originalTxId ? (
                     <DataList.Item
                       title="Tx ID"
                       right={
-                        <span className="underline text-xxs text-neutral-600">
+                        <span className="underline text-xxs text-text-secondary">
                           {data.data.external_id.slice(0, 9)}
                         </span>
                       }
                     >
                       <DataList>
                         <div className="flex gap-x-2 self-stretch">
-                          <CornerBottomLeftLine className="text-neutral-600 shrink-0" />
+                          <CornerBottomLeftLine className="text-text-secondary shrink-0" />
                           <DataList.Item title="Group Tx ID">
                             <Link
                               href={`/tx/${data.originalTxId}`}
@@ -285,7 +304,7 @@ export default function Receipt({
                     <DataList.Item title="Tx ID">
                       <Typography
                         level="p6"
-                        className="underline !text-neutral-600"
+                        className="underline !text-text-secondary"
                         fontWeight="sm"
                       >
                         {data.data.external_id.slice(0, 9)}
@@ -301,7 +320,7 @@ export default function Receipt({
                 </DataList>
               </div>
               <DashLine />
-              <div className="flex justify-between pt-2 text-xs text-neutral-600">
+              <div className="flex justify-between pt-2 text-xs text-text-secondary">
                 <span className="text-xs">
                   Mochi &copy; {new Date().getUTCFullYear()}
                 </span>

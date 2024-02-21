@@ -36,20 +36,23 @@ import Link from 'next/link'
 import { useDisclosure } from '@dwarvesf/react-hooks'
 import { useFetchChangelogLatest } from '~hooks/app/useFetchChangelogLatest'
 import WithdrawRow from './WithdrawRow'
-import { ROW_HEIGHT } from './Row'
 import TransferRow from './TransferRow'
 import SwapRow from './SwapRow'
 /* import AirdropRow from './AirdropRow' */
 /* import PayLinkRow from './PayLinkRow' */
 /* import PayMeRow from './PayMeRow' */
 import Skeleton from './Skeleton'
-import { MAX_PER_PAGE, useNotificationData, useUnreadNotiCount } from './util'
-
-const CHANGELOG_HEIGHT = 56
-const MAX_ROW_COUNT = 7
-const HEADER_HEIGHT = 45
-const FOOTER_HEIGHT = 46
-const NAVBAR_HEIGHT = 56
+import {
+  CHANGELOG_HEIGHT,
+  FOOTER_HEIGHT,
+  HEADER_HEIGHT,
+  MAX_PER_PAGE,
+  MAX_ROW_COUNT,
+  NAVBAR_HEIGHT,
+  ROW_HEIGHT,
+  useNotificationData,
+  useUnreadNotiCount,
+} from './util'
 
 const NotificationList = () => {
   const { profile } = useLoginWidget()
@@ -141,16 +144,16 @@ const NotificationList = () => {
           className="!p-1 !w-8 !h-8 my-auto hidden lg:block"
         >
           {unreadCount > 0 ? (
-            <BellNewSolid className="w-full h-full text-neutral-800" />
+            <BellNewSolid className="w-5 h-5 text-text-primary mx-auto" />
           ) : (
-            <BellSolid className="w-full h-full text-neutral-800" />
+            <BellSolid className="w-5 h-5 text-text-primary mx-auto" />
           )}
         </IconButton>
       </DropdownMenuTrigger>
       <DropdownMenuContent sideOffset={14} className="!p-0 overflow-hidden">
         <div className="flex relative flex-col" style={{ width: 400 }}>
-          <Tabs value={tabValue} className="relative z-20 bg-white-pure">
-            <div className="flex justify-between items-center p-2 pr-4 border-b border-neutral-200">
+          <Tabs value={tabValue} className="relative z-20 bg-background-popup">
+            <div className="flex justify-between items-center p-2 pr-4 border-b border-divider">
               <TabList className="flex w-max">
                 {[
                   ['for-you', 'For You'],
@@ -168,7 +171,7 @@ const NotificationList = () => {
                       className={clsx(
                         'w-max !px-2 !py-1 text-sm font-semibold',
                         {
-                          '!text-primary-700': isSelected,
+                          '!text-primary-plain-fg': isSelected,
                         },
                       )}
                     >

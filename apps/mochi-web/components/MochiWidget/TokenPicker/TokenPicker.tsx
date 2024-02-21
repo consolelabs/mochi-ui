@@ -237,14 +237,14 @@ export const TokenPicker: React.FC<TokenPickerProps> = ({
                   className={clsx(
                     'flex flex-1 justify-center !px-0 rounded-none border-t border-b border-divider h-10',
                     {
-                      'bg-background-level2': isSelected,
+                      'bg-background-hover': isSelected,
                     },
                   )}
                 >
                   <t.Icon
                     className={clsx('w-5 h-5', {
-                      'text-neutral-800': isSelected,
-                      'text-neutral-500': !isSelected,
+                      'text-text-primary': isSelected,
+                      'text-text-tertiary': !isSelected,
                     })}
                   />
                   <Typography

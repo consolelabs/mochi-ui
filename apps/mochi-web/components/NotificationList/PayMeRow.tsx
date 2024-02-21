@@ -7,7 +7,10 @@ import Row from './Row'
 const PayMeRow = (props: any) => {
   return (
     <Row action="payme" {...props}>
-      <Typography className="flex flex-wrap gap-x-2 items-center text-left break-all">
+      <Typography
+        level="p5"
+        className="flex flex-wrap gap-x-2 items-center text-left break-all"
+      >
         Request to be paid{' '}
         <Amount
           size="base"

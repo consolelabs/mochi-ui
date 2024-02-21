@@ -27,6 +27,7 @@ import {
 import { useRouter } from 'next/router'
 import clsx from 'clsx'
 import { useState } from 'react'
+import { useFetchChangelogLatest } from '~hooks/app/useFetchChangelogLatest'
 import { useSidebarContext } from '../../context/app/sidebar'
 import { ROUTES } from '../../constants/routes'
 import { MainSidebarHeader } from '../MainSidebarHeader'
@@ -42,6 +43,7 @@ export const DashboardMobileSidebar = (
   const { pathname, query } = useRouter()
   const { variant } = useSidebarContext()
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const { data: changelogData } = useFetchChangelogLatest()
 
   const sideBarItems = {
     main: {
@@ -138,9 +140,9 @@ export const DashboardMobileSidebar = (
           className="!px-0 h-8 w-8"
         >
           {isSidebarOpen ? (
-            <CloseLine className="text-2xl text-neutral-600" aria-hidden />
+            <CloseLine className="text-2xl text-text-tertiary" aria-hidden />
           ) : (
-            <MenuSolid className="text-2xl text-neutral-800" aria-hidden />
+            <MenuSolid className="text-2xl text-text-primary" aria-hidden />
           )}
         </Button>
       </DrawerTrigger>
@@ -155,7 +157,11 @@ export const DashboardMobileSidebar = (
             footerItems={sideBarItems[variant].footerItems as Item[]}
             isSelected={(item) => !!item.href && matchUrl(item.href, pathname)}
             expanded
-            className="!h-[calc(100vh-56px)] !border-none"
+            className={clsx('!border-none', {
+              '!h-[calc(100vh-112px)]':
+                pathname === ROUTES.HOME && !!changelogData,
+              '!h-[calc(100vh-56px)]': pathname !== ROUTES.HOME,
+            })}
             version={appVersion}
           />
         </DrawerContent>

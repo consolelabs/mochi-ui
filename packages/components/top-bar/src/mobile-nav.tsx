@@ -31,6 +31,7 @@ export const MobileNav = (props: MobileNavProps) => {
     toggleIconClassName,
     className,
     onNavStateChanged,
+    login,
   } = props
   const hasMounted = useHasMounted()
   const [openMobileNav, setOpenMobileNav] = useState(false)
@@ -47,6 +48,8 @@ export const MobileNav = (props: MobileNavProps) => {
   return (
     <>
       <div className={topBarMobileNavClsx({ className })}>
+        {!openMobileNav && login}
+
         <IconButton
           label={openMobileNav ? 'Close' : 'Open'}
           size="lg"

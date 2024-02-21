@@ -1,4 +1,5 @@
 import { PaginationProps, TableProps } from '@mochi-ui/core'
+import { SVGProps } from 'react'
 import {
   TransactionActionType,
   TransactionStatus,
@@ -17,13 +18,13 @@ export interface Tx {
     address: string
     avatar: string
     platform?: string
-    platformIcon?: string
+    platformIcon?: string | ((props: SVGProps<SVGSVGElement>) => JSX.Element)
   }
   to: {
     address: string
     avatar: string
     platform?: null | string
-    platformIcon?: string
+    platformIcon?: string | ((props: SVGProps<SVGSVGElement>) => JSX.Element)
   }
   token: {
     id: string

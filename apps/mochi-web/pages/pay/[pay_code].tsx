@@ -81,7 +81,7 @@ export default function PayCode({ payRequest }: Props) {
   const Comp = payRequest.type === 'paylink' ? PayLink : PayMe
 
   return (
-    <Layout noFooter className="bg-white lg:bg-white-pure">
+    <Layout noFooter className="bg-background-body">
       <div className="flex relative m-auto h-[calc(100vh-56px)] lg:m-0">
         <img
           className="hidden object-cover object-right w-1/2 h-full lg:block"

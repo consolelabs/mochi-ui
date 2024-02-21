@@ -2,7 +2,6 @@ import { Platform } from '@consolelabs/mochi-ui'
 import React, { useEffect } from 'react'
 import qs from 'query-string'
 import { LazyMotion, domAnimation } from 'framer-motion'
-import xor from 'lodash.xor'
 import fetchers from './fetchers'
 import {
   useLoginWidget,
@@ -21,22 +20,11 @@ interface LoginWidgetProps {
     platform: string
     address: string
   }) => Promise<void>
+  onClose?: () => void
 }
 
-function LoginWidget({
-  raw = false,
-  chain,
-  onchain,
-  onWalletConnectSuccess,
-}: LoginWidgetProps) {
-  return (
-    <LoginContent
-      raw={raw}
-      chain={chain}
-      onchain={onchain}
-      onWalletConnectSuccess={onWalletConnectSuccess}
-    />
-  )
+function LoginWidget(props: LoginWidgetProps) {
+  return <LoginContent {...props} />
 }
 
 interface LoginWidgetProviderProps {
@@ -57,11 +45,8 @@ const LoginWidgetProvider = ({
     isLoggedIn,
     setIsLoadingProfile,
     dispatch,
+    setupSocials,
     profileBaseUrl,
-    setProfileBaseUrl,
-    setSocials,
-    socials: _socials,
-    setTelegramBotId,
   } = useLoginWidget()
 
   // handle login from url query `token`
@@ -109,21 +94,13 @@ const LoginWidgetProvider = ({
   }, [isLoggedIn, profileBaseUrl])
 
   useEffect(() => {
-    setProfileBaseUrl(
-      profileApi || 'https://api.mochi-profile.console.so/api/v1',
-    )
-  }, [profileApi, setProfileBaseUrl])
-
-  useEffect(() => {
-    const diff = xor(socials, _socials)
-    if (diff.length) {
-      setSocials(socials)
-    }
-  }, [_socials, setSocials, socials])
-
-  useEffect(() => {
-    setTelegramBotId(telegramBotId || '6298380973')
-  }, [setTelegramBotId, telegramBotId])
+    setupSocials({
+      profileBaseUrl:
+        profileApi || 'https://api.mochi-profile.console.so/api/v1',
+      telegramBotId: telegramBotId || '6298380973',
+      allowedSocials: socials,
+    })
+  }, [profileApi, telegramBotId, socials, setupSocials])
 
   return <LazyMotion features={domAnimation}>{children}</LazyMotion>
 }

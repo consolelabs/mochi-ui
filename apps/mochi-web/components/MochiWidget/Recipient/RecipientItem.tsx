@@ -11,9 +11,9 @@ type CheckIconProps = {
 
 const CheckIcon: React.FC<CheckIconProps> = ({ isSelected, isHovering }) => {
   return (isSelected && !isHovering) || (!isSelected && isHovering) ? (
-    <CheckLine className="p-1 w-6 h-6 text-primary-700" />
+    <CheckLine className="p-1 w-6 h-6 text-primary-plain-fg" />
   ) : (
-    <CloseLine className="w-6 h-6 text-xl text-red-700" />
+    <CloseLine className="w-6 h-6 text-xl text-danger-plain-fg" />
   )
 }
 
