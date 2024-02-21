@@ -1,5 +1,19 @@
 # @mochi-ui/table
 
+## 0.8.0
+
+### Minor Changes
+
+- [#752](https://github.com/consolelabs/mochi-ui/pull/752) [`929aca3`](https://github.com/consolelabs/mochi-ui/commit/929aca392306d0fd964042e014f8918e4c6878f5) Thanks [@leduyhien152](https://github.com/leduyhien152)! - Fix table on row function
+
+- [#718](https://github.com/consolelabs/mochi-ui/pull/718) [`2c25694`](https://github.com/consolelabs/mochi-ui/commit/2c25694fdeb27ad532980f5ee2ba4e83c557c614) Thanks [@leduyhien152](https://github.com/leduyhien152)! - Fix table header paddding
+
+### Patch Changes
+
+- Updated dependencies [[`cb9b835`](https://github.com/consolelabs/mochi-ui/commit/cb9b835077459213aef97d7e8c391d114d9c6f11), [`c3beaa4`](https://github.com/consolelabs/mochi-ui/commit/c3beaa47ab7799cd7ec7ab62abf787ea78980071), [`48ff2ad`](https://github.com/consolelabs/mochi-ui/commit/48ff2ad6699b1c5058d88cbdd0985bbc5e36b8b3), [`9187951`](https://github.com/consolelabs/mochi-ui/commit/91879512150289aff913f6abb0c3865af11203b0), [`d4a0134`](https://github.com/consolelabs/mochi-ui/commit/d4a01349f206da07225ee7476addc98748f046c6), [`2c25694`](https://github.com/consolelabs/mochi-ui/commit/2c25694fdeb27ad532980f5ee2ba4e83c557c614), [`6893e79`](https://github.com/consolelabs/mochi-ui/commit/6893e796a29a5be1a6bf75af1324f83dfe6df062)]:
+  - @mochi-ui/theme@0.17.0
+  - @mochi-ui/skeleton@1.0.10
+
 ## 0.7.3
 
 ### Patch Changes

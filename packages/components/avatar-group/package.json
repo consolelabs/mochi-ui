@@ -1,6 +1,6 @@
 {
   "name": "@mochi-ui/avatar-group",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [

@@ -1,5 +1,13 @@
 # @mochi-ui/modal
 
+## 0.3.7
+
+### Patch Changes
+
+- Updated dependencies [[`cb9b835`](https://github.com/consolelabs/mochi-ui/commit/cb9b835077459213aef97d7e8c391d114d9c6f11), [`c3beaa4`](https://github.com/consolelabs/mochi-ui/commit/c3beaa47ab7799cd7ec7ab62abf787ea78980071), [`48ff2ad`](https://github.com/consolelabs/mochi-ui/commit/48ff2ad6699b1c5058d88cbdd0985bbc5e36b8b3), [`9187951`](https://github.com/consolelabs/mochi-ui/commit/91879512150289aff913f6abb0c3865af11203b0), [`d4a0134`](https://github.com/consolelabs/mochi-ui/commit/d4a01349f206da07225ee7476addc98748f046c6), [`2c25694`](https://github.com/consolelabs/mochi-ui/commit/2c25694fdeb27ad532980f5ee2ba4e83c557c614), [`6893e79`](https://github.com/consolelabs/mochi-ui/commit/6893e796a29a5be1a6bf75af1324f83dfe6df062), [`89b321d`](https://github.com/consolelabs/mochi-ui/commit/89b321dd956b77f2db7b66fa81bfb82751020249)]:
+  - @mochi-ui/theme@0.17.0
+  - @mochi-ui/icons@0.7.4
+
 ## 0.3.6
 
 ### Patch Changes

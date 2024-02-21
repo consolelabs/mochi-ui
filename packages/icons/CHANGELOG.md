@@ -1,5 +1,11 @@
 # @mochi-ui/icons
 
+## 0.7.4
+
+### Patch Changes
+
+- [#712](https://github.com/consolelabs/mochi-ui/pull/712) [`89b321d`](https://github.com/consolelabs/mochi-ui/commit/89b321dd956b77f2db7b66fa81bfb82751020249) Thanks [@zlatanpham](https://github.com/zlatanpham)! - Fix some icons do not use `currentColor` for fill or stroke attr
+
 ## 0.7.3
 
 ### Patch Changes
