@@ -1,0 +1,40 @@
+name: Release web
+
+on:
+  push:
+    branches:
+      - cicd
+      - main
+      - mochi-web-prod
+
+permissions:
+  contents: read # for checkout
+  
+jobs:
+  release-web:
+    permissions:
+      contents: write # to be able to publish a GitHub release
+      issues: write # to be able to comment on released issues
+      pull-requests: write # to be able to comment on released pull requests
+      id-token: write # to enable use of OIDC for npm provenance
+    name: release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3 # v3
+        with:
+          fetch-depth: 0 # to be able to checkout any commit
+          persist-credentials: false # <--- this
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 6.32.9
+      - uses: actions/setup-node@v3 # v3
+        with:
+          cache: pnpm
+          node-version: 18
+      - name: Install dependencies
+        run: pnpm install
+      # pinned version updated automatically by Renovate.
+      # details at https://semantic-release.gitbook.io/semantic-release/usage/installation#global-installation
+      - run: pnpm dlx semantic-release@21.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}

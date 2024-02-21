@@ -1,0 +1,29 @@
+{
+  "branches": [
+    "mochi-web-prod",
+    {
+      "name": "main",
+      "prerelease": "rc"
+    }
+  ],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/npm",
+      {
+        "npmPublish": false,
+        "pkgRoot": "apps/mochi-web"
+      }
+    ],
+    [
+      "@semantic-release/github",
+      {
+        "successComment": false
+      }
+    ],
+    ["@semantic-release/git", {
+      "assets": ["apps/mochi-web/package.json"]
+    }]
+  ]
+}
