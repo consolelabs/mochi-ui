@@ -1,8 +1,8 @@
 {
   "branches": [
-    "mochi-web-prod",
+    "main",
     {
-      "name": "main",
+      "name": "mochi-web-preview",
       "prerelease": "rc"
     },
     {

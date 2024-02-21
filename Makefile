@@ -1,6 +1,6 @@
-RELEASE_BRANCH=mochi-web-prod
-BETA_BRANCH=main
-DEVELOP_BRANCH=main
+RELEASE_BRANCH=main
+BETA_BRANCH=mochi-web-preview
+DEVELOP_BRANCH=mochi-web-preview
 
 .PHONY: release
 release: sync-release
