@@ -9,8 +9,8 @@ permissions:
 on:
   push:
     paths:
-      - ".changeset/**"
-      - "packages/**"
+      - '.changeset/**'
+      - 'packages/**'
     branches:
       - develop
 
@@ -22,7 +22,11 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     # see here: https://docs.github.com/en/actions/learn-github-actions/expressions#example-matching-an-array-of-strings
-    if: ${{ contains(fromJSON('["tuanddd", "zlatanpham", "chinhld12", "trankhacvy", "tienan92it", "vdhieu", "leduyhien152", "nguyend-nam", "tonible14012002", "github-actions[bot]", "github-actions"]'), github.triggering_actor) }}
+    if:
+      ${{ contains(fromJSON('["tuanddd", "zlatanpham", "chinhld12",
+      "trankhacvy", "tienan92it", "vdhieu", "leduyhien152", "nguyend-nam",
+      "tonible14012002", "github-actions[bot]", "github-actions"]'),
+      github.triggering_actor) }}
     steps:
       - name: Checkout branch
         uses: actions/checkout@v4
