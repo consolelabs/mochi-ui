@@ -1,6 +1,5 @@
 'use client'
 
-import { isMobile } from '~utils/isMobile'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ROUTES } from '~constants/routes'
@@ -551,9 +550,7 @@ export const Header = () => {
           <DesktopNav
             navItems={desktopNavItems}
             className={
-              isLoggedIn && profile && isMobile() && window.innerWidth <= 1024
-                ? '!flex'
-                : ''
+              isLoggedIn && profile && window.innerWidth <= 1024 ? '!flex' : ''
             }
           />
         </>
