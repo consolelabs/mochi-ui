@@ -1,0 +1,32 @@
+{
+  "branches": [
+    "main",
+    {
+      "name": "mochi-web-preview",
+      "prerelease": "rc"
+    },
+    {
+      "name": "cicd",
+      "prerelease": "ci"
+    }
+  ],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    [
+      "@semantic-release/npm",
+      {
+        "npmPublish": false,
+        "pkgRoot": "apps/mochi-web"
+      }
+    ],
+    [
+      "@semantic-release/github",
+      {
+        "successComment": false
+      }
+    ],
+    ["@semantic-release/git", {
+      "assets": ["apps/mochi-web/package.json"]
+    }]
+  ]
+}
