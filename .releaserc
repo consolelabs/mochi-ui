@@ -4,6 +4,10 @@
     {
       "name": "main",
       "prerelease": "rc"
+    },
+    {
+      "name": "cicd",
+      "prerelease": "ci"
     }
   ],
   "plugins": [
