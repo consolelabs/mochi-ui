@@ -157,8 +157,9 @@ export const DashboardMobileSidebar = (
             isSelected={(item) => !!item.href && matchUrl(item.href, pathname)}
             expanded
             className={clsx('!border-none', {
-              '!h-[calc(100vh-112px)]': !!changelogData,
-              '!h-[calc(100vh-56px)]': !changelogData,
+              '!h-[calc(100vh-112px)]':
+                pathname === ROUTES.HOME && !!changelogData,
+              '!h-[calc(100vh-56px)]': pathname !== ROUTES.HOME,
             })}
             version={appVersion}
           />

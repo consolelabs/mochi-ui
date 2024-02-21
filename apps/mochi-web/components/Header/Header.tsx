@@ -43,7 +43,6 @@ import {
   DollarBubbleSolid,
   LinkSquircledSolid,
   WalletAddSolid,
-  ScanLine,
   MoonLine,
   SunLine,
 } from '@mochi-ui/icons'
@@ -244,7 +243,7 @@ export const Header = () => {
     ...(isLoggedIn && profile
       ? [
           <div
-            className="flex gap-x-2 items-stretch -mr-2 lg:gap-x-3 lg:mr-0"
+            className="flex gap-x-2 items-stretch mr-1 lg:gap-x-3 lg:mr-0"
             key="desktop-nav-items"
           >
             <div
@@ -326,8 +325,9 @@ export const Header = () => {
               color="neutral"
               label="scan"
               variant="link"
+              onClick={redirectToTipWidget}
             >
-              <ScanLine className="w-full h-full text-text-primary" />
+              <TipSolid className="w-full h-full text-text-primary" />
             </IconButton>
           </div>,
           <ProfileDropdown
@@ -521,8 +521,8 @@ export const Header = () => {
             <DashboardMobileSidebar
               triggerClassName="block lg:hidden"
               contentClassName={clsx({
-                '!top-[112px]': !!changelogData,
-                '!top-[56px]': !changelogData,
+                '!top-[112px]': pathname === ROUTES.HOME && !!changelogData,
+                '!top-[56px]': pathname !== ROUTES.HOME,
               })}
             />
           </>
