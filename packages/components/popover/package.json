@@ -1,6 +1,6 @@
 {
   "name": "@mochi-ui/popover",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [

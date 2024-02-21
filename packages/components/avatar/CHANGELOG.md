@@ -1,5 +1,15 @@
 # @mochi-ui/avatar
 
+## 0.3.1
+
+### Patch Changes
+
+- [#759](https://github.com/consolelabs/mochi-ui/pull/759) [`1ecadf7`](https://github.com/consolelabs/mochi-ui/commit/1ecadf7bf07281164cc3548c1f209868abf959eb) Thanks [@tonible14012002](https://github.com/tonible14012002)! - allow passing icon component to smallSrc
+
+- Updated dependencies [[`cb9b835`](https://github.com/consolelabs/mochi-ui/commit/cb9b835077459213aef97d7e8c391d114d9c6f11), [`c3beaa4`](https://github.com/consolelabs/mochi-ui/commit/c3beaa47ab7799cd7ec7ab62abf787ea78980071), [`48ff2ad`](https://github.com/consolelabs/mochi-ui/commit/48ff2ad6699b1c5058d88cbdd0985bbc5e36b8b3), [`9187951`](https://github.com/consolelabs/mochi-ui/commit/91879512150289aff913f6abb0c3865af11203b0), [`d4a0134`](https://github.com/consolelabs/mochi-ui/commit/d4a01349f206da07225ee7476addc98748f046c6), [`2c25694`](https://github.com/consolelabs/mochi-ui/commit/2c25694fdeb27ad532980f5ee2ba4e83c557c614), [`6893e79`](https://github.com/consolelabs/mochi-ui/commit/6893e796a29a5be1a6bf75af1324f83dfe6df062)]:
+  - @mochi-ui/theme@0.17.0
+  - @mochi-ui/skeleton@1.0.10
+
 ## 0.3.0
 
 ### Minor Changes
