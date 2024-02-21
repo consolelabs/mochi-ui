@@ -1,7 +1,7 @@
 {
   "name": "mochi-web",
   "private": true,
-  "version": "1.0.0-ci.3",
+  "version": "1.0.0-ci.4",
   "scripts": {
     "proxy-ssl": "local-ssl-proxy --config proxy-config.json",
     "dev:https": "(trap 'kill 0' SIGINT; pnpm proxy-ssl & next dev -p 3001)",
