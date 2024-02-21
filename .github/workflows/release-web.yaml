@@ -5,7 +5,7 @@ on:
     branches:
       - cicd
       - main
-      - mochi-web-prod
+      - mochi-web-preview
 
 permissions:
   contents: read # for checkout
