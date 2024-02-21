@@ -6,7 +6,8 @@
     "deploymentEnabled": {
       "main": false,
       "cicd": false,
-      "mochi-web-preview": false
+      "mochi-web-preview": false,
+      "develop": false
     }
   }
 }
