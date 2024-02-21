@@ -79,7 +79,6 @@ export const MoneySource = () => {
                         { shouldDirty: true },
                       )
                     }}
-                    open
                   >
                     <SelectTrigger appearance="form" className="w-52 h-10">
                       <div className="flex items-center">
