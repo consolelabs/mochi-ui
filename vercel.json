@@ -5,6 +5,7 @@
   "git": {
     "deploymentEnabled": {
       "main": false,
+      "cicd": false,
       "mochi-web-preview": false
     }
   }
