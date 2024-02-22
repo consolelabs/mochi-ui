@@ -162,11 +162,14 @@ export function useNotificationData(
       const newData = res.data?.map((d) =>
         d.map((r) => ({ ...r, isNew: false })),
       )
-      res.mutate(newData).then(() => {
-        mutate(['notification-list', profileId, 'unread', res.size], [], {
-          optimisticData: [],
+      res
+        .mutate(newData, { optimisticData: newData, revalidate: false })
+        .then(() => {
+          mutate(['notification-list', profileId, 'unread', res.size], [], {
+            optimisticData: [],
+            revalidate: false,
+          })
         })
-      })
     },
     nextPage: () => res.setSize(res.size + 1),
     isEnd: currentPageLen === 0 || currentPageLen < MAX_PER_PAGE,
