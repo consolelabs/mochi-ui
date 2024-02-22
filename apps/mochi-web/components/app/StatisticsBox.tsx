@@ -9,7 +9,7 @@ interface Props {
   formatAmount?: (amount: number) => string
   change?: number
   formatChange?: (change: number) => string
-  milestone?: 'week' | 'month'
+  milestone?: 'period' | 'month'
   size?: 'md' | 'lg'
   footer?: React.ReactNode
   className?: string
@@ -49,14 +49,14 @@ export const StatisticsBox = ({
         <ArrowUpLine
           className={clsx(
             'w-4 h-4',
-            change > 0
+            change >= 0
               ? 'text-success-plain-fg'
               : 'text-danger-plain-fg rotate-180',
           )}
         />
         <Typography
           level="p5"
-          color={change > 0 ? 'success' : 'danger'}
+          color={change >= 0 ? 'success' : 'danger'}
           className="font-medium"
         >
           {formatChange(change)}

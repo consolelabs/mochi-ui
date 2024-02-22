@@ -43,7 +43,7 @@ export const Statistics = ({ id, onOpenCreateAppModal }: Props) => {
           amount={stats?.users_in_7d}
           change={stats?.users_in_7d_change_percentage_vs_last_period}
           className="sm:order-4"
-          milestone="week"
+          milestone="period"
         />
         <StatisticsBox
           label="All time Revenue"
@@ -57,7 +57,7 @@ export const Statistics = ({ id, onOpenCreateAppModal }: Props) => {
           formatAmount={(amount) => `$${formatNumber(amount)}`}
           change={stats?.revenue_in_7d_change_percentage_vs_last_period}
           className="sm:order-5"
-          milestone="week"
+          milestone="period"
         />
         <StatisticsBox
           label="All time Txs"
@@ -69,7 +69,7 @@ export const Statistics = ({ id, onOpenCreateAppModal }: Props) => {
           amount={stats?.txs_in_7d}
           change={stats?.txs_in_7d_change_percentage_vs_last_period}
           className="sm:order-6"
-          milestone="week"
+          milestone="period"
         />
       </div>
     </div>
