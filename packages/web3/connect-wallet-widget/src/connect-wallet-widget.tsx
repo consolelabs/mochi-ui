@@ -188,7 +188,19 @@ const ConnectWalletWidget = forwardRef<
             )}
           </div>
           <Typography>
-            Download the wallet app:{' '}
+            Get the wallet:{' '}
+            <Button
+              variant="link"
+              className="!h-auto !p-0"
+              onClick={() =>
+                window.open(
+                  state.wallet?.metadata?.installUrl.extension,
+                  '_blank',
+                )
+              }
+            >
+              Extension
+            </Button>
             <Button
               variant="link"
               className="!h-auto !p-0"

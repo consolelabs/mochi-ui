@@ -37,7 +37,7 @@ import { useFetchTotalBalance } from '~hooks/profile/useFetchTotalBalance'
 import { usePrevious } from '@dwarvesf/react-hooks'
 import { Token } from '@consolelabs/mochi-rest'
 
-const sortOrder = ['All', 'SOL', 'Mochi']
+const sortOrder = ['All', 'Mochi', 'SOL']
 const defaultChainMapping: Record<string, string> = {
   SOL: 'Solana',
   ETH: 'Ethereum',
@@ -159,9 +159,10 @@ export const ProfileWidget = () => {
       Mochi: balances.filter((b) => b.source.id === 'mochi'),
     },
   )
-  const sortedChains = Object.keys(chains)
-    .map((chain, index) => ({
+  const sortedChains = Object.entries(chains)
+    .map(([chain, balance], index) => ({
       chain,
+      totalAsset: balance.reduce((acc, c) => (acc += c.usd_balance), 0),
       index:
         index < displayChainAmount - 1
           ? displayChainAmount - index
@@ -171,7 +172,10 @@ export const ProfileWidget = () => {
       const indexA = sortOrder.findIndex((symbol) => symbol === a.chain)
       const indexB = sortOrder.findIndex((symbol) => symbol === b.chain)
 
-      if (indexA === -1 && indexB === -1) return b.index - a.index
+      // if not specified then compare by chain total asset
+      if (indexA === -1 && indexB === -1) {
+        return b.totalAsset - a.totalAsset
+      }
 
       if (indexA === -1) return 1
       if (indexB === -1) return -1
