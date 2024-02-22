@@ -306,11 +306,11 @@ export const ProfileWidget = () => {
                 )}
                 onClick={() => setSelectedChain(chain)}
               >
-                <div>{avatar}</div>
+                {avatar}
                 {isSelected && (
                   <Typography
                     level="h8"
-                    className="duration-500 translate-x-1 animate-in fade-in-0 slide-in-from-left-2"
+                    className="duration-500 animate-in fade-in-0 slide-in-from-left-2"
                   >
                     {name.split(' ')[0]}
                   </Typography>
