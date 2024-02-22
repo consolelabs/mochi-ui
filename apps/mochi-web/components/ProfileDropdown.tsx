@@ -43,7 +43,7 @@ export default function ProfileDropdown({
 }) {
   const { setIsNavOpen } = useIsNavOpenStore()
   const { isLoggedIn, profile } = useLoginWidget()
-  const { isLoadedTheme, activeTheme, setTheme } = useTheme()
+  const { activeTheme, setTheme, theme } = useTheme()
 
   let triggerRender = null
   if (children) {
@@ -94,21 +94,34 @@ export default function ProfileDropdown({
             View Options
           </DropdownMenuLabel>
 
-          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <DropdownMenuItem
+            disabled={theme === 'system'}
             hasPaddingLeft
             rightExtra={
               <Switch
-                id="theme-toggle"
-                checked={isLoadedTheme && activeTheme === 'dark'}
+                disabled={theme === 'system'}
+                checked={activeTheme === 'dark'}
               />
             }
             onClick={(e) => {
+              if (theme === 'system') return
               e.preventDefault()
               setTheme(activeTheme === 'dark' ? 'light' : 'dark')
             }}
           >
             Dark Mode
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            hasPaddingLeft
+            rightExtra={
+              <Switch id="theme-toggle" checked={theme === 'system'} />
+            }
+            onClick={(e) => {
+              e.preventDefault()
+              setTheme(theme === 'system' ? activeTheme ?? 'light' : 'system')
+            }}
+          >
+            System Theme
           </DropdownMenuItem>
 
           <DropdownMenuSeparator />

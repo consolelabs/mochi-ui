@@ -5,7 +5,7 @@ import { HOME_URL } from '~envs'
 class MyDocument extends Document {
   render(): JSX.Element {
     return (
-      <Html lang="en">
+      <Html lang="en" suppressHydrationWarning>
         <Head>
           <link
             rel="apple-touch-icon"

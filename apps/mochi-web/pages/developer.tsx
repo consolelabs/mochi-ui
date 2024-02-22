@@ -50,7 +50,7 @@ import { Divider } from '~cpn/landing/Divider'
 import { useTheme } from '~hooks/useTheme'
 
 function BrowseAPIs() {
-  const { activeTheme, isLoadedTheme } = useTheme()
+  const { activeTheme } = useTheme()
   return (
     <div className="flex flex-col landing-container">
       <p className="text-2xl font-medium md:text-4xl">Browse APIs</p>
@@ -60,7 +60,7 @@ function BrowseAPIs() {
             title: 'Profile',
             body: 'Provides end-users data on balance, transaction, and payment requests.',
             icon:
-              isLoadedTheme && activeTheme === 'dark' ? (
+              activeTheme === 'dark' ? (
                 <ProfileShieldDarkColored />
               ) : (
                 <ProfileShieldColored />
@@ -69,28 +69,18 @@ function BrowseAPIs() {
           {
             title: 'Balance',
             body: 'Query user balance on multichains',
-            icon:
-              isLoadedTheme && activeTheme === 'dark' ? (
-                <BagDarkColored />
-              ) : (
-                <BagColored />
-              ),
+            icon: activeTheme === 'dark' ? <BagDarkColored /> : <BagColored />,
           },
           {
             title: 'Tip',
             body: 'Provides end-users data on balance, transaction, and payment requests.',
-            icon:
-              isLoadedTheme && activeTheme === 'dark' ? (
-                <TipDarkColored />
-              ) : (
-                <TipColored />
-              ),
+            icon: activeTheme === 'dark' ? <TipDarkColored /> : <TipColored />,
           },
           {
             title: 'Pay Link',
             body: 'Query user balance on multichains',
             icon:
-              isLoadedTheme && activeTheme === 'dark' ? (
+              activeTheme === 'dark' ? (
                 <PayLinkDarkColored />
               ) : (
                 <PayLinkColored />
@@ -100,7 +90,7 @@ function BrowseAPIs() {
             title: 'Server',
             body: 'Provides end-users data on balance, transaction, and payment requests.',
             icon:
-              isLoadedTheme && activeTheme === 'dark' ? (
+              activeTheme === 'dark' ? (
                 <LayersDarkColores />
               ) : (
                 <LayersColored />
@@ -110,11 +100,7 @@ function BrowseAPIs() {
             title: 'Vault',
             body: 'Query user balance on multichains',
             icon:
-              isLoadedTheme && activeTheme === 'dark' ? (
-                <VaultDarkColored />
-              ) : (
-                <VaultColored />
-              ),
+              activeTheme === 'dark' ? <VaultDarkColored /> : <VaultColored />,
           },
         ].map((d) => {
           return (

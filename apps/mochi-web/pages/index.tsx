@@ -74,7 +74,7 @@ const platforms = [
 export default function Index() {
   const { isLoggedIn } = useLoginWidget()
   const { data } = useFetchChangelogLatest()
-  const { activeTheme, isLoadedTheme } = useTheme()
+  const { activeTheme } = useTheme()
   const currency = useRef<HTMLSpanElement>(null)
   const platform = useRef<HTMLSpanElement>(null)
 
@@ -201,7 +201,7 @@ export default function Index() {
             title: 'On-chain & Hybrid Support',
             body: 'Make gasless transactions easily using social handles, ensuring strong security. Connect with different blockchains for both on-chain and hybrid transactions.',
             icon:
-              isLoadedTheme && activeTheme === 'dark' ? (
+              activeTheme === 'dark' ? (
                 <BlocksDarkColored className="w-8 h-8 md:w-12 md:h-12" />
               ) : (
                 <BlocksColored className="w-8 h-8 md:w-12 md:h-12" />
@@ -212,7 +212,7 @@ export default function Index() {
             title: 'Self-custodial Solutions',
             body: "Take command of your assets with Mochi's self-custodial solutions, ensuring true ownership. Enjoy secure storage without compromising usability.",
             icon:
-              isLoadedTheme && activeTheme === 'dark' ? (
+              activeTheme === 'dark' ? (
                 <HandKeyDarkColored className="w-8 h-8 md:w-12 md:h-12" />
               ) : (
                 <HandKeyColored className="w-8 h-8 md:w-12 md:h-12" />
@@ -223,7 +223,7 @@ export default function Index() {
             title: 'Invisible Wallets',
             body: "Login with Telegram, Discord, SSO or Facebook account make onboarding seamless. Nevermind where's the seedphrase.",
             icon:
-              isLoadedTheme && activeTheme === 'dark' ? (
+              activeTheme === 'dark' ? (
                 <WalletPasswordDarkColored className="w-8 h-8 md:w-12 md:h-12" />
               ) : (
                 <WalletPasswordColored className="w-8 h-8 md:w-12 md:h-12" />
@@ -234,7 +234,7 @@ export default function Index() {
             title: 'Keyless Wallet',
             body: 'Elevate security by multiple protection layer while keep the friendly experience for all both crypto wizard and newbie.',
             icon:
-              isLoadedTheme && activeTheme === 'dark' ? (
+              activeTheme === 'dark' ? (
                 <EncryptedDarkColored className="w-8 h-8 md:w-12 md:h-12" />
               ) : (
                 <EncryptedColored className="w-8 h-8 md:w-12 md:h-12" />
@@ -245,7 +245,7 @@ export default function Index() {
             title: 'Account Abstraction',
             body: 'Enables smart accounts, that can initiate and execute transactions without the need for an external account.',
             icon:
-              isLoadedTheme && activeTheme === 'dark' ? (
+              activeTheme === 'dark' ? (
                 <PasswordLockDarkColored className="w-8 h-8 md:w-12 md:h-12" />
               ) : (
                 <PasswordLockColored className="w-8 h-8 md:w-12 md:h-12" />
@@ -256,7 +256,7 @@ export default function Index() {
             title: 'Advanced Security Measures',
             body: 'Protect your assets by a high-tech lock - strong encryption, providing a worry-free Web3 experience.',
             icon:
-              isLoadedTheme && activeTheme === 'dark' ? (
+              activeTheme === 'dark' ? (
                 <BinaryLockDarkColored className="w-8 h-8 md:w-12 md:h-12" />
               ) : (
                 <BinaryLockColored className="w-8 h-8 md:w-12 md:h-12" />

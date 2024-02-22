@@ -50,7 +50,7 @@ export default function DashboardLayout({
   className,
 }: DashboardLayoutProps) {
   const { pathname, query } = useRouter()
-  const { activeTheme, isLoadedTheme } = useTheme()
+  const { activeTheme } = useTheme()
   const { isLoggedIn, isLoggingIn, isLoadingProfile } = useLoginWidget()
 
   const { variant } = useSidebarContext()
@@ -66,13 +66,13 @@ export default function DashboardLayout({
           as: Link,
           href: ROUTES.MY_PROFILE,
           selectedIconClassName:
-            isLoadedTheme && activeTheme === 'dark' ? '!text-primary-500' : '',
+            activeTheme === 'dark' ? '!text-primary-500' : '',
         },
         {
           title: 'Servers',
           Icon: Discord,
           selectedIconClassName:
-            isLoadedTheme && activeTheme === 'dark' ? '!text-primary-500' : '',
+            activeTheme === 'dark' ? '!text-primary-500' : '',
         },
         {
           title: 'Settings',
@@ -81,7 +81,7 @@ export default function DashboardLayout({
           as: Link,
           href: ROUTES.SETTINGS(),
           selectedIconClassName:
-            isLoadedTheme && activeTheme === 'dark' ? '!text-primary-500' : '',
+            activeTheme === 'dark' ? '!text-primary-500' : '',
         },
         {
           title: 'Developer',
@@ -91,13 +91,13 @@ export default function DashboardLayout({
           href: ROUTES.APPLICATON_LIST,
           badge: getSidebarBadge['NEW'],
           selectedIconClassName:
-            isLoadedTheme && activeTheme === 'dark' ? '!text-primary-500' : '',
+            activeTheme === 'dark' ? '!text-primary-500' : '',
         },
         {
           title: 'Invite Friends',
           Icon: AddUserSolid,
           selectedIconClassName:
-            isLoadedTheme && activeTheme === 'dark' ? '!text-primary-500' : '',
+            activeTheme === 'dark' ? '!text-primary-500' : '',
         },
       ],
       footerItems: [
@@ -131,7 +131,7 @@ export default function DashboardLayout({
           as: Link,
           href: ROUTES.APPLICATION_DETAIL.getPath(query?.id as string),
           selectedIconClassName:
-            isLoadedTheme && activeTheme === 'dark' ? '!text-primary-500' : '',
+            activeTheme === 'dark' ? '!text-primary-500' : '',
         },
         {
           title: 'Revenue',
@@ -140,7 +140,7 @@ export default function DashboardLayout({
           as: Link,
           href: ROUTES.APPLICATION_DETAIL_REVENUE.getPath(query?.id as string),
           selectedIconClassName:
-            isLoadedTheme && activeTheme === 'dark' ? '!text-primary-500' : '',
+            activeTheme === 'dark' ? '!text-primary-500' : '',
         },
       ],
       footerItems: [],

@@ -137,7 +137,12 @@ export default function App(props: AppPropsWithLayout) {
   }, [])
   return (
     <StrictMode>
-      <ThemeProvider>
+      <ThemeProvider
+        disableTransitionOnChange
+        enableSystem
+        defaultTheme="system"
+        attribute="class"
+      >
         <div className="fixed top-3 right-3 z-50">
           <Toaster />
         </div>

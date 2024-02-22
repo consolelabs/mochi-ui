@@ -68,7 +68,7 @@ export const MonikerTableList = ({
 }: Props) => {
   const { searchTerm } = props
   const { wallets } = useWalletStore()
-  const { activeTheme, isLoadedTheme } = useTheme()
+  const { activeTheme } = useTheme()
 
   const { data = [], isLoading } = useSWR<Moniker[], any, [string, Balance[]]>(
     ['moniker-list', balances],
@@ -160,7 +160,7 @@ export const MonikerTableList = ({
             )}
             emptyContent={
               <div className="flex flex-col justify-center items-center h-full">
-                {isLoadedTheme && activeTheme === 'dark' ? (
+                {activeTheme === 'dark' ? (
                   <BagDark className="w-14 h-14 text-text-tertiary" />
                 ) : (
                   <Bag className="w-14 h-14 text-text-tertiary" />
