@@ -389,11 +389,7 @@ export const Header = () => {
                 </Typography>
               </button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent
-              className="bg-white-pure"
-              sideOffset={20}
-              align="center"
-            >
+            <DropdownMenuContent sideOffset={20} align="center">
               <DropdownMenuItem
                 leftIcon={<CodingSolid />}
                 onClick={() => window.open(ROUTES.DOCS, '_blank')}
@@ -426,11 +422,7 @@ export const Header = () => {
                 </Typography>
               </button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent
-              className="bg-white-pure"
-              sideOffset={20}
-              align="center"
-            >
+            <DropdownMenuContent sideOffset={20} align="center">
               <DropdownMenuItem
                 leftIcon={<DiscordColored />}
                 onClick={() => window.open(DISCORD_LINK, '_blank')}
@@ -468,7 +460,7 @@ export const Header = () => {
             className="flex items-center -ml-4 w-px h-full"
             key="desktop-nav-divider"
           >
-            <div className="w-full h-6 bg-[#eeedec]" />
+            <div className="w-full h-6 bg-neutral-soft-active" />
           </div>,
           <IconButton
             label="dark/light mode toggle button"
