@@ -26,8 +26,14 @@ export const TokenAvatar = (
         return result
       }
 
-      result.src = data[0]?.emoji_url || coinIcon.src
-      result.smallSrc = data[1]?.emoji_url
+      result.src =
+        data.find((each) => each.code.toLowerCase() === name.toLowerCase())
+          ?.emoji_url || coinIcon.src
+      result.smallSrc = chainName
+        ? data.find(
+            (each) => each.code.toLowerCase() === chainName.toLowerCase(),
+          )?.emoji_url || coinIcon.src
+        : undefined
 
       return result
     },
