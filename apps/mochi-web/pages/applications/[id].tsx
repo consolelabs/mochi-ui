@@ -10,7 +10,6 @@ import { AppDetailUrl } from '~cpn/app/detail/AppDetailUrl'
 import {
   DtoUpdateApplicationInfoRequest,
   ViewApplication,
-  ViewApplicationResponse,
   ViewFullApplicationResponse,
 } from '~types/mochi-pay-schema'
 import { API, GET_PATHS } from '~constants/api'
@@ -157,8 +156,8 @@ const App: NextPageWithLayout = () => {
       body,
       GET_PATHS.UPDATE_APPLICATION_DETAIL(profileId, appId),
     )
-      .json((r: ViewApplicationResponse) => {
-        resetApp(r.data)
+      .json(() => {
+        refresh()
       })
       .catch((e) => {
         const err = JSON.parse(e.message)
