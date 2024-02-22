@@ -19,7 +19,7 @@ import { ROUTES } from '~constants/routes'
 import clsx from 'clsx'
 import { LoginWidget, useLoginWidget } from '@mochi-web3/login-widget'
 import { appVersion } from '~constants/common'
-import { useTheme } from '~context/theme'
+import { useTheme } from '~hooks/useTheme'
 import { useSidebarContext } from '../context/app/sidebar'
 import { matchUrl } from '../utils/url'
 import { DashboardSkeleton } from './DashboardSkeleton'
@@ -50,7 +50,7 @@ export default function DashboardLayout({
   className,
 }: DashboardLayoutProps) {
   const { pathname, query } = useRouter()
-  const { theme } = useTheme()
+  const { activeTheme, isLoadedTheme } = useTheme()
   const { isLoggedIn, isLoggingIn, isLoadingProfile } = useLoginWidget()
 
   const { variant } = useSidebarContext()
@@ -65,12 +65,14 @@ export default function DashboardLayout({
           type: 'link',
           as: Link,
           href: ROUTES.MY_PROFILE,
-          selectedIconClassName: theme === 'dark' ? '!text-primary-500' : '',
+          selectedIconClassName:
+            isLoadedTheme && activeTheme === 'dark' ? '!text-primary-500' : '',
         },
         {
           title: 'Servers',
           Icon: Discord,
-          selectedIconClassName: theme === 'dark' ? '!text-primary-500' : '',
+          selectedIconClassName:
+            isLoadedTheme && activeTheme === 'dark' ? '!text-primary-500' : '',
         },
         {
           title: 'Settings',
@@ -78,7 +80,8 @@ export default function DashboardLayout({
           Icon: GearSolid,
           as: Link,
           href: ROUTES.SETTINGS(),
-          selectedIconClassName: theme === 'dark' ? '!text-primary-500' : '',
+          selectedIconClassName:
+            isLoadedTheme && activeTheme === 'dark' ? '!text-primary-500' : '',
         },
         {
           title: 'Developer',
@@ -87,12 +90,14 @@ export default function DashboardLayout({
           as: Link,
           href: ROUTES.APPLICATON_LIST,
           badge: getSidebarBadge['NEW'],
-          selectedIconClassName: theme === 'dark' ? '!text-primary-500' : '',
+          selectedIconClassName:
+            isLoadedTheme && activeTheme === 'dark' ? '!text-primary-500' : '',
         },
         {
           title: 'Invite Friends',
           Icon: AddUserSolid,
-          selectedIconClassName: theme === 'dark' ? '!text-primary-500' : '',
+          selectedIconClassName:
+            isLoadedTheme && activeTheme === 'dark' ? '!text-primary-500' : '',
         },
       ],
       footerItems: [
@@ -125,7 +130,8 @@ export default function DashboardLayout({
           type: 'link',
           as: Link,
           href: ROUTES.APPLICATION_DETAIL.getPath(query?.id as string),
-          selectedIconClassName: theme === 'dark' ? '!text-primary-500' : '',
+          selectedIconClassName:
+            isLoadedTheme && activeTheme === 'dark' ? '!text-primary-500' : '',
         },
         {
           title: 'Revenue',
@@ -133,7 +139,8 @@ export default function DashboardLayout({
           type: 'link',
           as: Link,
           href: ROUTES.APPLICATION_DETAIL_REVENUE.getPath(query?.id as string),
-          selectedIconClassName: theme === 'dark' ? '!text-primary-500' : '',
+          selectedIconClassName:
+            isLoadedTheme && activeTheme === 'dark' ? '!text-primary-500' : '',
         },
       ],
       footerItems: [],

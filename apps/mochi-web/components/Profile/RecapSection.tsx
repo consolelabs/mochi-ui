@@ -24,7 +24,7 @@ import emojiStrip from 'emoji-strip'
 import { Profile } from '@consolelabs/mochi-rest'
 import { utils } from 'ethers'
 import { truncate } from '@dwarvesf/react-utils'
-import { useTheme } from '~context/theme'
+import { useTheme } from '~hooks/useTheme'
 import clsx from 'clsx'
 
 const getSummary = (total_spending: number = 0, total_receive: number = 0) => {
@@ -43,7 +43,7 @@ interface Props {
 
 const UserSection = ({ type, statTx }: Props) => {
   const [profile] = UI.render(Platform.Web, statTx?.other_profile as Profile)
-  const { theme } = useTheme()
+  const { isLoadedTheme, activeTheme } = useTheme()
   const name =
     statTx?.other_profile?.type === 'vault'
       ? statTx.other_profile.profile_name || 'Vault'
@@ -52,15 +52,15 @@ const UserSection = ({ type, statTx }: Props) => {
     type === 'sent' ? (
       <TipSolid
         className={clsx('w-6 h-6', {
-          'text-primary-solid': theme === 'light',
-          'text-primary-500': theme === 'dark',
+          'text-primary-solid': isLoadedTheme && activeTheme === 'light',
+          'text-primary-500': isLoadedTheme && activeTheme === 'dark',
         })}
       />
     ) : (
       <GiftSolid
         className={clsx('w-6 h-6', {
-          'text-secondary-solid': theme === 'light',
-          'text-secondary-500': theme === 'dark',
+          'text-secondary-solid': isLoadedTheme && activeTheme === 'light',
+          'text-secondary-500': isLoadedTheme && activeTheme === 'dark',
         })}
       />
     )
@@ -183,7 +183,7 @@ const TokenSection = ({ type, statTx }: Props) => {
 export const RecapSection = () => {
   const { profile } = useLoginWidget()
   const { data } = useFetchMonthlyStats(profile?.id)
-  const { theme } = useTheme()
+  const { activeTheme, isLoadedTheme } = useTheme()
 
   return (
     <Card className="px-0 pb-3 shadow-input !bg-background-level1">
@@ -196,15 +196,15 @@ export const RecapSection = () => {
           {(data?.total_spending || 0) > (data?.total_receive || 0) ? (
             <ArrowUpSquareSolid
               className={clsx('w-6 h-6', {
-                'text-primary-solid': theme === 'light',
-                'text-primary-500': theme === 'dark',
+                'text-primary-solid': isLoadedTheme && activeTheme === 'light',
+                'text-primary-500': isLoadedTheme && activeTheme === 'dark',
               })}
             />
           ) : (
             <ArrowDownSquareSolid
               className={clsx('w-6 h-6', {
-                'text-primary-solid': theme === 'light',
-                'text-primary-500': theme === 'dark',
+                'text-primary-solid': isLoadedTheme && activeTheme === 'light',
+                'text-primary-500': isLoadedTheme && activeTheme === 'dark',
               })}
             />
           )}

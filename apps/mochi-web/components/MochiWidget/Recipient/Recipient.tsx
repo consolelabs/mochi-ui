@@ -24,7 +24,7 @@ import {
 import { useDebounce } from '@dwarvesf/react-hooks'
 import { BottomSheet, useBottomSheetContext } from '~cpn/BottomSheet'
 import { useLoginWidget } from '@mochi-web3/login-widget'
-import { useTheme } from '~context/theme'
+import { useTheme } from '~hooks/useTheme'
 import { ChainPicker } from '../ChainPicker'
 import { Platform } from '../PlatformPicker/type'
 import { RecipientList } from './RecipientList'
@@ -63,7 +63,7 @@ export const Recipient: React.FC<RecipientProps> = ({
   onRemoveRecipient,
 }) => {
   const { isLoggedIn: authorized } = useLoginWidget()
-  const { theme } = useTheme()
+  const { activeTheme } = useTheme()
   const { openSheets, setOpenSheets } = useBottomSheetContext()
   const [searchTerm, setSearchTerm] = useState('')
   const [searchContactTerm, setSearchContactTerm] = useState('')
@@ -395,7 +395,7 @@ export const Recipient: React.FC<RecipientProps> = ({
           className="flex flex-col gap-y-2 justify-center items-center text-text-disabled"
           style={{ height: 84 }}
         >
-          {theme === 'dark' ? (
+          {activeTheme === 'dark' ? (
             <ProfileGuardSuccessDarkColoredLine className="w-10 h-10" />
           ) : (
             <ProfileGuardSuccessColoredLine className="w-10 h-10" />

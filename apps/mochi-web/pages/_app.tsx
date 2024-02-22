@@ -28,7 +28,7 @@ import { ROUTES } from '~constants/routes'
 import { useFetchChangelogLatest } from '~hooks/app/useFetchChangelogLatest'
 import { CheckCircleOutlined } from '@mochi-ui/icons'
 import { useIsNavOpenStore } from '~cpn/Header/util'
-import { ThemeProvider } from '~context/theme'
+import { ThemeProvider } from 'next-themes'
 
 const SidebarContextProvider = dynamic(() =>
   import('../context/app/sidebar').then((m) => m.SidebarContextProvider),

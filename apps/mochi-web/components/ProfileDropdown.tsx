@@ -31,7 +31,7 @@ import { ROUTES } from '~constants/routes'
 import { ReactNode } from 'react'
 import { DISCORD_INSTALL_BOT_LINK, TELEGRAM_LINK } from '~constants/resources'
 import { appVersion } from '~constants/common'
-import { useTheme } from '~context/theme'
+import { useTheme } from '~hooks/useTheme'
 import { useIsNavOpenStore } from './Header/util'
 
 export default function ProfileDropdown({
@@ -43,7 +43,7 @@ export default function ProfileDropdown({
 }) {
   const { setIsNavOpen } = useIsNavOpenStore()
   const { isLoggedIn, profile } = useLoginWidget()
-  const { theme, setTheme } = useTheme()
+  const { isLoadedTheme, activeTheme, setTheme } = useTheme()
 
   let triggerRender = null
   if (children) {
@@ -94,22 +94,22 @@ export default function ProfileDropdown({
             View Options
           </DropdownMenuLabel>
 
-          <Link href="#Darkmode">
-            <DropdownMenuItem
-              hasPaddingLeft
-              rightExtra={
-                <Switch
-                  onCheckedChange={(e) => {
-                    setTheme(e ? 'dark' : 'light')
-                  }}
-                  checked={theme === 'dark'}
-                />
-              }
-              onClick={(e) => e.preventDefault()}
-            >
-              Dark Mode
-            </DropdownMenuItem>
-          </Link>
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+          <DropdownMenuItem
+            hasPaddingLeft
+            rightExtra={
+              <Switch
+                id="theme-toggle"
+                checked={isLoadedTheme && activeTheme === 'dark'}
+              />
+            }
+            onClick={(e) => {
+              e.preventDefault()
+              setTheme(activeTheme === 'dark' ? 'light' : 'dark')
+            }}
+          >
+            Dark Mode
+          </DropdownMenuItem>
 
           <DropdownMenuSeparator />
 
