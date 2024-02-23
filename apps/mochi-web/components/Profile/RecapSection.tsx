@@ -261,7 +261,7 @@ export const RecapSection = () => {
   const spending_pnl = getPnl(exchange?.spending_pnl)
 
   return (
-    <Card className="px-0 pb-3 shadow-input bg-background-body">
+    <Card className="px-0 pb-3 shadow-input !bg-background-body">
       <div className="flex items-center space-x-2 px-4">
         <Typography level="h8">Your last 30 days recap</Typography>
         <Tooltip
