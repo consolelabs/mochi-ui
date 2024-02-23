@@ -45,7 +45,6 @@ import {
   MoonLine,
   SunLine,
 } from '@mochi-ui/icons'
-import { useTheme } from '~context/theme'
 import NotificationList from '~cpn/NotificationList'
 import clsx from 'clsx'
 import { DISCORD_LINK, GITHUB_LINK, TELEGRAM_LINK } from '~envs'
@@ -55,6 +54,7 @@ import { LoginWidget, useLoginWidget } from '@mochi-web3/login-widget'
 import ProfileDropdown from '~cpn/ProfileDropdown'
 import NotificationModal from '~cpn/NotificationList/NotificationModal'
 import { useFetchChangelogLatest } from '~hooks/app/useFetchChangelogLatest'
+import { useTheme } from '~hooks/useTheme'
 import { MobileNavAccordionItem } from './MobileNavAccordionItem'
 import { DashboardMobileSidebar } from './DashboardMobileSidebar'
 import { useIsNavOpenStore } from './util'

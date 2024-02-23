@@ -129,6 +129,7 @@ export default function getProviders(dispatch: any) {
         .setId('app.backpack')
         .setName('Backpack')
         .setIcon(BackpackWallet)
+        .setMobileProtocol('backpack://')
         .sync(dispatch),
     ],
     RON: [
@@ -145,6 +146,7 @@ export default function getProviders(dispatch: any) {
         .setId('backpack')
         .setName('Backpack')
         .setIcon(BackpackWallet)
+        .setMobileProtocol('backpack://')
         .sync(),
       new ProviderSOL()
         .setId('phantom.solana')

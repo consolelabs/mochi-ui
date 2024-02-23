@@ -47,10 +47,10 @@ import {
 import { HOME_URL } from '~envs'
 import { TabbedFeatures } from '~cpn/landing/TabbedFeatures'
 import { Divider } from '~cpn/landing/Divider'
-import { useTheme } from '~context/theme'
+import { useTheme } from '~hooks/useTheme'
 
 function BrowseAPIs() {
-  const { theme } = useTheme()
+  const { activeTheme } = useTheme()
   return (
     <div className="flex flex-col landing-container">
       <p className="text-2xl font-medium md:text-4xl">Browse APIs</p>
@@ -60,7 +60,7 @@ function BrowseAPIs() {
             title: 'Profile',
             body: 'Provides end-users data on balance, transaction, and payment requests.',
             icon:
-              theme === 'dark' ? (
+              activeTheme === 'dark' ? (
                 <ProfileShieldDarkColored />
               ) : (
                 <ProfileShieldColored />
@@ -69,28 +69,38 @@ function BrowseAPIs() {
           {
             title: 'Balance',
             body: 'Query user balance on multichains',
-            icon: theme === 'dark' ? <BagDarkColored /> : <BagColored />,
+            icon: activeTheme === 'dark' ? <BagDarkColored /> : <BagColored />,
           },
           {
             title: 'Tip',
             body: 'Provides end-users data on balance, transaction, and payment requests.',
-            icon: theme === 'dark' ? <TipDarkColored /> : <TipColored />,
+            icon: activeTheme === 'dark' ? <TipDarkColored /> : <TipColored />,
           },
           {
             title: 'Pay Link',
             body: 'Query user balance on multichains',
             icon:
-              theme === 'dark' ? <PayLinkDarkColored /> : <PayLinkColored />,
+              activeTheme === 'dark' ? (
+                <PayLinkDarkColored />
+              ) : (
+                <PayLinkColored />
+              ),
           },
           {
             title: 'Server',
             body: 'Provides end-users data on balance, transaction, and payment requests.',
-            icon: theme === 'dark' ? <LayersDarkColores /> : <LayersColored />,
+            icon:
+              activeTheme === 'dark' ? (
+                <LayersDarkColores />
+              ) : (
+                <LayersColored />
+              ),
           },
           {
             title: 'Vault',
             body: 'Query user balance on multichains',
-            icon: theme === 'dark' ? <VaultDarkColored /> : <VaultColored />,
+            icon:
+              activeTheme === 'dark' ? <VaultDarkColored /> : <VaultColored />,
           },
         ].map((d) => {
           return (
