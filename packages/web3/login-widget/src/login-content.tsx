@@ -102,11 +102,12 @@ export default function LoginContent({
     step: number
     direction: number
     walletId?: string
+    isInteractive: boolean
   }>({
     step: chain ? 2 : 1,
     direction: 0,
+    isInteractive: false,
   })
-  const [isInteractive, setIsInteractive] = useState(false)
 
   const handleAfterConnect = useCallback(
     async (
@@ -168,7 +169,7 @@ export default function LoginContent({
 
   useEffect(() => {
     if (state.step) {
-      setTimeout(() => setIsInteractive(true), 350)
+      setTimeout(() => setState((s) => ({ ...s, isInteractive: true })), 350)
     }
   }, [state.step])
 
@@ -215,8 +216,12 @@ export default function LoginContent({
                   variant="soft"
                   color="neutral"
                   onClick={() => {
-                    setIsInteractive(false)
-                    setState({ step: 2, direction: 1, walletId: 'app.phantom' })
+                    setState({
+                      isInteractive: false,
+                      step: 2,
+                      direction: 1,
+                      walletId: 'app.phantom',
+                    })
                   }}
                 >
                   <Typography fontWeight="md" level="h7" color="neutral">
@@ -234,8 +239,12 @@ export default function LoginContent({
                   variant="soft"
                   color="neutral"
                   onClick={() => {
-                    setIsInteractive(false)
-                    setState({ step: 2, direction: 1, walletId: 'io.metamask' })
+                    setState({
+                      isInteractive: false,
+                      step: 2,
+                      direction: 1,
+                      walletId: 'io.metamask',
+                    })
                   }}
                 >
                   <Typography fontWeight="md" level="h7" color="neutral">
@@ -249,8 +258,12 @@ export default function LoginContent({
                   variant="soft"
                   color="neutral"
                   onClick={() => {
-                    setIsInteractive(false)
-                    setState({ step: 2, direction: 1, walletId: 'me.rainbow' })
+                    setState({
+                      isInteractive: false,
+                      step: 2,
+                      direction: 1,
+                      walletId: 'me.rainbow',
+                    })
                   }}
                 >
                   <Typography fontWeight="md" level="h7" color="neutral">
@@ -263,10 +276,14 @@ export default function LoginContent({
                   className={loginIntroBodyWalletButtonClsx()}
                   variant="soft"
                   color="neutral"
-                  disabled={!isInteractive}
+                  disabled={!state.isInteractive}
                   onClick={() => {
-                    setIsInteractive(false)
-                    setState({ step: 2, direction: 1, walletId: undefined })
+                    setState({
+                      isInteractive: false,
+                      step: 2,
+                      direction: 1,
+                      walletId: undefined,
+                    })
                   }}
                 >
                   <Typography fontWeight="md" level="h7" color="neutral">
@@ -292,8 +309,12 @@ export default function LoginContent({
                 <div className={loginWalletListHeaderClsx()}>
                   <IconButton
                     onClick={() => {
-                      setIsInteractive(false)
-                      setState({ step: 1, direction: -1, walletId: undefined })
+                      setState({
+                        isInteractive: false,
+                        step: 1,
+                        direction: -1,
+                        walletId: undefined,
+                      })
                     }}
                     label="close"
                     variant="link"
@@ -319,6 +340,7 @@ export default function LoginContent({
                 onStartConnect={(wallet) =>
                   setTitle(`Connect to ${wallet.name} Wallet`)
                 }
+                onEndConnect={() => setTitle('Supported Wallets')}
                 walletId={state.walletId}
               />
               {/* {!chain && !isConnecting && ( */}

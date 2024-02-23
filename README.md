@@ -7,7 +7,7 @@
 <h1 align="center">MochiUI</h1>
 <br />
 
-> **Please note**: MochiUI is still an active work in progress, do not expect it
+> **Please note**: MochiUI is still an active work in progress, don't expect it
 > to be complete.
 
 Mochi UI is a beautifully designed and accessible React UI library, specifically
