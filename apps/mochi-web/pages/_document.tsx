@@ -5,7 +5,10 @@ import { HOME_URL } from '~envs'
 class MyDocument extends Document {
   render(): JSX.Element {
     return (
-      <Html lang="en">
+      // use suppressHydrationWarning to hide hydration html error only for html tag
+      // next-themes issues https://github.com/pacocoursey/next-themes/issues/169
+      // https://ui.shadcn.com/docs/dark-mode/next
+      <Html lang="en" suppressHydrationWarning>
         <Head>
           <link
             rel="apple-touch-icon"
