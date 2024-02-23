@@ -1,0 +1,19 @@
+name: Vercel Preview Deployment
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+on:
+  release:
+    types: [prereleased]
+jobs:
+  Deploy-Preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Merge to Preview
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          from_branch: mochi-web-preview
+          target_branch: mochi-web-preview-release
+          github_token: ${{ secrets.GITHUB_TOKEN }}

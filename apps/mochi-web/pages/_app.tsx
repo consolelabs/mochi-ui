@@ -28,7 +28,7 @@ import { ROUTES } from '~constants/routes'
 import { useFetchChangelogLatest } from '~hooks/app/useFetchChangelogLatest'
 import { CheckCircleOutlined } from '@mochi-ui/icons'
 import { useIsNavOpenStore } from '~cpn/Header/util'
-import { ThemeProvider } from '~context/theme'
+import { ThemeProvider } from 'next-themes'
 
 const SidebarContextProvider = dynamic(() =>
   import('../context/app/sidebar').then((m) => m.SidebarContextProvider),
@@ -137,7 +137,12 @@ export default function App(props: AppPropsWithLayout) {
   }, [])
   return (
     <StrictMode>
-      <ThemeProvider>
+      <ThemeProvider
+        disableTransitionOnChange
+        enableSystem
+        defaultTheme="system"
+        attribute="class"
+      >
         <div className="fixed top-3 right-3 z-50">
           <Toaster />
         </div>

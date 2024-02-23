@@ -342,7 +342,9 @@ export interface ModelStats {
   most_receive?: ModelStatTx
   most_send?: ModelStatTx
   receive?: ModelStatTx[]
+  receive_pnl?: string
   spending?: ModelStatTx[]
+  spending_pnl?: string
   time?: string
   total_receive?: number
   total_spending?: number

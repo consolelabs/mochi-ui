@@ -1,7 +1,7 @@
 {
   "name": "mochi-web",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.0-rc.2",
   "scripts": {
     "proxy-ssl": "local-ssl-proxy --config proxy-config.json",
     "dev:https": "(trap 'kill 0' SIGINT; pnpm proxy-ssl & next dev -p 3001)",
@@ -54,6 +54,7 @@
     "lodash.groupby": "^4.6.0",
     "lodash.isequal": "^4.5.0",
     "next": "^14.0.3",
+    "next-themes": "^0.2.1",
     "nprogress": "^0.2.0",
     "prismjs": "^1.29.0",
     "qrcode": "^1.5.1",

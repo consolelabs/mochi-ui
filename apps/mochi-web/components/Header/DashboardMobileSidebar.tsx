@@ -31,7 +31,7 @@ import { useFetchChangelogLatest } from '~hooks/app/useFetchChangelogLatest'
 import { useSidebarContext } from '../../context/app/sidebar'
 import { ROUTES } from '../../constants/routes'
 import { MainSidebarHeader } from '../MainSidebarHeader'
-import { getSidebarBadge } from '../DashboardLayout'
+/* import { getSidebarBadge } from '../DashboardLayout' */
 import { DISCORD_LINK, TWITTER_LINK } from '../../envs'
 import { ApplicationDetailSidebarHeader } from '../ApplicationDetailSidebarHeader'
 import { matchUrl } from '../../utils/url'
@@ -74,10 +74,11 @@ export const DashboardMobileSidebar = (
           title: 'Developer',
           Icon: CodingSolid,
           type: 'link',
-          as: Link,
-          href: ROUTES.APPLICATON_LIST,
-          badge: getSidebarBadge['NEW'],
-          onClick: () => setIsSidebarOpen(false),
+          /* as: Link, */
+          /* href: ROUTES.APPLICATON_LIST, */
+          /* badge: getSidebarBadge['NEW'], */
+          /* onClick: () => setIsSidebarOpen(false), */
+          disabled: true,
         },
         {
           title: 'Invite Friends',
