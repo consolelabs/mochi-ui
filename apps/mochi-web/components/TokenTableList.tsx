@@ -25,7 +25,7 @@ import {
 } from '@mochi-ui/icons'
 import { Balance } from '~store/wallets'
 import clsx from 'clsx'
-import { useTheme } from '~context/theme'
+import { useTheme } from '~hooks/useTheme'
 import { useCallback, useMemo, useState } from 'react'
 import { TokenAvatar } from './TokenAvatar'
 
