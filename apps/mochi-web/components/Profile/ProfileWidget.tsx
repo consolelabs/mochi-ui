@@ -37,7 +37,7 @@ import { useFetchTotalBalance } from '~hooks/profile/useFetchTotalBalance'
 import { usePrevious } from '@dwarvesf/react-hooks'
 import { Token } from '@consolelabs/mochi-rest'
 
-const sortOrder = ['All', 'SOL', 'Mochi']
+const sortOrder = ['All', 'Mochi', 'SOL']
 const defaultChainMapping: Record<string, string> = {
   SOL: 'Solana',
   ETH: 'Ethereum',
@@ -159,19 +159,19 @@ export const ProfileWidget = () => {
       Mochi: balances.filter((b) => b.source.id === 'mochi'),
     },
   )
-  const sortedChains = Object.keys(chains)
-    .map((chain, index) => ({
+  const sortedChains = Object.entries(chains)
+    .map(([chain, balance]) => ({
       chain,
-      index:
-        index < displayChainAmount - 1
-          ? displayChainAmount - index
-          : Number(chain === _selectedChain),
+      totalAsset: balance.reduce((acc, c) => (acc += c.usd_balance), 0),
     }))
     .sort((a, b) => {
       const indexA = sortOrder.findIndex((symbol) => symbol === a.chain)
       const indexB = sortOrder.findIndex((symbol) => symbol === b.chain)
 
-      if (indexA === -1 && indexB === -1) return b.index - a.index
+      // if not specified then compare by chain total asset
+      if (indexA === -1 && indexB === -1) {
+        return b.totalAsset - a.totalAsset
+      }
 
       if (indexA === -1) return 1
       if (indexB === -1) return -1
@@ -180,6 +180,14 @@ export const ProfileWidget = () => {
       if (indexA < indexB) return -1
       return 0
     })
+    .map((each, index) => ({
+      ...each,
+      index:
+        index < displayChainAmount - 1
+          ? displayChainAmount - index
+          : Number(each.chain === _selectedChain),
+    }))
+    .sort((a, b) => b.index - a.index)
     .map(({ chain }) => chain)
   const selectedChain = _selectedChain || sortedChains[0]
   const selectedIndex = sortedChains.findIndex(
@@ -216,7 +224,7 @@ export const ProfileWidget = () => {
   }, [])
 
   return (
-    <Card className="pb-3 space-y-4 shadow-input !bg-background-level1">
+    <Card className="pb-3 space-y-4 shadow-input bg-background-body">
       <div className="flex items-center space-x-2">
         <Avatar src={me?.avatar || ''} size="xl" />
         <div className="overflow-hidden flex-1 space-y-1">
@@ -306,11 +314,11 @@ export const ProfileWidget = () => {
                 )}
                 onClick={() => setSelectedChain(chain)}
               >
-                <div>{avatar}</div>
+                {avatar}
                 {isSelected && (
                   <Typography
                     level="h8"
-                    className="duration-500 translate-x-1 animate-in fade-in-0 slide-in-from-left-2"
+                    className="duration-500 animate-in fade-in-0 slide-in-from-left-2"
                   >
                     {name.split(' ')[0]}
                   </Typography>

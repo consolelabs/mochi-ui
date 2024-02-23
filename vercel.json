@@ -1,5 +1,13 @@
 {
   "version": 2,
   "public": true,
-  "ignoreCommand": "node ../../scripts/check-build-apps.js"
+  "ignoreCommand": "node ../../scripts/check-build-apps.js",
+  "git": {
+    "deploymentEnabled": {
+      "main": false,
+      "cicd": false,
+      "mochi-web-preview": false,
+      "develop": false
+    }
+  }
 }

@@ -1,0 +1,20 @@
+name: Vercel Production Deployment
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+on:
+  workflow_dispatch:
+  release:
+    types: [released]
+jobs:
+  Deploy-Production:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Merge to Prod
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          from_branch: main
+          target_branch: mochi-web-prod
+          github_token: ${{ secrets.GITHUB_TOKEN }}

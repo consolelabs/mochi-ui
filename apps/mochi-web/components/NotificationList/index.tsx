@@ -144,9 +144,9 @@ const NotificationList = () => {
           className="!p-1 !w-8 !h-8 my-auto hidden lg:block"
         >
           {unreadCount > 0 ? (
-            <BellNewSolid className="w-5 h-5 text-text-primary mx-auto" />
+            <BellNewSolid className="mx-auto w-5 h-5 text-text-primary" />
           ) : (
-            <BellSolid className="w-5 h-5 text-text-primary mx-auto" />
+            <BellSolid className="mx-auto w-5 h-5 text-text-primary" />
           )}
         </IconButton>
       </DropdownMenuTrigger>
@@ -204,7 +204,10 @@ const NotificationList = () => {
 
                       // optimistic update
                       optimisticMarkReadAll()
-                      refreshUnreadCount(0)
+                      refreshUnreadCount(0, {
+                        optimisticData: 0,
+                        revalidate: false,
+                      })
                     }}
                   >
                     <CheckCircleOutlined className="w-5 h-5" />

@@ -22,6 +22,7 @@ import { Control, Controller } from 'react-hook-form'
 import { AppDetailFormValues } from '~types/app'
 import { ChangeEvent, useState, useRef } from 'react'
 import { API, GET_PATHS } from '~constants/api'
+import clsx from 'clsx'
 import { StatisticsBox } from '../StatisticsBox'
 
 interface Props {
@@ -119,7 +120,11 @@ export const AppDetailStatistics = ({
                     <FormLabel>Display name</FormLabel>
                     <ContentEditable
                       {...field}
-                      className="text-sm font-medium"
+                      className={clsx('text-sm font-medium', {
+                        'border border-divider rounded px-3.5 py-2.5':
+                          editing === field.name,
+                      })}
+                      placeholder="Provide a name for your app..."
                       disabled={editing !== field.name}
                       onBlur={() => setEditing('')}
                       ref={(ref) => {
@@ -158,7 +163,10 @@ export const AppDetailStatistics = ({
                     <FormLabel>Description</FormLabel>
                     <ContentEditable
                       {...field}
-                      className="text-sm font-medium"
+                      className={clsx('text-sm font-medium', {
+                        'border border-divider rounded px-3.5 py-2.5':
+                          editing === field.name,
+                      })}
                       placeholder="Provide a description for your app..."
                       disabled={editing !== field.name}
                       onBlur={() => setEditing('')}
@@ -193,7 +201,7 @@ export const AppDetailStatistics = ({
           formatAmount={(amount) => `$${formatNumber(amount)}`}
           change={stats?.balance_in_total_change_vs_last_week || 0}
           formatChange={(change) => `$${formatNumber(change)}`}
-          milestone="week"
+          // milestone="period"
           footer={
             <div className="flex gap-2 mt-4">
               <Button size="sm">
@@ -219,7 +227,7 @@ export const AppDetailStatistics = ({
           amount={stats?.users_in_7d}
           change={stats?.users_in_7d_change_percentage_vs_last_period}
           className="border border-divider shadow-input sm:order-4"
-          milestone="week"
+          milestone="period"
         />
         <StatisticsBox
           label="All time Revenue"
@@ -233,7 +241,7 @@ export const AppDetailStatistics = ({
           formatAmount={(amount) => `$${formatNumber(amount)}`}
           change={stats?.revenue_in_7d_change_percentage_vs_last_period}
           className="border border-divider shadow-input sm:order-5"
-          milestone="week"
+          milestone="period"
         />
         <StatisticsBox
           label="All time Txs"
@@ -245,7 +253,7 @@ export const AppDetailStatistics = ({
           amount={stats?.txs_in_7d}
           change={stats?.txs_in_7d_change_percentage_vs_last_period}
           className="border border-divider shadow-input sm:order-6"
-          milestone="week"
+          milestone="period"
         />
       </div>
     </div>
