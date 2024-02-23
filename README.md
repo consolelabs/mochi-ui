@@ -32,7 +32,7 @@ helps us grow and improve.
   [Github](https://github.com/consolelabs/mochi-ui/issues/new/choose).
 - Join our conversation on [Discord](https://discord.com/invite/HNdcU8Kvfh).
 
-## Contributing
+## Contribution
 
 We warmly welcome your contributions!
 
