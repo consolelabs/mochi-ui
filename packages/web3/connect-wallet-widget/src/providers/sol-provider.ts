@@ -62,6 +62,8 @@ export class ProviderSOL extends ChainProvider {
         return await this.connectMobile()
       }
 
+      await this.provider.connect()
+
       const signResult = await this.provider.signMessage(hexedMsg)
       let signature
       let pb = this.provider.publicKey
