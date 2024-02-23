@@ -4,15 +4,23 @@ import {
   BadgeIcon,
   Button,
   Card,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
   Separator,
   Tooltip,
   Typography,
+  ValueChange,
+  ValueChangeIndicator,
 } from '@mochi-ui/core'
 import {
   AddUserSolid,
   ArrowDownSquareSolid,
   ArrowUpSquareSolid,
   GiftSolid,
+  InfoCircleOutlined,
   TipSolid,
 } from '@mochi-ui/icons'
 import { useLoginWidget } from '@mochi-web3/login-widget'
@@ -26,14 +34,61 @@ import { utils } from 'ethers'
 import { truncate } from '@dwarvesf/react-utils'
 import { useTheme } from '~hooks/useTheme'
 import clsx from 'clsx'
+import { useState } from 'react'
+import { useFetchTotalBalance } from '~hooks/profile/useFetchTotalBalance'
+
+const intervals = [
+  {
+    key: 'daily',
+    label: '24H',
+  },
+  {
+    key: 'weekly',
+    label: '7 days',
+  },
+  {
+    key: 'monthly',
+    label: '30 days',
+  },
+  {
+    key: 'quarterly',
+    label: '90 days',
+  },
+  {
+    key: 'bi_quarterly',
+    label: '180 days',
+  },
+  {
+    key: 'yearly',
+    label: '1 year',
+  },
+  {
+    key: 'all_time',
+    label: 'All the time',
+  },
+]
 
 const getSummary = (total_spending: number = 0, total_receive: number = 0) => {
   if (!total_spending && !total_receive) return 'No data found.'
   if (!total_spending || total_spending < total_receive)
-    return 'You receive more than you send.'
+    return 'You receive more than you send'
   if (!total_receive || total_spending > total_receive)
-    return 'You send more than you receive.'
-  return 'You send as much as you receive.'
+    return 'You send more than you receive'
+  return 'You send as much as you receive'
+}
+
+const getPnl = (pnl?: string) => {
+  switch (pnl) {
+    case 'Inf':
+    case '+Inf':
+      return '+100.00'
+    case '-Inf':
+      return '-100.00'
+    case 'NaN':
+      return '0.00'
+    default:
+      return pnl || '0.00'
+  }
 }
 
 interface Props {
@@ -67,7 +122,7 @@ const UserSection = ({ type, statTx }: Props) => {
 
   if (type === 'sent' && !statTx) {
     return (
-      <div className="flex items-center py-6 space-x-2">
+      <div className="flex items-center py-4 space-x-2">
         {icon}
         <div className="flex items-center flex-wrap [&>*]:mr-1">
           <Typography level="p5" color="textTertiary">
@@ -87,7 +142,7 @@ const UserSection = ({ type, statTx }: Props) => {
 
   if (type === 'received' && !statTx) {
     return (
-      <div className="flex items-center py-6 space-x-2">
+      <div className="flex items-center py-4 space-x-2">
         {icon}
         <div className="flex items-center flex-wrap [&>*]:mr-1">
           <Typography level="p5" color="textTertiary">
@@ -106,7 +161,7 @@ const UserSection = ({ type, statTx }: Props) => {
   }
 
   return (
-    <div className="flex items-center py-6 space-x-2">
+    <div className="flex items-center py-4 space-x-2">
       {icon}
       <div className="flex items-center flex-wrap [&>*]:mr-1">
         <Typography level="p5">You {type} the most</Typography>
@@ -182,18 +237,45 @@ const TokenSection = ({ type, statTx }: Props) => {
 
 export const RecapSection = () => {
   const { profile } = useLoginWidget()
-  const { data } = useFetchMonthlyStats(profile?.id)
+  const [interval, setInterval] = useState('monthly')
   const { activeTheme } = useTheme()
+  const { data: recap } = useFetchMonthlyStats(profile?.id)
+  const { data: exchange } = useFetchMonthlyStats(profile?.id, { interval })
+  const { data: balance, isLoading: isLoadingBalance } = useFetchTotalBalance(
+    profile?.id,
+  )
+
+  const mochiBalance =
+    balance?.offchain?.reduce(
+      (prev, curr) => prev + (curr.usd_balance || 0),
+      0,
+    ) || 0
+
+  const {
+    total_receive = 0,
+    total_spending = 0,
+    total_volume = 0,
+  } = exchange || {}
+  const totalExchange = total_spending + total_receive + total_volume
+  const receive_pnl = getPnl(exchange?.receive_pnl)
+  const spending_pnl = getPnl(exchange?.spending_pnl)
 
   return (
-    <Card className="px-0 pb-3 shadow-input !bg-background-level1">
-      <Typography level="h9" className="px-4">
-        Your last 30 days recap
-      </Typography>
+    <Card className="px-0 pb-3 shadow-input bg-background-body">
+      <div className="flex items-center space-x-2 px-4">
+        <Typography level="h8">Your last 30 days recap</Typography>
+        <Tooltip
+          className="max-w-xs"
+          content="Overview of the top tokens that Mochi Wallet has exchanged in the last 30 days."
+          arrow="top-center"
+        >
+          <InfoCircleOutlined className="w-4 h-4 text-text-disabled" />
+        </Tooltip>
+      </div>
       <Separator className="mt-4" />
       <div className="px-4">
-        <div className="flex items-center py-6 space-x-2">
-          {(data?.total_spending || 0) > (data?.total_receive || 0) ? (
+        <div className="flex items-center py-4 space-x-2">
+          {(recap?.total_spending || 0) > (recap?.total_receive || 0) ? (
             <ArrowUpSquareSolid
               className={clsx('w-6 h-6', {
                 'text-primary-solid': activeTheme === 'light',
@@ -203,55 +285,133 @@ export const RecapSection = () => {
           ) : (
             <ArrowDownSquareSolid
               className={clsx('w-6 h-6', {
-                'text-primary-solid': activeTheme === 'light',
-                'text-primary-500': activeTheme === 'dark',
+                'text-success-solid': activeTheme === 'light',
+                'text-success-500': activeTheme === 'dark',
               })}
             />
           )}
           <Typography level="p5">
-            {getSummary(data?.total_spending, data?.total_receive)}
+            {getSummary(recap?.total_spending, recap?.total_receive)}
           </Typography>
         </div>
         <Separator />
-        <UserSection type="sent" statTx={data?.most_send} />
+        <UserSection type="sent" statTx={recap?.most_send} />
         <Separator />
-        <UserSection type="received" statTx={data?.most_receive} />
+        <UserSection type="received" statTx={recap?.most_receive} />
         <Separator />
-        <div className="flex py-6 space-x-8">
-          <TokenSection type="sent" statTx={data?.spending?.[0]} />
+        <div className="flex py-4 space-x-8">
+          <TokenSection type="sent" statTx={recap?.spending?.[0]} />
           <div className="my-auto h-10">
             <Separator orientation="vertical" />
           </div>
-          <TokenSection type="received" statTx={data?.receive?.[0]} />
+          <TokenSection type="received" statTx={recap?.receive?.[0]} />
         </div>
         <Separator />
-        <Typography
-          level="h9"
-          color="textDisabled"
-          className="mt-4 mb-2 uppercase"
-        >
-          Details
-        </Typography>
-        {[
-          { label: 'Sent', value: data?.total_spending },
-          { label: 'Received', value: data?.total_receive },
-          { label: 'Net', value: data?.total_volume },
-        ].map((item) => (
+        <div className="flex items-center justify-between py-2">
+          <div className="flex items-center space-x-2">
+            <Typography level="h8">Mochi Exchange Flow</Typography>
+            <Tooltip
+              className="max-w-xs"
+              content="Overview of token balances, including daily sent and received on Mochi wallet."
+              arrow="top-center"
+            >
+              <InfoCircleOutlined className="w-4 h-4 text-text-disabled" />
+            </Tooltip>
+          </div>
+          <Select value={interval} onChange={setInterval}>
+            <SelectTrigger size="sm" appearance="form" className="w-36">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent align="end">
+              {intervals.map(({ key, label }) => (
+                <SelectItem key={key} value={key}>
+                  {label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="flex items-center justify-between pt-2">
+          <Typography level="p5">Mochi Balance</Typography>
+          <Typography level="h6">
+            {!profile?.id || isLoadingBalance
+              ? '$0.00'
+              : mochiUtils.formatUsdDigit(mochiBalance)}
+          </Typography>
+        </div>
+        <div className="flex my-2 rounded overflow-hidden">
           <div
-            key={item.label}
-            className="flex justify-between items-center py-2"
-          >
-            <Typography level="p5">{item.label}</Typography>
-            <Typography level="h8">
-              {item.value
-                ? `$${mochiUtils.formatDigit({
-                    value: item.value || 0,
-                    fractionDigits: 2,
-                  })}`
-                : '-'}
-            </Typography>
+            className="h-8 bg-primary-solid"
+            style={{
+              width: totalExchange
+                ? `${(total_receive / totalExchange) * 100}%`
+                : 0,
+            }}
+          />
+          <div
+            className="h-8 bg-primary-outline-border"
+            style={{
+              width: totalExchange
+                ? `${(total_spending / totalExchange) * 100}%`
+                : 0,
+            }}
+          />
+          <div className="h-8 bg-primary-solid-disable flex-1" />
+        </div>
+        {[
+          {
+            label: 'Received',
+            value: total_receive,
+            pnl: receive_pnl,
+            icon: (
+              <div className="w-2.5 h-2.5 rounded-full mr-2 bg-primary-solid" />
+            ),
+          },
+          {
+            label: 'Sent',
+            value: total_spending,
+            pnl: spending_pnl,
+            icon: (
+              <div className="w-2.5 h-2.5 rounded-full mr-2 bg-primary-outline-border" />
+            ),
+          },
+        ].map((item) => (
+          <div key={item.label} className="py-2 space-y-2">
+            <div className="flex items-center justify-between">
+              <Typography level="h8" className="flex items-center">
+                {item.icon}
+                {item.label}
+              </Typography>
+              <Typography level="p5" fontWeight="md">
+                {`$${mochiUtils.formatDigit({
+                  value: item.value || 0,
+                  fractionDigits: 2,
+                })}`}
+              </Typography>
+            </div>
+            <div className="flex items-center justify-between">
+              <Typography level="p5">Compare with last period</Typography>
+              <ValueChange trend={Number(item.pnl) < 0 ? 'down' : 'up'}>
+                <ValueChangeIndicator />
+                {mochiUtils.formatPercentDigit(
+                  Number.isNaN(Number(item.pnl)) || item.pnl === ''
+                    ? 0
+                    : Math.abs(Number(item.pnl)),
+                )}
+              </ValueChange>
+            </div>
           </div>
         ))}
+        <Separator className="my-2" />
+        <div className="flex items-center justify-between py-2">
+          <Typography level="h8">Net Worth</Typography>
+          <Typography level="p5" fontWeight="md">
+            {`$${mochiUtils.formatDigit({
+              value: total_volume || 0,
+              fractionDigits: 2,
+            })}`}
+          </Typography>
+        </div>
       </div>
     </Card>
   )
