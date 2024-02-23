@@ -1,3 +1,6 @@
+import { useFetchChangelogLatest } from '~hooks/app/useFetchChangelogLatest'
+import { useRouter } from 'next/router'
+import clsx from 'clsx'
 import { isMobile } from '~utils/isMobile'
 import {
   DropdownMenu,
@@ -41,9 +44,11 @@ export default function ProfileDropdown({
   children?: ReactNode
   className?: string
 }) {
+  const { pathname } = useRouter()
   const { setIsNavOpen } = useIsNavOpenStore()
   const { isLoggedIn, profile } = useLoginWidget()
   const { activeTheme, setTheme, theme } = useTheme()
+  const { data: changelogData } = useFetchChangelogLatest()
 
   let triggerRender = null
   if (children) {
@@ -71,7 +76,14 @@ export default function ProfileDropdown({
       <DropdownMenuPortal>
         <DropdownMenuContent
           wrapperClassName="z-[60]"
-          className="overflow-y-auto w-screen flex flex-col rounded-none h-[calc(100vh-56px)] lg:m-0 lg:block lg:w-auto lg:h-auto lg:rounded-lg lg:max-h-[calc(100dvh-100px)]"
+          className={clsx(
+            'overflow-y-auto w-screen flex flex-col rounded-none lg:m-0 lg:block lg:w-auto lg:h-auto lg:rounded-lg lg:max-h-[calc(100vh-100px)]',
+            {
+              'h-[calc(100vh-112px)]':
+                pathname === ROUTES.HOME && !!changelogData,
+              'h-[calc(100vh-56px)]': pathname !== ROUTES.HOME,
+            },
+          )}
           sideOffset={9}
           collisionPadding={{
             right: 32,
