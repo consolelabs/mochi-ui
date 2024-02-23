@@ -201,6 +201,7 @@ const ConnectWalletWidget = forwardRef<
             >
               Extension
             </Button>
+            ,{' '}
             <Button
               variant="link"
               className="!h-auto !p-0"
