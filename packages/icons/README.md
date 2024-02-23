@@ -1,6 +1,6 @@
 # @mochi-ui/icons
 
-A set of icons to use in Mochi's design system
+A set of icons to use in Mochi's design system.
 
 For further details, visit our
 [Icons Documentation](https://ds.mochiui.com/?path=/docs/icons-list--docs).
