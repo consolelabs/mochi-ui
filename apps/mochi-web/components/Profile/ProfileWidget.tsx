@@ -160,13 +160,9 @@ export const ProfileWidget = () => {
     },
   )
   const sortedChains = Object.entries(chains)
-    .map(([chain, balance], index) => ({
+    .map(([chain, balance]) => ({
       chain,
       totalAsset: balance.reduce((acc, c) => (acc += c.usd_balance), 0),
-      index:
-        index < displayChainAmount - 1
-          ? displayChainAmount - index
-          : Number(chain === _selectedChain),
     }))
     .sort((a, b) => {
       const indexA = sortOrder.findIndex((symbol) => symbol === a.chain)
@@ -184,6 +180,14 @@ export const ProfileWidget = () => {
       if (indexA < indexB) return -1
       return 0
     })
+    .map((each, index) => ({
+      ...each,
+      index:
+        index < displayChainAmount - 1
+          ? displayChainAmount - index
+          : Number(each.chain === _selectedChain),
+    }))
+    .sort((a, b) => b.index - a.index)
     .map(({ chain }) => chain)
   const selectedChain = _selectedChain || sortedChains[0]
   const selectedIndex = sortedChains.findIndex(
@@ -220,7 +224,7 @@ export const ProfileWidget = () => {
   }, [])
 
   return (
-    <Card className="pb-3 space-y-4 shadow-input !bg-background-level1">
+    <Card className="pb-3 space-y-4 shadow-input bg-background-body">
       <div className="flex items-center space-x-2">
         <Avatar src={me?.avatar || ''} size="xl" />
         <div className="overflow-hidden flex-1 space-y-1">
