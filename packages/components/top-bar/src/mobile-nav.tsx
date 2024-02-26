@@ -43,7 +43,8 @@ export const MobileNav = (props: MobileNavProps) => {
   useEffect(() => {
     if (!hasMounted) return
     onNavStateChanged?.(openMobileNav)
-  }, [hasMounted, onNavStateChanged, openMobileNav])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [openMobileNav])
 
   return (
     <>
