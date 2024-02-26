@@ -84,7 +84,7 @@ const LoginPopover = () => {
       </PopoverTrigger>
       <PopoverPortal>
         <PopoverContent className="!p-3" sideOffset={10} collisionPadding={20}>
-          <LoginWidget raw />
+          <LoginWidget onClose={() => setIsOpen(false)} raw />
         </PopoverContent>
       </PopoverPortal>
     </Popover>

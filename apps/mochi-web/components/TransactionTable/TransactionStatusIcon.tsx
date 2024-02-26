@@ -19,14 +19,20 @@ export const TransactionStatusIcon = (props: TransactionStatusIconProps) => {
     switch (tx.status) {
       case 'submitted':
       case 'pending': {
-        return <ClockCircleArrowColoredLine width={size} />
+        return <ClockCircleArrowColoredLine width={size} height={size} />
       }
       case 'failed':
       case 'expired': {
-        return <InfoCircleOutlined width={size} className="text-danger-solid" />
+        return (
+          <InfoCircleOutlined
+            width={size}
+            height={size}
+            className="text-danger-solid"
+          />
+        )
       }
       case 'success': {
-        return <CheckCircleHalfColoredLine width={size} />
+        return <CheckCircleHalfColoredLine width={size} height={size} />
       }
       default: {
         return null
