@@ -121,8 +121,8 @@ importers:
         specifier: ^0.1.67
         version: 0.1.67(@solana/buffer-layout@4.0.1)(@solana/spl-token@0.3.7)(@solana/web3.js@1.74.0)(bn.js@5.2.1)(borsh@0.7.0)
       '@consolelabs/mochi-formatter':
-        specifier: ^20.0.0
-        version: 20.0.0(@consolelabs/mochi-rest@5.3.0)(ioredis@5.3.2)
+        specifier: ^20.0.1
+        version: 20.0.1(@consolelabs/mochi-rest@5.3.0)(ioredis@5.3.2)
       '@consolelabs/mochi-rest':
         specifier: ^5.3.0
         version: 5.3.0
@@ -4470,8 +4470,8 @@ packages:
       chalk: 4.1.2
     dev: true
 
-  /@consolelabs/mochi-formatter@20.0.0(@consolelabs/mochi-rest@5.3.0)(ioredis@5.3.2):
-    resolution: {integrity: sha512-Zqfi0Y/VOQsi9fDdBuswm9m7W2lBNMnEyxgvVVqgmSmdVBy3DSVgIKmvysjAgKRPHKKtVRm/M3kk2ckyMdPBVQ==}
+  /@consolelabs/mochi-formatter@20.0.1(@consolelabs/mochi-rest@5.3.0)(ioredis@5.3.2):
+    resolution: {integrity: sha512-U3etukEzVwOqM0fRqBu+AVfzL3RDvkSZg+R2MB0eHgYXh/F3fRF6tBBgRvwYJFh/Mq4JXuag0F+z2szgY8irlQ==}
     peerDependencies:
       '@consolelabs/mochi-rest': ^5.3.0
       ioredis: ^5.x.x
@@ -4594,7 +4594,7 @@ packages:
     engines: {node: '>=12.0.0'}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': 6.x
-      '@typescript-eslint/parser': ^6.12.0
+      '@typescript-eslint/parser': 6.x
       babel-eslint: 10.x
       eslint: 8.x
       eslint-config-airbnb: 19.x
@@ -11689,7 +11689,7 @@ packages:
   /@types/through@0.0.33:
     resolution: {integrity: sha512-HsJ+z3QuETzP3cswwtzt2vEIiHBk/dCcHGhbmG5X3ecnwFD/lPrMpliGXxSCg03L9AhrdwA4Oz/qfspkDW+xGQ==}
     dependencies:
-      '@types/node': 18.15.5
+      '@types/node': 18.19.12
     dev: true
 
   /@types/tough-cookie@4.0.5:
@@ -11741,7 +11741,7 @@ packages:
     resolution: {integrity: sha512-XOpZ3IyJUIV1b15M7HVOpgQxPPF7lGXgsfcEIu3yDxFPaf/xZKt7s9QO/pbk7vpWQyVulpJbu4E5LwpZiQo4kA==}
     engines: {node: ^16.0.0 || >=18.0.0}
     peerDependencies:
-      '@typescript-eslint/parser': ^6.12.0
+      '@typescript-eslint/parser': ^6.0.0 || ^6.0.0-alpha
       eslint: ^7.0.0 || ^8.0.0
       typescript: '*'
     peerDependenciesMeta:
@@ -16131,7 +16131,7 @@ packages:
     resolution: {integrity: sha512-GPxI5URre6dDpJ0CtcthSZVBAfI+Uw7un5OYNVxP2EYi3H81Jw701yFP7AU+/vCE7xBtFmjge7kfhhk4+RAiig==}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': ^5.13.0 || ^6.0.0
-      '@typescript-eslint/parser': ^6.12.0
+      '@typescript-eslint/parser': ^5.0.0 || ^6.0.0
       eslint: ^7.32.0 || ^8.2.0
       eslint-plugin-import: ^2.25.3
     dependencies:
@@ -18829,7 +18829,7 @@ packages:
       '@jest/expect': 29.7.0
       '@jest/test-result': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 18.15.5
+      '@types/node': 18.19.12
       chalk: 4.1.2
       co: 4.6.0
       dedent: 1.5.1
@@ -18977,7 +18977,7 @@ packages:
       '@jest/environment': 29.7.0
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 18.15.5
+      '@types/node': 18.19.12
       jest-mock: 29.7.0
       jest-util: 29.7.0
 
@@ -19229,7 +19229,7 @@ packages:
     resolution: {integrity: sha512-eIz2msL/EzL9UFTFFx7jBTkeZfku0yUAyZZZmJ93H2TYEiroIx2PQjEXcwYtYl8zXCxb+PAmA2hLIt/6ZEkPHw==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
-      '@types/node': 18.15.5
+      '@types/node': 18.19.12
       jest-util: 29.7.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
@@ -21109,6 +21109,7 @@ packages:
   /nerf-dart@1.0.0:
     resolution: {integrity: sha512-EZSPZB70jiVsivaBLYDCyntd5eH8NTSMOn3rB+HxwdmKThGELLdYv8qVIMWvZEFy9w8ZZpW9h9OB32l1rGtj7g==}
     dev: true
+
   /next-themes@0.2.1(next@14.0.3)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-B+AKNfYNIzh0vqQQKqQItTS8evEouKD7H5Hj3kmuPERwddR2TxvDSFZuTj6T7Jfn1oyeUyJMydPl1Bkxkh0W7A==}
     peerDependencies:
