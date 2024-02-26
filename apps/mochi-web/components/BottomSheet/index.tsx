@@ -9,9 +9,7 @@ import {
 import clsx from 'clsx'
 import { createContext } from '@dwarvesf/react-utils'
 import {
-  Button,
   Drawer,
-  DrawerClose,
   DrawerContent,
   DrawerOverlay,
   DrawerPortal,
