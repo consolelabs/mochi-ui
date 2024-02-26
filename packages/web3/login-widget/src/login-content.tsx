@@ -200,14 +200,18 @@ export default function LoginContent({
                 >
                   Connect Options
                 </Typography>
-                <IconButton
-                  onClick={onClose}
-                  label="close"
-                  variant="link"
-                  color="neutral"
-                >
-                  <CloseLgLine className={loginIntroHeaderIconClsx()} />
-                </IconButton>
+                {onClose ? (
+                  <IconButton
+                    onClick={onClose}
+                    label="close"
+                    variant="link"
+                    color="neutral"
+                  >
+                    <CloseLgLine className={loginIntroHeaderIconClsx()} />
+                  </IconButton>
+                ) : (
+                  <div className={loginIntroHeaderIconClsx()} />
+                )}
               </div>
               <div className={loginIntroBodyClsx()}>
                 <Button

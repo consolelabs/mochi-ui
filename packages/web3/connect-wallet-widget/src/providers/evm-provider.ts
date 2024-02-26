@@ -110,6 +110,17 @@ export class ProviderEVM extends ChainProvider {
         return await this.connectMobile()
       }
 
+      if (['app.phantom'].every((id) => id !== this.id)) {
+        await this.provider.request({
+          method: 'wallet_requestPermissions',
+          params: [
+            {
+              eth_accounts: {},
+            },
+          ],
+        })
+      }
+
       const accounts = await this.provider.request({
         method: 'eth_requestAccounts',
       })
