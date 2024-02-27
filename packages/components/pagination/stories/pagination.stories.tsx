@@ -57,6 +57,16 @@ export const Default: Story = {
           totalItems={100000}
           totalPages={Math.ceil(100000 / itemPerPage)}
         />
+        <Pagination totalItems={25} allowCustomPage />
+        <Pagination
+          initItemsPerPage={itemPerPage}
+          initalPage={currentPage}
+          onItemPerPageChange={setItemPerPage}
+          onPageChange={setCurrentPage}
+          totalItems={100000}
+          totalPages={Math.ceil(100000 / itemPerPage)}
+          allowCustomPage
+        />
       </div>
     )
   },
