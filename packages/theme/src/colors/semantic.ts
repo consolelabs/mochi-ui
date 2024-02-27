@@ -1,3 +1,4 @@
+import Color from 'color'
 import { commonColors } from './common'
 
 export const semanticColors = {
@@ -253,9 +254,13 @@ export const semanticColors = {
       tooltip: commonColors.neutral[500], // slider tooltip
       backdrop: 'rgba(23, 24, 29, .4)', // 40%
       hover: commonColors.neutral['100'],
+      'top-sidebar': commonColors.white,
     },
     divider: 'rgba(35,36,38, 0.08)',
     focus: commonColors.primary['100'],
+    'connect-button-hover': Color(commonColors.neutral['900'])
+      .alpha(0.05)
+      .hexa(),
   },
   dark: {
     primary: {
@@ -476,8 +481,12 @@ export const semanticColors = {
       tooltip: commonColors.neutral['600'], // slider tooltip
       backdrop: 'rgba(0, 0, 0, .4)', // 40%
       hover: 'rgba(93, 98, 103, 0.3)', // migrate hover state
+      'top-sidebar': Color(commonColors.neutral['900']).alpha(0.85).hexa(),
     },
     divider: 'rgba(93,98,103, .75)',
     focus: commonColors.primary['700'],
+    'connect-button-hover': Color(commonColors.neutral['600'])
+      .alpha(0.3)
+      .hexa(),
   },
 }
