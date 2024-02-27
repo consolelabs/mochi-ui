@@ -33,7 +33,7 @@ export const ChangelogDetailTitle = (props: ChangelogDetailTitleProps) => {
           </Typography>
         </div>
       </div>
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-2 items-center min-h-[45px]">
         <Button asChild variant="outline" color="neutral" size="sm">
           <Link href={social} target="_blank">
             Follow @mochi_gg
