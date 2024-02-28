@@ -1,3 +1,4 @@
+import { Profile } from '@consolelabs/mochi-rest'
 import {
   Modal,
   ModalContent,
@@ -9,6 +10,8 @@ import { LoginWidget } from '@mochi-web3/login-widget'
 import { useState } from 'react'
 import { WretchError } from 'wretch/resolver'
 import { API } from '~constants/api'
+import { useWalletStore } from '~store'
+import { truncateWallet } from '~utils/string'
 
 interface Props {
   code?: string
@@ -18,6 +21,7 @@ interface Props {
 
 export const AddNewWalletModal = ({ code, isOpen, onOpenChange }: Props) => {
   const [loading, setLoading] = useState(false)
+  const { setWallets } = useWalletStore()
 
   return (
     <Modal open={isOpen} onOpenChange={onOpenChange}>
@@ -59,7 +63,15 @@ export const AddNewWalletModal = ({ code, isOpen, onOpenChange }: Props) => {
                     scheme: 'danger',
                   }),
                 ])
-                .json()
+                .json((r: Profile) => {
+                  setWallets(r)
+                  toast({
+                    description: `Your ${truncateWallet(
+                      address,
+                    )} wallet is now connected to Mochi.`,
+                    scheme: 'success',
+                  })
+                })
                 .finally(() => {
                   setLoading(false)
                   onOpenChange(false)
