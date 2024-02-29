@@ -77,8 +77,8 @@ export default function Amount({
         </div>
       ) : (
         <Avatar
-          size={size === 'lg' ? 'xs' : 'xxs'}
-          className={clsx('shrink-0 aspect-square rounded-full', {
+          size={size === 'lg' || size === 'md' ? 'xs' : 'xxs'}
+          className={clsx('shrink-0 aspect-square [&>img]:rounded-none', {
             /* 'my-1': size === 'md' && alignment === 'center' && !isLongNumber, */
             'row-start-1 row-span-2 my-auto':
               alignment === 'left' && !isLongNumber,
