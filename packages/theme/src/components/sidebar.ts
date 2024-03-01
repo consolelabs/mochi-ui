@@ -3,7 +3,7 @@ import clsx from 'clsx'
 
 const sidebarCva = cva(
   [
-    'group bg-background-surface relative h-full border-r border-neutral-outline-active flex-none transition-all',
+    'group dark:backdrop-blur-md bg-background-top-sidebar relative h-full border-r border-neutral-outline-active flex-none transition-all',
   ],
   {
     variants: {

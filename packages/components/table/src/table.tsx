@@ -19,7 +19,7 @@ export interface TableProps<T> {
   className?: string
   wrapperClassName?: string
   rowClassName?: (record: T, index: number) => string
-  headerCellClassName?: string
+  headerCellClassName?: ((headerIndex: number) => string) | string
   cellClassName?: (
     record: T | null,
     rowIndex: number,
@@ -116,7 +116,10 @@ export default function Table<T extends RowData>({
                   className={tableHeaderClsx({
                     stickyHeader,
                     size,
-                    className: headerCellClassName,
+                    className:
+                      typeof headerCellClassName === 'string'
+                        ? headerCellClassName
+                        : headerCellClassName?.(header.index),
                   })}
                   colSpan={header.colSpan}
                   key={header.id}

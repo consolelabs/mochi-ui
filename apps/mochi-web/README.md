@@ -64,7 +64,7 @@ fix: something that's broken
 
 ### Merge
 
-Our PR process is simple - just create a PR into `master` when your changes are
+Our PR process is simple - just create a PR into `develop` when your changes are
 ready. Some tips for creating PRs:
 
 1. PR name should follow conventional commit. E.g.: `feat: add X page`

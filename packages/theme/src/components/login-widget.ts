@@ -48,7 +48,10 @@ const loginIntroBodyClsx = ({ className = '' }: { className?: string } = {}) =>
 const loginIntroBodyWalletButtonClsx = ({
   className = '',
 }: { className?: string } = {}) =>
-  clsx('flex justify-between items-center h-[56px]', className)
+  clsx(
+    'flex justify-between items-center h-[56px] hover:!bg-connect-button-hover',
+    className,
+  )
 
 const loginIntroBodyWalletIconClsx = ({
   className = '',

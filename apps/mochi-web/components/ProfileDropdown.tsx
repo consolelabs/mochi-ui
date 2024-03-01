@@ -1,4 +1,3 @@
-import { isMobile } from '~utils/isMobile'
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -61,9 +60,11 @@ export default function ProfileDropdown({
 
   return (
     <DropdownMenu
-      onOpenChange={(b) =>
-        isMobile() && window.innerWidth <= 1024 && setIsNavOpen(b)
-      }
+      onOpenChange={(b) => {
+        if (window.innerWidth > 1024) return
+
+        setIsNavOpen(b)
+      }}
     >
       <DropdownMenuTrigger className={className} asChild>
         {triggerRender}
@@ -71,7 +72,7 @@ export default function ProfileDropdown({
       <DropdownMenuPortal>
         <DropdownMenuContent
           wrapperClassName="z-[60]"
-          className="overflow-y-auto w-screen flex flex-col rounded-none h-[calc(100vh-56px)] lg:m-0 lg:block lg:w-auto lg:h-auto lg:rounded-lg lg:max-h-[calc(100dvh-100px)]"
+          className="overflow-y-auto w-screen flex flex-col rounded-none h-[calc(100svh-56px)] lg:m-0 lg:block lg:w-auto lg:h-auto lg:rounded-lg lg:max-h-[calc(100svh-100px)]"
           sideOffset={9}
           collisionPadding={{
             right: 32,
