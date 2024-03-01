@@ -256,7 +256,7 @@ export const RecapSection = () => {
     total_spending = 0,
     total_volume = 0,
   } = exchange || {}
-  const totalExchange = total_spending + total_receive + total_volume
+  const totalExchange = total_spending + total_receive + mochiBalance
   const receive_pnl = getPnl(exchange?.receive_pnl)
   const spending_pnl = getPnl(exchange?.spending_pnl)
 
@@ -309,7 +309,7 @@ export const RecapSection = () => {
         <Separator />
         <div className="flex items-center justify-between py-2">
           <div className="flex items-center space-x-2">
-            <Typography level="h8">Mochi Exchange Flow</Typography>
+            <Typography level="h8">Exchange Flow Recap</Typography>
             <Tooltip
               className="max-w-xs"
               content="Overview of token balances, including daily sent and received on Mochi wallet."
@@ -356,11 +356,11 @@ export const RecapSection = () => {
                 : 0,
             }}
           />
-          <div className="h-8 bg-primary-solid-disable flex-1" />
+          <div className="h-8 bg-success-plain-active flex-1" />
         </div>
         {[
           {
-            label: 'Received',
+            label: 'Income',
             value: total_receive,
             pnl: receive_pnl,
             icon: (
@@ -368,11 +368,18 @@ export const RecapSection = () => {
             ),
           },
           {
-            label: 'Sent',
+            label: 'Expense',
             value: total_spending,
             pnl: spending_pnl,
             icon: (
               <div className="w-2.5 h-2.5 rounded-full mr-2 bg-primary-outline-border" />
+            ),
+          },
+          {
+            label: 'Current balance',
+            value: mochiBalance,
+            icon: (
+              <div className="w-2.5 h-2.5 rounded-full mr-2 bg-success-plain-active" />
             ),
           },
         ].map((item) => (
@@ -383,34 +390,30 @@ export const RecapSection = () => {
                 {item.label}
               </Typography>
               <Typography level="p5" fontWeight="md">
-                {`$${mochiUtils.formatDigit({
-                  value: item.value || 0,
-                  fractionDigits: 2,
-                })}`}
+                {`${mochiUtils.formatUsdDigit(item.value || 0)}`}
               </Typography>
             </div>
-            <div className="flex items-center justify-between">
-              <Typography level="p5">Compare with last period</Typography>
-              <ValueChange trend={Number(item.pnl) < 0 ? 'down' : 'up'}>
-                <ValueChangeIndicator />
-                {mochiUtils.formatPercentDigit(
-                  Number.isNaN(Number(item.pnl)) || item.pnl === ''
-                    ? 0
-                    : Math.abs(Number(item.pnl)),
-                )}
-              </ValueChange>
-            </div>
+            {!!item.pnl && (
+              <div className="flex items-center justify-between">
+                <Typography level="p5">Compare with last period</Typography>
+                <ValueChange trend={Number(item.pnl) < 0 ? 'down' : 'up'}>
+                  <ValueChangeIndicator />
+                  {mochiUtils.formatPercentDigit(
+                    Number.isNaN(Number(item.pnl)) || item.pnl === ''
+                      ? 0
+                      : Math.abs(Number(item.pnl)),
+                  )}
+                </ValueChange>
+              </div>
+            )}
           </div>
         ))}
         <Separator className="my-2" />
         <div className="flex items-center justify-between py-2">
           <Typography level="h8">Net Worth</Typography>
-          <Typography level="p5" fontWeight="md">
-            {`$${mochiUtils.formatDigit({
-              value: total_volume || 0,
-              fractionDigits: 2,
-            })}`}
-          </Typography>
+          <ValueChange trend={total_volume < 0 ? 'down' : 'up'}>
+            {`${mochiUtils.formatUsdDigit(total_volume || 0)}`}
+          </ValueChange>
         </div>
       </div>
     </Card>

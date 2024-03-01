@@ -1,6 +1,10 @@
 import {
   Button,
   FormControl,
+  ScrollArea,
+  ScrollAreaScrollbar,
+  ScrollAreaThumb,
+  ScrollAreaViewport,
   SectionHeader,
   SectionHeaderActions,
   SectionHeaderDescription,
@@ -31,6 +35,17 @@ export const MoneySource = () => {
   const { wallets } = useWalletStore()
   const { isOpen, onOpenChange } = useDisclosure()
   const [code, setCode] = useState('')
+
+  const sortedWallets = [...wallets].sort((a, b) => {
+    if (a.id === defaultMoneySource.platform) return -1
+    if (b.id === defaultMoneySource.platform) return 1
+    if (a.chainSymbol === 'SOL' && b.chainSymbol !== 'SOL') return -1
+    if (a.chainSymbol !== 'SOL' && b.chainSymbol === 'SOL') return 1
+    return (
+      Number(b.usd_amount.slice(b.usd_amount.indexOf('$') + 1)) -
+      Number(a.usd_amount.slice(a.usd_amount.indexOf('$') + 1))
+    )
+  })
 
   const onAddNewWallet = async () => {
     if (!profile?.id) return
@@ -96,50 +111,61 @@ export const MoneySource = () => {
                       </div>
                     </SelectTrigger>
                     <SelectContent align="end">
-                      {wallets.map((each) =>
-                        each.id === defaultMoneySource.platform ? (
-                          <SelectItem
-                            key={defaultMoneySource.platform_identifier}
-                            value={defaultMoneySource.platform_identifier}
-                            leftIcon={<Mochi className="w-6 h-6" />}
-                            subTitle={
-                              <span className="font-normal">
-                                {each.usd_amount}
-                              </span>
-                            }
-                          >
-                            {each.title}
-                          </SelectItem>
-                        ) : (
-                          <SelectItem
-                            key={each.id}
-                            value={each.id}
-                            leftIcon={
-                              <TokenAvatar
-                                src={each.icon}
-                                name={each.chainSymbol}
-                              />
-                            }
-                            subTitle={
-                              <span className="font-normal">
-                                {each.usd_amount}
-                              </span>
-                            }
-                            disabled={!each.balances.length}
-                          >
-                            {each.title}
-                          </SelectItem>
-                        ),
-                      )}
-                      <SelectSeparator />
-                      <Button
-                        variant="ghost"
-                        className="pr-2 pl-2 w-full h-9"
-                        onClick={onAddNewWallet}
+                      <ScrollArea
+                        className={
+                          wallets.length > 5 ? 'h-96 max-h-[40vh]' : ''
+                        }
                       >
-                        <PlusLine className="w-4 h-4" />
-                        Add new wallet
-                      </Button>
+                        <ScrollAreaViewport>
+                          {sortedWallets.map((each) =>
+                            each.id === defaultMoneySource.platform ? (
+                              <SelectItem
+                                key={defaultMoneySource.platform_identifier}
+                                value={defaultMoneySource.platform_identifier}
+                                leftIcon={<Mochi className="w-6 h-6" />}
+                                subTitle={
+                                  <span className="font-normal">
+                                    {each.usd_amount}
+                                  </span>
+                                }
+                              >
+                                {each.title}
+                              </SelectItem>
+                            ) : (
+                              <SelectItem
+                                key={each.id}
+                                value={each.id}
+                                leftIcon={
+                                  <TokenAvatar
+                                    src={each.icon}
+                                    name={each.chainSymbol}
+                                  />
+                                }
+                                subTitle={
+                                  <span className="font-normal">
+                                    {each.usd_amount}
+                                  </span>
+                                }
+                                disabled={!each.balances.length}
+                              >
+                                {each.title}
+                              </SelectItem>
+                            ),
+                          )}
+                          <SelectSeparator />
+                          <Button
+                            variant="ghost"
+                            className="pr-2 pl-2 w-full h-9"
+                            onClick={onAddNewWallet}
+                          >
+                            <PlusLine className="w-4 h-4" />
+                            Add new wallet
+                          </Button>
+                        </ScrollAreaViewport>
+                        <ScrollAreaScrollbar>
+                          <ScrollAreaThumb />
+                        </ScrollAreaScrollbar>
+                      </ScrollArea>
                     </SelectContent>
                   </Select>
                 </SectionHeaderActions>
