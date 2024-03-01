@@ -41,7 +41,7 @@ const topBarNavContainerClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
-    'sticky h-14 py-3 gap-6 w-screen max-w-full top-0 flex flex-shrink-0 justify-between items-center z-20 bg-background-surface',
+    'sticky h-14 py-3 gap-6 w-screen max-w-full top-0 flex flex-shrink-0 justify-between items-center z-20 bg-background-top-sidebar dark:backdrop-blur-md',
     'pl-4 pr-3 gap-y-4', // mobile
     'lg:px-8', // desktop
     'lg:flex-row', // tablet-desktop

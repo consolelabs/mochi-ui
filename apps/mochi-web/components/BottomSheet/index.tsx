@@ -9,9 +9,7 @@ import {
 import clsx from 'clsx'
 import { createContext } from '@dwarvesf/react-utils'
 import {
-  Button,
   Drawer,
-  DrawerClose,
   DrawerContent,
   DrawerOverlay,
   DrawerPortal,
@@ -99,37 +97,33 @@ function BottomSheet({
             className,
           )}
         >
-          <div
-            className="flex justify-between items-center self-stretch mb-2"
-            ref={sheetRef}
-          >
-            <div className="flex-1">
-              <DrawerClose asChild>
-                <Button
-                  color="neutral"
-                  variant="link"
-                  size="sm"
-                  type="button"
-                  className="!p-0"
-                >
-                  Close
-                </Button>
-              </DrawerClose>
+          {isLoggedIn && (
+            <div
+              className="flex justify-between items-center self-stretch mb-2"
+              ref={sheetRef}
+            >
+              <div className="flex-1" />
+              {title && isLoggedIn ? (
+                <span className="flex-1 text-sm font-semibold text-center">
+                  {title}
+                </span>
+              ) : (
+                <>&#8203;</>
+              )}
+              <div className="flex-1" />
             </div>
-            {title && isLoggedIn ? (
-              <span className="flex-1 text-sm font-semibold text-center">
-                {title}
-              </span>
-            ) : (
-              <>&#8203;</>
-            )}
-            <div className="flex-1" />
-          </div>
+          )}
           {isLoggedIn ? (
             children
           ) : (
             <div className="flex justify-center">
-              <LoginWidget raw {...loginWidgetProps} />
+              <LoginWidget
+                onClose={() =>
+                  setOpenSheets(openSheets.filter((s) => s !== name))
+                }
+                raw
+                {...loginWidgetProps}
+              />
             </div>
           )}
         </DrawerContent>

@@ -65,7 +65,18 @@ export const TransactionOverviewSection = () => {
       <Card className="mt-1 !p-0 !rounded-lg !bg-background-level1">
         {ready && (
           <TransactionTable
-            cellClassName={() => 'h-[60px]'}
+            headerCellClassName={(i) =>
+              clsx({
+                'pl-4': i === 0,
+                'pr-4': i === 8,
+              })
+            }
+            cellClassName={(_r, _ri, ci) =>
+              clsx('h-[60px]', {
+                'pl-4': ci === 0,
+                'pr-4': ci === 8,
+              })
+            }
             className={clsx('!w-auto', {
               'min-h-[344px]': txnsCurrentPage?.length,
             })}

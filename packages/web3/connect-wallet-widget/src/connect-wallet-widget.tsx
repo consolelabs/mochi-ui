@@ -4,6 +4,7 @@ import {
   useEffect,
   useMemo,
   useReducer,
+  useRef,
 } from 'react'
 import {
   ExclamationTriangleOutlined,
@@ -64,8 +65,8 @@ const ConnectWalletWidget = forwardRef<
     onConnectSuccess,
     walletId,
   }) => {
+    const debounce = useRef(0)
     const connectors = useMemo(() => getProviders(dispatch), [dispatch])
-    const walletById = connectors.EVM.find((c) => c.id && c.id === walletId)
 
     const [state, setState] = useReducer<Reducer>(
       (state, action) => {
@@ -75,28 +76,42 @@ const ConnectWalletWidget = forwardRef<
         }
       },
       {
-        step: walletById ? Step.Connecting : Step.Idle,
-        wallet: walletById || null,
+        step: Step.Idle,
+        wallet: null,
         error: null,
       },
     )
 
     useEffect(() => {
-      if (state.error) return
-      state.wallet
-        // connect and sign message
-        ?.connect()
-        .then((res) => {
-          if (!res || !state.wallet) {
-            const error = 'Something went wrong'
-            setState({ error })
-            return
-          }
-          onConnectSuccess?.(state.wallet, res)
-          setState({ step: Step.Authenticated })
-        })
+      const walletById = connectors.EVM.find((c) => c.id && c.id === walletId)
+
+      setState({
+        step: walletById ? Step.Connecting : Step.Idle,
+        wallet: walletById || null,
+        error: null,
+      })
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [state.error, state.wallet])
+    }, [walletId])
+
+    useEffect(() => {
+      window.clearTimeout(debounce.current)
+      debounce.current = window.setTimeout(() => {
+        if (state.error || !state.wallet) return
+        state.wallet
+          // connect and sign message
+          .connect()
+          .then((res) => {
+            if (!res || !state.wallet) {
+              const error = 'Something went wrong'
+              setState({ error })
+              return
+            }
+            onConnectSuccess?.(state.wallet, res)
+            setState({ step: Step.Authenticated })
+          })
+      }, 100)
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [state.wallet])
 
     useEffect(() => {
       if (state.step === Step.Idle) {
