@@ -9,6 +9,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@mochi-ui/select'
+import { Separator } from '@mochi-ui/separator'
+import { TextFieldInput } from '@mochi-ui/input'
 import { formatNumber } from './utils'
 
 const {
@@ -34,6 +36,7 @@ interface PaginationProps {
   recordName?: string
   hideOnSinglePage?: boolean
   allowCustomItemsPerPage?: boolean
+  allowCustomPage?: boolean
 }
 
 function PageButton({
@@ -70,14 +73,17 @@ export default function Pagination({
   recordName = 'members',
   hideOnSinglePage = false,
   allowCustomItemsPerPage = true,
+  allowCustomPage = false,
 }: PaginationProps) {
   const [currentPage, setCurrentPage] = useState(page)
   const [currentItemPerPage, setCurrentItemPerPage] = useState(initItemsPerPage)
+  const [customPage, setCustomPage] = useState('')
 
   useEffect(() => {
     if (onPageChange) {
       onPageChange(currentPage)
     }
+    setCustomPage('')
   }, [currentPage, onPageChange])
 
   useEffect(() => {
@@ -94,6 +100,17 @@ export default function Pagination({
   }, [currentItemPerPage, onItemPerPageChange])
 
   const totalPages = Math.ceil(totalItems / currentItemPerPage) || initTotalPage
+
+  const onCustomPageChange = (value: string) => {
+    if (!value) return
+    const page = Number(value)
+    if (page >= 1 && page <= totalPages && Number.isInteger(page)) {
+      setCurrentPage(page)
+    } else if (page > totalPages && Number.isInteger(page)) {
+      setCurrentPage(totalPages)
+    }
+    setCustomPage('')
+  }
 
   const renderPagination = () => {
     const pages = []
@@ -281,6 +298,24 @@ export default function Pagination({
           <div>
             {recordName} of {formatNumber(totalItems)}
           </div>
+          {allowCustomPage && (
+            <div className="flex items-center h-4 space-x-2">
+              <Separator orientation="vertical" />
+              <span>Go to</span>
+              <TextFieldInput
+                className="h-[34px] w-14 text-center"
+                value={customPage}
+                onChange={(e) => setCustomPage(e.target.value)}
+                onBlur={(e) => onCustomPageChange(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    onCustomPageChange(e.currentTarget.value)
+                  }
+                }}
+              />
+              <span>Page</span>
+            </div>
+          )}
         </div>
       )}
 

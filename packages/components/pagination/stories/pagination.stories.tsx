@@ -61,3 +61,27 @@ export const Default: Story = {
     )
   },
 }
+
+export const AllowCustomPage: Story = {
+  render: () => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks -- we're in a component
+    const [currentPage, setCurrentPage] = useState(1)
+    // eslint-disable-next-line react-hooks/rules-of-hooks -- we're in a component
+    const [itemPerPage, setItemPerPage] = useState(15)
+
+    return (
+      <div className="md:min-w-[32rem] space-y-4">
+        <Pagination totalItems={25} allowCustomPage />
+        <Pagination
+          initItemsPerPage={itemPerPage}
+          initalPage={currentPage}
+          onItemPerPageChange={setItemPerPage}
+          onPageChange={setCurrentPage}
+          totalItems={100000}
+          totalPages={Math.ceil(100000 / itemPerPage)}
+          allowCustomPage
+        />
+      </div>
+    )
+  },
+}
