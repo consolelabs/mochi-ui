@@ -95,6 +95,7 @@ export const TransactionOverviewSection = () => {
                 onItemPerPageChange: setSize,
                 onPageChange: setPage,
                 className: 'px-4',
+                allowCustomPage: true,
               },
             }}
             onRow={(tx) => {
