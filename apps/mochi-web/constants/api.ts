@@ -86,7 +86,7 @@ export const GET_PATHS = {
   GET_TOTAL_BALANCES: (profileId: string) => `/users/${profileId}/balances`,
   GET_MONTHLY_STATS: (profileId: string) =>
     `/profile/${profileId}/monthly-stats`,
-  CHANGELOGS: '/product-metadata/changelogs/',
+  CHANGELOGS: '/product-metadata/changelogs',
   CHANGELOG_DETAIL: (version: string) =>
     `/product-metadata/changelogs/${version}`,
   CHANGELOGS_LATEST: '/product-metadata/changelogs/latest',

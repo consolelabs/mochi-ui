@@ -32,6 +32,8 @@ interface PaginationProps {
   onPageChange?: (page: number) => void
   onItemPerPageChange?: (page: number) => void
   recordName?: string
+  hideOnSinglePage?: boolean
+  allowCustomItemsPerPage?: boolean
 }
 
 function PageButton({
@@ -66,6 +68,8 @@ export default function Pagination({
   onItemPerPageChange,
   className,
   recordName = 'members',
+  hideOnSinglePage = false,
+  allowCustomItemsPerPage = true,
 }: PaginationProps) {
   const [currentPage, setCurrentPage] = useState(page)
   const [currentItemPerPage, setCurrentItemPerPage] = useState(initItemsPerPage)
@@ -239,40 +243,46 @@ export default function Pagination({
     return pages
   }
 
+  if (hideOnSinglePage && totalPages <= 1) {
+    return null
+  }
+
   return (
     <div
       className={paginationWrapperClsx({ className })}
       aria-label="Pagination"
     >
-      <div className={paginationAmountPerPageWrapperClsx()}>
-        <div>Showing</div>
-        <Select
-          defaultValue={String(currentItemPerPage)}
-          onChange={(value) => {
-            setCurrentPage(1)
-            setCurrentItemPerPage(Number(value))
-          }}
-        >
-          <SelectTrigger
-            appearance="form"
-            color="neutral"
-            variant="soft"
-            className="h-9"
+      {allowCustomItemsPerPage && (
+        <div className={paginationAmountPerPageWrapperClsx()}>
+          <div>Showing</div>
+          <Select
+            defaultValue={String(currentItemPerPage)}
+            onChange={(value) => {
+              setCurrentPage(1)
+              setCurrentItemPerPage(Number(value))
+            }}
           >
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            {[5, 15, 25, 50, 100].map((value) => (
-              <SelectItem key={value} value={String(value)}>
-                {value}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        <div>
-          {recordName} of {formatNumber(totalItems)}
+            <SelectTrigger
+              appearance="form"
+              color="neutral"
+              variant="soft"
+              className="h-9"
+            >
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {[5, 15, 25, 50, 100].map((value) => (
+                <SelectItem key={value} value={String(value)}>
+                  {value}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <div>
+            {recordName} of {formatNumber(totalItems)}
+          </div>
         </div>
-      </div>
+      )}
 
       <div className={paginationNavigationClsx()} aria-controls="content">
         <button

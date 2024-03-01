@@ -1,38 +1,25 @@
-import { GetStaticProps } from 'next'
-import { Badge, Button, IconButton, Typography } from '@mochi-ui/core'
+import {
+  Badge,
+  Button,
+  IconButton,
+  Pagination,
+  Typography,
+} from '@mochi-ui/core'
 import { Layout } from '~app/layout'
 import { SEO } from '~app/layout/seo'
 import { PAGES } from '~constants'
 import { Markdown } from '~cpn/Changelog/Markdown'
-import {
-  ModelProductChangelogs,
-  ResponseProductChangelogs,
-} from '~types/mochi-schema'
+import { ModelProductChangelogs } from '~types/mochi-schema'
 import { format, isValid } from 'date-fns'
 import Link from 'next/link'
 import { ROUTES } from '~constants/routes'
-import { API, GET_PATHS } from '~constants/api'
 import { InboxSolid } from '@mochi-ui/icons'
 import { HOME_URL, TWITTER_LINK } from '~envs'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { Footer } from '~app/layout/footer'
+import { useFetchChangelogs } from '~hooks/changelog/useFetchChangelogs'
 
-type Props = {
-  data?: Array<ModelProductChangelogs>
-}
-
-export const getStaticProps: GetStaticProps<Props> = async () => {
-  const { data } = await API.MOCHI.get(
-    GET_PATHS.CHANGELOGS,
-  ).json<ResponseProductChangelogs>((r) => r)
-
-  return {
-    props: {
-      data,
-    },
-    revalidate: 60,
-  }
-}
+const DEFAULT_PAGE_SIZE = 5
 
 const ChangelogItem = ({
   content,
@@ -69,8 +56,13 @@ const ChangelogItem = ({
   )
 }
 
-export default function Changelog({ data }: Props) {
+export default function Changelog() {
   const ref = useRef<HTMLDivElement>(null)
+  const [page, setPage] = useState(1)
+  const { data, pagination } = useFetchChangelogs({
+    page: page - 1,
+    size: DEFAULT_PAGE_SIZE,
+  })
 
   return (
     <Layout ref={ref} footer={<Footer includeEmailSubscribe />}>
@@ -119,6 +111,18 @@ export default function Changelog({ data }: Props) {
         {data?.map(
           (d, i) => d && <ChangelogItem {...d} key={`changelog-${i}`} />,
         )}
+
+        <Pagination
+          recordName="changelogs"
+          initalPage={page}
+          initItemsPerPage={DEFAULT_PAGE_SIZE}
+          page={page}
+          onPageChange={setPage}
+          totalItems={pagination?.total || 0}
+          hideOnSinglePage
+          allowCustomItemsPerPage={false}
+          className="mb-4"
+        />
       </div>
     </Layout>
   )
