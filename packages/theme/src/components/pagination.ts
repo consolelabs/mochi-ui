@@ -26,12 +26,18 @@ const paginationEllipsisButtonClsx = ({
 const paginationWrapperClsx = ({
   className = '',
 }: { className?: string } = {}) =>
-  clsx('flex items-center justify-between w-full sm:space-x-6', className)
+  clsx(
+    'flex items-center justify-between w-full sm:gap-x-6 sm:gap-y-4 flex-wrap',
+    className,
+  )
 
 const paginationAmountPerPageWrapperClsx = ({
   className = '',
 }: { className?: string } = {}) =>
-  clsx('hidden sm:inline-flex justify-start items-center space-x-2', className)
+  clsx(
+    'hidden sm:inline-flex justify-start items-center gap-x-2 gap-y-4 flex-wrap',
+    className,
+  )
 
 const paginationPageNavigateButtonGroupClsx = ({
   className = '',
@@ -42,7 +48,7 @@ const paginationNavigationClsx = ({
   className = '',
 }: { className?: string } = {}) =>
   clsx(
-    'flex-1 flex justify-center sm:justify-end items-center space-x-2',
+    'flex items-center justify-center space-x-2 flex-1 sm:flex-none',
     className,
   )
 

@@ -35,7 +35,9 @@
   "dependencies": {
     "@mochi-ui/icons": "workspace:*",
     "@mochi-ui/select": "workspace:*",
-    "@mochi-ui/theme": "workspace:*"
+    "@mochi-ui/theme": "workspace:*",
+    "@mochi-ui/separator": "workspace:*",
+    "@mochi-ui/input": "workspace:*"
   },
   "clean-package": "../../../clean-package.config.json"
 }

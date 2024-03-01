@@ -101,7 +101,7 @@ export default function ProfileDropdown({
             rightExtra={
               <Switch
                 disabled={theme === 'system'}
-                checked={activeTheme === 'dark'}
+                checked={theme !== 'system' && activeTheme === 'dark'}
               />
             }
             onClick={(e) => {
@@ -119,7 +119,7 @@ export default function ProfileDropdown({
             }
             onClick={(e) => {
               e.preventDefault()
-              setTheme(theme === 'system' ? activeTheme ?? 'light' : 'system')
+              setTheme(theme === 'system' ? 'light' : 'system')
             }}
           >
             System Theme

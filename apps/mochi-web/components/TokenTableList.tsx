@@ -176,7 +176,7 @@ export const TokenTableList = ({
   const [sort, setSort] = useState('')
 
   return (
-    <ScrollArea className="h-[430px]">
+    <ScrollArea className="h-[480px]">
       <ScrollAreaViewport>
         <Table
           {...props}
