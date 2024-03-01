@@ -9,6 +9,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@mochi-ui/select'
+import { Separator } from '@mochi-ui/separator'
+import { TextFieldInput } from '@mochi-ui/input'
 import { formatNumber } from './utils'
 
 const {
@@ -32,6 +34,9 @@ interface PaginationProps {
   onPageChange?: (page: number) => void
   onItemPerPageChange?: (page: number) => void
   recordName?: string
+  hideOnSinglePage?: boolean
+  allowCustomItemsPerPage?: boolean
+  allowCustomPage?: boolean
 }
 
 function PageButton({
@@ -66,14 +71,19 @@ export default function Pagination({
   onItemPerPageChange,
   className,
   recordName = 'members',
+  hideOnSinglePage = false,
+  allowCustomItemsPerPage = true,
+  allowCustomPage = false,
 }: PaginationProps) {
   const [currentPage, setCurrentPage] = useState(page)
   const [currentItemPerPage, setCurrentItemPerPage] = useState(initItemsPerPage)
+  const [customPage, setCustomPage] = useState('')
 
   useEffect(() => {
     if (onPageChange) {
       onPageChange(currentPage)
     }
+    setCustomPage('')
   }, [currentPage, onPageChange])
 
   useEffect(() => {
@@ -90,6 +100,17 @@ export default function Pagination({
   }, [currentItemPerPage, onItemPerPageChange])
 
   const totalPages = Math.ceil(totalItems / currentItemPerPage) || initTotalPage
+
+  const onCustomPageChange = (value: string) => {
+    if (!value) return
+    const page = Number(value)
+    if (page >= 1 && page <= totalPages && Number.isInteger(page)) {
+      setCurrentPage(page)
+    } else if (page > totalPages && Number.isInteger(page)) {
+      setCurrentPage(totalPages)
+    }
+    setCustomPage('')
+  }
 
   const renderPagination = () => {
     const pages = []
@@ -239,40 +260,64 @@ export default function Pagination({
     return pages
   }
 
+  if (hideOnSinglePage && totalPages <= 1) {
+    return null
+  }
+
   return (
     <div
       className={paginationWrapperClsx({ className })}
       aria-label="Pagination"
     >
-      <div className={paginationAmountPerPageWrapperClsx()}>
-        <div>Showing</div>
-        <Select
-          defaultValue={String(currentItemPerPage)}
-          onChange={(value) => {
-            setCurrentPage(1)
-            setCurrentItemPerPage(Number(value))
-          }}
-        >
-          <SelectTrigger
-            appearance="form"
-            color="neutral"
-            variant="soft"
-            className="h-9"
+      {allowCustomItemsPerPage && (
+        <div className={paginationAmountPerPageWrapperClsx()}>
+          <div>Showing</div>
+          <Select
+            defaultValue={String(currentItemPerPage)}
+            onChange={(value) => {
+              setCurrentPage(1)
+              setCurrentItemPerPage(Number(value))
+            }}
           >
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            {[5, 15, 25, 50, 100].map((value) => (
-              <SelectItem key={value} value={String(value)}>
-                {value}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        <div>
-          {recordName} of {formatNumber(totalItems)}
+            <SelectTrigger
+              appearance="form"
+              color="neutral"
+              variant="soft"
+              className="h-9"
+            >
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {[5, 15, 25, 50, 100].map((value) => (
+                <SelectItem key={value} value={String(value)}>
+                  {value}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <div>
+            {recordName} of {formatNumber(totalItems)}
+          </div>
+          {allowCustomPage && (
+            <div className="flex items-center h-4 space-x-2">
+              <Separator orientation="vertical" />
+              <span>Go to</span>
+              <TextFieldInput
+                className="h-[34px] w-14 text-center"
+                value={customPage}
+                onChange={(e) => setCustomPage(e.target.value)}
+                onBlur={(e) => onCustomPageChange(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    onCustomPageChange(e.currentTarget.value)
+                  }
+                }}
+              />
+              <span>Page</span>
+            </div>
+          )}
         </div>
-      </div>
+      )}
 
       <div className={paginationNavigationClsx()} aria-controls="content">
         <button
