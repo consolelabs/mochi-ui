@@ -61,6 +61,7 @@ export const TransactionSection = () => {
           totalItems: total,
           onItemPerPageChange: setSize,
           onPageChange: setPage,
+          allowCustomPage: true,
         },
       }}
       className="px-6"
