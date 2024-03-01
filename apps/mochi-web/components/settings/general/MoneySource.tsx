@@ -36,6 +36,17 @@ export const MoneySource = () => {
   const { isOpen, onOpenChange } = useDisclosure()
   const [code, setCode] = useState('')
 
+  const sortedWallets = [...wallets].sort((a, b) => {
+    if (a.id === defaultMoneySource.platform) return -1
+    if (b.id === defaultMoneySource.platform) return 1
+    if (a.chainSymbol === 'SOL' && b.chainSymbol !== 'SOL') return -1
+    if (a.chainSymbol !== 'SOL' && b.chainSymbol === 'SOL') return 1
+    return (
+      Number(b.usd_amount.slice(b.usd_amount.indexOf('$') + 1)) -
+      Number(a.usd_amount.slice(a.usd_amount.indexOf('$') + 1))
+    )
+  })
+
   const onAddNewWallet = async () => {
     if (!profile?.id) return
     const res = await api.profile.connect.requestCode(profile.id)
@@ -106,7 +117,7 @@ export const MoneySource = () => {
                         }
                       >
                         <ScrollAreaViewport>
-                          {wallets.map((each) =>
+                          {sortedWallets.map((each) =>
                             each.id === defaultMoneySource.platform ? (
                               <SelectItem
                                 key={defaultMoneySource.platform_identifier}
