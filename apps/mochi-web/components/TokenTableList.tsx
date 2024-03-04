@@ -27,6 +27,7 @@ import { Balance } from '~store/wallets'
 import clsx from 'clsx'
 import { useTheme } from '~hooks/useTheme'
 import { useCallback, useMemo, useState } from 'react'
+import { formatTokenDigit } from '~utils/string'
 import { TokenAvatar } from './TokenAvatar'
 
 const sortOrder = ['SOL']
@@ -95,7 +96,7 @@ const UsdValueHeader = (props: {
       onClick={setSort}
     >
       <span className="uppercase">USD Value</span>
-      <div className="w-4 h-4 flex items-center justify-center">{icon}</div>
+      <div className="flex justify-center items-center w-4 h-4">{icon}</div>
     </button>
   )
 }
@@ -115,7 +116,7 @@ const Token: ColumnProps<BalanceWithSource>['cell'] = (props) => (
     <div>
       <div className="flex space-x-1">
         <Typography level="h8">
-          {mochiUtils.formatTokenDigit(props.row.original.asset_balance || 0)}
+          {formatTokenDigit(props.row.original.asset_balance || 0)}
         </Typography>
         <Typography level="h8" color="textSecondary">
           {props.row.original.token?.symbol}

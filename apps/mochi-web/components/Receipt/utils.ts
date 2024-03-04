@@ -4,10 +4,11 @@ import { utils } from 'ethers'
 import { api } from '~constants/mochi'
 import { HOME_URL } from '~envs'
 import { truncate } from '@dwarvesf/react-utils'
+import { formatTokenDigit } from '~utils/string'
 import { templates, type TemplateName } from './Template'
 
 function getAmountData(tx: any) {
-  const amountSymbol = mochiUtils.formatTokenDigit({
+  const amountSymbol = formatTokenDigit({
     value: utils.formatUnits(tx?.amount ?? 0, tx?.token.decimal ?? 0),
   })
   const amountDisplay = amountSymbol
@@ -137,6 +138,10 @@ export async function transformData(rawData: any) {
         rawData?.amount ?? 0,
         rawData?.token.decimal ?? 0,
       ),
+      bound: {
+        hi: 1_000_000,
+        lo: -1_000_000,
+      },
     }),
     usd_amount: mochiUtils.formatUsdDigit(rawData.usd_amount),
     short_date: '',
@@ -180,6 +185,10 @@ export async function transformData(rawData: any) {
     ),
     scientificFormat: false,
     subscript: false,
+    bound: {
+      hi: 1_000_000,
+      lo: -1_000_000,
+    },
   })
   // @ts-ignore
   const groupAmountUsdDisplay = mochiUtils.formatUsdDigit(
