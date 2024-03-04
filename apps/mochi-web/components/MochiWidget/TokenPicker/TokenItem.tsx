@@ -1,6 +1,7 @@
 import { Balance } from '~store'
-import { utils } from '@consolelabs/mochi-formatter'
 import Image from 'next/image'
+import { formatTokenDigit } from '~utils/string'
+import { utils } from '@consolelabs/mochi-formatter'
 
 interface ItemProps {
   item: Balance
@@ -24,7 +25,7 @@ export const TokenItem: React.FC<ItemProps> = ({ item, onSelect }) => {
       <div className="flex flex-col flex-1">
         <h3 className="text-sm font-medium">{item.token?.symbol}</h3>
         <span className="text-xs text-[#848281] font-medium">
-          {utils.formatTokenDigit(item.asset_balance)}
+          {formatTokenDigit(item.asset_balance)}
         </span>
       </div>
       <span className="text-sm">{utils.formatUsdDigit(item.usd_balance)}</span>

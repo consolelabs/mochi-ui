@@ -1,6 +1,5 @@
 import { shallow } from 'zustand/shallow'
 import { NativeImage } from '~cpn/NativeImage'
-import { Avatar } from '~cpn/base/avatar'
 import { HOME_URL } from '~envs'
 import { usePayRequest } from '~store/pay-request'
 
@@ -15,12 +14,10 @@ const gradients = [
 
 export type Props = {
   isDone: boolean
-  chainIcon?: string
   tokenIcon: string
   status: string
   amount: string
   symbol: string
-  native: boolean
   isOG?: boolean
 }
 
@@ -30,10 +27,8 @@ export type Props = {
 export function CardUI({
   amount,
   symbol,
-  native,
   isDone,
   status,
-  chainIcon,
   tokenIcon,
   isOG = false,
 }: Props) {
@@ -147,25 +142,17 @@ export function CardUI({
               borderRadius: '100%',
             }}
           >
-            {native ? (
-              <NativeImage
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: '100%',
-                  height: '100%',
-                }}
-                src={tokenIcon}
-                alt={`${symbol} token icon`}
-              />
-            ) : (
-              <Avatar
-                cutoutSrc={chainIcon || '/assets/coin.png'}
-                src={tokenIcon}
-                size="xs"
-              />
-            )}
+            <NativeImage
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+              }}
+              src={tokenIcon}
+              alt={`${symbol} token icon`}
+            />
           </div>
           <div
             style={{
