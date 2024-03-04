@@ -7,6 +7,7 @@ import { utils, BigNumber } from 'ethers'
 import { ROUTES } from '~constants/routes'
 import { appLogo, discordLogo, telegramLogo } from '~utils/image'
 import { formatDate, formatRelative } from '~utils/time'
+import { formatTokenDigit } from '~utils/string'
 import { Tx } from './types'
 
 function isVault(source: string) {
@@ -218,12 +219,12 @@ export async function transform(d: any, isNested = false): Promise<Tx> {
       symbol: d.token?.symbol,
       decimal: d.token?.decimal,
     },
-    singleAmount: mochiUtils.formatTokenDigit(
+    singleAmount: formatTokenDigit(
       utils.formatUnits(sumAmount, d.token?.decimal),
     ),
     amount: isNested
       ? d.amount
-      : mochiUtils.formatTokenDigit(
+      : formatTokenDigit(
           utils.formatUnits(d.group_total_amount || d.amount, d.token?.decimal),
         ),
     amountUsd: mochiUtils.formatUsdDigit(d.group_total_usd || d.usd_amount),
