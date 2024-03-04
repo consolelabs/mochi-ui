@@ -17,6 +17,7 @@ import clsx from 'clsx'
 import useSWR from 'swr'
 import { api } from '~constants/mochi'
 import { useTheme } from '~hooks/useTheme'
+import { formatTokenDigit } from '~utils/string'
 import { Moniker } from './MochiWidget/TokenPicker/type'
 import { MonikerIcons } from './MochiWidget/TokenPicker/utils'
 import { BalanceWithSource } from './TokenTableList'
@@ -51,7 +52,7 @@ const MonikerName: ColumnProps<Moniker>['cell'] = (props) => (
         color="textSecondary"
         className="flex items-center h-3.5"
       >
-        {`${utils.formatTokenDigit(props.row.original.token_amount)} ${
+        {`${formatTokenDigit(props.row.original.token_amount)} ${
           props.row.original.token.symbol
         }`}
       </Typography>

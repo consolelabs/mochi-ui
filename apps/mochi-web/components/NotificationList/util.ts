@@ -1,4 +1,4 @@
-import UI, { Platform, utils as mochiUtils } from '@consolelabs/mochi-formatter'
+import UI, { Platform } from '@consolelabs/mochi-formatter'
 import { ActivityType } from '@consolelabs/mochi-rest'
 import emojiStrip from 'emoji-strip'
 import { utils } from 'ethers'
@@ -7,6 +7,7 @@ import useSWR, { mutate } from 'swr'
 import useSWRInfinite from 'swr/infinite'
 import { api } from '~constants/mochi'
 import { ROUTES } from '~constants/routes'
+import { formatTokenDigit } from '~utils/string'
 
 export const CHANGELOG_HEIGHT = 56
 export const MAX_ROW_COUNT = 7
@@ -92,7 +93,7 @@ async function transform(raw: any) {
     },
     amount:
       amount && validDecimal && token
-        ? mochiUtils.formatTokenDigit(utils.formatUnits(amount, token.decimal))
+        ? formatTokenDigit(utils.formatUnits(amount, token.decimal))
         : amount,
     token,
     url,
