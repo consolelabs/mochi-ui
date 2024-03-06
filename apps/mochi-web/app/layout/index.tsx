@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import { ElementRef, ReactNode, forwardRef } from 'react'
 import { Footer } from './footer'
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
   noFooter?: boolean
   className?: string
@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const Layout = forwardRef<ElementRef<'div'>, Props>((props, ref) => {
-  const { footer, hasChangelogAlert } = props
+  const { footer, hasChangelogAlert, ...rest } = props
   return (
     <div
       ref={ref}
@@ -22,6 +22,7 @@ export const Layout = forwardRef<ElementRef<'div'>, Props>((props, ref) => {
           : 'h-[calc(100vh-56px)]',
         props.className ?? '',
       )}
+      {...rest}
     >
       {props.children}
       {!(props.noFooter ?? false) && (footer || <Footer />)}

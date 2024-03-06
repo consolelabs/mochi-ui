@@ -1,8 +1,10 @@
 import {
   Badge,
+  BadgeIcon,
   Button,
   IconButton,
   Pagination,
+  Tooltip,
   Typography,
 } from '@mochi-ui/core'
 import { Layout } from '~app/layout'
@@ -13,11 +15,13 @@ import { ModelProductChangelogs } from '~types/mochi-schema'
 import { format, isValid } from 'date-fns'
 import Link from 'next/link'
 import { ROUTES } from '~constants/routes'
-import { InboxSolid } from '@mochi-ui/icons'
+import { ArrowUpLine, InboxSolid } from '@mochi-ui/icons'
 import { HOME_URL, TWITTER_LINK } from '~envs'
 import { useRef, useState } from 'react'
 import { Footer } from '~app/layout/footer'
 import { useFetchChangelogs } from '~hooks/changelog/useFetchChangelogs'
+import { useDisclosure } from '@dwarvesf/react-hooks'
+import clsx from 'clsx'
 
 const DEFAULT_PAGE_SIZE = 5
 
@@ -64,8 +68,24 @@ export default function Changelog() {
     size: DEFAULT_PAGE_SIZE,
   })
 
+  const {
+    isOpen: isShowScrollTop,
+    onOpen: setShowScrollTop,
+    onClose: setHideScrollTop,
+  } = useDisclosure()
+
   return (
-    <Layout ref={ref} footer={<Footer includeEmailSubscribe />}>
+    <Layout
+      ref={ref}
+      footer={<Footer includeEmailSubscribe />}
+      onScroll={(e) => {
+        if (e.currentTarget.scrollTop > 500) {
+          setShowScrollTop()
+        } else {
+          setHideScrollTop()
+        }
+      }}
+    >
       <SEO
         description="The latest updates from Mochi."
         image={`${HOME_URL}/changelog-thumbnail.png`}
@@ -91,20 +111,26 @@ export default function Changelog() {
                 Follow @mochi_gg
               </Link>
             </Button>
-            <IconButton
-              label="Subscribe"
-              color="neutral"
-              variant="outline"
-              className="!text-xl !p-1.5"
-              onClick={() => {
-                ref.current?.scrollTo({
-                  top: ref.current?.scrollHeight,
-                  behavior: 'smooth',
-                })
-              }}
+            <Tooltip
+              content="Subscribe"
+              arrow="top-center"
+              componentProps={{ trigger: { asChild: true } }}
             >
-              <InboxSolid />
-            </IconButton>
+              <IconButton
+                label="Subscribe"
+                color="neutral"
+                variant="outline"
+                className="!text-xl !p-1.5"
+                onClick={() => {
+                  ref.current?.scrollTo({
+                    top: ref.current?.scrollHeight,
+                    behavior: 'smooth',
+                  })
+                }}
+              >
+                <InboxSolid />
+              </IconButton>
+            </Tooltip>
           </div>
         </div>
 
@@ -124,6 +150,28 @@ export default function Changelog() {
           className="mb-4"
         />
       </div>
+
+      <Badge
+        appearance="neutral"
+        className={clsx(
+          'cursor-pointer top-14 left-1/2 -translate-x-1/2 z-10 absolute inline-flex transition border border-neutral-outline-border',
+          {
+            '-translate-y-full': !isShowScrollTop,
+            'translate-y-1/2': isShowScrollTop,
+          },
+        )}
+        onClick={() =>
+          ref.current?.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+          })
+        }
+      >
+        <BadgeIcon className="-ml-0.5">
+          <ArrowUpLine className="w-3.5 h-3.5" />
+        </BadgeIcon>
+        <Typography level="p5">Scroll to top</Typography>
+      </Badge>
     </Layout>
   )
 }
