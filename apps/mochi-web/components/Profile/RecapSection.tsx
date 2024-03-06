@@ -36,6 +36,9 @@ import { useTheme } from '~hooks/useTheme'
 import clsx from 'clsx'
 import { useState } from 'react'
 import { useFetchTotalBalance } from '~hooks/profile/useFetchTotalBalance'
+import { ROUTES } from '~constants/routes'
+import { useRouter } from 'next/router'
+import events from '~constants/events'
 
 const intervals = [
   {
@@ -120,6 +123,14 @@ const UserSection = ({ type, statTx }: Props) => {
       />
     )
 
+  const { pathname, push } = useRouter()
+  const redirectToTipWidget = async () => {
+    if (pathname !== ROUTES.HOME) {
+      await push(ROUTES.HOME)
+    }
+    window.dispatchEvent(new Event(events.TIP_WIDGET.FOCUS_AMOUNT))
+  }
+
   if (type === 'sent' && !statTx) {
     return (
       <div className="flex items-center py-4 space-x-2">
@@ -128,7 +139,12 @@ const UserSection = ({ type, statTx }: Props) => {
           <Typography level="p5" color="textTertiary">
             To send money
           </Typography>
-          <Button variant="link" color="neutral" className="pr-0 pl-0 h-auto">
+          <Button
+            variant="link"
+            color="neutral"
+            className="pr-0 pl-0 h-auto"
+            onClick={redirectToTipWidget}
+          >
             <TipSolid className="w-4 h-4" />
             tip
           </Button>
