@@ -107,8 +107,8 @@ export const DeleteAppModal = ({
         <ModalContent className="w-full max-w-sm">
           <form onSubmit={handleSubmit(onDeleteApp)}>
             <div className="flex flex-col items-center">
-              <div className="flex items-center justify-center p-3 border-8 rounded-full w-fit bg-danger-outline-border border-danger-outline">
-                <AlertCircleLine className="w-6 h-6 text-danger-solid" />
+              <div className="flex items-center justify-center p-3 border-8 rounded-full w-fit bg-danger-outline-active border-danger-outline-hover">
+                <AlertCircleLine className="w-6 h-6 text-danger-outline-fg" />
               </div>
               <Typography level="h6" className="mt-5">
                 Delete {name}
@@ -127,7 +127,7 @@ export const DeleteAppModal = ({
                 <FormControl error={!!fieldState.error} className="mt-5">
                   <FormLabel>App name</FormLabel>
                   <TextFieldRoot>
-                    <TextFieldInput {...field} placeholder="<App name>" />
+                    <TextFieldInput {...field} placeholder={name} />
                   </TextFieldRoot>
                   <FormHelperText>
                     To delete this app, please confirm the name.

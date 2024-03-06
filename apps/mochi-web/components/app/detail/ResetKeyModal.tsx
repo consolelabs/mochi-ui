@@ -22,7 +22,7 @@ export const ResetKeyModal = ({ trigger, onConfirm }: Props) => {
         <ModalOverlay />
         <ModalContent className="w-full max-w-sm">
           <div className="flex flex-col items-center">
-            <div className="flex items-center justify-center p-3 border-8 rounded-full w-fit bg-warning-outline-border border-warning-outline">
+            <div className="flex items-center justify-center p-3 border-8 rounded-full w-fit bg-warning-outline-active border-warning-outline-hover">
               <AlertTriangleLine className="w-6 h-6 text-warning-solid" />
             </div>
             <Typography level="h6" className="mt-5">
