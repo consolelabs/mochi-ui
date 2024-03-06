@@ -1,4 +1,4 @@
-import { Badge, Button, IconButton, Typography } from '@mochi-ui/core'
+import { Badge, Button, IconButton, Tooltip, Typography } from '@mochi-ui/core'
 import { InboxSolid } from '@mochi-ui/icons'
 import { format, isValid } from 'date-fns'
 import Link from 'next/link'
@@ -39,15 +39,21 @@ export const ChangelogDetailTitle = (props: ChangelogDetailTitleProps) => {
             Follow @mochi_gg
           </Link>
         </Button>
-        <IconButton
-          label="Subscribe"
-          color="neutral"
-          variant="outline"
-          onClick={onFollow}
-          className="!text-xl !p-1.5"
+        <Tooltip
+          content="Subscribe"
+          arrow="top-center"
+          componentProps={{ trigger: { asChild: true } }}
         >
-          <InboxSolid />
-        </IconButton>
+          <IconButton
+            label="Subscribe"
+            color="neutral"
+            variant="outline"
+            onClick={onFollow}
+            className="!text-xl !p-1.5"
+          >
+            <InboxSolid />
+          </IconButton>
+        </Tooltip>
       </div>
     </div>
   )
