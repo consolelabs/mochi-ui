@@ -21,6 +21,7 @@ import { BalanceWithSource } from '~cpn/TokenTableList'
 import { useShallow } from 'zustand/react/shallow'
 import clsx from 'clsx'
 import { useLoginWidget } from '@mochi-web3/login-widget'
+import { formatTokenDigit } from '~utils/string'
 import { TokenPicker } from '../TokenPicker'
 import { Moniker } from '../TokenPicker/type'
 import { useTipWidget } from '../Tip/store'
@@ -64,7 +65,7 @@ export const AmountInput: React.FC<AmountInputProps> = ({
 
   const balance = isMonikerAsset
     ? getBalanceByMoniker(selectedAsset, wallet).display
-    : `${utils.formatTokenDigit(selectedAsset?.asset_balance ?? 0)} ${
+    : `${formatTokenDigit(selectedAsset?.asset_balance ?? 0)} ${
         selectedAsset?.token?.symbol ?? 'SOL'
       }`.trim()
 
