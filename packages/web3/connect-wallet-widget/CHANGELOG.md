@@ -1,5 +1,11 @@
 # @mochi-web3/connect-wallet-widget
 
+## 0.0.14
+
+### Patch Changes
+
+- [#810](https://github.com/consolelabs/mochi-ui/pull/810) [`fd397fe`](https://github.com/consolelabs/mochi-ui/commit/fd397fea8ec0826a8ecfd0585a0a290494b66635) Thanks [@tuanddd](https://github.com/tuanddd)! - Use own logic of bs58
+
 ## 0.0.13
 
 ### Patch Changes
