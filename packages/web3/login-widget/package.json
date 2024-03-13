@@ -52,7 +52,6 @@
     "@solana/web3.js": "1.74.0",
     "@uidotdev/usehooks": "^2.4.0",
     "browser-string-hexer": "^1.0.0",
-    "bs58": "^5.0.0",
     "dlv": "^1.1.3",
     "ethers": "^5.7.0",
     "framer-motion": "^10.16.4",
