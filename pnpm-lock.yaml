@@ -110,7 +110,7 @@ importers:
         version: 7.2.0(@swc/core@1.3.96)(ts-node@10.9.1)(typescript@5.2.2)
       turbo:
         specifier: latest
-        version: 1.12.2
+        version: 1.12.5
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
@@ -121,11 +121,11 @@ importers:
         specifier: ^0.1.67
         version: 0.1.67(@solana/buffer-layout@4.0.1)(@solana/spl-token@0.3.7)(@solana/web3.js@1.74.0)(bn.js@5.2.1)(borsh@0.7.0)
       '@consolelabs/mochi-formatter':
-        specifier: ^20.0.3
-        version: 20.0.3(@consolelabs/mochi-rest@5.3.0)(ioredis@5.3.2)
+        specifier: ^20.0.5
+        version: 20.0.5(@consolelabs/mochi-rest@5.3.3)(ioredis@5.3.2)
       '@consolelabs/mochi-rest':
-        specifier: ^5.3.0
-        version: 5.3.0
+        specifier: ^5.3.3
+        version: 5.3.3
       '@dwarvesf/react-hooks':
         specifier: ^0.8.2
         version: 0.8.2(react-dom@18.2.0)(react@18.2.0)
@@ -4476,14 +4476,14 @@ packages:
       chalk: 4.1.2
     dev: true
 
-  /@consolelabs/mochi-formatter@20.0.3(@consolelabs/mochi-rest@5.3.0)(ioredis@5.3.2):
-    resolution: {integrity: sha512-i7DSOmd8eRrg58Q6kF774PdqFO7v0+92bNdNr6teinAI5/B6JgJZiK/g08aM1cLKff8Zkc9wVMXxGUzbRF7jnQ==}
+  /@consolelabs/mochi-formatter@20.0.5(@consolelabs/mochi-rest@5.3.3)(ioredis@5.3.2):
+    resolution: {integrity: sha512-5cNoyIKmPf0I6/WDXS8A+pdpI+IsmlNMcjIbVroXBPZCvr1nJTCFMZLYyt/JsV92g0Vu8bqfnrOlFRFScjPkjg==}
     peerDependencies:
-      '@consolelabs/mochi-rest': ^5.3.1
+      '@consolelabs/mochi-rest': ^5.3.3
       ioredis: ^5.x.x
     dependencies:
       '@bonfida/spl-name-service': 1.6.1(@solana/web3.js@1.89.1)
-      '@consolelabs/mochi-rest': 5.3.0
+      '@consolelabs/mochi-rest': 5.3.3
       '@solana/web3.js': 1.89.1
       change-case: 4.1.2
       ethers: 6.10.0
@@ -4502,6 +4502,18 @@ packages:
 
   /@consolelabs/mochi-rest@5.3.0:
     resolution: {integrity: sha512-vgyG0ApiPPJ0aXQnp2ingo2oWQvhr80uvKXJkR7bzu6zfS8WLp1sFvUnImOQwI75fW1nkP183+Wi7xCnyOqJhg==}
+    dependencies:
+      deepmerge: 4.3.1
+      lodash.snakecase: 4.1.1
+      nanoid: 5.0.4
+      path-parser: 6.1.0
+      snakecase-keys: 5.5.0
+      wretch: 2.6.0
+      zod: 3.22.4
+    dev: false
+
+  /@consolelabs/mochi-rest@5.3.3:
+    resolution: {integrity: sha512-6qbMsOqBdiTevIZUQOGLgcBG6CnTg1N7D5+E1HzcQViAs3QrjmXiyzLlbbOJKoa+5mIa/NihbbTpUjcCJoPU9w==}
     dependencies:
       deepmerge: 4.3.1
       lodash.snakecase: 4.1.1
@@ -25331,64 +25343,64 @@ packages:
       safe-buffer: 5.2.1
     dev: false
 
-  /turbo-darwin-64@1.12.2:
-    resolution: {integrity: sha512-Aq/ePQ5KNx6XGwlZWTVTqpQYfysm1vkwkI6kAYgrX5DjMWn+tUXrSgNx4YNte0F+V4DQ7PtuWX+jRG0h0ZNg0A==}
+  /turbo-darwin-64@1.12.5:
+    resolution: {integrity: sha512-0GZ8reftwNQgIQLHkHjHEXTc/Z1NJm+YjsrBP+qhM/7yIZ3TEy9gJhuogDt2U0xIWwFgisTyzbtU7xNaQydtoA==}
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-darwin-arm64@1.12.2:
-    resolution: {integrity: sha512-wTr+dqkwJo/eXE+4SPTSeNBKyyfQJhI6I9sKVlCSBmtaNEqoGNgdVzgMUdqrg9AIFzLIiKO+zhfskNaSWpVFow==}
+  /turbo-darwin-arm64@1.12.5:
+    resolution: {integrity: sha512-8WpOLNNzvH6kohQOjihD+gaWL+ZFNfjvBwhOF0rjEzvW+YR3Pa7KjhulrjWyeN2yMFqAPubTbZIGOz1EVXLuQA==}
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-linux-64@1.12.2:
-    resolution: {integrity: sha512-BggBKrLojGarDaa2zBo+kUR3fmjpd6bLA8Unm3Aa2oJw0UvEi3Brd+w9lNsPZHXXQYBUzNUY2gCdxf3RteWb0g==}
+  /turbo-linux-64@1.12.5:
+    resolution: {integrity: sha512-INit73+bNUpwqGZCxgXCR3I+cQsdkQ3/LkfkgSOibkpg+oGqxJRzeXw3sp990d7SCoE8QOcs3iw+PtiFX/LDAA==}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-linux-arm64@1.12.2:
-    resolution: {integrity: sha512-v/apSRvVuwYjq1D9MJFsHv2EpGd1S4VoSdZvVfW6FaM06L8CFZa92urNR1svdGYN28YVKwK9Ikc9qudC6t/d5A==}
+  /turbo-linux-arm64@1.12.5:
+    resolution: {integrity: sha512-6lkRBvxtI/GQdGtaAec9LvVQUoRw6nXFp0kM+Eu+5PbZqq7yn6cMkgDJLI08zdeui36yXhone8XGI8pHg8bpUQ==}
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-windows-64@1.12.2:
-    resolution: {integrity: sha512-3uDdwXcRGkgopYFdPDpxQiuQjfQ12Fxq0fhj+iGymav0eWA4W4wzYwSdlUp6rT22qOBIzaEsrIspRwx1DsMkNg==}
+  /turbo-windows-64@1.12.5:
+    resolution: {integrity: sha512-gQYbOhZg5Ww0bQ/bC0w/4W6yQRwBumUUnkB+QPo15VznwxZe2a7bo6JM+9Xy9dKLa/kn+p7zTqme4OEp6M3/Yg==}
     cpu: [x64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-windows-arm64@1.12.2:
-    resolution: {integrity: sha512-zNIHnwtQfJSjFi7movwhPQh2rfrcKZ7Xv609EN1yX0gEp9GxooCUi2yNnBQ8wTqFjioA2M5hZtGJQ0RrKaEm/Q==}
+  /turbo-windows-arm64@1.12.5:
+    resolution: {integrity: sha512-auvhZ9FrhnvQ4mgBlY9O68MT4dIfprYGvd2uPICba/mHUZZvVy5SGgbHJ0KbMwaJfnnFoPgLJO6M+3N2gDprKw==}
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo@1.12.2:
-    resolution: {integrity: sha512-BcoQjBZ+LJCMdjzWhzQflOinUjek28rWXj07aaaAQ8T3Ehs0JFSjIsXOm4qIbo52G4xk3gFVcUtJhh/QRADl7g==}
+  /turbo@1.12.5:
+    resolution: {integrity: sha512-FATU5EnhrYG8RvQJYFJnDd18DpccDjyvd53hggw9T9JEg9BhWtIEoeaKtBjYbpXwOVrJQMDdXcIB4f2nD3QPPg==}
     hasBin: true
     optionalDependencies:
-      turbo-darwin-64: 1.12.2
-      turbo-darwin-arm64: 1.12.2
-      turbo-linux-64: 1.12.2
-      turbo-linux-arm64: 1.12.2
-      turbo-windows-64: 1.12.2
-      turbo-windows-arm64: 1.12.2
+      turbo-darwin-64: 1.12.5
+      turbo-darwin-arm64: 1.12.5
+      turbo-linux-64: 1.12.5
+      turbo-linux-arm64: 1.12.5
+      turbo-windows-64: 1.12.5
+      turbo-windows-arm64: 1.12.5
     dev: true
 
   /tweetnacl@1.0.3:
