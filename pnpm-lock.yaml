@@ -2402,9 +2402,6 @@ importers:
       browser-string-hexer:
         specifier: ^1.0.0
         version: 1.0.0
-      bs58:
-        specifier: ^5.0.0
-        version: 5.0.0
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
