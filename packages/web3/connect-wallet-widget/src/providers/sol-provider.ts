@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/return-await */
-import bs58 from 'bs58'
 import dlv from 'dlv'
 import { SystemProgram, PublicKey, Transaction } from '@solana/web3.js'
 import isMobile from 'is-mobile'
@@ -9,6 +8,9 @@ import {
   TransferInput,
   type ConnectResponse,
 } from './provider'
+import { base } from './base'
+
+const bs58 = base('123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz')
 
 export class ProviderSOL extends ChainProvider {
   public platform = 'solana-chain'
