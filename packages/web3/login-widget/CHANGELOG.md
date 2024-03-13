@@ -1,5 +1,21 @@
 # @mochi-web3/login-widget
 
+## 0.2.8
+
+### Patch Changes
+
+- [#809](https://github.com/consolelabs/mochi-ui/pull/809) [`42982cb`](https://github.com/consolelabs/mochi-ui/commit/42982cb8f5092c303b3fe898ef5c25f73f609579) Thanks [@tuanddd](https://github.com/tuanddd)! - Remove bs58 lib
+
+- Updated dependencies [[`e3782a7`](https://github.com/consolelabs/mochi-ui/commit/e3782a7693be72a82e9ba66895b8a1f379c99337), [`6d96390`](https://github.com/consolelabs/mochi-ui/commit/6d96390ade07ccac69baa4807e1b8bc3cbca4424)]:
+  - @mochi-ui/theme@0.18.0
+  - @mochi-ui/button@0.4.17
+  - @mochi-ui/dropdown@0.2.8
+  - @mochi-ui/icon-button@0.4.18
+  - @mochi-ui/scroll-area@0.0.7
+  - @mochi-ui/tabs@0.2.8
+  - @mochi-ui/typography@0.1.1
+  - @mochi-web3/connect-wallet-widget@0.0.13
+
 ## 0.2.7
 
 ### Patch Changes

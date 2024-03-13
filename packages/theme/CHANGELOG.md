@@ -1,5 +1,13 @@
 # @mochi-ui/theme
 
+## 0.18.0
+
+### Minor Changes
+
+- [#757](https://github.com/consolelabs/mochi-ui/pull/757) [`e3782a7`](https://github.com/consolelabs/mochi-ui/commit/e3782a7693be72a82e9ba66895b8a1f379c99337) Thanks [@leduyhien152](https://github.com/leduyhien152)! - Fix table header style
+
+- [#767](https://github.com/consolelabs/mochi-ui/pull/767) [`6d96390`](https://github.com/consolelabs/mochi-ui/commit/6d96390ade07ccac69baa4807e1b8bc3cbca4424) Thanks [@leduyhien152](https://github.com/leduyhien152)! - Fix ContentEditable style
+
 ## 0.17.0
 
 ### Minor Changes

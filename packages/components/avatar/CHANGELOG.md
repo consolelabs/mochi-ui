@@ -1,5 +1,13 @@
 # @mochi-ui/avatar
 
+## 0.3.2
+
+### Patch Changes
+
+- Updated dependencies [[`e3782a7`](https://github.com/consolelabs/mochi-ui/commit/e3782a7693be72a82e9ba66895b8a1f379c99337), [`6d96390`](https://github.com/consolelabs/mochi-ui/commit/6d96390ade07ccac69baa4807e1b8bc3cbca4424)]:
+  - @mochi-ui/theme@0.18.0
+  - @mochi-ui/skeleton@1.0.11
+
 ## 0.3.1
 
 ### Patch Changes

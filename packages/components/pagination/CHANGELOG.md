@@ -1,5 +1,21 @@
 # @mochi-ui/pagination
 
+## 0.5.0
+
+### Minor Changes
+
+- [#795](https://github.com/consolelabs/mochi-ui/pull/795) [`2161237`](https://github.com/consolelabs/mochi-ui/commit/216123701d1b2fd7b4ed6aa6a9b3923d9117885e) Thanks [@leduyhien152](https://github.com/leduyhien152)! - Add custom items per page & hide on single page
+
+- [#792](https://github.com/consolelabs/mochi-ui/pull/792) [`511686b`](https://github.com/consolelabs/mochi-ui/commit/511686b11db087968d52408391f98ac7f3a4652e) Thanks [@leduyhien152](https://github.com/leduyhien152)! - Add custom page input
+
+### Patch Changes
+
+- Updated dependencies [[`e3782a7`](https://github.com/consolelabs/mochi-ui/commit/e3782a7693be72a82e9ba66895b8a1f379c99337), [`6d96390`](https://github.com/consolelabs/mochi-ui/commit/6d96390ade07ccac69baa4807e1b8bc3cbca4424)]:
+  - @mochi-ui/theme@0.18.0
+  - @mochi-ui/input@0.3.8
+  - @mochi-ui/select@0.3.1
+  - @mochi-ui/separator@0.0.32
+
 ## 0.4.1
 
 ### Patch Changes
