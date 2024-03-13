@@ -33,6 +33,10 @@ export function transformData(rawData: any): PayRequest {
   payRequest.amountDisplay = mochiUtils.formatTokenDigit({
     value: utils.formatUnits(payRequest.amount, payRequest.token.decimal),
     scientificFormat: true,
+    bound: {
+      hi: 1_000_000,
+      lo: -1_000_000,
+    },
   })
 
   payRequest.date = formatDate(payRequest.created_at, 'dd/MM/yyyy')
