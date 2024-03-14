@@ -5,8 +5,7 @@
   "main": "src/index.ts",
   "files": [
     "dist",
-    "PROVIDERS.md",
-    "provider.d.ts"
+    "PROVIDERS.md"
   ],
   "publishConfig": {
     "access": "public"
@@ -49,9 +48,7 @@
     "@mochi-ui/scroll-area": "workspace:^",
     "@mochi-web3/connect-wallet-widget": "workspace:*",
     "@radix-ui/react-dialog": "^1.0.5",
-    "@solana/web3.js": "1.74.0",
     "@uidotdev/usehooks": "^2.4.0",
-    "browser-string-hexer": "^1.0.0",
     "dlv": "^1.1.3",
     "ethers": "^5.7.0",
     "framer-motion": "^10.16.4",
