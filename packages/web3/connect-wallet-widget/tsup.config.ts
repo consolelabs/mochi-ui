@@ -5,5 +5,6 @@ export default defineConfig({
   splitting: false,
   target: 'es2019',
   format: ['cjs', 'esm'],
-  noExternal: ['@solana/web3.js', 'browser-string-hexer'],
+  noExternal: ['browser-string-hexer'],
+  external: ['@solana/web3.js'],
 })
