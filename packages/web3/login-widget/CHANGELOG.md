@@ -1,5 +1,11 @@
 # @mochi-web3/login-widget
 
+## 0.2.11
+
+### Patch Changes
+
+- [#814](https://github.com/consolelabs/mochi-ui/pull/814) [`6bd51e5`](https://github.com/consolelabs/mochi-ui/commit/6bd51e5f7b0cf21a8d4de952f199f92e7ec90089) Thanks [@tuanddd](https://github.com/tuanddd)! - Fix connect wallet persist to local storage
+
 ## 0.2.10
 
 ### Patch Changes
