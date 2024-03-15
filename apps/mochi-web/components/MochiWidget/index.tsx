@@ -67,6 +67,7 @@ export default function MochiWidget({ wrapperClassName, className }: Props) {
     <BottomSheetProvider
       className={clsx(
         'w-auto lg:w-full overflow-hidden rounded-2xl border shadow-xl border-divider',
+        'mochi-widget',
         wrapperClassName,
       )}
     >
