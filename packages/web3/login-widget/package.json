@@ -1,6 +1,6 @@
 {
   "name": "@mochi-web3/login-widget",
-  "version": "0.2.13",
+  "version": "0.2.14",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
