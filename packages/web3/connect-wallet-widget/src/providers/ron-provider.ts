@@ -54,7 +54,9 @@ export class ProviderRON extends ChainProvider {
     try {
       const { abi, to, from, args = [], method } = i
       const iface = new utils.Interface(abi)
-      const data = iface.encodeFunctionResult(method, args)
+      const sigHash = iface.getSighash(method)
+      const data =
+        sigHash + iface.encodeFunctionResult(method, args).slice(sigHash.length)
 
       if (isMobile() && this.session.topic && this.signClient) {
         return await this.signClient.request({
