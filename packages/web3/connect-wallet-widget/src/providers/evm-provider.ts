@@ -54,21 +54,21 @@ export class ProviderEVM extends ChainProvider {
       const { abi, to, from, args = [], method } = i
       const iface = new utils.Interface(abi)
       const sigHash = iface.getSighash(method)
-      const data =
-        sigHash + iface.encodeFunctionResult(method, args).slice(sigHash.length)
+      const data = sigHash + iface.encodeFunctionResult(method, args).slice(2)
 
       if (isMobile() && this.session.topic && this.signClient) {
-        return await this.signClient.request({
+        const resultData: string = await this.signClient.request({
           topic: this.session.topic,
           chainId: `eip155:${(+this.chainId).toString(10)}`,
           request: {
             method: 'eth_call',
-            params: [{ from, to, data }],
+            params: [{ from, to, data }, 'latest'],
           },
         })
+        return iface.decodeFunctionResult(method, resultData)
       }
 
-      return this.provider.request({
+      const resultData: string = this.provider.request({
         method: 'eth_call',
         params: [
           {
@@ -76,8 +76,11 @@ export class ProviderEVM extends ChainProvider {
             to,
             data,
           },
+          'latest',
         ],
       })
+
+      return iface.decodeFunctionResult(method, resultData)
     } catch (e) {
       console.error('evm-provider:method', e)
       return null
