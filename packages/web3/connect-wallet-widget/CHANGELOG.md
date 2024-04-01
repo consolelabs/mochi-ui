@@ -1,5 +1,11 @@
 # @mochi-web3/connect-wallet-widget
 
+## 0.2.2
+
+### Patch Changes
+
+- [#822](https://github.com/consolelabs/mochi-ui/pull/822) [`80d1075`](https://github.com/consolelabs/mochi-ui/commit/80d1075ddafa5b063ede542e7aca57afd5ba2222) Thanks [@tuanddd](https://github.com/tuanddd)! - Decode read data
+
 ## 0.2.1
 
 ### Patch Changes
