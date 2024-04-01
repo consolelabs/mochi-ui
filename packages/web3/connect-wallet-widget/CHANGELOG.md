@@ -1,5 +1,11 @@
 # @mochi-web3/connect-wallet-widget
 
+## 0.1.0
+
+### Minor Changes
+
+- [#816](https://github.com/consolelabs/mochi-ui/pull/816) [`03a72e6`](https://github.com/consolelabs/mochi-ui/commit/03a72e6065db76abb3ca13caea73cf9cc3747904) Thanks [@tuanddd](https://github.com/tuanddd)! - Add method for calling custom function in contract
+
 ## 0.0.15
 
 ### Patch Changes
