@@ -1,5 +1,11 @@
 # @mochi-web3/connect-wallet-widget
 
+## 0.2.0
+
+### Minor Changes
+
+- [#818](https://github.com/consolelabs/mochi-ui/pull/818) [`a6262b2`](https://github.com/consolelabs/mochi-ui/commit/a6262b2cb25a02127d99ab70023bacdfd573a764) Thanks [@tuanddd](https://github.com/tuanddd)! - Rename to read/write method
+
 ## 0.1.0
 
 ### Minor Changes
