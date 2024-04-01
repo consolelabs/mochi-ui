@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 /* eslint-disable @typescript-eslint/return-await */
 import dlv from 'dlv'
 import { SystemProgram, PublicKey, Transaction } from '@solana/web3.js'
@@ -54,6 +55,10 @@ export class ProviderSOL extends ChainProvider {
       console.error('sol-provider:transfer', e)
       return null
     }
+  }
+
+  async method() {
+    throw new Error('Not yet implemented')
   }
 
   async connect(): Promise<ConnectResponse> {

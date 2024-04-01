@@ -2,6 +2,14 @@ import { SVGProps } from 'react'
 import { SignClient } from '@walletconnect/sign-client'
 import { wcProfjectId } from '../constants'
 
+export type Input = {
+  abi: string
+  method: string
+  args: (string | number)[]
+  from: string
+  to: string
+}
+
 export type TransferInput = {
   chainId: string
   from: string
@@ -16,7 +24,7 @@ export type ConnectResponse = {
   platform: string
 } | null
 
-export abstract class ChainProvider<I = TransferInput> {
+export abstract class ChainProvider<I = Input> {
   public mobileProtocol: string = ''
   public provider: any
   public id: string = ''
@@ -86,7 +94,8 @@ export abstract class ChainProvider<I = TransferInput> {
     })
   }
 
-  abstract transfer(args: I): Promise<string>
+  abstract method(i: I): Promise<void | string>
+  abstract transfer(args: TransferInput): Promise<string>
   abstract connect(): Promise<ConnectResponse>
   abstract connectMobile(): Promise<ConnectResponse>
   abstract isInstalled(): Promise<boolean>
