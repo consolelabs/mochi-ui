@@ -68,7 +68,7 @@ export class ProviderEVM extends ChainProvider {
         return iface.decodeFunctionResult(method, resultData)
       }
 
-      const resultData: string = this.provider.request({
+      const resultData: string = await this.provider.request({
         method: 'eth_call',
         params: [
           {
