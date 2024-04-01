@@ -3,7 +3,13 @@ import hexer from 'browser-string-hexer'
 import { createStore } from 'mipd'
 import { utils } from 'ethers'
 import isMobile from 'is-mobile'
-import { msg, ChainProvider, TransferInput, Input } from './provider'
+import {
+  msg,
+  ChainProvider,
+  TransferInput,
+  WriteInput,
+  ReadInput,
+} from './provider'
 
 const eip6963Store = typeof window !== 'undefined' ? createStore() : null
 
@@ -43,9 +49,42 @@ export class ProviderEVM extends ChainProvider {
     return Object.assign(this)
   }
 
-  async method(i: Input) {
+  async read(i: ReadInput) {
     try {
-      const { abi, to, from, args, method } = i
+      const { abi, to, from, args = [], method } = i
+      const iface = new utils.Interface(abi)
+      const data = iface.encodeFunctionResult(method, args)
+
+      if (isMobile() && this.session.topic && this.signClient) {
+        return await this.signClient.request({
+          topic: this.session.topic,
+          chainId: `eip155:${(+this.chainId).toString(10)}`,
+          request: {
+            method: 'eth_call',
+            params: [{ from, to, data }],
+          },
+        })
+      }
+
+      return this.provider.request({
+        method: 'eth_call',
+        params: [
+          {
+            from,
+            to,
+            data,
+          },
+        ],
+      })
+    } catch (e) {
+      console.error('evm-provider:method', e)
+      return null
+    }
+  }
+
+  async write(i: WriteInput) {
+    try {
+      const { abi, to, from, args = [], method } = i
       const iface = new utils.Interface(abi)
       const data = iface.encodeFunctionData(method, args)
 

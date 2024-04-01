@@ -6,7 +6,11 @@ export class ProviderDisabled extends ChainProvider {
     return Object.assign(this)
   }
 
-  async method() {
+  async read() {
+    return ''
+  }
+
+  async write() {
     return ''
   }
 
