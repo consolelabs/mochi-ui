@@ -57,7 +57,11 @@ export class ProviderSOL extends ChainProvider {
     }
   }
 
-  async method() {
+  async read() {
+    throw new Error('Not yet implemented')
+  }
+
+  async write() {
     throw new Error('Not yet implemented')
   }
 
