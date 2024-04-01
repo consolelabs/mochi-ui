@@ -1,5 +1,11 @@
 # @mochi-web3/connect-wallet-widget
 
+## 0.2.3
+
+### Patch Changes
+
+- [#824](https://github.com/consolelabs/mochi-ui/pull/824) [`9e7a5b1`](https://github.com/consolelabs/mochi-ui/commit/9e7a5b11321e53025927ebdd243d83d8a3c50679) Thanks [@tuanddd](https://github.com/tuanddd)! - Fix await provider request
+
 ## 0.2.2
 
 ### Patch Changes
