@@ -1,5 +1,11 @@
 # @mochi-web3/connect-wallet-widget
 
+## 0.2.4
+
+### Patch Changes
+
+- [#826](https://github.com/consolelabs/mochi-ui/pull/826) [`0941153`](https://github.com/consolelabs/mochi-ui/commit/0941153485122d65fb5927c5141bee24b56347d5) Thanks [@tuanddd](https://github.com/tuanddd)! - Fix use encodeFunctionData
+
 ## 0.2.3
 
 ### Patch Changes
