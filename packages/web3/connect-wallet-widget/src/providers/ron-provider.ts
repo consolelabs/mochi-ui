@@ -54,8 +54,7 @@ export class ProviderRON extends ChainProvider {
     try {
       const { abi, to, from, args = [], method } = i
       const iface = new utils.Interface(abi)
-      const sigHash = iface.getSighash(method)
-      const data = sigHash + iface.encodeFunctionResult(method, args).slice(2)
+      const data = iface.encodeFunctionData(method, args)
 
       if (isMobile() && this.session.topic && this.signClient) {
         const resultData: string = await this.signClient.request({
@@ -80,9 +79,10 @@ export class ProviderRON extends ChainProvider {
           'latest',
         ],
       })
+
       return iface.decodeFunctionResult(method, resultData)
     } catch (e) {
-      console.error('evm-provider:method', e)
+      console.error('ron-provider:read', e)
       return null
     }
   }
@@ -115,7 +115,7 @@ export class ProviderRON extends ChainProvider {
         ],
       })
     } catch (e) {
-      console.error('evm-provider:method', e)
+      console.error('ron-provider:write', e)
       return null
     }
   }
