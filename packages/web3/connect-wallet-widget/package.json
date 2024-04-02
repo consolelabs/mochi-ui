@@ -1,6 +1,6 @@
 {
   "name": "@mochi-web3/connect-wallet-widget",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Widget to connect wallets of various chains",
   "keywords": [
     "connect-wallet-widget"
