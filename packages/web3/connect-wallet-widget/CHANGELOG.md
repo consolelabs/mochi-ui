@@ -1,5 +1,65 @@
 # @mochi-web3/connect-wallet-widget
 
+## 0.2.4
+
+### Patch Changes
+
+- [#826](https://github.com/consolelabs/mochi-ui/pull/826) [`0941153`](https://github.com/consolelabs/mochi-ui/commit/0941153485122d65fb5927c5141bee24b56347d5) Thanks [@tuanddd](https://github.com/tuanddd)! - Fix use encodeFunctionData
+
+## 0.2.3
+
+### Patch Changes
+
+- [#824](https://github.com/consolelabs/mochi-ui/pull/824) [`9e7a5b1`](https://github.com/consolelabs/mochi-ui/commit/9e7a5b11321e53025927ebdd243d83d8a3c50679) Thanks [@tuanddd](https://github.com/tuanddd)! - Fix await provider request
+
+## 0.2.2
+
+### Patch Changes
+
+- [#822](https://github.com/consolelabs/mochi-ui/pull/822) [`80d1075`](https://github.com/consolelabs/mochi-ui/commit/80d1075ddafa5b063ede542e7aca57afd5ba2222) Thanks [@tuanddd](https://github.com/tuanddd)! - Decode read data
+
+## 0.2.1
+
+### Patch Changes
+
+- [#820](https://github.com/consolelabs/mochi-ui/pull/820) [`01fb942`](https://github.com/consolelabs/mochi-ui/commit/01fb9422f4f7f1588a0045da0adad6467a05291c) Thanks [@tuanddd](https://github.com/tuanddd)! - Read method
+
+## 0.2.0
+
+### Minor Changes
+
+- [#818](https://github.com/consolelabs/mochi-ui/pull/818) [`a6262b2`](https://github.com/consolelabs/mochi-ui/commit/a6262b2cb25a02127d99ab70023bacdfd573a764) Thanks [@tuanddd](https://github.com/tuanddd)! - Rename to read/write method
+
+## 0.1.0
+
+### Minor Changes
+
+- [#816](https://github.com/consolelabs/mochi-ui/pull/816) [`03a72e6`](https://github.com/consolelabs/mochi-ui/commit/03a72e6065db76abb3ca13caea73cf9cc3747904) Thanks [@tuanddd](https://github.com/tuanddd)! - Add method for calling custom function in contract
+
+## 0.0.15
+
+### Patch Changes
+
+- [#812](https://github.com/consolelabs/mochi-ui/pull/812) [`d134af5`](https://github.com/consolelabs/mochi-ui/commit/d134af5f1797e8753a06106129ae902c931b0254) Thanks [@tuanddd](https://github.com/tuanddd)! - Fix build config
+
+## 0.0.14
+
+### Patch Changes
+
+- [#810](https://github.com/consolelabs/mochi-ui/pull/810) [`fd397fe`](https://github.com/consolelabs/mochi-ui/commit/fd397fea8ec0826a8ecfd0585a0a290494b66635) Thanks [@tuanddd](https://github.com/tuanddd)! - Use own logic of bs58
+
+## 0.0.13
+
+### Patch Changes
+
+- Updated dependencies [[`e3782a7`](https://github.com/consolelabs/mochi-ui/commit/e3782a7693be72a82e9ba66895b8a1f379c99337), [`6d96390`](https://github.com/consolelabs/mochi-ui/commit/6d96390ade07ccac69baa4807e1b8bc3cbca4424)]:
+  - @mochi-ui/theme@0.18.0
+  - @mochi-ui/badge@0.3.6
+  - @mochi-ui/button@0.4.17
+  - @mochi-ui/dropdown@0.2.8
+  - @mochi-ui/tabs@0.2.8
+  - @mochi-ui/typography@0.1.1
+
 ## 0.0.12
 
 ### Patch Changes

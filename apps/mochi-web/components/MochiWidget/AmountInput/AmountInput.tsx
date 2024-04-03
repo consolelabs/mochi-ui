@@ -240,7 +240,10 @@ export const AmountInput: React.FC<AmountInputProps> = ({
 
   useEffect(() => {
     function focusInput() {
-      ref.current?.focus()
+      document
+        .querySelector('.mochi-widget')
+        ?.scrollIntoView({ behavior: 'smooth' })
+      ref.current?.focus({ preventScroll: true })
     }
 
     window.addEventListener(events.TIP_WIDGET.FOCUS_AMOUNT, focusInput)

@@ -18,7 +18,7 @@ import { AnimatePresence, Transition, Variants, m } from 'framer-motion'
 import { useCallback, useEffect, useState } from 'react'
 import ConnectSocial from './connect-social'
 import fetchers from './fetchers'
-import { useLoginWidget } from './store'
+import { STORAGE_KEY, useLoginWidget } from './store'
 
 const {
   loginContentClsx,
@@ -146,6 +146,7 @@ export default function LoginContent({
       if (!profile) return
       setIsLoadingProfile(false)
 
+      localStorage.setItem(STORAGE_KEY, token as string)
       dispatch({
         type: 'login',
         payload: {

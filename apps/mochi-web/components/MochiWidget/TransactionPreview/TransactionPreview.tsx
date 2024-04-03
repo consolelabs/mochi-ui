@@ -11,7 +11,9 @@ import {
 import { useProfileStore } from '~store'
 import UI, { Platform } from '@consolelabs/mochi-formatter'
 import stripEmoji from 'emoji-strip'
+import { formatTokenAmount } from '~utils/number'
 import { useTipWidget } from '../Tip/store'
+import { isToken } from '../TokenPicker/utils'
 
 function Recipient({
   children,
@@ -55,7 +57,7 @@ function Recipient({
 
 function TipPreview() {
   const { me } = useProfileStore()
-  const { wallet, request, amountUsd } = useTipWidget()
+  const { wallet, request } = useTipWidget()
 
   const receivers = useMemo(() => {
     if (!request.recipients) return null
@@ -120,7 +122,12 @@ function TipPreview() {
           )}
         </div>
         <span>They will receive</span>
-        <span className="text-right">{amountUsd} USD</span>
+        <span className="text-right">
+          {formatTokenAmount(request.amount ?? 0).display}{' '}
+          {isToken(request.asset)
+            ? request.asset?.token?.symbol ?? ''
+            : request.asset?.name ?? ''}
+        </span>
       </div>
     </div>
   )

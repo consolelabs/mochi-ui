@@ -1,6 +1,6 @@
 {
   "name": "@mochi-web3/connect-wallet-widget",
-  "version": "0.0.12",
+  "version": "0.2.4",
   "description": "Widget to connect wallets of various chains",
   "keywords": [
     "connect-wallet-widget"
@@ -49,7 +49,6 @@
     "@solana/web3.js": "1.74.0",
     "@walletconnect/sign-client": "2.10.6",
     "browser-string-hexer": "^1.0.0",
-    "bs58": "^5.0.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "dlv": "^1.1.3",
