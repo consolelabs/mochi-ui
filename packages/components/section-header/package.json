@@ -1,6 +1,6 @@
 {
   "name": "@mochi-ui/section-header",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [

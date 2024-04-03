@@ -3,13 +3,17 @@ import hexer from 'browser-string-hexer'
 import { createStore } from 'mipd'
 import { utils } from 'ethers'
 import isMobile from 'is-mobile'
-import { msg, ChainProvider, TransferInput } from './provider'
+import {
+  msg,
+  ChainProvider,
+  TransferInput,
+  WriteInput,
+  ReadInput,
+} from './provider'
 
 const eip6963Store = typeof window !== 'undefined' ? createStore() : null
 
-const iface = new utils.Interface([
-  'function transfer(address to, uint amount)',
-])
+const TRANSFER_FRAGMENT = 'function transfer(address to, uint amount)'
 
 export class ProviderRON extends ChainProvider {
   public platform = 'ronin-chain'
@@ -46,6 +50,76 @@ export class ProviderRON extends ChainProvider {
     return Object.assign(this)
   }
 
+  async read(i: ReadInput) {
+    try {
+      const { abi, to, from, args = [], method } = i
+      const iface = new utils.Interface(abi)
+      const data = iface.encodeFunctionData(method, args)
+
+      if (isMobile() && this.session.topic && this.signClient) {
+        const resultData: string = await this.signClient.request({
+          topic: this.session.topic,
+          chainId: `eip155:${(+this.chainId).toString(10)}`,
+          request: {
+            method: 'eth_call',
+            params: [{ from, to, data }, 'latest'],
+          },
+        })
+        return iface.decodeFunctionResult(method, resultData)
+      }
+
+      const resultData: string = await this.provider.request({
+        method: 'eth_call',
+        params: [
+          {
+            from,
+            to,
+            data,
+          },
+          'latest',
+        ],
+      })
+
+      return iface.decodeFunctionResult(method, resultData)
+    } catch (e) {
+      console.error('ron-provider:read', e)
+      return null
+    }
+  }
+
+  async write(i: WriteInput) {
+    try {
+      const { abi, to, from, args = [], method } = i
+      const iface = new utils.Interface(abi)
+      const data = iface.encodeFunctionData(method, args)
+
+      if (isMobile() && this.session.topic && this.signClient) {
+        return await this.signClient.request({
+          topic: this.session.topic,
+          chainId: `eip155:${(+this.chainId).toString(10)}`,
+          request: {
+            method: 'eth_sendTransaction',
+            params: [{ from, to, data }],
+          },
+        })
+      }
+
+      return this.provider.request({
+        method: 'eth_sendTransaction',
+        params: [
+          {
+            from,
+            to,
+            data,
+          },
+        ],
+      })
+    } catch (e) {
+      console.error('ron-provider:write', e)
+      return null
+    }
+  }
+
   async transfer(input: TransferInput) {
     if (isMobile() && (!this.session || !this.signClient)) return null
 
@@ -75,6 +149,7 @@ export class ProviderRON extends ChainProvider {
         })
       }
 
+      const iface = new utils.Interface(TRANSFER_FRAGMENT)
       // case native coin
       const params = {
         from,
