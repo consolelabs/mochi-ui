@@ -1,5 +1,11 @@
 # @mochi-web3/login-widget
 
+## 0.2.18
+
+### Patch Changes
+
+- [#828](https://github.com/consolelabs/mochi-ui/pull/828) [`c099260`](https://github.com/consolelabs/mochi-ui/commit/c0992604766e14c1c56c07612da75ae916fbc450) Thanks [@tuanddd](https://github.com/tuanddd)! - Export ChainProvider via login-widget
+
 ## 0.2.17
 
 ### Patch Changes
