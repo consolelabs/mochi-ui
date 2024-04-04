@@ -69,7 +69,7 @@ const LoginWidgetProvider = ({
         const hasParams = Object.keys(rest).length > 0
 
         window.history.replaceState(
-          '',
+          {},
           '',
           `${window.location.href.replace(window.location.search, '')}${
             hasParams ? `?${qs.stringify(rest)}` : ''

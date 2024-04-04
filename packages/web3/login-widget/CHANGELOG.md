@@ -1,5 +1,85 @@
 # @mochi-web3/login-widget
 
+## 0.2.17
+
+### Patch Changes
+
+- Updated dependencies [[`0941153`](https://github.com/consolelabs/mochi-ui/commit/0941153485122d65fb5927c5141bee24b56347d5)]:
+  - @mochi-web3/connect-wallet-widget@0.2.4
+
+## 0.2.16
+
+### Patch Changes
+
+- Updated dependencies [[`9e7a5b1`](https://github.com/consolelabs/mochi-ui/commit/9e7a5b11321e53025927ebdd243d83d8a3c50679)]:
+  - @mochi-web3/connect-wallet-widget@0.2.3
+
+## 0.2.15
+
+### Patch Changes
+
+- Updated dependencies [[`80d1075`](https://github.com/consolelabs/mochi-ui/commit/80d1075ddafa5b063ede542e7aca57afd5ba2222)]:
+  - @mochi-web3/connect-wallet-widget@0.2.2
+
+## 0.2.14
+
+### Patch Changes
+
+- Updated dependencies [[`01fb942`](https://github.com/consolelabs/mochi-ui/commit/01fb9422f4f7f1588a0045da0adad6467a05291c)]:
+  - @mochi-web3/connect-wallet-widget@0.2.1
+
+## 0.2.13
+
+### Patch Changes
+
+- Updated dependencies [[`a6262b2`](https://github.com/consolelabs/mochi-ui/commit/a6262b2cb25a02127d99ab70023bacdfd573a764)]:
+  - @mochi-web3/connect-wallet-widget@0.2.0
+
+## 0.2.12
+
+### Patch Changes
+
+- Updated dependencies [[`03a72e6`](https://github.com/consolelabs/mochi-ui/commit/03a72e6065db76abb3ca13caea73cf9cc3747904)]:
+  - @mochi-web3/connect-wallet-widget@0.1.0
+
+## 0.2.11
+
+### Patch Changes
+
+- [#814](https://github.com/consolelabs/mochi-ui/pull/814) [`6bd51e5`](https://github.com/consolelabs/mochi-ui/commit/6bd51e5f7b0cf21a8d4de952f199f92e7ec90089) Thanks [@tuanddd](https://github.com/tuanddd)! - Fix connect wallet persist to local storage
+
+## 0.2.10
+
+### Patch Changes
+
+- [#812](https://github.com/consolelabs/mochi-ui/pull/812) [`d134af5`](https://github.com/consolelabs/mochi-ui/commit/d134af5f1797e8753a06106129ae902c931b0254) Thanks [@tuanddd](https://github.com/tuanddd)! - Fix build config
+
+- Updated dependencies [[`d134af5`](https://github.com/consolelabs/mochi-ui/commit/d134af5f1797e8753a06106129ae902c931b0254)]:
+  - @mochi-web3/connect-wallet-widget@0.0.15
+
+## 0.2.9
+
+### Patch Changes
+
+- Updated dependencies [[`fd397fe`](https://github.com/consolelabs/mochi-ui/commit/fd397fea8ec0826a8ecfd0585a0a290494b66635)]:
+  - @mochi-web3/connect-wallet-widget@0.0.14
+
+## 0.2.8
+
+### Patch Changes
+
+- [#809](https://github.com/consolelabs/mochi-ui/pull/809) [`42982cb`](https://github.com/consolelabs/mochi-ui/commit/42982cb8f5092c303b3fe898ef5c25f73f609579) Thanks [@tuanddd](https://github.com/tuanddd)! - Remove bs58 lib
+
+- Updated dependencies [[`e3782a7`](https://github.com/consolelabs/mochi-ui/commit/e3782a7693be72a82e9ba66895b8a1f379c99337), [`6d96390`](https://github.com/consolelabs/mochi-ui/commit/6d96390ade07ccac69baa4807e1b8bc3cbca4424)]:
+  - @mochi-ui/theme@0.18.0
+  - @mochi-ui/button@0.4.17
+  - @mochi-ui/dropdown@0.2.8
+  - @mochi-ui/icon-button@0.4.18
+  - @mochi-ui/scroll-area@0.0.7
+  - @mochi-ui/tabs@0.2.8
+  - @mochi-ui/typography@0.1.1
+  - @mochi-web3/connect-wallet-widget@0.0.13
+
 ## 0.2.7
 
 ### Patch Changes

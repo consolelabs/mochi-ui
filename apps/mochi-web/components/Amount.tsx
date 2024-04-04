@@ -71,23 +71,25 @@ export default function Amount({
         'gap-y-1.5 grid-cols-1': isLongNumber,
       })}
     >
-      {isMoniker ? (
-        <div className="my-auto flex justify-center items-center w-7 h-7 rounded-full border border-[#E5E4E3]">
-          <span className="text-sm">{MonikerIcons.get(tokenIcon)}</span>
-        </div>
-      ) : (
-        <Avatar
-          size={size === 'lg' || size === 'md' ? 'xs' : 'xxs'}
-          className={clsx('shrink-0 aspect-square [&>img]:rounded-none', {
-            /* 'my-1': size === 'md' && alignment === 'center' && !isLongNumber, */
-            'row-start-1 row-span-2 my-auto':
-              alignment === 'left' && !isLongNumber,
-            'mx-auto': isLongNumber,
-          })}
-          src={tokenIcon || coinIcon.src}
-          smallSrc={platformIcon}
-        />
-      )}
+      <div className="h-8 flex items-center">
+        {isMoniker ? (
+          <div className="my-auto flex justify-center items-center w-7 h-7 rounded-full border border-[#E5E4E3]">
+            <span className="text-sm">{MonikerIcons.get(tokenIcon)}</span>
+          </div>
+        ) : (
+          <Avatar
+            size={size === 'lg' || size === 'md' ? 'xs' : 'xxs'}
+            className={clsx('shrink-0 aspect-square [&>img]:rounded-none', {
+              /* 'my-1': size === 'md' && alignment === 'center' && !isLongNumber, */
+              'row-start-1 row-span-2 my-auto':
+                alignment === 'left' && !isLongNumber,
+              'mx-auto': isLongNumber,
+            })}
+            src={tokenIcon || coinIcon.src}
+            smallSrc={platformIcon}
+          />
+        )}
+      </div>
       <div
         className={clsx('flex gap-x-1 items-center', {
           'flex-col items-center': isLongNumber,
