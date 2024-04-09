@@ -2,7 +2,6 @@ import UI, { Platform, utils as mochiUtils } from '@consolelabs/mochi-formatter'
 import { coinIcon, discordLogo, telegramLogo, xlogo } from '~utils/image'
 import { utils } from 'ethers'
 import { api } from '~constants/mochi'
-import { HOME_URL } from '~envs'
 import { truncate } from '@dwarvesf/react-utils'
 import { formatTokenDigit } from '~utils/string'
 import { templates, type TemplateName } from './Template'
@@ -125,10 +124,14 @@ export async function transformData(rawData: any) {
       break
   }
 
+  const { data: emoji } = await api.base.metadata.getEmojis({
+    codes: [rawData?.token.symbol],
+  })
+
   const ogDataOnly = {
     from: (sender?.plain ?? '') as any,
     native: rawData?.token.native,
-    tokenIcon: rawData.token.icon || `${HOME_URL}/assets/coin.png`,
+    tokenIcon: rawData.token.icon || emoji?.[0]?.emoji_url || coinIcon.src,
     to: (receiver?.plain ?? '') as any,
     symbol: rawData?.token.symbol,
     amount: mochiUtils.formatTokenDigit({
