@@ -1,5 +1,12 @@
 # @mochi-ui/avatar
 
+## 0.3.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @mochi-ui/skeleton@1.0.12
+
 ## 0.3.2
 
 ### Patch Changes

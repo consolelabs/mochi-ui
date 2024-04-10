@@ -1,6 +1,6 @@
 {
   "name": "@mochi-ui/alert",
-  "version": "1.2.11",
+  "version": "1.2.12",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [

@@ -1,5 +1,12 @@
 # @mochi-ui/table
 
+## 0.8.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @mochi-ui/skeleton@1.0.12
+
 ## 0.8.1
 
 ### Patch Changes

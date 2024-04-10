@@ -1,5 +1,12 @@
 # @mochi-ui/layout
 
+## 0.1.19
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @mochi-ui/sidebar@0.1.12
+
 ## 0.1.18
 
 ### Patch Changes
