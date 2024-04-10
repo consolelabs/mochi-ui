@@ -1,5 +1,17 @@
 # @mochi-web3/connect-wallet-widget
 
+## 0.2.5
+
+### Patch Changes
+
+- Updated dependencies [[`2e4bd52`](https://github.com/consolelabs/mochi-ui/commit/2e4bd52feecd7b3ba913e31cb5f719e720434023)]:
+  - @mochi-ui/icons@0.7.5
+  - @mochi-ui/badge@0.3.6
+  - @mochi-ui/button@0.4.18
+  - @mochi-ui/dropdown@0.2.9
+  - @mochi-ui/tabs@0.2.8
+  - @mochi-ui/typography@0.1.1
+
 ## 0.2.4
 
 ### Patch Changes

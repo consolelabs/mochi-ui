@@ -1,6 +1,6 @@
 {
   "name": "@mochi-ui/core",
-  "version": "0.13.5",
+  "version": "0.13.6",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [

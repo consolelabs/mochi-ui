@@ -1,5 +1,45 @@
 # @mochi-ui/core
 
+## 0.13.6
+
+### Patch Changes
+
+- Updated dependencies [[`2e4bd52`](https://github.com/consolelabs/mochi-ui/commit/2e4bd52feecd7b3ba913e31cb5f719e720434023)]:
+  - @mochi-ui/icons@0.7.5
+  - @mochi-ui/accordion@0.1.22
+  - @mochi-ui/alert@1.2.12
+  - @mochi-ui/avatar-group@0.3.6
+  - @mochi-ui/badge@0.3.6
+  - @mochi-ui/button@0.4.18
+  - @mochi-ui/checkbox@0.1.22
+  - @mochi-ui/content-editable@1.1.10
+  - @mochi-ui/drawer@0.3.9
+  - @mochi-ui/dropdown@0.2.9
+  - @mochi-ui/footer@0.1.12
+  - @mochi-ui/form@0.1.18
+  - @mochi-ui/icon-button@0.4.19
+  - @mochi-ui/input@0.3.8
+  - @mochi-ui/layout@0.1.19
+  - @mochi-ui/modal@0.3.9
+  - @mochi-ui/page-header@0.3.9
+  - @mochi-ui/pagination@0.5.1
+  - @mochi-ui/popover@0.3.8
+  - @mochi-ui/scroll-area@0.0.8
+  - @mochi-ui/section-header@0.2.8
+  - @mochi-ui/select@0.3.2
+  - @mochi-ui/sidebar@0.1.12
+  - @mochi-ui/skeleton@1.0.12
+  - @mochi-ui/table@0.8.2
+  - @mochi-ui/tabs@0.2.8
+  - @mochi-ui/toggle-button@0.1.2
+  - @mochi-ui/top-bar@0.1.18
+  - @mochi-ui/typography@0.1.1
+  - @mochi-ui/value-change@0.0.8
+  - @mochi-ui/action-bar@0.2.3
+  - @mochi-ui/toast@0.1.12
+  - @mochi-ui/avatar@0.3.3
+  - @mochi-ui/profile-badge@0.2.6
+
 ## 0.13.5
 
 ### Patch Changes

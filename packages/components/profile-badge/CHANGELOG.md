@@ -1,5 +1,12 @@
 # @mochi-ui/profile-badge
 
+## 0.2.6
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @mochi-ui/avatar@0.3.3
+
 ## 0.2.5
 
 ### Patch Changes

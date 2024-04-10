@@ -1,5 +1,12 @@
 # @mochi-ui/avatar-group
 
+## 0.3.6
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @mochi-ui/avatar@0.3.3
+
 ## 0.3.5
 
 ### Patch Changes

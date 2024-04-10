@@ -1,5 +1,12 @@
 # @mochi-ui/select
 
+## 0.3.2
+
+### Patch Changes
+
+- Updated dependencies [[`2e4bd52`](https://github.com/consolelabs/mochi-ui/commit/2e4bd52feecd7b3ba913e31cb5f719e720434023)]:
+  - @mochi-ui/icons@0.7.5
+
 ## 0.3.1
 
 ### Patch Changes
