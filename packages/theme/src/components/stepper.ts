@@ -52,6 +52,15 @@ const stepIndicatorClsx = ({
     className,
   )
 
+const stepIndicatorIconClsx = ({
+  className = '',
+}: { className?: string } = {}) => clsx('w-4 h-4 text-text-contrast', className)
+
+const stepIndicatorLoadingClsx = ({
+  className = '',
+}: { className?: string } = {}) =>
+  clsx('w-full h-full text-primary-solid', className)
+
 const stepContentClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx('flex flex-col space-y-0.5', className)
 
@@ -59,7 +68,7 @@ const stepTitleClsx = ({ className = '' }: { className?: string } = {}) =>
   clsx('', className)
 
 const stepDescriptionClsx = ({ className = '' }: { className?: string } = {}) =>
-  clsx('', className)
+  clsx('font-normal', className)
 
 const stepSeparatorClsx = ({
   className = '',
@@ -85,6 +94,8 @@ const stepper = {
   stepperCva,
   stepClsx,
   stepIndicatorClsx,
+  stepIndicatorIconClsx,
+  stepIndicatorLoadingClsx,
   stepContentClsx,
   stepTitleClsx,
   stepDescriptionClsx,

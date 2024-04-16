@@ -23,6 +23,6 @@ const StepSeparator = forwardRef<HTMLDivElement, StepSeparatorProps>(
   },
 )
 
-StepSeparator.displayName = 'StepTitle'
+StepSeparator.displayName = 'StepSeparator'
 
 export { StepSeparator, type StepSeparatorProps }
