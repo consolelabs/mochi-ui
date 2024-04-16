@@ -1,5 +1,15 @@
 # @mochi-ui/pagination
 
+## 0.5.3
+
+### Patch Changes
+
+- Updated dependencies [[`e0cf264`](https://github.com/consolelabs/mochi-ui/commit/e0cf26419ff16ebd3ffcd577ec44896ab2c7e836)]:
+  - @mochi-ui/theme@0.20.0
+  - @mochi-ui/input@0.3.10
+  - @mochi-ui/select@0.3.4
+  - @mochi-ui/separator@0.0.34
+
 ## 0.5.2
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @mochi-ui/checkbox
 
+## 0.1.24
+
+### Patch Changes
+
+- Updated dependencies [[`e0cf264`](https://github.com/consolelabs/mochi-ui/commit/e0cf26419ff16ebd3ffcd577ec44896ab2c7e836)]:
+  - @mochi-ui/theme@0.20.0
+
 ## 0.1.23
 
 ### Patch Changes
