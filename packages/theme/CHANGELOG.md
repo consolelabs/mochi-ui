@@ -1,5 +1,11 @@
 # @mochi-ui/theme
 
+## 0.19.0
+
+### Minor Changes
+
+- [#832](https://github.com/consolelabs/mochi-ui/pull/832) [`c393607`](https://github.com/consolelabs/mochi-ui/commit/c39360797bb96792c2c82287e79bcdf9eddf3641) Thanks [@leduyhien152](https://github.com/leduyhien152)! - Add Stepper component
+
 ## 0.18.0
 
 ### Minor Changes
