@@ -3,7 +3,8 @@ import { stepper } from '@mochi-ui/theme'
 import { CheckLine, CloseLine, SpinnerLine } from '@mochi-ui/icons'
 import { useStepperContext } from './context'
 
-const { stepIndicatorClsx } = stepper
+const { stepIndicatorClsx, stepIndicatorIconClsx, stepIndicatorLoadingClsx } =
+  stepper
 
 interface StepIndicatorProps extends PropsWithChildren {
   className?: string
@@ -19,13 +20,13 @@ const StepIndicator = forwardRef<HTMLDivElement, StepIndicatorProps>(
     let children = null
     if (isLoading) {
       status = 'loading'
-      children = <SpinnerLine className="w-full h-full text-primary-solid" />
+      children = <SpinnerLine className={stepIndicatorLoadingClsx()} />
     } else if (isError) {
       status = 'error'
-      children = <CloseLine className="w-4 h-4 text-text-contrast" />
+      children = <CloseLine className={stepIndicatorIconClsx()} />
     } else if (stepStatus === 'complete') {
       status = 'success'
-      children = <CheckLine className="w-4 h-4 text-text-contrast" />
+      children = <CheckLine className={stepIndicatorIconClsx()} />
     } else {
       status = stepStatus
       children = step
