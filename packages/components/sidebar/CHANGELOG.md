@@ -1,5 +1,15 @@
 # @mochi-ui/sidebar
 
+## 0.1.14
+
+### Patch Changes
+
+- Updated dependencies [[`e0cf264`](https://github.com/consolelabs/mochi-ui/commit/e0cf26419ff16ebd3ffcd577ec44896ab2c7e836)]:
+  - @mochi-ui/theme@0.20.0
+  - @mochi-ui/accordion@0.1.24
+  - @mochi-ui/tooltip@0.2.20
+  - @mochi-ui/typography@0.1.1
+
 ## 0.1.13
 
 ### Patch Changes

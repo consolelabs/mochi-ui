@@ -1,5 +1,13 @@
 # @mochi-ui/table
 
+## 0.8.4
+
+### Patch Changes
+
+- Updated dependencies [[`e0cf264`](https://github.com/consolelabs/mochi-ui/commit/e0cf26419ff16ebd3ffcd577ec44896ab2c7e836)]:
+  - @mochi-ui/theme@0.20.0
+  - @mochi-ui/skeleton@1.0.14
+
 ## 0.8.3
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @mochi-ui/profile-badge
 
+## 0.2.8
+
+### Patch Changes
+
+- Updated dependencies [[`e0cf264`](https://github.com/consolelabs/mochi-ui/commit/e0cf26419ff16ebd3ffcd577ec44896ab2c7e836)]:
+  - @mochi-ui/theme@0.20.0
+  - @mochi-ui/avatar@0.3.5
+
 ## 0.2.7
 
 ### Patch Changes
