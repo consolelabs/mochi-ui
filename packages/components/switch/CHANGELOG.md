@@ -1,5 +1,12 @@
 # @mochi-ui/switch
 
+## 0.0.30
+
+### Patch Changes
+
+- Updated dependencies [[`c393607`](https://github.com/consolelabs/mochi-ui/commit/c39360797bb96792c2c82287e79bcdf9eddf3641)]:
+  - @mochi-ui/theme@0.19.0
+
 ## 0.0.29
 
 ### Patch Changes
