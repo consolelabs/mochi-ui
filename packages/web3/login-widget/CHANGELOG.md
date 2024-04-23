@@ -1,5 +1,12 @@
 # @mochi-web3/login-widget
 
+## 0.2.22
+
+### Patch Changes
+
+- Updated dependencies [[`dbacd76`](https://github.com/consolelabs/mochi-ui/commit/dbacd76c7ad0192fcbeb926cbc80536c9481b50e)]:
+  - @mochi-web3/connect-wallet-widget@0.2.8
+
 ## 0.2.21
 
 ### Patch Changes

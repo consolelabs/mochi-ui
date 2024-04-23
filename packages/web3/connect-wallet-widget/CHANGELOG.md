@@ -1,5 +1,11 @@
 # @mochi-web3/connect-wallet-widget
 
+## 0.2.8
+
+### Patch Changes
+
+- [#836](https://github.com/consolelabs/mochi-ui/pull/836) [`dbacd76`](https://github.com/consolelabs/mochi-ui/commit/dbacd76c7ad0192fcbeb926cbc80536c9481b50e) Thanks [@tuanddd](https://github.com/tuanddd)! - Avoid asking user to switch chain
+
 ## 0.2.7
 
 ### Patch Changes
