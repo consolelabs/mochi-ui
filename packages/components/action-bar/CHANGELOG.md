@@ -1,5 +1,12 @@
 # @mochi-ui/action-bar
 
+## 0.2.6
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @mochi-ui/alert@1.2.15
+
 ## 0.2.5
 
 ### Patch Changes

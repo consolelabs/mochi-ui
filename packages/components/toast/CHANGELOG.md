@@ -1,5 +1,12 @@
 # @mochi-ui/toast
 
+## 0.1.15
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @mochi-ui/alert@1.2.15
+
 ## 0.1.14
 
 ### Patch Changes
