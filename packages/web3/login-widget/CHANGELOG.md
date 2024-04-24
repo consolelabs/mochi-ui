@@ -1,5 +1,68 @@
 # @mochi-web3/login-widget
 
+## 0.2.23
+
+### Patch Changes
+
+- Updated dependencies [[`c007019`](https://github.com/consolelabs/mochi-ui/commit/c007019d3f827cb6207ebcd49abc31b5c7d8aa64)]:
+  - @mochi-ui/icons@0.8.0
+  - @mochi-ui/button@0.4.21
+  - @mochi-ui/dropdown@0.2.12
+  - @mochi-ui/icon-button@0.4.22
+  - @mochi-ui/scroll-area@0.0.11
+  - @mochi-ui/tabs@0.2.10
+  - @mochi-ui/typography@0.1.1
+  - @mochi-web3/connect-wallet-widget@0.2.9
+
+## 0.2.22
+
+### Patch Changes
+
+- Updated dependencies [[`dbacd76`](https://github.com/consolelabs/mochi-ui/commit/dbacd76c7ad0192fcbeb926cbc80536c9481b50e)]:
+  - @mochi-web3/connect-wallet-widget@0.2.8
+
+## 0.2.21
+
+### Patch Changes
+
+- Updated dependencies [[`e0cf264`](https://github.com/consolelabs/mochi-ui/commit/e0cf26419ff16ebd3ffcd577ec44896ab2c7e836)]:
+  - @mochi-ui/theme@0.20.0
+  - @mochi-ui/button@0.4.20
+  - @mochi-ui/dropdown@0.2.11
+  - @mochi-ui/icon-button@0.4.21
+  - @mochi-ui/scroll-area@0.0.10
+  - @mochi-ui/tabs@0.2.10
+  - @mochi-ui/typography@0.1.1
+  - @mochi-web3/connect-wallet-widget@0.2.7
+
+## 0.2.20
+
+### Patch Changes
+
+- Updated dependencies [[`c393607`](https://github.com/consolelabs/mochi-ui/commit/c39360797bb96792c2c82287e79bcdf9eddf3641)]:
+  - @mochi-ui/theme@0.19.0
+  - @mochi-ui/button@0.4.19
+  - @mochi-ui/dropdown@0.2.10
+  - @mochi-ui/icon-button@0.4.20
+  - @mochi-ui/scroll-area@0.0.9
+  - @mochi-ui/tabs@0.2.9
+  - @mochi-ui/typography@0.1.1
+  - @mochi-web3/connect-wallet-widget@0.2.6
+
+## 0.2.19
+
+### Patch Changes
+
+- Updated dependencies [[`2e4bd52`](https://github.com/consolelabs/mochi-ui/commit/2e4bd52feecd7b3ba913e31cb5f719e720434023)]:
+  - @mochi-ui/icons@0.7.5
+  - @mochi-ui/button@0.4.18
+  - @mochi-ui/dropdown@0.2.9
+  - @mochi-ui/icon-button@0.4.19
+  - @mochi-ui/scroll-area@0.0.8
+  - @mochi-ui/tabs@0.2.8
+  - @mochi-ui/typography@0.1.1
+  - @mochi-web3/connect-wallet-widget@0.2.5
+
 ## 0.2.18
 
 ### Patch Changes

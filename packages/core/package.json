@@ -1,6 +1,6 @@
 {
   "name": "@mochi-ui/core",
-  "version": "0.13.5",
+  "version": "0.14.2",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [
@@ -30,6 +30,7 @@
     "tsconfig": "workspace:*"
   },
   "dependencies": {
+    "@mochi-ui/stepper": "workspace:*",
     "@mochi-ui/scroll-area": "workspace:*",
     "@mochi-ui/card": "workspace:*",
     "@mochi-ui/skeleton": "workspace:*",

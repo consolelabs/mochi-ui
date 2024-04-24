@@ -1,5 +1,35 @@
 # @mochi-ui/layout
 
+## 0.1.22
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @mochi-ui/sidebar@0.1.15
+
+## 0.1.21
+
+### Patch Changes
+
+- Updated dependencies [[`e0cf264`](https://github.com/consolelabs/mochi-ui/commit/e0cf26419ff16ebd3ffcd577ec44896ab2c7e836)]:
+  - @mochi-ui/theme@0.20.0
+  - @mochi-ui/sidebar@0.1.14
+
+## 0.1.20
+
+### Patch Changes
+
+- Updated dependencies [[`c393607`](https://github.com/consolelabs/mochi-ui/commit/c39360797bb96792c2c82287e79bcdf9eddf3641)]:
+  - @mochi-ui/theme@0.19.0
+  - @mochi-ui/sidebar@0.1.13
+
+## 0.1.19
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @mochi-ui/sidebar@0.1.12
+
 ## 0.1.18
 
 ### Patch Changes

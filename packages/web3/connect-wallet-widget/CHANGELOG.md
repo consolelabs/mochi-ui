@@ -1,5 +1,59 @@
 # @mochi-web3/connect-wallet-widget
 
+## 0.2.9
+
+### Patch Changes
+
+- Updated dependencies [[`c007019`](https://github.com/consolelabs/mochi-ui/commit/c007019d3f827cb6207ebcd49abc31b5c7d8aa64)]:
+  - @mochi-ui/icons@0.8.0
+  - @mochi-ui/badge@0.3.8
+  - @mochi-ui/button@0.4.21
+  - @mochi-ui/dropdown@0.2.12
+  - @mochi-ui/tabs@0.2.10
+  - @mochi-ui/typography@0.1.1
+
+## 0.2.8
+
+### Patch Changes
+
+- [#836](https://github.com/consolelabs/mochi-ui/pull/836) [`dbacd76`](https://github.com/consolelabs/mochi-ui/commit/dbacd76c7ad0192fcbeb926cbc80536c9481b50e) Thanks [@tuanddd](https://github.com/tuanddd)! - Avoid asking user to switch chain
+
+## 0.2.7
+
+### Patch Changes
+
+- Updated dependencies [[`e0cf264`](https://github.com/consolelabs/mochi-ui/commit/e0cf26419ff16ebd3ffcd577ec44896ab2c7e836)]:
+  - @mochi-ui/theme@0.20.0
+  - @mochi-ui/badge@0.3.8
+  - @mochi-ui/button@0.4.20
+  - @mochi-ui/dropdown@0.2.11
+  - @mochi-ui/tabs@0.2.10
+  - @mochi-ui/typography@0.1.1
+
+## 0.2.6
+
+### Patch Changes
+
+- Updated dependencies [[`c393607`](https://github.com/consolelabs/mochi-ui/commit/c39360797bb96792c2c82287e79bcdf9eddf3641)]:
+  - @mochi-ui/theme@0.19.0
+  - @mochi-ui/badge@0.3.7
+  - @mochi-ui/button@0.4.19
+  - @mochi-ui/dropdown@0.2.10
+  - @mochi-ui/tabs@0.2.9
+  - @mochi-ui/typography@0.1.1
+
+## 0.2.5
+
+### Patch Changes
+
+- Updated dependencies [[`2e4bd52`](https://github.com/consolelabs/mochi-ui/commit/2e4bd52feecd7b3ba913e31cb5f719e720434023)]:
+  - @mochi-ui/icons@0.7.5
+  - @mochi-ui/badge@0.3.6
+  - @mochi-ui/button@0.4.18
+  - @mochi-ui/dropdown@0.2.9
+  - @mochi-ui/tabs@0.2.8
+  - @mochi-ui/typography@0.1.1
+
 ## 0.2.4
 
 ### Patch Changes

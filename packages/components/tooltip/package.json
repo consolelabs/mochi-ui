@@ -1,6 +1,6 @@
 {
   "name": "@mochi-ui/tooltip",
-  "version": "0.2.18",
+  "version": "0.2.20",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [

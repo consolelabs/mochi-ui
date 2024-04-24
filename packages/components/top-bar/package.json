@@ -1,6 +1,6 @@
 {
   "name": "@mochi-ui/top-bar",
-  "version": "0.1.17",
+  "version": "0.1.21",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [

@@ -223,19 +223,25 @@ export class ProviderEVM extends ChainProvider {
 
       if (!this.signClient) throw new Error('Cannot init/find signClient')
 
-      const chainIds = [
-        '1',
-        // , '56', '42161', '137', '10', '8453'
-      ]
+      const chainIds = ['250', '56', '42161', '137', '10', '8453']
 
       const { uri, approval } = await this.signClient.connect({
         requiredNamespaces: {
           eip155: {
             methods: ['eth_sendTransaction', 'personal_sign'],
-            chains: chainIds.map((cid) => `eip155:${(+cid).toString(10)}`),
+            chains: [`eip155:1`],
             events: ['chainChanged', 'accountsChanged'],
           },
         },
+        optionalNamespaces: Object.fromEntries(
+          chainIds.map((cid) => [
+            `eip155:${(+cid).toString(10)}`,
+            {
+              methods: ['eth_sendTransaction', 'personal_sign'],
+              events: ['chainChanged', 'accountsChanged'],
+            },
+          ]),
+        ),
       })
 
       if (!uri || !this.mobileProtocol)
@@ -246,13 +252,18 @@ export class ProviderEVM extends ChainProvider {
 
       const session = await approval()
       this.session = session
+      let chainId = 'eip155:1'
       const accounts = session.namespaces.eip155.accounts
-        .map((a) => a.split(':').pop() ?? '')
+        .map((a) => {
+          const [ns, c, addr] = a.split(':')
+          chainId = `${ns}:${c}`
+          return addr
+        })
         .filter(Boolean)
 
       const sig = (await this.signClient.request({
         topic: this.session.topic,
-        chainId: 'eip155:1',
+        chainId,
         request: {
           method: 'personal_sign',
           params: [hexedMsg, accounts[0]],
