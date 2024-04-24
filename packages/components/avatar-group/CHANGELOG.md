@@ -1,5 +1,35 @@
 # @mochi-ui/avatar-group
 
+## 0.3.9
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @mochi-ui/avatar@0.3.6
+
+## 0.3.8
+
+### Patch Changes
+
+- Updated dependencies [[`e0cf264`](https://github.com/consolelabs/mochi-ui/commit/e0cf26419ff16ebd3ffcd577ec44896ab2c7e836)]:
+  - @mochi-ui/theme@0.20.0
+  - @mochi-ui/avatar@0.3.5
+
+## 0.3.7
+
+### Patch Changes
+
+- Updated dependencies [[`c393607`](https://github.com/consolelabs/mochi-ui/commit/c39360797bb96792c2c82287e79bcdf9eddf3641)]:
+  - @mochi-ui/theme@0.19.0
+  - @mochi-ui/avatar@0.3.4
+
+## 0.3.6
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @mochi-ui/avatar@0.3.3
+
 ## 0.3.5
 
 ### Patch Changes

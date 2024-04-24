@@ -1,5 +1,17 @@
 # @mochi-ui/icons
 
+## 0.8.0
+
+### Minor Changes
+
+- [#838](https://github.com/consolelabs/mochi-ui/pull/838) [`c007019`](https://github.com/consolelabs/mochi-ui/commit/c007019d3f827cb6207ebcd49abc31b5c7d8aa64) Thanks [@tuanddd](https://github.com/tuanddd)! - Add new icons
+
+## 0.7.5
+
+### Patch Changes
+
+- [#830](https://github.com/consolelabs/mochi-ui/pull/830) [`2e4bd52`](https://github.com/consolelabs/mochi-ui/commit/2e4bd52feecd7b3ba913e31cb5f719e720434023) Thanks [@tuanddd](https://github.com/tuanddd)! - Fix web3 icons
+
 ## 0.7.4
 
 ### Patch Changes

@@ -1,5 +1,35 @@
 # @mochi-ui/table
 
+## 0.8.5
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @mochi-ui/skeleton@1.0.15
+
+## 0.8.4
+
+### Patch Changes
+
+- Updated dependencies [[`e0cf264`](https://github.com/consolelabs/mochi-ui/commit/e0cf26419ff16ebd3ffcd577ec44896ab2c7e836)]:
+  - @mochi-ui/theme@0.20.0
+  - @mochi-ui/skeleton@1.0.14
+
+## 0.8.3
+
+### Patch Changes
+
+- Updated dependencies [[`c393607`](https://github.com/consolelabs/mochi-ui/commit/c39360797bb96792c2c82287e79bcdf9eddf3641)]:
+  - @mochi-ui/theme@0.19.0
+  - @mochi-ui/skeleton@1.0.13
+
+## 0.8.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @mochi-ui/skeleton@1.0.12
+
 ## 0.8.1
 
 ### Patch Changes
