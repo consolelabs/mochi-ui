@@ -1,6 +1,6 @@
 {
   "name": "@mochi-ui/stepper",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A stepper component is used to indicate progress through a multi-step process.",
   "keywords": [
     "stepper"
