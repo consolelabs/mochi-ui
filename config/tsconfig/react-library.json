@@ -8,5 +8,6 @@
     "target": "ES6",
     "jsx": "react-jsx",
     "noEmit": true
-  }
+  },
+  "include": ["./overrides.d.ts"]
 }
