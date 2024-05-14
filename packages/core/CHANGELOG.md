@@ -1,5 +1,61 @@
 # @mochi-ui/core
 
+## 0.14.3
+
+### Patch Changes
+
+- [#840](https://github.com/consolelabs/mochi-ui/pull/840) [`514eab9`](https://github.com/consolelabs/mochi-ui/commit/514eab9ead3b0eca27bdfc19d62e681b34be50a4) Thanks [@zlatanpham](https://github.com/zlatanpham)! - Fix no inherit types from cva props cast
+
+- [#842](https://github.com/consolelabs/mochi-ui/pull/842) [`d8e1101`](https://github.com/consolelabs/mochi-ui/commit/d8e11018c206156fc21f5a0a9b24797a4d7f1e87) Thanks [@zlatanpham](https://github.com/zlatanpham)! - Fix cva type export
+
+- [#842](https://github.com/consolelabs/mochi-ui/pull/842) [`d8e1101`](https://github.com/consolelabs/mochi-ui/commit/d8e11018c206156fc21f5a0a9b24797a4d7f1e87) Thanks [@zlatanpham](https://github.com/zlatanpham)! - fix: cva type export
+
+- Updated dependencies [[`d8e1101`](https://github.com/consolelabs/mochi-ui/commit/d8e11018c206156fc21f5a0a9b24797a4d7f1e87)]:
+  - @mochi-ui/content-editable@1.1.14
+  - @mochi-ui/section-header@0.2.11
+  - @mochi-ui/profile-badge@0.2.10
+  - @mochi-ui/avatar-group@0.3.10
+  - @mochi-ui/page-content@0.1.21
+  - @mochi-ui/value-change@0.0.12
+  - @mochi-ui/icon-button@0.4.23
+  - @mochi-ui/page-header@0.3.13
+  - @mochi-ui/scroll-area@0.0.12
+  - @mochi-ui/action-bar@0.2.7
+  - @mochi-ui/pagination@0.5.5
+  - @mochi-ui/accordion@0.1.26
+  - @mochi-ui/separator@0.0.35
+  - @mochi-ui/checkbox@0.1.26
+  - @mochi-ui/dropdown@0.2.13
+  - @mochi-ui/skeleton@1.0.16
+  - @mochi-ui/popover@0.3.11
+  - @mochi-ui/sidebar@0.1.16
+  - @mochi-ui/stepper@1.1.2
+  - @mochi-ui/tooltip@0.2.21
+  - @mochi-ui/top-bar@0.1.22
+  - @mochi-ui/avatar@0.3.7
+  - @mochi-ui/button@0.4.22
+  - @mochi-ui/drawer@0.3.13
+  - @mochi-ui/footer@0.1.15
+  - @mochi-ui/layout@0.1.23
+  - @mochi-ui/select@0.3.6
+  - @mochi-ui/switch@0.0.32
+  - @mochi-ui/alert@1.2.16
+  - @mochi-ui/badge@0.3.9
+  - @mochi-ui/input@0.3.11
+  - @mochi-ui/label@0.1.21
+  - @mochi-ui/modal@0.3.13
+  - @mochi-ui/table@0.8.6
+  - @mochi-ui/toast@0.1.16
+  - @mochi-ui/card@0.1.12
+  - @mochi-ui/form@0.1.21
+  - @mochi-ui/list@0.0.34
+  - @mochi-ui/logo@0.1.21
+  - @mochi-ui/tabs@0.2.11
+  - @mochi-ui/icons@0.8.1
+  - @mochi-ui/theme@0.20.1
+  - @mochi-ui/toggle-button@0.1.3
+  - @mochi-ui/typography@0.1.2
+
 ## 0.14.2
 
 ### Patch Changes

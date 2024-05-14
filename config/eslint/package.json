@@ -1,7 +1,7 @@
 {
   "name": "eslint-config-custom",
   "license": "MIT",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "devDependencies": {
     "@dwarvesf/react-eslint-config": "^1.0.1",

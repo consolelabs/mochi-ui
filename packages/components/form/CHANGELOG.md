@@ -1,5 +1,17 @@
 # @mochi-ui/form
 
+## 0.1.21
+
+### Patch Changes
+
+- [#842](https://github.com/consolelabs/mochi-ui/pull/842) [`d8e1101`](https://github.com/consolelabs/mochi-ui/commit/d8e11018c206156fc21f5a0a9b24797a4d7f1e87) Thanks [@zlatanpham](https://github.com/zlatanpham)! - Fix cva type export
+
+- Updated dependencies [[`d8e1101`](https://github.com/consolelabs/mochi-ui/commit/d8e11018c206156fc21f5a0a9b24797a4d7f1e87)]:
+  - @mochi-ui/label@0.1.21
+  - @mochi-ui/theme@0.20.1
+  - @mochi-ui/form-context@0.1.3
+  - @mochi-ui/polymorphic@0.0.5
+
 ## 0.1.20
 
 ### Patch Changes

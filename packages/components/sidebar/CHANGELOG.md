@@ -1,5 +1,18 @@
 # @mochi-ui/sidebar
 
+## 0.1.16
+
+### Patch Changes
+
+- [#842](https://github.com/consolelabs/mochi-ui/pull/842) [`d8e1101`](https://github.com/consolelabs/mochi-ui/commit/d8e11018c206156fc21f5a0a9b24797a4d7f1e87) Thanks [@zlatanpham](https://github.com/zlatanpham)! - Fix cva type export
+
+- Updated dependencies [[`d8e1101`](https://github.com/consolelabs/mochi-ui/commit/d8e11018c206156fc21f5a0a9b24797a4d7f1e87)]:
+  - @mochi-ui/accordion@0.1.26
+  - @mochi-ui/tooltip@0.2.21
+  - @mochi-ui/icons@0.8.1
+  - @mochi-ui/theme@0.20.1
+  - @mochi-ui/typography@0.1.2
+
 ## 0.1.15
 
 ### Patch Changes

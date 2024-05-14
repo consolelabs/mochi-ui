@@ -1,6 +1,6 @@
 {
   "name": "@mochi-ui/drawer",
-  "version": "0.3.12",
+  "version": "0.3.13",
   "sideEffects": false,
   "main": "src/index.ts",
   "files": [

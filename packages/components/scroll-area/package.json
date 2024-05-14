@@ -1,6 +1,6 @@
 {
   "name": "@mochi-ui/scroll-area",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Custom styled, cross-browser scrollable area using native functionality",
   "keywords": [
     "scroll-area"

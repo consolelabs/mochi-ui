@@ -1,5 +1,15 @@
 # @mochi-ui/avatar-group
 
+## 0.3.10
+
+### Patch Changes
+
+- [#842](https://github.com/consolelabs/mochi-ui/pull/842) [`d8e1101`](https://github.com/consolelabs/mochi-ui/commit/d8e11018c206156fc21f5a0a9b24797a4d7f1e87) Thanks [@zlatanpham](https://github.com/zlatanpham)! - Fix cva type export
+
+- Updated dependencies [[`d8e1101`](https://github.com/consolelabs/mochi-ui/commit/d8e11018c206156fc21f5a0a9b24797a4d7f1e87)]:
+  - @mochi-ui/avatar@0.3.7
+  - @mochi-ui/theme@0.20.1
+
 ## 0.3.9
 
 ### Patch Changes
