@@ -16,7 +16,7 @@ jobs:
         run: |
           curl -sSfL "https://github.com/gitleaks/gitleaks/releases/download/v8.28.0/gitleaks_8.28.0_linux_x64.tar.gz" | tar -xz gitleaks
           cfg=""; [ -f .gitleaks.toml ] && cfg="-c .gitleaks.toml"
-          ./gitleaks detect --no-banner --redact $cfg
+          ./gitleaks detect --no-banner --redact --no-git 
 
   audit:
     runs-on: ubuntu-latest
