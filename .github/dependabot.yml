@@ -1,9 +1,17 @@
 version: 2
 updates:
-  - package-ecosystem: 'npm'
-    directory: '/'
-    open-pull-requests-limit: 0
+  - package-ecosystem: "npm"
+    directory: "/"
     schedule:
-      interval: 'weekly'
-    allow:
-      - dependency-type: 'production'
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    groups:
+      npm-all:
+        patterns: ["*"]
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      github-actions-all:
+        patterns: ["*"]
