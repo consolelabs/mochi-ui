@@ -20,19 +20,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v7
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4
       - name: Login to GCR
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: gcr.io
           username: _json_key
           password: ${{ secrets.GCP_CREDENTIALS }}
       - name: Docker meta
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           # list of Docker images to use as base name for tags
           images: |
@@ -45,7 +45,7 @@ jobs:
             type=semver,pattern={{major}}
             type=sha,prefix=,suffix=,format=long
       - name: Build and push
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v7
         with:
           push: true
           cache-from: type=gha
@@ -57,7 +57,7 @@ jobs:
             NEXT_PUBLIC_MOCHI_PAY_API_HOST=${{ secrets.NEXT_PUBLIC_MOCHI_PAY_API_HOST }}
 
       # Setup kustomize
-      - uses: imranismail/setup-kustomize@v2
+      - uses: imranismail/setup-kustomize@v3
         with:
           kustomize-version: "5.1.1"
           github-token: ${{ secrets.GH_PAT }}

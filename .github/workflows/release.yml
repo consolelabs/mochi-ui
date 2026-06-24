@@ -25,7 +25,7 @@ jobs:
     if: ${{ contains(fromJSON('["tuanddd", "zlatanpham", "chinhld12", "trankhacvy", "tienan92it", "vdhieu", "leduyhien152", "nguyend-nam", "tonible14012002", "github-actions[bot]", "github-actions"]'), github.triggering_actor) }}
     steps:
       - name: Checkout branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           # see `fetch-depth` in README: https://github.com/actions/checkout#checkout-v4,
           # we set to `0` so the referenced commits are available for the command below
@@ -69,7 +69,7 @@ jobs:
           server-url: ${{ github.server_url }}
 
       - name: Archive npm failure logs
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: npm-logs
