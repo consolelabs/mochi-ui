@@ -20,14 +20,14 @@ jobs:
     name: release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3 # v3
+      - uses: actions/checkout@v7 # v3
         with:
           fetch-depth: 0 # to be able to checkout any commit
           persist-credentials: false # <--- this
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v6
         with:
           version: 6.32.9
-      - uses: actions/setup-node@v3 # v3
+      - uses: actions/setup-node@v6 # v3
         with:
           cache: pnpm
           node-version: 18
