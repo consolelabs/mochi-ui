@@ -1,0 +1,19 @@
+# gitleaks config (Console Labs consolidation hardening). Extends defaults; allowlists test
+# fixtures + sample env + dev certs, and the 17-20 digit Discord snowflake IDs that pepper bot
+# source (public user/role/guild IDs, NOT secrets). The gate then fires on REAL leaks.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "test fixtures, sample env, dev certs, and public Discord snowflake IDs are not secrets"
+paths = [
+  '''.*\.(test|spec)\.(ts|tsx|js|jsx)$''',
+  '''.*/__tests__/.*''',
+  '''.*/testdata/.*''',
+  '''\.env\.(sample|example)$''',
+  '''.*localhost.*\.pem$''',
+  '''.*localhost.*\.key$''',
+]
+regexes = [
+  '''^[0-9]{17,20}$''',
+]
