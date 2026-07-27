@@ -24,7 +24,7 @@
     "@storybook/react-vite": "^7.6.10",
     "@storybook/theming": "^7.6.10",
     "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.31",
+    "postcss": "^8.5.18",
     "prettier": "2.8.8",
     "storybook": "^7.6.10",
     "tailwindcss": "^3.3.5",
