@@ -9,6 +9,8 @@ import { HOME_URL, TWITTER_LINK } from '~envs'
 import { ModelProductChangelogs } from '~types/mochi-schema'
 import { API, GET_PATHS } from '~constants/api'
 import {
+  Badge,
+  BadgeIcon,
   Button,
   IconButton,
   Separator,
@@ -22,16 +24,18 @@ import {
   MailSolid,
   ArrowLeftLine,
   ArrowRightLine,
+  ArrowUpLine,
 } from '@mochi-ui/icons'
 import Link from 'next/link'
 import { ROUTES } from '~constants/routes'
-import { useClipboard } from '@dwarvesf/react-hooks'
+import { useClipboard, useDisclosure } from '@dwarvesf/react-hooks'
 import {
   FACEBOOK_SHARE_URL,
   MAIL_SHARE_URL,
   SHARE_CONTENT,
   TWITTER_SHARE_URL,
 } from '~constants/common'
+import clsx from 'clsx'
 import { getFirstImageUrl } from '../../utils/changelog'
 
 export const getServerSideProps: GetServerSideProps<
@@ -73,6 +77,12 @@ export default function Page(
   const layoutRef = useRef<HTMLDivElement>(null)
   const thumbnail = getFirstImageUrl(content)
 
+  const {
+    isOpen: isShowScrollTop,
+    onOpen: setShowScrollTop,
+    onClose: setHideScrollTop,
+  } = useDisclosure()
+
   const { hasCopied, onCopy } = useClipboard(
     HOME_URL + ROUTES.CHANGELOG_DETAIL(version ?? ''),
   )
@@ -82,6 +92,13 @@ export default function Page(
     <Layout
       footer={<Footer includeEmailSubscribe className="mt-10" />}
       ref={layoutRef}
+      onScroll={(e) => {
+        if (e.currentTarget.scrollTop > 500) {
+          setShowScrollTop()
+        } else {
+          setHideScrollTop()
+        }
+      }}
     >
       <SEO
         description={seo_description}
@@ -239,6 +256,28 @@ export default function Page(
           </Button>
         </div>
       </div>
+
+      <Badge
+        appearance="neutral"
+        className={clsx(
+          'cursor-pointer top-14 left-1/2 -translate-x-1/2 z-10 absolute inline-flex transition border border-neutral-outline-border',
+          {
+            '-translate-y-full': !isShowScrollTop,
+            'translate-y-1/2': isShowScrollTop,
+          },
+        )}
+        onClick={() =>
+          layoutRef.current?.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+          })
+        }
+      >
+        <BadgeIcon className="-ml-0.5">
+          <ArrowUpLine className="w-3.5 h-3.5" />
+        </BadgeIcon>
+        <Typography level="p5">Scroll to top</Typography>
+      </Badge>
     </Layout>
   )
 }
