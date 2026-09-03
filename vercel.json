@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "public": true,
   "ignoreCommand": "node ../../scripts/check-build-apps.js",
   "git": {
     "deploymentEnabled": {
