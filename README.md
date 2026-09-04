@@ -1,3 +1,5 @@
+> **Status (2026-09-04):** frozen. MochiUI has had no development since 2024; https://mochiui.com still serves the docs. Its one remaining consumer is the sticker site in `consolelabs/console-apps`. Kept public for that and for reference; no releases planned.
+
 <p align="center">
   <a href="https://github.com/consolelabs/mochi-ui">
     <img src="https://github.com/consolelabs/mochi-ui/assets/12707960/94788d57-5c95-428e-a374-8ec1a460851b" alt="Mochi logo" width="100" />
