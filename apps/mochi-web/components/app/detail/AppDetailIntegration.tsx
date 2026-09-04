@@ -45,7 +45,7 @@ export const AppDetailIntegration = ({
     useClipboard(secretKey)
 
   const code = useMemo(() => {
-    return `curl --location https://api.mochi-pay.console.so/api/v1/profiles/${profileId}/applications/${appId}/balances \\\n  --header 'Content-Type: application/json' \\\n  --header 'Authorization: <Bearer token>'`
+    return `curl --location https://api.mochi.gg/api/v1/profiles/${profileId}/applications/${appId}/balances \\\n  --header 'Content-Type: application/json' \\\n  --header 'Authorization: <Bearer token>'`
   }, [appId, profileId])
 
   return (
